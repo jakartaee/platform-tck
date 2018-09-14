@@ -3,7 +3,7 @@
 ## Introduction
 
 ### CTS Overview
-    A Java EE 8 CTS is a set of tools and tests used to verify that a licensee's
+A Java EE 8 CTS is a set of tools and tests used to verify that a licensee's
 implementation of Java EE 8 technology conforms to the applicable specification.
     All tests in the CTS are based on the written specifications for the Java
 platform. The CTS tests compatibility of a licensee's implementation of a 
@@ -20,7 +20,7 @@ certification test pass, be sure to download the latest Exclude List for the
 Java EE 8 CTS.
 
 ### About JavaEE8 CTS
-  Java EE 8 CTS is a portable, configurable, automated test suite for
+Java EE 8 CTS is a portable, configurable, automated test suite for
 verifying the compliance of a licensee's implementation of the Java EE 8 technologies. 
 Java EE 8 CTS includes version 5.0 of the JT harness.
 
@@ -28,7 +28,7 @@ Java EE 8 CTS includes version 5.0 of the JT harness.
 suite, see https://wiki.openjdk.java.net/display/CodeTools/Documentation.
 
 ### Hardware Requirements
-    The following section lists the hardware requirements for the Java EE 8 CTS
+The following section lists the hardware requirements for the Java EE 8 CTS
 software, using the Java EE 8 RI or Java EE 8 Web Profile RI. Hardware requirements for
 other reference implementations will vary.
 
@@ -41,7 +41,7 @@ All systems should meet the following recommended hardware requirements:
   - Network access to the Internet
 
 ### Software Requirements
-    You can run the Java EE 8 CTS software on platforms running the Solaris,
+You can run the Java EE 8 CTS software on platforms running the Solaris,
 Linux, Windows, and Mac OS software that meet the following software requirements:
   * Operating Systems:
     – Solaris 10 and newer
@@ -63,7 +63,7 @@ Linux, Windows, and Mac OS software that meet the following software requirement
     – MySQL
     – Java DB
 ### Additional Java EE 8 CTS Requirements
-    In addition to the instructions and requirements described in this document,
+In addition to the instructions and requirements described in this document,
 all Java EE 8 and Java EE 8 Web Profile implementations must also pass the standalone
 TCKs for the following technologies:
 * Contexts and Dependency Injection for Java 2.0 (JSR 365)
@@ -111,7 +111,7 @@ You can modify the following test suite components only:
 * Any files in <TS_HOME>/bin and <TS_HOME>/bin/xml (except for ts.* files)
 
 ### Configuring the Java EE 8 RI as the VI
-    To configure the Java EE 8 RI as the server under test (that is, to use the
+To configure the Java EE 8 RI as the server under test (that is, to use the
 Java EE 8 RI as the VI) follow the steps listed below. 
     In this scenario, the goal is simply to test the Java EE 8 RI against 
 the CTS for the purposes of familiarizing yourself with CTS test procedures. 
