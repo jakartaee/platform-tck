@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="rmiiiop_ee_objecttests" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <property name="my.idl.classes"
+            value="com/sun/ts/tests/rmiiiop/ee/objecttests/HelloJAVAIDLObjectIntf.class,
+                   com/sun/ts/tests/rmiiiop/ee/objecttests/HelloJAVAIDLObjectIntfHelper.class,
+                   com/sun/ts/tests/rmiiiop/ee/objecttests/HelloJAVAIDLObjectIntfHolder.class,
+                   com/sun/ts/tests/rmiiiop/ee/objecttests/HelloJAVAIDLObjectIntfOperations.class,
+                   com/sun/ts/tests/rmiiiop/ee/objecttests/HelloJAVAIDLObjectIntfPOA.class,
+                   com/sun/ts/tests/rmiiiop/ee/objecttests/HelloJAVAIDLObjectImpl.class,
+                   com/sun/ts/tests/rmiiiop/ee/objecttests/_HelloJAVAIDLObjectIntfStub.class"/>
+
+  <property name="my.rmi.classes"
+            value="com/sun/ts/tests/rmiiiop/ee/objecttests/HelloRMIIIOPObjectImpl.class,
+                   com/sun/ts/tests/rmiiiop/ee/objecttests/HelloRMIIIOPObjectIntf.class"/>
+
+  <property name="old.stubs.ties"
+            value="org/omg/stub/com/sun/ts/tests/rmiiiop/ee/objecttests/_HelloRMIIIOPObjectImpl_Tie.class,
+                   org/omg/stub/com/sun/ts/tests/rmiiiop/ee/objecttests/_HelloRMIIIOPObjectIntf_Stub.class"/>
+
+  <property name="new.stubs.ties"
+            value="com/sun/ts/tests/rmiiiop/ee/objecttests/_HelloRMIIIOPObjectImpl_Tie.class,
+                   com/sun/ts/tests/rmiiiop/ee/objecttests/_HelloRMIIIOPObjectIntf_Stub.class"/>
+
+  <property name="includes"
+            value="${my.idl.classes},
+                   ${my.rmi.classes},
+                   ${old.stubs.ties},
+                   ${new.stubs.ties}"/>
+ 
+  <target name="package">
+
+      <ts.ejbjar descriptor="rmiiiop_objecttests_ejb.xml"
+                 archivename="rmiiiop_objecttests">
+        <fileset dir="${class.dir}" 
+                 includes="${includes}"/>
+      </ts.ejbjar>
+
+      <ts.clientjar descriptor="rmiiiop_objecttests_client.xml" 
+                    archivename="rmiiiop_objecttests"
+                    mainclass="com.sun.ts.tests.rmiiiop.ee.objecttests.Client"
+                    excludedfiles="com/sun/ts/tests/rmiiiop/ee/objecttests/TestBeanEJB.class">
+        <fileset dir="${class.dir}"
+                 includes="${includes}"/>
+      </ts.clientjar>
+
+      <ts.ear archivename="rmiiiop_objecttests"/>
+
+  </target>
+
+  <target name="generate-stubs-ties">
+    <rmic verify="yes" iiop="yes" iiopopts="-poa" 
+          classname="com.sun.ts.tests.rmiiiop.ee.objecttests.HelloRMIIIOPObjectImpl"
+          base="${ts.home}/classes" sourcebase="${ts.home}/classes"
+          classpath="${ts.classpath}"/>
+  </target>
+
+</project>

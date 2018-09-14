@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.1" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+    <enterprise-beans>
+        <session>
+            <ejb-name>InterceptorBean</ejb-name>
+	    <!-- postConstruct method in its superclass is also specified here -->
+	    <post-construct>
+		<lifecycle-callback-method>postConstruct</lifecycle-callback-method>
+	    </post-construct>
+        </session>
+        <session>
+            <ejb-name>InterceptorOverrideBean</ejb-name>
+	    <post-construct>
+		<lifecycle-callback-method>postConstruct</lifecycle-callback-method>
+	    </post-construct>
+        </session>
+        <session>
+            <ejb-name>InterceptorOverride34Bean</ejb-name>
+	    <post-construct>
+		<lifecycle-callback-method>postConstructInInterceptorBeanBase</lifecycle-callback-method>
+	    </post-construct>
+        </session>
+        <session>
+            <ejb-name>AroundConstructInterceptorBean</ejb-name>
+            <post-construct>
+                <lifecycle-callback-method>postConstruct</lifecycle-callback-method>
+            </post-construct>
+        </session>
+    </enterprise-beans>
+    <interceptors>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor3</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor1</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor2</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor4</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor5</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor6</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor7</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor8</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor9</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorA</interceptor-class>
+        </interceptor>
+    </interceptors>
+    <assembly-descriptor>
+        <interceptor-binding>
+            <ejb-name>*</ejb-name>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor2</interceptor-class>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor1</interceptor-class>
+	    <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor3</interceptor-class>
+        </interceptor-binding>
+	<interceptor-binding>
+	    <ejb-name>InterceptorBean</ejb-name>
+	    <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor5</interceptor-class>
+	    <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor4</interceptor-class>
+	    <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor8</interceptor-class>
+            <exclude-default-interceptors>false</exclude-default-interceptors>
+	</interceptor-binding>
+	<interceptor-binding>
+	    <ejb-name>InterceptorOverrideBean</ejb-name>
+            <exclude-default-interceptors>true</exclude-default-interceptors>
+	</interceptor-binding>
+	<interceptor-binding>
+	    <ejb-name>InterceptorOverride34Bean</ejb-name>
+            <exclude-default-interceptors>true</exclude-default-interceptors>
+	</interceptor-binding>
+    <interceptor-binding>
+        <ejb-name>AroundConstructInterceptorBean</ejb-name>
+        <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor9</interceptor-class>
+        <interceptor-class>com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorA</interceptor-class>
+        <exclude-default-interceptors>true</exclude-default-interceptors>
+	</interceptor-binding>
+    </assembly-descriptor>
+</ejb-jar>

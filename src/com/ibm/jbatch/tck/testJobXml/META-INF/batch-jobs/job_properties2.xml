@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2012 International Business Machines Corp.
+  
+  See the NOTICE file distributed with this work for additional information
+  regarding copyright ownership. Licensed under the Apache License, 
+  Version 2.0 (the "License"); you may not use this file except in compliance
+  with the License. You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<job id="job_properties2" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+	<properties>
+		<property name="myprop1" value="step2" />
+		<property name="myprop2" value="#{jobProperties['myprop1']}" />
+		<property name="batchletProp" value="JOB_OVERRIDE" />
+	</properties>
+	<step id="step1" next="#{jobProperties['myprop1']}">
+	    <properties>
+	    	<property name="batchletProp" value="STEP_OVERRIDE" />
+		</properties>
+		<batchlet ref="myBatchletWithPropertiesImpl">
+			<properties>
+				<property name="myProperty1" value="value1" />
+				<property name="myProperty2" value="value2" />
+				<property name="myProperty4" value="value4" />
+				<property name="mySubmittedProp" value="#{jobParameters['mySubmittedProp']}" />
+				<property name="batchletProp" value="batchletPropValue" />
+				<property name="defaultPropName1" value="#{jobParameters['infile.name']}?:myfile1.txt;" />
+				<property name="defaultPropName2" value="#{jobParameters['unresolving.prop']}?:#{systemProperties['file.separator']};#{jobParameters['infile.name']}?:#{systemProperties['file.name.junit']};.txt" />
+				<property name="myConcatProp" value="#{jobParameters['myFilename']}.txt" />
+				<property name="myJavaSystemProp" value="#{systemProperties['file.separator']}test#{systemProperties['file.separator']}#{jobParameters['myFilename']}.txt" />
+			</properties>
+		</batchlet>
+	</step>
+	<step id="step2">
+		<batchlet ref="myBatchletImpl" />
+	</step>
+</job>

@@ -1,0 +1,94 @@
+<csiv2-log>
+  <assertion name="ew_ssln_ssln_upn_upid_wb_sb_testid6">
+    <invocation>
+      <ejb-home>
+        <client>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <principal-name>0000000000000014040100080606678102010101000000046A326565</principal-name>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>false</ssl-used>
+            <transport-client-principals/>
+            <server>
+              <invocation-principal>j2ee</invocation-principal>
+            </server>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+          <reply>
+            <create-exception>
+              (expected result)
+            </create-exception>
+          </reply>
+        </client>
+      </ejb-home>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <principal-name>0000000000000014040100080606678102010101000000046A326565</principal-name>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>false</ssl-used>
+            <transport-client-principals/>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+      <ejb-remote>
+        <client>
+          <server-interceptor>
+            <operation>invoke</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <principal-name>0000000000000014040100080606678102010101000000046A326565</principal-name>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>false</ssl-used>
+            <transport-client-principals/>
+            <server>
+              <invocation-principal>j2ee</invocation-principal>
+            </server>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+          <reply>
+            <no-exception/>
+          </reply>
+        </client>
+      </ejb-remote>
+    </invocation>
+  </assertion>
+</csiv2-log>

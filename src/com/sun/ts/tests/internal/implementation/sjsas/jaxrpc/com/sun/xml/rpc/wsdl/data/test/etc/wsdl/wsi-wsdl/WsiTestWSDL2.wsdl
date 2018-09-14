@@ -1,0 +1,74 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+  name="WsiTestWSDL2"
+  targetNamespace="uri:sun.com:WsiTestWSDL2"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="uri:sun.com:WsiTestWSDL2"
+  xmlns:ns0="uri:sun.com:WsiTestWSDL2Schema"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <types>	
+    <schema version="1.0" 
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      targetNamespace="uri:sun.com:WsiTestWSDL2Schema"
+      xmlns:tns="uri:sun.com:WsiTestWSDL2Schema"
+      elementFormDefault="qualified">
+
+          <simpleType name="Fooo">
+	           <annotation>
+                  <documentation>Possible test results
+	               </documentation>
+              </annotation>
+
+	           <restriction base="xsd:integer">
+	           </restriction>
+          </simpleType>
+
+    </schema>
+  </types>
+
+  <message name="WsiTestWSDL2Request">
+    <part name="body" type="ns0:Fooo"/>
+  </message>
+  
+  <portType name="WsiTestWSDL2Service1">
+    <operation name="WsiTestWSDL2Operation1">
+      <input message="tns:WsiTestWSDL2Request"/>
+    </operation>  
+  </portType>
+  
+  <binding name="TheBinding" type="tns:WsiTestWSDL2Service1">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="WsiTestWSDL2Operation1">
+      <soap:operation soapAction="uri:WsiTestWSDL2Operation1"/>
+      <input>
+        <soap:body use="encoded" namespace="uri:sun.com:WsiTestWSDL2" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+    </operation>      
+  </binding>
+    
+  <service name="WsiTestWSDL2Service">
+    <port name="ThePort" binding="tns:TheBinding">
+      <soap:address location="http://localhost/rpcendpoint/WsiTestWSDL2Service"/>
+    </port>
+  </service>
+  
+</definitions>

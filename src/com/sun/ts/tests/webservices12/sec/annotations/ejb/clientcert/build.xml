@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="clientcert" basedir="." default="usage">
+
+    <!-- Reuse ant targets defined in jaxws -->
+    <property name="app.name" value="Hello"/>
+    <property name="client.app.name" value="HelloClntCert"/>
+    <property name="wsdl.filename" value="HelloService.wsdl"/>
+    <property name="impl.class" value="com.sun.ts.tests.webservices12.sec.annotations.ejb.clientcert.Hello"/>
+
+    <import file="../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+    <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+    <property name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+
+
+    <target name="filter-wsdl-file" >
+        <copy file="${src.dir}/${pkg.dir}/${wsdl.filename}"
+            tofile="${src.dir}/${pkg.dir}/${wsdl.filename}.orig" overwrite="true">
+        </copy>
+
+        <delete file="${src.dir}/${pkg.dir}/${wsdl.filename}" />
+
+        <copy file="${src.dir}/${pkg.dir}/${wsdl.filename}.orig"
+            tofile="${src.dir}/${pkg.dir}/${wsdl.filename}" overwrite="true">
+            <filterset begintoken="REPLACE" endtoken="ACTUAL_URL">
+                <filter token="_WITH_" 
+                value="https://${webServerHost}:${securedWebServicePort}/WSEjbClientCert/HelloService/Hello"/>
+            </filterset>
+        </copy>
+
+        <delete file="${src.dir}/${pkg.dir}/${wsdl.filename}.orig" />
+    </target>
+
+    <target name="generate_server">
+        <ts.javac includes="${pkg.dir}/*.java" excludes="${pkg.dir}/*Client*.java"/>
+        <antcall target="do_java2wsdl_generate_server"/>
+    </target>
+
+    <target name="packageendpoint" depends="generate_server">
+        <ts.ejbjar archivename="${app.name}" />
+        <ts.ear archivename="HelloClientCert" includedefaultfiles="false">
+            <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar" />
+        </ts.ear>
+    </target>
+
+    <target name="generate_client" >
+        <ts.clean.classes/>
+        <antcall target="do_wsdl2java_generate_client"/>
+        <ts.javac includes="${pkg.dir}/Client.java"/>
+    </target>
+
+    <target name="packageclient" depends="generate_client">
+        <ts.clientjar archivename="${client.app.name}" 
+            mainclass="com.sun.ts.tests.webservices12.sec.annotations.ejb.clientcert.Client">
+            <zipfileset dir="${src.dir}/${pkg.dir}" includes="*.wsdl, *.xsd"  prefix="META-INF/wsdl" />
+        </ts.clientjar>
+        <ts.ear archivename="${client.app.name}"  includedefaultfiles="false">
+            <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar" />
+	</ts.ear>
+        <remove_wsdl_xsd/>
+    </target>
+
+    <target name="build" depends="packageendpoint, packageclient"/>
+
+    <target name="-preclean">
+        <remove_wsdl_xsd/>
+    </target>
+
+</project>

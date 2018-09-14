@@ -1,0 +1,13 @@
+WSRAnn=@WebServiceRef(name="service/WSSimple5File")
+SERVICE=com.sun.ts.tests.webservices12.wsdlImport.file.simple5.Simple5FileSvc
+SEI=com.sun.ts.tests.webservices12.wsdlImport.file.simple5.Tests
+IMPL=com.sun.ts.tests.webservices12.wsdlImport.file.simple5.TestsBean
+NAMESPACEURI=http://Simple5FileSvc.org/wsdl
+PORT=TestsPort
+URLALIAS=/jaxws/Tests
+WEBSERVICEDESCRIPTION=Simple5FileSvc
+SERVICEREFNAMEWSSERVLET=service/WSSimple5File
+SERVICEREFNAMEWSEJB=service/WSSimple5File
+SERVICEREFNAMEWSAPPCLIENT=service/WSSimple5File
+BEANWEBSERVICENAME=TestsBean
+STATELESSNAME=WSSimple5File

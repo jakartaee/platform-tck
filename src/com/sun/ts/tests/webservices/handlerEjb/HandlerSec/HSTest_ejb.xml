@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar version="2.1"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+
+  <display-name>HSTest_ejb</display-name>
+  <enterprise-beans>
+    <session>
+      <display-name>TestAuthEjb</display-name>
+      <ejb-name>TestAuthEjb</ejb-name>
+      <home>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestAuthHome</home>
+      <remote>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestAuthRemote</remote>
+      <service-endpoint>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestAuth</service-endpoint>
+      <ejb-class>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestAuthBean</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <description></description>
+        <use-caller-identity></use-caller-identity>
+      </security-identity>
+    </session>
+    <session>
+      <display-name>TestNoSecEjb</display-name>
+      <ejb-name>TestNoSecEjb</ejb-name>
+      <home>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestNoSecHome</home>
+      <remote>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestNoSecRemote</remote>
+      <service-endpoint>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestNoSec</service-endpoint>
+      <ejb-class>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestNoSecBean</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <description></description>
+        <use-caller-identity></use-caller-identity>
+      </security-identity>
+    </session>
+    <session>
+      <display-name>TestQueryEjb</display-name>
+      <ejb-name>TestQueryEjb</ejb-name>
+      <home>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestQueryHome</home>
+      <remote>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestQueryRemote</remote>
+      <service-endpoint>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestQuery</service-endpoint>
+      <ejb-class>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestQueryBean</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <description></description>
+        <use-caller-identity></use-caller-identity>
+      </security-identity>
+    </session>
+    <session>
+      <display-name>TestUnAuthEjb</display-name>
+      <ejb-name>TestUnAuthEjb</ejb-name>
+      <home>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestUnAuthHome</home>
+      <remote>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestUnAuthRemote</remote>
+      <service-endpoint>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestUnAuth</service-endpoint>
+      <ejb-class>com.sun.ts.tests.webservices.handlerEjb.HandlerSec.TestUnAuthBean</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <description></description>
+        <use-caller-identity></use-caller-identity>
+      </security-identity>
+    </session>
+  </enterprise-beans>
+
+  <assembly-descriptor>
+    <security-role>
+      <role-name>Manager</role-name>
+    </security-role>
+    <method-permission>
+      <role-name>Manager</role-name>
+      <method>
+        <ejb-name>TestAuthEjb</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <method>
+        <ejb-name>TestUnAuthEjb</ejb-name>
+        <method-name>*</method-name>
+      </method>
+    </method-permission>
+    <method-permission>
+      <unchecked />
+      <method>
+        <ejb-name>TestNoSecEjb</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <method>
+        <ejb-name>TestQueryEjb</ejb-name>
+        <method-name>*</method-name>
+      </method>
+    </method-permission>
+    <container-transaction>
+      <method>
+        <ejb-name>TestAuthEjb</ejb-name>
+        <method-name>testingAuth</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TestUnAuthEjb</ejb-name>
+        <method-name>testingUnAuth</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TestNoSecEjb</ejb-name>
+        <method-name>testingNoSec</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TestNoSecEjb</ejb-name>
+        <method-name>echoString</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TestNoSecEjb</ejb-name>
+        <method-name>badEchoString</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TestQueryEjb</ejb-name>
+        <method-name>clearTracker</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TestQueryEjb</ejb-name>
+        <method-name>getClassLoaderInfo</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

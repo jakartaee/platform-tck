@@ -1,0 +1,121 @@
+<csiv2-log>
+  <assertion name="ew_ssl_ssln_upn_anonid_sb_sb_testid3">
+    <invocation>
+      <ejb-home>
+        <client>
+            <server>
+              <invocation-principal>ANONYMOUS</invocation-principal>
+            </server>
+          <reply>
+            <create-exception>
+              (expected result)
+            </create-exception>
+          </reply>
+        </client>
+      </ejb-home>
+      <ejb-remote>
+        <client>
+            <server>
+              <invocation-principal>ANONYMOUS</invocation-principal>
+    <invocation>
+      <ejb-home>
+        <client>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <anonymous/>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+            </transport-client-principals>
+            <server>
+              <invocation-principal>ANONYMOUS</invocation-principal>
+            </server>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+          <reply>
+            <create-exception>
+              (expected result)
+            </create-exception>
+          </reply>
+        </client>
+      </ejb-home>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <anonymous/>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+            </transport-client-principals>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+      <ejb-remote>
+        <client>
+          <server-interceptor>
+            <operation>invoke</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <anonymous/>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+            </transport-client-principals>
+            <server>
+              <invocation-principal>ANONYMOUS</invocation-principal>
+            </server>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+          <reply>
+            <no-exception/>
+          </reply>
+        </client>
+      </ejb-remote>
+    </invocation>
+            </server>
+          <reply>
+            <no-exception/>
+          </reply>
+        </client>
+      </ejb-remote>
+    </invocation>
+  </assertion>
+</csiv2-log>

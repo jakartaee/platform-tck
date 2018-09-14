@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="signaturetest" basedir="." default="usage">
+  
+  <property name="fw.pkg.dir" value="com/sun/ts/tests/signaturetest"/>
+  <property name="pkg.dir"    value="${fw.pkg.dir}/<your_test_dir_name>"/>  
+  <property name="pkg"        value="com.sun.ts.tests.signaturetest.<your_test_dir_name>"/>  
+
+  <target name="build.framework">
+    <ant antfile="build.xml" inheritAll="false" dir="${basedir}/.." target="build.framework"/>
+  </target>
+
+  <target name="clean.framework">
+    <ant antfile="build.xml" inheritAll="false" dir="${basedir}/.." target="clean.framework"/>
+  </target>
+
+  <target name="compile" depends="clean.framework,build.framework">
+    <ant antfile="build.xml" dir="${ts.home}/bin" target="compile"/>
+  </target>
+
+  <target name="package">
+    <package>
+      <vehicles name="<your_test_class_name>" mainclass="${pkg}.<your_test_class_name>"> 
+        <support includes="${pkg.dir}/<your_test_class_name>.class, ${fw.pkg.dir}/SigTestData.class, ${fw.pkg.dir}/SigTestUtil.class, ${fw.pkg.dir}/SigTestResult.class, ${fw.pkg.dir}/SigTest.class, ${fw.pkg.dir}/SigTestEE.class"/>
+      </vehicles>
+    </package>
+  </target>
+
+  <target name="runclient">
+    <ant antfile="build.xml" dir="${ts.home}/bin" target="runclient"/>
+  </target>
+
+  <target name="build" depends="compile, package"/>
+  
+  <target name="clean" depends="clean.framework">
+    <ant antfile="build.xml" dir="${ts.home}/bin" target="clean"/>
+  </target>
+
+  <target name="usage">
+    <ant antfile="build.xml" dir="${ts.home}/bin" target="usage"/>
+  </target>
+
+</project>

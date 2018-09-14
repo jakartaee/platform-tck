@@ -1,0 +1,71 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+  name="test14"
+  targetNamespace="uri:sun.com:Test14"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="uri:sun.com:Test14"
+  xmlns:ns0="uri:sun.com:Test14Schema"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  
+  <types>	
+    <schema version="1.0" xmlns="http://www.w3.org/2001/XMLSchema"
+      targetNamespace="uri:sun.com:Test14Schema"
+      xmlns:tns="uri:sun.com:Test14Schema"
+      elementFormDefault="qualified">
+	<xsd:element name="booleanElem" type="xsd:boolean"/>
+    </schema>
+  </types>
+
+  <message name="TestRequest">
+    <part name="body" element="ns0:booleanElem"/>
+  </message>
+  
+  <message name="TestResponse">
+    <part name="body" element="ns0:booleanElem"/>
+  </message>  
+  
+  <portType name="TestService1">
+    <operation name="TestOperation1">
+      <input message="tns:TestRequest"/>
+      <output message="tns:TestResponse"/>
+    </operation>  
+  </portType>
+  
+  <binding name="TheBinding" type="tns:TestService1">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="TestOperation1">
+      <soap:operation soapAction="uri:TestOperation1"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+  </binding>
+    
+  <service name="TestService">
+    <port name="ThePort" binding="tns:TheBinding">
+      <soap:address location="http://localhost/rpcendpoint/TestService"/>
+    </port>
+  </service>
+  
+</definitions>

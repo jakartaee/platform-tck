@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+        name="OneWayTestDefs"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="http://marshalltestservice.org/OneWayTestDefs.wsdl"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://marshalltestservice.org/OneWayTestDefs.wsdl"
+	xmlns:xsd1="http://marshalltestservice.org/OneWayTestDefs.xsd"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <types>
+    <xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://marshalltestservice.org/OneWayTestDefs.xsd">
+        <xsd:complexType name="OneWayMessage">
+            <xsd:sequence>
+                <xsd:element name="stringValue" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:schema>
+  </types>
+
+  <message name="OneWayRequest">
+    <part name="name" type="xsd1:OneWayMessage"/>
+  </message>
+
+  <portType name="OneWayTest">
+    <operation name="oneWayMethod">
+      <input message="tns:OneWayRequest"/>
+    </operation>
+  </portType>
+
+  <binding name="OneWayTestSoapBinding" type="tns:OneWayTest">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+      <operation name="oneWayMethod">
+        <soap:operation soapAction=""/>
+        <input>
+          <soap:body use="literal" namespace="http://marshalltestservice.org/OneWayTestDefs.wsdl"/>
+        </input>
+      </operation>
+  </binding>
+</definitions>

@@ -1,0 +1,215 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="JSF" basedir="." default="build">
+
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+			
+    <property name="deliverable.version" value="2.3"/>
+	
+    <target name="init">
+        <mkdir dir="${deliverable.bundle.dir}/bin"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/none"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <mkdir dir="${deliverable.bundle.dir}/classes"/>
+        <mkdir dir="${deliverable.bundle.dir}/dist"/>
+        <mkdir dir="${deliverable.bundle.dir}/lib/dtds"/>
+	    <mkdir dir="${deliverable.bundle.dir}/docs"/>
+        <mkdir dir="${deliverable.bundle.dir}/src"/>
+        <mkdir dir="${deliverable.bundle.dir}/weblib"/>
+        <mkdir dir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting"/>
+    </target>
+    <target name="copyinstall">
+        <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+                     includes="**/*"
+                     excludes="**/workspace.xml"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/none/"
+              overwrite="true">
+            <fileset dir="${common.bin.dir}/xml/impl/none" includes="*.xml"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"
+               overwrite="true">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish"
+                     includes="*.xml"/>
+        </copy>
+        
+        <copy todir="${deliverable.bundle.dir}/src">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/other"
+                     includes="testsuite.jtt"/>
+        </copy>
+	    <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/jsf/docs" excludes="**svn**" />
+	    </copy>
+        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+            <fileset dir="${ts.home}" includes="NOTICE" />
+        </copy>
+	<copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md" />
+    </target>
+    <target name="-create.latest.link"
+            description="Add latest link, point at the latest bundle dir">
+        <property name="link.name"
+                  value="JSF_BUILD/jsftck${deliverable.version}"/>
+        <symlink link="${ts.home}/release/${link.name}"
+                 resource="${deliverable.bundle.dir}"                
+                 overwrite="true"/>
+    </target>
+	
+	<target name="jte.cleanup">
+			<props.sanitizer file="${basedir}/${deliverable.bundle.dir}/bin/ts.jte" quiet="true">
+				<property name="webServerHost" value="" />
+				<property name="webServerPort" value="" />
+				<property name="webServerHome" value="" />
+				<property name="impl.vi" value="" />
+				<property name="impl.vi.deploy.dir" value="" />
+				<property name="impl.deploy.timeout.multiplier" value="" />
+				<property name="jsf.classes" value="" />
+				<property name="jspservlet.classes" value="" />
+				<property name="sigTestClasspath=" value="" />
+			</props.sanitizer>
+	</target>
+					
+    <target name="build" depends="init">     
+        <antcall target="copyinstall"/>
+    	<antcall target="jte.cleanup"/>
+        
+        <!-- Make a symlink if running on any OS other then Windows -->
+        <condition property ="isWindowsPlatform" else="false">
+            <os family="windows"/>
+        </condition>
+        <if>
+            <equals arg1="isWindowsPlatform" arg2="false"/>
+            <then>
+                <antcall target="-create.latest.link"/>
+            </then>
+        </if>
+        
+        
+        <!-- the classes directory -->
+        <copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/classes"
+                     includes="com/sun/ts/tests/jsf/**/*Client*.class,
+                     com/sun/ts/tests/jsf/**/*Validator*.class,
+                     com/sun/ts/tests/common/webclient/**/*.class,
+                     com/sun/ts/tests/common/vehicle/**/*.class,
+                     com/sun/ts/lib/porting/TSURL.class,
+                     com/sun/ts/lib/porting/TSURLInterface.class,
+                     com/sun/ts/tests/signaturetest/*.class,
+                     com/sun/ts/tests/signaturetest/jsf/**/*"
+                     excludes="com/sun/ts/tests/signaturetest/**/*EE*,
+                               com/sun/ts/tests/jsf/spec/el/managedbean/ee/**"/>
+        </copy>
+        
+        <!-- the lib directory -->
+        <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib"
+                     includes="tsharness.jar,
+                     jsftck.jar,
+                     sigtest.jar,
+                     javatest.jar,
+                     commons-logging-1.1.3.jar,
+                     commons-io-2.4.jar,
+                     commons-lang3-3.3.2.jar,
+                     commons-codec-1.9.jar,
+                     commons-collections-3.2.1.jar,
+                     commons-httpclient-3.1.jar,
+                     cssparser-0.9.25.jar,
+                     htmlunit-2.15.jar,
+                     htmlunit-core-js-2.15.jar,
+                     httpcore-4.4.9.jar,
+                     httpclient-4.5.5.jar,
+                     httpmime-4.5.5.jar,
+                     nekohtml-1.9.21.jar,
+                     sac-1.3.jar,
+                     saxpath.jar,
+                     jaxen-1.1.6.jar,
+                     jaxen-core-1.0.jar,
+                     jdom-1.1.3.jar,
+                     xercesImpl-2.11.0.jar,
+                     xalan-2.7.2.jar,
+                     serializer-2.7.2.jar,
+                     xml-apis-1.4.01.jar"/>
+        </copy>
+        
+        <!-- copy relevant DTDs -->
+        <copy todir="${deliverable.bundle.dir}/lib/dtds" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib/dtds" includes="web-app*"/>
+        </copy>
+        
+        <!-- copy relevant Schemas -->
+        <copy todir="${deliverable.bundle.dir}/lib/schemas" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib/schemas"
+                     includes="web-app_2.4.xsd,web-jsftaglibrary_2_0.xsd,
+                     XMLSchema.xsd,xml.xsd,j2ee_1_4.xsd,
+            jsf_2_0.xsd,j2ee_web_services_client_1_1.xsd"/>
+        </copy>
+        
+        <!--the war files in the dist directory-->
+        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/dist"
+                     includes="com/sun/ts/tests/jsf/**/*.war"/>
+        </copy>
+        
+        <!-- the specific deliverable source directories -->
+        <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src"
+                     includes="com/sun/ts/tests/jsf/**/*,
+                     com/sun/ts/tests/common/webclient/**/*,
+                     web/jsf/**/*,
+                     com/sun/ts/tests/signaturetest/signature-repository/javax.faces.*,
+                     com/sun/ts/tests/signaturetest/*,
+                     com/sun/ts/tests/signaturetest/jsf/**/*,
+                     ${lib.pkg.dir}/deliverable/jsf/*"
+                     excludes="**/deploy/**,
+                     **/security/**,
+                     **/harness/**,
+                     **/*sun-web*/**,
+                     com/sun/ts/tests/signaturetest/*Record*,
+                     com/sun/ts/tests/signaturetest/*record*,
+                     com/sun/ts/tests/jsf/spec/el/managedbean/ee/**"/>
+        </copy>
+        
+        <!-- the com/sun/ts/lib file -->
+        <copy file="${ts.home}/src/com/sun/ts/lib/build.xml"
+              todir="${deliverable.bundle.dir}/src/com/sun/ts/lib"/>
+        
+        <!-- the com/sun/ts/lib/porting directory -->
+        <copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting"
+              includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src/com/sun/ts/lib/porting"
+                     includes="TSURLInterface.java,TSURL.java"/>
+        </copy>
+        
+        <!-- the com/sun/ts/lib/implementation/sun/common file -->
+        <copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/common/SunRIURL.java"
+              todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/common"/>
+    	<antcall target="create.doc.bundle"/>
+    </target>
+    <target name="create.doc.bundle">
+          <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
+          <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">
+            <zipfileset dir="${ts.home}/install/${deliverable.dir}/docs"
+                    includes="**/*.html, **/*.css"
+                    excludes="*ReleaseNotes*.html"/>
+          </zip>
+    </target>
+</project>

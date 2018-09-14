@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="wsa.j2w.document.literal.anonymous" basedir="." default="usage">
+  <property name="app.name" value="WSAJ2WDLAnonymousTest"/>
+  <property name="wsdl.filename" value="AddNumbersService3.wsdl"/>
+  <property name="wsdl.filename2" value="AddNumbersService4.wsdl"/>
+  <property name="wsdl.names" value="${wsdl.filename}, ${wsdl.filename2}"/>
+  <property name="service.names" value="AddNumbersService3, AddNumbersService4"/>
+  <property name="sei.names" value="AddNumbersPortType3: AddNumbersPortType4"/>
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="client.class" value="com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.Client"/>
+  <property name="impl.classes" value="${pkg.dir}/*Impl*.class"/>
+  <property name="other.classes" value="${wsa.common.classes}"/>
+  <property name="common.classes" value="${common.classes.all}"/>
+  <property name="always.generate" value="true"/>
+
+  <target name="generate_server">
+       <ts.javac includes="${pkg.dir}/*.java" excludes="${pkg.dir}/*Client*.java, ${pkg.dir}/*Processor*.java"/>
+       <antcall target="server3"/>
+       <antcall target="server4"/>
+       <antcall target="j2w_webservice_import_package"/>
+   </target>
+
+  <target name="server3">
+      <antcall  target="do_java2wsdl_generate_server">
+          <param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+          <param name="wsdl.location" value="WEB-INF/wsdl/${wsdl.filename}"/>
+          <param name="impl.class" value="com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl3"/> 
+      </antcall>
+  </target>
+
+  <target name="server4">
+      <antcall  target="do_java2wsdl_generate_server">
+          <param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename2}"/>
+          <param name="wsdl.location" value="WEB-INF/wsdl/${wsdl.filename2}"/>
+          <param name="impl.class" value="com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl4"/> 
+      </antcall>
+  </target>
+
+    <target name="generate_client" depends="generate_server">
+       <ts.clean.classes/>
+       <antcall  target="client3"/>
+       <antcall  target="client4"/>
+       <ts.javac includes="${pkg.dir}/Client*.java ${pkg.dir}/*Processor*.java"/>
+       <antcall target="client_import_package"/>
+    </target>
+   
+  <target name="client3">
+      <antcall  target="do_wsdl2java_generate_client_with_package_option">
+        <param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+        <param name="customization.binding.files" value="customfile3.xml"/>
+      </antcall>     
+  </target>
+   
+  <target name="client4">
+      <antcall  target="do_wsdl2java_generate_client_with_package_option">
+        <param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename2}"/>
+        <param name="customization.binding.files" value="customfile4.xml"/>
+      </antcall>     
+  </target>
+
+  <target name="build" depends="generate_client"/>
+
+  <target name="-preclean">
+    <remove_wsdl_xsd/>
+  </target>
+
+</project>
+

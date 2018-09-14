@@ -1,0 +1,615 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="CTS Database Initialization" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./ts.common.props.xml" optional="true"/>
+    <import file="../../../../bin/xml/ts.common.props.xml" optional="true"/>
+
+   <!-- Added this property as a speed up measure during config.vi.  Some people    -->
+   <!-- don't need any DB support so we allow them to skip the init of the embedded -->
+   <!-- Derby DB.  This property should be specified with a value of false during   -->
+   <!-- the ant invocation using the -D option.                                     -->
+   <property name="init.derby.embedded" value="true"/>
+
+   <!-- Set the property based on the value specified in the init.derby.embedded prop. -->
+   <target name="derby.embedded.init">
+      <condition property="init.derby.embedded.prop">
+        <istrue value="${init.derby.embedded}"/>
+      </condition>
+      <echo message="init.derby.embedded is ${init.derby.embedded}"/>
+   </target>
+
+   <!-- Remove the embedded derby DB.  We are adding this step to the init.derbyEmbedded -->
+   <!-- target since this DB occasionally gets corrupted, causing init failures.         -->
+   <target name="clean.derby.embedded">
+     <echo message="Deleting embedded derby DB located at ${derbyEmbedded.dbName}"/>
+     <delete dir="${derbyEmbedded.dbName}" quiet="true"/>
+   </target>
+
+   <target name="usage">
+        <echo message="To initialize the databases needed by CTS, execute the following:"/>
+        <echo message="ant -f initdb.xml databaseName"/>
+   
+        <echo message="databaseName may be one of the following:"/>
+        <echo message=""/>
+        <echo message="init.javadb" />
+        <echo message="init.cloudscape" />
+        <echo message="init.derbyEmbedded" /> 
+        <echo message="init.derby" />
+        <echo message="init.db2" />
+        <echo message="init.db2DD (DataDirect Driver)" />
+        <echo message="init.db2Sun (Sun Driver)" />
+        <echo message="init.mssqlserver" />
+        <echo message="init.mssqlserverDD (DataDirect Driver)" />
+        <echo message="init.mssqlserverSun (Sun Driver)" />
+        <echo message="init.mssqlserverInet (Inet Driver)" />
+        <echo message="init.mysql" />
+        <echo message="init.oracle" />
+        <echo message="init.oracleOCI" />
+        <echo message="init.oracleDD (DataDirect Driver)" />
+        <echo message="init.oracleSun (Sun Driver)" />
+        <echo message="init.oracleInet (Inet Driver)" />
+        <echo message="init.pointbase" />
+        <echo message="init.postgresql" />
+        <echo message="init.sybase" />
+        <echo message="init.sybaseDD (DataDirect Driver)" />
+        <echo message="init.sybaseSun (Sun Driver)" />
+        <echo message="init.sybaseInet (Inet Drver)" />
+        <echo message=""/>
+    </target>
+
+    <!-- 
+         Set up the interop only tables for the RI's database (JavaDB).
+      -->
+
+    <target name="init.javadb.ri" >
+        <property name="interopOnly" value="true"/>
+        <property name="cmpNeeded" value="true"/>
+        <antcall target="configure.RI.backend" >
+          <param name="db.driver" value="${derby.driver.ri}"/>
+          <param name="db.url" value="${derby.url.ri}"/>
+          <param name="db.user" value="${derby.user.ri}"/>
+          <param name="db.password" value="${derby.passwd.ri}"/>
+          <param name="db.classpath" value="${derby.classes.ri}"/>
+          <param name="db.delimiter" value=";"/>
+          <param name="db.name" value="derby" />
+        </antcall>
+    </target>
+
+    <!--
+        Kept for backwards compatibility and to not break anyone's scripts they may have.
+    -->
+    <target name="init.cloudscape" >
+      <antcall target="init.derby"/>
+    </target>
+
+    <!--
+       Added to support the Sun version of Derby 
+    -->
+    <target name="init.javadb" >
+      <antcall target="init.derby"/>
+    </target>
+
+    <!--
+        Configure the Derby database
+    -->
+    <target name="init.derby" >
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${derby.driver}"/>
+          <param name="db.url" value="${derby.url}"/>
+          <param name="db.user" value="${derby.user}"/>
+          <param name="db.password" value="${derby.passwd}"/>
+          <param name="db.classpath" value="${derby.classes}"/>
+          <param name="db.delimiter" value=";"/>
+          <param name="db.name" value="derby" />
+        </antcall>
+        <antcall target="install_java_procedures" >
+            <param name="db.driver" value="${derby.driver}"/>
+            <param name="db.url" value="${derby.url}"/>
+            <param name="db.user" value="${derby.user}"/>
+            <param name="db.password" value="${derby.passwd}"/>
+            <param name="db.classpath" value="${derby.classes}"/>
+            <param name="db.delimiter" value=";"/>
+            <param name="db.name" value="derby" />
+          </antcall>
+    </target>
+
+   <target name="init.derbyEmbedded" depends="clean.derby.embedded, derby.embedded.init"
+           if="init.derby.embedded.prop">
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${derbyEmbedded.driver}"/>
+          <param name="db.url" value="${derbyEmbedded.url}"/>
+          <param name="db.user" value="${derbyEmbedded.user}"/>
+          <param name="db.password" value="${derbyEmbedded.passwd}"/>
+          <param name="db.classpath" value="${derbyEmbedded.classes}"/>
+          <param name="db.delimiter" value=";"/>
+          <param name="db.name" value="derby" />
+        </antcall>
+        <trycatch>
+          <try>
+            <sql driver="${derbyEmbedded.driver}"
+                 url="jdbc:derby:${derbyEmbedded.dbName};shutdown=true"
+                 userid="${derbyEmbedded.user}"
+                 password="${derbyEmbedded.passwd}"
+                 classpath="${derbyEmbedded.classes}"
+                 delimiter=";"
+                 autocommit="true"
+                 onerror="continue" >
+                 select 'foobar';
+            </sql>
+          </try>
+          <catch/>
+        </trycatch>
+
+        <echo message="*********derbyEmbedded ShutDown******"/>
+    </target>
+
+
+    <!--
+        Configure the db2 database
+    -->
+
+    <target name="init.db2" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${db2.driver}"/>
+          <param name="db.url" value="${db2.url}"/>
+          <param name="db.user" value="${db2.user}"/>
+          <param name="db.password" value="${db2.passwd}"/>
+          <param name="db.classpath" value="${db2.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="db2" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the db2 database using DataDirect
+    -->
+
+    <target name="init.db2DD" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${db2DD.driver}"/>
+          <param name="db.url" value="${db2DD.url}"/>
+          <param name="db.user" value="${db2DD.user}"/>
+          <param name="db.password" value="${db2DD.passwd}"/>
+          <param name="db.classpath" value="${db2DD.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="db2" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the db2 database using Sun
+    -->
+
+    <target name="init.db2Sun" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${db2Sun.driver}"/>
+          <param name="db.url" value="${db2Sun.url}"/>
+          <param name="db.user" value="${db2Sun.user}"/>
+          <param name="db.password" value="${db2Sun.passwd}"/>
+          <param name="db.classpath" value="${db2Sun.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="db2" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the MS SQLServer database using Data Direct
+    -->
+
+    <target name="init.mssqlserverDD" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${mssqlserverDD.driver}"/>
+          <param name="db.url" value="${mssqlserverDD.url}"/>
+          <param name="db.user" value="${mssqlserverDD.user}"/>
+          <param name="db.password" value="${mssqlserverDD.passwd}"/>
+          <param name="db.classpath" value="${mssqlserverDD.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="mssqlserver" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the MS SQLServer database using Sun
+    -->
+
+    <target name="init.mssqlserverSun" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${mssqlserverSun.driver}"/>
+          <param name="db.url" value="${mssqlserverSun.url}"/>
+          <param name="db.user" value="${mssqlserverSun.user}"/>
+          <param name="db.password" value="${mssqlserverSun.passwd}"/>
+          <param name="db.classpath" value="${mssqlserverSun.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="mssqlserver" />
+        </antcall>
+    </target>
+    <!--
+        Configure the MS SQLServer database using Inet driver
+    -->
+
+    <target name="init.mssqlserverInet" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${mssqlserverInet.driver}"/>
+          <param name="db.url" value="${mssqlserverInet.url}"/>
+          <param name="db.user" value="${mssqlserverInet.user}"/>
+          <param name="db.password" value="${mssqlserverInet.passwd}"/>
+          <param name="db.classpath" value="${mssqlserverInet.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="mssqlserver" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the MS SQLServer database
+    -->
+
+    <target name="init.mssqlserver" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${mssqlserver.driver}"/>
+          <param name="db.url" value="${mssqlserver.url}"/>
+          <param name="db.user" value="${mssqlserver.user}"/>
+          <param name="db.password" value="${mssqlserver.passwd}"/>
+          <param name="db.classpath" value="${mssqlserver.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="mssqlserver" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the MYSQL
+    -->
+
+    <target name="init.mysql" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${mysql.driver}"/>
+          <param name="db.url" value="${mysql.url}"/>
+          <param name="db.user" value="${mysql.user}"/>
+          <param name="db.password" value="${mysql.passwd}"/>
+          <param name="db.classpath" value="${mysql.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="mysql" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the oracle database using DataDirect
+    -->
+
+    <target name="init.oracleDD" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${oracleDD.driver}"/>
+          <param name="db.url" value="${oracleDD.url}"/>
+          <param name="db.user" value="${oracleDD.user}"/>
+          <param name="db.password" value="${oracleDD.passwd}"/>
+          <param name="db.classpath" value="${oracleDD.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="oracle" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the oracle database using Sun
+    -->
+
+    <target name="init.oracleSun" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${oracleSun.driver}"/>
+          <param name="db.url" value="${oracleSun.url}"/>
+          <param name="db.user" value="${oracleSun.user}"/>
+          <param name="db.password" value="${oracleSun.passwd}"/>
+          <param name="db.classpath" value="${oracleSun.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="oracle" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the oracle database using OCI
+    -->
+
+    <target name="init.oracleOCI" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${oracleOCI.driver}"/>
+          <param name="db.url" value="${oracleOCI.url}"/>
+          <param name="db.user" value="${oracleOCI.user}"/>
+          <param name="db.password" value="${oracleOCI.passwd}"/>
+          <param name="db.classpath" value="${oracleOCI.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="oracle" />
+        </antcall>
+    </target>
+
+
+    <!--
+        Configure the oracle database using Inet driver
+    -->
+
+    <target name="init.oracleInet" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${oracleInet.driver}"/>
+          <param name="db.url" value="${oracleInet.url}"/>
+          <param name="db.user" value="${oracleInet.user}"/>
+          <param name="db.password" value="${oracleInet.passwd}"/>
+          <param name="db.classpath" value="${oracleInet.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="oracle" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the oracle database
+    -->
+
+    <target name="init.oracle" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${oracle.driver}"/>
+          <param name="db.url" value="${oracle.url}"/>
+          <param name="db.user" value="${oracle.user}"/>
+          <param name="db.password" value="${oracle.passwd}"/>
+          <param name="db.classpath" value="${oracle.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="oracle" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the pointbase database 
+    -->
+
+    <target name="init.pointbase" >
+     
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${pointbase.driver}"/>
+          <param name="db.url" value="${pointbase.url}"/>
+          <param name="db.user" value="${pointbase.user}"/>
+          <param name="db.password" value="${pointbase.passwd}"/>
+          <param name="db.classpath" value="${pointbase.classes}"/>
+          <param name="db.delimiter" value=";"/>
+          <param name="db.name" value="pointbase" />
+        </antcall>
+    </target>
+
+   <!--
+        Configure the postgres database 
+    -->
+
+    <target name="init.postgresql" >
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${postgresql.driver}"/>
+          <param name="db.url" value="${postgresql.url}"/>
+          <param name="db.user" value="${postgresql.user}"/>
+          <param name="db.password" value="${postgresql.passwd}"/>
+          <param name="db.classpath" value="${postgresql.classes}"/>
+          <param name="db.delimiter" value=";"/>
+          <param name="db.name" value="postgresql" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the sybase database
+    -->
+
+    <target name="init.sybase" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${sybase.driver}"/>
+          <param name="db.url" value="${sybase.url}"/>
+          <param name="db.user" value="${sybase.user}"/>
+          <param name="db.password" value="${sybase.passwd}"/>
+          <param name="db.classpath" value="${sybase.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="sybase" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the sybase database using DataDirect
+    -->
+
+    <target name="init.sybaseDD" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${sybaseDD.driver}"/>
+          <param name="db.url" value="${sybaseDD.url}"/>
+          <param name="db.user" value="${sybaseDD.user}"/>
+          <param name="db.password" value="${sybaseDD.passwd}"/>
+          <param name="db.classpath" value="${sybaseDD.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="sybase" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the sybase database using Sun
+    -->
+
+    <target name="init.sybaseSun" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${sybaseSun.driver}"/>
+          <param name="db.url" value="${sybaseSun.url}"/>
+          <param name="db.user" value="${sybaseSun.user}"/>
+          <param name="db.password" value="${sybaseSun.passwd}"/>
+          <param name="db.classpath" value="${sybaseSun.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="sybase" />
+        </antcall>
+    </target>
+
+    <!--
+        Configure the sybase database using Inet driver
+    -->
+
+    <target name="init.sybaseInet" >
+
+        <antcall target="configure.backend" >
+          <param name="db.driver" value="${sybaseInet.driver}"/>
+          <param name="db.url" value="${sybaseInet.url}"/>
+          <param name="db.user" value="${sybaseInet.user}"/>
+          <param name="db.password" value="${sybaseInet.passwd}"/>
+          <param name="db.classpath" value="${sybaseInet.classes}"/>
+          <param name="db.delimiter" value="!"/>
+          <param name="db.name" value="sybase" />
+        </antcall>
+    </target>
+
+    <!--
+        Create the BMP tables and Stored Procedures used by the
+        appserver under test.
+    -->
+
+    <target name="configure.backend" 
+         depends="check.configure.cmp, configure.basic, configure.RI.backend" />
+
+    <target name="configure.basic" unless="interopOnly">
+        <echo message="DB URL: ${db.url}"/>
+        <sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.password}"
+             classpath="${db.classpath}"
+             delimiter="${db.delimiter}"
+             autocommit="true"
+             onerror="continue" >
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.sql"/>
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.jstl.sql"/>
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.sprocs.sql"/>
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.persistence.sprocs.sql"/>
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.jbatch-tck.sql"/>           
+        </sql>
+        <antcall target="configure.cmp" />        
+    </target >
+
+    <!--
+        Create the tables needed by the Java EE RI to run interop
+    -->
+
+    <target name="configure.RI.backend" if="interopOnly">
+        <echo message="DB URL: ${db.url}"/>
+        <sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.password}"
+             classpath="${db.classpath}"
+             delimiter="${db.delimiter}"
+             autocommit="true"
+             onerror="continue" >
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.sql"/>
+        </sql>
+        <antcall target="configure.interop" />
+    </target>
+
+
+    <!--
+        Create the CMP tables if they will not be created by
+        the appserver at deploy time.
+    -->
+
+    <target name="configure.cmp" if="cmpNeeded">
+        <echo message="DB URL: ${db.url}"/>
+        <sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.password}"
+             classpath="${db.classpath}"
+             delimiter="${db.delimiter}"
+             autocommit="true"
+             onerror="continue" >
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.cmp.sql"/>
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.persistence.sql"/>
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.interop.sql"/>
+        </sql>
+    </target>
+
+    <!--
+        Create the interop CMP tables if they will not be created by
+        the Java EE RI at deploy time.
+    -->
+
+    <target name="configure.interop" if="cmpNeeded">
+        <echo message="DB URL: ${db.url}"/>
+        <sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.password}"
+             classpath="${db.classes}"
+             delimiter="${db.delimiter}"
+             autocommit="true"
+             onerror="continue" >
+             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.interop.sql"/>
+        </sql>
+    </target>
+
+    <!-- Determine if we need to worry about creating CMP tables or not  -->
+
+    <target name="check.configure.cmp">
+          <condition property="cmpNeeded">
+             <istrue value="${create.cmp.tables}"/>
+          </condition >
+
+          <!-- Determine if we need to worry about creating Interop 
+               CMP tables or not  -->
+
+          <condition property="interopOnly">
+             <istrue value="${create.interop.tables.only}"/>
+          </condition >
+    </target>
+
+    <target name="install_java_procedures">
+        <if>
+            <equals arg1="${db.name}" arg2="derby"/>
+        <then>
+            <echo message="DB URL: ${db.url}"/>
+            <sql driver="${db.driver}"
+                 url="${db.url}"
+                 userid="${db.user}"
+                 password="${db.password}"
+                 classpath="${db.classpath}"
+                 delimiter="${db.delimiter}"
+                 autocommit="true"
+                 onerror="continue" >
+                 CALL sqlj.remove_jar('APP.dbprocedures', 0);
+                 CALL sqlj.install_jar('${ts.home}/lib/dbprocedures.jar', 'APP.dbprocedures', 0);
+                 CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'APP.dbprocedures');
+            </sql>
+        </then>
+        </if>
+    </target>
+</project>
+
+
+
+
+

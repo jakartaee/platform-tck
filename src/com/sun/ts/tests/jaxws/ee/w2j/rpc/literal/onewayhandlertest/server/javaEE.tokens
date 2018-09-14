@@ -1,0 +1,17 @@
+WSRAnn=@WebServiceRef(name="service/wsrlowhandlertestservice")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.RLOWHandlerTestService
+SEI=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.Hello
+SEI4=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.GetTrackerData
+IMPL=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.HelloImpl
+IMPL4=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.GetTrackerDataImpl
+NAMESPACEURI=http://rlowhandlertestservice.org/wsdl
+PORT=HelloPort
+PORT4=GetTrackerDataPort
+SERVLET=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.HelloImpl
+SERVLET4=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.GetTrackerDataImpl
+URLALIAS=/jaxws/Hello
+URLALIAS4=/jaxws/GetTrackerData
+WEBSERVICEDESCRIPTION=RLOWHandlerTestService
+SERVICEREFNAMEWSSERVLET=service/wsrlowhandlertestservice
+SERVICEREFNAMEWSEJB=service/wsrlowhandlertestservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsrlowhandlertestservice

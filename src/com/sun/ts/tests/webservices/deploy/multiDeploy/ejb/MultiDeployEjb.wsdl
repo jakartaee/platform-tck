@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="MultiDeployEjb" targetNamespace="http://MultiDeployEjb.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://MultiDeployEjb.org" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+  </types>
+  <message name="HelloWs_sayHelloResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="HelloWs_sayHello">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <portType name="HelloWs">
+    <operation name="sayHello" parameterOrder="String_1">
+      <input message="tns:HelloWs_sayHello"/>
+      <output message="tns:HelloWs_sayHelloResponse"/>
+    </operation>
+  </portType>
+  <binding name="HelloWsBinding" type="tns:HelloWs">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sayHello">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://MultiDeployEjb.org"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://MultiDeployEjb.org"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="MultiDeployEjb">
+    <port name="HelloWsPort" binding="tns:HelloWsBinding">
+      <soap:address location="http://localhost:8000/MultiDeployEjb1/pc1"/>
+    </port>
+    <port name="HelloWsPort2" binding="tns:HelloWsBinding">
+      <soap:address location="http://localhost:8000/MultiDeployEjb2/pc2"/>
+    </port>
+  </service>
+</definitions>

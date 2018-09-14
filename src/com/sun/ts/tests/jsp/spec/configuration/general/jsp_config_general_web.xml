@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>JspConfigurationGeneral</display-name>
+    <servlet>
+        <servlet-name>aservlet</servlet-name>
+        <servlet-class>com.sun.ts.tests.jsp.spec.configuration.general.AServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>aservlet</servlet-name>
+        <url-pattern>/specific/svr/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>aservlet</servlet-name>
+        <url-pattern>/identical/willSee.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>aservlet</servlet-name>
+        <url-pattern>/mostSpecific/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>5</session-timeout>
+    </session-config>
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>/specific/*</url-pattern>
+            <include-coda>/coda1.jsp</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>/specific/svr/page/*</url-pattern>
+            <include-coda>/coda1.jsp</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>/identical/willSee.jsp</url-pattern>
+            <include-coda>/coda1.jsp</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <!-- this group has no effect except include-prelude and include-coda -->
+            <url-pattern>/mostSpecific/*</url-pattern>
+            <el-ignored>true</el-ignored>
+            <include-prelude>/prelude1.jsp</include-prelude>
+            <include-coda>/coda1.jsp</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <!-- this group has no effect except include-prelude and include-coda -->
+            <url-pattern>/mostSpecific/page/*</url-pattern>
+            <include-prelude>/prelude2.jsp</include-prelude>
+            <include-coda>/coda2.jsp</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <!-- this group has effect since it has the most specific mapping -->
+            <url-pattern>/mostSpecific/page/willSee.jsp</url-pattern>
+            <el-ignored>false</el-ignored>
+            <include-prelude>/prelude3.jsp</include-prelude>
+            <include-coda>/coda3.jsp</include-coda>
+        </jsp-property-group>
+    </jsp-config>
+</web-app>

@@ -1,0 +1,566 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="Edit_ts.jte_for_Hudson_builds" default="edit.jte" basedir=".">
+
+	<!-- IMPORTS -->
+	<import file="../../bin/xml/ts.common.props.xml"/>
+
+	<ts.taskdef name="getfailedsmoketests"
+	                 classname="com.sun.ant.taskdefs.common.ScrapeFailedSmokeTests"/>
+	<ts.taskdef name="getfailedbuildlog"
+                   classname="com.sun.ant.taskdefs.common.ScrapeFailedBuildLog"/>
+
+	<dirname property="release.tools.current.dir" file="${Edit_ts.jte_for_Hudson_builds}"/>
+
+	<property name="ts.jte.file"           value="../../install/j2ee/bin/ts.jte"/>
+	<property name="ts.jte.bak.file"       value="../../install/j2ee/bin/ts.jte.bak"/>
+	<property name="ts.jte.prop.file"      value="jte.props"/>
+	<property name="ts.jte.sani.prop.file" value="jte.props.sanitize"/>
+
+	<tstamp>
+		<format property="time.stamp.bundle.string" pattern="dd-MMM-yyyy" locale="en"/>
+	</tstamp>
+
+	<target name="version.jte">
+		<tstamp>
+			<format property="time.stamp.ver.jte" pattern="dd-MMM-yyyy" locale="en"/>
+		</tstamp>
+		<replace file="${ts.jte.file}" token="@JTE_VERSION@" value="${time.stamp.ver.jte}"/>
+	</target>
+
+	<target name="sanitize.jte.file" depends="version.jte">
+		<filter.jte prop.file="${ts.jte.sani.prop.file}"/>
+	</target>
+
+	<target name="edit.jte">
+		<filter.jte prop.file="${ts.jte.prop.file}"/>
+	</target>
+
+	<macrodef name="filter">
+		<attribute name="find.this"/>
+		<attribute name="replace.with"/>
+		<sequential>
+			<echo message="find this '@{find.this}'"/>
+			<echo message="replace with '@{replace.with}'"/>
+
+			<var name="ts.jte.contents" unset="true"/>
+			<!-- load the ts.jte file -->
+			<loadfile srcFile="${ts.jte.file}" property="ts.jte.contents"/>
+
+			<!-- find/replace the current substitution -->
+			<propertyregex property="ts.jte.mod"
+                input="${ts.jte.contents}"
+                regexp="@{find.this}.*"
+                replace="@{replace.with}"
+                defaultvalue="${ts.jte.contents}"
+                override="true"/>
+
+			<!-- write out the ts.jte file -->
+			<echo message="${ts.jte.mod}" file="${ts.jte.file}"/>
+			<echo message="Wrote file '${ts.jte.file}'"/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="filter.jte">
+		<attribute name="prop.file"/>
+		<sequential>
+
+			<!-- backup the existing ts.jte file -->
+			<copy file="${ts.jte.file}"
+              tofile="${ts.jte.bak.file}"
+              overwrite="true"/>
+
+			<!-- load the properties file that contains the find and replace values -->
+			<loadproperties srcfile="@{prop.file}"/>
+
+			<!-- iterate over the find/replace property values and call the regex -->
+			<!-- to replace the values in the ts.jte file. -->
+			<propertyselector property="find.list"
+                          delimiter=","
+                          match="find_(.*)"
+                          casesensitive="false" />
+
+			<for list="${find.list}" delimiter="," param="find.prop">
+				<sequential>
+					<propertyregex property="replace.prop"
+                input="@{find.prop}"
+                regexp="(find_)(.*)"
+                replace="replace_\2"
+                casesensitive="false"
+                override="true"/>
+
+					<propertycopy name="findit"      from="@{find.prop}"    override="true"/>
+					<propertycopy name="replacethis" from="${replace.prop}" override="true"/>
+
+					<filter find.this="${findit}" replace.with="${replacethis}"/>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
+
+	<!-- Temp location of build log on caseylou while jsesun26 is rebuilt -->
+	<property name="hudson.build.log"   value="/hudson/jobs/Trunk.Build/lastSuccessful/log"/>
+	<property name="hudson.build.log.2" value="/hudson/jobs/Trunk.Clean.Build.Libs/lastSuccessful/log"/>
+	<property name="hudson.build.log.copy.dest" value="/net/invalid.domain.com/files2/hudson_jsesun41"/>
+	<property name="proprietary.check.enabled" value="false"/>
+
+	<target name="scrape.cts.build.log">
+		<copy file="${hudson.build.log}"
+            todir="${hudson.build.log.copy.dest}"
+            overwrite="true"
+            failonerror="false"
+            verbose="true"/>
+		<getfailedbuildlog buildlog="${hudson.build.log}"
+                           secondarybuildlog="${hudson.build.log.2}"
+                           faileddir="failed.dirs"
+                           buildpassed="build.passed"
+                           proprietaryerrors="proprietary.errors"
+                           proprietaryerrorsexist="proprietary.errors.exist"/>
+		<if>
+			<and>
+				<istrue value="${proprietary.check.enabled}"/>
+				<istrue value="${proprietary.errors.exist}"/>
+			</and>
+			<then>
+				<echo> Proprietary APIs have been detected.  Users are strongly discouraged from using
+proprietary APIs.  If you can remove them, please do so.</echo>
+
+                                <echo>The following proprietary APIs were found in the build log:</echo>
+                                <echo>===========================================================</echo>
+                                <echo>${proprietary.errors}</echo>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<istrue value="${build.passed}"/>
+			</not>
+			<then>
+				<fail>
+The CTS-Build job which ran previous to this job had failures.
+
+Please see the CTS-Build log output for compilation errors.
+    - The logs are located under the hudson job's /job/Trunk.Build/ dir
+        	
+FAILED DIRECTORIES BELOW
+========================
+${failed.dirs}
+
+                </fail>
+			</then>
+		</if>
+
+	</target>
+
+
+	<property name="smoke.log.file" value="../../install/j2ee/bin/xml/smoke.log"/>
+	<target name="scrape.smoke.log">
+		<loadfile property="smoke.log.contents" srcFile="${smoke.log.file}"/>
+
+		<propertyregex property="tests.ran"
+                     input="${smoke.log.contents}"
+                     regexp="\[javatest\.batch\] An error occurred while running the tests:"
+                     select="\1"
+                     casesensitive="true"
+                     defaultvalue="true"/>
+
+		<if>
+			<not>
+				<istrue value="${tests.ran}"/>
+			</not>
+			<then>
+				<fail>
+The runclient target that runs the smoke tests, failed to run properly.  Please see log for details.
+
+
+SmokeLog:
+=========
+${smoke.log.contents}
+                </fail>
+			</then>
+		</if>
+
+
+		<propertyregex property="smoke.passed"
+                     input="${smoke.log.contents}"
+                     regexp="(Error: Some tests did not pass)"
+                     select="\1"
+                     casesensitive="true"
+                     defaultvalue="true"/>
+
+		<if>
+			<not>
+				<istrue value="${smoke.passed}"/>
+			</not>
+			<then>
+				<getfailedsmoketests smokelog="${smoke.log.file}" property="failed.tests"/>
+
+				<fail>
+
+List of failed smoke tests (See smoke log, included below, for more details):
+
+${failed.tests}
+
+Server logs are located here: ${javaee.home.ri}/domains/domain1/logs
+
+
+SmokeLog:
+=========
+${smoke.log.contents}
+                </fail>
+			</then>
+		</if>
+	</target>
+
+	<property name="generate.release.notes" value="false"/>
+<!--
+    There is no need to put the CTS.NEXT (8) builds on jse.  It is too early in
+    process and there is limited space on jse.  So the trunk artifacts will be
+    pushed to smith and made available to CTS developers via NFS.  No one 
+    outside of CTS should be looking for these artifacts for quite some time. 
+	<property name="target"
+       value="/net/invalid.domain.com/re_files2/jcqe/builds/tcks/javaee_cts/8/nightly"/>
+-->
+	<property name="target"
+       value="/net/smith/files2/jcqe/builds/tcks/javaee_cts/8/nightly-jse"/>
+	<property name="nightly.archive"
+       value="/net/smith/files2/jcqe/builds/tcks/javaee_cts/8/nightly-archives"/>
+	<property name="fail.nightly.archive.copy" value="true"/>
+	<property name="svn.co.log" value="/hudson/jobs/Trunk.Setup/lastSuccessful/log"/>
+	<property name="release.notes" value="../../install/j2ee/docs/ReleaseNotes.html"/>
+
+	<target name="copy.svn.co.log">
+		<tstamp>
+			<format property="time.stamp.log" pattern="dd-MMM-yyyy" locale="en"/>
+		</tstamp>
+		<copy file="${svn.co.log}"
+            tofile="${nightly.archive}/svn.co.log-${time.stamp.log}"
+            overwrite="true"
+            failonerror="false"
+            verbose="true"/>
+		<copy file="${svn.co.log}"
+            tofile="${target}/svn.co.log-${time.stamp.log}"
+            overwrite="true"
+            failonerror="false"
+            verbose="true"/>
+		<if>
+			<istrue value="${generate.release.notes}"/>
+			<then>
+				<copy file="${release.notes}"
+              tofile="${target}/ReleaseNotes-CTS-7.0_${time.stamp.log}.html"
+              overwrite="true"
+              failonerror="false">
+					<filterset>
+						<filter token="DATE" value="${time.stamp.log}"/>
+					</filterset>
+				</copy>
+				<copy file="${release.notes}"
+              tofile="${nightly.archive}/ReleaseNotes-CTS-7.0_${time.stamp.log}.html"
+              overwrite="true"
+              failonerror="false">
+					<filterset>
+						<filter token="DATE" value="${time.stamp.log}"/>
+					</filterset>
+				</copy>
+			</then>
+		</if>
+	</target>
+
+	<target name="copy.bundles" depends="remove.nightly.bundles, copy.svn.co.log">
+		<copy todir="${target}" failonerror="true" flatten="true">
+			<fileset dir=".." includes="*/*/bundle/*.zip"/>
+		</copy>
+
+		<copy todir="${target}" failonerror="false" flatten="true">
+			<fileset dir="../JAVAEE_BUILD/latest/javaeetck/lib"
+                 includes="tsharness.jar, cts.jar"/>
+		</copy>
+
+		<!-- Archive the nightly CTS build and the porting package -->
+		<copy todir="${nightly.archive}" failonerror="${fail.nightly.archive.copy}">
+			<fileset dir="../JAVAEE_BUILD/latest" includes="*.zip"/>
+			<fileset dir="../JAVAEE-SMOKE_BUILD/latest" includes="*.zip"/>
+		</copy>
+
+		<!-- Create symlinks for latest bundles -->
+		<symlink link="${target}/javaeetck_latest.zip" resource="javaeetck-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
+		<symlink link="${target}/cts-internal_latest.zip" resource="cts-internal-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
+		<!-- symlink link="${target}/wls-cts-internal_latest.zip" resource="wls-cts-internal-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/ -->
+		<symlink link="${target}/javaee-smoke-8.0_latest.zip" resource="javaee-smoke-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
+
+	</target>
+
+	<target name="remove.nightly.bundles">
+		<delete quiet="true">
+			<fileset dir="${target}"/>
+		</delete>
+		<symlink action="delete" link="${target}/javaeetck_latest.zip"/>
+		<symlink action="delete" link="${target}/cts-internal_latest.zip"/>
+		<!-- symlink action="delete" link="${target}/wls-cts-internal_latest.zip"/ -->
+		<symlink action="delete" link="${target}/javaee-smoke-8.0_latest.zip"/>
+	</target>
+
+
+	<target name="remove.bundles">
+		<echo> deleteing ${release.tools.current.dir}/..</echo>
+		<delete  quiet="true" includeemptydirs="true">
+			<fileset  dir="${release.tools.current.dir}/.." includes="JAVAEE*/**"/>
+		</delete>
+	</target>
+
+	<!-- 
+		None Technology specific copy target. 
+		
+		Example(using EL):
+			ant -f./build-utils.xml -DtechName=el -DrelVersion=3.0 copy.bundles.generic
+			
+			The above command will first DELETE any old files in the targetDir, 
+			and then copy the built bundle in your workspace to 
+			/net/invalid.domain.com/re_files2/jcqe/builds/tcks/el/3.0/nightly/eltck-3.0_28-Feb-2013.zip
+			
+			and create a latest link in that same directory with the name eltck_latest.zip
+	-->
+	<property name="techName" value="" />
+	<property name="relVersion" value="" />
+	<property name="targetDir" 
+			  value="/net/invalid.domain.com/re_files2/jcqe/builds/tcks/${techName}/${relVersion}/nightly" />
+	<property name="archiveDir"
+			  value="/net/invalid.domain.com/files2/jcqe/builds/tcks/${techName}/${relVersion}/nightly" />
+	<target name="copy.bundles.generic" depends="remove.nightly.bundles.generic" 
+		description="Copy a given tck bundle to a release staging area.">
+
+		<echo message="Copying to: ${targetDir}" />
+		<echo message="Copying From: */*/bundle/${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" />
+		<echo message="Copying From: */*/bundle/excludelist_${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" />
+		
+		<copy todir="${targetDir}" failonerror="true" flatten="true">
+			<fileset dir=".." includes="*/*/bundle/${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" />
+                        <fileset dir=".." includes="*/*/bundle/excludelist_${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" />
+		</copy>
+
+		<!-- Create symlinks for latest bundles -->
+		<symlink failonerror="false" link="${targetDir}/${techName}tck_latest.zip" resource="${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" overwrite="true" />
+                <symlink failonerror="false" link="${targetDir}/excludelist_${techName}tck_latest.zip" resource="excludelist_${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" overwrite="true" />
+	</target>
+
+	<target name="archive.bundles.generic"
+		description="Copy a given tck bundle to an archive directory on smith.">
+		<echo message="Copying to: ${archiveDir}" />
+		<echo message="Copying From: */*/bundle/${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" />		<echo message="Copying From: */*/bundle/excludelist_${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" />		
+		<copy todir="${archiveDir}" failonerror="true" flatten="true">
+			<fileset dir=".." includes="*/*/bundle/${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" />
+                        <fileset dir=".." includes="*/*/bundle/excludelist_${techName}tck-${relVersion}_${time.stamp.bundle.string}.zip" />
+		</copy>
+	</target>
+	
+	
+	<target name="remove.nightly.bundles.generic">
+		<check-property name="techName" value="${techName}" />
+		<check-property name="relVersion" value="${relVersion}" />
+		<symlink failonerror="false" 
+			     action="delete" 
+			     link="${targetDir}/${techName}tck_latest.zip"/>		
+		<delete quiet="true">
+			<fileset dir="${targetDir}"/>
+		</delete>
+	</target>
+
+	<macrodef name="check-property">
+	  <attribute name="name" />
+	  <attribute name="value" />
+	  <sequential>
+		<if>
+		 <equals arg1="@{value}" arg2="" />
+		 <then>
+		   <fail message="You must set @{name} property!" />
+		 </then>
+		 <else>
+		   <echo message="The value of property @{name} is set to @{value}" />
+		 </else>
+		</if>
+	  </sequential>
+	</macrodef>
+	
+	<!-- default url.to.check to jsesun41's jenkins console -->
+	<property name="url.to.check" value="http://invalid.domain.com/"/>
+	<target name="check.url">
+		<echo>Checking availability of URL &quot;${url.to.check}&quot; ...</echo>
+		<if>
+			<http url="${url.to.check}"/>
+			<then>
+				<echo>Success, &quot;${url.to.check}&quot; is available.</echo>
+			</then>
+			<else>
+				<fail>Failure, &quot;${url.to.check}&quot; is NOT available.</fail>
+			</else>
+		</if>
+	</target>
+
+	<property name="ping.host" value="localhost" />
+	<!-- ping.timeout in seconds -->
+	<property name="ping.timeout" value="30" />
+	<target name="ping">
+		<if>
+			<isreachable host="${ping.host}" timeout="${ping.timeout}" />
+			<then>
+				<echo>Ping SUCCESS, ${ping.host} is reachable.</echo>
+			</then>
+			<else>
+				<fail>Ping FAILED, ${ping.host} is NOT reachable.</fail>
+			</else>
+		</if>
+	</target>
+
+
+	<target name="find.old.build.files">
+		<var name="op1" value="0" />
+		<var name="op" value="+" />
+
+		<for param="file">
+			<path>
+				<fileset dir="${src.dir}" includes="**/build.xml"/>
+			</path>
+			<sequential>
+				<loadfile srcFile="@{file}" property="file.contents"/>
+				<propertyregex override="true"
+                       property="is.old.build.file"
+                       input="${file.contents}"
+                       regexp="(&lt;vehicles)"
+                       select="\1"
+                       defaultValue="false"/>
+				<if>
+					<equals arg1="${is.old.build.file}" arg2="&lt;vehicles"/>
+					<then>
+						<math result="op1" operand1="${op1}" operation="${op}" operand2="1" datatype="int"/>
+						<echo message="${op1}.  @{file}"/>
+					</then>
+				</if>
+				<var name="file.contents" unset="true"/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="find.common.imports">
+		<var name="op1" value="0"/>
+		<var name="op" value="+"/>
+
+		<for param="file">
+			<path>
+				<fileset dir="${src.dir}" includes="**/*.xml"/>
+			</path>
+			<sequential>
+				<loadfile srcFile="@{file}" property="file.contents"/>
+				<propertyregex override="true"
+                       property="is.old.build.file"
+                       input="${file.contents}"
+                       regexp="(servlet/common/xml/common.xml)"
+                       select="\1"
+                       defaultValue="false"/>
+				<if>
+					<equals arg1="${is.old.build.file}" arg2="servlet/common/xml/common.xml"/>
+					<then>
+						<math result="op1" operand1="${op1}" operation="${op}" operand2="1" datatype="int"/>
+						<echo message="${op1}.  @{file}"/>
+					</then>
+				</if>
+				<var name="file.contents" unset="true"/>
+			</sequential>
+		</for>
+	</target>
+
+
+	<!--
+        Target used to change the svn:externals url when branching a workspace.
+    -->
+	<target name="edit.externals"
+            description="Edit the svn:externals url from trunk(old) to the
+                         current branch(new)">
+		<!--
+            This property is used to exclude and technology directory that is
+            listed in the 'modules' directory and has no svn:externals property
+            setup. (This case should never happen, but it does.
+        -->
+		<property name="exclude.technology" value="modules/jaxrs"/>
+
+		<foreach target="-chgUrl" param="technology">
+			<path>
+				<dirset dir="${ts.home}">
+					<include name="modules/*"/>
+					<exclude name="${exclude.technology}"/>
+				</dirset>
+			</path>
+		</foreach>
+	</target>
+
+	<target name="-chgUrl">
+		<exec executable="svn" outputproperty="svn-info">
+			<arg line="info ${ts.home}/modules"/>
+		</exec>
+
+		<echo message=""  level="debug"/>
+		<echo message="SVN INFO: ${svn-info}" level="debug"/>
+
+		<exec executable="svn" outputproperty="old.externals">
+			<arg line="propget svn:externals ${technology}"/>
+		</exec>
+
+		<echo message=""/>
+		<echo message="OLD EXTERNALS: ${old.externals}" level="debug"/>
+
+		<propertyregex property="branch.url"
+                       input="${svn-info}"
+                       regexp=".*URL:\s(.*)modules.*"
+                       select="\1"
+                       override="true"/>
+
+		<propertyregex property="trunk.url"
+                       input="${old.externals}"
+                       regexp=".*release\p{Space}(.*)release.*"
+                       select="\1"
+                       override="true"/>
+
+		<propertyregex property="new.externals"
+                       input="${old.externals}"
+                       regexp="${trunk.url}"
+                       replace="${branch.url}"
+                       global="true"
+                       override="true"/>
+
+		<echo message="" />
+		<echo message="Changing svn:externals for ${technology} ${line.separator}
+    From old(trunk) url ===> ${trunk.url} ${line.separator}
+    To new(branch) url ===> ${branch.url}" />
+
+		<echo message=""/>
+		<echo message="running ===> svn propset svn:externals '${new.externals}' ${technology}" level="debug"/>
+
+		<exec executable="svn" failonerror="true">
+			<arg line="propset svn:externals '${new.externals}' ${technology}"/>
+		</exec>
+	</target>
+
+	
+	<target name="get.web.file">
+		<property name="web.file.src"  value=""/>
+		<property name="web.file.dest" value=""/>
+	    <get src="${web.file.src}" dest="${web.file.dest}" usetimestamp="true" verbose="true"/>
+	</target>
+	
+</project>

@@ -1,0 +1,782 @@
+<html xmlns:Assertions="http://dummy.domain.com/CTS/XMLassertions">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<title>Specification Assertion Detail</title>
+</head>
+<body bgcolor="white">
+<br>
+<CENTER>
+<h2>Java EE Connector API<br>Connector - 1.7<br>
+				Specification Assertion Detail 
+			</h2>
+</CENTER>
+<TABLE width="900" border="1" frame="box" cellpadding="5">
+<TH bgcolor="#BFBFBF"><FONT size="1PT">Totals</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Total</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Active</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Deprecated</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Removed</FONT></TH>
+<tr>
+<TD align="center" valign="center"><font size="2PT">
+						# of Assertions
+					</font></TD><TD align="center" valign="center"><font size="2PT">103</font></TD><TD align="center" valign="center"><font size="2PT">103</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD>
+</tr>
+<tr>
+<TD align="center" valign="center"><font size="2PT">
+						# of Required Assertions
+					</font></TD><TD align="center" valign="center"><font size="2PT">103</font></TD><TD align="center" valign="center"><font size="2PT">103</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD>
+</tr>
+<tr>
+<TD align="center" valign="center"><font size="2PT">
+						# of Optional Assertions
+					</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD>
+</tr>
+</TABLE>
+<br>
+<TABLE width="900" border="1" frame="box" cellpadding="5" summary="Specification Assertions">
+<TH bgcolor="#BFBFBF"><FONT size="1PT">ID</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Chapter</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Section</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Description</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Required</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Dependency</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Implementation Specific</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Defined by</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Status</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Testable</FONT></TH>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:1"></a><font size="1PT">Connector:SPEC:1</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">The ResourceAdapter class is required to be a JavaBean.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:2"></a><font size="1PT">Connector:SPEC:2</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">In order to bootstrap a resource adapter instance, the application server must use the configured ResourceAdapter JavaBean and call its start method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:3"></a><font size="1PT">Connector:SPEC:3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">The application server must instantiate at least one ResourceAdapter JavaBean per resource adapter deployment.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:4"></a><font size="1PT">Connector:SPEC:4</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">During the start method call, an application server must provide a BootstrapContext instance containing references to some of the application server facilities (for example WorkManager) for use by the resource adapter instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:5"></a><font size="1PT">Connector:SPEC:5</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">Prior to using a ManagedConnectionFactory JavaBean, the application server must create an association between the 					ManagedConnectionFactory JavaBean and a ResourceAdapter JavaBean, by calling the setResourceAdapter method on the 						ManagedConnectionFactory JavaBean.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:6"></a><font size="1PT">Connector:SPEC:6</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">The setResourceAdapter method on the ManagedConnectionFactory JavaBean must be called exactly once; that is, the association 				must not change during the lifetime of a Managed-ConnectionFactory JavaBean.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:7"></a><font size="1PT">Connector:SPEC:7</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">Prior to using an ActivationSpec JavaBean, the application server must create an association between the ActivationSpec JavaBean 				and a ResourceAdapter JavaBean, by calling the setResourceAdapter method on the ActivationSpec JavaBean.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:8"></a><font size="1PT">Connector:SPEC:8</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">The setResourceAdapter method on the ActivationSpec JavaBean must be called exactly once; that is, the association must not 				change during the lifetime of an ActivationSpec Java-Bean.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:11"></a><font size="1PT">Connector:SPEC:11</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.5</font></TD><TD align="left" valign="center"><font size="1PT">The application server must use a new ResourceAdapter JavaBean for managing the lifecycle of each resource adapter instance, and 			must not reuse or share a ResourceAdapter JavaBean across multiple resource adapter instances.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:18"></a><font size="1PT">Connector:SPEC:18</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">A connection implementation class implements its methods in a resource adapter implementation specific way. It must use 				javax.resource.spi.ManagedConnection instance as its underlying physical connection.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:20"></a><font size="1PT">Connector:SPEC:20</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.2</font></TD><TD align="left" valign="center"><font size="1PT">An implementation class for ConnectionManager interface is required to implement the java. io.Serializable interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:28"></a><font size="1PT">Connector:SPEC:28</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10.1</font></TD><TD align="left" valign="center"><font size="1PT">The ManagedConnection implementation provided by a resource adapter must use the following interface and classes to provide 							support to an application server for connection management (and transaction management, as explained later): 
+						 javax.resource.spi.ConnectionEvent 
+						 javax.resource.spi.ConnectionEventListener</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:30"></a><font size="1PT">Connector:SPEC:30</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10.2</font></TD><TD align="left" valign="center"><font size="1PT">An application server must use the interfaces defined in the connection management contract to use services provided by a resource 			adapter. These interfaces are as follows:
+			javax.resource.spi.ManagedConnectionFactory 
+			javax.resource.spi.ManagedConnection 
+			javax.resource.spi.ManagedConnectionMetaData</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:31"></a><font size="1PT">Connector:SPEC:31</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10.2</font></TD><TD align="left" valign="center"><font size="1PT">An application server is required to provide an implementation of the javax.resource.spi.ConnectionManager interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:32"></a><font size="1PT">Connector:SPEC:32</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10.2</font></TD><TD align="left" valign="center"><font size="1PT">An application server is required to implement the javax.resource.spi.-ConnectionEventListener interface and to register 					ConnectionEventListener with resource adapter to get connection-related event notifications. An application server uses these event notifications to 			do its pool management, transaction management, and connection cleanup.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:34"></a><font size="1PT">Connector:SPEC:34</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10.2</font></TD><TD align="left" valign="center"><font size="1PT">An application server is required to use the javax.resource.spi.ConnectionManager hook-in mechanism to provide its specific quality 				 of services.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:35"></a><font size="1PT">Connector:SPEC:35</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10.2</font></TD><TD align="left" valign="center"><font size="1PT">The connector specification requires an application server to implement ConnectionEventListener interface and handle local 				transaction related events.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:43"></a><font size="1PT">Connector:SPEC:43</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6.2</font></TD><TD align="left" valign="center"><font size="1PT">Application server is required to use local transaction in a scenario where the following 
+			conditions hold: 
+			Multiple components use a single resource adapter that is local transaction capable 
+			Components get connections to the same EIS instance Components have not specified res-sharing-scope flag as unshareable. This condition 				accounts for potential shareability of connections in terms of security context. client-specific connection parameters and EIS specific configuration.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:44"></a><font size="1PT">Connector:SPEC:44</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6.2</font></TD><TD align="left" valign="center"><font size="1PT">The container is required to provide a mechanism to change the association of a connection handle to different ManagedConnection 				instances depending on the connection sharing and transaction scope. This mechanism is used in scenarios where components hold on to connec-			tion handles across different local transaction and connection sharing scopes.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:46"></a><font size="1PT">Connector:SPEC:46</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6.3</font></TD><TD align="left" valign="center"><font size="1PT">TM must use the XAResource interface supported by an RM for transaction coordination and recovery.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:48"></a><font size="1PT">Connector:SPEC:48</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6.3</font></TD><TD align="left" valign="center"><font size="1PT">TM s support of one-phase commit protocol optimization is required.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:52"></a><font size="1PT">Connector:SPEC:52</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">13.2</font></TD><TD align="left" valign="center"><font size="1PT">An application server is required to support resource adapters with all three levels of transac-tion support NoTransaction, 					 LocalTransaction, and XATransaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:53"></a><font size="1PT">Connector:SPEC:53</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">13.2</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to use the LocalTransaction interface-based contract to manage local transactions for a resource manager.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:54"></a><font size="1PT">Connector:SPEC:54</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">13.2</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to support a transaction manager that manages transactions using the JTA XAResource-based 				contract. The requirements for a transaction manager to support an XAResource-based contract are specified in section 7.6.3 on page 83.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:55"></a><font size="1PT">Connector:SPEC:55</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">15.2</font></TD><TD align="left" valign="center"><font size="1PT">The application server must use the deployment descriptor mechanism 
+                  and the values in the Connector metadata annotation to ascertain the 
+                  transactional capabilities of a resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:62"></a><font size="1PT">Connector:SPEC:62</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">Application server is required to use the method ManagedConnectionFactory.createManagedConnection to pass the security context 				 to the resource adapter during EIS sign-on.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:63"></a><font size="1PT">Connector:SPEC:63</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">Application server is required to be capable of using options - A and C - as specified in the 
+			section 9.2.6 for the security contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:64"></a><font size="1PT">Connector:SPEC:64</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">Application server is required to implement the method allocateConnection in its ConnectionManager implementation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:65"></a><font size="1PT">Connector:SPEC:65</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">Application server is required to configure its use of the security contract based on the security requirements specified by the 				resource adapter in its deployment descriptor. For example, if a resource adapter specifies that it supports only BasicPassword authentication, 
+			application server should use the security contract to pass PasswordCredential instance to the resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:70"></a><font size="1PT">Connector:SPEC:70</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">3.3.6</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to implement the WorkManager interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:71"></a><font size="1PT">Connector:SPEC:71</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">3.3.6</font></TD><TD align="left" valign="center"><font size="1PT">The application server must allow nested Work submissions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:73"></a><font size="1PT">Connector:SPEC:73</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">3.3.6</font></TD><TD align="left" valign="center"><font size="1PT">The WorkManager must catch any exception thrown during Work processing (which includes execution context setup) and wrap it 				with a WorkCompletedException set to an appropriate error code (indicates nature of the error condition).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:76"></a><font size="1PT">Connector:SPEC:76</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">3.3.6</font></TD><TD align="left" valign="center"><font size="1PT">The application server must use a value -1 (WorkManager.UNKNOWN) to indicate an unknown Work start delay duration.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:77"></a><font size="1PT">Connector:SPEC:77</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">When a WorkListener is provided by the resource adapter, the appli-cation server must send event notifications to the WorkListener.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:80"></a><font size="1PT">Connector:SPEC:80</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">3.5</font></TD><TD align="left" valign="center"><font size="1PT">An application server is required to provide a new java.util.Timer instance or an unshared (that is, no one else has a reference) 				instance with an empty task queue, for each call on createTimer method on the BootstrapContext instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:82"></a><font size="1PT">Connector:SPEC:82</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">The message delivery preferences must not change during the lifetime of a message endpoint.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:84"></a><font size="1PT">Connector:SPEC:84</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">4.4</font></TD><TD align="left" valign="center"><font size="1PT">The application server must notify the resource adapter via the XAResource instance if a message delivery is transacted.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:92"></a><font size="1PT">Connector:SPEC:92</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">4.9</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to supply a unique MessageEndpointFactory instance for each activation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:93"></a><font size="1PT">Connector:SPEC:93</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">4.9</font></TD><TD align="left" valign="center"><font size="1PT">A 	MessageEndpointFactory must not override the default java.lang.Object.equals method. This ensures that each MessageEndpointFactory 			JavaBean is treated uniquely (based on the implicit Java object identity).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:96"></a><font size="1PT">Connector:SPEC:96</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">4.9</font></TD><TD align="left" valign="center"><font size="1PT">The application server's proxy endpoint instance is required to implement the endpoint message listener type and the Endpoint 				interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:99"></a><font size="1PT">Connector:SPEC:99</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">If the application server starts a new transaction (depending on endpoint preferences) before delivering a message to an endpoint 				instance, it must send all transaction notifications to the XAResource instance optionally supplied by the resource adapter as part of the 					createEndPoint method call.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:107"></a><font size="1PT">Connector:SPEC:107</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">5.7</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to propagate any exception thrown during a message delivery to 
+the resource adapter irrespective of whether the delivery is transacted or not.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:111"></a><font size="1PT">Connector:SPEC:111</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">5.7</font></TD><TD align="left" valign="center"><font size="1PT">The application server must notify the resource adapter via the XAResource instance if a message delivery is transacted.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:114"></a><font size="1PT">Connector:SPEC:114</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">5.7</font></TD><TD align="left" valign="center"><font size="1PT">The application server must return a new or an unused endpoint instance for every createEndPoint method call on a MessageEndpointFactory.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:115"></a><font size="1PT">Connector:SPEC:115</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">5.9</font></TD><TD align="left" valign="center"><font size="1PT">In the case where endpoint requires a transcated delivery and there is a imported transaction (source managed transaction) then the container must use the source managed transaction to do the transacted delivery.
+            The container must ignore the XAResource supplied by the resource adapter if any.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:117"></a><font size="1PT">Connector:SPEC:117</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">5.9</font></TD><TD align="left" valign="center"><font size="1PT">In the case where endpoint requires a transcated delivery and there is a no imported transaction (source managed transaction) the container must start a new transaction before making the delivery call. The container must use the XAResource supplied by the resource adapter If any.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:118"></a><font size="1PT">Connector:SPEC:118</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">5.9</font></TD><TD align="left" valign="center"><font size="1PT">In the case where endpoint does not require a transcated delivery and there is no imported transaction (source managed transaction) the conainer doesnt start a transaction (because the endpoint doesnt need a transacted delivery).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:120"></a><font size="1PT">Connector:SPEC:120</font></TD><TD align="center" valign="center"><font size="1PT">15</font></TD><TD align="center" valign="center"><font size="1PT">4.4</font></TD><TD align="left" valign="center"><font size="1PT">An application server is required to implement the transaction inflow contract. That is, it must 
+allow Work submissions with a transaction context (that is, Xid), and provide a valid XATerminator 
+instance when called via getXATerminator method on the BootstrapContext instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:125"></a><font size="1PT">Connector:SPEC:125</font></TD><TD align="center" valign="center"><font size="1PT">15</font></TD><TD align="center" valign="center"><font size="1PT">4.4</font></TD><TD align="left" valign="center"><font size="1PT">The application server must disallow Work submissions with a 
+WorkCompletedException (set to an error code WorkException.TX_CONCURRENT_WORK_DISALLOWED), if there 
+is already a Work instance associated with the transaction (based on whether the , irrespective of 
+which resource adapter is involved in the Work submission. This determination must be done using 
+the getGlobalTransactionId method on the Xid object present in the execution context of the 
+submitted Work instance; the Xid s branch identifier must be ignored. The application server must 
+not try to serialize Work processing based on transaction information.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:147"></a><font size="1PT">Connector:SPEC:147</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT">A resource adapter module must be deployed either: Directly into an application server as a stand-alone unit, or, 
+			Deployed with a J2EE application that consists of one or more J2EE modules in addition to a resource adapter module. The J2EE specification 				specifies requirements for the assembly and packaging of J2EE applications.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:153"></a><font size="1PT">Connector:SPEC:153</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">When a resource adapter RAR packaged within a J2EE application EAR is deployed, the resource adapter must be made available 				only to the J2EE application with which it is packaged.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:162"></a><font size="1PT">Connector:SPEC:162</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="center" valign="center"><font size="1PT">14.1</font></TD><TD align="left" valign="center"><font size="1PT">There must be at least one ResourceAdapter JavaBean instance per deployment.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:206"></a><font size="1PT">Connector:SPEC:206</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="left" valign="center"><font size="1PT">For ManagedConnectionFactory JavaBeans that implement the
+                             TransactionSupport interface, the application server must 
+                             perform the following prior to using the JavaBean. 
+                             -. The application server must call the getTransactionSupport method 
+                                to determine its level of transaction support.  
+                             -. The application server must complete the configuration of the 
+                                ManagedConnectionFactory instance (see Section 5.3.2 
+                                "ManagedConnectionFactory JavaBean and Outbound Communication") 
+                                before invoking the getTransactionSupport method. 
+                             -. The application server must use the value returned by the 
+                                getTransactionSupport method. 
+                             -. The application server must provide the transaction levels listed 
+                                in TransactionSupport.TransactionSupportLevel enum,</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:208"></a><font size="1PT">Connector:SPEC:208</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Transaction and Security inflow contexts are standardised via the
+                   TransactionContext and SecurityContext interfaces. The
+                   propagation of Quality of Service hints to a WorkManager for the execution of a
+                   Work instance is standardized through the HintsContext interface. The
+                   application server must support both these inflow contexts.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:209"></a><font size="1PT">Connector:SPEC:209</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">The application server must support the WorkContext interface. 
+                   If a resource adapter submits a Work instance implementing the 
+                   WorkContextProvider interface, the application server must use 
+                   the WorkContexts provided by the resource adapter to assign the 
+                   execution context for that Work instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:210"></a><font size="1PT">Connector:SPEC:210</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">Since nested Work submissions are allowed in the Connector 
+                              WorkManager ( see Section 10.3.3 "WorkManager Interface" ), the 
+                              Connector WorkManager must support nested contexts, unless the 
+                              WorkContext type prohibits it .</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:214"></a><font size="1PT">Connector:SPEC:214</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">4.3</font></TD><TD align="left" valign="center"><font size="1PT">As specified in Section 10.3.4 "WorkListener Interface and WorkEvent Class",
+                    the WorkManager must catch any exception thrown during Work processing, which
+                    includes execution context setup (including Section 11.4.2 "Checking Support 
+                    for an WorkContext Type"), and wrap it with a WorkCompletedException set to an
+                    appropriate error code defined in WorkContextErrorCodes, which indicates the
+                    nature of the error condition.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:216"></a><font size="1PT">Connector:SPEC:216</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">4.3</font></TD><TD align="left" valign="center"><font size="1PT">The app server must also check to ensure that the WorkContexts 
+                    provided by the resource adapter do not have duplicates. For instance, 
+                    a resource adapter must not be able to submit two instances of the 
+                    TransactionContext class. The application server must ensure 
+                    that more than one WorkContexts provided by the resource adapter, 
+                    do not implement the same WorkContext type supported by the app server.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:221"></a><font size="1PT">Connector:SPEC:221</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">A resource adapter must not submit a Work that implements
+                    WorkContextProvider along with a valid ExecutionContext to a Connector
+                    WorkManager. When such a Work instance is submitted to the Connector
+                    WorkManager for execution, the application server must detect this scenario and
+                    throw a WorkRejectedException to indicate this error scenario.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:223"></a><font size="1PT">Connector:SPEC:223</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">When a Work instance is submitted to the Connector WorkManager using 
+                    one of the methods that passes in a WorkListener as a parameter, the 
+                    WorkManager must send Work related notifications to the WorkListener 
+                    and WorkContext setup related notifications to the 
+                    WorkContextLifecycleListener interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:224"></a><font size="1PT">Connector:SPEC:224</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">The WorkManager must make the notifications related to Work accepted 
+                    and started events prior to calling the WorkContext setup related 
+                    notifications. The order of setup related notifications of WorkContext 
+                    types within a list of inflow contexts, of a Work instance, is undefined.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:225"></a><font size="1PT">Connector:SPEC:225</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">The WorkManager must make the notifications related to Work accepted 
+                    and started events prior to calling the WorkContext setup related 
+                    notifications.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:226"></a><font size="1PT">Connector:SPEC:226</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">4.2.3</font></TD><TD align="left" valign="center"><font size="1PT">An administered object may implement the ResourceAdapterAssociation 
+                   interface to associate a resource adapter instance with the administered 
+                   object.The ResourceAdapterAssociation interface specifies the methods to 
+                   associate a administered object JavaBean with a ResourceAdapter JavaBean.  
+
+                   Prior to using the administered object, the application server must 
+                   create an association between the administered object and a ResourceAdapter 
+                   JavaBean, by calling the setResourceAdapter method on the administered 
+                   object. A successful association is established only when the 
+                   setResourceAdapter method on the administered object returns without 
+                   throwing an exception.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:227"></a><font size="1PT">Connector:SPEC:227</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">4.2.3</font></TD><TD align="left" valign="center"><font size="1PT">The setResourceAdapter method on the administered object must be called
+                    exactly once; that is, the association must not change during the 
+                    lifetime of a administered object.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:229"></a><font size="1PT">Connector:SPEC:229</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">For setting the security context of a Work instance, the application 
+                    server calls the setupSecurityContext method of the SecurityContext
+                    implementation provided by the resource adapter. The following conditions are
+                    applicable to the application server provider while calling the
+                    setupSecurityContext method:
+                      - The handler argument must not be null, and the CallbackHandler
+                        implementation passed as the argument handler to setupSecurityContext
+                        must support the following Callbacks defined in "JavaTM Authentication
+                        Service Provider Interface for Containers" on page F-2:
+                          - CallerPrincipalCallback
+                          - GroupPrincipalCallback
+                          - PasswordValidationCallback</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:230"></a><font size="1PT">Connector:SPEC:230</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">For setting the security context of a Work instance, the application 
+                    server calls the setupSecurityContext method of the SecurityContext
+                    implementation provided by the resource adapter. The following conditions are
+                    applicable to the application server provider while calling the
+                    setupSecurityContext method:
+                      - The executionSubject argument must be non-null and it must not be readonly.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:231"></a><font size="1PT">Connector:SPEC:231</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">For setting the security context of a Work instance, the application 
+                    server calls the setupSecurityContext method of the SecurityContext
+                    implementation provided by the resource adapter. The following conditions are
+                    applicable to the application server provider while calling the
+                    setupSecurityContext method:
+                      - The serviceSubject argument may be null.  
+                        If it is not null, it must not be readonly.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:232"></a><font size="1PT">Connector:SPEC:232</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">On successful return of setupSecurityContext, the container must 
+                    use the "modified" executionSubject (modified as a result of handling 
+                    the various Callbacks) to establish the caller identity of the Work 
+                    instance On successful return from setupSecurityContext, the
+                    WorkManager must ensure that the Work is set up to be executed 
+                    with the established security identity.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:233"></a><font size="1PT">Connector:SPEC:233</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">When Message Driven Beans are the MessageEndpoints,
+                    MessageDrivenContext.getCallerPrinicipal() must return the principal
+                    corresponding to the established security identity, and
+                    MessageDrivenContext.isCallerInRole() must return the result of testing the
+                    established security identity for role membership.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:234"></a><font size="1PT">Connector:SPEC:234</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">A resource adapter may use the CallerPrincipalCallback to set the
+                    container's representation of the caller principal. The CallbackHandler must
+                    establish the argument Principal as the caller principal associated with the
+                    invocation being processed by the container. When the argument Principal is
+                    null, the handler will establish the container's representation of the
+                    unauthenticated caller principal.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:235"></a><font size="1PT">Connector:SPEC:235</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">A resource adapter might use the GroupPrincipalCallback to establish the
+                    container's representation of the corresponding group principals within the
+                    Subject. When a null value is passed to the groups argument, the handler will
+                    establish the container's representation of no group principals within the Subject.
+                    Otherwise, the handler's processing of this callback is additive, yielding the
+                    union (without duplicates) of the principals existing within the Subject, and
+                    those created with the names occuring within the argument array. The
+                    CallbackHandler will define the type of the created principals.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:238"></a><font size="1PT">Connector:SPEC:238</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.4</font></TD><TD align="left" valign="center"><font size="1PT">To handle Principal Mapping scenarios described above, the application 
+                    server must provide a CallbackHandler that can be configured to 
+                    perform Principal Mapping during its handling of the 
+                    CallerPrincipalCallback and GroupPrincipalCallbacks.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:239"></a><font size="1PT">Connector:SPEC:239</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.5.1</font></TD><TD align="left" valign="center"><font size="1PT">On return from setupSecurityContext, the container must determine 
+                    whether or not it handled the CallerPinciplaCallback. If it determines 
+                    that it did not handle the Callback, the container must transform 
+                    the contents of the executionSubject and of any related authentication 
+                    state to be equivalent to that which would have resulted had it 
+                    handled the Callback on behalf of the resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:241"></a><font size="1PT">Connector:SPEC:241</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.7</font></TD><TD align="left" valign="center"><font size="1PT">The application server must support the SecurityContext 
+                    interface. It must also satisfy all the requirements stated in 
+                    Section 16.4.1 "Establishing the Security Context"</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:261"></a><font size="1PT">Connector:SPEC:261</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">The WorkManager must ignore any unknown hint name-value pairs 
+                    submitted by a resource adapter instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:262"></a><font size="1PT">Connector:SPEC:262</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">The WorkManager must make the notifications related to the Work 
+                    completed event after the WorkContext setup related
+                    notifications.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:264"></a><font size="1PT">Connector:SPEC:264</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">4.2.4</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to merge values specified via 
+                    annotations and deployment descriptors as specified in Section 18.3, 
+                    'Deployment Descriptors and Annotations' on page 18-2, before applying 
+                    the administed object class configuration properties.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:266"></a><font size="1PT">Connector:SPEC:266</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">If metadata-complete is set to "true", the deployment tool of the application
+                    server must ignore any annotations that specify deployment information, which
+                    might be present in the class files of the application.t</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:267"></a><font size="1PT">Connector:SPEC:267</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">If metadata-complete is not specified or is set to "false", the 
+                    deployment tool must examine the class files of the application for 
+                    annotations, as specified by this specification.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:268"></a><font size="1PT">Connector:SPEC:268</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">If the deployment descriptor is not included or is included but not 
+                    marked metadata-complete, the deployment tool will process annotations.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:269"></a><font size="1PT">Connector:SPEC:269</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Application servers must assume that metadata-complete is true for resource
+                    adapter modules with deployment descriptor version lower than 1.6.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:271"></a><font size="1PT">Connector:SPEC:271</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">The information provided by the annotations must be merged with the deployment
+                    descriptor packaged along with the resource adapter module.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:272"></a><font size="1PT">Connector:SPEC:272</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">While merging the information present in the annotations and the deployment
+                    descriptor, the application server must satisfy the following requirements:
+                     - If a deployment descriptor element and one or more annotations specify
+                       information for the same unique identity (as specified by the XML schema), the
+                       information provided in the deployment descriptor overrides the value specified
+                       in the annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:273"></a><font size="1PT">Connector:SPEC:273</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">While merging the information present in the annotations and the deployment
+                    descriptor, the application server must satisfy the following requirements:
+                     - If there is no match between the identity of the annotations and the deployment
+                       descriptor, and as long as the XML schema allow the combination of these
+                       identities, the information provided in the deployment descriptor must be
+                       considered in addition to the annotations.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:274"></a><font size="1PT">Connector:SPEC:274</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">If there are more than one JavaBean annotated with the Connector 
+                   annotation, the application server must use the JavaBean class specified 
+                   in the deployment descriptor through the resourceadapter-class element. 
+                   It is an error to provide a resource adapter module with more than one 
+                   JavaBean class annotated with the Connector annotation and not 
+                   providing a deployment descriptor.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:277"></a><font size="1PT">Connector:SPEC:277</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">If the defaultValue annotation element is not specified, the
+                   application server must use the value assigned to the field, if any, as the default
+                   value of the configuration property.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:278"></a><font size="1PT">Connector:SPEC:278</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">For setter method based annotations, if the type annotation element is not specified
+                  by the developer, the application server must infer its value by inspecting the
+                  method declartion. The property setter methods must follow the standard JavaBeans
+                  convention (as defined by the JavaBeans Introspector class). It is an error if the
+                  type specified by the developer in the ConfigProperty annotation and the type of
+                  the setter method's parameter are not assignment compatible.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:279"></a><font size="1PT">Connector:SPEC:279</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to process ConfigProperty annotations
+                  specified in the field or setter method declaration of the following JavaBeans: 
+                     - ResourceAdapter</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:280"></a><font size="1PT">Connector:SPEC:280</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">Configuration tools provided by the container must introspect the JavaBeans listed
+                  in Section 18.5 "@ConfigProperty" above for Connector 1.6 resource adapters to
+                  automatically discover the configuration properties of a JavaBean through JavaBeans
+                  introspection.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:282"></a><font size="1PT">Connector:SPEC:282</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">The ActivationSpec JavaBean may implement the ResourceAdapterAssociation 
+                  interface directly to be associated with the resource adapter instance. 
+                  In such cases, the application server must associate the appropriate 
+                  ResourceAdapter instance with the ActivationSpec JavaBean prior to use as 
+                  described in Section 5.3.3 "ActivationSpec JavaBean and Inbound Communication".</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:285"></a><font size="1PT">Connector:SPEC:285</font></TD><TD align="center" valign="center"><font size="1PT">19</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT">The application server must support all the connector architecture API
+                  requirements in EJB and Web containers.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:286"></a><font size="1PT">Connector:SPEC:286</font></TD><TD align="center" valign="center"><font size="1PT">19</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT">A single resource adapter instance may be shared by both a Web 
+                  container and an EJB container.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:287"></a><font size="1PT">Connector:SPEC:287</font></TD><TD align="center" valign="center"><font size="1PT">19</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT">The application server must support all versions of the resource adapter DTDs
+                  (Document Type Definitions) and the resource adapter XML Schema Definition.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:291"></a><font size="1PT">Connector:SPEC:291</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">14</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to make a TransactionSynchronizationRegistry 
+                  object available via its BootstrapContext implementation.i</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:300"></a><font size="1PT">Connector:SPEC:300</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">If an application references a resource using a deployment descriptor entry or a
+                  corresponding annotation, and that resource is supplied by a standalone resource
+                  adapter, that standalone resource adapter must be made available to the
+                  application.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:301"></a><font size="1PT">Connector:SPEC:301</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">If an application references an extension using the Extension Mechanism
+                  Architecture (See Section EE.8.2 "Library Support" of "JavaTM Platform,
+                  Enterprise Edition (Java EE) Specification, version 6" on page F-1) and a jar file
+                  within a standalone resource adapter supplies that extension, the standalone
+                  resource adapter must be made available to the application.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:302"></a><font size="1PT">Connector:SPEC:302</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">If a standalone resource adapter is configured to deliver messages 
+                  to a Message Driven Bean in an application, the standalone resource 
+                  adapter must be made available to the application.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:305"></a><font size="1PT">Connector:SPEC:305</font></TD><TD align="center" valign="center"><font size="1PT">16</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">When a nested Work instance is submitted without a
+                    SecurityContext, the Connector WorkManager must not inherit the 
+                    SecurityContext information of the parent Work instance. It must 
+                    establish the equivalent of
+                    an unauthenticated caller principal for the nested Work instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:307"></a><font size="1PT">Connector:SPEC:307</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to process ConfigProperty annotations
+                  specified in the field or setter method declaration of the following JavaBeans: 
+                     - ManagedConnectionFactory</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:309"></a><font size="1PT">Connector:SPEC:309</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">The application server is required to process ConfigProperty annotations
+                  specified in the field or setter method declaration of the following JavaBeans: 
+                     - ActivationSpec</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:312"></a><font size="1PT">Connector:SPEC:312</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">While merging the information present in the annotations and the deployment
+                    descriptor, the application server must satisfy the following requirements:
+                     - The application server must consider the following exception to the above rule.
+                       If a resource adapter module specifies the fully qualified Java class name of the
+                       resource adapter class in the deployment descriptor through the
+                       resourceadapter-class element, the application server must ignore any
+                       Connector annotations in the resource adapter module?s annotation discovery
+                       scope. If the JavaBean class specified in the resourceadapter-class
+                       element is annotated with the Connector annotation, the application server
+                       must use the information in the deployment descriptor to override the values
+                       specified in the annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:315"></a><font size="1PT">Connector:SPEC:315</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">the application server is required to process ConfigProperty annotations placed 
+                    on the superclasses while processing the configuration properties of a JavaBean.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="Connector:SPEC:326"></a><font size="1PT">Connector:SPEC:326</font></TD><TD align="center" valign="center"><font size="1PT">18</font></TD><TD align="center" valign="center"><font size="1PT">9.3</font></TD><TD align="left" valign="center"><font size="1PT">The name of the resource adapter that the administered object must be 
+                    created from must be indicated by the resourceAdapter element. The 
+                    resource adapter must be available at runtime prior to any attempt to 
+                    access the administered object.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+</TABLE>
+</body>
+</html>

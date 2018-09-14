@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="xa_ee_resXcomp1" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/> 
+  <property name="extra.jar1" value="xa_resXcomp1_ee_txpropagate1"/>
+  <property name="extra.jar2" value="xa_resXcomp1_ee_txpropagate2"/>
+  <property name="extra.jar3" value="xa_resXcomp1_ee_txpropagate3"/>
+  <property name="includes"
+            value="com/sun/ts/tests/common/connector/util/Log.class,
+                   com/sun/ts/tests/common/connector/whitebox/TSConnectionRequestInfo.class,
+                   com/sun/ts/tests/common/connector/util/ConnectorStatus.class"/>
+            
+  <target name="build.common.apps">
+    <ant dir="../../../common/connector/whitebox" target="build"/>
+  </target>
+
+
+  <target name="package" depends="build.common.apps">
+      <ts.ejbjar archivename="${extra.jar1}" descriptor="${extra.jar1}_ejb.xml">
+        <fileset dir="${class.dir}" includes="${includes}"/>
+      </ts.ejbjar>
+
+      <ts.ejbjar archivename="${extra.jar2}" descriptor="${extra.jar2}_ejb.xml">
+        <fileset dir="${class.dir}" includes="${includes}"/>
+      </ts.ejbjar>
+
+      <ts.ejbjar archivename="${extra.jar3}" descriptor="${extra.jar3}_ejb.xml">
+        <fileset dir="${class.dir}" includes="${includes}"/>
+      </ts.ejbjar>
+
+      <ts.vehicles name="xa_resXcomp1"/> 
+
+      <jar update="true" destfile="${dist.dir}/${pkg.dir}/xa_resXcomp1_ejb_vehicle.ear">
+        <fileset dir="${dist.dir}/${pkg.dir}" includes="${extra.jar1}_ejb.jar"/>
+      </jar>
+
+      <jar update="true" destfile="${dist.dir}/${pkg.dir}/xa_resXcomp1_servlet_vehicle.ear">
+        <fileset dir="${dist.dir}/${pkg.dir}" includes="${extra.jar2}_ejb.jar"/>
+      </jar>
+
+      <jar update="true" destfile="${dist.dir}/${pkg.dir}/xa_resXcomp1_jsp_vehicle.ear">
+        <fileset dir="${dist.dir}/${pkg.dir}" includes="${extra.jar3}_ejb.jar"/>
+      </jar>
+
+  </target>
+
+</project>

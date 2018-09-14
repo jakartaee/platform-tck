@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="webservices12_wsdlImport_http_nested4" basedir="." default="usage">
+  <property name="app.name" value="WSNested4Http"/>
+  <property name="service.names" value="Nested4HttpSvc"/>
+  <property name="sei.names" value="Tests"/>
+  <property name="wsdl.filename" value="nestedimportwsdl.wsdl"/>
+  <property name="wsdl.filename2" value="type/Nested4HttpSvc.wsdl"/>
+  <property name="xsd.filename" value="type/subtype/Nested4HttpSvc.xsd"/>
+  <property name="endpoint.type" value="ejb"/>
+
+
+  <property name="wsdl.xsd.files" value="${wsdl.filename}, ${wsdl.filename2}, ${xsd.filename}"/>
+
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+
+  <property name="client.class" value= "com.sun.ts.tests.webservices12.wsdlImport.http.nested4.Client" />
+
+  <property name="impl.classes" value="${pkg.dir}/TestsBean.class"/>
+  <property name="common.classes" value="${jaxws.common.classes}"/>
+
+  <target name="-precompile">
+    <antcall  target="do_wsdl2java_generate_server">
+        <param name="customization.binding.files" value="customfile.xml customfile2.xml"/>
+    </antcall>
+  </target>
+
+
+  <target name="package" depends="vehicles_import_package"/>
+</project>

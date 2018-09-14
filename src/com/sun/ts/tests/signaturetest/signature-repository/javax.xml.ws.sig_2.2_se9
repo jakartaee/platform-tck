@@ -1,0 +1,781 @@
+#Signature file v4.1
+#Version 2.2_se9
+
+#
+# Copyright (c) 2015, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
+meth public abstract int compareTo({java.lang.Comparable%0})
+
+CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
+cons protected <init>(java.lang.String,int)
+intf java.io.Serializable
+intf java.lang.Comparable<{java.lang.Enum%0}>
+meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected final void finalize()
+meth public final boolean equals(java.lang.Object)
+meth public final int compareTo({java.lang.Enum%0})
+meth public final int hashCode()
+meth public final int ordinal()
+meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
+meth public final java.lang.String name()
+meth public java.lang.String toString()
+meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
+supr java.lang.Object
+hfds name,ordinal
+
+CLSS public java.lang.Exception
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Throwable
+hfds serialVersionUID
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public java.lang.RuntimeException
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Exception
+hfds serialVersionUID
+
+CLSS public java.lang.Throwable
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+intf java.io.Serializable
+meth public final java.lang.Throwable[] getSuppressed()
+meth public final void addSuppressed(java.lang.Throwable)
+meth public java.lang.StackTraceElement[] getStackTrace()
+meth public java.lang.String getLocalizedMessage()
+meth public java.lang.String getMessage()
+meth public java.lang.String toString()
+meth public java.lang.Throwable fillInStackTrace()
+meth public java.lang.Throwable getCause()
+meth public java.lang.Throwable initCause(java.lang.Throwable)
+meth public void printStackTrace()
+meth public void printStackTrace(java.io.PrintStream)
+meth public void printStackTrace(java.io.PrintWriter)
+meth public void setStackTrace(java.lang.StackTraceElement[])
+supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
+
+CLSS public abstract interface java.lang.annotation.Annotation
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract int hashCode()
+meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> annotationType()
+meth public abstract java.lang.String toString()
+
+CLSS public abstract interface !annotation java.lang.annotation.Documented
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation java.lang.annotation.Inherited
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation java.lang.annotation.Retention
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.RetentionPolicy value()
+
+CLSS public abstract interface !annotation java.lang.annotation.Target
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract java.security.BasicPermission
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+intf java.io.Serializable
+meth public boolean equals(java.lang.Object)
+meth public boolean implies(java.security.Permission)
+meth public int hashCode()
+meth public java.lang.String getActions()
+meth public java.security.PermissionCollection newPermissionCollection()
+supr java.security.Permission
+hfds exitVM,path,serialVersionUID,wildcard
+
+CLSS public abstract interface java.security.Guard
+meth public abstract void checkGuard(java.lang.Object)
+
+CLSS public abstract java.security.Permission
+cons public <init>(java.lang.String)
+intf java.io.Serializable
+intf java.security.Guard
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract boolean implies(java.security.Permission)
+meth public abstract int hashCode()
+meth public abstract java.lang.String getActions()
+meth public final java.lang.String getName()
+meth public java.lang.String toString()
+meth public java.security.PermissionCollection newPermissionCollection()
+meth public void checkGuard(java.lang.Object)
+supr java.lang.Object
+hfds name,serialVersionUID
+
+CLSS public abstract interface java.util.Map<%0 extends java.lang.Object, %1 extends java.lang.Object>
+innr public abstract interface static Entry
+meth public abstract boolean containsKey(java.lang.Object)
+meth public abstract boolean containsValue(java.lang.Object)
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract boolean isEmpty()
+meth public abstract int hashCode()
+meth public abstract int size()
+meth public abstract java.util.Collection<{java.util.Map%1}> values()
+meth public abstract java.util.Set<java.util.Map$Entry<{java.util.Map%0},{java.util.Map%1}>> entrySet()
+meth public abstract java.util.Set<{java.util.Map%0}> keySet()
+meth public abstract void clear()
+meth public abstract void putAll(java.util.Map<? extends {java.util.Map%0},? extends {java.util.Map%1}>)
+meth public abstract {java.util.Map%1} get(java.lang.Object)
+meth public abstract {java.util.Map%1} put({java.util.Map%0},{java.util.Map%1})
+meth public abstract {java.util.Map%1} remove(java.lang.Object)
+meth public boolean remove(java.lang.Object,java.lang.Object)
+meth public boolean replace({java.util.Map%0},{java.util.Map%1},{java.util.Map%1})
+meth public void forEach(java.util.function.BiConsumer<? super {java.util.Map%0},? super {java.util.Map%1}>)
+meth public void replaceAll(java.util.function.BiFunction<? super {java.util.Map%0},? super {java.util.Map%1},? extends {java.util.Map%1}>)
+meth public {java.util.Map%1} compute({java.util.Map%0},java.util.function.BiFunction<? super {java.util.Map%0},? super {java.util.Map%1},? extends {java.util.Map%1}>)
+meth public {java.util.Map%1} computeIfAbsent({java.util.Map%0},java.util.function.Function<? super {java.util.Map%0},? extends {java.util.Map%1}>)
+meth public {java.util.Map%1} computeIfPresent({java.util.Map%0},java.util.function.BiFunction<? super {java.util.Map%0},? super {java.util.Map%1},? extends {java.util.Map%1}>)
+meth public {java.util.Map%1} getOrDefault(java.lang.Object,{java.util.Map%1})
+meth public {java.util.Map%1} merge({java.util.Map%0},{java.util.Map%1},java.util.function.BiFunction<? super {java.util.Map%1},? super {java.util.Map%1},? extends {java.util.Map%1}>)
+meth public {java.util.Map%1} putIfAbsent({java.util.Map%0},{java.util.Map%1})
+meth public {java.util.Map%1} replace({java.util.Map%0},{java.util.Map%1})
+
+CLSS public abstract interface java.util.concurrent.Future<%0 extends java.lang.Object>
+meth public abstract boolean cancel(boolean)
+meth public abstract boolean isCancelled()
+meth public abstract boolean isDone()
+meth public abstract {java.util.concurrent.Future%0} get() throws java.lang.InterruptedException,java.util.concurrent.ExecutionException
+meth public abstract {java.util.concurrent.Future%0} get(long,java.util.concurrent.TimeUnit) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException,java.util.concurrent.TimeoutException
+
+CLSS public abstract interface !annotation javax.xml.bind.annotation.XmlRootElement
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String namespace()
+
+CLSS public abstract interface !annotation javax.xml.bind.annotation.XmlSchema
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[PACKAGE])
+fld public final static java.lang.String NO_LOCATION = "##generate"
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String location()
+meth public abstract !hasdefault java.lang.String namespace()
+meth public abstract !hasdefault javax.xml.bind.annotation.XmlNsForm attributeFormDefault()
+meth public abstract !hasdefault javax.xml.bind.annotation.XmlNsForm elementFormDefault()
+meth public abstract !hasdefault javax.xml.bind.annotation.XmlNs[] xmlns()
+
+CLSS public abstract interface !annotation javax.xml.bind.annotation.XmlTransient
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD, METHOD, TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.xml.bind.annotation.XmlType
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+innr public final static DEFAULT
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class factoryClass()
+meth public abstract !hasdefault java.lang.String factoryMethod()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String namespace()
+meth public abstract !hasdefault java.lang.String[] propOrder()
+
+CLSS public abstract interface !annotation javax.xml.ws.Action
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String input()
+meth public abstract !hasdefault java.lang.String output()
+meth public abstract !hasdefault javax.xml.ws.FaultAction[] fault()
+
+CLSS public abstract interface javax.xml.ws.AsyncHandler<%0 extends java.lang.Object>
+meth public abstract void handleResponse(javax.xml.ws.Response<{javax.xml.ws.AsyncHandler%0}>)
+
+CLSS public abstract interface javax.xml.ws.Binding
+meth public abstract java.lang.String getBindingID()
+meth public abstract java.util.List<javax.xml.ws.handler.Handler> getHandlerChain()
+meth public abstract void setHandlerChain(java.util.List<javax.xml.ws.handler.Handler>)
+
+CLSS public abstract interface javax.xml.ws.BindingProvider
+fld public final static java.lang.String ENDPOINT_ADDRESS_PROPERTY = "javax.xml.ws.service.endpoint.address"
+fld public final static java.lang.String PASSWORD_PROPERTY = "javax.xml.ws.security.auth.password"
+fld public final static java.lang.String SESSION_MAINTAIN_PROPERTY = "javax.xml.ws.session.maintain"
+fld public final static java.lang.String SOAPACTION_URI_PROPERTY = "javax.xml.ws.soap.http.soapaction.uri"
+fld public final static java.lang.String SOAPACTION_USE_PROPERTY = "javax.xml.ws.soap.http.soapaction.use"
+fld public final static java.lang.String USERNAME_PROPERTY = "javax.xml.ws.security.auth.username"
+meth public abstract <%0 extends javax.xml.ws.EndpointReference> {%%0} getEndpointReference(java.lang.Class<{%%0}>)
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getRequestContext()
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getResponseContext()
+meth public abstract javax.xml.ws.Binding getBinding()
+meth public abstract javax.xml.ws.EndpointReference getEndpointReference()
+
+CLSS public abstract interface !annotation javax.xml.ws.BindingType
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String value()
+
+CLSS public abstract interface javax.xml.ws.Dispatch<%0 extends java.lang.Object>
+intf javax.xml.ws.BindingProvider
+meth public abstract java.util.concurrent.Future<?> invokeAsync({javax.xml.ws.Dispatch%0},javax.xml.ws.AsyncHandler<{javax.xml.ws.Dispatch%0}>)
+meth public abstract javax.xml.ws.Response<{javax.xml.ws.Dispatch%0}> invokeAsync({javax.xml.ws.Dispatch%0})
+meth public abstract void invokeOneWay({javax.xml.ws.Dispatch%0})
+meth public abstract {javax.xml.ws.Dispatch%0} invoke({javax.xml.ws.Dispatch%0})
+
+CLSS public abstract javax.xml.ws.Endpoint
+cons public <init>()
+fld public final static java.lang.String WSDL_PORT = "javax.xml.ws.wsdl.port"
+fld public final static java.lang.String WSDL_SERVICE = "javax.xml.ws.wsdl.service"
+meth public !varargs static javax.xml.ws.Endpoint create(java.lang.Object,javax.xml.ws.WebServiceFeature[])
+meth public !varargs static javax.xml.ws.Endpoint create(java.lang.String,java.lang.Object,javax.xml.ws.WebServiceFeature[])
+meth public !varargs static javax.xml.ws.Endpoint publish(java.lang.String,java.lang.Object,javax.xml.ws.WebServiceFeature[])
+meth public abstract !varargs <%0 extends javax.xml.ws.EndpointReference> {%%0} getEndpointReference(java.lang.Class<{%%0}>,org.w3c.dom.Element[])
+meth public abstract !varargs javax.xml.ws.EndpointReference getEndpointReference(org.w3c.dom.Element[])
+meth public abstract boolean isPublished()
+meth public abstract java.lang.Object getImplementor()
+meth public abstract java.util.List<javax.xml.transform.Source> getMetadata()
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getProperties()
+meth public abstract java.util.concurrent.Executor getExecutor()
+meth public abstract javax.xml.ws.Binding getBinding()
+meth public abstract void publish(java.lang.Object)
+meth public abstract void publish(java.lang.String)
+meth public abstract void setExecutor(java.util.concurrent.Executor)
+meth public abstract void setMetadata(java.util.List<javax.xml.transform.Source>)
+meth public abstract void setProperties(java.util.Map<java.lang.String,java.lang.Object>)
+meth public abstract void stop()
+meth public static javax.xml.ws.Endpoint create(java.lang.Object)
+meth public static javax.xml.ws.Endpoint create(java.lang.String,java.lang.Object)
+meth public static javax.xml.ws.Endpoint publish(java.lang.String,java.lang.Object)
+meth public void publish(javax.xml.ws.spi.http.HttpContext)
+meth public void setEndpointContext(javax.xml.ws.EndpointContext)
+supr java.lang.Object
+
+CLSS public abstract javax.xml.ws.EndpointContext
+cons public <init>()
+meth public abstract java.util.Set<javax.xml.ws.Endpoint> getEndpoints()
+supr java.lang.Object
+
+CLSS public abstract javax.xml.ws.EndpointReference
+cons protected <init>()
+meth public !varargs <%0 extends java.lang.Object> {%%0} getPort(java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
+meth public abstract void writeTo(javax.xml.transform.Result)
+meth public java.lang.String toString()
+meth public static javax.xml.ws.EndpointReference readFrom(javax.xml.transform.Source)
+supr java.lang.Object
+
+CLSS public abstract interface !annotation javax.xml.ws.FaultAction
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String value()
+meth public abstract java.lang.Class<? extends java.lang.Exception> className()
+
+CLSS public final javax.xml.ws.Holder<%0 extends java.lang.Object>
+cons public <init>()
+cons public <init>({javax.xml.ws.Holder%0})
+fld public {javax.xml.ws.Holder%0} value
+intf java.io.Serializable
+supr java.lang.Object
+hfds serialVersionUID
+
+CLSS public abstract interface javax.xml.ws.LogicalMessage
+meth public abstract java.lang.Object getPayload(javax.xml.bind.JAXBContext)
+meth public abstract javax.xml.transform.Source getPayload()
+meth public abstract void setPayload(java.lang.Object,javax.xml.bind.JAXBContext)
+meth public abstract void setPayload(javax.xml.transform.Source)
+
+CLSS public javax.xml.ws.ProtocolException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr javax.xml.ws.WebServiceException
+
+CLSS public abstract interface javax.xml.ws.Provider<%0 extends java.lang.Object>
+meth public abstract {javax.xml.ws.Provider%0} invoke({javax.xml.ws.Provider%0})
+
+CLSS public abstract interface !annotation javax.xml.ws.RequestWrapper
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String className()
+meth public abstract !hasdefault java.lang.String localName()
+meth public abstract !hasdefault java.lang.String partName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+
+CLSS public abstract interface !annotation javax.xml.ws.RespectBinding
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+ anno 0 javax.xml.ws.spi.WebServiceFeatureAnnotation(java.lang.Class<? extends javax.xml.ws.WebServiceFeature> bean=class javax.xml.ws.RespectBindingFeature, java.lang.String id="javax.xml.ws.RespectBindingFeature")
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean enabled()
+
+CLSS public final javax.xml.ws.RespectBindingFeature
+cons public <init>()
+cons public <init>(boolean)
+fld public final static java.lang.String ID = "javax.xml.ws.RespectBindingFeature"
+meth public java.lang.String getID()
+supr javax.xml.ws.WebServiceFeature
+
+CLSS public abstract interface javax.xml.ws.Response<%0 extends java.lang.Object>
+intf java.util.concurrent.Future<{javax.xml.ws.Response%0}>
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getContext()
+
+CLSS public abstract interface !annotation javax.xml.ws.ResponseWrapper
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String className()
+meth public abstract !hasdefault java.lang.String localName()
+meth public abstract !hasdefault java.lang.String partName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+
+CLSS public javax.xml.ws.Service
+cons protected !varargs <init>(java.net.URL,javax.xml.namespace.QName,javax.xml.ws.WebServiceFeature[])
+cons protected <init>(java.net.URL,javax.xml.namespace.QName)
+innr public final static !enum Mode
+meth public !varargs <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.namespace.QName,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
+meth public !varargs <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.ws.EndpointReference,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
+meth public !varargs <%0 extends java.lang.Object> {%%0} getPort(java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
+meth public !varargs <%0 extends java.lang.Object> {%%0} getPort(javax.xml.namespace.QName,java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
+meth public !varargs <%0 extends java.lang.Object> {%%0} getPort(javax.xml.ws.EndpointReference,java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
+meth public !varargs javax.xml.ws.Dispatch<java.lang.Object> createDispatch(javax.xml.namespace.QName,javax.xml.bind.JAXBContext,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
+meth public !varargs javax.xml.ws.Dispatch<java.lang.Object> createDispatch(javax.xml.ws.EndpointReference,javax.xml.bind.JAXBContext,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
+meth public !varargs static javax.xml.ws.Service create(java.net.URL,javax.xml.namespace.QName,javax.xml.ws.WebServiceFeature[])
+meth public !varargs static javax.xml.ws.Service create(javax.xml.namespace.QName,javax.xml.ws.WebServiceFeature[])
+meth public <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.namespace.QName,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode)
+meth public <%0 extends java.lang.Object> {%%0} getPort(java.lang.Class<{%%0}>)
+meth public <%0 extends java.lang.Object> {%%0} getPort(javax.xml.namespace.QName,java.lang.Class<{%%0}>)
+meth public java.net.URL getWSDLDocumentLocation()
+meth public java.util.Iterator<javax.xml.namespace.QName> getPorts()
+meth public java.util.concurrent.Executor getExecutor()
+meth public javax.xml.namespace.QName getServiceName()
+meth public javax.xml.ws.Dispatch<java.lang.Object> createDispatch(javax.xml.namespace.QName,javax.xml.bind.JAXBContext,javax.xml.ws.Service$Mode)
+meth public javax.xml.ws.handler.HandlerResolver getHandlerResolver()
+meth public static javax.xml.ws.Service create(java.net.URL,javax.xml.namespace.QName)
+meth public static javax.xml.ws.Service create(javax.xml.namespace.QName)
+meth public void addPort(javax.xml.namespace.QName,java.lang.String,java.lang.String)
+meth public void setExecutor(java.util.concurrent.Executor)
+meth public void setHandlerResolver(javax.xml.ws.handler.HandlerResolver)
+supr java.lang.Object
+hfds delegate
+
+CLSS public final static !enum javax.xml.ws.Service$Mode
+ outer javax.xml.ws.Service
+fld public final static javax.xml.ws.Service$Mode MESSAGE
+fld public final static javax.xml.ws.Service$Mode PAYLOAD
+meth public static javax.xml.ws.Service$Mode valueOf(java.lang.String)
+meth public static javax.xml.ws.Service$Mode[] values()
+supr java.lang.Enum<javax.xml.ws.Service$Mode>
+
+CLSS public abstract interface !annotation javax.xml.ws.ServiceMode
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Inherited()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault javax.xml.ws.Service$Mode value()
+
+CLSS public abstract interface !annotation javax.xml.ws.WebEndpoint
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String name()
+
+CLSS public abstract interface !annotation javax.xml.ws.WebFault
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String faultBean()
+meth public abstract !hasdefault java.lang.String messageName()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+
+CLSS public abstract interface !annotation javax.xml.ws.WebServiceClient
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+meth public abstract !hasdefault java.lang.String wsdlLocation()
+
+CLSS public abstract interface javax.xml.ws.WebServiceContext
+meth public abstract !varargs <%0 extends javax.xml.ws.EndpointReference> {%%0} getEndpointReference(java.lang.Class<{%%0}>,org.w3c.dom.Element[])
+meth public abstract !varargs javax.xml.ws.EndpointReference getEndpointReference(org.w3c.dom.Element[])
+meth public abstract boolean isUserInRole(java.lang.String)
+meth public abstract java.security.Principal getUserPrincipal()
+meth public abstract javax.xml.ws.handler.MessageContext getMessageContext()
+
+CLSS public javax.xml.ws.WebServiceException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.RuntimeException
+
+CLSS public abstract javax.xml.ws.WebServiceFeature
+cons protected <init>()
+fld protected boolean enabled
+meth public abstract java.lang.String getID()
+meth public boolean isEnabled()
+supr java.lang.Object
+
+CLSS public final javax.xml.ws.WebServicePermission
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr java.security.BasicPermission
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.xml.ws.WebServiceProvider
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String portName()
+meth public abstract !hasdefault java.lang.String serviceName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+meth public abstract !hasdefault java.lang.String wsdlLocation()
+
+CLSS public abstract interface !annotation javax.xml.ws.WebServiceRef
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class<? extends javax.xml.ws.Service> value()
+meth public abstract !hasdefault java.lang.Class<?> type()
+meth public abstract !hasdefault java.lang.String lookup()
+meth public abstract !hasdefault java.lang.String mappedName()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String wsdlLocation()
+
+CLSS public abstract interface !annotation javax.xml.ws.WebServiceRefs
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract javax.xml.ws.WebServiceRef[] value()
+
+CLSS public abstract interface javax.xml.ws.handler.Handler<%0 extends javax.xml.ws.handler.MessageContext>
+meth public abstract boolean handleFault({javax.xml.ws.handler.Handler%0})
+meth public abstract boolean handleMessage({javax.xml.ws.handler.Handler%0})
+meth public abstract void close(javax.xml.ws.handler.MessageContext)
+
+CLSS public abstract interface javax.xml.ws.handler.HandlerResolver
+meth public abstract java.util.List<javax.xml.ws.handler.Handler> getHandlerChain(javax.xml.ws.handler.PortInfo)
+
+CLSS public abstract interface javax.xml.ws.handler.LogicalHandler<%0 extends javax.xml.ws.handler.LogicalMessageContext>
+intf javax.xml.ws.handler.Handler<{javax.xml.ws.handler.LogicalHandler%0}>
+
+CLSS public abstract interface javax.xml.ws.handler.LogicalMessageContext
+intf javax.xml.ws.handler.MessageContext
+meth public abstract javax.xml.ws.LogicalMessage getMessage()
+
+CLSS public abstract interface javax.xml.ws.handler.MessageContext
+fld public final static java.lang.String HTTP_REQUEST_HEADERS = "javax.xml.ws.http.request.headers"
+fld public final static java.lang.String HTTP_REQUEST_METHOD = "javax.xml.ws.http.request.method"
+fld public final static java.lang.String HTTP_RESPONSE_CODE = "javax.xml.ws.http.response.code"
+fld public final static java.lang.String HTTP_RESPONSE_HEADERS = "javax.xml.ws.http.response.headers"
+fld public final static java.lang.String INBOUND_MESSAGE_ATTACHMENTS = "javax.xml.ws.binding.attachments.inbound"
+fld public final static java.lang.String MESSAGE_OUTBOUND_PROPERTY = "javax.xml.ws.handler.message.outbound"
+fld public final static java.lang.String OUTBOUND_MESSAGE_ATTACHMENTS = "javax.xml.ws.binding.attachments.outbound"
+fld public final static java.lang.String PATH_INFO = "javax.xml.ws.http.request.pathinfo"
+fld public final static java.lang.String QUERY_STRING = "javax.xml.ws.http.request.querystring"
+fld public final static java.lang.String REFERENCE_PARAMETERS = "javax.xml.ws.reference.parameters"
+fld public final static java.lang.String SERVLET_CONTEXT = "javax.xml.ws.servlet.context"
+fld public final static java.lang.String SERVLET_REQUEST = "javax.xml.ws.servlet.request"
+fld public final static java.lang.String SERVLET_RESPONSE = "javax.xml.ws.servlet.response"
+fld public final static java.lang.String WSDL_DESCRIPTION = "javax.xml.ws.wsdl.description"
+fld public final static java.lang.String WSDL_INTERFACE = "javax.xml.ws.wsdl.interface"
+fld public final static java.lang.String WSDL_OPERATION = "javax.xml.ws.wsdl.operation"
+fld public final static java.lang.String WSDL_PORT = "javax.xml.ws.wsdl.port"
+fld public final static java.lang.String WSDL_SERVICE = "javax.xml.ws.wsdl.service"
+innr public final static !enum Scope
+intf java.util.Map<java.lang.String,java.lang.Object>
+meth public abstract javax.xml.ws.handler.MessageContext$Scope getScope(java.lang.String)
+meth public abstract void setScope(java.lang.String,javax.xml.ws.handler.MessageContext$Scope)
+
+CLSS public final static !enum javax.xml.ws.handler.MessageContext$Scope
+ outer javax.xml.ws.handler.MessageContext
+fld public final static javax.xml.ws.handler.MessageContext$Scope APPLICATION
+fld public final static javax.xml.ws.handler.MessageContext$Scope HANDLER
+meth public static javax.xml.ws.handler.MessageContext$Scope valueOf(java.lang.String)
+meth public static javax.xml.ws.handler.MessageContext$Scope[] values()
+supr java.lang.Enum<javax.xml.ws.handler.MessageContext$Scope>
+
+CLSS public abstract interface javax.xml.ws.handler.PortInfo
+meth public abstract java.lang.String getBindingID()
+meth public abstract javax.xml.namespace.QName getPortName()
+meth public abstract javax.xml.namespace.QName getServiceName()
+
+CLSS public abstract interface javax.xml.ws.handler.soap.SOAPHandler<%0 extends javax.xml.ws.handler.soap.SOAPMessageContext>
+intf javax.xml.ws.handler.Handler<{javax.xml.ws.handler.soap.SOAPHandler%0}>
+meth public abstract java.util.Set<javax.xml.namespace.QName> getHeaders()
+
+CLSS public abstract interface javax.xml.ws.handler.soap.SOAPMessageContext
+intf javax.xml.ws.handler.MessageContext
+meth public abstract java.lang.Object[] getHeaders(javax.xml.namespace.QName,javax.xml.bind.JAXBContext,boolean)
+meth public abstract java.util.Set<java.lang.String> getRoles()
+meth public abstract javax.xml.soap.SOAPMessage getMessage()
+meth public abstract void setMessage(javax.xml.soap.SOAPMessage)
+
+CLSS public abstract interface javax.xml.ws.http.HTTPBinding
+fld public final static java.lang.String HTTP_BINDING = "http://www.w3.org/2004/08/wsdl/http"
+intf javax.xml.ws.Binding
+
+CLSS public javax.xml.ws.http.HTTPException
+cons public <init>(int)
+meth public int getStatusCode()
+supr javax.xml.ws.ProtocolException
+hfds statusCode
+
+CLSS public abstract interface !annotation javax.xml.ws.soap.Addressing
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+ anno 0 javax.xml.ws.spi.WebServiceFeatureAnnotation(java.lang.Class<? extends javax.xml.ws.WebServiceFeature> bean=class javax.xml.ws.soap.AddressingFeature, java.lang.String id="http://www.w3.org/2005/08/addressing/module")
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean enabled()
+meth public abstract !hasdefault boolean required()
+meth public abstract !hasdefault javax.xml.ws.soap.AddressingFeature$Responses responses()
+
+CLSS public final javax.xml.ws.soap.AddressingFeature
+cons public <init>()
+cons public <init>(boolean)
+cons public <init>(boolean,boolean)
+cons public <init>(boolean,boolean,javax.xml.ws.soap.AddressingFeature$Responses)
+fld protected boolean required
+fld public final static java.lang.String ID = "http://www.w3.org/2005/08/addressing/module"
+innr public final static !enum Responses
+meth public boolean isRequired()
+meth public java.lang.String getID()
+meth public javax.xml.ws.soap.AddressingFeature$Responses getResponses()
+supr javax.xml.ws.WebServiceFeature
+hfds responses
+
+CLSS public final static !enum javax.xml.ws.soap.AddressingFeature$Responses
+ outer javax.xml.ws.soap.AddressingFeature
+fld public final static javax.xml.ws.soap.AddressingFeature$Responses ALL
+fld public final static javax.xml.ws.soap.AddressingFeature$Responses ANONYMOUS
+fld public final static javax.xml.ws.soap.AddressingFeature$Responses NON_ANONYMOUS
+meth public static javax.xml.ws.soap.AddressingFeature$Responses valueOf(java.lang.String)
+meth public static javax.xml.ws.soap.AddressingFeature$Responses[] values()
+supr java.lang.Enum<javax.xml.ws.soap.AddressingFeature$Responses>
+
+CLSS public abstract interface !annotation javax.xml.ws.soap.MTOM
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+ anno 0 javax.xml.ws.spi.WebServiceFeatureAnnotation(java.lang.Class<? extends javax.xml.ws.WebServiceFeature> bean=class javax.xml.ws.soap.MTOMFeature, java.lang.String id="http://www.w3.org/2004/08/soap/features/http-optimization")
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean enabled()
+meth public abstract !hasdefault int threshold()
+
+CLSS public final javax.xml.ws.soap.MTOMFeature
+cons public <init>()
+cons public <init>(boolean)
+cons public <init>(boolean,int)
+cons public <init>(int)
+fld protected int threshold
+fld public final static java.lang.String ID = "http://www.w3.org/2004/08/soap/features/http-optimization"
+meth public int getThreshold()
+meth public java.lang.String getID()
+supr javax.xml.ws.WebServiceFeature
+
+CLSS public abstract interface javax.xml.ws.soap.SOAPBinding
+fld public final static java.lang.String SOAP11HTTP_BINDING = "http://schemas.xmlsoap.org/wsdl/soap/http"
+fld public final static java.lang.String SOAP11HTTP_MTOM_BINDING = "http://schemas.xmlsoap.org/wsdl/soap/http?mtom=true"
+fld public final static java.lang.String SOAP12HTTP_BINDING = "http://www.w3.org/2003/05/soap/bindings/HTTP/"
+fld public final static java.lang.String SOAP12HTTP_MTOM_BINDING = "http://www.w3.org/2003/05/soap/bindings/HTTP/?mtom=true"
+intf javax.xml.ws.Binding
+meth public abstract boolean isMTOMEnabled()
+meth public abstract java.util.Set<java.lang.String> getRoles()
+meth public abstract javax.xml.soap.MessageFactory getMessageFactory()
+meth public abstract javax.xml.soap.SOAPFactory getSOAPFactory()
+meth public abstract void setMTOMEnabled(boolean)
+meth public abstract void setRoles(java.util.Set<java.lang.String>)
+
+CLSS public javax.xml.ws.soap.SOAPFaultException
+cons public <init>(javax.xml.soap.SOAPFault)
+meth public javax.xml.soap.SOAPFault getFault()
+supr javax.xml.ws.ProtocolException
+hfds fault
+
+CLSS public abstract javax.xml.ws.spi.Invoker
+cons public <init>()
+meth public abstract !varargs java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object[]) throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
+meth public abstract void inject(javax.xml.ws.WebServiceContext) throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
+supr java.lang.Object
+
+CLSS public abstract javax.xml.ws.spi.Provider
+cons protected <init>()
+meth public !varargs javax.xml.ws.Endpoint createAndPublishEndpoint(java.lang.String,java.lang.Object,javax.xml.ws.WebServiceFeature[])
+meth public !varargs javax.xml.ws.Endpoint createEndpoint(java.lang.String,java.lang.Class<?>,javax.xml.ws.spi.Invoker,javax.xml.ws.WebServiceFeature[])
+meth public !varargs javax.xml.ws.Endpoint createEndpoint(java.lang.String,java.lang.Object,javax.xml.ws.WebServiceFeature[])
+meth public !varargs javax.xml.ws.spi.ServiceDelegate createServiceDelegate(java.net.URL,javax.xml.namespace.QName,java.lang.Class<? extends javax.xml.ws.Service>,javax.xml.ws.WebServiceFeature[])
+meth public abstract !varargs <%0 extends java.lang.Object> {%%0} getPort(javax.xml.ws.EndpointReference,java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
+meth public abstract javax.xml.ws.Endpoint createAndPublishEndpoint(java.lang.String,java.lang.Object)
+meth public abstract javax.xml.ws.Endpoint createEndpoint(java.lang.String,java.lang.Object)
+meth public abstract javax.xml.ws.EndpointReference readEndpointReference(javax.xml.transform.Source)
+meth public abstract javax.xml.ws.spi.ServiceDelegate createServiceDelegate(java.net.URL,javax.xml.namespace.QName,java.lang.Class<? extends javax.xml.ws.Service>)
+meth public abstract javax.xml.ws.wsaddressing.W3CEndpointReference createW3CEndpointReference(java.lang.String,javax.xml.namespace.QName,javax.xml.namespace.QName,java.util.List<org.w3c.dom.Element>,java.lang.String,java.util.List<org.w3c.dom.Element>)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReference createW3CEndpointReference(java.lang.String,javax.xml.namespace.QName,javax.xml.namespace.QName,javax.xml.namespace.QName,java.util.List<org.w3c.dom.Element>,java.lang.String,java.util.List<org.w3c.dom.Element>,java.util.List<org.w3c.dom.Element>,java.util.Map<javax.xml.namespace.QName,java.lang.String>)
+meth public static javax.xml.ws.spi.Provider provider()
+supr java.lang.Object
+hfds DEFAULT_JAXWSPROVIDER
+
+CLSS public abstract javax.xml.ws.spi.ServiceDelegate
+cons protected <init>()
+meth public abstract !varargs <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.namespace.QName,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
+meth public abstract !varargs <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.ws.EndpointReference,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
+meth public abstract !varargs <%0 extends java.lang.Object> {%%0} getPort(java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
+meth public abstract !varargs <%0 extends java.lang.Object> {%%0} getPort(javax.xml.namespace.QName,java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
+meth public abstract !varargs <%0 extends java.lang.Object> {%%0} getPort(javax.xml.ws.EndpointReference,java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
+meth public abstract !varargs javax.xml.ws.Dispatch<java.lang.Object> createDispatch(javax.xml.namespace.QName,javax.xml.bind.JAXBContext,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
+meth public abstract !varargs javax.xml.ws.Dispatch<java.lang.Object> createDispatch(javax.xml.ws.EndpointReference,javax.xml.bind.JAXBContext,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
+meth public abstract <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.namespace.QName,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode)
+meth public abstract <%0 extends java.lang.Object> {%%0} getPort(java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> {%%0} getPort(javax.xml.namespace.QName,java.lang.Class<{%%0}>)
+meth public abstract java.net.URL getWSDLDocumentLocation()
+meth public abstract java.util.Iterator<javax.xml.namespace.QName> getPorts()
+meth public abstract java.util.concurrent.Executor getExecutor()
+meth public abstract javax.xml.namespace.QName getServiceName()
+meth public abstract javax.xml.ws.Dispatch<java.lang.Object> createDispatch(javax.xml.namespace.QName,javax.xml.bind.JAXBContext,javax.xml.ws.Service$Mode)
+meth public abstract javax.xml.ws.handler.HandlerResolver getHandlerResolver()
+meth public abstract void addPort(javax.xml.namespace.QName,java.lang.String,java.lang.String)
+meth public abstract void setExecutor(java.util.concurrent.Executor)
+meth public abstract void setHandlerResolver(javax.xml.ws.handler.HandlerResolver)
+supr java.lang.Object
+
+CLSS public abstract interface !annotation javax.xml.ws.spi.WebServiceFeatureAnnotation
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.Class<? extends javax.xml.ws.WebServiceFeature> bean()
+meth public abstract java.lang.String id()
+
+CLSS public abstract javax.xml.ws.spi.http.HttpContext
+cons public <init>()
+fld protected javax.xml.ws.spi.http.HttpHandler handler
+meth public abstract java.lang.Object getAttribute(java.lang.String)
+meth public abstract java.lang.String getPath()
+meth public abstract java.util.Set<java.lang.String> getAttributeNames()
+meth public void setHandler(javax.xml.ws.spi.http.HttpHandler)
+supr java.lang.Object
+
+CLSS public abstract javax.xml.ws.spi.http.HttpExchange
+cons public <init>()
+fld public final static java.lang.String REQUEST_CIPHER_SUITE = "javax.xml.ws.spi.http.request.cipher.suite"
+fld public final static java.lang.String REQUEST_KEY_SIZE = "javax.xml.ws.spi.http.request.key.size"
+fld public final static java.lang.String REQUEST_X509CERTIFICATE = "javax.xml.ws.spi.http.request.cert.X509Certificate"
+meth public abstract boolean isUserInRole(java.lang.String)
+meth public abstract java.io.InputStream getRequestBody() throws java.io.IOException
+meth public abstract java.io.OutputStream getResponseBody() throws java.io.IOException
+meth public abstract java.lang.Object getAttribute(java.lang.String)
+meth public abstract java.lang.String getContextPath()
+meth public abstract java.lang.String getPathInfo()
+meth public abstract java.lang.String getProtocol()
+meth public abstract java.lang.String getQueryString()
+meth public abstract java.lang.String getRequestHeader(java.lang.String)
+meth public abstract java.lang.String getRequestMethod()
+meth public abstract java.lang.String getRequestURI()
+meth public abstract java.lang.String getScheme()
+meth public abstract java.net.InetSocketAddress getLocalAddress()
+meth public abstract java.net.InetSocketAddress getRemoteAddress()
+meth public abstract java.security.Principal getUserPrincipal()
+meth public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> getRequestHeaders()
+meth public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> getResponseHeaders()
+meth public abstract java.util.Set<java.lang.String> getAttributeNames()
+meth public abstract javax.xml.ws.spi.http.HttpContext getHttpContext()
+meth public abstract void addResponseHeader(java.lang.String,java.lang.String)
+meth public abstract void close() throws java.io.IOException
+meth public abstract void setStatus(int)
+supr java.lang.Object
+
+CLSS public abstract javax.xml.ws.spi.http.HttpHandler
+cons public <init>()
+meth public abstract void handle(javax.xml.ws.spi.http.HttpExchange) throws java.io.IOException
+supr java.lang.Object
+
+CLSS public final javax.xml.ws.wsaddressing.W3CEndpointReference
+cons protected <init>()
+cons public <init>(javax.xml.transform.Source)
+fld protected final static java.lang.String NS = "http://www.w3.org/2005/08/addressing"
+meth public void writeTo(javax.xml.transform.Result)
+supr javax.xml.ws.EndpointReference
+hfds address,attributes,elements,metadata,referenceParameters,w3cjc
+hcls Address,Elements
+
+CLSS public final javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder
+cons public <init>()
+meth public javax.xml.ws.wsaddressing.W3CEndpointReference build()
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder address(java.lang.String)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder attribute(javax.xml.namespace.QName,java.lang.String)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder element(org.w3c.dom.Element)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder endpointName(javax.xml.namespace.QName)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder interfaceName(javax.xml.namespace.QName)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder metadata(org.w3c.dom.Element)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder referenceParameter(org.w3c.dom.Element)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder serviceName(javax.xml.namespace.QName)
+meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder wsdlDocumentLocation(java.lang.String)
+supr java.lang.Object
+hfds address,attributes,elements,endpointName,interfaceName,metadata,referenceParameters,serviceName,wsdlDocumentLocation
+
+CLSS abstract interface javax.xml.ws.wsaddressing.package-info
+

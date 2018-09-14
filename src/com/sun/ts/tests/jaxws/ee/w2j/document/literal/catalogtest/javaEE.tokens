@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jdlcatalogtest")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest.CatalogTestService
+IMPL=com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest.HelloImpl
+SEI=com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest.Hello
+NAMESPACEURI=http://catalogtestservice.org/wsdl
+PORT=HelloPort
+URLALIAS=/jaxws/Hello
+SERVLETNAME=com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest.HelloImpl
+WEBSERVICEDESCRIPTION=CatalogTestService
+SERVICEREFNAMEWSSERVLET=service/wsw2jdlcatalogtest
+SERVICEREFNAMEWSEJB=service/wsw2jdlcatalogtest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jdlcatalogtest

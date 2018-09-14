@@ -1,0 +1,15 @@
+SERVICE=com.sun.ts.tests.webservices12.wsdlImport.http.twin1.server.Twin1HttpSvc1
+SERVICE2=com.sun.ts.tests.webservices12.wsdlImport.http.twin1.server.Twin1HttpSvc2
+SEI=com.sun.ts.tests.webservices12.wsdlImport.http.twin1.server.Tests1
+SEI2=com.sun.ts.tests.webservices12.wsdlImport.http.twin1.server.Tests2
+IMPL=com.sun.ts.tests.webservices12.wsdlImport.http.twin1.server.TestsImpl1
+IMPL2=com.sun.ts.tests.webservices12.wsdlImport.http.twin1.server.TestsImpl2
+PORT=Tests1Port
+PORT2=Tests2Port
+URLALIAS=/jaxws/Tests1
+URLALIAS2=/jaxws/Tests2
+SERVLETNAME=com.sun.ts.tests.webservices12.wsdlImport.http.twin1.server.TestsImpl1
+SERVLETNAME2=com.sun.ts.tests.webservices12.wsdlImport.http.twin1.server.TestsImpl2
+WEBSERVICEDESCRIPTION=Twin1HttpSvc1
+WEBSERVICEDESCRIPTION2=Twin1HttpSvc2
+

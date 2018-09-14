@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+
+   <import file="../../../../../../../../../bin/xml/ts.import.xml"/>
+
+   <target name="compile" >
+
+   <ts.javac includes="${pkg.dir}/**/*.java,
+                       com/sun/ts/tests/ejb30/sec/stateless/common/*.java" />
+   </target>
+
+   <target name="package" >
+   <ts.ejbjar descriptor="ejb3_sec_stateless_sec_ejb.xml"
+              archivename="ejb3_sec_stateless_sec"  >
+              <fileset dir="${class.dir}"
+                 includes="
+            com/sun/ts/tests/ejb30/sec/stateless/common/SecTest.class,
+            com/sun/ts/tests/ejb30/sec/stateless/common/SecTestLocal.class,
+            com/sun/ts/tests/ejb30/sec/stateless/common/SecTestEJB.class,
+            com/sun/ts/tests/ejb30/sec/stateless/common/SecTestRoleRef.class,
+            com/sun/ts/tests/ejb30/sec/stateless/common/SecTestRoleRefLocal.class,
+            com/sun/ts/tests/ejb30/sec/stateless/common/SecTestRoleRefEJB.class" />
+    </ts.ejbjar> 
+    
+    <ts.clientjar descriptor="ejb3_sec_stateless_sec_client.xml"
+              archivename="ejb3_sec_stateless_sec"
+              mainclass="com.sun.ts.tests.ejb30.sec.stateless.sec.Client" >
+              <fileset dir="${class.dir}"
+                 includes="
+            com/sun/ts/lib/harness/EETest.class,
+            com/sun/ts/lib/harness/EETest$Fault.class,
+            com/sun/ts/tests/ejb30/sec/stateless/common/SecTest.class,
+            com/sun/ts/tests/ejb30/sec/stateless/common/SecTestRoleRef.class,
+            com/sun/ts/lib/harness/EETest$SetupException.class,
+            com/sun/ts/tests/ejb30/sec/stateless/sec/Client.class
+            "/>
+       </ts.clientjar>
+
+     <ts.ear  descriptor="application.xml"
+              archivename="ejb3_sec_stateless_sec" />
+    </target>
+</project>

@@ -1,0 +1,1392 @@
+<!DOCTYPE faces-config
+          PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+          "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<!--
+
+    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+
+    <!-- Beans for Scope tests -->
+    <managed-bean>
+        <managed-bean-name>
+            requestScoped
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.RequestScopedBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionScoped
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.SessionScopedBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationScoped
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ApplicationScopedBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            viewScoped
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ViewScopedBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            view
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            noScopeBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.NoScopeBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+    </managed-bean>
+
+    <!-- Beans for @PostConstruct and @PreDestroy tests -->
+    <managed-bean>
+        <managed-bean-name>
+            requestScopedPackagePrivate
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.RequestScopedPackagePrivateBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            requestScopedPrivate
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.RequestScopedPrivateBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            requestScopedProtected
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.RequestScopedProtectedBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            requestScopedPublic
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.RequestScopedPublicBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionScopedPackagePrivate
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.SessionScopedPackagePrivateBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionScopedPrivate
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.SessionScopedPrivateBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionScopedProtected
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.SessionScopedProtectedBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionScopedPublic
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.SessionScopedPublicBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationScopedPackagePrivate
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ApplicationScopedPackagePrivateBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationScopedPrivate
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ApplicationScopedPrivateBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationScopedProtected
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ApplicationScopedProtectedBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationScopedPublic
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ApplicationScopedPublicBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            viewScopedPackagePrivate
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ViewScopedPackagePrivateBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            viewScopedPrivate
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ViewScopedPrivateBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            viewScopedProtected
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ViewScopedProtectedBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            viewScopedPublic
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ViewScopedPublicBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <!-- Bean for PostConstructExceptionTest -->
+    <managed-bean>
+        <managed-bean-name>
+            RuntimeExceptionPostConstruct
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.RuntimeExceptionPostConstructBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <!-- Bean for PreDestroyExceptionTest -->
+    <managed-bean>
+        <managed-bean-name>
+            RuntimeExceptionPreDestroy
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.RuntimeExceptionPreDestroyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+    </managed-bean>
+
+    <!-- Beans for Managed Property tests -->
+    <managed-bean>
+        <managed-bean-name>
+            managedPropertyBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+
+        <managed-property>
+            <property-name>
+                nullProperty
+            </property-name>
+            <null-value/>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                stringProperty
+            </property-name>
+            <value>
+                <![CDATA[
+                propertyValue   ]]>
+            </value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                mapProperty
+            </property-name>
+            <map-entries>
+                <map-entry>
+                    <key>
+                        nullKey
+                    </key>
+                    <null-value/>
+                </map-entry>
+                <map-entry>
+                    <key>
+                        trimmedKey
+                    </key>
+                    <value>
+                        <![CDATA[
+                propertyValue   ]]>
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                listProperty
+            </property-name>
+            <list-entries>
+                <value>
+                    <![CDATA[
+                propertyValue   ]]>
+                </value>
+                <null-value/>
+            </list-entries>
+        </managed-property>
+
+        <!--
+            The following properties are used for
+            testing type conversion of key/value
+            definitions
+        -->
+        <managed-property>
+            <property-name>
+                byteMapProperty
+            </property-name>
+            <map-entries>
+                <key-class>java.lang.Byte</key-class>
+                <value-class>java.lang.Byte</value-class>
+                <map-entry>
+                    <key>
+                        1
+                    </key>
+                    <value>
+                        2
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                charMapProperty
+            </property-name>
+            <map-entries>
+                <key-class>java.lang.Character</key-class>
+                <value-class>java.lang.Character</value-class>
+                <map-entry>
+                    <key>
+                        a
+                    </key>
+                    <value>
+                        b
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                booleanMapProperty
+            </property-name>
+            <map-entries>
+                <key-class>java.lang.Boolean</key-class>
+                <value-class>java.lang.Boolean</value-class>
+                <map-entry>
+                    <key>
+                        true
+                    </key>
+                    <value>
+                        false
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                shortMapProperty
+            </property-name>
+            <map-entries>
+                <key-class>java.lang.Short</key-class>
+                <value-class>java.lang.Short</value-class>
+                <map-entry>
+                    <key>
+                        10
+                    </key>
+                    <value>
+                        11
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                integerMapProperty
+            </property-name>
+            <map-entries>
+                <key-class>java.lang.Integer</key-class>
+                <value-class>java.lang.Integer</value-class>
+                <map-entry>
+                    <key>
+                        100
+                    </key>
+                    <value>
+                        111
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                longMapProperty
+            </property-name>
+            <map-entries>
+                <key-class>java.lang.Long</key-class>
+                <value-class>java.lang.Long</value-class>
+                <map-entry>
+                    <key>
+                        1000
+                    </key>
+                    <value>
+                        1111
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                floatMapProperty
+            </property-name>
+            <map-entries>
+                <key-class>java.lang.Float</key-class>
+                <value-class>java.lang.Float</value-class>
+                <map-entry>
+                    <key>
+                        1.0
+                    </key>
+                    <value>
+                        1.1
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                doubleMapProperty
+            </property-name>
+            <map-entries>
+                <key-class>java.lang.Double</key-class>
+                <value-class>java.lang.Double</value-class>
+                <map-entry>
+                    <key>
+                        10.0
+                    </key>
+                    <value>
+                       11.1
+                    </value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+
+        <!--
+            The following properties are used for
+            testing type conversion of list value
+            definitions
+        -->
+        <managed-property>
+            <property-name>
+                byteListProperty
+            </property-name>
+            <list-entries>
+                <value-class>java.lang.Byte</value-class>
+                <value>1</value>
+            </list-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                charListProperty
+            </property-name>
+            <list-entries>
+                <value-class>java.lang.Character</value-class>
+                <value>a</value>
+            </list-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                booleanListProperty
+            </property-name>
+            <list-entries>
+                <value-class>java.lang.Boolean</value-class>
+                <value>true</value>
+            </list-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                shortListProperty
+            </property-name>
+            <list-entries>
+                <value-class>java.lang.Short</value-class>
+                <value>1</value>
+            </list-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                integerListProperty
+            </property-name>
+            <list-entries>
+                <value-class>java.lang.Integer</value-class>
+                <value>11</value>
+            </list-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                longListProperty
+            </property-name>
+            <list-entries>
+                <value-class>java.lang.Long</value-class>
+                <value>111</value>
+            </list-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                floatListProperty
+            </property-name>
+            <list-entries>
+                <value-class>java.lang.Float</value-class>
+                <value>1.0</value>
+            </list-entries>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                doubleListProperty
+            </property-name>
+            <list-entries>
+                <value-class>java.lang.Double</value-class>
+                <value>11.1</value>
+            </list-entries>
+        </managed-property>
+
+        <!--
+            The following properties are for <value> element property
+            conversion validation
+        -->
+        <managed-property>
+            <property-name>
+                bytePrim
+            </property-name>
+            <value>1</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                byteObj
+            </property-name>
+            <value>1</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                charPrim
+            </property-name>
+            <value>a</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                charObj
+            </property-name>
+            <value>a</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                booleanPrim
+            </property-name>
+            <value>true</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                booleanObj
+            </property-name>
+            <value>true</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                shortPrim
+            </property-name>
+            <value>11</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                shortObj
+            </property-name>
+            <value>11</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                integerPrim
+            </property-name>
+            <value>111</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                integerObj
+            </property-name>
+            <value>111</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                longPrim
+            </property-name>
+            <value>1111</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                longObj
+            </property-name>
+            <value>1111</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                floatPrim
+            </property-name>
+            <value>1.1</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                floatObj
+            </property-name>
+            <value>1.1</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                doublePrim
+            </property-name>
+            <value>11.1</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>
+                doubleObj
+            </property-name>
+            <value>11.1</value>
+        </managed-property>
+
+    </managed-bean>
+    
+    <!-- 
+         Managed beans for negative tests
+    -->
+    <managed-bean>
+        <managed-bean-name>
+            noSuchBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.NoSuchClass
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            noZeroArgCtorBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.NoZeroArgCtorBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            typeConversionErrorBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>
+                byteObj
+            </property-name>
+            <property-class>java.lang.Byte</property-class>
+            <value>3.14597</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            noSuchPropertyBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>noSuchProperty</property-name>
+            <null-value/>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            noPublicPropertyBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>private</property-name>
+            <null-value/>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            cyclic1
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{cyclic2}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            cyclic2
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{cyclic1}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            cyclic3
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{cyclic3}</value>
+        </managed-property>
+    </managed-bean>
+
+     <managed-bean>
+        <managed-bean-name>
+            cyclic4
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{cyclic5}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            cyclic5
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{cyclic6}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            cyclic6
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{cyclic4}</value>
+        </managed-property>
+    </managed-bean>
+
+    <!-- Negative scope beans -->
+
+    <managed-bean>
+        <managed-bean-name>
+            noneApplication
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{applicationScoped.stringProperty}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            noneSession
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{sessionScoped}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            noneRequest
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{requestScoped}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationSession
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{sessionScoped.stringProperty}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationRequest
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{requestScoped}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionRequest
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{requestScoped.stringProperty}</value>
+        </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>
+            noneApplicationImplicit
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{applicationScope.someAttribute}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            noneSessionImplicit
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{sessionScope.someAttribute}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            noneRequestImplicit
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{requestScope.someAttribute}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationSessionImplicit
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{sessionScope.someAttribute}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationRequestImplicit
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{requestScope.someAttribute}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionRequestImplicit
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{requestScope.someAttribute}</value>
+        </managed-property>
+    </managed-bean>
+
+
+
+    <!--
+        Managed beans for positive scope tests
+    -->
+    <managed-bean>
+        <managed-bean-name>
+            noneNone
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{noScopeBean.stringProperty}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationNone
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{noScopeBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionNone
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{noScopeBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            requestNone
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{noScopeBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            applicationApplication
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            application
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{applicationScoped}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionApplication
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{applicationScoped}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            sessionSession
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            session
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{sessionScoped}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            requestApplication
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{applicationScoped.stringProperty}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            requestSession
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{sessionScoped.stringProperty}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            requestRequest
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            request
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>stringProperty</property-name>
+            <value>#{requestScoped.stringProperty}</value>
+        </managed-property>
+    </managed-bean>
+
+    <!--
+        Bean for map entry order validation.
+    -->
+    <managed-bean>
+        <managed-bean-name>
+            orderedMap
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>
+                orderedMap
+            </property-name>
+            <map-entries>
+                <map-entry>
+                    <key>one</key>
+                    <value>one</value>
+                </map-entry>
+                <map-entry>
+                    <key>two</key>
+                    <value>two</value>
+                </map-entry>
+                <map-entry>
+                    <key>three</key>
+                    <value>three</value>
+                </map-entry>
+                <map-entry>
+                    <key>four</key>
+                    <value>four</value>
+                </map-entry>
+            </map-entries>
+        </managed-property>
+    </managed-bean>
+
+
+    <!--
+        Bean for list entry order validation
+    -->
+    <managed-bean>
+        <managed-bean-name>
+            orderedList
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>
+                orderedList
+            </property-name>
+            <list-entries>
+                <value>one</value>
+                <value>two</value>
+                <value>three</value>
+                <value>four</value>
+            </list-entries>
+        </managed-property>
+    </managed-bean>
+
+    <!--
+        Bean for array property validation
+    -->
+    <managed-bean>
+        <managed-bean-name>
+            arrayBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ManagedPropertyBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <managed-property>
+            <property-name>
+                arrayProperty
+            </property-name>
+            <list-entries>
+                <value-class>int</value-class>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+            </list-entries>
+        </managed-property>
+    </managed-bean>
+
+    <!--
+        Managed beans that are Maps and Lists themselves
+    -->
+    <managed-bean>
+        <managed-bean-name>
+            MapBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.MapBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <map-entries>
+            <map-entry>
+                <key>key1</key>
+                <value>value1</value>
+            </map-entry>
+            <map-entry>
+                <key>key2</key>
+                <value>value2</value>
+            </map-entry>
+        </map-entries>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>
+            ListBean
+        </managed-bean-name>
+        <managed-bean-class>
+            com.sun.ts.tests.jsf.spec.el.managedbean.common.ListBean
+        </managed-bean-class>
+        <managed-bean-scope>
+            none
+        </managed-bean-scope>
+        <list-entries>
+            <value>value1</value>
+            <value>value2</value>
+        </list-entries>
+    </managed-bean>
+
+</faces-config>

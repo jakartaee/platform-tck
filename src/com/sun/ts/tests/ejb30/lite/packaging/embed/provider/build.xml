@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3 lite" basedir="." default="usage">
+   <import file="../../../../common/import.xml"/>
+   <property name="app.name" value="ejblite_packaging_embed_provider"/>
+   
+    <target name="package">
+        <ts.vehicles name="${app.name}" buildleveloverride="2">
+        </ts.vehicles>
+
+        <!-- add javax.ejb.spi.EJBContainerProvider to META-INF/services -->
+
+        <jar update="true" destfile="${dist.dir}/${pkg.dir}/ejbembed_vehicle_ejb.jar">
+          <!-- 
+          ant 1.7.0 has a bug that it writes to the wrong place (META-INF/service).
+          That bug was fixed in ant 1.7.1, but somehow I couldn't get it to work with update=true
+          
+          <service type="javax.ejb.spi.EJBContainerProvider"
+             provider="com.sun.ts.tests.ejb30.lite.packaging.embed.provider.TSEJBContainerProviderImpl"/>
+          -->
+          <zipfileset prefix="META-INF/services" dir="${basedir}" includes="javax.ejb.spi.EJBContainerProvider"/>
+        </jar>
+    </target>
+</project>

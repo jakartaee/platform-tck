@@ -1,0 +1,52 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsf_webapp_ff" basedir="." default="usage">
+    
+    <!-- IMPORTS -->
+    <import file="../../../common/common.xml"/>
+    
+    <property name="app.name" value="jsf_webapp_ff"/>
+    
+    <target name="package">
+        <antcall target="jar"/>
+        <ts.war archivename="${app.name}"
+                descriptor="${app.name}_web.xml">
+            <zipfileset dir="${class.dir}"
+                        includes="${jsf.common}/servlets/HttpTCKServlet.class,
+                        ${jsf.common}/util/JSFTestUtil.class"
+                        prefix="WEB-INF/classes"/>
+            <zipfileset dir="." includes="tckfactory.jar"
+                        prefix="WEB-INF/lib"/>
+            <zipfileset dir="WEB-INF" includes="**/*.xml"
+                        prefix="WEB-INF"/>
+        </ts.war>       
+    </target>
+    
+    <target name="jar">
+        <mkdir dir="${basedir}/jartmp"/>
+        <copy todir="${basedir}/jartmp">
+            <fileset dir="${src.dir}/${pkg.dir}" includes="META-INF/**"/>
+            <fileset dir="${class.dir}" 
+                     includes="${pkg.dir}/TCKLifecycle*,${pkg.dir}/TCKRender*"/>
+        </copy>
+        <jar basedir="${basedir}/jartmp" jarfile="tckfactory.jar" />
+        <delete dir="${basedir}/jartmp"/>
+    </target>    
+    
+</project>

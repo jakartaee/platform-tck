@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <description>BodyTagSupport Test Support Tags</description>
+    <display-name>BodyTagSupport</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>bodytagsupport</short-name>
+    <tag>
+        <name>prevout</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.bodytagsupport.GetPreviousOutTestTag</tag-class>
+        <body-content>JSP</body-content> 
+    </tag>
+    <tag>
+        <name>bodycontent</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.bodytagsupport.GetBodyContentTestTag</tag-class>
+        <body-content>JSP</body-content> 
+    </tag>
+    <tag>
+        <name>interaction</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.bodytagsupport.BodyContainerInteractionTag</tag-class>
+        <body-content>JSP</body-content> 
+        <attribute>
+            <name>doStartTag</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>doEndTag</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>doAfterBody</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>result</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    <tag>
+        <name>sync</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.bodytagsupport.BodySynchronizationTag</tag-class>
+        <tei-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.bodytagsupport.SyncTEI</tei-class>
+        <body-content>JSP</body-content> 
+        <attribute>
+            <name>doStartTag</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>doEndTag</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>doAfterBody</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>bodyCount</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+</taglib>

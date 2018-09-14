@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jpa_core_criteriaapi_CriteriaUpdate" basedir="." default="usage">
+
+    <import file="../../../common/persistence-import.xml"/>
+    <import file="../../../common/schema30/properties.xml"/>
+
+    <property name="app.name" value="jpa_core_criteriapia_CriteriaUpdate"/>
+
+    <property name="par.classes" value="${all.par.classes}"/>
+
+    <target name="clean">
+        <delete failonerror="false" includeEmptyDirs="true" dir="${class.dir}/${jpa_common_schema30_dir}"/>
+        <antcall target="TestImport.clean"/>
+    </target>
+
+    <target name="compile">
+        <ts.javac includes="${jpa_common_schema30_dir}/*.java"/>
+        <antcall target="TestImport.compile"/>
+    </target>
+
+
+    <target name="package">
+        <ts.par descriptor="persistence.xml"
+                descriptordir="${persistence.descriptor.dir}"
+                archivename="${app.name}">
+
+            <fileset dir="${class.dir}"
+                     includes="${par.classes}"/>
+        </ts.par>
+
+        <ts.vehicles name="${app.name}" singleear="true">
+            <servlet-elements>
+                <zipfileset dir="/"
+                            includes="${app.name}.jar"
+                            prefix="WEB-INF/lib"/>
+                <zipfileset dir="${class.dir}"
+			                includes="${util.classes}"
+                            prefix="WEB-INF/classes"/>
+            </servlet-elements>
+            <ear-elements>
+                <zipfileset dir="${dist.dir}/${pkg.dir}"
+                            includes="${app.name}.jar"
+                            prefix="lib"/>
+            </ear-elements>
+            <jar-elements>
+              <zipfileset dir="${class.dir}" includes="${util.classes}"/>
+            </jar-elements>
+        </ts.vehicles>
+    </target>
+
+</project>

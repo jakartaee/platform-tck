@@ -1,0 +1,162 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="SAAJ" basedir="." default="build">
+
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+    
+    <property name="deliverable.version"           value="1.4"/>
+
+	<target name="init">
+		<mkdir dir="${deliverable.bundle.dir}/bin"/>
+		<mkdir dir="${deliverable.bundle.dir}/bin/xml"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/tomcat"/>
+		<mkdir dir="${deliverable.bundle.dir}/classes"/>
+		<mkdir dir="${deliverable.bundle.dir}/dist"/>
+		<mkdir dir="${deliverable.bundle.dir}/lib"/>
+		<mkdir dir="${deliverable.bundle.dir}/src"/>
+        <mkdir dir="${deliverable.bundle.dir}/docs"/>
+		<mkdir dir="${deliverable.bundle.dir}/tmp"/>
+	</target>
+
+	<target name="copyinstall">
+          <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+               <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+                    includes="**/*"
+                    excludes="**/workspace.xml, **/*.log, **/out"/>
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+              <fileset dir="${ts.home}/install/saaj/docs" excludes="**svn**, tck_properties.txt" />
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib"
+                    includes="dtds/"/>
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib" 
+                    includes="schemas/"/>
+          </copy>        
+
+          <copy todir="${deliverable.bundle.dir}/bin/xml/impl/tomcat" includeEmptyDirs="no">
+            <fileset dir="${common.bin.dir}/xml/impl/tomcat"
+                    includes="**/*"/>
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish" includeEmptyDirs="no">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish"
+                    includes="**/*"/>
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}/lib">
+            <fileset dir="${ts.home}/lib"
+                includes="jaxb-*.jar,${deliverable.name.lower}tck.jar,
+                          sigtest.jar"/>
+          </copy>
+
+	  <copy todir="${deliverable.bundle.dir}/src">
+		<fileset dir="${ts.home}/install/${deliverable.name.lower}/other" 
+			includes="testsuite.jtt, vehicle.properties"/>
+	  </copy>
+
+          <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+                <fileset dir="${ts.home}" includes="NOTICE" />
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+	  </copy>
+	</target>
+
+	<target name="jte.cleanup">
+            <props.sanitizer file="${deliverable.bundle.dir}/bin/ts.jte" quiet="true">
+                <property name="webServerHost" value="localhost" />
+                <property name="webServerPort" value="8080" />
+                <property name="local.classes" value="" />
+                <property name="webcontainer.home" value="" />
+                <property name="impl.vi" value="glassfish" />
+                <property name="impl.vi.deploy.dir" value="$${webcontainer.home}/domains/domain1/autodeploy" />
+            </props.sanitizer>
+        </target>
+
+	<target name="build" depends="init">
+		<antcall target="copyinstall"/>
+        	<antcall target="jte.cleanup"/>
+
+		<!-- the classes directory -->
+		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/classes" 
+                  includes="
+		             com/sun/ts/tests/common/vehicle/*.class,
+		             com/sun/ts/tests/common/vehicle/standalone/*.class,
+		             com/sun/ts/tests/saaj/**/*.class,
+		             com/sun/ts/tests/signaturetest/*.class,
+		             com/sun/ts/tests/signaturetest/saaj/*.class,
+                             org/xmlsoap/schemas/soap/envelope/*.class,
+		             com/sun/ts/lib/porting/**/*TSURL*.class,
+		             com/sun/ts/lib/implementation/sun/common/**/SunRIURL.class"
+                  excludes="
+                      com/sun/ts/tests/signaturetest/*Record*,
+                      com/sun/ts/tests/signaturetest/*record*"/>
+
+		</copy>
+
+		<!-- the war files in the dist directory -->
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/saaj/**/*.war" excludes="**/*-portable.war"/>
+			<mapper type="flatten"/>
+		</copy>
+
+		<!-- maintain dist class heirarchy of test directory wars -->
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="yes">
+			<fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/saaj/**/*.war"/>
+		</copy>
+
+		<!-- the specific deliverable source directories -->
+		<copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src"
+			includes="
+                   com/sun/ts/tests/saaj/**/*,
+                   com/sun/ts/tests/signaturetest/signature-repository/javax.xml.soap.*,
+                   com/sun/ts/tests/signaturetest/*,
+                   com/sun/ts/tests/signaturetest/saaj/*,
+                   com/sun/ts/tests/common/vehicle/*,
+                   com/sun/ts/tests/common/vehicle/standalone/*,
+                   com/sun/ts/lib/porting/**/*TSURLInterface*,
+                   com/sun/ts/lib/implementation/sun/common/**/SunRIURL*"
+			excludes="
+                   **/*log,
+                   com/sun/ts/tests/signaturetest/*Record*,
+                   com/sun/ts/tests/signaturetest/*record*,
+                   com/sun/ts/tests/signaturetest/saaj/*record*"/>
+		</copy>
+        
+    <antcall target="create.doc.bundle"/>
+  </target>
+  <target name="create.doc.bundle">
+    <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
+    <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">
+      <zipfileset dir="${ts.home}/install/${deliverable.dir}/docs"
+              includes="**/*.html, **/*.gif, **/*.css"
+              excludes="*ReleaseNotes*.html, tck_properties.txt"/>
+    </zip>
+  </target>
+</project>

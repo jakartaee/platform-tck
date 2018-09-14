@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_misc_datasource_twowars" />
+  <property name="no.application.client" value="true"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/assembly/appres/common" />
+  <property name="app.common.2" value="com/sun/ts/tests/ejb30/lite/packaging/war/datasource/common" />
+
+  <property name="ear.lib.classes"
+    value="
+  com/sun/ts/tests/ejb30/common/helper/Helper.class,
+  com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/lite/packaging/war/datasource/common/DataSourceTest.class,
+com/sun/ts/tests/ejb30/assembly/appres/common/AppResCommonIF.class,
+com/sun/ts/tests/ejb30/assembly/appres/common/AppResLocalIF.class,
+com/sun/ts/tests/ejb30/assembly/appres/common/AppResRemoteIF.class,
+com/sun/ts/tests/ejb30/assembly/appres/common/AppResBeanBase.class
+  " />
+
+  <property name="ejb.jar.classes"
+    value="com/sun/ts/tests/ejb30/misc/datasource/twowars/DataSourceBean.class" />
+    
+  <property name="war.classes" value="
+  com/sun/ts/tests/servlet/common/servlets/HttpTCKServlet.class,
+  com/sun/ts/tests/servlet/common/util/Data.class,
+  com/sun/ts/tests/ejb30/assembly/appres/common/TestServletBase.class,
+  com/sun/ts/tests/ejb30/misc/datasource/twowars/TestServlet.class"
+  />
+  
+  <property name="war.classes.2" value="
+  com/sun/ts/tests/servlet/common/servlets/HttpTCKServlet.class,
+  com/sun/ts/tests/servlet/common/util/Data.class,
+  com/sun/ts/tests/ejb30/assembly/appres/common/TestServletBase.class,
+  com/sun/ts/tests/ejb30/misc/datasource/twowars/TestServlet2.class"
+  />
+    
+   <target name="-precompile">
+     <fill.datasource/>
+   </target>
+   
+  <target name="-postcompile" description="Post dependency target for the compile target">
+    <ts.war archivename="two_standalone_component" includedefaultfiles="false">
+      <zipfileset dir="${class.dir}" includes="${war.classes.2}, ${ear.lib.classes}" prefix="WEB-INF/classes"/>
+    </ts.war>
+  </target>
+  
+    <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/ear-lib-jar.xml" />
+    <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/war-import.xml" />
+    <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml" />
+
+</project>

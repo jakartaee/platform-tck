@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="WSMTOMFeaturesTestUsingDDs" basedir="." default="usage">
+  <property name="app.name" value="WSMTOMFeaturesTestUsingDDs"/>
+  <property name="client.app.name" value="WSMTOMFeaturesTestUsingDDsClnt"/>
+  <property name="service.names" value="MTOMTestService"/>
+  <property name="wsdl.filename" value="MTOMTestService.wsdl"/>
+  <property name="sei.names" value="MTOMTest1, MTOMTest2, MTOMTest3, MTOMTest4"/>
+  <property name="service.names" value="MTOMService"/>
+  <property name="dd.files.already.exist" value="true"/>
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+  <property name="client.class" value="com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.Client"/>
+  <property name="impl.classes" value="${pkg.dir}/*Impl*.class, ${pkg.dir}/Server*.class"/>
+  <property name="common.classes" value="${jaxws.common.classes}"/>
+
+  <target name="-precompile">
+    <antcall  target="do_wsdl2java_generate_server">
+      <param name="wsdl.location" value="WEB-INF/wsdl/${wsdl.filename}"/>
+      <param name="customization.binding.files" value="custom-server.xml"/>
+    </antcall>
+  </target>
+
+  <target name="generate_client_for_ejb_appclient_container">
+      <ts.clean.classes/>
+      <antcall  target="do_wsdl2java_generate_client">
+  	<param name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+        <param name="customization.binding.files" value="custom-client.xml"/>
+      </antcall>
+      <ts.javac includes="${pkg.dir}/*.java" excludes="${pkg.dir}/*Impl*.java, ${pkg.dir}/ServerSOAPHandler.java"/>
+  </target>
+
+  <target name="generate_client_for_web_container">
+      <ts.clean.classes/>
+      <antcall  target="do_wsdl2java_generate_client">
+  	<param name="wsdl.location" value="WEB-INF/wsdl/${wsdl.filename}"/>
+        <param name="customization.binding.files" value="custom-client.xml"/>
+      </antcall>
+      <ts.javac includes="${pkg.dir}/*.java" excludes="${pkg.dir}/*Impl*.java, ${pkg.dir}/ServerSOAPHandler.java"/>
+  </target>
+
+  <target name="package" >
+      <ts.war archivename="${app.name}" descriptor="${app.name}_web.xml" excludedfiles="${pkg.dir}/*Client*.class, ${pkg.dir}/MTOMTestService.class">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}"  prefix="WEB-INF/wsdl"/>
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml"  prefix="WEB-INF"/>
+	<zipfileset dir="${class.dir}" includes="
+	    ${wsa.common.classes},
+	    ${jaxws.common.classes},
+	    ${pkg.dir}/MTOMTest1.class,
+	    ${pkg.dir}/MTOMTest2.class,
+	    ${pkg.dir}/MTOMTest2.class,
+	    ${pkg.dir}/MTOMTest4.class,
+	    ${pkg.dir}/*Impl*.class,
+	    ${pkg.dir}/ServerSOAPHandler.class" prefix="WEB-INF/classes"/>
+	<zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml" prefix="WEB-INF/classes"/>
+        <fileset dir="${src.dir}/${pkg.dir}/contentRoot" includes="**"/>
+      </ts.war>
+      <ts.ear archivename="${app.name}" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war"/>
+      </ts.ear>
+      <antcall target="generate_client_for_ejb_appclient_container"/>
+      <ts.clientjar archivename="${client.app.name}" descriptor="${client.app.name}_client.xml" mainclass="com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.Client" excludedfiles="${pkg.dir}/*Impl*.class, ${pkg.dir}/ServletClient.class, ${pkg.dir}/EjbClient.class">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}"  prefix="META-INF/wsdl"/>
+	<zipfileset dir="${class.dir}" includes="
+	    ${wsa.common.classes},
+	    ${jaxws.common.classes},
+	    ${pkg.dir}/Client.class,
+	    ${pkg.dir}/EjbClientIF.class,
+	    ${pkg.dir}/MTOMTest1.class,
+	    ${pkg.dir}/MTOMTest2.class,
+	    ${pkg.dir}/MTOMTest2.class,
+	    ${pkg.dir}/MTOMTest4.class,
+	    ${pkg.dir}/MTOMTestService.class"/>
+	<zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml"/>
+      </ts.clientjar>
+      <ts.ejbjar archivename="${client.app.name}" descriptor="${client.app.name}_ejb.xml" excludedfiles="${pkg.dir}/*Impl*.class, ${pkg.dir}/Client.class, ${pkg.dir}/ServletClient.class">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}"  prefix="META-INF/wsdl"/>
+	<zipfileset dir="${class.dir}" includes="
+	    ${wsa.common.classes},
+	    ${jaxws.common.classes},
+	    ${pkg.dir}/EjbClientIF.class,
+	    ${pkg.dir}/EjbClient.class,
+	    ${pkg.dir}/MTOMTest1.class,
+	    ${pkg.dir}/MTOMTest2.class,
+	    ${pkg.dir}/MTOMTest2.class,
+	    ${pkg.dir}/MTOMTest4.class,
+	    ${pkg.dir}/MTOMTestService.class"/>
+	<zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml"/>
+      </ts.ejbjar>
+      <antcall target="generate_client_for_web_container"/>
+      <ts.war archivename="${client.app.name}" descriptor="${client.app.name}_web.xml" excludedfiles="${pkg.dir}/*Impl*.class, ${pkg.dir}/Client.class, ${pkg.dir}/EjbClient*.class">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}"  prefix="WEB-INF/wsdl"/>
+	<zipfileset dir="${class.dir}" includes="
+	    ${wsa.common.classes},
+	    ${jaxws.common.classes},
+	    ${pkg.dir}/ServletClient.class,
+	    ${pkg.dir}/MTOMTest1.class,
+	    ${pkg.dir}/MTOMTest2.class,
+	    ${pkg.dir}/MTOMTest2.class,
+	    ${pkg.dir}/MTOMTest4.class,
+	    ${pkg.dir}/MTOMTestService.class" prefix="WEB-INF/classes"/>
+	<zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml" prefix="WEB-INF/classes"/>
+      </ts.war>
+      <copy file="application.xml.clientear" tofile="application.xml"/>
+      <ts.ear archivename="${client.app.name}" descriptordir="." descriptor="application.xml" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar"/>
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_web.war"/>
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_ejb.jar"/>
+      </ts.ear>
+      <delete file="application.xml" />
+  </target>
+</project>

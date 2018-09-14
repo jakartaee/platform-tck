@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsp_simtagsupport" basedir="." default="usage">
+<import file="../../../../../../../../../../../bin/xml/ts.import.xml"/>
+
+	<property name="app.name" value="jsp_simtagsupport"/>
+	<property name="pkg.name" value="javax_servlet/jsp/tagext/simpletagsupport"/>
+	<property name="contentroot.dir" value="${ts.home}/src/web/jsp/api/${pkg.name}"/>
+
+	<target name="package">
+		<ts.war archivename="${app.name}" descriptor="${app.name}_web.xml">
+                  <zipfileset dir="${contentroot.dir}" includes="**/*" excludes="**/*.gf"/>
+                  <zipfileset dir="${class.dir}" 
+                              includes="com/sun/ts/tests/jsp/common/util/JspTestUtil.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/ClassicSkipPage.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleSkipPage.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/FailingTag.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/DefaultSimpleTag.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleGetSetJspContext.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleGetSetJspBody.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleGetSetParent.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/ClassicParent.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleAncestor.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleParentTag.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleEmptyBody.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleNoParent.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/ClassicJspFragmentGetJspContext.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleJspFragmentGetJspContext.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SyncTEI.class,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/CheckInstanceSimpleTag.class, 
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleSyncTag.class"
+                              prefix="WEB-INF/classes"/>
+		</ts.war>
+		<ts.ear archivename="${app.name}"/>
+	</target>
+
+        <target name="compile">
+          <ts.javac includes="${pkg.dir}/**/*.java,
+com/sun/ts/tests/jsp/common/util/JspTestUtil.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/ClassicSkipPage.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleSkipPage.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/FailingTag.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/DefaultSimpleTag.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleGetSetJspContext.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleGetSetJspBody.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleGetSetParent.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/ClassicParent.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleAncestor.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleParentTag.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleEmptyBody.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleNoParent.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/ClassicJspFragmentGetJspContext.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleJspFragmentGetJspContext.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SyncTEI.java,
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/CheckInstanceSimpleTag.java, 
+com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/simpletagsupport/SimpleSyncTag.java,
+                              com/sun/ts/tests/common/webclient/**/*.java"/>
+        </target>
+
+</project>

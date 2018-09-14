@@ -1,0 +1,17 @@
+WSRAnn=@WebServiceRef(name="service/WSWSIDLSwaTestService")
+SERVICE=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.WSIDLSwaTestService
+SERVLETNAME=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTestImpl1
+IMPL=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTestImpl1
+SEI=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTest1
+URLALIAS=/jaxws/SwaTestOne
+SERVLETNAME2=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTestImpl2
+IMPL2=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTestImpl2
+SEI2=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTest2
+URLALIAS2=/jaxws/SwaTestTwo
+NAMESPACEURI=http://SwaTestService.org/wsdl
+PORT=SwaTestOnePort
+PORT2=SwaTestTwoPort
+WEBSERVICEDESCRIPTION=WSIDLSwaTestService
+SERVICEREFNAMEWSSERVLET=service/WSWSIDLSwaTestService
+SERVICEREFNAMEWSEJB=service/WSWSIDLSwaTestService
+SERVICEREFNAMEWSAPPCLIENT=service/WSWSIDLSwaTestService

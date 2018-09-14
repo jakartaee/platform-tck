@@ -1,0 +1,13 @@
+WSRAnn=@WebServiceRef(name="service/WSNested3Http")
+SERVICE=com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Nested3HttpSvc
+SEI=com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Tests
+IMPL=com.sun.ts.tests.webservices12.wsdlImport.http.nested3.TestsBean
+NAMESPACEURI=http://Nested3HttpSvc.org/wsdl
+PORT=TestsPort
+URLALIAS=/jaxws/Tests
+WEBSERVICEDESCRIPTION=Nested3HttpSvc
+SERVICEREFNAMEWSSERVLET=service/WSNested3Http
+SERVICEREFNAMEWSEJB=service/WSNested3Http
+SERVICEREFNAMEWSAPPCLIENT=service/WSNested3Http
+BEANWEBSERVICENAME=TestsBean
+STATELESSNAME=WSNested3Http

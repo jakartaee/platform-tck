@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="misc_jndi_earwarjar" />
+  <property name="app.common" value="com/sun/ts/tests/ejb30/lite/basic/common" />
+  <property name="app.common.2" value="com/sun/ts/tests/ejb30/lite/basic/stateless" />
+  <property name="app.common.3" value="com/sun/ts/tests/ejb30/misc/jndi/earwar" />
+  <property name="no.application.client" value="true" />
+
+  <property name="ear.lib.classes"
+    value="
+    com/sun/ts/tests/ejb30/common/helper/Helper.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/lite/basic/common/Basic1IF.class,
+com/sun/ts/tests/ejb30/lite/basic/common/Basic2IF.class,
+com/sun/ts/tests/ejb30/lite/basic/common/BasicBeanHelper.class,
+com/sun/ts/tests/ejb30/lite/basic/common/GlobalJNDITest.class
+  " />
+
+  <property name="war.classes"
+    value="
+com/sun/ts/tests/servlet/common/servlets/HttpTCKServlet.class,
+com/sun/ts/tests/servlet/common/util/Data.class,
+com/sun/ts/tests/ejb30/misc/jndi/earwar/TestServlet.class
+            " />
+
+  <property name="ejb.jar.classes"
+    value="
+    com/sun/ts/tests/ejb30/lite/basic/common/BasicBeanBase.class,
+com/sun/ts/tests/ejb30/lite/basic/stateless/BasicBean.class,
+com/sun/ts/tests/ejb30/lite/basic/stateless/OneInterfaceBasicBean.class,
+com/sun/ts/tests/ejb30/lite/basic/stateless/TwoInterfacesBasicBean.class
+" />
+
+  <!-- override package.war target in import.xml -->
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/war-import.xml" />
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/ear-lib-jar.xml" />
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml" />
+</project>

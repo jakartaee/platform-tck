@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="LiteralEcho_Service" targetNamespace="http://literalechoservice.org/wsdl" xmlns:tns="http://literalechoservice.org/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://literalechoservice.org/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <schema targetNamespace="http://literalechoservice.org/types" xmlns:tns="http://literalechoservice.org/types" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="http://literalechoservice.org/types/arrays/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <import namespace="http://literalechoservice.org/types/arrays/"/>
+      <complexType name="echo_BigDecimal">
+        <sequence>
+          <element name="BigDecimal_1" type="decimal" nillable="true"/></sequence></complexType>
+      <complexType name="echo_BigDecimalResponse">
+        <sequence>
+          <element name="result" type="decimal" nillable="true"/></sequence></complexType>
+      <complexType name="echo_BigDecimal_array">
+        <sequence>
+          <element name="arrayOfBigDecimal_1" type="decimal" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_BigDecimal_arrayResponse">
+        <sequence>
+          <element name="result" type="decimal" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_BigInteger">
+        <sequence>
+          <element name="BigInteger_1" type="integer" nillable="true"/></sequence></complexType>
+      <complexType name="echo_BigIntegerResponse">
+        <sequence>
+          <element name="result" type="integer" nillable="true"/></sequence></complexType>
+      <complexType name="echo_BigInteger_array">
+        <sequence>
+          <element name="arrayOfBigInteger_1" type="integer" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_BigInteger_arrayResponse">
+        <sequence>
+          <element name="result" type="integer" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Boolean">
+        <sequence>
+          <element name="Boolean_1" type="boolean" nillable="true"/></sequence></complexType>
+      <complexType name="echo_BooleanResponse">
+        <sequence>
+          <element name="result" type="boolean" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Boolean_array">
+        <sequence>
+          <element name="arrayOfBoolean_1" type="boolean" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Boolean_arrayResponse">
+        <sequence>
+          <element name="result" type="boolean" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Byte">
+        <sequence>
+          <element name="Byte_1" type="byte" nillable="true"/></sequence></complexType>
+      <complexType name="echo_ByteResponse">
+        <sequence>
+          <element name="result" type="byte" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Byte_array">
+        <sequence>
+          <element name="arrayOfByte_1" type="byte" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Byte_arrayResponse">
+        <sequence>
+          <element name="result" type="byte" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Calendar">
+        <sequence>
+          <element name="Calendar_1" type="dateTime" nillable="true"/></sequence></complexType>
+      <complexType name="echo_CalendarResponse">
+        <sequence>
+          <element name="result" type="dateTime" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Calendar_array">
+        <sequence>
+          <element name="arrayOfCalendar_1" type="dateTime" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Calendar_arrayResponse">
+        <sequence>
+          <element name="result" type="dateTime" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Date">
+        <sequence>
+          <element name="Date_1" type="dateTime" nillable="true"/></sequence></complexType>
+      <complexType name="echo_DateResponse">
+        <sequence>
+          <element name="result" type="dateTime" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Date_array">
+        <sequence>
+          <element name="arrayOfDate_1" type="dateTime" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Date_arrayResponse">
+        <sequence>
+          <element name="result" type="dateTime" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Double">
+        <sequence>
+          <element name="Double_1" type="double" nillable="true"/></sequence></complexType>
+      <complexType name="echo_DoubleResponse">
+        <sequence>
+          <element name="result" type="double" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Double_array">
+        <sequence>
+          <element name="arrayOfDouble_1" type="double" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Double_arrayResponse">
+        <sequence>
+          <element name="result" type="double" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Float">
+        <sequence>
+          <element name="Float_1" type="float" nillable="true"/></sequence></complexType>
+      <complexType name="echo_FloatResponse">
+        <sequence>
+          <element name="result" type="float" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Float_array">
+        <sequence>
+          <element name="arrayOfFloat_1" type="float" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Float_arrayResponse">
+        <sequence>
+          <element name="result" type="float" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Integer">
+        <sequence>
+          <element name="Integer_1" type="int" nillable="true"/></sequence></complexType>
+      <complexType name="echo_IntegerResponse">
+        <sequence>
+          <element name="result" type="int" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Integer_array">
+        <sequence>
+          <element name="arrayOfInteger_1" type="int" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Integer_arrayResponse">
+        <sequence>
+          <element name="result" type="int" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_JavaBean">
+        <sequence>
+          <element name="JavaBean_1" type="tns:JavaBean" nillable="true"/></sequence></complexType>
+      <complexType name="JavaBean">
+        <sequence>
+          <element name="myBigDecimal" type="decimal" nillable="true"/>
+          <element name="myBigDecimalArray" type="decimal" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myBigInteger" type="integer" nillable="true"/>
+          <element name="myBigIntegerArray" type="integer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myBoolean" type="boolean"/>
+          <element name="myBoolean1" type="boolean" nillable="true"/>
+          <element name="myBoolean1Array" type="boolean" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myBooleanArray" type="boolean" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myByte" type="byte"/>
+          <element name="myByte1" type="byte" nillable="true"/>
+          <element name="myByte1Array" type="byte" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myByteArray" type="base64Binary" nillable="true"/>
+          <element name="myCalendar" type="dateTime" nillable="true"/>
+          <element name="myCalendarArray" type="dateTime" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myDate" type="dateTime" nillable="true"/>
+          <element name="myDateArray" type="dateTime" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myDouble" type="double"/>
+          <element name="myDouble1" type="double" nillable="true"/>
+          <element name="myDouble1Array" type="double" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myDoubleArray" type="double" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myFloat" type="float"/>
+          <element name="myFloat1" type="float" nillable="true"/>
+          <element name="myFloat1Array" type="float" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myFloatArray" type="float" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myInt" type="int"/>
+          <element name="myInt1" type="int" nillable="true"/>
+          <element name="myInt1Array" type="int" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myIntArray" type="int" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myLong" type="long"/>
+          <element name="myLong1" type="long" nillable="true"/>
+          <element name="myLong1Array" type="long" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myLongArray" type="long" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myShort" type="short"/>
+          <element name="myShort1" type="short" nillable="true"/>
+          <element name="myShort1Array" type="short" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myShortArray" type="short" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="myString" type="string" nillable="true"/>
+          <element name="myStringArray" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_JavaBeanResponse">
+        <sequence>
+          <element name="result" type="tns:JavaBean" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Long">
+        <sequence>
+          <element name="Long_1" type="long" nillable="true"/></sequence></complexType>
+      <complexType name="echo_LongResponse">
+        <sequence>
+          <element name="result" type="long" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Long_array">
+        <sequence>
+          <element name="arrayOfLong_1" type="long" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Long_arrayResponse">
+        <sequence>
+          <element name="result" type="long" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Orders">
+        <sequence>
+          <element name="Orders_1" type="tns:Orders" nillable="true"/></sequence></complexType>
+      <complexType name="Orders">
+        <sequence>
+          <element name="age" type="short"/>
+          <element name="orders" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_OrdersResponse">
+        <sequence>
+          <element name="result" type="tns:Orders" nillable="true"/></sequence></complexType>
+      <complexType name="echo_QName">
+        <sequence>
+          <element name="QName_1" type="QName" nillable="true"/></sequence></complexType>
+      <complexType name="echo_QNameResponse">
+        <sequence>
+          <element name="result" type="QName" nillable="true"/></sequence></complexType>
+      <complexType name="echo_QName_array">
+        <sequence>
+          <element name="arrayOfQName_1" type="QName" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_QName_arrayResponse">
+        <sequence>
+          <element name="result" type="QName" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Short">
+        <sequence>
+          <element name="Short_1" type="short" nillable="true"/></sequence></complexType>
+      <complexType name="echo_ShortResponse">
+        <sequence>
+          <element name="result" type="short" nillable="true"/></sequence></complexType>
+      <complexType name="echo_Short_array">
+        <sequence>
+          <element name="arrayOfShort_1" type="short" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_Short_arrayResponse">
+        <sequence>
+          <element name="result" type="short" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_URI">
+        <sequence>
+          <element name="URI_1" type="anyURI" nillable="true"/></sequence></complexType>
+      <complexType name="echo_URIResponse">
+        <sequence>
+          <element name="result" type="anyURI" nillable="true"/></sequence></complexType>
+      <complexType name="echo_URI_array">
+        <sequence>
+          <element name="arrayOfURI_1" type="anyURI" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_URI_arrayResponse">
+        <sequence>
+          <element name="result" type="anyURI" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_bar">
+        <sequence>
+          <element name="Bar_1" type="tns:Bar" nillable="true"/></sequence></complexType>
+      <complexType name="Bar">
+        <sequence>
+          <element name="foo" type="tns:Foo" nillable="true"/>
+          <element name="foo2" type="tns:Foo2" nillable="true"/>
+          <element name="string" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="Foo">
+        <sequence>
+          <element name="i2" type="short"/>
+          <element name="l" type="long"/>
+          <element name="SA" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="SMember" type="string" nillable="true"/>
+          <element name="i" type="int"/>
+          <element name="subI2" type="int"/></sequence></complexType>
+      <complexType name="Foo2">
+        <sequence>
+          <element name="i2" type="short"/>
+          <element name="l" type="long"/>
+          <element name="SA" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="SMember" type="string" nillable="true"/>
+          <element name="i" type="int"/>
+          <element name="integer" type="int" nillable="true"/>
+          <element name="subI2" type="int"/></sequence></complexType>
+      <complexType name="echo_barResponse">
+        <sequence>
+          <element name="result" type="tns:Bar" nillable="true"/></sequence></complexType>
+      <complexType name="echo_bar_array">
+        <sequence>
+          <element name="arrayOfBar_1" type="tns:Bar" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_bar_arrayResponse">
+        <sequence>
+          <element name="result" type="tns:Bar" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_boolean">
+        <sequence>
+          <element name="boolean_1" type="boolean"/></sequence></complexType>
+      <complexType name="echo_booleanResponse">
+        <sequence>
+          <element name="result" type="boolean"/></sequence></complexType>
+      <complexType name="echo_boolean_array">
+        <sequence>
+          <element name="arrayOfboolean_1" type="boolean" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_boolean_arrayResponse">
+        <sequence>
+          <element name="result" type="boolean" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_boolean_array_array">
+        <sequence>
+          <element name="arrayOfarrayOfboolean_1" type="ns2:booleanArray" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_boolean_array_arrayResponse">
+        <sequence>
+          <element name="result" type="ns2:booleanArray" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_byte">
+        <sequence>
+          <element name="byte_1" type="byte"/></sequence></complexType>
+      <complexType name="echo_byteResponse">
+        <sequence>
+          <element name="result" type="byte"/></sequence></complexType>
+      <complexType name="echo_byte_array">
+        <sequence>
+          <element name="arrayOfbyte_1" type="base64Binary" nillable="true"/></sequence></complexType>
+      <complexType name="echo_byte_arrayResponse">
+        <sequence>
+          <element name="result" type="base64Binary" nillable="true"/></sequence></complexType>
+      <complexType name="echo_byte_array_array">
+        <sequence>
+          <element name="arrayOfarrayOfbyte_1" type="base64Binary" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_byte_array_arrayResponse">
+        <sequence>
+          <element name="result" type="base64Binary" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_double">
+        <sequence>
+          <element name="double_1" type="double"/></sequence></complexType>
+      <complexType name="echo_doubleResponse">
+        <sequence>
+          <element name="result" type="double"/></sequence></complexType>
+      <complexType name="echo_double_array">
+        <sequence>
+          <element name="arrayOfdouble_1" type="double" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_double_arrayResponse">
+        <sequence>
+          <element name="result" type="double" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_float">
+        <sequence>
+          <element name="float_1" type="float"/></sequence></complexType>
+      <complexType name="echo_floatResponse">
+        <sequence>
+          <element name="result" type="float"/></sequence></complexType>
+      <complexType name="echo_float_array">
+        <sequence>
+          <element name="arrayOffloat_1" type="float" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_float_arrayResponse">
+        <sequence>
+          <element name="result" type="float" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_foo">
+        <sequence>
+          <element name="Foo_1" type="tns:Foo" nillable="true"/></sequence></complexType>
+      <complexType name="echo_fooResponse">
+        <sequence>
+          <element name="result" type="tns:Foo" nillable="true"/></sequence></complexType>
+      <complexType name="echo_foo_array">
+        <sequence>
+          <element name="arrayOfFoo_1" type="tns:Foo" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_foo_arrayResponse">
+        <sequence>
+          <element name="result" type="tns:Foo" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_int">
+        <sequence>
+          <element name="int_1" type="int"/></sequence></complexType>
+      <complexType name="echo_intResponse">
+        <sequence>
+          <element name="result" type="int"/></sequence></complexType>
+      <complexType name="echo_int_array">
+        <sequence>
+          <element name="arrayOfint_1" type="int" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_int_arrayResponse">
+        <sequence>
+          <element name="result" type="int" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_long">
+        <sequence>
+          <element name="long_1" type="long"/></sequence></complexType>
+      <complexType name="echo_longResponse">
+        <sequence>
+          <element name="result" type="long"/></sequence></complexType>
+      <complexType name="echo_long_array">
+        <sequence>
+          <element name="arrayOflong_1" type="long" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_long_arrayResponse">
+        <sequence>
+          <element name="result" type="long" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_recursive">
+        <sequence>
+          <element name="RecursiveLiteral_1" type="tns:RecursiveLiteral" nillable="true"/></sequence></complexType>
+      <complexType name="RecursiveLiteral">
+        <sequence>
+          <element name="children" type="tns:RecursiveLiteral" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="id" type="int"/>
+          <element name="name" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="echo_recursiveResponse">
+        <sequence>
+          <element name="result" type="tns:RecursiveLiteral" nillable="true"/></sequence></complexType>
+      <complexType name="echo_short">
+        <sequence>
+          <element name="short_1" type="short"/></sequence></complexType>
+      <complexType name="echo_shortResponse">
+        <sequence>
+          <element name="result" type="short"/></sequence></complexType>
+      <complexType name="echo_short_array">
+        <sequence>
+          <element name="arrayOfshort_1" type="short" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_short_arrayResponse">
+        <sequence>
+          <element name="result" type="short" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_string">
+        <sequence>
+          <element name="String_1" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="echo_stringResponse">
+        <sequence>
+          <element name="result" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="echo_string_array">
+        <sequence>
+          <element name="arrayOfString_1" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_string_arrayResponse">
+        <sequence>
+          <element name="result" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="echo_void">
+        <sequence/></complexType>
+      <element name="echo_BigDecimal" type="tns:echo_BigDecimal"/>
+      <element name="echo_BigDecimalResponse" type="tns:echo_BigDecimalResponse"/>
+      <element name="echo_BigDecimal_array" type="tns:echo_BigDecimal_array"/>
+      <element name="echo_BigDecimal_arrayResponse" type="tns:echo_BigDecimal_arrayResponse"/>
+      <element name="echo_BigInteger" type="tns:echo_BigInteger"/>
+      <element name="echo_BigIntegerResponse" type="tns:echo_BigIntegerResponse"/>
+      <element name="echo_BigInteger_array" type="tns:echo_BigInteger_array"/>
+      <element name="echo_BigInteger_arrayResponse" type="tns:echo_BigInteger_arrayResponse"/>
+      <element name="echo_Boolean" type="tns:echo_Boolean"/>
+      <element name="echo_BooleanResponse" type="tns:echo_BooleanResponse"/>
+      <element name="echo_Boolean_array" type="tns:echo_Boolean_array"/>
+      <element name="echo_Boolean_arrayResponse" type="tns:echo_Boolean_arrayResponse"/>
+      <element name="echo_Byte" type="tns:echo_Byte"/>
+      <element name="echo_ByteResponse" type="tns:echo_ByteResponse"/>
+      <element name="echo_Byte_array" type="tns:echo_Byte_array"/>
+      <element name="echo_Byte_arrayResponse" type="tns:echo_Byte_arrayResponse"/>
+      <element name="echo_Calendar" type="tns:echo_Calendar"/>
+      <element name="echo_CalendarResponse" type="tns:echo_CalendarResponse"/>
+      <element name="echo_Calendar_array" type="tns:echo_Calendar_array"/>
+      <element name="echo_Calendar_arrayResponse" type="tns:echo_Calendar_arrayResponse"/>
+      <element name="echo_Date" type="tns:echo_Date"/>
+      <element name="echo_DateResponse" type="tns:echo_DateResponse"/>
+      <element name="echo_Date_array" type="tns:echo_Date_array"/>
+      <element name="echo_Date_arrayResponse" type="tns:echo_Date_arrayResponse"/>
+      <element name="echo_Double" type="tns:echo_Double"/>
+      <element name="echo_DoubleResponse" type="tns:echo_DoubleResponse"/>
+      <element name="echo_Double_array" type="tns:echo_Double_array"/>
+      <element name="echo_Double_arrayResponse" type="tns:echo_Double_arrayResponse"/>
+      <element name="echo_Float" type="tns:echo_Float"/>
+      <element name="echo_FloatResponse" type="tns:echo_FloatResponse"/>
+      <element name="echo_Float_array" type="tns:echo_Float_array"/>
+      <element name="echo_Float_arrayResponse" type="tns:echo_Float_arrayResponse"/>
+      <element name="echo_Integer" type="tns:echo_Integer"/>
+      <element name="echo_IntegerResponse" type="tns:echo_IntegerResponse"/>
+      <element name="echo_Integer_array" type="tns:echo_Integer_array"/>
+      <element name="echo_Integer_arrayResponse" type="tns:echo_Integer_arrayResponse"/>
+      <element name="echo_JavaBean" type="tns:echo_JavaBean"/>
+      <element name="echo_JavaBeanResponse" type="tns:echo_JavaBeanResponse"/>
+      <element name="echo_Long" type="tns:echo_Long"/>
+      <element name="echo_LongResponse" type="tns:echo_LongResponse"/>
+      <element name="echo_Long_array" type="tns:echo_Long_array"/>
+      <element name="echo_Long_arrayResponse" type="tns:echo_Long_arrayResponse"/>
+      <element name="echo_Orders" type="tns:echo_Orders"/>
+      <element name="echo_OrdersResponse" type="tns:echo_OrdersResponse"/>
+      <element name="echo_QName" type="tns:echo_QName"/>
+      <element name="echo_QNameResponse" type="tns:echo_QNameResponse"/>
+      <element name="echo_QName_array" type="tns:echo_QName_array"/>
+      <element name="echo_QName_arrayResponse" type="tns:echo_QName_arrayResponse"/>
+      <element name="echo_Short" type="tns:echo_Short"/>
+      <element name="echo_ShortResponse" type="tns:echo_ShortResponse"/>
+      <element name="echo_Short_array" type="tns:echo_Short_array"/>
+      <element name="echo_Short_arrayResponse" type="tns:echo_Short_arrayResponse"/>
+      <element name="echo_URI" type="tns:echo_URI"/>
+      <element name="echo_URIResponse" type="tns:echo_URIResponse"/>
+      <element name="echo_URI_array" type="tns:echo_URI_array"/>
+      <element name="echo_URI_arrayResponse" type="tns:echo_URI_arrayResponse"/>
+      <element name="echo_bar" type="tns:echo_bar"/>
+      <element name="echo_barResponse" type="tns:echo_barResponse"/>
+      <element name="echo_bar_array" type="tns:echo_bar_array"/>
+      <element name="echo_bar_arrayResponse" type="tns:echo_bar_arrayResponse"/>
+      <element name="echo_boolean" type="tns:echo_boolean"/>
+      <element name="echo_booleanResponse" type="tns:echo_booleanResponse"/>
+      <element name="echo_boolean_array" type="tns:echo_boolean_array"/>
+      <element name="echo_boolean_arrayResponse" type="tns:echo_boolean_arrayResponse"/>
+      <element name="echo_boolean_array_array" type="tns:echo_boolean_array_array"/>
+      <element name="echo_boolean_array_arrayResponse" type="tns:echo_boolean_array_arrayResponse"/>
+      <element name="echo_byte" type="tns:echo_byte"/>
+      <element name="echo_byteResponse" type="tns:echo_byteResponse"/>
+      <element name="echo_byte_array" type="tns:echo_byte_array"/>
+      <element name="echo_byte_arrayResponse" type="tns:echo_byte_arrayResponse"/>
+      <element name="echo_byte_array_array" type="tns:echo_byte_array_array"/>
+      <element name="echo_byte_array_arrayResponse" type="tns:echo_byte_array_arrayResponse"/>
+      <element name="echo_double" type="tns:echo_double"/>
+      <element name="echo_doubleResponse" type="tns:echo_doubleResponse"/>
+      <element name="echo_double_array" type="tns:echo_double_array"/>
+      <element name="echo_double_arrayResponse" type="tns:echo_double_arrayResponse"/>
+      <element name="echo_float" type="tns:echo_float"/>
+      <element name="echo_floatResponse" type="tns:echo_floatResponse"/>
+      <element name="echo_float_array" type="tns:echo_float_array"/>
+      <element name="echo_float_arrayResponse" type="tns:echo_float_arrayResponse"/>
+      <element name="echo_foo" type="tns:echo_foo"/>
+      <element name="echo_fooResponse" type="tns:echo_fooResponse"/>
+      <element name="echo_foo_array" type="tns:echo_foo_array"/>
+      <element name="echo_foo_arrayResponse" type="tns:echo_foo_arrayResponse"/>
+      <element name="echo_int" type="tns:echo_int"/>
+      <element name="echo_intResponse" type="tns:echo_intResponse"/>
+      <element name="echo_int_array" type="tns:echo_int_array"/>
+      <element name="echo_int_arrayResponse" type="tns:echo_int_arrayResponse"/>
+      <element name="echo_long" type="tns:echo_long"/>
+      <element name="echo_longResponse" type="tns:echo_longResponse"/>
+      <element name="echo_long_array" type="tns:echo_long_array"/>
+      <element name="echo_long_arrayResponse" type="tns:echo_long_arrayResponse"/>
+      <element name="echo_recursive" type="tns:echo_recursive"/>
+      <element name="echo_recursiveResponse" type="tns:echo_recursiveResponse"/>
+      <element name="echo_short" type="tns:echo_short"/>
+      <element name="echo_shortResponse" type="tns:echo_shortResponse"/>
+      <element name="echo_short_array" type="tns:echo_short_array"/>
+      <element name="echo_short_arrayResponse" type="tns:echo_short_arrayResponse"/>
+      <element name="echo_string" type="tns:echo_string"/>
+      <element name="echo_stringResponse" type="tns:echo_stringResponse"/>
+      <element name="echo_string_array" type="tns:echo_string_array"/>
+      <element name="echo_string_arrayResponse" type="tns:echo_string_arrayResponse"/>
+      <element name="echo_void" type="tns:echo_void"/></schema>
+    <schema targetNamespace="http://literalechoservice.org/types/arrays/" xmlns:tns="http://literalechoservice.org/types/arrays/" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <import namespace="http://literalechoservice.org/types"/>
+      <complexType name="booleanArray">
+        <sequence>
+          <element name="value" type="boolean" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType></schema></types>
+  <message name="LiteralEcho_echo_BigDecimal">
+    <part name="parameters" element="ns2:echo_BigDecimal"/></message>
+  <message name="LiteralEcho_echo_BigDecimalResponse">
+    <part name="result" element="ns2:echo_BigDecimalResponse"/></message>
+  <message name="LiteralEcho_echo_BigDecimal_array">
+    <part name="parameters" element="ns2:echo_BigDecimal_array"/></message>
+  <message name="LiteralEcho_echo_BigDecimal_arrayResponse">
+    <part name="result" element="ns2:echo_BigDecimal_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_BigInteger">
+    <part name="parameters" element="ns2:echo_BigInteger"/></message>
+  <message name="LiteralEcho_echo_BigIntegerResponse">
+    <part name="result" element="ns2:echo_BigIntegerResponse"/></message>
+  <message name="LiteralEcho_echo_BigInteger_array">
+    <part name="parameters" element="ns2:echo_BigInteger_array"/></message>
+  <message name="LiteralEcho_echo_BigInteger_arrayResponse">
+    <part name="result" element="ns2:echo_BigInteger_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Boolean">
+    <part name="parameters" element="ns2:echo_Boolean"/></message>
+  <message name="LiteralEcho_echo_BooleanResponse">
+    <part name="result" element="ns2:echo_BooleanResponse"/></message>
+  <message name="LiteralEcho_echo_Boolean_array">
+    <part name="parameters" element="ns2:echo_Boolean_array"/></message>
+  <message name="LiteralEcho_echo_Boolean_arrayResponse">
+    <part name="result" element="ns2:echo_Boolean_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Byte">
+    <part name="parameters" element="ns2:echo_Byte"/></message>
+  <message name="LiteralEcho_echo_ByteResponse">
+    <part name="result" element="ns2:echo_ByteResponse"/></message>
+  <message name="LiteralEcho_echo_Byte_array">
+    <part name="parameters" element="ns2:echo_Byte_array"/></message>
+  <message name="LiteralEcho_echo_Byte_arrayResponse">
+    <part name="result" element="ns2:echo_Byte_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Calendar">
+    <part name="parameters" element="ns2:echo_Calendar"/></message>
+  <message name="LiteralEcho_echo_CalendarResponse">
+    <part name="result" element="ns2:echo_CalendarResponse"/></message>
+  <message name="LiteralEcho_echo_Calendar_array">
+    <part name="parameters" element="ns2:echo_Calendar_array"/></message>
+  <message name="LiteralEcho_echo_Calendar_arrayResponse">
+    <part name="result" element="ns2:echo_Calendar_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Date">
+    <part name="parameters" element="ns2:echo_Date"/></message>
+  <message name="LiteralEcho_echo_DateResponse">
+    <part name="result" element="ns2:echo_DateResponse"/></message>
+  <message name="LiteralEcho_echo_Date_array">
+    <part name="parameters" element="ns2:echo_Date_array"/></message>
+  <message name="LiteralEcho_echo_Date_arrayResponse">
+    <part name="result" element="ns2:echo_Date_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Double">
+    <part name="parameters" element="ns2:echo_Double"/></message>
+  <message name="LiteralEcho_echo_DoubleResponse">
+    <part name="result" element="ns2:echo_DoubleResponse"/></message>
+  <message name="LiteralEcho_echo_Double_array">
+    <part name="parameters" element="ns2:echo_Double_array"/></message>
+  <message name="LiteralEcho_echo_Double_arrayResponse">
+    <part name="result" element="ns2:echo_Double_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Float">
+    <part name="parameters" element="ns2:echo_Float"/></message>
+  <message name="LiteralEcho_echo_FloatResponse">
+    <part name="result" element="ns2:echo_FloatResponse"/></message>
+  <message name="LiteralEcho_echo_Float_array">
+    <part name="parameters" element="ns2:echo_Float_array"/></message>
+  <message name="LiteralEcho_echo_Float_arrayResponse">
+    <part name="result" element="ns2:echo_Float_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Integer">
+    <part name="parameters" element="ns2:echo_Integer"/></message>
+  <message name="LiteralEcho_echo_IntegerResponse">
+    <part name="result" element="ns2:echo_IntegerResponse"/></message>
+  <message name="LiteralEcho_echo_Integer_array">
+    <part name="parameters" element="ns2:echo_Integer_array"/></message>
+  <message name="LiteralEcho_echo_Integer_arrayResponse">
+    <part name="result" element="ns2:echo_Integer_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_JavaBean">
+    <part name="parameters" element="ns2:echo_JavaBean"/></message>
+  <message name="LiteralEcho_echo_JavaBeanResponse">
+    <part name="result" element="ns2:echo_JavaBeanResponse"/></message>
+  <message name="LiteralEcho_echo_Long">
+    <part name="parameters" element="ns2:echo_Long"/></message>
+  <message name="LiteralEcho_echo_LongResponse">
+    <part name="result" element="ns2:echo_LongResponse"/></message>
+  <message name="LiteralEcho_echo_Long_array">
+    <part name="parameters" element="ns2:echo_Long_array"/></message>
+  <message name="LiteralEcho_echo_Long_arrayResponse">
+    <part name="result" element="ns2:echo_Long_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Orders">
+    <part name="parameters" element="ns2:echo_Orders"/></message>
+  <message name="LiteralEcho_echo_OrdersResponse">
+    <part name="result" element="ns2:echo_OrdersResponse"/></message>
+  <message name="LiteralEcho_echo_QName">
+    <part name="parameters" element="ns2:echo_QName"/></message>
+  <message name="LiteralEcho_echo_QNameResponse">
+    <part name="result" element="ns2:echo_QNameResponse"/></message>
+  <message name="LiteralEcho_echo_QName_array">
+    <part name="parameters" element="ns2:echo_QName_array"/></message>
+  <message name="LiteralEcho_echo_QName_arrayResponse">
+    <part name="result" element="ns2:echo_QName_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_Short">
+    <part name="parameters" element="ns2:echo_Short"/></message>
+  <message name="LiteralEcho_echo_ShortResponse">
+    <part name="result" element="ns2:echo_ShortResponse"/></message>
+  <message name="LiteralEcho_echo_Short_array">
+    <part name="parameters" element="ns2:echo_Short_array"/></message>
+  <message name="LiteralEcho_echo_Short_arrayResponse">
+    <part name="result" element="ns2:echo_Short_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_URI">
+    <part name="parameters" element="ns2:echo_URI"/></message>
+  <message name="LiteralEcho_echo_URIResponse">
+    <part name="result" element="ns2:echo_URIResponse"/></message>
+  <message name="LiteralEcho_echo_URI_array">
+    <part name="parameters" element="ns2:echo_URI_array"/></message>
+  <message name="LiteralEcho_echo_URI_arrayResponse">
+    <part name="result" element="ns2:echo_URI_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_bar">
+    <part name="parameters" element="ns2:echo_bar"/></message>
+  <message name="LiteralEcho_echo_barResponse">
+    <part name="result" element="ns2:echo_barResponse"/></message>
+  <message name="LiteralEcho_echo_bar_array">
+    <part name="parameters" element="ns2:echo_bar_array"/></message>
+  <message name="LiteralEcho_echo_bar_arrayResponse">
+    <part name="result" element="ns2:echo_bar_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_boolean">
+    <part name="parameters" element="ns2:echo_boolean"/></message>
+  <message name="LiteralEcho_echo_booleanResponse">
+    <part name="result" element="ns2:echo_booleanResponse"/></message>
+  <message name="LiteralEcho_echo_boolean_array">
+    <part name="parameters" element="ns2:echo_boolean_array"/></message>
+  <message name="LiteralEcho_echo_boolean_arrayResponse">
+    <part name="result" element="ns2:echo_boolean_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_boolean_array_array">
+    <part name="parameters" element="ns2:echo_boolean_array_array"/></message>
+  <message name="LiteralEcho_echo_boolean_array_arrayResponse">
+    <part name="result" element="ns2:echo_boolean_array_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_byte">
+    <part name="parameters" element="ns2:echo_byte"/></message>
+  <message name="LiteralEcho_echo_byteResponse">
+    <part name="result" element="ns2:echo_byteResponse"/></message>
+  <message name="LiteralEcho_echo_byte_array">
+    <part name="parameters" element="ns2:echo_byte_array"/></message>
+  <message name="LiteralEcho_echo_byte_arrayResponse">
+    <part name="result" element="ns2:echo_byte_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_byte_array_array">
+    <part name="parameters" element="ns2:echo_byte_array_array"/></message>
+  <message name="LiteralEcho_echo_byte_array_arrayResponse">
+    <part name="result" element="ns2:echo_byte_array_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_double">
+    <part name="parameters" element="ns2:echo_double"/></message>
+  <message name="LiteralEcho_echo_doubleResponse">
+    <part name="result" element="ns2:echo_doubleResponse"/></message>
+  <message name="LiteralEcho_echo_double_array">
+    <part name="parameters" element="ns2:echo_double_array"/></message>
+  <message name="LiteralEcho_echo_double_arrayResponse">
+    <part name="result" element="ns2:echo_double_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_float">
+    <part name="parameters" element="ns2:echo_float"/></message>
+  <message name="LiteralEcho_echo_floatResponse">
+    <part name="result" element="ns2:echo_floatResponse"/></message>
+  <message name="LiteralEcho_echo_float_array">
+    <part name="parameters" element="ns2:echo_float_array"/></message>
+  <message name="LiteralEcho_echo_float_arrayResponse">
+    <part name="result" element="ns2:echo_float_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_foo">
+    <part name="parameters" element="ns2:echo_foo"/></message>
+  <message name="LiteralEcho_echo_fooResponse">
+    <part name="result" element="ns2:echo_fooResponse"/></message>
+  <message name="LiteralEcho_echo_foo_array">
+    <part name="parameters" element="ns2:echo_foo_array"/></message>
+  <message name="LiteralEcho_echo_foo_arrayResponse">
+    <part name="result" element="ns2:echo_foo_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_int">
+    <part name="parameters" element="ns2:echo_int"/></message>
+  <message name="LiteralEcho_echo_intResponse">
+    <part name="result" element="ns2:echo_intResponse"/></message>
+  <message name="LiteralEcho_echo_int_array">
+    <part name="parameters" element="ns2:echo_int_array"/></message>
+  <message name="LiteralEcho_echo_int_arrayResponse">
+    <part name="result" element="ns2:echo_int_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_long">
+    <part name="parameters" element="ns2:echo_long"/></message>
+  <message name="LiteralEcho_echo_longResponse">
+    <part name="result" element="ns2:echo_longResponse"/></message>
+  <message name="LiteralEcho_echo_long_array">
+    <part name="parameters" element="ns2:echo_long_array"/></message>
+  <message name="LiteralEcho_echo_long_arrayResponse">
+    <part name="result" element="ns2:echo_long_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_recursive">
+    <part name="parameters" element="ns2:echo_recursive"/></message>
+  <message name="LiteralEcho_echo_recursiveResponse">
+    <part name="result" element="ns2:echo_recursiveResponse"/></message>
+  <message name="LiteralEcho_echo_short">
+    <part name="parameters" element="ns2:echo_short"/></message>
+  <message name="LiteralEcho_echo_shortResponse">
+    <part name="result" element="ns2:echo_shortResponse"/></message>
+  <message name="LiteralEcho_echo_short_array">
+    <part name="parameters" element="ns2:echo_short_array"/></message>
+  <message name="LiteralEcho_echo_short_arrayResponse">
+    <part name="result" element="ns2:echo_short_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_string">
+    <part name="parameters" element="ns2:echo_string"/></message>
+  <message name="LiteralEcho_echo_stringResponse">
+    <part name="result" element="ns2:echo_stringResponse"/></message>
+  <message name="LiteralEcho_echo_string_array">
+    <part name="parameters" element="ns2:echo_string_array"/></message>
+  <message name="LiteralEcho_echo_string_arrayResponse">
+    <part name="result" element="ns2:echo_string_arrayResponse"/></message>
+  <message name="LiteralEcho_echo_void">
+    <part name="parameters" element="ns2:echo_void"/></message>
+  <message name="LiteralEcho_echo_voidResponse"/>
+  <portType name="LiteralEcho">
+    <operation name="echo_BigDecimal">
+      <input message="tns:LiteralEcho_echo_BigDecimal"/>
+      <output message="tns:LiteralEcho_echo_BigDecimalResponse"/></operation>
+    <operation name="echo_BigDecimal_array">
+      <input message="tns:LiteralEcho_echo_BigDecimal_array"/>
+      <output message="tns:LiteralEcho_echo_BigDecimal_arrayResponse"/></operation>
+    <operation name="echo_BigInteger">
+      <input message="tns:LiteralEcho_echo_BigInteger"/>
+      <output message="tns:LiteralEcho_echo_BigIntegerResponse"/></operation>
+    <operation name="echo_BigInteger_array">
+      <input message="tns:LiteralEcho_echo_BigInteger_array"/>
+      <output message="tns:LiteralEcho_echo_BigInteger_arrayResponse"/></operation>
+    <operation name="echo_Boolean">
+      <input message="tns:LiteralEcho_echo_Boolean"/>
+      <output message="tns:LiteralEcho_echo_BooleanResponse"/></operation>
+    <operation name="echo_Boolean_array">
+      <input message="tns:LiteralEcho_echo_Boolean_array"/>
+      <output message="tns:LiteralEcho_echo_Boolean_arrayResponse"/></operation>
+    <operation name="echo_Byte">
+      <input message="tns:LiteralEcho_echo_Byte"/>
+      <output message="tns:LiteralEcho_echo_ByteResponse"/></operation>
+    <operation name="echo_Byte_array">
+      <input message="tns:LiteralEcho_echo_Byte_array"/>
+      <output message="tns:LiteralEcho_echo_Byte_arrayResponse"/></operation>
+    <operation name="echo_Calendar">
+      <input message="tns:LiteralEcho_echo_Calendar"/>
+      <output message="tns:LiteralEcho_echo_CalendarResponse"/></operation>
+    <operation name="echo_Calendar_array">
+      <input message="tns:LiteralEcho_echo_Calendar_array"/>
+      <output message="tns:LiteralEcho_echo_Calendar_arrayResponse"/></operation>
+    <operation name="echo_Date">
+      <input message="tns:LiteralEcho_echo_Date"/>
+      <output message="tns:LiteralEcho_echo_DateResponse"/></operation>
+    <operation name="echo_Date_array">
+      <input message="tns:LiteralEcho_echo_Date_array"/>
+      <output message="tns:LiteralEcho_echo_Date_arrayResponse"/></operation>
+    <operation name="echo_Double">
+      <input message="tns:LiteralEcho_echo_Double"/>
+      <output message="tns:LiteralEcho_echo_DoubleResponse"/></operation>
+    <operation name="echo_Double_array">
+      <input message="tns:LiteralEcho_echo_Double_array"/>
+      <output message="tns:LiteralEcho_echo_Double_arrayResponse"/></operation>
+    <operation name="echo_Float">
+      <input message="tns:LiteralEcho_echo_Float"/>
+      <output message="tns:LiteralEcho_echo_FloatResponse"/></operation>
+    <operation name="echo_Float_array">
+      <input message="tns:LiteralEcho_echo_Float_array"/>
+      <output message="tns:LiteralEcho_echo_Float_arrayResponse"/></operation>
+    <operation name="echo_Integer">
+      <input message="tns:LiteralEcho_echo_Integer"/>
+      <output message="tns:LiteralEcho_echo_IntegerResponse"/></operation>
+    <operation name="echo_Integer_array">
+      <input message="tns:LiteralEcho_echo_Integer_array"/>
+      <output message="tns:LiteralEcho_echo_Integer_arrayResponse"/></operation>
+    <operation name="echo_JavaBean">
+      <input message="tns:LiteralEcho_echo_JavaBean"/>
+      <output message="tns:LiteralEcho_echo_JavaBeanResponse"/></operation>
+    <operation name="echo_Long">
+      <input message="tns:LiteralEcho_echo_Long"/>
+      <output message="tns:LiteralEcho_echo_LongResponse"/></operation>
+    <operation name="echo_Long_array">
+      <input message="tns:LiteralEcho_echo_Long_array"/>
+      <output message="tns:LiteralEcho_echo_Long_arrayResponse"/></operation>
+    <operation name="echo_Orders">
+      <input message="tns:LiteralEcho_echo_Orders"/>
+      <output message="tns:LiteralEcho_echo_OrdersResponse"/></operation>
+    <operation name="echo_QName">
+      <input message="tns:LiteralEcho_echo_QName"/>
+      <output message="tns:LiteralEcho_echo_QNameResponse"/></operation>
+    <operation name="echo_QName_array">
+      <input message="tns:LiteralEcho_echo_QName_array"/>
+      <output message="tns:LiteralEcho_echo_QName_arrayResponse"/></operation>
+    <operation name="echo_Short">
+      <input message="tns:LiteralEcho_echo_Short"/>
+      <output message="tns:LiteralEcho_echo_ShortResponse"/></operation>
+    <operation name="echo_Short_array">
+      <input message="tns:LiteralEcho_echo_Short_array"/>
+      <output message="tns:LiteralEcho_echo_Short_arrayResponse"/></operation>
+    <operation name="echo_URI">
+      <input message="tns:LiteralEcho_echo_URI"/>
+      <output message="tns:LiteralEcho_echo_URIResponse"/></operation>
+    <operation name="echo_URI_array">
+      <input message="tns:LiteralEcho_echo_URI_array"/>
+      <output message="tns:LiteralEcho_echo_URI_arrayResponse"/></operation>
+    <operation name="echo_bar">
+      <input message="tns:LiteralEcho_echo_bar"/>
+      <output message="tns:LiteralEcho_echo_barResponse"/></operation>
+    <operation name="echo_bar_array">
+      <input message="tns:LiteralEcho_echo_bar_array"/>
+      <output message="tns:LiteralEcho_echo_bar_arrayResponse"/></operation>
+    <operation name="echo_boolean">
+      <input message="tns:LiteralEcho_echo_boolean"/>
+      <output message="tns:LiteralEcho_echo_booleanResponse"/></operation>
+    <operation name="echo_boolean_array">
+      <input message="tns:LiteralEcho_echo_boolean_array"/>
+      <output message="tns:LiteralEcho_echo_boolean_arrayResponse"/></operation>
+    <operation name="echo_boolean_array_array">
+      <input message="tns:LiteralEcho_echo_boolean_array_array"/>
+      <output message="tns:LiteralEcho_echo_boolean_array_arrayResponse"/></operation>
+    <operation name="echo_byte">
+      <input message="tns:LiteralEcho_echo_byte"/>
+      <output message="tns:LiteralEcho_echo_byteResponse"/></operation>
+    <operation name="echo_byte_array">
+      <input message="tns:LiteralEcho_echo_byte_array"/>
+      <output message="tns:LiteralEcho_echo_byte_arrayResponse"/></operation>
+    <operation name="echo_byte_array_array">
+      <input message="tns:LiteralEcho_echo_byte_array_array"/>
+      <output message="tns:LiteralEcho_echo_byte_array_arrayResponse"/></operation>
+    <operation name="echo_double">
+      <input message="tns:LiteralEcho_echo_double"/>
+      <output message="tns:LiteralEcho_echo_doubleResponse"/></operation>
+    <operation name="echo_double_array">
+      <input message="tns:LiteralEcho_echo_double_array"/>
+      <output message="tns:LiteralEcho_echo_double_arrayResponse"/></operation>
+    <operation name="echo_float">
+      <input message="tns:LiteralEcho_echo_float"/>
+      <output message="tns:LiteralEcho_echo_floatResponse"/></operation>
+    <operation name="echo_float_array">
+      <input message="tns:LiteralEcho_echo_float_array"/>
+      <output message="tns:LiteralEcho_echo_float_arrayResponse"/></operation>
+    <operation name="echo_foo">
+      <input message="tns:LiteralEcho_echo_foo"/>
+      <output message="tns:LiteralEcho_echo_fooResponse"/></operation>
+    <operation name="echo_foo_array">
+      <input message="tns:LiteralEcho_echo_foo_array"/>
+      <output message="tns:LiteralEcho_echo_foo_arrayResponse"/></operation>
+    <operation name="echo_int">
+      <input message="tns:LiteralEcho_echo_int"/>
+      <output message="tns:LiteralEcho_echo_intResponse"/></operation>
+    <operation name="echo_int_array">
+      <input message="tns:LiteralEcho_echo_int_array"/>
+      <output message="tns:LiteralEcho_echo_int_arrayResponse"/></operation>
+    <operation name="echo_long">
+      <input message="tns:LiteralEcho_echo_long"/>
+      <output message="tns:LiteralEcho_echo_longResponse"/></operation>
+    <operation name="echo_long_array">
+      <input message="tns:LiteralEcho_echo_long_array"/>
+      <output message="tns:LiteralEcho_echo_long_arrayResponse"/></operation>
+    <operation name="echo_recursive">
+      <input message="tns:LiteralEcho_echo_recursive"/>
+      <output message="tns:LiteralEcho_echo_recursiveResponse"/></operation>
+    <operation name="echo_short">
+      <input message="tns:LiteralEcho_echo_short"/>
+      <output message="tns:LiteralEcho_echo_shortResponse"/></operation>
+    <operation name="echo_short_array">
+      <input message="tns:LiteralEcho_echo_short_array"/>
+      <output message="tns:LiteralEcho_echo_short_arrayResponse"/></operation>
+    <operation name="echo_string">
+      <input message="tns:LiteralEcho_echo_string"/>
+      <output message="tns:LiteralEcho_echo_stringResponse"/></operation>
+    <operation name="echo_string_array">
+      <input message="tns:LiteralEcho_echo_string_array"/>
+      <output message="tns:LiteralEcho_echo_string_arrayResponse"/></operation>
+    <operation name="echo_void">
+      <input message="tns:LiteralEcho_echo_void"/>
+      <output message="tns:LiteralEcho_echo_voidResponse"/></operation></portType>
+  <binding name="LiteralEchoBinding" type="tns:LiteralEcho">
+    <operation name="echo_BigDecimal">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_BigDecimal_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_BigInteger">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_BigInteger_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Boolean">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Boolean_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Byte">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Byte_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Calendar">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Calendar_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Date">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Date_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Double">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Double_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Float">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Float_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Integer">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Integer_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_JavaBean">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Long">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Long_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Orders">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_QName">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_QName_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Short">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Short_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_URI">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_URI_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_bar">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_bar_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_boolean">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_boolean_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_boolean_array_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_byte">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_byte_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_byte_array_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_double">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_double_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_float">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_float_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_foo">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_foo_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_int">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_int_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_long">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_long_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_recursive">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_short">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_short_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_string">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_string_array">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_void">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <soap:operation soapAction=""/></operation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/></binding>
+  <service name="LiteralEcho_Service">
+    <port name="LiteralEchoPort" binding="tns:LiteralEchoBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/></port></service></definitions>

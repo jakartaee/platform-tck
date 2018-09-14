@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<application-client version="1.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/application-client_1_4.xsd">
+  <description>TS session stateless deployment single test</description>
+  <display-name>ejb_depSsl_enventry_single_client</display-name>
+  <ejb-ref>
+    <ejb-ref-name>ejb/CharBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.CharBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.CharBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/StringBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.StringBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.StringBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/BoolBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.BooleanBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.BooleanBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/ByteBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.ByteBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.ByteBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/ShortBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.ShortBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.ShortBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/IntBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.IntegerBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.IntegerBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/LongBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.LongBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.LongBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/FloatBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.FloatBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.FloatBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/DoubleBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.DoubleBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.DoubleBean</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/AllBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.AllBeanHome</home>
+    <remote>com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single.AllBean</remote>
+  </ejb-ref>
+</application-client>

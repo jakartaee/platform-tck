@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<wsdl:definitions name="MarshallTest" targetNamespace="http://MarshallTest.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://MarshallTest.org/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://MarshallTest.org/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://MarshallTest.org/xsd">
+
+			<element name="echoString">
+			<complexType>
+			    <sequence>
+				<element name="inputString" type="xsd:string" nillable="true"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoInteger">
+			<complexType>
+			    <sequence>
+				<element name="inputInteger" type="xsd:integer" nillable="true"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoInt">
+			<complexType>
+			    <sequence>
+				<element name="inputInt" type="xsd:int"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoLong">
+			<complexType>
+			    <sequence>
+				<element name="inputLong" type="xsd:long"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoShort">
+			<complexType>
+			    <sequence>
+				<element name="inputShort" type="xsd:short"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoDecimal">
+			<complexType>
+			    <sequence>
+				<element name="inputDecimal" type="xsd:decimal" nillable="true"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoFloat">
+			<complexType>
+			    <sequence>
+				<element name="inputFloat" type="xsd:float"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoDouble">
+			<complexType>
+			    <sequence>
+				<element name="inputDouble" type="xsd:double"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoBoolean">
+			<complexType>
+			    <sequence>
+				<element name="inputBoolean" type="xsd:boolean"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoByte">
+			<complexType>
+			    <sequence>
+				<element name="inputByte" type="xsd:byte"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoQName">
+			<complexType>
+			    <sequence>
+				<element name="inputQName" type="xsd:QName" nillable="true"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoDateTime">
+			<complexType>
+			    <sequence>
+				<element name="inputDateTime" type="xsd:dateTime" nillable="true"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoBase64Binary">
+			<complexType>
+			    <sequence>
+				<element name="inputBase64Binary" type="xsd:base64Binary" nillable="true"/>
+			    </sequence>
+			</complexType></element>
+
+			<element name="echoHexBinary">
+			<complexType>
+			    <sequence>
+				<element name="inputHexBinary" type="xsd:hexBinary"/>
+			    </sequence>
+			</complexType></element>
+
+			<!-- ########################################## -->
+			<!-- These complex types are Array elements     -->
+			<!-- ########################################## -->
+
+			<element name="echoStringArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:string" maxOccurs="unbounded" nillable="true"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoIntegerArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:integer" maxOccurs="unbounded" nillable="true"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoIntArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:int" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoLongArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:long" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoShortArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:short" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoDecimalArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:decimal" maxOccurs="unbounded" nillable="true"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoFloatArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:float" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoDoubleArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:double" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoBooleanArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:boolean" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoByteArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:byte" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoQNameArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:QName" maxOccurs="unbounded" nillable="true"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoDateTimeArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:dateTime" maxOccurs="unbounded" nillable="true"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+<!--
+			<element name="echoBase64BinaryArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:base64Binary" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+
+			<element name="echoHexBinaryArray">
+			  <complexType>
+			    <sequence>
+				<element name="aVal" type="xsd:hexBinary" maxOccurs="unbounded"/>
+			    </sequence>
+			  </complexType>
+			</element>
+-->
+		</schema>
+  </wsdl:types>
+  <wsdl:message name="echoIntegerResponse">
+    <wsdl:part name="return" element="s:echoInteger"/>
+  </wsdl:message>
+  <wsdl:message name="echoLong">
+    <wsdl:part name="body" element="s:echoLong"/>
+  </wsdl:message>
+  <wsdl:message name="echoBase64Binary">
+    <wsdl:part name="body" element="s:echoBase64Binary"/>
+  </wsdl:message>
+  <wsdl:message name="echoDateTimeArrayResponse">
+    <wsdl:part name="return" element="s:echoDateTimeArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoBooleanArrayResponse">
+    <wsdl:part name="return" element="s:echoBooleanArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoShortArrayResponse">
+    <wsdl:part name="return" element="s:echoShortArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoIntegerArray">
+    <wsdl:part name="body" element="s:echoIntegerArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoQNameArray">
+    <wsdl:part name="body" element="s:echoQNameArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoIntResponse">
+    <wsdl:part name="return" element="s:echoInt"/>
+  </wsdl:message>
+  <wsdl:message name="echoDecimalArrayResponse">
+    <wsdl:part name="return" element="s:echoDecimalArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoIntArray">
+    <wsdl:part name="body" element="s:echoIntArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoByte">
+    <wsdl:part name="body" element="s:echoByte"/>
+  </wsdl:message>
+  <wsdl:message name="echoShortResponse">
+    <wsdl:part name="return" element="s:echoShort"/>
+  </wsdl:message>
+  <wsdl:message name="echoFloat">
+    <wsdl:part name="body" element="s:echoFloat"/>
+  </wsdl:message>
+  <wsdl:message name="echoString">
+    <wsdl:part name="body" element="s:echoString"/>
+  </wsdl:message>
+  <wsdl:message name="echoFloatArray">
+    <wsdl:part name="body" element="s:echoFloatArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoInt">
+    <wsdl:part name="body" element="s:echoInt"/>
+  </wsdl:message>
+  <wsdl:message name="echoByteResponse">
+    <wsdl:part name="return" element="s:echoByte"/>
+  </wsdl:message>
+  <wsdl:message name="echoBooleanArray">
+    <wsdl:part name="body" element="s:echoBooleanArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoDoubleArrayResponse">
+    <wsdl:part name="return" element="s:echoDoubleArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoBoolean">
+    <wsdl:part name="body" element="s:echoBoolean"/>
+  </wsdl:message>
+  <wsdl:message name="echoStringResponse">
+    <wsdl:part name="return" element="s:echoString"/>
+  </wsdl:message>
+  <wsdl:message name="echoDecimal">
+    <wsdl:part name="body" element="s:echoDecimal"/>
+  </wsdl:message>
+  <wsdl:message name="echoStringArray">
+    <wsdl:part name="body" element="s:echoStringArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoDouble">
+    <wsdl:part name="body" element="s:echoDouble"/>
+  </wsdl:message>
+  <wsdl:message name="echoLongArray">
+    <wsdl:part name="body" element="s:echoLongArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoHexBinaryResponse">
+    <wsdl:part name="return" element="s:echoHexBinary"/>
+  </wsdl:message>
+  <wsdl:message name="echoDateTimeArray">
+    <wsdl:part name="body" element="s:echoDateTimeArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoIntArrayResponse">
+    <wsdl:part name="return" element="s:echoIntArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoFloatArrayResponse">
+    <wsdl:part name="return" element="s:echoFloatArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoDecimalArray">
+    <wsdl:part name="body" element="s:echoDecimalArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoIntegerArrayResponse">
+    <wsdl:part name="return" element="s:echoIntegerArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoByteArray">
+    <wsdl:part name="body" element="s:echoByteArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoBooleanResponse">
+    <wsdl:part name="return" element="s:echoBoolean"/>
+  </wsdl:message>
+  <wsdl:message name="echoShortArray">
+    <wsdl:part name="body" element="s:echoShortArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoLongArrayResponse">
+    <wsdl:part name="return" element="s:echoLongArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoDecimalResponse">
+    <wsdl:part name="return" element="s:echoDecimal"/>
+  </wsdl:message>
+  <wsdl:message name="echoFloatResponse">
+    <wsdl:part name="return" element="s:echoFloat"/>
+  </wsdl:message>
+  <wsdl:message name="echoBase64BinaryResponse">
+    <wsdl:part name="return" element="s:echoBase64Binary"/>
+  </wsdl:message>
+  <wsdl:message name="echoLongResponse">
+    <wsdl:part name="return" element="s:echoLong"/>
+  </wsdl:message>
+  <wsdl:message name="echoShort">
+    <wsdl:part name="body" element="s:echoShort"/>
+  </wsdl:message>
+  <wsdl:message name="echoQName">
+    <wsdl:part name="body" element="s:echoQName"/>
+  </wsdl:message>
+  <wsdl:message name="echoInteger">
+    <wsdl:part name="body" element="s:echoInteger"/>
+  </wsdl:message>
+  <wsdl:message name="echoByteArrayResponse">
+    <wsdl:part name="return" element="s:echoByteArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoDateTimeResponse">
+    <wsdl:part name="return" element="s:echoDateTime"/>
+  </wsdl:message>
+  <wsdl:message name="echoHexBinary">
+    <wsdl:part name="body" element="s:echoHexBinary"/>
+  </wsdl:message>
+  <wsdl:message name="echoDateTime">
+    <wsdl:part name="body" element="s:echoDateTime"/>
+  </wsdl:message>
+  <wsdl:message name="echoDoubleArray">
+    <wsdl:part name="body" element="s:echoDoubleArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoStringArrayResponse">
+    <wsdl:part name="return" element="s:echoStringArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoQNameArrayResponse">
+    <wsdl:part name="return" element="s:echoQNameArray"/>
+  </wsdl:message>
+  <wsdl:message name="echoQNameResponse">
+    <wsdl:part name="return" element="s:echoQName"/>
+  </wsdl:message>
+  <wsdl:message name="echoDoubleResponse">
+    <wsdl:part name="return" element="s:echoDouble"/>
+  </wsdl:message>
+  <wsdl:portType name="MarshallTest">
+    <wsdl:operation name="echoString" parameterOrder="body">
+      <wsdl:input message="tns:echoString"/>
+      <wsdl:output message="tns:echoStringResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoInteger" parameterOrder="body">
+      <wsdl:input message="tns:echoInteger"/>
+      <wsdl:output message="tns:echoIntegerResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoInt" parameterOrder="body">
+      <wsdl:input message="tns:echoInt"/>
+      <wsdl:output message="tns:echoIntResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoLong" parameterOrder="body">
+      <wsdl:input message="tns:echoLong"/>
+      <wsdl:output message="tns:echoLongResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoShort" parameterOrder="body">
+      <wsdl:input message="tns:echoShort"/>
+      <wsdl:output message="tns:echoShortResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoDecimal" parameterOrder="body">
+      <wsdl:input message="tns:echoDecimal"/>
+      <wsdl:output message="tns:echoDecimalResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoFloat" parameterOrder="body">
+      <wsdl:input message="tns:echoFloat"/>
+      <wsdl:output message="tns:echoFloatResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoDouble" parameterOrder="body">
+      <wsdl:input message="tns:echoDouble"/>
+      <wsdl:output message="tns:echoDoubleResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoBoolean" parameterOrder="body">
+      <wsdl:input message="tns:echoBoolean"/>
+      <wsdl:output message="tns:echoBooleanResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoByte" parameterOrder="body">
+      <wsdl:input message="tns:echoByte"/>
+      <wsdl:output message="tns:echoByteResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoQName" parameterOrder="body">
+      <wsdl:input message="tns:echoQName"/>
+      <wsdl:output message="tns:echoQNameResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoDateTime" parameterOrder="body">
+      <wsdl:input message="tns:echoDateTime"/>
+      <wsdl:output message="tns:echoDateTimeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoBase64Binary" parameterOrder="body">
+      <wsdl:input message="tns:echoBase64Binary"/>
+      <wsdl:output message="tns:echoBase64BinaryResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoHexBinary" parameterOrder="body">
+      <wsdl:input message="tns:echoHexBinary"/>
+      <wsdl:output message="tns:echoHexBinaryResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoStringArray" parameterOrder="body">
+      <wsdl:input message="tns:echoStringArray"/>
+      <wsdl:output message="tns:echoStringArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoIntegerArray" parameterOrder="body">
+      <wsdl:input message="tns:echoIntegerArray"/>
+      <wsdl:output message="tns:echoIntegerArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoIntArray" parameterOrder="body">
+      <wsdl:input message="tns:echoIntArray"/>
+      <wsdl:output message="tns:echoIntArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoLongArray" parameterOrder="body">
+      <wsdl:input message="tns:echoLongArray"/>
+      <wsdl:output message="tns:echoLongArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoShortArray" parameterOrder="body">
+      <wsdl:input message="tns:echoShortArray"/>
+      <wsdl:output message="tns:echoShortArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoDecimalArray" parameterOrder="body">
+      <wsdl:input message="tns:echoDecimalArray"/>
+      <wsdl:output message="tns:echoDecimalArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoFloatArray" parameterOrder="body">
+      <wsdl:input message="tns:echoFloatArray"/>
+      <wsdl:output message="tns:echoFloatArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoDoubleArray" parameterOrder="body">
+      <wsdl:input message="tns:echoDoubleArray"/>
+      <wsdl:output message="tns:echoDoubleArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoBooleanArray" parameterOrder="body">
+      <wsdl:input message="tns:echoBooleanArray"/>
+      <wsdl:output message="tns:echoBooleanArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoByteArray" parameterOrder="body">
+      <wsdl:input message="tns:echoByteArray"/>
+      <wsdl:output message="tns:echoByteArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoQNameArray" parameterOrder="body">
+      <wsdl:input message="tns:echoQNameArray"/>
+      <wsdl:output message="tns:echoQNameArrayResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="echoDateTimeArray" parameterOrder="body">
+      <wsdl:input message="tns:echoDateTimeArray"/>
+      <wsdl:output message="tns:echoDateTimeArrayResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MarshallTestBinding" type="tns:MarshallTest">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="echoString">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoInteger">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoInt">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoLong">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoShort">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoDecimal">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoFloat">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoDouble">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoBoolean">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoByte">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoQName">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoDateTime">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoBase64Binary">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoHexBinary">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoStringArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoIntegerArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoIntArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoLongArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoShortArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoDecimalArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoFloatArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoDoubleArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoBooleanArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoByteArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoQNameArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoDateTimeArray">
+      <soap:operation soapAction="http://MarshallTest.org/"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MarshallTestService">
+    <wsdl:port name="MarshallTestPort" binding="tns:MarshallTestBinding">
+      <soap:address location="http://localhost:8000/EJBMarshallTest2_ejbRouter/EJBMarshallTest2/MarshallTestPC"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

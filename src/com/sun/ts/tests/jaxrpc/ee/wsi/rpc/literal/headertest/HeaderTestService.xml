@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest</package-type>
+    <namespaceURI>http://headertestservice.org/HeaderTestService.wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest</package-type>
+    <namespaceURI>http://headertestservice.org/HeaderTestDefs.wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest</package-type>
+    <namespaceURI>http://headertestservice.org/types4</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest</package-type>
+    <namespaceURI>http://schemas.xmlsoap.org/soap/envelope/</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.CustomerInfo</java-type>
+    <root-type-qname xmlns:typeNS="http://headertestservice.org/types4">typeNS:CustomerInfo</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>creditcard</java-variable-name>
+      <xml-element-name>creditcard</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>name</java-variable-name>
+      <xml-element-name>name</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>street</java-variable-name>
+      <xml-element-name>street</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>city</java-variable-name>
+      <xml-element-name>city</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>state</java-variable-name>
+      <xml-element-name>state</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>zip</java-variable-name>
+      <xml-element-name>zip</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>country</java-variable-name>
+      <xml-element-name>country</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ProductOrderRequest</java-type>
+    <root-type-qname xmlns:typeNS="http://headertestservice.org/types4">typeNS:ProductOrderRequest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>item</java-variable-name>
+      <xml-element-name>item</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>customerInfo</java-variable-name>
+      <xml-element-name>customerInfo</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ConfigFault</java-type>
+    <root-type-qname xmlns:typeNS="http://headertestservice.org/types4">typeNS:ConfigFault</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>mustUnderstand</java-variable-name>
+      <xml-attribute-name>mustUnderstand</xml-attribute-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>message</java-variable-name>
+      <xml-element-name>message</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ConfigHeader</java-type>
+    <root-type-qname xmlns:typeNS="http://headertestservice.org/types4">typeNS:ConfigHeader</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>mustUnderstand</java-variable-name>
+      <xml-attribute-name>mustUnderstand</xml-attribute-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>message</java-variable-name>
+      <xml-element-name>message</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>testName</java-variable-name>
+      <xml-element-name>testName</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ProductOrderItem</java-type>
+    <root-type-qname xmlns:typeNS="http://headertestservice.org/types4">typeNS:ProductOrderItem</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>productName</java-variable-name>
+      <xml-element-name>productName</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>productCode</java-variable-name>
+      <xml-element-name>productCode</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>quantity</java-variable-name>
+      <xml-element-name>quantity</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>price</java-variable-name>
+      <xml-element-name>price</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.BadOrderFault</java-type>
+    <root-type-qname xmlns:typeNS="http://headertestservice.org/types4">typeNS:BadOrderFault</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>message</java-variable-name>
+      <xml-element-name>message</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ProductOrderResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://headertestservice.org/types4">typeNS:ProductOrderResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>item</java-variable-name>
+      <xml-element-name>item</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ProductOrderItem[]</java-type>
+    <anonymous-type-qname>http://headertestservice.org/types4:ProductOrderRequest&gt;item[1,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ProductOrderItem[]</java-type>
+    <anonymous-type-qname>http://headertestservice.org/types4:ProductOrderResponse&gt;item[1,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <exception-mapping>
+    <exception-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ConfigFault</exception-type>
+    <wsdl-message xmlns:exMsgNS="http://headertestservice.org/HeaderTestDefs.wsdl">exMsgNS:ConfigFault</wsdl-message>
+    <wsdl-message-part-name>Reason</wsdl-message-part-name>
+    <constructor-parameter-order>
+      <element-name>mustUnderstand</element-name>
+      <element-name>message</element-name>
+    </constructor-parameter-order>
+  </exception-mapping>
+  <exception-mapping>
+    <exception-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.BadOrderFault</exception-type>
+    <wsdl-message xmlns:exMsgNS="http://headertestservice.org/HeaderTestDefs.wsdl">exMsgNS:BadOrderFault</wsdl-message>
+    <constructor-parameter-order>
+      <element-name>message</element-name>
+    </constructor-parameter-order>
+  </exception-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.HeaderTestService</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://headertestservice.org/HeaderTestService.wsdl">serviceNS:HeaderTestService</wsdl-service-name>
+    <port-mapping>
+      <port-name>HeaderTestPort</port-name>
+      <java-port-name>HeaderTestPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.HeaderTest</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://headertestservice.org/HeaderTestDefs.wsdl">portTypeNS:HeaderTest</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://headertestservice.org/HeaderTestDefs.wsdl">bindingNS:HeaderTestSoapBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>submitOrder</java-method-name>
+      <wsdl-operation>submitOrder</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ProductOrderRequest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://headertestservice.org/HeaderTestDefs.wsdl">wsdlMsgNS:SubmitOrderRequest</wsdl-message>
+          <wsdl-message-part-name>ProductOrderRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ConfigHeader</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://headertestservice.org/HeaderTestDefs.wsdl">wsdlMsgNS:SubmitOrderRequest</wsdl-message>
+          <wsdl-message-part-name>ConfigHeader</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+          <soap-header/>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.headertest.ProductOrderResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://headertestservice.org/HeaderTestDefs.wsdl">wsdlMsgNS:SubmitOrderResponse</wsdl-message>
+        <wsdl-message-part-name>ProductOrderResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

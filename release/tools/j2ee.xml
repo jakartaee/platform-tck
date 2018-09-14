@@ -1,0 +1,230 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="Java EE" basedir="." default="build">
+
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+    
+    <property name="cts.internal.version.to.build" value="default"/>
+    <property name="internal.version.filename"     value="version-cts-internal"/>
+    <property name="workspace.tmp.dir"             value="${ts.home}/tmp"/>
+    <property name="cts.internal.version.file"     value="${workspace.tmp.dir}/${internal.version.filename}"/>
+    <property name="cts.internal.build.number"     value="0"/>
+    <property name="cts.internal.compat"           value="NULL"/>
+    <property name="sjsas.internal.compat"         value="NULL"/>
+    <property name="cts.internal.comment"          value=""/>
+    <property name="deliverable.version"           value="8.0"/>
+
+	<property name="the.excludes" value="**/internal/**/*,
+	     **/jbi/**/*,
+	     **/jaxr/api/javax_xml_registry/Connection_asynch/**/*,
+	     **/jaxr/ee/javax_xml_registry/RegistryService/**/*,
+	     **/jaxm/**/*, **/jaxm1.0.1/**/*,
+	     **/provisioning/**/*,
+	     **/*.runtime.xml,
+	     com/sun/ts/lib/implementation/sun/javaee/SunRI*13*,
+	     com/sun/ts/lib/deliverable/deploy/**,
+	     com/sun/ts/lib/deliverable/jms,
+	     com/sun/ts/lib/deliverable/mgmt/**,
+	     com/sun/ts/lib/deliverable/jdbc/**,
+	     com/sun/ts/lib/deliverable/jaxr/**,
+	     com/sun/ts/lib/deliverable/jaxws/**,
+	     com/sun/ts/tests/jaspic/spi/soap/**,
+	     com/sun/ts/tests/jaspic/spi/authstatus/**,
+	     com/sun/ts/tests/jaxws/build.xml,
+	     com/sun/ts/tests/jaxws/api/**,
+	     com/sun/ts/tests/jaxws/ee/**,
+	     com/sun/ts/tests/jaxws/jaxws23/**,
+	     com/sun/ts/tests/jaxws/mapping/**,
+	     com/sun/ts/tests/jaxws/se/**,
+	     com/sun/ts/tests/jaxws/sharedclients/**,
+	     com/sun/ts/tests/jaxws/sharedwebservices/**,
+	     com/sun/ts/tests/jaxws/util/**,
+	     com/sun/ts/tests/jaxws/wsa/**,
+	     com/sun/ts/tests/jaxws/wsi/j2w/**,
+	     com/sun/ts/tests/jaxws/wsi/requests/**,
+	     com/sun/ts/tests/jaxws/wsi/utils/**,
+	     com/sun/ts/tests/jaxws/wsi/w2j/**,
+	     com/sun/ts/tests/jws/**,
+	     com/sun/ts/tests/saaj/**,
+	     **/caj/**,
+             com/sun/ts/tests/common/connector/whitebox/ibanno/README.txt,
+	     com/sun/ts/tests/jpa/se/**/*,
+	     com/sun/ts/tests/jpa/jpa22/se/**/*"/>
+
+	<target name="init">
+        <mkdir dir="${deliverable.bundle.dir}/bin"/>
+        <mkdir dir="${deliverable.bundle.dir}/classes"/>
+        <mkdir dir="${deliverable.bundle.dir}/dist"/>
+        <mkdir dir="${deliverable.bundle.dir}/endorsedlib"/>
+        <mkdir dir="${deliverable.bundle.dir}/lib"/>
+        <mkdir dir="${deliverable.bundle.dir}/src"/>
+        <mkdir dir="${deliverable.bundle.dir}/weblib"/>
+        <mkdir dir="${deliverable.bundle.dir}/tmp"/>
+	</target>
+
+	<target name="copyinstall">
+        <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+           <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+                includes="**/*"
+                excludes="**/README,  xml/imq.xml, xml/impl/glassfish/templates/statefile.template.mainstream"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish" overwrite="true">
+        <fileset dir="${common.bin.dir}/xml/impl/glassfish" includes="**/*"/>
+        </copy>
+
+        <antcall target="_filter.common.files"/>
+
+        <copy todir="${deliverable.bundle.dir}/sql" includeEmptyDirs="no">
+           <fileset dir="${ts.home}/sql"
+                includes="**/*"
+                excludes="**/README"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/src">
+        <fileset dir="${ts.home}/install/${deliverable.name.lower}/other"
+            includes="testsuite.jtt, vehicle.properties"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+            <fileset dir="${ts.home}" includes="NOTICE" />
+        </copy>
+	<copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+        </copy>
+	</target>
+
+    <target name="_filter.common.files">
+        <copy file="${common.bin.dir}/xml/impl/glassfish/s1as.xml" todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <copy file="${common.bin.dir}/xml/impl/glassfish/common.xml" todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish/templates">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish/templates"
+                     includes="**/*"/>
+        </copy>
+    </target>
+
+    <target name="create.version.file">
+        <tstamp>
+          <format property="time.stamp" pattern="EEE, d MMM yyyy HH:mm:ss" locale="en"/>
+        </tstamp>
+        <mkdir dir="${workspace.tmp.dir}"/>
+        <touch file="${cts.internal.version.file}"/>
+        <propertyfile file="${cts.internal.version.file}"
+                    comment="SJSAS Internal Configuration Bundle Version Information">
+        <entry key="build.name"                  value="cts-internal"/>
+        <entry key="build.number"                value="${cts.internal.build.number}"/>
+        <entry key="cts.version.compatibility"   value="${cts.internal.compat}"/>
+        <entry key="sjsas.version.compatibility" value="${sjsas.internal.compat}"/>
+        <entry key="build.comment"               value="${cts.internal.comment}"/>
+        <entry key="build.date.time"             value="${time.stamp}"/>
+        </propertyfile>
+    </target>
+
+	<target name="make.cts.internal.archive" depends="create.version.file">
+        <ant dir="."
+           antfile="cts-internal-${cts.internal.version.to.build}.xml"
+           target="make.cts.internal.archive"/>
+    </target>
+
+    <target name="build" depends="init">
+		<antcall target="copyinstall"/>
+		<antcall target="make.cts.internal.archive"/>
+        <antcall target="build.j2eetck"/>
+    </target>
+      
+    <target name="build.j2eetck" unless="only.build.internal">
+		<!-- the classes directory -->
+		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/classes"
+				includes="**/*.class" 
+				excludes="com/sun/ts/lib/**/*, com/sun/ts/tests/signaturetest/*Record*, ${the.excludes}"/>
+		</copy>
+
+		<!-- the ear files in the dist directory -->
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/dist" 
+				includes="**/*"
+				excludes="${the.excludes}, **/signaturetest/**/*"/>
+		</copy>
+
+        <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib" includes="dtds/"/> 
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib" includes="schemas/"/> 
+        </copy>        
+
+        <copy todir="${deliverable.bundle.dir}/lib">
+            <fileset dir="${lib.dir}"
+                includes="*.jar,*License"
+                excludes="flow.jar" />
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/endorsedlib">
+            <fileset dir="${ts.home}/lib"
+                includes="flow.jar"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/lib">
+            <fileset dir="${ts.home}/lib"
+                includes="jaxb-*.jar,
+                            cts.jar,
+                            dbprocedures.jar,
+                            jpa_alternate_provider.jar,
+                            tsprovider.jar,
+                            riinterceptors.jar,
+                            sigtest.jar,
+                            tssv.jar"/>
+        </copy>
+
+		<!-- the specific deliverable source directories -->
+		<copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src"
+				includes="**/*" 
+				excludes="docs/**/*,
+				            **/signaturetest/**/*,
+                            com/sun/ts/tests/signaturetest/*Record*,
+						    ${the.excludes},
+                            **/README"/>
+		</copy>
+
+        <!-- the specific sig test source directories -->
+        <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src"
+				includes="com/sun/ts/tests/signaturetest/javaee/**,
+				          com/sun/ts/tests/signaturetest/*,
+				          com/sun/ts/tests/signaturetest/signature-repository/*" 
+				excludes="docs/**/*,
+                            **/*txt,
+                            **/README,
+                            **/record*,
+                            **/Record*,
+                            com/sun/ts/tests/signaturetest/*Record*,
+                            com/sun/ts/tests/signaturetest/*record*,
+						    ${the.excludes}"/>
+		</copy>
+
+        <!-- the sig test ear files in the dist directory -->
+        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+                        <fileset dir="${ts.home}/dist"
+                                includes="com/sun/ts/tests/signaturetest/javaee/**"
+                                excludes="${the.excludes}"/>
+        </copy>
+
+	</target>
+</project>

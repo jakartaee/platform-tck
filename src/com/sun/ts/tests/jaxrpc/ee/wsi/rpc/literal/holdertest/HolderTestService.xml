@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest</package-type>
+    <namespaceURI>http://holdertest.org/wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest</package-type>
+    <namespaceURI>http://holdertest.org/xsd</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfdouble</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfdouble</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfdouble</java-variable-name>
+      <xml-element-name>arrayOfdouble</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfint</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfint</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfint</java-variable-name>
+      <xml-element-name>arrayOfint</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfstring</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfstring</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfstring</java-variable-name>
+      <xml-element-name>arrayOfstring</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfboolean</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfboolean</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfboolean</java-variable-name>
+      <xml-element-name>arrayOfboolean</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfdateTime</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfdateTime</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfdateTime</java-variable-name>
+      <xml-element-name>arrayOfdateTime</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.Book</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:Book</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>author</java-variable-name>
+      <xml-element-name>author</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>title</java-variable-name>
+      <xml-element-name>title</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>isbn</java-variable-name>
+      <xml-element-name>isbn</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfshort</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfshort</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfshort</java-variable-name>
+      <xml-element-name>arrayOfshort</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfbyte</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfbyte</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfbyte</java-variable-name>
+      <xml-element-name>arrayOfbyte</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOflong</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOflong</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOflong</java-variable-name>
+      <xml-element-name>arrayOflong</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfdecimal</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfdecimal</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfdecimal</java-variable-name>
+      <xml-element-name>arrayOfdecimal</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfBook</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfBook</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfBook</java-variable-name>
+      <xml-element-name>arrayOfBook</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOffloat</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOffloat</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOffloat</java-variable-name>
+      <xml-element-name>arrayOffloat</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfinteger</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfinteger</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfinteger</java-variable-name>
+      <xml-element-name>arrayOfinteger</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfQName</java-type>
+    <root-type-qname xmlns:typeNS="http://holdertest.org/xsd">typeNS:ArrayOfQName</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>arrayOfQName</java-variable-name>
+      <xml-element-name>arrayOfQName</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>double[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfdouble&gt;arrayOfdouble[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>int[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfint&gt;arrayOfint[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.lang.String[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfstring&gt;arrayOfstring[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>boolean[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfboolean&gt;arrayOfboolean[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.util.Calendar[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfdateTime&gt;arrayOfdateTime[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>short[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfshort&gt;arrayOfshort[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>byte[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfbyte&gt;arrayOfbyte[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>long[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOflong&gt;arrayOflong[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.math.BigDecimal[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfdecimal&gt;arrayOfdecimal[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.Book[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfBook&gt;arrayOfBook[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>float[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOffloat&gt;arrayOffloat[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.math.BigInteger[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfinteger&gt;arrayOfinteger[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>javax.xml.namespace.QName[]</java-type>
+    <anonymous-type-qname>http://holdertest.org/xsd:ArrayOfQName&gt;arrayOfQName[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.HolderTestService</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://holdertest.org/wsdl">serviceNS:HolderTestService</wsdl-service-name>
+    <port-mapping>
+      <port-name>HolderTestPort</port-name>
+      <java-port-name>HolderTestPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.HolderTest</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://holdertest.org/wsdl">portTypeNS:HolderTest</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://holdertest.org/wsdl">bindingNS:HolderTestBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoInOutSimpleTypes</java-method-name>
+      <wsdl-operation>echoInOutSimpleTypes</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varString</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varInteger</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>2</param-position>
+        <param-type>int</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varInt</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>3</param-position>
+        <param-type>long</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varLong</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>4</param-position>
+        <param-type>short</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varShort</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>5</param-position>
+        <param-type>java.math.BigDecimal</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varDecimal</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>6</param-position>
+        <param-type>float</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varFloat</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>7</param-position>
+        <param-type>double</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varDouble</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>8</param-position>
+        <param-type>boolean</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varBoolean</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>9</param-position>
+        <param-type>byte</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varByte</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>10</param-position>
+        <param-type>javax.xml.namespace.QName</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varQName</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>11</param-position>
+        <param-type>java.util.Calendar</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+          <wsdl-message-part-name>varDateTime</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoInOutSimpleTypesArray</java-method-name>
+      <wsdl-operation>echoInOutSimpleTypesArray</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfstring</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varString</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfinteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varInteger</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>2</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfint</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varInt</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>3</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOflong</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varLong</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>4</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfshort</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varShort</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>5</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfdecimal</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varDecimal</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>6</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOffloat</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varFloat</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>7</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfdouble</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varDouble</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>8</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfboolean</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varBoolean</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>9</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfbyte</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varByte</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>10</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfQName</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varQName</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>11</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfdateTime</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varDateTime</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoInOutBook</java-method-name>
+      <wsdl-operation>echoInOutBook</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.Book</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutBookRequest</wsdl-message>
+          <wsdl-message-part-name>varBook</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoInOutBookArray</java-method-name>
+      <wsdl-operation>echoInOutBookArray</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.holdertest.ArrayOfBook</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://holdertest.org/wsdl">wsdlMsgNS:inoutBookArrayRequest</wsdl-message>
+          <wsdl-message-part-name>varBook</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

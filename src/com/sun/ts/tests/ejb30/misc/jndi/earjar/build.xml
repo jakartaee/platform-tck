@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="misc_jndi_earjar" />
+  <property name="app.common" value="com/sun/ts/tests/ejb30/lite/basic/common" />
+  <property name="app.common.2" value="com/sun/ts/tests/ejb30/lite/basic/stateless" />
+
+  <property name="ear.lib.classes"
+    value="
+  com/sun/ts/tests/ejb30/common/helper/Helper.class,
+  com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/lite/basic/common/Basic1IF.class,
+com/sun/ts/tests/ejb30/lite/basic/common/Basic2IF.class,
+com/sun/ts/tests/ejb30/lite/basic/common/BasicBeanHelper.class,
+com/sun/ts/tests/ejb30/lite/basic/common/GlobalJNDITest.class,
+com/sun/ts/tests/ejb30/misc/jndi/earjar/TestIF.class,
+
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloCommonIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloLocalIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloRemoteIF.class
+  " />
+
+  <property name="appclient.jar.classes"
+    value="
+com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/misc/jndi/earjar/Client.class
+" />
+
+  <property name="ejb.jar.classes"
+    value="
+com/sun/ts/tests/ejb30/lite/basic/common/BasicBeanBase.class,
+com/sun/ts/tests/ejb30/lite/basic/stateless/BasicBean.class,
+com/sun/ts/tests/ejb30/lite/basic/stateless/OneInterfaceBasicBean.class,
+com/sun/ts/tests/ejb30/lite/basic/stateless/TwoInterfacesBasicBean.class,
+com/sun/ts/tests/ejb30/misc/jndi/earjar/TestBean.class
+" />
+
+<target name="-precompile">
+    <echo message="Building dependency dir..."/>
+    <ant dir="${src.dir}/com/sun/ts/tests/ejb30/common/helloejbjar" target="build" inheritAll="false"/>
+</target>
+
+
+  <!-- override package.war target in import.xml -->
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/ear-lib-jar.xml" />
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml" />
+</project>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="webservices12_servlet_WebServiceRefsTest_client" basedir="." default="usage">
+  <property name="app.name" value="WebServiceRefsTest"/>
+  <property name="wsdl.filename" value="WSHello1Service.wsdl"/>
+  <property name="wsdl.filename2" value="WSHello2Service.wsdl"/>
+  <property name="wsdl.names" value="${wsdl.filename}, ${wsdl.filename2}"/>
+  <property name="service.names" value="WSHello1Service, WSHello2Service"/>
+  <property name="sei.names" value="WSHello1: WSHello2"/>
+  <property name="dd.files.already.exist" value="true"/>
+  <property name="always.generate" value="true"/>
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="client.class" value="com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.client.Client"/>
+  <property name="common.classes" value="${jaxws.common.classes}"/>
+
+  <property name="dependency.dir" value="${src.dir}/com/sun/ts/tests/webservices12/servlet/WebServiceRefsTest/server1 ${src.dir}/com/sun/ts/tests/webservices12/servlet/WebServiceRefsTest/server2"/>
+
+
+  <target name="-precompile">
+     <for list="${dependency.dir}" param="the.dir" delimiter=" " trim="true">
+       <sequential>
+           <echo message="building @{the.dir}"/>
+           <ant dir="@{the.dir}" target="build" inheritAll="false"/>
+           <copy_wsdl_xsd_from_dependency_dir dir="@{the.dir}"/>
+       </sequential>
+    </for>
+    <antcall  target="do_wsdl2java_generate_client">
+	<param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+	<param name="customization.binding.files" value="customfile1.xml"/>
+    </antcall>
+    <antcall  target="do_wsdl2java_generate_client">
+	<param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename2}"/>
+	<param name="customization.binding.files" value="customfile2.xml"/>
+    </antcall>
+  </target>
+
+  <target name="package" depends="client_import_package"/>
+
+</project>

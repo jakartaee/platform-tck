@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="Fault_Service" targetNamespace="http://faultservice.org/wsdl" xmlns:tns="http://faultservice.org/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://faultservice.org/types">
+  <types>
+    <schema targetNamespace="http://faultservice.org/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://faultservice.org/types" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <complexType name="getClazzInfoWithCampusID">
+        <sequence>
+          <element name="int_1" type="int"/></sequence></complexType>
+      <complexType name="getClazzInfoWithCampusIDResponse">
+        <sequence>
+          <element name="result" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="NoClazzInfoWithClazzIDFoundException">
+        <complexContent>
+          <extension base="tns:NoClazzInfoFoundException">
+            <sequence>
+              <element name="booleanPart" type="boolean"/>
+              <element name="boxedDoublePart" type="double"/>
+              <element name="boxedFloatPart" type="float"/>
+              <element name="localizedMessage" type="string"/>
+              <element name="message" type="string"/></sequence></extension></complexContent></complexType>
+      <complexType name="NoClazzInfoFoundException">
+        <complexContent>
+          <extension base="tns:NoRecordsFoundException">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="NoRecordsFoundException">
+        <sequence>
+          <element name="stringPart" type="string"/></sequence></complexType>
+      <complexType name="NoInstructorFoundException">
+        <complexContent>
+          <extension base="tns:NoRecordsFoundException">
+            <sequence>
+              <element name="boxedIntegerPart" type="int" nillable="true"/>
+              <element name="boxedLongPart" type="long" nillable="true"/>
+              <element name="localizedMessage" type="string"/>
+              <element name="message" type="string"/></sequence></extension></complexContent></complexType>
+      <complexType name="NoEmployeeFoundException">
+        <complexContent>
+          <extension base="tns:NoRecordsFoundException">
+            <sequence>
+              <element name="boxedBytePart" type="byte" nillable="true"/>
+              <element name="boxedShortPart" type="short" nillable="true"/></sequence></extension></complexContent></complexType>
+      <complexType name="NoClazzInfoWithDurationFoundException">
+        <complexContent>
+          <extension base="tns:NoClazzInfoFoundException">
+            <sequence>
+              <element name="doublePart" type="double"/>
+              <element name="localizedMessage" type="string"/>
+              <element name="message" type="string"/></sequence></extension></complexContent></complexType>
+      <complexType name="NoClazzInfoWithCampusIDFoundException">
+        <complexContent>
+          <extension base="tns:NoClazzInfoFoundException">
+            <sequence>
+              <element name="floatPart" type="float"/>
+              <element name="shortPart" type="short"/></sequence></extension></complexContent></complexType>
+      <complexType name="getClazzInfoWithClazzID">
+        <sequence>
+          <element name="int_1" type="int"/></sequence></complexType>
+      <complexType name="getClazzInfoWithClazzIDResponse">
+        <sequence>
+          <element name="result" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="getClazzInfoWithDuration">
+        <sequence>
+          <element name="double_1" type="double"/></sequence></complexType>
+      <complexType name="getClazzInfoWithDurationResponse">
+        <sequence>
+          <element name="result" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="getEmployeeByID">
+        <sequence/></complexType>
+      <complexType name="getEmployeeByIDResponse">
+        <sequence>
+          <element name="result" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="getInstructorByID">
+        <sequence/></complexType>
+      <complexType name="getInstructorByIDResponse">
+        <sequence>
+          <element name="result" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="hello">
+        <sequence>
+          <element name="String_1" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="helloResponse">
+        <sequence>
+          <element name="result" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="ShortFault">
+        <sequence>
+          <element name="value" type="short"/></sequence></complexType>
+      <complexType name="BasicFault">
+        <sequence>
+          <element name="message" type="string"/></sequence></complexType>
+      <complexType name="DetailFault">
+        <sequence>
+          <element name="arg1" type="string"/>
+          <element name="arg2" type="int"/>
+          <element name="arg3" type="string"/>
+          <element name="localizedMessage" type="string"/>
+          <element name="message" type="string"/></sequence></complexType>
+      <complexType name="IntFault">
+        <sequence>
+          <element name="value" type="int"/></sequence></complexType>
+      <complexType name="IntegerFault">
+        <sequence>
+          <element name="value" type="int"/></sequence></complexType>
+      <complexType name="FooFault">
+        <sequence>
+          <element name="foo" type="tns:Foo2"/></sequence></complexType>
+      <complexType name="Foo2">
+        <sequence>
+          <element name="l" type="long"/>
+          <element name="i2" type="short"/>
+          <element name="SA" type="string" minOccurs="0" maxOccurs="unbounded"/>
+          <element name="integer" type="int" nillable="true"/>
+          <element name="SMember" type="string" nillable="true"/>
+          <element name="subI2" type="int"/>
+          <element name="i" type="int"/></sequence></complexType>
+      <complexType name="MultiArgFault">
+        <complexContent>
+          <extension base="tns:HelloFault">
+            <sequence>
+              <element name="arg2" type="int"/>
+              <element name="arg3" type="tns:Foo2"/></sequence></extension></complexContent></complexType>
+      <complexType name="HelloFault">
+        <sequence>
+          <element name="hello" type="string"/></sequence></complexType>
+      <complexType name="StringFault">
+        <sequence>
+          <element name="hello" type="string"/></sequence></complexType>
+      <complexType name="hello2">
+        <sequence>
+          <element name="String_1" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="hello2Response">
+        <sequence>
+          <element name="result" type="string" nillable="true"/></sequence></complexType>
+      <element name="getClazzInfoWithCampusIDElement" type="tns:getClazzInfoWithCampusID"/>
+      <element name="getClazzInfoWithCampusIDResponseElement" type="tns:getClazzInfoWithCampusIDResponse"/>
+      <element name="NoClazzInfoFoundExceptionElement" type="tns:NoClazzInfoFoundException"/>
+      <element name="getClazzInfoWithClazzIDElement" type="tns:getClazzInfoWithClazzID"/>
+      <element name="getClazzInfoWithClazzIDResponseElement" type="tns:getClazzInfoWithClazzIDResponse"/>
+      <element name="getClazzInfoWithDurationElement" type="tns:getClazzInfoWithDuration"/>
+      <element name="getClazzInfoWithDurationResponseElement" type="tns:getClazzInfoWithDurationResponse"/>
+      <element name="getEmployeeByIDElement" type="tns:getEmployeeByID"/>
+      <element name="getEmployeeByIDResponseElement" type="tns:getEmployeeByIDResponse"/>
+      <element name="NoEmployeeFoundExceptionElement" type="tns:NoEmployeeFoundException"/>
+      <element name="getInstructorByIDElement" type="tns:getInstructorByID"/>
+      <element name="getInstructorByIDResponseElement" type="tns:getInstructorByIDResponse"/>
+      <element name="NoInstructorFoundExceptionElement" type="tns:NoInstructorFoundException"/>
+      <element name="helloElement" type="tns:hello"/>
+      <element name="helloResponseElement" type="tns:helloResponse"/>
+      <element name="ShortFaultElement" type="tns:ShortFault"/>
+      <element name="BasicFaultElement" type="tns:BasicFault"/>
+      <element name="DetailFaultElement" type="tns:DetailFault"/>
+      <element name="IntFaultElement" type="tns:IntFault"/>
+      <element name="IntegerFaultElement" type="tns:IntegerFault"/>
+      <element name="FooFaultElement" type="tns:FooFault"/>
+      <element name="HelloFaultElement" type="tns:HelloFault"/>
+      <element name="StringFaultElement" type="tns:StringFault"/>
+      <element name="hello2Element" type="tns:hello2"/>
+      <element name="hello2ResponseElement" type="tns:hello2Response"/></schema></types>
+  <message name="Fault_getClazzInfoWithCampusID">
+    <part name="parameters" element="ns2:getClazzInfoWithCampusIDElement"/></message>
+  <message name="Fault_getClazzInfoWithCampusIDResponse">
+    <part name="result" element="ns2:getClazzInfoWithCampusIDResponseElement"/></message>
+  <message name="NoClazzInfoFoundException">
+    <part name="NoClazzInfoFoundExceptionElement" element="ns2:NoClazzInfoFoundExceptionElement"/></message>
+  <message name="Fault_getClazzInfoWithClazzID">
+    <part name="parameters" element="ns2:getClazzInfoWithClazzIDElement"/></message>
+  <message name="Fault_getClazzInfoWithClazzIDResponse">
+    <part name="result" element="ns2:getClazzInfoWithClazzIDResponseElement"/></message>
+  <message name="Fault_getClazzInfoWithDuration">
+    <part name="parameters" element="ns2:getClazzInfoWithDurationElement"/></message>
+  <message name="Fault_getClazzInfoWithDurationResponse">
+    <part name="result" element="ns2:getClazzInfoWithDurationResponseElement"/></message>
+  <message name="Fault_getEmployeeByID">
+    <part name="parameters" element="ns2:getEmployeeByIDElement"/></message>
+  <message name="Fault_getEmployeeByIDResponse">
+    <part name="result" element="ns2:getEmployeeByIDResponseElement"/></message>
+  <message name="NoEmployeeFoundException">
+    <part name="NoEmployeeFoundExceptionElement" element="ns2:NoEmployeeFoundExceptionElement"/></message>
+  <message name="Fault_getInstructorByID">
+    <part name="parameters" element="ns2:getInstructorByIDElement"/></message>
+  <message name="Fault_getInstructorByIDResponse">
+    <part name="result" element="ns2:getInstructorByIDResponseElement"/></message>
+  <message name="NoInstructorFoundException">
+    <part name="NoInstructorFoundExceptionElement" element="ns2:NoInstructorFoundExceptionElement"/></message>
+  <message name="Fault_hello">
+    <part name="parameters" element="ns2:helloElement"/></message>
+  <message name="Fault_helloResponse">
+    <part name="result" element="ns2:helloResponseElement"/></message>
+  <message name="BasicFault">
+    <part name="BasicFaultElement" element="ns2:BasicFaultElement"/></message>
+  <message name="DetailFault">
+    <part name="DetailFaultElement" element="ns2:DetailFaultElement"/></message>
+  <message name="FooFault">
+    <part name="FooFaultElement" element="ns2:FooFaultElement"/></message>
+  <message name="IntFault">
+    <part name="IntFaultElement" element="ns2:IntFaultElement"/></message>
+  <message name="IntegerFault">
+    <part name="IntegerFaultElement" element="ns2:IntegerFaultElement"/></message>
+  <message name="ShortFault">
+    <part name="ShortFaultElement" element="ns2:ShortFaultElement"/></message>
+  <message name="StringFault">
+    <part name="StringFaultElement" element="ns2:StringFaultElement"/></message>
+  <message name="HelloFault">
+    <part name="HelloFaultElement" element="ns2:HelloFaultElement"/></message>
+  <message name="Fault_hello2">
+    <part name="parameters" element="ns2:hello2Element"/></message>
+  <message name="Fault_hello2Response">
+    <part name="result" element="ns2:hello2ResponseElement"/></message>
+  <portType name="Fault">
+    <operation name="getClazzInfoWithCampusID">
+      <input message="tns:Fault_getClazzInfoWithCampusID"/>
+      <output message="tns:Fault_getClazzInfoWithCampusIDResponse"/>
+      <fault name="NoClazzInfoFoundException" message="tns:NoClazzInfoFoundException"/></operation>
+    <operation name="getClazzInfoWithClazzID">
+      <input message="tns:Fault_getClazzInfoWithClazzID"/>
+      <output message="tns:Fault_getClazzInfoWithClazzIDResponse"/>
+      <fault name="NoClazzInfoFoundException" message="tns:NoClazzInfoFoundException"/></operation>
+    <operation name="getClazzInfoWithDuration">
+      <input message="tns:Fault_getClazzInfoWithDuration"/>
+      <output message="tns:Fault_getClazzInfoWithDurationResponse"/>
+      <fault name="NoClazzInfoFoundException" message="tns:NoClazzInfoFoundException"/></operation>
+    <operation name="getEmployeeByID">
+      <input message="tns:Fault_getEmployeeByID"/>
+      <output message="tns:Fault_getEmployeeByIDResponse"/>
+      <fault name="NoEmployeeFoundException" message="tns:NoEmployeeFoundException"/></operation>
+    <operation name="getInstructorByID">
+      <input message="tns:Fault_getInstructorByID"/>
+      <output message="tns:Fault_getInstructorByIDResponse"/>
+      <fault name="NoInstructorFoundException" message="tns:NoInstructorFoundException"/></operation>
+    <operation name="hello">
+      <input message="tns:Fault_hello"/>
+      <output message="tns:Fault_helloResponse"/>
+      <fault name="BasicFault" message="tns:BasicFault"/>
+      <fault name="DetailFault" message="tns:DetailFault"/>
+      <fault name="FooFault" message="tns:FooFault"/>
+      <fault name="IntFault" message="tns:IntFault"/>
+      <fault name="IntegerFault" message="tns:IntegerFault"/>
+      <fault name="ShortFault" message="tns:ShortFault"/>
+      <fault name="StringFault" message="tns:StringFault"/>
+      <fault name="HelloFault" message="tns:HelloFault"/></operation>
+    <operation name="hello2">
+      <input message="tns:Fault_hello2"/>
+      <output message="tns:Fault_hello2Response"/>
+      <fault name="DetailFault" message="tns:DetailFault"/>
+      <fault name="FooFault" message="tns:FooFault"/>
+      <fault name="IntFault" message="tns:IntFault"/>
+      <fault name="IntegerFault" message="tns:IntegerFault"/>
+      <fault name="ShortFault" message="tns:ShortFault"/>
+      <fault name="HelloFault" message="tns:HelloFault"/></operation></portType>
+  <binding name="FaultBinding" type="tns:Fault">
+    <operation name="getClazzInfoWithCampusID">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <fault name="NoClazzInfoFoundException">
+        <soap:fault use="literal"/></fault>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getClazzInfoWithClazzID">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <fault name="NoClazzInfoFoundException">
+        <soap:fault use="literal"/></fault>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getClazzInfoWithDuration">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <fault name="NoClazzInfoFoundException">
+        <soap:fault use="literal"/></fault>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getEmployeeByID">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <fault name="NoEmployeeFoundException">
+        <soap:fault use="literal"/></fault>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getInstructorByID">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <fault name="NoInstructorFoundException">
+        <soap:fault use="literal"/></fault>
+      <soap:operation soapAction=""/></operation>
+    <operation name="hello">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <fault name="BasicFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="DetailFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="FooFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="IntFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="IntegerFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="ShortFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="StringFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="HelloFault">
+        <soap:fault use="literal"/></fault>
+      <soap:operation soapAction=""/></operation>
+    <operation name="hello2">
+      <input>
+        <soap:body use="literal"/></input>
+      <output>
+        <soap:body use="literal"/></output>
+      <fault name="DetailFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="FooFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="IntFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="IntegerFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="ShortFault">
+        <soap:fault use="literal"/></fault>
+      <fault name="HelloFault">
+        <soap:fault use="literal"/></fault>
+      <soap:operation soapAction=""/></operation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/></binding>
+  <service name="Fault_Service">
+    <port name="FaultPort" binding="tns:FaultBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/></port></service></definitions>

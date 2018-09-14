@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="true" version="3.1" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+    <enterprise-beans>
+    <!-- all beans are local, though they have remote in their names -->
+        <session>
+            <display-name>StatefulRemoteCalculatorBean</display-name>
+            <ejb-name>StatefulRemoteCalculatorBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.common.calc.RemoteCalculator</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.StatefulRemoteCalculatorBean</ejb-class>
+            <session-type>Stateful</session-type>
+            <remove-method>
+                <bean-method>
+                    <method-name>remoteAdd</method-name>
+                    <method-params>
+                        <method-param>int</method-param>
+                        <method-param>int</method-param>
+                    </method-params>
+                </bean-method>
+                <retain-if-exception>false</retain-if-exception>
+            </remove-method>
+            <transaction-type>Container</transaction-type>
+            <security-identity>
+                <use-caller-identity/>
+            </security-identity>
+        </session>
+        <session>
+            <display-name>StatelessRemoteCalculatorBean</display-name>
+            <ejb-name>StatelessRemoteCalculatorBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.common.calc.RemoteCalculator</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.StatelessRemoteCalculatorBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+            <security-identity>
+                <use-caller-identity/>
+            </security-identity>
+        </session>
+        <session>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-interceptors-include-class-interceptors</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.common.calc.RemoteCalculator</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+            <resource-ref>
+                <res-ref-name>orb</res-ref-name>
+                <res-type>org.omg.CORBA.ORB</res-type>
+                <res-auth>Container</res-auth>
+                <res-sharing-scope>Shareable</res-sharing-scope>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
+                    <injection-target-name>orb</injection-target-name>
+                </injection-target>
+            </resource-ref>
+            <resource-env-ref>
+                <resource-env-ref-name>sessionContext</resource-env-ref-name>
+                <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
+                    <injection-target-name>sessionContext</injection-target-name>
+                </injection-target>
+            </resource-env-ref>
+            <post-construct>
+                <lifecycle-callback-method>postConstruct</lifecycle-callback-method>
+            </post-construct>
+            <pre-destroy>
+                <lifecycle-callback-method>preDestroy</lifecycle-callback-method>
+            </pre-destroy>
+            <security-identity>
+                <use-caller-identity/>
+            </security-identity>
+        </session>
+        <session>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-same-interceptor-3-times</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.common.calc.RemoteCalculator</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+            <resource-ref>
+                <res-ref-name>orb</res-ref-name>
+                <res-type>org.omg.CORBA.ORB</res-type>
+                <res-auth>Container</res-auth>
+                <res-sharing-scope>Shareable</res-sharing-scope>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
+                    <injection-target-name>orb</injection-target-name>
+                </injection-target>
+            </resource-ref>
+            <resource-env-ref>
+                <resource-env-ref-name>sessionContext</resource-env-ref-name>
+                <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
+                    <injection-target-name>sessionContext</injection-target-name>
+                </injection-target>
+            </resource-env-ref>
+            <post-construct>
+                <lifecycle-callback-method>postConstruct</lifecycle-callback-method>
+            </post-construct>
+            <pre-destroy>
+                <lifecycle-callback-method>preDestroy</lifecycle-callback-method>
+            </pre-destroy>
+            <security-identity>
+                <use-caller-identity/>
+            </security-identity>
+        </session>
+
+        <session>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-and-class-reinstate-default</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.common.calc.RemoteCalculator</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+            <resource-ref>
+                <res-ref-name>orb</res-ref-name>
+                <res-type>org.omg.CORBA.ORB</res-type>
+                <res-auth>Container</res-auth>
+                <res-sharing-scope>Shareable</res-sharing-scope>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
+                    <injection-target-name>orb</injection-target-name>
+                </injection-target>
+            </resource-ref>
+            <resource-env-ref>
+                <resource-env-ref-name>sessionContext</resource-env-ref-name>
+                <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
+                    <injection-target-name>sessionContext</injection-target-name>
+                </injection-target>
+            </resource-env-ref>
+            <post-construct>
+                <lifecycle-callback-method>postConstruct</lifecycle-callback-method>
+            </post-construct>
+            <pre-destroy>
+                <lifecycle-callback-method>preDestroy</lifecycle-callback-method>
+            </pre-destroy>
+            <security-identity>
+                <use-caller-identity/>
+            </security-identity>
+        </session>
+
+        
+    </enterprise-beans>
+    <interceptors>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed</interceptor-class>
+            <around-invoke>
+                <method-name>intercept</method-name>
+            </around-invoke>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.BusinessInterceptorNotUsed</interceptor-class>
+            <around-invoke>
+                <class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.BusinessInterceptorNotUsed</class>
+                <method-name>intercept</method-name>
+            </around-invoke>
+        </interceptor>
+
+    </interceptors>
+    <assembly-descriptor>
+        <interceptor-binding>
+            <ejb-name>*</ejb-name>
+            <interceptor-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed</interceptor-class>
+        </interceptor-binding>
+
+        <!-- /////////////////////////////////////////////////////////////// -->
+        <!-- disable default interceptors for 
+        StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-interceptors-include-class-interceptors 
+        -->
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-interceptors-include-class-interceptors</ejb-name>
+            <exclude-default-interceptors>true</exclude-default-interceptors>
+        </interceptor-binding>
+        <!-- reinstate  InterceptorUsed for 
+        StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-interceptors-include-class-interceptors
+        -->
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-interceptors-include-class-interceptors</ejb-name>
+            <interceptor-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed</interceptor-class>
+        </interceptor-binding>
+
+        <!-- /////////////////////////////////////////////////////////////// -->
+        <!-- sameInterceptor3Times test uses remoteAdd(int,int) -->
+        <!-- sameInterceptorTwice test uses remoteSubtract(int,int) -->
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-same-interceptor-3-times</ejb-name>
+            <interceptor-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed</interceptor-class>
+        </interceptor-binding>
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-same-interceptor-3-times</ejb-name>
+            <interceptor-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed</interceptor-class>
+            <method>
+                <method-name>remoteAdd</method-name>
+                <method-params>
+                    <method-param>int</method-param>
+                    <method-param>int</method-param>
+                </method-params>
+            </method>
+        </interceptor-binding>
+        <!-- remoteSubtract() will have InterceptorUsed at both default and class levels (twice) -->
+
+        <!-- /////////////////////////////////////////////////////////////// -->
+        <!-- excludeDefaulAndClassReinstateDefault test -->
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-and-class-reinstate-default</ejb-name>
+            <interceptor-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed</interceptor-class>
+            <method>
+                <method-name>remoteAdd</method-name>
+                <method-params>
+                    <method-param>int</method-param>
+                    <method-param>int</method-param>
+                </method-params>
+            </method>
+        </interceptor-binding>
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-and-class-reinstate-default</ejb-name>
+            <exclude-class-interceptors>true</exclude-class-interceptors>
+            <method>
+                <method-name>remoteAdd</method-name>
+                <method-params>
+                    <method-param>int</method-param>
+                    <method-param>int</method-param>
+                </method-params>
+            </method>
+        </interceptor-binding>
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-and-class-reinstate-default</ejb-name>
+            <exclude-default-interceptors>true</exclude-default-interceptors>
+            <method>
+                <method-name>remoteAdd</method-name>
+                <method-params>
+                    <method-param>int</method-param>
+                    <method-param>int</method-param>
+                </method-params>
+            </method>
+        </interceptor-binding>
+        <!-- remoteSubtract() only excludes class interceptor, but keeps default one, and adds a method one -->
+        <!-- defaultAndMethodInterceptor test -->
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-and-class-reinstate-default</ejb-name>
+            <exclude-class-interceptors>true</exclude-class-interceptors>
+            <method>
+                <method-name>remoteSubtract</method-name>
+                <method-params>
+                    <method-param>int</method-param>
+                    <method-param>int</method-param>
+                </method-params>
+            </method>
+        </interceptor-binding>
+        <interceptor-binding>
+            <ejb-name>StatelessAnnotationUsedRemoteCalculatorBean-exclude-default-and-class-reinstate-default</ejb-name>
+            <interceptor-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed</interceptor-class>
+            <method>
+                <method-name>remoteSubtract</method-name>
+                <method-params>
+                    <method-param>int</method-param>
+                    <method-param>int</method-param>
+                </method-params>
+            </method>
+        </interceptor-binding>
+
+    </assembly-descriptor>
+</ejb-jar>

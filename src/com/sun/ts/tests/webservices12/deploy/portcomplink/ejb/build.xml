@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="portcomplink_ejb" basedir="." default="usage">
+  <property name="app.name" value="WSPortCompLinkEjb"/>
+  <property name="wsdl.filename" value="InterModuleService.wsdl"/>
+  <property name="wsdl.filename2" value="IntraModuleService.wsdl"/>
+  <property name="wsdl.files" value="${wsdl.filename},${wsdl.filename2}"/>
+  <property name="always.generate" value="true"/>
+
+  <property name="client.class" value="com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.Client" />
+  <property name="impl.class" value="${pkg.dir}/inter/InterModuleEjbBean.class, ${pkg.dir}/intra/IntraModuleEjbBean.class" />
+
+  <import file="../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <target name="-precompile">
+    <antcall  target="do_wsdl2java_generate">
+        <param name="service.names" value="IntraModuleService"/>
+        <param name="sei.names" value="IntraModuleSei"/>
+        <param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename2}"/>
+	<param name="wsdl.location" value="WEB-INF/wsdl/${wsdl.filename2}"/>
+        <param name="customization.binding.files" value="customfile2.xml"/>
+    </antcall>
+    <antcall  target="do_wsdl2java_generate_server">
+        <param name="no.setup" value="true"/>
+        <param name="service.names" value="InterModuleService"/>
+        <param name="sei.names" value="InterModuleSei"/>
+        <param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+	<param name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+        <param name="customization.binding.files" value="customfile.xml"/>
+    </antcall>
+  </target>
+
+  <target name="package">
+      <ts.ejbjar archiveName="${app.name}" descriptor="WSPortCompLinkEjb_ejb.xml" excludedfiles="${pkg.dir}/inter/*Service.class, ${pkg.dir}/*Client.class">
+        <zipfileset dir="${class.dir}"
+            includes="${pkg.dir}/**/*.class"
+	    excludes="${pkg.dir}/inter/*Service.class, ${pkg.dir}/*Client.class"/>
+        <zipfileset dir="${src.dir}/${pkg.dir}"
+            includes="${wsdl.files}"
+            prefix="META-INF/wsdl"/>
+        <zipfileset dir="${src.dir}/${pkg.dir}"
+            includes="webservices.xml"
+            prefix="META-INF"/>
+      </ts.ejbjar>
+      <ts.clientjar archivename="${app.name}" descriptor="WSPortCompLinkEjb_client.xml" mainclass="${client.class}" excludedfiles="${pkg.dir}/inter/*Bean.class, ${pkg.dir}/intra/*.class">
+        <zipfileset dir="${class.dir}"
+	    includes="${pkg.dir}/**/*.class, ${jaxws.common.classes}"
+            excludes="${pkg.dir}/**/*Bean.class ${pkg.dir}/intra/*.class"/>
+        <zipfileset dir="${src.dir}/${pkg.dir}"
+            includes="${wsdl.filename}"
+            prefix="META-INF/wsdl"/>
+      </ts.clientjar>
+      <ts.ear archivename="${app.name}">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_client.jar"/>
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar"/>
+      </ts.ear>
+  </target>
+
+</project>

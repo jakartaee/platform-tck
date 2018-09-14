@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="internal_docs_jpa" basedir="." default="usage">
+
+    <property environment="env"/>
+
+    <target name="usage">
+       <echo>
+The supported targets are gen.spec.html.file and create.javadoc.html.file.
+      User is prompted for which version to process, the default is 2.1.
+      After processing is complete an the html version of the xml
+      file will be created in tshome/internal/docs/jpa/{version}.
+
+      Available targets:
+         create.spec.html.file
+         create.javadoc.html.file 
+
+       </echo>
+    </target>
+   <!-- IMPORTS -->
+
+    <target name="create.spec.html.file">
+        <delete file="PersistenceSpecAssertions.html" />
+        <xslt in="PersistenceSpecAssertions.xml"
+                out="PersistenceSpecAssertions.html"
+                style="${env.CTS_TOOLS}/docs/xsl/assertions/spec_assertions-colors.xsl"
+                force="true">
+        </xslt>
+    </target>
+
+
+    <target name="create.javadoc.html.file">
+        <delete file="PersistenceJavaDocAssertions.html" />
+        <xslt in="PersistenceJavaDocAssertions.xml"
+                out="PersistenceJavaDocAssertions.html"
+                style="${env.CTS_TOOLS}/docs/xsl/assertions/javadoc_assertions.xsl"
+                force="true">
+        </xslt>
+    </target>
+
+</project>
+

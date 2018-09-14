@@ -1,0 +1,479 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="irene caruso">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (X11; I; SunOS 5.8 sun4u) [Netscape]">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+   <title>TckCtsJAXRTestPlan</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#00EE00" vlink="#551A8B" alink="#FF0000">
+
+<h2>Compatibility Test Plan for JAXR 1.0 Technology Release - Draft </h2>
+TCK/TS Test Lead - Irene Caruso 
+<h2>Revision History</h2>
+<table border="1" width="100%">
+  <tr>
+    <td width="25%">Document</td>
+    <td width="25%">Comments</td>
+    <td width="25%">Date</td>
+    <td width="25%">Reviewer</td>
+  </tr>
+  <tr>
+    <td width="25%">Initial Draft</td>
+    <td width="25%">.</td>
+    <td width="25%">.</td>
+    <td width="25%">.</td>
+  </tr>
+  <tr>
+</table>
+<h2>
+Introduction</h2>
+This plan documents the high level Compatibility Test Plan for the Java API for
+XML Registries(JAXR) Version 1.0 Specification which defines APIs for  
+creating, publishing and querying XML Registries. 
+Both the Technology Compatibility Kit (TCK) and the Compatibility Test Suite
+(TS) comprise a suite of tests in which the test cases are derived from
+the requirements of the JAXR specification.
+These TCK and TS tests are written to ensure application portability and
+compatibility among JAXR implementations based on this API. The reference
+implementation will validate that the specifications can be implemented, this
+will provide a reference point for the development community, and will be used
+for developing Compatibility Tests, which leads to a brand. This ensures Sun's,
+specifically Java's WORA (Write Once Run Anywhere) mission.
+<br>
+<br>
+<h2>
+Goals</h2>
+Provide compatibility tests (the Technology Compatibility Kit - TCK) and
+(the Compatibility Test Suite - TS)
+for the set of functionality as defined in
+the JAXR Specification Version 1.0. These tests will verify the JAXR API's.
+<br>
+<br>
+<h2>
+Non-Goals</h2>
+
+<ul>
+<li>
+&nbsp;&nbsp;&nbsp; Performance</li>
+
+<li>
+&nbsp;&nbsp;&nbsp; Scalability</li>
+
+<li>
+&nbsp;&nbsp;&nbsp; Ease of use</li>
+
+<li>
+&nbsp;&nbsp;&nbsp; Non-required (implementation specific) areas of the
+specification</li>
+
+<li>
+&nbsp;&nbsp;&nbsp; Optional features. </li>
+</ul>
+<br>
+<br>
+<h2>
+Types of Compatibility Tests</h2>
+There are 3  types of tests that make up the Compatibility Test Suite,
+these include:
+&nbsp;
+<ul>
+<li>
+Signature Tests - Checks that all of the required API
+signatures are available for an implementation, no supersets or subsets
+<br><br>
+<li>
+API Tests - Verifies that all of the required classes
+and methods behave according to the
+specification on a method by method basis.
+<br><br>
+<li>
+End-To-End Tests - A new type of compatibility
+test that was introduced with the J2EE
+platform. These type of tests span across
+N-tiers of the J2EE platform. 
+<br><br>
+
+<p>For the Technology Compatibility Kit (TCK), we will be doing
+Signature, API, End-To-End tests for JAXR 1.0 technology release.
+
+<p>For the Compatibility Test Suite (TS),
+we will also be doing Signature, API, End-To-End 
+tests for the JAXR 1.0 technology release integrated within the
+J2EE 1.4 platform.  The TS tests will be run in ejb/web and appclient
+vehicles. Additionally, there will be ebXML (may be optional??) added for the J2EE 1.4 
+platform.
+</ul>
+<br>
+<br>
+<h2>
+Compatibility Test Suite Releases</h2>
+There will be 2 types of Compatibility Test Suite releases for JAXR, they
+are:
+&nbsp;
+<ul>
+<li>
+JAXR 1.0 TCK - Technology Compatibility Kit just for JAXR 1.0 technology
+release
+<br><br>
+<li>
+J2EE 1.4 TS - Compatability Test Suite for J2EE 1.4 
+Platform which will contain the tests for the 
+JAXR 1.0 technology integrated within the J2EE 1.4 Platform.
+
+<p>For the JAXR 1.0 TCK we will be using the Registry Server for a 
+reference UDDI V2 server.
+
+<p>For the J2EE 1.4 TS we will be using the J2EE 1.4 Platform 
+for testing. End-To-End testing and Interoperability testing will 
+be the main focus of the J2EE 1.4 TS. The Signature and API tests
+from the JAXR 1.0 TCK will also be included in the J2EE 1.4 TS.
+<br>
+<br>
+</ul>
+
+<h2>
+High Level Test Areas</h2>
+<p>
+The following features of JAXR will be tested as specified:
+<br>
+<p><b>Features Tested for TCK in JAXR 1.0</b>
+<br>
+<ul>
+<li>
+Infomodel Classes
+<li>
+Classification
+<li>
+Association
+<li>
+Connection
+<li>
+LifeCycle
+<li>
+Query
+</ul>
+<br>
+<p><b>Features Tested for TS in J2EE 1.4</b>
+<br>
+<ul>
+<li>
+All of the above
+<li>
+J2EE Container(s) Focus (EJB/WEB) for Compatibility Tests 
+<li>
+Additional End-To-End Testing
+</ul>
+<br>
+<p><b>Features Not Tested</b>
+<br>
+<ul>
+<li>
+Implementation specific and optional features.
+</ul>
+<br>
+<p><b>APIs Tested</b>
+<br>
+<br>
+
+The functionality required by the JAXR specification for the&nbsp;
+following API classes will be verified as follows:
+<br>
+<p><b>Explicit and Implicit Testing</b>
+<br>
+<ul>
+  <li>&nbsp;javax.xml.registry.BulkResponse.class
+  <li>&nbsp;javax.xml.registry.JAXRResponse.class
+  <li>&nbsp;javax.xml.registry.JAXRException.class
+  <li>&nbsp;javax.xml.registry.BusinessLifeCycleManager.class
+  <li>&nbsp;javax.xml.registry.LifeCycleManager.class
+  <li>&nbsp;javax.xml.registry.infomodel.Association.class
+  <li>&nbsp;javax.xml.registry.infomodel.RegistryObject.class
+  <li>&nbsp;javax.xml.registry.infomodel.ExtensibleObject.class
+  <li>&nbsp;javax.xml.registry.infomodel.Concept.class
+  <li>&nbsp;javax.xml.registry.infomodel.ClassificationScheme.class
+  <li>&nbsp;javax.xml.registry.infomodel.RegistryEntry.class
+  <li>&nbsp;javax.xml.registry.infomodel.Versionable.class
+  <li>&nbsp;javax.xml.registry.infomodel.Classification.class
+  <li>&nbsp;javax.xml.registry.infomodel.InternationalString.class
+  <li>&nbsp;javax.xml.registry.infomodel.EmailAddress.class
+  <li>&nbsp;javax.xml.registry.infomodel.ExternalIdentifier.class
+  <li>&nbsp;javax.xml.registry.infomodel.ExternalLink.class
+  <li>&nbsp;javax.xml.registry.infomodel.URIValidator.class
+  <li>&nbsp;javax.xml.registry.infomodel.ExtrinsicObject.class
+  <li>&nbsp;javax.xml.registry.infomodel.Key.class
+  <li>&nbsp;javax.xml.registry.infomodel.LocalizedString.class
+  <li>&nbsp;javax.xml.registry.infomodel.Organization.class
+  <li>&nbsp;javax.xml.registry.infomodel.PersonName.class
+  <li>&nbsp;javax.xml.registry.infomodel.PostalAddress.class
+  <li>&nbsp;javax.xml.registry.infomodel.RegistryPackage.class
+  <li>&nbsp;javax.xml.registry.infomodel.Service.class
+  <li>&nbsp;javax.xml.registry.infomodel.ServiceBinding.class
+  <li>&nbsp;javax.xml.registry.infomodel.Slot.class
+  <li>&nbsp;javax.xml.registry.infomodel.SpecificationLink.class
+  <li>&nbsp;javax.xml.registry.infomodel.TelephoneNumber.class
+  <li>&nbsp;javax.xml.registry.infomodel.User.class
+  <li>&nbsp;javax.xml.registry.infomodel.AuditableEvent.class
+  <li>&nbsp;javax.xml.registry.InvalidRequestException.class
+  <li>&nbsp;javax.xml.registry.UnsupportedCapabilityException.class
+  <li>&nbsp;javax.xml.registry.RegistryService.class
+  <li>&nbsp;javax.xml.registry.CapabilityProfile.class
+  <li>&nbsp;javax.xml.registry.BusinessQueryManager.class
+  <li>&nbsp;javax.xml.registry.QueryManager.class
+  <li>&nbsp;javax.xml.registry.DeclarativeQueryManager.class
+  <li>&nbsp;javax.xml.registry.Query.class
+  <li>&nbsp;javax.xml.registry.Connection.class
+  <li>&nbsp;javax.xml.registry.ConnectionFactory.class
+  <li>&nbsp;javax.xml.registry.FederatedConnection.class
+  <li>&nbsp;javax.xml.registry.DeleteException.class
+  <li>&nbsp;javax.xml.registry.RegistryException.class
+  <li>&nbsp;javax.xml.registry.FindException.class
+  <li>&nbsp;javax.xml.registry.FindQualifier.class
+  <li>&nbsp;javax.xml.registry.SaveException.class
+  <li>&nbsp;javax.xml.registry.UnexpectedObjectException.class
+
+</ul>
+</ul>
+
+<h2>
+Test Approach</h2>
+The test approach will utilize the JAXR 1.0 Technology Release&nbsp;
+to develop the JAXR tests for both the JAXR TCK and the J2EE 1.4 TS.
+The JAXR tests require a Registry for execution. As stated
+above in the section Compatibility Test Suite Releases we will use the
+JWSDP Registry Server for the JAXR TCK and the
+J2EE 1.4 Platform environment for the J2EE 1.4 TS. 
+
+<h2>
+Deliverables</h2>
+<ul>
+<li>
+Compatibility Test Plan for JAXR</li>
+<li
+Suite of tests for both TCK and TS for JAXR 1.0 functionality</li>
+<li>
+Updated User's Guide for setup/config details of JAXR tests.
+</ul>
+
+<h2>
+Dependencies</h2>
+<p>
+The following dependencies are necessary for development of these tests:
+<ul>
+<li>
+JAXR Reference Implementation (JAXR RI)
+<li>
+JAXR Version 1.0 Specification
+</ul>
+
+<h2>
+Release Schedule
+</h2>
+<table BORDER NOSAVE>
+<h3>JAXR 1.0 Release Schedule</h3>
+<tr>
+<td>Deliverable</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>xx</td>
+<td>xx</td>
+</tr>
+<tr>
+<td>xx</td>
+<td>xx</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</TABLE>
+
+<h2>
+References</h2>
+
+<ul>
+<li>
+<a href="http://java.sun.com/xml/downloads/jaxr.html">Java API for XML Registries Specification 1.0</a>
+<li>
+<a href="http://www.uddi.org">UDDI V2 Registry Specifications</a>
+</ul>
+
+<h2>
+Test Development Schedules</h2>
+<table BORDER NOSAVE>
+<CENTER>
+<h3>JAXR 1.0 TCK Test Suite Development Schedule</h3>
+</CENTER>
+<tr>
+<td>Development</td>
+<td>Engineer</td>
+<td>Time</td>
+<td>Status</td>
+<td>Comments</td>
+</tr>
+<tr>
+<td>Signature tests</td>
+<td>Irene</td>
+<td>1 week</td>
+<td>Done</td>
+<td>Re-recorded signatures as of 1.0</td>
+</tr>
+<tr>
+<td>API tests</td>
+<td>Irene</td>
+<td>?? weeks</td>
+<td>Not Complete</td>
+<td>Much of the API tests have been coded and tested. Additional work will be needed.
+
+</td>
+</tr>
+<tr>
+<td>Doc Support</td>
+<td>Eric Jendrock</td>
+<td>1.5 week</td>
+<td>done</td>
+<td> . </td>
+</tr>
+<tr>
+<td>Testing Support</td>
+<td>Steve Caruso</td>
+<td>1.5 week</td>
+<td>done</td>
+<td>.</td>
+</tr>
+</table>
+<table BORDER NOSAVE>
+<CENTER>
+<h3>JAXR 1.0 TS Test Suite Development Schedule</h3>
+</CENTER>
+<tr>
+<td>Development</td>
+<td>Engineer</td>
+<td>Time</td>
+<td>Start Date</td>
+<td>Complete Date</td>
+<td>Availability</td>
+</tr>
+<tr>
+<td>TCK integration in<br>
+J2EE (all vehicles)<br>
+</td>
+<td>???</td>
+<td>2 week</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+</tr>
+<tr>
+<td>J2EE Component Model<br>
+for JAXR <br>
+</td>
+<td>???</td>
+<td>3 week</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+</tr>
+<td>Porting package for <br>
+security credentials<br>
+</td>
+<td>Irene</td>
+<td>1 week</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+</tr>
+
+<tr>
+<td>Harness/Packaging<br>
+Support</td>
+<td>Kyle Grucci</td>
+<td>? week</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+</tr>
+<tr>
+<td>Doc Support</td>
+<td>Eric Jendrock</td>
+<td>1.5 week</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+</tr>
+<tr>
+<td>Testing Support</td>
+<td>Steve Caruso</td>
+<td>1.5 week</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+<td>??/??/2002</td>
+</tr>
+</table>
+<h2>Support</h2>
+<p>TCK/TS Support is provided to Licencees via the Java Licensee
+	Engineering (JLE) team.
+<h2>
+Planning Assumptions</h2>
+<pre>
+Notes to schedule above. 
+
+  TCK focus is as follows and in this order:
+
+  1) Signature Tests
+  2) API Tests
+  3) Specification and End-to-End Tests
+
+  TCK will try to track RI team regarding functionality for JAXR. This
+  however will not hold up TCK test development for API testing. Code will
+  be written for published API's according to the Javadoc and will be tested
+  as implemented in the specification.
+
+</pre>
+
+<h2>Risks</h2>
+<pre>
+Risks to schedule above.
+
+<h2>Team Members</h2>
+<ul>
+<li>Karen Schaffer, Program Manager
+<li>Farrukh Najmi, JAXR Version 1.0, Specification Lead
+<li>Kathy Walsh, RI Development Engineer Lead
+<li>Bobby Bissett, RI Development Engineer
+<li>Nandku Kesavan, SQE Lead Test Development Engineer
+<li>Cecilia Peltier, SQE Test Development Engineer
+<li>Irene Caruso, TCK/TS Lead Test Development Engineer
+<li>Kevin Osborn, TCK/TS Development Manager
+<li>Tom Kincaid, RI Engineering Development Manager
+</ul>
+</pre>
+<h2>Appendix A Test Assertions</h2>
+
+<ul>
+<li>
+<a href="http://invalid.domain.com/TS/XMLassertions/technology/JAXR1.0/JAXRJavadocAssertions.html">JAXR 1.0 Version 1.0 JavaDoc Assertion Detail</a>
+<li>
+<a href="http://invalid.domain.com/TS/XMLassertions/technology/JAXR1.0/JAXRSpecAssertions.html">JAXR 1.0 Version 1.0 Specification Assertion Detail</a>
+</ul>
+</body>
+</html>

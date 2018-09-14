@@ -1,0 +1,186 @@
+#Signature file v4.1
+#Version 1.5_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public java.lang.Exception
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Throwable
+hfds serialVersionUID
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public java.lang.Throwable
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+intf java.io.Serializable
+meth public final java.lang.Throwable[] getSuppressed()
+meth public final void addSuppressed(java.lang.Throwable)
+meth public java.lang.StackTraceElement[] getStackTrace()
+meth public java.lang.String getLocalizedMessage()
+meth public java.lang.String getMessage()
+meth public java.lang.String toString()
+meth public java.lang.Throwable fillInStackTrace()
+meth public java.lang.Throwable getCause()
+meth public java.lang.Throwable initCause(java.lang.Throwable)
+meth public void printStackTrace()
+meth public void printStackTrace(java.io.PrintStream)
+meth public void printStackTrace(java.io.PrintWriter)
+meth public void setStackTrace(java.lang.StackTraceElement[])
+supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
+
+CLSS public abstract interface java.security.Guard
+meth public abstract void checkGuard(java.lang.Object)
+
+CLSS public abstract java.security.Permission
+cons public <init>(java.lang.String)
+intf java.io.Serializable
+intf java.security.Guard
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract boolean implies(java.security.Permission)
+meth public abstract int hashCode()
+meth public abstract java.lang.String getActions()
+meth public final java.lang.String getName()
+meth public java.lang.String toString()
+meth public java.security.PermissionCollection newPermissionCollection()
+meth public void checkGuard(java.lang.Object)
+supr java.lang.Object
+hfds name,serialVersionUID
+
+CLSS public final javax.security.jacc.EJBMethodPermission
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String[])
+cons public <init>(java.lang.String,java.lang.String,java.lang.reflect.Method)
+meth public boolean equals(java.lang.Object)
+meth public boolean implies(java.security.Permission)
+meth public int hashCode()
+meth public java.lang.String getActions()
+supr java.security.Permission
+hfds actions,hashCodeValue,interfaceHash,interfaceKeys,methodInterface,methodName,methodParams,otherMethodInterface,serialPersistentFields,serialVersionUID
+
+CLSS public final javax.security.jacc.EJBRoleRefPermission
+cons public <init>(java.lang.String,java.lang.String)
+meth public boolean equals(java.lang.Object)
+meth public boolean implies(java.security.Permission)
+meth public int hashCode()
+meth public java.lang.String getActions()
+supr java.security.Permission
+hfds actions,hashCodeValue,serialPersistentFields,serialVersionUID
+
+CLSS public abstract interface javax.security.jacc.PolicyConfiguration
+meth public abstract boolean inService() throws javax.security.jacc.PolicyContextException
+meth public abstract java.lang.String getContextID() throws javax.security.jacc.PolicyContextException
+meth public abstract void addToExcludedPolicy(java.security.Permission) throws javax.security.jacc.PolicyContextException
+meth public abstract void addToExcludedPolicy(java.security.PermissionCollection) throws javax.security.jacc.PolicyContextException
+meth public abstract void addToRole(java.lang.String,java.security.Permission) throws javax.security.jacc.PolicyContextException
+meth public abstract void addToRole(java.lang.String,java.security.PermissionCollection) throws javax.security.jacc.PolicyContextException
+meth public abstract void addToUncheckedPolicy(java.security.Permission) throws javax.security.jacc.PolicyContextException
+meth public abstract void addToUncheckedPolicy(java.security.PermissionCollection) throws javax.security.jacc.PolicyContextException
+meth public abstract void commit() throws javax.security.jacc.PolicyContextException
+meth public abstract void delete() throws javax.security.jacc.PolicyContextException
+meth public abstract void linkConfiguration(javax.security.jacc.PolicyConfiguration) throws javax.security.jacc.PolicyContextException
+meth public abstract void removeExcludedPolicy() throws javax.security.jacc.PolicyContextException
+meth public abstract void removeRole(java.lang.String) throws javax.security.jacc.PolicyContextException
+meth public abstract void removeUncheckedPolicy() throws javax.security.jacc.PolicyContextException
+
+CLSS public abstract javax.security.jacc.PolicyConfigurationFactory
+cons public <init>()
+meth public abstract boolean inService(java.lang.String) throws javax.security.jacc.PolicyContextException
+meth public abstract javax.security.jacc.PolicyConfiguration getPolicyConfiguration(java.lang.String,boolean) throws javax.security.jacc.PolicyContextException
+meth public static javax.security.jacc.PolicyConfigurationFactory getPolicyConfigurationFactory() throws java.lang.ClassNotFoundException,javax.security.jacc.PolicyContextException
+supr java.lang.Object
+hfds FACTORY_NAME,pcFactory
+
+CLSS public final javax.security.jacc.PolicyContext
+meth public static java.lang.Object getContext(java.lang.String) throws javax.security.jacc.PolicyContextException
+meth public static java.lang.String getContextID()
+meth public static java.util.Set getHandlerKeys()
+meth public static void registerHandler(java.lang.String,javax.security.jacc.PolicyContextHandler,boolean) throws javax.security.jacc.PolicyContextException
+meth public static void setContextID(java.lang.String)
+meth public static void setHandlerData(java.lang.Object)
+supr java.lang.Object
+hfds handlerTable,thisContextID,thisHandlerData
+
+CLSS public javax.security.jacc.PolicyContextException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Exception
+
+CLSS public abstract interface javax.security.jacc.PolicyContextHandler
+meth public abstract boolean supports(java.lang.String) throws javax.security.jacc.PolicyContextException
+meth public abstract java.lang.Object getContext(java.lang.String,java.lang.Object) throws javax.security.jacc.PolicyContextException
+meth public abstract java.lang.String[] getKeys() throws javax.security.jacc.PolicyContextException
+
+CLSS public final javax.security.jacc.WebResourcePermission
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String[])
+cons public <init>(javax.servlet.http.HttpServletRequest)
+meth public boolean equals(java.lang.Object)
+meth public boolean implies(java.security.Permission)
+meth public int hashCode()
+meth public java.lang.String getActions()
+supr java.security.Permission
+hfds EMPTY_STRING,ESCAPED_COLON,hashCodeValue,methodSpec,serialPersistentFields,serialVersionUID,urlPatternSpec
+
+CLSS public final javax.security.jacc.WebRoleRefPermission
+cons public <init>(java.lang.String,java.lang.String)
+intf java.io.Serializable
+meth public boolean equals(java.lang.Object)
+meth public boolean implies(java.security.Permission)
+meth public int hashCode()
+meth public java.lang.String getActions()
+supr java.security.Permission
+hfds actions,hashCodeValue,serialPersistentFields,serialVersionUID
+
+CLSS public final javax.security.jacc.WebUserDataPermission
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String[],java.lang.String)
+cons public <init>(javax.servlet.http.HttpServletRequest)
+meth public boolean equals(java.lang.Object)
+meth public boolean implies(java.security.Permission)
+meth public int hashCode()
+meth public java.lang.String getActions()
+supr java.security.Permission
+hfds EMPTY_STRING,ESCAPED_COLON,TT_CONFIDENTIAL,TT_NONE,hashCodeValue,methodSpec,serialPersistentFields,serialVersionUID,transportHash,transportKeys,transportType,urlPatternSpec
+

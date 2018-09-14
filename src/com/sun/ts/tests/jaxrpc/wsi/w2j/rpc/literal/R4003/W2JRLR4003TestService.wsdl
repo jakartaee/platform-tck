@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="W2JRLR4003TestService"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl"
+    xmlns:tns8="http://w2jrlr4003testservice.org/W2JRLR4003ImportUTF8.wsdl"
+    xmlns:tns16="http://w2jrlr4003testservice.org/W2JRLR4003ImportUTF16.wsdl">
+
+	<import
+		namespace="http://w2jrlr4003testservice.org/W2JRLR4003ImportUTF8.wsdl"
+		location="W2JRLR4003ImportUTF8.wsdl"/>
+	<import
+		namespace="http://w2jrlr4003testservice.org/W2JRLR4003ImportUTF16.wsdl"
+		location="W2JRLR4003ImportUTF16.wsdl"/>
+    <types/>
+
+    <portType name="W2JRLR4003Test">
+    	<operation name="echoStringUTF8">
+            <input message="tns8:echoStringUTF8"/>
+            <output message="tns8:echoStringUTF8Response"/>
+    	</operation>
+    	<operation name="echoStringUTF16">
+            <input message="tns16:echoStringUTF16"/>
+            <output message="tns16:echoStringUTF16Response"/>
+    	</operation>
+    </portType>
+    
+    <binding name="W2JRLR4003TestBinding" type="tns:W2JRLR4003Test">
+    	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoStringUTF8">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal" namespace="http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl"/>
+            </output>
+    	</operation>
+    	<operation name="echoStringUTF16">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal" namespace="http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <service name="W2JRLR4003TestService">
+        <port binding="tns:W2JRLR4003TestBinding"
+            name="W2JRLR4003TestPort">
+            <soap:address
+		location="http://localhost:8000/W2JRLR4003TestService/ws4ee_1/W2JRLR4003Test"/>
+        </port>
+    </service>
+
+</definitions>

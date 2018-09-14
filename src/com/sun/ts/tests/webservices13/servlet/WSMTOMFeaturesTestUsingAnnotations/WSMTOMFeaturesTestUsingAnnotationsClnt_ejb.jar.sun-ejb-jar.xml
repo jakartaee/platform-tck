@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD GlassFish Application Server 3.0 EJB 3.1//EN" "http://www.sun.com/software/appserver/dtds/sun-ejb-jar_3_1-0.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<sun-ejb-jar>
+  <enterprise-beans>
+    <unique-id>0</unique-id>
+    <ejb>
+      <ejb-name>WSMTOMFeaturesTestUsingAnnotationsClntBean</ejb-name>
+      <jndi-name>WSMTOMFeaturesTestUsingAnnotationsClntBean</jndi-name>
+      <service-ref>
+        <service-ref-name>service/wsmtomfeaturestestusingannotationsservice</service-ref-name>
+        <wsdl-override>http://webServerHost.1:webServerPort.1/WSMTOMFeaturesTestUsingAnnotations_web/jaxws/MTOMTest1?WSDL</wsdl-override>
+      </service-ref>
+    
+      <service-ref>
+        <service-ref-name>service/wsmtomfeaturestestusingannotationsport1_1</service-ref-name>
+        <port-info>
+          <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest1</service-endpoint-interface>
+          <wsdl-port>
+            <namespaceURI>http://mtomservice.org/wsdl</namespaceURI>
+            <localpart>MTOMTest1Port</localpart>
+          </wsdl-port>
+        </port-info>
+        <wsdl-override>http://webServerHost.1:webServerPort.1/WSMTOMFeaturesTestUsingAnnotations_web/jaxws/MTOMTest1?WSDL</wsdl-override>
+      </service-ref>
+    
+      <service-ref>
+        <service-ref-name>service/wsmtomfeaturestestusingannotationsport1_2</service-ref-name>
+        <port-info>
+          <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest1</service-endpoint-interface>
+          <wsdl-port>
+            <namespaceURI>http://mtomservice.org/wsdl</namespaceURI>
+            <localpart>MTOMTest1Port</localpart>
+          </wsdl-port>
+        </port-info>
+        <wsdl-override>http://webServerHost.1:webServerPort.1/WSMTOMFeaturesTestUsingAnnotations_web/jaxws/MTOMTest1?WSDL</wsdl-override>
+      </service-ref>
+    
+      <service-ref>
+        <service-ref-name>service/wsmtomfeaturestestusingannotationsport2</service-ref-name>
+        <port-info>
+          <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest2</service-endpoint-interface>
+          <wsdl-port>
+            <namespaceURI>http://mtomservice.org/wsdl</namespaceURI>
+            <localpart>MTOMTest2Port</localpart>
+          </wsdl-port>
+        </port-info>
+        <wsdl-override>http://webServerHost.1:webServerPort.1/WSMTOMFeaturesTestUsingAnnotations_web/jaxws/MTOMTest1?WSDL</wsdl-override>
+      </service-ref>
+    
+      <service-ref>
+        <service-ref-name>service/wsmtomfeaturestestusingannotationsport3_1</service-ref-name>
+        <port-info>
+          <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest3</service-endpoint-interface>
+          <wsdl-port>
+            <namespaceURI>http://mtomservice.org/wsdl</namespaceURI>
+            <localpart>MTOMTest3Port</localpart>
+          </wsdl-port>
+        </port-info>
+        <wsdl-override>http://webServerHost.1:webServerPort.1/WSMTOMFeaturesTestUsingAnnotations_web/jaxws/MTOMTest1?WSDL</wsdl-override>
+      </service-ref>
+    
+      <service-ref>
+        <service-ref-name>service/wsmtomfeaturestestusingannotationsport3_2</service-ref-name>
+        <port-info>
+          <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest3</service-endpoint-interface>
+          <wsdl-port>
+            <namespaceURI>http://mtomservice.org/wsdl</namespaceURI>
+            <localpart>MTOMTest3Port</localpart>
+          </wsdl-port>
+        </port-info>
+        <wsdl-override>http://webServerHost.1:webServerPort.1/WSMTOMFeaturesTestUsingAnnotations_web/jaxws/MTOMTest1?WSDL</wsdl-override>
+      </service-ref>
+    
+      <service-ref>
+        <service-ref-name>service/wsmtomfeaturestestusingannotationsport3_3</service-ref-name>
+        <port-info>
+          <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest3</service-endpoint-interface>
+          <wsdl-port>
+            <namespaceURI>http://mtomservice.org/wsdl</namespaceURI>
+            <localpart>MTOMTest3Port</localpart>
+          </wsdl-port>
+        </port-info>
+        <wsdl-override>http://webServerHost.1:webServerPort.1/WSMTOMFeaturesTestUsingAnnotations_web/jaxws/MTOMTest1?WSDL</wsdl-override>
+      </service-ref>
+    
+      <service-ref>
+        <service-ref-name>service/wsmtomfeaturestestusingannotationsport4</service-ref-name>
+        <port-info>
+          <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest4</service-endpoint-interface>
+          <wsdl-port>
+            <namespaceURI>http://mtomservice.org/wsdl</namespaceURI>
+            <localpart>MTOMTest4Port</localpart>
+          </wsdl-port>
+        </port-info>
+        <wsdl-override>http://webServerHost.1:webServerPort.1/WSMTOMFeaturesTestUsingAnnotations_web/jaxws/MTOMTest1?WSDL</wsdl-override>
+      </service-ref>
+      <pass-by-reference>false</pass-by-reference>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+    </ejb>
+  </enterprise-beans>
+</sun-ejb-jar>

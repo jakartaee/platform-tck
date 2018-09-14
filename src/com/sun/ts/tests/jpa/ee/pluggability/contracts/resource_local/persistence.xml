@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+    http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+  version="2.1">
+    <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
+        <provider>com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.PersistenceProvider</provider>
+        <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
+        <mapping-file>META-INF/myMappingFile1.xml</mapping-file>
+        <mapping-file>META-INF/myMappingFile2.xml</mapping-file>
+        <jar-file>pluggability_contracts_resource_local.jar</jar-file>
+        <class>com.sun.ts.tests.jpa.ee.pluggability.contracts.resource_local.Order</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <validation-mode>NONE</validation-mode>
+        <properties>
+            <property name="eclipselink.logging.level" value="INFO"/>
+            <property name="eclipselink.logging.logger" value="DefaultLogger"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+

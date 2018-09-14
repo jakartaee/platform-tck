@@ -1,0 +1,39 @@
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+#
+# Wizard Statefile created: Tue Apr 29 22:32:24 PDT 2003
+#              Wizard path: /home/qouyang/ws/test_checkin/publish/Linux2.4_DBG.OBJ/package/sun-appserver8-eval/j2ee_sdk_lin//home/qouyang/ws/test_checkin/publish/Linux2.4_DBG.OBJ/package/sun-appserver8-eval/j2ee_sdk_lin/appserv.class
+#
+
+#
+# Wizard Statefile section for J2EE 1.4 SDK
+#
+[STATE_BEGIN @begin.done.tag@ @class.id@]
+defaultInstallDirectory = /sun/appserver8
+currentInstallDirectory = @s1as.home@
+INST_ASADMIN_USERNAME = @s1as.admin.user@
+ADMIN_PASSWORD_ENCRYPTED = FALSE
+INST_ASADMIN_PASSWORD = @s1as.admin.passwd@
+INST_ASADMIN_PORT = @s1as.admin.port@
+INST_ASWEB_PORT = @sjsas.das.webServerPort@
+CREATE_SAMPLES_DOMAIN = FALSE
+STORE_ADMIN_AUTH = FALSE
+INST_HTTPS_PORT = @sjsas.das.securedWebServicePort@
+CREATE_DESKTOP_SHORTCUT = FALSE
+USE_BUNDLED_JDK= FALSE
+JDK_LOCATION = @java.home@
+[STATE_DONE @begin.done.tag@  @class.id@]

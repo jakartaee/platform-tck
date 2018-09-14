@@ -1,0 +1,223 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="WEBSOCKET" basedir="." default="build">
+
+    <!-- IMPORTS -->
+	<import file="../../bin/xml/ts.common.props.xml"/>
+
+	<property name="deliverable.version"  value="1.1"/>
+	<property name="platform.folder" value="com/sun/ts/tests/websocket/platform/**"/>
+
+    <!-- For TCK, exclude platform dependencies, i.e. if run on not full EE platform
+         For JAXRS CTS, no need to exclude anything, to run e.g. on Glassfish -->
+	<condition property="exclude.classes" value="">
+		<contains string="${test.areas}" substring="websocket" casesensitive="false"/>
+	</condition>
+	<condition property="exclude.classes" value="${platform.folder}/*.class">
+		<not>
+			<contains string="${test.areas}" substring="websocket" casesensitive="false"/>
+		</not>
+	</condition>
+
+	<condition property="exclude.src" value="">
+		<contains string="${test.areas}" substring="websocket" casesensitive="false"/>
+	</condition>
+	<condition property="exclude.src" value="${platform.folder}/*">
+		<not>
+			<contains string="${test.areas}" substring="websocket" casesensitive="false"/>
+		</not>
+	</condition>
+
+	<condition property="exclude.sunwebxml" value="">
+		<contains string="${test.areas}" substring="websocket" casesensitive="false"/>
+	</condition>
+	<condition property="exclude.sunwebxml" value="${platform.folder}/*.sun-web.xml">
+		<not>
+			<contains string="${test.areas}" substring="websocket" casesensitive="false"/>
+		</not>
+	</condition>
+
+	<condition property="exclude.wars" value="">
+		<contains string="${test.areas}" substring="websocket" casesensitive="false"/>
+	</condition>
+	<condition property="exclude.wars" value="${platform.folder}/*.war">
+		<not>
+			<contains string="${test.areas}" substring="websocket" casesensitive="false"/>
+		</not>
+	</condition>
+
+	<target name="init">
+		<mkdir dir="${deliverable.bundle.dir}/bin"/>
+		<mkdir dir="${deliverable.bundle.dir}/classes"/>
+		<mkdir dir="${deliverable.bundle.dir}/dist"/>
+		<mkdir dir="${deliverable.bundle.dir}/lib/dtds"/>
+		<mkdir dir="${deliverable.bundle.dir}/src"/>
+		<mkdir dir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting"/>
+        <mkdir dir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/common"/>
+		<mkdir dir="${deliverable.bundle.dir}/docs"/>
+	</target>
+
+	<target name="copyinstall">
+		<copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+					 includes="**/*"
+					 excludes="**/workspace.xml, **/*.log, **/out, **/certificates/README"/>
+		</copy>
+		<copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/lib"
+					 includes="commons-httpclient-3.1.jar, commons-logging-1.1.3.jar, commons-codec-1.9.jar, tsharness.jar, websockettck.jar, javatest.jar" />
+		</copy>
+		<copy todir="${deliverable.bundle.dir}/src">
+			<fileset dir="${ts.home}/install/${deliverable.name.lower}/other"
+					 includes="**/*"/>
+		</copy>
+		<copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/install/${deliverable.name.lower}/docs"
+					 includes="*ReleaseNotes*.html"/>
+		</copy>
+                <copy todir="${deliverable.bundle.dir}/docs/assertions" includeEmptyDirs="no">
+                        <fileset dir="${ts.home}/internal/docs/websocket" includes="WebSocketJavadocAssertions.html" />
+                </copy>
+                <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+                        <fileset dir="${ts.home}" includes="NOTICE" />
+                </copy>
+		<copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+	  </copy>
+	</target>
+
+    <target name="copybin">
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish/templates">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish/templates"
+                     includes="**/password.template"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish"
+                     includes="**/s1as.xml,**/common.xml"/>
+        </copy>
+    </target>
+    
+    <target name="build" depends="init, copyinstall, copybin">
+        <!-- the classes directory -->
+		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/classes"
+					 includes="com/sun/ts/tests/websocket/**/*.class,
+                     com/sun/ts/tests/common/webclient/**/*.class,
+                     com/sun/ts/tests/common/vehicle/*.class,
+                     com/sun/ts/lib/deliverable/tck/*.class,
+                     com/sun/ts/lib/porting/TSURL.class,
+                     com/sun/ts/lib/porting/TSURLInterface.class,
+                     com/sun/ts/lib/implementation/sun/common/SunRIURL.class,
+                     com/sun/ts/tests/signaturetest/*.class,
+                     com/sun/ts/tests/signaturetest/websocket/WebSocketSigTest.class"
+					 excludes="${exclude.classes}"/>
+		</copy>
+
+        <!-- the lib/dtds directory -->
+		<copy todir="${deliverable.bundle.dir}/lib/dtds" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/lib/dtds" includes="web-app*"/>
+		</copy>
+
+        <!-- include schemas needed for the technology -->
+		<copy todir="${deliverable.bundle.dir}/lib/schemas" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/lib/schemas"
+					 includes="web-app*,
+                     XMLSchema.xsd, xml.xsd"/>
+		</copy>
+
+        <!-- copy the commons-httpclient and dependent JARs -->
+		<copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/lib" includes="commons-*.jar" />
+		</copy>
+
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/websocket/**/*sun-web.xml"
+					 excludes="${exclude.sunwebxml}" />
+		</copy>
+
+        <!-- the war files in the dist directory -->
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/websocket/**/*.war"
+					 excludes="${exclude.wars}"/>
+		</copy>
+
+        <!-- the specific deliverable source directories -->
+		<copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src"
+					 includes="com/sun/ts/tests/websocket/**/*,
+                     com/sun/ts/tests/signaturetest/SigTestData.java,
+                     com/sun/ts/tests/signaturetest/SigTest.java,
+                     com/sun/ts/tests/signaturetest/SigTestResult.java,
+                     com/sun/ts/tests/signaturetest/SigTestUtil.java,
+                     com/sun/ts/tests/signaturetest/build.xml,
+                     com/sun/ts/tests/signaturetest/signature-repository/*websocket*,
+                     com/sun/ts/tests/signaturetest/websocket/WebSocketSigTest.java"
+					 excludes="${exclude.src}"/>
+		</copy>
+
+		<copy todir="${deliverable.bundle.dir}/src/com/sun/ts/tests/signaturetest/signature-repository/"
+			  includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src/com/sun/ts/tests/signaturetest/signature-repository/"
+					 includes="javax.websocket.sig_1.1*" />
+		</copy>
+
+        <!-- the com/sun/ts/lib file -->
+		<copy file="${ts.home}/src/com/sun/ts/lib/build.xml"
+			  todir="${deliverable.bundle.dir}/src/com/sun/ts/lib"/>
+
+        <!-- the com/sun/ts/lib/porting directory -->
+		<copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting"
+			  includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src/com/sun/ts/lib/porting"
+					 includes="TSDeploymentInterface.java,
+                     TSDeploymentException.java,
+            TSURLInterface.java, TSURL.java"/>
+		</copy>
+
+        <!-- the com/sun/ts/lib/implementation/sun/common file -->
+		<copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/common/SunRIURL.java"
+			  todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/common"/>
+
+        <!-- the com/sun/ts/lib/implementation/sun/javaee directory -->
+		<copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/javaee"
+			  includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src/com/sun/ts/lib/implementation/sun/javaee"
+					 includes="ManualDeployment.java,SunRIDeployment.java"/>
+		</copy>
+
+		<delete quiet="true">
+			<fileset dir="${deliverable.bundle.dir}/lib"
+					 includes="*jaxb*"/>
+		</delete>
+
+		<antcall target="create.doc.bundle"/>
+	</target>
+
+	<target name="create.doc.bundle">
+		<delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
+		<zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">
+			<zipfileset dir="${ts.home}/install/${deliverable.dir}/docs"
+						includes="**/*.html, **/*.gif, **/*.css"
+						excludes="*ReleaseNotes*.html"/>
+            <zipfileset dir="${deliverable.bundle.dir}/docs/assertions"
+			            prefix="assertions"
+                        includes="*"/>
+		</zip>
+	</target>
+
+</project>

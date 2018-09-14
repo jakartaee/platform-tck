@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<schema
+    targetNamespace="http://marshalltestservice.org/types2"
+    xmlns:foo="http://marshalltestservice.org/types2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+    <xs:include schemaLocation = "IncludedDefs.xsd"/>
+
+    <complexType name="languageElem">
+        <sequence>
+            <element name="languageElem" type="language"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="tokenElem">
+        <sequence>
+            <element name="tokenElem" type="token"/>
+        </sequence>
+    </complexType>
+    <complexType name="nameElem">
+        <sequence>
+            <element name="nameElem" type="Name"/>
+        </sequence>
+    </complexType>
+    <complexType name="NCNameElem">
+        <sequence>
+            <element name="NCNameElem" type="NCName"/>
+
+        </sequence>
+    </complexType>
+    <complexType name="IDElem">
+        <sequence>
+            <element name="IDElem" type="ID"/>
+        </sequence>
+    </complexType>
+    <complexType name="NMTokenElem">
+        <sequence>
+            <element name="NMTokenElem" type="NMTOKEN"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="FooStringRequest">
+            <sequence>
+                <element name="varString" type="string" nillable="true"/>
+            </sequence>
+    </complexType>
+    <complexType name="FooStringResponse">
+            <sequence>
+                <element name="varString" type="string" nillable="true"/>
+            </sequence>
+    </complexType>
+
+    <complexType name="FooType">
+    	<sequence>
+    		<element name="fooA" type="boolean"/>
+    		<element name="fooB" type="byte"/>
+    		<element name="fooC" type="short"/>
+    		<element name="fooD" type="int"/>
+    		<element name="fooE" type="long"/>
+    		<element name="fooF" type="float"/>
+    		<element name="fooG" type="double"/>
+    		<element name="fooH" type="string"/>
+    		<element name="fooI" type="foo:FooIType"/>
+                <element name="fooJ" type="foo:FooVariousSchemaTypes"/>
+                <element name="fooK" type="foo:FooIntegerRangeType"/>
+                <element name="fooM" type="anySimpleType"/>
+                <element name="fooN" type="foo:FooAnonymousType"/>
+    	</sequence>
+    </complexType>
+
+    <element name="FooIType" type="foo:FooIType"/>
+    <simpleType name="FooIType">
+        <restriction base="normalizedString">
+		<pattern value="\d{3}-[A-Z0-9]{5}"/>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="FooVariousSchemaTypesListType">
+        <sequence>
+                <element name="fooA" type="foo:FooVariousSchemaTypes" nillable="false" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="FooVariousSchemaTypes">
+        <sequence>
+                <element name="fooA" type="unsignedShort"/>
+                <element name="fooB" type="nonNegativeInteger"/>
+                <element name="fooC" type="normalizedString"/>
+                <element name="fooD" type="NMTOKEN"/>
+                <element name="fooE" type="unsignedInt"/>
+                <element name="fooF" type="unsignedByte"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="FooIntegerRangeType">
+        <restriction base="integer">
+          <minInclusive value="100"/>
+          <maxInclusive value="999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooStringListType">
+	<list itemType="string"/>
+    </simpleType>
+
+    <simpleType name="FooFloatListType">
+        <list itemType="float"/>
+    </simpleType>
+
+    <simpleType name="FooIntListType">
+        <list itemType="int"/>
+    </simpleType>
+
+    <simpleType name="FooDecimalListType">
+        <list itemType="decimal"/>
+    </simpleType>
+
+    <simpleType name="FooDoubleListType">
+        <list itemType="double"/>
+    </simpleType>
+
+    <simpleType name="FooIntegerListType">
+        <list itemType="integer"/>
+    </simpleType>
+
+    <simpleType name="FooLongListType">
+        <list itemType="long"/>
+    </simpleType>
+
+    <simpleType name="FooShortListType">
+        <list itemType="short"/>
+    </simpleType>
+
+    <simpleType name="FooByteListType">
+        <list itemType="byte"/>
+    </simpleType>
+
+    <simpleType name="FooAnnotationType">
+          <annotation>
+                <documentation xml:lang="en">Test results</documentation>
+          </annotation>
+          <restriction base="string">
+                <enumeration value="Unknown"/>
+                <enumeration value="Passed"/>
+                <enumeration value="Failed"/>
+          </restriction>
+    </simpleType>
+
+    <element name="FooAnySimpleType" type="anySimpleType"/>
+    <complexType name="FooAnySimpleType">
+        <sequence>
+                <element name="FooAnySimpleType" type="anySimpleType"/>
+        </sequence>
+    </complexType>
+
+    <element name="FooAnyURIType" type="anyURI"/>
+    <complexType name="FooAnyURIType">
+        <sequence>
+                <element name="FooAnyURIType" type="anyURI"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="FooStringEnumType">
+        <restriction base="string">
+          <enumeration value="MA"/>
+          <enumeration value="NH"/>
+          <enumeration value="VT"/>
+          <enumeration value="ME"/>
+          <enumeration value="RI"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FooByteEnumType">
+        <restriction base="byte">
+            <enumeration value="1"/>
+            <enumeration value="2"/>
+            <enumeration value="3"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FooShortEnumType">
+        <restriction base="short">
+            <enumeration value="1"/>
+            <enumeration value="2"/>
+            <enumeration value="3"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FooIntegerEnumType">
+        <restriction base="integer">
+            <enumeration value="1"/>
+            <enumeration value="2"/>
+            <enumeration value="3"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FooIntEnumType">
+        <restriction base="int">
+            <enumeration value="1"/>
+            <enumeration value="2"/>
+            <enumeration value="3"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FooLongEnumType">
+        <restriction base="long">
+            <enumeration value="1"/>
+            <enumeration value="2"/>
+            <enumeration value="3"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FooDecimalEnumType">
+        <restriction base="decimal">
+            <enumeration value="1.1"/>
+            <enumeration value="2.2"/>
+            <enumeration value="3.3"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FooFloatEnumType">
+        <restriction base="float">
+            <enumeration value="1.1"/>
+            <enumeration value="2.2"/>
+            <enumeration value="3.3"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="FooDoubleEnumType">
+        <restriction base="double">
+            <enumeration value="1.1"/>
+            <enumeration value="2.2"/>
+            <enumeration value="3.3"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="FooStatusType">
+        <sequence>
+                <element name="fooA" type="boolean" nillable="false"/>
+        </sequence>
+    </complexType>
+
+
+    <complexType name="FooAnonymousType">
+        <sequence>
+            <element name="fooAnonymous" minOccurs="0" maxOccurs="unbounded">
+              <complexType>
+                <sequence>
+                    <element name="fooA" type="string"/>
+                    <element name="fooB" type="int"/>
+                </sequence>
+                <attribute name="fooC" type="boolean" use="required"/>
+              </complexType>
+            </element>
+        </sequence>
+    </complexType>
+    <element name="FooFault" type="foo:FooFaultException"/>
+    <complexType name="FooFaultException">
+        <sequence>
+                <element name="WhyTheFault">
+                        <simpleType>
+                                <restriction base="NMTOKEN">
+                                        <enumeration value="FooBad1"/>
+                                        <enumeration value="FooBad2"/>
+                                        <enumeration value="FooBad3"/>
+                                        <enumeration value="FooBad4"/>
+                                        <enumeration value="FooBad5"/>
+                                </restriction>
+                        </simpleType>
+                </element>
+        </sequence>
+    </complexType>
+
+    <simpleType name="mySimpleStringType">
+        <restriction base="xs:string">
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooString">
+       <restriction base="foo:mySimpleStringType">
+       </restriction>
+    </simpleType>
+
+    <simpleType name="mySimpleIntegerType">
+        <restriction base="xs:integer">
+           <minInclusive value="5"/>
+           <maxInclusive value="7"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooInteger">
+       <restriction base="foo:mySimpleIntegerType">
+       </restriction>
+    </simpleType>
+
+    <simpleType name="mySimpleIntType">
+        <restriction base="xs:int">
+           <minInclusive value="10"/>
+           <maxInclusive value="12"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooInt">
+       <restriction base="foo:mySimpleIntType">
+       </restriction>
+    </simpleType>
+
+
+    <simpleType name="mySimpleLongType">
+        <restriction base="xs:long">
+           <minInclusive value="1000000000000000000"/>
+           <maxInclusive value="1000000000000000002"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooLong">
+       <restriction base="foo:mySimpleLongType">
+       </restriction>
+    </simpleType>
+
+    <simpleType name="mySimpleShortType">
+        <restriction base="xs:short">
+           <minInclusive value="32765"/>
+           <maxInclusive value="32767"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooShort">
+       <restriction base="foo:mySimpleShortType">
+       </restriction>
+    </simpleType>
+
+    <simpleType name="mySimpleDecimalType">
+        <restriction base="xs:decimal">
+           <minInclusive value="3512359.1456"/>
+           <maxInclusive value="3512360.1456"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooDecimal">
+       <restriction base="foo:mySimpleDecimalType">
+       </restriction>
+    </simpleType>
+    <simpleType name="mySimpleFloatType">
+        <restriction base="xs:float">
+           <minInclusive value="489.57"/>
+           <maxInclusive value="488.57"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooFloat">
+       <restriction base="foo:mySimpleFloatType">
+       </restriction>
+    </simpleType>
+
+
+    <simpleType name="mySimpleDoubleType">
+        <restriction base="xs:double">
+           <minInclusive value="5"/>
+           <maxInclusive value="7"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooDouble">
+       <restriction base="foo:mySimpleDoubleType">
+       </restriction>
+    </simpleType>
+
+    <simpleType name="mySimpleBooleanType">
+        <restriction base="xs:boolean">
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooBoolean">
+       <restriction base="foo:mySimpleBooleanType">
+       </restriction>
+    </simpleType>
+
+
+    <simpleType name="mySimpleByteType">
+        <restriction base="xs:byte">
+           <minInclusive value="125"/>
+           <maxInclusive value="127"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooByte">
+       <restriction base="foo:mySimpleByteType">
+       </restriction>
+    </simpleType>
+
+    <simpleType name="mySimpleQNameType">
+        <restriction base="xs:QName">
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FooQName">
+       <restriction base="foo:mySimpleQNameType">
+       </restriction>
+    </simpleType>
+</schema>

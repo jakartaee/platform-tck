@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jdlreferenceparamstest")
+SERVICE=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.refps.AddNumbersService
+SEI=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.refps.AddNumbersPortType
+IMPL=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.refps.AddNumbersImpl
+URLALIAS=/jaxws/AddNumbers
+SERVLETNAME=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.refps.AddNumbersImpl
+NAMESPACEURI=http://example.com
+PORT=AddNumbersPort
+WEBSERVICEDESCRIPTION=AddNumbersService
+SERVICEREFNAMEWSSERVLET=service/wsw2jdlreferenceparamstest
+SERVICEREFNAMEWSEJB=service/wsw2jdlreferenceparamstest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jdlreferenceparamstest

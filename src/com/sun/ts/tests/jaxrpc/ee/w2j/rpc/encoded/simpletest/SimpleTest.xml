@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+  http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd"
+  version="1.1">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.simpletest</package-type>
+    <namespaceURI>http://simpletestservice.org/wsdl</namespaceURI>
+  </package-mapping>
+  <service-interface-mapping>
+      <service-interface>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.simpletest.SimpleTestService</service-interface>
+      <wsdl-service-name xmlns:serviceNS="http://simpletestservice.org/wsdl">serviceNS:SimpleTestService</wsdl-service-name>
+    <port-mapping>
+        <port-name>HelloPort</port-name>
+        <java-port-name>HelloPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.simpletest.Hello</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://simpletestservice.org/wsdl">portTypeNS:Hello</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://simpletestservice.org/wsdl">bindingNS:HelloBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>hello</java-method-name>
+      <wsdl-operation>hello</wsdl-operation>
+        <method-param-parts-mapping>
+          <param-position>0</param-position>
+          <param-type>java.lang.String</param-type>
+          <wsdl-message-mapping>
+              <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:hello</wsdl-message>
+              <wsdl-message-part-name>string</wsdl-message-part-name>
+              <parameter-mode>IN</parameter-mode>
+          </wsdl-message-mapping>
+        </method-param-parts-mapping>
+        <wsdl-return-value-mapping>
+            <method-return-value>java.lang.String</method-return-value>
+            <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:helloResponse</wsdl-message>
+            <wsdl-message-part-name>result</wsdl-message-part-name>
+        </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>helloOneWay</java-method-name>
+      <wsdl-operation>helloOneWay</wsdl-operation>
+        <method-param-parts-mapping>
+          <param-position>0</param-position>
+          <param-type>java.lang.String</param-type>
+          <wsdl-message-mapping>
+              <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:helloOneWay</wsdl-message>
+              <wsdl-message-part-name>string</wsdl-message-part-name>
+              <parameter-mode>IN</parameter-mode>
+          </wsdl-message-mapping>
+        </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

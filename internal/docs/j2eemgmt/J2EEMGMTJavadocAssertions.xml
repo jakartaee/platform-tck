@@ -1,0 +1,680 @@
+<?xml version = "1.0" encoding = "US-ASCII"?>
+<!DOCTYPE javadoc SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/javadoc_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<?xml-stylesheet href = 'file:///files/tools/docs/xsl/assertions/javadoc_assertions.xsl' type = 'text/xsl'?>
+<javadoc>
+	<next-available-id>52</next-available-id>
+	<previous-id>1</previous-id>
+	<technology>JavaEEManagement</technology>
+	<id>JavaEEManagement</id>
+	<name>Java EE Management API</name>
+	<version>1.1</version>
+	<assertions>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>1</id>
+			<description>                            Creates an MEJB session object which provides access to the J2EE Management Model
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ManagementHome</class-interface>
+			<method name = "create" return-type = "javax.management.j2ee.Management"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>2</id>
+			<description/>
+			<package>javax.management.j2ee</package>
+			<class-interface>ManagementHome</class-interface>
+			<method name = "create" return-type = "javax.management.j2ee.Management">
+				<throw>javax.ejb.CreateException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>3</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ManagementHome</class-interface>
+			<method name = "create" return-type = "javax.management.j2ee.Management">
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>4</id>
+			<description>                            Gets the names of managed objects controlled by the MEJB.
+                             This method  enables any of the following to be obtained: The names of all managed objects,  the names of a set of managed objects specified by pattern matching on the  &lt;CODE>ObjectName&lt;/CODE>, a specific managed object name (equivalent to  testing whether an managed object is registered). When the object name is  null or no domain and key properties are specified, all objects are selected.  It returns the set of J2EEObjectNames for the managed objects selected.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "queryNames" return-type = "java.util.Set">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>QueryExp</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>5</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "queryNames" return-type = "java.util.Set">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>QueryExp</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>6</id>
+			<description>                            Checks whether an managed object, identified by its object name, is already registered  with the MEJB.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "isRegistered" return-type = "boolean">
+				<parameters>
+					<parameter>ObjectName</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>7</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "isRegistered" return-type = "boolean">
+				<parameters>
+					<parameter>ObjectName</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>8</id>
+			<description>                            Returns the number of managed objects registered in the MEJB.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getMBeanCount" return-type = "java.lang.Integer"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>9</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getMBeanCount" return-type = "java.lang.Integer">
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>10</id>
+			<description>                            This method discovers the attributes and operations that an managed object exposes  for management.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getMBeanInfo" return-type = "MBeanInfo">
+				<parameters>
+					<parameter>ObjectName</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>11</id>
+			<description>An exception occurs during introspection.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getMBeanInfo" return-type = "MBeanInfo">
+				<parameters>
+					<parameter>ObjectName</parameter>
+				</parameters>
+				<throw>IntrospectionException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>12</id>
+			<description>The managed object specified is not found.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getMBeanInfo" return-type = "MBeanInfo">
+				<parameters>
+					<parameter>ObjectName</parameter>
+				</parameters>
+				<throw>InstanceNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>13</id>
+			<description>An exception occurred when trying to perform reflection on a managed object</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getMBeanInfo" return-type = "MBeanInfo">
+				<parameters>
+					<parameter>ObjectName</parameter>
+				</parameters>
+				<throw>ReflectionException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>14</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getMBeanInfo" return-type = "MBeanInfo">
+				<parameters>
+					<parameter>ObjectName</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>15</id>
+			<description>                            Gets the value of a specific attribute of a named managed object.
+                             The managed object  is identified by its object name.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttribute" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>16</id>
+			<description>Wraps an exception thrown by the managed object's getter.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttribute" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+				</parameters>
+				<throw>MBeanException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>17</id>
+			<description>The attribute specified is not accessible in the managed object.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttribute" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+				</parameters>
+				<throw>AttributeNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>18</id>
+			<description>The managed object specified is not registered in the MEJB.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttribute" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+				</parameters>
+				<throw>InstanceNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>19</id>
+			<description>An exception occurred when trying to invoke the getAttribute method of a Dynamic MBean</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttribute" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+				</parameters>
+				<throw>ReflectionException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>20</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttribute" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>21</id>
+			<description>                            Enables the values of several attributes of a named managed object.
+                             The managed object  is identified by its object name.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttributes" return-type = "AttributeList">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>22</id>
+			<description>The managed object specified is not registered in the MEJB.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttributes" return-type = "AttributeList">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+				<throw>InstanceNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>23</id>
+			<description>An exception occurred when trying to invoke the getAttributes method of a Dynamic managed object.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttributes" return-type = "AttributeList">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+				<throw>ReflectionException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>24</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getAttributes" return-type = "AttributeList">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>25</id>
+			<description>                            Sets the value of a specific attribute of a named managed object.
+                             The managed object  is identified by its object name.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttribute" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>Attribute</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>26</id>
+			<description>The managed object specified is not registered in the MEJB.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttribute" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>Attribute</parameter>
+				</parameters>
+				<throw>InstanceNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>27</id>
+			<description>The attribute specified is not accessible in the managed object.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttribute" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>Attribute</parameter>
+				</parameters>
+				<throw>AttributeNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>28</id>
+			<description>The value specified for the attribute is not valid.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttribute" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>Attribute</parameter>
+				</parameters>
+				<throw>InvalidAttributeValueException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>29</id>
+			<description>Wraps an exception thrown by the managed object's setter.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttribute" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>Attribute</parameter>
+				</parameters>
+				<throw>MBeanException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>30</id>
+			<description>An exception occurred when trying to invoke the setAttribute method of a Dynamic managed object.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttribute" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>Attribute</parameter>
+				</parameters>
+				<throw>ReflectionException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>31</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttribute" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>Attribute</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>32</id>
+			<description>                            Sets the values of several attributes of a named managed object.
+                             The managed object is  identified by its object name.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttributes" return-type = "AttributeList">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>AttributeList</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>33</id>
+			<description>The managed object specified is not registered in the MEJB.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttributes" return-type = "AttributeList">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>AttributeList</parameter>
+				</parameters>
+				<throw>InstanceNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>34</id>
+			<description>An exception occurred when trying to invoke the setAttributes method of a Dynamic managed object.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttributes" return-type = "AttributeList">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>AttributeList</parameter>
+				</parameters>
+				<throw>ReflectionException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>35</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "setAttributes" return-type = "AttributeList">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>AttributeList</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>36</id>
+			<description>                            Invokes an operation on an managed object.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "invoke" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+					<parameter>java.lang.Object[]</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>37</id>
+			<description>The managed object specified is not registered in the MEJB.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "invoke" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+					<parameter>java.lang.Object[]</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+				<throw>InstanceNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>38</id>
+			<description>Wraps an exception thrown by the managed object's invoked method.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "invoke" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+					<parameter>java.lang.Object[]</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+				<throw>MBeanException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>39</id>
+			<description>Wraps a &lt;CODE>java.lang.Exception&lt;/CODE> thrown while trying to invoke the method.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "invoke" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+					<parameter>java.lang.Object[]</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+				<throw>ReflectionException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>40</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "invoke" return-type = "java.lang.Object">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>java.lang.String</parameter>
+					<parameter>java.lang.Object[]</parameter>
+					<parameter>java.lang.String[]</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>41</id>
+			<description>                            Returns the default domain name of this MEJB.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getDefaultDomain" return-type = "java.lang.String"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>42</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getDefaultDomain" return-type = "java.lang.String">
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>43</id>
+			<description/>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getListenerRegistry" return-type = "javax.management.j2ee.ListenerRegistration"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>44</id>
+			<description/>
+			<package>javax.management.j2ee</package>
+			<class-interface>Management</class-interface>
+			<method name = "getListenerRegistry" return-type = "javax.management.j2ee.ListenerRegistration">
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>45</id>
+			<description>                            Add a listener to a registered managed object.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ListenerRegistration</class-interface>
+			<method name = "addNotificationListener" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>NotificationListener</parameter>
+					<parameter>NotificationFilter</parameter>
+					<parameter>java.lang.Object</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>46</id>
+			<description>The managed object name provided does not match any of the registered managed objects.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ListenerRegistration</class-interface>
+			<method name = "addNotificationListener" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>NotificationListener</parameter>
+					<parameter>NotificationFilter</parameter>
+					<parameter>java.lang.Object</parameter>
+				</parameters>
+				<throw>InstanceNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>47</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ListenerRegistration</class-interface>
+			<method name = "addNotificationListener" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>NotificationListener</parameter>
+					<parameter>NotificationFilter</parameter>
+					<parameter>java.lang.Object</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>48</id>
+			<description>                            Remove a listener from a registered managed object.
+                        
+			</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ListenerRegistration</class-interface>
+			<method name = "removeNotificationListener" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>NotificationListener</parameter>
+				</parameters>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>49</id>
+			<description>The managed object name provided does not match any of the registered managed objects.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ListenerRegistration</class-interface>
+			<method name = "removeNotificationListener" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>NotificationListener</parameter>
+				</parameters>
+				<throw>InstanceNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
+			<id>50</id>
+			<description>The listener is not registered in the managed object.</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ListenerRegistration</class-interface>
+			<method name = "removeNotificationListener" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>NotificationListener</parameter>
+				</parameters>
+				<throw>ListenerNotFoundException</throw>
+			</method>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
+			<id>51</id>
+			<description>A communication exception occurred during the execution of a remote method call</description>
+			<package>javax.management.j2ee</package>
+			<class-interface>ListenerRegistration</class-interface>
+			<method name = "removeNotificationListener" return-type = "void">
+				<parameters>
+					<parameter>ObjectName</parameter>
+					<parameter>NotificationListener</parameter>
+				</parameters>
+				<throw>java.rmi.RemoteException</throw>
+			</method>
+		</assertion>
+	</assertions>
+</javadoc>

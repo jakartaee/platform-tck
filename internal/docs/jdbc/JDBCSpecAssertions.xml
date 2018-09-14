@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by sudipto ghosh (sun microsystems) -->
+<?xml-stylesheet type="text/xsl" href= "http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<spec>
+	<next-available-id/>
+	<previous-id>1</previous-id>
+	<technology>JDBC</technology>
+	<id>JDBC</id>
+	<name>Java API for Database Connectivity</name>
+	<version>3.0</version>
+	<location-names>
+		<chapters>
+			<chapter id="2" name="Goals">
+				<sections>
+					<section id="9" name="Maintain backward compatibility with existing applications and drivers"/>
+				</sections>
+			</chapter>
+			<chapter id="6" name="Compliance">
+				<sections>
+					<section id="2" name="Guidelines applied to all levels of compliance."/>
+					<section id="3" name="Driver compliant with the JDBC 1.0 API."/>
+					<section id="4" name="Driver compliant with the JDBC 2.0 API."/>
+					<section id="5" name="Driver compliant with the JDBC 3.0 API."/>
+				</sections>
+			</chapter>
+			<chapter id="9" name="Connections">
+				<sections>
+					<section id="2" name="The Driver Interface"/>
+					<section id="4.1" name="DataSource Properties"/>
+				</sections>
+			</chapter>
+			<chapter id="10" name="Transaction">
+				<sections>
+					<section id="1" name="Using the setTransactionIsolation Method"/>
+				</sections>
+			</chapter>
+			<chapter id="11" name="Connection pooling">
+				<sections>
+					<section id="4" name="DataSource implementations and Connection Pooling"/>
+					<section id="7" name="ConnectionPoolDataSource Properties"/>
+				</sections>
+			</chapter>
+			<chapter id="12" name="Distributed Transactions">
+				<sections>
+					<section id="3" name="XAResource"/>
+					<section id="4" name="Transaction Management"/>
+				</sections>
+			</chapter>
+			<chapter id="15" name="Batch Updates">
+				<sections>
+					<section id="1.3" name="Handling Failures during Execution"/>
+				</sections>
+			</chapter>
+			<chapter id="16" name="Advanced Data Types">
+				<sections>
+					<section id="3.1" name="Retrieving Blob and Clob values."/>
+					<section id="4.1" name="Retrieving Array Objects"/>
+				</sections>
+			</chapter>
+			<chapter id="Appendix B" name="Data Type Conversion Tables">
+				<sections>
+					<section id="1" name="Data Type Conversion Tables"/>
+				</sections>
+			</chapter>
+			<chapter id="Appendix C" name="Scalar Functions">
+				<sections>
+					<section id="1" name="Scalar Functions"/>
+				</sections>
+			</chapter>
+		</chapters>
+	</location-names>
+	<assertions>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="false">
+			<id>JDBC:SPEC:1</id>
+			<description>Existing JDBC technology-enabled drivers (JDBC drivers) and the applications that use them must continue to work in an implementation of the Java virtual machine that supports the jdbc 3.0 API. Application that  use only features defined in earlier releases of the JDBC API, excluding those that were deprecated by JDBC 2.0, will not require changes to continue running.</description>
+			<location chapter="2" section="9"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:2</id>
+			<description>A driver is not required to implement any feature that its underlying data source does not support</description>
+			<location chapter="6" section="3"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:3</id>
+			<description>JDBC API implementation must support Entry Level SQL92 plus the SQL command Drop Table.</description>
+			<location chapter="6" section="2"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:4</id>
+			<description>Drivers must support escape syntax. </description>
+			<location chapter="6" section="2"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:5</id>
+			<description>Drivers must support Transactions.</description>
+			<location chapter="6" section="2"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:6</id>
+			<description>Drivers should provide access to every feature implemeted by the underlying data source, including features that extend the JDBC API. When a feature is not supported, the corresponding methods throw SQLException.</description>
+			<location chapter="6" section="2"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="false">
+			<id>JDBC:SPEC:7</id>
+			<description>if a DataBaseMetaData method indicates that a given feature is supported, it must be supported via standard syntax and semantics as described in the relevant specifications. </description>
+			<location chapter="6" section="2"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:8</id>
+			<description>If a feature is not supported, the corresponding DatabaseMetaData must say so. Attempting to access the unsupported feature causes an SQLExecption to be thrown.</description>
+			<location chapter="6" section="2"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:9</id>
+			<description>Drivers compliant with JDBC 1.0 API must  do the following  1)  Adhere to the preceding guidelines and requirements
+			2)  Fully implement the following interfaces:   java.sql.Driver,      java.sql.DatabaseMetaData(excepting those methods introduced in the JDBC2.0 API and the JDBC 3.0 API),    			 java.sql.resultSetMetaData(excepting those methods introduced in the JDBC2.0 API and the JDBC 3.0 API)
+      3) Include the following required interfaces:
+java.sql.CallableStatement,   			    java.sql.Connection,    			    java.sql.PreparedStatement,   			    java.sql.ResultSet,   			    java.sql.Statement
+			
+			
+			
+			                                  </description>
+			<location chapter="6" section="3"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:10</id>
+			<description>Drivers compliant with JDBC 2.0 API must  do the following
+			1)  Comply with the JDBC1.0 API requirements    2)  Fully implement the DatabaseMetaData interface including the following methods added in the JDBC2.0 API:  				deletesAreDetected, 				getConnection,  getUDTs, 				insertsAreDetected,  	othersDeletesAreVisible, 				othersInsertsAreVisible, 				otherUpdatesAreVisible, 				ownDeletesAreVisible, 				ownInsertsAreVisible, ownUpdatesAreVisible,  				supportsBatchUpdates, 				supportsResultSetConcurrency, 				supportsResultSetType, 				updatesAreDetected, 		 3)  Implements the following additional ResultSetMetaData methods:		    getColumnClassName, 		    getColumnType, 			    getColumnTypeName
+			
+			
+			
+			                                  </description>
+			<location chapter="6" section="4"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:11</id>
+			<description>Drivers compliant with JDBC 3.0 API must  do the following
+			1)  Comply with the JDBC2.0 API requirements			
+			2) Include the following required interfaces:
+				java.sql.ParameterMetaData, 				java.sql.Savepoint		
+			3)  Fully implement the DatabaseMetaData interface, including the following methods added in the JDBC3.0 API:
+			supportsSavepoints, 				supportsNamedParameters, 				supportsMultipleOpenResultss, 				supportsGetGeneratedKeys, 				getSuperTypes, 				getSuperTables, 				getAttributes, 				getResultSetHoldability,
+				supportsResultSetHoldability,				getSQLStateType, 				getDatabaseMajorVersion, 				getDatabaseMinorVersion, 				getJDBCMajorVersion, 				getJDBCMonorVersion
+
+		                                  </description>
+			<location chapter="6" section="5"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:12</id>
+			<description>JDBC drivers must implement the driver interface, and the implementation must contain a static initializer that will be called when the driver is loaded.</description>
+			<location chapter="9" section="2"/>
+		</assertion>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:13</id>
+			<description>DataSource properties follow the convention specified for properties of JavaBeans components in the JavaBeans 1.01 Specification. DataSource implementations may augment this set with implementation specific properties. If new properties are added they must be given names that do not conflict with the standard property names.</description>
+			<location chapter="9" section="4.1"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:14</id>
+			<description>DataSource implementations must provide " getter" and "setter" methods for each property they support.</description>
+			<location chapter="9" section="4.1"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:15</id>
+			<description>It is possible for a given JDBC driver to not support all four transaction isolation levels (not counting TRANSACTION_NONE).</description>
+			<location chapter="10" section="2.1"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:16</id>
+			<description>The return value of the method getTransactionIsolation should reflect the change in isolation level when it actually occurs.</description>
+			<location chapter="10" section="2.1"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:17</id>
+			<description> It is recommended that drivers implement the setTransactionIsolation to change the isolation level starting with the next transaction.</description>
+			<location chapter="10" section="2.1"/>
+		</assertion>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:18</id>
+			<description>A JDBC application should not see any difference between accessing a DataSource object that implements connection pooling and one that does not.</description>
+			<location chapter="11" section="4"/>
+		</assertion>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="false">
+			<id>JDBC:SPEC:19</id>
+			<description>Connection pool configuration properties follow the convention specified for properties of JavaBeans components in the JavaBeans Specification. Driver vendors  may augment this set with implementation specific properties. If so, the additional properties  must be given names that do not conflict with the standard property names.</description>
+			<location chapter="11" section="7"/>
+		</assertion>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:20</id>
+			<description>ConnectionpoolDataSource implementations must provide " getter" and "setter" methods for each property they support.</description>
+			<location chapter="11" section="7"/>
+			<comment>The connection pooling features are intended for use by JDBC drivers to coordinate with an application server, however, J2EE products are not required to support the application server facilities described by connection pooling, although they may prove useful.</comment>
+		</assertion>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:21</id>
+			<description>The JDBC driver maintains a one to one correspondence between an XAResource object and its associated XAConnectiion object; that is, multiple calls to the getXAResource method must all return the same object. </description>
+			<location chapter="12" section="3"/>
+		</assertion>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="false">
+			<id>JDBC:SPEC:22</id>
+			<description>The transaction manager is not required to use the same XAResource object to commit/rollback a transaction branch as was used to execute the branch. If different XAResource objects are used, however, they must be associated with XAConnection objects that connect to the same resource manager</description>
+			<location chapter="12" section="3"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:23</id>
+			<description>A JDBC driver may or may not continue processing the remaining commands in a batch once execution of a command fails. However, a JDBC driver must always provide the same behaviour with a particular data source.</description>
+			<location chapter="15" section="1.3"/>
+		</assertion>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:24</id>
+			<description>An application does not deal directly with the LOCATOR(blob) and LOCATOR(clob) types that are defined in SQL. By default, a JDBC driver should implement the blob and clob interfaces using the appropriate locator type.</description>
+			<location chapter="16" section="3.1"/>
+			<comment>Currently J2EE spec does not mandate the support for blob and clob datatypes.</comment>
+		</assertion>
+		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:25</id>
+			<description>By default a JDBC driver should implement the Array interface using an SQL LOCATOR(array) internally.</description>
+			<location chapter="16" section="4.1"/>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:26</id>
+			<description>JDBC compliant drivers must support the mappings and conversions as described in the TABLE B1, TABLE B2, TABLE B3, TABLE B4, TABLE B5, TABLE B6 of JDBC3.0 specification. </description>
+			<location chapter="Appendix B" section=""/>
+			<comment>Table B1 shows the conceptual correspondence between JDBC types and Java types. Table B2 shows the mapping a driver should use for the updater methods in the resultSet interface and for IN parameters. PreparedStatement setter methods, RowSet Setter methods and SQLOutput writer methods use this table for mapping an IN parameter, which is a Java type, to the JDBC type that will be sent ot the database.  Table B3 shows the mapping used by ResultSet.getObject and CallableStatement.getObject method.   The mapping shown in Table B4 is used by PreparedStatement.setObject and RowSet.SetObject when no parameter specifying a target JDBC Type is provided.  Table B5 shows which JDBC type may be specified as the target JDBC type to the methods PreparedStatement.SetObject and RowSet.setObject. Table B6 shows the Type Conversions supported by resultSet getter methods.</comment>
+		</assertion>
+		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+			<id>JDBC:SPEC:27</id>
+			<description>If a DBMS supports a scalar function, the driver should also.</description>
+			<location chapter="Appendix C" section=""/>
+		</assertion>
+	</assertions>
+</spec>

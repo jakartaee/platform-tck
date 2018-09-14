@@ -1,0 +1,1094 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- <!DOCTYPE spec SYSTEM "file:///C:/XMLAssertions/spec_assertions.dtd"> -->
+<spec>
+	<next-available-id>87</next-available-id>
+	<previous-id>1</previous-id>
+	<technology>CSIv2</technology>
+	<id>1</id>
+	<name>Common Secure Interoperability</name>
+	<version>2.0</version>
+	<location-names>
+		<chapters>
+			<chapter id = "16.1" name = "Overview">
+				<sections>
+					<section id = "16.1.1" name = "Assumptions"/>
+				</sections>
+			</chapter>
+			<chapter id = "16.2" name = "Protocol Message Definitions">
+				<sections>
+					<section id = "16.2.1" name = "The Security Attribute Service Context Element"/>
+					<section id = "16.2.2" name = "SAS context_data Message Body Types"/>
+					<section id = "16.2.3" name = "Authorization Token Format"/>
+					<section id = "16.2.4" name = "Client Authentication Token Format"/>
+					<section id = "16.2.5" name = "Identity Token Format"/>
+					<section id = "16.2.6" name = "Principal Names and Distinguished Names"/>
+				</sections>
+			</chapter>
+			<chapter id = "16.3" name = "Security Attribute Service Protocol">
+				<sections>
+					<section id = "16.3.1" name = "Compound Mechanisms"/>
+					<section id = "16.3.2" name = "Session Semantics"/>
+					<section id = "16.3.3" name = "TSS State Machine"/>
+					<section id = "16.3.4" name = "CSS State Machine"/>
+					<section id = "16.3.5" name = "ContextError values and Exceptions"/>
+				</sections>
+			</chapter>
+			<chapter id = "16.4" name = "Transport Security Mechanisms">
+				<sections>
+					<section id = "16.4.1" name = "Transport Layer Interoperability"/>
+					<section id = "16.4.2" name = "Transport Mechanism Configuration"/>
+				</sections>
+			</chapter>
+			<chapter id = "16.5" name = "Interoperable Object References">
+				<sections>
+					<section id = "16.5.1" name = "Target Security Configuration"/>
+					<section id = "16.5.2" name = "Client-side Mechanism Selection"/>
+					<section id = "16.5.3" name = "Client-side Requirements and Location Binding"/>
+				</sections>
+			</chapter>
+			<chapter id = "16.6" name = "Conformance Levels">
+				<sections>
+					<section id = "16.6.1" name = "Conformance Level 0"/>
+					<section id = "16.6.2" name = "Conformance Level 1"/>
+					<section id = "16.6.3" name = "Conformance Level 2"/>
+					<section id = "16.6.4" name = "Stateful Conformance"/>
+				</sections>
+			</chapter>
+		</chapters>
+	</location-names>
+	<assertions>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>1</id>
+			<description>  To support the formation of security contexts using GIOP service context, the SAS protocol shall require at most one message in each direction to establish a security context.</description>
+			<location chapter = "16.1" section = "16.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>2</id>
+			<description>The protocol shall support security contexts that exist only for the duration of a single request/reply pair.</description>
+			<location chapter = "16.1" section = "16.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>3</id>
+			<description>The protocol shall support security contexts that can be reused for multiple request/reply pairs.</description>
+			<location chapter = "16.1" section = "16.1.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>4</id>
+			<description>The SAS context element may be used to associate any or all of the following contexts with GIOP request and reply messages:  1) Identity context, to be accepted based on trust,  2) Authorization context, including authorization-based delegation  context 3)  Client authentication context</description>
+			<location chapter = "16.2" section = "16.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>5</id>
+			<description>A new context_id has been defined for the SAS element.  
+          const ServiceIdSecurityAttributeService = 15;
+          
+     At most one instance of this new service context element may be 
+     included in a GIOP request or reply.</description>
+			<location chapter = "16.2" section = "16.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>6</id>
+			<description> Four message types comprise the security attribute service context
+     management protocol.  Each security attribute service context element shall
+     contain a message body that carries one of the following message body
+     types:
+     
+	  EstablishContext 
+	  ContextError 
+	  CompleteEstablishContext
+	  MessageInContext</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>7</id>
+			<description>A stateless CSS shall set the client_context_id to 0, indicating to the
+     TSS that it is stateless.  A stateful CSS may allocate a nonzero
+     client_context_id.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>8</id>
+			<description>A CSS may use authorization_token to send proxy privileges to a TSS as a means
+     to enable the target to issue calls as the client.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>9</id>
+			<description> If the caller identity is intended to be the same as that established
+     in the authentication layer(s), then it does not need to be asserted in an
+     identity_token.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>10</id>
+			<description>When an initial context token contains private credentials, such as a
+     password, this message may be safely sent only after a confidential
+     connection with a trusted TSS has been established.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>11</id>
+			<description>When a TSS is unable to validate a security attribute service context,
+     the TSS shall not dispatch on the target object method invocation.  The TSS
+     shall reply with a ContextError message that carries major and minor codes
+     indicating the reason for the failure.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>12</id>
+			<description>If an EstablishContext message contains an identity token, then it is
+     the responsibility of the TSS to extract a principal identity from the
+     identity token and determine if the identity established in the
+     authentication layer(s) is trusted to assert the extracted identity.  If
+     so, the asserted identity is used as the caller identity in the target s
+     authorization determination.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>13</id>
+			<description> When an EstablishContext message is rejected because it contains a
+     client_authentication_token (a GSS initial context token) that is
+     invalidated by the TSS, then depending on the mechanism, the TSS may return
+     a CDR encapsulation of a mechanism-specific GSS error token in this field.
+     Not all GSS mechanisms produce error tokens in response to initial context
+     token validation failures.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>14</id>
+			<description>In all circumstances where a TSS returns a ContextError, the GIOP
+     request that carried the rejected SAS context shall not be dispatched by
+     the target ORB.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>15</id>
+			<description>A TSS shall always return the value of the client_context_id it
+     received in the EstablishContext message.
+     </description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>16</id>
+			<description>A stateless TSS shall always return false.  A stateful TSS shall return
+     true if the established context is reusable.  Otherwise a stateful TSS
+     shall return false.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>17</id>
+			<description>When a TSS accepts an EstablishContext message containing an initial
+     context token that requires mutual authentication, the TSS shall return a
+     mechanism-specific final context token.  Not all GSS mechanisms support
+     mutual authentication, and thus not all responses to initial context tokens
+     may include final (or output) context tokens. When a
+     CompleteEstablishContext message contains a final_context_token, the token
+     shall be applied (with GSS_Init_sec_context) to the client-side GSS state
+     machine.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>18</id>
+			<description>Two or more stateful SAS contexts are equivalent if they are
+     established over the same transport layer connection or association, have
+     the same non-zero client_context_id and have byte-equivalent identity,
+     authorization, and authentication tokens.
+     
+     A multithreaded CSS may issue multiple concurrent requests to establish
+     (that is, with an EstablishContext message) an equivalent stateful SAS
+     context.  
+     
+     A TSS shall not create a duplicate stateful SAS context in response to a
+     request to establish a context that is equivalent to an existing context.</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>19</id>
+			<description>A TSS shall return an exception containing a ContextError service
+     context element if it receives a stateful EstablishContext message with a
+     client_context_id that matches that of an existing context (established
+     over the same transport layer connection or association) and for which any
+     of the security tokens arriving in the message are not byte-equivalent to
+     those recorded in the existing context.  The request shall also be
+     rejected.  The exception and error values to be returned are defined in
+     Section 16.3.4,</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>20</id>
+			<description>Any request message may be used to carry a MessageInContext message to
+     a target.  A TSS that receives a MessageInContext message shall complete
+     the processing of the request before it discards the context (if
+     discard_context is set to true).</description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>21</id>
+			<description> A TSS may receive a MessageInContext message that refers to a context
+     that does not exist at the TSS.  This can occur either because the context
+     never existed at the TSS or because it has been discarded by the TSS.  In
+     either case, the TSS shall return an exception containing a ContextError
+     service context element with major and minor error codes indicating that
+     the referenced context does not exist.  The exception and error values to
+     be returned are defined in Section 16.3.4,
+     </description>
+			<location chapter = "16.2" section = "16.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>22</id>
+			<description>The AuthorizationElementType defines the contents and encoding of the
+     contents of the_element field.  The high order 20-bits of each
+     AuthorizationElementType constant shall contain the Vendor Minor Codeset ID
+     (VMCID) of the organization that defined the element type.  The low order
+     12 bits shall contain the organization-scoped element type identifier.  The
+     high-order 20 bits of all element types defined by the OMG shall contain
+     the VMCID allocated to the OMG (that is, 0x4F4D0).  Organizations must
+     register their VMCIDs with the OMG before using them to define an
+     AuthorizationElementType</description>
+			<location chapter = "16.2" section = "16.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>23</id>
+			<description>The chain of identity certificates may be provided to certify the
+     attribute certificate.  Each certificate in the chain shall directly
+     certify the one preceding it.  The first certificate in the chain shall
+     certify the attribute certificate.  The ASN.1 representation of Certificate
+     shall be as defined in [IETF RFC 2459].  The ASN.1 representation of
+     AttributeCertificate shall be as defined in [IETF ID PKIXAC].</description>
+			<location chapter = "16.2" section = "16.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>24</id>
+			<description>The extensions field of the X.509 Attribute Certificates (AC) provides
+     for the association of additional attributes with the holder or subject of
+     the AC.  [38] Each extension includes an extnID (an object identifier), an
+     extnValue (an octet string), and a critical field (a boolean).  The extnID
+     identifies the extension, and the extnValue contains the value of the
+     instance of the identified extension.  The critical field indicates whether
+     a certificate-using system shall reject the certificate if it does not
+     recognize the extension.  If the critical field is set to TRUE and the
+     extension is not recognized (by its extnID), then the certificate shall be
+     rejected.  A non-critical extension that is not recognized may be ignored.</description>
+			<location chapter = "16.2" section = "16.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>25</id>
+			<description>The CSIv2 AC profile adds the Proxy Info extension to the collection of
+     extensions defined by the IETF profile.  This critical extension may be
+     used to define who may act as proxy for the AC subject.  Refer to [IETF ID
+     PKIXAC] for the details of the format and semantics of the Proxy Info
+     extension.</description>
+			<location chapter = "16.2" section = "16.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>26</id>
+			<description>A TSS shall reject a security context that contains an authorization
+     element of type X509AttributeCertChain that contains critical extensions or
+     attributes not recognized by the TSS.  In this case, the TSS shall return a
+     ContextError service context element containing major and minor error codes
+     indicating the evidence is invalid (that is, Invalid evidence ) as defined
+     in Section 16.3.5, ContextError Values and Exceptions, on page 16-36.</description>
+			<location chapter = "16.2" section = "16.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>27</id>
+			<description>This specification defines a GSSAPI mechanism to support the delivery
+     of authentication secrets above the transport such that they may be applied
+     by a TSS to authenticate clients at shared secret authentication systems.</description>
+			<location chapter = "16.2" section = "16.2.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>28</id>
+			<description>The format of a GSSUP initial context token shall be as defined in
+     [IETF RFC 2743] Section 3.1, Mechanism-Independent Token Format, pp.
+     81-82.  This GSSToken shall contain an ASN.1 tag followed by a token
+     length, an authentication mechanism identifier, and a CDR encapsulation
+     containing a GSSUP inner context token as defined by the type
+     GSSUP::InitialContextToken in Section 16.9.2, Module GSSUP -
+     Username/Password GSSAPI Token Formats, on page 16-65</description>
+			<location chapter = "16.2" section = "16.2.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>29</id>
+			<description>The target_name field of the GSSUP::InitialContextToken contains the
+     name of the authentication domain in which the client is authenticating.
+     This field aids the TSS in processing the authentication should the TSS
+     support several authentication domains.  A CSS shall fill the target_name
+     field of the GSSUP::InitialContextToken with the contents of the
+     target_name field of the CSIIOP::AS_ContextSec structure of the chosen CSI
+     mechanism.</description>
+			<location chapter = "16.2" section = "16.2.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>30</id>
+			<description>The format of the name passed in the username field depends on the
+     authentication domain.  If the mechanism identifier of the target domain is
+     GSSUP, then the format of the username shall be a Scoped-Username (with
+     name_value) as defined in Section , Scoped-Username GSS Name Form, on page
+     16-21.</description>
+			<location chapter = "16.2" section = "16.2.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>31</id>
+			<description>A TSS is under no obligation to return a GSSUP error token; however,
+     returning this token may facilitate the transition of the client-side GSS
+     state machine through error processing.  Accordingly, a TSS may indicate
+     that SAS context validation failed in GSSUP client authentication by
+     returning a GSSUP error token in a SAS ContextError message. In this case,
+     a TSS that chooses not to reveal specific information as to the cause of
+     the failed GSSUP authentication shall return a status value of
+     GSS_UP_S_G_UNSPECIFIED.</description>
+			<location chapter = "16.2" section = "16.2.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>32</id>
+			<description>When a TSS rejects a request because it carries an identity token
+     constructed using an identity type or naming mechanism that is not
+     supported by the target, the TSS shall return a ContextError service
+     context element containing major and minor status codes indicating the
+     mechanism was invalid.</description>
+			<location chapter = "16.2" section = "16.2.5"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>33</id>
+			<description>Asserting entities may choose to overcome limitations in a target s
+     supported mechanisms by mapping GSS mechanism-specific identities to
+     distinguished names or certificates.</description>
+			<location chapter = "16.2" section = "16.2.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>34</id>
+			<description>The mechanism OID within the exported name object shall be that of the
+     GSSUP mechanism.
+     
+     The name component within the exported name object shall be a
+     contiguous string con-forming to the syntax of the scoped-username GSS name
+     form.</description>
+			<location chapter = "16.2" section = "16.2.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>35</id>
+			<description>The scoped-username GSS name form is defined as follows, where
+     name_value and name_scope contain a sequence of 1 or more UTF8 encoded
+     characters.  
+     
+     scoped-username ::= name_value | name_value@name_scope | @name_scope
+     
+     The '@' character shall be used to delimit name_value from name_scope.  All
+     non-delimiter instances of '@' and all non-quoting instances of '\' shall
+     be quoted with an immediately-preceding '\'.  Except for these cases, the
+     quoting character, '\', shall not be emitted within a scoped-username.  The
+     Object Identifier corresponding to the GSS scoped-username name form is:  
+     
+     { iso-itu-t (2) international-organization (23) omg (130) security (1)
+     naming (2) scoped-username(1) }</description>
+			<location chapter = "16.2" section = "16.2.5"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>36</id>
+			<description>Principal names are carried in EstablishContext messages of the SAS
+     protocol, where they may appear in the identity_token (the ITTPrincipalName
+     discriminated type of an IdentityTokenType) or in the
+     client_authentication_token, which is a GSS initial context token</description>
+			<location chapter = "16.2" section = "16.2.6"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>37</id>
+			<description>Principal names are also present in the compound mechanisms defined
+     within a TAG_CSI_SEC_MECH_LIST tagged component within IORs.  The
+     target_name field of the AS_ContextSec structure may contain a sequence of
+     principal names corresponding to the authentication identities of the
+     target (see Section , struct AS_ContextSec, on page 16-45).  A principal
+     name may be used as one variant of the ServiceSpecificName form used to
+     identify one of the privilege_authorities within the SAS_ContextSec
+     structure of a compound mechanism definition within a target IOR</description>
+			<location chapter = "16.2" section = "16.2.6"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>38</id>
+			<description>The principal names appearing in initial context tokens are in
+     mechanism-specific (that is, internal) form, and may be converted to GSS
+     mechanism-independent exported name object format (that is, an external
+     form) by calling a mechanism-specific implementation of GSS_Export_name.
+     The inverse translation is performed by a mechanism-specific implementation
+     of GSS_Import_name.  A mechanism-specific implementation of
+     GSS_Display_name allows its caller to convert an internal name
+     representation into a printable form with an associated mechanism type
+     identifier.</description>
+			<location chapter = "16.2" section = "16.2.6"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>39</id>
+			<description>The principal names in identity tokens those in the target_name field
+     of AS_ContextSec structures and those in the privilege_authorities field of
+     SAS_ContextSec structures are in external form (GSS_NT_ExportedName), and
+     may be converted to internal form by calling the appropriate
+     mechanism-specific GSS_import_name function.</description>
+			<location chapter = "16.2" section = "16.2.6"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>40</id>
+			<description>Distinguished names may appear within an identity token, either as an
+     asserted identity or indirectly as the subject distinguished name within an
+     asserted X.509 Identity Certificate.  Distinguished names may also be
+     derived from the underlying transport authentication layer if client
+     authentication is done using SSL certificates.  Distinguished names may
+     also be used as a form of GeneralName in the GeneralNames variant of the
+     ServiceSpecificName type.  The ServiceSpecificName type is used to identify
+     privilege_authorities within the SAS_ContextSec structure of a compound
+     mechanism definition within a target IOR.</description>
+			<location chapter = "" section = ""/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>41</id>
+			<description> A target describes in its IORs the CSI compound security mechanisms it
+     supports.  Each mechanism defines a combination of layer-specific security
+     functionality supported by the target, as defined in Section ,
+     TAG_CSI_SEC_MECH_LIST, on page 16-43.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>42</id>
+			<description>The mechanisms a client uses to interact with a target shall be
+     compatible with the target s capabilities and sufficient to satisfy its
+     requirements.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>43</id>
+			<description>A target indicates its requirements for client authentication in its
+     IORs.  The layers at which a CSS authenticates to a TSS shall satisfy the
+     requirements established by the target</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>44</id>
+			<description>If the service context authentication fails, the following shall
+     happen:  
+     
+     The request shall be rejected, whether or not authentication is required by
+     the target.
+
+     An exception containing a ContextError service context element shall be
+     returned to the CSS.  The ContextError service context element shall
+     contain major and minor status codes indicating that client authentication
+     failed.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>45</id>
+			<description>If the request does not include a client_authentication_token, the
+     client authentication identity is derived from the transport layer.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>46</id>
+			<description>When a request includes an identity token, the TSS shall determine if
+     the identity established as the client authentication identity is trusted
+     to assert the identity represented in the identity token.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>47</id>
+			<description>A TSS that does not support authorization-token-based delegation (see
+     Chapter 9, Conformance Levels ) shall evaluate trust by applying the client
+     authentication identity and the asserted identity to trust rules stored at
+     the target.  We call the evaluation of trust based on rules of the target a
+     backward trust evaluation</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>48</id>
+			<description>When a TSS that supports authorization-token-based delegation receives
+     a request that includes both an identity token and an authorization token
+     with embedded proxy attributes, the TSS shall evaluate trust by determining
+     whether the proxy attributes were established (that is, signed) by a
+     privilege authority acceptable to the target and whether the client
+     authentication identity is included in the identities named in the proxy
+     attributes.  We call the evaluation of trust based on rules provided by the
+     caller a forward trust evaluation.  A TSS shall not accept requests that
+     failed a forward trust evaluation based on a backward trust evaluation.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>49</id>
+			<description>If a request includes an authorization token but does not include an
+     identity token, the TSS shall ensure that the access identity named in the
+     authorization token is the same as the client authentication identity.  If
+     the request includes an identity token, the TSS shall ensure that the
+     access identity is the same as the identity in the identity token.  A TSS
+     that supports authorization-token-based privilege attributes shall reject
+     any request that does not satisfy this constraint and return an exception
+     containing a ContextError service context element.  The ContextError
+     element shall contain major and minor status codes indicating that the
+     evidence was invalid.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>50</id>
+			<description>When a request includes an authorization token, it is the
+     responsibility of the TSS to determine if the target trusts the authorities
+     that signed the privileges in the token.  A TSS that supports
+     authorization-token-based privilege attributes shall reject any request
+     with an authorization token that contains privilege information signed by
+     an authority that is not trusted by the target.  In this case, the TSS
+     shall return an exception containing a ContextError service context
+     element.  The ContextError element shall contain major and minor status
+     codes indicating that the evidence was invalid.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>51</id>
+			<description>The anonymous identity is used to represent an unauthenticated entity.
+     To assert an anonymous caller identity, a CSS (perhaps acting as an
+     intermediate) shall include a SAS context element containing an
+     EstablishContext message with an identity_token containing the anonymous
+     IdentityTokenType in its request.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>52</id>
+			<description>Presumed trust is a special case of the evaluation of identity
+     assertions by a TSS.  In presumed trust, a TSS accepts identity assertions
+     based on the fact of their occurrence and without consideration of the
+     authentication identity of the asserting entity.  The presumption is that
+     communications are constrained such that only trusted entities are capable
+     of asserting an identity to the TSS.</description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>53</id>
+			<description>An authorization token may contain authorization elements that contain
+     proxy statements, which endorse principals to proxy for other entities.
+     Table 16-5 describes delegation scenarios in which endorsements from the
+     issuer of the authorization element authorize the authenticated identity,
+     which is P2 A or P2 B , to proxy for the asserted identity. </description>
+			<location chapter = "16.3" section = "16.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>54</id>
+			<description> A CSS is said to be stateless if it operates in the mode of
+     establishing transient, non-reusable (that is, stateless) security
+     contexts.  A CSS that issues requests to establish reusable security
+     contexts is said to be stateful.</description>
+			<location chapter = "16.3" section = "16.3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>55</id>
+			<description>When a stateless TSS receives a request to establish a stateful
+     session, the TSS shall attempt to validate the security tokens bound to the
+     request.  If the validation fails, an exception containing an appropriate
+     ContextError service context element shall be returned to the client.  If
+     the validation succeeds, the TSS shall negotiate to stateless by responding
+     with a CompleteEstablishContext message with context_stateful set to false.
+     
+     A client that initiates a stateful interaction shall be capable of
+     accepting that the target negotiated the context to stateless.</description>
+			<location chapter = "16.3" section = "16.3.2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>56</id>
+			<description>A CSS may use the EstablishContext message to issue multiple concurrent
+     requests to establish a stateful security context within a scope.
+     
+     To avoid duplicate sessions, when the stateful EstablishContext requests
+     sent within a scope carry equivalent security contexts, the CSS shall
+     assign to them the same nonzero client_context_id.
+     
+     Within a scope, a TSS shall reject any request to establish a stateful
+     context that carries a different security context from an established
+     context with the same client_context_id.  In this case, an exception
+     containing a ContextError service context element shall be returWithin a
+     scope, a TSS shall reject any request to establish a stateful context that
+     carries a different security context from an established context with the
+     same client_context_id.  In this case, an exception containing a
+     ContextError service context element shall be returned to the caller.</description>
+			<location chapter = "16.3" section = "16.3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>57</id>
+			<description>Token values shall be evaluated for equivalence by comparing the
+     corresponding byte sequences used to carry the tokens in EstablishContext
+     messages.</description>
+			<location chapter = "16.3" section = "16.3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>58</id>
+			<description>When a target that supports stateful contexts receives a request to
+     establish a stateful context, the TSS shall attempt to validate the
+     security tokens in the EstablishContext element.  If the validation
+     succeeds, the request shall be accepted, and the reply (if there is one)
+     shall carry a CompleteEstablishContext element that indicates (that is,
+     context_stateful = true) that the context is available at the TSS for the
+     caller s reuse.  If the validation fails, an exception containing an
+     appropriate ContextError service context element shall be returned to the
+     caller.</description>
+			<location chapter = "16.3" section = "16.3.2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>59</id>
+			<description>A TSS that accepts stateful contexts shall bear the responsibility for
+     managing the lifecycle of these sessions.  Clients that reuse stateful
+     contexts shall capable of processing replies that indicate that an
+     established stateful context has been unilaterally discarded by the TSS.
+     
+     A TSS shall not establish a stateful context in response to a request to
+     establish a stateless context (that is, one with a client_context_id of
+     zero)</description>
+			<location chapter = "16.3" section = "16.3.2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>60</id>
+			<description>A TSS that supports stateful contexts may negotiate a request to
+     establish a stateful context to a stateless context in order to preserve
+     resources.  It may do so only if it does not already have an established
+     matching stateful context.  [107] Conversely, a stateful TSS that has
+     negotiated a request to stateless may respond statefully to a subsequent
+     context with the same (non-zero) client_context_id.</description>
+			<location chapter = "16.3" section = "16.3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>61</id>
+			<description>A SAS context shall not persist beyond the lifetime of the
+     transport-layer secure association over which it was established.</description>
+			<location chapter = "16.3" section = "16.3.2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>62</id>
+			<description>An ORB must not invoke the TSS state machine if the target object does
+     not exist at the ORB.  The TSS state machine has no capacity to reject or
+     forward 8 a request because the target object does not exist, and must rely
+     on the ORB to only invoke the TSS when the target object exists at the ORB.</description>
+			<location chapter = "16.3" section = "16.3.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>63</id>
+			<description>Support for CSI is indicated within an IOR profile by the presence of
+     at most one TAG_CSI_SEC_MECH_LIST tagged component that defines the
+     mechanism configuration pertaining to the profile.  This component contains
+     a list of one or more CompoundSecMech structures, each of which defines the
+     layer-specific security mechanisms that comprise a compound mechanism that
+     is supported by the target.  This specification does not define support for
+     CSI mechanisms in multiple-component IOR profiles.</description>
+			<location chapter = "16.4" section = "16.4.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>64</id>
+			<description>Each CompoundSecMech structure contains a transport_mech field that
+     defines the transport-layer security mechanism of the compound mechanism.
+     A compound mechanism that does not implement security functionality at the
+     transport layer shall contain the TAG_NULL_TAG component in its
+     transport_mech field.  Otherwise, the transport_mech field shall contain a
+     tagged component that defines a transport protocol and its configuration.</description>
+			<location chapter = "16.4" section = "16.4.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>65</id>
+			<description>This specification recommends that implementations support the
+     following ciphersuites in addition to the mandatory ciphersuites identified
+     in [IETF RFC 2246].  Of these additional ciphersuites, those which use weak
+     encryption keys are only recommended for use in environments where strong
+     encryption of SAS protocol elements (including GSSUP authenticators) and
+     request arguments is not required.  Some of the recommended ciphersuites
+     are known to be encumbered by licensing constraints.
+
+	  TLS_RSA_WITH_RC4_128_MD5
+	  SSL_RSA_WITH_RC4_128_MD5 
+	  TLS_DHE_DSS_WITH_DES_CBC_SHA
+	  SSL_DHE_DSS_WITH_DES_CBC_SHA 
+	  TLS_RSA_EXPORT_WITH_RC4_40_MD5
+	  SSL_RSA_EXPORT_WITH_RC4_40_MD5 
+	  TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA
+	  SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA</description>
+			<location chapter = "16.4" section = "16.4.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>66</id>
+			<description>A target that supports unprotected IIOP invocations shall specify in
+     the corresponding TAG_INTERNET_IOP profile a nonzero port number at which
+     the target will accept unprotected invocations.9 A target that supports
+     only protected IIOP invocations shall specify a port number of 0 (zero) in
+     the corresponding TAG_INTERNET_IOP profile.  A target may support both
+     protected and unprotected IIOP invocations at the same port, but it is not
+     required to do so.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>67</id>
+			<description>A target that supports protected invocations shall describe in a
+     CompoundSecMech structure the characteristics of each of the alternative
+     compound security mechanisms that it supports.  The CompoundSecMech
+     structure shall be included in a list of such structures in the body of a
+     TAG_CSI_SEC_MECH_LIST tagged component.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>68</id>
+			<description>An IOR profile shall contain at most one TAG_CSI_SEC_MECH_LIST tagged
+     component.  An IOR profile that contains multiple TAG_CSI_SEC_MECH_LIST
+     tagged components is malformed and should be rejected by a client
+     implementation.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>69</id>
+			<description>When the DelegationByClient bit is set in target_requires, it indicates
+     that the target requires a delegation token to complete the processing of a
+     request.  Such circumstances will occur when a target, acting as an
+     intermediate, attempts to issue a request as its caller and sanctioned by
+     the delegation token delivered by its caller.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>70</id>
+			<description>Implementations that choose to employ the service context protocol
+     defined in this specification to achieve interoperability over an
+     alternative secure transport (one other than SSL/TLS) may also be required
+     to support the message protection options defined in Table 16-11.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>71</id>
+			<description>An instance of the TAG_TLS_SEC_TRANS component may occur in the
+     transport_mech field within a CompoundSecMech structure in a
+     TAG_CSI_SEC_MECH_LIST component.
+     
+     When an instance of the TAG_TLS_SEC_TRANS component occurs in the
+     transport_mech field of the CompoundSecMech structure, it defines the
+     sequence of transport addresses at which the target will be listening for
+     SSL/TLS protected invocations.  The supported (target_supports) and
+     required (target_requires) association options defined in the component
+     shall define the transport level security characteristics of the target at
+     the given addresses.
+     
+     const IOP::ComponentId TAG_TLS_SEC_TRANS = 36;
+     
+     struct TLS_SEC_TRANS { 
+            AssociationOptions target_supports;
+            AssociationOptions target_requires;
+            TransportAddressList addresses; };
+
+     The addresses field provides a shorthand for defining multiple security
+     mechanisms that differ only in their transport addresses.  The addresses
+     field shall contain at least one address.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>72</id>
+			<description>A tagged component with the TAG_SECIOP_SEC_TRANS tag is a valid
+     component for the transport_mech field of the CompoundSecMech structure.
+     The presence of this component indicates the generic use of the SECIOP
+     protocol as a secure transport underneath the CSI mechanisms.  A component
+     tagged with this value shall contain the CDR encoding of the
+     SECIOP_SEC_TRANS structure.
+     
+     const IOP::ComponentId TAG_SECIOP_SEC_TRANS = 35; 
+     
+     struct SECIOP_SEC_TRANS {
+             AssociationOptions target_supports; 
+             AssociationOptions target_requires;
+             CSI::OID mech_oid; 
+             CSI::GSS_NT_ExportedName target_name;
+             TransportAddressList addresses; 
+      }; 
+       
+     The addresses field provides a shorthand for defining multiple security
+     mechanisms that differ only in their transport addresses.  The addresses
+     field shall contain at least one address.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>73</id>
+			<description> The CompoundSecMech structure is used to describe support in the
+     target for a compound security mechanism that may include security
+     functionality that is realized in the transport and/or security
+     functionality realized above the transport in service context.  Where a
+     compound security mechanism implements security functionality in the
+     transport layer, the transport functionality shall be represented in a
+     transport-specific component (for example, TAG_TLS_SEC_TRANS) contained in
+     the transport_mech field of the CompoundSecMech structure.  Where a
+     compound security mechanism implements client authentication functionality
+     in service context, the mechanism shall be represented in an AS_ContextSec
+     structure contained in the as_context_mech field of the CompoundSecMech
+     structure.  Where a compound security mechanism supports identity assertion
+     or supports authorization attributes delivered in service context, the
+     mechanism shall be represented in a SAS_ContextSec structure contained in
+     the sas_context_mech fie ld of the CompoundSecMech structure.
+     
+     At least one of the transport_mech, as_context_mech, or sas_context_mech
+     fields shall be configured.  The TAG_NULL_TAG component shall be used in
+     the transport_mech field to indicate that a mechanism does not implement
+     security functionality at the transport layer.  A value of no bits set in
+     the target_supports field of either the as_context_mech or sas_context_mech
+     fields shall be used to indicate that the mechanism does not implement
+     security functionality at the corresponding layer.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>74</id>
+			<description>The target_requires field of the CompoundSecMech structure is used to
+     designate a required outcome that shall be satisfied by one or more
+     supporting (but not requiring) layers.  The target_requires field also
+     represents all the options required independently by the various layers as
+     defined within the mechanism.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>75</id>
+			<description> struct AS_ContextSec{ 
+                AssociationOptions target_supports;
+                AssociationOptions target_requires; 
+                CSI::OID client_authentication_mech;
+                CSI::GSS_NT_ExportedName target_name; 
+          }; 
+          
+     A value of no bits set in the target_supports field indicates that the
+     mechanism does not implement client authentication functionality above the
+     transport in service context.  In this case, the values present in any of
+     the other fields in this structure are irrelevant.
+
+     If the target_supports field indicates that the mechanism supports client
+     authentication in service context, then the client_authentication_mech
+     field shall contain a GSS OID that identifies the GSS mechanism that the
+     compound mechanism supports for client authentication above the transport.
+
+     The target uses the target_name field to make its security name and or
+     authentication domain available to clients.  This information may be
+     required by the client to obtain or construct (depending on the mechanism)
+     a suitable initial context token.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>76</id>
+			<description>When a compound mechanism that implements client authentication
+     functionality above the transport also contains a transport mechanism (in
+     the transport_mech field), any required association options configured in
+     the transport component shall be interpreted as a prerequisite to
+     satisfying the requirements of the client authentication mechanism.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>77</id>
+			<description>The privilege_authorities field contains a sequence of zero or more
+     ServiceConfiguration elements.  A non-empty sequence indicates that the
+     target supports the CSS delivery of an AuthorizationToken, which is
+     delivered in the EstablishContext message.  A CSS shall not be required to
+     look beyond the first element of this sequence unless required by the first
+     element.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>78</id>
+			<description>The high order 20-bits of each ServiceConfigurationSyntax constant
+     shall contain the Vendor Minor Codeset ID (VMCID) of the organization that
+     defined the syntax.  The low order 12 bits shall contain the
+     organization-scoped syntax identifier.  The high-order 20 bits of all
+     syntaxes defined by the OMG shall contain the VMCID allocated to the OMG
+     (that is, 0x4F4D0).  Organizations must register their VMCIDs with
+     the OMG before using them to define a ServiceConfigurationSyntax.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>79</id>
+			<description>The supported_naming_mechanisms field contains a list of GSS mechanism
+     OIDs.  A TSS shall set the value of this field to contain the GSS mechanism
+     OIDs for which the target supports identity assertions using an identity
+     token of type ITTPrincipalName.
+     
+     The value of the supported_identity_types field shall be the bitmapped
+     representation of the set of identity token types supported by the target.
+     A target always supports ITTAbsent.  The value in supported_identity_types
+     shall be non-zero if and only if the IdentityAssertion bit is non-zero in
+     target_supports.  The bit corresponding to the ITTPrincipalName identity
+     token type shall be non-zero in supported_identity_types if and only if the
+     value in supported_naming_mechanisms contains at least one element.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>80</id>
+			<description>A compound mechanism definition with the DelegationByClient bit set
+     shall include the name of at least one authority in the
+     privilege_authorities field.  When a compound mechanism configuration that
+     defines SAS attribute layer functionality also defines client
+     authentication layer or transport layer functionality, any required
+     association options configured in these other layers shall be interpreted
+     as a prerequisite to satisfying the requirements of the functionality
+     defined in the attribute layer</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>81</id>
+			<description> A client should evaluate the compound security mechanism definitions
+     contained within the CompoundSecMechList in the TAG_CSI_SEC_MECH_LIST
+     component in an IOR to select a mechanism that supports the options
+     required by the client.</description>
+			<location chapter = "16.5" section = "16.5.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>82</id>
+			<description>A CSS acting on behalf of a client may trust a target to locate an
+     object (process a locate request) without having to trust the target with
+     confidential arguments (other than object keys) or service context
+     elements.  For example, a CSS may have established a confidential
+     connection to an address it learned from an IOR, and may then determine if
+     the client trusts the target with its request arguments and any associated
+     service context elements.
+     
+     If the client does not trust the target with its request, the CSS may send
+     a locate request.11 If the locate reply contains a new address, the CSS may
+     establish a new confidential connection, evaluate the level of trust the
+     client has in the new target, and determine whether it can issue the client
+     s request to the target.  If in response to the request, the CSS receives a
+     location forward, it will establish another confidential connection with
+     the new address and repeat its trust determination.
+     
+     Compound security mechanisms appearing in IORs leading to a location daemon
+     should not require clients to authenticate using the username/password
+     mechanism if doing so would cause an overly trusting caller to share its
+     password with an untrusted location daemon.</description>
+			<location chapter = "16.5" section = "16.5.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>83</id>
+			<description>Level 0 defines the base level of secure interoperability that all
+     implementations are required to support.  Level 0 requires support for
+           SSL/TLS protected connections 
+           username/password client authentication
+           identity assertion by using the service context protocol defined
+     in this specification.
+     
+     Transport Layer Requirements:
+     
+     Implementations shall support the Security Attribute Service (SAS) protocol
+     within the service context lists of GIOP request and reply messages
+     exchanged over SSL 3.0 and TLS 1.0 protected connections. 
+     
+     Implementations shall also support the SAS protocol within the service
+     context lists of GIOP request and reply messages over unprotected
+     transports defined within IIOP
+     
+     Required Ciphersuites :
+     
+     Conforming implementations are required to support both SSL 3.0 and TLS 1.0
+     and the mandatory TLS 1.0 ciphersuites identified in [IETF RFC 2246].
+     Conforming implementations are also required to support the SSL 3.0
+     ciphersuites corresponding to the mandatory TLS 1.0 ciphersuites.  
+     
+     An additional set of recommended ciphersuites is identified in Section ,
+     Recommended SSL/TLS Ciphersuites, on page 16-37.
+     
+     Service context Protocol Requirements:
+     
+     All implementations shall support the stateless CSS and stateless TSS modes
+     of operation as defined in Section 16.3.2, Session Semantics, on page
+     16-27, and in the protocol message definitions appearing in Section 16.2.2,
+     SAS context_data Message Body Types, on page 16-11.
+     
+     All implementations shall support the username password (GSSUP) mechanism
+     for client authentication as defined in Section , Username Password GSS
+     Mechanism (GSSUP), on page 16-18.
+     
+     All implementations shall support the identity assertion functionality
+     defined in Section , Context Validation, on page 16-23 and the identity
+     token formats and functionality defined in Section 16.2.5, Identity Token
+     Format, on page 16-20.  All implementations shall support GSSUP mechanism
+     specific identity tokens of type ITTPrincipalName.
+     
+     At this level of conformance, implementations are not required to be
+     capable of including an authorization token in the SAS protocol elements
+     they send or of interpreting such tokens if they are included in received
+     SAS protocol elements.  The format of authorization tokens is defined in
+     Section 16.2.3, Authorization Token Format, on page 16-16.
+     
+     The security mechanism configuration of CSIv2 target objects, shall be as
+     defined in Section 16.5.1, Target Security Configuration, on page 16-38,
+     with the exception that Level 0 implementations are not required to support
+     the DelegationByClient functionality described in Section ,
+     AssociationOptions Type, on page 16-39.</description>
+			<location chapter = "16.6" section = "16.6.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>84</id>
+			<description> Conformance Level 1 adds the following additional requirements to those
+     of Level 0.
+     
+     Level 1 implementations shall support the push model for privilege
+     attributes.  Level 1 requires that a CSS provide clients with an ability to
+     include an authorization token, as defined in Section 16.2.3, Authorization
+     Token Format, on page 16-16, in SAS EstablishContext protocol messages.
+     
+     Level 1 requires that a TSS be capable of evaluating its support for a
+     received authorization token according to the rules defined in Section ,
+     Extensions of the IETF AC Profile for CSIv2, on page 16-17.
+     
+     A Level 1 TSS shall recognize the standard attributes and extensions
+     defined in the attribute certificate profile defined in [IETF ID PKIXAC].
+     
+     Level 1 requires that a target object that supports pushed privilege
+     attributes include in its IORs the names of the privilege authorities
+     trusted by the target object (as defined in Section , struct
+     SAS_ContextSec, on page 16-46).</description>
+			<location chapter = "16.6" section = "16.6.2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>85</id>
+			<description>Conformance Level 2 adds to Level 1 the following additional
+     requirements.
+     
+     Level 2 adds to Level 1 a requirement that implementations support the
+     authorization-token- based delegation mechanism implemented by the SAS
+     protocol.  
+     
+     A Level 2 TSS shall be capable of evaluating proxy rules arriving in an
+     authorization token to determine whether an asserting entity has been
+     endorsed (by the authority which vouched for the privilege attributes in
+     the authorization token) to assert the identity to which the privilege
+     attributes pertain.  The semantics of the relationship between the identity
+     token and authorization token shall be as defined in Section , Context
+     Validation, on page 16-23.
+
+     A Level 2 TSS shall recognize the Extensions of the IETF AC Profile for
+     CSIv2 (that is, the Proxy Info extension) as defined on page 16-17.
+
+     Level 2 requires that a target object that accepts identity assertions
+     based on endorsements in authorization tokens represent this support in its
+     IORs as defined in Table 16-17 on page 16-48.
+
+     Level 2 requires that a target object that req uires an endorsement to act
+     as proxy for its callers represent this requirement in its IORs as defined
+     in Table 16-17 on page 16-48.</description>
+			<location chapter = "16.6" section = "16.6.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>86</id>
+			<description>Implementations are differentiated not only by the conformance levels
+     described in the preceding sections but also by whether or not they support
+     stateful security contexts. 
+     
+     For an implementation to claim stateful conformance, it shall implement the
+     stateless and stateful functionality as defined in Section 16.3.2, Session
+     Semantics, on page 16-27 and in Section 16.2.2, SAS context_data Message
+     Body Types, on page 16-11.</description>
+			<location chapter = "16.6" section = "16.6.4"/>
+		</assertion>
+	</assertions>
+</spec>

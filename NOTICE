@@ -1,0 +1,135 @@
+DO NOT TRANSLATE OR LOCALIZE.
+# Notices for Java EE Compatibility Test Suite (CTS)
+This content is produced and maintained by the Java EE CTS project
+
+## Trademarks
+Java EE CTS is a trademark of the Oracle Corporation.
+
+## Copyright
+All content is the property of the respective authors or their employers. For
+more information regarding authorship of content, please consult the listed
+source code repository logs.
+
+## Declared Project Licenses
+This program and the accompanying materials are made available under the terms
+of the Eclipse Public License v. 2.0 which is available at
+http://www.eclipse.org/legal/epl-2.0. This Source Code may also be made
+available under the following Secondary Licenses when the conditions for such
+availability set forth in the Eclipse Public License v. 2.0 are satisfied: GNU
+General Public License, version 2 with the GNU Classpath Exception which is
+available at https://www.gnu.org/software/classpath/license.html.
+
+SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+## Source Code
+The project maintains the following source code repositories:
+
+
+## Third-party Content
+
+Ant-Contrib (1.0b3)
+  * License: Apache License, 2.0
+
+Apache Standard Taglib
+  * License: Apache License, 2.0
+
+Batch Tests (JSR 352)
+  * License: Apache License, 2.0
+
+Commons IO (2.4)
+  * License: Apache License, 2.0
+
+Commons Codec (1.9)
+  * License: Apache License, 2.0
+
+Commons Collections (3.2.1)
+  * License: Apache License, 2.0
+
+Commons HttpClient (3.1)
+  * License: Apache License, 2.0
+
+Commons Lang (3.3.2)
+  * License: Apache License, 2.0
+
+Commons Logging (1.1.1)
+  * License: Apache License, 2.0
+  
+CSS Parser (0.9.25)
+  * License: Apache License, 2.0
+
+HttpClient (4.3.3)
+  * License: Apache License, 2.0
+
+HttpClient Mime (4.3.3)
+  * License: Apache License, 2.0
+
+HttpCore (4.3.2)
+  * License: Apache License, 2.0
+
+HtmlUnit (2.15)
+  * License: Apache License, 2.0
+
+HtmlUnit Core JS (2.15)
+  * License: GPL-2.0 with classpath-exception, Mozilla Public License v. 2.0
+
+Implementing Enterprise Web Services (JSR 109)
+  * License: Eclipse Public License v. 2.0
+  
+Jakarta Watchdog 4.0
+  * License: Apache 1.1
+
+
+SOAP Envelope Schema (1.1)
+  * License: W3C SOFTWARE NOTICE AND LICENSE
+
+XMLSchema.dtd (1.3)
+  * License: W3C Software License
+
+xml.xsd
+  * License: W3C Software License
+
+Java EE Schema and DTDs
+  * Licenses:
+      - Apache License, 2.0
+      - CDDL 1.0
+      - CDDL 1.0, GPL 2.0 or later with Classpath exception 2.0
+      - Eclipse Public License v1.0
+
+Jaxen (1.1.6)
+  * License: BSD-style 
+
+Jaxen Core (1.0)
+  * License: Apache License, 2.0
+  
+JDOM (1.1.3)
+  * License: BSD, BSD-style
+
+NekoHTML (1.9.21)
+  * License: Apache License, 2.0
+
+Saxpath (1.0)
+  * License: None
+
+Simple API for CSS (1.3)
+  * License: The W3C Software License
+  
+UnboundID LDAP SDK for Java (4.0.0)
+  * License: GPL v2, LGPL v2.1
+
+Xalan-Java (2.7.2)
+  * License: Apache License, 2.0
+
+Xerces2 (2.11.0)
+  * License: Apache License, 2.0
+
+XML APIs (1.4.01)
+  * License: Apache License, 2.0
+
+## Cryptography
+
+Content may contain encryption software. The country in which you are currently
+may have restrictions on the import, possession, and use, and/or re-export to
+another country, of encryption software. BEFORE using any encryption software,
+please check the country's laws, regulations and policies concerning the import,
+possession, or use, and re-export of encryption software, to see if this is
+permitted.

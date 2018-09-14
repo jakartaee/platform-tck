@@ -1,0 +1,895 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<title>Specification Assertion Detail</title>
+</head>
+<body bgcolor="white">
+<br>
+<CENTER>
+<h2>Java API for JSON Binding<br>JSONB - 1.0<br>
+                                Specification Assertion Detail
+                        </h2>
+</CENTER>
+<TABLE width="900" border="1" frame="box" cellpadding="5">
+<TH bgcolor="#BFBFBF"><FONT size="1PT">Totals</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Total</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Active</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Deprecated</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Removed</FONT></TH>
+<tr>
+<TD align="center" valign="center"><font size="2PT">
+                                                # of Assertions
+                                        </font></TD><TD align="center" valign="center"><font size="2PT">149</font></TD><TD align="center" valign="center"><font size="2PT">148</font></TD><TD align="center" valign="center"><font size="2PT">1</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD>
+</tr>
+<tr>
+<TD align="center" valign="center"><font size="2PT">
+                                                # of Required Assertions
+                                        </font></TD><TD align="center" valign="center"><font size="2PT">147</font></TD><TD align="center" valign="center"><font size="2PT">146</font></TD><TD align="center" valign="center"><font size="2PT">1</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD>
+</tr>
+<tr>
+<TD align="center" valign="center"><font size="2PT">
+                                                # of Optional Assertions
+                                        </font></TD><TD align="center" valign="center"><font size="2PT">2</font></TD><TD align="center" valign="center"><font size="2PT">2</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD><TD align="center" valign="center"><font size="2PT">0</font></TD>
+</tr>
+</TABLE>
+<br> Assertions<TABLE width="900" border="1" frame="box" cellpadding="5">
+<TH bgcolor="#BFBFBF"><FONT size="1PT">ID</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Chapter</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Section</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Description</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Required</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Dependency</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Implementation Specific</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Defined by</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Status</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Testable</FONT></TH>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.1-1"></a><font size="1PT">JSONB:SPEC:JSB-3.1-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST support binding of JSON documents as defined in RFC 7159 JSON Grammar. Serialized JSON output MUST conform to the RFC 7159 JSON Grammar and be encoded in UTF-8 encoding as defined in Section 8.1 (Character Encoding) of RFC 7159
+			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.1-2"></a><font size="1PT">JSONB:SPEC:JSB-3.1-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support deserialization of documents conforming to RFC 7159 JSON Grammar</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.1-3"></a><font size="1PT">JSONB:SPEC:JSB-3.1-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">In addition, implementations SHOULD NOT allow deserialization of RFC 7159 non-conforming text (e.g. unsupported encoding, ...) and report error in such case</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.1-4"></a><font size="1PT">JSONB:SPEC:JSB-3.1-4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Detection of UTF encoding of deserialized document is done as defined in the Section 3 (Encoding) of RFC 4627</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.1-5"></a><font size="1PT">JSONB:SPEC:JSB-3.1-5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Implementations SHOULD ignore presence of UTF byte order mark (BOM) and not treat it as an error.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.2-1"></a><font size="1PT">JSONB:SPEC:JSB-3.2-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">Implementations SHOULD NOT allow unmarshalling of RFC 7159 non-conforming text (e.g. unsupported encoding) and report error in such case.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.2-2"></a><font size="1PT">JSONB:SPEC:JSB-3.2-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">Implementation SHOULD also report error also during unmarshalling operation, if it is not possible to represent JSON document value in the expected Java type</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3-1"></a><font size="1PT">JSONB:SPEC:JSB-3.3-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">Implementation MUST report binding of the following basic java classes and their corresponding primitive types
+java.lang.String
+java.lang.Character
+java.lang.Byte
+java.lang.Short
+java.lang.Integer
+java.lang.Long
+java.lang.Float
+java.lang.Double
+java.lang.Boolean</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3.1-1"></a><font size="1PT">JSONB:SPEC:JSB-3.3.1-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3.1</font></TD><TD align="left" valign="center"><font size="1PT">Instances of type java.lang.String and java.lang.Character are marshalled to JSON String values as defined within RFC 7159 Section 7 (Strings) in UTF-8 encoding without byte order mark. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3.1-2"></a><font size="1PT">JSONB:SPEC:JSB-3.3.1-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3.2</font></TD><TD align="left" valign="center"><font size="1PT">Implementations SHOULD support deserialization of JSON text in other (than UTF-8) UTF encodings into java.lang.String instances</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3.2-1"></a><font size="1PT">JSONB:SPEC:JSB-3.3.2-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3.2</font></TD><TD align="left" valign="center"><font size="1PT">Serialization of type java.lang.Byte, Short, Integer, Long, Float, Double and their corresponding primitive types to JSON Number MUST follow the conversion process defined in javadoc specification for the corresponding toString method</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3.2-2"></a><font size="1PT">JSONB:SPEC:JSB-3.3.2-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3.2</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization of a JSON value into java.lang.Byte, Short, Integer, Long, Float, Double instance or corresponding primitive type MUST follow the conversion process as defined in the specification for their corresponding parse$Type method, such as java.lang.Byte.parseByte for Byte.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3.3-1"></a><font size="1PT">JSONB:SPEC:JSB-3.3.3-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3.3</font></TD><TD align="left" valign="center"><font size="1PT">Serialization of type java.lang.Boolean and its corresponding boolean primitive type to JSON value MUST follow conversion process defined in specification for java.lang.Boolean.toString method</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3.3-2"></a><font size="1PT">JSONB:SPEC:JSB-3.3.3-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3.3</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization of a JSON value into java.lang.Boolean instance or boolean primitive type MUST follow the conversion process as defined in specification for java.lang.Boolean.parseBoolean method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3.4-1"></a><font size="1PT">JSONB:SPEC:JSB-3.3.4-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3.4</font></TD><TD align="left" valign="center"><font size="1PT">Serialization of type java.lang.Number (if their more concrete type is not defined elsewhere in this chapter) to JSON string MUST retrieve double value returned from java.lang.Number.doubleValue() method and converting the value to JSON Number as defined in subsection 3.3.2</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.3.4-2"></a><font size="1PT">JSONB:SPEC:JSB-3.3.4-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3.4</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization of a JSON value into Java type java.lang.Number should return instance of java.math.BigDecimal by using conversion as defined in the specification for constructor of java.math.BigDecimal with java.lang.String.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4-1"></a><font size="1PT">JSONB:SPEC:JSB-3.4-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support binding of the following standard Java SE classes:
+java.math.BigInteger
+java.math.BigDecimal
+java.net.URL
+java.net.URI
+java.util.Optional
+java.util.OptionalInt
+java.util.OptionalLong
+java.util.OptionalDouble </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.1-1"></a><font size="1PT">JSONB:SPEC:JSB-3.4.1-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.1</font></TD><TD align="left" valign="center"><font size="1PT">Serialization of type java.math.BigInteger, BigDecimal to s JSON Number MUST follow the conversion process defined in specification for their toString method</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.1-2"></a><font size="1PT">JSONB:SPEC:JSB-3.4.1-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.2</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization of JSON value into java.math.BigInteger, BigDecimal instance MUST follow the conversion process as defined in the specification for constructor of java.math.BigInteger, BigDecimal with java.lang.String.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.2-1"></a><font size="1PT">JSONB:SPEC:JSB-3.4.2-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.2</font></TD><TD align="left" valign="center"><font size="1PT">Serialization of type java.net.URL, URI to a JSON String value MUST follow the conversion process defined in specification for their toString method</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.2-2"></a><font size="1PT">JSONB:SPEC:JSB-3.4.2-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.2</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization of a JSON value into java.net.URL, URI instance MUST follow the conversion process as defined in the specification for constructor of java.net.URL, URI with java.lang.String input.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.3-1"></a><font size="1PT">JSONB:SPEC:JSB-3.4.3-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Non-empty instances of type java.util.Optional, OptionalInt, OptionalLong, OptionalDouble are serialized to a JSON value by retrieving their contained instance and converting it to JSON value based on its type and corresponding mapping definitions within this chapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.3-2"></a><font size="1PT">JSONB:SPEC:JSB-3.4.3-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Class fields containing empty optional instances are treated as having a null value and serialized based on 3.14.1.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.3-3"></a><font size="1PT">JSONB:SPEC:JSB-3.4.3-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Empty optional instances in array items are serialized as null.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.3-4"></a><font size="1PT">JSONB:SPEC:JSB-3.4.3-4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Deserializing into Optional, OptionalInt, OptionalLong, OptionalDouble return empty optional value for properties containing a null value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.3-5"></a><font size="1PT">JSONB:SPEC:JSB-3.4.3-5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Otherwise any non-empty Optional, OptionalInt, OptionalLong, OptionalDouble value is constructed of type unmarshalled based on mappings defined in this chapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.3-6"></a><font size="1PT">JSONB:SPEC:JSB-3.4.3-6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Instances of type java.util.Optional T are serialized to a JSON value as JSON objects when T alone would be serialized as JSON object. When T would be serialized as a JSON value (e.g. java.lang.String, java.lang.Integer), an instance of java.util.Optional T is serialized as a JSON value (without curly brackets).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.4.3-7"></a><font size="1PT">JSONB:SPEC:JSB-3.4.3-7</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization of a JSON value into java.util.Optional(T) MUST be supported if deserialization of a JSON value into instance of T is supported.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5-1"></a><font size="1PT">JSONB:SPEC:JSB-3.5-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support binding of the following standard Java date/time classes: java.util.Date
+java.util.Calendar
+java.util.GregorianCalendar
+java.util.TimeZone
+java.util.SimpleTimeZone
+java.time.Instant
+java.time.Duration
+java.time.Period
+java.time.LocalDate
+java.time.LocalTime
+java.time.LocalDateTime
+java.time.ZonedDateTime
+java.time.ZoneId
+java.time.ZoneOffset
+java.time.OffsetDateTime
+java.time.OffsetTime</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5-2"></a><font size="1PT">JSONB:SPEC:JSB-3.5-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5</font></TD><TD align="left" valign="center"><font size="1PT">If not specified otherwise in this section, GMT standard time zone and offset specified from UTC Greenwich is used.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5-3"></a><font size="1PT">JSONB:SPEC:JSB-3.5-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5</font></TD><TD align="left" valign="center"><font size="1PT">If not specified otherwise, date time format for marshalling and unmarshalling is ISO 8601 without offset, as specified in java.time.format.DateTimeFormatter.ISO_DATE.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5-4"></a><font size="1PT">JSONB:SPEC:JSB-3.5-4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST report error if the date/time string in JSON document does not correspond to the expected datetime format. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.1-1"></a><font size="1PT">JSONB:SPEC:JSB-3.5.1-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.1</font></TD><TD align="left" valign="center"><font size="1PT">The serialization format of java.util.Date, Calendar, GregorianCalendar instances with no time information is ISO_DATE.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.1-2"></a><font size="1PT">JSONB:SPEC:JSB-3.5.1-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.1</font></TD><TD align="left" valign="center"><font size="1PT">If time information is present, the format is ISO_DATE_TIME</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.1-3"></a><font size="1PT">JSONB:SPEC:JSB-3.5.1-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.1</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support deserialization of both ISO_DATE and ISO_DATE_TIME into java.util.Date, Calendar and GregorianCalendar instances.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.2-1"></a><font size="1PT">JSONB:SPEC:JSB-3.5.2-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.2</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support deserialization of any time zone format specified in java.util.TimeZone into a field or property of type java.util.TimeZone and SimpleTimeZone.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.2-2"></a><font size="1PT">JSONB:SPEC:JSB-3.5.2-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.2</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST report an error for deprecated three-letter time zone IDs as specified in java.util.Timezone.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.2-3"></a><font size="1PT">JSONB:SPEC:JSB-3.5.2-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.2</font></TD><TD align="left" valign="center"><font size="1PT">The serialization format of java.util.TimeZone and SimpleTimeZone is NormalizedCustomID as specified in java.util.TimeZone.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-1"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">The serialization output for a java.time.Instant instance MUST be in a ISO_INSTANT format, as specified in java.time.format.DateTimeFormatter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-2"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support the deserialization of an ISO_INSTANT formatted JSON string to a java.time.Instant instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-3"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">Analogically, for other java.time.* classes, following mapping table matches Java types and corresponding formats:
+java.time.Instant ISO_INSTANT
+java.time.LocalDate ISO_LOCAL_DATE
+java.time.LocalTime ISO_LOCAL_TIME
+java.time.LocalDateTime ISO_LOCAL_DATE_TIME
+java.time.ZonedDateTime ISO_ZONED_DATE_TIME
+java.time.OffsetDateTime ISO_OFFSET_DATE_TIME
+java.time.OffsetTime ISO_OFFSET_TIME</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-4"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support the deserialization of any time zone ID format specified in java.time.ZoneId into a field or property of type java.time.ZoneId.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-5"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">The serialization format of java.time.ZoneId is the normalized zone ID as specified in java.time.ZoneId.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-6"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support the deserialization of any time zone ID format specified in java.time.ZoneOffset into a field or property of type java.time.ZoneOffset.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-7"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-7</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">The serialization format of java.time.ZoneOffset is the normalized zone ID as specified in java.time.ZoneOffset.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-8"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-8</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support the deserialization of any duration format specified in java.time.Duration into a field or property of type java.time.Duration.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-9"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-9</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">This is super-set of ISO 8601 duration format. The serialization format of java.time.Duration is the ISO 8601 seconds based representation, such as PT8H6M12.345S.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-10"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-10</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support the deserialization of any period format specified in java.time.Period into a field or property of type java.time.Period.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-11"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-11</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">This is a super-set of ISO 8601 period format. The serialization format of java.time.Period is ISO 8601 period representation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.5.3-12"></a><font size="1PT">JSONB:SPEC:JSB-3.5.3-12</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.3</font></TD><TD align="left" valign="center"><font size="1PT">A zero-length period is represented as zero days 'P0D'.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.6-1"></a><font size="1PT">JSONB:SPEC:JSB-3.6-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.6</font></TD><TD align="left" valign="center"><font size="1PT">For an unspecified output type of a deserialization operation, as well as where output type is specified as Object.class, implementations MUST deserialize a JSON document using Java runtime types specified in table below:
+object java.util.Map String,Object
+array java.util.List Object
+string java.lang.String
+number java.math.BigDecimal
+true, false java.lang.Boolean
+null null
+</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.6-2"></a><font size="1PT">JSONB:SPEC:JSB-3.6-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.6</font></TD><TD align="left" valign="center"><font size="1PT">JSON object values are deserialized into an implementation of java.util.Map(String, Object) with a predictable iteration order.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7-1"></a><font size="1PT">JSONB:SPEC:JSB-3.7-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7</font></TD><TD align="left" valign="center"><font size="1PT">Any instance passed to a deserialization operation must have a public or protected no-argument constructor. Implementations SHOULD throw an error if this condition is not met.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7-2"></a><font size="1PT">JSONB:SPEC:JSB-3.7-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7</font></TD><TD align="left" valign="center"><font size="1PT">This limitation does not apply to serialization operations, as well as to classes which specify explicit instantiation methods as described in section 4.5.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.1-1"></a><font size="1PT">JSONB:SPEC:JSB-3.7.1-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.1</font></TD><TD align="left" valign="center"><font size="1PT">For a deserialization operation of a Java property, if a matching public setter method exists, the method is called to set the value of the property. If a matching setter method with private, protected, or defaulted to package-only access exists, then this field is ignored. If no matching setter method exists and the field is public, then direct field assignment is used.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.1-2"></a><font size="1PT">JSONB:SPEC:JSB-3.7.1-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.1</font></TD><TD align="left" valign="center"><font size="1PT">For a serialization operation, if a matching public getter method exists, the method is called to obtain the value of the property. If a matching getter method with private, protected, or defaulted to package-only access exists, then this field is ignored. If no matching getter method exists and the field is public, then the value is obtained directly from the field.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.1-3"></a><font size="1PT">JSONB:SPEC:JSB-3.7.1-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.1</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST NOT deserialize into transient, final or static fields and MUST ignore name/value pairs corresponding to such fields.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.1-4"></a><font size="1PT">JSONB:SPEC:JSB-3.7.1-4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.1</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support serialization of final fields.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.1-5"></a><font size="1PT">JSONB:SPEC:JSB-3.7.1-5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.1</font></TD><TD align="left" valign="center"><font size="1PT">Transient and static fields MUST be ignored during serialization operation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.1-6"></a><font size="1PT">JSONB:SPEC:JSB-3.7.1-6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.1</font></TD><TD align="left" valign="center"><font size="1PT">If a JSON document contains a name/value pair not corresponding to field or setter method, then this name/value pair MUST be ignored.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.1-7"></a><font size="1PT">JSONB:SPEC:JSB-3.7.1-7</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.1</font></TD><TD align="left" valign="center"><font size="1PT">Public getter/setter methods without a corresponding field MUST be supported. When only public getter/setter method without corresponding field is present in the class, the getter method is called to obtain the value to serialize, and the setter method is called during deserialization operation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.2-1"></a><font size="1PT">JSONB:SPEC:JSB-3.7.2-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.2</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support the binding of public and protected nested classes.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.2-2"></a><font size="1PT">JSONB:SPEC:JSB-3.7.2-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.2</font></TD><TD align="left" valign="center"><font size="1PT">For deserialization operations, both nested and encapsulating classes MUST fulfill the same instantiation requirements as specified in 3.7.1.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.3-1"></a><font size="1PT">JSONB:SPEC:JSB-3.7.3-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.3</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support the binding of public and protected static nested classes.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.3-2"></a><font size="1PT">JSONB:SPEC:JSB-3.7.3-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.3</font></TD><TD align="left" valign="center"><font size="1PT">For deserialization operations, the nested class MUST fulfill the same instantiation requirements as specified in 3.7.1.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.7.4-1"></a><font size="1PT">JSONB:SPEC:JSB-3.7.4-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.7.4</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization into anonymous classes is not supported. Serialization of anonymous classes is supported by default object mapping.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.8-1"></a><font size="1PT">JSONB:SPEC:JSB-3.8-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.8</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization into polymorphic types is not supported by default mapping.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.9-1"></a><font size="1PT">JSONB:SPEC:JSB-3.9-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.9</font></TD><TD align="left" valign="center"><font size="1PT">Serialization of an Enum instance to a JSON String value MUST follow the conversion process defined in javadoc specification for their name().</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.9-2"></a><font size="1PT">JSONB:SPEC:JSB-3.9-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.9</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization of a JSON value into an enum instance MUST be done by calling the enum&rsquo;s valueOf(String) method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.10-1"></a><font size="1PT">JSONB:SPEC:JSB-3.10-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.10</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support the deserialization of specific interfaces defined in 3.11 and 3.3.4.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.10-2"></a><font size="1PT">JSONB:SPEC:JSB-3.10-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.10</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization to other interfaces is not supported and implementations SHOULD report error in such case.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.10-3"></a><font size="1PT">JSONB:SPEC:JSB-3.10-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.10</font></TD><TD align="left" valign="center"><font size="1PT">If a class property is defined with an interface and not concrete type, then the mapping for a serialized property is resolved based on its runtime type.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.11-1"></a><font size="1PT">JSONB:SPEC:JSB-3.11-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.11</font></TD><TD align="left" valign="center"><font size="1PT">Implementations MUST support binding of the following collection interfaces, classes and their implementations.
+java.util.Collection
+java.util.Map
+java.util.Set
+java.util.HashSet
+java.util.NavigableSet
+java.util.SortedSet
+java.util.TreeSet
+java.util.LinkedHashSet
+java.util.TreeHashSet
+java.util.HashMap
+java.util.NavigableMap
+java.util.SortedMap
+java.util.TreeMap
+java.util.LinkedHashMap
+java.util.TreeHashMap
+java.util.List
+java.util.ArrayList
+java.util.LinkedList
+java.util.Deque
+java.util.ArrayDeque
+java.util.Queue
+java.util.PriorityQueue
+java.util.EnumSet
+java.util.EnumMap
+
+</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.11-2"></a><font size="1PT">JSONB:SPEC:JSB-3.11-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.11</font></TD><TD align="left" valign="center"><font size="1PT">Implementations of interfaces below must provide accessible default constructor. JSON Binding implementations MUST report unmarshalling error if default constructor is not present or is not in accessible scope.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.12-1"></a><font size="1PT">JSONB:SPEC:JSB-3.12-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.12</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST support binding of Java arrays of all supported Java types from this chapter into/from JSON array structures as defined in Section 5 of RFC 7159</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.12-2"></a><font size="1PT">JSONB:SPEC:JSB-3.12-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.12</font></TD><TD align="left" valign="center"><font size="1PT">Arrays of primitive types and multi-dimensional arrays MUST be supported.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.13-1"></a><font size="1PT">JSONB:SPEC:JSB-3.13-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.13</font></TD><TD align="left" valign="center"><font size="1PT">Declared fields MUST be serialized in lexicographical order into the resulting JSON document. In case of inheritance, declared fields of super class MUST be serialized before declared fields of child class.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.13-2"></a><font size="1PT">JSONB:SPEC:JSB-3.13-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.13</font></TD><TD align="left" valign="center"><font size="1PT">When deserializing a JSON document, declared fields MUST be set in the order of attributes present in the JSON document.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.14.1-1"></a><font size="1PT">JSONB:SPEC:JSB-3.14.1-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.14.1</font></TD><TD align="left" valign="center"><font size="1PT">The result of serializing a java field with a null value is the absence of the property in the resulting JSON document.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.14.1-2"></a><font size="1PT">JSONB:SPEC:JSB-3.14.1-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.14.1</font></TD><TD align="left" valign="center"><font size="1PT">The deserialization operation of a property absent in JSON document MUST not set the value of the field, the setter (if available) MUST not be called, and thus original value of the field MUST be preserved.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.14.1-3"></a><font size="1PT">JSONB:SPEC:JSB-3.14.1-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.14.1</font></TD><TD align="left" valign="center"><font size="1PT">The deserialization operation of a property with a null value in a JSON document MUST set the value of the field to null value (or call setter with null value if setter is present). The exception is java.util.Optional, OptionalInt, OptionalLong, OptionalDouble instances. In this case the value of the field is set to an empty optional value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.14.2-1"></a><font size="1PT">JSONB:SPEC:JSB-3.14.2-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.14.2</font></TD><TD align="left" valign="center"><font size="1PT">The result of deserialization n-ary array represented in JSON document is n-ary Java array.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.14.2-2"></a><font size="1PT">JSONB:SPEC:JSB-3.14.2-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.14.2</font></TD><TD align="left" valign="center"><font size="1PT">Null value in JSON array is represented by null value in Java array.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.14.2-3"></a><font size="1PT">JSONB:SPEC:JSB-3.14.2-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.14.2</font></TD><TD align="left" valign="center"><font size="1PT">Serialization operation on Java array with null value at index i MUST output null value at index i of the array in resulting JSON document.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.15-1"></a><font size="1PT">JSONB:SPEC:JSB-3.15-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.15</font></TD><TD align="left" valign="center"><font size="1PT">According to RFC 7159 Section 7 , every Java identifier name can be transformed using identity function into a valid JSON String. Identity function MUST be used for transforming Java identifier names into name Strings in JSON document.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.15-2"></a><font size="1PT">JSONB:SPEC:JSB-3.15-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.15</font></TD><TD align="left" valign="center"><font size="1PT">For deserialization operations defined in 3.6 section, identity function is used to transform JSON name strings into Java String instances in the resulting map Map(String, Object).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.15-3"></a><font size="1PT">JSONB:SPEC:JSB-3.15-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.15</font></TD><TD align="left" valign="center"><font size="1PT">Identity function is used also for other deseralization operations.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">deprecated</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.15-4"></a><font size="1PT">JSONB:SPEC:JSB-3.15-4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.15</font></TD><TD align="left" valign="center"><font size="1PT">If a Java identifier with corresponding name does not exist or is not accessible, the implementations MUST report error.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.16-1"></a><font size="1PT">JSONB:SPEC:JSB-3.16-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.16</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementation MUST serialize numbers that express greater magnitude or precision than an IEEE 754 double precision number as strings.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17-1"></a><font size="1PT">JSONB:SPEC:JSB-3.17-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST support binding of generic types.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17-2"></a><font size="1PT">JSONB:SPEC:JSB-3.17-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17</font></TD><TD align="left" valign="center"><font size="1PT">Due to type erasure, there are situations when it is not possible to obtain generic type information.  There are two ways for JSON Binding implementations to obtain generic type information. If there is a class file available (in the following text referred as static type information), it is possible to obtain generic type information (effectively generic type declaration) from Signature attribute (if this information is present).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17-3"></a><font size="1PT">JSONB:SPEC:JSB-3.17-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17</font></TD><TD align="left" valign="center"><font size="1PT">The second option is to provide generic type information at runtime. To provide generic type information at runtime, an argument of java.lang.reflect.Type MUST be passed to Jsonb::toJson or to Jsonb::fromJson method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-1"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">There are several levels of information JSON Binding implementations may obtain about the type of field/class/interface:
+   1. runtime type provided via java.lang.reflect.Type parameter passed to Jsonb::toJson or Jsonb::fromJson method
+   2. static type provided in class file (effectively stored in Signature attribute)
+   3. raw type
+   4. no information about the type</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-2"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">If there is no information about the type, JSON Binding implementation MUST treat this type as java.lang.Object.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-3"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">If only raw type of given field/class/interface is known, then the type MUST be treated like raw type.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-4"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">For example, if the only available information is that given field/class/interface is of type java.util.ArrayList, than the type MUST be treated as java.util.ArrayList Object.  JSON Binding implementations MUST use the most specific type derived from the information available.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-5"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">Let's consider situation where there is only static type information of a given field/class/interface known,
+and there is no runtime type information available. Let GenericClass T1; : : : ; Tn  be part of generic type
+declaration, where GenericClass is name of the generic type and T1; : : : ; Tn are type parameters. For every
+Ti, where i in 1; : : : ; n, there are 3 possible options:</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-6"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">1. Ti is concrete parameter type
+2. Ti is bounded parameter type
+3. Ti is wildcard parameter type without bounds
+In case 1, the most specific parameter type MUST be given concrete parameter type Ti.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-7"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-7</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">For bounded parameter type, using bounds B1; : : : ;Bm. If m = 1, then the most specific parameter type MUST be derived from the given bound B1.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-8"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-8</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">If B1 is class or interface, the most specific parameter type MUST be the class or interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-9"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-9</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">Otherwise, the most specific parameter type SHOULD be java.lang.Object.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-10"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-10</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">If multiple bounds are specified, the first step is to resolve every bound separately. Let&acirc;&euro;&trade;s define result of such resolution as S1; : : : ; Sm specific parameter types. If S1; : : : ; Sm are java.lang.Object, then the bounded parameter type Ti MUST be java.lang.Object.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-11"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-11</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">If there is exactly one Sk, where 1 &lt;= k &lt;= m is different than java.lang.Object, then the most specific parameter type for this bounded parameter type Ti MUST be Sk.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-12"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-12</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">If there exists Sk1; Sk2, where 1 &lt;= k1 &lt;= k2 &lt;= m, then the most specific parameter type is Sk1.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-13"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-13</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">For wildcard parameter type without bounds, the most specific parameter type MUST be java.lang.Object.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-14"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-14</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">Any unresolved type parameter MUST be treated as java.lang.Object. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.17.1-15"></a><font size="1PT">JSONB:SPEC:JSB-3.17.1-15</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.17.1</font></TD><TD align="left" valign="center"><font size="1PT">If runtime type is provided via java.lang.reflect.Type parameter passed to Jsonb::toJson or Jsonb::fromJson method, than that runtime type overrides static type declaration wherever applicable</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.18-1"></a><font size="1PT">JSONB:SPEC:JSB-3.18-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.18</font></TD><TD align="left" valign="center"><font size="1PT">When JSON Binding implementation encounters key in key/value pair that it does not recognize, it should treat the rest of the JSON document as if the element simply did not appear, and in particular, the implementation MUST NOT treat this as an error condition.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.19-1"></a><font size="1PT">JSONB:SPEC:JSB-3.19-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.19</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST NOT produce JSON documents with members with duplicate names. In this context, "duplicate" means that the names, after processing any escaped characters, are identical sequences of Unicode characters.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.19-2"></a><font size="1PT">JSONB:SPEC:JSB-3.19-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.19</font></TD><TD align="left" valign="center"><font size="1PT">When non-unique property (after override and rename) is found, implementation MUST throw an exception.  This doesn't apply for customized user serialization behavior implemented with the usage of JsonbAdapter mechanism.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.20-1"></a><font size="1PT">JSONB:SPEC:JSB-3.20-1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.20</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST support binding of the following JSON Processing types.
+
+javax.json.JsonObject
+javax.json.JsonArray
+javax.json.JsonStructure
+javax.json.JsonValue
+javax.json.JsonPointer
+javax.json.JsonString
+javax.json.JsonNumber
+			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.20-2"></a><font size="1PT">JSONB:SPEC:JSB-3.20-2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.20</font></TD><TD align="left" valign="center"><font size="1PT">Marshalling of supported javax.json.* objects/interfaces/fields MUST have the same result as marshalling these objects with javax.json.JsonWriter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-3.20-3"></a><font size="1PT">JSONB:SPEC:JSB-3.20-3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.20</font></TD><TD align="left" valign="center"><font size="1PT">Deserialization into supported javax.json.* objects/interfaces/fields MUST have the same result as unmarshalling into such objects with javax.json.JsonReader.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.1.1-1"></a><font size="1PT">JSONB:SPEC:JSB-4.1.1-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST NOT serialize fields, JavaBean properties or types annotated with javax.json.bind.annotation.JsonbTransient.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.1.1-2"></a><font size="1PT">JSONB:SPEC:JSB-4.1.1-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">JsonbTransient annotation is mutually exclusive with all other JSON Binding defined annotations. If this condition is not met, JSON Binding implementation MUST throw JsonbException.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.1.2-1"></a><font size="1PT">JSONB:SPEC:JSB-4.1.2-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1.2</font></TD><TD align="left" valign="center"><font size="1PT">To provide custom name for given field (or JavaBean property),
+javax.json.bind.annotation.JsonbProperty may be used. JsonbProperty annotation may be specified on
+field, getter or setter method. If specified on field, custom name is used both for serialization and
+deserialization.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.1.2-2"></a><font size="1PT">JSONB:SPEC:JSB-4.1.2-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1.2</font></TD><TD align="left" valign="center"><font size="1PT">If javax.json.bind.annotation.JsonbProperty is specified on getter method, it is used
+only for serialization.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.1.2-3"></a><font size="1PT">JSONB:SPEC:JSB-4.1.2-3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1.2</font></TD><TD align="left" valign="center"><font size="1PT">If javax.json.bind.annotation.JsonbProperty is specified on setter method, it is used only for deserialization.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.1.2-4"></a><font size="1PT">JSONB:SPEC:JSB-4.1.2-4</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1.2</font></TD><TD align="left" valign="center"><font size="1PT">It is possible to specify different values for getter and setter method for javax.json.bind.annotation.JsonbProperty annotation. In such case the different custom name will be used for serialization and deserialization.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.1.3-1"></a><font size="1PT">JSONB:SPEC:JSB-4.1.3-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1.2</font></TD><TD align="left" valign="center"><font size="1PT">The way to set custom property naming strategy is to use javax.json.bin.JsonbConfig::withPropertyNamingStrategy method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.1.4-1"></a><font size="1PT">JSONB:SPEC:JSB-4.1.4-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1.3</font></TD><TD align="left" valign="center"><font size="1PT">If duplicate name is found exception MUST be thrown. The definition of duplicate (non-unique) property
+can be found in 3.19.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.2"></a><font size="1PT">JSONB:SPEC:JSB-4.2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">The way to set custom property order strategy is to use javax.json.bin.JsonbConfig::withPropertyOrderStrategy method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.2-2"></a><font size="1PT">JSONB:SPEC:JSB-4.2-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">To customize the order of serialized properties only for one specific type, JSON Binding provides javax.json.bind.annotation.JsonbPropertyOrder annotation. Order specified by JsonbPropertyOrder annotation overrides order specified by PropertyOrderStrategy.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.3-1"></a><font size="1PT">JSONB:SPEC:JSB-4.3-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.3.1</font></TD><TD align="left" valign="center"><font size="1PT">If annotations (JsonbNillable or JsonbProperty) on different level apply to the same field (or JavaBean property) or if there is config wide configuration and some annotation (JsonbNillable or JsonbProperty) which apply to the same field (or JavaBean property), the annotation with the smallest scope applies.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.3.1-1"></a><font size="1PT">JSONB:SPEC:JSB-4.3.1-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.3.1</font></TD><TD align="left" valign="center"><font size="1PT">When given object (type or package) is annotated with javax.json.bind.annotation.JsonbNillable annotation, the result of null value will be presence of associated property in JSON document with explicit null value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.3.1-2"></a><font size="1PT">JSONB:SPEC:JSB-4.3.1-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.3.1</font></TD><TD align="left" valign="center"><font size="1PT">The same behavior as JsonbNillable, but only at field, parameter and method (JavaBean property) level is provided by javax.json.bind.annotation.JsonbProperty annotation with its nillable parameter</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.3.1-3"></a><font size="1PT">JSONB:SPEC:JSB-4.3.1-3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.3.1</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST implement override of annotations according to target of the annotation (FIELD, PARAMETER, METHOD, TYPE, PACKAGE). Type level annotation overrides behavior set at the package level. Method, parameter or field level annotation overrides behavior set at the type level.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.3.2-1"></a><font size="1PT">JSONB:SPEC:JSB-4.3.2-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.3.2</font></TD><TD align="left" valign="center"><font size="1PT">The way to enforce serialization of null values, is to call method javax.json.bind.JsonbConfig::withNullValues with parameter true. The way to skip serialization of null values is to call method javax.json.bind.JsonbConfig::withNullValues with parameter false.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.4-1"></a><font size="1PT">JSONB:SPEC:JSB-4.4-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.4</font></TD><TD align="left" valign="center"><font size="1PT">To enforce strict compliance of serialized JSON documents, JSON Binding implementations MUST implement configuration option jsonb.i-json.strict-ser-compliance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.4.1-1"></a><font size="1PT">JSONB:SPEC:JSB-4.4.1-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.4.1</font></TD><TD align="left" valign="center"><font size="1PT">Uppercase rather than lowercase letters MUST be used.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.4.1-2"></a><font size="1PT">JSONB:SPEC:JSB-4.4.1-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.4.1</font></TD><TD align="left" valign="center"><font size="1PT">The timezone MUST always be included and optional trailing seconds MUST be included even when their value is 00.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.4.1-3"></a><font size="1PT">JSONB:SPEC:JSB-4.4.1-3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.4.1</font></TD><TD align="left" valign="center"><font size="1PT">JSON Binding implementations MUST serialize java.util.Date, java.util.Calendar, java.util.GregorianCalendar, java.time.LocalDate, java.time.LocalDateTime and java.time.Instant in the same format as java.time.ZonedDateTime.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.4.1-4"></a><font size="1PT">JSONB:SPEC:JSB-4.4.1-4</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.4.1</font></TD><TD align="left" valign="center"><font size="1PT">The result of serialization of duration must conform to the duration production in Appendix A of RFC 3339, with the same additional restrictions</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.5-1"></a><font size="1PT">JSONB:SPEC:JSB-4.5-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.5</font></TD><TD align="left" valign="center"><font size="1PT">At most one JsonbCreator annotation can be used to annotate custom constructor or static void factory method in a class, otherwise JsonbException MUST be thrown.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.5-2"></a><font size="1PT">JSONB:SPEC:JSB-4.5-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.5</font></TD><TD align="left" valign="center"><font size="1PT">Factory method annotated with JsonbCreator annotation should return instance of particular class this annotation is used for, otherwise JsonbException MUST be thrown.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.5-3"></a><font size="1PT">JSONB:SPEC:JSB-4.5-3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.5</font></TD><TD align="left" valign="center"><font size="1PT">Parameters of constructor/factory method annotated with JsonbCreator will be mapped from JSON fields with the same name. The name of a parameter can be changed annotating given parameter with JsonbProperty annotation. When a JSON field is not mappable to a parameter with the same name, JsonbException MUST be thrown</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.6-1"></a><font size="1PT">JSONB:SPEC:JSB-4.6-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.5</font></TD><TD align="left" valign="center"><font size="1PT">To customize scope and field access strategy as specified in section 3.7.1, it is possible to specify javax.json.bind.annotation.JsonbVisibility annotation or to override default behavior globally calling JsonbConfig::withPropertyVisibilityStrategy method with given custom property visibility strategy.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.7.1-1"></a><font size="1PT">JSONB:SPEC:JSB-4.7.1-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.7.1</font></TD><TD align="left" valign="center"><font size="1PT">On serialization of Original type JSONB calls JsonbAdapter::adaptToJson method of the adapter to convert Original to Adapted and serializes Adapted the standard way. There are two ways how to register JsonbAdapter: Using JsonbConfig::withAdapters method;</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.7.1-2"></a><font size="1PT">JSONB:SPEC:JSB-4.7.1-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.7.1</font></TD><TD align="left" valign="center"><font size="1PT">Annotating a class field with JsonbTypeAdapter annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.7.1-3"></a><font size="1PT">JSONB:SPEC:JSB-4.7.1-3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.7.1</font></TD><TD align="left" valign="center"><font size="1PT">Implementations	must	provide	a	CDI	support	in	adapters	to	allow	injection	of	CDI managed	beans into	it.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.7.2-1"></a><font size="1PT">JSONB:SPEC:JSB-4.7.2-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.7.2</font></TD><TD align="left" valign="center"><font size="1PT">Serializer is a class implementing javax.json.bind.serializers.JsonbSerializer interface. It is used to serialize the type it&rsquo;s registered on (Original). On marshalling of Original type JSONB calls JsonbSerializer::serialize method. This method has to contain a custom code to serialize Original type using provided JsonpGenerator.Deserializer is a class implementing javax.json.bind.serializers.JsonbDeserializer interface. It is used to deserialize the type it&rsquo;s registered on (Original). On deserialization of Original type JSONB calls JsonbDeserializer::deserialize method. This method has to contain a custom code to deserialize Original type using provided JsonpParser. There are two ways how to register JsonbSerializer/JsonbDeserializer:Using JsonbConfig::withSerializers/ JsonbConfig::withDeserializers method;</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.7.2-2"></a><font size="1PT">JSONB:SPEC:JSB-4.7.2-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.7.2</font></TD><TD align="left" valign="center"><font size="1PT">Annotating a type with JsonbSerializer/JsonbDeserializer annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.7.2-3"></a><font size="1PT">JSONB:SPEC:JSB-4.7.2-3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.7.2</font></TD><TD align="left" valign="center"><font size="1PT">Implementations	must	provide	a	CDI	support	in	serializers/deserializers	to	allow	injection	of	CDI managed	beans into	it.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.8-1"></a><font size="1PT">JSONB:SPEC:JSB-4.8-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.8</font></TD><TD align="left" valign="center"><font size="1PT">JsonbDateFormat annotation can be applied to the following targets: field, method, type, parameter, package</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.8-2"></a><font size="1PT">JSONB:SPEC:JSB-4.8-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.8</font></TD><TD align="left" valign="center"><font size="1PT">Annotation	applied	to	more	specific	target overrides	the	same	annotation	applied	to	target	with wider	scope and	global	configuration.	For	example,	annotation	applied	to	type	target	will override	the	same	annotation	applied	to	package	target.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.8-3"></a><font size="1PT">JSONB:SPEC:JSB-4.8-3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.8</font></TD><TD align="left" valign="center"><font size="1PT">Default date format and default locale can be customized globally using javax.json.bind.JsonbConfig::withDateFormat and javax.json.bind.JsonbConfig::withLocale methods.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.9-1"></a><font size="1PT">JSONB:SPEC:JSB-4.9-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.9</font></TD><TD align="left" valign="center"><font size="1PT"> JsonbNumberFormat annotation can be applied to the following targets: field, method, type, parameter, package</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.9-2"></a><font size="1PT">JSONB:SPEC:JSB-4.9-2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.9</font></TD><TD align="left" valign="center"><font size="1PT">Annotation	applied	to	more	specific	target	overrides	the	same	annotation	applied	to	target	with wider	scope.	For	example,	annotation	applied	to	type	target	will	override	the	same	annotation applied	to	package	target.	</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+<TR>
+<TD align="center" valign="center"><a name="JSONB:SPEC:JSB-4.10-1"></a><font size="1PT">JSONB:SPEC:JSB-4.10-1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.10</font></TD><TD align="left" valign="center"><font size="1PT">The way to set custom binary data handling strategy is to use javax.json.bin.JsonbConfig::withBinaryDataStrategy method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT"><a></a>
+<br>
+</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
+</TR>
+</TABLE>
+</body>
+</html>

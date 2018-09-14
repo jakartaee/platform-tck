@@ -1,0 +1,73 @@
+Simple README file with instructions to quickly install, setup, configure,
+and run the EL TCK 3.0 and related software against the EL 3.0 RI. For 
+more detailed instructions please refer to the EL 3.0 Users Guide.
+
+-----------------------
+Installing the Software
+-----------------------
+Before you can run the EL TCK tests, you need to install
+and set up the following software components:
+
+1) Java SE 7
+2) EL RI Version 3.0
+3) EL TCK Version 3.0
+
+1. Download and install Java SE 7 software.
+
+   mkdir /javase7
+   cd /javase7
+   unzip <javase7-zip-bundle>
+
+2. Download and install the EL 3.0 Reference Implementation/jarfile.
+
+   mkdir /ri
+   cd /ri
+   
+
+3. Download and install the EL TCK 3.0 software.
+
+   mkdir /tck
+   cd /tck
+   unzip el.zip
+
+-----------------------------------------
+Setup and Configuration of the EL TCK
+-----------------------------------------
+1. Configure the EL TCK to run against the EL RI. Set the following
+   variables in your shell environment.
+
+   setenv JAVA_HOME /javase7
+   setenv TS_HOME /tck/el
+   setenv ANT_HOME /tck/anthome
+   setenv PATH $JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+
+2. Edit the $TS_HOME/bin/ts.jte file and set the following properties:
+
+	el.classes=/ri/javax.el.jar
+	sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/rt.jar
+
+
+------------------------------
+Executing the EL TCK Tests
+------------------------------
+At this point we are ready to run the EL TCK tests against the EL 3.0
+Reference Implementation.
+
+1. Execute and run the EL TCK tests.
+
+   cd $TS_HOME/bin
+   ant run.all
+
+   This will run all the EL TCK tests including the signature tests.
+
+2. Another way to execute and run the EL TCK tests.
+
+   Run just the el tree of tests:
+
+   cd $TS_HOME/src/com/sun/ts/tests/el/api
+   ant runclient
+
+   Run just the el signature tests:
+
+   cd $TS_HOME/src/com/sun/ts/tests/signaturetests/el
+   ant runclient

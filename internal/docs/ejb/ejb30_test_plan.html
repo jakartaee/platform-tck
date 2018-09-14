@@ -1,0 +1,2231 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.79C-CCK-MCD  [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+  <title>Enterprise JavaBeans 3.0 Test Plan for J2EE 5.0</title>
+</head>
+<body text="#000000" bgcolor="#ffffff" link="#0000ee" vlink="#551a8b"
+ alink="#ff0000">
+<div style="text-align: left;">&nbsp;
+</div>
+<center>
+<div style="text-align: left;"></div>
+<h1 style="text-align: center;">Enterprise JavaBeans Compatibility Test
+Plan for
+JavaEE 5.0</h1>
+&nbsp; Revision 1.1<br>
+&nbsp;&nbsp; 08-10-05<br>
+<br>
+</center>
+<h1>
+Table of Contents</h1>
+<u>1.0 Introduction</u>
+<br>
+&nbsp;&nbsp;&nbsp; <u>1.1 Overview</u>
+<br>
+&nbsp;&nbsp;&nbsp; <u>1.2 Objectives</u>
+<br>
+<u>2.0 Features to be tested</u><br>
+<u>3.0 Features Not to be tested</u>
+<br>
+<u>4.0 Schedule and Responsibilities</u>
+<br>
+&nbsp;&nbsp;&nbsp; <u>4.1 Schedule</u>
+<br>
+&nbsp;&nbsp;&nbsp; <u>4.2 Responsibilities</u>
+<br>
+&nbsp;&nbsp;&nbsp; <u>4.3 Deliverables</u>
+<br>
+<u>5.0 Test Configurations</u>
+<br>
+<u>6.0 Test Methodology</u>
+<br>
+&nbsp;&nbsp;&nbsp; <u>6.1 CTS Test Design and Infrastructure<br>
+</u>
+<div style="margin-left: 40px;"><u>6.1.1 Proposed Test Directory
+Structure<br>
+</u><u>6.1.2 Client Considerations<br>
+</u><u>6.1.3 Base Business Interfaces<br>
+</u><u>6.1.4 Base Bean Classes<br>
+</u><u>6.1.5 Annotations<br>
+</u><u>6.1.6 Interoperability and Migration<br>
+</u><u>6.1.7 Persistence TCK Design Tasks<br>
+</u><u>6.1.8 General</u><br>
+</div>
+&nbsp;&nbsp;&nbsp; <u>6.2 Dependencies</u>
+<br>
+&nbsp;&nbsp;&nbsp; <u>6.3 Documentation</u>
+<br>
+&nbsp;&nbsp;&nbsp; <u>6.4 Targeted Coverage</u>
+<br>
+<u>7.0 Assertion Generation and Review</u>
+<br>
+<u>8.0 Release Criteria</u>
+<br>
+<u>9.0 References</u>
+<br>
+<u>10.0 Assumptions/Risks</u>
+<br>
+<u>11.0 Revision History</u>
+<br>
+<u>12.0 Approvals</u>
+<br>
+&nbsp;
+<h2>1.0 Introduction</h2>
+<h3>&nbsp;&nbsp;&nbsp; 1.1 Overview</h3>
+This test plan documents the strategy and deliverables for the
+compatibility test
+development effort for the Enterprise JavaBeans (EJB) specifications
+which are a
+requirement of the JavaEE 5.0 platform specification.&nbsp; The EJB
+requirements will be defined in three documents:<br>
+<ul>
+  <li>Enterprise JavaBeans Core Contracts and Requirements</li>
+  <li>EJB 3.0 Simplified API</li>
+  <li>Persistence API</li>
+</ul>
+Collectively, these specifications redefine the EJB architecture by
+simplifying the APIs defined in earlier versions of the specifications
+emphasizing an ease-of-development model consistent with the platform
+for enterprise application developers.&nbsp; The compatibility tests
+written to verify the requirements defined in
+the above specifications will be delivered as part of JavaEE 5.0
+Compatibility Test Suite (CTS).&nbsp; In addition, a subset of these
+compatibility tests for the Persistence API specification will be
+delivered as a separate standalone Technology Compatibility Kit (TCK)
+to certify the requirements of
+the use of such APIs in J2SE (non-JavaEE) environments.&nbsp;
+The compatibility test
+cases are derived from the requirements of the technology
+specifications.&nbsp; Optional
+behavior and implementation specific functionality will be identified
+for inclusion in our product quality test suite via the assertion
+review process (See Sections 3.0 and 7.0).<br>
+<h3>&nbsp;&nbsp;&nbsp; 1.2 Objectives</h3>
+The objectives of this plan is to define a test strategy
+for the Enterprise JavaBeans and Persistence components of the JavaEE
+5.0 reference
+implementation to ensure they meet their conformance
+goals.&nbsp;&nbsp; It is crucial that the
+compatibility tests themselves are designed and delivered as portable
+applications so this will be considered while defining the test
+architecture as well as during test development.&nbsp;
+The CTS EJB
+test development team will strive to achieve high quality releases for
+both of the targeted deliverables. The test development tasks will be
+scheduled to align with reference implementation feature integration
+schedules to 1) have a platform to exercise the tests against as they
+become ready for execution, and 2)
+measure compatibility and quality throughout the reference
+implementation software development cycle.&nbsp; The test reports
+generated from this
+effort
+will provide an overall compatibility and release readiness assessment
+for these requirements of
+the JavaEE 5.0 platform and Persistence reference implementations. <br>
+<br>
+<h2>2.0 Features to be tested</h2>
+As stated earlier, the EJB specifications simplify the APIs for
+enterprise
+application developers to use EJBs.&nbsp; The specifications provide
+developers the flexibility and
+simplification
+the community has been asking for but this is a significant
+challenge for testing compatibility as compliance of the EJB container
+needs to be ensured regardless of how the beans are coded and defined
+in their archive's deployment descriptors.&nbsp;&nbsp; While
+implementing the test suite, the EJB test developers, as some of the
+first implementors of
+the technology, will subjectively assess the ease-of-development goals
+that the specifications attempt to address.&nbsp;&nbsp; The test
+suite will be comprised of the following areas.&nbsp; Assertion
+documents used in conjunction with this overall plan will
+highlight specific test cases associated with these bulleted items.<br>
+<ul>
+  <li>
+    <h3>Core Contracts and Requirements</h3>
+  </li>
+  <ul>
+    <li>TimerService allows container-managed transaction attribute
+REQUIRED</li>
+    <li>Operations allowed in EJB3 callback methods</li>
+    <li>Interoperability?</li>
+    <li>Exception Handling<br>
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <h3>Simplified API</h3>
+  </li>
+  <ul>
+    <li>Requirements for Bean Flavors (including interface requirements)<br>
+    </li>
+    <ul>
+      <li>Session Stateful</li>
+      <li>Session
+Stateless</li>
+      <li>Message-Driven</li>
+      <li>Web Service Endpoint<br>
+      </li>
+    </ul>
+    <li>EJB 3.0 Bean Life Cycle</li>
+    <li>Callbacks and Callback Listener Classes</li>
+    <li>Interceptor Methods and Classes<br>
+    </li>
+    <ul>
+      <li>Multiple Interceptors for a Business Method Invocation</li>
+      <li>AroundInvoke methods<br>
+      </li>
+    </ul>
+    <li>Enterprise Bean Context and Environment</li>
+    <ul>
+      <li>Annotations</li>
+      <ul>
+        <li>Context Dependencies</li>
+        <ul>
+          <li>Instance Variables<br>
+          </li>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <li>Setter Injection</li>
+        </ul>
+      </ul>
+      <li>Injection and Lookup</li>
+      <li>EJBContext</li>
+    </ul>
+    <li>MetaData Annotations</li>
+  </ul>
+  <ul>
+    <ul>
+      <li>Specific to Bean Type</li>
+      <ul>
+        <li>Session Stateful</li>
+        <li>Session Stateless</li>
+        <li>Message-Driven</li>
+      </ul>
+      <li>Local or Remote Accessibility</li>
+      <li>Transaction Attributes</li>
+      <li>Callbacks<br>
+      </li>
+      <li>Resource and Environment References</li>
+      <li>Interceptors</li>
+      <li>Adaptation to Earlier Client View<br>
+      </li>
+    </ul>
+  </ul>
+</ul>
+<ul>
+  <li>
+    <h3>Interoperability Between EJB 3.0 and EJB 2.1 Clients and Beans</h3>
+  </li>
+  <ul>
+    <li>Clients written to the EJB 2.x APIs</li>
+    <li>Clients written to the new EJB 3.0 API</li>
+    <li>Combined use of EJB 2.x and 3.0 persistence APIs</li>
+  </ul>
+  <li>
+    <h3>Migration Between EJB 3.0 and EJB 2.1 Programming Models</h3>
+  </li>
+  <ul>
+    <li>Adapting EJB 3.0 Session Beans to earlier Client Views<br>
+    </li>
+  </ul>
+  <li>
+    <h3>Persistence API</h3>
+  </li>
+  <ul>
+    <li>Requirements for EntityBeans</li>
+    <ul>
+      <li>Persistent Fields and Properties</li>
+      <li>Primary Keys and Entity Identity<br>
+      </li>
+    </ul>
+    <ul>
+      <li>Embeddable Classes</li>
+      <li>Mapping Defaults for Non-Relationship Fields or Properties<br>
+      </li>
+      <li>Entity Relationships</li>
+      <ul>
+        <li>ManyToOne</li>
+        <li>OneToOne</li>
+        <li>OneToMany</li>
+        <li>ManyToMany</li>
+      </ul>
+      <ul>
+      </ul>
+      <li>Relationship Mapping Defaults</li>
+      <ul>
+        <li>BiDirectional</li>
+        <ul>
+          <li>OneToOne</li>
+          <li>ManyToOne/OneToMany</li>
+          <li>ManyToMany<br>
+          </li>
+        </ul>
+        <li>UniDirectional&nbsp; Single-Valued Relationships<br>
+        </li>
+        <ul>
+          <li>OneToOne</li>
+          <li>OneToMany</li>
+        </ul>
+        <li>UniDirectional Multi-Valued Relationships</li>
+        <ul>
+          <li>OneToMany</li>
+          <li>ManyToMany<br>
+          </li>
+        </ul>
+      </ul>
+      <li>Inheritance</li>
+      <ul>
+        <li>Single Table per Class Hierarchy Strategy</li>
+        <li>Abstract Entity Classes<br>
+        </li>
+        <li>Non-Entity Classes in the Entity Inheritance Hierarchy</li>
+        <li>Embeddable SuperClasses<br>
+        </li>
+      </ul>
+    </ul>
+    <li>EntityManager Interface</li>
+    <li>Annotations Specific to EntityBeans</li>
+    <li>Entity Bean Life Cycle</li>
+    <ul>
+      <li>Persist</li>
+      <ul>
+        <li>Cascade<br>
+        </li>
+      </ul>
+      <li>Remove</li>
+      <ul>
+        <li>Cascade<br>
+        </li>
+      </ul>
+    </ul>
+    <ul>
+      <li>Detached Entities</li>
+      <ul>
+        <li>Merging Detached Entity State</li>
+      </ul>
+      <li>flush()<br>
+      </li>
+      <li>Managed Instances</li>
+    </ul>
+    <li>Callbacks</li>
+    <ul>
+      <li>Methods</li>
+      <li>Semantics of Life Cycle Callback Methods</li>
+    </ul>
+    <li>Query API<br>
+    </li>
+    <ul>
+    </ul>
+    <li>Annotations for Queries</li>
+    <ul>
+      <li>Flush mode</li>
+      <li>Named Query</li>
+    </ul>
+    <li>EJB QL Enhancements</li>
+  </ul>
+  <ul>
+    <ul>
+      <li>Join Semantics</li>
+      <ul>
+        <li>Inner</li>
+        <ul>
+          <li>General</li>
+          <li>Relationship Join</li>
+        </ul>
+        <li>Left Outer</li>
+        <li>Fetch Joins</li>
+      </ul>
+      <li>Group By, Having Clause</li>
+      <li>Additional WHERE clause Expressions<br>
+      </li>
+      <ul>
+        <li>Exists Expression</li>
+        <li>All or Any Expressions</li>
+        <li>SubQueries</li>
+        <li>Functional Expressions</li>
+        <ul>
+          <li>TRIM, LOWER, UPPER<br>
+          </li>
+        </ul>
+        <li>Constructor Expressions</li>
+      </ul>
+      <li>Bulk Operations</li>
+      <ul>
+        <li>Update</li>
+        <li>Delete</li>
+      </ul>
+      <li>Polymorphism</li>
+      <li>Named Parameters</li>
+      <li>Positional Parameters</li>
+    </ul>
+    <li>EntityManager<br>
+    </li>
+    <ul>
+      <li> Obtaining an EntityManager</li>
+      <li>Container-Managed EntityManager<br>
+      </li>
+    </ul>
+    <ul>
+      <li>Application-Managed EntityManager</li>
+      <ul>
+        <li>EntityManagerFactory</li>
+        <ul>
+          <li>Injection and lookup within JavaEE environment</li>
+          <li>createEntityManagerFactory outside JavaEE environment<br>
+          </li>
+        </ul>
+        <ul>
+          <li>EntityManagerFactory Interface</li>
+          <ul>
+            <li>Application-Managed EntityManager Lifecycle</li>
+            <ul>
+              <li>close()</li>
+              <li>isOpen()</li>
+            </ul>
+          </ul>
+        </ul>
+      </ul>
+      <li>Transactions</li>
+      <ul>
+        <li>JTA EntityManagers</li>
+      </ul>
+      <ul>
+        <li>Resource-local EntityManageres<br>
+        </li>
+      </ul>
+      <ul>
+        <ul>
+          <li>EntityTransaction API</li>
+        </ul>
+      </ul>
+      <li>Container-Managed Persistence Contexts</li>
+      <ul>
+        <li>Transaction-scoped<br>
+        </li>
+        <li>Extended<br>
+        </li>
+      </ul>
+      <ul>
+      </ul>
+      <li>Application-Managed Persistence Contexts</li>
+      <ul>
+        <li>Transaction-scoped<br>
+        </li>
+        <li>Extended</li>
+      </ul>
+      <li>Persistence Context Propagation</li>
+      <ul>
+        <li>Transaction-scoped<br>
+        </li>
+        <li>Extended</li>
+      </ul>
+      <li>Requirements on the Container</li>
+      <ul>
+        <li>Persistence Context Management</li>
+        <li>Container Managed Persistence Contexts</li>
+        <ul>
+          <li>PersistenceContextType.TRANSACTION</li>
+          <li>PersistenceContextType.EXTENDED</li>
+        </ul>
+      </ul>
+      <li>Third-party Persistence Provider Contract<br>
+      </li>
+    </ul>
+  </ul>
+  <ul>
+  </ul>
+  <ul>
+    <li>MetaData for Object/Relational Mapping<sup>1</sup></li>
+    <ul>
+      <li>Table Annotation</li>
+      <li>SecondaryTable(s) Annotation</li>
+      <li>UniqueConstraint Annotation</li>
+      <li>Column Annotation</li>
+      <li>JoinColumn(s) Annotation</li>
+      <li>Id Annotation</li>
+      <ul>
+        <li>GeneratorType.NONE</li>
+        <li>GeneratorType.TABLE<br>
+        </li>
+      </ul>
+      <li>AttributeOverride Annotation<br>
+      </li>
+      <li>EmbeddedId Annotation</li>
+      <li>IdClass Annotation</li>
+      <li>Transient Annotation<br>
+      </li>
+      <li>Version Annotation</li>
+      <li>Basic Annotation</li>
+      <li>Serialized Annotation</li>
+      <li>Relationship Annotations</li>
+      <ul>
+        <li>ManyToOne</li>
+        <li>OneToOne</li>
+        <li>OneToMany</li>
+        <li>ManyToMany</li>
+      </ul>
+      <li>AssociationTable Annotation<br>
+      </li>
+      <li>DiscriminatorColumn Annotation</li>
+      <ul>
+        <li>Single Table Strategy<br>
+        </li>
+      </ul>
+      <li>Embeddable Annotation</li>
+      <li>Embedded Annotation</li>
+      <li>EmbeddedSuperclass<br>
+      </li>
+      <li>GeneratedIdTable Annotation</li>
+      <li>TableGenerator Annotation</li>
+    </ul>
+  </ul>
+</ul>
+<pre style="margin-left: 80px;"><big><sup>1</sup></big>This list highlights the annotations for verifying the requirements of mapping entities and their relationships to a database.<br>The annotation members and their specified targets will be further isolated in the Persistence API JavaDoc assertion list.</pre>
+<ul>
+  <ul>
+    <ul>
+    </ul>
+  </ul>
+  <ul>
+  </ul>
+  <li>
+    <h3>Exception Handling</h3>
+  </li>
+  <ul>
+    <li>Most of the exception behaviors will be identified by the
+assertions and tested in end-to-end scenarios.&nbsp; When the API
+assertions are generated, it is likely that specific exception tests
+will need to be written.&nbsp;&nbsp; This is a placeholder for the
+strategy to be documented as this information is known.<br>
+    </li>
+  </ul>
+  <li>
+    <h3>Packaging and Deployment<br>
+    </h3>
+  </li>
+  <ul>
+  </ul>
+  <ul>
+    <li>JavaEE</li>
+    <ul>
+      <li>Deployment Styles</li>
+      <ul>
+        <li>Annotation-based EJB 3.0 Style</li>
+        <ul>
+          <li>Uses annotations to define all component aspects
+including
+method attributes and resource references</li>
+        </ul>
+        <li>Mixed EJB 3.0 Style</li>
+        <ul>
+          <li>Some annotations are present on component but other
+aspects
+(method attributes) are defined in descriptors<br>
+          </li>
+        </ul>
+        <li>Migrating EJB 2.1 descriptors to Version 3.0</li>
+        <li>Annotation-less EJB 3.0 Deployment Style<sup>2</sup><br>
+        </li>
+        <ul>
+          <li>Source code is not annotated and descriptors are used to
+specify all relevant information. <br>
+          </li>
+        </ul>
+        <li>Annotation Overriding<sup>2</sup></li>
+        <ul>
+          <li>Will be used as needed for the assertion
+under test, but tests developed to exercise
+every combination of is not a priority for this first release.</li>
+        </ul>
+      </ul>
+      <li>Persistence archives will also be included as part of a
+JavaEE
+application archives and defined in the .ear's application.xml file.</li>
+    </ul>
+    <li>J2SE </li>
+    <ul>
+      <li>Packaging</li>
+      <ul>
+        <li>The persistence tests will be packaged in newly defined
+persistence archive (.par) files.&nbsp; Based on spec language in the
+Persistence API public draft, specifically in Section 7.2, "Persistence
+providers may require that
+all persistence archives contain persistence.xml files",&nbsp;
+all&nbsp;
+.pars to be "deployed"to the J2SE environment will need to include the
+persistence.xml file as part their archive. <br>
+        </li>
+        <li>Consideration as to how CTS can depend on the defined
+entity-manager sub-elements jta-data-source and non-jta-data-source
+needs to be determined.&nbsp; <br>
+        </li>
+      </ul>
+      <li>XML Descriptors</li>
+      <li>Object/Relational Overriding using XML Descriptors</li>
+      <ul>
+        <li>The combinations used to override the o/r mapping
+information will be
+used as needed for the assertions under test.&nbsp; Additional
+overriding
+combinations will be provided as time permits but is unlikely that the
+first release of the TCK will contain exhaustive packaging and
+deployment descriptor override scenarios.</li>
+      </ul>
+    </ul>
+  </ul>
+</ul>
+<ul>
+</ul>
+<pre style="margin-left: 80px;"><big><sup>2</sup></big>These deployment styles will not be emphasized by the EJB TCK test development team.&nbsp;&nbsp; More of these archives will need to be included in the<br>CTS for compatibility purposes but plan to coordinate with the test developer of the JavaEE platform spec assertions.<br></pre>
+<ul>
+  <li>
+    <h3>EJB API Signatures</h3>
+  </li>
+  <ul>
+    <li>API signatures will be recorded for both the delivery into
+JavaEE
+5.0 and for the Persistence APIs in the standalone TCK.<br>
+    </li>
+  </ul>
+</ul>
+<h2>3.0 Features Not to be Tested</h2>
+<ul>
+  <li>Implementation-specific Behaviors</li>
+  <ul>
+    <li>Query Interface<br>
+    </li>
+    <ul>
+      <li>SQL Queries</li>
+      <li>Isolation Levels</li>
+    </ul>
+    <li>LOB Annotation</li>
+    <li>Timing of PreUpdate, PostUpdate, PostPersist and PostRemove
+Callback
+Methods for Entities</li>
+    <li>Invocation of EntityManager, Query operations, or entity bean
+access in entity callback methods as it is currently undefined behavior.<br>
+    </li>
+    <li>Entity bean subclass overriding object/relational mapping that
+applies to the persistent fields or properties.<br>
+    </li>
+    <li>Annotating ManyToMany and ManyToOne relationships with
+CascadeType.REMOVE </li>
+    <li>Id Annotation - Primary Key Generation Strategies</li>
+    <ul>
+      <li>GeneratorType.SEQUENCE</li>
+    </ul>
+    <ul>
+      <li>GeneratorType.IDENTITY</li>
+      <li>GeneratorType.AUTO</li>
+    </ul>
+    <ul>
+    </ul>
+    <li>SequenceGenerator Annotation</li>
+    <li>NamedNativeQuery Annotation<br>
+    </li>
+    <li>Annotations that allow FetchType.LAZY</li>
+    <li>Annotation fields that allow auto-generation of DDL</li>
+    <li>Inheritance annotation element DiscriminatorType CHAR, INTEGER</li>
+    <li>The properties sub-element of the entity-manager element of the
+persistence.xml file as it is used to specify vendor-specific
+properties that apply to the persistence unit and entity manager
+configuration<br>
+    </li>
+    <ul>
+    </ul>
+  </ul>
+  <li>Optional Specification Requirements</li>
+  <ul>
+    <li>Inheritance Mapping Strategies not to be Tested:<br>
+    </li>
+    <ul>
+      <li>Table per Class Hierarchy Strategy</li>
+      <li>Joined Subclass Strategy</li>
+      <li>The bullets below identity annotations specific to the above
+strategies; thus, will not be tested by CTS:</li>
+      <ul>
+        <li>inheritedAttributes element<br>
+        </li>
+      </ul>
+      <ul>
+        <li>PrimaryKeyJoinColumn Annotation using JOINED mapping
+strategy<br>
+        </li>
+        <li>DiscriminatorColumn Annotation usinng JOINED mapping
+strategy</li>
+      </ul>
+    </ul>
+    <li>Unidirectional OneToMany relationships using foreign key
+mappings.</li>
+    <li>JoinColumn Annotation with referenced columns that are not the
+primary key of the referenced table.</li>
+  </ul>
+  <li>EJB Security is not defined as part of this plan. &nbsp; Test
+development and plan to be done by CTS security team.</li>
+  <li>Internationalization </li>
+  <li>Performance</li>
+</ul>
+<h2>
+4.0 Schedule and Responsibilities</h2>
+<h3>&nbsp;&nbsp;&nbsp; 4.1 Schedule</h3>
+The project schedule has been drafted.&nbsp; For current JavaEE
+5.0 scheduling information, visit the <a
+ href="http://invalid.domain.com/SJSAS9_J2EE5.0"><small><small><font
+ size="+2"><small><small>SJSAS 9 and JavaEE 5.0 Planning Project Page.</small></small></font></small></small></a><br>
+<h3>&nbsp; 4.2 Responsibilities</h3>
+The CTS EJB test development team currently has two engineers assigned
+to the effort at this time which is highlighted as a potential risk
+(see Section 10.0).&nbsp;&nbsp; The tasks highlighted below identify
+work in progress including that of test design and test case
+implementation.&nbsp; The tasks are identified based on the Simplified
+API and Persistence API Public Draft specification distributions.<br>
+<br>
+<table border="1" style="width: 80%;" nosave="">
+  <caption><br>
+  </caption><tbody>
+  </tbody><tbody>
+  </tbody><tbody>
+    <tr>
+      <td valign="top" width="1%" style="text-align: center;">Id<br>
+      </td>
+      <td valign="top" style="width: 40%; text-align: center;">Task </td>
+      <td valign="top" width="1%" style="text-align: center;">Owner<br>
+      </td>
+      <td valign="top" width="1%">PersonWeeks<br>
+      </td>
+      <td style="text-align: center;">Target Date/Comments</td>
+    </tr>
+    <tr>
+      <td style="background-color: rgb(192, 192, 192);">---------<br>
+      </td>
+      <td style="width: 40%; background-color: rgb(192, 192, 192);">Test
+Planning<br>
+      </td>
+      <td style="background-color: rgb(192, 192, 192);">-------------<br>
+      </td>
+      <td style="background-color: rgb(192, 192, 192);">------- <br>
+      </td>
+      <td style="background-color: rgb(192, 192, 192);">-----------------------------------------------------------------<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;" rowspan="1" colspan="1">1<br>
+      </td>
+      <td style="vertical-align: top;" colspan="1">Compatibility Test
+Plan (this plan)<br>
+      </td>
+      <td style="vertical-align: top;" colspan="1">Shelly<br>
+      </td>
+      <td style="vertical-align: top;" colspan="1">on-going</td>
+      <td style="vertical-align: top;">Up to date with Public Draft<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="1%">2<br>
+      </td>
+      <td valign="top" style="width: 40%;">Simplified API Spec
+Assertion List (see Section 7.0)<br>
+      </td>
+      <td valign="top" width="1%">Shelly<br>
+      </td>
+      <td valign="top" width="1%">1<br>
+      </td>
+      <td>Up to date with Public Draft<br>
+      </td>
+    </tr>
+    <tr>
+      <td>3<br>
+      </td>
+      <td style="width: 40%;">Persistence API Spec Assertion List (see
+Section 7.0)<br>
+      </td>
+      <td>Shelly<br>
+      </td>
+      <td>1<br>
+      </td>
+      <td>Up to date with Public Draft<br>
+      </td>
+    </tr>
+    <tr>
+      <td>4<br>
+      </td>
+      <td style="width: 40%;">Core Contracts Spec Assertion List (see
+Section 7.0)<br>
+      </td>
+      <td>Shelly<br>
+      </td>
+      <td>1<br>
+      </td>
+      <td>In progress - low priority<br>
+      </td>
+    </tr>
+    <tr>
+      <td>5<br>
+      </td>
+      <td style="width: 40%;">EJB 3.0 JavaDoc Assertion List<br>
+      </td>
+      <td>Shelly<br>
+      </td>
+      <td>1 day<br>
+      </td>
+      <td>Generated from sources on 08/08/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">6<br>
+      </td>
+      <td style="vertical-align: top; width: 40%;">Persistence
+API&nbsp; JavaDoc Assertion List<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">1 day<br>
+      </td>
+      <td style="vertical-align: top;">Generated from sources on
+08/08/05<br>
+Still waiting on source updates to be consistent with Public Draft <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">7<br>
+      </td>
+      <td style="vertical-align: top; width: 40%;">Simplified API Test
+Design<br>
+      </td>
+      <td style="vertical-align: top;">Cheng/Shelly<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">Done<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">8<br>
+      </td>
+      <td style="vertical-align: top; width: 40%;">Persistence TCK Test
+Design<br>
+      </td>
+      <td style="vertical-align: top;">Shelly/Cheng<br>
+      </td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">Done <br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">---------<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 40%; background-color: rgb(192, 192, 192);">Persistence
+Test
+Development Tasks<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">----------------------------------------------------------------<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">9<br>
+      </td>
+      <td style="vertical-align: top;">EJB QL Data Model Design and
+Implementation<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">4<br>
+      </td>
+      <td style="vertical-align: top;">06/02/05 - handed off to SQE<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">10<br>
+      </td>
+      <td style="vertical-align: top;">EJB QL Test Cases<br>
+      </td>
+      <td style="vertical-align: top;">Sailaja (SQE)<br>
+      </td>
+      <td style="vertical-align: top;">4<br>
+      </td>
+      <td style="vertical-align: top;">08/10/05 - coding complete<br>
+      <a
+ href="http://agni-1.sfbay.sun.com/ejb/EJBQL_9.0_Specification.html">EJB
+QL Test Case Plan</a><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">11<br>
+      </td>
+      <td style="vertical-align: top;">Entity Manager Access
+Design/Implementation<br>
+      </td>
+      <td style="vertical-align: top;">Shelly/Cheng</td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">Prototype in place, needs to be
+validated by execution. <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">12<br>
+      </td>
+      <td style="vertical-align: top;">Entity Life Cycle (persist,
+merge, remove, flush, contains)<br>
+      </td>
+      <td style="vertical-align: top;">Shelly <br>
+      </td>
+      <td style="vertical-align: top;">3<br>
+      </td>
+      <td style="vertical-align: top;">70% coded&nbsp; - Public Draft
+tightened up life cycle and transaction control - these tests still
+need work<br>
+Target completion 08/12/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">13<br>
+      </td>
+      <td style="vertical-align: top;">EntityListener and Callback
+Methods<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">Done<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">14<br>
+      </td>
+      <td style="vertical-align: top;">Persistent Fields (access=FIELD)</td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">coded<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">15<br>
+      </td>
+      <td style="vertical-align: top;">Primary Keys (including compound)<br>
+      </td>
+      <td style="vertical-align: top;">Shelly <br>
+      </td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">Embedded compound pk test
+done. <br>
+08/29/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">16<br>
+      </td>
+      <td style="vertical-align: top;">O/R Mapping Annotations <br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">3<br>
+      </td>
+      <td style="vertical-align: top;"> annotation members not covered
+in other tests<br>
+10/21/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">17<br>
+      </td>
+      <td style="vertical-align: top;">EntityManager Interface<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">coded<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">18<br>
+      </td>
+      <td style="vertical-align: top;">Query Interface<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">1 </td>
+      <td style="vertical-align: top;">coded<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">19<br>
+      </td>
+      <td style="vertical-align: top;">Entity Inheritance - abstract,
+non-entity, EmbeddableSuperClass<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">08/19/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">20<br>
+      </td>
+      <td style="vertical-align: top;">Transaction behaviors (including
+EntityTransaction API)<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">4<br>
+      </td>
+      <td style="vertical-align: top;">09/23/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">21<br>
+      </td>
+      <td style="vertical-align: top;">Extended Persistence Context
+(JavaEE components)<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">10/07/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">22<br>
+      </td>
+      <td style="vertical-align: top;">.par packaging requirements and
+build fiile updates<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">Done<br>
+persistence archive being discussed in JavaEE 5 expert group<br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">---------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">Simplified
+API Test Development
+Tasks<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-----------------------------------------------------------------<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">18<br>
+      </td>
+      <td style="vertical-align: top;">Bean Behavior (session stateful,
+session stateless, mdb)<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">coded<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">19<br>
+      </td>
+      <td style="vertical-align: top;">Bean Behavior (webservice)<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">Shelly to coordinate deltas with
+109 TCK
+test dev team<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">20<br>
+      </td>
+      <td style="vertical-align: top;">Interceptor Methods/Classes<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">coded<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">21<br>
+      </td>
+      <td style="vertical-align: top;">Callback Methods/Listener Classes<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">coded<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">22<br>
+      </td>
+      <td style="vertical-align: top;">Enterprise Bean Context and
+Environment<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">coded<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">23<br>
+      </td>
+      <td style="vertical-align: top;">Transaction Attributes for
+Session Beans<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">24<br>
+      </td>
+      <td style="vertical-align: top;">Migration with Adapted View </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"> <br>
+      </td>
+      <td style="vertical-align: top;">09/23/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">25<br>
+      </td>
+      <td style="vertical-align: top;">Compatibility with Client Views<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"> <br>
+      </td>
+      <td style="vertical-align: top;">09/30/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">26<br>
+      </td>
+      <td style="vertical-align: top;">Local/Remote Access<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">coded </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">27<br>
+      </td>
+      <td style="vertical-align: top;">Operations Allowed<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">in progress<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">27<br>
+      </td>
+      <td style="vertical-align: top;">EJB exception handling<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">coded<br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">---------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">Deployment
+Styles<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">--------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">----------------------------------------------------<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">28<br>
+      </td>
+      <td style="vertical-align: top;">Mixed - Annotations and
+Descriptors<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">29<br>
+      </td>
+      <td style="vertical-align: top;">Migrating EJB 2.1 to Version 3.0<br>
+      </td>
+      <td style="vertical-align: top;">Cheng<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">in progress<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">30<br>
+      </td>
+      <td style="vertical-align: top;">XML Descriptor Override for
+Persistence Archives<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">---------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">Beta
+Release Readiness<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">--------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-----------------------------------------------------------------<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">31<br>
+      </td>
+      <td style="vertical-align: top;">Persistence signatures recorded<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">This task is needed for the CTS
+distribution as well.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">32<br>
+      </td>
+      <td style="vertical-align: top;">Beta Test Freeze, Test Execution,<br>
+Documentation </td>
+      <td style="vertical-align: top;">All<br>
+      </td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">Align with CTS master schedule </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">---------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">Post-Beta
+Tasks<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">--------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-----------------------------------------------------------------<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">33<br>
+      </td>
+      <td style="vertical-align: top;">Finalize Assertion Documents
+(including generation of Unique Ids for test cases)<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">11/11/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">34<br>
+      </td>
+      <td style="vertical-align: top;">Test Tagging<br>
+      </td>
+      <td style="vertical-align: top;">Shelly/Cheng<br>
+      </td>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">11/22/05<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">35<br>
+      </td>
+      <td style="vertical-align: top;">Coverage<br>
+Assessment<br>
+      </td>
+      <td style="vertical-align: top;">Shelly<br>
+      </td>
+      <td style="vertical-align: top;">3 days<br>
+      </td>
+      <td style="vertical-align: top;">12/09/05<br>
+Test coverage assessment for both specification and javadoc assertions.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">36<br>
+      </td>
+      <td style="vertical-align: top;">Additional Test Cases for
+Uncovered Assertions<br>
+      </td>
+      <td style="vertical-align: top;">Shelly/Cheng<br>
+      </td>
+      <td style="vertical-align: top;">TBD<br>
+      </td>
+      <td style="vertical-align: top;">Possible additional tests will
+be written for the uncovered
+assertions as schedule permits.&nbsp; Because test cases are written
+against
+the assertion lists updated and maintained thoughout the
+development cycle this is a managed task.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">37<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">---------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">FCS
+Release Readiness<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">-------------<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">TBD<br>
+      </td>
+      <td
+ style="vertical-align: top; background-color: rgb(192, 192, 192);">----------------------------------------------------------------<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3>&nbsp;
+&nbsp;&nbsp;&nbsp; 4.3 Deliverables</h3>
+<ul>
+  <li>A set of compatibility tests for Enterprise JavaBeans Core
+Contracts and Requirements deltas from EJB 2.1,&nbsp; new tests
+for the simplified and persistence API specifications <br>
+  </li>
+  <li>Updated sections of the CTS 5.0 User's Guide, as needed<br>
+  </li>
+  <li>A standalone TCK and associated documentation for the new
+Persistence Model to be used independently of JavaEE 5.0 in J2SE
+environments.&nbsp;&nbsp;&nbsp;&nbsp; <br>
+  </li>
+  <ul>
+    <ul>
+    </ul>
+  </ul>
+</ul>
+<ul>
+  <ul>
+    <ul>
+    </ul>
+  </ul>
+</ul>
+<h2>
+5.0 Test Configurations</h2>
+The CTS development team will develop and test against&nbsp; nightly
+and promoted releases
+of the JavaEE 5.0 reference implementation and the database shipped
+with
+the reference
+implementation.&nbsp; Other database configurations will be tested by
+the CTS
+QA team as identified in their test execution plan for JavaEE
+5.0.&nbsp; <br>
+<br>
+The
+test configurations for the standalone Persistence TCK are unknown at
+this time.&nbsp;&nbsp;&nbsp; <br>
+<h2>6.0 Test Methodology</h2>
+There
+are several types of tests that comprise the compatibility test
+suite.&nbsp;
+These
+include:
+<ul>
+  <li>Signature Tests</li>
+  <ul>
+    <li>Checks that all of the required API signatures
+are
+available
+for an implementation, no supersets or subsets.&nbsp; These signatures
+will be rerecorded for the JavaEE 5.0 platform and recorded for
+inclusion
+in the Persistence TCK.<br>
+    </li>
+  </ul>
+  <li>API Tests <br>
+  </li>
+  <ul>
+    <li>Verifies that all of the required classes and methods
+behave
+according to the specification on a method by method basis. The APIs
+are
+tested
+implicitly via the end-to-end tests.&nbsp;&nbsp; However, assurance of
+coverage
+metrics with respect to the EJB APIs will be assessed.&nbsp; If there
+are any
+APIs that are not specifically covered in the end-to-end tests, API
+tests will be written and added to the test suite.</li>
+  </ul>
+  <li>End to End Tests</li>
+  <ul>
+    <li>A type of compatibility test which was
+designed
+specifically
+for the JavaEE platform. These type of tests span across n-tiers of the
+JavaEE
+platform.</li>
+  </ul>
+  <li>Integration Tests</li>
+  <ul>
+    <li>End-to-end tests that demonstrate the
+interaction of a variety of JavaEE components in a test
+scenario.&nbsp;&nbsp; These tests will be extended to the EJB 3.0
+portion
+of CTS to be sure various client types interact with 3.0 beans
+successfully as defined in the Simplified API specification,&nbsp;
+Chapter 9 - Compatibility and Migration.&nbsp; An example of such test
+scenario is:<br>
+    </li>
+    <ul>
+      <li>Client --&gt; JSP --&gt; EJB3.0 --&gt; EJB2.1 --&gt; Database</li>
+    </ul>
+  </ul>
+  <li>Compat Tests</li>
+  <ul>
+    <li>CTS will also provide EJB backward-compatibility tests that
+comprise a subset of tests that
+are
+built on the previous version of the reference implementation to ensure
+licensee implementations still consume this portable archive. <br>
+    </li>
+    <li>Additionally, the CTS will provide archives
+that contain EJBs using mixed deployment descriptors that conform to
+DTD's
+for 1.2(?), 1.3, 1.4 and 5.0 platforms. This tests the ability to
+deploy such an
+archive and validate the behavior of the business methods during
+runtime.&nbsp;&nbsp; <br>
+    </li>
+  </ul>
+</ul>
+Historically, the EJB compatibility tests consist mainly of end-to-end
+test scenarios
+focusing on the container's ability to handle specified
+requirements.&nbsp;
+To that end, emphasis on conformance to deployment requirements are met
+so the enterprise archive can be deployed to any EJB
+server.&nbsp;&nbsp; In other words, intentionally defining CTS
+archives with adverse deployment descriptor information is not a
+typical task for this effort rather is done as part of the platform
+specification assertions and the deployment test development
+efforts.&nbsp; The beans and entities are coded to
+specification
+but the bean or entity conformance is not explicitly tested but ensured
+by
+verifying
+each archive prior to external milestone releases using the reference
+implementation's
+application verifier.&nbsp;
+<h3>&nbsp;&nbsp;&nbsp; 6.1 CTS Test Design and Infrastructure</h3>
+<h4 style="margin-left: 40px;">6.1.1&nbsp;&nbsp;&nbsp; Proposed Test
+Directory Structure</h4>
+<div style="margin-left: 40px;">A new test
+directory,
+ejb3, will be created in the workspace so that the current suite of
+EJB tests will not be impacted during test execution against early 5.0
+platform implementations.&nbsp; The current tests should run
+as is.&nbsp; The ejb3 test directory will also be designed so the
+standalone Persistence TCK can be easily built from the test
+structure.&nbsp; Build tools (with some work to include unique TCK
+requirements, if any) already exist in the workspace as this is done
+for other
+technology areas.<br>
+<br>
+Many test directories will share the same or similar bean classes,
+business interfaces, helper classes, listener classes, and exception
+classes.&nbsp; Because the compatibility test emphasis is on the
+annotations in the bean class and the assurance to the container's
+handling of such base classes will be created and extended for
+this purpose.&nbsp; These common classes may be packaged into each ejb
+jar.&nbsp; Therefore, these will be identified as such and put into a
+common directory; i.e., tests/ejb3/common.&nbsp; An example of the
+proposed directory
+structure for the simplified API tests is as follows.<br>
+<br>
+$TS_HOME/src/com/sun/ts/tests/<span style="font-weight: bold;">ejb3</span><br>
+<div style="margin-left: 40px;"><span style="font-weight: bold;">common</span><br>
+</div>
+</div>
+<div style="margin-left: 80px;">
+<div style="margin-left: 40px;">calc<br>
+<div style="margin-left: 40px;">BaseCalculator.java<br>
+BaseLocalCalculator.java<br>
+BaseLocalRemoteCalculator.java<br>
+Calculator.java<br>
+LocalCalculator.java<br>
+NoInterfaceCalculator.java<br>
+NoInterfaceRemoteCalculator.java<br>
+</div>
+<div style="margin-left: 40px;">RemoteInterfaceCalculator.java<br>
+</div>
+client<br>
+<div style="margin-left: 40px;">CalculatorTest.java<br>
+CalculatorTestCommon.java<br>
+RemoteCalculatorTest.java<br>
+SampleClient.java&nbsp;<br>
+</div>
+</div>
+<br>
+<span style="font-weight: bold;">bb</span><br>
+<div style="margin-left: 40px;">session<br>
+<div style="margin-left: 40px;">stateless<br>
+<div style="margin-left: 40px;">AnnotatedCalculatorBean.java<br>
+AnnotatedCalculatorOptionalMethodsBean.java<br>
+CalculatorBean.java<br>
+</div>
+</div>
+</div>
+<div style="margin-left: 40px;"><br>
+<div style="margin-left: 40px;">stateful<br>
+</div>
+</div>
+</div>
+<div style="margin-left: 80px;">
+<div style="margin-left: 120px;">...<br>
+</div>
+<div style="margin-left: 40px;">messagedriven<br>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 80px;">...<br>
+</div>
+</div>
+<span style="font-weight: bold;">annotation</span><br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 120px;">access <br>
+<div style="margin-left: 40px;">LocalStatefulCalculatorBean.java<br>
+LocalStatelessCalculatorBean.java<br>
+RemoteStatefulCalculatorBean.java<br>
+RemoteStatelessCalculatorBean.java<br>
+</div>
+businessmethod<br>
+<div style="margin-left: 40px;">LocalStatefulCalculatorBean.java<br>
+LocalStatelessCalculatorBean.java<br>
+RemoteStatefulCalculatorBean.java<br>
+RemoteStatelessCalculatorBean.java<br>
+</div>
+resource<br>
+<div style="margin-left: 40px;">BaseResourceField.java<br>
+BaseResourceParameter.java<br>
+BaseResourceSetter.java<br>
+BaseResourceType.java<br>
+</div>
+<div style="margin-left: 40px;">stateless<br>
+<div style="margin-left: 40px;">StatelessResourceField.java<br>
+StatelessResourceSetterBean.java<br>
+</div>
+</div>
+</div>
+<div style="margin-left: 40px;">&nbsp;<br>
+</div>
+<h4 style="margin-left: 40px;">6.1.2&nbsp;&nbsp;&nbsp; Client
+Considerations</h4>
+<div style="margin-left: 80px;">What's common among all existing EJB
+application clients is
+the setup method which looks up test bean home and stores it in a class
+variable. In ejb3, no need for home interface.&nbsp; Lookup is done via
+injection, EJBContext.<br>
+</div>
+<br>
+<h4 style="margin-left: 40px;">6.1.3&nbsp;&nbsp;&nbsp; Base Business
+Interfaces</h4>
+<div style="margin-left: 80px;">public interface BaseBusinessIntf { ...
+}<br>
+@Local public interface LocalBusinessIntf1 extends BaseBusinessIntf { }<br>
+@Local public interface LocalBusinessIntf2 extends BaseBusinessIntf{ }<br>
+@Remote public interface RemoteBusinessIntf1 extends BaseBusinessIntf{ }<br>
+@Remote public interface RemoteBusinessIntf2 extends BaseBusinessIntf{ }<br>
+<br>
+This is to test the scenario:<br>
+</div>
+<div style="margin-left: 40px;">
+</div>
+<div style="margin-left: 80px;">
+<ul>
+  <ul>
+    <li>a bean class can implement multiple business interfaces</li>
+    <li>a interface can be local or remote access</li>
+  </ul>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<h4>6.1.4&nbsp;&nbsp;&nbsp; Base Bean Classes</h4>
+</div>
+<div style="margin-left: 80px;">public abstract class BaseCalculator {
+... }<br>
+@Stateful public class StatefulCalculatorBean extends BaseCalculator {
+... }<br>
+@Stateless public class StatelessCalculatorBean extends BaseCalculator
+{ ... }<br>
+<br>
+@Entity public class CustomerBean { // no call-back }<br>
+@Entity public class OldCustomerBean extends CustomerBean { // with
+call-back }<br>
+@Entity public class PreferredCustomerBean extends CustomerBean { //
+inheritance }<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 80px;">The above shows 3 ways to extend from a
+base class of either business
+interface or bean class:<br>
+</div>
+<div style="margin-left: 40px;">
+</div>
+<div style="margin-left: 40px;">
+<ul>
+  <ul>
+    <li>extend by annotation</li>
+    <li>extend by life cycle methods</li>
+    <li>extend by bean class inheritance</li>
+  </ul>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<h4>6.1.5&nbsp;&nbsp;&nbsp; Annotations</h4>
+</div>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;">For each annotation, we need to test
+the following combination:<br>
+<br>
+</div>
+<div style="margin-left: 80px;">---------------------------------------------------------------<br>
+PACKAGE&nbsp;&nbsp;&nbsp; TYPE&nbsp;&nbsp;&nbsp;
+METHOD&nbsp;&nbsp;&nbsp; FIELD&nbsp;&nbsp;&nbsp; PARAMETER<br>
+---------------------------------------------------------------<br>
+member 1<br>
+default value<br>
+possible value 1<br>
+possible value 2<br>
+...<br>
+---------------------------------------------------------------<br>
+member 2<br>
+default value<br>
+possible value 1<br>
+possible value 2<br>
+...<br>
+---------------------------------------------------------------<br>
+member n<br>
+default value<br>
+possible value 1<br>
+possible value 2<br>
+...<br>
+---------------------------------------------------------------<br>
+</div>
+<br>
+<div style="margin-left: 40px;">Some annotations, except bean type
+annotations and O/R mapping
+annotations, apply to all bean types. They need to be tested on all
+these bean types. For example, we need to test @MethodPermissions on
+stateful and stateless session beans and entity beans. Initially, we
+can develop tests on SLSB, and expand to other bean types.<br>
+<br>
+In addition, the same annotation can be applied to two targets at the
+same time, one overriding the other. This should also be tested.<br>
+</div>
+</div>
+<br>
+<div style="margin-left: 40px;">
+<h4>6.1.6 &nbsp;&nbsp; Interoperability and Migration</h4>
+<div style="margin-left: 40px;">For interoperability and migration
+requirements, the following test
+scenarios have been identified:<br>
+</div>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 200px;">ejb 2.1 client view home and
+component&nbsp; interfaces. <br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 200px;">@Home may be used on ejb 3.0 bean
+client.<br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 200px;">ejb 3.0
+-------------------------------&gt; ejb 2.1 or earlier<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 200px;">ejb 3.0 client view thru business
+interface. <br>
+May also use EntityManager and Query APIs.<br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 200px;">ejb 2.x or earlier
+---------------------&gt; ejb 3.0<br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 200px;">Must use ejb-ref or ejb-local-ref of
+ejb3.0 to declare dependency on ejb3.0 session beans, or resource-ref
+for dependency on EntityManager.<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 200px;">earlier EJB API through adaptors (see
+notes below about adaptor)
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 200px;">ejb 2.x or earlier
+---------------------&gt; ejb 3.0<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 200px;">&lt;resource-ref&gt;persistence/entityManager&lt;/resource-ref&gt;<br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 200px;">ejb 2.x
+-------------------------------&gt; ejb 3.0 <br>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 200px;">session
+beans&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+persistence<br>
+</div>
+<div style="margin-left: 40px;"><br>
+</div>
+<div style="margin-left: 80px;">Notes:<br>
+</div>
+<div style="margin-left: 80px;">
+<ul>
+  <li>In all cases, the beans are deployed in ejb 3.0 container.&nbsp;<br>
+  </li>
+</ul>
+</div>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 80px;">
+<ul>
+  <li>In all cases, ejb 3.0 beans and ejb 2.x or earlier beans must be
+able to co-exist in the same transaction context.</li>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+</div>
+<div style="margin-left: 40px;">
+<ul style="margin-left: 40px;">
+  <li>A sample ejb 3.0 stateless session serving ejb 2.x client via
+adaptor. (An alternative to adaptor is for the ejb 2.x client to use
+ejb 3.0 client view.)</li>
+</ul>
+<div style="margin-left: 40px;"></div>
+<div style="margin-left: 80px;">@Stateless<br>
+@AdaptedHome(<br>
+home="com.sun.ts.tests.ejb3.migration.twothree.RemoteCalcultorHomeAdaptor",<br>
+remote="com.sun.ts.tests.ejb3.migration.twothree.RemoteCalcultorAdaptor")<br>
+public class RemoteCalcultorBean extends BaseRemoteCalculator {<br>
+}</div>
+</div>
+<br>
+<h4 style="margin-left: 40px;">6.1.7&nbsp; Persistence TCK&nbsp; Design
+Tasks</h4>
+<div style="margin-left: 80px;">The overall architecture of the CTS
+persistence tests is to be able to execute the tests whether invoked
+from a component within the JavaEE environment or from a standalone
+client in J2SE environment.&nbsp; These tests, therefore, will be
+written as "service
+tests".&nbsp; This historical term is used to test APIs which are
+required
+to be available within different JavaEE containers (i.e., ejb,
+web).&nbsp;
+These APIs could be thought of as
+"services"
+available to each container, thus the name "service tests".&nbsp;&nbsp;
+New vehicles, namely; stateless3 and stateful3, have been created for
+the purpose of accessing the EntityManager (via both injection and JNDI
+lookup) and verifying the specified requirements from these JavaEE
+components with respect to packaging, deployment, and transactional
+behaviors.&nbsp;&nbsp; Because these combinations are
+extensive and exhaustive,&nbsp; obtaining the EntityManager and
+demarcating tranaction boundaries has been abstracted so test execution
+can occur regardless of environment.&nbsp; This entails injection of
+the EntityManager or EntityManagerFactory and delegating the
+transaction management to the appropriate calls whether
+container-managed or application-managed.&nbsp; This is intended to
+provide coverage for the majority of test cases but certainly more
+deliberate end-to-ends tests will be identified to exercise the JavaEE
+container requirements of transaction propagation and extended
+persistence contexts.<br>
+<br>
+For the EJB QL tests, the <a
+ href="http://invalid.domain.com/%7Esmcgowan/EJB-QL_schema.html">CTS 1.4
+EJB QL data model</a> has been ported to EJB 3.0 entities and extended
+to include additional relationships, inheritance hierarchy, and
+embeddable classes to test the new language extensions.&nbsp; This
+design allows us to maintain current query test coverage and extensions
+in both the JavaEE and standalone implementations.<br>
+<br>
+For other test areas, a subset of these relationships will be used to
+alleviate complexity of the data model where the assertions don't
+require such.<br>
+<br>
+Verification to ensure conformance of required APIs for third-party
+persistence provider needs
+to be defined.<br>
+<br>
+<ul>
+</ul>
+</div>
+<div style="margin-left: 40px;">
+<h4>6.1.8 &nbsp; General&nbsp;&nbsp;</h4>
+<div style="margin-left: 40px;">General tasks during test development
+include:<br>
+<ul>
+  <li>The CTS build infrastructure needs to be maintained as new
+platform
+requirements are defined, as new
+test architecture requires such, and general maintainence to retain the
+integrity of the test development workspace.</li>
+  <li>Create persistence workspace from CTS parent workspace and define
+BOM and build rules for standalone TCK bundling
+process.<br>
+  </li>
+  <ul>
+    <li>release/tools/persistence.xml</li>
+    <li>install/persistence/bin</li>
+    <li>install/persistence/lib (maybe)</li>
+  </ul>
+  <li>Identify, create, and maintain assertion documents as
+specifications are revised. </li>
+  <li>Review the test development tasks with product team to be sure
+priorities are in line with expectations.</li>
+  <li>Hold peer design reviews for new features as needed followed by
+code
+review
+of the implementation. See&nbsp; the <a
+ href="http://invalid.domain.com/CTS.other/sw-processes/design-code-process.html">Design
+and Code Review Process</a> document for the team guidelines.</li>
+  <li>During test development, ensure that the bean provider's
+requirements are met per bean flavor and, for each external milestone
+release, ensure all archives pass the JavaEE AVK.&nbsp; </li>
+  <li>Ensure setup and cleanup methods within each test are used
+properly and
+enhance test execution by ensuring the dependencies or resources for
+the
+tests are available prior to test execution.</li>
+  <li>Assist licensees by commenting code better to trace test logic.</li>
+  <li>Review packaging tasks and ensure they meet the requirements of
+JavaEE 5.0</li>
+  <li>Identify all possible clients and ensure they interact with EJB
+3.0 beans (see Section 6.1.6)</li>
+  <li>For CTS, test execution will be driven by the JavaTest 3.0
+harness.
+JavaTest 3.0 will also
+manage
+the logging and reporting of test results.&nbsp; It is a requirement,
+as
+defined by the JavaEE rules, that the licensees use the JavaTest
+harness
+for certification. </li>
+</ul>
+</div>
+</div>
+<blockquote></blockquote>
+<h3 style="margin-left: 40px;">
+6.2 Dependencies</h3>
+<div style="margin-left: 40px;">The following dependencies are
+necessary for the development of these
+tests:
+</div>
+<ul>
+  <li>Well defined interaction of annotations and usage of
+deployment descriptors (see Section 9.0)<br>
+  </li>
+  <li>JavaEE 5.0 Reference Implementation</li>
+  <li>J2SE Persistence Reference Implementation<br>
+  </li>
+  <li>XML editing tools - TURBO XML<br>
+  </li>
+  <li>JavaTest 3.0</li>
+</ul>
+<h3 style="margin-left: 40px;">
+6.3 Documentation</h3>
+<div style="margin-left: 40px;">The documents used in the development
+process including XML files
+containing
+the specification and JavaDoc assertions will be located in
+the
+CTS workspace under $TS_HOME/internal/docs/ejb3.&nbsp; The test plan
+(this
+document) will also be in this location to keep the document revisions
+in a controlled environment. This allows multiple users to access the
+document
+with historical change information captured. The documents supporting
+this test development effort will be posted on the EJB Compatibility
+Test Development Home Page (see Section 9.0 - References).<br>
+</div>
+<h3 style="margin-left: 40px;">6.4 Targeted Coverage</h3>
+<div style="margin-left: 40px;">The EJB 3.0 and Persistence test
+coverage target will be 70% for the
+specifications and 90%
+for APIs for their initial release. <br>
+</div>
+<h2>7.0 Assertion Generation and Reviews</h2>
+Each EJB compatibility test case is mapped to a required testable
+assertion as defined in the EJB
+specifications.&nbsp; Specification assertions will be
+generated
+starting
+with the distribution of the expert group drafts.&nbsp; This is a
+manual task done by reviewing the specification language, highlighting
+the assertion, then capturing the information in XML format using a
+pre-defined dtd. &nbsp; With each revision of the specifications, the
+assertions need to be reviewed and updated to assure the language
+matches that of the specification.&nbsp; These assertion lists are
+distributed to the licensee community to associate the test case unique
+assertion id to the
+specification.&nbsp; It is intended that the final assertion lists will
+be reviewed with the specification lead, reference
+implementation leads, and test team members to assess the validity and
+proper cataloging of the
+identified
+test assertions.&nbsp; Once the assertion documents are prepared and
+test cases tagged, coverage metrics can be obtained to assess the test
+coverage against each specification.&nbsp; <br>
+For an example of the coverage metrics that can be obtained, click on
+the following links to view the Enterprise JavaBeans 2.1 specification
+and API summaries.<br>
+<ul>
+  <li><a
+ href="http://invalid.domain.com/CTS/XMLassertions/coverage/ejb_2_1/spec/summary.html">EJB
+2.1 Specification Coverage Summary</a></li>
+  <li><a
+ href="http://invalid.domain.com/CTS/XMLassertions/coverage/ejb_2_1/api/summary.html">EJB
+2.1 API Coverage Summary</a></li>
+</ul>
+The CTS EJB tests will additionally be used in assessing test coverage
+when the
+suite is executed against SJSAS product release candidates. <br>
+<br>
+For the EJB and Peristence specifications, there will be one assertion
+document per specification.&nbsp;&nbsp; The Core Contracts and
+Requirements specification will start with the EJB 2.1 assertion
+document
+source and will be updated to the current specification language.
+&nbsp; The EJB 2.1 assertion documents will remain intact.&nbsp; For
+the Simplified and Persistence API specifications, new assertions
+documents will be generated.&nbsp; It is intended that the SJSAS AVK
+team will share the same assertion sources and tag their verifier tests
+accordingly.&nbsp; Coordination of this effort is on-going with the AVK
+team. &nbsp;&nbsp; For detailed
+assertion information of the EJB 3.0 specifications to date, follow the
+links below.<br>
+<ul>
+  <li><a
+ href="http://invalid.domain.com/%7Esmcgowan/EJB3SimplifiedSpecAssertions.html">EJB
+3.0 Simplified API Specification Assertions</a></li>
+  <li><a
+ href="http://invalid.domain.com/%7Esmcgowan/EJB3SimplifiedJavaDocAssertions.html">EJB3.0
+API JavaDoc Assertions</a></li>
+  <li><a href="http://jse.east/%7Esmcgowan/EJB21SpecAssertions.html">Enterprise
+JavaBeans Core Contracts and Requirements (EJB 2.1 Final)</a></li>
+  <li><a
+ href="http://invalid.domain.com/%7Esmcgowan/EJB3PMSpecAssertions.html">Persistence
+API Specification Assertions</a></li>
+  <li><a
+ href="http://invalid.domain.com/%7Esmcgowan/EJB3PMJavaDocAssertions.html">Persistence
+API JavaDoc Assertions</a></li>
+</ul>
+<h2><big><font size="+1"><big>8.0 Release Criteria</big></font></big><br>
+</h2>
+<p>For compatibility tests, 90% of the CTS tests must pass the
+reference
+implementations for a GO
+vote for an external beta release. 100% of the CTS tests must pass the
+reference implementations for an FCS release.&nbsp; For a beta release,
+no P1 or P2 bugs can exist unless waived and for
+FCS, no P1, P2 or P3.<br>
+</p>
+<h2>9.0 References</h2>
+<ul>
+  <li><a href="http://invalid.domain.com/JWSCQE/tcks/ejb/index.html">EJB
+Compatibility Test Development Home Page</a></li>
+  <li><a href="http://www.jcp.org/en/jsr/detail?id=175">JSR 175 - A
+Metadata Facility for the Java<sup><font size="-2">TM</font></sup>
+Programming Language</a></li>
+  <li><a href="http://jse.east/%7Esmcgowan/dds50.pdf">Deployment
+Descriptors for JavaEE 5.0</a><br>
+  </li>
+</ul>
+<h2>
+10.0 Assumptions/Risks</h2>
+<ul>
+  <li>There are two CTS test development engineers allocated to
+the project which is assumed to be a risk as the EJB requirements will
+be delivered in three specification documents.&nbsp; Coordination of
+CTS tests are being discussed with SQE EJB team.&nbsp;&nbsp;&nbsp;
+Additional requirements have been added since EDR2 specification
+distributions.&nbsp; The Public Drafts are currently under review as to
+impact.&nbsp; Risk to implementation and delivery will be escalated as
+needed to the weekly EJB Pteam as public draft requirements are fully
+evaluated.<br>
+  </li>
+  <li>Resources allocation will have to be coordinated for the
+development, distribution, test execution, and maintenance of the
+standalone Persistence TCK.&nbsp; This is a first time that a
+standalone TCK will be developed for an EJB technology, but for other
+technologies that are included as part of the platform and that stand
+alone, the authors are responsible for these tasks.</li>
+</ul>
+<ul>
+</ul>
+<h2>
+11.0 Revision History</h2>
+<table border="1" cols="4" width="100%" nosave="">
+  <caption><br>
+  </caption>
+</table>
+<table border="1" cols="4" width="100%" nosave="">
+  <tbody>
+  </tbody><tbody>
+  </tbody> <tbody>
+    <tr>
+      <td>
+      <h2><font size="+1">Remarks</font></h2>
+      </td>
+      <td><font size="+1">Name</font></td>
+      <td><font size="+1">Date</font></td>
+      <td><font size="+1">Reviewer</font></td>
+    </tr>
+    <tr>
+      <td>0.1 Created&nbsp;</td>
+      <td>Shelly McGowan</td>
+      <td>09-01-04<br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">0.2 Updates per initial review<br>
+      </td>
+      <td style="vertical-align: top;">Shelly McGowan<br>
+      </td>
+      <td style="vertical-align: top;">09-16-04<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">0.3 Minor Updates<br>
+      </td>
+      <td style="vertical-align: top;">Shelly McGowan<br>
+      </td>
+      <td style="vertical-align: top;">10-20-04<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">0.4 Adjustments per Early Draft 2<br>
+      </td>
+      <td style="vertical-align: top;">Shelly McGowan<br>
+      </td>
+      <td style="vertical-align: top;">01-03-05<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">0.5 Added Test Strategy details<br>
+      </td>
+      <td style="vertical-align: top;">Shelly McGowan<br>
+Cheng Fang<br>
+      </td>
+      <td style="vertical-align: top;">02-07-05<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">0.6 Added Test Tasks and Target
+Dates<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Added Features Not to be Tested<br>
+      </td>
+      <td style="vertical-align: top;">Shelly McGowan<br>
+      </td>
+      <td style="vertical-align: top;">03-21-05<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">0.7 Adjustments based on changes
+since EDR2<br>
+      </td>
+      <td style="vertical-align: top;">Shelly McGowan<br>
+      </td>
+      <td style="vertical-align: top;">05/23/05<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.0 Adjustments based Public
+Draft changes<br>
+      </td>
+      <td style="vertical-align: top;">Shelly McGowan<br>
+      </td>
+      <td style="vertical-align: top;">06/30/05<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3>
+13.0 Approvals</h3>
+Approvals will be sought from the following individuals by 07/29/05.
+<br>
+&nbsp;
+<br>
+<table border="1" cols="4" width="700" nosave="">
+  <caption>&nbsp; <br>
+  </caption><tbody>
+  </tbody><tbody>
+  </tbody> <tbody>
+    <tr>
+      <td width="25%">
+      <center><b>Name</b></center>
+      </td>
+      <td width="25%">
+      <center><b>Function</b></center>
+      </td>
+      <td width="20%">
+      <center><b>Date</b></center>
+      </td>
+      <td width="25%">
+      <center><b>Approval</b></center>
+      </td>
+    </tr>
+    <tr>
+      <td>Stephen Caruso<br>
+      </td>
+      <td>CTS Development Manager</td>
+      <td><br>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<br>
+&nbsp;
+</body>
+</html>

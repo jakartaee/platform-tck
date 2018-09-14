@@ -1,0 +1,207 @@
+#Signature file v4.1
+#Version 2.1_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
+meth public abstract int compareTo({java.lang.Comparable%0})
+
+CLSS public abstract interface !annotation java.lang.Deprecated
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
+cons protected <init>(java.lang.String,int)
+intf java.io.Serializable
+intf java.lang.Comparable<{java.lang.Enum%0}>
+meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected final void finalize()
+meth public final boolean equals(java.lang.Object)
+meth public final int compareTo({java.lang.Enum%0})
+meth public final int hashCode()
+meth public final int ordinal()
+meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
+meth public final java.lang.String name()
+meth public java.lang.String toString()
+meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
+supr java.lang.Object
+hfds name,ordinal
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public abstract interface java.lang.annotation.Annotation
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract int hashCode()
+meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> annotationType()
+meth public abstract java.lang.String toString()
+
+CLSS public abstract interface !annotation java.lang.annotation.Documented
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation java.lang.annotation.Retention
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.RetentionPolicy value()
+
+CLSS public abstract interface !annotation java.lang.annotation.Target
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract interface !annotation javax.jws.HandlerChain
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String name()
+ anno 0 java.lang.Deprecated()
+meth public abstract java.lang.String file()
+
+CLSS public abstract interface !annotation javax.jws.Oneway
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.jws.WebMethod
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean exclude()
+meth public abstract !hasdefault java.lang.String action()
+meth public abstract !hasdefault java.lang.String operationName()
+
+CLSS public abstract interface !annotation javax.jws.WebParam
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[PARAMETER])
+innr public final static !enum Mode
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean header()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String partName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+meth public abstract !hasdefault javax.jws.WebParam$Mode mode()
+
+CLSS public final static !enum javax.jws.WebParam$Mode
+ outer javax.jws.WebParam
+fld public final static javax.jws.WebParam$Mode IN
+fld public final static javax.jws.WebParam$Mode INOUT
+fld public final static javax.jws.WebParam$Mode OUT
+meth public final static javax.jws.WebParam$Mode[] values()
+meth public static javax.jws.WebParam$Mode valueOf(java.lang.String)
+supr java.lang.Enum<javax.jws.WebParam$Mode>
+
+CLSS public abstract interface !annotation javax.jws.WebResult
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean header()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String partName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+
+CLSS public abstract interface !annotation javax.jws.WebService
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String endpointInterface()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String portName()
+meth public abstract !hasdefault java.lang.String serviceName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+meth public abstract !hasdefault java.lang.String wsdlLocation()
+
+CLSS public abstract interface !annotation javax.jws.soap.InitParam
+ anno 0 java.lang.Deprecated()
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.String name()
+meth public abstract java.lang.String value()
+
+CLSS public abstract interface !annotation javax.jws.soap.SOAPBinding
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD])
+innr public final static !enum ParameterStyle
+innr public final static !enum Style
+innr public final static !enum Use
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault javax.jws.soap.SOAPBinding$ParameterStyle parameterStyle()
+meth public abstract !hasdefault javax.jws.soap.SOAPBinding$Style style()
+meth public abstract !hasdefault javax.jws.soap.SOAPBinding$Use use()
+
+CLSS public final static !enum javax.jws.soap.SOAPBinding$ParameterStyle
+ outer javax.jws.soap.SOAPBinding
+fld public final static javax.jws.soap.SOAPBinding$ParameterStyle BARE
+fld public final static javax.jws.soap.SOAPBinding$ParameterStyle WRAPPED
+meth public final static javax.jws.soap.SOAPBinding$ParameterStyle[] values()
+meth public static javax.jws.soap.SOAPBinding$ParameterStyle valueOf(java.lang.String)
+supr java.lang.Enum<javax.jws.soap.SOAPBinding$ParameterStyle>
+
+CLSS public final static !enum javax.jws.soap.SOAPBinding$Style
+ outer javax.jws.soap.SOAPBinding
+fld public final static javax.jws.soap.SOAPBinding$Style DOCUMENT
+fld public final static javax.jws.soap.SOAPBinding$Style RPC
+meth public final static javax.jws.soap.SOAPBinding$Style[] values()
+meth public static javax.jws.soap.SOAPBinding$Style valueOf(java.lang.String)
+supr java.lang.Enum<javax.jws.soap.SOAPBinding$Style>
+
+CLSS public final static !enum javax.jws.soap.SOAPBinding$Use
+ outer javax.jws.soap.SOAPBinding
+fld public final static javax.jws.soap.SOAPBinding$Use ENCODED
+fld public final static javax.jws.soap.SOAPBinding$Use LITERAL
+meth public final static javax.jws.soap.SOAPBinding$Use[] values()
+meth public static javax.jws.soap.SOAPBinding$Use valueOf(java.lang.String)
+supr java.lang.Enum<javax.jws.soap.SOAPBinding$Use>
+
+CLSS public abstract interface !annotation javax.jws.soap.SOAPMessageHandler
+ anno 0 java.lang.Deprecated()
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String[] headers()
+meth public abstract !hasdefault java.lang.String[] roles()
+meth public abstract !hasdefault javax.jws.soap.InitParam[] initParams()
+meth public abstract java.lang.String className()
+
+CLSS public abstract interface !annotation javax.jws.soap.SOAPMessageHandlers
+ anno 0 java.lang.Deprecated()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract javax.jws.soap.SOAPMessageHandler[] value()
+

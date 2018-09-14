@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.wsi.w2j.document.literal.R2728</package-type>
+    <namespaceURI>http://w2jdlr2728testservice.org/W2JDLR2728TestService.wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.wsi.w2j.document.literal.R2728</package-type>
+    <namespaceURI>http://w2jdlr2728testservice.org/xsd</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.wsi.w2j.document.literal.R2728.EchoExceptionType</java-type>
+    <root-type-qname xmlns:typeNS="http://w2jdlr2728testservice.org/xsd">typeNS:EchoExceptionType</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>component</java-variable-name>
+      <xml-element-name>component</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>message</java-variable-name>
+      <xml-element-name>message</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>localizedMessage</java-variable-name>
+      <xml-element-name>localizedMessage</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <exception-mapping>
+    <exception-type>com.sun.ts.tests.jaxrpc.wsi.w2j.document.literal.R2728.EchoExceptionType</exception-type>
+    <wsdl-message xmlns:exMsgNS="http://w2jdlr2728testservice.org/W2JDLR2728TestService.wsdl">exMsgNS:echoException</wsdl-message>
+    <constructor-parameter-order>
+      <element-name>component</element-name>
+      <element-name>message</element-name>
+      <element-name>localizedMessage</element-name>
+    </constructor-parameter-order>
+  </exception-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.wsi.w2j.document.literal.R2728.W2JDLR2728TestService</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://w2jdlr2728testservice.org/W2JDLR2728TestService.wsdl">serviceNS:W2JDLR2728TestService</wsdl-service-name>
+    <port-mapping>
+      <port-name>W2JDLR2728TestPort</port-name>
+      <java-port-name>W2JDLR2728TestPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.wsi.w2j.document.literal.R2728.W2JDLR2728Test</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://w2jdlr2728testservice.org/W2JDLR2728TestService.wsdl">portTypeNS:W2JDLR2728Test</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://w2jdlr2728testservice.org/W2JDLR2728TestService.wsdl">bindingNS:W2JDLR2728TestBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoString</java-method-name>
+      <wsdl-operation>echoString</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://w2jdlr2728testservice.org/W2JDLR2728TestService.wsdl">wsdlMsgNS:echoString</wsdl-message>
+          <wsdl-message-part-name>str</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://w2jdlr2728testservice.org/W2JDLR2728TestService.wsdl">wsdlMsgNS:echoStringResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

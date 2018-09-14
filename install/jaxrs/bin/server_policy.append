@@ -1,0 +1,11 @@
+
+/* TS requirement */
+grant codeBase "file:${com.sun.aas.instanceRoot}/applications/jaxrs_ee_rs_container_responsecontext_web/-" {
+  /* Required by RuntimeDelegate.setInstance() method */
+  permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+};
+
+grant codeBase "file:${com.sun.aas.instanceRoot}/applications/jaxrs_ee_core_response_web/-" {
+  /* Required by RuntimeDelegate.setInstance() method */
+  permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+};

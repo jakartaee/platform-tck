@@ -1,0 +1,344 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+  name="test16"
+  targetNamespace="uri:sun.com:Test16"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="uri:sun.com:Test16"
+  xmlns:ns0="uri:sun.com:Test16Schema"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  
+  <types>	
+    <schema version="1.0" xmlns="http://www.w3.org/2001/XMLSchema"
+      targetNamespace="uri:sun.com:Test16Schema"
+      xmlns:tns="uri:sun.com:Test16Schema"
+      elementFormDefault="qualified">
+	<xsd:element name="languageElem" type="xsd:language"/>
+	<xsd:element name="normalizedStringElem" type="xsd:normalizedString"/>
+	<xsd:element name="tokenElem" type="xsd:token"/>
+	<xsd:element name="nameElem" type="xsd:Name"/>
+	<xsd:element name="NCNameElem" type="xsd:NCName"/>
+	<xsd:element name="IDElem" type="xsd:ID"/>
+	<xsd:element name="NMTokenElem" type="xsd:NMTOKEN"/>
+	<xsd:element name="IDREFElem" type="xsd:IDREF"/>
+	<xsd:element name="myLanguageElem" type="ns0:myLanguageType"/>
+	<xsd:simpleType name="myLanguageType">
+	   <xsd:restriction base="xsd:language"/>
+	</xsd:simpleType>
+    </schema>
+  </types>
+
+  <message name="LiteralLanguageMessage">
+    <part name="body" element="ns0:languageElem"/>
+  </message>
+  
+  <message name="RPCLanguageMessage">
+    <part name="body" type="xsd:language"/>
+  </message>  
+  
+  <message name="LiteralNormalizedStringMessage">
+    <part name="body" element="ns0:normalizedStringElem"/>
+  </message>
+  
+  <message name="RPCNormalizedStringMessage">
+    <part name="body" type="xsd:normalizedString"/>
+  </message>  
+
+  <message name="LiteralTokenMessage">
+    <part name="body" element="ns0:tokenElem"/>
+  </message>
+  <message name="RPCTokenMessage">
+    <part name="body" type="xsd:token"/>
+  </message>  
+
+  <message name="LiteralNameMessage">
+    <part name="body" element="ns0:nameElem"/>
+  </message>
+
+  <message name="RPCNameMessage">
+    <part name="body" type="xsd:Name"/>
+  </message>
+
+  <message name="LiteralNCNameMessage">
+    <part name="body" element="ns0:NCNameElem"/>
+  </message>
+
+  <message name="RPCNCNameMessage">
+    <part name="body" type="xsd:NCName"/>
+  </message>
+
+  <message name="LiteralIDMessage">
+    <part name="body" element="ns0:IDElem"/>
+  </message>
+
+  <message name="RPCIDMessage">
+    <part name="body" type="xsd:ID"/>
+  </message>
+
+  <message name="LiteralMyLanguageMessage">
+    <part name="body" element="ns0:myLanguageElem"/>
+  </message>
+
+<!--  <message name="RPCMyLanguageMessage">
+    <part name="body" type="ns0:myLanguageType"/>
+  </message> -->
+
+  <message name="LiteralIDREFMessage">
+    <part name="body" element="ns0:IDREFElem"/>
+  </message>
+
+  <message name="RPCIDREFMessage">
+    <part name="body" type="xsd:IDREF"/>
+  </message>
+
+
+  <portType name="LiteralService">
+   <operation name="TestLanguage">
+      <input message="tns:LiteralLanguageMessage"/>
+      <output message="tns:LiteralLanguageMessage"/>
+    </operation>  
+    <operation name="TestNormalizedString">
+      <input message="tns:LiteralNormalizedStringMessage"/>
+      <output message="tns:LiteralNormalizedStringMessage"/>
+    </operation>  
+    <operation name="TestToken">
+      <input message="tns:LiteralTokenMessage"/>
+      <output message="tns:LiteralTokenMessage"/>
+    </operation>  
+    <operation name="TestName">
+      <input message="tns:LiteralNameMessage"/>
+      <output message="tns:LiteralNameMessage"/>
+    </operation>  
+    <operation name="TestNCName">
+      <input message="tns:LiteralNCNameMessage"/>
+      <output message="tns:LiteralNCNameMessage"/>
+    </operation>  
+    <operation name="TestID">
+      <input message="tns:LiteralIDMessage"/>
+      <output message="tns:LiteralIDMessage"/>
+    </operation> 
+    <operation name="TestMyLanguage">
+      <input message="tns:LiteralMyLanguageMessage"/>
+      <output message="tns:LiteralMyLanguageMessage"/>
+    </operation>  
+<!--    <operation name="TestIDREF">
+      <input message="tns:LiteralIDREFMessage"/>
+      <output message="tns:LiteralIDREFMessage"/>
+    </operation>  -->
+  </portType>
+  
+  <portType name="RPCService">
+   <operation name="TestLanguage">
+      <input message="tns:RPCLanguageMessage"/>
+      <output message="tns:RPCLanguageMessage"/>
+    </operation>  
+    <operation name="TestNormalizedString">
+      <input message="tns:RPCNormalizedStringMessage"/>
+      <output message="tns:RPCNormalizedStringMessage"/>
+    </operation>  
+    <operation name="TestToken">
+      <input message="tns:RPCTokenMessage"/>
+      <output message="tns:RPCTokenMessage"/>
+    </operation>  
+    <operation name="TestName">
+      <input message="tns:RPCNameMessage"/>
+      <output message="tns:RPCNameMessage"/>
+    </operation>  
+    <operation name="TestNCName">
+      <input message="tns:RPCNCNameMessage"/>
+      <output message="tns:RPCNCNameMessage"/>
+    </operation>  
+    <operation name="TestID">
+      <input message="tns:RPCIDMessage"/>
+      <output message="tns:RPCIDMessage"/>
+    </operation> 
+<!--    <operation name="TestMyLanguage">
+      <input message="tns:RPCMyLanguageMessage"/>
+      <output message="tns:RPCMyLanguageMessage"/>
+    </operation>  -->  
+<!--    <operation name="TestIDREF">
+      <input message="tns:RPCIDREFMessage"/>
+      <output message="tns:RPCIDREFMessage"/>
+    </operation>  -->
+  </portType>
+
+  <binding name="LiteralBinding" type="tns:LiteralService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="TestLanguage">
+      <soap:operation soapAction="uri:TestLanguage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+    <operation name="TestNormalizedString">
+      <soap:operation soapAction="uri:TestNormalizedString"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+    <operation name="TestToken">
+      <soap:operation soapAction="uri:TestToken"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+    <operation name="TestName">
+      <soap:operation soapAction="uri:TestName"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+    <operation name="TestNCName">
+      <soap:operation soapAction="uri:TestNCName"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+    <operation name="TestID">
+      <soap:operation soapAction="uri:TestID"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation> 
+    <operation name="TestMyLanguage">
+      <soap:operation soapAction="uri:TestMyLanguage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>   
+<!--    <operation name="TestIDREF">
+      <soap:operation soapAction="uri:TestIDREF"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>   -->
+  </binding>
+
+
+  <binding name="RPCBinding" type="tns:RPCService">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="TestLanguage">
+      <soap:operation soapAction="uri:TestLanguage"/>
+      <input>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>      
+    <operation name="TestNormalizedString">
+      <soap:operation soapAction="uri:TestNormalizedString"/>
+      <input>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>      
+    <operation name="TestToken">
+      <soap:operation soapAction="uri:TestToken"/>
+      <input>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>      
+    <operation name="TestName">
+      <soap:operation soapAction="uri:TestName"/>
+      <input>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>      
+    <operation name="TestNCName">
+      <soap:operation soapAction="uri:TestNCName"/>
+      <input>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>      
+    <operation name="TestID">
+      <soap:operation soapAction="uri:TestID"/>
+      <input>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation> 
+<!--    <operation name="TestMyLanguage">
+      <soap:operation soapAction="uri:TestMyLanguage"/>
+      <input>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>   -->
+<!--    <operation name="TestIDREF">
+      <soap:operation soapAction="uri:TestIDREF"/>
+      <input>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+         <soap:body use="encoded" namespace="uri:sun.com:Test16" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>   -->
+  </binding>
+    
+  <service name="TestService">
+    <port name="TheLiteralPort" binding="tns:LiteralBinding">
+      <soap:address location="http://localhost/rpcendpoint/TestLiteralService"/>
+    </port> 
+    <port name="TheRPCPort" binding="tns:RPCBinding">
+      <soap:address location="http://localhost/rpcendpoint/TestRPCService"/>
+    </port>
+  </service>
+  
+</definitions>

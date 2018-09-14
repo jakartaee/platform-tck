@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="HolderTest"
+          targetNamespace="http://holdertest.org/wsdl" 
+                xmlns:tns="http://holdertest.org/wsdl" 
+                xmlns:txs="http://holdertest.org/xsd" 
+                    xmlns="http://schemas.xmlsoap.org/wsdl/" 
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+               xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://holdertest.org/xsd">
+
+			<complexType name="ArrayOfstring">
+			    <sequence>
+				<element name="arrayOfstring" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfinteger">
+			    <sequence>
+				<element name="arrayOfinteger" type="xsd:integer" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfint">
+			    <sequence>
+				<element name="arrayOfint" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOflong">
+			    <sequence>
+				<element name="arrayOflong" type="xsd:long" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfshort">
+			    <sequence>
+				<element name="arrayOfshort" type="xsd:short" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfdecimal">
+			    <sequence>
+				<element name="arrayOfdecimal" type="xsd:decimal" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOffloat">
+			    <sequence>
+				<element name="arrayOffloat" type="xsd:float" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfdouble">
+			    <sequence>
+				<element name="arrayOfdouble" type="xsd:double" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfboolean">
+			    <sequence>
+				<element name="arrayOfboolean" type="xsd:boolean" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfbyte">
+			    <sequence>
+				<element name="arrayOfbyte" type="xsd:byte" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfQName">
+			    <sequence>
+				<element name="arrayOfQName" type="xsd:QName" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfdateTime">
+			    <sequence>
+				<element name="arrayOfdateTime" type="xsd:dateTime" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+
+			<complexType name="Book">
+			    <sequence>
+				<element name="author" type="xsd:string"/>
+				<element name="title" type="xsd:string"/>
+				<element name="isbn" type="xsd:int"/>
+			    </sequence>
+			</complexType>
+			<complexType name="ArrayOfBook">
+			    <sequence>
+				<element name="arrayOfBook" type="txs:Book" minOccurs="0" maxOccurs="unbounded"/>
+			    </sequence>
+			</complexType>
+
+		</schema>
+	</types>
+
+	<!-- ############################################################################### -->
+	<!-- These are used in conjuction with the Holder tests               			-->
+	<!-- ############################################################################### -->
+	<!-- IN/OUT parameter -->
+     <message name="inoutSimpleTypesRequest">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+     </message>
+     <message name="inoutSimpleTypesResponse">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+     </message>
+
+     <message name="inoutSimpleTypesArrayRequest">
+		<part name="varString" type="txs:ArrayOfstring"/>
+		<part name="varInteger" type="txs:ArrayOfinteger"/>
+		<part name="varInt" type="txs:ArrayOfint"/>
+		<part name="varLong" type="txs:ArrayOflong"/>
+		<part name="varShort" type="txs:ArrayOfshort"/>
+		<part name="varDecimal" type="txs:ArrayOfdecimal"/>
+		<part name="varFloat" type="txs:ArrayOffloat"/>
+		<part name="varDouble" type="txs:ArrayOfdouble"/>
+		<part name="varBoolean" type="txs:ArrayOfboolean"/>
+		<part name="varByte" type="txs:ArrayOfbyte"/>
+		<part name="varQName" type="txs:ArrayOfQName"/>
+		<part name="varDateTime" type="txs:ArrayOfdateTime"/>
+     </message>
+
+     <message name="inoutSimpleTypesArrayResponse">
+		<part name="varString" type="txs:ArrayOfstring"/>
+		<part name="varInteger" type="txs:ArrayOfinteger"/>
+		<part name="varInt" type="txs:ArrayOfint"/>
+		<part name="varLong" type="txs:ArrayOflong"/>
+		<part name="varShort" type="txs:ArrayOfshort"/>
+		<part name="varDecimal" type="txs:ArrayOfdecimal"/>
+		<part name="varFloat" type="txs:ArrayOffloat"/>
+		<part name="varDouble" type="txs:ArrayOfdouble"/>
+		<part name="varBoolean" type="txs:ArrayOfboolean"/>
+		<part name="varByte" type="txs:ArrayOfbyte"/>
+		<part name="varQName" type="txs:ArrayOfQName"/>
+		<part name="varDateTime" type="txs:ArrayOfdateTime"/>
+     </message>
+
+     <message name="inoutBookRequest">
+		<part name="varBook" type="txs:Book"/>
+     </message>
+
+     <message name="inoutBookResponse">
+		<part name="varBook" type="txs:Book"/>
+     </message>
+
+     <message name="inoutBookArrayRequest">
+		<part name="varBook" type="txs:ArrayOfBook"/>
+     </message>
+
+     <message name="inoutBookArrayResponse">
+		<part name="varBook" type="txs:ArrayOfBook"/>
+     </message>
+
+
+	<portType name="HolderTest">
+		<operation name="echoInOutSimpleTypes" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime ">
+			<input message="tns:inoutSimpleTypesRequest"/>
+			<output message="tns:inoutSimpleTypesResponse"/>
+		</operation>
+		<operation name="echoInOutSimpleTypesArray" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime">
+			<input message="tns:inoutSimpleTypesArrayRequest"/>
+			<output message="tns:inoutSimpleTypesArrayResponse"/>
+		</operation>
+		<operation name="echoInOutBook" parameterOrder="varBook">
+			<input message="tns:inoutBookRequest"/>
+			<output message="tns:inoutBookResponse"/>
+		</operation>
+		<operation name="echoInOutBookArray" parameterOrder="varBook">
+			<input message="tns:inoutBookArrayRequest"/>
+			<output message="tns:inoutBookArrayResponse"/>
+		</operation>
+
+	</portType>
+
+	<binding name="HolderTestBinding" type="tns:HolderTest">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="echoInOutSimpleTypes">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" namespace="http://holdertest.org/wsdl" />
+			</input>
+			<output>
+				<soap:body use="literal" namespace="http://holdertest.org/wsdl" />
+			</output>
+		</operation>
+		<operation name="echoInOutSimpleTypesArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" namespace="http://holdertest.org/wsdl" />
+			</input>
+			<output>
+				<soap:body use="literal" namespace="http://holdertest.org/wsdl" />
+			</output>
+		</operation>
+		<operation name="echoInOutBook">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" namespace="http://holdertest.org/wsdl" />
+			</input>
+			<output>
+				<soap:body use="literal" namespace="http://holdertest.org/wsdl" />
+			</output>
+		</operation>
+		<operation name="echoInOutBookArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" namespace="http://holdertest.org/wsdl" />
+			</input>
+			<output>
+				<soap:body use="literal" namespace="http://holdertest.org/wsdl" />
+			</output>
+		</operation>
+
+	</binding>
+
+	<service name="HolderTestService">
+        	<port name="HolderTestPort" binding="tns:HolderTestBinding">
+            	<soap:address location="http://localhost:8000/WSIRLHolderTest/ws4ee"/>
+        	</port>
+	</service>
+</definitions>
+

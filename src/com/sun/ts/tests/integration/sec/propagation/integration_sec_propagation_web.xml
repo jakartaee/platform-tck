@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <display-name>integration_sec_propagation</display-name>
+  <servlet>
+    <servlet-name>WebToEjbNoauth</servlet-name>
+    <jsp-file>/web_to_ejb_noauth.jsp</jsp-file>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>EjbToEjb</servlet-name>
+    <jsp-file>/ejb_to_ejb.jsp</jsp-file>
+    <load-on-startup>0</load-on-startup>
+    <security-role-ref>
+      <role-name>MGR</role-name>
+      <role-link>Manager</role-link>
+    </security-role-ref>
+  </servlet>
+  <servlet>
+    <servlet-name>WebToEjbAuth</servlet-name>
+    <jsp-file>/web_to_ejb_auth.jsp</jsp-file>
+    <load-on-startup>0</load-on-startup>
+    <security-role-ref>
+      <role-name>ADM</role-name>
+      <role-link>Administrator</role-link>
+    </security-role-ref>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebToEjbNoauth</servlet-name>
+    <url-pattern>/web_to_ejb_noauth.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EjbToEjb</servlet-name>
+    <url-pattern>/ejb_to_ejb.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WebToEjbAuth</servlet-name>
+    <url-pattern>/web_to_ejb_auth.jsp</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>54</session-timeout>
+  </session-config>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>MySecureBit1</web-resource-name>
+      <url-pattern>/ejb_to_ejb.jsp</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Manager</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>MySecureBit0</web-resource-name>
+      <url-pattern>/web_to_ejb_auth.jsp</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Administrator</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>default</realm-name>
+  </login-config>
+  <security-role>
+    <description>the administrator role</description>
+    <role-name>Administrator</role-name>
+  </security-role>
+  <security-role>
+    <description>the manager role</description>
+    <role-name>Manager</role-name>
+  </security-role>
+  <ejb-ref>
+    <ejb-ref-name>ejb/Bean1</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.integration.sec.propagation.Bean1Home</home>
+    <remote>com.sun.ts.tests.integration.sec.propagation.Bean1</remote>
+  </ejb-ref>
+</web-app>

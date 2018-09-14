@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="SimpleTest" targetNamespace="http://simpletestservice.org/wsdl" xmlns:tns="http://simpletestservice.org/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://simpletestservice.org/types/arrays/java/lang" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns3="http://simpletestservice.org/types">
+  <types>
+    <schema targetNamespace="http://simpletestservice.org/types/arrays/java/lang" xmlns:tns="http://simpletestservice.org/types/arrays/java/lang" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <import namespace="http://simpletestservice.org/types"/>
+      <complexType name="StringArray">
+        <sequence>
+          <element name="value" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType></schema>
+    <schema targetNamespace="http://simpletestservice.org/types" xmlns:tns="http://simpletestservice.org/types" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <import namespace="http://simpletestservice.org/types/arrays/java/lang"/>
+      <complexType name="SimpleBean">
+        <sequence>
+          <element name="myInt" type="int"/>
+          <element name="myString" type="string" nillable="true"/></sequence></complexType></schema></types>
+  <message name="SimpleEndpoint_arrayOperation"/>
+  <message name="SimpleEndpoint_arrayOperationResponse">
+    <part name="result" type="ns2:StringArray"/></message>
+  <message name="SimpleEndpoint_arrayOperationFromClient">
+    <part name="arrayOfString_1" type="ns2:StringArray"/></message>
+  <message name="SimpleEndpoint_arrayOperationFromClientResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="SimpleEndpoint_getBean"/>
+  <message name="SimpleEndpoint_getBeanResponse">
+    <part name="result" type="ns3:SimpleBean"/></message>
+  <message name="SimpleEndpoint_helloWorld"/>
+  <message name="SimpleEndpoint_helloWorldResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="SimpleEndpoint_holderOperation">
+    <part name="String_1" type="xsd:string"/>
+    <part name="String_2" type="xsd:string"/></message>
+  <message name="SimpleEndpoint_holderOperationResponse">
+    <part name="result" type="xsd:string"/>
+    <part name="String_1" type="xsd:string"/>
+    <part name="String_2" type="xsd:string"/></message>
+  <message name="SimpleEndpoint_oneWayOperation"/>
+  <message name="SimpleEndpoint_oneWayOperationResponse"/>
+  <message name="SimpleEndpoint_overloadedOperation">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="SimpleEndpoint_overloadedOperationResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="SimpleEndpoint_overloadedOperation2">
+    <part name="String_1" type="xsd:string"/>
+    <part name="String_2" type="xsd:string"/></message>
+  <message name="SimpleEndpoint_overloadedOperation2Response">
+    <part name="result" type="xsd:string"/></message>
+  <portType name="SimpleEndpoint">
+    <operation name="arrayOperation" >
+      <input message="tns:SimpleEndpoint_arrayOperation"/>
+      <output message="tns:SimpleEndpoint_arrayOperationResponse"/></operation>
+    <operation name="arrayOperationFromClient" parameterOrder="arrayOfString_1">
+      <input message="tns:SimpleEndpoint_arrayOperationFromClient"/>
+      <output message="tns:SimpleEndpoint_arrayOperationFromClientResponse"/></operation>
+    <operation name="getBean" >
+      <input message="tns:SimpleEndpoint_getBean"/>
+      <output message="tns:SimpleEndpoint_getBeanResponse"/></operation>
+    <operation name="helloWorld" >
+      <input message="tns:SimpleEndpoint_helloWorld"/>
+      <output message="tns:SimpleEndpoint_helloWorldResponse"/></operation>
+    <operation name="holderOperation" parameterOrder="String_1 String_2">
+      <input message="tns:SimpleEndpoint_holderOperation"/>
+      <output message="tns:SimpleEndpoint_holderOperationResponse"/></operation>
+    <operation name="oneWayOperation" >
+      <input message="tns:SimpleEndpoint_oneWayOperation"/>
+      <output message="tns:SimpleEndpoint_oneWayOperationResponse"/></operation>
+    <operation name="overloadedOperation" parameterOrder="String_1">
+      <input message="tns:SimpleEndpoint_overloadedOperation"/>
+      <output message="tns:SimpleEndpoint_overloadedOperationResponse"/></operation>
+    <operation name="overloadedOperation2" parameterOrder="String_1 String_2">
+      <input message="tns:SimpleEndpoint_overloadedOperation2"/>
+      <output message="tns:SimpleEndpoint_overloadedOperation2Response"/></operation></portType>
+  <binding name="SimpleEndpointBinding" type="tns:SimpleEndpoint">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="arrayOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="arrayOperationFromClient">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="getBean">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="helloWorld">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="holderOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="oneWayOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="overloadedOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="overloadedOperation2">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://simpletestservice.org/wsdl"/></output>
+    </operation>
+  </binding>
+  <service name="SimpleTest">
+    <port name="SimpleEndpointPort" binding="tns:SimpleEndpointBinding">
+      <soap:address location="http://localhost:8000/SimpleService/ws4ee"/></port></service></definitions>

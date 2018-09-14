@@ -1,0 +1,594 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="Glassfish Deployment" default="-deploy">
+
+    <!-- IMPORTS -->
+    <import file="../../ts.common.props.xml" optional="true"/>
+
+    <!--<property name="deploy.dir" value="${deploy.dir}/"/>-->
+
+    <!-- PRESETDEFS -->
+    <presetdef name="gf.echo">
+        <echo message="Glassfish:  ${message}"/>
+    </presetdef>
+
+    <presetdef name="gf.fail">
+        <fail message="Glassfish:  ${message}"/>
+    </presetdef>
+
+    <!-- Deployment: DO NOT EDIT -->
+    <target name="-deploy">
+
+        <if>
+            <isset property="archive.file"/>
+            <then>
+                <fileset file="${archive.file}" id="deploy.archive.set"/>
+                <gf.echo message="Deploying:  ${archive.file}"/>
+            </then>
+        </if>
+
+        <ts.glassfish.undeploy>
+            <fileset refid="deploy.archive.set"/>
+        </ts.glassfish.undeploy>
+        
+        <ts.add.sun.xml.to.component.archive> 
+            <fileset refid="deploy.archive.set"/>
+        </ts.add.sun.xml.to.component.archive>
+        
+        <ts.glassfish.deploy>
+            <fileset refid="deploy.archive.set"/>
+        </ts.glassfish.deploy>
+    </target>
+    
+    <target name="-deploy.all">
+        <ts.glassfish.undeploy> 
+            <fileset refid="deploy.all.archive.set"/>
+        </ts.glassfish.undeploy>
+        
+        <ts.add.sun.xml.to.component.archive> 
+            <fileset refid="deploy.all.archive.set"/>
+        </ts.add.sun.xml.to.component.archive>
+        
+        <ts.glassfish.deploy>
+            <fileset refid="deploy.all.archive.set"/>
+        </ts.glassfish.deploy>
+    </target>
+    
+    <target name="-undeploy.all">
+        <fileset dir="${deploy.dir}" id="undeploy.all.archive.set">
+                <include name="**/*.war"/>
+                <include name="**/*.jar"/>
+                <include name="**/*.car"/>
+                <include name="**/*.ear"/>
+        </fileset>
+        <ts.glassfish.undeploy>
+            <fileset refid="undeploy.all.archive.set"/>
+        </ts.glassfish.undeploy>
+    </target>
+    
+    <target name="-undeploy">
+        <if>
+            <isset property="archive.file"/>
+            <then>
+                <fileset file="${archive.file}" id="deploy.archive.set"/>
+                <gf.echo message="Undeploying:  ${archive.file}"/>
+            </then>
+        </if>
+
+        <ts.glassfish.undeploy>
+            <fileset refid="deploy.archive.set"/>
+        </ts.glassfish.undeploy>    
+    </target>
+
+    <target name="-isdeployed">
+        
+    </target>
+
+    <macrodef name="ts.glassfish.deploy">
+        <element name="archiveset" implicit="yes" optional="true"
+                 description="Fileset for dirs to search for archives"/>
+        <sequential>
+        
+        <var name="deploy.failed" value="false"/>
+        <var name="archive.count" unset="true"/>
+        <var name="glassfish.deploy.wait.time" unset="true"/>
+        
+        <resourcecount property="archive.count">
+            <archiveset/>
+        </resourcecount>
+        <ts.verbose message="archive count - ${archive.count}"/>
+
+        <gf.echo message="${archive.count} archive(s) to deploy"/>
+        <if>
+            <not>
+                <equals arg1="${archive.count}" arg2="0"/>
+            </not>
+        <then>
+            <copy todir="${deploy.dir}" flatten="true">
+                <archiveset/>
+                <chainedmapper>
+                <filtermapper>
+                    <replacestring from="vi_built_" to=""/>
+                </filtermapper>
+                <flattenmapper/>
+                </chainedmapper>
+            </copy>
+            
+            <!-- Set a default in case the deliverable foes not set it in the jte file -->
+            <property name="impl.deploy.timeout.multiplier" value="5"/>
+
+            <math result="glassfish.deploy.wait.time"
+                  operand1="${archive.count}"
+                  operation="*"
+                  operand2="${impl.deploy.timeout.multiplier}"
+                  datatype="int"/>
+
+            <for param="archive">
+                <archiveset/>
+
+            <sequential>
+                <gf.echo message="Deploying archive:  @{archive}"/>
+                <propertyregex property="archive.name.only"
+                  input="@{archive}"
+                  regexp=".*[\/|\\](.*)"
+                  select="\1"
+                  casesensitive="false"
+                  override="true"/>
+
+                <propertyregex property="archive.name.only.minus.vibuilt"
+                     input="${archive.name.only}"
+                     regexp="vi_built_"
+                     replace=""
+                     casesensitive="false"
+                     override="true"
+                     defaultvalue="${archive.name.only}"/>
+                    
+                <ts.verbose message="archive.name.only.minus.vibuilt = ${archive.name.only.minus.vibuilt}"/>
+                
+                <waitfor maxwait="${glassfish.deploy.wait.time}" maxwaitunit="second"
+                         timeoutproperty="deploy.timeout">
+                    <or>
+                        <available file="${deploy.dir}/${archive.name.only.minus.vibuilt}_deployed"/>
+                        <available file="${deploy.dir}/${archive.name.only.minus.vibuilt}_deployFailed"/>
+                    </or>
+                </waitfor>
+
+                <if>
+                    <available file="${deploy.dir}/${archive.name.only.minus.vibuilt}_deployed"/>
+                    <then>
+                        <gf.echo message="Deployment Succeeded:  ${archive.name.only}"/>
+                    </then>
+                <elseif>
+                        <available file="${deploy.dir}/${archive.name.only.minus.vibuilt}_deployFailed"/>
+                    <then>
+                        <gf.echo message="Deployment Failed:  ${archive.name.only}"/>
+                        <var name="deploy.failed" value="true"/>
+                    </then>
+                </elseif>
+                <else>
+                    <!--cleanup any archives since at least one failed-->
+                    <sleep seconds="2"/>
+                    <ts.glassfish.undeploy>
+                        <archiveset/>
+                    </ts.glassfish.undeploy>
+                    <gf.fail message="Deployment timeout reached - ${glassfish.deploy.wait.time} seconds."/>
+                </else>
+                </if>
+
+                <if>
+                    <equals arg1="${deploy.failed}" arg2="true"/>
+                <then>
+                    <!--cleanup any archives since at least one failed-->
+                    <sleep seconds="2"/>
+                    <ts.glassfish.undeploy>
+                        <archiveset/>
+                    </ts.glassfish.undeploy>
+                    <gf.fail message="Deployment Failed for one or more archives.  Check the server log to see which failed."/>
+                </then>
+                </if>
+            </sequential>
+            </for>
+        </then>
+        </if>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="ts.glassfish.undeploy">
+        <element name="archiveset" implicit="yes" optional="true"
+                 description="Fileset for dirs to search for archives"/>
+        <sequential>
+
+        <pathconvert property="files.to.remove"
+                     pathsep=",">
+            <archiveset/>
+            <flattenmapper/>
+        </pathconvert>
+        
+        <if>
+            <contains string="${files.to.remove}" substring="vi_built_"/>
+            <then>
+                <pathconvert property="files.to.remove2"
+                     pathsep=",">
+                    <archiveset/>
+                    <chainedmapper>
+                        <flattenmapper/>
+                        <globmapper from="vi_built_*" to="*"/>
+                    </chainedmapper>
+                </pathconvert>
+                <var name="files.to.remove" value="${files.to.remove2}"/>
+            </then>
+        </if>
+        <ts.verbose message="files.to.remove = ${files.to.remove}"/>
+        <if>
+            <not>
+                <equals arg1="${files.to.remove}" arg2=""/>
+            </not>
+        <then>
+            <fileset dir="${deploy.dir}"
+                     includes="${files.to.remove}"
+                     excludes="**/*ejb_Tsr.ear*"
+                     id="deploy.dir.archiveset">
+            </fileset>
+
+            <var name="files.to.remove" unset="true"/>
+            <pathconvert property="files.to.remove"
+                         pathsep=",">
+                <fileset refid="deploy.dir.archiveset"/>
+                <flattenmapper/>
+            </pathconvert>
+            <ts.verbose message="files.to.remove = ${files.to.remove}"/>
+
+            <var name="archive.count" unset="true"/>
+            <var name="glassfish.deploy.wait.time" unset="true"/>
+
+            <!-- Set a default in case the deliverable foes not set it in the jte file -->
+            <property name="impl.deploy.timeout.multiplier" value="60"/>
+
+            <resourcecount property="archive.count">
+                <fileset refid="deploy.dir.archiveset"/>
+            </resourcecount>
+            <ts.verbose message="archive count - ${archive.count}"/>
+
+            <gf.echo message="${archive.count} archive(s) to undeploy"/>
+            <if>
+                <not>
+                    <equals arg1="${archive.count}" arg2="0"/>
+                </not>
+            <then>
+                <var name="undeploy.failed" value="false"/>
+                <delete includeEmptyDirs="true"
+                    quiet="true">
+                   <fileset refid="deploy.dir.archiveset"/>
+                </delete>
+
+                <math result="glassfish.deploy.wait.time"
+                      operand1="${archive.count}"
+                      operation="*"
+                      operand2="${impl.deploy.timeout.multiplier}"
+                      datatype="int"/>
+
+                <for param="archive" list="${files.to.remove}">
+                <sequential>                  
+                    <if>
+                        <available file="${deploy.dir}/@{archive}_deployFailed"/>
+                    <then>
+                        <delete file="${deploy.dir}/@{archive}_deployFailed"/>
+                        <gf.echo message="Undeployment Succeeded:  @{archive}"/>
+                    </then>
+                    <elseif>
+                        <available file="${deploy.dir}/@{archive}_deployed"/>
+                        <then>
+                            <gf.echo message="Undeploying archive:  @{archive}"/>
+                            <waitfor maxwait="${glassfish.deploy.wait.time}" maxwaitunit="second"
+                                     timeoutproperty="deploy.timeout">
+                                <or>
+                                    <available file="${deploy.dir}/@{archive}_undeployed"/>
+                                    <available file="${deploy.dir}/@{archive}_undeployFailed"/>
+                                </or>
+                            </waitfor>
+
+                            <if>
+                                <available file="${deploy.dir}/@{archive}_undeployed"/>
+                            <then>
+                                <gf.echo message="Undeployment Succeeded:  @{archive}"/>
+                            </then>
+                            <elseif>
+                                    <available file="${deploy.dir}/@{archive}_undeployFailed"/>
+                                <then>
+                                    <gf.echo message="Uneployment Failed:  @{archive}"/>
+                                    <var name="undeploy.failed" value="true"/>
+                                </then>
+                            </elseif>
+                            <else>
+                                <!-- Assume timeout occurred and warn user to either increase timeout -->
+                                <gf.fail message="Undeployment timeout reached - ${glassfish.deploy.wait.time} seconds."/>
+                            </else>
+                            </if>
+
+                            <if>
+                                <equals arg1="${undeploy.failed}" arg2="true"/>
+                            <then>
+                                <gf.fail message="Undeployment Failed for one or more archives.  Check the server log to see which failed."/>
+                            </then>
+                            </if>
+                        </then>
+                    </elseif>
+                    </if>
+                </sequential>
+                </for>
+            </then>
+            </if>
+        </then>
+        </if>
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="ts.add.sun.xml.to.component.archive">
+        <element name="archiveset" implicit="yes" optional="true" 
+                 description="Fileset for dirs to search for archives"/>               
+        <sequential>
+        <for param="archive">
+            <archiveset/>
+                    
+        <sequential>
+            <propertyregex property="archive.name.only"
+              input="@{archive}"
+              regexp=".*[\/|\\](.*)"
+              select="\1"
+              casesensitive="false"
+              override="true"/>
+            
+            <propertyregex property="archive.dir" 
+                           input="@{archive}" 
+                           regexp="[\/|\\]${archive.name.only}" replace=""
+                           casesensitive="false" override="true"/>
+
+            <propertyregex property="archive.name.minus.suffix" override="yes" input="${archive.name.only}"
+                           regexp="(.*)\..*" select="\1" />
+
+            <ts.verbose message="archive.name.minus.suffix = ${archive.name.minus.suffix}"/>            
+
+            <if>
+                <not>
+                    <isset property="archive.file"/>
+                </not>
+            <then>
+                <copy todir="${tmp.dir}" overwrite="true">
+                    <fileset dir="${archive.dir}"
+                             includes="*.sun*.xml"/>
+                </copy>
+
+                <replace dir="${tmp.dir}"
+                     includes="*.sun*.xml">
+                <replacefilter  token="webServerHost.1"  value="${webHost1}"/>
+                        <replacefilter  token="webServerPort.1"  value="${webServerPort}"/>
+                        <replacefilter  token="webServerHost.2"  value="${webServerHost.2}"/>
+                        <replacefilter  token="webServerHost"  value="${webServerHost}"/>
+                        <replacefilter  token="webServerPort"  value="${webServerPort}"/>
+                        <replacefilter  token="securedWebServicePort.1"  value="${securedWebServicePort.1}"/>
+                        <replacefilter  token="securedWebServicePort.2"  value="${securedWebServicePort.2}"/>
+                        <replacefilter  token="securedWebServicePort"  value="${securedWebServicePort}"/>
+                        <replacefilter  token="ts_home"  value="${ts.home}"/>
+                        <replacefilter  token="mailFrom"  value="${mailFrom}"/>
+                        <replacefilter  token="mailHost"  value="${mailHost}"/>
+                        <replacefilter  token="namingServiceHost1"  value="${namingServiceHost1}"/>
+                        <replacefilter  token="namingServicePort1"  value="${namingServicePort1}"/>
+                        <replacefilter  token="namingServiceHost2"  value="${namingServiceHost2}"/>
+                        <replacefilter  token="namingServicePort2"  value="${namingServicePort2}"/>
+                        <replacefilter  token="rauser1"  value="${rauser1}"/>
+                        <replacefilter  token="rauser2"  value="${rauser2}"/>
+                        <replacefilter  token="rapassword1"  value="${rapassword1}"/>
+                        <replacefilter  token="rapassword2"  value="${rapassword2}"/>
+                        <replacefilter  token="user1"  value="${user1}"/>
+                        <replacefilter  token="user2"  value="${user2}"/>
+                        <replacefilter  token="user3"  value="${user3}"/>
+                        <replacefilter  token="password1"  value="${password1}"/>
+                        <replacefilter  token="password1"  value="${password2}"/>
+                        <replacefilter  token="password1"  value="${password3}"/>
+                        <replacefilter  token="wsdlRepository1"  value="${wsdlRepository1}"/>
+                        <replacefilter  token="wsdlRepository2"  value="${wsdlRepository2}"/>
+                 </replace>
+            </then>
+        </if>
+
+            <gf.echo message="Looking at @{archive}"/>
+            
+                    
+            <if>
+               <contains string="${archive.name.only}" substring=".ear"/>
+           <then>
+                    <!-- remove the dir in case it's still hanging around -->
+                    <delete dir="${tmp.dir}/${archive.name.minus.suffix}.dir"
+                            failonerror="false"/>
+                    <mkdir dir="${tmp.dir}/${archive.name.minus.suffix}.dir"/>
+
+                    <unjar src="@{archive}" dest="${tmp.dir}/${archive.name.minus.suffix}.dir"/>
+
+                    <for param="subarchive">
+                        <fileset dir="${tmp.dir}/${archive.name.minus.suffix}.dir"
+                             includes="*.*ar"/>
+                    <sequential>
+
+                    <propertyregex property="subarchive.name.only"
+                                  input="@{subarchive}"
+                                  regexp=".*[\/|\\](.*)"
+                                  select="\1"
+                                  casesensitive="false"
+                                  override="true"/>
+                    <ts.verbose message="subarchive= @{subarchive}"/>
+                    <ts.verbose message="archive.name.only= ${archive.name.only}"/>
+                    <ts.verbose message="archive.name.minus.suffix= ${archive.name.minus.suffix}"/>
+                    <ts.verbose message="subarchive.nameonly= ${subarchive.name.only}"/>
+
+                    <if>
+                        <contains string="${subarchive.name.only}" substring=".war"/>
+                    <then>
+                        <var name="inf.path" value="WEB-INF"/>
+                    </then>
+                    <else>
+                        <var name="inf.path" value="META-INF"/>
+                    </else>
+                    </if>
+
+                    <if>
+                        <contains string="${archive.name.only}" substring="${vi.build.string}"/>
+                    <then>
+                        <jar destfile="@{subarchive}"
+                             duplicate="preserve"
+                             update="true">
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${vi.build.string}_${subarchive.name.only}.sun-web.xml"
+                                        fullpath="WEB-INF/sun-web.xml"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${vi.build.string}_${subarchive.name.only}.sun-ejb-jar.xml"
+                                        fullpath="${inf.path}/sun-ejb-jar.xml"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${vi.build.string}_${subarchive.name.only}.sun-application-client.xml"
+                                        fullpath="META-INF/sun-application-client.xml"/>
+                        </jar>
+                    </then>
+                    <else>
+                        <jar destfile="@{subarchive}"
+                             duplicate="preserve"
+                             update="true">
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${subarchive.name.only}.sun-web.xml"
+                                        fullpath="WEB-INF/sun-web.xml"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${subarchive.name.only}.sun-ejb-jar.xml"
+                                        fullpath="${inf.path}/sun-ejb-jar.xml"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${subarchive.name.only}.sun-application-client.xml"
+                                        fullpath="META-INF/sun-application-client.xml"/>
+                        </jar>
+                    </else>
+                    </if>                    
+
+                    <if>
+                        <available file="${tmp.dir}/${subarchive.name.only}.sun-cmp-mappings.xml"/>
+                    <then>
+                        <jar destfile="@{subarchive}"
+                             duplicate="preserve"
+                             update="true">
+                            <zipfileset dir="${ts.home}/sql"
+                                        includes="CtsSchema.dbschema"
+                                        fullpath="CtsSchema.dbschema"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${subarchive.name.only}.sun-cmp-mappings.xml"
+                                        fullpath="META-INF/sun-cmp-mappings.xml"/>
+                        </jar>
+                        <gf.echo message="Added ${subarchive.name.only}.sun-cmp-mappings.xml to @{subarchive}"/>
+                        <gf.echo message="Added CtsSchema.dbschema to @{subarchive}"/>
+                    </then>
+                    </if>
+
+                    </sequential>
+                    </for>
+
+                    <jar destfile="@{archive}"
+                         duplicate="preserve"
+                         update="true">
+                        <zipfileset dir="${tmp.dir}/${archive.name.minus.suffix}.dir"
+                                    includes="*.*ar"/>
+                        <zipfileset dir="${tmp.dir}"
+                                    includes="${archive.name.only}.sun-application.xml"
+                                    fullpath="META-INF/sun-application.xml"/>
+                    </jar>
+
+               <delete dir="${tmp.dir}/${archive.name.minus.suffix}.dir"/>
+               </then>
+               <else>
+                    <if>
+                        <contains string="${archive.name.only}" substring=".war"/>
+                    <then>
+                        <var name="inf.path" value="WEB-INF"/>
+                    </then>
+                    <else>
+                        <var name="inf.path" value="META-INF"/>
+                    </else>
+                    </if>
+
+                    <if>
+                        <contains string="${archive.name.only}" substring="${vi.build.string}"/>
+                    <then>
+                        <jar destfile="@{archive}"
+                             duplicate="preserve"
+                             update="true">
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${vi.build.string}_${archive.name.only}.sun-web.xml"
+                                        fullpath="WEB-INF/sun-web.xml"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${vi.build.string}_${archive.name.only}.sun-ejb-jar.xml"
+                                        fullpath="${inf.path}/sun-ejb-jar.xml"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${vi.build.string}_${archive.name.only}.sun-application-client.xml"
+                                        fullpath="META-INF/sun-application-client.xml"/>
+                        </jar>
+                    </then>
+                    <else>
+                        <!--Update with the filtered file from ts.home/tmp if it exists-->
+                        <jar destfile="@{archive}"
+                             duplicate="preserve"
+                             update="true">
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${archive.name.only}.sun-web.xml"
+                                        fullpath="WEB-INF/sun-web.xml"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${archive.name.only}.sun-ejb-jar.xml"
+                                        fullpath="${inf.path}/sun-ejb-jar.xml"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${archive.name.only}.sun-application-client.xml"
+                                        fullpath="META-INF/sun-application-client.xml"/>
+                        </jar>
+                    </else>
+                    </if>
+
+                    <if>
+                        <available file="${tmp.dir}/${archive.name.only}.sun-cmp-mappings.xml"/>
+                    <then>
+                        <jar destfile="@{archive}"
+                             duplicate="preserve"
+                             update="true">
+                            <zipfileset dir="${ts.home}/sql"
+                                        includes="CtsSchema.dbschema"
+                                        fullpath="CtsSchema.dbschema"/>
+                            <zipfileset dir="${tmp.dir}"
+                                        includes="${archive.name.only}.sun-cmp-mappings.xml"
+                                        fullpath="META-INF/sun-cmp-mappings.xml"/>
+                        </jar>
+
+                        <gf.echo message="Added ${archive.name.only}.sun-cmp-mappings.xml to @{archive}"/>
+                        <gf.echo message="Added CtsSchema.dbschema to @{archive}"/>
+                    </then>
+                    </if>
+
+                    <gf.echo message="Added sun xml file(s) to @{archive}"/>
+               </else>
+            </if>
+             
+            <delete>
+                    <fileset dir="${tmp.dir}"
+                             includes="${archive.name.minus.suffix}*.sun*.xml"/>
+            </delete>
+        </sequential>    
+        </for>
+        </sequential>
+    </macrodef>
+    
+</project>

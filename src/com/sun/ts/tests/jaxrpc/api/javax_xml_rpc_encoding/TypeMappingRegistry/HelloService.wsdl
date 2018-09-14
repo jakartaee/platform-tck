@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="HelloService" targetNamespace="http://helloservice.org/wsdl" xmlns:tns="http://helloservice.org/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types/>
+  <message name="InvokeOneWayTest1">
+    <part name="Boolean_1" type="ns2:boolean"/>
+    <part name="Byte_2" type="ns2:byte"/>
+    <part name="Short_3" type="ns2:short"/>
+    <part name="Integer_4" type="ns2:int"/>
+    <part name="Long_5" type="ns2:long"/>
+    <part name="Float_6" type="ns2:float"/>
+    <part name="Double_7" type="ns2:double"/></message>
+  <message name="InvokeOneWayTest1Response"/>
+  <message name="InvokeOneWayTest2">
+    <part name="BigInteger_1" type="xsd:integer"/>
+    <part name="BigDecimal_2" type="xsd:decimal"/>
+    <part name="QName_3" type="xsd:QName"/>
+    <part name="String_4" type="xsd:string"/></message>
+  <message name="InvokeOneWayTest2Response"/>
+  <message name="InvokeOneWayTest3"/>
+  <message name="InvokeOneWayTest3Response"/>
+  <message name="InvokeTest1">
+    <part name="Boolean_1" type="ns2:boolean"/>
+    <part name="Byte_2" type="ns2:byte"/>
+    <part name="Short_3" type="ns2:short"/>
+    <part name="Integer_4" type="ns2:int"/>
+    <part name="Long_5" type="ns2:long"/>
+    <part name="Float_6" type="ns2:float"/>
+    <part name="Double_7" type="ns2:double"/></message>
+  <message name="InvokeTest1Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="InvokeTest2">
+    <part name="BigInteger_1" type="xsd:integer"/>
+    <part name="BigDecimal_2" type="xsd:decimal"/>
+    <part name="QName_3" type="xsd:QName"/>
+    <part name="String_4" type="xsd:string"/></message>
+  <message name="InvokeTest2Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="InvokeTest3"/>
+  <message name="InvokeTest3Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="InvokeTest4"/>
+  <message name="InvokeTest4Response"/>
+  <message name="MyServiceException">
+    <part name="theMessage" type="xsd:string"/></message>
+  <message name="hello">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="helloResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="wasDestroyCalled"/>
+  <message name="wasDestroyCalledResponse">
+    <part name="result" type="xsd:boolean"/></message>
+  <message name="wasInitCalled"/>
+  <message name="wasInitCalledResponse">
+    <part name="result" type="xsd:boolean"/></message>
+  <portType name="Hello">
+    <operation name="invokeOneWayTest1" parameterOrder="Boolean_1 Byte_2 Short_3 Integer_4 Long_5 Float_6 Double_7">
+      <input message="tns:InvokeOneWayTest1"/>
+      <output message="tns:InvokeOneWayTest1Response"/></operation>
+    <operation name="invokeOneWayTest2" parameterOrder="BigInteger_1 BigDecimal_2 QName_3 String_4">
+      <input message="tns:InvokeOneWayTest2"/>
+      <output message="tns:InvokeOneWayTest2Response"/></operation>
+    <operation name="invokeOneWayTest3" >
+      <input message="tns:InvokeOneWayTest3"/>
+      <output message="tns:InvokeOneWayTest3Response"/></operation>
+    <operation name="invokeTest1" parameterOrder="Boolean_1 Byte_2 Short_3 Integer_4 Long_5 Float_6 Double_7">
+      <input message="tns:InvokeTest1"/>
+      <output message="tns:InvokeTest1Response"/></operation>
+    <operation name="invokeTest2" parameterOrder="BigInteger_1 BigDecimal_2 QName_3 String_4">
+      <input message="tns:InvokeTest2"/>
+      <output message="tns:InvokeTest2Response"/></operation>
+    <operation name="invokeTest3" >
+      <input message="tns:InvokeTest3"/>
+      <output message="tns:InvokeTest3Response"/></operation>
+    <operation name="invokeTest4" >
+      <input message="tns:InvokeTest4"/>
+      <output message="tns:InvokeTest4Response"/>
+      <fault name="MyServiceException" message="tns:MyServiceException"/></operation>
+    <operation name="hello" parameterOrder="String_1">
+      <input message="tns:hello"/>
+      <output message="tns:helloResponse"/></operation>
+    <operation name="wasDestroyCalled" >
+      <input message="tns:wasDestroyCalled"/>
+      <output message="tns:wasDestroyCalledResponse"/></operation>
+    <operation name="wasInitCalled" >
+      <input message="tns:wasInitCalled"/>
+      <output message="tns:wasInitCalledResponse"/></operation>
+  </portType>
+  <binding name="HelloBinding" type="tns:Hello">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="invokeOneWayTest1">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+    <operation name="invokeOneWayTest2">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+    <operation name="invokeOneWayTest3">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+    <operation name="invokeTest1">
+      <soap:operation soapAction=""/>   
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+    <operation name="invokeTest2">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+    <operation name="invokeTest3">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+    <operation name="invokeTest4">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+      <fault name="MyServiceException">
+        <soap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></fault>
+    </operation>
+    <operation name="hello">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wasDestroyCalled">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wasInitCalled">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://helloservice.org/wsdl"/></output>
+    </operation>
+  </binding>
+  <service name="HelloService">
+    <port name="HelloPort" binding="tns:HelloBinding">
+      <soap:address location="http://localhost:8080/HelloService/jaxrpc/Hello"/></port></service></definitions>

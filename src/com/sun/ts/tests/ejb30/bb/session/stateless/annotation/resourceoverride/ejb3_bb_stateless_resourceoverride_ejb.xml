@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+<enterprise-beans>
+  <!-- 
+  rules for deployment descriptors overriding annotations are in JavaEE Platform Spec
+  EE.5.2.4 Annotations and Deployment Descriptors
+  -->
+
+  <session>
+    <ejb-name>ResourceFieldBean</ejb-name>
+    <business-remote>com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF</business-remote>
+    <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourceoverride.ResourceFieldBean</ejb-class>
+    <session-type>Stateless</session-type>
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>dataSource</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>myDataSource2</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>mailSession</res-ref-name>
+        <res-type>javax.mail.Session</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>url</res-ref-name>
+        <res-type>java.net.URL</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>queueConnectionFactory</res-ref-name>
+        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>topicConnectionFactory</res-ref-name>
+        <res-type>javax.jms.TopicConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>connectionFactoryQ</res-ref-name>
+        <res-type>javax.jms.ConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>connectionFactoryT</res-ref-name>
+        <res-type>javax.jms.ConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <message-destination-ref>
+        <message-destination-ref-name>queue</message-destination-ref-name>
+        <message-destination-type>javax.jms.Queue</message-destination-type>
+        <message-destination-usage>Consumes</message-destination-usage>
+      </message-destination-ref>
+
+      <message-destination-ref>
+        <message-destination-ref-name>topic</message-destination-ref-name>
+        <message-destination-type>javax.jms.Topic</message-destination-type>
+        <message-destination-usage>Consumes</message-destination-usage>
+      </message-destination-ref>
+
+
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+   </session>
+   
+   <session>
+    <ejb-name>ResourceSetterBean</ejb-name>
+    <business-remote>com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF</business-remote>
+    <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourceoverride.ResourceSetterBean</ejb-class>
+    <session-type>Stateless</session-type>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>dataSource</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>myDataSource2</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>mailSession</res-ref-name>
+        <res-type>javax.mail.Session</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>url</res-ref-name>
+        <res-type>java.net.URL</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>queueConnectionFactory</res-ref-name>
+        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>topicConnectionFactory</res-ref-name>
+        <res-type>javax.jms.TopicConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>connectionFactoryQ</res-ref-name>
+        <res-type>javax.jms.ConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>connectionFactoryT</res-ref-name>
+        <res-type>javax.jms.ConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <message-destination-ref>
+        <message-destination-ref-name>queue</message-destination-ref-name>
+        <message-destination-type>javax.jms.Queue</message-destination-type>
+        <message-destination-usage>Consumes</message-destination-usage>
+      </message-destination-ref>
+
+      <message-destination-ref>
+        <message-destination-ref-name>topic</message-destination-ref-name>
+        <message-destination-type>javax.jms.Topic</message-destination-type>
+        <message-destination-usage>Consumes</message-destination-usage>
+      </message-destination-ref>
+
+
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+   </session>
+   
+   <session>
+    <ejb-name>ResourceTypeBean</ejb-name>
+    <business-remote>com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF</business-remote>
+    <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourceoverride.ResourceTypeBean</ejb-class>
+    <session-type>Stateless</session-type>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>dataSource</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>myDataSource2</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>mailSession</res-ref-name>
+        <res-type>javax.mail.Session</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>url</res-ref-name>
+        <res-type>java.net.URL</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>queueConnectionFactory</res-ref-name>
+        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>topicConnectionFactory</res-ref-name>
+        <res-type>javax.jms.TopicConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>connectionFactoryQ</res-ref-name>
+        <res-type>javax.jms.ConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>connectionFactoryT</res-ref-name>
+        <res-type>javax.jms.ConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <message-destination-ref>
+        <message-destination-ref-name>queue</message-destination-ref-name>
+        <message-destination-type>javax.jms.Queue</message-destination-type>
+        <message-destination-usage>Consumes</message-destination-usage>
+      </message-destination-ref>
+
+      <message-destination-ref>
+        <message-destination-ref-name>topic</message-destination-ref-name>
+        <message-destination-type>javax.jms.Topic</message-destination-type>
+        <message-destination-usage>Consumes</message-destination-usage>
+      </message-destination-ref>
+
+
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+   </session>
+  </enterprise-beans>
+</ejb-jar>
+

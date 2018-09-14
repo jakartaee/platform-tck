@@ -1,0 +1,90 @@
+TCK Coverage Document for JSR-322 Java TM EE Connector Architecture 1.6 Specification
+
+
+TCK Components:
+---------------
+- User's Guide
+- Compatibility Rules
+- Configuration Instructions
+- Test Suite
+- API Tests 
+- Signature Tests
+- End-to-End Tests
+- Framework Code
+- JavaTest TM Harness
+
+
+Terminology of Metrics
+----------------------
+- Assertion: A specific statement of functionality or behavior derived from a specification.
+  A testable assertion is one that can be validated in an implementation by testing.
+- Test: A binary application (or script) comprised of one or more Test Cases.
+- Test Case: A single set of test inputs, execution conditions, and expected results
+  developed to verify an implementation's conformance with a specific assertion.
+- Specification Assertion Coverage: Ratio of all assertions tested by at least one test
+  case to the total number of testable assertions defined by the specification.
+- API Coverage: Ratio of methods directly exercised by test cases to the total number
+  of methods defined by the specification.
+
+
+Coverage
+--------
+
+- Total testable assertions derived from Java EE Connector Architecture 1.6 Specifications and Javadoc: 
+
+       107 specification assertions 
+     + 334 API assertions           
+     -------------------------------
+       441 testable assertions     
+
+- Total testable assertions tested
+
+       76 specification assertions tested 
+     +193   API assertions tested         
+     --------------------------------------
+      269   testable assertions tested    
+
+  - 71.00% of testable specification assertions tested 
+  - 58.00% of testable API assertions tested           
+  - 61.00% of all (specification and API) assertions tested 
+ 
+- Assertions were identified through the use of CTS Tools and hand markup
+  (hand markup was required for the Java EE Connector Architecture specification)
+
+- Number of tests in Java EE Connector Architecture 1.6:   103  
+    - Note, this total may change slightly before CTS ships.
+
+- API Signature Coverage: 100% for all defined public and protected members and validated
+  by the signature tests included with the JavaEE CTS.
+
+
+Quality Assurance
+-----------------
+- Connector TCK tests were run using representative configurations of the 
+  Reference Implementation on the following platforms, note all platforms 
+  use Java SE 6: XXX
+   * Solaris 10 sparc
+   * Solaris 10 X86
+   * Solaris  9 sparc
+   * Solaris  9 X86
+   * Java Desktop System
+   * Red Hat (RHEL) 4.0
+   * Red Hat (RHEL) 3.0
+   * Windows 2003
+   * Windows XP Professional
+   * Mac OS 10.4.4
+- Code quality was demonstrated through the use of code reviews and inspections
+- User's Guide was constructed from the standard CTS User's Guide template
+- Documentation instructions were verified and tested
+
+
+Justification of Adequacy
+-------------------------
+The Java EE Connector Architecture version 1.6 provides a comprehensive set of tests to ensure
+all implementations of the Java EE Connector 1.6 specifications are compatible.  As with all
+TCKs it is impossible to provide tests for 100% assertion coverage.  Note, while
+the CTS may not have tests for all assertions in the Java EE 6 Platform, all
+implementations of the platform must be compatible with the specifications.
+
+Untested assertions are due to the effects of late specification changes, and the
+availability and cost of test development resources.

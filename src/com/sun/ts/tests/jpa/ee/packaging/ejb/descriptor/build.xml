@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jpa_ee_packaging_ejb_descriptor" default="usage" basedir=".">
+
+   <!-- IMPORTS -->
+
+   <import file="../../../../common/persistence-import.xml"/>
+
+
+   <property name="app.name" value="jpa_ee_packaging_ejb_descriptor"/>
+
+   <target name="package">
+
+        <ts.ejbjar archivename="${app.name}" descriptor="${app.name}_ejb.jar.xml">
+            <zipfileset dir="." includes="persistence.xml" prefix="META-INF"/>
+            <zipfileset dir="." includes="orm.xml" prefix="META-INF"/>                         <zipfileset dir="." includes="myMappingFile.xml, myMappingFile2.xml"/>
+
+        </ts.ejbjar>
+
+        <ts.clientjar descriptor="${app.name}_client.xml"
+              archivename="${app.name}"
+              mainclass="${package}.Client" 
+              excludedfiles="${pkg.dir}/A.class, ${pkg.dir}/B.class,
+				 ${pkg.dir}/Stateless3Bean.class,
+				 ${pkg.dir}/Stateful3Bean.class">
+        </ts.clientjar>
+
+        <ts.ear archivename="${app.name}"
+                              deletecomponentarchives="true"
+                              includedefaultfiles="false">
+                          <fileset dir="${dist.dir}/${pkg.dir}"
+                                   includes="${app.name}_client.jar,
+						${app.name}_ejb.jar"/>
+        </ts.ear>
+
+   </target>
+
+</project>

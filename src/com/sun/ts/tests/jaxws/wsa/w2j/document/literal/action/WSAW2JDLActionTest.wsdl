@@ -1,0 +1,279 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="AddNumbers" targetNamespace="http://example.com/" xmlns:tns="http://example.com/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    	     xmlns:wsp="http://www.w3.org/ns/ws-policy"
+    	     xmlns:wsa="http://www.w3.org/2005/08/addressing"
+    	     xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+    <types>
+        <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                    targetNamespace="http://example.com/">
+
+            <complexType name="addNumbersResponse">
+                <sequence>
+                    <element name="return" type="xsd:int"/>
+                </sequence>
+            </complexType>
+            <element name="addNumbersResponse" type="tns:addNumbersResponse"/>
+            <element name="addNumbersResponse2" type="tns:addNumbersResponse"/>
+            <element name="addNumbersResponse3" type="tns:addNumbersResponse"/>
+            <element name="addNumbersResponse4" type="tns:addNumbersResponse"/>
+            <element name="addNumbersResponse5" type="tns:addNumbersResponse"/>
+            <element name="addNumbersResponse6" type="tns:addNumbersResponse"/>
+
+            <complexType name="addNumbers">
+                <sequence>
+                    <element name="number1" type="xsd:int"/>
+                    <element name="number2" type="xsd:int"/>
+                </sequence>
+            </complexType>
+            <element name="addNumbers" type="tns:addNumbers"/>
+            <element name="addNumbers2" type="tns:addNumbers"/>
+            <element name="addNumbers3" type="tns:addNumbers"/>
+            <element name="addNumbers4" type="tns:addNumbers"/>
+            <element name="addNumbers5" type="tns:addNumbers"/>
+            <element name="addNumbers6" type="tns:addNumbers"/>
+
+            <complexType name="AddNumbersFault">
+                <sequence>
+                    <element name="detail" type="xsd:string"/>
+                    <element name="message" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <element name="AddNumbersFault" type="tns:AddNumbersFault"/>
+            <element name="AddNumbers2Fault" type="tns:AddNumbersFault"/>
+            <element name="AddNumbers3Fault" type="tns:AddNumbersFault"/>
+            <element name="AddNumbers4Fault" type="tns:AddNumbersFault"/>
+            <element name="AddNumbers5Fault" type="tns:AddNumbersFault"/>
+            <element name="AddNumbers6Fault" type="tns:AddNumbersFault"/>
+
+            <complexType name="TooBigNumbersFault">
+                <sequence>
+                    <element name="detail" type="xsd:string"/>
+                    <element name="message" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <element name="TooBigNumbersFault" type="tns:TooBigNumbersFault"/>
+            <element name="TooBigNumbers2Fault" type="tns:TooBigNumbersFault"/>
+            <element name="TooBigNumbers3Fault" type="tns:TooBigNumbersFault"/>
+            <element name="TooBigNumbers4Fault" type="tns:TooBigNumbersFault"/>
+        </xsd:schema>
+    </types>
+    <message name="addNumbers">
+        <part name="parameters" element="tns:addNumbers"/>
+    </message>
+    <message name="addNumbersResponse">
+        <part name="result" element="tns:addNumbersResponse"/>
+    </message>
+    <message name="addNumbers2">
+        <part name="parameters" element="tns:addNumbers2"/>
+    </message>
+    <message name="addNumbersResponse2">
+        <part name="result" element="tns:addNumbersResponse2"/>
+    </message>
+    <message name="addNumbers3">
+        <part name="parameters" element="tns:addNumbers3"/>
+    </message>
+    <message name="addNumbersResponse3">
+        <part name="result" element="tns:addNumbersResponse3"/>
+    </message>
+    <message name="addNumbers4">
+        <part name="parameters" element="tns:addNumbers4"/>
+    </message>
+    <message name="addNumbersResponse4">
+        <part name="result" element="tns:addNumbersResponse4"/>
+    </message>
+    <message name="addNumbers5">
+        <part name="parameters" element="tns:addNumbers5"/>
+    </message>
+    <message name="addNumbersResponse5">
+        <part name="result" element="tns:addNumbersResponse5"/>
+    </message>
+    <message name="addNumbers6">
+        <part name="parameters" element="tns:addNumbers6"/>
+    </message>
+    <message name="addNumbersResponse6">
+        <part name="result" element="tns:addNumbersResponse6"/>
+    </message>
+    <message name="addNumbersFault">
+        <part name="AddNumbersFault" element="tns:AddNumbersFault"/>
+    </message>
+    <message name="tooBigNumbersFault">
+        <part name="TooBigNumbersFault" element="tns:TooBigNumbersFault"/>
+    </message>
+    <message name="addNumbers2Fault">
+        <part name="AddNumbersFault" element="tns:AddNumbers2Fault"/>
+    </message>
+    <message name="tooBigNumbers2Fault">
+        <part name="TooBigNumbersFault" element="tns:TooBigNumbers2Fault"/>
+    </message>
+    <message name="addNumbers3Fault">
+        <part name="AddNumbersFault" element="tns:AddNumbers3Fault"/>
+    </message>
+    <message name="tooBigNumbers3Fault">
+        <part name="TooBigNumbersFault" element="tns:TooBigNumbers3Fault"/>
+    </message>
+    <message name="addNumbers4Fault">
+        <part name="AddNumbersFault" element="tns:AddNumbers4Fault"/>
+    </message>
+    <message name="tooBigNumbers4Fault">
+        <part name="TooBigNumbersFault" element="tns:TooBigNumbers4Fault"/>
+    </message>
+    <message name="addNumbers5Fault">
+        <part name="AddNumbersFault" element="tns:AddNumbers5Fault"/>
+    </message>
+    <message name="addNumbers6Fault">
+        <part name="AddNumbersFault" element="tns:AddNumbers6Fault"/>
+    </message>
+    <portType name="AddNumbersPortType">
+        <operation name="addNumbers">
+            <input message="tns:addNumbers" name="add"/>
+            <output message="tns:addNumbersResponse" name="addResponse"/>
+            <fault name="addFault" message="tns:addNumbersFault"/>
+            <fault name="tooBigFault" message="tns:tooBigNumbersFault"/>
+        </operation>
+        <operation name="addNumbers2">
+            <input message="tns:addNumbers2" name="add2"/>
+            <output message="tns:addNumbersResponse2" name="addResponse2"/>
+            <fault name="add2Fault" message="tns:addNumbers2Fault" wsam:Action="add2fault"/>
+            <fault name="tooBig2Fault" message="tns:tooBigNumbers2Fault" wsam:Action="toobig2fault"/>
+        </operation>
+        <operation name="addNumbers3">
+            <input message="tns:addNumbers3"/>
+            <output message="tns:addNumbersResponse3"/>
+            <fault name="add3Fault" message="tns:addNumbers3Fault" wsam:Action="add3fault"/>
+            <fault name="tooBig3Fault" message="tns:tooBigNumbers3Fault"/>
+        </operation>
+        <operation name="addNumbers4">
+            <input message="tns:addNumbers4"/>
+            <output message="tns:addNumbersResponse4"/>
+            <fault name="add4Fault" message="tns:addNumbers4Fault"/>
+            <fault name="tooBig4Fault" message="tns:tooBigNumbers4Fault" wsam:Action="toobig4fault"/>
+        </operation>
+        <operation name="addNumbers5">
+            <input message="tns:addNumbers5" wsam:Action="ExplicitInput5"/>
+            <output message="tns:addNumbersResponse5" wsam:Action="ExplicitOutput5"/>
+            <fault name="add5Fault" message="tns:addNumbers5Fault" wsam:Action="fault5"/>
+        </operation>
+        <operation name="addNumbers6">
+            <input message="tns:addNumbers6" wsam:Action="ExplicitInput6"/>
+            <output message="tns:addNumbersResponse6"/>
+            <fault name="add6Fault" message="tns:addNumbers6Fault"/>
+        </operation>
+    </portType>
+    <binding name="AddNumbersBinding" type="tns:AddNumbersPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+	<wsp:Policy>
+            <wsam:Addressing wsp:Optional="false">
+		<wsp:Policy/>
+            </wsam:Addressing>
+	</wsp:Policy>
+        <operation name="addNumbers">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="addFault">
+                <soap:fault name="addFault" use="literal"/>
+            </fault>
+            <fault name="tooBigFault">
+                <soap:fault name="tooBigFault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="addNumbers2">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="add2Fault">
+                <soap:fault name="add2Fault" use="literal"/>
+            </fault>
+            <fault name="tooBig2Fault">
+                <soap:fault name="tooBig2Fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="addNumbers3">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="add3Fault">
+                <soap:fault name="add3Fault" use="literal"/>
+            </fault>
+            <fault name="tooBig3Fault">
+                <soap:fault name="tooBig3Fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="addNumbers4">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="add4Fault">
+                <soap:fault name="add4Fault" use="literal"/>
+            </fault>
+            <fault name="tooBig4Fault">
+                <soap:fault name="tooBig4Fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="addNumbers5">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="add5Fault">
+                <soap:fault name="add5Fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="addNumbers6">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="add6Fault">
+                <soap:fault name="add6Fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="AddNumbersService">
+        <port name="AddNumbersPort" binding="tns:AddNumbersBinding">
+            <soap:address location="http://foo:9999/bar"/>
+        </port>
+    </service>
+</definitions>

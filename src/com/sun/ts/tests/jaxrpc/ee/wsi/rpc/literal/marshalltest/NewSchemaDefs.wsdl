@@ -1,0 +1,1244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+     	name="NewSchemaDefs"
+	targetNamespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"
+	xmlns:tns="http://marshalltestservice.org/NewSchemaDefs.wsdl" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ns2="http://marshalltestservice.org/types2">
+
+  	<types>
+    		<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<xsd:import namespace="http://marshalltestservice.org/types2" schemaLocation="NewSchemaDefs.xsd"/>
+    		</xsd:schema>
+ 	</types>
+
+        <message name="FooIncludedStringRequest">
+                <part name="params" type ="ns2:IncludedStringRequest"/>
+        </message>
+
+        <message name="FooIncludedStringResponse">
+                <part name="result" type ="ns2:IncludedStringResponse"/>
+        </message>
+
+        <message name="Foo1Request">
+                <part name="foo1Request" type="ns2:FooType"/>
+        </message>
+
+        <message name="Foo1Response">
+                <part name="foo1Response" type="ns2:FooStatusType"/>
+        </message>
+
+        <message name="Foo2Request">
+                <part name="foo2Request" type="ns2:FooType"/>
+        </message>
+
+        <message name="Foo2Response">
+                <part name="foo2Response" type="ns2:FooType"/>
+        </message>
+
+
+
+        <message name="FooFault">
+                <part name="fooFault" element="ns2:FooFault"/>
+        </message>
+
+	<message name="FooStringRequest">
+		<part name="fooStringRequest" type="ns2:FooStringRequest"/>
+	</message>
+
+	<message name="FooStringResponse">
+		<part name="fooStringResponse" type="ns2:FooStringResponse"/>
+	</message>
+        <message name="FooITypeRequest">
+                <part name="fooITypeRequest" type="ns2:FooIType"/>
+        </message>
+
+        <message name="FooITypeResponse">
+                <part name="fooITypeResponse" type="ns2:FooIType"/>
+        </message>
+
+        <message name="FooVariousSchemaTypesRequest">
+                <part name="fooVariousSchemaTypesRequest" type="ns2:FooVariousSchemaTypes"/>
+        </message>
+
+        <message name="FooVariousSchemaTypesResponse">
+                <part name="fooVariousSchemaTypesResponse" type="ns2:FooVariousSchemaTypes"/>
+        </message>
+
+        <message name="FooVariousSchemaTypesListTypeRequest">
+                <part name="fooVariousSchemaTypesListTypeRequest" type="ns2:FooVariousSchemaTypesListType"/>
+        </message>
+
+        <message name="FooVariousSchemaTypesListTypeResponse">
+                <part name="fooVariousSchemaTypesListTypeResponse" type="ns2:FooVariousSchemaTypesListType"/>
+        </message>
+
+        <message name="FooIntegerRangeTypeRequest">
+                <part name="fooIntegerRangeTypeRequest" type="ns2:FooIntegerRangeType"/>
+        </message>
+
+        <message name="FooIntegerRangeTypeResponse">
+                <part name="fooIntegerRangeTypeResponse" type="ns2:FooIntegerRangeType"/>
+        </message>
+
+       <message name="FooStringEnumTypeRequest">
+                <part name="fooStringEnumTypeRequest" type="ns2:FooStringEnumType"/>
+        </message>
+
+        <message name="FooStringEnumTypeResponse">
+                <part name="fooStringEnumTypeResponse" type="ns2:FooStringEnumType"/>
+        </message>
+
+        <message name="FooByteEnumTypeRequest">
+                <part name="fooByteEnumTypeRequest" type="ns2:FooByteEnumType"/>
+        </message>
+
+        <message name="FooByteEnumTypeResponse">
+                <part name="fooByteEnumTypeResponse" type="ns2:FooByteEnumType"/>
+        </message>
+
+        <message name="FooShortEnumTypeRequest">
+                <part name="fooShortEnumTypeRequest" type="ns2:FooShortEnumType"/>
+        </message>
+
+        <message name="FooShortEnumTypeResponse">
+                <part name="fooShortEnumTypeResponse" type="ns2:FooShortEnumType"/>
+        </message>
+
+        <message name="FooIntegerEnumTypeRequest">
+                <part name="fooIntegerEnumTypeRequest" type="ns2:FooIntegerEnumType"/>
+        </message>
+
+        <message name="FooIntegerEnumTypeResponse">
+                <part name="fooIntegerEnumTypeResponse" type="ns2:FooIntegerEnumType"/>
+        </message>
+
+        <message name="FooIntEnumTypeRequest">
+                <part name="fooIntEnumTypeRequest" type="ns2:FooIntEnumType"/>
+        </message>
+
+        <message name="FooIntEnumTypeResponse">
+                <part name="fooIntEnumTypeResponse" type="ns2:FooIntEnumType"/>
+        </message>
+
+        <message name="FooLongEnumTypeRequest">
+                <part name="fooLongEnumTypeRequest" type="ns2:FooLongEnumType"/>
+        </message>
+
+        <message name="FooLongEnumTypeResponse">
+                <part name="fooLongEnumTypeResponse" type="ns2:FooLongEnumType"/>
+        </message>
+
+        <message name="FooDecimalEnumTypeRequest">
+                <part name="fooDecimalEnumTypeRequest" type="ns2:FooDecimalEnumType"/>
+        </message>
+
+        <message name="FooDecimalEnumTypeResponse">
+                <part name="fooDecimalEnumTypeResponse" type="ns2:FooDecimalEnumType"/>
+        </message>
+
+        <message name="FooFloatEnumTypeRequest">
+                <part name="fooFloatEnumTypeRequest" type="ns2:FooFloatEnumType"/>
+        </message>
+
+        <message name="FooFloatEnumTypeResponse">
+                <part name="fooFloatEnumTypeResponse" type="ns2:FooFloatEnumType"/>
+        </message>
+        <message name="FooDoubleEnumTypeRequest">
+                <part name="fooDoubleEnumTypeRequest" type="ns2:FooDoubleEnumType"/>
+        </message>
+
+        <message name="FooDoubleEnumTypeResponse">
+                <part name="fooDoubleEnumTypeResponse" type="ns2:FooDoubleEnumType"/>
+        </message>
+
+        <message name="FooAnonymousTypeRequest">
+                <part name="fooAnonymousTypeRequest" type="ns2:FooAnonymousType"/>
+        </message>
+        <message name="FooAnonymousTypeResponse">
+                <part name="fooAnonymousTypeResponse" type="ns2:FooAnonymousType"/>
+        </message>
+
+        <message name="FooAnnotationTypeRequest">
+                <part name="fooAnnotationTypeRequest" type="ns2:FooAnnotationType"/>
+        </message>
+
+        <message name="FooAnnotationTypeResponse">
+                <part name="fooAnnotationTypeResponse" type="ns2:FooAnnotationType"/>
+        </message>
+
+        <message name="FooAnySimpleTypeRequest">
+                <part name="fooAnySimpleTypeRequest" type="ns2:FooAnySimpleType"/>
+        </message>
+
+        <message name="FooAnySimpleTypeResponse">
+                <part name="fooAnySimpleTypeResponse" type="ns2:FooAnySimpleType"/>
+        </message>
+
+        <message name="FooAnyURITypeRequest">
+                <part name="fooAnyURITypeRequest" type="ns2:FooAnyURIType"/>
+        </message>
+
+        <message name="FooAnyURITypeResponse">
+                <part name="fooAnyURITypeResponse" type="ns2:FooAnyURIType"/>
+        </message>
+
+        <message name="LiteralLanguageMessageRequest">
+                <part name="body" type="ns2:languageElem"/>
+        </message>
+
+        <message name="LiteralLanguageMessageResponse">
+                <part name="result" type="ns2:languageElem"/>
+        </message>
+
+        <message name="LiteralTokenMessageRequest">
+                <part name="body" type="ns2:tokenElem"/>
+        </message>
+
+        <message name="LiteralTokenMessageResponse">
+                <part name="result" type="ns2:tokenElem"/>
+        </message>
+
+        <message name="LiteralNameMessageRequest">
+                <part name="body" type="ns2:nameElem"/>
+        </message>
+
+        <message name="LiteralNameMessageResponse">
+                <part name="result" type="ns2:nameElem"/>
+        </message>
+
+        <message name="LiteralNCNameMessageRequest">
+                <part name="body" type="ns2:NCNameElem"/>
+        </message>
+
+        <message name="LiteralNCNameMessageResponse">
+                <part name="result" type="ns2:NCNameElem"/>
+        </message>
+
+        <message name="LiteralIDMessageRequest">
+                <part name="body" type="ns2:IDElem"/>
+        </message>
+
+        <message name="LiteralIDMessageResponse">
+                <part name="result" type="ns2:IDElem"/>
+        </message>
+
+  	<message name="UnsignedShortMessageRequest">
+    		<part name="body" type="xsd:unsignedShort"/>
+  	</message>
+
+  	<message name="UnsignedShortMessageResponse">
+    		<part name="result" type="xsd:unsignedShort"/>
+  	</message>
+
+  	<message name="UnsignedIntMessageRequest">
+    		<part name="body" type="xsd:unsignedInt"/>
+  	</message>
+
+  	<message name="UnsignedIntMessageResponse">
+    		<part name="result" type="xsd:unsignedInt"/>
+  	</message>
+
+  	<message name="UnsignedByteMessageRequest">
+    		<part name="body" type="xsd:unsignedByte"/>
+  	</message>
+
+  	<message name="UnsignedByteMessageResponse">
+    		<part name="result" type="xsd:unsignedByte"/>
+  	</message>
+
+  	<message name="UnsignedLongMessageRequest">
+    		<part name="body" type="xsd:unsignedLong"/>
+  	</message>
+
+  	<message name="UnsignedLongMessageResponse">
+    		<part name="result" type="xsd:unsignedLong"/>
+  	</message>
+
+  	<message name="NonPositiveIntegerMessageRequest">
+    		<part name="body" type="xsd:nonPositiveInteger"/>
+  	</message>
+
+  	<message name="NonPositiveIntegerMessageResponse">
+    		<part name="result" type="xsd:nonPositiveInteger"/>
+  	</message>
+
+  	<message name="NonNegativeIntegerMessageRequest">
+    		<part name="body" type="xsd:nonNegativeInteger"/>
+  	</message>
+
+  	<message name="NonNegativeIntegerMessageResponse">
+    		<part name="result" type="xsd:nonNegativeInteger"/>
+  	</message>
+
+  	<message name="PositiveIntegerMessageRequest">
+    		<part name="body" type="xsd:positiveInteger"/>
+  	</message>
+
+  	<message name="PositiveIntegerMessageResponse">
+    		<part name="result" type="xsd:positiveInteger"/>
+  	</message>
+
+  	<message name="NegativeIntegerMessageRequest">
+    		<part name="body" type="xsd:negativeInteger"/>
+  	</message>
+
+  	<message name="NegativeIntegerMessageResponse">
+    		<part name="result" type="xsd:negativeInteger"/>
+  	</message>
+
+  	<message name="TimeMessageRequest">
+    		<part name="body" type="xsd:time"/>
+  	</message>
+
+  	<message name="TimeMessageResponse">
+    		<part name="result" type="xsd:time"/>
+  	</message>
+
+  	<message name="DateMessageRequest">
+    		<part name="body" type="xsd:date"/>
+  	</message>
+
+  	<message name="DateMessageResponse">
+    		<part name="result" type="xsd:date"/>
+  	</message>
+
+        <message name="FooStringListTypeRequest">
+                <part name="fooStringListTypeRequest" type="ns2:FooStringListType"/>
+        </message>
+
+        <message name="FooStringListTypeResponse">
+                <part name="fooStringListTypeResponse" type="ns2:FooStringListType"/>
+        </message>
+
+        <message name="FooFloatListTypeRequest">
+                <part name="fooFloatListTypeRequest" type="ns2:FooFloatListType"/>
+        </message>
+
+        <message name="FooFloatListTypeResponse">
+                <part name="fooFloatListTypeResponse" type="ns2:FooFloatListType"/>
+        </message>
+
+        <message name="FooIntListTypeRequest">
+                <part name="fooIntListTypeRequest" type="ns2:FooIntListType"/>
+        </message>
+
+        <message name="FooIntListTypeResponse">
+                <part name="fooIntListTypeResponse" type="ns2:FooIntListType"/>
+        </message>
+
+        <message name="FooDecimalListTypeRequest">
+                <part name="fooDecimalListTypeRequest" type="ns2:FooDecimalListType"/>
+        </message>
+
+        <message name="FooDecimalListTypeResponse">
+                <part name="fooDecimalListTypeResponse" type="ns2:FooDecimalListType"/>
+        </message>
+
+        <message name="FooDoubleListTypeRequest">
+                <part name="fooDoubleListTypeRequest" type="ns2:FooDoubleListType"/>
+        </message>
+
+        <message name="FooDoubleListTypeResponse">
+                <part name="fooDoubleListTypeResponse" type="ns2:FooDoubleListType"/>
+        </message>
+
+        <message name="FooIntegerListTypeRequest">
+                <part name="fooIntegerListTypeRequest" type="ns2:FooIntegerListType"/>
+        </message>
+
+        <message name="FooIntegerListTypeResponse">
+                <part name="fooIntegerListTypeResponse" type="ns2:FooIntegerListType"/>
+        </message>
+
+        <message name="FooLongListTypeRequest">
+                <part name="fooLongListTypeRequest" type="ns2:FooLongListType"/>
+        </message>
+
+        <message name="FooLongListTypeResponse">
+                <part name="fooLongListTypeResponse" type="ns2:FooLongListType"/>
+        </message>
+
+        <message name="FooShortListTypeRequest">
+                <part name="fooShortListTypeRequest" type="ns2:FooShortListType"/>
+        </message>
+
+        <message name="FooShortListTypeResponse">
+                <part name="fooShortListTypeResponse" type="ns2:FooShortListType"/>
+        </message>
+
+        <message name="FooByteListTypeRequest">
+                <part name="fooByteListTypeRequest" type="ns2:FooByteListType"/>
+        </message>
+
+        <message name="FooByteListTypeResponse">
+                <part name="fooByteListTypeResponse" type="ns2:FooByteListType"/>
+        </message>
+
+        <message name="FooStringTypeRequest">
+                <part name="fooStringTypeRequest" type="ns2:FooString"/>
+        </message>
+
+        <message name="FooStringTypeResponse">
+                <part name="fooStringTypeResponse" type="ns2:FooString"/>
+        </message>
+
+        <message name="FooIntegerTypeRequest">
+                <part name="fooIntegerTypeRequest" type="ns2:FooInteger"/>
+        </message>
+
+        <message name="FooIntegerTypeResponse">
+                <part name="fooIntegerTypeResponse" type="ns2:FooInteger"/>
+        </message>
+
+        <message name="FooIntTypeRequest">
+                <part name="fooIntTypeRequest" type="ns2:FooInt"/>
+        </message>
+
+        <message name="FooIntTypeResponse">
+                <part name="fooIntTypeResponse" type="ns2:FooInt"/>
+        </message>
+
+        <message name="FooLongTypeRequest">
+                <part name="fooLongTypeRequest" type="ns2:FooLong"/>
+        </message>
+
+        <message name="FooLongTypeResponse">
+                <part name="fooLongTypeResponse" type="ns2:FooLong"/>
+        </message>
+
+        <message name="FooShortTypeRequest">
+                <part name="fooShortTypeRequest" type="ns2:FooShort"/>
+        </message>
+
+        <message name="FooShortTypeResponse">
+                <part name="fooShortTypeResponse" type="ns2:FooShort"/>
+        </message>
+
+        <message name="FooDecimalTypeRequest">
+                <part name="fooDecimalTypeRequest" type="ns2:FooDecimal"/>
+        </message>
+
+        <message name="FooDecimalTypeResponse">
+                <part name="fooDecimalTypeResponse" type="ns2:FooDecimal"/>
+        </message>
+
+
+        <message name="FooFloatTypeRequest">
+                <part name="fooFloatTypeRequest" type="ns2:FooFloat"/>
+        </message>
+
+        <message name="FooFloatTypeResponse">
+                <part name="fooFloatTypeResponse" type="ns2:FooFloat"/>
+        </message>
+
+        <message name="FooDoubleTypeRequest">
+                <part name="fooDoubleTypeRequest" type="ns2:FooDouble"/>
+        </message>
+
+        <message name="FooDoubleTypeResponse">
+                <part name="fooDoubleTypeResponse" type="ns2:FooDouble"/>
+        </message>
+
+        <message name="FooBooleanTypeRequest">
+                <part name="fooBooleanTypeRequest" type="ns2:FooBoolean"/>
+        </message>
+
+        <message name="FooBooleanTypeResponse">
+                <part name="fooBooleanTypeResponse" type="ns2:FooBoolean"/>
+        </message>
+       <message name="FooByteTypeRequest">
+                <part name="fooByteTypeRequest" type="ns2:FooByte"/>
+        </message>
+
+        <message name="FooByteTypeResponse">
+                <part name="fooByteTypeResponse" type="ns2:FooByte"/>
+        </message>
+
+        <message name="FooQNameTypeRequest">
+                <part name="fooQNameTypeRequest" type="ns2:FooQName"/>
+        </message>
+
+        <message name="FooQNameTypeResponse">
+                <part name="fooQNameTypeResponse" type="ns2:FooQName"/>
+        </message>
+<!--
+        <message name="AnyRequest">
+                <part name="AnyRequest" type="ns2:AnyElement"/>
+        </message>
+        <message name="AnyResponse">
+                <part name="AnyResponse" type="ns2:AnyElement"/>
+        </message>
+-->
+
+        <portType name="NewSchemaTest">
+                <operation name="echoIncludedStringTest">
+                        <input message="tns:FooIncludedStringRequest" name="FooIncludedStringRequest" />
+                        <output message="tns:FooIncludedStringResponse" name="FooIncludedStringResponse"/>
+                </operation>
+
+                <operation name="sendFoo1Test">
+                        <input message="tns:Foo1Request" name="Foo1Request"/>
+                        <output message="tns:Foo1Response" name="Foo1Response"/>
+                </operation>
+                <operation name="sendFoo2Test">
+                        <input message="tns:Foo2Request" name="Foo2Request"/>
+                        <output message="tns:Foo2Response" name="Foo2Response"/>
+                </operation>
+                <operation name="echoNormalizedStringTypeTest">
+                        <input message="tns:FooITypeRequest" name="FooITypeRequest"/>
+                        <output message="tns:FooITypeResponse" name="FooITypeResponse"/>
+                </operation>
+                <operation name="echoVariousSchemaTypesTest">
+                        <input message="tns:FooVariousSchemaTypesRequest" name="FooVariousSchemaTypesRequest"/>
+                        <output message="tns:FooVariousSchemaTypesResponse" name="FooVariousSchemaTypesResponse"/>
+                </operation>
+                <operation name="echoVariousSchemaTypesListTypeTest">
+                        <input message="tns:FooVariousSchemaTypesListTypeRequest" name="FooVariousSchemaTypesListTypeRequest" />
+                        <output message="tns:FooVariousSchemaTypesListTypeResponse" name="FooVariousSchemaTypesListTypeResponse"/>
+                </operation>
+
+                <operation name="echoIntegerRangeTypeTest">
+                        <input message="tns:FooIntegerRangeTypeRequest" name="FooIntegerRangeTypeRequest"/>
+                        <output message="tns:FooIntegerRangeTypeResponse" name="FooIntegerRangeTypeResponse"/>
+                </operation>
+                <operation name="echoStringListTypeTest">
+                        <input message="tns:FooStringListTypeRequest" name="FooStringListTypeRequest"/>
+                        <output message="tns:FooStringListTypeResponse" name="FooIntegerRangeTypeResponse"/>
+                </operation>
+
+               <operation name="echoFloatListTypeTest">
+                       <input message="tns:FooFloatListTypeRequest"   name="FooFloatListTypeRequest" />
+                       <output message="tns:FooFloatListTypeResponse" name="FooFloatListTypeResponse"   />
+               </operation>
+
+               <operation name="echoIntListTypeTest">
+                       <input message="tns:FooIntListTypeRequest" name="FooIntListTypeRequest"/>
+                       <output message="tns:FooIntListTypeResponse" name="FooIntListTypeResponse"  />
+               </operation>
+
+               <operation name="echoDecimalListTypeTest">
+                       <input message="tns:FooDecimalListTypeRequest" name="FooDecimalListTypeRequest" />
+                       <output message="tns:FooDecimalListTypeResponse" name="FooDecimalListTypeResponse"/>
+               </operation>
+
+               <operation name="echoDoubleListTypeTest">
+                       <input message="tns:FooDoubleListTypeRequest"  name="FooDoubleListTypeRequest"/>
+                       <output message="tns:FooDoubleListTypeResponse" name="FooDoubleListTypeResponse"/>
+               </operation>
+
+               <operation name="echoIntegerListTypeTest">
+                       <input message="tns:FooIntegerListTypeRequest" name="FooIntegerListTypeRequest"/>
+                       <output message="tns:FooIntegerListTypeResponse" name="FooIntegerListTypeResponse"/>
+               </operation>
+
+               <operation name="echoLongListTypeTest">
+                       <input message="tns:FooLongListTypeRequest" name="FooLongListTypeRequest"/>
+                       <output message="tns:FooLongListTypeResponse" name="FooLongListTypeResponse"/>
+               </operation>
+               <operation name="echoShortListTypeTest">
+                       <input message="tns:FooShortListTypeRequest" name="FooShortListTypeRequest"/>
+                       <output message="tns:FooShortListTypeResponse" name="FooShortListTypeResponse"/>
+               </operation>
+               <operation name="echoByteListTypeTest">
+                       <input message="tns:FooByteListTypeRequest" name="FooByteListTypeRequest"/>
+                       <output message="tns:FooByteListTypeResponse" name="FooByteListTypeResponse"/>
+               </operation>
+
+
+
+                <operation name="echoStringEnumTypeTest">
+                        <input message="tns:FooStringEnumTypeRequest" name="FooStringEnumTypeRequest"/>
+                        <output message="tns:FooStringEnumTypeResponse" name="FooStringEnumTypeResponse"/>
+                </operation>
+                <operation name="echoByteEnumTypeTest">
+                        <input message="tns:FooByteEnumTypeRequest" name="FooByteEnumTypeRequest"/>
+                        <output message="tns:FooByteEnumTypeResponse" name="FooByteEnumTypeResponse"/>
+                </operation>
+                <operation name="echoShortEnumTypeTest">
+                        <input message="tns:FooShortEnumTypeRequest" name="FooShortEnumTypeRequest"/>
+                        <output message="tns:FooShortEnumTypeResponse" name="FooShortEnumTypeResponse"/>
+                </operation>
+                <operation name="echoIntegerEnumTypeTest">
+                        <input message="tns:FooIntegerEnumTypeRequest" name="FooIntegerEnumTypeRequest"/>
+                        <output message="tns:FooIntegerEnumTypeResponse" name="FooIntegerEnumTypeResponse"/>
+                </operation>
+                <operation name="echoIntEnumTypeTest">
+                        <input message="tns:FooIntEnumTypeRequest" name="FooIntEnumTypeRequest"/>
+                        <output message="tns:FooIntEnumTypeResponse" name="FooIntEnumTypeResponse"/>
+                </operation>
+                <operation name="echoLongEnumTypeTest">
+                        <input message="tns:FooLongEnumTypeRequest" name="FooLongEnumTypeRequest"/>
+                        <output message="tns:FooLongEnumTypeResponse" name="FooLongEnumTypeResponse"/>
+                </operation>
+                <operation name="echoDecimalEnumTypeTest">
+                        <input message="tns:FooDecimalEnumTypeRequest" name="FooDecimalEnumTypeRequest"/>
+                        <output message="tns:FooDecimalEnumTypeResponse" name="FooDecimalEnumTypeResponse"/>
+                </operation>
+                <operation name="echoFloatEnumTypeTest">
+                        <input message="tns:FooFloatEnumTypeRequest" name="FooFloatEnumTypeRequest"/>
+                        <output message="tns:FooFloatEnumTypeResponse" name="FooFloatEnumTypeResponse"/>
+                </operation>
+                <operation name="echoDoubleEnumTypeTest">
+                        <input message="tns:FooDoubleEnumTypeRequest" name="FooDoubleEnumTypeRequest"/>
+                        <output message="tns:FooDoubleEnumTypeResponse" name="FooDoubleEnumTypeResponse"/>
+                </operation>
+
+                <operation name="echoAnonymousTypeTest">
+                        <input message="tns:FooAnonymousTypeRequest" name="FooAnonymousTypeRequest"/>
+                        <output message="tns:FooAnonymousTypeResponse" name="FooAnonymousTypeResponse"/>
+                </operation>
+
+<!--
+                <operation name="sendAnyTest">
+                        <input message="tns:AnyRequest" name="AnyRequest"/>
+                        <output message="tns:AnyResponse" name="AnyResponse"/>
+                </operation>
+-->
+
+                <operation name="echoAnnotationTypeTest">
+                        <input message="tns:FooAnnotationTypeRequest" name="FooAnnotationTypeRequest"/>
+                        <output message="tns:FooAnnotationTypeResponse"  name="FooAnnotationTypeResponse"/>
+                </operation>
+                <operation name="echoAnySimpleTypeTest">
+                        <input message="tns:FooAnySimpleTypeRequest" name="FooAnySimpleTypeRequest "/>
+                        <output message="tns:FooAnySimpleTypeResponse"  name="FooAnySimpleTypeResponse"/>
+                </operation>
+                <operation name="echoAnyURITypeTest">
+                        <input message="tns:FooAnyURITypeRequest" name="FooAnyURITypeRequest "/>
+                        <output message="tns:FooAnyURITypeResponse"  name="FooAnyURITypeResponse"/>
+                </operation>
+                <operation name="fooFaultTest">
+                        <input message="tns:FooStringRequest" name="FooStringRequest"/>
+
+                        <output message="tns:FooStringResponse" name="FooStringResponse"/>
+                        <fault name="FooFault" message="tns:FooFault"/>
+                </operation>
+                <operation name="echoLanguageTypeTest">
+                        <input message="tns:LiteralLanguageMessageRequest"  name="LiteralLanguageMessageRequest"/>
+                        <output message="tns:LiteralLanguageMessageResponse"  name="LiteralLanguageMessageResponse"/>
+                </operation>
+                <operation name="echoTokenTypeTest">
+                        <input message="tns:LiteralTokenMessageRequest" name="LiteralTokenMessageRequest"/>
+                        <output message="tns:LiteralTokenMessageResponse" name="LiteralTokenMessageResponse"/>
+                </operation>
+                <operation name="echoNameTypeTest">
+                        <input message="tns:LiteralNameMessageRequest" name="LiteralNameMessageRequest"/>
+                        <output message="tns:LiteralNameMessageResponse" name="LiteralNameMessageResponse"/>
+                </operation>
+                <operation name="echoNCNameTypeTest">
+                        <input message="tns:LiteralNCNameMessageRequest" name="LiteralNCNameMessageRequest"/>
+                        <output message="tns:LiteralNCNameMessageResponse" name="LiteralNCNameMessageResponse"/>
+                </operation>
+                <operation name="echoIDTypeTest">
+                        <input message="tns:LiteralIDMessageRequest" name="LiteralIDMessageRequest"/>
+                        <output message="tns:LiteralIDMessageResponse"  name="LiteralIDMessageResponse"/>
+                </operation>
+                <operation name="echoUnsignedShortTest">
+                        <input message="tns:UnsignedShortMessageRequest" name="UnsignedShortMessageRequest"/>
+                        <output message="tns:UnsignedShortMessageResponse" name="UnsignedShortMessageResponse"/>
+                </operation>
+                <operation name="echoUnsignedIntTest">
+                        <input message="tns:UnsignedIntMessageRequest" name="UnsignedIntMessageRequest"/>
+                        <output message="tns:UnsignedIntMessageResponse" name="UnsignedIntMessageResponse"/>
+                </operation>
+                <operation name="echoUnsignedByteTest">
+                        <input message="tns:UnsignedByteMessageRequest" name="UnsignedByteMessageRequest"/>
+                        <output message="tns:UnsignedByteMessageResponse" name="UnsignedByteMessageResponse"/>
+                </operation>
+                <operation name="echoUnsignedLongTest">
+                        <input message="tns:UnsignedLongMessageRequest" name="UnsignedLongMessageRequest"/>
+                        <output message="tns:UnsignedLongMessageResponse" name="UnsignedLongMessageResponse"/>
+                </operation>
+                <operation name="echoNonPositiveIntegerTest">
+                        <input message="tns:NonPositiveIntegerMessageRequest" name="NonPositiveIntegerMessageRequest"/>
+                        <output message="tns:NonPositiveIntegerMessageResponse" name="NonPositiveIntegerMessageResponse"/>
+                </operation>
+                <operation name="echoNonNegativeIntegerTest">
+                        <input message="tns:NonNegativeIntegerMessageRequest" name="NonNegativeIntegerMessageRequest"/>
+                        <output message="tns:NonNegativeIntegerMessageResponse" name="NonNegativeIntegerMessageResponse"/>
+                </operation>
+                <operation name="echoPositiveIntegerTest">
+                        <input message="tns:PositiveIntegerMessageRequest" name="PositiveIntegerMessageRequest"/>
+                        <output message="tns:PositiveIntegerMessageResponse" name="PositiveIntegerMessageResponse"/>
+                </operation>
+                <operation name="echoNegativeIntegerTest">
+                        <input message="tns:NegativeIntegerMessageRequest" name="NegativeIntegerMessageRequest"/>
+                        <output message="tns:NegativeIntegerMessageResponse" name="NegativeIntegerMessageResponse"/>
+                </operation>
+                <operation name="echoTimeTest">
+                        <input message="tns:TimeMessageRequest" name="TimeMessageRequest"/>
+                        <output message="tns:TimeMessageResponse" name="TimeMessageResponse"/>
+                </operation>
+                <operation name="echoDateTest">
+                        <input message="tns:DateMessageRequest" name="DateMessageRequest"/>
+                        <output message="tns:DateMessageResponse" name="DateMessageResponse"/>
+                </operation>
+               <operation name="echoFooIntegerTypeTest">
+                        <input message="tns:FooIntegerTypeRequest" name="FooIntegerTypeRequest"/>
+                        <output message="tns:FooIntegerTypeResponse" name="FooIntegerTypeResponse"/>
+                </operation>
+
+                <operation name="echoFooStringTypeTest">
+                        <input message="tns:FooStringTypeRequest" name="FooStringTypeRequest"/>
+                        <output message="tns:FooStringTypeResponse" name="FooStringTypeResponse"/>
+                </operation>
+
+                <operation name="echoFooIntTypeTest">
+                        <input message="tns:FooIntTypeRequest" name="FooIntTypeRequest"/>
+                        <output message="tns:FooIntTypeResponse" name="FooIntTypeResponse"/>
+                </operation>
+
+                <operation name="echoFooLongTypeTest">
+                        <input message="tns:FooLongTypeRequest" name="FooLongTypeRequest"/>
+                        <output message="tns:FooLongTypeResponse" name="FooLongTypeResponse"/>
+                </operation>
+
+                <operation name="echoFooShortTypeTest">
+                        <input message="tns:FooShortTypeRequest" name="FooShortTypeRequest"/>
+                        <output message="tns:FooShortTypeResponse" name="FooShortTypeResponse"/>
+                </operation>
+
+               <operation name="echoFooDecimalTypeTest">
+                        <input message="tns:FooDecimalTypeRequest" name="FooDecimalTypeRequest"/>
+                        <output message="tns:FooDecimalTypeResponse" name="FooDecimalTypeResponse"/>
+                </operation>
+               <operation name="echoFooFloatTypeTest">
+                        <input message="tns:FooFloatTypeRequest" name="FooFloatTypeRequest"/>
+                        <output message="tns:FooFloatTypeResponse" name="FooFloatTypeResponse"/>
+                </operation>
+
+               <operation name="echoFooDoubleTypeTest">
+                        <input message="tns:FooDoubleTypeRequest" name="FooDoubleTypeRequest"/>
+                        <output message="tns:FooDoubleTypeResponse" name="FooDoubleTypeResponse"/>
+                </operation>
+
+               <operation name="echoFooBooleanTypeTest">
+                        <input message="tns:FooBooleanTypeRequest" name="FooBooleanTypeRequest"/>
+                        <output message="tns:FooBooleanTypeResponse" name="FooBooleanTypeResponse"/>
+                </operation>
+
+               <operation name="echoFooByteTypeTest">
+                        <input message="tns:FooByteTypeRequest" name="FooByteTypeRequest"/>
+                        <output message="tns:FooByteTypeResponse" name="FooByteTypeResponse"/>
+                </operation>
+
+               <operation name="echoFooQNameTypeTest">
+                        <input message="tns:FooQNameTypeRequest" name="FooQNameTypeRequest"/>
+                        <output message="tns:FooQNameTypeResponse" name="FooQNameTypeResponse"/>
+                </operation>
+	</portType>
+
+	<binding name="NewSchemaTestSoapBinding" type="tns:NewSchemaTest">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+                <operation name="echoIncludedStringTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body  use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body  use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+
+
+		<operation name="sendFoo1Test">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+			</input>
+			<output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+		</operation>
+		<operation name="sendFoo2Test">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+			</input>
+			<output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+		</operation>
+                <operation name="echoNormalizedStringTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+
+                </operation>
+                <operation name="echoVariousSchemaTypesTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+
+                </operation>
+                <operation name="echoVariousSchemaTypesListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+
+                </operation>
+
+                <operation name="echoIntegerRangeTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+                </operation>
+
+                <operation name="echoStringListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+                </operation>
+               <operation name="echoFloatListTypeTest">
+                       <soap:operation/>
+                       <input>
+                              <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </input>
+                       <output><soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </output>
+               </operation>
+
+               <operation name="echoIntListTypeTest">
+                       <soap:operation/>
+                       <input>
+                              <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </input>
+                       <output><soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </output>
+               </operation>
+
+
+               <operation name="echoDecimalListTypeTest">
+                       <soap:operation/>
+                       <input>
+                              <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </input>
+                       <output><soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </output>
+               </operation>
+
+               <operation name="echoDoubleListTypeTest">
+                       <soap:operation/>
+                       <input>
+                              <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </input>
+                       <output><soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </output>
+               </operation>
+
+               <operation name="echoIntegerListTypeTest">
+                       <soap:operation/>
+                       <input>
+                              <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </input>
+                       <output><soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </output>
+               </operation>
+
+               <operation name="echoLongListTypeTest">
+                       <soap:operation/>
+                       <input>
+                              <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </input>
+                       <output><soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </output>
+               </operation>
+               <operation name="echoShortListTypeTest">
+                       <soap:operation/>
+                       <input>
+                              <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </input>
+                       <output><soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </output>
+               </operation>
+               <operation name="echoByteListTypeTest">
+                       <soap:operation/>
+                       <input>
+                              <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </input>
+                       <output><soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                       </output>
+               </operation>
+
+                <operation name="echoStringEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+                </operation>
+                <operation name="echoByteEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> 
+                        </output>
+
+                </operation>
+                <operation name="echoShortEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> 
+                        </output>
+                </operation>
+                <operation name="echoIntegerEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> 
+                        </output>
+                </operation>
+                <operation name="echoIntEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> 
+                        </output>
+                </operation>
+                <operation name="echoLongEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> 
+                        </output>
+                </operation>
+                <operation name="echoDecimalEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> 
+                        </output>
+                </operation>
+                <operation name="echoFloatEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> 
+                        </output>
+                </operation>
+                <operation name="echoDoubleEnumTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> 
+                        </output>
+                </operation>
+
+                <operation name="echoAnonymousTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+                </operation>
+                <operation name="echoAnnotationTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                               <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+                </operation>
+                <operation name="echoAnySimpleTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                               <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+                </operation>
+                <operation name="echoAnyURITypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                               <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+                </operation>
+                <operation name="fooFaultTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+
+                        <fault name="FooFault">
+                                <soap:fault name="FooFault" use="literal"/>
+                        </fault>
+                </operation>
+
+                <operation name="echoLanguageTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>     
+                <operation name="echoTokenTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>     
+                <operation name="echoNameTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>     
+                <operation name="echoNCNameTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>     
+                <operation name="echoIDTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoUnsignedShortTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoUnsignedIntTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoUnsignedByteTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoUnsignedLongTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoNonPositiveIntegerTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoNonNegativeIntegerTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoPositiveIntegerTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoNegativeIntegerTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoTimeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoDateTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoFooStringTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+
+               <operation name="echoFooIntegerTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+
+               <operation name="echoFooIntTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+
+                <operation name="echoFooLongTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+
+                <operation name="echoFooShortTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+
+                <operation name="echoFooDecimalTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoFooFloatTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoFooDoubleTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoFooBooleanTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+                <operation name="echoFooByteTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+
+                <operation name="echoFooQNameTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </output>
+                </operation>
+<!--
+                <operation name="sendAnyTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body  use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/>
+                        </input>
+                        <output> <soap:body use="literal" namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"/> </output>
+                </operation>
+-->
+	</binding>
+</definitions>

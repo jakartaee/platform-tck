@@ -1,0 +1,40 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsp_tagext_resource_httplistener" basedir="." default="usage" >
+
+    <import file="../../../../../../../../../../src/com/sun/ts/tests/jsp/common/xml/common.xml"/>
+    <property name="app.name"  value="jsp_tagext_resource_httplistener" />
+    <property name="pkg.name"   value="spec/tagext/resource/httplistener" />
+    <property name="contentroot.dir"  value="${ts.home}/${web.dir}/${pkg.name}" />
+
+    <target name="deploy" >
+    	<ant antfile="build.xml" dir="${bin.dir}" target="deploy.app" />
+    </target>
+
+    <target name="package">
+        <tscontent.war descriptor="${app.name}_web.xml" archivename="${app.name}"> 
+            <zipfileset dir="${class.dir}"
+                includes="${servletcommon.dir}/util/ServletTestUtil.class,
+                          ${servletcommon.dir}/util/Data.class,
+                          ${servletcommon.dir}/servlets/HttpTCKServlet.class"
+                prefix="${class.prefix}"/>
+        </tscontent.war>
+    </target>
+
+</project>

@@ -1,0 +1,9 @@
+WSRAnn=@WebServiceRef(name="service/wsrlhandlerservice")
+SERVICE=com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient.RLHandlerService
+URLALIAS=/jaxws/Hello
+URLALIAS2=/jaxws/GetTrackerData
+WEBSERVICEDESCRIPTION=RLHandlerService
+SERVICEREFNAMEWSSERVLET=service/wsrlhandlerservice
+SERVICEREFNAMEWSEJB=service/wsrlhandlerservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsrlhandlerservice
+HANDLERCHAIN=@HandlerChain(name = " ", file = "handler.xml")

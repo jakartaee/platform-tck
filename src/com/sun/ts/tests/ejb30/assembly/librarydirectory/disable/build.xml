@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_assembly_librarydirectory_disable"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/assembly/common"/>
+  <property name="library.directory.jar.name" value="shared.jar"/>
+  <property name="library.directory" value="lib"/> 
+  
+  <property name="resource.name" value="foo.txt"/>
+  <property name="resource.content" value="${resource.name}"/>
+
+  <property name="good.library.directory.jar.classes" value="
+com/sun/ts/tests/ejb30/assembly/common/AssemblyCommonIF.class,
+com/sun/ts/tests/ejb30/assembly/common/Util.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyInterceptor.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyLocalIF.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloCommonIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloLocalIF.class
+  "/>
+  
+  <property name="ear.lib.classes" value="
+${good.library.directory.jar.classes},
+com/sun/ts/tests/ejb30/assembly/librarydirectory/disable/AssemblyBean.class,
+com/sun/ts/tests/ejb30/assembly/librarydirectory/disable/${resource.name},
+${resource.name},
+${app.common}/${resource.name}
+  "/>
+  
+  <property name="ejb.jar.classes" 
+            value="
+${good.library.directory.jar.classes},
+com/sun/ts/tests/ejb30/assembly/common/AssemblyBean.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyBeanBase.class
+"/>
+  
+  <property name="appclient.jar.classes" 
+            value="
+${good.library.directory.jar.classes},
+com/sun/ts/tests/ejb30/assembly/common/ClientBase.class,
+com/sun/ts/tests/ejb30/assembly/librarydirectory/disable/Client.class
+"/>
+
+  <target name="-precompile">
+    <echo message="Building dependency dir..."/>
+    <ant dir="${src.dir}/com/sun/ts/tests/ejb30/common/helloejbjar" target="build" inheritAll="false"/>
+  </target>
+
+  <!-- override pre.package target in import.xml -->
+  <target name="pre.package">
+      <echo file="${ts.home}/classes/${pkg.dir}/${resource.name}" append="false"
+            message="${resource.content}"/>
+      <echo file="${ts.home}/classes/${app.common}/${resource.name}" append="false"
+            message="${resource.content}"/>
+      <echo file="${ts.home}/classes/${resource.name}" append="false"
+            message="${resource.content}"/>
+  </target>
+
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/ear-lib-jar.xml"/>
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

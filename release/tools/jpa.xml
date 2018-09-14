@@ -1,0 +1,183 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="PERSISTENCE" basedir="." default="build">
+
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+
+    <property name="deliverable.version" value="2.2"/>
+
+    <target name="init">
+        <mkdir dir="${deliverable.bundle.dir}/bin"/>
+        <mkdir dir="${deliverable.bundle.dir}/classes"/>
+        <mkdir dir="${deliverable.bundle.dir}/docs"/>
+        <mkdir dir="${deliverable.bundle.dir}/docs/assertions"/>        
+        <mkdir dir="${deliverable.bundle.dir}/lib"/>
+        <mkdir dir="${deliverable.bundle.dir}/lib/schemas"/>
+        <mkdir dir="${deliverable.bundle.dir}/src"/>
+        <mkdir dir="${deliverable.bundle.dir}/dist"/>
+        <mkdir dir="${deliverable.bundle.dir}/tmp"/>
+        <mkdir dir="${deliverable.bundle.dir}/sql"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+    </target>
+    <target name="copyinstall">
+
+        <!-- revert the ts.jte file -->
+        <echo message="reverting ts.jte" />
+        <antcall target="jte.cleanup" />
+
+        <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+                     includes="**/*"
+                     excludes="ts.jte.*, **/workspace.xml, **/*.log, **/out"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/lib">
+            <fileset dir="${ts.home}/lib"
+                     includes="${deliverable.name.lower}tck.jar, ant_sun.jar, sigtest.jar, javatest.jar,
+                                tsharness.jar, dbprocedures.jar"
+                     excludes="jaxb-*.jar,cts.jar,tspackager.jar,
+                        tsprovider.jar,riinterceptors.jar,apiCheck.jar, sigtestdev.jar,
+			            commons-httpclient.jar, commons-logging.jar"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/sql" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/sql"
+                     includes="**/*persistence.sql, **/*persistence.sprocs.sql, **/*jpa.sql"/>
+        </copy>
+        <copy overwrite="true" todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+                     includes="build*"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/lib/schemas" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib/schemas"
+                     includes="persistence_1_0.xsd, orm_1_0.xsd, persistence_2_0.xsd, orm_2_0.xsd"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/src">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/other"
+                     includes="testsuite.jtt, vehicle.properties"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish" overwrite="true">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish" includes="common.xml,s1as.xml"/>
+        </copy>
+        
+        <!-- copy the documentation -->
+        <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/jpa/docs" excludes="**svn**, **/*2.1*" />
+        </copy>
+        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+            <fileset dir="${ts.home}" includes="NOTICE" />
+        </copy> 
+        <copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+	  </copy>                     
+    </target>
+    <target name="build" depends="init">
+        <antcall target="copyinstall"/>
+
+        <!-- the classes directory  -->
+        <copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/classes"
+                     includes="com/sun/ts/tests/jpa/**/*.class,
+		                		com/sun/ts/tests/common/vehicle/*.class,
+			                	com/sun/ts/tests/common/vehicle/ejb3share/*.class,
+			                	com/sun/ts/lib/implementation/sun/common/SunRIURL.class,
+			                	com/sun/ts/lib/deliverable/*.class,
+			                	com/sun/ts/lib/deliverable/jpa/*.class,
+			                	com/sun/ts/lib/tests/jpa/storedprocedures/*.class,
+                      		    com/sun/ts/tests/signaturetest/*.class,
+                          	    com/sun/ts/tests/signaturetest/jpa/*.class"
+                     excludes="**/ee/**/*,com/sun/ts/tests/signaturetest/*Record*,
+                    		    com/sun/ts/tests/signaturetest/*record*"/>
+        </copy>
+
+        <!-- the dist directory - NOTE:  ADJUST TO ONLY INCLUDE .pars from dist-->
+        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/dist"
+                     includes="**/jpa/**/*.jar"/>
+        </copy>
+
+        <!-- the sig test ear files in the dist directory -->
+        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/dist"
+                     includes="com/sun/ts/tests/signaturetest/jpa/**"/>
+        </copy>
+
+
+        <!-- the specific deliverable source directories -->
+        <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src"
+                     includes="com/sun/ts/tests/build.xml,
+                               com/sun/ts/tests/jpa/**/*,
+                               com/sun/ts/lib/implementation/sun/common/SunRIURL.java,
+			                   com/sun/ts/lib/tests/jpa/storedprocedures/*,
+                               com/sun/ts/tests/common/vehicle/*.java,
+                               com/sun/ts/tests/common/vehicle/build.xml,
+                               com/sun/ts/tests/common/vehicle/standalone/*,
+                               com/sun/ts/tests/common/vehicle/ejb3share/*,
+                               com/sun/ts/tests/signaturetest/jpa/**/*,
+                               com/sun/ts/tests/signaturetest/*,
+                               com/sun/ts/tests/signaturetest/signature-repository/javax.persistence.*"
+                      excludes="**/*log,com/sun/ts/tests/common/web,
+                               com/sun/ts/tests/signaturetest/*Record*,
+                               com/sun/ts/tests/signaturetest/*record*,
+                               **/ee/**/*"/>
+        </copy>
+        <!-- copy the ReleaseNotes -->
+        <copy todir="${deliverable.bundle.dir}/..">
+            <fileset dir="${ts.home}/install/${deliverable.dir}/docs"
+                     includes="*ReleaseNotes-2.2*.html"/>
+        </copy>
+
+        <antcall target="create.doc.bundle"/>
+    </target>
+    <target name="create.doc.bundle">
+        <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
+        <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">
+            <zipfileset dir="${ts.home}/install/${deliverable.dir}/docs"
+                        includes="*.html, *.gif"
+                        excludes="*ReleaseNotes*.html, assertions/**" />
+            <zipfileset dir="${ts.home}/internal/docs/jpa"
+                        prefix="assertions"
+                        includes="Persistence22JavadocAssertions.html,
+                                  PersistenceSpecAssertions.html"/>
+        </zip>
+    </target>
+    <target name="jte.cleanup">
+        <if>
+            <resourceexists>
+              <file file="${ts.home}/install/${deliverable.name.lower}/bin/ts.jte.orig"/>
+            </resourceexists>
+        <then>
+            <copy overwrite="true" file="${ts.home}/install/${deliverable.name.lower}/bin/ts.jte.orig" tofile="${ts.home}/install/${deliverable.name.lower}/bin/ts.jte"/>
+            <delete file="${ts.home}/install/${deliverable.name.lower}/bin/ts.jte.orig"/>
+        </then>
+        <elseif>
+                <resourceexists>
+                  <file file="${ts.home}/install/${deliverable.name.lower}/bin/ts.jte.bak"/>
+                </resourceexists>
+        <then>
+                <copy overwrite="true" file="${ts.home}/install/${deliverable.name.lower}/bin/ts.jte.bak" tofile="${ts.home}/install/${deliverable.name.lower}/bin/ts.jte"/>
+                <delete file="${ts.home}/install/${deliverable.name.lower}/bin/ts.jte.bak"/>
+        </then>
+        </elseif>
+        </if>
+
+	</target>
+
+</project>

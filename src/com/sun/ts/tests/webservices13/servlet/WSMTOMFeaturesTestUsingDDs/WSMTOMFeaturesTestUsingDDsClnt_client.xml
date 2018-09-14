@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<application-client version="7" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application-client_7.xsd">
+  <description>AppClient</description>
+  <display-name>WSMTOMFeaturesTestUsingDDsClnt_client</display-name>
+  <service-ref>
+    <service-ref-name>service/wsmtomfeaturestestusingddsport1_1</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTestService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest1</service-ref-type>
+    <wsdl-file>META-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://mtomservice.org/wsdl">servicens:MTOMTestService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest1</service-endpoint-interface>
+      <enable-mtom>true</enable-mtom>
+    </port-component-ref>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsmtomfeaturestestusingddsport1_2</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTestService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest1</service-ref-type>
+    <wsdl-file>META-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://mtomservice.org/wsdl">servicens:MTOMTestService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest1</service-endpoint-interface>
+      <enable-mtom>true</enable-mtom>
+    </port-component-ref>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsmtomfeaturestestusingddsport2</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTestService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest2</service-ref-type>
+    <wsdl-file>META-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://mtomservice.org/wsdl">servicens:MTOMTestService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest2</service-endpoint-interface>
+      <enable-mtom>true</enable-mtom>
+    </port-component-ref>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsmtomfeaturestestusingddsport3_1</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTestService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3</service-ref-type>
+    <wsdl-file>META-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://mtomservice.org/wsdl">servicens:MTOMTestService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3</service-endpoint-interface>
+      <enable-mtom>true</enable-mtom>
+      <mtom-threshold>2000</mtom-threshold>
+    </port-component-ref>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsmtomfeaturestestusingddsport3_2</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTestService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3</service-ref-type>
+    <wsdl-file>META-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://mtomservice.org/wsdl">servicens:MTOMTestService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3</service-endpoint-interface>
+      <enable-mtom>false</enable-mtom>
+      <mtom-threshold>2000</mtom-threshold>
+    </port-component-ref>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsmtomfeaturestestusingddsport3_3</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTestService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3</service-ref-type>
+    <wsdl-file>META-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://mtomservice.org/wsdl">servicens:MTOMTestService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3</service-endpoint-interface>
+      <enable-mtom>true</enable-mtom>
+    </port-component-ref>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsmtomfeaturestestusingddsport4</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTestService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest4</service-ref-type>
+    <wsdl-file>META-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://mtomservice.org/wsdl">servicens:MTOMTestService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest4</service-endpoint-interface>
+      <enable-mtom>true</enable-mtom>
+      <mtom-threshold>2000</mtom-threshold>
+    </port-component-ref>
+  </service-ref>
+</application-client>

@@ -1,0 +1,68 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="cts-internal-default" default="usage">
+
+	<!-- IMPORTS -->
+	<import file="../../bin/xml/ts.common.props.xml"/>
+
+	<!-- Tasks for managing the cts-internal.zip bundle.  -->
+	<target name="usage">
+		<echo message="Private set of targets called from j2ee.xml"/>
+		<echo message="Used for building the default cts-internal bundle"/>
+	</target>
+	
+	<macrodef name="make-internal-bundle">
+        <attribute name="zip-name" default="${bundle.dir}/cts-internal-${deliverable.version}_${time.stamp.bundle.string}.zip"/>
+        <element name="additional-zip-elements" implicit="yes" optional="yes"/>
+      <sequential>
+		<zip destfile="@{zip-name}">
+		    <zipfileset filemode="777"
+		                dir="${ts.home}/install/j2ee/bin/xml"
+		                includes="imq.xml, install*, templates/statefile*"
+		                prefix="bin/xml"/>
+		    <zipfileset filemode="777"
+		                dir="${common.bin.dir}/xml" includes="install_sjsas.xml, templates/statefile.template.ee"
+		                prefix="bin/xml"/>
+		    <zipfileset dir="${ts.home}/internal/coverage"
+		                includes="*"
+		                prefix="internal/coverage"/>
+		    <zipfileset filemode="777"
+		                dir="${ts.home}/tmp"
+		                includes="${internal.version.filename}" prefix="bin"/>
+			<additional-zip-elements/>
+		</zip>
+      	<echo message="Built internal bundle: &quot;@{zip-name}&quot;"/>
+	  </sequential>  	
+	</macrodef>
+	
+	<target name="make.cts.internal.archive.ri">
+		<make-internal-bundle/>
+	</target>
+
+	<target name="make.cts.internal.archive">
+		<copy file="${ts.home}/install/j2ee/bin/build.xml"
+          todir="${ts.home}/tmp"
+          overwrite="true"/>
+		<antcall target="make.cts.internal.archive.ri"/>
+		<delete file="${ts.home}/tmp/version"/>
+		<echo message="The CTS Internal bundles have been built."/>
+	</target>
+
+</project>
+

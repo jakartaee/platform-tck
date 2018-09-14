@@ -1,0 +1,131 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="Jersey/GlassFish package and deploy" default="deploy">
+
+    <!--
+    JAX-RS TCK package target: package JAX-RS TCK test application into web archive
+
+    resource.classes:  specified in individual test's build.xml,
+                       contains all resource class used in the test
+    app.name:          specified in individual test's build.xml,
+                       is used for web archive name: ${app.name}_web.war
+                       is also used in web application's context root:
+                       ${app.name}_web
+    web.xml:           located in individual test's directory.
+                       Is web application's deployment descriptor.
+    class.dir:         TCK's class directory.  Located at $TS_HOME/classes
+    servlet_adaptor:   specified in $TS_HOME/bin/ts.jte.
+                       Required by JAX-RS specification to run in servlet container,
+                       it is imeplementation specific.
+    appconfig.class:   specified in individual test's build.xml.
+                       Required by JAX-RS spec to list all resources in the test application.
+    -->
+
+    <!--
+    JAX-RS TCK deploy target: Deploy JAX-RS web archive
+
+    webapp.dir:  autodeploy directory for web application
+    -->
+    <import file="../../ts.top.import.xml"/>
+
+    <target name="pre.deploy">
+        <fileset id="all.jaxrs.src.dirs" dir="${ts.home}/src" includes="**/web.xml.template"/>        
+        <property name="prop.all.jaxrs.src.dirs" refid="all.jaxrs.src.dirs"/>
+        <propertyregex property="all.jaxrs.tests.dir"
+                  input="${prop.all.jaxrs.src.dirs}"
+                  regexp="[\/|\\]web.xml.template"
+                  replace=""
+                  casesensitive="false" />
+        <!-- It seems the separator can be != path.separator -->
+        <propertyregex property="all.jaxrs.tests.dir.correct.separator"
+                  input="${all.jaxrs.tests.dir}"
+                  regexp=";"
+                  replace="${path.separator}"
+                  casesensitive="false" />                               
+        <foreach list="${all.jaxrs.tests.dir.correct.separator}"
+                 delimiter="${path.separator}"
+                 target="all_action"
+                 param="pkg.dir"/>
+    </target>
+
+    <target name="check.web.xml" >
+        <available file="${ts.home}/src/${pkg.dir}/web.xml.template" property="exist.web.xml"/>
+    </target>
+    
+    <target name="all_action" depends="update_servlet_adaptor,copywar"/>
+
+    <target name="update_servlet_adaptor" depends="check.web.xml" if="exist.web.xml">
+        <!--
+        Create implementation specific web with servlet information
+        -->
+        <copy file="${ts.home}/src/${pkg.dir}/web.xml.template" tofile="${ts.home}/dist/${pkg.dir}/web.xml.${jaxrs_impl_name}"/>
+        <propertyregex property="servlet_adaptor_class"
+                       input="${servlet_adaptor}"
+                       regexp="/"
+                       replace="."/>
+        <propertyregex property="servlet_adaptor_class.1"
+                       input="${servlet_adaptor_class}"
+                       regexp=".class$"
+                       replace=""/>
+        <replace file="${ts.home}/dist/${pkg.dir}/web.xml.${jaxrs_impl_name}" value="${servlet_adaptor_class.1}">
+            <replacetoken>servlet_adaptor</replacetoken>
+        </replace>
+
+        <!--
+        Create implementation specfic war files with
+            updated web.xml;
+            servlet class;
+        -->
+        
+        <antcall target="updatewar"/>
+    </target>
+    
+    <target name="get.app.name">
+        <fileset id="dist.contents" dir="${ts.home}/dist/${pkg.dir}" includes="jaxrs*.war.template"/>
+        <property name="prop.dist.contents" refid="dist.contents"/>
+        <propertyregex property="app.name"
+                       input="${prop.dist.contents}"
+                       regexp="_web.war.template$"
+                       replace=""/>    
+    </target>
+    
+    <target name="updatewar" depends="get.app.name" if="app.name">
+        <!-- Copy web.war.template to web.war.jersey -->
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}_web.war.${jaxrs_impl_name}">
+            <zipfileset src="${ts.home}/dist/${pkg.dir}/${app.name}_web.war.template" 
+                        excludes="WEB-INF/web.xml"/>
+        </jar>
+        <!-- Copy web.xml to web.war.jersey -->
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}_web.war.${jaxrs_impl_name}" update="true">    
+            <zipfileset dir="${ts.home}/dist/${pkg.dir}"
+                        includes="web.xml.${jaxrs_impl_name}"
+                        fullpath="WEB-INF/web.xml"/>
+        </jar>
+        <copy failonerror="false"
+              file="${dist.dir}/${pkg.dir}/${app.name}_web.war.${jaxrs_impl_name}"
+              tofile="${dist.dir}/${pkg.dir}/${app.name}_web.war" />    
+    </target>
+    
+    <!-- for 3.0 servlet wars without web.xml -->
+    <target name="copywar" depends="check.web.xml,get.app.name" if="app.name" unless="exist.web.xml">
+        <copy failonerror="false"
+              file="${dist.dir}/${pkg.dir}/${app.name}_web.war.template"
+              tofile="${dist.dir}/${pkg.dir}/${app.name}_web.war" />    
+    </target>    
+</project>

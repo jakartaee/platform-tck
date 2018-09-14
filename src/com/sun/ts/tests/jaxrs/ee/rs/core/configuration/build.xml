@@ -1,0 +1,31 @@
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jaxrs_ee_core_configuration" basedir="." default="usage">
+    <property name="app.name" value="jaxrs_ee_core_configuration" />
+
+    <property name="resource.classes" value="com/sun/ts/tests/jaxrs/ee/rs/core/configurable/Resource.class
+    	com/sun/ts/tests/jaxrs/api/rs/core/configurable/Assertable.class,
+    	com/sun/ts/tests/jaxrs/api/rs/core/configurable/SingleCheckAssertable.class,
+    	com/sun/ts/tests/jaxrs/api/rs/core/configurable/ConfigurableObject.class,
+    	com/sun/ts/tests/jaxrs/api/rs/core/configurable/CallableProvider.class,
+    	com/sun/ts/tests/jaxrs/api/rs/core/configurable/Registrar.class" />
+    <property name="appconfig.class" value="com/sun/ts/tests/jaxrs/ee/rs/core/configurable/TSAppConfig.class" />
+
+    <import file="../../../../common/common.xml" />
+</project>

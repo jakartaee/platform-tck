@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    
+  <description>A query tag using javax.servlet.jsp.jstl.sql.ResultSupport</description>
+  <display-name>ResultSetQuery</display-name>
+  <tlib-version>1.0</tlib-version>
+  <short-name>resultSetQuery</short-name>
+  <uri>http://java.sun.com/jstltck/resultSetQuery</uri>
+
+  <tag>
+    <description>
+        Executes the SQL query defined in its body or through the
+        sql attribute.
+    </description>
+    <name>query</name>
+    <tag-class>com.sun.ts.tests.jstl.spec.sql.query.ResultSetQueryTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+        <description>
+Name of the exported scoped variable for the
+query result. The type of the scoped variable is
+javax.servlet.jsp.jstl.sql.
+Result (see Chapter 16 "Java APIs").
+        </description>
+        <name>var</name>
+        <required>true</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+SQL query statement.
+        </description>
+        <name>sql</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+Data source associated with the database to
+query. A String value represents a relative path
+to a JNDI resource or the parameters for the
+DriverManager class.
+        </description>
+        <name>dataSource</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+The returned Result object includes the rows
+starting at the specified index. The first row of
+the original query result set is at index 0. If not
+specified, rows are included starting from the
+first row at index 0.
+        </description>
+        <name>startRow</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+The maximum number of rows to be included in
+the query result. If not specified, or set to -1, no
+limit on the maximum number of rows is
+enforced.
+        </description>
+        <name>maxRows</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+</taglib>

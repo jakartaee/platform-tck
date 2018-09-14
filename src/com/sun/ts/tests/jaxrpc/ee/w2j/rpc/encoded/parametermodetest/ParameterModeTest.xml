@@ -1,0 +1,1370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+     <package-mapping>
+          <package-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest</package-type>
+          <namespaceURI>http://ParameterModeTest.org/</namespaceURI>
+     </package-mapping>
+     <package-mapping>
+          <package-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest</package-type>
+          <namespaceURI>http://ParameterModeTest.org/xsd</namespaceURI>
+     </package-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.AllStruct</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:AllStruct</root-type-qname>
+          <qname-scope>complexType</qname-scope>
+          <variable-mapping>
+               <java-variable-name>varString</java-variable-name>
+               <xml-element-name>varString</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varInteger</java-variable-name>
+               <xml-element-name>varInteger</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varInt</java-variable-name>
+               <xml-element-name>varInt</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varLong</java-variable-name>
+               <xml-element-name>varLong</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varShort</java-variable-name>
+               <xml-element-name>varShort</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varDecimal</java-variable-name>
+               <xml-element-name>varDecimal</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varFloat</java-variable-name>
+               <xml-element-name>varFloat</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varDouble</java-variable-name>
+               <xml-element-name>varDouble</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varBoolean</java-variable-name>
+               <xml-element-name>varBoolean</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varByte</java-variable-name>
+               <xml-element-name>varByte</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varQName</java-variable-name>
+               <xml-element-name>varQName</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varDateTime</java-variable-name>
+               <xml-element-name>varDateTime</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapString</java-variable-name>
+               <xml-element-name>varSoapString</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapBoolean</java-variable-name>
+               <xml-element-name>varSoapBoolean</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapFloat</java-variable-name>
+               <xml-element-name>varSoapFloat</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapDouble</java-variable-name>
+               <xml-element-name>varSoapDouble</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapDecimal</java-variable-name>
+               <xml-element-name>varSoapDecimal</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapInt</java-variable-name>
+               <xml-element-name>varSoapInt</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapShort</java-variable-name>
+               <xml-element-name>varSoapShort</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapByte</java-variable-name>
+               <xml-element-name>varSoapByte</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varBase64Binary</java-variable-name>
+               <xml-element-name>varBase64Binary</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varHexBinary</java-variable-name>
+               <xml-element-name>varHexBinary</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>varSoapBase64</java-variable-name>
+               <xml-element-name>varSoapBase64</xml-element-name>
+          </variable-mapping>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.Book</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:Book</root-type-qname>
+          <qname-scope>complexType</qname-scope>
+          <variable-mapping>
+               <java-variable-name>author</java-variable-name>
+               <xml-element-name>author</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>title</java-variable-name>
+               <xml-element-name>title</xml-element-name>
+          </variable-mapping>
+          <variable-mapping>
+               <java-variable-name>isbn</java-variable-name>
+               <xml-element-name>isbn</xml-element-name>
+          </variable-mapping>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumInt</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumInt</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumFloat</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumFloat</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumDecimal</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumDecimal</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumLong</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumLong</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumDouble</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumDouble</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumString</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumString</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumByte</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumByte</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumInteger</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumInteger</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumShort</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:enumShort</root-type-qname>
+          <qname-scope>simpleType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>java.lang.String[]</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:ArrayOfstring</root-type-qname>
+          <qname-scope>complexType</qname-scope>
+     </java-xml-type-mapping>
+     <java-xml-type-mapping>
+          <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.Book[]</java-type>
+          <root-type-qname xmlns:typeNS="http://ParameterModeTest.org/xsd">typeNS:ArrayOfBook</root-type-qname>
+          <qname-scope>complexType</qname-scope>
+     </java-xml-type-mapping>
+     <service-interface-mapping>
+          <service-interface>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.ParameterModeTestService</service-interface>
+          <wsdl-service-name xmlns:serviceNS="http://ParameterModeTest.org/">serviceNS:ParameterModeTestService</wsdl-service-name>
+          <port-mapping>
+               <port-name>ParameterModeTestPort</port-name>
+               <java-port-name>ParameterModeTestPort</java-port-name>
+          </port-mapping>
+     </service-interface-mapping>
+     <service-endpoint-interface-mapping>
+          <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.ParameterModeTest</service-endpoint-interface>
+          <wsdl-port-type xmlns:portTypeNS="http://ParameterModeTest.org/">portTypeNS:ParameterModeTest</wsdl-port-type>
+          <wsdl-binding xmlns:bindingNS="http://ParameterModeTest.org/">bindingNS:ParameterModeTestBinding</wsdl-binding>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoIn</java-method-name>
+               <wsdl-operation>echoIn</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inRequest</wsdl-message>
+                         <wsdl-message-part-name>varString</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoOut</java-method-name>
+               <wsdl-operation>echoOut</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outResponse</wsdl-message>
+                         <wsdl-message-part-name>varString</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOut</java-method-name>
+               <wsdl-operation>echoInOut</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutRequest</wsdl-message>
+                         <wsdl-message-part-name>varString</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOut2</java-method-name>
+               <wsdl-operation>echoInOut2</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutRequest</wsdl-message>
+                         <wsdl-message-part-name>varString</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOut3</java-method-name>
+               <wsdl-operation>echoInOut3</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutRequest2</wsdl-message>
+                         <wsdl-message-part-name>param</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <wsdl-return-value-mapping>
+                    <method-return-value>java.lang.String</method-return-value>
+                    <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutResponse</wsdl-message>
+                    <wsdl-message-part-name>varString</wsdl-message-part-name>
+               </wsdl-return-value-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOut4</java-method-name>
+               <wsdl-operation>echoInOut4</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutRequest2</wsdl-message>
+                         <wsdl-message-part-name>param</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <wsdl-return-value-mapping>
+                    <method-return-value>java.lang.String</method-return-value>
+                    <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutResponse</wsdl-message>
+                    <wsdl-message-part-name>varString</wsdl-message-part-name>
+               </wsdl-return-value-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoMix</java-method-name>
+               <wsdl-operation>echoMix</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:mixRequest</wsdl-message>
+                         <wsdl-message-part-name>varInString</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>1</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:mixRequest</wsdl-message>
+                         <wsdl-message-part-name>varInOutString</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>2</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:mixResponse</wsdl-message>
+                         <wsdl-message-part-name>varOutString</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInSimpleTypes</java-method-name>
+               <wsdl-operation>echoInSimpleTypes</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varString</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>1</param-position>
+                    <param-type>java.math.BigInteger</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varInteger</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>2</param-position>
+                    <param-type>int</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varInt</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>3</param-position>
+                    <param-type>long</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varLong</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>4</param-position>
+                    <param-type>short</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varShort</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>5</param-position>
+                    <param-type>java.math.BigDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varDecimal</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>6</param-position>
+                    <param-type>float</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varFloat</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>7</param-position>
+                    <param-type>double</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varDouble</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>8</param-position>
+                    <param-type>boolean</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varBoolean</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>9</param-position>
+                    <param-type>byte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varByte</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>10</param-position>
+                    <param-type>javax.xml.namespace.QName</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varQName</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>11</param-position>
+                    <param-type>java.util.Calendar</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varDateTime</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>12</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapString</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>13</param-position>
+                    <param-type>java.lang.Boolean</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapBoolean</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>14</param-position>
+                    <param-type>java.lang.Float</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapFloat</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>15</param-position>
+                    <param-type>java.lang.Double</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapDouble</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>16</param-position>
+                    <param-type>java.math.BigDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapDecimal</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>17</param-position>
+                    <param-type>java.lang.Integer</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapInt</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>18</param-position>
+                    <param-type>java.lang.Short</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapShort</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>19</param-position>
+                    <param-type>java.lang.Byte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapByte</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>20</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varBase64Binary</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>21</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varHexBinary</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>22</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapBase64</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoOutSimpleTypes</java-method-name>
+               <wsdl-operation>echoOutSimpleTypes</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varString</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>1</param-position>
+                    <param-type>java.math.BigInteger</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varInteger</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>2</param-position>
+                    <param-type>int</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varInt</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>3</param-position>
+                    <param-type>long</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varLong</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>4</param-position>
+                    <param-type>short</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varShort</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>5</param-position>
+                    <param-type>java.math.BigDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varDecimal</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>6</param-position>
+                    <param-type>float</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varFloat</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>7</param-position>
+                    <param-type>double</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varDouble</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>8</param-position>
+                    <param-type>boolean</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varBoolean</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>9</param-position>
+                    <param-type>byte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varByte</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>10</param-position>
+                    <param-type>javax.xml.namespace.QName</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varQName</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>11</param-position>
+                    <param-type>java.util.Calendar</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varDateTime</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>12</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapString</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>13</param-position>
+                    <param-type>java.lang.Boolean</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapBoolean</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>14</param-position>
+                    <param-type>java.lang.Float</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapFloat</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>15</param-position>
+                    <param-type>java.lang.Double</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapDouble</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>16</param-position>
+                    <param-type>java.math.BigDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapDecimal</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>17</param-position>
+                    <param-type>java.lang.Integer</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapInt</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>18</param-position>
+                    <param-type>java.lang.Short</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapShort</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>19</param-position>
+                    <param-type>java.lang.Byte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapByte</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>20</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varBase64Binary</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>21</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varHexBinary</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>22</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outSimpleTypesResponse</wsdl-message>
+                         <wsdl-message-part-name>varSoapBase64</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOutSimpleTypes</java-method-name>
+               <wsdl-operation>echoInOutSimpleTypes</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varString</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>1</param-position>
+                    <param-type>java.math.BigInteger</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varInteger</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>2</param-position>
+                    <param-type>int</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varInt</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>3</param-position>
+                    <param-type>long</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varLong</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>4</param-position>
+                    <param-type>short</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varShort</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>5</param-position>
+                    <param-type>java.math.BigDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varDecimal</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>6</param-position>
+                    <param-type>float</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varFloat</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>7</param-position>
+                    <param-type>double</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varDouble</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>8</param-position>
+                    <param-type>boolean</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varBoolean</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>9</param-position>
+                    <param-type>byte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varByte</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>10</param-position>
+                    <param-type>javax.xml.namespace.QName</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varQName</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>11</param-position>
+                    <param-type>java.util.Calendar</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varDateTime</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>12</param-position>
+                    <param-type>java.lang.String</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapString</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>13</param-position>
+                    <param-type>java.lang.Boolean</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapBoolean</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>14</param-position>
+                    <param-type>java.lang.Float</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapFloat</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>15</param-position>
+                    <param-type>java.lang.Double</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapDouble</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>16</param-position>
+                    <param-type>java.math.BigDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapDecimal</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>17</param-position>
+                    <param-type>java.lang.Integer</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapInt</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>18</param-position>
+                    <param-type>java.lang.Short</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapShort</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>19</param-position>
+                    <param-type>java.lang.Byte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapByte</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>20</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varBase64Binary</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>21</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varHexBinary</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>22</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesRequest</wsdl-message>
+                         <wsdl-message-part-name>varSoapBase64</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInEnum</java-method-name>
+               <wsdl-operation>echoInEnum</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumString</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumString</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>1</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumInteger</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumInteger</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>2</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumInt</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumInt</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>3</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumLong</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumLong</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>4</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumShort</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumShort</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>5</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumDecimal</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>6</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumFloat</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumFloat</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>7</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumDouble</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumDouble</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>8</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumByte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumByte</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoOutEnum</java-method-name>
+               <wsdl-operation>echoOutEnum</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumString</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumString</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>1</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumInteger</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumInteger</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>2</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumInt</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumInt</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>3</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumLong</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumLong</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>4</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumShort</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumShort</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>5</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumDecimal</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>6</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumFloat</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumFloat</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>7</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumDouble</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumDouble</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>8</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumByte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:outEnumResponse</wsdl-message>
+                         <wsdl-message-part-name>varEnumByte</wsdl-message-part-name>
+                         <parameter-mode>OUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOutEnum</java-method-name>
+               <wsdl-operation>echoInOutEnum</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumString</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumString</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>1</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumInteger</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumInteger</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>2</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumInt</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumInt</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>3</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumLong</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumLong</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>4</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumShort</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumShort</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>5</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumDecimal</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumDecimal</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>6</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumFloat</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumFloat</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>7</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumDouble</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumDouble</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>8</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.EnumByte</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutEnumRequest</wsdl-message>
+                         <wsdl-message-part-name>varEnumByte</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInStruct</java-method-name>
+               <wsdl-operation>echoInStruct</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.AllStruct</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inStructRequest</wsdl-message>
+                         <wsdl-message-part-name>varStruct</wsdl-message-part-name>
+                         <parameter-mode>IN</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOutSimpleTypesArray</java-method-name>
+               <wsdl-operation>echoInOutSimpleTypesArray</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>java.lang.String[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varString</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>1</param-position>
+                    <param-type>java.math.BigInteger[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varInteger</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>2</param-position>
+                    <param-type>int[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varInt</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>3</param-position>
+                    <param-type>long[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varLong</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>4</param-position>
+                    <param-type>short[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varShort</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>5</param-position>
+                    <param-type>java.math.BigDecimal[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varDecimal</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>6</param-position>
+                    <param-type>float[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varFloat</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>7</param-position>
+                    <param-type>double[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varDouble</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>8</param-position>
+                    <param-type>boolean[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varBoolean</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>9</param-position>
+                    <param-type>byte[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varByte</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>10</param-position>
+                    <param-type>javax.xml.namespace.QName[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varQName</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+               <method-param-parts-mapping>
+                    <param-position>11</param-position>
+                    <param-type>java.util.Calendar[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutSimpleTypesArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varDateTime</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOutBook</java-method-name>
+               <wsdl-operation>echoInOutBook</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.Book</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutBookRequest</wsdl-message>
+                         <wsdl-message-part-name>varBook</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+          <service-endpoint-method-mapping>
+               <java-method-name>echoInOutBookArray</java-method-name>
+               <wsdl-operation>echoInOutBookArray</wsdl-operation>
+               <method-param-parts-mapping>
+                    <param-position>0</param-position>
+                    <param-type>com.sun.ts.tests.jaxrpc.ee.w2j.rpc.encoded.parametermodetest.Book[]</param-type>
+                    <wsdl-message-mapping>
+                         <wsdl-message xmlns:wsdlMsgNS="http://ParameterModeTest.org/">wsdlMsgNS:inoutBookArrayRequest</wsdl-message>
+                         <wsdl-message-part-name>varBook</wsdl-message-part-name>
+                         <parameter-mode>INOUT</parameter-mode>
+                    </wsdl-message-mapping>
+               </method-param-parts-mapping>
+          </service-endpoint-method-mapping>
+     </service-endpoint-interface-mapping>
+</java-wsdl-mapping>
+

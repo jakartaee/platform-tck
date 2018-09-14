@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3 timer" basedir="." default="usage">
+    <import file="../../../../../ejb30/timer/common/build-import.xml"/>
+
+    <property name="app.name" value="ejb32_lite_timer_schedule_expire"/>
+    <property name="commons-lang.jar" value="commons-lang3-3.3.2.jar"/>
+
+    <target name="-postcompile">
+        <echo message="Copy ${ts.home}/lib/${commons-lang.jar} to ${dist.dir}/${pkg.dir}"/>
+        <copy file="${ts.home}/lib/${commons-lang.jar}" todir="${dist.dir}/${pkg.dir}" overwrite="false"/>
+    </target>
+
+    <target name="package">
+        <ts.vehicles name="${app.name}" buildleveloverride="2"
+                     classes="${ejb30.timer.common.classes}"/>
+        <delete file="${dist.dir}/${pkg.dir}/${commons-lang.jar}" failonerror="no"/>
+    </target>
+
+</project>

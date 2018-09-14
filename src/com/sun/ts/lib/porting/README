@@ -1,0 +1,58 @@
+/*
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+*/
+
+Porting Package Directory README
+--------------------------------
+
+This directory contains classes that abstract any implementation-specific 
+code.  The current implementations of these classes use the semantics of 
+Sun's Java EE Reference Implementation.  Licensees can modify and rebuild these 
+classes to work with their particular implementation of the Java EE platform.
+
+Please see the "Porting Package" section of the TS User's Guide (section 9.2)
+for more information.
+
+Files
+-----
+TSDeployment.java
+	An implementation of the TSDeploymentInterface that enables automatic
+	deployment for the Java EE Reference Implementation.
+
+TSDeployment.java.manual
+	An implementation of the TSDeploymentInterface that prompts the user
+	to deploy and undeploy applications at the appropriate times during
+	testing.  This class demonstrates the use of the DeploymentInfo class.
+	It has no dependencies on platform-specific features.  Use this as
+	a template for building your own automatic deployer / undeployer.
+
+	To use this file, swap TSDeployment.java and TSDeployment.java.manual
+	and run gmake from the $TS_HOME/src/common/ directory.
+
+TSLauncher.java
+	Provides implementation-specific code for launching applications for
+	interactive tests and other needs.  Platforms that support Runtime.exec
+	most likely need not modify this file.
+
+TSLoginContext.java
+	Provides implementation-specific code for allowing a program to 
+	login as a specific user.
+
+TSNamingContext.java
+	Provides implementation-specific code for obtaining the initial
+	naming context and for looking up remote objects.
+
+

@@ -1,0 +1,7 @@
+WSRAnn=@WebServiceRef(name="service/wsdlhandlerservice")
+SERVICE=com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService
+URLALIAS=/jaxws/Hello
+WEBSERVICEDESCRIPTION=DLHandlerService
+SERVICEREFNAMEWSSERVLET=service/wsdlhandlerservice
+SERVICEREFNAMEWSEJB=service/wsdlhandlerservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsdlhandlerservice

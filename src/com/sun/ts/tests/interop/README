@@ -1,0 +1,68 @@
+Top level README file for TS Interoperability Tests.
+
+TS interoperability testing is performed using two different J2EE 
+Server Implementations. One implementation being the Sun J2EE 
+Reference Implementation (RI) and the other being the Vendor J2EE 
+Implementation (VI). TS interoperability testing is performed
+in both directions as follows:
+
+(1) Vendor J2EE Implementation #1 ==> Sun J2EE Reference Implementation #2
+
+(2) Sun J2EE Reference Implementation #1 ==> Vendor J2EE Implementation #2
+
+The TS test harness automatically handles running the interoperability 
+tests in both directions.
+
+Please refer to the TS Users Guide for the complete instructions for 
+performing TS interoperability testing.
+
+The TS interoperability test directories are:
+
+o tests/interop/rmiiiop
+o tests/interop/ejb
+o tests/interop/security
+o tests/interop/integration
+o tests/interop/tx
+o tests/interop/csiv2
+o tests/interop/saaj
+
+All test directories have README files describing the interoperability
+tests at that directory level.
+
+How are the ear files deployed to the two J2EE Server Implementations.
+All ear files ending in "_j2ee2.ear" get deployed to J2EE Server #2 
+and all the other ear files get deployed to J2EE Server #1.
+
+The TS Interoperability Tests exercise the six main areas of EJB 
+Interoperability and WebServices Interoperability namely:
+
+	a) Remote Method Invocation (EJB Invocation) Interoperability
+	b) Transaction Interoperability
+	c) Naming Interoperability
+	d) Security Interoperability
+	e) RMI over IIOP Interoperability
+	f) Common Secure Interoperability v2 (IIOP-level)
+	g) SAAJ Interoperability
+
+	All EJB interoperability is based on the industry standard CORBA
+	IIOP protocol. All J2EE containers must support GIOP1.2 as the
+	interoperability protocol. All EJB invocations must be invoked
+	over the GIOP1.2 protocol.
+
+	All security interoperability is based on the (CSIv2) Corba Secure 
+	Interoperability Version 2 Specification.
+
+	All naming interoperability is based on the Corba CosNaming Naming
+	Service and the (INS) Interoperable Naming Service Specification.
+
+	All transaction interoperability is based on the (OTS1.2) Corba 
+	Object Transaction Service Specification.
+
+	All rmiiiop interoperability is based on the IIOP protocol namely
+	GIOP1.2 and the Java-To-IDL Mapping Specification which describes 
+	the subset of RMI that is mapped to RMI/IDL and can be transmitted 
+	over IIOP. All legal rmiiiop types are transmitted back and forth
+	across a remote interface.
+
+Again for more information on interoperability testing please refer to the 
+TS Users Guide and the EJB2.0 Specification (Chapter 19).

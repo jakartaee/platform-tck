@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<jaxws:bindings wsdlLocation="RLHandlerService.wsdl"
+    xmlns:jaxws="http://java.sun.com/xml/ns/jaxws" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb">    
+    
+    <jaxws:bindings node="wsdl:definitions">
+        <jaxws:package name="com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice"/>        
+	   <jaxws:enableMIMEContent>true</jaxws:enableMIMEContent>
+    </jaxws:bindings>
+
+    <jaxws:bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://rlhandlerservice.org/types']" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <jxb:schemaBindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+            <jxb:package name="com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice"/>
+        </jxb:schemaBindings>
+    </jaxws:bindings>
+   
+    <jaxws:bindings>    
+        <handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+           <!-- ====================== -->
+           <!-- service based handlers -->
+           <!-- ====================== -->
+           <handler-chain>
+              <service-name-pattern xmlns:ns1="http://rlhandlerservice.org/wsdl">ns1:RLHandlerService</service-name-pattern>
+              <handler>
+	             <handler-name>ServerLogicalHandler5</handler-name>
+	             <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerLogicalHandler5</handler-class>
+              </handler>
+           </handler-chain>
+           <handler-chain>
+              <handler>
+	             <handler-name>ServerSOAPHandler5</handler-name>
+	             <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerSOAPHandler5</handler-class>
+              </handler>
+           </handler-chain>
+
+           <!-- ================================================ -->
+           <!-- These service based handlers should never be called -->
+           <!-- ================================================ -->
+           <handler-chain>
+              <service-name-pattern xmlns:ns1="http://rlhandlerservice.org/wsdl">foo:RLHandlerService</service-name-pattern>
+              <handler>
+	             <handler-name>ServerSNPSNBCLogicalHandler</handler-name>
+	             <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerSNPSNBCLogicalHandler</handler-class>
+              </handler>
+           </handler-chain>
+           <handler-chain>
+              <service-name-pattern xmlns:ns1="http://rlhandlerservice.org/wsdl">ns1:ServiceDoesNotExist</service-name-pattern>
+              <handler>
+	             <handler-name>ServerSNPSNBCSOAPHandler</handler-name>
+	             <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerSNPSNBCSOAPHandler</handler-class>
+              </handler>
+           </handler-chain>
+
+
+           <!-- ====================== -->
+           <!-- port based handlers    -->
+           <!-- ====================== -->
+           <!-- ++++++++++++++++++++++ -->
+           <!-- first port -->
+           <!-- ++++++++++++++++++++++ -->
+           <handler-chain>
+              <port-name-pattern xmlns:ns1="http://rlhandlerservice.org/wsdl">ns1:HelloPort</port-name-pattern>
+              <handler>
+	            <handler-name>ServerSOAPHandler1</handler-name>
+	            <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerSOAPHandler1</handler-class>
+              </handler>
+              <handler>
+	            <handler-name>ServerLogicalHandler1</handler-name>
+	            <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerLogicalHandler1</handler-class>
+              </handler>
+              <handler>
+	            <handler-name>ServerSOAPHandler2</handler-name>
+	            <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerSOAPHandler2</handler-class>
+              </handler>
+              <handler>
+	            <handler-name>ServerLogicalHandler2</handler-name>
+	            <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerLogicalHandler2</handler-class>
+              </handler>
+              <handler>
+	             <handler-name>ServerSOAPHandler3</handler-name>
+	             <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerSOAPHandler3</handler-class>
+              </handler>
+              <handler>
+	             <handler-name>ServerLogicalHandler3</handler-name>
+	            <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerLogicalHandler3</handler-class>
+              </handler>
+           </handler-chain>
+
+           <!-- ================================================ -->
+           <!-- These port based handlers should never be called -->
+           <!-- ================================================ -->
+           <handler-chain>
+              <port-name-pattern xmlns:ns1="http://rlhandlerservice.org/wsdl">foo:HelloPort</port-name-pattern>
+              <handler>
+                  <handler-name>ServerPNPSNBCLogicalHandler</handler-name>
+                  <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerPNPSNBCLogicalHandler</handler-class>
+              </handler>
+           </handler-chain>
+           <handler-chain>
+              <port-name-pattern xmlns:ns1="http://rlhandlerservice.org/wsdl">ns1:PortDoesNotExist</port-name-pattern>
+              <handler>
+                  <handler-name>ServerPNPSNBCSOAPHandler</handler-name>
+                  <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerPNPSNBCSOAPHandler</handler-class>
+              </handler>
+           </handler-chain>
+
+           <!-- ====================== -->
+           <!-- protocol based handlers    -->
+           <!-- ====================== -->
+           <handler-chain>
+              <protocol-bindings>##SOAP11_HTTP</protocol-bindings>
+              <handler>
+	             <handler-name>ServerSOAPHandler6</handler-name>
+	             <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerSOAPHandler6</handler-class>
+              </handler>
+              <handler>
+	             <handler-name>ServerLogicalHandler6</handler-name>
+	             <handler-class>com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.ServerLogicalHandler6</handler-class>
+              </handler>
+           </handler-chain>
+        </handler-chains>
+    </jaxws:bindings>    
+</jaxws:bindings>            
+

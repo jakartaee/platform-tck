@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    name="MTOMTestService"
+    targetNamespace="http://mtomtestservice.org/wsdl"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://mtomtestservice.org/wsdl"
+    xmlns:s="http://mtomtestservice.org/xsd"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <types>
+          <schema xmlns="http://www.w3.org/2001/XMLSchema"
+               targetNamespace="http://mtomtestservice.org/xsd"
+               xmlns:xmime="http://www.w3.org/2005/05/xmlmime" 
+               elementFormDefault="qualified">
+
+                 <complexType name="DataType">
+                     <sequence>
+                         <element name="docName1" type="string"/>
+                         <element name="docName2" type="string"/>
+                         <element name="docName3" type="string"/>
+                         <element name="docName4" type="string"/>
+                         <element name="docUrl1" type="string"/>
+                         <element name="docUrl2" type="string"/>
+                         <element name="docUrl3" type="string"/>
+                         <element name="docUrl4" type="string"/>
+                         <element name="doc1" type="base64Binary" xmime:expectedContentTypes="text/xml"/>
+                         <element name="doc2" type="base64Binary" xmime:expectedContentTypes="application/xml"/>
+                         <element name="doc3" type="base64Binary" xmime:expectedContentTypes="text/html"/>
+                         <element name="doc4" type="base64Binary" xmime:expectedContentTypes="image/jpeg"/>
+                     </sequence>
+                 </complexType>
+                 <complexType name="DataType2">
+                     <sequence>
+                         <element name="docName1" type="string"/>
+                         <element name="docName2" type="string"/>
+                         <element name="docName3" type="string"/>
+                         <element name="docName4" type="string"/>
+                         <element name="docUrl1" type="string"/>
+                         <element name="docUrl2" type="string"/>
+                         <element name="docUrl3" type="string"/>
+                         <element name="docUrl4" type="string"/>
+                         <element name="docUrl11" type="string"/>
+                         <element name="docUrl12" type="string"/>
+                         <element name="docUrl13" type="string"/>
+                         <element name="docUrl14" type="string"/>
+                         <element name="doc1" type="base64Binary" xmime:expectedContentTypes="text/xml"/>
+                         <element name="doc2" type="base64Binary" xmime:expectedContentTypes="application/xml"/>
+                         <element name="doc3" type="base64Binary" xmime:expectedContentTypes="text/html"/>
+                         <element name="doc4" type="base64Binary" xmime:expectedContentTypes="image/jpeg"/>
+                         <element name="result" type="string"/>
+                     </sequence>
+                 </complexType>
+                 <complexType name="DataType22">
+                     <sequence>
+                         <element name="docName1" type="string"/>
+                         <element name="docName2" type="string"/>
+                         <element name="docName3" type="string"/>
+                         <element name="docName4" type="string"/>
+                         <element name="docUrl1" type="string"/>
+                         <element name="docUrl2" type="string"/>
+                         <element name="docUrl3" type="string"/>
+                         <element name="docUrl4" type="string"/>
+                         <element name="docUrl11" type="string"/>
+                         <element name="docUrl12" type="string"/>
+                         <element name="docUrl13" type="string"/>
+                         <element name="docUrl14" type="string"/>
+                         <element name="doc1" type="base64Binary" xmime:expectedContentTypes="text/xml"/>
+                         <element name="doc2" type="base64Binary" xmime:expectedContentTypes="application/xml"/>
+                         <element name="doc3" type="base64Binary" xmime:expectedContentTypes="text/html"/>
+                         <element name="doc4" type="base64Binary" xmime:expectedContentTypes="image/jpeg"/>
+                         <element name="result" type="string"/>
+                     </sequence>
+                 </complexType>
+                 <complexType name="DataType3">
+                     <sequence>
+                         <element name="doc" type="base64Binary" xmime:expectedContentTypes="image/jpeg"/>
+                     </sequence>
+                 </complexType>
+                 <element name="MTOMIn" type="s:DataType"/>
+                 <element name="MTOMInResponse" type="xsd:string"/>
+                 <element name="MTOMIn2" type="s:DataType3"/>
+                 <element name="MTOMIn2Response" type="xsd:string"/>
+                 <element name="MTOMInOut" type="s:DataType2"/>
+                 <element name="MTOMInOutResponse" type="s:DataType22"/>
+                 <element name="MTOMOut" type="xsd:string"/>
+                 <element name="MTOMOutResponse" type="s:DataType"/>
+                 <element name="MTOMOut2" type="xsd:string"/>
+                 <element name="MTOMOut2Response" type="s:DataType3"/>
+          </schema>
+    </types>
+    <message name="MTOMInRequest">
+        <part name="data" element="s:MTOMIn"/>
+    </message>
+    <message name="MTOMInResponse">
+        <part name="result" element="s:MTOMInResponse"/>
+    </message>
+    <message name="MTOMIn2Request">
+        <part name="data" element="s:MTOMIn2"/>
+    </message>
+    <message name="MTOMIn2Response">
+        <part name="data" element="s:MTOMIn2Response"/>
+    </message>
+    <message name="MTOMInOutRequest">
+        <part name="data" element="s:MTOMInOut"/>
+    </message>
+    <message name="MTOMInOutResponse">
+        <part name="data" element="s:MTOMInOutResponse"/>
+    </message>
+    <message name="MTOMOutRequest">
+        <part name="urls" element="s:MTOMOut"/>
+    </message>
+    <message name="MTOMOutResponse">
+        <part name="data" element="s:MTOMOutResponse"/>
+    </message>
+    <message name="MTOMOut2Request">
+        <part name="urls" element="s:MTOMOut2"/>
+    </message>
+    <message name="MTOMOut2Response">
+        <part name="data" element="s:MTOMOut2Response"/>
+    </message>
+
+     <portType name="MTOMTest">
+          <operation name="MTOMIn">
+               <input message="tns:MTOMInRequest"/>
+               <output message="tns:MTOMInResponse"/>
+          </operation>
+          <operation name="MTOMInOut">
+               <input message="tns:MTOMInOutRequest"/>
+               <output message="tns:MTOMInOutResponse"/>
+          </operation>
+          <operation name="MTOMOut">
+               <input message="tns:MTOMOutRequest"/>
+               <output message="tns:MTOMOutResponse"/>
+          </operation>
+          <operation name="MTOMOut2">
+               <input message="tns:MTOMOut2Request"/>
+               <output message="tns:MTOMOut2Response"/>
+          </operation>
+     </portType>
+
+     <portType name="MTOMTestTwo">
+          <operation name="MTOMIn2">
+               <input message="tns:MTOMIn2Request"/>
+               <output message="tns:MTOMIn2Response"/>
+          </operation>
+     </portType>
+
+     <binding name="MTOMBinding" type="tns:MTOMTest">
+          <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+          <operation name="MTOMIn">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+          <operation name="MTOMInOut">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+          <operation name="MTOMOut">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+          <operation name="MTOMOut2">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+     </binding>
+
+     <binding name="MTOMBindingTwo" type="tns:MTOMTestTwo">
+          <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+          <operation name="MTOMIn2">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+     </binding>
+
+  <service name="MTOMTestService">
+    <port name="MTOMTestPort" binding="tns:MTOMBinding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+    <port name="MTOMTestTwoPort" binding="tns:MTOMBindingTwo">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+  </service>
+</definitions>

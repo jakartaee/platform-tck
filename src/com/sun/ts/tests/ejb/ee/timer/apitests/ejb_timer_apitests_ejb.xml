@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+  <display-name>Ejb1</display-name>
+  <enterprise-beans>
+    <session>
+      <ejb-name>TimerBeanEJB</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.timer.apitests.TimerBeanHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.timer.apitests.TimerBean</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.timer.apitests.TimerBeanEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-role-ref>
+        <role-name>Administrator</role-name>
+        <role-link>Administrator</role-link>
+      </security-role-ref>
+      <security-identity>
+        <description></description>
+        <run-as>
+          <description>Administrator</description>
+          <role-name>Administrator</role-name>
+        </run-as>
+      </security-identity>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <security-role>
+      <role-name>Administrator</role-name>
+    </security-role>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test1</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test2</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test3</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test4</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test5</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test6</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test7</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test8</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test9</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>test10</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-name>ejbTimeout</method-name>
+        <method-params>
+          <method-param>javax.ejb.Timer</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>RequiresNew</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>findAndCancelTimer</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>TimerBeanEJB</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>initLogging</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

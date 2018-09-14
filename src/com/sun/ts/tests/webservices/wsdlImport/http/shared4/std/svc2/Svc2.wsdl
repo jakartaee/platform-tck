@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="SharedTest"
+    targetNamespace="http://SharedTest2.org/wsdl" 
+    xmlns="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+    xmlns:tns="http://SharedTest2.org/wsdl" 
+    xmlns:s="http://SharedTest.org/xsd" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <import namespace="http://SharedTest.org/xsd"
+          location="../Shared.xsd"/>
+
+<message name="echoAllStructRequest2">
+	<part name="inputAllStruct" type="s:AllStruct"/>
+</message>
+<message name="echoAllStructResponse2">
+	<part name="return" type="s:AllStruct"/>
+</message>
+
+<portType name="SharedTest2">
+	<operation name="echoAllStruct" parameterOrder="inputAllStruct">
+		<input message="tns:echoAllStructRequest2"/>
+		<output message="tns:echoAllStructResponse2"/>
+	</operation>
+</portType>
+
+<binding name="SharedTestBinding2" type="tns:SharedTest2">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="echoAllStruct"> 
+	<soap:operation />
+	<input>
+		<soap:body use="encoded" namespace="http://SharedTest2.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+	</input>
+	<output>
+		<soap:body use="encoded" namespace="http://SharedTest2.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+	</output>
+  </operation>
+</binding>
+
+<service name="SharedTestService2">
+    <port name="SharedTestPort2" binding="tns:SharedTestBinding2">
+          <soap:address location="http://localhost:8000/shared2/ws4ee"/>
+    </port>
+</service>
+</definitions>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 EJB 3.0//EN" "http://www.sun.com/software/appserver/dtds/sun-ejb-jar_3_0-0.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<sun-ejb-jar>
+<enterprise-beans>
+<unique-id>0</unique-id>
+
+<ejb>
+<ejb-name>RemoveBean</ejb-name>
+<jndi-name>stateful_remove_override_RemoveBean</jndi-name>
+<resource-env-ref>
+<resource-env-ref-name>com.sun.ts.tests.ejb30.bb.session.stateful.remove.override.RemoveBean/sessionContext</resource-env-ref-name>
+<jndi-name>com.sun.ts.tests.ejb30.bb.session.stateful.remove.override.RemoveBean/sessionContext</jndi-name>
+</resource-env-ref>
+<pass-by-reference>false</pass-by-reference>
+<is-read-only-bean>false</is-read-only-bean>
+<refresh-period-in-seconds>-1</refresh-period-in-seconds>
+<cmt-timeout-in-seconds>0</cmt-timeout-in-seconds>
+<gen-classes/>
+</ejb>
+
+<ejb>
+<ejb-name>RemoveNotRetainBean</ejb-name>
+<jndi-name>stateful_remove_override_RemoveNotRetainBean</jndi-name>
+</ejb>
+
+<ejb>
+<ejb-name>StatelessTestBean</ejb-name>
+<jndi-name>stateful_remove_override_StatelessTestBean</jndi-name>
+<resource-env-ref>
+<resource-env-ref-name>sessionContext</resource-env-ref-name>
+<jndi-name>sessionContext</jndi-name>
+</resource-env-ref>
+<pass-by-reference>false</pass-by-reference>
+<is-read-only-bean>false</is-read-only-bean>
+<refresh-period-in-seconds>-1</refresh-period-in-seconds>
+<cmt-timeout-in-seconds>0</cmt-timeout-in-seconds>
+<gen-classes/>
+</ejb>
+
+</enterprise-beans>
+</sun-ejb-jar>

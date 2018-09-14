@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<webservices xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4" xmlns:wsdl="http://mtomservice.org/wsdl" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/javaee_web_services_1_4.xsd">
+  <webservice-description>
+    <webservice-description-name>MTOMTestService</webservice-description-name>
+    <wsdl-file>WEB-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
+    <port-component>
+      <port-component-name>MTOMTestImpl1</port-component-name>
+      <wsdl-port>wsdl:MTOMTest1Port</wsdl-port>
+      <enable-mtom>true</enable-mtom>
+      <protocol-binding>##SOAP11_HTTP</protocol-binding>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest1</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>MTOMTestImpl1</servlet-link>
+      </service-impl-bean>
+    </port-component>
+    <port-component>
+      <port-component-name>MTOMTestImpl2</port-component-name>
+      <wsdl-port>wsdl:MTOMTest2Port</wsdl-port>
+      <enable-mtom>false</enable-mtom>
+      <protocol-binding>##SOAP11_HTTP</protocol-binding>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest2</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>MTOMTestImpl2</servlet-link>
+      </service-impl-bean>
+    </port-component>
+    <port-component>
+      <port-component-name>MTOMTestImpl3</port-component-name>
+      <wsdl-port>wsdl:MTOMTest3Port</wsdl-port>
+      <enable-mtom>true</enable-mtom>
+      <mtom-threshold>2000</mtom-threshold>
+      <protocol-binding>##SOAP11_HTTP</protocol-binding>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>MTOMTestImpl3</servlet-link>
+      </service-impl-bean>
+    </port-component>
+    <port-component>
+      <port-component-name>MTOMTestImpl4</port-component-name>
+      <wsdl-port>wsdl:MTOMTest4Port</wsdl-port>
+      <enable-mtom>false</enable-mtom>
+      <mtom-threshold>2000</mtom-threshold>
+      <protocol-binding>##SOAP11_HTTP</protocol-binding>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest4</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>MTOMTestImpl4</servlet-link>
+      </service-impl-bean>
+    </port-component>
+  </webservice-description> 
+</webservices>

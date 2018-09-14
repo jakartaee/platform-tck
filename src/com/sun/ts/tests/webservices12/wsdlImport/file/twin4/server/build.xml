@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="webservices12_wsdlImport_file_twin4_server" basedir="." default="usage">
+  <property name="app.name" value="WSTwin4File"/>
+  <property name="use.file.publishing" value="true"/>
+  <property name="wsdl.filename" value="svc1/Twin4FileSvc1.wsdl"/>
+  <property name="wsdl.filename2" value="svc2/Twin4FileSvc2.wsdl"/>
+  <property name="numservices" value="2"/>
+  <property name="endpoint.type" value="ejb"/>
+  <property name="always.generate" value="true"/>
+
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="impl.classes" value="${pkg.dir}/TestsBean1.class, ${pkg.dir}/TestsBean2.class"/>
+  <property name="common.classes" value="${jaxws.common.classes}"/>
+
+  <target name="-precompile">
+    <antcall  target="do_wsdl2java_generate">
+        <param name="service.names" value="Twin4FileSvc1"/>
+        <param name="sei.names" value="Tests1"/>
+        <param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+        <param name="customization.binding.files" value="customfile.xml"/>
+    </antcall>
+    <antcall  target="do_wsdl2java_generate_server">
+        <param name="no.setup" value="true"/>
+        <param name="service.names" value="Twin4FileSvc2"/>
+        <param name="sei.names" value="Tests2"/>
+        <param name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename2}"/>
+        <param name="customization.binding.files" value="customfile2.xml"/>
+    </antcall>
+
+  </target>
+
+  <target name="package" depends="webservice_import_package"/>
+
+  <target name="-preclean"/>
+
+</project>

@@ -1,0 +1,391 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="TS top level" default="usage">
+
+    <!-- IMPORTS -->
+    <import file="xml/ts.top.import.xml" optional="true"/>
+    <import file="../../../bin/xml/ts.top.import.xml" optional="true"/>
+
+    <property name="all.test.dir" 
+              value="com/sun/ts/tests/jaspic,
+                     com/sun/ts/tests/jaspic/spi,
+                     com/sun/ts/tests/jaspic/spi/soap,
+                     com/sun/ts/tests/jaspic/spi/servlet,
+                     com/sun/ts/tests/common/vehicle/jaspicservlet,
+                     com/sun/ts/tests/signaturetest/jaspic"/>
+    <property name="javaee.home" value = "${jaspic.home}"/>
+    <property name="javaee.home.ri" value = "${jaspic.home}"/>
+    <property name="orb.host.ri" value = "${orb.host}"/>
+    <property name="orb.port.ri" value = "${orb.port}"/>
+        
+
+    <target name="build.all.tests">
+        <echo message="Test Dirs:${all.test.dir}"/>
+
+        <elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>
+        <dosubdirs srcdir="${ts.home}/src" includes="${all.test.dir}" todo="build"/>
+    </target>
+   
+
+    <target name="translatepath">
+        <translatepath propname="jaspic.home"/>
+        <translatepath propname="endorsed.dirs"/>
+    </target>
+
+
+    <target name="runclient" 
+            depends="init, set.keywords, prepare.work.report.dirs, check.selected.test, 
+                     no.selected.test, check.java.options, no.java.options, translatepath">
+        <ant antfile="config.vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="config.acc.template"/>
+        <ts.javatest.batch/>
+    </target>
+
+
+    <target name="gui" depends="init, check.java.options, no.java.options, translatepath">
+        <javatest.gui/>
+    </target>
+
+
+    <!-- Set the archives to deploy based on the javaee.level setting-->
+    <target name="setup.archive.set">
+      <if>
+        <contains string="${javaee.level}" substring="web"/>
+      <then>
+          <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+            <include name="**/*.war"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/vi_built*.war"/>
+            <exclude name="**/ts_dep*/**"/>
+          </fileset>
+
+          <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+            <include name="**/vi_built*.war"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/ts_dep*/**"/>
+          </fileset>
+
+          <fileset dir="${dist.dir}" id="deploy.all.vi.archive.set">
+            <include name="**/*.war"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/vi_built*.war"/>
+            <exclude name="**/ts_dep*/**"/>
+          </fileset>
+          <fileset dir="${dist.dir}" id="deploy.all.ri.archive.set">
+            <include name="**/vi_built*.war"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/ts_dep*/**"/>
+          </fileset>
+      </then>
+      <elseif>
+        <contains string="${javaee.level}" substring="component"/>
+      <then>
+          <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+            <include name="**/*ar"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/vi_built*.*ar"/>
+            <exclude name="**/*.ear"/>
+            <exclude name="**/ts_dep*/**"/>
+          </fileset>
+          <fileset dir="${dist.dir}" id="deploy.all.vi.archive.set">
+            <include name="**/*ar"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/vi_built*.*ar"/>
+            <exclude name="**/*.ear"/>
+            <exclude name="**/ts_dep*/**"/>
+          </fileset>
+          <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+            <include name="**/vi_built*.*ar"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/vi_built*.ear"/>
+            <exclude name="**/ts_dep*/**"/>
+          </fileset>
+          <fileset dir="${dist.dir}" id="deploy.all.ri.archive.set">
+            <include name="**/vi_built*.*ar"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/vi_built*.ear"/>
+            <exclude name="**/ts_dep*/**"/>
+          </fileset>
+      </then>
+      </elseif>
+    <else>
+        <!--
+            If ears exist, then deploy ears.  Else deploy component archives.
+        -->
+        <for param="archive">
+          <fileset dir="${dist.dir}/${pkg.dir}">
+                <include name="**/*.ear"/>
+                <include name="**/spitests_servlet_web.war"/>
+                <include name="**/*_component*.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/ts_dep*/**"/>
+          </fileset>
+          <sequential>
+            <echo message="Ear files exist under this test dir"/>
+            <var name="ears.exist" value="true"/>
+          </sequential>
+        </for>
+
+        <if>
+            <equals arg1="${ears.exist}" arg2="true"/>
+        <then>
+            <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+                <include name="**/*.ear"/>
+                <include name="**/spitests_servlet_web.war"/>
+                <include name="**/*_component*.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/vi_built*.*ar"/>
+                <exclude name="**/*j2ee2.*ar"/>
+                <exclude name="**/ts_dep*/**"/>
+            </fileset>
+            <fileset dir="${dist.dir}" id="deploy.all.vi.archive.set">
+                <include name="**/*.ear"/>
+                <include name="**/spitests_servlet_web.war"/>
+                <include name="**/*_component*.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/vi_built*.*ar"/>
+                <exclude name="**/*j2ee2.*ar"/>
+                <exclude name="**/ts_dep*/**"/>
+            </fileset>
+            <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+                <include name="**/vi_built*.ear"/>
+                <include name="**/vi_built*_component*.*ar"/>
+                <include name="**/*j2ee2.ear"/>
+                <include name="**/*_component*j2ee2.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/ts_dep*/**"/>
+            </fileset>
+            <fileset dir="${dist.dir}" id="deploy.all.ri.archive.set">
+                <include name="**/vi_built*.ear"/>
+                <include name="**/vi_built*_component*.*ar"/>
+                <include name="**/*j2ee2.ear"/>
+                <include name="**/*_component*j2ee2.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/ts_dep*/**"/>
+            </fileset>
+        </then>
+        <else>
+            <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+                <include name="**/*.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/*.ear"/>
+                <exclude name="**/vi_built*.*ar"/>
+                <exclude name="**/*j2ee2.*ar"/>
+                <exclude name="**/ts_dep*/**"/>
+            </fileset>
+            <fileset dir="${dist.dir}" id="deploy.all.vi.archive.set">
+                <include name="**/*.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/*.ear"/>
+                <exclude name="**/vi_built*.*ar"/>
+                <exclude name="**/*j2ee2.*ar"/>
+                <exclude name="**/ts_dep*/**"/>
+            </fileset>
+            <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+                <include name="**/vi_built*.*ar"/>
+                <include name="**/*j2ee2.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/*.ear"/>
+                <exclude name="**/ts_dep*/**"/>
+            </fileset>
+            <fileset dir="${dist.dir}" id="deploy.ri.all.archive.set">
+                <include name="**/vi_built*.*ar"/>
+                <include name="**/*j2ee2.*ar"/>
+                <exclude name="**/*ejbembed*"/>
+                <exclude name="**/*.ear"/>
+                <exclude name="**/ts_dep*/**"/>
+            </fileset>
+        </else>
+        </if>
+        <var name="ears.exist" value="false"/>
+    </else>
+    </if>
+    </target>
+
+
+    <target name="deploy.all" depends="setup.archive.set"
+            description="Deploy all archives.">
+        <fail message="The deploy.all target is not supported in CTS"/>
+    </target>
+
+<!--
+    <target name="deploy">
+        <ant antfile="deploy.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="deploy"/>
+    </target>
+    
+
+    <target name="undeploy">
+        <ant antfile="deploy.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="undeploy"/>
+    </target>
+-->
+
+
+<!--
+    <target name="config.ri">
+        <record name="config_ri.log" action="start"/>
+        <ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="config.ri"/>
+        <ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="restart.server"/>
+        <ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="ri.perms"/>
+        <record name="config_ri.log" action="stop"/>
+    </target>
+
+    <target name="clean.ri">
+        <ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="clean.ri"/>
+        <ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="restart.server"/>
+    </target>
+
+    <target name="restart.ri">
+        <ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="restart.server"/>
+    </target>
+-->
+
+
+    <target name="config.vi">
+        <record name="config_vi.log" action="start"/>
+        <ant antfile="config.vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="config.vi"/>
+        <ant antfile="config.vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="vi.perms"/>
+        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="config.jaspic"/>
+        <record name="config_vi.log" action="stop"/>
+    </target>
+
+
+    <target name="unconfig.vi">
+        <record name="unconfig_vi.log" action="start"/>
+        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="unconfig.jaspic"/>
+        <record name="unconfig_vi.log" action="stop"/>
+    </target>
+
+
+    <target name="clean.vi">
+        <ant antfile="config.vi.xml.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="clean.vi"/>
+    </target>
+
+
+    <!-- Enable the use of jaspic for the app server under test -->
+    <target name="enable.tssv">
+        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="enable.tssv"/>
+
+        <!-- configure the sun-acc.xml template file so we can run jaspic tests in acc -->
+        <ant antfile="config.vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="config.acc.template"/>
+    </target>
+
+
+    <!-- convenience target.  -->
+    <!-- Enables the use of jaspic for the app server under test -->
+    <target name="enable.jaspic">
+        <antcall target="enable.tssv"/>
+    </target>
+
+
+    <!-- Disable the use of jaspic for the app server under test -->
+    <target name="disable.tssv">
+        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="disable.tssv"/>
+    </target>
+
+
+    <!-- convenience target.  -->
+    <!-- Disables the use of jaspic for the app server under test -->
+    <target name="disable.jaspic">
+        <antcall target="disable.tssv"/>
+    </target>
+
+
+
+    <!-- ts specific jar (in this case jaspic.jar) will be created in ts.home/lib. -->
+
+    <property name="lib.jar" value = "${ts.home}/lib/jaspic.jar"/>
+    <property name="tssv.dir" value = "com/sun/ts/tests/jaspic/tssv"/>
+    <property name="tssv.jar.name" value = "tssv.jar"/>
+    <property name="tssv.jar" value = "${ts.home}/lib/${tssv.jar.name}"/>
+
+    <target name="tslib.clean" depends="translatepath">
+        <delete failonerror="false">
+            <fileset dir="${class.dir}">
+                <include name="${lib.pkg.dir}/deliverable/jaspic/**"/>
+                <include name="${lib.pkg.dir}/deliverable/cts/**"/>
+                <include name="${lib.pkg.dir}/implementation/sun/javaee/**"/>
+                <include name="${lib.pkg.dir}/implementation/sun/common/**"/>
+                <include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
+                <include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
+                <include name="${tssv.dir}/"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false" file="${lib.dir}/${tslib.name}.jar"/>
+        <delete file = "${tssv.jar}"/>
+    </target>
+
+    <target name="tslib.compile" depends="tslib.clean, bind.dtds">
+        
+        <ts.javac includes="${lib.pkg.dir}/deliverable/jaspic/**,
+                            ${lib.pkg.dir}/deliverable/cts/**,
+                            ${pkg.dir}/porting/**/*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/**,
+                            ${lib.pkg.dir}/implementation/sun/common/**,
+                            ${lib.pkg.dir}/tests/jdbc/CS_Procs.java,
+                            ${lib.pkg.dir}/porting/TSDeploymentInterface2*.java,
+                            ${lib.pkg.dir}/porting/TSDeployment2*.java,
+                            ${tssv.dir}/**"
+                  excludes="${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment1*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment2*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/SunRILoginContext*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/SunRIPorting*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/SunRIDeploymentSeparateVM*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/six/**">
+            <classpath>
+                <pathelement path="${ts.lib.classpath}" />
+            </classpath>	
+        </ts.javac>
+    </target>
+
+
+    <target name="tslib" depends="tslib.compile">
+        <tstamp/>
+        <delete failonerror="true" file="${lib.dir}/${tslib.name}.jar"/>
+        <ts.lib.jar>
+            <include name="${lib.pkg.dir}/deliverable/**"/>
+            <include name="${lib.pkg.dir}/implementation/sun/javaee/**"/>
+            <include name="${lib.pkg.dir}/implementation/sun/common/**"/>
+            <include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
+            <include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
+            <exclude name="${lib.dir}/deliverable/cts/resource/**"/>
+        </ts.lib.jar>
+
+        <delete failonerror="true" file="${tssv.jar}"/>
+
+        <ts.lib.jar jarfile="${tssv.jar}">
+            <include name="${tssv.dir}/config/**"/>
+            <include name="${tssv.dir}/module/**"/>
+            <include name="${tssv.dir}/util/**"/>
+
+            <manifest>
+                <attribute name="Extension-Name" value="TSSV"/>
+            </manifest>
+        </ts.lib.jar>
+        
+        <antcall target="update.tssv.jar"/>
+    </target>
+
+
+    <target name="update.tssv.jar">
+          <jar destfile="${tssv.jar}" basedir="${src.dir}" update="true" 
+               includes="${tssv.dir}/config/*.xml, ${tssv.dir}/config/*.txt"/>
+
+    </target>
+</project>
+

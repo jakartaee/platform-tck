@@ -1,0 +1,10 @@
+WSRAnn=@WebServiceRef(name="service/MyService")
+SERVICE=org.echo.wsdl.MyEchoWebService
+SEI=org.echo.wsdl.EchoTest
+NAMESPACEURI=http://echo.org/wsdl
+PORT=EchoTest
+URLALIAS=/jaxws
+WEBSERVICEDESCRIPTION=MyEchoWebService
+SERVICEREFNAMEWSSERVLET=service/MyService
+SERVICEREFNAMEWSEJB=service/MyService
+SERVICEREFNAMEWSAPPCLIENT=service/MyService

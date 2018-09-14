@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsp_pkg" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/>
+    <property name="app.name" value="jsp_tldres"/>
+    <property name="pkg.name" value="spec/tldres"/>
+    <property name="contentroot.dir" value="${ts.home}/src/web/jsp/${pkg.name}"/>
+    
+    <target name="compile">
+          <ts.javac includes="${pkg.dir}/**/*.java,
+                              com/sun/ts/tests/common/webclient/**/*.java"/>
+    </target>
+
+    <target name="package" depends="build.jars">
+            <ts.war archivename="${app.name}" descriptor="${app.name}_web.xml" includedefaultfiles="false">
+              <zipfileset dir="${contentroot.dir}" includes="**/*" excludes="**/*.gf"/>
+              <zipfileset dir="${class.dir}"
+                          includes="com/sun/ts/tests/jsp/spec/tldres/UriTag.class,
+                                    com/sun/ts/tests/jsp/spec/tldres/HSListenerWebInf.class,
+                                    com/sun/ts/tests/jsp/spec/tldres/HSListenerWebInfSub.class,
+                                    com/sun/ts/tests/jsp/spec/tldres/WebXmlTag.class"
+                          prefix="WEB-INF/classes"/>
+            </ts.war>
+            <ts.ear archivename="${app.name}"/>
+            <delete dir="${contentroot.dir}/WEB-INF/lib"/>
+    </target>
+
+    <target name="build.jars">
+        <!-- create JSP 1.1 style packaged taglibrary -->
+        <mkdir dir="${ts.home}/src/${pkg.dir}/jartmp/META-INF"/>
+        <mkdir dir="${ts.home}/src/${pkg.dir}/jartmp/${pkg.dir}"/>
+        <mkdir dir="${contentroot.dir}/WEB-INF/lib"/>
+        <copy file="${ts.home}/src/${pkg.dir}/taglib.tld" todir="${ts.home}/src/${pkg.dir}/jartmp/META-INF"/>
+        <copy file="${ts.home}/classes/${pkg.dir}/Tld11Tag.class" todir="${ts.home}/src/${pkg.dir}/jartmp/${pkg.dir}"/>
+        <jar destfile="${contentroot.dir}/WEB-INF/lib/jsp11taglib.jar" basedir="${ts.home}/src/${pkg.dir}/jartmp"/>
+        <delete dir="${ts.home}/src/${pkg.dir}/jartmp"/>
+
+        <!-- create JAR's taglibrary with multiple TLDs -->
+        <mkdir dir="${ts.home}/src/${pkg.dir}/jartmp/META-INF/tlds"/>
+        <mkdir dir="${ts.home}/src/${pkg.dir}/jartmp/${pkg.dir}"/>
+        <mkdir dir="${contentroot.dir}/WEB-INF/lib"/>
+        <copy file="${ts.home}/src/${pkg.dir}/multi1.tld" todir="${ts.home}/src/${pkg.dir}/jartmp/META-INF"/>
+        <copy file="${ts.home}/src/${pkg.dir}/metainfsub.tld" todir="${ts.home}/src/${pkg.dir}/jartmp/META-INF/sub"/>
+        <copy file="${ts.home}/src/${pkg.dir}/multi2.tld" todir="${ts.home}/src/${pkg.dir}/jartmp/META-INF/tlds"/>
+        <copy file="${ts.home}/src/${pkg.dir}/jartagpres.tld" todir="${ts.home}/src/${pkg.dir}/jartmp/META-INF"/>
+        <copy file="${ts.home}/classes/${pkg.dir}/Multi1Tag.class" todir="${ts.home}/src/${pkg.dir}/jartmp/${pkg.dir}"/>
+        <copy file="${ts.home}/classes/${pkg.dir}/Multi2Tag.class" todir="${ts.home}/src/${pkg.dir}/jartmp/${pkg.dir}"/>
+        <copy file="${ts.home}/classes/${pkg.dir}/HSListenerMetaInf.class" todir="${ts.home}/src/${pkg.dir}/jartmp/${pkg.dir}"/>
+        <copy file="${ts.home}/classes/${pkg.dir}/HSListenerMetaInfSub.class" todir="${ts.home}/src/${pkg.dir}/jartmp/${pkg.dir}"/>
+        <jar destfile="${contentroot.dir}/WEB-INF/lib/multitaglib.jar" basedir="${ts.home}/src/${pkg.dir}/jartmp"/>
+        <delete dir="${ts.home}/src/${pkg.dir}/jartmp"/>
+    </target>
+
+</project>

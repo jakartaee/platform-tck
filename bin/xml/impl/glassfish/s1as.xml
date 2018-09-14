@@ -1,0 +1,1615 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="CTS Glassfish AppServer configuration" basedir="." default="usage">
+
+    <import file="./common.xml"/>
+    <import file="./deploy.xml"/>
+ 
+    <property name="admin.user"      value="${s1as.admin.user}"/>
+    <property name="admin.password"  value="${s1as.admin.passwd}" />
+    <property name="server.host"     value="${s1as.admin.host}"/>
+    <property name="server.port"     value="${s1as.admin.port}"/>
+    <property name="server.orb.port" value="${orb.port}"/>
+    <property name="cli.path"        value="${s1as.admin}"/>
+    <property name="imqbin.loc"      value="${s1as.imqbin.loc}"/>
+    <property name="server.domain.name" value="${s1as.domain.name}"/>
+    <property name="server.domain"   value="${s1as.domain}"/>
+    <property name="server.instance" value="${s1as.server}"/>
+    <property name="server.config.dir" 	value="config"/>
+    <property name="server.home"     value="${javaee.home}"/>
+    <property name="drive"           value="${s1as.applicationRoot}"/>
+    <property name="ext.dir.prop"    value="-Djava.ext.dirs="/>
+    <property name="start.index"     value="16"/>
+    <property name="custom.resource.jndi.name" value="custom/dog"/>
+
+    <var name="use.derby.dbName" value="${derby.dbName}"/>
+    <var name="use.derby.server" value="${derby.server}"/>
+    <var name="use.derby.port" value="${derby.port}"/>
+    <var name="use.derby.user" value="${derby.user}"/>
+    <var name="use.derby.passwd" value="${derby.passwd}"/>
+    <var name="use.derby.url" value="${derby.url}"/>
+    <var name="use.derby.driver" value="${derby.driver}"/>
+    <var name="use.derby.system.home" value="${derby.system.home}"/>
+    <var name="use.derby.classpath" value="${derby.classpath}"/>
+    <var name="use.derby.classes" value="${derby.classes}"/>
+    <var name="use.derby.poolName" value="${derby.poolName}"/>
+    <var name="use.derby.dataSource" value="${derby.dataSource}"/>
+    <var name="use.derby.properties" value="${derby.properties}"/>
+    <var name="use.derby.startup.delay" value="${derby.startup.delay}"/>
+
+    <var name="use.jdbc.poolName" value="${jdbc.poolName}"/>
+    <var name="use.jdbc.maxpoolsize" value="${jdbc.maxpoolsize}"/>
+    <var name="use.jdbc.steadypoolsize" value="${jdbc.steadypoolsize}"/>
+
+    <property name="deploy.dir"      value="${impl.vi.deploy.dir}/"/>
+
+   <!--
+     Install the EE 6.0 RI also known as GlassFish V3.
+   -->
+   <property name="v3.version" value="nightly"/>
+   <property name="remove.v3.bundle" value="false"/>
+   <target name="install.v3">
+     <if>
+         <istrue value="${remove.v3.bundle}"/>
+       <then>
+         <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="remove.v3.bundle"/>         
+       </then>
+     </if>
+     <if>
+         <equals arg1="${v3.version}" arg2="nightly"/>
+       <then>
+         <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="install.v3.nightly"/>
+       </then>
+       <else>
+         <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="install.v3.promoted"/>
+       </else>
+     </if>
+   </target>
+
+
+   <!--
+     For Java EE 5, PE 9.0 = GlassFish = Java EE RI.  This is why the install.ri.*
+     targets simply invoke the install.pe.* targets.
+   -->
+
+   <target name="install.ri.nightly">
+     <antcall target="install.pe.nightly"/>
+   </target>
+
+   <target name="install.ri.promoted">
+     <antcall target="install.pe.promoted"/>
+   </target>
+
+   <target name="install.ri.bundle">
+     <antcall target="install.pe.bundle"/>
+   </target>
+
+   <target name="install.ri">
+     <antcall target="install.pe"/>
+   </target>
+
+   <target name="install.pe.nightly">
+     <property name="sjsas.platform" value="SJSAS_PE"/>
+     <property name="begin.done.tag" value="Sun GlassFish Enterprise Server"/>
+     <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="nightly"/>
+   </target>
+
+   <target name="install.pe.promoted">
+     <property name="sjsas.platform" value="SJSAS_PE"/>
+     <property name="begin.done.tag" value="Sun GlassFish Enterprise Server"/>
+     <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="promoted"/>
+   </target>
+
+   <target name="install.pe.bundle">
+     <property name="sjsas.platform" value="SJSAS_PE"/>
+     <property name="begin.done.tag" value="Sun GlassFish Enterprise Server"/>
+     <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="bundle"/>
+   </target>
+
+   <target name="install.pe">
+     <property name="sjsas.platform" value="SJSAS_PE"/>
+     <property name="begin.done.tag" value="Sun GlassFish Enterprise Server"/>
+     <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="install"/>
+   </target>
+
+   <target name="install.ee.nightly">
+     <property name="sjsas.platform" value="SJSAS_EE"/>
+     <property name="filter.value" value="pe"/>
+     <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="nightly"/>
+   </target>
+
+   <target name="install.ee.promoted">
+     <property name="sjsas.platform" value="SJSAS_EE"/>
+     <property name="filter.value" value="pe"/>
+     <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="promoted"/>
+   </target>
+
+   <target name="install.ee.bundle">
+     <property name="sjsas.platform" value="SJSAS_EE"/>
+     <property name="filter.value" value="pe"/>
+     <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="bundle"/>
+   </target>
+
+   <target name="install.ee">
+     <property name="sjsas.platform" value="SJSAS_EE"/>
+     <property name="filter.value" value="pe"/>
+     <ant antfile="${common.bin.dir}/xml/install_sjsas.xml" target="install"/>
+   </target>
+
+   <target name="usage">
+        <echo message="The following ant task are available to configure Glassfish Appserver for CTS:"/>
+        <echo message="ant -f s1as.xml task"/>
+        <echo message=""/>
+        <echo message="The primary tasks are:"/>
+        <echo message=""/>
+        <echo message="clean.s1as (except JMS resources)" />
+        <echo message="cleanall.s1as" />
+        <echo message="config.s1as(except JMS resources)" />
+        <echo message="configall.s1as" />
+        <echo message="enable.security" />
+        <echo message="disable.security" />
+        <echo message="enable.jms" />
+        <echo message="disable.jms" />
+        <echo message="install.jdbc.drivers" />
+   
+        <echo message=""/>
+        <echo message="Additional tasks are:"/>
+        <echo message=""/>
+        <echo message="concat.security" />
+        <echo message="copy.cts.jars" />
+        <echo message="add.cts.users" />
+        <echo message="drop.cts.users" />
+        <echo message="add.javamail.resources" />
+        <echo message="drop.javamail.resources" />
+        <echo message="add.custom.resource" />
+        <echo message="drop.custom.resource" />
+        <echo message="add.jvm.options" />
+        <echo message="drop.jvm.options" />
+        <echo message="add.jdbc.pools" />
+        <echo message="drop.jdbc.pools" />
+        <echo message="list.jdbc.pools" />
+        <echo message="add.jdbc.resources" />
+        <echo message="drop.jdbc.resources" />
+        <echo message="modify.jdbc.resources" />
+        <echo message="add.classpathsuffix" />
+        <echo message="drop.classpathsuffix" />
+        <echo message="add.ssl.client.config" />
+        <echo message="drop.ssl.client.config" />
+        <echo message="set.http.ports" />
+        <echo message="set.orbport" />
+        <echo message="enable.tx.interop" />
+        <echo message="disable.tx.interop" />
+        <echo message="delete.tx.interop" />
+        <echo message="enable.jacc" />
+        <echo message="disable.jacc" />
+        <echo message="enable.wss.providers" />
+        <echo message="disable.wss.providers" />
+    </target>
+
+    <!-- Configure the OS specific properties based on the OS
+         is being utilized.
+     -->
+    <target name="configPlatform"
+           depends="checkPlatform, configUnix, configWindows, convertPaths">
+
+      <!-- Check if we need to set jvm options -->
+
+      <condition property="jvm.args.set">
+        <not>
+          <equals arg1="" arg2="${s1as.jvm.options}" casesensitive="true" trim="true"/>
+        </not>
+      </condition>
+
+      <!-- Check if we need to set ext.dirs -->
+      <condition property="s1as.db.ext.dirs.set">
+        <not>
+          <equals arg1="" arg2="${s1as.db.ext.dirs}" casesensitive="true" trim="true"/>
+        </not>
+      </condition>
+
+      <!-- Check to see if we are using DB2 -->
+      <condition property="using.db2.type2">
+          <contains string="${use.jdbc.poolName}" substring="db2" casesensitive="false"/>
+      </condition>
+
+      <condition property="db2.props.set">
+        <and>
+          <isset property="using.db2.type2"/>
+          <isset property="s1as.db.ext.dirs.set"/>
+        </and>
+      </condition>
+
+      <!-- Check to see if we are using Oracle, will be needed in the future -->
+	  <!--
+      <condition property="using.oracle.type2">
+          <contains arg1="${jdbc.poolName}" arg2="XXX" casesensitive="false" trim="true"/>
+      </condition>
+	  -->
+
+      <!-- The datasource and properties to be used for the non-tx
+            database pool.  See the jdbc.db property in the ts.jte for
+            more details.
+      -->
+      <propertycopy name="jdbc.dataSource" from="${jdbc.db}.dataSource" silent="true"/>
+      <propertycopy name="jdbc.properties" from="${jdbc.db}.properties" silent="true"/>
+    </target>
+
+    <!-- Convert the paths to dos/unix as needed -->
+    <target name="convertPaths" >
+        <translatepath escape="no" propname="s1as.asenv.loc"/>
+
+        <path id="foo3">
+            <pathelement location="${server.domain}" />
+        </path>
+        <pathconvert targetos="${os}" property="domain.path"
+                     refid="foo3"
+                     dirsep="${dir.sep}" >
+        </pathconvert>
+    </target>
+
+    <!--
+       clean.s1as removes all of the configuration settings required by
+       cts.  Note this does not remove the JMS resources.
+    -->
+    <target name="clean.s1as" 
+           depends= "drop.cts.users, drop.javamail.resources, drop.jdbc.resources, drop.jdbc.pools, 
+                    drop.jaxr, drop.jvm.options, drop.classpathsuffix, drop.certs, 
+                    drop.ssl.client.config, unconfig.jpa, delete.provider.jar, drop.custom.resource" />
+
+    <!--
+       cleanall.s1as removes all of the configuration settings required by
+       cts.  Note this does not remove the JMS resources.
+    -->
+    <target name="cleanall.s1as" 
+           depends= "clean.s1as, disable.jms" />
+
+    <!--
+       config.s1as configures all of the S1AS settings required by
+       cts.  Note this does not configure the JMS and security resources.
+    -->
+    <target name="config.s1as" 
+           depends= "start.appserver, change.applicationRoot, copy.provider.jar, config.jpa, 
+                    add.cts.users, add.javamail.resources, add.jdbc.pools, add.jaxr, 
+                    add.jdbc.resources,  drop.jvm.options, add.jvm.options, add.classpathsuffix,  
+                    set.http.ports, set.orbport, create.asadmin.bat, concat.security, add.cert, 
+                    add.custom.resource, enable.trace" />
+
+    <!--
+       configall.s1as configures all of the S1AS settings required by
+       cts. 
+    -->
+    <target name="configall.s1as" 
+           depends= "config.s1as, enable.jms" />
+
+    <!--
+       copy.provider.jar copies the provider jar files to the instance lib directory.
+    -->
+    <target name="copy.provider.jar">
+        <copy file="${ts.home}/lib/tsprovider.jar" tofile="${javaee.home}/lib/tsprovider.jar" overwrite="yes" />
+    </target>
+    <target name="delete.provider.jar">
+       <delete file="${javaee.home}/lib/tsprovider.jar" quiet="true"/>
+    </target>
+
+    <!--
+      add.jvm.options installs the jvm options defined in the build.properties
+      file.   
+    -->
+    <target name="add.jvm.options" depends="configPlatform" if="jvm.args.set">
+         <antcall target="create-jvm-options" >
+          <param name="jvm.options" value="${s1as.jvm.options}"/>
+         </antcall>
+
+         <!-- add call to set jvm option for use by interop-csiv2 loggerServlet -->
+         <antcall target="create-one-jvm-option" >
+            <param name="jvm.options" value=" -Dri.log.file.location=${ri.log.file.location}"/>
+         </antcall>
+
+    </target>
+
+    <!--
+      drop.jvm.options removes the jvm options that have been previously set.
+    -->
+    <target name="drop.jvm.options" depends="configPlatform" if="jvm.args.set">
+
+         <antcall target="delete-jvm-options" >
+          <param name="jvm.options" value=" ${s1as.jvm.options.remove}"/>
+         </antcall>
+
+         <antcall target="delete-one-jvm-option" >
+            <param name="jvm.options" value=" -Dri.log.file.location=${ri.log.file.location}"/>
+         </antcall>
+
+         <antcall target="delete.tx.interop"/>
+    </target>
+
+    <!--
+      add.classpathsuffix adds the classpath settings as defined in 
+      build.properties.
+
+     The path is converted to correctly reflect the OS that ant is being
+     executed on.
+    -->
+    <target name="add.classpathsuffix" depends="configPlatform" >
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.java-config.classpath_suffix=${s1as.classpathsuffix}"/>
+         </antcall>
+    </target>
+
+    <!--
+      add.cts.users configures the users required by cts.
+    -->
+    <target name="add.cts.users" depends="configPlatform, determine.jmsServer">
+         <antcall target="create-file-user" >
+          <param name="userpassword" value="j2ee"/>
+          <param name="usergroups" value="staff:mgr:asadmin"/>
+          <param name="userName" value="j2ee"/>
+         </antcall>
+         <antcall target="create-file-user" >
+          <param name="userpassword" value="javajoe"/>
+          <param name="usergroups" value="guest"/>
+          <param name="userName" value="javajoe"/>
+         </antcall>
+         <antcall target="create-file-user" >
+          <param name="userpassword" value="j2ee_vi"/>
+          <param name="usergroups" value="staff"/>
+          <param name="userName" value="j2ee_vi"/>
+         </antcall>
+    	<!--
+    	  There is no MQ in the web bundle so skip adding the JMS users unless
+    	  we are running against a full EE impl.
+    	-->
+    	<if>
+    	  <contains string="${javaee.level}" substring="full"/>
+    	<then>
+         <antcall target="create-jms-user" >
+          <param name="jmsServer" value="${jmsServer}"/>
+          <param name="userName" value="j2ee"/>
+          <param name="userPassword" value="j2ee"/>
+          <param name="userGroup" value="admin"/>
+         </antcall>
+         <antcall target="create-jms-user" >
+          <param name="jmsServer" value="${jmsServer}"/>
+          <param name="userName" value="javajoe"/>
+          <param name="userPassword" value="javajoe"/>
+          <param name="userGroup" value="admin"/>
+         </antcall>
+       </then>
+       <else>
+         <echo>******************************************</echo>
+         <echo>WEB PROFILE in use, JMS Users NOT Created.</echo>
+         <echo>******************************************</echo>
+       </else>
+       </if>
+    </target>
+
+    <!--
+      drop.cts.users removes the users required by cts.
+    -->
+    <target name="drop.cts.users" depends="configPlatform,determine.jmsServer">
+         <antcall target="delete-file-user" >
+          <param name="userName" value="j2ee"/>
+         </antcall>
+         <antcall target="delete-file-user" >
+          <param name="userName" value="javajoe"/>
+         </antcall>
+         <antcall target="delete-file-user" >
+          <param name="userName" value="j2ee_vi"/>
+         </antcall>
+         
+       <if>  
+         <contains string="${javaee.level}" substring="full"/>
+       <then>
+         <antcall target="delete-jms-user" >
+          <param name="jmsServer" value="${jmsServer}"/>
+          <param name="userName" value="j2ee"/>
+          <param name="userPassword" value="j2ee"/>
+          <param name="userGroup" value="admin"/>
+         </antcall>
+         <antcall target="delete-jms-user" >
+          <param name="jmsServer" value="${jmsServer}"/>
+          <param name="userName" value="javajoe"/>
+          <param name="userPassword" value="javajoe"/>
+          <param name="userGroup" value="admin"/>
+         </antcall>
+       </then>
+       <else>         
+         <echo>******************************************</echo>
+         <echo>WEB PROFILE in use, JMS Users NOT Deleted.</echo>
+         <echo>******************************************</echo>
+       </else>
+       </if>
+     </target>
+
+     <!--
+      add.jdbc.pools configures the connection pools defined in the
+      build.properties files.
+     -->
+     <target name="add.jdbc.pools" depends="configPlatform" if="create.jdbc.pools.prop">
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${use.derby.dataSource}"/>
+          <param name="pool.properties" value="${use.derby.properties}"/>
+          <param name="poolName" value="${use.derby.poolName}"/>
+         </antcall>
+
+        <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${derbyEmbedded.dataSource}"/>
+          <param name="pool.properties" value="${derbyEmbedded.properties}"/>
+          <param name="poolName" value="${derbyEmbedded.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${pointbase.dataSource}"/>
+          <param name="pool.properties" value="${pointbase.properties}"/>
+          <param name="poolName" value="${pointbase.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.XADataSource"/>
+          <param name="datasourceclassname" value="org.apache.derby.jdbc.EmbeddedXADataSource"/>
+          <param name="pool.properties" value="${derbyEmbedded.properties}"/>
+          <param name="poolName" value="${timer.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${mssqlserver.dataSource}"/>
+          <param name="pool.properties" value="${mssqlserver.properties}"/>
+          <param name="poolName" value="${mssqlserver.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${mssqlserverDD.dataSource}"/>
+          <param name="pool.properties" value="${mssqlserverDD.properties}"/>
+          <param name="poolName" value="${mssqlserverDD.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${mssqlserverSun.dataSource}"/>
+          <param name="pool.properties" value="${mssqlserverSun.properties}"/>
+          <param name="poolName" value="${mssqlserverSun.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${mssqlserverInet.dataSource}"/>
+          <param name="pool.properties" value="${mssqlserverInet.properties}"/>
+          <param name="poolName" value="${mssqlserverInet.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${oracleDD.dataSource}"/>
+          <param name="pool.properties" value="${oracleDD.properties}"/>
+          <param name="poolName" value="${oracleDD.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${oracleSun.dataSource}"/>
+          <param name="pool.properties" value="${oracleSun.properties}"/>
+          <param name="poolName" value="${oracleSun.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${oracle.dataSource}"/>
+          <param name="pool.properties" value="${oracle.properties}"/>
+          <param name="poolName" value="${oracle.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${oracleOCI.dataSource}"/>
+          <param name="pool.properties" value="${oracleOCI.properties}"/>
+          <param name="poolName" value="${oracleOCI.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${oracleInet.dataSource}"/>
+          <param name="pool.properties" value="${oracleInet.properties}"/>
+          <param name="poolName" value="${oracleInet.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${sybase.dataSource}"/>
+          <param name="pool.properties" value="${sybase.properties}"/>
+          <param name="poolName" value="${sybase.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${sybaseInet.dataSource}"/>
+          <param name="pool.properties" value="${sybaseInet.properties}"/>
+          <param name="poolName" value="${sybaseInet.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${sybaseDD.dataSource}"/>
+          <param name="pool.properties" value="${sybaseDD.properties}"/>
+          <param name="poolName" value="${sybaseDD.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${sybaseSun.dataSource}"/>
+          <param name="pool.properties" value="${sybaseSun.properties}"/>
+          <param name="poolName" value="${sybaseSun.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${db2.dataSource}"/>
+          <param name="pool.properties" value="${db2.properties}"/>
+          <param name="poolName" value="${db2.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${db2DD.dataSource}"/>
+          <param name="pool.properties" value="${db2DD.properties}"/>
+          <param name="poolName" value="${db2DD.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${db2Sun.dataSource}"/>
+          <param name="pool.properties" value="${db2Sun.properties}"/>
+          <param name="poolName" value="${db2Sun.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${mysql.dataSource}"/>
+          <param name="pool.properties" value="${mysql.properties}"/>
+          <param name="poolName" value="${mysql.poolName}"/>
+         </antcall>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${postgresql.dataSource}"/>
+          <param name="pool.properties" value="${postgresql.properties}"/>
+          <param name="poolName" value="${postgresql.poolName}"/>
+         </antcall>
+
+         <!-- For Batch TCK tests  -->
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${batch.db.dataSource}"/>
+          <param name="pool.properties" value="${batch.db.properties}"/>
+          <param name="poolName" value="cts-derby-jsr352-tck-pool"/>
+         </antcall>       
+     </target>
+
+     <!--
+        drop.jdbc.pools remove the connection pools defined in the
+        build.properties files.
+     -->
+     <target name="drop.jdbc.pools" depends="configPlatform" if="create.jdbc.pools.prop">
+
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${use.derby.poolName}"/>
+         </antcall>
+         
+         <!-- For Batch TCK tests  -->
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="cts-derby-jsr352-tck-pool"/>
+         </antcall>
+
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${derbyEmbedded.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${pointbase.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${timer.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${mssqlserver.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${mssqlserverDD.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${mssqlserverSun.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${mssqlserverInet.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${oracle.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${oracleOCI.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${oracleDD.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${oracleSun.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${oracleInet.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${sybase.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${sybaseInet.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${sybaseDD.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${sybaseSun.poolName}"/>
+         </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${db2.poolName}"/>
+        </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${db2DD.poolName}"/>
+        </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${db2Sun.poolName}"/>
+        </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${mysql.poolName}"/>
+        </antcall>
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${postgresql.poolName}"/>
+        </antcall>
+
+     </target>
+
+     <!--
+       Change the JNDI entries for jdo/pmf, jdbc/DB1, jdbc/DBTimer
+       Modify the classpathsuffix to include the new jdbc drivers.
+     -->
+     <target name= "modify.jdbc.resources" depends="drop.jdbc.resources, add.jdbc.resources, restart.server"/>
+
+     <target name="copy.db2.jars" if="using.db2.type2">
+       <copy todir="${server.domain}/lib/ext" overwrite="yes">
+         <fileset dir="${jdbc.lib.class.path}">
+           <include name="db2*"/>
+         </fileset>
+       </copy>
+     </target>
+
+     <target name="delete.db2.jars" unless="using.db2.type2">
+       <delete quiet="true">
+         <fileset dir="${server.domain}/lib/ext">
+           <include name="db2*"/>
+         </fileset>
+       </delete>
+     </target>
+
+     <!--
+        add.jdbc.resources configures the JNDI resources used by cts to
+        the correct connection pool as defined in the build.properties file.
+
+        Also set the maxPoolSize and steadyPoolSize for the connection pool
+        under test.
+     -->
+     <target name="add.jdbc.resources" depends="configPlatform" if="create.jdbc.pools.prop">
+
+        <antcall target="copy.db2.jars"/>
+        <antcall target="delete.db2.jars"/>
+
+<!-- 
+  Since the get command is broken (issue tracker bug id 7151) we need to use
+  our regular expression hack to set the extension directories while the server
+  is down. If we modify the domain.xml disk file while the server is up, the
+  server process can overwrite our changes to the domain.xml file. See
+  set.ext.dirs target below to see the hack.  We now call these two targets from
+  javaee_vi.xml's config.vi target before the server is started.  Seems to do
+  the trick.  This code can be reverted once they fix bug ID 7151.  We can go
+  back to using the get command.
+
+        <antcall target="reset.ext.dirs"/>
+        <antcall target="add.ext.dirs"/>
+-->
+        <antcall target="set" >
+          <param name="set.value" value=" ${resources.dottedname.prefix}.jdbc-connection-pool.${use.jdbc.poolName}.max_pool_size=${use.jdbc.maxpoolsize}"/>
+        </antcall>
+
+        <antcall target="set" >
+          <param name="set.value" value=" ${resources.dottedname.prefix}.jdbc-connection-pool.${use.jdbc.poolName}.steady_pool_size=${use.jdbc.steadypoolsize}"/>
+        </antcall>
+      
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="${use.jdbc.poolName}"/>
+          <param name="jndiName" value="jdbc/DB1"/>
+        </antcall>
+        
+        <!-- Batch TCK Tests -->   
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="cts-derby-jsr352-tck-pool"/>
+          <param name="jndiName" value="jdbc/orderDB"/>
+        </antcall>
+
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="${timer.poolName}"/>
+          <param name="jndiName" value="jdbc/DBTimer"/>
+        </antcall>
+
+        <!-- Start XA Specific Resources. -->
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="cts-derby-XA-pool"/>
+          <param name="jndiName" value="eis/JDBCwhitebox-xa"/>
+        </antcall>
+
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="cts-derby-XA-pool"/>
+          <param name="jndiName" value="eis/JDBCwhitebox-tx"/>
+        </antcall>
+
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="cts-derby-XA-pool"/>
+          <param name="jndiName" value="eis/JDBCwhitebox-notx"/>
+        </antcall>
+        <!-- End XA Specific Resources. -->
+        
+        <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${jdbc.dataSource}"/>
+          <param name="pool.properties" value="${jdbc.properties}"/>
+          <param name="poolName" value="${use.jdbc.poolName}_no_tx"/>
+        </antcall>
+
+        <antcall target="set" >
+          <param name="set.value" value=" ${resources.dottedname.prefix}.jdbc-connection-pool.${use.jdbc.poolName}_no_tx.non-transactional-connections=true"/>
+        </antcall>
+
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="${use.jdbc.poolName}_no_tx"/>
+          <param name="jndiName" value="jdbc/DB_no_tx"/>
+        </antcall>        
+
+	 <antcall target="create-jdbc-resource" >
+            <param name="connectionpoolid" value="${use.jdbc.poolName}"/>
+            <param name="jndiName" value="jdbc/securityAPIDB"/>
+         </antcall>
+
+     </target>
+
+     <!--
+      drop.jdbc.resources removes the JNDI resources used by cts.
+     -->
+     <target name="drop.jdbc.resources" depends="configPlatform" if="create.jdbc.pools.prop">
+
+         <!-- Batch TCK Tests -->
+        <!--<antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="jdbc/batch"/>
+         </antcall>-->
+         
+         <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="jdbc/orderDB"/>
+         </antcall>
+         
+         <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="jdbc/DB1"/>
+         </antcall>
+        <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="jdbc/DBTimer"/>
+         </antcall>
+
+        <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="jdbc/DB_no_tx"/>
+        </antcall>        
+
+        <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${use.jdbc.poolName}_no_tx"/>
+        </antcall>
+
+        <!-- Start XA Specific Resources. -->
+        <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="eis/JDBCwhitebox-xa"/>
+        </antcall>
+
+        <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="eis/JDBCwhitebox-tx"/>
+        </antcall>
+
+        <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="eis/JDBCwhitebox-notx"/>
+        </antcall>
+        <!-- End XA Specific Resources. -->
+
+     </target>
+
+
+     <target name="config.connector" >
+       <if>
+           <and>
+                <available file="${ts.home}/src/com/sun/ts/tests/common/connector"/>
+           </and>
+       <then>
+           <ant antfile="${common.bin.dir}/xml/impl/glassfish/connector.xml" target="config.connector"/>
+       </then>
+       </if>
+     </target>
+
+ 
+     <!-- 
+       Convenience method to support configuring connector rars, resources, and pools.
+     -->
+     <target name="setup.all.rars.and.pools" depends="configPlatform">
+
+       <ant antfile="${common.bin.dir}/xml/impl/glassfish/connector.xml" target="setup.all.rars.and.pools">
+       </ant>
+
+     </target>
+
+
+     <target name="undeploy.all.rars.and.pools" >
+       <ant antfile="${common.bin.dir}/xml/impl/glassfish/connector.xml" target="undeploy.all.rars.and.pools">
+       </ant>
+     </target>
+ 
+
+     <!--
+       Enable all of the required JMS resources  used by cts.
+     -->
+     <target name="enable.jms" depends="configPlatform ">
+       <if>
+         <contains string="${javaee.level}" substring="full"/>
+       <then>
+         <echo message="****server.instance: ${server.instance}"/>
+         <if>
+           <equals arg1="${test.sa.jmsra}" arg2="true"/>
+         <then>
+           <ant antfile="${bin.dir}/xml/impl/glassfish/jmsra.xml" target="doJMSRAConfig"/>
+         </then>
+         <else>
+           <exec executable="${exec.asadmin}" >
+             <env key="AS_ADMIN_USER" value="${s1as.admin.user}"/>
+             <env key="AS_ADMIN_PASSWORDFILE" value="${password.file}"/>
+             <env key="AS_ADMIN_HOST" value="${s1as.admin.host}"/>
+             <env key="AS_ADMIN_PORT" value="${s1as.admin.port}"/>
+             <env key="AS_ADMIN_TARGET" value="${server.instance}"/>
+             <arg line="${exec.asadmin.part2}" />
+             <arg line=" --echo=true "/>
+             <arg line="multimode " />
+             <arg line="--file ${bin.dir}/xml/impl/glassfish/templates/create.jms.template " />
+           </exec>
+         </else>
+         </if>
+       </then>
+       <else>
+         <echo>**********************************************</echo>
+         <echo>WEB PROFILE in use, JMS Resources NOT Created.</echo>
+         <echo>**********************************************</echo>
+       </else>
+       </if>
+     </target>
+
+     <!--
+       Disable all of the required JMS resources  used by cts.
+     -->
+     <target name="disable.jms" depends="configPlatform">
+       <if>
+         <contains string="${javaee.level}" substring="full"/>
+       <then>
+         <echo message="****server.instance: ${server.instance}"/>
+         <if>
+           <equals arg1="${test.sa.jmsra}" arg2="true"/>
+         <then>
+           <ant antfile="${bin.dir}/xml/impl/glassfish/jmsra.xml" target="doJMSRAUnconfig"/>
+         </then>
+         <else>
+           <exec executable="${exec.asadmin}" >
+             <env key="AS_ADMIN_USER" value="${s1as.admin.user}"/>
+             <env key="AS_ADMIN_PASSWORDFILE" value="${password.file}"/>
+             <env key="AS_ADMIN_HOST" value="${s1as.admin.host}"/>
+             <env key="AS_ADMIN_PORT" value="${s1as.admin.port}"/>
+             <env key="AS_ADMIN_TARGET" value="${server.instance}"/>
+             <arg line="${exec.asadmin.part2}" />
+             <arg line=" --echo=true "/>
+             <arg line="multimode " />
+             <arg line="--file ${bin.dir}/xml/impl/glassfish/templates/delete.jms.template " />
+           </exec>
+         </else>
+         </if>
+       </then>
+       <else>
+         <echo>**********************************************</echo>
+         <echo>WEB PROFILE in use, JMS Resources NOT Deleted.</echo>
+         <echo>**********************************************</echo>
+       </else>
+       </if>
+     </target>
+
+     <!--
+       add.javamail.resources configures the javamail JNDI resources 
+       required by cts.
+     -->
+     <target name="add.javamail.resources" depends="configPlatform">
+         <antcall target="create-javamail-resource" >
+          <param name="jndiName" value=" mail/Session"/>
+         </antcall>
+     </target>
+	
+	 <target name="populateMailbox">
+	     <ant antfile="${src.dir}/com/sun/ts/tests/javamail/ee/util/build.xml" target="populateMailbox"/>
+	 </target>
+
+     <!--
+       drop.javamail.resources removes the javamail JNDI resources 
+       required by cts.
+     -->
+     <target name="drop.javamail.resources" depends="configPlatform">
+         <antcall target="delete-javamail-resource" >
+          <param name="jndiName" value=" mail/Session"/>
+         </antcall>
+     </target>
+	
+    <target name="clearMailbox">
+    	<ant antfile="${src.dir}/com/sun/ts/tests/javamail/ee/util/build.xml" target="clearMailbox"/>
+    </target>
+
+     <!--
+       Remove the custom resources
+     -->
+     <target name="drop.custom.resource" depends="configPlatform">
+        <exec executable="${exec.asadmin}" >
+            <arg line="${exec.asadmin.part2}" />
+            <arg line=" --user ${admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${server.host}"/>
+            <arg line=" --port ${server.port}"/>
+            <arg line=" delete-custom-resource"/>
+            <arg line=" ${custom.resource.jndi.name}"/>
+        </exec>
+     </target>
+
+     <!--
+       Add the custom resources
+     -->
+     <target name="add.custom.resource" depends="configPlatform">
+        <exec executable="${exec.asadmin}" >
+            <arg line="${exec.asadmin.part2}" />
+            <arg line=" --user ${admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${server.host}"/>
+            <arg line=" --port ${server.port}"/>
+            <arg line=" create-custom-resource"/>
+            <arg line=" --restype com.sun.ts.lib.deliverable.cts.resource.Dog"/>
+            <arg line=" --factoryclass com.sun.ts.lib.deliverable.cts.resource.DogFactory"/>
+            <arg line=" ${custom.resource.jndi.name}"/>
+        </exec>
+     </target>
+
+      <!--
+         Set the ORB port by calling the correct target based on whether
+         we are configuring PE or EE.
+     -->
+     <target name="set.orbport">
+        <antcall target="set.orbport.pe"/>
+        <antcall target="set.orbport.ee"/>
+     </target>
+
+      <!--
+         Set the HTTP ports by calling the correct target based on whether
+         we are configuring PE or EE.
+     -->
+     <target name="set.http.ports">
+        <antcall target="set.http.ports.pe"/>
+        <antcall target="set.http.ports.ee"/>
+     </target>
+
+     <!--
+      set.orbport configures the orb port  for PE required by cts.
+     -->
+     <target name="set.orbport.pe" depends="configPlatform" unless="use.create.system.properties">
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.iiop-service.iiop-listener.${instance.listenerName}.port=${server.orb.port}"/>
+         </antcall>
+     </target>
+     
+     <!--
+       set the http listener ports for PE
+     -->
+     <target name="set.http.ports.pe" depends="configPlatform"  unless="use.create.system.properties">
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.network-config.network-listeners.network-listener.http-listener-1.port=${webServerPort}"/>
+         </antcall>
+     	
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.network-config.network-listeners.network-listener.http-listener-2.port=${securedWebServicePort}"/>
+         </antcall>
+
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.network-config.network-listeners.network-listener.http-listener-2.enabled=true"/>
+         </antcall>
+     </target>
+
+
+     <!--
+          Set the ORB port for SE/EE by updating the correct System Property
+     -->
+     <target name="set.orbport.ee" depends="configPlatform" if="use.create.system.properties">
+         <antcall target="create-system-properties" >
+          <param name="property" value=" IIOP_LISTENER_PORT=${server.orb.port}"/>
+          <param name="instance.name" value=" ${server.instance}-config"/>
+         </antcall>
+     </target>
+
+     <!--
+          Set the http ports for SE/EE by updating the correct System Properties
+     -->
+     <target name="set.http.ports.ee" depends="configPlatform" if="use.create.system.properties">
+         <antcall target="create-system-properties" >
+          <param name="property" value=" HTTP_LISTENER_PORT=${webServerPort}"/>
+          <param name="instance.name" value=" ${server.instance}-config"/>
+         </antcall>
+
+         <antcall target="create-system-properties" >
+          <param name="property" value=" HTTP_SSL_LISTENER_PORT=${securedWebServicePort}"/>
+          <param name="instance.name" value=" ${server.instance}-config"/>
+         </antcall>
+     </target>
+
+     <!--
+          Install the required jaxr pool and resource
+     -->
+     <target name="add.jaxr" depends="configPlatform" >
+       <if>
+         <contains string="${javaee.level}" substring="full"/>
+       <then>
+         <antcall target="create-connector-connection-pool" >
+          <param name="rarName" value="jaxr-ra"/>
+          <param name="poolName" value="jaxr-pool-1"/>
+         </antcall>
+
+         <antcall target="create-connector-resource" >
+          <param name="poolName" value="jaxr-pool-1"/>
+          <param name="jndiName" value="eis/JAXR"/>
+         </antcall>
+       </then>
+       <else>
+         <echo>*******************************************************</echo>
+         <echo>WEB PROFILE in use, JAXR Resource and Pool NOT Created.</echo>
+         <echo>*******************************************************</echo>
+       </else>
+       </if>
+     </target>
+
+     <!--
+          Remove the required jaxr pool and resource
+     -->
+     <target name="drop.jaxr" depends="configPlatform">
+       <if>
+         <contains string="${javaee.level}" substring="full"/>
+       <then>
+         <antcall target="delete-connector-resource" >
+          <param name="jndiName" value="eis/JAXR"/>
+         </antcall>
+
+         <antcall target="delete-connector-connection-pool" >
+          <param name="poolName" value="jaxr-pool-1"/>
+         </antcall>
+       </then>
+       <else>
+         <echo>*******************************************************</echo>
+         <echo>WEB PROFILE in use, JAXR Resource and Pool NOT Created.</echo>
+         <echo>*******************************************************</echo>
+       </else>
+       </if>
+     </target>
+
+
+    <!-- revisit these values for V3. -->
+    <target name="set.ext.dirs.value.mac" if="isMac">
+      <property name="default.ext.dirs" value="$$\{com.sun.aas.javaRoot\}/lib/ext$\{path.separator\}$$\{com.sun.aas.javaRoot\}/jre/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.installRoot\}/lib/jdbcdrivers$$\{path.separator\}$$\{com.sun.aas.installRoot\}/../javadb/lib"/>
+    </target>
+
+    <target name="set.ext.dirs.value.non.mac" unless="isMac">
+      <property name="default.ext.dirs" value="$$\{com.sun.aas.javaRoot\}/lib/ext$\{path.separator\}$$\{com.sun.aas.javaRoot\}/jre/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.installRoot\}/lib/jdbcdrivers$$\{path.separator\}$$\{com.sun.aas.installRoot\}/../javadb/lib"/>      
+    </target>
+
+
+    <!--
+      reset.ext.dirs Sets the S1AS extension directory property
+      back to it's original value as defined by the default.ext.dirs
+      property.
+    -->
+    <target name="reset.ext.dirs" depends="set.ext.dirs.value.mac, set.ext.dirs.value.non.mac"
+            unless="using.db2.type2">
+      <antcall target="set.ext.dirs">
+        <param name="ext.dirs.to.use" value="${default.ext.dirs}"/>
+      </antcall>
+    </target>
+
+    <!--
+      add.ext.dirs Add the extension directories defined by
+      the s1as.db.ext.dirs property in the ts.jte file to the
+      S1AS extension directory.  This is currently used to allow
+      CTS to run against S1AS using a type 2 DB driver.  Currently
+      our only type 2 driver is DB2.
+    -->
+    <target name="add.ext.dirs" depends="set.ext.dirs.value.mac, set.ext.dirs.value.non.mac"
+            if="db2.props.set">
+      <antcall target="set.ext.dirs">
+        <param name="ext.dirs.to.use" value="${default.ext.dirs}$$\{path.separator\}${s1as.db.ext.dirs}"/>
+      </antcall>
+    </target>
+
+    <!--
+      set.ext.dirs sets the extension directory value for S1AS.
+      The value is passed as the ext.dirs.to.use param.  This
+      task is called by add.ext.dirs and reset.ext.dirs.
+    -->
+    <target name="set.ext.dirs">
+
+      <property name ="domain.file"
+                value="${server.home}/domains/domain1/config/domain.xml"/>
+      <loadfile property="domain.file.contents" srcfile="${domain.file}"/>
+      <propertyregex property="ext.dir.not.found"
+                     input="${domain.file.contents}"
+                     regexp="&lt;jvm-options>-Djava.ext.dirs=(.*)&lt;/jvm-options>"
+                     replace="&lt;jvm-options>-Djava.ext.dirs=${ext.dirs.to.use}&lt;/jvm-options>"
+                     defaultvalue="true"/>
+      <if>
+        <istrue value="${ext.dir.not.found}"/>
+      <then>
+        <echo>Extension directory does not match default, so not setting.</echo>
+      </then>
+      <else>
+        <echo>Extension directory found.</echo>
+        <echo>  Extension directory set to: ${ext.dirs.to.use}</echo>
+        <copy file="${domain.file}" tofile="${domain.file}.original" failonerror="false"/>
+        <echo message="${ext.dir.not.found}" file="${domain.file}"/>
+        <echo>${domain.file} written to disk.</echo>
+      </else>
+      </if>
+
+
+<!-- Currently broken in V3.  See bug ID 7151 in issues tracker.  Add back secodn dash to
+     user, passworfile, host and port when working, sicne the double -'s are not allowed in XML
+     comments.
+
+         <exec executable="${exec.asadmin}" outputproperty="current.props">
+            <arg line="${exec.asadmin.part2}"/>
+            <arg line="-user ${admin.user}"/>
+            <arg line="-passwordfile ${password.file}"/>
+            <arg line="-host ${server.host}"/>
+            <arg line="-port ${server.port}"/>
+            <arg line="get"/>
+            <arg line="${server.instance}-config.java-config.jvm_options"/>
+         </exec>
+         <string this="${current.props}" method="indexOf" return="index.of.ext.prop" arg1="${ext.dir.prop}"/>
+         <string this="${current.props}" method="substring" return="ext.dirs" arg1="${index.of.ext.prop}"/>
+         <string this="${ext.dirs}" method="indexOf" return="index.of.last.comma" arg1=","/>
+         <string this="${ext.dirs}" method="length" return="ext.dirs.length"/>
+         <condition property="end.index" value="${ext.dirs.length}">
+           <equals arg1="${index.of.last.comma}" arg2="-1"/>
+         </condition>
+         <property name="end.index" value="${index.of.last.comma}"/>
+         <string this="${ext.dirs}" method="substring" return="ext.dir" arg1="${start.index}" arg2="${end.index}"/>
+         <echo message="Current Extension Directories: &quot;${ext.dir}&quot;"/>
+         <property name="new.ext.dirs" value="${ext.dir.prop}${ext.dirs.to.use}"/>
+         <echo message="New Extension Directories: &quot;${new.ext.dirs}&quot;"/>
+         <antcall target="delete-jvm-options">
+           <param name="jvm.options" value="${ext.dir.prop}${ext.dir}"/>
+         </antcall>
+         <antcall target="create-jvm-options" >
+           <param name="jvm.options" value="${new.ext.dirs}"/>
+         </antcall>
+-->
+    </target>
+
+    <property name="ant.opts" value=""/>
+    <property name="run.client.args" value=""/>
+    <property name="buffering.enabled" value="false"/>
+    <property name="test.areas" value="appclient, connector, j2eetools, jaxws, jstl,
+                                       samples, webservices12, assembly, ejb, jacc,
+                                       jdbc, jta, servlet, ejb30, javamail, jms,
+                                       jws, signaturetest, xa, compat12, integration,
+                                       jaxr, jsf, rmiiiop, compat13, interop, jaxrpc,
+                                       jsp, saaj, webservices"/>
+    
+    <!-- timeout is specified in seconds, default is 3 minutes -->
+    <property name="jointimeout" value="180"/>
+    <property name="deliverabledir" value="j2ee"/>
+    <property name="buildJwsJaxws" value="true"/>
+    <property name="skip.server.restart" value="false"/>
+
+    <target name="run.cts">
+      <runcts runclientargs="${run.client.args}"
+              buildJwsJaxws="${buildJwsJaxws}"
+              reportdir="${report.dir}"
+              workdir="${work.dir}"
+              tshome="${ts.home}"
+              j2eehome="${javaee.home}"
+              testareas="${test.areas}"
+              jointimeout="${jointimeout}"
+              antopts="${ant.opts}"
+              deliverabledir="${deliverabledir}"
+              bufferingenabled="${buffering.enabled}"
+              skipserverrestart="${skip.server.restart}"/>
+    </target>
+
+    <target name="backup.ts.jte.file" unless="ts.jte.backed">
+       <copy file="${bin.dir}/ts.jte" tofile="${bin.dir}/ts.jte.original"/>
+    </target>
+
+    <target name="backup.domain.xml.file" unless="domain.xml.backed">
+        <copy file="${bin.dir}/build.xml" tofile="${bin.dir}/build.xml.original"/>       
+    </target>
+
+    <target name="config.cts.jcov">
+       <available file="${bin.dir}/ts.jte.original" property="ts.jte.backed"/>
+       <antcall target="backup.ts.jte.file"/>
+       <available file="${bin.dir}/build.xml.original" property="domain.xml.backed"/>
+       <antcall target="backup.domain.xml.file"/>
+       <configctsjcov tshome="${ts.home}" j2eehome="${javaee.home}"/>
+    </target>
+
+    <target name="config.cts.emma">
+       <available file="${bin.dir}/ts.jte.original" property="ts.jte.backed"/>
+       <antcall target="backup.ts.jte.file"/>
+       <available file="${bin.dir}/build.xml.original" property="domain.xml.backed"/>
+       <antcall target="backup.domain.xml.file"/>
+       <configctsemma tshome="${ts.home}" j2eehome="${javaee.home}"/>
+    </target>
+
+    <!--  
+         Determine if we are running PE, SE or the EE.
+         We will then set the correct jmsServer value to use
+    -->
+
+    <target name="determine.jmsServer" 
+           depends="get.platform.edition, set.jmsPEBroker, set.jmsSEBroker" >
+       <echo message="Using MQ broker=${jmsServer}"/>
+    </target>
+    <target name="set.jmsPEBroker" if="foundPE">
+          <property name="jmsServer" value="${s1as.pe.jmsServer}" />
+    </target>
+    <target name="set.jmsSEBroker" unless="foundPE">
+          <property name="jmsServer" 
+                          value="${s1as.se.jmsServer}" />
+    </target>
+
+
+    <!-- 
+       Delete the certs from the SJSAS keystore
+    -->
+    <target name="drop.certs" depends="configPlatform">
+       
+       <antcall target="delete.cert" >
+          <param name="cert.alias" value="${client.cert.alias}" />
+          <param name="trustStore" value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
+          <param name="trustStore.password" value="${keystore.password}" />
+       </antcall>
+
+       <antcall target="delete.cert" >
+          <param name="cert.alias" value="RI_CERT" />
+          <param name="trustStore" 
+             value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
+          <param name="trustStore.password" value="${keystore.password}" />
+       </antcall>
+     </target>
+
+    <!--
+       Add cts certificate to SJSAS
+     -->
+     <target name="add.cert" depends="configPlatform,checkForFiles,generate.certs" >
+        <antcall target="import.cert" >
+            <param name="cert.alias" value="${client.cert.alias}" />
+            <param name="cert.file" value="${cert.file}" />
+            <param name="trustStore.password" value="${keystore.password}" />
+            <param name="trustStore" 
+                   value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
+        </antcall>
+
+         <antcall target="add.cts.cert.into.nss.databases"/>
+
+     </target>
+
+     <target name="add.cts.cert.into.nss.databases" if="found.nss.databases" >
+          <echo message="Importing cts certificate into NSS database" />
+          <exec executable="${exec.certutil}">
+            <env key="JAVA_HOME" value="${java.home}" />
+            <arg line=" ${exec.certutil.part2}" />
+            <arg line=" -A" />
+            <arg line=" -a" />
+            <arg line=" -n" />
+            <arg line=" cts" />
+            <arg line=" -t" />
+            <arg line=" CTP,CTP,CTP" />
+            <arg line=" -d" />
+            <arg line=" ${NSSConfigDir}" />
+            <arg line=" -i" />
+            <arg line=" ${bin.dir}/certificates/cts_cert" />
+          </exec>
+     </target>
+
+
+     <!--
+        Add the certificates needed for running the interop tests
+     -->
+     <target name="add.interop.certs" depends="configPlatform,checkForFiles,generate.certs" >
+
+        <!--
+             Next add the RI server certificate into the SJAS truststore
+        -->
+        <antcall target="export.cert" >
+            <param name="cert.alias" value="${server.cert.alias}" />
+            <param name="cert.file" value="${ts.home}/tmp/ri_server_cert.file" />
+            <param name="trustStore"
+                  value="${ri.domain.dir}/${ri.domain.name}/config/keystore.jks"/>
+            <param name="trustStore.password" value="${keystore.password}" />
+        </antcall>
+
+        <antcall target="import.cert" >
+            <param name="cert.alias" value="RI_CERT" />
+            <param name="cert.file" value="${ts.home}/tmp/ri_server_cert.file" />
+            <param name="trustStore.password" value="${keystore.password}" />
+            <param name="trustStore"
+                   value="${s1as.domain.dir}/${s1as.domain.name}/config/cacerts.jks"/>
+         </antcall>
+
+         <!--
+             Next add the SJAS server certificate into the RI truststore
+         -->
+        <antcall target="export.cert" >
+            <param name="cert.alias" value="${server.cert.alias}" />
+            <param name="cert.file" value="${ts.home}/tmp/vi_server_cert.file" />
+            <param name="trustStore"
+                  value="${s1as.domain.dir}/${s1as.domain.name}/config/keystore.jks"/>
+            <param name="trustStore.password" value="${keystore.password}" />
+        </antcall>
+
+        <antcall target="import.cert" >
+            <param name="cert.alias" value="VI_CERT" />
+            <param name="cert.file" value="${ts.home}/tmp/vi_server_cert.file" />
+            <param name="trustStore.password" value="${keystore.password}" />
+            <param name="trustStore"
+                   value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks"/>
+         </antcall>
+
+         <antcall target="import.into.nss.databases" />
+
+         <antcall target="add.ssl.client.config" />
+
+         <!--
+            Note this target will restart only VI,
+            you should manually restart RI
+         -->
+        <antcall target="restart.server"/>
+        <echo message="Note: *** Please restart RI server manually ***" />
+        <echo message="Note: If you run CTS, VI and RI on the same machine you can restart RI using the following command  ant restart.ri " />
+
+     </target>
+
+     <target name="checkdasremote" >
+        <condition property="testingAgainstDAS">
+          <equals arg1="${sjsas.env.type}" arg2="das" casesensitive="true" trim="true"/>
+        </condition>
+
+        <condition property="testingAgainstRemoteInstance">
+          <equals arg1="${sjsas.env.type}" arg2="remote" casesensitive="true" trim="true"/>
+        </condition>
+     </target>
+
+     <target name="undeploy.all" depends="checkdasremote">
+         <antcall target="undeploy.all.das"/>
+         <antcall target="undeploy.all.remote"/>
+     </target>
+
+     <target name="undeploy.all.das" if="testingAgainstDAS">
+         <undeployall j2eehome="${javaee.home}" tshome="${ts.home}"/>
+     </target>
+
+     <target name="undeploy.all.remote" if="testingAgainstRemoteInstance">
+         <undeployall j2eehome="${javaee.home}"
+                      remoteinstance="true"
+                      tshome="${ts.home}"/>
+     </target>
+
+     <target name="config.jpa" >
+         <antcall target="create.jpa.vm.options"/>
+     </target>
+
+
+     <target name="unconfig.jpa" >
+         <antcall target="delete.jpa.vm.options"/>
+     </target>
+
+
+     <target name="config.jaspic" >
+         <antcall target="enable.tssv"/>
+     </target>
+
+
+     <target name="unconfig.jaspic" >
+         <antcall target="disable.tssv"/>
+     </target>
+
+
+    <!-- Enable configuration required by JASPIC TSSV (Test Suite SPI Verifier) -->
+    <target name="enable.tssv" depends="configPlatform">
+
+        <antcall target="copy.tssv.jar"/>
+        <antcall target="copy.tssv.config.files"/>
+
+        <antcall target="create.tssv.vm.options"/>
+
+        <!-- Restart server -->
+        <antcall target="restart.server" />
+
+        <!-- we need to deploy our jaspic log file processor -->
+        <fileset  id="jaspic_util"
+                  dir="${ts.home}/dist/"
+                  includes="com/sun/ts/tests/jaspic/util/jaspic_util_web.war"/>
+        <ts.glassfish.deploy>
+            <fileset refid="jaspic_util"/>
+        </ts.glassfish.deploy>
+    </target>
+
+
+    <!-- copy jaspic's tssv.jar (Test Suite SPI Verifier) to the instance lib dir  -->
+    <target name="copy.tssv.jar">
+        <copy file="${ts.home}/lib/tssv.jar" 
+              tofile="${javaee.home}/lib/tssv.jar" overwrite="yes" />
+    </target>
+
+
+    <!-- copy jaspic's tssv.config.files to the instance lib dir  -->
+    <target name="copy.tssv.config.files">
+       <translatepath propname="s1as.lib" />
+
+        <!-- copy ProviderConfiguration.xml file -->
+        <copy file="${ts.home}/src/com/sun/ts/tests/jaspic/tssv/config/ProviderConfiguration.xml" 
+              tofile="${provider.configuration.file}" overwrite="yes" />
+
+        <!-- copy provider-configuration.xsd file -->
+        <copy file="${ts.home}/src/com/sun/ts/tests/jaspic/tssv/config/provider-configuration.xsd" 
+              tofile="${schema.file.location}/provider-configuration.xsd" overwrite="yes" />
+
+    </target>
+
+
+    <target name="delete.tssv.jar">
+       <delete file="${javaee.home}/lib/tssv.jar" quiet="true"/>
+    </target>
+
+
+    <target name="delete.tssv.config.files">
+       <delete file="${javaee.home}/lib/tssv.jar" quiet="true"/>
+       <delete file="${provider.configuration.file}"   quiet="true"/>
+       <delete file="${schema.file.location}/provider-configuration.xsd"  quiet="true"/>
+    </target>
+ 
+   
+    <!-- this creates jvm props that are needed to successfully run jaspic tests -->
+    <target name="create.tssv.vm.options" depends="configPlatform">
+
+         <!-- copy our security propertys that will get appended to system security props 
+              (eg java.security props) by use of: "java -Djava.security.properties=..." -->
+         <echo message="Copying jaspic security property file to ${s1as.domain}/${server.config.dir}/ts.java.security" />
+         <copy file="${bin.dir}/ts.java.security" 
+               tofile="${s1as.domain}/${server.config.dir}/ts.java.security" overwrite="yes" />
+
+         <antcall target="create-one-jvm-option" >
+             <param name="jvm.options" value=" -Djava.security.properties=${server.domain}/${server.config.dir}/ts.java.security"/>
+         </antcall>
+
+         <antcall target="create-one-jvm-option" >
+             <param name="jvm.options" value=" -Dschema.file.location=${schema.file.location}"/>
+         </antcall>
+
+         <antcall target="create-one-jvm-option" >
+             <param name="jvm.options" value=" -Dlog.file.location=${log.file.location}"/>
+         </antcall>
+
+         <antcall target="create-one-jvm-option" >
+          <param name="jvm.options" value=" -Dprovider.configuration.file=${provider.configuration.file}"/>
+         </antcall>
+
+         <antcall target="create-jvm-options" >
+          <param name="jvm.options" value=" -Djava.security.manager"/>
+         </antcall>
+
+    </target>
+
+
+    <!--
+       Disable the configuration required by TSSV (Test Suite SPI Verifier)
+    -->
+    <target name="disable.tssv" depends="configPlatform">
+        <!-- we need to deploy our jaspic log file processor -->
+        <fileset  id="jaspic_util"
+                  dir="${ts.home}/dist/"
+                  includes="com/sun/ts/tests/jaspic/util/jaspic_util_web.war"/>
+
+        <ts.glassfish.undeploy>
+            <fileset refid="jaspic_util"/>
+        </ts.glassfish.undeploy>
+
+        <antcall target="delete.tssv.vm.options"/>
+        <!-- Restart server -->
+        <antcall target="restart.server" />
+    </target>
+
+
+    <target name="delete.tssv.vm.options" depends="configPlatform">
+
+         <echo message="Removing jaspic security property file: ${s1as.domain}/${server.config.dir}/ts.java.security" />
+        <delete file="${s1as.domain}/${server.config.dir}/ts.java.security" quiet="true"/>
+
+        <antcall target="delete-one-jvm-option" >
+            <param name="jvm.options" value=" -Djava.security.properties=${s1as.asenv.loc}/ts.java.security"/>
+        </antcall>
+
+        <antcall target="delete-one-jvm-option" >
+            <param name="jvm.options" value=" -Dlog.file.location=${log.file.location}"/>
+        </antcall>
+
+        <antcall target="delete-one-jvm-option" >
+            <param name="jvm.options" value=" -Dprovider.configuration.file=${provider.configuration.file}"/>
+        </antcall>
+    </target>
+
+    <target name="enable.security.manager" depends="configPlatform">
+	  <antcall target="create-jvm-options" >
+        	<param name="jvm.options" value=" -Djava.security.manager"/>
+          </antcall>
+    </target>
+    <target name="disable.security.manager" depends="configPlatform">
+           <antcall target="delete-jvm-options" >
+                <param name="jvm.options" value=" -Djava.security.manager"/>
+           </antcall>
+    </target>
+
+    <target name="start.javadb.asadmin"  depends="configPlatform">
+        <exec executable="${exec.asadmin}" failifexecutionfails="false">
+            <arg line="${exec.asadmin.part2}" />
+            <arg line=" start-database"/>
+            <arg line=" --dbport ${use.derby.port}"/>
+        </exec>
+    </target>
+
+    <target name="stop.javadb.asadmin"  depends="configPlatform">
+        <exec executable="${exec.asadmin}" failifexecutionfails="false">
+            <arg line="${exec.asadmin.part2}" />
+            <arg line=" stop-database"/>
+            <arg line=" --dbport ${use.derby.port}"/>
+        </exec>
+    </target>
+
+     <!-- Enable HTTP TRACE requests, they are disabled by default -->
+     <target name="enable.trace" depends="configPlatform">
+        <antcall target="set">
+          <param name="set.value" value=" ${server.instance}-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true"/>
+        </antcall>
+     </target>
+
+</project>

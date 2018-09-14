@@ -1,0 +1,846 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="ParameterModeTest"
+		targetNamespace="http://ParameterModeTest.org/" 
+				xmlns="http://schemas.xmlsoap.org/wsdl/" 
+				xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+				xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+				xmlns:tns="http://ParameterModeTest.org/" 
+				xmlns:s="http://ParameterModeTest.org/xsd" 
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ParameterModeTest.org/xsd">
+
+			<!-- ########################################## -->
+			<!-- These complex types are restricted by WSDL -->
+			<!-- ########################################## -->
+			<complexType name="ArrayOfstring">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfinteger">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:integer[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfint">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:int[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOflong">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:long[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfshort">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:short[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdecimal">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:decimal[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOffloat">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:float[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdouble">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:double[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfboolean">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:boolean[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfbyte">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="byte[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfQName">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="QName[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdateTime">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="dateTime[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencstring">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencboolean">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:boolean[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencfloat">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:float[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencdouble">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:double[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencdecimal">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:decimal[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencint">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:int[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencshort">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:short[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencbyte">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:byte[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfbase64Binary">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="base64Binary[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfhexBinary">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="hexBinary[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencbase64">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:base64[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<!-- ########################################## -->
+			<!-- Enumeration types                          -->
+			<!-- ########################################## -->
+			<element name="enumString" type="s:enumString"/>
+			<simpleType name="enumString">
+				<restriction base="xsd:string">
+					<enumeration value="String1" />
+					<enumeration value="String2" />
+				</restriction>
+			</simpleType>
+			<element name="enumInteger" type="s:enumInteger"/>
+			<simpleType name="enumInteger">
+				<restriction base="xsd:integer">
+					<enumeration value="3512359" />
+					<enumeration value="3512360" />
+				</restriction>
+			</simpleType>
+			<element name="enumInt" type="s:enumInt"/>
+			<simpleType name="enumInt">
+				<restriction base="xsd:int">
+					<enumeration value="-2147483648" />
+					<enumeration value="2147483647" />
+				</restriction>
+			</simpleType>
+			<element name="enumLong" type="s:enumLong"/>
+			<simpleType name="enumLong">
+				<restriction base="xsd:long">
+					<enumeration value="-9223372036854775808" />
+					<enumeration value="9223372036854775807" />
+				</restriction>
+			</simpleType>
+			<element name="enumShort" type="s:enumShort"/>
+			<simpleType name="enumShort">
+				<restriction base="xsd:short">
+					<enumeration value="-32768" />
+					<enumeration value="32767" />
+				</restriction>
+			</simpleType>
+			<element name="enumDecimal" type="s:enumDecimal"/>
+			<simpleType name="enumDecimal">
+				<restriction base="xsd:decimal">
+					<enumeration value="3512359.1456" />
+					<enumeration value="3512360.1456" />
+				</restriction>
+			</simpleType>
+			<element name="enumFloat" type="s:enumFloat"/>
+			<simpleType name="enumFloat">
+				<restriction base="xsd:float">
+					<enumeration value="-1.00000000" />
+					<enumeration value="3.00000000" />
+				</restriction>
+			</simpleType>
+			<element name="enumDouble" type="s:enumDouble"/>
+			<simpleType name="enumDouble">
+				<restriction base="xsd:double">
+					<enumeration value="-1.0000000000000" />
+					<enumeration value="3.0000000000000" />
+				</restriction>
+			</simpleType>
+			<element name="enumByte" type="s:enumByte"/>
+			<simpleType name="enumByte">
+				<restriction base="xsd:byte">
+					<enumeration value="-128" />
+					<enumeration value="127" />
+				</restriction>
+			</simpleType>
+
+			<!-- ########################################## -->
+			<!-- Struct types			  			   -->
+			<!-- ########################################## -->
+
+
+			<complexType name="AllStruct">
+				<all>
+         				<element name="varString" type="xsd:string"/>
+          			<element name="varInteger" type="xsd:integer"/>
+          			<element name="varInt" type="xsd:int"/>
+          			<element name="varLong" type="xsd:long"/>
+          			<element name="varShort" type="xsd:short"/>
+          			<element name="varDecimal" type="xsd:decimal"/>
+          			<element name="varFloat" type="xsd:float"/>
+          			<element name="varDouble" type="xsd:double"/>
+          			<element name="varBoolean" type="xsd:boolean"/>
+          			<element name="varByte" type="xsd:byte"/>
+          			<element name="varQName" type="xsd:QName"/>
+          			<element name="varDateTime" type="xsd:dateTime"/>
+          			<element name="varSoapString" type="soapenc:string"/>
+          			<element name="varSoapBoolean" type="soapenc:boolean"/>
+          			<element name="varSoapFloat" type="soapenc:float"/>
+          			<element name="varSoapDouble" type="soapenc:double"/>
+          			<element name="varSoapDecimal" type="soapenc:decimal"/>
+          			<element name="varSoapInt" type="soapenc:int"/>
+          			<element name="varSoapShort" type="soapenc:short"/>
+          			<element name="varSoapByte" type="soapenc:byte"/>
+          			<element name="varBase64Binary" type="xsd:base64Binary"/>
+          			<element name="varHexBinary" type="xsd:hexBinary"/>
+          			<element name="varSoapBase64" type="soapenc:base64"/>
+				</all>
+			</complexType>
+
+			<!-- ########################################## -->
+			<!-- User Defined type		  			   -->
+			<!-- ########################################## -->
+
+                <complexType name="Book">
+                    <sequence>
+                     <element name="author" type="xsd:string"/>
+                     <element name="title" type="xsd:string"/>
+                     <element name="isbn" type="xsd:int"/>
+                    </sequence>
+                </complexType>
+               <complexType name="ArrayOfBook">
+                    <complexContent>
+                         <restriction base="soapenc:Array">
+                              <attribute ref="soapenc:arrayType" wsdl:arrayType="s:Book[]"/>
+                         </restriction>
+                    </complexContent>
+               </complexType>
+
+ 
+		</schema>
+	</types>
+
+
+
+
+	<!-- ############################################################################### -->
+	<!-- These are used in conjuction with the Holder tests               			-->
+	<!-- ############################################################################### -->
+	<!-- IN parameter -->
+     <message name="inRequest">
+		<part name="varString" type="xsd:string"/>
+     </message>
+     <message name="inResponse"/>
+     <message name="inSimpleTypesRequest">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+		<part name="varSoapString" type="soapenc:string"/>
+		<part name="varSoapBoolean" type="soapenc:boolean"/>
+		<part name="varSoapFloat" type="soapenc:float"/>
+		<part name="varSoapDouble" type="soapenc:double"/>
+		<part name="varSoapDecimal" type="soapenc:decimal"/>
+		<part name="varSoapInt" type="soapenc:int"/>
+		<part name="varSoapShort" type="soapenc:short"/>
+		<part name="varSoapByte" type="soapenc:byte"/>
+		<part name="varBase64Binary" type="xsd:base64Binary"/>
+		<part name="varHexBinary" type="xsd:hexBinary"/>
+		<part name="varSoapBase64" type="soapenc:base64"/>
+     </message>
+     <message name="inSimpleTypesResponse"/>
+<!--
+     <message name="inSimpleWSDLRESArrayTypesRequest">
+		<part name="varArrayString" type="s:ArrayOfstring"/>
+		<part name="varArrayInteger" type="s:ArrayOfinteger"/>
+		<part name="varArrayInt" type="s:ArrayOfint"/>
+		<part name="varArrayLong" type="s:ArrayOflong"/>
+		<part name="varArrayShort" type="s:ArrayOfshort"/>
+		<part name="varArrayDecimal" type="s:ArrayOfdecimal"/>
+		<part name="varArrayFloat" type="s:ArrayOffloat"/>
+		<part name="varArrayDouble" type="s:ArrayOfdouble"/>
+		<part name="varArrayBoolean" type="s:ArrayOfboolean"/>
+		<part name="varArrayByte" type="s:ArrayOfbyte"/>
+		<part name="varArrayQName" type="s:ArrayOfQName"/>
+		<part name="varArrayDateTime" type="s:ArrayOfdateTime"/>
+		<part name="varArraySoapString" type="s:ArrayOfsoapencstring"/>
+		<part name="varArraySoapBoolean" type="s:ArrayOfsoapencboolean"/>
+		<part name="varArraySoapFloat" type="s:ArrayOfsoapencfloat"/>
+		<part name="varArraySoapDouble" type="s:ArrayOfsoapencdouble"/>
+		<part name="varArraySoapDecimal" type="s:ArrayOfsoapencdecimal"/>
+		<part name="varArraySoapInt" type="s:ArrayOfsoapencint"/>
+		<part name="varArraySoapShort" type="s:ArrayOfsoapencshort"/>
+		<part name="varArraySoapByte" type="s:ArrayOfsoapencbyte"/>
+		<part name="varArrayBase64Binary" type="s:ArrayOfbase64Binary"/>
+		<part name="varArrayHexBinary" type="s:ArrayOfhexBinary"/>
+		<part name="varArraySoapBase64" type="s:ArrayOfsoapencbase64"/>
+     </message>
+     <message name="inSimpleWSDLRESArrayTypesResponse"/>
+-->
+     <message name="inEnumRequest">
+		<part name="varEnumString" type="s:enumString"/>
+		<part name="varEnumInteger" type="s:enumInteger"/>
+		<part name="varEnumInt" type="s:enumInt"/>
+		<part name="varEnumLong" type="s:enumLong"/>
+		<part name="varEnumShort" type="s:enumShort"/>
+		<part name="varEnumDecimal" type="s:enumDecimal"/>
+		<part name="varEnumFloat" type="s:enumFloat"/>
+		<part name="varEnumDouble" type="s:enumDouble"/>
+		<part name="varEnumByte" type="s:enumByte"/>
+     </message>
+     <message name="inEnumResponse"/>
+
+     <message name="inStructRequest">
+		<part name="varStruct" type="s:AllStruct"/>
+     </message>
+     <message name="inStructResponse"/>
+
+	<!-- OUT parameter -->
+     <message name="outRequest"/>
+     <message name="outResponse">
+		<part name="varString" type="xsd:string"/>
+     </message>
+     <message name="outSimpleTypesRequest"/>
+     <message name="outSimpleTypesResponse">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+		<part name="varSoapString" type="soapenc:string"/>
+		<part name="varSoapBoolean" type="soapenc:boolean"/>
+		<part name="varSoapFloat" type="soapenc:float"/>
+		<part name="varSoapDouble" type="soapenc:double"/>
+		<part name="varSoapDecimal" type="soapenc:decimal"/>
+		<part name="varSoapInt" type="soapenc:int"/>
+		<part name="varSoapShort" type="soapenc:short"/>
+		<part name="varSoapByte" type="soapenc:byte"/>
+		<part name="varBase64Binary" type="xsd:base64Binary"/>
+		<part name="varHexBinary" type="xsd:hexBinary"/>
+		<part name="varSoapBase64" type="soapenc:base64"/>
+
+     </message>
+     <message name="outEnumRequest"/>
+     <message name="outEnumResponse">
+		<part name="varEnumString" type="s:enumString"/>
+		<part name="varEnumInteger" type="s:enumInteger"/>
+		<part name="varEnumInt" type="s:enumInt"/>
+		<part name="varEnumLong" type="s:enumLong"/>
+		<part name="varEnumShort" type="s:enumShort"/>
+		<part name="varEnumDecimal" type="s:enumDecimal"/>
+		<part name="varEnumFloat" type="s:enumFloat"/>
+		<part name="varEnumDouble" type="s:enumDouble"/>
+		<part name="varEnumByte" type="s:enumByte"/>
+     </message>
+
+	<!-- IN/OUT parameter -->
+     <message name="inoutRequest">
+		<part name="varString" type="xsd:string"/>
+     </message>
+     <message name="inoutResponse">
+		<part name="varString" type="xsd:string"/>
+     </message>
+     <message name="inoutRequest2">
+		<part name="param" type="xsd:string"/>
+     </message>
+     <message name="inoutSimpleTypesRequest">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+		<part name="varSoapString" type="soapenc:string"/>
+		<part name="varSoapBoolean" type="soapenc:boolean"/>
+		<part name="varSoapFloat" type="soapenc:float"/>
+		<part name="varSoapDouble" type="soapenc:double"/>
+		<part name="varSoapDecimal" type="soapenc:decimal"/>
+		<part name="varSoapInt" type="soapenc:int"/>
+		<part name="varSoapShort" type="soapenc:short"/>
+		<part name="varSoapByte" type="soapenc:byte"/>
+		<part name="varBase64Binary" type="xsd:base64Binary"/>
+		<part name="varHexBinary" type="xsd:hexBinary"/>
+		<part name="varSoapBase64" type="soapenc:base64"/>
+     </message>
+     <message name="inoutSimpleTypesResponse">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+		<part name="varSoapString" type="soapenc:string"/>
+		<part name="varSoapBoolean" type="soapenc:boolean"/>
+		<part name="varSoapFloat" type="soapenc:float"/>
+		<part name="varSoapDouble" type="soapenc:double"/>
+		<part name="varSoapDecimal" type="soapenc:decimal"/>
+		<part name="varSoapInt" type="soapenc:int"/>
+		<part name="varSoapShort" type="soapenc:short"/>
+		<part name="varSoapByte" type="soapenc:byte"/>
+		<part name="varBase64Binary" type="xsd:base64Binary"/>
+		<part name="varHexBinary" type="xsd:hexBinary"/>
+		<part name="varSoapBase64" type="soapenc:base64"/>
+     </message>
+
+     <message name="inoutEnumRequest">
+		<part name="varEnumString" type="s:enumString"/>
+		<part name="varEnumInteger" type="s:enumInteger"/>
+		<part name="varEnumInt" type="s:enumInt"/>
+		<part name="varEnumLong" type="s:enumLong"/>
+		<part name="varEnumShort" type="s:enumShort"/>
+		<part name="varEnumDecimal" type="s:enumDecimal"/>
+		<part name="varEnumFloat" type="s:enumFloat"/>
+		<part name="varEnumDouble" type="s:enumDouble"/>
+		<part name="varEnumByte" type="s:enumByte"/>
+     </message>
+     <message name="inoutEnumResponse">
+		<part name="varEnumString" type="s:enumString"/>
+		<part name="varEnumInteger" type="s:enumInteger"/>
+		<part name="varEnumInt" type="s:enumInt"/>
+		<part name="varEnumLong" type="s:enumLong"/>
+		<part name="varEnumShort" type="s:enumShort"/>
+		<part name="varEnumDecimal" type="s:enumDecimal"/>
+		<part name="varEnumFloat" type="s:enumFloat"/>
+		<part name="varEnumDouble" type="s:enumDouble"/>
+		<part name="varEnumByte" type="s:enumByte"/>
+     </message>
+
+	<!-- IN/OUT/INOUT parameter -->
+     <message name="mixRequest">
+		<part name="varInString" type="xsd:string"/>
+		<part name="varInOutString" type="xsd:string"/>
+     </message>
+     <message name="mixResponse">
+		<part name="varOutString" type="xsd:string"/>
+		<part name="varInOutString" type="xsd:string"/>
+     </message>
+
+      <message name="inoutSimpleTypesArrayRequest">
+           <part name="varString" type="s:ArrayOfstring"/>
+           <part name="varInteger" type="s:ArrayOfinteger"/>
+           <part name="varInt" type="s:ArrayOfint"/>
+           <part name="varLong" type="s:ArrayOflong"/>
+           <part name="varShort" type="s:ArrayOfshort"/>
+           <part name="varDecimal" type="s:ArrayOfdecimal"/>
+           <part name="varFloat" type="s:ArrayOffloat"/>
+           <part name="varDouble" type="s:ArrayOfdouble"/>
+           <part name="varBoolean" type="s:ArrayOfboolean"/>
+           <part name="varByte" type="s:ArrayOfbyte"/>
+           <part name="varQName" type="s:ArrayOfQName"/>
+           <part name="varDateTime" type="s:ArrayOfdateTime"/>
+      </message>
+ 
+      <message name="inoutSimpleTypesArrayResponse">
+           <part name="varString" type="s:ArrayOfstring"/>
+           <part name="varInteger" type="s:ArrayOfinteger"/>
+           <part name="varInt" type="s:ArrayOfint"/>
+           <part name="varLong" type="s:ArrayOflong"/>
+           <part name="varShort" type="s:ArrayOfshort"/>
+           <part name="varDecimal" type="s:ArrayOfdecimal"/>
+           <part name="varFloat" type="s:ArrayOffloat"/>
+           <part name="varDouble" type="s:ArrayOfdouble"/>
+           <part name="varBoolean" type="s:ArrayOfboolean"/>
+           <part name="varByte" type="s:ArrayOfbyte"/>
+           <part name="varQName" type="s:ArrayOfQName"/>
+           <part name="varDateTime" type="s:ArrayOfdateTime"/>
+      </message>
+ 
+      <message name="inoutBookRequest">
+           <part name="varBook" type="s:Book"/>
+      </message>
+ 
+      <message name="inoutBookResponse">
+           <part name="varBook" type="s:Book"/>
+      </message>
+     <message name="inoutBookArrayRequest">
+          <part name="varBook" type="s:ArrayOfBook"/>
+     </message>
+
+     <message name="inoutBookArrayResponse">
+          <part name="varBook" type="s:ArrayOfBook"/>
+     </message>
+	<portType name="ParameterModeTest">
+		<operation name="echoIn" parameterOrder="varString">
+			<input message="tns:inRequest"/>
+			<output message="tns:inResponse"/>
+		</operation>
+		<operation name="echoOut" parameterOrder="varString">
+			<input message="tns:outRequest"/>
+			<output message="tns:outResponse"/>
+		</operation>
+		<operation name="echoInOut" parameterOrder="varString">
+			<input message="tns:inoutRequest"/>
+			<output message="tns:inoutResponse"/>
+		</operation>
+		<operation name="echoInOut2">
+			<input message="tns:inoutRequest"/>
+			<output message="tns:inoutResponse"/>
+		</operation>
+		<operation name="echoInOut3" parameterOrder="param">
+			<input message="tns:inoutRequest2"/>
+			<output message="tns:inoutResponse"/>
+		</operation>
+		<operation name="echoInOut4">
+			<input message="tns:inoutRequest2"/>
+			<output message="tns:inoutResponse"/>
+		</operation>
+		<operation name="echoMix" parameterOrder="varInString varInOutString varOutString">
+			<input message="tns:mixRequest"/>
+			<output message="tns:mixResponse"/>
+		</operation>
+
+		<operation name="echoInSimpleTypes" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime varSoapString varSoapBoolean varSoapFloat varSoapDouble varSoapDecimal varSoapInt varSoapShort varSoapByte varBase64Binary varHexBinary varSoapBase64">
+			<input message="tns:inSimpleTypesRequest"/>
+			<output message="tns:inSimpleTypesResponse"/>
+		</operation>
+<!---
+		<operation name="echoInSimpleWSDLRESArrayTypes" parameterOrder="varArrayString varArrayInteger varArrayInt varArrayLong varArrayShort varArrayDecimal varArrayFloat varArrayDouble varArrayBoolean varArrayByte varArrayQName varArrayDateTime varArraySoapString varArraySoapBoolean varArraySoapFloat varArraySoapDouble varArraySoapDecimal varArraySoapInt varArraySoapShort varArraySoapByte varArrayBase64Binary varArrayHexBinary varArraySoapBase64">
+			<input message="tns:inSimpleWSDLRESArrayTypesRequest"/>
+			<output message="tns:inSimpleWSDLRESArrayTypesResponse"/>
+		</operation>
+-->
+		<operation name="echoOutSimpleTypes" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime varSoapString varSoapBoolean varSoapFloat varSoapDouble varSoapDecimal varSoapInt varSoapShort varSoapByte varBase64Binary varHexBinary varSoapBase64">
+			<input message="tns:outSimpleTypesRequest"/>
+			<output message="tns:outSimpleTypesResponse"/>
+		</operation>
+		<operation name="echoInOutSimpleTypes" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime varSoapString varSoapBoolean varSoapFloat varSoapDouble varSoapDecimal varSoapInt varSoapShort varSoapByte varBase64Binary varHexBinary varSoapBase64">
+			<input message="tns:inoutSimpleTypesRequest"/>
+			<output message="tns:inoutSimpleTypesResponse"/>
+		</operation>
+
+		<operation name="echoInEnum" parameterOrder="varEnumString varEnumInteger varEnumInt varEnumLong varEnumShort varEnumDecimal varEnumFloat varEnumDouble varEnumByte">
+			<input message="tns:inEnumRequest"/>
+			<output message="tns:inEnumResponse"/>
+		</operation>
+		<operation name="echoOutEnum" parameterOrder="varEnumString varEnumInteger varEnumInt varEnumLong varEnumShort varEnumDecimal varEnumFloat varEnumDouble varEnumByte">
+			<input message="tns:outEnumRequest"/>
+			<output message="tns:outEnumResponse"/>
+		</operation>
+		<operation name="echoInOutEnum" parameterOrder="varEnumString varEnumInteger varEnumInt varEnumLong varEnumShort varEnumDecimal varEnumFloat varEnumDouble varEnumByte">
+			<input message="tns:inoutEnumRequest"/>
+			<output message="tns:inoutEnumResponse"/>
+		</operation>
+		<operation name="echoInStruct" parameterOrder="varStruct">
+			<input message="tns:inStructRequest"/>
+			<output message="tns:inStructResponse"/>
+		</operation>
+
+           <operation name="echoInOutSimpleTypesArray" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime">
+                <input message="tns:inoutSimpleTypesArrayRequest"/>
+                <output message="tns:inoutSimpleTypesArrayResponse"/>
+           </operation>
+ 
+           <operation name="echoInOutBook" parameterOrder="varBook">
+                <input message="tns:inoutBookRequest"/>
+                <output message="tns:inoutBookResponse"/>
+           </operation>
+          <operation name="echoInOutBookArray" parameterOrder="varBook">
+               <input message="tns:inoutBookArrayRequest"/>
+               <output message="tns:inoutBookArrayResponse"/>
+          </operation> 
+	</portType>
+
+	<binding name="ParameterModeTestBinding" type="tns:ParameterModeTest">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="echoIn">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoOut">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInOut">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInOut2">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInOut3">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInOut4">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoMix">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInSimpleTypes">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+<!--
+		<operation name="echoInSimpleWSDLRESArrayTypes">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+-->
+		<operation name="echoOutSimpleTypes">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInOutSimpleTypes">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInEnum">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoOutEnum">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInOutEnum">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInStruct">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+           <operation name="echoInOutSimpleTypesArray">
+                <soap:operation soapAction=""/>
+                <input>
+                     <soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+                </input>
+                <output>
+                     <soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+                </output>
+           </operation>
+
+           <operation name="echoInOutBook">
+                <soap:operation soapAction=""/>
+                <input>
+                     <soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+                </input>
+                <output>
+                     <soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+                </output>
+           </operation>
+          <operation name="echoInOutBookArray">
+               <soap:operation soapAction=""/>
+                <input>
+                     <soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+                </input>
+                <output>
+                     <soap:body use="encoded" namespace="http://ParameterModeTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+                </output>
+          </operation>
+ 
+	</binding>
+
+	<service name="ParameterModeTestService">
+        	<port name="ParameterModeTestPort" binding="tns:ParameterModeTestBinding">
+            	<soap:address location="http://localhost:8000/W2JParameterModeTest/ws4ee"/>
+        	</port>
+	</service>
+</definitions>
+

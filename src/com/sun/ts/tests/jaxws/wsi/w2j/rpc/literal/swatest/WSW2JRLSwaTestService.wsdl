@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="SwaTestService"
+  targetNamespace="http://SwaTestService.org/wsdl"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://SwaTestService.org/wsdl"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:s="http://SwaTestService.org/xsd"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+  <types>
+    <schema targetNamespace="http://SwaTestService.org/xsd" 
+      xmlns:tns="http://SwaTestService.org/xsd"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      elementFormDefault="qualified">
+      <complexType name="InputRequestGet">
+	<sequence>
+          <element name="mimeType1" type="string"/>
+          <element name="mimeType2" type="string"/>
+          <element name="url1" type="string"/>
+          <element name="url2" type="string"/>
+	</sequence>
+      </complexType>
+      <complexType name="InputRequestGetAll">
+	<sequence>
+          <element name="mimeType1" type="string"/>
+          <element name="mimeType2" type="string"/>
+          <element name="mimeType3" type="string"/>
+          <element name="mimeType4" type="string"/>
+          <element name="mimeType5" type="string"/>
+          <element name="mimeType6" type="string"/>
+          <element name="url1" type="string"/>
+          <element name="url2" type="string"/>
+          <element name="url3" type="string"/>
+          <element name="url4" type="string"/>
+          <element name="url5" type="string"/>
+          <element name="url6" type="string"/>
+	</sequence>
+      </complexType>
+      <complexType name="InputRequestPut">
+	<sequence>
+          <element name="mimeType1" type="string"/>
+          <element name="mimeType2" type="string"/>
+          <element name="header" type="string"/>
+	</sequence>
+      </complexType>
+      <complexType name="InputRequestPutAll">
+	<sequence>
+          <element name="mimeType1" type="string"/>
+          <element name="mimeType2" type="string"/>
+          <element name="mimeType3" type="string"/>
+          <element name="mimeType4" type="string"/>
+          <element name="mimeType5" type="string"/>
+          <element name="mimeType6" type="string"/>
+	</sequence>
+      </complexType>
+      <complexType name="InputRequest">
+	<sequence>
+          <element name="mimeType1" type="string"/>
+          <element name="mimeType2" type="string"/>
+	</sequence>
+      </complexType>
+      <complexType name="InputRequestString">
+	<sequence>
+          <element name="myString" type="string"/>
+	</sequence>
+      </complexType>
+      <complexType name="OutputResponse">
+	<sequence>
+          <element name="mimeType1" type="string"/>
+          <element name="mimeType2" type="string"/>
+          <element name="result" type="string"/>
+          <element name="reason" type="string"/>
+	</sequence>
+      </complexType>
+      <complexType name="OutputResponseGetAll">
+	<sequence>
+          <element name="mimeType1" type="string"/>
+          <element name="mimeType2" type="string"/>
+          <element name="mimeType3" type="string"/>
+          <element name="mimeType4" type="string"/>
+          <element name="mimeType5" type="string"/>
+          <element name="mimeType6" type="string"/>
+          <element name="result" type="string"/>
+          <element name="reason" type="string"/>
+	</sequence>
+      </complexType>
+      <element name="MyHeader" type="tns:MyHeader"/>
+      <complexType name="MyHeader">
+        <sequence>
+            <annotation>
+                <documentation>
+                        This is my header
+                </documentation>
+            </annotation>
+            <element name="message" type="string"/>
+        </sequence>
+      </complexType>
+      <element name="MyFaultReason" type="tns:MyFaultType"/>
+      <complexType name="MyFaultType">
+        <sequence>
+            <annotation>
+                <documentation>
+                        This is my fault
+                </documentation>
+            </annotation>
+            <element name="message" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="VoidRequest">
+	<sequence/>
+      </complexType>
+      <complexType name="OutputResponseAll">
+	<sequence>
+          <element name="result" type="string"/>
+          <element name="reason" type="string"/>
+	</sequence>
+      </complexType>
+    </schema>
+  </types>
+
+  <message name="messageInputGet">
+    <part name="request" type="s:InputRequestGet"/>
+  </message>
+
+  <message name="messageInputPut">
+    <part name="request" type="s:InputRequestPut"/>
+    <part name="attach1" type="xsd:string"/>
+    <part name="attach2" type="xsd:string"/>
+  </message>
+
+  <message name="messageInput">
+    <part name="request" type="s:InputRequest"/>
+    <part name="attach1" type="xsd:string"/>
+    <part name="attach2" type="xsd:string"/>
+  </message>
+
+  <message name="messageInputGifImage">
+    <part name="request" type="s:VoidRequest"/>
+    <part name="attach1" type="xsd:base64Binary"/>
+  </message>
+
+  <message name="messageInputVoid">
+    <part name="request" type="s:VoidRequest"/>
+  </message>
+
+  <message name="messageInputNoAttachments">
+    <part name="request" type="s:InputRequestString"/>
+  </message>
+
+  <message name="messageInputAllAttachmentTypes">
+    <part name="request" type="s:VoidRequest"/>
+    <part name="attach1" type="xsd:string"/>
+    <part name="attach2" type="xsd:string"/>
+    <part name="attach3" type="xsd:string"/>
+    <part name="attach4" type="xsd:base64Binary"/>
+    <part name="attach5" type="xsd:base64Binary"/>
+    <part name="attach6" type="xsd:string"/>
+  </message>
+
+  <message name="messageInputGetAllAttachmentTypes">
+    <part name="request" type="s:InputRequestGetAll"/>
+  </message>
+
+  <message name="messageInputPutAllAttachmentTypes">
+    <part name="request" type="s:InputRequestPutAll"/>
+    <part name="attach1" type="xsd:string"/>
+    <part name="attach2" type="xsd:string"/>
+    <part name="attach3" type="xsd:string"/>
+    <part name="attach4" type="xsd:base64Binary"/>
+    <part name="attach5" type="xsd:base64Binary"/>
+    <part name="attach6" type="xsd:string"/>
+  </message>
+
+  <message name="messageInputWithHeader">
+    <part name="request" type="s:InputRequest"/>
+    <part name="header" element="s:MyHeader"/>
+    <part name="attach1" type="xsd:string"/>
+    <part name="attach2" type="xsd:string"/>
+  </message>
+
+  <message name="messageOutput">
+    <part name="response" type="s:OutputResponse"/>
+    <part name="attach1" type="xsd:string"/>
+    <part name="attach2" type="xsd:string"/>
+  </message>
+
+  <message name="messageOutputGifImage">
+    <part name="response" type="xsd:string"/>
+    <part name="attach1" type="xsd:base64Binary"/>
+  </message>
+
+  <message name="messageOutputAllAttachmentTypes">
+    <part name="response" type="s:OutputResponseAll"/>
+    <part name="attach1" type="xsd:string"/>
+    <part name="attach2" type="xsd:string"/>
+    <part name="attach3" type="xsd:string"/>
+    <part name="attach4" type="xsd:base64Binary"/>
+    <part name="attach5" type="xsd:base64Binary"/>
+    <part name="attach6" type="xsd:string"/>
+  </message>
+
+  <message name="messageOutputGetAllAttachmentTypes">
+    <part name="response" type="s:OutputResponseGetAll"/>
+    <part name="attach1" type="xsd:string"/>
+    <part name="attach2" type="xsd:string"/>
+    <part name="attach3" type="xsd:string"/>
+    <part name="attach4" type="xsd:base64Binary"/>
+    <part name="attach5" type="xsd:base64Binary"/>
+    <part name="attach6" type="xsd:string"/>
+  </message>
+
+  <message name="messageOutputStringResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+
+  <message name="MyFault">
+    <part name="MyFault" element="s:MyFaultReason"/>
+  </message>
+
+  <portType name="SwaTest1">
+    <operation name="getMultipleAttachments">
+      <input message="tns:messageInputGet"/>
+      <output message="tns:messageOutput"/>
+    </operation>
+    <operation name="putMultipleAttachments">
+      <input message="tns:messageInputPut"/>
+      <output message="tns:messageOutputStringResponse"/>
+    </operation>
+    <operation name="echoMultipleAttachments">
+      <input message="tns:messageInput"/>
+      <output message="tns:messageOutput"/>
+    </operation>
+    <operation name="echoGifImageType">
+      <input message="tns:messageInputGifImage"/>
+      <output message="tns:messageOutputGifImage"/>
+    </operation>
+    <operation name="echoNoAttachments">
+      <input message="tns:messageInputNoAttachments"/>
+      <output message="tns:messageOutputStringResponse"/>
+    </operation>
+    <operation name="echoAllAttachmentTypes">
+      <input message="tns:messageInputAllAttachmentTypes"/>
+      <output message="tns:messageOutputAllAttachmentTypes"/>
+    </operation>
+    <operation name="getAllAttachmentTypes">
+      <input message="tns:messageInputGetAllAttachmentTypes"/>
+      <output message="tns:messageOutputGetAllAttachmentTypes"/>
+    </operation>
+    <operation name="putAllAttachmentTypes">
+      <input message="tns:messageInputPutAllAttachmentTypes"/>
+      <output message="tns:messageOutputStringResponse"/>
+    </operation>
+    <operation name="echoAttachmentsAndThrowAFault">
+      <input message="tns:messageInput"/>
+      <output message="tns:messageOutput"/>
+      <fault name="MyFault" message="tns:MyFault"/>
+    </operation>
+    <operation name="echoAttachmentsWithHeader">
+      <input message="tns:messageInputWithHeader"/>
+      <output message="tns:messageOutput"/>
+      <fault name="MyFault" message="tns:MyFault"/>
+    </operation>
+  </portType>
+
+  <portType name="SwaTest2">
+    <operation name="putMultipleAttachments">
+      <input message="tns:messageInputPut"/>
+      <output message="tns:messageOutputStringResponse"/>
+    </operation>
+    <operation name="echoNoAttachments">
+      <input message="tns:messageInputNoAttachments"/>
+      <output message="tns:messageOutputStringResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="SwaTestSoapBinding1" type="tns:SwaTest1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="getMultipleAttachments">
+      <soap:operation/>
+        <input>
+          <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="response" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+    </operation>
+    <operation name="putMultipleAttachments">
+      <soap:operation/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+              <mime:content part="attach1" type="text/html"/>
+              <mime:content part="attach1" type="text/xml"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/plain"/>
+              <mime:content part="attach2" type="text/html"/>
+              <mime:content part="attach2" type="text/xml"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+	  <soap:body use="literal" message="tns:messageOutputStringResponse" parts="result" namespace="http://SwaTestService.org/wsdl"/>
+        </output>
+    </operation>
+    <operation name="echoMultipleAttachments">
+      <soap:operation/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+              <mime:content part="attach1" type="text/html"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/plain"/>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="response" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+              <mime:content part="attach1" type="text/html"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/plain"/>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+    </operation>
+    <operation name="echoGifImageType">
+      <soap:operation/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="image/gif"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="response" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="image/gif"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+    </operation>
+    <operation name="echoNoAttachments">
+      <soap:operation/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body use="literal" message="tns:messageOutputStringResponse" parts="result" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+    </operation>
+    <operation name="echoAllAttachmentTypes">
+      <soap:operation/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach3" type="text/xml"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach4" type="image/jpeg"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach5" type="image/jpeg"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach6" type="application/xml"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="response" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach3" type="text/xml"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach4" type="image/jpeg"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach5" type="image/jpeg"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach6" type="application/xml"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+    </operation>
+    <operation name="getAllAttachmentTypes">
+      <soap:operation/>
+        <input>
+	  <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="response" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach3" type="text/xml"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach4" type="image/jpeg"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach5" type="image/jpeg"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach6" type="application/xml"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+    </operation>
+    <operation name="putAllAttachmentTypes">
+      <soap:operation/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach3" type="text/xml"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach4" type="image/jpeg"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach5" type="image/jpeg"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach6" type="application/xml"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+	  <soap:body use="literal" message="tns:messageOutputStringResponse" parts="result" namespace="http://SwaTestService.org/wsdl"/>
+        </output>
+    </operation>
+    <operation name="echoAttachmentsAndThrowAFault">
+      <soap:operation/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="response" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+	<fault name="MyFault">
+	  <soap:fault name="MyFault" use="literal"/>
+	</fault>
+    </operation>
+    <operation name="echoAttachmentsWithHeader">
+      <soap:operation/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+	      <soap:header part="header" use="literal" message="tns:messageInputWithHeader"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="response" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/html"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+	<fault name="MyFault">
+	  <soap:fault name="MyFault" use="literal"/>
+	</fault>
+    </operation>
+  </binding>
+
+  <binding name="SwaTestSoapBinding2" type="tns:SwaTest2">
+    <soap:binding wsdl:required="0" transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="putMultipleAttachments">
+      <soap:operation wsdl:required="0"/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body wsdl:required="0" parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+              <mime:content part="attach1" type="text/html"/>
+              <mime:content part="attach1" type="text/xml"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach2" type="text/plain"/>
+              <mime:content part="attach2" type="text/html"/>
+              <mime:content part="attach2" type="text/xml"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+	  <soap:body wsdl:required="0" use="literal" message="tns:messageOutputStringResponse" parts="result" namespace="http://SwaTestService.org/wsdl"/>
+        </output>
+    </operation>
+    <operation name="echoNoAttachments">
+      <soap:operation wsdl:required="0"/>
+        <input>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body wsdl:required="0" parts="request" use="literal" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body wsdl:required="0" use="literal" message="tns:messageOutputStringResponse" parts="result" namespace="http://SwaTestService.org/wsdl"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+    </operation>
+  </binding>
+
+  <service name="WSIRLSwaTestService">
+    <port name="SwaTestOnePort" binding="tns:SwaTestSoapBinding1">
+      <soap:address location="http://localhost:8080/WSIRLSwaTest/jaxws/SwaTestOne"/>
+    </port>
+    <port name="SwaTestTwoPort" binding="tns:SwaTestSoapBinding2">
+      <soap:address wsdl:required="0" location="http://localhost:8080/WSIRLSwaTest/jaxws/SwaTestTwo"/>
+    </port>
+  </service>
+</definitions>

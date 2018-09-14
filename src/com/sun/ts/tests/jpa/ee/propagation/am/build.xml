@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jpa_ee_propagation_am" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="../../../common/persistence-import.xml"/>
+
+    <property name="app.name" value="jpa_ee_propagation_am"/>
+
+    <property name="common.dir" value="com/sun/ts/tests/jpa/ee/common"/>
+
+    <property name="jpa_ee_common_classes"
+              value="com/sun/ts/tests/jpa/ee/common/A.class,
+                    com/sun/ts/tests/jpa/ee/common/B.class,
+                    com/sun/ts/tests/jpa/ee/common/Account.class"/>
+
+    <target name="-precompile">
+         <ant dir="${src.dir}/${common.dir}" target="build"/>
+    </target>
+
+    <target name="package">
+        <jar destfile="${dist.dir}/${pkg.dir}/${app.name}.jar">
+            <fileset dir="${class.dir}" includes="${jpa_ee_common_classes}"/>
+            <fileset dir="${class.dir}" includes="${pkg.dir}/Member.class, ${pkg.dir}/Member2.class"/>
+            <zipfileset dir="." prefix="META-INF" includes="persistence.xml"/>
+        </jar>
+
+        <ts.ejbjar archivename="${app.name}"
+                   excludedfiles="${pkg.dir}/Member.class, ${pkg.dir}/Member2.class">
+            <manifest>
+                <attribute name="Class-Path" value="${app.name}.jar"/>
+            </manifest>
+        </ts.ejbjar>
+
+        <ts.clientjar archivename="${app.name}"
+                      mainclass="${package}.Client"
+                      excludedfiles="${pkg.dir}/Stateful3Bean.class,
+                                     ${pkg.dir}/Stateful3Bean2.class,
+                                     ${pkg.dir}/Stateless3Bean.class,
+				                     ${pkg.dir}/Member.class,
+				                     ${pkg.dir}/Member2.class">
+        </ts.clientjar>
+
+        <ts.ear archivename="${app.name}"
+                deletecomponentarchives="true"
+                includedefaultfiles="false">
+
+            <fileset dir="${dist.dir}/${pkg.dir}"
+                     includes="${app.name}_client.jar,
+                                  ${app.name}_ejb.jar"/>
+
+            <zipfileset dir="${dist.dir}/${pkg.dir}"
+                        includes="${app.name}.jar"
+                        prefix="lib"/>
+        </ts.ear>
+
+    </target>
+
+</project>

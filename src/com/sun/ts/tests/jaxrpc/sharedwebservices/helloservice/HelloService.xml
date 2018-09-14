@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.sharedwebservices.helloservice</package-type>
+    <namespaceURI>http://helloservice.org/wsdl</namespaceURI>
+  </package-mapping>
+  <exception-mapping>
+    <exception-type>com.sun.ts.tests.jaxrpc.sharedwebservices.helloservice.MyServiceException</exception-type>
+    <wsdl-message xmlns:exMsgNS="http://helloservice.org/wsdl">exMsgNS:MyServiceException</wsdl-message>
+  </exception-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.sharedwebservices.helloservice.HelloService</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://helloservice.org/wsdl">serviceNS:HelloService</wsdl-service-name>
+    <port-mapping>
+      <port-name>HelloPort</port-name>
+      <java-port-name>HelloPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.sharedwebservices.helloservice.Hello</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://helloservice.org/wsdl">portTypeNS:Hello</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://helloservice.org/wsdl">bindingNS:HelloBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>invokeOneWayTest1</java-method-name>
+      <wsdl-operation>invokeOneWayTest1</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.Boolean</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest1</wsdl-message>
+          <wsdl-message-part-name>Boolean_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>java.lang.Byte</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest1</wsdl-message>
+          <wsdl-message-part-name>Byte_2</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>2</param-position>
+        <param-type>java.lang.Short</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest1</wsdl-message>
+          <wsdl-message-part-name>Short_3</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>3</param-position>
+        <param-type>java.lang.Integer</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest1</wsdl-message>
+          <wsdl-message-part-name>Integer_4</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>4</param-position>
+        <param-type>java.lang.Long</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest1</wsdl-message>
+          <wsdl-message-part-name>Long_5</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>5</param-position>
+        <param-type>java.lang.Float</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest1</wsdl-message>
+          <wsdl-message-part-name>Float_6</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>6</param-position>
+        <param-type>java.lang.Double</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest1</wsdl-message>
+          <wsdl-message-part-name>Double_7</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>invokeOneWayTest2</java-method-name>
+      <wsdl-operation>invokeOneWayTest2</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest2</wsdl-message>
+          <wsdl-message-part-name>BigInteger_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>java.math.BigDecimal</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest2</wsdl-message>
+          <wsdl-message-part-name>BigDecimal_2</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>2</param-position>
+        <param-type>javax.xml.namespace.QName</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest2</wsdl-message>
+          <wsdl-message-part-name>QName_3</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>3</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeOneWayTest2</wsdl-message>
+          <wsdl-message-part-name>String_4</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>invokeOneWayTest3</java-method-name>
+      <wsdl-operation>invokeOneWayTest3</wsdl-operation>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>invokeTest1</java-method-name>
+      <wsdl-operation>invokeTest1</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.Boolean</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest1</wsdl-message>
+          <wsdl-message-part-name>Boolean_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>java.lang.Byte</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest1</wsdl-message>
+          <wsdl-message-part-name>Byte_2</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>2</param-position>
+        <param-type>java.lang.Short</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest1</wsdl-message>
+          <wsdl-message-part-name>Short_3</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>3</param-position>
+        <param-type>java.lang.Integer</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest1</wsdl-message>
+          <wsdl-message-part-name>Integer_4</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>4</param-position>
+        <param-type>java.lang.Long</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest1</wsdl-message>
+          <wsdl-message-part-name>Long_5</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>5</param-position>
+        <param-type>java.lang.Float</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest1</wsdl-message>
+          <wsdl-message-part-name>Float_6</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>6</param-position>
+        <param-type>java.lang.Double</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest1</wsdl-message>
+          <wsdl-message-part-name>Double_7</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest1Response</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>invokeTest2</java-method-name>
+      <wsdl-operation>invokeTest2</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest2</wsdl-message>
+          <wsdl-message-part-name>BigInteger_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>java.math.BigDecimal</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest2</wsdl-message>
+          <wsdl-message-part-name>BigDecimal_2</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>2</param-position>
+        <param-type>javax.xml.namespace.QName</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest2</wsdl-message>
+          <wsdl-message-part-name>QName_3</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>3</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest2</wsdl-message>
+          <wsdl-message-part-name>String_4</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest2Response</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>invokeTest3</java-method-name>
+      <wsdl-operation>invokeTest3</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:InvokeTest3Response</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>invokeTest4</java-method-name>
+      <wsdl-operation>invokeTest4</wsdl-operation>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>hello</java-method-name>
+      <wsdl-operation>hello</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:hello</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:helloResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>wasDestroyCalled</java-method-name>
+      <wsdl-operation>wasDestroyCalled</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:wasDestroyCalledResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>wasInitCalled</java-method-name>
+      <wsdl-operation>wasInitCalled</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://helloservice.org/wsdl">wsdlMsgNS:wasInitCalledResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

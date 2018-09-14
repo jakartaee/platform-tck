@@ -1,0 +1,114 @@
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<spec>
+    <next-available-id>1007</next-available-id>
+    <previous-id>1006</previous-id>
+    <technology>RMIIIOP</technology>
+    <id>RMIIIOP</id>
+    <name>Java Language to IDL Mapping</name>
+    <version>2.3.1</version>
+
+    <location-names>
+
+        <chapters>
+            <chapter id = "1" name = "Java Language to IDL Mapping">
+                <sections>
+                    <section id = "1" name = "Overview"/>
+                    <section id = "2" name = "The RMI/IDL Subset of Java"/>
+                    <section id = "2.1" name = "Overview of Conforming RMI/IDL Types"/>
+                    <section id = "2.2" name = "Primitive Types"/>
+                    <section id = "2.3" name = "RMI/IDL Remote Interfaces"/>
+                    <section id = "2.3.1" name = "Stubs and remote implementation classes"/>
+                    <section id = "2.4" name = "RMI/IDL Value Types"/>
+                    <section id = "2.4.1" name = "The Java String Type"/>
+                    <section id = "2.5" name = "RMI/IDL Arrays"/>
+                    <section id = "2.6" name = "RMI/IDL Exception Types"/>
+                    <section id = "2.7" name = "CORBA Object Reference Types"/>
+                    <section id = "2.8" name = "IDL Entity Types"/>
+                </sections>
+            </chapter>
+        </chapters>
+    </location-names>
+    <assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id>1000</id>
+            <description>
+                All the standard Java primitive types are supported as part of RMI/IDL. These are: " void, boolean, byte, char, short, int, long, float, double
+            </description>
+            <location chapter="1" section="2.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id>1001</id>
+            <description>
+An RMI remote interface defines a Java interface that can be invoked remotely. A Java interface is a conforming RMI/IDL remote interface if: 1. The interface is or inherits from java.rmi.Remote either directly or indirectly. 2. All methods in the interface are defined to throw java.rmi.RemoteException or a superclass of java.rmi.RemoteException. Throughout this section, references to methods in the interface include methods in any inherited interfaces. 3. There are no restrictions on method arguments and result types. However at runtime, the actual values passed as arguments or returned as results must be conforming RMI/IDL types (see Section 1.2.1,  Overview of Conforming RMI/IDL Types,  on page 1-2). In addition, for each RMI/IDL remote interface reference, the actual value passed or returned must be either a stub object or a remote interface implementation object (see Section 1.2.3.1,  Stubs and remote implementation classes,  on page 1-4). 4. All checked exception classes used in method declarations (other than java.rmi.RemoteException and its subclasses) are conforming RMI/IDL exception types (see Section 1.2.6,  RMI/IDL Exception Types,  on page 1-5).1 5. Method names may be overloaded. However, when an interface directly inherits from several base interfaces, it is forbidden for there to be method name conflicts between the inherited interfaces. This outlaws the case where an interface A defines a method  foo,  an interface B also defines a method  foo,  and an interface C tries to inherit from both A and B. 6. Constant definitions in the form of interface variables are permitted. The constant value must be a compile-time constant of one of the RMI/IDL primitive types or String. 7. Method and constant names must not cause name collisions when mapped to IDL (see Section 1.3.2.10,  Names that would cause OMG IDL name collisions,  on page 1-10).
+            </description>
+            <location chapter="1" section="2.3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id>1005</id>
+            <description>
+At run time, when a reference to an RMI/IDL remote interface is passed across a
+remote interface, the class of the actual object that is passed must be either a stub class
+or a remote implementation class.
+            </description>
+            <location chapter="1" section="2.3.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id>1002</id>
+            <description>
+An RMI/IDL value type represents a class whose values can be moved between systems. So rather than transmitting a reference between systems, the actual state of the object is transmitted between systems. This requires that the receiving system have an analogous class that can be used to hold the received value. Value types may be passed as arguments or results of remote methods, or as fields within other objects that are passed remotely. A Java class is a conforming RMI/IDL value type if the following applies: 1. The class must implement the java.io.Serializable interface, either directly or indirectly, and must be serializable at run-time. It may serialize references to other RMI/IDL types, including value types and remote interfaces. 2. The class may implement java.io.Externalizable. (This indicates it overrides some of the standard serialization machinery.) 3. If the class is a non-static inner class, then its containing class must also be a conforming RMI/IDL value type. 4. A value type must not either directly or indirectly implement the java.rmi.Remote interface. (If this were allowed, then there would be potential confusion between value types and remote interface references.) 5. A value type may implement any interface except for java.rmi.Remote. 1 6. There are no restrictions on the method signatures for a value type. 7. There are no restrictions on static fields for a value type. 8. There are no restrictions on transient fields for a value type. 9. Method, constant, and field names must not cause name collisions when mapped to IDL (see Section 1.3.2.10,  Names that would cause OMG IDL name collisions,  on page 1-10).
+            </description>
+            <location chapter="1" section="2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id>1003</id>
+            <description>
+Arrays of any conforming RMI/IDL type are also conforming RMI/IDL types. So
+int[] and String[][][] are conforming RMI/IDL types. Similarly if Wombat is
+a conforming RMI/IDL interface type, then Wombat[] is a conforming RMI/IDL
+type.
+            </description>
+            <location chapter="1" section="2.5"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id>1004</id>
+            <description>
+An RMI/IDL exception type is a checked exception class (as defined by the Java
+Language Specification). Since checked exception classes extend
+java.lang.Throwable, which implements java.io.Serializable, it is
+unnecessary for an RMI/IDL exception class to directly implement
+java.io.Serializable.
+A type is a conforming RMI/IDL exception if the class: " is a checked exception class. " meets the requirements for RMI/IDL value types defined in Section 1.2.4,  RMI/IDL Value Types,  on page 1-4.
+            </description>
+            <location chapter="1" section="2.6"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id>1006</id>
+            <description>
+A Java class is a conforming IDL entity type if it extends
+org.omg.CORBA.portable.IDLEntity and conforms to the rules specified in
+the Java Language Mapping (i.e., could have been generated by applying the mapping
+to an OMG IDL definition) and is not an OMG IDL user exception.
+            </description>
+            <location chapter="1" section="2.8"/>
+        </assertion>
+    </assertions>
+</spec>

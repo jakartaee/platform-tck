@@ -1,0 +1,6 @@
+WSRAnn=@WebServiceRef(name="service/wsj2wdltestservice")
+SERVICE=com.sun.ts.tests.jaxws.ee.j2w.document.literal.sessionmaintaintest.client.TestService
+URLALIAS=/jaxws/Test
+SERVICEREFNAMEWSSERVLET=service/wsj2wdltestservice
+SERVICEREFNAMEWSEJB=service/wsj2wdltestservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsj2wdltestservice

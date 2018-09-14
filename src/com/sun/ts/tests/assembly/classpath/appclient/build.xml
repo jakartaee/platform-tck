@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="assembly_classpath_appclient" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <target name="package">
+      <ts.clientjar descriptor="assembly_classpath_appclient_client.xml" archivename="assembly_classpath_appclient" mainclass="com.sun.ts.tests.assembly.classpath.appclient.Client" manifest="MY_MANIFEST.MF">
+      </ts.clientjar>
+
+      <ts.ear archivename="assembly_classpath_appclient" descriptor="application.xml"/>
+
+      <ant inheritAll="false" antfile="build.xml" dir="../util" target="build"/>
+      <jar jarfile="${dist.dir}/${pkg.dir}/assembly_classpath_appclient.ear" update="true">
+        <zipfileset dir="${dist.dir}/${pkg.dir}/../util" includes="direct_classpath_util.jar, indirect_classpath_util.jar" prefix="libs"/>
+      </jar>
+      <delete failonerror="false" dir="${dist.dir}/${pkg.dir}/../util"/>
+  </target>
+
+</project>

@@ -1,0 +1,150 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="JSONB" basedir="." default="build">
+
+  <!-- IMPORTS -->
+  <import file="../../bin/xml/ts.common.props.xml"/>
+  
+  <property name="deliverable.version" value="1.0"/>
+  <property name="exclude.source.folder" value="com/sun/ts/tests/jsonb/cdi/**"/>
+  
+  <condition property="exclude.classes" value="">
+      <contains string="${test.areas}" substring="jsonb" casesensitive="false"/>
+  </condition>
+  <condition property="exclude.classes" value="${exclude.source.folder}">
+      <not><contains string="${test.areas}" substring="jsonb" casesensitive="false"/></not>
+  </condition>       
+
+	<target name="init">
+		<mkdir dir="${deliverable.bundle.dir}/bin"/>
+		<mkdir dir="${deliverable.bundle.dir}/bin/xml"/>
+		<mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+		<mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/glassfish/templates"/>
+		<mkdir dir="${deliverable.bundle.dir}/classes"/>
+		<mkdir dir="${deliverable.bundle.dir}/dist"/>
+		<mkdir dir="${deliverable.bundle.dir}/lib"/>
+		<mkdir dir="${deliverable.bundle.dir}/src"/>
+		<mkdir dir="${deliverable.bundle.dir}/docs"/>
+		<mkdir dir="${deliverable.bundle.dir}/tmp"/>
+	</target>
+
+	<target name="copyinstall">
+          <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+               <fileset dir="${ts.home}/install/jsonb/bin"
+                    includes="**/*"
+                    excludes="**/workspace.xml, **/*.log, **/out"/>
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+              <fileset dir="${ts.home}/install/jsonb/docs" excludes="**svn**" />
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib"
+                    includes="dtds/, schemas/, jsonbtck.jar,
+                              jsonb_alternate_provider.jar,
+                              sigtest.jar"/>
+          </copy>
+
+          <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish/templates" includeEmptyDirs="no">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish/templates"
+                    includes="password.template"/>
+          </copy>
+
+	  <copy todir="${deliverable.bundle.dir}/src">
+		<fileset dir="${ts.home}/install/jsonb/other" 
+			includes="testsuite.jtt, vehicle.properties"/>
+	  </copy>
+          <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+              <fileset dir="${ts.home}" includes="NOTICE" />
+          </copy>
+
+      <copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+	  </copy>
+	</target>
+
+	<target name="jte.cleanup">
+            <props.sanitizer file="${basedir}/${deliverable.bundle.dir}/bin/ts.jte" quiet="true">
+                <property name="jsonb.classes" value="" />
+                <property name="jsonb.resources" value="$${ts.home}/src/com/sun/ts/tests/jsonb/resources" />
+                <property name="jsonb.alt.provider.classes" value="jsonb.alt.provider.classes" />
+            </props.sanitizer>
+        </target>
+
+	<target name="build" depends="init">
+		<antcall target="copyinstall"/>
+        	<antcall target="jte.cleanup"/>
+
+		<!-- the classes directory -->
+		<!-- ********************* -->
+		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+                     <fileset dir="${ts.home}/classes"
+			includes="
+		          com/sun/ts/tests/common/vehicle/*.class,
+		          com/sun/ts/tests/common/vehicle/standalone/*.class,
+		          com/sun/ts/tests/jsonb/**/*.class,
+		          com/sun/ts/tests/signaturetest/*.class,
+		          com/sun/ts/tests/signaturetest/jsonb/*.class,
+		          com/sun/ts/lib/porting/**/*TSURL*.class,
+		          com/sun/ts/lib/implementation/sun/common/**/SunRIURL.class"
+			excludes="
+              com/sun/ts/tests/signaturetest/*Record*,
+              com/sun/ts/tests/signaturetest/*record*,
+              ${exclude.classes}"/>
+		</copy>
+
+		<!-- maintain dist class hierarchy of test directory wars -->
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="yes">
+			<fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/jsonb/**/*.war" 
+               excludes="${exclude.classes}/*"/>
+		</copy>
+
+		<!-- the specific deliverable source directories -->
+		<copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src"
+			includes="
+               com/sun/ts/tests/jsonb/**/*,
+               com/sun/ts/tests/signaturetest/signature-repository/javax.json.*,
+               com/sun/ts/tests/signaturetest/*,
+               com/sun/ts/tests/signaturetest/jsonb/*,
+               com/sun/ts/tests/common/vehicle/*,
+               com/sun/ts/tests/common/vehicle/standalone/*,
+               ${lib.pkg.dir}/deliverable/jsonb/*,
+               com/sun/ts/lib/porting/**/*TSURL*,
+               com/sun/ts/lib/implementation/sun/common/**/SunRIURL*"
+			excludes="
+               **/*log,
+   		         **/TODO,
+               com/sun/ts/tests/signaturetest/*Record*,
+               com/sun/ts/tests/signaturetest/*record*,
+               com/sun/ts/tests/signaturetest/jsonb/*record*,
+               ${exclude.classes}/*"/>
+
+		</copy>
+		<antcall target="create.doc.bundle"/>
+	</target>
+        <target name="create.doc.bundle">
+              <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
+              <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">
+                <zipfileset dir="${ts.home}/install/${deliverable.dir}/docs"
+                        includes="**/*.html, **/*.gif, **/*.css"
+                        excludes="*ReleaseNotes*.html"/>
+              </zip>
+        </target>
+</project>

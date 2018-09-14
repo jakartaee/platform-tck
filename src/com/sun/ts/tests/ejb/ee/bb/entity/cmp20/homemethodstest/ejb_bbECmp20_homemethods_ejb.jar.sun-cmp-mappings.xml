@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-cmp-mappings PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 CMP 1.0//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-cmp-mapping_1_0.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<sun-cmp-mappings>
+<sun-cmp-mapping>
+<schema>CtsSchema</schema>
+<entity-mapping>
+            <ejb-name>TestBeanEJB</ejb-name>
+            <table-name>CMP20_HOMEM_TABLE1</table-name>
+            <cmp-field-mapping>
+                <field-name>id</field-name>
+                <column-name>ID</column-name>
+                 
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>first</field-name>
+                <column-name>FIRSTNAME</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>middle</field-name>
+                <column-name>MIDDLENAME</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>last</field-name>
+                <column-name>LASTNAME</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>name</field-name>
+                <column-name>NAME</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>accountNumber</field-name>
+                <column-name>ACCOUNTNUMBER</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>paymentType</field-name>
+                <column-name>PAYMENTTYPE</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>workPhone</field-name>
+                <column-name>WORKPHONE</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>creditCardNumber</field-name>
+                <column-name>CREDITCARDNUMBER</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>homePhone</field-name>
+                <column-name>HOMEPHONE</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>city</field-name>
+                <column-name>CITY</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>cardBalance</field-name>
+                <column-name>CARDBALANCE</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>street</field-name>
+                <column-name>STREET</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>expires</field-name>
+                <column-name>EXPIRES</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>zip</field-name>
+                <column-name>ZIP</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>state</field-name>
+                <column-name>STATE</column-name>
+            </cmp-field-mapping>
+            <cmp-field-mapping>
+                <field-name>code</field-name>
+                <column-name>CODE</column-name>
+            </cmp-field-mapping>
+        </entity-mapping>
+</sun-cmp-mapping>
+</sun-cmp-mappings>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="HandlerTestService"
+              targetNamespace="http://handlertestservice.org/wsdl" 
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+              xmlns:tns="http://handlertestservice.org/wsdl" 
+              xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+              xmlns="http://schemas.xmlsoap.org/wsdl/"
+              xmlns:ns4="http://handlertestservice.org/types4">
+
+  <types>
+    <xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xsd:import namespace="http://handlertestservice.org/types4" schemaLocation="HandlerTestDefs.xsd"/>
+    </xsd:schema>
+  </types>
+
+  <message name="hello">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <message name="helloResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="headerRequest">
+    <part name="RequestString" type="xsd:string"/>
+    <part name="TheHeader" element="ns4:MyHeader"/> 
+  </message>
+  <message name="headerResponse">
+    <part name="ResponseString" type="xsd:string"/>
+    <part name="TheHeader" element="ns4:MyHeader"/> 
+  </message>
+
+  <portType name="Hello">
+    <operation name="hello">
+      <input message="tns:hello"/>
+      <output message="tns:helloResponse"/>
+    </operation>
+    <operation name="hello2">
+      <input message="tns:headerRequest"/>
+      <output message="tns:headerResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="HelloBinding" type="tns:Hello">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="hello">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://handlertestservice.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://handlertestservice.org/wsdl"/>
+      </output>
+    </operation>
+
+    <operation name="hello2">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" parts="RequestString" namespace="http://handlertestservice.org/wsdl"/>
+        <soap:header message="tns:headerRequest" part="TheHeader" use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="ResponseString" namespace="http://handlertestservice.org/wsdl"/>
+        <soap:header message="tns:headerResponse" part="TheHeader" use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="HandlerTestService">
+    <port name="HelloPort" binding="tns:HelloBinding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+  </service>
+</definitions>

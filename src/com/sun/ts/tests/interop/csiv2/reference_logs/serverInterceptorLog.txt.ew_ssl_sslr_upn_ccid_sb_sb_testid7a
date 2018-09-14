@@ -1,0 +1,124 @@
+<csiv2-log>
+  <assertion name="ew_ssl_sslr_upn_ccid_sb_sb_testid7a">
+    <invocation>
+      <ejb-home>
+        <client>
+            <server>
+              <invocation-principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</invocation-principal>
+            </server>
+          <reply>
+            <create-exception>
+              (expected result)
+            </create-exception>
+          </reply>
+        </client>
+      </ejb-home>
+      <ejb-remote>
+        <client>
+            <server>
+              <invocation-principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</invocation-principal>
+    <invocation>
+      <ejb-home>
+        <client>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <distinguished-name>00000000000000773075310B3009060355040613025553310B3009060355040813024D41311330110603550407130A4275726C696E67746F6E311E301C060355040A131553756E204D6963726F73797374656D7320496E632E31163014060355040B130D4A61766120536F667477617265310C300A06035504031303435453</distinguished-name>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=localhost, OU=GlassFish, O=Oracle Corporation, L=Santa Clara, ST=California, C=US</principal>
+            </transport-client-principals>
+            <server>
+              <invocation-principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</invocation-principal>
+            </server>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+          <reply>
+            <create-exception>
+              (expected result)
+            </create-exception>
+          </reply>
+        </client>
+      </ejb-home>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <distinguished-name>00000000000000773075310B3009060355040613025553310B3009060355040813024D41311330110603550407130A4275726C696E67746F6E311E301C060355040A131553756E204D6963726F73797374656D7320496E632E31163014060355040B130D4A61766120536F667477617265310C300A06035504031303435453</distinguished-name>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=localhost, OU=GlassFish, O=Oracle Corporation, L=Santa Clara, ST=California, C=US</principal>
+            </transport-client-principals>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+      <ejb-remote>
+        <client>
+          <server-interceptor>
+            <operation>invoke</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <distinguished-name>00000000000000773075310B3009060355040613025553310B3009060355040813024D41311330110603550407130A4275726C696E67746F6E311E301C060355040A131553756E204D6963726F73797374656D7320496E632E31163014060355040B130D4A61766120536F667477617265310C300A06035504031303435453</distinguished-name>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=localhost, OU=GlassFish, O=Oracle Corporation, L=Santa Clara, ST=California, C=US</principal>
+            </transport-client-principals>
+            <server>
+              <invocation-principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</invocation-principal>
+            </server>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+          <reply>
+            <no-exception/>
+          </reply>
+        </client>
+      </ejb-remote>
+    </invocation>
+            </server>
+          <reply>
+            <no-exception/>
+          </reply>
+        </client>
+      </ejb-remote>
+    </invocation>
+  </assertion>
+</csiv2-log>

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!--
+$Id$
+-->
+<project name="jsonp_pluggability_jsonprovidertests" basedir="." default="usage"> 
+  <import file="../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <property name="app.name" value="jsonprovidertests"/>
+  <property name="client.class" value="com.sun.ts.tests.jsonp.pluggability.jsonprovidertests.Client"/>
+
+   <!-- Our test JsonProvider info -->
+  <property name="provider.class" value="com/sun/ts/tests/jsonp/provider/MyJsonProvider.class"/>
+  <property name="provider.dir" value="${src.dir}/com/sun/ts/tests/jsonp/provider"/>
+  <property name="provider.jar" value="jsonp_alternate_provider.jar"/>
+
+  <property name="other.classes" value="com/sun/ts/tests/jsonp/common/*.class"/>
+  <property name="resources.dir" value="${src.dir}/com/sun/ts/tests/jsonp/resources"/>
+  <property name="data.files" value="jsonArrayWithAllTypesOfData.json,
+				     jsonObjectWithAllTypesOfData.json"/>
+
+  <!-- Build dependency test JsonProvider jar -> jsonp_alternate_provider.jar -->
+  <target name="-precompile">
+    <echo message="Building dependency dir: ${provider.dir}"/>
+    <ant dir="${provider.dir}" target="build" inheritAll="false"/>
+  </target>
+
+  <!-- Build pluggability tests and package test provider jar within each ear -->
+  <target name="package">
+      <ts.vehicles name="${app.name}">
+        <ejb-elements>
+          <fileset dir="${class.dir}" includes="${other.classes}"/>
+          <fileset dir="${resources.dir}" includes="${data.files}"/>
+        </ejb-elements>
+        <client-elements>
+          <fileset dir="${class.dir}" includes="${other.classes}"/>
+          <fileset dir="${resources.dir}" includes="${data.files}"/>
+        </client-elements>
+        <servlet-elements>
+          <zipfileset dir="${class.dir}" includes="${other.classes}"
+                      prefix="WEB-INF/classes"/>
+          <zipfileset dir="${resources.dir}" includes="${data.files}"
+                      prefix="WEB-INF/classes"/>
+          <zipfileset dir="${ts.home}/lib" includes="${provider.jar}"
+                      prefix="WEB-INF/lib"/>
+        </servlet-elements>
+        <jsp-elements>
+          <zipfileset dir="${class.dir}" includes="${other.classes}"
+                      prefix="WEB-INF/classes"/>
+          <zipfileset dir="${resources.dir}" includes="${data.files}"
+                      prefix="WEB-INF/classes"/>
+          <zipfileset dir="${ts.home}/lib" includes="${provider.jar}"
+                      prefix="WEB-INF/lib"/>
+        </jsp-elements>
+	<ear-elements>
+	    <zipfileset dir="${ts.home}/lib" includes="${provider.jar}" prefix="lib"/>
+        </ear-elements>
+      </ts.vehicles>
+  </target>
+
+</project>

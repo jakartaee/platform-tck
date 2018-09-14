@@ -1,0 +1,138 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="smoketest" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./ts.common.props.xml" optional="true"/>
+    <import file="../../../../../../bin/xml/ts.common.props.xml" optional="true"/>
+
+<property name="output.log" value="smoke.log"/>
+<property name="test.additional.build.areas" value="
+    com/sun/ts/tests/ejb/ee/tx/txbean,
+    com/sun/ts/tests/jta/ee/common,
+    com/sun/ts/tests/ejb/ee/sec/stateful/common,
+    com/sun/ts/tests/servlet/common,
+    com/sun/ts/tests/servlet/api/common,
+    com/sun/ts/tests/jaxws/common,
+    com/sun/ts/tests/jaxws/wsi/constants,
+    com/sun/ts/tests/connector/util
+    web/jstl/spec/sql/query,
+    com/sun/ts/tests/jstl/common,
+    com/sun/ts/tests/jacc/util,
+    com/sun/ts/tests/ejb30/persistence/common,
+    com/sun/ts/tests/ejb30/common/helper"/>
+
+
+<!-- The following test areas have been temporarily removed from the smoke tests.       -->
+<!--                                                                                    -->
+<!--    These tests have been removed while the JACC team does some rearchitecting      -->
+<!--    of these tests.                                                                 -->
+<!--        com/sun/ts/tests/jacc/toolsContracts,                                       -->
+<!--                                                                                    -->
+<property name="test.areas" value="
+    com/sun/ts/tests/ejb/ee/tx/session/stateful/cm/TxRN_Exceptions,
+    com/sun/ts/tests/jta/ee/usertransaction/commit,
+    com/sun/ts/tests/samples/jdbc/ee/testConn,
+    com/sun/ts/tests/integration/entity/jspejbjdbc,
+    com/sun/ts/tests/integration/entity/servletejbjdbc,
+    com/sun/ts/tests/javamail/ee/multipart,
+    com/sun/ts/tests/ejb/ee/sec/stateful/secpropagation,
+    com/sun/ts/tests/connector/localTx/connection,
+    com/sun/ts/tests/jms/ee/mdb/mdb_sndToQueue,
+    com/sun/ts/tests/jsp/spec/core_syntax/actions/usebean,
+    com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/bodytagsupport,
+    com/sun/ts/tests/servlet/api/javax_servlet/servletcontext,
+    com/sun/ts/tests/servlet/api/javax_servlet_http/httpservletrequest,
+    com/sun/ts/tests/servlet/api/javax_servlet/servletresponse,
+    com/sun/ts/tests/jaxrpc/ee/w2j/rpc/encoded/marshalltest,
+    com/sun/ts/tests/webservices12/ejb/annotations/WSEjbSOAPHandlersTest,
+    com/sun/ts/tests/webservices12/ejb/annotations/WSEjbWebServiceProviderTest,
+    com/sun/ts/tests/webservices12/servlet/WSMTOMSBAnnotationsTest,
+    com/sun/ts/tests/webservices12/servlet/HandlerTest,
+    com/sun/ts/tests/webservices12/servlet/WebServiceRefsTest,
+    com/sun/ts/tests/jsp/api/javax_el/elresolver,
+    com/sun/ts/tests/jsp/spec/el/language,
+    com/sun/ts/tests/jsp/spec/tagext/resource/taghandler,
+    com/sun/ts/tests/jstl/spec/sql/query,
+    com/sun/ts/tests/ejb30/persistence/basic,
+    com/sun/ts/tests/ejb30/persistence/entitytest/persist/basic"/>
+
+  <target name="usage">
+    <echo message="&#10;ant -buildfile smoke.xml smoke&#10;ant -buildfile smoke.xml build&#10;ant -buildfile smoke.xml clean&#10;ant -buildfile smoke.xml runclient&#10;ant -buildfile smoke.xml printall&#10;ant -buildfile smoke.xml usage&#10;"/> 
+  </target>
+  
+  <target name="build">
+    <ant dir="${bin.dir}" target="build.all.tests">
+      <property name="all.test.dir" value="${test.areas}, ${test.additional.build.areas}"/>
+    </ant>
+  </target>
+  
+  <target name="clean">
+    <elementappend original="${test.areas}, ${test.additional.build.areas}" 
+                   prefix="com/sun/ts/tests" suffix="/" property="includes.pattern"/>
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${class.dir}" includes="${includes.pattern}"/>
+    </delete>
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${dist.dir}" includes="${includes.pattern}"/>
+    </delete>
+  </target>
+  
+  <target name="printall">
+    <string method="replace" this="${test.areas}, ${test.additional.build.areas}" arg1="," arg2="&#10;" return="to.print"/>
+    <echo message="These are the test that will be affected:&#10;${to.print}"/>
+  </target>
+  <target name="printAll" depends="printall">
+  </target>
+  
+  <target name="runclient">
+    <string method="replace" this="${test.areas}" arg1="," arg2=" " return="multiple.tests"/>
+    <ant dir="${bin.dir}" target="runclient">
+      <property name="multiple.tests" value="${multiple.tests}"/>
+      <property name="failOnError" value="false"/>
+    </ant>
+  </target>
+
+  <!-- The smoke target configures CTS, the VI, starts JavaDB and inits it. -->
+  <!-- It also enables JACC and runs the smoke tests.  Upon tests completion, JACC -->
+  <!-- is disabled and the Derby database is stopped.                                 -->
+  <target name="smoke">
+    <delete failonerror="false" file="${output.log}"/>
+    <touch file="${output.log}"/>
+    <ant dir="${bin.dir}/xml" antfile="smoke.xml" target="smoke.javadb" output="${output.log}"/>
+  </target>
+
+  <target name="smoke.javadb.no.jacc">
+    <ant dir="${bin.dir}" target="config.vi.javadb"/>
+    <antcall target="runclient"/>
+    <ant dir="${bin.dir}" target="clean.vi"/>
+    <ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="stop.vi"/>
+    <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="stop.javadb"/>
+  </target>
+
+  <target name="smoke.javadb">
+    <ant dir="${bin.dir}" target="config.vi.javadb"/>
+    <ant dir="${bin.dir}" target="enable.jacc"/>
+    <antcall target="runclient"/>
+    <ant dir="${bin.dir}" target="disable.jacc"/>
+    <ant dir="${bin.dir}" target="clean.vi"/>
+    <ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="stop.vi"/>
+    <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="stop.javadb"/>
+  </target>
+</project>

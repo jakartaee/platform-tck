@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ParImport" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./ts.common.xml"/>
+
+    <!-- LOCAL PROPERTY DEFINITIONS -->
+
+    <!-- MACROS -->
+    <macrodef name="ts.par">
+
+        <!--
+          The ts.par task allows users to build persistence archives.  By default all
+          classes under TS_HOME/classes/<pkg.dir> are included in the generated archive.
+          Users may specify additional content using nested fileset and zipfileset elements.
+          User may also tweak the contents of the generated archive by specifying various
+          attribute values, see the attribute and element tables for details.
+  
+          Examples:
+
+        This is the most common example used and includes all classes that are included in the
+        fileset.
+
+         <ts.par descriptor="persistence.xml"
+                descriptordir="${ts.home}/src/com/sun/ts/tests/jpa/common/template/standalone"
+        	archivename="jpa_core_entitytest_apitests">
+      		<fileset dir="${class.dir}"
+               		includes="${par.classes}"/>
+        </ts.par>
+
+        This example includes the contents of the two filesets and the zipfileset.
+
+        IMPORTANT:
+        The names of the mapping files must contain "mappingfile" (any case) and must end with ".xml"
+        It must also be placed at the root of the archive
+
+        <ts.par descriptor="persistence.xml"
+                descriptordir="${ts.home}/src/com/sun/ts/tests/jpa/common/template/standalone"
+                archivename="jpa_core_entitytest_apitests">
+            <fileset dir="${class.dir}"
+                     includes="${par.classes}"/>
+            <fileset dir="." includes="${par.mappingfiles}"/>
+            <zipfileset dir="." includes="orm.xml" prefix="META-INF"/>
+        </ts.par>
+
+        -->
+
+        <attribute name="descriptor"
+                   default=""
+                   description="Deployment descriptor added to the archive if the archive requires a deployment descriptor"/>
+
+        <attribute name="manifest"
+                   default=""
+                   description="Manifest to be used within the archive"/>
+
+        <attribute name="archivename"
+                   description="Archive name minus the file suffix"/>
+
+        <attribute name="descriptordir"
+                   default="${src.dir}/${pkg.dir}"
+                   description="Directory containing the deployment descriptor"/>
+
+        <element name="jar-elements" implicit="yes" optional="true"
+                 description="The content to be added to the archive"/>
+
+        <attribute name="shouldmodifydescriptor"
+                   default="true"
+                   description="Modify the descriptor file and add classes and mappingfiles"/>
+        <sequential>
+            <!-- steps for persistence tests-->
+            <if>
+                <contains string="${pkg.dir}" substring="jpa"/>
+                <then>
+                    <echo message="In Persistence tests directory"/>
+                    <if>
+                        <contains string="${pkg.dir}" substring="pluggability"/>
+                        <then>
+                            <echo message="It is a pluggability test"/>
+                            <property name="effective.descriptordir" value="@{descriptordir}"/>
+                            <property name="effective.descriptor" value="@{descriptor}"/>
+                        </then>
+                        <else>
+                            <if>
+                                <istrue value="@{shouldmodifydescriptor}"/>
+                            <then>
+
+                            <echo message="It is not a pluggability test"/>
+                            <modify-persistence-xml original.persistence.xml.file="@{descriptordir}/@{descriptor}"
+                                                    archivename="@{archivename}">
+                                <jar-elements/>
+                            </modify-persistence-xml>
+
+                            <dirname property="effective.descriptordir" file="${modified.persistence.xml.file}"/>
+                            <basename property="effective.descriptor" file="${modified.persistence.xml.file}"/>
+                            </then>
+                            <else>
+                                <property name="effective.descriptordir" value="@{descriptordir}"/>
+                                <property name="effective.descriptor" value="@{descriptor}"/>
+                            </else>
+                            </if>
+
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <echo message="WARNING: Using &lt;ts.par&gt; when not in the JPA directory"/>
+                    <property name="effective.descriptordir" value="@{descriptordir}"/>
+                    <property name="effective.descriptor" value="@{descriptor}"/>
+                </else>
+            </if>
+            <!-- end of steps for Persistence tests -->
+
+            <!-- Define commmon preset regardless of includedefaultfiles value-->
+            <presetdef name="component.par">
+                <_component descriptor="${effective.descriptor}"
+                            manifest="@{manifest}"
+                            archivename="@{archivename}"
+                            archivesuffix=".jar"
+                            descriptordir="${effective.descriptordir}"
+                            internaldescriptorname="META-INF/persistence.xml">
+                </_component>
+            </presetdef>
+
+            <!-- include all the contents of filesets and zipfilesets passed in -->
+            <component.par>
+                <jar-elements/>
+            </component.par>
+
+            <!-- steps for standalone TCK only -->
+            <if>
+                <equals arg1="${platform.mode}" arg2="standalone"/>
+                <then>
+                    <ts.verbose message="In standalone TCK mode, delete entity classes specified in par"/>
+                    <for param="entry" trim="true">
+                        <jar-elements/>
+                        <sequential>
+                            <if>
+                                <contains string="@{entry}" substring=".class"/>
+                                <then>
+                                    <delete failonerror="true" file="@{entry}"/>
+                                </then>
+                            </if>
+                        </sequential>
+                    </for>
+                </then>
+            </if>
+            <!-- end of steps for standalone TCK only -->
+
+        </sequential>
+    </macrodef>
+
+    <!-- PRESETS -->
+
+    <!-- TARGETS -->
+    <!-- The following targets and properties are currently used only when building
+         the standalone TCK -->
+
+    <property name="modified.persistence.xml.file" value="/tmp/modified.persistence.xml"/>
+
+
+    <macrodef name="modify-persistence-xml">
+        <attribute name="original.persistence.xml.file"
+                   description="Archive name minus the file suffix"/>
+        <attribute name="archivename"
+                   description="Archive name minus the file suffix"/>
+        <element name="jar-elements" implicit="yes" optional="true"
+                 description="Modify the persistence.xml file to add class tags for all classes"/>
+        <sequential>
+            <echo message="pkg.dir = ${pkg.dir}"/>
+            <echo message="original.persistence.xml.file=@{original.persistence.xml.file}"/>
+            <echo message="archivename=@{archivename}"/>
+
+            <!-- remove any previous xml file -->
+            <delete file="${modified.persistence.xml.file}" quiet="true"/>
+
+            <!-- create the tags of all the entity classes to be added to the persistence.xml file -->
+            <var name="persistence.xml.class.elements" value="&lt;classes&gt;"/>
+            <!-- since a mapping file might not be present set this to empty for now -->
+            <var name="persistence.xml.mappingfile.elements" value=""/>
+
+            <for param="entry" trim="true">
+                <jar-elements/>
+                <sequential>
+                    <ts.verbose message="Processing entry: @{entry}"/>
+
+                    <if>
+                        <contains string="@{entry}" substring=".class"/>
+                        <then>
+                            <ts.verbose message="class file found"/>
+                            <var name="stripoffclassestext" unset="true"/>
+                            <var name="par.class.no.dot.class" unset="true"/>
+                            <var name="par.class.canonical" unset="true"/>
+
+                            <propertyregex property="remove.up.to.classes" input="@{entry}"
+                                           regexp="^.*classes[\/|\\]" replace=""
+                                           casesensitive="true" override="true" />
+                            <ts.verbose message="remove.up.to.classes:${remove.up.to.classes}"/>
+
+                            <propertyregex property="par.class.no.dot.class" input="${remove.up.to.classes}"
+                                           regexp="\.class" replace=""
+                                           casesensitive="true" override="true"/>
+                            <ts.verbose message="par.class.no.dot.class:${par.class.no.dot.class}"/>
+
+                            <propertyregex property="par.class.canonical" input="${par.class.no.dot.class}"
+                                           regexp="[\/|\\]" replace="\."
+                                           casesensitive="true" override="true"/>
+                            <ts.verbose message="par.class.canonical:${par.class.canonical}"/>
+
+                            <var name="persistence.xml.class.elements"
+                                 value="${persistence.xml.class.elements}&lt;class&gt;${par.class.canonical}&lt;/class&gt;"/>
+                        </then>
+                        <elseif>
+                            <and>
+                                <contains string="@{entry}" substring=".xml"/>
+                                <contains string="@{entry}" substring="MappingFile" casesensitive="false"/>
+                            </and>
+                            <then>
+                                <ts.verbose message="mapping file found"/>
+
+                                <!-- process a mapping file -->
+                                <if>
+                                    <not>
+                                        <isset property="found.mapping.file"/>
+                                    </not>
+                                    <then>
+                                        <!-- set this to true so we know we found a mapping file and only
+                                             add the <mapping-files> tag to the elements variable once. -->
+                                        <var name="found.mapping.file" value="true"/>
+                                        <var name="persistence.xml.mappingfile.elements"
+                                             value="${persistence.xml.mappingfile.elements}&lt;mapping-files&gt;"/>
+                                    </then>
+                                </if>
+                                <!-- remove everything up to the name of the file myMappingFile.xml -->
+                                <propertyregex property="get.just.mapping.filename" input="@{entry}"
+                                               regexp="^.*\/([^\.]*\.xml)" replace="\1"
+                                               casesensitive="true" override="true"/>
+                                <ts.verbose message="mappingfile name:${get.just.mapping.filename}"/>
+                                <var name="persistence.xml.mappingfile.elements"
+                                     value="${persistence.xml.mappingfile.elements}&lt;mapping-file&gt;${get.just.mapping.filename}&lt;/mapping-file&gt;"/>
+                            </then>
+                        </elseif>
+                        <else>
+                            <echo message="Entry: @{entry} WAS NOT PROCESSED"/>
+                        </else>
+                    </if>
+                </sequential>
+            </for>
+
+            <!-- terminate the xml fragments for the entity classes that will be added to the persistence.xml file.
+                 since there will always be at least one class present just do this here instead of below. -->
+            <var name="persistence.xml.class.elements" value="${persistence.xml.class.elements}&lt;/classes&gt;"/>
+
+            <echo message="original persistence xml file=@{original.persistence.xml.file}"/>
+            <echo message="modified persistence xml file=${modified.persistence.xml.file}"/>
+            <var name="infile" value="@{original.persistence.xml.file}" />
+
+
+           <!-- if a mapping file was found -->
+            <if>
+                <isset property="found.mapping.file"/>
+                <then>
+                    <!-- terminate the xml fragments for the mapping files that will be added to the persistence.xml file -->
+                    <var name="persistence.xml.mappingfile.elements"
+                         value="${persistence.xml.mappingfile.elements}&lt;/mapping-files&gt;"/>
+
+                    <echo message="About to modify: ${modified.persistence.xml.file} with mapping entries"/>
+                    <echo message="mappingfile fragments=${persistence.xml.mappingfile.elements}"/>
+                    <echo message="infile:${infile}"/>
+
+                    <modifyxml infile="${infile}"
+                               outfile="${modified.persistence.xml.file}"
+                               defaultnsprefix="ee-persitence"
+                               xpathexpr="//ee-persitence:persistence-unit">
+                        <xmlfragment ignoreroot="true" xmlfragmentattribute="${persistence.xml.mappingfile.elements}"/>
+                    </modifyxml>
+                    <!-- set the infile which will be modified with classes to the modified file -->
+                    <var name="infile" value="${modified.persistence.xml.file}" />
+                </then>
+            </if>
+
+            <!-- modify xml file with classes -->
+            <echo message="About to modify: ${infile} with class entries"/>
+            <echo message="classes fragments:${persistence.xml.class.elements}"/>
+
+            <echo message="infile:${infile}"/>
+            <modifyxml infile="${infile}"
+                       outfile="${modified.persistence.xml.file}"
+                       defaultnsprefix="ee-persitence"
+                       xpathexpr="//ee-persitence:persistence-unit">
+                <xmlfragment ignoreroot="true" xmlfragmentattribute="${persistence.xml.class.elements}"/>
+            </modifyxml>
+        </sequential>
+    </macrodef>
+
+</project>

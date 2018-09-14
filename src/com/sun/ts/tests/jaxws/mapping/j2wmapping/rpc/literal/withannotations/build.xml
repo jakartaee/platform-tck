@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jaxws_mapping_j2wmapping_rpc_literal_withannotations" basedir="." default="usage">
+	<property name="service.names" value="J2WRLShared"/>
+	<property name="app.name" value="WSJ2WRLWithAnnotations"/>
+	<property name="port.name" value="J2WRLSharedEndpoint"/>
+	<property name="wsdl.filename" value="J2WRLShared.wsdl"/>
+  	<property name="impl.class" value="com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.J2WRLSharedEndpointImpl"/>
+  	<property name="impl2.class" value="com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpointImpl"/>
+        <property name="impl3.class" value="com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint3Impl"/>
+        <property name="impl4.class" value="com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint4Impl"/>
+        <property name="impl5.class" value="com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint5Impl"/>
+        <property name="impl6.class" value="com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint6Impl"/>
+
+	<!-- Import common classes properties and specific packaging file -->
+	<import file="../../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+
+	<property name="client.class" value="com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.Client"/>
+	<property name="common.classes" value="${common.classes.all}"/>
+
+	<target name="-postcompile" >
+          <antcall  target="do_java2wsdl_generate_server">
+             <param name="impl.class" value="${impl.class}"/>
+          </antcall>
+          <antcall  target="do_java2wsdl_generate_server">
+             <param name="impl.class" value="${impl2.class}"/>
+          </antcall>
+          <antcall  target="do_java2wsdl_generate_server">
+             <param name="impl.class" value="${impl3.class}"/>
+          </antcall>
+          <antcall  target="do_java2wsdl_generate_server">
+             <param name="impl.class" value="${impl4.class}"/>
+          </antcall>
+          <antcall  target="do_java2wsdl_generate_server">
+             <param name="impl.class" value="${impl5.class}"/>
+          </antcall>
+          <antcall  target="do_java2wsdl_generate_server">
+             <param name="impl.class" value="${impl6.class}"/>
+          </antcall>
+     </target>
+
+     <target name="package" depends="client_import_package"/>
+
+	<target name="-preclean">
+        <remove_wsdl_xsd/>
+	</target>
+
+</project>

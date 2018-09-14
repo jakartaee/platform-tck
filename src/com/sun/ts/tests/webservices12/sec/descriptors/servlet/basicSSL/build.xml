@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="WSSecWarBasicSSL" basedir="." default="usage">
+  <property name="app.name" value="WSSecWarBasicSSL"/>
+  <property name="client.class" value= "com.sun.ts.tests.webservices12.sec.descriptors.servlet.basicSSL.Client" />
+  <property name="service.names" value="HelloBasicService"/>
+  <property name="sei.names" value="HelloBasic"/>
+  <property name="wsdl.filename" value="HelloBasic.wsdl"/>
+  <property name="dd.files.already.exist" value="true"/>
+  
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="impl.classes" value="${pkg.dir}/HelloBasicImpl.class"/>
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+
+  <target name="-precompile" depends="do_wsdl2java_generate_server"/>
+
+  <target name="package" depends="vehicles_import_package"/>
+
+</project>

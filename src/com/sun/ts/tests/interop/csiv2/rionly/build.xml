@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="interop_csiv2_rionly" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/> 
+
+
+
+  <target name="compile">
+      <ts.javac includes="${pkg.dir}/*.java"/>
+  </target>
+
+
+  <target name="build" depends="compile">
+
+      <ts.war descriptor="logger_servlet_rionly_j2ee2_web.xml" 
+              archivename="logger_servlet_rionly_j2ee2"
+              descriptordir="${ts.home}/src/${pkg.dir}"
+              includedefaultfiles="false" >
+            <zipfileset dir="${class.dir}"
+			includes="com/sun/ts/tests/interop/csiv2/rionly/LoggerServlet.class,
+                                  com/sun/ts/tests/interop/csiv2/common/CSIv2FileLoggerImpl.class"
+			prefix="WEB-INF/classes"
+            />
+
+      </ts.war>
+
+  </target>
+
+
+  <target name="package" depends="compile, build">
+  </target>
+
+</project>

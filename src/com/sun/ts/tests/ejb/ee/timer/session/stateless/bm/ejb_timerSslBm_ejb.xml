@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+  <display-name>Ejb1</display-name>
+  <enterprise-beans>
+    <session>
+      <ejb-name>com_sun_ts_tests_ejb_ee_timer_session_stateless_bm_ProxyBean</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.ProxyBeanHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.ProxyBean</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.ProxyBeanEJB</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Bean</transaction-type>
+      <ejb-local-ref>
+        <ejb-ref-name>ejb/TestBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local-home>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.TestBeanLocalHome</local-home>
+        <local>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.TestBeanLocal</local>
+        <ejb-link>com_sun_ts_tests_ejb_ee_timer_session_stateless_bm_TestBean</ejb-link>
+      </ejb-local-ref>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+    <session>
+      <ejb-name>com_sun_ts_tests_ejb_ee_timer_session_stateless_bm_CheckedMethod</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.timer.helper.CheckedMethodHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.timer.helper.CheckedMethod</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.timer.helper.CheckedMethodEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+    <session>
+      <ejb-name>com_sun_ts_tests_ejb_ee_timer_session_stateless_bm_TestBean</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.TestBeanHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.TestBean</remote>
+      <local-home>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.TestBeanLocalHome</local-home>
+      <local>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.TestBeanLocal</local>
+      <ejb-class>com.sun.ts.tests.ejb.ee.timer.session.stateless.bm.TestBeanEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <ejb-ref>
+        <ejb-ref-name>ejb/CheckedMethod</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <home>com.sun.ts.tests.ejb.ee.timer.helper.CheckedMethodHome</home>
+        <remote>com.sun.ts.tests.ejb.ee.timer.helper.CheckedMethod</remote>
+      </ejb-ref>
+      <resource-ref>
+        <description>JMS QueueConnectionFactory</description>
+        <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
+        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <resource-env-ref>
+        <resource-env-ref-name>jms/MyQueue</resource-env-ref-name>
+        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+      </resource-env-ref>
+      <security-role-ref>
+        <role-name>Manager</role-name>
+        <role-link>Manager</role-link>
+      </security-role-ref>
+      <security-identity>
+        <run-as>
+          <role-name>Manager</role-name>
+        </run-as>
+      </security-identity>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <security-role>
+      <role-name>Manager</role-name>
+    </security-role>
+    <method-permission>
+      <role-name>Manager</role-name>
+      <method>
+        <ejb-name>com_sun_ts_tests_ejb_ee_timer_session_stateless_bm_CheckedMethod</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>isAuthz</method-name>
+      </method>
+    </method-permission>
+  </assembly-descriptor>
+</ejb-jar>

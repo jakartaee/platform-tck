@@ -1,0 +1,45 @@
+This README file describes how the rmiiiop standalone tests work.
+The rmiiiop standalone tests contain the following 4 "ear" files:
+
+o rmiiiop_standalone_appclient_vehicle.ear
+o rmiiiop_standalone_ejb_vehicle.ear
+o rmiiiop_standalone_jsp_vehicle.ear
+o rmiiiop_standalone_servlet_vehicle.ear
+
+The rmiiiop standalone tests also contain a standalone RMIIIOP
+Server Application:
+
+o RMIIIOPServer
+
+The rmiiiop standalone tests consists of the J2EE client tests
+which runs in all the J2EE containers of (appclient, ejb, jsp,
+and servlet) and which communicate with the standalone RMIIIOP
+Server Application which runs as a separate java application
+outside the J2EE server environment.
+
+The J2EE client tests create a HTTP URL connection to the standalone
+RMIIIOP Server Application, read the IOR of the RMIIIOP Server Object
+from the URL connection, create an ORB instance via a "ORB.init()",
+convert the IOR of the RMIIIOP Server Object to a CORBA object, and 
+then narrow the CORBA object to get actual the object reference. Now 
+the J2EE clients can communicate with a standalone RMIIIOP Server 
+Object. The HTTP URL is at:
+
+http://${RMIIIOP_HTTP_SERVER_HOST}:${RMIIIOP_HTTP_SERVER_PORT}
+
+So to run this test you must do the following:
+
+(1) Start the standalone RMIIIOP Server Application.
+
+	% cd $TS_HOME/bin
+	% tsant start.rmiiiop.server
+
+(2) Start J2EE server.
+
+	% j2ee -verbose
+
+(3) Deploy and Run the rmiiiop standalone tests.
+
+	% cd $TS_HOME/tests/rmiiiop/standalone
+	% tsant runclient
+

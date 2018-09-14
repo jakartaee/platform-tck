@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+        <schema
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://marshalltestservice.org/types3"
+            xmlns:tns="http://marshalltestservice.org/types3"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <import namespace="http://www.w3.org/2002/06/soap-encoding"/>
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <complexType name="EchoEmployeeRequest">
+                <sequence>
+                    <element name="employee" nillable="true" type="tns:Employee"/>
+                </sequence>
+            </complexType>
+            <complexType name="EchoEmployeeResponse">
+                <sequence>
+                    <element name="employee" nillable="true" type="tns:Employee"/>
+                </sequence>
+            </complexType>
+            <complexType name="Person">
+                <sequence>
+                    <element name="name" nillable="true" type="string"/>
+                    <element name="age" type="int"/>
+                    <element name="sex" type="string"/>
+                    <element name="adult" type="boolean"/>
+                    <element name="id" type="float"/>
+                </sequence>
+            </complexType>
+            <complexType name="EchoPersonRequest">
+                <sequence>
+                    <element name="person" nillable="true" type="tns:Person"/>
+                </sequence>
+            </complexType>
+            <complexType name="EchoPersonResponse">
+                <sequence>
+                    <element name="person" nillable="true" type="tns:Person"/>
+                </sequence>
+            </complexType>
+            <complexType name="Employee">
+                <sequence>
+                    <element name="person" nillable="true" type="tns:Person"/>
+                    <element name="salary" type="double"/>
+                    <element name="id" type="int"/>
+                </sequence>
+            </complexType>
+            <complexType name="Document">
+                <simpleContent>
+                    <extension base="string">
+                        <xsd:attribute
+                            name="ID"
+                            type="string"
+                            xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <element name="EchoDocumentRequest" type="tns:Document"/>
+            <element name="EchoDocumentResponse" type="tns:Document"/>
+            <element name="EchoEmployeeRequest" type="tns:EchoEmployeeRequest"/>
+            <element name="EchoEmployeeResponse" type="tns:EchoEmployeeResponse"/>
+            <element name="EchoPersonRequest" type="tns:EchoPersonRequest"/>
+            <element name="EchoPersonResponse" type="tns:EchoPersonResponse"/>
+        </schema>

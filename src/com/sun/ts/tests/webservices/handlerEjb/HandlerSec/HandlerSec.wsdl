@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="HandlerSec" targetNamespace="http://handlersec.org/wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://handlersec.org/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://handlersec.org/wsdl">
+      <complexType name="ClassLoaderInfo">
+         <all>
+            <element name="hasHandlerClassLoader" type="boolean" />
+            <element name="hasBeanClassLoader" type="boolean" />
+            <element name="sameClassLoaders" type="boolean" />
+         </all>
+      </complexType>
+    </schema>
+  </types>
+  <message name="clearTracker" />
+  <message name="clearTrackerResponse">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+  <message name="getClassLoaderInfo" />
+  <message name="getClassLoaderInfoResponse">
+    <part name="result" type="tns:ClassLoaderInfo"/>
+  </message>
+
+  <message name="testingNoSec" />
+  <message name="testingNoSecResponse" />
+  <message name="testingAuth" />
+  <message name="testingAuthResponse" />
+  <message name="testingUnAuth"/>
+  <message name="testingUnAuthResponse" />
+
+  <message name="echoString">
+    <part name="parm" type="xsd:string" />
+  </message>
+  <message name="echoStringResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+  <message name="badEchoString">
+    <part name="parm" type="xsd:string" />
+  </message>
+  <message name="badEchoStringResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+
+
+  <portType name="TestQuery">
+    <operation name="clearTracker" >
+      <input message="tns:clearTracker"/>
+      <output message="tns:clearTrackerResponse"/>
+    </operation>
+    <operation name="getClassLoaderInfo" >
+      <input message="tns:getClassLoaderInfo"/>
+      <output message="tns:getClassLoaderInfoResponse"/>
+    </operation>
+  </portType>
+
+  <portType name="TestNoSec">
+    <operation name="testingNoSec" >
+      <input message="tns:testingNoSec"/>
+      <output message="tns:testingNoSecResponse"/>
+    </operation>
+    <operation name="echoString" parameterOrder="parm">
+      <input message="tns:echoString"/>
+      <output message="tns:echoStringResponse"/>
+    </operation>
+    <operation name="badEchoString" parameterOrder="parm">
+      <input message="tns:badEchoString"/>
+      <output message="tns:badEchoStringResponse"/>
+    </operation>
+  </portType>
+
+  <portType name="TestAuth">
+    <operation name="testingAuth" >
+      <input message="tns:testingAuth"/>
+      <output message="tns:testingAuthResponse"/>
+    </operation>
+  </portType>
+
+  <portType name="TestUnAuth">
+    <operation name="testingUnAuth" >
+      <input message="tns:testingUnAuth"/>
+      <output message="tns:testingUnAuthResponse"/>
+    </operation>
+  </portType>
+
+ <binding name="TestQueryBinding" type="tns:TestQuery">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="clearTracker">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="getClassLoaderInfo">
+      <soap:operation soapAction="http://action1"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+
+ <binding name="TestNoSecBinding" type="tns:TestNoSec">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="testingNoSec">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="echoString">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="badEchoString">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+
+ <binding name="TestAuthBinding" type="tns:TestAuth">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="testingAuth">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+
+ <binding name="TestUnAuthBinding" type="tns:TestUnAuth">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="testingUnAuth">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlersec.org/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="HandlerSec">
+    <port name="TestQueryPort" binding="tns:TestQueryBinding">
+      <soap:address location="http://localhost:8000/HandlerSec/ws4ee/TestQueryPort"/>
+    </port>
+    <port name="TestNoSecPort" binding="tns:TestNoSecBinding">
+      <soap:address location="http://localhost:8000/HandlerSec/ws4ee_nosec/TestNoSecPort"/>
+    </port>
+    <port name="TestAuthPort" binding="tns:TestAuthBinding">
+      <soap:address location="http://localhost:8000/HandlerSec/ws4ee_auth/TestAuthPort"/>
+    </port>
+    <port name="TestUnAuthPort" binding="tns:TestUnAuthBinding">
+      <soap:address location="http://localhost:8000/HandlerSec/ws4ee_unauth/TestUnAuthPort"/>
+    </port>
+  </service>
+</definitions>

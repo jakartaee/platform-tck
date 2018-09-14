@@ -1,0 +1,239 @@
+#
+# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+# Exclude list for CTS 8  
+
+################
+# Servlet
+################
+
+#
+# Bug ID: 19815625
+#
+com/sun/ts/tests/servlet/api/javax_servlet_http/httpupgradehandler/URLClient.java#upgradeTest
+
+
+################
+# JSF
+################
+
+#
+# Bug ID: 18117763
+#
+com/sun/ts/tests/jsf/spec/render/messages/URLClient.java#messagesRenderEncodeTest
+
+#
+# Bug ID: 21033845
+#
+com/sun/ts/tests/jsf/spec/flows/multipagewebinf/URLClient.java#facesFlowWebInfEntryExitTest
+com/sun/ts/tests/jsf/spec/flows/multipagewebinf/URLClient.java#facesFlowWebInfScopeTest
+
+################
+# JAX-RS
+################
+
+#
+# Bug ID: 27645077
+#
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteWithCallbackStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteWithCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteWithGenericTypeResponseWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteWithGenericTypeStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteWithResponseClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteWithStringClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#getTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#getWithCallbackStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#getWithCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#getWithGenericTypeResponseWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#getWithGenericTypeStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#getWithResponseClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#getWithStringClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#headTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#headWithCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithCallbackStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithCallbackStringWithEntityWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithCallbackWithEntityWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithEntityWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithGenericTypeResponseWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithGenericTypeResponseWithEntityWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithGenericTypeStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithGenericTypeStringWithEntityWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithResponseClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithResponseClassWithEntityWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithStringClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#methodWithStringClassWithEntityWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#optionsTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#optionsWithCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#optionsWithGenericTypeResponseWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#optionsWithGenericTypeStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#optionsWithResponseClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#optionsWithStringCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#optionsWithStringClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#postTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#postWithCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#postWithGenericTypeResponseWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#postWithGenericTypeStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#postWithResponseClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#postWithStringClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#putTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#putWithCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#putWithGenericTypeResponseWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#putWithGenericTypeStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#putWithResponseClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#putWithStringCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#putWithStringClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWithCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWithGenericTypeResponseWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWithGenericTypeStringWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWithResponseClassWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWithStringCallbackWhileServerWaitTest_from_standalone
+com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWithStringClassWhileServerWaitTest_from_standalone
+
+#
+# Bug ID: 27869044
+#
+com/sun/ts/tests/jaxrs/jaxrs21/ee/sse/sseeventsource/JAXRSClient.java#connectionLostForDefault500msTest_from_standalone
+
+#
+# Bug ID: 27941277
+#
+com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildNoArgsThrowsUriBuilderExceptionTest_from_servlet
+com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildObjectsThrowsUriBuilderExceptionTest_from_servlet
+com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildRelativizedThrowsUriBuilderExceptionTest_from_servlet
+
+################
+# JPA
+################
+
+#
+# Bug ID: 17503702
+#
+com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_appmanaged
+com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_pmservlet
+com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_puservlet
+com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_stateful3
+com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_stateless3
+
+#
+# Bug ID: 17483472
+#
+com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_appmanaged
+com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_pmservlet
+com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_puservlet
+com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_stateful3
+com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_stateless3
+
+#
+# Bug ID: 27377406
+#
+com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_appmanaged
+com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_pmservlet
+com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_puservlet
+com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_stateful3
+com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_stateless3
+
+#
+# Bug ID: 27961853
+#
+com/sun/ts/tests/jpa/core/annotations/mapkeyenumerated/Client.java#elementCollectionTest_from_pmservlet
+com/sun/ts/tests/jpa/core/annotations/mapkeyenumerated/Client.java#elementCollectionTest_from_stateless3
+com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollectionTest_from_pmservlet
+com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollectionTest_from_stateless3
+
+################
+# JSON-B
+################
+
+#
+# Bug ID: 27961884
+#
+com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_appclient
+com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_ejb
+com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_jsp
+com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_servlet
+
+################
+# Interop
+################
+
+#
+# Bug ID : 27950931
+#
+com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_ccid/reverse/Client.java#ew_ssl_ssln_upn_ccid_sb_sb_testid3b_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_ccid/reverse/Client.java#ew_ssl_sslr_upn_ccid_sb_sb_testid7a_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_upid/reverse/Client.java#ew_ssln_ssln_upn_upid_wb_sb_testid6_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_upid/reverse/Client.java#ew_ssln_ssln_upn_upid_sb_sb_testid6_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_anonid/reverse/Client.java#ew_ssl_ssln_upn_anonid_wb_sb_testid3_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_anonid/reverse/Client.java#ew_ssl_ssln_upn_anonid_sb_sb_testid3_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_ccid/reverse/Client.java#ew_ssln_ssln_upn_ccid_sb_sb_testid4a_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_upid/reverse/Client.java#ew_ssl_ssln_upn_upid_sb_sb_testid3a_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_upid/reverse/Client.java#ew_ssl_ssln_upn_upid_wb_sb_testid3a_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_anonid/reverse/Client.java#ew_ssl_sslr_upn_anonid_sb_sb_testid8_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_anonid/reverse/Client.java#ew_ssl_sslr_upn_anonid_wb_sb_testid8_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_anonid/reverse/Client.java#ew_ssln_ssln_upn_anonid_sb_sb_testid4_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_anonid/reverse/Client.java#ew_ssln_ssln_upn_anonid_wb_sb_testid4_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_upid/reverse/Client.java#ew_ssl_sslr_upn_upid_wb_sb_testid7_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_upid/reverse/Client.java#ew_ssl_sslr_upn_upid_sb_sb_testid7_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_ccid/reverse/Client.java#ew_ssl_ssln_upn_ccid_wb_sb_testid3b_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_ccid/reverse/Client.java#ew_ssl_sslr_upn_ccid_wb_sb_testid7a_reverse
+com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_ccid/reverse/Client.java#ew_ssln_ssln_upn_ccid_wb_sb_testid4a_reverse
+
+#
+# Issue : 16661 (https://github.com/javaee/glassfish/issues/16661)
+#
+com/sun/ts/tests/interop/tx/session/stateful/bm/TxN_GlobalSingle/Client.java#test1
+com/sun/ts/tests/interop/tx/webclient/jsp/URLClient.java#test13
+
+#
+# Tests excluded for challenge 251826
+#
+com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test1_reverse
+com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test2_reverse
+com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test3_reverse
+com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test4_reverse
+com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test5_reverse
+com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test6_reverse
+com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test7_reverse
+com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test8_reverse
+com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test1_reverse
+com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test2_reverse
+com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test3_reverse
+com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test4_reverse
+com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test5_reverse
+com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test6_reverse
+com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test7_reverse
+com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test8_reverse
+com/sun/ts/tests/interop/security/ejbclient/sfrunas/Client.java#test5_reverse
+com/sun/ts/tests/interop/security/ejbclient/slrunas/Client.java#test5_reverse
+com/sun/ts/tests/interop/security/ejbclient/stateful/Client.java#test5_reverse
+com/sun/ts/tests/interop/security/ejbclient/stateless/Client.java#test5_reverse
+
+################
+# Security API
+################
+
+#
+# Tests excluded for challenges 253074 and 250907
+#
+com/sun/ts/tests/securityapi/idstore/noidstore/Client.java#testIdentityStoreValidate_noIDStore
+com/sun/ts/tests/securityapi/ham/sam/delegation/Client.java#testSAMDelegatesHAM

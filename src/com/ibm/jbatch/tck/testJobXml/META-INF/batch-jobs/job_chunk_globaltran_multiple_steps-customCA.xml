@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2012 International Business Machines Corp. See the NOTICE 
+	file distributed with this work for additional information regarding copyright 
+	ownership. Licensed under the Apache License, Version 2.0 (the "License"); 
+	you may not use this file except in compliance with the License. You may 
+	obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+<job id="job_chunk_globaltran" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+	<step id="init_tables_step1" next="step2" allow-start-if-complete="false">
+		<properties>
+			<property name="javax.transaction.global.timeout" value="180" />
+		</properties>
+		<chunk item-count="1">
+			<reader ref="inventoryInitReader" />
+			<processor ref="inventoryInitProcessor">
+				<properties>
+					<property name="init.inventory.quantity"
+						value="#{jobParameters['init.inventory.quantity']}" />
+				</properties>
+			</processor>
+			<writer ref="inventoryInitWriter" />
+		</chunk>
+	</step>
+	<step id="step2" next="init_tables_step2">
+		<listeners>
+			<listener ref="inventoryStepListener" />
+		</listeners>
+		<chunk item-count="#{jobParameters['commit.interval']}" checkpoint-policy="custom">
+			<reader ref="inventoryReader" />
+			<processor ref="inventoryProcessor" />
+			<writer ref="inventoryWriter">
+				<properties>
+					<!-- 0 means don't force an exception -->
+					<property name="forced.fail.count" value="#{jobParameters['forced.fail.count']}" />
+					<property name="dummy.delay.seconds" value="#{jobParameters['dummy.delay.seconds']}" />
+				</properties>
+			</writer>
+			<checkpoint-algorithm ref="inventoryCheckpointAlgorithmNoOverride">
+			<properties>
+					<property name="commitInterval" value="9" />
+				</properties>	
+		    </checkpoint-algorithm>
+		</chunk>
+	</step>
+	<step id="init_tables_step2" next="step3" allow-start-if-complete="false">
+		<properties>
+			<property name="javax.transaction.global.timeout" value="180" />
+		</properties>
+		<chunk item-count="1">
+			<reader ref="inventoryInitReader" />
+			<processor ref="inventoryInitProcessor">
+				<properties>
+					<property name="init.inventory.quantity"
+						value="99" />
+				</properties>
+			</processor>
+			<writer ref="inventoryInitWriter" />
+		</chunk>
+	</step>
+	<step id="step3">
+		<listeners>
+			<listener ref="inventoryStepListener" />
+		</listeners>
+		<chunk item-count="#{jobParameters['commit.interval']}" checkpoint-policy="custom">
+			<reader ref="inventoryReader" />
+			<processor ref="inventoryProcessor" />
+			<writer ref="inventoryWriter">
+				<properties>
+					<!-- 0 means don't force an exception -->
+					<property name="forced.fail.count" value="#{jobParameters['forced.fail.count']}" />
+					<property name="dummy.delay.seconds" value="#{jobParameters['dummy.delay.seconds']}" />
+				</properties>
+			</writer>
+			<checkpoint-algorithm ref="inventoryCheckpointAlgorithmOverride150">
+			<properties>
+					<property name="commitInterval" value="9" />
+				</properties>	
+		    </checkpoint-algorithm>
+		</chunk>
+	</step> 
+</job>

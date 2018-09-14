@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest</package-type>
+    <namespaceURI>http://httptestservice.org/wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest</package-type>
+    <namespaceURI>http://httptestservice.org/types</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest.HelloResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://httptestservice.org/types">typeNS:HelloResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>string</java-variable-name>
+      <xml-element-name>string</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest.HelloRequest</java-type>
+    <root-type-qname xmlns:typeNS="http://httptestservice.org/types">typeNS:HelloRequest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>string</java-variable-name>
+      <xml-element-name>string</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest.HelloOneWay</java-type>
+    <root-type-qname xmlns:typeNS="http://httptestservice.org/types">typeNS:HelloOneWay</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>string</java-variable-name>
+      <xml-element-name>string</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest.HttpTestService</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://httptestservice.org/wsdl">serviceNS:HttpTestService</wsdl-service-name>
+    <port-mapping>
+      <port-name>HelloPort</port-name>
+      <java-port-name>HelloPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest.Hello</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://httptestservice.org/wsdl">portTypeNS:Hello</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://httptestservice.org/wsdl">bindingNS:HelloBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>hello</java-method-name>
+      <wsdl-operation>hello</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest.HelloRequest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://httptestservice.org/wsdl">wsdlMsgNS:Hello_helloRequest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest.HelloResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://httptestservice.org/wsdl">wsdlMsgNS:Hello_helloResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>helloOneWay</java-method-name>
+      <wsdl-operation>helloOneWay</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.rpc.literal.httptest.HelloOneWay</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://httptestservice.org/wsdl">wsdlMsgNS:Hello_helloOneWay</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

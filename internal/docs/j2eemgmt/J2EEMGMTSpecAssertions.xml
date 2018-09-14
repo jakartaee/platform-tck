@@ -1,0 +1,490 @@
+<?xml version = "1.0" encoding = "US-ASCII"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<?xml-stylesheet href = 'file:///files/tools/docs/xsl/assertions/spec_assertions.xsl' type = 'text/xsl'?>
+<spec>
+	<next-available-id/>
+	<previous-id/>
+	<technology>JavaEEManagement</technology>
+	<id>JavaEEManagement</id>
+	<name>Java EE Management API</name>
+	<version>1.1</version>
+	<location-names>
+		<chapters>
+			<chapter id = "3" name = "Managed Objects">
+				<sections>
+					<section id = "1" name = "J2EE Managed Object"/>
+					<section id = "1.1" name = "J2EE ManagedObject Attribute Detail"/>
+					<section id = "1.1.2" name = "stateManageable"/>
+					<section id = "1.1.1" name = "objectName"/>
+					<section id = "1.1.3" name = "statisticsProvider"/>
+					<section id = "1.1.4" name = "eventProvider"/>
+					<section id = "1.1.1.3" name = "Mandatory Key Properties"/>
+					<section id = "1.1.1.2" name = "Key Property List"/>
+					<section id = "1.1.1.1" name = "Domain Name"/>
+					<section id = "2" name = "J2EEDomain"/>
+					<section id = "2.1" name = "Attribute Detail"/>
+					<section id = "2.1.1" name = "servers"/>
+					<section id = "3" name = "J2EE Server"/>
+					<section id = "4" name = "JVM"/>
+					<section id = "5" name = "J2EEDeployedObject"/>
+					<section id = "6" name = "J2EEApplication"/>
+					<section id = "7" name = "J2EEModule"/>
+					<section id = "7.1" name = "Attribute Detail"/>
+					<section id = "8" name = "AppClientModule extends J2EEModule"/>
+					<section id = "9" name = "EJBModule extends J2EEModule"/>
+					<section id = "9.1" name = "Attribute Detail"/>
+					<section id = "9.1.1" name = "ejbs"/>
+					<section id = "10" name = "EJB extends J2EEManagedObject"/>
+					<section id = "11" name = "MessageDrivenBean extends EJB"/>
+					<section id = "12" name = "EntityBean extends EJB"/>
+					<section id = "13" name = "SessionBean extends EJB"/>
+					<section id = "14" name = "StatefulSessionBean extends SessionBean"/>
+					<section id = "15" name = "StatelessSessionBean extends SessionBean"/>
+					<section id = "16" name = "WebModule extends J2EEModule"/>
+					<section id = "16.1" name = "Attribute Detail"/>
+					<section id = "16.1.1" name = "servlets"/>
+					<section id = "17" name = "Servlet extends J2EEManagedObject"/>
+					<section id = "18" name = "ResourceAdapterModule extends J2EEModule"/>
+					<section id = "18.1" name = "Attribute Detail"/>
+					<section id = "18.1.1" name = "resourceAdapters"/>
+					<section id = "19" name = "ResourceAdapter extends J2EEManagedObject"/>
+					<section id = "20" name = "J2EEResource extends J2EEManagedObject"/>
+					<section id = "21" name = "JavaMailResource"/>
+					<section id = "22" name = "JCAResource extends J2EEResource"/>
+					<section id = "22.1" name = "Attribute Detail"/>
+					<section id = "22.1.1" name = "connectionFactories"/>
+					<section id = "23" name = "JCAConnectionFactory extends J2EEManagedObject"/>
+					<section id = "23.1" name = "Attribute Detail"/>
+					<section id = "23.1.1" name = "managedConnectionFactory"/>
+					<section id = "24" name = "JCAManagedConnectionFactory"/>
+					<section id = "25" name = "JDBCResource extends J2EEResource"/>
+					<section id = "25.1" name = "Attribute Detail"/>
+					<section id = "25.1.1" name = "jdbcDataSource"/>
+					<section id = "26" name = "JDBCDataSource extends J2EEManagedObject"/>
+					<section id = "26.1" name = "Attribute Detail"/>
+					<section id = "26.1.1" name = "jdbcDriver"/>
+					<section id = "27" name = "JDBCDriver extends J2EEManagedObject"/>
+					<section id = "28" name = "JMSResource extends J2EEResource"/>
+					<section id = "29" name = "JNDIResource extends J2EEResource"/>
+					<section id = "30" name = "JTAResource extends J2EEResource"/>
+					<section id = "31" name = "RMI_IIOPResource extends J2EEResource"/>
+					<section id = "32" name = "URLResource extends J2EEResource"/>
+				</sections>
+			</chapter>
+		</chapters>
+	</location-names>
+	<assertions>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:1</id>
+			<description>J2EE ManagedObject contains the following attributes: objectName, stateManageable, statisticsProvider, and eventProvider.  All managed objects in the J2EE Platform must include the attributes of the J2EEManagedObject model.</description>
+			<location chapter = "3" section = "1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:2</id>
+			<description>The J2EEManagedObject attribute "objectName" has the following syntax:  [domainName]:j2eeType=value,name=value,&lt;parent-j2eeType>[,property=vaule]*</description>
+			<location chapter = "3" section = "1.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:3</id>
+			<description>The J2EEManagedObject "objectName" key property list must contain at least the mandatory key properties: j2eeType, name, and parent-J2eeType(if applicable.  See table 3-1 for requirements.)</description>
+			<location chapter = "3" section = "1.1.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:4</id>
+			<description>The J2EEManagedObject objectName key property "j2eeType" key specifies the J2EE type of managed object.  The value for j2eeType must be a valid standard J2EEManagedObject type.  Table 3-1 lists valid types.</description>
+			<location chapter = "3" section = "1.1.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:5</id>
+			<description>The J2EEManagedObject objectName key property "name" specifies the name of the J2EEManagedObject.  The value of the name key property is arbitrary to the vendors implementation.</description>
+			<location chapter = "3" section = "1.1.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:6</id>
+			<description>The J2EEManagedObject objectName key property "parent-j2eeType" specifies key properties which are derived from the valid managed object types defined in Table 3-1.   The standard key properties are defined as follows: &lt;parent-j2eeType>=&lt;parent J2EEManagedObject name></description>
+			<location chapter = "3" section = "1.1.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:7</id>
+			<description>The J2EEManagedObject attribute "boolean stateManageable".  If true, indicates this managed object implements the StateManageable model and is state manageable by the specification of Chapter 5.  If false, the managed object does not support state management.</description>
+			<location chapter = "3" section = "1.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:8</id>
+			<description>The J2EEManagedObject attribute "boolean statisticsProvider".  If true, indicates that the managed object supports the generation of performance statistics and implements the StatisticsProvider model as defined in this specification.  If false, the J2EEManagedObject does not support performance statistics.</description>
+			<location chapter = "3" section = "1.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:9</id>
+			<description>The J2EEManagedObject attribute "boolean eventProvider".  If true, indicates that the managed object implements the EventProvider model.</description>
+			<location chapter = "3" section = "1.1.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:10</id>
+			<description>The semantic of the eventProvider attribute in the context of a J2EEDomain managed object is a special case.  It its value is true, it indicates that the domain supports event notification and that the J2EEDomain managed object is a central registraion point for event listeners that wish to receive event notification from all event providers in the domain.  The J2EEDomain object must emit all events from all event providers in the domain.</description>
+			<location chapter = "3" section = "1.1.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:11</id>
+			<description>When the value of the eventProvider attribute of a J2EEDomain is true, the J2EEDomain managed object must emit the j2ee.object.created and j2ee.object.deleted event types.</description>
+			<location chapter = "3" section = "1.1.4"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:12</id>
+			<description>If any managed object in the domain is an event provider, for example, the value of the managed object's eventProvider attribute is true, then the J2EEDomain managed object must also be an event provider and the value of it's eventProvider attribute must also be true.</description>
+			<location chapter = "3" section = "1.1.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:13</id>
+			<description>J2EEDomain extends J2EEManagedObject.  The J2EEDomain managed object type represents a management domain.  There must be one managed object that implements the J2EEDomain model per management domain.  All servers and applications associated with the same domain must be accessible from the J2EEDomain managed object.</description>
+			<location chapter = "3" section = "2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:14</id>
+			<description>Attribute "OBJECT_NAME[] servers" provides a list of all J2EE Servers in this domain.  For each J2EE Server running in the domain, there must be one J2EEServer OBJECT_NAME in the servers list that identifies it.</description>
+			<location chapter = "3" section = "2.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:15</id>
+			<description>J2EEServer extends J2EEManagedObject.  The J2EEServer model specifies the management information for a single J2EE server core implementation.  The J2EE server core identifies the server core of one instance of a J2EE platform product/</description>
+			<location chapter = "3" section = "3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:16</id>
+			<description>For each JCAResource deployed on this server, there must be one ResourceAdapterModule OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:17</id>
+			<description>For each Web module deployed on this server, there must be one WebModule OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:18</id>
+			<description>For each EJB deployed on this server, there must be one EJBModule OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:19</id>
+			<description>For each Application client module deployed on this server, there must be one AppclientModule OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:20</id>
+			<description>Attribute "OBJECT_NAME[] deployedObjects" contains a list of all of the J2EEApplication and J2EEModule types deployed on this J2EEServer.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:21</id>
+			<description>For each application deployed on this server, there must be one J2EEApplication OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:22</id>
+			<description>For each Application client module deployed on this server, there must be one AppclientModule OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:23</id>
+			<description>For each JCAResource deployed on this server, there must be one ResourceAdapterModule OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:24</id>
+			<description>For each EJB deployed on this server, there must be one EJBModule OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:25</id>
+			<description>For each Web module deployed on this server, there must be one WebModule OBJECT_NAME in the deployedObjects list that identifies it.</description>
+			<location chapter = "3" section = "3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:26</id>
+			<description>Attribute "OBJECT_NAME[] resources".  A list of resources available to this server.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:27</id>
+			<description>For each JCA resource associated with this server, there must be one JCAResource OBJECT_NAME in the resources list that identifies it.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:28</id>
+			<description>For each JavaMail resource associated with this server, there must be one JavaMailResource OBJECT_NAME in the resources list that identifies it.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:29</id>
+			<description>For each JDBCResource resource associated with this server, there must be one JDBClResource OBJECT_NAME in the resources list that identifies it.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:30</id>
+			<description>For each JMS resource associated with this server, there must be one JMSResource OBJECT_NAME in the resources list that identifies it.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:31</id>
+			<description>For each JNDI resource associated with this server, there must be one JNDIResource OBJECT_NAME in the resources list that identifies it.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:32</id>
+			<description>For each JTA resource associated with this server, there must be one JTAResource OBJECT_NAME in the resources list that identifies it.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:33</id>
+			<description>For each RMI_IIOP resource associated with this server, there must be one RMI_IIOPResource OBJECT_NAME in the resources list that identifies it.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:34</id>
+			<description>For each URL resource associated with this server, there must be one URLResource OBJECT_NAME in the resources list that identifies it.</description>
+			<location chapter = "3" section = "3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:35</id>
+			<description>Attribute "OBJECT_NAME[] javaVMs".  A list of all Java virtual machines on which this J2EEServer has running threads.  For each Java virtual machine this server utilizes, there must be one JVM OBJECT_NAME in the javaVMs list that identifies it.</description>
+			<location chapter = "3" section = "3.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:36</id>
+			<description>Attribute "String serverVendor".  Identifies the J2EE platform vendor of this J2EEServer.  The value of serverVendor is specified by the server vendor.</description>
+			<location chapter = "3" section = "3.1.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:37</id>
+			<description>Attribute "String serverVersion".  Identifies the J2EE implementation version of this J2EEServer.  The value of serverVersion is specified by the server vendor.</description>
+			<location chapter = "3" section = "3.1.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:38</id>
+			<description>JVM extends J2EEManagedObject.  Identifies a Java VM utilized by a server.</description>
+			<location chapter = "3" section = "4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:39</id>
+			<description>Attribute "String javaVersion".  Identifies the Java Runtime Environment version of this Java VM.  The value of javaVersion must be identical to the value of the system property "java.version".</description>
+			<location chapter = "3" section = "4.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:40</id>
+			<description>Attribute "String javaVendor".  Identifies the Java Runtime Environment vendor of this JavaVM.  The value of javaVendor must be identical to the value of the system property "java.vendor".</description>
+			<location chapter = "3" section = "4.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:41</id>
+			<description>Attribute "String node".  Identifies the node(machine) this JVM is running on.  The value of the node attribute must be the fully qualified hostname of the node the JVM is running on.</description>
+			<location chapter = "3" section = "4.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:42</id>
+			<description>J2EEDeployedObject extends J2EEManagedObject.  The base model for J2EEApplication and J2EEModule.  All J2EEDeployedObject managed objects contain the original XML deployment descriptor that was created for the application or module during the deployment process.</description>
+			<location chapter = "3" section = "5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:43</id>
+			<description>Attrubute "String deploymentDescriptor".  The deploymentDescriptor string must contain the original XML deployment descriptor that was created for this module during the deployment process.</description>
+			<location chapter = "3" section = "5.0.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:44</id>
+			<description>Attribute "OBJECT_NAME[] server".  Supplier cardinality: 1.  The J2EE server the application or module is deployed on.</description>
+			<location chapter = "3" section = "5.0.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:45</id>
+			<description>J2EEApplication extends J2EEDeployedObject.  Identifies a J2EE application EAR that has been deployed.</description>
+			<location chapter = "3" section = "6"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:46</id>
+			<description>Attribute "OBJECT_NAME[] modules". Supplier cardinality 1..*.  A list of J2EEModules that comprise this application.  For each J2EE module that is utilized by this application, there must be one J2EEModule OBJECT_NAME in the modules list that identifies it.</description>
+			<location chapter = "3" section = "6.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:47</id>
+			<description>J2EEModule extends J2EEDeployedObject.  The J2EEModule model is the base model for all of the J2EE Module types.  Managed objects that implement the J2EEModule model represent EAR, JAR, WAR and RAR files that have been deployed.</description>
+			<location chapter = "3" section = "7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:48</id>
+			<description>Attribute "OBJECT_NAME[] javaVMs". Supplier cardinality: 1..*.  Identifies the Java virtual machines on which this module is running.  For each JVM on which this module has running threads there must be one JVM OBJECT_NAME in the javaVMs list that identifies it.</description>
+			<location chapter = "3" section = "7.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:49</id>
+			<description>Each OBJECT_NAME in the J2EEModule javaVMs list must match one of the Java VM names in the javaVMs attribute of the J2EEServer on which this module is deployed.</description>
+			<location chapter = "3" section = "7.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:50</id>
+			<description>AppClientModule extends J2EEModule.  Identifies a deployed Application Client module.</description>
+			<location chapter = "3" section = "8"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:51</id>
+			<description>EJBModule extends J2EEModule.  Identifies a deployed EJB JAR module.</description>
+			<location chapter = "3" section = "9"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:52</id>
+			<description>Attribute "OBJECT_NAME[] ejbs".  Supplier cardinality 1..*.  A list of EJB components contained in the deployed EJB JAR module.  For each EJB component contained in the deployed EJB JAR there must be one EJB OBJECT_NAME in the ejbs list that identifies it.</description>
+			<location chapter = "3" section = "9.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:53</id>
+			<description>MessageDrivenBean extends EJB.  Identifies an individual message-driven bean.  For each deployed message-driven bean, there must be one managed object that implements the MessageDrivenBean model.</description>
+			<location chapter = "3" section = "11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:54</id>
+			<description>EntityBean extends EJB.  Identifies a deployed entity bean.  For each deployed entity bean, there must be one managed object that implements the EntityBean model.</description>
+			<location chapter = "3" section = "12"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:55</id>
+			<description>SessionBean extends EJB.  Identifies a deployed session bean.  The SessionBean model is always extended by one of the sub-models StatefulSessionBean or StatelessSessionBean.</description>
+			<location chapter = "3" section = "13"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:56</id>
+			<description>StatefulSessionBean extends SessionBean.  Identifies a deployed stateful session bean.</description>
+			<location chapter = "3" section = "14"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:57</id>
+			<description>StatelessSessionBean extends SessionBean.  Identifies a deployed stateless session bean.</description>
+			<location chapter = "3" section = "15"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:58</id>
+			<description>WebModule extends J2EEModule.  The WebModule model identifies a deployed WAR module.</description>
+			<location chapter = "3" section = "16"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:59</id>
+			<description>Attribute "OBJECT_NAME[] servlets".  Supplier cardinality: 1..*.  A list of servlets contained in the deployed WAR module.  For each servlet contained in the deployed WAR module there must be one Servlet OBJECT_NAME in the servlets list that identifies it.</description>
+			<location chapter = "3" section = "16.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:60</id>
+			<description>Servlet extends J2EEManagedObject.  Identifies a deployed servlet component.</description>
+			<location chapter = "3" section = "17"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:61</id>
+			<description>ResourceAdapterModule extends J2EEModule.  The ResourceAdapterModule model identifies a deployed resource adapter archive (RAR).</description>
+			<location chapter = "3" section = "18"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:62</id>
+			<description>Attribute "OBJECT_NAME[] resourceAdapters".  Supplier cardinality: 1..*.  A list of resource adapters contained in this resource adapter module.  For each resource adapter contained in the deployed RAR module, there must be one ResourceAdapter OBJECT_NAME in the resourceAdapters list that identifies it.</description>
+			<location chapter = "3" section = "18.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:63</id>
+			<description>ResourceAdapter extends J2EEManagedObject.  Identifies a deployed resource adapter.</description>
+			<location chapter = "3" section = "19"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:64</id>
+			<description>Attribute "OBJECT_NAME jcaResource".  Supplier cardinality: 1.  The value of jcaResource must be a JCAResource OBJECT_NAME that identifies the JCA connector resource implemented by this ResourceAdapter.</description>
+			<location chapter = "3" section = "19.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:65</id>
+			<description>J2EEResource extends J2EEManagedObject.  J2EEResource is the base model for all managed object types that represent J2EE resources.  J2EE resources are resources utilized by the J2EE core server to provide the J2EE standard services required by the J2EE platform architecture.  For each J2EE standard service that a server provides, there must be one managed object that implements the J2EEResource model of the appropriate type.</description>
+			<location chapter = "3" section = "20"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:66</id>
+			<description>JavaMailResource extends J2EEResource.  Identifies a JavaMail resource.  For each JavaMail resource available to a server there must be one managed object that implements the JavaMail model.</description>
+			<location chapter = "3" section = "21"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:67</id>
+			<description>JCAResource extends J2EEResource.  Identifies a JCA resource.  A JCAResource object manages one or more connection factories.  For each JCA resource provided on a server, there must be one JCAResource OBJECT_NAME in the servers list that identifies it.</description>
+			<location chapter = "3" section = "22"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:68</id>
+			<description>Attribute "OBJECT_NAME[] connectionFactories".  Supplier cardinality: 1..*.  A list of the connection factories available on the corresponding JCAResource object.  For each connection factory available to this JCAResource there must be one JCAConnectionFactory OBJECT_NAME in the connectionFactories list that identifies it.</description>
+			<location chapter = "3" section = "22.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:69</id>
+			<description>JCAConnectionFactory extends J2EEManagedObject.  Identifies a conection factory.  For each connection factory available to a server, there must be one managed object that implements the JCAConnectionFactory model.</description>
+			<location chapter = "3" section = "23"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:70</id>
+			<description>Attribute "OBJECT_NAME managedConnectionFactory".  Supplier cardinality: 1.  The value of managedConnectionFactory must be a JCAManagedConnectionFactory OBJECT_NAME that identifies the managed connection factory associated with the corresponding connection factory.</description>
+			<location chapter = "3" section = "23.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:71</id>
+			<description>JCAManagedConnectionFactory extends J2EEManagedObject.  Identifies a JCA managed connection factory.  For each JCA managed connection factory available to a JCAResource, there must be one managed object that implements the JCAManagedConnectionFactory model.</description>
+			<location chapter = "3" section = "24"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:72</id>
+			<description>JDBCResource extends J2EEResource.  The JDBCResource model identifies a JDBC resource.  A JDBC resource manages one or more JDBC data sources.  For each JDBC resource provided on a server, there must be one JDBCResource OBJECT_NAME in the servers "resources" list that identifies it.</description>
+			<location chapter = "3" section = "25"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:73</id>
+			<description>Attribute "OBJECTNAME[] jdbcDataSources".  Supplier cardinality: 1..*.  Identifies the JDBC data sources available on the corresponding JDBC resource.  For each JDBC data source available on this JDBC resource there must be one JDBCDataSource OBJECT_NAME in the jdbdDataSources list.</description>
+			<location chapter = "3" section = "25.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:74</id>
+			<description>JDBCDriver extends J2EEManagedObject.  Identifies an individual JDBC driver.  For each JDBC driver available to a JDBC resource there must be one managed object that implements the JDBCDriver model.</description>
+			<location chapter = "3" section = "27"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:75</id>
+			<description>JMSResource extends J2EEResource.  The JMSResource model identifies a Java Message Service resource.  For each JMS resource provided on a server, there must be one managed object that implements the JMSResource model.</description>
+			<location chapter = "3" section = "28"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:76</id>
+			<description>JNDIResource extends J2EEResource.  Identifies a JNDI resource.  For each JNDI resource available to a server there must be one managed object that implements the JNDIResource model.</description>
+			<location chapter = "3" section = "29"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:77</id>
+			<description>JTAResource extends J2EEResource.  Identifies a JTA resource.  For each JTA resource available to a server there must be one managed object that implements the JTAResource model.</description>
+			<location chapter = "3" section = "30"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:78</id>
+			<description>RMI_IIOPResource extends J2EEResource.  Identifies an RMI_IIOP resource.  For each RMI_IIOP resource available to a server there must be one managed object that implements the RMI_IIOPResource model.</description>
+			<location chapter = "3" section = "31"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>J2EEMgmt:SPEC:79</id>
+			<description>URLResource extends J2EEResource.  Identifies a managed URL resource.  For each managed URL resource provided by a server there should be one managed object that implements the URLResource model.  It is specific to a server implementation which URL resources are exposed as manageable and there are no specific requirements as to which URL resources provided by a server are exposed as managed objects.</description>
+			<location chapter = "3" section = "32"/>
+		</assertion>
+	</assertions>
+</spec>

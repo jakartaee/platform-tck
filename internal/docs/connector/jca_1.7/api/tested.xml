@@ -1,0 +1,2026 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE javadoc SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/javadoc_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<javadoc>
+  <next-available-id>413</next-available-id>
+  <previous-id>1</previous-id>
+  <technology>Connector</technology>
+  <id>Connector</id>
+  <name>J2EE Connector Architeture Spec</name>
+  <version>1.7</version>
+  <assertions>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>1</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource</package>
+      <class-interface>NotSupportedException</class-interface>
+      <method name="NotSupportedException" return-type="NotSupportedException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>2</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource</package>
+      <class-interface>NotSupportedException</class-interface>
+      <method name="NotSupportedException" return-type="NotSupportedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>3</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource</package>
+      <class-interface>NotSupportedException</class-interface>
+      <method name="NotSupportedException" return-type="NotSupportedException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>4</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource</package>
+      <class-interface>NotSupportedException</class-interface>
+      <method name="NotSupportedException" return-type="NotSupportedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>5</id>
+      <description>Constructs a new throwable with the specified detail message and error code.</description>
+      <package>javax.resource</package>
+      <class-interface>NotSupportedException</class-interface>
+      <method name="NotSupportedException" return-type="NotSupportedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>6</id>
+      <description>Sets the Reference instance. This method is called by the deployment code to set the Reference that can be later returned by the getReference method (as defined in the javax.naming.Referenceable interface).</description>
+      <package>javax.resource</package>
+      <class-interface>Referenceable</class-interface>
+      <method name="setReference" return-type="void">
+        <parameters>
+          <parameter>javax.naming.Reference</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>7</id>
+      <description>Get the error code.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="getErrorCode" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>9</id>
+      <description>Returns a detailed message string describing this exception.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="getMessage" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>10</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="ResourceException" return-type="ResourceException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>11</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="ResourceException" return-type="ResourceException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>12</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="ResourceException" return-type="ResourceException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>13</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="ResourceException" return-type="ResourceException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>14</id>
+      <description>Create a new throwable with the specified message and error code.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="ResourceException" return-type="ResourceException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>15</id>
+      <description>Set the error code.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="setErrorCode" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>23</id>
+      <description>Gets the information on the underlying EIS instance represented through an active connection.</description>
+      <package>javax.resource.cci</package>
+      <class-interface>Connection</class-interface>
+      <method name="getMetaData" return-type="javax.resource.cci.ConnectionMetaData" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>27</id>
+      <description>Gets a connection to an EIS instance. This getConnection variant should be used when a component wants the container to manage EIS sign-on. This case is termed container-managed sign-on. The component does not pass any security information.</description>
+      <package>javax.resource.cci</package>
+      <class-interface>ConnectionFactory</class-interface>
+      <method name="getConnection" return-type="javax.resource.cci.Connection" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>58</id>
+      <description>This method allows an EIS to call a message endpoint using a request-response style communication.</description>
+      <package>javax.resource.cci</package>
+      <class-interface>MessageListener</class-interface>
+      <method name="onMessage" return-type="javax.resource.cci.Record">
+        <parameters>
+          <parameter>javax.resource.cci.Record</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>114</id>
+      <description>Indicates the message listener type(s) associated with this activation.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Activation</class-interface>
+      <method name="messageListeners" return-type="java.lang.Class[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>118</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ApplicationServerInternalException</class-interface>
+      <method name="ApplicationServerInternalException" return-type="ApplicationServerInternalException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>119</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ApplicationServerInternalException</class-interface>
+      <method name="ApplicationServerInternalException" return-type="ApplicationServerInternalException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>120</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ApplicationServerInternalException</class-interface>
+      <method name="ApplicationServerInternalException" return-type="ApplicationServerInternalException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>121</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ApplicationServerInternalException</class-interface>
+      <method name="ApplicationServerInternalException" return-type="ApplicationServerInternalException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>122</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ApplicationServerInternalException</class-interface>
+      <method name="ApplicationServerInternalException" return-type="ApplicationServerInternalException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>123</id>
+      <description>The authentication-mechanismType specifies an authentication mechanism supported by the resource adapter. Note that this support is for the resource adapter and not for the underlying EIS instance.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>AuthenticationMechanism</class-interface>
+      <method name="authMechanism" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>124</id>
+      <description>Represents the interface that the resource adapter implementation supports for the representation of the credentials. Note that BasicPassword mechanism type should support the javax.resource.spi.security.PasswordCredential interface. The Kerbv5 mechanism type should support the org.ietf.jgss.GSSCredential interface or the deprecated javax.resource.spi.security.GenericCredential interface.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>AuthenticationMechanism</class-interface>
+      <method name="credentialInterface" return-type="javax.resource.spi.AuthenticationMechanism.AuthenticationMechanism.CredentialInterface" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>125</id>
+      <description>The optional description specifies any resource adapter specific requirement for the support of security contract and authentication mechanism.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>AuthenticationMechanism</class-interface>
+      <method name="description" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>126</id>
+      <description />
+      <package>javax.resource.spi</package>
+      <class-interface>AuthenticationMechanism.CredentialInterface</class-interface>
+      <method name="valueOf" return-type="javax.resource.spi.AuthenticationMechanism.AuthenticationMechanism.CredentialInterface">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>128</id>
+      <description>Creates a new java.util.Timer instance. The Timer instance could be used to perform periodic Work executions or other tasks.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>BootstrapContext</class-interface>
+      <method name="createTimer" return-type="java.util.Timer" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>130</id>
+      <description>Provides a handle to a TransactionSynchronization instance. The TransactionSynchronizationRegistry instance could be used by a resource adapter to register synchronization objects, get transaction state and status etc. This interface is implemented by the application server by a stateless service object. The same object can be used by any number of resource adapter objects with thread safety.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>BootstrapContext</class-interface>
+      <method name="getTransactionSynchronizationRegistry" return-type="TransactionSynchronizationRegistry" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>131</id>
+      <description>Provides a handle to a WorkManager instance. The WorkManager instance could be used by a resource adapter to do its work by submitting Work instances for execution.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>BootstrapContext</class-interface>
+      <method name="getWorkManager" return-type="javax.resource.spi.work.WorkManager" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>132</id>
+      <description>Provides a handle to a XATerminator instance. The XATerminator instance could be used by a resource adapter to flow-in transaction completion and crash recovery calls from an EIS.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>BootstrapContext</class-interface>
+      <method name="getXATerminator" return-type="javax.resource.spi.XATerminator" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>133</id>
+      <description>A resource adapter can check an application server's support for a particular WorkContext type through this method. This mechanism enables a resource adapter developer to dynamically change the WorkContexts submitted with a Work instance based on the support provided by the application server. The application server must employ an exact type equality check (that is java.lang.Class.equals(java.lang.Class) check) in this method, to check if it supports the WorkContext type provided by the resource adapter. This method must be idempotent, that is all calls to this method by a resource adapter for a particular WorkContext type must return the same boolean value throughout the lifecycle of that resource adapter instance.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>BootstrapContext</class-interface>
+      <method name="isContextSupported" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>134</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>CommException</class-interface>
+      <method name="CommException" return-type="CommException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>135</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>CommException</class-interface>
+      <method name="CommException" return-type="CommException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>136</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>CommException</class-interface>
+      <method name="CommException" return-type="CommException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>137</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>CommException</class-interface>
+      <method name="CommException" return-type="CommException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>138</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>CommException</class-interface>
+      <method name="CommException" return-type="CommException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>139</id>
+      <description>Indicates that the configuration property is confidential and recommends application server's configuration tools to use special visual aids for editing them.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConfigProperty</class-interface>
+      <method name="confidential" return-type="boolean" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>140</id>
+      <description>Inferred by the container for field based annotations if possible.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConfigProperty</class-interface>
+      <method name="defaultValue" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>141</id>
+      <description>Describes the configuration property.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConfigProperty</class-interface>
+      <method name="description" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>142</id>
+      <description>Indicates that the configuration tools must ignore considering this Property during auto-discovery of Configuration properties.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConfigProperty</class-interface>
+      <method name="ignore" return-type="boolean" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>143</id>
+      <description>Indicates that the configuration property supports dynamic updates to its value during the lifetime of the JavaBean</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConfigProperty</class-interface>
+      <method name="supportsDynamicUpdates" return-type="boolean" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>144</id>
+      <description>Inferred by the container if unspecified.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConfigProperty</class-interface>
+      <method name="type" return-type="java.lang.Class" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>145</id>
+      <description>Specifies the Connection interface supported by the resource adapter. Example: javax.resource.cci.Connection or com.wombat.Connection</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionDefinition</class-interface>
+      <method name="connection" return-type="java.lang.Class" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>146</id>
+      <description>Specifies the ConnectionFactory interface supported by the resource adapter. Example: javax.resource.cci.ConnectionFactory or com.wombat.ConnectionFactory</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionDefinition</class-interface>
+      <method name="connectionFactory" return-type="java.lang.Class" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>147</id>
+      <description>Specifies the Class provided by the resource adapter that implements the resource adapter specific ConnectionFactory interface. Example: com.wombat.ConnectionFactoryImpl</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionDefinition</class-interface>
+      <method name="connectionFactoryImpl" return-type="java.lang.Class" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>148</id>
+      <description>Specifies the class provided by the resource adapter that implements the resource adapter specific Connection interface. Example: com.wombat.ConnectionImpl</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionDefinition</class-interface>
+      <method name="connectionImpl" return-type="java.lang.Class" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>149</id>
+      <description>An array of ConnectionDefinition ConnectionDefinitions associated with the ManagedConectionFactory JavaBean.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionDefinitions</class-interface>
+      <method name="value" return-type="javax.resource.spi.ConnectionDefinition[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>152</id>
+      <description>Get the connection handle associated with the Managed Connection instance. Used for CONNECTION_CLOSED event.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEvent</class-interface>
+      <method name="getConnectionHandle" return-type="java.lang.Object" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>153</id>
+      <description>Get the exception. May be null.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEvent</class-interface>
+      <method name="getException" return-type="java.lang.Exception" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>154</id>
+      <description>Get the type of event</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEvent</class-interface>
+      <method name="getId" return-type="int" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>155</id>
+      <description>Set the connection handle. Used for CONNECTION_CLOSED event</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEvent</class-interface>
+      <method name="setConnectionHandle" return-type="void">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>156</id>
+      <description>Notifies that an application component has closed the connection. A ManagedConnection instance notifies its registered set of listeners by calling ConnectionEventListener.connectionClosed method when an application component closes a connection handle. The application server uses this connection close event to put the ManagedConnection instance back in to the connection pool.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEventListener</class-interface>
+      <method name="connectionClosed" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ConnectionEvent</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>157</id>
+      <description>Notifies a connection related error. The ManagedConnection instance calls the method ConnectionEventListener.connectionErrorOccurred to notify its registered listeners of the occurrence of a physical connection-related error. The event notification happens just before a resource adapter throws an exception to the application component using the connection handle. The connectionErrorOccurred method indicates that the associated ManagedConnection instance is now invalid and unusable. The application server handles the connection error event notification by initiating application server-specific cleanup (for example, removing ManagedConnection instance from the connection pool) and then calling ManagedConnection.destroy method to destroy the physical connection.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEventListener</class-interface>
+      <method name="connectionErrorOccurred" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ConnectionEvent</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>158</id>
+      <description>Notifies that a Resource Manager Local Transaction was committed on the ManagedConnection instance.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEventListener</class-interface>
+      <method name="localTransactionCommitted" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ConnectionEvent</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>159</id>
+      <description>Notifies that a Resource Manager Local Transaction was rolled back on the ManagedConnection instance.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEventListener</class-interface>
+      <method name="localTransactionRolledback" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ConnectionEvent</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>160</id>
+      <description>Notifies that a Resource Manager Local Transaction was started on the ManagedConnection instance.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionEventListener</class-interface>
+      <method name="localTransactionStarted" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ConnectionEvent</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>161</id>
+      <description>The method allocateConnection gets called by the resource adapter's connection factory instance. This lets connection factory instance (provided by the resource adapter) pass a connection request to the ConnectionManager instance. The connectionRequestInfo parameter represents information specific to the resource adapter for handling of the connection request.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ConnectionManager</class-interface>
+      <method name="allocateConnection" return-type="java.lang.Object">
+        <parameters>
+          <parameter>javax.resource.spi.ManagedConnectionFactory</parameter>
+          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>165</id>
+      <description>Specifies the authentication mechanisms supported by the resource adapter.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="authMechanisms" return-type="javax.resource.spi.AuthenticationMechanism[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>166</id>
+      <description>Describes the resource adapter module.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="description" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>167</id>
+      <description>An optional short name, providing information about the resource adapter module, that is intended to be displayed by tools.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="displayName" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>168</id>
+      <description>Contains information about the type of EIS. For example, the type of an EIS can be product name of the EIS independent of any version info.This helps in identifying EIS instances that can be used with this resource adapter.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="eisType" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>170</id>
+      <description>Specifies licensing requirements for the resource adapter module and an optional description of the licensing terms .</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="licenseDescription" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>171</id>
+      <description>Specifies whether a license is required to deploy and use this resource adapter</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="licenseRequired" return-type="boolean" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>172</id>
+      <description>Specifies whether a license is required to deploy and use this resource adapter</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="reauthenticationSupport" return-type="boolean" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>173</id>
+      <description>Specifies a list of fully qualified classes that implements the WorkContext WorkContext interface that a resource adapter requires the application server to support.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="requiredWorkContexts" return-type="java.lang.Class[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>174</id>
+      <description>Specifies the extended security permissions required to be provided for the operation of the resource adapter module</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="securityPermissions" return-type="javax.resource.spi.SecurityPermission[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>176</id>
+      <description>Specifies the level of transaction support provided by the resource adapter.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="transactionSupport" return-type="javax.resource.spi.TransactionSupport.TransactionSupport.TransactionSupportLevel" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>177</id>
+      <description>Specifies the name of the resource adapter provider vendor.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="vendorName" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>178</id>
+      <description>Specifies the version of the resource adapter implementation.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>Connector</class-interface>
+      <method name="version" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>181</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>EISSystemException</class-interface>
+      <method name="EISSystemException" return-type="EISSystemException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>182</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>EISSystemException</class-interface>
+      <method name="EISSystemException" return-type="EISSystemException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>183</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>EISSystemException</class-interface>
+      <method name="EISSystemException" return-type="EISSystemException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>184</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>EISSystemException</class-interface>
+      <method name="EISSystemException" return-type="EISSystemException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>185</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>EISSystemException</class-interface>
+      <method name="EISSystemException" return-type="EISSystemException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>186</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>IllegalStateException</class-interface>
+      <method name="IllegalStateException" return-type="IllegalStateException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>187</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>IllegalStateException</class-interface>
+      <method name="IllegalStateException" return-type="IllegalStateException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>188</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>IllegalStateException</class-interface>
+      <method name="IllegalStateException" return-type="IllegalStateException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>189</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>IllegalStateException</class-interface>
+      <method name="IllegalStateException" return-type="IllegalStateException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>190</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>IllegalStateException</class-interface>
+      <method name="IllegalStateException" return-type="IllegalStateException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>191</id>
+      <description>Get the list of invalid properties.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>InvalidPropertyException</class-interface>
+      <method name="getInvalidPropertyDescriptors" return-type="java.beans.PropertyDescriptor[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>192</id>
+      <description>Create a InvalidPropertyException.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>InvalidPropertyException</class-interface>
+      <method name="InvalidPropertyException" return-type="InvalidPropertyException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>193</id>
+      <description>Create a InvalidPropertyException.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>InvalidPropertyException</class-interface>
+      <method name="InvalidPropertyException" return-type="InvalidPropertyException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>194</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>InvalidPropertyException</class-interface>
+      <method name="InvalidPropertyException" return-type="InvalidPropertyException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>195</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>InvalidPropertyException</class-interface>
+      <method name="InvalidPropertyException" return-type="InvalidPropertyException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>196</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>InvalidPropertyException</class-interface>
+      <method name="InvalidPropertyException" return-type="InvalidPropertyException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>197</id>
+      <description>Set a list of invalid properties.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>InvalidPropertyException</class-interface>
+      <method name="setInvalidPropertyDescriptors" return-type="void">
+        <parameters>
+          <parameter>java.beans.PropertyDescriptor[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>209</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LocalTransactionException</class-interface>
+      <method name="LocalTransactionException" return-type="LocalTransactionException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>210</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LocalTransactionException</class-interface>
+      <method name="LocalTransactionException" return-type="LocalTransactionException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>211</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LocalTransactionException</class-interface>
+      <method name="LocalTransactionException" return-type="LocalTransactionException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>212</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LocalTransactionException</class-interface>
+      <method name="LocalTransactionException" return-type="LocalTransactionException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>213</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LocalTransactionException</class-interface>
+      <method name="LocalTransactionException" return-type="LocalTransactionException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>223</id>
+      <description>Returns an javax.resource.spi.LocalTransaction instance. The LocalTransaction interface is used by the container to manage local transactions for a RM instance.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnection</class-interface>
+      <method name="getLocalTransaction" return-type="javax.resource.spi.LocalTransaction" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>225</id>
+      <description>Gets the log writer for this ManagedConnection instance. The log writer is a character output stream to which all logging and tracing messages for this ManagedConnection instance will be printed. ConnectionManager manages the association of output stream with the ManagedConnection instance based on the connection pooling requirements. The Log writer associated with a ManagedConnection instance can be one set as default from the ManagedConnectionFactory (that created this connection) or one set specifically for this instance by the application server.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnection</class-interface>
+      <method name="getLogWriter" return-type="java.io.PrintWriter" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>227</id>
+      <description>Gets the metadata information for this connection's underlying EIS resource manager instance. The ManagedConnectionMetaData interface provides information about the underlying EIS instance associated with the ManagedConenction instance.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnection</class-interface>
+      <method name="getMetaData" return-type="javax.resource.spi.ManagedConnectionMetaData" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>229</id>
+      <description>Returns an javax.transaction.xa.XAresource instance. An application server enlists this XAResource instance with the Transaction Manager if the ManagedConnection instance is being used in a JTA transaction that is being coordinated by the Transaction Manager.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnection</class-interface>
+      <method name="getXAResource" return-type="javax.transaction.xa.XAResource" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>230</id>
+      <description>generic exception if operation fails</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnection</class-interface>
+      <method name="getXAResource" return-type="javax.transaction.xa.XAResource">
+        <throw>javax.resource.ResourceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>234</id>
+      <description>Creates a Connection Factory instance. The Connection Factory instance gets initialized with the passed ConnectionManager. In the managed scenario, ConnectionManager is provided by the application server.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnectionFactory</class-interface>
+      <method name="createConnectionFactory" return-type="java.lang.Object">
+        <parameters>
+          <parameter>javax.resource.spi.ConnectionManager</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>238</id>
+      <description>Creates a new physical connection to the underlying EIS resource manager. ManagedConnectionFactory uses the security information (passed as Subject) and additional ConnectionRequestInfo (which is specific to ResourceAdapter and opaque to application server) to create this new connection.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnectionFactory</class-interface>
+      <method name="createManagedConnection" return-type="javax.resource.spi.ManagedConnection">
+        <parameters>
+          <parameter>javax.security.auth.Subject</parameter>
+          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>239</id>
+      <description>generic exception</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnectionFactory</class-interface>
+      <method name="createManagedConnection" return-type="javax.resource.spi.ManagedConnection">
+        <parameters>
+          <parameter>javax.security.auth.Subject</parameter>
+          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+        </parameters>
+        <throw>javax.resource.ResourceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>244</id>
+      <description>Returns a matched connection from the candidate set of connections. ManagedConnectionFactory uses the security info (as in Subject) and information provided through ConnectionRequestInfo and additional Resource Adapter specific criteria to do matching. Note that criteria used for matching is specific to a resource adapter and is not prescribed by the Connector specification. This method returns a ManagedConnection instance that is the best match for handling the connection allocation request.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnectionFactory</class-interface>
+      <method name="matchManagedConnections" return-type="javax.resource.spi.ManagedConnection">
+        <parameters>
+          <parameter>java.util.Set</parameter>
+          <parameter>javax.security.auth.Subject</parameter>
+          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>248</id>
+      <description>Returns Product name of the underlying EIS instance connected through the ManagedConnection.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnectionMetaData</class-interface>
+      <method name="getEISProductName" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>250</id>
+      <description>Returns product version of the underlying EIS instance connected through the ManagedConnection.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnectionMetaData</class-interface>
+      <method name="getEISProductVersion" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>252</id>
+      <description>Returns maximum limit on number of active concurrent connections that an EIS instance can support across client processes. If an EIS instance does not know about (or does not have) any such limit, it returns a 0.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnectionMetaData</class-interface>
+      <method name="getMaxConnections" return-type="int" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>254</id>
+      <description>Returns name of the user associated with the ManagedConnection instance. The name corresponds to the resource principal under whose whose security context, a connection to the EIS instance has been established.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnectionMetaData</class-interface>
+      <method name="getUserName" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>256</id>
+      <description>This is called during the activation of a message endpoint. This causes the resource adapter instance to do the necessary setup (ie., setup message delivery for the message endpoint with a message provider). Note that message delivery to the message endpoint might start even before this method returns. Endpoint activation is deemed successful only when this method completes successfully without throwing any exceptions.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapter</class-interface>
+      <method name="endpointActivation" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.endpoint.MessageEndpointFactory</parameter>
+          <parameter>javax.resource.spi.ActivationSpec</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>257</id>
+      <description />
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapter</class-interface>
+      <method name="endpointActivation" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.endpoint.MessageEndpointFactory</parameter>
+          <parameter>javax.resource.spi.ActivationSpec</parameter>
+        </parameters>
+        <throw>javax.resource.ResourceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>258</id>
+      <description>This is called when a message endpoint is deactivated. The instances passed as arguments to this method call should be identical to those passed in for the corresponding endpointActivation call. This causes the resource adapter to stop delivering messages to the message endpoint. Any exception thrown by this method is ignored. After this method call, the endpoint is deemed inactive.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapter</class-interface>
+      <method name="endpointDeactivation" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.endpoint.MessageEndpointFactory</parameter>
+          <parameter>javax.resource.spi.ActivationSpec</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>259</id>
+      <description>This method is called by the application server during crash recovery. This method takes in an array of ActivationSpec JavaBeans and returns an array of XAResource objects each of which represents a unique resource manager. The resource adapter may return null if it does not implement the XAResource interface. Otherwise, it must return an array of XAResource objects, each of which represents a unique resource manager that was used by the endpoint applications. The application server uses the XAResource objects to query each resource manager for a list of in-doubt transactions. It then completes each pending transaction by sending the commit decision to the participating resource managers.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapter</class-interface>
+      <method name="getXAResources" return-type="javax.transaction.xa.XAResource[]">
+        <parameters>
+          <parameter>javax.resource.spi.ActivationSpec[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>264</id>
+      <description>Get the associated ResourceAdapter object.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapterAssociation</class-interface>
+      <method name="getResourceAdapter" return-type="javax.resource.spi.ResourceAdapter" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>265</id>
+      <description>Associate this object with a ResourceAdapter object. Note, this method must be called exactly once. That is, the association must not change during the lifetime of this object.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapterAssociation</class-interface>
+      <method name="setResourceAdapter" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ResourceAdapter</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>267</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapterInternalException</class-interface>
+      <method name="ResourceAdapterInternalException" return-type="ResourceAdapterInternalException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>268</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapterInternalException</class-interface>
+      <method name="ResourceAdapterInternalException" return-type="ResourceAdapterInternalException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>269</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapterInternalException</class-interface>
+      <method name="ResourceAdapterInternalException" return-type="ResourceAdapterInternalException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>270</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapterInternalException</class-interface>
+      <method name="ResourceAdapterInternalException" return-type="ResourceAdapterInternalException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>271</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAdapterInternalException</class-interface>
+      <method name="ResourceAdapterInternalException" return-type="ResourceAdapterInternalException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>272</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAllocationException</class-interface>
+      <method name="ResourceAllocationException" return-type="ResourceAllocationException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>273</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAllocationException</class-interface>
+      <method name="ResourceAllocationException" return-type="ResourceAllocationException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>274</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAllocationException</class-interface>
+      <method name="ResourceAllocationException" return-type="ResourceAllocationException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>275</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAllocationException</class-interface>
+      <method name="ResourceAllocationException" return-type="ResourceAllocationException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>276</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ResourceAllocationException</class-interface>
+      <method name="ResourceAllocationException" return-type="ResourceAllocationException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>277</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>RetryableUnavailableException</class-interface>
+      <method name="RetryableUnavailableException" return-type="RetryableUnavailableException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>278</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>RetryableUnavailableException</class-interface>
+      <method name="RetryableUnavailableException" return-type="RetryableUnavailableException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>279</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>RetryableUnavailableException</class-interface>
+      <method name="RetryableUnavailableException" return-type="RetryableUnavailableException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>280</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>RetryableUnavailableException</class-interface>
+      <method name="RetryableUnavailableException" return-type="RetryableUnavailableException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>281</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>RetryableUnavailableException</class-interface>
+      <method name="RetryableUnavailableException" return-type="RetryableUnavailableException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>282</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SecurityException</class-interface>
+      <method name="SecurityException" return-type="SecurityException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>283</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SecurityException</class-interface>
+      <method name="SecurityException" return-type="SecurityException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>284</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SecurityException</class-interface>
+      <method name="SecurityException" return-type="SecurityException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>285</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SecurityException</class-interface>
+      <method name="SecurityException" return-type="SecurityException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>286</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SecurityException</class-interface>
+      <method name="SecurityException" return-type="SecurityException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>287</id>
+      <description>Specifies an optional description to mention any specific reason that a resource requires a given security permission.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SecurityPermission</class-interface>
+      <method name="description" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>288</id>
+      <description>Specifies a security permission based on the Security policy file syntax. These security permissions are different from those required by the default permission set as specified in the connector specification.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SecurityPermission</class-interface>
+      <method name="permissionSpec" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>289</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SharingViolationException</class-interface>
+      <method name="SharingViolationException" return-type="SharingViolationException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>290</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SharingViolationException</class-interface>
+      <method name="SharingViolationException" return-type="SharingViolationException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>291</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SharingViolationException</class-interface>
+      <method name="SharingViolationException" return-type="SharingViolationException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>292</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SharingViolationException</class-interface>
+      <method name="SharingViolationException" return-type="SharingViolationException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>293</id>
+      <description>Constructs a new throwable with the specified detail message and error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>SharingViolationException</class-interface>
+      <method name="SharingViolationException" return-type="SharingViolationException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>295</id>
+      <description />
+      <package>javax.resource.spi</package>
+      <class-interface>TransactionSupport.TransactionSupportLevel</class-interface>
+      <method name="valueOf" return-type="javax.resource.spi.TransactionSupport.TransactionSupport.TransactionSupportLevel">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>296</id>
+      <description />
+      <package>javax.resource.spi</package>
+      <class-interface>TransactionSupport.TransactionSupportLevel</class-interface>
+      <method name="values" return-type="javax.resource.spi.TransactionSupport.TransactionSupport.TransactionSupportLevel[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>297</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>UnavailableException</class-interface>
+      <method name="UnavailableException" return-type="UnavailableException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>298</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>UnavailableException</class-interface>
+      <method name="UnavailableException" return-type="UnavailableException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>299</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>UnavailableException</class-interface>
+      <method name="UnavailableException" return-type="UnavailableException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>300</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>UnavailableException</class-interface>
+      <method name="UnavailableException" return-type="UnavailableException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>301</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>UnavailableException</class-interface>
+      <method name="UnavailableException" return-type="UnavailableException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>304</id>
+      <description>Commits the global transaction specified by xid.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>XATerminator</class-interface>
+      <method name="commit" return-type="void">
+        <parameters>
+          <parameter>javax.transaction.xa.Xid</parameter>
+          <parameter>boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>306</id>
+      <description>Tells the resource manager to forget about a heuristically completed transaction branch.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>XATerminator</class-interface>
+      <method name="forget" return-type="void">
+        <parameters>
+          <parameter>javax.transaction.xa.Xid</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>312</id>
+      <description>Informs the resource manager to roll back work done on behalf of a transaction branch.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>XATerminator</class-interface>
+      <method name="rollback" return-type="void">
+        <parameters>
+          <parameter>javax.transaction.xa.Xid</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>314</id>
+      <description>This is called by a resource adapter after a message is delivered.</description>
+      <package>javax.resource.spi.endpoint</package>
+      <class-interface>MessageEndpoint</class-interface>
+      <method name="afterDelivery" return-type="void" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>316</id>
+      <description>This is called by a resource adapter before a message is delivered.</description>
+      <package>javax.resource.spi.endpoint</package>
+      <class-interface>MessageEndpoint</class-interface>
+      <method name="beforeDelivery" return-type="void">
+        <parameters>
+          <parameter>java.lang.reflect.Method</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>320</id>
+      <description>This is used to create a message endpoint. The message endpoint is expected to implement the correct message listener type.</description>
+      <package>javax.resource.spi.endpoint</package>
+      <class-interface>MessageEndpointFactory</class-interface>
+      <method name="createEndpoint" return-type="javax.resource.spi.endpoint.MessageEndpoint">
+        <parameters>
+          <parameter>javax.transaction.xa.XAResource</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>324</id>
+      <description>This is used to find out whether message deliveries to a target method on a message listener interface that is implemented by a message endpoint will be transacted or not. The message endpoint may indicate its transacted delivery preferences (at a per method level) through its deployment descriptor. The message delivery preferences must not change during the lifetime of a message endpoint.</description>
+      <package>javax.resource.spi.endpoint</package>
+      <class-interface>MessageEndpointFactory</class-interface>
+      <method name="isDeliveryTransacted" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.reflect.Method</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>333</id>
+      <description>Gets the target ManagedConnectionFactory for which the user name and password has been set by the application server. A ManagedConnection- Factory uses this field to find out whether PasswordCredential should be used by it for sign-on to the target EIS instance.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>PasswordCredential</class-interface>
+      <method name="getManagedConnectionFactory" return-type="javax.resource.spi.ManagedConnectionFactory" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>334</id>
+      <description>Returns the user password. Note that this method returns a reference to the password. It is the caller's responsibility to zero out the password information after it is no longer needed.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>PasswordCredential</class-interface>
+      <method name="getPassword" return-type="char[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>335</id>
+      <description>Returns the user name.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>PasswordCredential</class-interface>
+      <method name="getUserName" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>336</id>
+      <description>Returns the hash code for this PasswordCredential</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>PasswordCredential</class-interface>
+      <method name="hashCode" return-type="int" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>337</id>
+      <description>Creates a new PasswordCredential object from the given user name and password. Note that the given user password is cloned before it is stored in the new PasswordCredential object.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>PasswordCredential</class-interface>
+      <method name="PasswordCredential" return-type="PasswordCredential">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>char[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>338</id>
+      <description>Sets the target ManagedConenctionFactory instance for which the user name and password has been set by the application server.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>PasswordCredential</class-interface>
+      <method name="setManagedConnectionFactory" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ManagedConnectionFactory</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>339</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>ExecutionContext</class-interface>
+      <method name="ExecutionContext" return-type="ExecutionContext" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>340</id>
+      <description>Get the transaction timeout value for a imported transaction.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>ExecutionContext</class-interface>
+      <method name="getTransactionTimeout" return-type="long" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>341</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>ExecutionContext</class-interface>
+      <method name="getXid" return-type="javax.transaction.xa.Xid" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>342</id>
+      <description>Set the transaction timeout value for a imported transaction.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>ExecutionContext</class-interface>
+      <method name="setTransactionTimeout" return-type="void">
+        <parameters>
+          <parameter>long</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>344</id>
+      <description>set a transaction context.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>ExecutionContext</class-interface>
+      <method name="setXid" return-type="void">
+        <parameters>
+          <parameter>javax.transaction.xa.Xid</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>345</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>HintsContext</class-interface>
+      <method name="getDescription" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>346</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>HintsContext</class-interface>
+      <method name="getHints" return-type="java.util.Map" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>347</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>HintsContext</class-interface>
+      <method name="getName" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>348</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>HintsContext</class-interface>
+      <method name="HintsContext" return-type="HintsContext" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>349</id>
+      <description>Set a brief description of the role played by the instance of HintsContext and any other related debugging information. This could be used by the resource adapter and the WorkManager for logging and debugging purposes.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>HintsContext</class-interface>
+      <method name="setDescription" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>350</id>
+      <description>Set a Hint and a related value. The hintName must be non-Null. Standard HintNames are defined in the Connector specification. Use of "javax.resource." prefixed hintNames are reserved for use by the Connector specification.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>HintsContext</class-interface>
+      <method name="setHint" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.io.Serializable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>351</id>
+      <description>Set the associated name of the HintsContext. This could be used by the resource adapter and the WorkManager for logging and debugging purposes.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>HintsContext</class-interface>
+      <method name="setName" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>352</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>RetryableWorkRejectedException</class-interface>
+      <method name="RetryableWorkRejectedException" return-type="RetryableWorkRejectedException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>353</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>RetryableWorkRejectedException</class-interface>
+      <method name="RetryableWorkRejectedException" return-type="RetryableWorkRejectedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>354</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>RetryableWorkRejectedException</class-interface>
+      <method name="RetryableWorkRejectedException" return-type="RetryableWorkRejectedException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>355</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>RetryableWorkRejectedException</class-interface>
+      <method name="RetryableWorkRejectedException" return-type="RetryableWorkRejectedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>356</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>RetryableWorkRejectedException</class-interface>
+      <method name="RetryableWorkRejectedException" return-type="RetryableWorkRejectedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>360</id>
+      <description>The container calls this method to set up the security Context for the Work instance. The handler argument must not be null, and the argument handler and the CallbackHandler passed to this method must support the following Callbacks defined in JSR 196: Java Authentication SPI for Containers specification: CallerPrincipalCallback GroupPrincipalCallback PasswordValidationCallback The following Callbacks may be supported by the container. CertStoreCallback PrivateKeyCallback SecretKeyCallback TrustStoreCallback A resource adapter might use the CallerPrincipalCallback "to set the container's representation of the caller principal. The CallbackHandler must establish the argument Principal as the caller principal associated with the invocation being processed by the container. When the argument Principal is null, the handler will establish the container's representation of the unauthenticated caller principal." A resource adapter might use the GroupPrincipalCallback "to establish the container's representation of the corresponding group principals within the Subject. When a null value is passed to the groups argument, the handler will establish the container's representation of no group principals within the Subject. Otherwise, the handler's processing of this callback is additive, yielding the union (without duplicates) of the principals existing within the Subject, and those created with the names occurring within the argument array. The CallbackHandler will define the type of the created principals." A resource adapter might use the PasswordValidationCallback "to employ the password validation facilities of its containing runtime." The executionSubject argument must be non-null and it must not be read-only. It is expected that this method will populate this executionSubject with principals and credentials that would be flown into the application server. The serviceSubject argument must be non-null and it must not be read-only. It represents the application server and it may be used by the Work implementation to retrieve Principals and credentials necessary to establish a connection to the EIS (in the cause of mutual-auth like scenarios). If the Subject is not null, the Work implementation may collect the server credentials, as necessary, by using the callback handler passed to them . When this method is called, the method implementation identifies the security context that needs to be flown-in to the application server to serve as the execution context of the Work instance. populates the executionSubject with the EIS Principals and Credentials that it wants to serve as the security context for the Work instance to be executed in. adds instances of the necessary Callbacks , usually a subset of the ones listed above, to an array and invokes the handle() method in the container's CallbackHandler implementation passing in the array of Callback instances. on successful return from the CallbackHandler.handle() method the setSecurityContext returns after ensuring that the executionSubject is populated with the valid Principals and Credentials that represent the execution context of the Work instance</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>SecurityContext</class-interface>
+      <method name="setupSecurityContext" return-type="void">
+        <parameters>
+          <parameter>javax.security.auth.callback.CallbackHandler</parameter>
+          <parameter>javax.security.auth.Subject</parameter>
+          <parameter>javax.security.auth.Subject</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>363</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>TransactionContext</class-interface>
+      <method name="TransactionContext" return-type="TransactionContext" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>365</id>
+      <description>Invoked when a Work instance has been accepted.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkAdapter</class-interface>
+      <method name="workAccepted" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.WorkEvent</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>367</id>
+      <description>Invoked when a Work instance has completed execution.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkAdapter</class-interface>
+      <method name="workCompleted" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.WorkEvent</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>370</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkCompletedException</class-interface>
+      <method name="WorkCompletedException" return-type="WorkCompletedException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>371</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkCompletedException</class-interface>
+      <method name="WorkCompletedException" return-type="WorkCompletedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>372</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkCompletedException</class-interface>
+      <method name="WorkCompletedException" return-type="WorkCompletedException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>373</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkCompletedException</class-interface>
+      <method name="WorkCompletedException" return-type="WorkCompletedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>374</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkCompletedException</class-interface>
+      <method name="WorkCompletedException" return-type="WorkCompletedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>387</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkException</class-interface>
+      <method name="WorkException" return-type="WorkException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>388</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkException</class-interface>
+      <method name="WorkException" return-type="WorkException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>389</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkException</class-interface>
+      <method name="WorkException" return-type="WorkException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>390</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkException</class-interface>
+      <method name="WorkException" return-type="WorkException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>391</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkException</class-interface>
+      <method name="WorkException" return-type="WorkException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>392</id>
+      <description>Invoked when a Work instance has been accepted.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkListener</class-interface>
+      <method name="workAccepted" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.WorkEvent</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>396</id>
+      <description>Accepts a Work instance for processing. This call blocks until the Work instance completes execution. There is no guarantee on when the accepted Work instance would start execution ie., there is no time constraint to start execution. (that is, startTimeout=INDEFINITE)</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="doWork" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>397</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="doWork" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+        </parameters>
+        <throw>javax.resource.spi.work.WorkException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>398</id>
+      <description>Accepts a Work instance for processing. This call blocks until the Work instance completes execution.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="doWork" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+          <parameter>long</parameter>
+          <parameter>javax.resource.spi.work.ExecutionContext</parameter>
+          <parameter>javax.resource.spi.work.WorkListener</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>399</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="doWork" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+          <parameter>long</parameter>
+          <parameter>javax.resource.spi.work.ExecutionContext</parameter>
+          <parameter>javax.resource.spi.work.WorkListener</parameter>
+        </parameters>
+        <throw>javax.resource.spi.work.WorkException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>400</id>
+      <description>Accepts a Work instance for processing. This call does not block and returns immediately once a Work instance has been accepted for processing. There is no guarantee on when the submitted Work instance would start execution ie., there is no time constraint to start execution. (that is, startTimeout=INDEFINITE).</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="scheduleWork" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>402</id>
+      <description>Accepts a Work instance for processing. This call does not block and returns immediately once a Work instance has been accepted for processing.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="scheduleWork" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+          <parameter>long</parameter>
+          <parameter>javax.resource.spi.work.ExecutionContext</parameter>
+          <parameter>javax.resource.spi.work.WorkListener</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>404</id>
+      <description>Accepts a Work instance for processing. This call blocks until the Work instance starts execution but not until its completion. There is no guarantee on when the accepted Work instance would start execution ie., there is no time constraint to start execution. (that is, startTimeout=INDEFINITE)</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="startWork" return-type="long">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>405</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="startWork" return-type="long">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+        </parameters>
+        <throw>javax.resource.spi.work.WorkException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>406</id>
+      <description>Accepts a Work instance for processing. This call blocks until the Work instance starts execution but not until its completion. There is no guarantee on when the accepted Work instance would start execution ie., there is no time constraint to start execution.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="startWork" return-type="long">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+          <parameter>long</parameter>
+          <parameter>javax.resource.spi.work.ExecutionContext</parameter>
+          <parameter>javax.resource.spi.work.WorkListener</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>407</id>
+      <description />
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkManager</class-interface>
+      <method name="startWork" return-type="long">
+        <parameters>
+          <parameter>javax.resource.spi.work.Work</parameter>
+          <parameter>long</parameter>
+          <parameter>javax.resource.spi.work.ExecutionContext</parameter>
+          <parameter>javax.resource.spi.work.WorkListener</parameter>
+        </parameters>
+        <throw>javax.resource.spi.work.WorkException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>408</id>
+      <description>Constructs a new instance with null as its detail message.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkRejectedException</class-interface>
+      <method name="WorkRejectedException" return-type="WorkRejectedException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>409</id>
+      <description>Constructs a new instance with the specified detail message.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkRejectedException</class-interface>
+      <method name="WorkRejectedException" return-type="WorkRejectedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>410</id>
+      <description>Constructs a new throwable with the specified cause.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkRejectedException</class-interface>
+      <method name="WorkRejectedException" return-type="WorkRejectedException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>411</id>
+      <description>Constructs a new throwable with the specified detail message and cause.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkRejectedException</class-interface>
+      <method name="WorkRejectedException" return-type="WorkRejectedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>412</id>
+      <description>Constructs a new throwable with the specified detail message and an error code.</description>
+      <package>javax.resource.spi.work</package>
+      <class-interface>WorkRejectedException</class-interface>
+      <method name="WorkRejectedException" return-type="WorkRejectedException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+  </assertions>
+</javadoc>
+

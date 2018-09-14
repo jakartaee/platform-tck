@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.79C-CCK-MCD  [en] (X11; U; SunOS 5.7 sun4u) [Netscape]">
+   <meta name="AUTHOR" content="Paul Hendley">
+   <meta name="CREATED" content="20000710;10525321">
+   <meta name="CHANGEDBY" content="Paul Hendley">
+   <meta name="CHANGED" content="20000925;14012592">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<style>
+	<!--
+		@page { margin-left: 1.25in; margin-right: 1.25in; margin-top: 1in; margin-bottom: 1in }
+		P { margin-bottom: 0.08in }
+		H3 { margin-bottom: 0.08in; font-family: "Arial", sans-serif }
+		TD P { margin-bottom: 0.08in }
+		TH P { margin-bottom: 0.08in; font-style: italic }
+	-->
+	</style>
+</head>
+<body>
+
+
+<p><br>
+<h2>Compatibility Test Plan for Connector 1.6 TCK</h2>
+<div STYLE="margin-bottom: 0in"><font size=-1>Paul Hendley </font></div>
+
+<div STYLE="margin-bottom: 0in"><font size=-1>last updated&nbsp; 08/25/2008</font></div>
+
+<p><br>
+<h2>Introduction</h2>
+
+<div STYLE="margin-bottom: 0in">This test plan documents the Connector
+1.6 high level Compatiblity test plan for the Connector 1.6 specification.
+  Compatibility test cases are derived from the requirements of the engineering
+specifications. The reference implementation will validate that the specifications
+can be implemented, will provide a reference point for the development
+community, and will be used for developing Compatibility Tests.  </div>
+
+<p><br>
+<h2>Goals</h2>
+<p STYLE="margin-bottom: 0in">Provide Connector 1.6 compatibility tests
+for Connector version 1.6. This will include writing tests for system level
+contracts which will need to work within one of the following user environments:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     - testing between a Java EE 6 Application Server and a resource adapter
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     - testing between a Java EE 6 based Web Profile and a resource adapter
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     - testing within a standalone environment (ie non-app server, non-web-profile)
+<p>
+
+It is worth noting that the customer may have any one of the above test environments
+and the Connector TCK will need to operate within their test environment - regardless
+of which environment they have, though the actual number of tests may vary based on 
+the environment the customer runs within.  As an example of why the number of tests 
+may vary, we can see that any EJB related connector tests should work in a Java EE 6
+environment but we cannot be guaranteed there will be an EJB container if the 
+customer is running within a standalone environment.  So in the latter case, we will
+need to support a way for the customer to specify the environment they are running
+within.  (Alternatively, the use of keyword arguements at runtime may be used to 
+allow specifying which test environment to run in  (eg Java EE 6, Web Profile, or standalone).
+Additionally, any EJB related test will require support of .ear files - which is not
+guarranteed in a non-JavaEE environment.
+
+<p>
+The goal is to test Connector 1.6 contracts for the following areas: 
+
+<ul>
+<li STYLE="margin-bottom: 0in">
+Work management contract: This allows a resource adapter to submit Work
+instances to be executed by an application server    (or comparable container???).</li>
+
+<li STYLE="margin-bottom: 0in">
+Life cycle management contract: This allows the runtime and deployment
+behaviour of the resource adapter into application server    (or comparable container???).</li>
+
+<li STYLE="margin-bottom: 0in">
+Message Inflow: This provides a mechanism for EIS to the use resource adapter
+to dispatch calls to MDB    (or comparable messaging service???).</li>
+
+<li STYLE="margin-bottom: 0in">
+Transaction Inflow : This provides a contract to import external transaction
+into the application server     (or comparable container???).</li>
+</ul>
+
+
+<p><br>
+<h2>Non-Goals</h2>
+<ul>
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Performance</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scalability</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ease of use</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Non-required areas of
+the specification.</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The capability to certify
+any Resource Adapter Connector 1.6 specification.</li>
+</ul>
+
+
+<p><br>
+<h2>Types of Compatibility Tests</h2>
+<div STYLE="margin-bottom: 0in">There are 3 types of tests that make up
+the Compatibility Test Suite, these include:</div>
+
+<ul>
+<li STYLE="margin-bottom: 0in">
+Signature Tests - Checks that all of the required API signatures are available
+for an implementation, no supersets or subsets.</li>
+
+<li STYLE="margin-bottom: 0in">
+API Tests - Verifies that all of the required classes and methods behave
+according to the specification on a method by method basis.</li>
+
+<li STYLE="margin-bottom: 0in">
+End to End Tests - These will allow the testing of life cycles, state transitions, and general behaviour.</li>
+</ul>
+
+
+<p><br>
+<h2>Targated High Level Areas</h2>
+<p>
+The following areas have been identified as requirements of the Connector 
+specification and are targeted for TCK test development.
+<br>&nbsp;
+<ul>
+<li>
+The Connector defined SPI for the Life Cycle contracts. 
+</li>
+
+<li>
+&nbsp;The Connector defined SPI for the Work Management contracts. 
+</li>
+
+<li>
+The Connector defined SPI for the Transaction Inflow contracts. 
+</li>
+
+<li>
+The Connector defined SPI for the Message Inflow contracts. 
+</li>
+
+<li>
+The Connector defined SPI for the Packaging and Deployment contracts.
+</li>
+</ul>
+
+<p><br>
+<h2>Non-Targeted High Level Areas</h2>
+<ul>
+<li>
+&nbsp;The Connector 1.6 specification recommends, but does not require,
+that a resource adapter support CCI.&nbsp; 
+The Connector 1.6 TCK will not contain any tests for the CCI.
+</li>
+<b><font size=+1>QUESTION:  will this change in 1.6???</font></b>
+
+</ul>
+
+<ul>
+<li>
+&nbsp;The Connector 1.6 TCK tests will not be written for any resource adapter.&nbsp;
+A specific, known (ie home-grown) Resource Adapter (described later in this document) will
+be deployed on a licensees 'server' in order to test the licensee's
+Connector implementation.&nbsp; A TCK for Resource Adapters is beyond the scope 
+of this specification.</li>
+<b><font size=+1>QUESTION:  What constitutes the licensees 'server' for the case of a Connector 1.6 standalone mode???</font></b>
+<p>
+<b><font size=+1>QUESTION:  Can we rely on being able to deploy a Resource Adapter to a licensee when they are in standalone mode?</font></b>
+</ul>
+
+<p><br>
+<h2>Test Approach</h2>
+<p>The purpose of the Connector TCK is to insure that a licensee's Connector implementation
+has fullfiled all the Connector 1.6 specification which allows any
+Connector 1.6 resource adapter to be deployed and function correctly.
+<p>
+<b><font size=+1>QUESTION:  This was the case for 1.5 - is this still true for 1.6 given new standalone support???</font></b>
+
+<p>It will be necessary to have a resource adapter which fullfils the Connector
+1.6 specification to be deployed on a licensee's server. Previouly, for Connector
+1.5, three tck specific resource adapters were built which used home-grown EIS for 
+transaction support and on that, assertions were built for the following areas
+<br>&nbsp;
+
+
+<ul>
+<li> Life Cycle Contract: The following areas will be coverd</li>
+<ul><ul>
+<li> ResourceAdapter runtime behavior</li>
+<li> ResourceAdapter association with ManagedConnectionFactory and ActivationSpec</li>
+</ul></ul></ul>
+
+<ul>
+<li> WorkManager Contract: The following areas will be coverd</li>
+<ul><ul>
+<li> To ensure that WorkManager is correctly implemented by Application server (or comparitive container???)</li>
+<li> Work Object from resource adapter can be passed to WorkManager.</li>
+</ul></ul></ul>
+
+<ul>
+<li> Transaction Inflow contract:&nbsp; The following areas will be covered</li>
+<ul><ul>
+<li> Message delivery is transacted or not.</li>
+<li> XAResource being used by the Transaction Manager.</li>
+</ul></ul></ul>
+
+<ul>
+<li> Message Inflow Contract:</li>
+<ul><ul>
+<li> Messages can be dispactched to an non transaction requried MDB.</li>
+<li> Messages can be dispactched to an transaction requried MDB.</li>
+</ul></ul></ul>
+
+<ul>
+<li> Deployment Tests.</li>
+<ul><ul>
+<li> Embeded resource adapter can be deployed correctly and can be used by the application it is deployed with.</li>
+</ul></ul></ul>
+
+<ul>
+<li> Set of Regression tests for Connector 1.0 outbound contracts.</li>
+<ul><ul>
+<li>
+A set of connection tests to verify it the Connector 1.0 Resource adapter
+can work on app server  (or comparitive container???).</li>
+</ul></ul></ul>
+
+<p>
+The test approach for Connector 1.6 will remain similar to Connector 1.5.  
+However, since spec requirements are changing and there is no longer a guarantee that there 
+will be an app server (and maybe not even a web server for the case of standalone env) , it will 
+be necessary for the licensee to implement multiple porting packages.  Additionally, there
+may be some tests that will not be applicable to a licensee's given environment (eg no ejb
+container is guaranteed so any MDB tests would only apply if the licensee's implementation 
+were to include an ejb container.)
+<p>
+Finally, the test strategies will evolve as discussions with the CTS team, RI team, and the Connector 1.6 spec progress.
+
+
+<p><br>
+<h2>Deliverables</h2>
+<p>&nbsp;TS resource adapters (Bi-directional) and has all 3 flavours (XA,
+Local, No Transaction), which will be part of the TCK.
+<br>&nbsp;A TS EIS which is used by resource adapters. (Brief Description
+of TSeis)
+<br>&nbsp;A set of tests for the Connector 1.6 Compatibility Test Suite.
+<br>&nbsp;An updated Connector User's Guide for setup and configuration specific
+details for the Connector 1.6&nbsp; tests.
+<br>&nbsp;A set of Porting Packages for supporting the Connector 1.6 TCK in one of the three possible licensee environments of: Java EE 6, Web Profile (ie a sub profile of Java EE 6), or a standalone mode.
+<p>NOTE:  the Connector TCk will be made available in one of two ways:  (1)  as part of the entire CTS test suite (which assumes the presence of the JavaEE or a subset of JavaEE such as the Web Profile) or (2) standalone TCK which assumes NO JavaEE/Web Profile.
+
+
+<p><br>
+<h2>Dependencies</h2>
+<p STYLE="margin-bottom: 0in">Connector 1.6 Spec
+<div STYLE="margin-bottom: 0in">Java EE 6 Web Profile Reference Implementation</div>
+<div STYLE="margin-bottom: 0in">JTA 1.5 Specification</div>
+<div STYLE="margin-bottom: 0in">Dependent on JNDI</div>
+<div STYLE="margin-bottom: 0in">Dependent on Java EE 6 - No required support for JavaEE5/JavaSE 1.5 </div>
+
+
+<p><br>
+<h2>Team Members</h2>
+Sivakumar Thyagarajan - Specification Lead
+<br>Jagadish Ramu - Web Profile RI Lead
+<br>Paul Hendley - Connector TCK Lead
+
+<p><br>
+<h2>Assertions Coverage</h2>
+<p><font size=+1><a href="http://invalid.domain.com/~gsingh/Assertion/Connector15CommunityDraft.html">Spec Assertions - TBD </a></font>
+<br>
+<p><font size=+1><a href="ConnectorJavadocAssertions.html">JavaDoc Assertions - TBD </a></font>
+<p><br>
+
+
+<h2>Schedules</h2>
+
+<table>
+  <tbody>
+    <tr class="tableHeading">
+      <th class="firstColWidth">Name</th>
+      <th class="packColumn">man-days   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </th>
+      <th class="packColumn">Start Date   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </th>
+      <th>End Date   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </th>
+    </tr>
+    <tr>
+      <td class="firstColWidth">Connector Test Plan </td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td> Connector 1.6 Spec review</td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Assertion Coverage and Planning  </td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Assertion Coverage Review</td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Porting Packages</td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Design of standalone support  </td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Fix MDB and JMS use???</td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Test Reviews</td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Packaging</td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Build standalone TCK</td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>User Guide and other doc</td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>TBD</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p><br>
+<h2>Support</h2>
+<div STYLE="margin-bottom: 0in">Support is provided to the Licencees
+via the Java Licensee Engineering (JLE) team.</div>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

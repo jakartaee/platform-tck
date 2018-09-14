@@ -1,0 +1,2458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<javadoc>
+    <package name="javax.xml.rpc">
+        <classes>
+            <class modifiers="public" name="ServiceException">
+                <extends name="Exception" package="java.lang"/>
+                <superclasses>
+                    <superclass name="Throwable" package="java.lang"/>
+                    <superclass name="Object" package="java.lang"/>
+                </superclasses>
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.ServiceException&lt;/code&gt; is thrown from the   methods in the &lt;code&gt;javax.xml.rpc.Service&lt;/code&gt; interface and   &lt;code&gt;ServiceFactory&lt;/code&gt; class.</lead>
+                </comment>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructs a new exception with &lt;code&gt;null&lt;/code&gt; as its    detail message.</lead>
+                            <detail> The cause is not initialized.</detail>
+                        </comment>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructs a new exception with the specified detail    message.</lead>
+                            <detail>  The cause is not initialized.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="message" package="java.lang" type="String">
+                                <comment>The detail message which is later                   retrieved using the &lt;code&gt;getMessage&lt;/code&gt; method</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructs a new exception with the specified detail    message and cause.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="message" package="java.lang" type="String">
+                                <comment>The detail message which is later retrieved                  using the &lt;code&gt;getMessage&lt;/code&gt; method</comment>
+                            </parameter>
+                            <parameter name="cause" package="java.lang" type="Throwable">
+                                <comment>The cause which is saved for the later                  retrieval throw by the &lt;code&gt;getCause&lt;/code&gt;                   method</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructs a new exception with the specified cause   and a detail message of &lt;tt&gt;(cause==null ? null :    cause.toString())&lt;/tt&gt; (which typically contains the    class and detail message of &lt;tt&gt;cause&lt;/tt&gt;).</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="cause" package="java.lang" type="Throwable">
+                                <comment>The cause which is saved for the later                  retrieval throw by the getCause method.                  (A &lt;tt&gt;null&lt;/tt&gt; value is permitted, and                  indicates that the cause is nonexistent or                unknown.)</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                </constructors>
+                <methods>
+                    <method modifiers="public" name="getLinkedCause">
+                        <returns>the cause of this Exception or &lt;code&gt;null&lt;/code&gt;            if the cause is noexistent or unknown</returns>
+                        <comment>
+                            <lead>Gets the Linked cause</lead>
+                        </comment>
+                        <returns package="java.lang" type="Throwable"/>
+                    </method>
+                </methods>
+            </class>
+            <class modifiers="public abstract" name="ServiceFactory">
+                <extends name="Object" package="java.lang"/>
+                <version>0.6</version>
+                <author>Rahul Sharma</author>
+                <author>Roberto  Chinnici</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.ServiceFactory&lt;/code&gt; is an abstract class   that provides a factory for the creation of instances of the type    &lt;code&gt;javax.xml.rpc.Service&lt;/code&gt;.</lead>
+                    <detail> This abstract class follows the   abstract static factory design pattern. This enables a J2SE based    client to create a &lt;code&gt;Service instance&lt;/code&gt; in a portable manner   without using the constructor of the &lt;code&gt;Service&lt;/code&gt;   implementation class.    &lt;p&gt;The ServiceFactory implementation class is set using the    system property &lt;code&gt;javax.xml.rpc.ServiceFactory&lt;/code&gt;.</detail>
+                    <see class="Service" package="javax.xml.rpc"/>
+                </comment>
+                <fields>
+                    <field modifiers="public static final" name="SERVICEFACTORY_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>A constant representing the property used to lookup the  name of a &lt;code&gt;ServiceFactory&lt;/code&gt; implementation   class.</lead>
+                        </comment>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="protected">
+                        <comment/>
+                    </constructor>
+                </constructors>
+                <methods>
+                    <method modifiers="public static" name="newInstance">
+                        <comment>
+                            <lead>Gets an instance of the &lt;code&gt;ServiceFactory&lt;/code&gt;   </lead>
+                            <detail>&lt;p&gt;Only one copy of a factory exists and is returned to the   application each time this method is called.   &lt;p&gt; The implementation class to be used can be overridden by   setting the javax.xml.rpc.ServiceFactory system property.</detail>
+                        </comment>
+                        <returns package="javax.xml.rpc" type="ServiceFactory"/>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException"/>
+                        </throws>
+                    </method>
+                    <method modifiers="public abstract" name="createService">
+                        <comment>
+                            <lead>Create a &lt;code&gt;Service&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="wsdlDocumentLocation" package="java.net" type="URL">
+                                <comment>URL for the WSDL document location                               for the service</comment>
+                            </parameter>
+                            <parameter name="serviceName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>QName for the service</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc" type="Service"/>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">If any error in creation of the                      specified service</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public abstract" name="createService">
+                        <comment>
+                            <lead>Create a &lt;code&gt;Service&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="serviceName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>QName for the service</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc" type="Service"/>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">If any error in creation of the                      specified service</throw>
+                        </throws>
+                    </method>
+                </methods>
+            </class>
+            <class modifiers="public" name="JAXRPCException">
+                <extends name="RuntimeException" package="java.lang"/>
+                <superclasses>
+                    <superclass name="Exception" package="java.lang"/>
+                    <superclass name="Throwable" package="java.lang"/>
+                    <superclass name="Object" package="java.lang"/>
+                </superclasses>
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.JAXRPCException&lt;/code&gt; is thrown from    the core JAX-RPC APIs to indicate an exception related to the    JAX-RPC runtime mechanisms.</lead>
+                </comment>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructs a new exception with &lt;code&gt;null&lt;/code&gt; as its    detail message.</lead>
+                            <detail> The cause is not initialized.</detail>
+                        </comment>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructs a new exception with the specified detail    message.</lead>
+                            <detail>  The cause is not initialized.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="message" package="java.lang" type="String">
+                                <comment>The detail message which is later                   retrieved using the getMessage method</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructs a new exception with the specified detail    message and cause.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="message" package="java.lang" type="String">
+                                <comment>The detail message which is later retrieved                  using the getMessage method</comment>
+                            </parameter>
+                            <parameter name="cause" package="java.lang" type="Throwable">
+                                <comment>The cause which is saved for the later                  retrieval throw by the getCause method</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructs a new JAXRPCException with the specified cause   and a detail message of &lt;tt&gt;(cause==null ? null :    cause.toString())&lt;/tt&gt; (which typically contains the    class and detail message of &lt;tt&gt;cause&lt;/tt&gt;).</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="cause" package="java.lang" type="Throwable">
+                                <comment>The cause which is saved for the later                  retrieval throw by the getCause method.                  (A &lt;tt&gt;null&lt;/tt&gt; value is permitted, and                  indicates that the cause is nonexistent or                unknown.)</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                </constructors>
+                <methods>
+                    <method modifiers="public" name="getLinkedCause">
+                        <returns>the cause of this Exception or &lt;code&gt;null&lt;/code&gt;            if the cause is noexistent or unknown</returns>
+                        <comment>
+                            <lead>Gets the Linked cause</lead>
+                        </comment>
+                        <returns package="java.lang" type="Throwable"/>
+                    </method>
+                </methods>
+            </class>
+            <class modifiers="public" name="ParameterMode">
+                <extends name="Object" package="java.lang"/>
+                <version>0.2</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.ParameterMode&lt;/code&gt; is a type-safe   enumeration for parameter mode.</lead>
+                    <detail> This class is used in the   &lt;code&gt;Call&lt;/code&gt;API to specify parameter passing modes.</detail>
+                    <see class="Call" package="javax.xml.rpc"/>
+                </comment>
+                <fields>
+                    <field modifiers="public static final" name="IN" package="javax.xml.rpc" type="ParameterMode">
+                        <comment>
+                            <lead>IN mode for parameter passing</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="OUT" package="javax.xml.rpc" type="ParameterMode">
+                        <comment>
+                            <lead>OUT mode for parameter passing</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="INOUT" package="javax.xml.rpc" type="ParameterMode">
+                        <comment>
+                            <lead>INOUT mode for parameter passing</lead>
+                        </comment>
+                    </field>
+                </fields>
+                <methods>
+                    <method modifiers="public" name="toString">
+                        <comment/>
+                        <returns package="java.lang" type="String"/>
+                    </method>
+                </methods>
+            </class>
+        </classes>
+        <interfaces>
+            <interface modifiers="public " name="Stub">
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The interface &lt;code&gt;javax.xml.rpc.Stub&lt;/code&gt; is the common base interface   for the stub classes.</lead>
+                    <detail> All generated stub classes are required to    implement the &lt;code&gt;javax.xml.rpc.Stub&lt;/code&gt; interface. An instance   of a stub class represents a client side proxy or stub instance for   the target service endpoint.     &lt;p&gt;The &lt;code&gt;javax.xml.rpc.Stub&lt;/code&gt; interface provides an    extensible property mechanism for the dynamic configuration of    a stub instance.</detail>
+                    <see class="Service" package="javax.xml.rpc"/>
+                </comment>
+                <fields>
+                    <field modifiers="public static final" name="USERNAME_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property: User name for authentication.</lead>
+                            <detail>   &lt;p&gt;Type: java.lang.String</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="PASSWORD_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property: Password for authentication.</lead>
+                            <detail>   &lt;p&gt;Type: java.lang.String</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="ENDPOINT_ADDRESS_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property: Target service endpoint address.</lead>
+                            <detail> The    URI scheme for the endpoint address specification must    correspond to the protocol/transport binding for this    stub class.   &lt;p&gt;Type: java.lang.String</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="SESSION_MAINTAIN_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property: This boolean property is used by a service    client to indicate whether or not it wants to participate in   a session with a service endpoint.</lead>
+                            <detail> If this property is set to   true, the service client indicates that it wants the session   to be maintained. If set to false, the session is not maintained.    The default value for this property is false.   &lt;p&gt;Type: java.lang.Boolean</detail>
+                        </comment>
+                    </field>
+                </fields>
+                <methods>
+                    <method modifiers="public" name="_setProperty">
+                        <comment>
+                            <lead>Sets the name and value of a configuration property   for this Stub instance.</lead>
+                            <detail> If the Stub instances contains   a value of the same property, the old value is replaced.   &lt;p&gt;Note that the &lt;code&gt;_setProperty&lt;/code&gt; method may not    perform validity check on a configured property value. An    example is the standard property for the target service    endpoint address that is not checked for validity in the    &lt;code&gt;_setProperty&lt;/code&gt; method.   In this case, stub configuration errors are detected at    the remote method invocation.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the configuration property</comment>
+                            </parameter>
+                            <parameter name="value" package="java.lang" type="Object">
+                                <comment>Value of the property</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="_getProperty">
+                        <comment>
+                            <lead>Gets the value of a specific configuration property.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the property whose value is to be                retrieved</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="java.lang" type="Object">
+                            <comment>Value of the configuration property</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="_getPropertyNames">
+                        <comment>
+                            <lead>Returns an &lt;code&gt;Iterato&lt;/code&gt; view of the names of the properties   that can be configured on this stub instance.</lead>
+                        </comment>
+                        <returns package="java.util" type="Iterator">
+                            <comment>Iterator for the property names of the type           &lt;code&gt;java.lang.String&lt;/code&gt;</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="Service">
+                <version>0.2</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>A service class acts as a factory of the following objects:   &lt;UL&gt;   &lt;LI&gt;Dynamic proxy for the target service endpoint.</lead>
+                    <detail>   &lt;LI&gt;Instance of the type &lt;code&gt;javax.xml.rpc.Call&lt;/code&gt; for        the dynamic invocation of a remote operation on the        target service endpoint.    &lt;LI&gt;Instance of a generated stub class   &lt;/UL&gt;</detail>
+                    <see class="Call" package="javax.xml.rpc"/>
+                    <see class="Stub" package="javax.xml.rpc"/>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getPort">
+                        <comment>
+                            <lead>The getPort method returns a dynamic proxy for the specified   target service endpoint.</lead>
+                            <detail> A service client uses this dynamic    proxy to invoke operations on the target service endpoint.    The &lt;code&gt;serviceEndpointInterface&lt;/code&gt; specifies the service   endpoint interface that is supported by the created dynamic   proxy.</detail>
+                            <see/>
+                            <see/>
+                        </comment>
+                        <parameters>
+                            <parameter name="portName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name of the service endpoint in                     the WSDL service description</comment>
+                            </parameter>
+                            <parameter name="serviceEndpointInterface" package="java.lang" type="Class">
+                                <comment>Service endpoint interface                     supported by the dynamic proxy</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="java.rmi" type="Remote">
+                            <comment>java.rmi.Remote Dynamic proxy object that supports                     the service endpoint interface.</comment>
+                        </returns>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">This exception is thrown in the                    following cases:                    &lt;UL&gt;                    &lt;LI&gt;If there is an error in creation of                         the dynamic proxy                    &lt;LI&gt;If there is any missing WSDL metadata                        as required by this method                    &lt;LI&gt;Optionally, if an illegal                         &lt;code&gt;serviceEndpointInterface&lt;/code&gt;                        or &lt;code&gt;portName&lt;/code&gt; is specified                    &lt;/UL&gt;</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="getPort">
+                        <comment>
+                            <lead>The getPort method returns either an instance of a generated    stub implementation class or a dynamic proxy.</lead>
+                            <detail> The parameter    &lt;code&gt;serviceEndpointInterface&lt;/code&gt; specifies the service    endpoint interface that is supported by the returned stub or   proxy. In the implementation of this method, the JAX-RPC    runtime system takes the responsibility of selecting a protocol   binding (and a port) and configuring the stub accordingly.    The returned &lt;code&gt;Stub&lt;/code&gt; instance should not be    reconfigured by the client.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="serviceEndpointInterface" package="java.lang" type="Class">
+                                <comment>Service endpoint interface</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="java.rmi" type="Remote">
+                            <comment>Stub instance or dynamic proxy that supports the                     service endpoint interface</comment>
+                        </returns>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">&lt;UL&gt;                    &lt;LI&gt;If there is an error during creation                        of stub instance or dynamic proxy                    &lt;LI&gt;If there is any missing WSDL metadata                        as required by this method                    &lt;LI&gt;Optionally, if an illegal                         &lt;code&gt;serviceEndpointInterface&lt;/code&gt;                        is specified                    &lt;/UL&gt;</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="getCalls">
+                        <returns>Call[]  Array of pre-configured Call objects</returns>
+                        <comment>
+                            <lead>Gets an array of preconfigured &lt;code&gt;Call&lt;/code&gt; objects for invoking    operations on the specified port.</lead>
+                            <detail> There is one &lt;code&gt;Call&lt;/code&gt;   object per operation that can be invoked on the specified    port. Each &lt;code&gt;Call&lt;/code&gt; object is pre-configured and   does not need to be configured using the setter methods on   &lt;code&gt;Call&lt;/code&gt; interface.      &lt;p&gt;This method requires the &lt;code&gt;Service&lt;/code&gt; implementation   class to have access to the WSDL related metadata.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="portName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name for the target service endpoint</comment>
+                            </parameter>
+                        </parameters>
+                        <returns dimension="[]" package="javax.xml.rpc" type="Call"/>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">If this Service class does not                    have access to the required WSDL metadata                    or if an illegal &lt;code&gt;portName&lt;/code&gt; is                    specified.</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="createCall">
+                        <comment>
+                            <lead>Creates a &lt;code&gt;Call&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="portName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name for the target service endpoint</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc" type="Call">
+                            <comment>Call instance</comment>
+                        </returns>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">If any error in the creation of                    the &lt;code&gt;Call&lt;/code&gt; object</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="createCall">
+                        <comment>
+                            <lead>Creates a &lt;code&gt;Call&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="portName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name for the target service                     endpoint</comment>
+                            </parameter>
+                            <parameter name="operationName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified Name of the operation for                     which this &lt;code&gt;Call&lt;/code&gt; object is to                     be created.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc" type="Call">
+                            <comment>Call instance</comment>
+                        </returns>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">If any error in the creation of                    the &lt;code&gt;Call&lt;/code&gt; object</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="createCall">
+                        <comment>
+                            <lead>Creates a &lt;code&gt;Call&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="portName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name for the target service                     endpoint</comment>
+                            </parameter>
+                            <parameter name="operationName" package="java.lang" type="String">
+                                <comment>Name of the operation for which this                        &lt;code&gt;Call&lt;/code&gt; object is to be                         created.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc" type="Call">
+                            <comment>Call instance</comment>
+                        </returns>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">If any error in the creation of                    the &lt;code&gt;Call&lt;/code&gt; object</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="createCall">
+                        <comment>
+                            <lead>Creates a &lt;code&gt;Call&lt;/code&gt; object not associated with    specific operation or target service endpoint.</lead>
+                            <detail> This    &lt;code&gt;Call&lt;/code&gt; object needs to be configured using the    setter methods on the &lt;code&gt;Call&lt;/code&gt; interface.</detail>
+                        </comment>
+                        <returns package="javax.xml.rpc" type="Call">
+                            <comment>Call object</comment>
+                        </returns>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">If any error in the creation of                    the &lt;code&gt;Call&lt;/code&gt; object</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="getServiceName">
+                        <comment>
+                            <lead>Gets the name of this service.</lead>
+                        </comment>
+                        <returns package="javax.xml.rpc.namespace" type="QName">
+                            <comment>Qualified name of this service</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getPorts">
+                        <comment>
+                            <lead>Returns an &lt;code&gt;Iterator&lt;/code&gt; for the list of    &lt;code&gt;QName&lt;/code&gt;s of service endpoints grouped by this   service</lead>
+                        </comment>
+                        <returns package="java.util" type="Iterator">
+                            <comment>Returns &lt;code&gt;java.util.Iterator&lt;/code&gt; with elements           of type &lt;code&gt;javax.xml.rpc.namespace.QName&lt;/code&gt;</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getWSDLDocumentLocation">
+                        <comment>
+                            <lead>Gets the location of the WSDL document for this Service.</lead>
+                        </comment>
+                        <returns package="java.net" type="URL">
+                            <comment>URL for the location of the WSDL document for            this service</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getTypeMappingRegistry">
+                        <comment>
+                            <lead>Gets the &lt;code&gt;TypeMappingRegistry&lt;/code&gt; for this    &lt;code&gt;Service&lt;/code&gt; object.</lead>
+                            <detail> The returned    &lt;code&gt;TypeMappingRegistry&lt;/code&gt; instance is pre-configured    to support the standard type mapping between XML and Java    types types as required by the JAX-RPC specification.</detail>
+                        </comment>
+                        <returns package="javax.xml.rpc.encoding" type="TypeMappingRegistry">
+                            <comment>The TypeMappingRegistry for this Service object.</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getHandlerRegistry">
+                        <comment>
+                            <lead>Returns the configured &lt;code&gt;HandlerRegistry&lt;/code&gt; instance   for this &lt;code&gt;Service&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <returns package="javax.xml.rpc.handler" type="HandlerRegistry">
+                            <comment>HandlerRegistry</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="Call">
+                <version>0.2</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.Call&lt;/code&gt; interface provides support    for the dynamic invocation of a service endpoint.</lead>
+                    <detail> The    &lt;code&gt;javax.xml.rpc.Service&lt;/code&gt; interface acts as a factory   for the creation of &lt;code&gt;Call&lt;/code&gt; instances.    &lt;p&gt;Once a &lt;code&gt;Call&lt;/code&gt; instance is created, various setter    and getter methods may be used to configure this &lt;code&gt;Call&lt;/code&gt;   instance.&lt;/p&gt;</detail>
+                </comment>
+                <fields>
+                    <field modifiers="public static final" name="USERNAME_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property: User name for authentication   </lead>
+                            <detail>&lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="PASSWORD_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property: Password for authentication   </lead>
+                            <detail>&lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="ENDPOINT_ADDRESS_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property: Target service endpoint address.</lead>
+                            <detail> The    URI scheme for the endpoint address specification must    correspond to the protocol/transport binding for this    stub class.   &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="OPERATION_STYLE_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property for operation style.</lead>
+                            <detail> This property is   set to &quot;rpc&quot; if the operation style is rpc; &quot;document&quot;    if the operation style is document.   &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="SOAPACTION_USE_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property for SOAPAction.</lead>
+                            <detail> This boolean property    indicates whether or not SOAPAction is to be used. The    default value of this property is false indicating that   the SOAPAction is not used.   &lt;p&gt;Type: &lt;code&gt;java.lang.Boolean&lt;/code&gt;</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="SOAPACTION_URI_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property for SOAPAction.</lead>
+                            <detail> Indicates the SOAPAction    URI if the &lt;code&gt;javax.xml.rpc.soap.http.soapaction.use&lt;/code&gt;   property is set to &lt;code&gt;true&lt;/code&gt;.   &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="ENCODINGSTYLE_URI_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property for encoding Style:  Encoding style specified   as a namespace URI.</lead>
+                            <detail> The default value is the SOAP 1.1 encoding   &lt;code&gt;http://schemas.xmlsoap.org/soap/encoding/&lt;/code&gt;  &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</detail>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="SESSION_MAINTAIN_PROPERTY" package="java.lang" type="String">
+                        <comment>
+                            <lead>Standard property: This boolean property is used by a service    client to indicate whether or not it wants to participate in   a session with a service endpoint.</lead>
+                            <detail> If this property is set to   true, the service client indicates that it wants the session   to be maintained. If set to false, the session is not maintained.    The default value for this property is &lt;code&gt;false&lt;/code&gt;.   &lt;p&gt;Type: &lt;code&gt;java.lang.Boolean&lt;/code&gt;</detail>
+                        </comment>
+                    </field>
+                </fields>
+                <methods>
+                    <method modifiers="public" name="isParameterAndReturnSpecRequired">
+                        <comment>
+                            <lead>Indicates whether &lt;code&gt;addParameter&lt;/code&gt; and    &lt;code&gt;setReturnType&lt;/code&gt; methods   are to be invoked to specify the parameter and return type   specification for a specific operation.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="operationName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name of the operation</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="boolean">
+                            <comment>Returns true if the Call implementation class            requires addParameter and setReturnType to be             invoked in the client code for the specified             operation. This method returns false otherwise.</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="addParameter">
+                        <comment>
+                            <lead>Adds a parameter type and mode for a specific  operation.</lead>
+                            <detail>    Note that the client code may not call any    &lt;code&gt;addParameter&lt;/code&gt; and &lt;code&gt;setReturnType&lt;/code&gt;    methods before calling the &lt;code&gt;invoke&lt;/code&gt; method. In   this case, the Call implementation class determines the    parameter types by using the Java reflection and    the configured type mapping registry.</detail>
+                            <see class="Call" member="isParameterAndReturnSpecRequired" package="javax.xml.rpc"/>
+                        </comment>
+                        <parameters>
+                            <parameter name="paramName" package="java.lang" type="String">
+                                <comment>Name of the parameter</comment>
+                            </parameter>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>XML type of the parameter</comment>
+                            </parameter>
+                            <parameter name="parameterMode" package="javax.xml.rpc" type="ParameterMode">
+                                <comment>Mode of the parameter-whether                      &lt;code&gt;ParameterMode.IN&lt;/code&gt;,                      &lt;code&gt;ParameterMode.OUT&lt;/code&gt;,                      or &lt;code&gt;ParameterMode.INOUT&lt;/code&gt;,</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="addParameter">
+                        <comment>
+                            <lead>Adds a parameter type and mode for a specific  operation.</lead>
+                            <detail>    This method is used to specify the Java type for either    OUT or INOUT parameters.</detail>
+                            <see class="Call" member="isParameterAndReturnSpecRequired" package="javax.xml.rpc"/>
+                        </comment>
+                        <parameters>
+                            <parameter name="paramName" package="java.lang" type="String">
+                                <comment>Name of the parameter</comment>
+                            </parameter>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>XML type of the parameter</comment>
+                            </parameter>
+                            <parameter name="javaType" package="java.lang" type="Class">
+                                <comment>Java class of the parameter</comment>
+                            </parameter>
+                            <parameter name="parameterMode" package="javax.xml.rpc" type="ParameterMode">
+                                <comment>Mode of the parameter-whether                      ParameterMode.IN, OUT or INOUT</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getParameterTypeByName">
+                        <comment>
+                            <lead>Gets the XML type of a parameter by name</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="paramName" package="java.lang" type="String">
+                                <comment>Name of the parameter</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc.namespace" type="QName">
+                            <comment>Returns XML type for the specified parameter</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setReturnType">
+                        <comment>
+                            <lead>Sets the return type for a specific operation.</lead>
+                            <detail> Invoking   &lt;code&gt;setReturnType(null)&lt;/code&gt; removes the return   type for this Call object.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>XML data type of the return value</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="setReturnType">
+                        <comment>
+                            <lead>Sets the return type for a specific operation.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName"/>
+                            <parameter name="javaType" package="java.lang" type="Class">
+                                <comment>Java Class of the return value</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getReturnType">
+                        <comment>
+                            <lead>Gets the return type for a specific operation</lead>
+                        </comment>
+                        <returns package="javax.xml.rpc.namespace" type="QName">
+                            <comment>Returns the XML type for the return value</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="removeAllParameters">
+                        <comment>
+                            <lead>Removes all specified parameters from this &lt;code&gt;Call&lt;/code&gt; instance.</lead>
+                            <detail>   Note that this method removes only the parameters and not   the return type. The &lt;code&gt;setReturnType(null)&lt;/code&gt; is   used to remove the return type.</detail>
+                        </comment>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getOperationName">
+                        <comment>
+                            <lead>Gets the name of the operation to be invoked using this   &lt;code&gt;Call&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <returns package="javax.xml.rpc.namespace" type="QName">
+                            <comment>Qualified name of the operation</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setOperationName">
+                        <comment>
+                            <lead>Sets the name of the operation to be invoked using this   &lt;code&gt;Call&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="operationName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>QName of the operation to be                         invoked using the Call instance</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getPortTypeName">
+                        <comment>
+                            <lead>Gets the qualified name of the port type.</lead>
+                        </comment>
+                        <returns package="javax.xml.rpc.namespace" type="QName">
+                            <comment>Qualified name of the port type</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setPortTypeName">
+                        <comment>
+                            <lead>Sets the qualified name of the port type.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="portType" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name of the port type</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="setTargetEndpointAddress">
+                        <comment>
+                            <lead>Sets the address of the target service endpoint.</lead>
+                            <detail>   This address must correspond to the transport specified   in the binding for this &lt;code&gt;Call&lt;/code&gt; instance.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="address" package="java.lang" type="String">
+                                <comment>Address of the target service endpoint;                    specified as an URI</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getTargetEndpointAddress">
+                        <comment>
+                            <lead>Gets the address of a target service endpoint.</lead>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>Address of the target service endpoint as an URI</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setProperty">
+                        <comment>
+                            <lead>Sets the value for a named property.</lead>
+                            <detail> JAX-RPC specification    specifies a standard set of properties that may be passed    to the &lt;code&gt;Call.setProperty&lt;/code&gt; method.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the property</comment>
+                            </parameter>
+                            <parameter name="value" package="java.lang" type="Object">
+                                <comment>Value of the property</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getProperty">
+                        <comment>
+                            <lead>Gets the value of a named property.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the property</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="java.lang" type="Object">
+                            <comment>Value of the named property</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="removeProperty">
+                        <comment>
+                            <lead>Removes a named property.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the property</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void">
+                            <comment>boolean Returns code&gt;true&lt;/code&gt; if the specified                   property is removed; &lt;code&gt;false&lt;/code&gt;                   otherwise</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getPropertyNames">
+                        <comment>
+                            <lead>Gets the names of configurable properties supported by    this &lt;code&gt;Call&lt;/code&gt; object.</lead>
+                        </comment>
+                        <returns package="java.util" type="Iterator">
+                            <comment>Iterator for the property names</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="invoke">
+                        <comment>
+                            <lead>Invokes a specific operation using a synchronous request-response    interaction mode.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter dimension="[]" name="inputParams" package="java.lang" type="Object">
+                                <comment>Object[]--Parameters for this invocation. This           includes only the input params</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="java.lang" type="Object">
+                            <comment>Returns the return value or &lt;code&gt;null&lt;/code&gt;</comment>
+                        </returns>
+                        <throws>
+                            <throw name="java.rmi.RemoteException">if there is any error in the            remote method invocation</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="invoke">
+                        <comment>
+                            <lead>Invokes a specific operation using a synchronous request-response    interaction mode.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="operationName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>QName of the operation</comment>
+                            </parameter>
+                            <parameter dimension="[]" name="inputParams" package="java.lang" type="Object">
+                                <comment>Object[]--Parameters for this invocation. This           includes only the input params.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="java.lang" type="Object">
+                            <comment>Return value or null</comment>
+                        </returns>
+                        <throws>
+                            <throw name="java.rmi.RemoteException">if there is any error in the            remote method invocation.</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="invokeOneWay">
+                        <comment>
+                            <lead>Invokes a remote method using the one-way interaction mode.</lead>
+                            <detail> The    client thread does not block waiting for the completion of the    server processing for this remote method invocation. This method    must not throw any remote exceptions. This method may throw a    &lt;code&gt;JAXRPCException&lt;/code&gt; during the processing of the one-way   remote call.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter dimension="[]" name="inputParams" package="java.lang" type="Object">
+                                <comment>Object[]--Parameters for this invocation. This           includes only the input params.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getOutputParams">
+                        <comment>
+                            <lead>Returns a &lt;code&gt;Map&lt;/code&gt; of {name, value} for the output parameters of    the last invoked operation.</lead>
+                            <detail> The parameter names in the    returned Map are of type &lt;code&gt;java.lang.String&lt;/code&gt;.</detail>
+                        </comment>
+                        <returns package="java.util" type="Map">
+                            <comment>Map Output parameters for the last &lt;code&gt;Call.invoke()&lt;/code&gt;.               Empty &lt;code&gt;Map&lt;/code&gt; is returned if there are no output               parameters.</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getOutputValues">
+                        <comment>
+                            <lead>Returns a &lt;code&gt;List&lt;/code&gt; values for the output parameters    of the last invoked operation.</lead>
+                        </comment>
+                        <returns package="java.util" type="List">
+                            <comment>java.util.List Values for the output parameters. An               empty &lt;code&gt;List&lt;/code&gt; is returned if there are               no output values.</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </interface>
+        </interfaces>
+    </package>
+    <package name="javax.xml.rpc.encoding">
+        <classes>
+            <class modifiers="public" name="XMLType">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public static final" name="XSD_STRING" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_FLOAT" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_BOOLEAN" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_DOUBLE" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_INTEGER" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_INT" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_LONG" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_SHORT" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_DECIMAL" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_BASE64" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_HEXBINARY" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_BYTE" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_DATETIME" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="XSD_QNAME" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_STRING" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_BOOLEAN" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_DOUBLE" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_BASE64" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_FLOAT" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_INT" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_LONG" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_SHORT" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_BYTE" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                    <field modifiers="public static final" name="SOAP_ARRAY" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                </constructors>
+            </class>
+        </classes>
+        <interfaces>
+            <interface modifiers="public " name="TypeMappingRegistry">
+                <extends name="Serializable" package="java.io"/>
+                <version>0.2</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The interface &lt;code&gt;javax.xml.rpc.encoding.TypeMappingRegistry&lt;/code&gt;   defines a registry of TypeMapping instances for the different encoding   styles and XML namespaces.</lead>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="register">
+                        <comment>
+                            <lead>Registers a &lt;code&gt;TypeMapping&lt;/code&gt; instance with the    &lt;code&gt;TypeMappingRegistry&lt;/code&gt;.</lead>
+                            <detail> This method replaces any   existing registered &lt;code&gt;TypeMapping&lt;/code&gt; instance for    the specified &lt;code&gt;namespaceURI&lt;/code&gt;.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="namespaceURI" package="java.lang" type="String">
+                                <comment>An encoding style or XML schema                     namespace specified as an URI. An                    example is &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;</comment>
+                            </parameter>
+                            <parameter name="mapping" package="javax.xml.rpc.encoding" type="TypeMapping">
+                                <comment>TypeMapping instance</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc.encoding" type="TypeMapping">
+                            <comment>Previous TypeMapping associated with the specified           namespaceURI, or &lt;code&gt;null&lt;/code&gt; if there was no            TypeMapping associated with the specified            &lt;code&gt;namespaceURI&lt;/code&gt;</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="registerDefault">
+                        <comment>
+                            <lead>Registers the &lt;code&gt;TypeMapping&lt;/code&gt; instance that is default   for all encoding styles and XML schema namespaces supported by   the &lt;code&gt;TypeMappingRegistry&lt;/code&gt;.</lead>
+                            <detail> A default &lt;code&gt;TypeMapping&lt;/code&gt;   should include serializers and deserializers that are independent    of and usable with any encoding style or XML namespaces. The    successive invocations of the &lt;code&gt;registerDefault&lt;/code&gt;    method replace any existing default &lt;code&gt;TypeMapping&lt;/code&gt;    instance.    &lt;p&gt;If the default &lt;code&gt;TypeMapping&lt;/code&gt; is registered, any    other TypeMapping instances registered through the    &lt;code&gt;TypeMappingRegistry.register&lt;/code&gt; method (for a set    of namespace URIs) override the default &lt;code&gt;TypeMapping&lt;/code&gt;.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="mapping" package="javax.xml.rpc.encoding" type="TypeMapping">
+                                <comment>TypeMapping instance</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getDefaultTypeMapping">
+                        <comment>
+                            <lead>Gets the registered default &lt;code&gt;TypeMapping&lt;/code&gt; instance.</lead>
+                            <detail>    This method returns &lt;code&gt;null&lt;/code&gt; if there is no registered   default TypeMapping in the registry.</detail>
+                        </comment>
+                        <returns package="javax.xml.rpc.encoding" type="TypeMapping">
+                            <comment>The registered default TypeMapping instance or            &lt;code&gt;null&lt;/code&gt;</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getRegisteredNamespaces">
+                        <comment>
+                            <lead>Returns a list of registered namespace URIs in this   &lt;code&gt;TypeMappingRegistry&lt;/code&gt; instance.</lead>
+                        </comment>
+                        <returns dimension="[]" package="java.lang" type="String">
+                            <comment>Array of the registered namespace URIs</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getTypeMapping">
+                        <comment>
+                            <lead>Returns the registered TypeMapping for the specified    namespace URI.</lead>
+                            <detail> If there is no registered TypeMapping for   the specified namespaceURI, this method returns null.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="namespaceURI" package="java.lang" type="String">
+                                <comment>Encoding style or XML schema                    namespace specified as an URI</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc.encoding" type="TypeMapping">
+                            <comment>TypeMapping for the specified namespace URI or           &lt;code&gt;null&lt;/code&gt;</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="createTypeMapping">
+                        <comment>
+                            <lead>Creates a new empty TypeMapping object.</lead>
+                        </comment>
+                        <returns package="javax.xml.rpc.encoding" type="TypeMapping">
+                            <comment>TypeMapping instance</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="unregisterTypeMapping">
+                        <comment>
+                            <lead>Unregisters a TypeMapping instance, if present, from the    specified namespaceURI.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="namespaceURI" package="java.lang" type="String">
+                                <comment>Encoding style or XML schema                    namespace specified as an URI</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc.encoding" type="TypeMapping">
+                            <comment>&lt;code&gt;TypeMapping&lt;/code&gt; instance that has been unregistered           or &lt;code&gt;null&lt;/code&gt; if there was no TypeMapping            registered for the specified &lt;code&gt;namespaceURI&lt;/code&gt;</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="removeTypeMapping">
+                        <comment>
+                            <lead>Removes a &lt;code&gt;TypeMapping&lt;/code&gt; from the TypeMappingRegistry.</lead>
+                            <detail> A   &lt;code&gt;TypeMapping&lt;/code&gt; is associated with 1 or more namespaceURIs.   This method unregisters the specified &lt;code&gt;TypeMapping&lt;/code&gt;   instance from all associated &lt;code&gt;namespaceURIs&lt;/code&gt; and then   removes this TypeMapping instance from the registry.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="mapping" package="javax.xml.rpc.encoding" type="TypeMapping">
+                                <comment>TypeMapping to be removed</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="boolean">
+                            <comment>&lt;code&gt;true&lt;/code&gt; if specified &lt;code&gt;TypeMapping&lt;/code&gt;            is removed from the TypeMappingRegistry; &lt;code&gt;false&lt;/code&gt;           if the specified &lt;code&gt;TypeMapping&lt;/code&gt; was not in the            &lt;code&gt;TypeMappingRegistry&lt;/code&gt;</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="clear">
+                        <comment>
+                            <lead>Removes all TypeMappings and namespaceURIs from this   TypeMappingRegistry.</lead>
+                        </comment>
+                        <returns type="void"/>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="TypeMapping">
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.encoding.TypeMapping&lt;/code&gt; is the base    interface for the representation of a type mapping.</lead>
+                    <detail> A TypeMapping    implementation class may support one or more encoding styles    and/or XML schema namespaces.     &lt;p&gt;For its supported encoding styles and XML schema namespaces,    a TypeMapping instance maintains a set of tuples of the type    {Java type, &lt;code&gt;SerializerFactory&lt;/code&gt;,    &lt;code&gt;DeserializerFactory&lt;/code&gt;, XML type}.</detail>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getSupportedNamespaces">
+                        <comment>
+                            <lead>Returns the namespace URIs (as String[]) supported by a    TypeMapping instance.</lead>
+                            <detail> A TypeMapping that contains only    encoding independent serializers and deserializers returns   null from this method.</detail>
+                        </comment>
+                        <returns dimension="[]" package="java.lang" type="String">
+                            <comment>Array of namespace URIs for the supported encoding            styles and XML schema namespaces.</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setSupportedNamespaces">
+                        <comment>
+                            <lead>Sets the namespace URIs supported by a TypeMapping instance.</lead>
+                            <detail>    A TypeMapping that contains only encoding independent    serializers and deserializers requires null for this method.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter dimension="[]" name="namespaceURIs" package="java.lang" type="String">
+                                <comment>Array of namespace URIs for the supported                        encoding styles and XML schema namespaces.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="isRegistered">
+                        <returns>boolean; &lt;code&gt;true&lt;/code&gt; if type mapping between the            specified XML type and Java type is registered;            otherwise &lt;code&gt;false&lt;/code&gt;</returns>
+                        <comment>
+                            <lead>Checks whether or not type mapping between specified XML    type and Java type is registered.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="javaType" package="java.lang" type="Class">
+                                <comment>Class of the Java type</comment>
+                            </parameter>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName"/>
+                        </parameters>
+                        <returns type="boolean"/>
+                    </method>
+                    <method modifiers="public" name="register">
+                        <comment>
+                            <lead>Registers SerializerFactory and DeserializerFactory for a    specific type mapping between an XML type and Java type.</lead>
+                            <detail>   This method replaces any existing registered SerializerFactory   DeserializerFactory instances.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="javaType" package="java.lang" type="Class">
+                                <comment>Class of the Java type</comment>
+                            </parameter>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName"/>
+                            <parameter name="sf" package="javax.xml.rpc.encoding" type="SerializerFactory">
+                                <comment>SerializerFactory</comment>
+                            </parameter>
+                            <parameter name="dsf" package="javax.xml.rpc.encoding" type="DeserializerFactory">
+                                <comment>DeserializerFactory</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getSerializer">
+                        <comment>
+                            <lead>Gets the SerializerFactory registered for the specified   pair of Java type and XML data type.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="javaType" package="java.lang" type="Class">
+                                <comment>Class of the Java type</comment>
+                            </parameter>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName"/>
+                        </parameters>
+                        <returns package="javax.xml.rpc.encoding" type="SerializerFactory">
+                            <comment>Registered SerializerFactory or &lt;code&gt;null&lt;/code&gt;           if there is no registered factory</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getDeserializer">
+                        <comment>
+                            <lead>Gets the DeserializerFactory registered for the specified   pair of Java type and XML data type.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="javaType" package="java.lang" type="Class">
+                                <comment>Class of the Java type</comment>
+                            </parameter>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName"/>
+                        </parameters>
+                        <returns package="javax.xml.rpc.encoding" type="DeserializerFactory">
+                            <comment>Registered DeserializerFactory or &lt;code&gt;null&lt;/code&gt;           if there is no registered factory</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="removeSerializer">
+                        <comment>
+                            <lead>Removes the SerializerFactory registered for the specified   pair of Java type and XML data type.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="javaType" package="java.lang" type="Class"/>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName"/>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="removeDeserializer">
+                        <comment>
+                            <lead>Removes the DeserializerFactory registered for the specified   pair of Java type and XML data type.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="javaType" package="java.lang" type="Class"/>
+                            <parameter name="xmlType" package="javax.xml.rpc.namespace" type="QName"/>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="SerializerFactory">
+                <extends name="Serializable" package="java.io"/>
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The javax.xml.rpc.encoding.SerializerFactory is a factory of    the serializers.</lead>
+                    <detail> A SerializerFactory is registered with a    TypeMapping object as part of the TypeMappingRegistry.</detail>
+                    <see class="Serializer" package="javax.xml.rpc.encoding"/>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getSerializerAs">
+                        <comment>
+                            <lead>Returns a Serializer for the specified XML processing   mechanism type.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="mechanismType" package="java.lang" type="String">
+                                <comment>XML processing mechanism type [TBD:                          definition of valid constants]</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc.encoding" type="Serializer"/>
+                    </method>
+                    <method modifiers="public" name="getSupportedMechanismTypes">
+                        <comment>
+                            <lead>Returns a list of all XML processing mechanism types    supported by this SerializerFactory.</lead>
+                        </comment>
+                        <returns package="java.util" type="Iterator">
+                            <comment>List of unique identifiers for the supported            XML processing mechanism types</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="Serializer">
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The javax.xml.rpc.encoding.Serializer interface defines the    base interface for serializers.</lead>
+                    <detail> A Serializer converts   a Java object to an XML representation using a specific XML   processing mechanism and based on the specified type    mapping and encoding style.</detail>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getMechanismType">
+                        <comment>
+                            <lead>Gets the type of the XML processing mechanism and    representation used by this Serializer.</lead>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>XML processing mechanism type</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="SerializationContext">
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The javax.xml.rpc.encoding.SerializationContext interface is   implemented by the JAX-RPC runtime system in an XML processing    mechanism specific manner.</lead>
+                    <detail> A serializer uses the    SerializationContext interface during the serialization to get   the context information related to the XML processing mechanism    and to manage information specific to serialization.</detail>
+                    <see class="Serializer" package="javax.xml.rpc.encoding"/>
+                </comment>
+            </interface>
+            <interface modifiers="public " name="DeserializerFactory">
+                <extends name="Serializable" package="java.io"/>
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The javax.xml.rpc.encoding.DeserializerFactory is a factory of    deserializers.</lead>
+                    <detail> A DeserializerFactory is registered with a    TypeMapping instance as part of the TypeMappingRegistry.</detail>
+                    <see class="Serializer" package="javax.xml.rpc.encoding"/>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getDeserializerAs">
+                        <comment>
+                            <lead>Returns a Deserializer for the specified XML processing   mechanism type.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="mechanismType" package="java.lang" type="String">
+                                <comment>XML processing mechanism type [TBD:                          definition of valid constants]</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc.encoding" type="Deserializer"/>
+                    </method>
+                    <method modifiers="public" name="getSupportedMechanismTypes">
+                        <comment>
+                            <lead>Returns a list of all XML processing mechanism types    supported by this DeserializerFactory.</lead>
+                        </comment>
+                        <returns package="java.util" type="Iterator">
+                            <comment>List of unique identifiers for the supported            XML processing mechanism types</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="Deserializer">
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The javax.xml.rpc.encoding.Deserializer interface defines a   base interface for deserializers.</lead>
+                    <detail> A Deserializer converts   an XML representation to a Java object using a specific XML   processing mechanism and based on the specified type    mapping and encoding style.</detail>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getMechanismType">
+                        <comment>
+                            <lead>Gets the type of the XML processing mechanism and    representation used by this Deserializer.</lead>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>XML processing mechanism type</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="DeserializationContext">
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The javax.xml.rpc.encoding.DeserializationContext interface    is implemented by the JAX-RPC runtime system in an XML processing   mechanism specific manner.</lead>
+                    <detail> A deserializer uses this interface    to access and maintain context information during the    deserialization..</detail>
+                </comment>
+            </interface>
+        </interfaces>
+    </package>
+    <package name="javax.xml.rpc.handler">
+        <classes>
+            <class modifiers="public" name="HandlerInfo">
+                <extends name="Object" package="java.lang"/>
+                <version>0.6</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.handler.HandlerInfo&lt;/code&gt; represents   information about a handler in the HandlerChain.</lead>
+                    <detail> A HandlerInfo    instance is passed in the &lt;code&gt;Handler.init&lt;/code&gt; method to    initialize a &lt;code&gt;Handler&lt;/code&gt; instance.</detail>
+                    <see class="HandlerChain" package="javax.xml.rpc.handler"/>
+                </comment>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Default constructor</lead>
+                        </comment>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructor for HandlerInfo</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="handlerClass" package="java.lang" type="Class">
+                                <comment>Java Class for the Handler</comment>
+                            </parameter>
+                            <parameter name="config" package="java.util" type="Map">
+                                <comment>Handler Configuration as a java.util.Map</comment>
+                            </parameter>
+                            <parameter dimension="[]" name="headers" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>QNames for the header blocks processed                       by this Handler. QName is the qualified                       name of the outermost element of a header                       block</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                </constructors>
+                <methods>
+                    <method modifiers="public" name="setHandlerClass">
+                        <comment>
+                            <lead>Sets the Handler class</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="handlerClass" package="java.lang" type="Class">
+                                <comment>Class for the Handler</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getHandlerClass">
+                        <comment>
+                            <lead>Gets the Handler class</lead>
+                        </comment>
+                        <returns package="java.lang" type="Class">
+                            <comment>Returns null if no Handler class has been           set; otherwise the set handler class</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setHandlerConfig">
+                        <comment>
+                            <lead>Sets the Handler configuration as &lt;code&gt;java.util.Map&lt;/code&gt;</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="config" package="java.util" type="Map">
+                                <comment>Configuration map</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getHandlerConfig">
+                        <comment>
+                            <lead>Gets the Handler configuration</lead>
+                        </comment>
+                        <returns package="java.util" type="Map">
+                            <comment>Returns empty Map if no configuration map            has been set; otherwise returns the set            configuration map</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setHeaders">
+                        <comment>
+                            <lead>Sets the header blocks processed by this Handler.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter dimension="[]" name="headers" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>QNames of the header blocks. QName                  is the qualified name of the outermost                  element of the SOAP header block</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getHeaders">
+                        <comment>
+                            <lead>Gets the header blocks processed by this Handler.</lead>
+                        </comment>
+                        <returns dimension="[]" package="javax.xml.rpc.namespace" type="QName">
+                            <comment>Array of QNames for the header blocks</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </class>
+        </classes>
+        <interfaces>
+            <interface modifiers="public " name="MessageContext">
+                <version>0.6</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The interface &lt;code&gt;MessageContext&lt;/code&gt; abstracts the message   context that is processed by a handler in the &lt;code&gt;handle&lt;/code&gt;   method.</lead>
+                    <detail>     &lt;p&gt;The &lt;code&gt;MessageContext&lt;c/ode&gt; interface provides methods to    manage a property set. &lt;code&gt;MessageContext&lt;/code&gt; properties    enable handlers in an handler chain to share processing related   state.</detail>
+                    <see member="handle"/>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="setProperty">
+                        <comment>
+                            <lead>Sets the name and value of a property associated with the   &lt;code&gt;MessageContext&lt;/code&gt;.</lead>
+                            <detail> If the &lt;code&gt;MessageContext&lt;/code&gt;   contains a value of the same property, the old value is replaced.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the property associated with the                &lt;code&gt;MessageContext&lt;/code&gt;</comment>
+                            </parameter>
+                            <parameter name="value" package="java.lang" type="Object">
+                                <comment>Value of the property</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getProperty">
+                        <comment>
+                            <lead>Gets the value of a specific property from the    &lt;code&gt;MessageContext&lt;/code&gt;</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the property whose value is to be                retrieved</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="java.lang" type="Object">
+                            <comment>Value of the property</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="removeProperty">
+                        <comment>
+                            <lead>Removes a property (name-value pair) from the &lt;code&gt;MessageContext&lt;/code&gt;</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the property to be removed</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="containsProperty">
+                        <comment>
+                            <lead>Returns true if the &lt;code&gt;MessageContext&lt;/code&gt; contains a property   with the specified name.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="name" package="java.lang" type="String">
+                                <comment>Name of the property whose presense is to be               tested</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="boolean">
+                            <comment>Returns true if the MessageContext contains the           property; otherwise false</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getPropertyNames">
+                        <comment>
+                            <lead>Returns an Iterator view of the names of the properties   in this &lt;code&gt;MessageContext&lt;/code&gt;</lead>
+                        </comment>
+                        <returns package="java.util" type="Iterator">
+                            <comment>Iterator for the property names</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="HandlerRegistry">
+                <extends name="Serializable" package="java.io"/>
+                <version>0.6</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.handler.HandlerRegistry&lt;/code&gt;    provides support for the programmatic configuration of    handlers in a &lt;code&gt;HandlerRegistry&lt;/code&gt;.</lead>
+                    <see class="Service" package="javax.xml.rpc"/>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getHandlerChain">
+                        <comment>
+                            <lead>Gets the handler chain for the specified service endpoint.</lead>
+                            <detail>   The returned &lt;code&gt;List&lt;/code&gt; is used to configure this   specific handler chain in this &lt;code&gt;HandlerRegistry&lt;/code&gt;.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="portName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name of the target service endpoint</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="java.util" type="List">
+                            <comment>java.util.List Handler chain</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setHandlerChain">
+                        <comment>
+                            <lead>Sets the handler chain for the specified service endpoint.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="portName" package="javax.xml.rpc.namespace" type="QName">
+                                <comment>Qualified name of the target service endpoint</comment>
+                            </parameter>
+                            <parameter name="chain" package="java.util" type="List">
+                                <comment>A List representing configuration for the                   handler chain</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="Handler">
+                <version>0.6</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.handler.Handler&lt;/code&gt; interface is    required to be implemented by a SOAP message handler.</lead>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="handleRequest">
+                        <returns>boolean Processing mode                  &lt;UL&gt;                  &lt;LI&gt;Return &lt;code&gt;true&lt;/code&gt; to indicate continued                       processing                      of the request handler chain. The                       &lt;code&gt;HandlerChain&lt;/code&gt;                      takes the responsibility of invoking the next                       entity. The next entity may be the next handler                       in the &lt;code&gt;HandlerChain&lt;/code&gt; or if this                       handler is the last handler in the chain, the                       next entity is the service endpoint object.                  &lt;LI&gt;Return &lt;code&gt;false&lt;/code&gt; to indicate blocking                       of the request                       handler chain. In this case, further processing                       of the request handler chain is blocked and the                      service endpoint object is not invoked. The JAX-RPC                      runtime system takes the responsibility of                       invoking the response handler chain next.                   &lt;/UL&gt;</returns>
+                        <comment>
+                            <lead>The &lt;code&gt;handleRequest&lt;/code&gt; method processes the request    message.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="context" package="javax.xml.rpc.handler" type="MessageContext">
+                                <comment>&lt;code&gt;MessageContext&lt;/code&gt; parameter provides                   access to the request message.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="boolean"/>
+                    </method>
+                    <method modifiers="public" name="handleResponse">
+                        <comment>
+                            <lead>The &lt;code&gt;handleResponse&lt;/code&gt; method processes the response    message.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="context" package="javax.xml.rpc.handler" type="MessageContext">
+                                <comment>MessageContext parameter provides access to                  the response message</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="boolean">
+                            <comment>boolean Processing mode                  &lt;UL&gt;                  &lt;LI&gt;Return &lt;code&gt;true&lt;/code&gt; to indicate continued                       processing of                      the response handler chain. The HandlerChain invokes                      the &lt;code&gt;handleRespons&lt;/code&gt; method on the                       next &lt;code&gt;Handler&lt;/code&gt; in                       the handler chain.                  &lt;LI&gt;Return &lt;code&gt;false&lt;/code&gt; to indicate blocking                       of the response                      handler chain. In this case, no other response                       handlers in the handler chain are invoked.                  &lt;/UL&gt;</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="handleFault">
+                        <comment>
+                            <lead>The &lt;code&gt;handleFault&lt;/code&gt; method processes the SOAP faults    based on the SOAP message processing model.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="context" package="javax.xml.rpc.handler" type="MessageContext">
+                                <comment>MessageContext parameter provides access to                  the SOAP message</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="init">
+                        <comment>
+                            <lead>The &lt;code&gt;init&lt;/code&gt; method to enable the Handler instance to    initialize itself.</lead>
+                            <detail> The &lt;code&gt;init&lt;/code&gt; method passes the handler   configuration properties as a &lt;code&gt;Map&lt;/code&gt; instance. These    configuration properties are used to configure the    &lt;code&gt;Handler&lt;/code&gt; (for example: setup access to an external    resource or service) during initialization.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="config" package="javax.xml.rpc.handler" type="HandlerInfo"/>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="destroy">
+                        <comment>
+                            <lead>The &lt;code&gt;destroy&lt;/code&gt; method indicates the end of lifecycle    for a Handler instance.</lead>
+                            <detail> An &lt;code&gt;Handler&lt;/code&gt; implementation   class should release any resources that it had acquired over    its lifecycle. The JAX-RPC runtime system invokes the    &lt;code&gt;destroy&lt;/code&gt; method, when the &lt;code&gt;Handler&lt;/code&gt;    instance is no longer needed.</detail>
+                        </comment>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getHeaders">
+                        <returns>Array of QNames of header blocks processed by this            handler instance. &lt;code&gt;QName&lt;/code&gt; is the qualified             name of the outermost element of the Header block.</returns>
+                        <comment>
+                            <lead>Gets the header blocks processed by this Handler instance.</lead>
+                        </comment>
+                        <returns dimension="[]" package="javax.xml.rpc.namespace" type="QName"/>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="HandlerChain">
+                <extends name="List" package="java.util"/>
+                <version>0.6</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.handler.HandlerChain&lt;/code&gt; represents   a list of handlers.</lead>
+                    <detail> All elements in the HandlerChain are of    the type &lt;code&gt;javax.xml.rpc.handler.Handler&lt;/code&gt;.    &lt;p&gt;An implementation class for the &lt;code&gt;HandlerChain&lt;/code&gt;   interface abstracts the policy and mechanism for the invocation   of the registered handlers.</detail>
+                    <see class="HandlerChain" package="javax.xml.rpc.handler"/>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="handleRequest">
+                        <comment>
+                            <lead>The &lt;code&gt;handleRequest&lt;/code&gt; method initiates the request    processing for this handler chain.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="context" package="javax.xml.rpc.handler" type="MessageContext">
+                                <comment>MessageContext parameter provides access to                  the request SOAP message.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="handleResponse">
+                        <comment>
+                            <lead>The &lt;code&gt;handleResponse&lt;/code&gt; method initiates the response   processing for this handler chain.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="context" package="javax.xml.rpc.handler" type="MessageContext">
+                                <comment>MessageContext parameter provides access to                  the response SOAP message.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="init">
+                        <comment>
+                            <lead>Initializes the configuration for a HandlerChain.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="config" package="java.util" type="Map">
+                                <comment>Configuration for the initialization of                      this handler chain</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="destroy">
+                        <comment>
+                            <lead>Indicates the end of lifecycle for a HandlerChain.</lead>
+                        </comment>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="setRoles">
+                        <comment>
+                            <lead>Sets SOAP Actor roles for this &lt;code&gt;HandlerChain&lt;/code&gt;.</lead>
+                            <detail> This    specifies the set of roles in which this HandlerChain is to act   for the SOAP message processing at this SOAP node. These roles   assumed by a HandlerChain must be invariant during the    processing of an individual SOAP message    &lt;p&gt;A &lt;code&gt;HandlerChain&lt;/code&gt; always acts in the role of the   special SOAP actor &lt;code&gt;next&lt;/code&gt;. Refer to the SOAP    specification for the URI name for this special SOAP actor.    There is no need to set this special role using this method.</detail>
+                            <see class="NamespaceConstants" package="javax.xml.rpc.namespace"/>
+                        </comment>
+                        <parameters>
+                            <parameter dimension="[]" name="soapActorNames" package="java.lang" type="String">
+                                <comment>URIs for SOAP actor name</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                    <method modifiers="public" name="getRoles">
+                        <returns>String[] SOAP Actor Names as URIs</returns>
+                        <comment>
+                            <lead>Gets SOAP actor roles registered for this HandlerChain at    this SOAP node.</lead>
+                            <detail> The returned array includes the special    SOAP actor &lt;code&gt;next&lt;/code&gt;.</detail>
+                            <see class="NamespaceConstants" package="javax.xml.rpc.namespace"/>
+                        </comment>
+                        <returns dimension="[]" package="java.lang" type="String"/>
+                    </method>
+                </methods>
+            </interface>
+        </interfaces>
+    </package>
+    <package name="javax.xml.rpc.handler.soap">
+        <interfaces>
+            <interface modifiers="public " name="SOAPMessageContext">
+                <extends name="MessageContext" package="javax.xml.rpc.handler"/>
+                <version>0.6</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The interface &lt;code&gt;javax.xml.rpc.soap.SOAPMessageContext&lt;/code&gt;    provides access to the SOAP message for either RPC request or    response.</lead>
+                    <detail> The &lt;code&gt;javax.xml.soap.SOAPMessage&lt;/code&gt; specifies   the standard Java API for the representation of a SOAP 1.1 message   with attachments.</detail>
+                    <see/>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getMessage">
+                        <comment>
+                            <lead>Gets the SOAPMessage from this message context</lead>
+                        </comment>
+                        <returns type="SOAPMessage">
+                            <comment>Returns the SOAPMessage; returns null if no            SOAPMessage is present in this message context</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="setMessage">
+                        <comment>
+                            <lead>Sets the SOAPMessage in this message context</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="message" type="SOAPMessage">
+                                <comment>SOAP message</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                    </method>
+                </methods>
+            </interface>
+        </interfaces>
+    </package>
+    <package name="javax.xml.rpc.holders">
+        <classes>
+            <class modifiers="public final" name="ObjectHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="Object">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="value" package="java.lang" type="Object"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="ShortWrapperHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="Short">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myshort" package="java.lang" type="Short"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="LongWrapperHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="Long">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="mylong" package="java.lang" type="Long"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="IntegerWrapperHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="Integer">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myint" package="java.lang" type="Integer"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="FloatWrapperHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="Float">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myfloat" package="java.lang" type="Float"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="DoubleWrapperHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="Double">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="mydouble" package="java.lang" type="Double"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="ByteWrapperHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="Byte">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="mybyte" package="java.lang" type="Byte"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="StringHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="String">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myString" package="java.lang" type="String"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="ShortHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" type="short">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myshort" type="short"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="QNameHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="javax.xml.rpc.namespace" type="QName">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myQName" package="javax.xml.rpc.namespace" type="QName"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="LongHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" type="long">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="mylong" type="long"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="IntHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" type="int">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myint" type="int"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="FloatHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" type="float">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myfloat" type="float"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="DoubleHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" type="double">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="mydouble" type="double"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="CalendarHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.util" type="Calendar">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myCalendar" package="java.util" type="Calendar"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="ByteHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" type="byte">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="mybyte" type="byte"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="ByteArrayHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field dimension="[]" modifiers="public" name="value" type="byte">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter dimension="[]" name="mybyteArray" type="byte"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="BooleanHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" type="boolean">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myboolean" type="boolean"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="BigIntegerHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.math" type="BigInteger">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myBigInteger" package="java.math" type="BigInteger"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="BigDecimalHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.math" type="BigDecimal">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myBigDecimal" package="java.math" type="BigDecimal"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="BooleanWrapperHolder">
+                <extends name="Object" package="java.lang"/>
+                <comment/>
+                <fields>
+                    <field modifiers="public" name="value" package="java.lang" type="Boolean">
+                        <comment/>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment/>
+                        <parameters>
+                            <parameter name="myboolean" package="java.lang" type="Boolean"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+            </class>
+        </classes>
+        <interfaces>
+            <interface modifiers="public " name="Holder">
+                <version>0.2</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;java.xml.rpc.holders.Holder&lt;/code&gt; interface represents   the  base interface for both standard and generated    &lt;code&gt;Holder&lt;/code&gt; classes.</lead>
+                    <detail> A generated &lt;code&gt;Holder&lt;/code&gt;   class is required to implement this &lt;code&gt;Holder&lt;/code&gt;    interface.</detail>
+                </comment>
+            </interface>
+        </interfaces>
+    </package>
+    <package name="javax.xml.rpc.namespace">
+        <classes>
+            <class modifiers="public" name="NamespaceConstants">
+                <extends name="Object" package="java.lang"/>
+                <version>0.8</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>Constants used in JAX-RPC for namespace prefixes and URIs</lead>
+                </comment>
+                <fields>
+                    <field modifiers="public static final" name="NSPREFIX_SOAP_ENVELOPE" package="java.lang" type="String">
+                        <comment>
+                            <lead>Namespace prefix for SOAP Envelope</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="NSPREFIX_SOAP_ENCODING" package="java.lang" type="String">
+                        <comment>
+                            <lead>Namespace prefix for SOAP Encoding</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="NSPREFIX_SCHEMA_XSD" package="java.lang" type="String">
+                        <comment>
+                            <lead>Namespace prefix for XML schema XSD</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="NSPREFIX_SCHEMA_XSI" package="java.lang" type="String">
+                        <comment>
+                            <lead>Namespace prefix for XML Schema XSI</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="NSURI_SOAP_ENVELOPE" package="java.lang" type="String">
+                        <comment>
+                            <lead>Nameapace URI for SOAP 1.1 Envelope</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="NSURI_SOAP_ENCODING" package="java.lang" type="String">
+                        <comment>
+                            <lead>Nameapace URI for SOAP 1.1 Encoding</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="NSURI_SOAP_NEXT_ACTOR" package="java.lang" type="String">
+                        <comment>
+                            <lead>Nameapace URI for SOAP 1.1 next actor role</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="NSURI_SCHEMA_XSD" package="java.lang" type="String">
+                        <comment>
+                            <lead>Namespace URI for XML Schema XSD</lead>
+                        </comment>
+                    </field>
+                    <field modifiers="public static final" name="NSURI_SCHEMA_XSI" package="java.lang" type="String">
+                        <comment>
+                            <lead>Namespace URI for XML Schema XSI</lead>
+                        </comment>
+                    </field>
+                </fields>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment/>
+                    </constructor>
+                </constructors>
+            </class>
+            <class modifiers="public final" name="QName">
+                <extends name="Object" package="java.lang"/>
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>&lt;code&gt;QName&lt;/code&gt; class represents a qualified name based on &quot;Namespaces   in XML&quot; specification.</lead>
+                </comment>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructor for the QName.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="localPart" package="java.lang" type="String">
+                                <comment>Local part of the QName</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructor for the QName.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="namespaceURI" package="java.lang" type="String">
+                                <comment>Namespace URI for the QName</comment>
+                            </parameter>
+                            <parameter name="localPart" package="java.lang" type="String">
+                                <comment>Local part of the QName</comment>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                </constructors>
+                <methods>
+                    <method modifiers="public" name="getNamespaceURI">
+                        <comment>
+                            <lead>Gets the Namespace URI for this QName.</lead>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>Namespace URI</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getLocalPart">
+                        <comment>
+                            <lead>Gets the Local part for this QName.</lead>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>Local part</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="toString">
+                        <comment>
+                            <lead>Returns a string representation of this QName.</lead>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>a string representation of the QName</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public static" name="valueOf">
+                        <comment>
+                            <lead>Returns a QName holding the value of the specified String.</lead>
+                            <detail>    The string must be in the form returned by the QName.toString()   method, i.e. &quot;{namespaceURI}localPart&quot;, with the &quot;{namespaceURI}&quot;   part being optional.    This method doesn&apos;t do a full validation of the resulting QName.   In particular, it doesn&apos;t check that the resulting namespace URI   is a legal URI (per RFC 2396 and RFC 2732), nor that the resulting   local part is a legal NCName per the XML Namespaces specification.</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="s" package="java.lang" type="String">
+                                <comment>- the string to be parsed</comment>
+                            </parameter>
+                        </parameters>
+                        <returns package="javax.xml.rpc.namespace" type="QName">
+                            <comment>QName corresponding to the given String</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="hashCode">
+                        <comment>
+                            <lead>Returns a hash code value for this QName object.</lead>
+                        </comment>
+                        <returns type="int">
+                            <comment>a hash code value for this Qname object</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="equals">
+                        <comment>
+                            <lead>Indicates whether some other object is &quot;equal to&quot; this    QName object.</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="obj" package="java.lang" type="Object">
+                                <comment>- the reference object with which to compare.</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="boolean">
+                            <comment>true if this object is the same as the obj argument;             false otherwise.</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </class>
+        </classes>
+    </package>
+    <package name="javax.xml.rpc.server">
+        <interfaces>
+            <interface modifiers="public " name="ServiceLifecycle">
+                <version>0.6</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;javax.xml.rpc.server.ServiceLifecycle&lt;/code&gt; defines   a lifecycle interface for a JAX-RPC service endpoint.</lead>
+                    <detail> If the    service endpoint class implements the &lt;code&gt;ServiceLifeycle&lt;/code&gt;   interface, the servlet container based JAX-RPC runtime system    is required to manage the lifecycle of the corresponding service   endpoint objects.</detail>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="init">
+                        <comment>
+                            <lead>Used for initialization of a service endpoint.</lead>
+                            <detail> After a service   endpoint object (an instance of a service endpoint class) is    instantiated, the JAX-RPC runtime system invokes the    &lt;code&gt;init&lt;/code&gt; method. The service endpoint class uses the   &lt;code&gt;init&lt;/code&gt; method to initialize its configuration    and setup access to any external resources. The context parameter   in the &lt;code&gt;init&lt;/code&gt; method enables the endpoint object to   access the endpoint context provided by the underlying JAX-RPC    runtime system.      &lt;p&gt;The init method implementation should typecast the context   parameter to an appropriate Java type. For service endpoints    deployed on a servlet container based JAX-RPC runtime system,    the &lt;code&gt;context&lt;/code&gt; parameter is of the Java type    &lt;code&gt;javax.xml.rpc.server.ServletEndpointContext&lt;/code&gt;. The   &lt;code&gt;ServletEndpointContext&lt;/code&gt; provides an endpoint context   maintained by the underlying servlet container based JAX-RPC    runtime system</detail>
+                        </comment>
+                        <parameters>
+                            <parameter name="context" package="java.lang" type="Object">
+                                <comment>Endpoint context for a JAX-RPC service endpoint</comment>
+                            </parameter>
+                        </parameters>
+                        <returns type="void"/>
+                        <throws>
+                            <throw name="javax.xml.rpc.ServiceException">If any error in initialization of the                  service endpoint; or if any illegal context has                  been provided in the init method</throw>
+                        </throws>
+                    </method>
+                    <method modifiers="public" name="destroy">
+                        <comment>
+                            <lead>JAX-RPC runtime system ends the lifecycle of a service endpoint    object by invoking the destroy method.</lead>
+                            <detail> The service endpoint    releases its resourcesin the implementation of the destroy    method.</detail>
+                        </comment>
+                        <returns type="void"/>
+                    </method>
+                </methods>
+            </interface>
+            <interface modifiers="public " name="ServletEndpointContext">
+                <version>0.8</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The &lt;code&gt;ServletEndpointContext&lt;/code&gt; provides an endpoint    context maintained by the underlying servlet container based   JAX-RPC runtime system.</lead>
+                    <detail> For service endpoints deployed on a    servlet container based JAX-RPC runtime system, the context    parameter in the &lt;code&gt;ServiceLifecycle.init&lt;/code&gt; method is   required to be of the Java type    &lt;code&gt;javax.xml.rpc.server.ServletEndpointContext&lt;/code&gt;.    &lt;p&gt;A servlet container based JAX-RPC runtime system implements   the &lt;code&gt;ServletEndpointContext&lt;/code&gt; interface. The JAX-RPC   runtime system is required to provide appropriate session,    message context, servlet context and user principal information    per method invocation on the endpoint class.</detail>
+                </comment>
+                <methods>
+                    <method modifiers="public" name="getMessageContext">
+                        <returns>MessageContext; If there is no associated            &lt;code&gt;MessageContext&lt;/code&gt;, this method returns           &lt;code&gt;null&lt;/code&gt;.</returns>
+                        <comment>
+                            <lead>The method &lt;code&gt;getMessageContext&lt;/code&gt; returns the    &lt;code&gt;MessageContext&lt;/code&gt; targeted for this endpoint object.</lead>
+                            <detail>   This enables the endpoint object to acccess the    &lt;code&gt;MessageContext&lt;/code&gt; propagated by request   &lt;code&gt;HandlerChain&lt;/code&gt; (and its contained &lt;code&gt;Handler&lt;/code&gt;    instances) to the target endpoint object and to share any    SOAP message processing related context. The endpoint object   can access and manipulate the &lt;code&gt;MessageContext&lt;/code&gt;    and share the SOAP message processing related context with   the response &lt;code&gt;HandlerChain&lt;/code&gt;.</detail>
+                            <see class="MessageContext" package="javax.xml.rpc.handler"/>
+                            <see class="HandlerChain" package="javax.xml.rpc.handler"/>
+                            <see class="Handler" package="javax.xml.rpc.handler"/>
+                        </comment>
+                        <returns package="javax.xml.rpc.handler" type="MessageContext"/>
+                    </method>
+                    <method modifiers="public" name="getUserPrincipal">
+                        <returns>A &lt;code&gt;java.security.Principal&lt;/code&gt; for the             authenticated principal associated with the current            invocation on the servlet endpoint object;            Returns &lt;code&gt;null&lt;/code&gt; if there no authenticated            user associated with a method invocation.</returns>
+                        <comment>
+                            <lead>Returns a &lt;code&gt;java.security.Principal&lt;/code&gt; instance that    contains the name of the authenticated user for the current   method invocation on the endpoint object.</lead>
+                            <detail> This method returns   &lt;code&gt;null&lt;/code&gt; if there is no associated principal yet.    The underlying JAX-RPC runtime system takes the responsibility   of providing the appropriate authenticated principal for a    remote method invocation on the service endpoint object.</detail>
+                        </comment>
+                        <returns package="java.security" type="Principal"/>
+                    </method>
+                    <method modifiers="public" name="getHttpSession">
+                        <returns>The HTTP session associated with the current            invocation or &lt;code&gt;null&lt;/code&gt; if there is            no active session.</returns>
+                        <returns>&lt;code&gt;HttpSession&lt;/code&gt; object or &lt;code&gt;null&lt;/code&gt;</returns>
+                        <comment>
+                            <lead>The &lt;code&gt;getHttpSession&lt;/code&gt; method returns the current    HTTP session (as a &lt;code&gt;javax.servlet.http.HTTPSession&lt;/code&gt;).</lead>
+                            <detail>    When invoked by the service endpoint within a remote method    implementation, the &lt;code&gt;getHttpSession&lt;/code&gt; returns the    HTTP session associated currently with this method invocation.    This method returns &lt;code&gt;null&lt;/code&gt; if there is no HTTP    session currently active and associated with this service    endpoint. An endpoint class should not rely on an active    HTTP session being always there; the underlying JAX-RPC   runtime system is responsible for managing whether or not    there is an active HTTP session.     &lt;p&gt;The getHttpSession method throws &lt;code&gt;JAXRPCException&lt;/code&gt;    if invoked by an non HTTP bound endpoint.</detail>
+                            <see/>
+                        </comment>
+                        <returns package="javax.servlet.http" type="javax.servlet.http.HttpSession"/>
+                    </method>
+                    <method modifiers="public" name="getServletContext">
+                        <Returns>&lt;code&gt;ServletContext&lt;/code&gt;</Returns>
+                        <comment>
+                            <lead>The method &lt;code&gt;getServletContext&lt;/code&gt; returns the    &lt;code&gt;ServletContex&lt;/code&gt;t associated with the web    application that contain this endpoint.</lead>
+                            <detail> According to    the Servlet specification, There is one context per web   application (installed as a WAR) per JVM . A servlet    based service endpoint is deployed as part of a web    application.</detail>
+                            <see/>
+                        </comment>
+                        <returns package="javax.servlet" type="javax.servlet.ServletContext"/>
+                    </method>
+                </methods>
+            </interface>
+        </interfaces>
+    </package>
+    <package name="javax.xml.rpc.soap">
+        <classes>
+            <class modifiers="public" name="SOAPFaultException">
+                <extends name="RuntimeException" package="java.lang"/>
+                <superclasses>
+                    <superclass name="Exception" package="java.lang"/>
+                    <superclass name="Throwable" package="java.lang"/>
+                    <superclass name="Object" package="java.lang"/>
+                </superclasses>
+                <version>0.4</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The SOAPFaultException exception represents a SOAP fault.</lead>
+                    <detail> This   exception is thrown from the Java method mapped from the    corresponding wsdl:operation.    &lt;p&gt;The message part in the SOAP fault maps to the contents of   &lt;code&gt;faultdetail&lt;/code&gt; element accessible through the    &lt;code&gt;getDetail&lt;/code&gt; method on the &lt;code&gt;SOAPFaultException&lt;/code&gt;.   The &lt;code&gt;faultstring&lt;/code&gt; provides a human-readable description   of the SOAP fault. The &lt;code&gt;faultcode&lt;/code&gt; element provides   an algorithmic mapping of the SOAP fault.     &lt;p&gt;Refer to SOAP 1.1 and WSDL 1.1 specifications for more   details of the SOAP faults.</detail>
+                    <see/>
+                </comment>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructor for the SOAPFaultException</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="faultcode" package="javax.xml.rpc.namespace" type="QName"/>
+                            <parameter name="faultstring" package="java.lang" type="String">
+                                <comment/>
+                            </parameter>
+                            <parameter name="faultactor" package="java.lang" type="String">
+                                <comment/>
+                            </parameter>
+                            <parameter name="faultdetail" package="javax.xml.soap" type="javax.xml.soap.Detail"/>
+                        </parameters>
+                    </constructor>
+                </constructors>
+                <methods>
+                    <method modifiers="public" name="getFaultCode">
+                        <comment>
+                            <lead>Gets the &lt;code&gt;faultcode&lt;/code&gt; element.</lead>
+                            <detail> The &lt;code&gt;faultcode&lt;/code&gt;   element provides an algorithmic mechanism for identifying the   fault. SOAP defines a small set of SOAP fault codes covering    basic SOAP faults.</detail>
+                        </comment>
+                        <returns package="javax.xml.rpc.namespace" type="QName">
+                            <comment>QName of the faultcode element</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getFaultString">
+                        <comment>
+                            <lead>Gets the &lt;code&gt;faultstring&lt;/code&gt; element.</lead>
+                            <detail> The &lt;code&gt;faultstring&lt;/code&gt;   provides a human-readable description of the SOAP fault and    is not intended for algorithmic processing.</detail>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>faultstring element of the SOAP fault</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getFaultActor">
+                        <comment>
+                            <lead>Gets the &lt;code&gt;faultactor&lt;/code&gt; element.</lead>
+                            <detail> The &lt;code&gt;faultactor&lt;/code&gt;   element provides information about which SOAP node on the    SOAP message path caused the fault to happen. It indicates    the source of the fault.</detail>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>&lt;code&gt;faultactor&lt;/code&gt; element of the SOAP fault</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getDetail">
+                        <comment>
+                            <lead>Gets the detail element.</lead>
+                            <detail> The detail element is intended for   carrying application specific error information related to   the SOAP Body.</detail>
+                            <see/>
+                        </comment>
+                        <returns type="Detail"/>
+                    </method>
+                </methods>
+            </class>
+            <class modifiers="public" name="SOAPHeaderFaultException">
+                <extends name="RuntimeException" package="java.lang"/>
+                <superclasses>
+                    <superclass name="Exception" package="java.lang"/>
+                    <superclass name="Throwable" package="java.lang"/>
+                    <superclass name="Object" package="java.lang"/>
+                </superclasses>
+                <version>0.1</version>
+                <author>Rahul Sharma</author>
+                <comment>
+                    <lead>The class &lt;code&gt;javax.xml.rpc.soap.SOAPHeaderFaultException&lt;/code&gt;    represents the mapping of a SOAP Header fault.</lead>
+                    <detail> This   exception is a runtime exception and carries the faults   related to the SOAP header processing.</detail>
+                </comment>
+                <constructors>
+                    <constructor modifiers="public">
+                        <comment>
+                            <lead>Constructor for SOAPHeaderFaultException</lead>
+                        </comment>
+                        <parameters>
+                            <parameter name="faultcode" package="javax.xml.rpc.namespace" type="QName">
+                                <comment/>
+                            </parameter>
+                            <parameter name="faultstring" package="java.lang" type="String">
+                                <comment/>
+                            </parameter>
+                            <parameter name="faultactor" package="java.lang" type="String">
+                                <comment/>
+                            </parameter>
+                        </parameters>
+                    </constructor>
+                </constructors>
+                <methods>
+                    <method modifiers="public" name="getFaultCode">
+                        <comment>
+                            <lead>Gets the &lt;code&gt;faultcode&lt;/code&gt; element.</lead>
+                            <detail> The &lt;code&gt;faultcode&lt;/code&gt;   element provides an algorithmic mechanism for identifying the   fault.</detail>
+                        </comment>
+                        <returns package="javax.xml.rpc.namespace" type="QName">
+                            <comment>QName of the faultcode element</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getFaultString">
+                        <comment>
+                            <lead>Gets the &lt;code&gt;faultstring&lt;/code&gt; element.</lead>
+                            <detail> The &lt;code&gt;faultstring&lt;/code&gt;   provides a human-readable description of the SOAP fault and    is not intended for algorithmic processing.</detail>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>faultstring element of the SOAP fault</comment>
+                        </returns>
+                    </method>
+                    <method modifiers="public" name="getFaultActor">
+                        <comment>
+                            <lead>Gets the &lt;code&gt;faultactor&lt;/code&gt; element.</lead>
+                            <detail> The &lt;code&gt;faultactor&lt;/code&gt;   element provides information about which SOAP node on the    SOAP message path caused the fault to happen. It indicates    the source of the fault.</detail>
+                        </comment>
+                        <returns package="java.lang" type="String">
+                            <comment>&lt;code&gt;faultactor&lt;/code&gt; element of the SOAP fault</comment>
+                        </returns>
+                    </method>
+                </methods>
+            </class>
+        </classes>
+    </package>
+</javadoc>

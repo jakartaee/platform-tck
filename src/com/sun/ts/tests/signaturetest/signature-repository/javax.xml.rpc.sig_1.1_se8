@@ -1,0 +1,544 @@
+#Signature file v4.1
+#Version 1.1_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public java.lang.Exception
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Throwable
+hfds serialVersionUID
+
+CLSS public abstract interface java.lang.Iterable<%0 extends java.lang.Object>
+meth public abstract java.util.Iterator<{java.lang.Iterable%0}> iterator()
+meth public java.util.Spliterator<{java.lang.Iterable%0}> spliterator()
+meth public void forEach(java.util.function.Consumer<? super {java.lang.Iterable%0}>)
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public java.lang.RuntimeException
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Exception
+hfds serialVersionUID
+
+CLSS public java.lang.Throwable
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+intf java.io.Serializable
+meth public final java.lang.Throwable[] getSuppressed()
+meth public final void addSuppressed(java.lang.Throwable)
+meth public java.lang.StackTraceElement[] getStackTrace()
+meth public java.lang.String getLocalizedMessage()
+meth public java.lang.String getMessage()
+meth public java.lang.String toString()
+meth public java.lang.Throwable fillInStackTrace()
+meth public java.lang.Throwable getCause()
+meth public java.lang.Throwable initCause(java.lang.Throwable)
+meth public void printStackTrace()
+meth public void printStackTrace(java.io.PrintStream)
+meth public void printStackTrace(java.io.PrintWriter)
+meth public void setStackTrace(java.lang.StackTraceElement[])
+supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
+
+CLSS public abstract interface java.util.Collection<%0 extends java.lang.Object>
+intf java.lang.Iterable<{java.util.Collection%0}>
+meth public abstract <%0 extends java.lang.Object> {%%0}[] toArray({%%0}[])
+meth public abstract boolean add({java.util.Collection%0})
+meth public abstract boolean addAll(java.util.Collection<? extends {java.util.Collection%0}>)
+meth public abstract boolean contains(java.lang.Object)
+meth public abstract boolean containsAll(java.util.Collection<?>)
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract boolean isEmpty()
+meth public abstract boolean remove(java.lang.Object)
+meth public abstract boolean removeAll(java.util.Collection<?>)
+meth public abstract boolean retainAll(java.util.Collection<?>)
+meth public abstract int hashCode()
+meth public abstract int size()
+meth public abstract java.lang.Object[] toArray()
+meth public abstract java.util.Iterator<{java.util.Collection%0}> iterator()
+meth public abstract void clear()
+meth public boolean removeIf(java.util.function.Predicate<? super {java.util.Collection%0}>)
+meth public java.util.Spliterator<{java.util.Collection%0}> spliterator()
+meth public java.util.stream.Stream<{java.util.Collection%0}> parallelStream()
+meth public java.util.stream.Stream<{java.util.Collection%0}> stream()
+
+CLSS public abstract interface java.util.List<%0 extends java.lang.Object>
+intf java.util.Collection<{java.util.List%0}>
+meth public abstract <%0 extends java.lang.Object> {%%0}[] toArray({%%0}[])
+meth public abstract boolean add({java.util.List%0})
+meth public abstract boolean addAll(int,java.util.Collection<? extends {java.util.List%0}>)
+meth public abstract boolean addAll(java.util.Collection<? extends {java.util.List%0}>)
+meth public abstract boolean contains(java.lang.Object)
+meth public abstract boolean containsAll(java.util.Collection<?>)
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract boolean isEmpty()
+meth public abstract boolean remove(java.lang.Object)
+meth public abstract boolean removeAll(java.util.Collection<?>)
+meth public abstract boolean retainAll(java.util.Collection<?>)
+meth public abstract int hashCode()
+meth public abstract int indexOf(java.lang.Object)
+meth public abstract int lastIndexOf(java.lang.Object)
+meth public abstract int size()
+meth public abstract java.lang.Object[] toArray()
+meth public abstract java.util.Iterator<{java.util.List%0}> iterator()
+meth public abstract java.util.List<{java.util.List%0}> subList(int,int)
+meth public abstract java.util.ListIterator<{java.util.List%0}> listIterator()
+meth public abstract java.util.ListIterator<{java.util.List%0}> listIterator(int)
+meth public abstract void add(int,{java.util.List%0})
+meth public abstract void clear()
+meth public abstract {java.util.List%0} get(int)
+meth public abstract {java.util.List%0} remove(int)
+meth public abstract {java.util.List%0} set(int,{java.util.List%0})
+meth public java.util.Spliterator<{java.util.List%0}> spliterator()
+meth public void replaceAll(java.util.function.UnaryOperator<{java.util.List%0}>)
+meth public void sort(java.util.Comparator<? super {java.util.List%0}>)
+
+CLSS public abstract interface javax.xml.rpc.Call
+fld public final static java.lang.String ENCODINGSTYLE_URI_PROPERTY = "javax.xml.rpc.encodingstyle.namespace.uri"
+fld public final static java.lang.String OPERATION_STYLE_PROPERTY = "javax.xml.rpc.soap.operation.style"
+fld public final static java.lang.String PASSWORD_PROPERTY = "javax.xml.rpc.security.auth.password"
+fld public final static java.lang.String SESSION_MAINTAIN_PROPERTY = "javax.xml.rpc.session.maintain"
+fld public final static java.lang.String SOAPACTION_URI_PROPERTY = "javax.xml.rpc.soap.http.soapaction.uri"
+fld public final static java.lang.String SOAPACTION_USE_PROPERTY = "javax.xml.rpc.soap.http.soapaction.use"
+fld public final static java.lang.String USERNAME_PROPERTY = "javax.xml.rpc.security.auth.username"
+meth public abstract boolean isParameterAndReturnSpecRequired(javax.xml.namespace.QName)
+meth public abstract java.lang.Object getProperty(java.lang.String)
+meth public abstract java.lang.Object invoke(java.lang.Object[]) throws java.rmi.RemoteException
+meth public abstract java.lang.Object invoke(javax.xml.namespace.QName,java.lang.Object[]) throws java.rmi.RemoteException
+meth public abstract java.lang.String getTargetEndpointAddress()
+meth public abstract java.util.Iterator getPropertyNames()
+meth public abstract java.util.List getOutputValues()
+meth public abstract java.util.Map getOutputParams()
+meth public abstract javax.xml.namespace.QName getOperationName()
+meth public abstract javax.xml.namespace.QName getParameterTypeByName(java.lang.String)
+meth public abstract javax.xml.namespace.QName getPortTypeName()
+meth public abstract javax.xml.namespace.QName getReturnType()
+meth public abstract void addParameter(java.lang.String,javax.xml.namespace.QName,java.lang.Class,javax.xml.rpc.ParameterMode)
+meth public abstract void addParameter(java.lang.String,javax.xml.namespace.QName,javax.xml.rpc.ParameterMode)
+meth public abstract void invokeOneWay(java.lang.Object[])
+meth public abstract void removeAllParameters()
+meth public abstract void removeProperty(java.lang.String)
+meth public abstract void setOperationName(javax.xml.namespace.QName)
+meth public abstract void setPortTypeName(javax.xml.namespace.QName)
+meth public abstract void setProperty(java.lang.String,java.lang.Object)
+meth public abstract void setReturnType(javax.xml.namespace.QName)
+meth public abstract void setReturnType(javax.xml.namespace.QName,java.lang.Class)
+meth public abstract void setTargetEndpointAddress(java.lang.String)
+
+CLSS public javax.xml.rpc.JAXRPCException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+meth public java.lang.Throwable getLinkedCause()
+supr java.lang.RuntimeException
+hfds cause
+
+CLSS public javax.xml.rpc.NamespaceConstants
+cons public <init>()
+fld public final static java.lang.String NSPREFIX_SCHEMA_XSD = "xsd"
+fld public final static java.lang.String NSPREFIX_SCHEMA_XSI = "xsi"
+fld public final static java.lang.String NSPREFIX_SOAP_ENCODING = "soapenc"
+fld public final static java.lang.String NSPREFIX_SOAP_ENVELOPE = "soapenv"
+fld public final static java.lang.String NSURI_SCHEMA_XSD = "http://www.w3.org/2001/XMLSchema"
+fld public final static java.lang.String NSURI_SCHEMA_XSI = "http://www.w3.org/2001/XMLSchema-instance"
+fld public final static java.lang.String NSURI_SOAP_ENCODING = "http://schemas.xmlsoap.org/soap/encoding/"
+fld public final static java.lang.String NSURI_SOAP_ENVELOPE = "http://schemas.xmlsoap.org/soap/envelope/"
+fld public final static java.lang.String NSURI_SOAP_NEXT_ACTOR = "http://schemas.xmlsoap.org/soap/actor/next"
+supr java.lang.Object
+
+CLSS public javax.xml.rpc.ParameterMode
+fld public final static javax.xml.rpc.ParameterMode IN
+fld public final static javax.xml.rpc.ParameterMode INOUT
+fld public final static javax.xml.rpc.ParameterMode OUT
+meth public java.lang.String toString()
+supr java.lang.Object
+hfds mode
+
+CLSS public abstract interface javax.xml.rpc.Service
+meth public abstract java.net.URL getWSDLDocumentLocation()
+meth public abstract java.rmi.Remote getPort(java.lang.Class) throws javax.xml.rpc.ServiceException
+meth public abstract java.rmi.Remote getPort(javax.xml.namespace.QName,java.lang.Class) throws javax.xml.rpc.ServiceException
+meth public abstract java.util.Iterator getPorts() throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.namespace.QName getServiceName()
+meth public abstract javax.xml.rpc.Call createCall() throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.Call createCall(javax.xml.namespace.QName) throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.Call createCall(javax.xml.namespace.QName,java.lang.String) throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.Call createCall(javax.xml.namespace.QName,javax.xml.namespace.QName) throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.Call[] getCalls(javax.xml.namespace.QName) throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.encoding.TypeMappingRegistry getTypeMappingRegistry()
+meth public abstract javax.xml.rpc.handler.HandlerRegistry getHandlerRegistry()
+
+CLSS public javax.xml.rpc.ServiceException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+meth public java.lang.Throwable getLinkedCause()
+supr java.lang.Exception
+hfds cause
+
+CLSS public abstract javax.xml.rpc.ServiceFactory
+cons protected <init>()
+fld public final static java.lang.String SERVICEFACTORY_PROPERTY = "javax.xml.rpc.ServiceFactory"
+meth public abstract javax.xml.rpc.Service createService(java.net.URL,javax.xml.namespace.QName) throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.Service createService(javax.xml.namespace.QName) throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.Service loadService(java.lang.Class) throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.Service loadService(java.net.URL,java.lang.Class,java.util.Properties) throws javax.xml.rpc.ServiceException
+meth public abstract javax.xml.rpc.Service loadService(java.net.URL,javax.xml.namespace.QName,java.util.Properties) throws javax.xml.rpc.ServiceException
+meth public static javax.xml.rpc.ServiceFactory newInstance() throws javax.xml.rpc.ServiceException
+supr java.lang.Object
+hfds DEFAULT_SERVICEFACTORY
+
+CLSS public abstract interface javax.xml.rpc.Stub
+fld public final static java.lang.String ENDPOINT_ADDRESS_PROPERTY = "javax.xml.rpc.service.endpoint.address"
+fld public final static java.lang.String PASSWORD_PROPERTY = "javax.xml.rpc.security.auth.password"
+fld public final static java.lang.String SESSION_MAINTAIN_PROPERTY = "javax.xml.rpc.session.maintain"
+fld public final static java.lang.String USERNAME_PROPERTY = "javax.xml.rpc.security.auth.username"
+meth public abstract java.lang.Object _getProperty(java.lang.String)
+meth public abstract java.util.Iterator _getPropertyNames()
+meth public abstract void _setProperty(java.lang.String,java.lang.Object)
+
+CLSS public abstract interface javax.xml.rpc.encoding.DeserializationContext
+
+CLSS public abstract interface javax.xml.rpc.encoding.Deserializer
+intf java.io.Serializable
+meth public abstract java.lang.String getMechanismType()
+
+CLSS public abstract interface javax.xml.rpc.encoding.DeserializerFactory
+intf java.io.Serializable
+meth public abstract java.util.Iterator getSupportedMechanismTypes()
+meth public abstract javax.xml.rpc.encoding.Deserializer getDeserializerAs(java.lang.String)
+
+CLSS public abstract interface javax.xml.rpc.encoding.SerializationContext
+
+CLSS public abstract interface javax.xml.rpc.encoding.Serializer
+intf java.io.Serializable
+meth public abstract java.lang.String getMechanismType()
+
+CLSS public abstract interface javax.xml.rpc.encoding.SerializerFactory
+intf java.io.Serializable
+meth public abstract java.util.Iterator getSupportedMechanismTypes()
+meth public abstract javax.xml.rpc.encoding.Serializer getSerializerAs(java.lang.String)
+
+CLSS public abstract interface javax.xml.rpc.encoding.TypeMapping
+meth public abstract boolean isRegistered(java.lang.Class,javax.xml.namespace.QName)
+meth public abstract java.lang.String[] getSupportedEncodings()
+meth public abstract javax.xml.rpc.encoding.DeserializerFactory getDeserializer(java.lang.Class,javax.xml.namespace.QName)
+meth public abstract javax.xml.rpc.encoding.SerializerFactory getSerializer(java.lang.Class,javax.xml.namespace.QName)
+meth public abstract void register(java.lang.Class,javax.xml.namespace.QName,javax.xml.rpc.encoding.SerializerFactory,javax.xml.rpc.encoding.DeserializerFactory)
+meth public abstract void removeDeserializer(java.lang.Class,javax.xml.namespace.QName)
+meth public abstract void removeSerializer(java.lang.Class,javax.xml.namespace.QName)
+meth public abstract void setSupportedEncodings(java.lang.String[])
+
+CLSS public abstract interface javax.xml.rpc.encoding.TypeMappingRegistry
+intf java.io.Serializable
+meth public abstract boolean removeTypeMapping(javax.xml.rpc.encoding.TypeMapping)
+meth public abstract java.lang.String[] getRegisteredEncodingStyleURIs()
+meth public abstract javax.xml.rpc.encoding.TypeMapping createTypeMapping()
+meth public abstract javax.xml.rpc.encoding.TypeMapping getDefaultTypeMapping()
+meth public abstract javax.xml.rpc.encoding.TypeMapping getTypeMapping(java.lang.String)
+meth public abstract javax.xml.rpc.encoding.TypeMapping register(java.lang.String,javax.xml.rpc.encoding.TypeMapping)
+meth public abstract javax.xml.rpc.encoding.TypeMapping unregisterTypeMapping(java.lang.String)
+meth public abstract void clear()
+meth public abstract void registerDefault(javax.xml.rpc.encoding.TypeMapping)
+
+CLSS public javax.xml.rpc.encoding.XMLType
+cons public <init>()
+fld public final static javax.xml.namespace.QName SOAP_ARRAY
+fld public final static javax.xml.namespace.QName SOAP_BASE64
+fld public final static javax.xml.namespace.QName SOAP_BOOLEAN
+fld public final static javax.xml.namespace.QName SOAP_BYTE
+fld public final static javax.xml.namespace.QName SOAP_DOUBLE
+fld public final static javax.xml.namespace.QName SOAP_FLOAT
+fld public final static javax.xml.namespace.QName SOAP_INT
+fld public final static javax.xml.namespace.QName SOAP_LONG
+fld public final static javax.xml.namespace.QName SOAP_SHORT
+fld public final static javax.xml.namespace.QName SOAP_STRING
+fld public final static javax.xml.namespace.QName XSD_BASE64
+fld public final static javax.xml.namespace.QName XSD_BOOLEAN
+fld public final static javax.xml.namespace.QName XSD_BYTE
+fld public final static javax.xml.namespace.QName XSD_DATETIME
+fld public final static javax.xml.namespace.QName XSD_DECIMAL
+fld public final static javax.xml.namespace.QName XSD_DOUBLE
+fld public final static javax.xml.namespace.QName XSD_FLOAT
+fld public final static javax.xml.namespace.QName XSD_HEXBINARY
+fld public final static javax.xml.namespace.QName XSD_INT
+fld public final static javax.xml.namespace.QName XSD_INTEGER
+fld public final static javax.xml.namespace.QName XSD_LONG
+fld public final static javax.xml.namespace.QName XSD_QNAME
+fld public final static javax.xml.namespace.QName XSD_SHORT
+fld public final static javax.xml.namespace.QName XSD_STRING
+supr java.lang.Object
+
+CLSS public abstract javax.xml.rpc.handler.GenericHandler
+cons protected <init>()
+intf javax.xml.rpc.handler.Handler
+meth public abstract javax.xml.namespace.QName[] getHeaders()
+meth public boolean handleFault(javax.xml.rpc.handler.MessageContext)
+meth public boolean handleRequest(javax.xml.rpc.handler.MessageContext)
+meth public boolean handleResponse(javax.xml.rpc.handler.MessageContext)
+meth public void destroy()
+meth public void init(javax.xml.rpc.handler.HandlerInfo)
+supr java.lang.Object
+
+CLSS public abstract interface javax.xml.rpc.handler.Handler
+meth public abstract boolean handleFault(javax.xml.rpc.handler.MessageContext)
+meth public abstract boolean handleRequest(javax.xml.rpc.handler.MessageContext)
+meth public abstract boolean handleResponse(javax.xml.rpc.handler.MessageContext)
+meth public abstract javax.xml.namespace.QName[] getHeaders()
+meth public abstract void destroy()
+meth public abstract void init(javax.xml.rpc.handler.HandlerInfo)
+
+CLSS public abstract interface javax.xml.rpc.handler.HandlerChain
+intf java.util.List
+meth public abstract boolean handleFault(javax.xml.rpc.handler.MessageContext)
+meth public abstract boolean handleRequest(javax.xml.rpc.handler.MessageContext)
+meth public abstract boolean handleResponse(javax.xml.rpc.handler.MessageContext)
+meth public abstract java.lang.String[] getRoles()
+meth public abstract void destroy()
+meth public abstract void init(java.util.Map)
+meth public abstract void setRoles(java.lang.String[])
+
+CLSS public javax.xml.rpc.handler.HandlerInfo
+cons public <init>()
+cons public <init>(java.lang.Class,java.util.Map,javax.xml.namespace.QName[])
+intf java.io.Serializable
+meth public java.lang.Class getHandlerClass()
+meth public java.util.Map getHandlerConfig()
+meth public javax.xml.namespace.QName[] getHeaders()
+meth public void setHandlerClass(java.lang.Class)
+meth public void setHandlerConfig(java.util.Map)
+meth public void setHeaders(javax.xml.namespace.QName[])
+supr java.lang.Object
+hfds config,handlerClass,headers
+
+CLSS public abstract interface javax.xml.rpc.handler.HandlerRegistry
+intf java.io.Serializable
+meth public abstract java.util.List getHandlerChain(javax.xml.namespace.QName)
+meth public abstract void setHandlerChain(javax.xml.namespace.QName,java.util.List)
+
+CLSS public abstract interface javax.xml.rpc.handler.MessageContext
+meth public abstract boolean containsProperty(java.lang.String)
+meth public abstract java.lang.Object getProperty(java.lang.String)
+meth public abstract java.util.Iterator getPropertyNames()
+meth public abstract void removeProperty(java.lang.String)
+meth public abstract void setProperty(java.lang.String,java.lang.Object)
+
+CLSS public abstract interface javax.xml.rpc.handler.soap.SOAPMessageContext
+intf javax.xml.rpc.handler.MessageContext
+meth public abstract java.lang.String[] getRoles()
+meth public abstract javax.xml.soap.SOAPMessage getMessage()
+meth public abstract void setMessage(javax.xml.soap.SOAPMessage)
+
+CLSS public final javax.xml.rpc.holders.BigDecimalHolder
+cons public <init>()
+cons public <init>(java.math.BigDecimal)
+fld public java.math.BigDecimal value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.BigIntegerHolder
+cons public <init>()
+cons public <init>(java.math.BigInteger)
+fld public java.math.BigInteger value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.BooleanHolder
+cons public <init>()
+cons public <init>(boolean)
+fld public boolean value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.BooleanWrapperHolder
+cons public <init>()
+cons public <init>(java.lang.Boolean)
+fld public java.lang.Boolean value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.ByteArrayHolder
+cons public <init>()
+cons public <init>(byte[])
+fld public byte[] value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.ByteHolder
+cons public <init>()
+cons public <init>(byte)
+fld public byte value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.ByteWrapperHolder
+cons public <init>()
+cons public <init>(java.lang.Byte)
+fld public java.lang.Byte value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.CalendarHolder
+cons public <init>()
+cons public <init>(java.util.Calendar)
+fld public java.util.Calendar value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.DoubleHolder
+cons public <init>()
+cons public <init>(double)
+fld public double value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.DoubleWrapperHolder
+cons public <init>()
+cons public <init>(java.lang.Double)
+fld public java.lang.Double value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.FloatHolder
+cons public <init>()
+cons public <init>(float)
+fld public float value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.FloatWrapperHolder
+cons public <init>()
+cons public <init>(java.lang.Float)
+fld public java.lang.Float value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public abstract interface javax.xml.rpc.holders.Holder
+
+CLSS public final javax.xml.rpc.holders.IntHolder
+cons public <init>()
+cons public <init>(int)
+fld public int value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.IntegerWrapperHolder
+cons public <init>()
+cons public <init>(java.lang.Integer)
+fld public java.lang.Integer value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.LongHolder
+cons public <init>()
+cons public <init>(long)
+fld public long value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.LongWrapperHolder
+cons public <init>()
+cons public <init>(java.lang.Long)
+fld public java.lang.Long value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.ObjectHolder
+cons public <init>()
+cons public <init>(java.lang.Object)
+fld public java.lang.Object value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.QNameHolder
+cons public <init>()
+cons public <init>(javax.xml.namespace.QName)
+fld public javax.xml.namespace.QName value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.ShortHolder
+cons public <init>()
+cons public <init>(short)
+fld public short value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.ShortWrapperHolder
+cons public <init>()
+cons public <init>(java.lang.Short)
+fld public java.lang.Short value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public final javax.xml.rpc.holders.StringHolder
+cons public <init>()
+cons public <init>(java.lang.String)
+fld public java.lang.String value
+intf javax.xml.rpc.holders.Holder
+supr java.lang.Object
+
+CLSS public abstract interface javax.xml.rpc.server.ServiceLifecycle
+meth public abstract void destroy()
+meth public abstract void init(java.lang.Object) throws javax.xml.rpc.ServiceException
+
+CLSS public abstract interface javax.xml.rpc.server.ServletEndpointContext
+meth public abstract boolean isUserInRole(java.lang.String)
+meth public abstract java.security.Principal getUserPrincipal()
+meth public abstract javax.servlet.ServletContext getServletContext()
+meth public abstract javax.servlet.http.HttpSession getHttpSession()
+meth public abstract javax.xml.rpc.handler.MessageContext getMessageContext()
+
+CLSS public javax.xml.rpc.soap.SOAPFaultException
+cons public <init>(javax.xml.namespace.QName,java.lang.String,java.lang.String,javax.xml.soap.Detail)
+meth public java.lang.String getFaultActor()
+meth public java.lang.String getFaultString()
+meth public javax.xml.namespace.QName getFaultCode()
+meth public javax.xml.soap.Detail getDetail()
+supr java.lang.RuntimeException
+hfds detail,faultactor,faultcode,faultstring
+

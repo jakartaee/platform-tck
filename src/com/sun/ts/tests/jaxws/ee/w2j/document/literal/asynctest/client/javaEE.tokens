@@ -1,0 +1,10 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jdlasynctest")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.client.HelloService
+SEI=com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.client.Hello
+NAMESPACEURI=http://helloservice.org/wsdl
+PORT=HelloPort
+URLALIAS=/jaxws/Hello
+WEBSERVICEDESCRIPTION=HelloService
+SERVICEREFNAMEWSSERVLET=service/wsw2jdlasynctest
+SERVICEREFNAMEWSEJB=service/wsw2jdlasynctest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jdlasynctest

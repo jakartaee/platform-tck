@@ -1,0 +1,83 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="JDBC" basedir="." default="build">
+
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+    
+        <target name="init">
+                <mkdir dir="${deliverable.bundle.dir}/bin"/>
+                <mkdir dir="${deliverable.bundle.dir}/classes"/>
+                <mkdir dir="${deliverable.bundle.dir}/lib"/>
+                <mkdir dir="${deliverable.bundle.dir}/src"/>
+                <mkdir dir="${deliverable.bundle.dir}/dist"/>
+                <mkdir dir="${deliverable.bundle.dir}/tmp"/>
+                <mkdir dir="${deliverable.bundle.dir}/sql"/>
+	</target>
+
+        <target name="copyinstall">
+         <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+               <fileset dir="${ts.home}/install/j2ee/bin"
+                    includes="**/*"
+                    excludes="**/workspace.xml, xml/impl/glassfish/j2ee_ri.xml*, xml/impl/glassfish/j2ee_vi.xml*, xml/impl/glassfish/s1as.xml*"/>
+         </copy>
+        <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+              <fileset dir="${ts.home}/lib" 
+              includes="cts.jar, dbprocedures.jar" 
+              excludes="riinterceptors.jar, tsprovider.jar, commons-httpclient.jar, commons-logging.jar"/>
+       </copy>
+        
+        <copy todir="${deliverable.bundle.dir}/sql" includeEmptyDirs="no">
+               <fileset dir="${ts.home}/sql"
+                    includes="**/*ddl.sql, **/*dml.sql , **/db2.ddl.sprocs.sql"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/src">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/other" 
+                includes="vehicle.properties"/>
+        </copy>
+        <copy overwrite="true" todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+            includes="build*" />
+        </copy>
+        </target>
+
+	<target name="build" depends="init">
+		<antcall target="copyinstall"/>
+
+		<!-- the classes directory -->
+		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/classes" 
+				includes="com/sun/ts/tests/jdbc/**/*.class, com/sun/ts/tests/common/vehicle/**/*.class, com/sun/ts/tests/lib/**/*.class"/>
+		</copy>
+
+		<!-- the dist directory -->
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/dist"/>
+		</copy>
+
+		<!-- the specific deliverable source directies -->
+		<copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src" 
+                                includes="com/sun/ts/tests/jdbc/**/* , com/sun/ts/lib/tests/jdbc/**/*,  com/sun/ts/tests/common/vehicle/**/*"
+                                excludes="**/*log, com/sun/ts/tests/common/web"/>
+		</copy>
+
+	</target>
+</project>

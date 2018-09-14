@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsj2wdltypesubstitutiontest")
+SERVICE=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.CarDealerService
+SEI=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.CarDealer
+IMPL=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.CarDealerImpl
+URLALIAS=/jaxws/CarDealer
+SERVLETNAME=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.CarDealerImpl
+NAMESPACEURI=http://typesubstitution/wsdl
+PORT=CarDealerPort
+WEBSERVICEDESCRIPTION=CarDealerService
+SERVICEREFNAMEWSSERVLET=service/wsj2wdltypesubstitutiontest
+SERVICEREFNAMEWSEJB=service/wsj2wdltypesubstitutiontest
+SERVICEREFNAMEWSAPPCLIENT=service/wsj2wdltypesubstitutiontest

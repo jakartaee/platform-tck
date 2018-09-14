@@ -1,0 +1,12 @@
+WSREFSEJBCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSShared3File1", type=com.sun.ts.tests.webservices12.wsdlImport.file.shared3.client.Shared3FileSvc1.class, wsdlLocation="META-INF/wsdl/Shared3FileSvc1.wsdl"), @WebServiceRef(name="service/WSShared3File2", type=com.sun.ts.tests.webservices12.wsdlImport.file.shared3.client.Shared3FileSvc2.class, wsdlLocation="META-INF/wsdl/Shared3FileSvc2.wsdl") })
+WSREFSAPPCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSShared3File1", type=com.sun.ts.tests.webservices12.wsdlImport.file.shared3.client.Shared3FileSvc1.class, wsdlLocation="META-INF/wsdl/Shared3FileSvc1.wsdl"), @WebServiceRef(name="service/WSShared3File2", type=com.sun.ts.tests.webservices12.wsdlImport.file.shared3.client.Shared3FileSvc2.class, wsdlLocation="META-INF/wsdl/Shared3FileSvc2.wsdl") })
+WSREFSWEBCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSShared3File1", type=com.sun.ts.tests.webservices12.wsdlImport.file.shared3.client.Shared3FileSvc1.class, wsdlLocation="WEB-INF/wsdl/Shared3FileSvc1.wsdl"), @WebServiceRef(name="service/WSShared3File2", type=com.sun.ts.tests.webservices12.wsdlImport.file.shared3.client.Shared3FileSvc2.class, wsdlLocation="WEB-INF/wsdl/Shared3FileSvc2.wsdl") })
+WEBSERVICEDESCRIPTION=Shared3FileSvc1
+WEBSERVICEDESCRIPTION2=Shared3FileSvc2
+SERVICEREFNAMEWSSERVLET=service/WSShared3File1
+SERVICEREFNAMEWSSERVLET2=service/WSShared3File2
+SERVICEREFNAMEWSEJB=service/WSShared3File1
+SERVICEREFNAMEWSEJB2=service/WSShared3File2
+SERVICEREFNAMEWSAPPCLIENT=service/WSShared3File1
+SERVICEREFNAMEWSAPPCLIENT2=service/WSShared3File2
+

@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+	name="MarshallTestService"
+	targetNamespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"
+	xmlns:tns="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ns1="http://marshalltestservice.org/types">
+
+  <types>
+    <xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://marshalltestservice.org/types" schemaLocation="MarshallTestServiceDefs.xsd"/>
+    </xs:schema>
+  </types>
+
+  <message name="MarshallTest_bigDecimalArrayTest">
+    <part name="parameters" type="ns1:BigDecimalArrayTest"/></message>
+  <message name="MarshallTest_bigDecimalArrayTestResponse">
+    <part name="result" type="ns1:BigDecimalArrayTestResponse"/></message>
+  <message name="MarshallTest_bigDecimalTest">
+    <part name="parameters" type="ns1:BigDecimalTest"/></message>
+  <message name="MarshallTest_bigDecimalTestResponse">
+    <part name="result" type="ns1:BigDecimalTestResponse"/></message>
+  <message name="MarshallTest_bigIntegerArrayTest">
+    <part name="parameters" type="ns1:BigIntegerArrayTest"/></message>
+  <message name="MarshallTest_bigIntegerArrayTestResponse">
+    <part name="result" type="ns1:BigIntegerArrayTestResponse"/></message>
+  <message name="MarshallTest_bigIntegerTest">
+    <part name="parameters" type="ns1:BigIntegerTest"/></message>
+  <message name="MarshallTest_bigIntegerTestResponse">
+    <part name="result" type="ns1:BigIntegerTestResponse"/></message>
+  <message name="MarshallTest_booleanArrayTest">
+    <part name="parameters" type="ns1:BooleanArrayTest"/></message>
+  <message name="MarshallTest_booleanArrayTestResponse">
+    <part name="result" type="ns1:BooleanArrayTestResponse"/></message>
+  <message name="MarshallTest_booleanTest">
+    <part name="parameters" type="ns1:BooleanTest"/></message>
+  <message name="MarshallTest_booleanTestResponse">
+    <part name="result" type="ns1:BooleanTestResponse"/></message>
+  <message name="MarshallTest_byteArrayTest">
+    <part name="parameters" type="ns1:ByteArrayTest"/></message>
+  <message name="MarshallTest_byteArrayTestResponse">
+    <part name="result" type="ns1:ByteArrayTestResponse"/></message>
+  <message name="MarshallTest_byteTest">
+    <part name="parameters" type="ns1:ByteTest"/></message>
+  <message name="MarshallTest_byteTestResponse">
+    <part name="result" type="ns1:ByteTestResponse"/></message>
+
+  <message name="MarshallTest_qnameTest">
+    <part name="parameters" type="ns1:QNameTest"/></message>
+  <message name="MarshallTest_qnameTestResponse">
+    <part name="result" type="ns1:QNameTestResponse"/></message>
+
+  <message name="MarshallTest_base64BinaryTest">
+    <part name="parameters" type="ns1:Base64BinaryTest"/></message>
+  <message name="MarshallTest_base64BinaryTestResponse">
+    <part name="result" type="ns1:Base64BinaryTestResponse"/></message>
+
+  <message name="MarshallTest_hexBinaryTest">
+    <part name="parameters" type="ns1:HexBinaryTest"/></message>
+  <message name="MarshallTest_hexBinaryTestResponse">
+    <part name="result" type="ns1:HexBinaryTestResponse"/></message>
+
+  <message name="MarshallTest_qnameArrayTest">
+    <part name="parameters" type="ns1:QNameArrayTest"/></message>
+  <message name="MarshallTest_qnameArrayTestResponse">
+    <part name="result" type="ns1:QNameArrayTestResponse"/></message>
+
+  <message name="MarshallTest_calendarArrayTest">
+    <part name="parameters" type="ns1:CalendarArrayTest"/></message>
+  <message name="MarshallTest_calendarArrayTestResponse">
+    <part name="result" type="ns1:CalendarArrayTestResponse"/></message>
+  <message name="MarshallTest_calendarTest">
+    <part name="parameters" type="ns1:CalendarTest"/></message>
+  <message name="MarshallTest_calendarTestResponse">
+    <part name="result" type="ns1:CalendarTestResponse"/></message>
+  <message name="MarshallTest_doubleArrayTest">
+    <part name="parameters" type="ns1:DoubleArrayTest"/></message>
+  <message name="MarshallTest_doubleArrayTestResponse">
+    <part name="result" type="ns1:DoubleArrayTestResponse"/></message>
+  <message name="MarshallTest_doubleTest">
+    <part name="parameters" type="ns1:DoubleTest"/></message>
+  <message name="MarshallTest_doubleTestResponse">
+    <part name="result" type="ns1:DoubleTestResponse"/></message>
+  <message name="MarshallTest_floatArrayTest">
+    <part name="parameters" type="ns1:FloatArrayTest"/></message>
+  <message name="MarshallTest_floatArrayTestResponse">
+    <part name="result" type="ns1:FloatArrayTestResponse"/></message>
+  <message name="MarshallTest_floatTest">
+    <part name="parameters" type="ns1:FloatTest"/></message>
+  <message name="MarshallTest_floatTestResponse">
+    <part name="result" type="ns1:FloatTestResponse"/></message>
+  <message name="MarshallTest_intArrayTest">
+    <part name="parameters" type="ns1:IntArrayTest"/></message>
+  <message name="MarshallTest_intArrayTestResponse">
+    <part name="result" type="ns1:IntArrayTestResponse"/></message>
+  <message name="MarshallTest_intTest">
+    <part name="parameters" type="ns1:IntTest"/></message>
+  <message name="MarshallTest_intTestResponse">
+    <part name="result" type="ns1:IntTestResponse"/></message>
+  <message name="MarshallTest_javaBeanArrayTest">
+    <part name="parameters" type="ns1:JavaBeanArrayTest"/></message>
+  <message name="MarshallTest_javaBeanArrayTestResponse">
+    <part name="result" type="ns1:JavaBeanArrayTestResponse"/></message>
+  <message name="MarshallTest_javaBeanTest">
+    <part name="parameters" type="ns1:JavaBeanTest"/></message>
+  <message name="MarshallTest_javaBeanTestResponse">
+    <part name="result" type="ns1:JavaBeanTestResponse"/></message>
+  <message name="MarshallTest_longArrayTest">
+    <part name="parameters" type="ns1:LongArrayTest"/></message>
+  <message name="MarshallTest_longArrayTestResponse">
+    <part name="result" type="ns1:LongArrayTestResponse"/></message>
+  <message name="MarshallTest_longTest">
+    <part name="parameters" type="ns1:LongTest"/></message>
+  <message name="MarshallTest_longTestResponse">
+    <part name="result" type="ns1:LongTestResponse"/></message>
+  <message name="MarshallTest_shortArrayTest">
+    <part name="parameters" type="ns1:ShortArrayTest"/></message>
+  <message name="MarshallTest_shortArrayTestResponse">
+    <part name="result" type="ns1:ShortArrayTestResponse"/></message>
+  <message name="MarshallTest_shortTest">
+    <part name="parameters" type="ns1:ShortTest"/></message>
+  <message name="MarshallTest_shortTestResponse">
+    <part name="result" type="ns1:ShortTestResponse"/></message>
+  <message name="MarshallTest_stringArrayTest">
+    <part name="parameters" type="ns1:StringArrayTest"/></message>
+  <message name="MarshallTest_stringArrayTestResponse">
+    <part name="result" type="ns1:StringArrayTestResponse"/></message>
+  <message name="MarshallTest_stringTest">
+    <part name="parameters" type="ns1:StringTest"/></message>
+  <message name="MarshallTest_stringTestResponse">
+    <part name="result" type="ns1:StringTestResponse"/></message>
+  <message name="MarshallTest_voidTest">
+    <part name="parameters" type="ns1:VoidTest"/></message>
+  <message name="MarshallTest_voidTestResponse">
+    <part name="result" type="ns1:VoidTestResponse"/></message>
+  <portType name="MarshallTest">
+    <operation name="bigDecimalArrayTest">
+      <input message="tns:MarshallTest_bigDecimalArrayTest" name="MarshallTest_bigDecimalArrayTest"/>
+      <output message="tns:MarshallTest_bigDecimalArrayTestResponse" name="MarshallTest_bigDecimalArrayTestResponse"/></operation>
+    <operation name="bigDecimalTest">
+      <input message="tns:MarshallTest_bigDecimalTest" name="MarshallTest_bigDecimalTest"/>
+      <output message="tns:MarshallTest_bigDecimalTestResponse" name="MarshallTest_bigDecimalTestResponse"/></operation>
+    <operation name="bigIntegerArrayTest">
+      <input message="tns:MarshallTest_bigIntegerArrayTest" name="MarshallTest_bigIntegerArrayTest"/>
+      <output message="tns:MarshallTest_bigIntegerArrayTestResponse" name="MarshallTest_bigIntegerArrayTestResponse"/></operation>
+    <operation name="bigIntegerTest">
+      <input message="tns:MarshallTest_bigIntegerTest" name="MarshallTest_bigIntegerTest"/>
+      <output message="tns:MarshallTest_bigIntegerTestResponse" name="MarshallTest_bigIntegerTestResponse"/></operation>
+    <operation name="booleanArrayTest">
+      <input message="tns:MarshallTest_booleanArrayTest" name="MarshallTest_booleanArrayTest"/>
+      <output message="tns:MarshallTest_booleanArrayTestResponse" name="MarshallTest_booleanArrayTestResponse"/></operation>
+    <operation name="booleanTest">
+      <input message="tns:MarshallTest_booleanTest" name="MarshallTest_booleanTest"/>
+      <output message="tns:MarshallTest_booleanTestResponse" name="MarshallTest_booleanTestResponse"/></operation>
+    <operation name="byteArrayTest">
+      <input message="tns:MarshallTest_byteArrayTest" name="MarshallTest_byteArrayTest"/>
+      <output message="tns:MarshallTest_byteArrayTestResponse" name="MarshallTest_byteArrayTestResponse"/></operation>
+    <operation name="byteTest">
+      <input message="tns:MarshallTest_byteTest" name="MarshallTest_byteTest"/>
+      <output message="tns:MarshallTest_byteTestResponse" name="MarshallTest_byteTestResponse"/></operation>
+
+    <operation name="qnameTest">
+      <input message="tns:MarshallTest_qnameTest" name="MarshallTest_qnameTest"/>
+      <output message="tns:MarshallTest_qnameTestResponse" name="MarshallTest_qnameTestResponse"/></operation>
+
+    <operation name="base64BinaryTest">
+      <input message="tns:MarshallTest_base64BinaryTest" name="MarshallTest_base64BinaryTest"/>
+      <output message="tns:MarshallTest_base64BinaryTestResponse" name="MarshallTest_base64BinaryTestResponse"/></operation>
+
+    <operation name="hexBinaryTest">
+      <input message="tns:MarshallTest_hexBinaryTest" name="MarshallTest_hexBinaryTest"/>
+      <output message="tns:MarshallTest_hexBinaryTestResponse" name="MarshallTest_hexBinaryTestResponse"/></operation>
+
+    <operation name="qnameArrayTest">
+      <input message="tns:MarshallTest_qnameArrayTest" name="MarshallTest_qnameArrayTest"/>
+      <output message="tns:MarshallTest_qnameArrayTestResponse" name="MarshallTest_qnameArrayTestResponse"/></operation>
+
+    <operation name="calendarArrayTest">
+      <input message="tns:MarshallTest_calendarArrayTest" name= "MarshallTest_calendarArrayTest"/>
+      <output message="tns:MarshallTest_calendarArrayTestResponse" name="MarshallTest_calendarArrayTestResponse"/></operation>
+    <operation name="calendarTest">
+      <input message="tns:MarshallTest_calendarTest" name="MarshallTest_calendarTest"/>
+      <output message="tns:MarshallTest_calendarTestResponse" name="MarshallTest_calendarTestResponse"/></operation>
+    <operation name="doubleArrayTest">
+      <input message="tns:MarshallTest_doubleArrayTest" name="MarshallTest_doubleArrayTest"/>
+      <output message="tns:MarshallTest_doubleArrayTestResponse" name="MarshallTest_doubleArrayTestResponse"/></operation>
+    <operation name="doubleTest">
+      <input message="tns:MarshallTest_doubleTest" name="MarshallTest_doubleTest"/>
+      <output message="tns:MarshallTest_doubleTestResponse" name="MarshallTest_doubleTestResponse"/></operation>
+    <operation name="floatArrayTest">
+      <input message="tns:MarshallTest_floatArrayTest" name="MarshallTest_floatArrayTest"/>
+      <output message="tns:MarshallTest_floatArrayTestResponse" name="MarshallTest_floatArrayTestResponse"/></operation>
+    <operation name="floatTest">
+      <input message="tns:MarshallTest_floatTest" name="MarshallTest_floatTest"/>
+      <output message="tns:MarshallTest_floatTestResponse" name="MarshallTest_floatTestResponse"/></operation>
+    <operation name="intArrayTest">
+      <input message="tns:MarshallTest_intArrayTest" name="MarshallTest_intArrayTest"/>
+      <output message="tns:MarshallTest_intArrayTestResponse" name="MarshallTest_intArrayTestResponse"/></operation>
+    <operation name="intTest">   
+      <input message="tns:MarshallTest_intTest" name="MarshallTest_intTest"/>
+      <output message="tns:MarshallTest_intTestResponse" name="MarshallTest_intTestResponse"/></operation>
+    <operation name="javaBeanArrayTest">
+      <input message="tns:MarshallTest_javaBeanArrayTest" name="MarshallTest_javaBeanArrayTest"/>
+      <output message="tns:MarshallTest_javaBeanArrayTestResponse" name="MarshallTest_javaBeanArrayTestResponse"/></operation>
+    <operation name="javaBeanTest">
+      <input message="tns:MarshallTest_javaBeanTest" name="MarshallTest_javaBeanTest"/>
+      <output message="tns:MarshallTest_javaBeanTestResponse" name="MarshallTest_javaBeanTestResponse"/></operation>
+    <operation name="longArrayTest">
+      <input message="tns:MarshallTest_longArrayTest" name="MarshallTest_longArrayTest"/>
+      <output message="tns:MarshallTest_longArrayTestResponse" name="MarshallTest_longArrayTestResponse"/></operation>
+    <operation name="longTest">
+      <input message="tns:MarshallTest_longTest" name="MarshallTest_longTest"/>
+      <output message="tns:MarshallTest_longTestResponse" name="MarshallTest_longTestResponse"/></operation>
+    <operation name="shortArrayTest">
+      <input message="tns:MarshallTest_shortArrayTest" name="MarshallTest_shortArrayTest"/>
+      <output message="tns:MarshallTest_shortArrayTestResponse" name="MarshallTest_shortArrayTestResponse"/></operation>
+    <operation name="shortTest">
+      <input message="tns:MarshallTest_shortTest" name="MarshallTest_shortTest"/>
+      <output message="tns:MarshallTest_shortTestResponse" name="MarshallTest_shortTestResponse"/></operation>
+    <operation name="stringArrayTest">
+      <input message="tns:MarshallTest_stringArrayTest" name="MarshallTest_stringArrayTest"/>
+      <output message="tns:MarshallTest_stringArrayTestResponse" name="MarshallTest_stringArrayTestResponse"/></operation>
+    <operation name="stringTest">
+      <input message="tns:MarshallTest_stringTest" name="MarshallTest_stringTest"/>
+      <output message="tns:MarshallTest_stringTestResponse" name="MarshallTest_stringTestResponse"/></operation>
+    <operation name="voidTest">
+      <input message="tns:MarshallTest_voidTest" name="MarshallTest_voidTest"/>
+      <output message="tns:MarshallTest_voidTestResponse" name="MarshallTest_voidTestResponse"/></operation></portType>
+  <binding name="MarshallTestSoapBinding" type="tns:MarshallTest">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="bigDecimalArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="bigDecimalTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="bigIntegerArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="bigIntegerTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="booleanArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="booleanTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="byteArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="byteTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+
+    <operation name="qnameTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+
+    <operation name="base64BinaryTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+
+    <operation name="hexBinaryTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+
+    <operation name="qnameArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+
+    <operation name="calendarArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="calendarTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="doubleArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="doubleTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="floatArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="floatTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="intArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="intTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="javaBeanArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="javaBeanTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="longArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="longTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="shortArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="shortTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="stringArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="stringTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+    <operation name="voidTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"/></output>
+    </operation>
+  </binding>
+
+</definitions>

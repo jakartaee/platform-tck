@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<endpoints xmlns='http://java.sun.com/xml/ns/jax-ws/ri/runtime' version='2.0'>
+  <endpoint
+    name='RespectBindingFeatureTest2'
+    implementation='com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTestImpl2'
+    wsdl='WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl'
+    service='{http://respectbindingfeatureservice.org/wsdl}RespectBindingFeatureTestService'
+    port='{http://respectbindingfeatureservice.org/wsdl}RespectBindingFeatureTest2Port'
+    binding="http://schemas.xmlsoap.org/wsdl/soap/http"
+    url-pattern='/jaxws/RespectBindingFeatureTest2' /> 
+  <endpoint
+    name='RespectBindingFeatureTest21'
+    implementation='com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTestImpl21'
+    wsdl='WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl'
+    service='{http://respectbindingfeatureservice.org/wsdl}RespectBindingFeatureTestService'
+    port='{http://respectbindingfeatureservice.org/wsdl}RespectBindingFeatureTest21Port'
+    binding="http://schemas.xmlsoap.org/wsdl/soap/http"
+    url-pattern='/jaxws/RespectBindingFeatureTest21' /> 
+  <endpoint
+    name='RespectBindingFeatureTest3'
+    implementation='com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTestImpl3'
+    wsdl='WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl'
+    service='{http://respectbindingfeatureservice.org/wsdl}RespectBindingFeatureTestService'
+    port='{http://respectbindingfeatureservice.org/wsdl}RespectBindingFeatureTest3Port'
+    binding="http://schemas.xmlsoap.org/wsdl/soap/http"
+    url-pattern='/jaxws/RespectBindingFeatureTest3' /> 
+  <endpoint
+    name='RespectBindingFeatureTest31'
+    implementation='com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTestImpl31'
+    wsdl='WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl'
+    service='{http://respectbindingfeatureservice.org/wsdl}RespectBindingFeatureTestService'
+    port='{http://respectbindingfeatureservice.org/wsdl}RespectBindingFeatureTest31Port'
+    binding="http://schemas.xmlsoap.org/wsdl/soap/http"
+    url-pattern='/jaxws/RespectBindingFeatureTest31' /> 
+</endpoints>

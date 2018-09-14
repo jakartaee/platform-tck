@@ -1,0 +1,60 @@
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="WebSocket TCK package" default="package">
+	<!--
+    WebSocket TCK package target: package WebSocket TCK test application into web archive template,
+			which does not contain implementation specific servlet.
+
+    app.name:          specified in individual test's build.xml,
+                       is used for web archive name: ${app.name}_web.war
+    class.dir:         TCK's class directory.  Located at $TS_HOME/classes
+    web.war.classes:   specified in individual test's build.xml,
+                       contains all resource class used in the test
+    web.inf.files:     any additional files to be put to WEB-INF folder
+
+    -->
+		<import file="../../../../../../../bin/xml/ts.import.xml" />
+
+		<target name="compile">
+				<ts.javac includes="${pkg.dir}/**/*.java,
+                        com/sun/ts/tests/websocket/common/**/*.java" />
+		</target>
+
+		<target name="package">
+				<antcall target="package.war"/>
+				<antcall target="package.client.jar"/>
+		</target>
+
+		<target name="package.war" if="web.war.classes" >
+				<mkdir dir="${ts.home}/dist/${pkg.dir}" />
+				<ts.war	archivename="${app.name}" descriptor="web.xml" excludedfiles="${excludedfiles}" >
+						<zipfileset dir="${ts.home}/classes" includes="${web.war.classes}" prefix="WEB-INF/classes" />
+						<zipfileset dir="${ts.home}/src/${pkg.dir}" prefix="WEB-INF" includes="${web.inf.files}"/>
+				</ts.war>
+		</target>
+
+		<target name="package.client.jar" if="client.jar.classes" >
+				<mkdir dir="${ts.home}/dist/${pkg.dir}" />
+				<jar	destfile="${ts.home}/dist/${pkg.dir}/${app.name}_Client.jar">
+						<zipfileset dir="${ts.home}/classes" includes="${client.jar.classes}"/>
+				</jar>
+				<move file="${ts.home}/dist/${pkg.dir}/${app.name}_Client.jar" tofile="${ts.home}/dist/${pkg.dir}/${app.name}_Client_nodeploy.jar_client" />
+		</target>
+
+</project>

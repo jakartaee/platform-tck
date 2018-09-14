@@ -1,0 +1,70 @@
+#!/bin/ksh
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+if [ $# -ne 1 ]; then
+    echo "Usage: sweepjsonptojson <dir>."
+    exit 1
+else
+    dir=`pwd`/$1
+    if [ ! -d $dir ]; then
+        echo "Error: $dir is not a directory."
+        echo "Usage: sweepjsonptojson <dir>."
+        exit 1
+    else
+        echo "BEGIN sweep changes on directory [$dir]."
+        echo "`date`"
+	echo
+    fi
+fi
+echo "dir=[$dir]"
+cat << ENDSCRIPT >/tmp/script1
+#!/bin/ksh
+#
+echo "ENTERING SCRIPT ..."
+filelist=\$1
+echo "filelist=\$filelist"
+for item in \`cat \$filelist\`
+do
+dir=\`dirname \$item\`
+file=\`basename \$item\`
+echo "dir=\$dir"
+echo "file=\$file"
+pwd
+echo "cd [\$dir]."
+cd \$dir
+pwd
+sccs edit \$file
+ed \$file >/dev/null 2>&1 <<EOF
+g/jsonp/s//json/g
+g/JSONP_/s//JSON_/g
+w
+q
+EOF
+done
+echo "EXITING SCRIPT ..."
+exit 0
+ENDSCRIPT
+chmod 755 /tmp/script1
+findit -f "*java" "jsonp|JSONP_" $dir > /tmp/files
+cat /tmp/files
+#/tmp/script1 /tmp/files
+findit -f "*xml" "jsonp|JSONP_" $dir > /tmp/files
+cat /tmp/files
+#/tmp/script1 /tmp/files
+echo "DONE sweep changes on directory [$dir]."
+echo "`date`"
+exit 0

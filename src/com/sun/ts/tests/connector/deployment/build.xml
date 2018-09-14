@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="connector_deployment" basedir="." default="usage">
+<import file="../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <property name="rar.dir" value="com/sun/ts/tests/common/connector/whitebox"/>
+  <property name="rar.basename" value="whitebox-tx"/>
+
+
+  <target name="build.common.apps">
+    <ant dir="../../common/connector/whitebox" target="build"/>
+  </target>
+
+
+  <target name="package" depends="build.common.apps">
+
+    <ts.ejbjar descriptor="ejb_Deployment_ejb.xml" archivename="ejb_Deployment">
+      <fileset dir="${class.dir}" includes="com/sun/ts/tests/connector/util/DBSupport.class"/>
+    </ts.ejbjar>
+
+    <ts.clientjar descriptor="ejb_Deployment_client.xml" archivename="ejb_Deployment"
+                  mainclass="com.sun.ts.tests.connector.deployment.DeploymentClient"
+                  excludedfiles="com/sun/ts/tests/connector/deployment/DeploymentEJB.class"/>
+
+
+    <!-- copy our whitebox-tx.rar file to dist/... then modify
+           it so that it includes the sun-ra.xml in its META-INF dir.
+           After this, we can include the modified whitebox-tx into
+           our ejb_Deployment.ear file.
+     -->
+    <copy todir="${dist.dir}/${pkg.dir}">
+        <fileset dir="${dist.dir}/${rar.dir}" includes="${rar.basename}.rar"/>
+    </copy>
+
+    <jar destfile="${dist.dir}/${pkg.dir}/${rar.basename}.rar"
+         update="true">
+        <zipfileset dir="${ts.home}/src/${pkg.dir}"
+                    includes="sun-ra.xml" fullpath="META-INF/sun-ra.xml"/>
+    </jar>
+
+
+    <ts.ear archivename="ejb_Deployment" includedefaultfiles="true">
+      
+      <fileset dir="${dist.dir}/${pkg.dir}"
+               includes="ejb_Deployment_ejb.jar, ejb_Deployment_client.jar"/>
+      <fileset dir="${dist.dir}/${pkg.dir}" includes="${rar.basename}.rar"/>
+
+    </ts.ear>
+
+
+    <!-- now delete our .rar dir so that its not accidentally deployed -->
+    <delete failonerror="false">
+        <fileset dir="${dist.dir}/${pkg.dir}" includes="${rar.basename}.rar"/>
+    </delete>
+
+  </target>
+
+</project>

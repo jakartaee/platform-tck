@@ -1,0 +1,2782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/MarshallTestService.wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/MarshallTestServiceDefs.wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/types</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/types3</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/OneWayTestDefs.xsd</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/OneWayTestDefs.wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/types2</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/CompoundTestDefs.wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest</package-type>
+    <namespaceURI>http://marshalltestservice.org/NewSchemaDefs.wsdl</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.QNameArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:QNameArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>qnameArray_1</java-variable-name>
+      <xml-element-name>qnameArray_1</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnonymous</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types2:&gt;FooAnonymousType&gt;fooAnonymous</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>fooC</java-variable-name>
+      <xml-attribute-name>fooC</xml-attribute-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooA</java-variable-name>
+      <xml-element-name>fooA</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooB</java-variable-name>
+      <xml-element-name>fooB</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CalendarTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:CalendarTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>calendar</java-variable-name>
+      <xml-element-name>Calendar</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigIntegerArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BigIntegerArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>bigIntegerArray</java-variable-name>
+      <xml-element-name>BigIntegerArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBeanArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:JavaBeanArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>javaBeanArray</java-variable-name>
+      <xml-element-name>JavaBeanArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigDecimalArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BigDecimalArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>bigDecimalArray</java-variable-name>
+      <xml-element-name>BigDecimalArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStatusType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooStatusType</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>fooA</java-variable-name>
+      <xml-element-name>fooA</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigIntegerTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BigIntegerTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>bigInteger</java-variable-name>
+      <xml-element-name>BigInteger</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.DoubleArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:DoubleArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>doubleArray</java-variable-name>
+      <xml-element-name>doubleArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigDecimalTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BigDecimalTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>bigDecimal</java-variable-name>
+      <xml-element-name>BigDecimal</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CalendarArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:CalendarArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>calendarArray</java-variable-name>
+      <xml-element-name>CalendarArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStringResponse</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types2:&gt;FooStringResponse</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>varString</java-variable-name>
+      <xml-element-name>varString</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooVariousSchemaTypesListType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooVariousSchemaTypesListType</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>fooA</java-variable-name>
+      <xml-element-name>fooA</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooFaultException</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooFaultException</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>whyTheFault</java-variable-name>
+      <xml-element-name>WhyTheFault</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FloatArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:FloatArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>floatArray</java-variable-name>
+      <xml-element-name>floatArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BooleanArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BooleanArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>booleanArray</java-variable-name>
+      <xml-element-name>booleanArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IntArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:IntArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>intArray</java-variable-name>
+      <xml-element-name>intArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Document</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types3">typeNS:Document</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>ID</java-variable-name>
+      <xml-attribute-name>ID</xml-attribute-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BooleanArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BooleanArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>booleanArray</java-variable-name>
+      <xml-element-name>booleanArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBeanTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:JavaBeanTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>javaBean</java-variable-name>
+      <xml-element-name>JavaBean</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ByteArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:ByteArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>byteArray</java-variable-name>
+      <xml-element-name>byteArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IntArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:IntArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>intArray</java-variable-name>
+      <xml-element-name>intArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.QNameTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:QNameTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>qname_1</java-variable-name>
+      <xml-element-name>qname_1</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CalendarArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:CalendarArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>calendarArray</java-variable-name>
+      <xml-element-name>CalendarArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ShortTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:ShortTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>shortValue</java-variable-name>
+      <xml-element-name>shortValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BooleanTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BooleanTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>booleanValue</java-variable-name>
+      <xml-element-name>booleanValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnonymousType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooAnonymousType</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>fooAnonymous</java-variable-name>
+      <xml-element-name>fooAnonymous</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStringRequest</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types2:&gt;FooStringRequest</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>varString</java-variable-name>
+      <xml-element-name>varString</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BooleanTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BooleanTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>booleanValue</java-variable-name>
+      <xml-element-name>booleanValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.EchoPersonRequest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types3">typeNS:EchoPersonRequest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>person</java-variable-name>
+      <xml-element-name>person</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ByteTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:ByteTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>byteValue</java-variable-name>
+      <xml-element-name>byteValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.EchoPersonResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types3">typeNS:EchoPersonResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>person</java-variable-name>
+      <xml-element-name>person</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigDecimalArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BigDecimalArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>bigDecimalArray</java-variable-name>
+      <xml-element-name>BigDecimalArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBean2</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:JavaBean2</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>myBigDecimal</java-variable-name>
+      <xml-element-name>myBigDecimal</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myDouble</java-variable-name>
+      <xml-element-name>myDouble</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myLong</java-variable-name>
+      <xml-element-name>myLong</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myShort</java-variable-name>
+      <xml-element-name>myShort</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myInt</java-variable-name>
+      <xml-element-name>myInt</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myCalendar</java-variable-name>
+      <xml-element-name>myCalendar</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myByte</java-variable-name>
+      <xml-element-name>myByte</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myBoolean</java-variable-name>
+      <xml-element-name>myBoolean</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myString</java-variable-name>
+      <xml-element-name>myString</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myBigInteger</java-variable-name>
+      <xml-element-name>myBigInteger</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myFloat</java-variable-name>
+      <xml-element-name>myFloat</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnyURIType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooAnyURIType</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>fooAnyURIType</java-variable-name>
+      <xml-element-name>FooAnyURIType</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.VoidTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:VoidTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.LongTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:LongTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>longValue</java-variable-name>
+      <xml-element-name>longValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ShortArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:ShortArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>shortArray</java-variable-name>
+      <xml-element-name>shortArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigIntegerArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BigIntegerArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>bigIntegerArray</java-variable-name>
+      <xml-element-name>BigIntegerArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Base64BinaryTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:Base64BinaryTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>result</java-variable-name>
+      <xml-element-name>result</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IntTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:IntTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>intValue</java-variable-name>
+      <xml-element-name>intValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBeanTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:JavaBeanTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>javaBean</java-variable-name>
+      <xml-element-name>JavaBean</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.EchoEmployeeRequest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types3">typeNS:EchoEmployeeRequest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>employee</java-variable-name>
+      <xml-element-name>employee</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ShortTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:ShortTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>shortValue</java-variable-name>
+      <xml-element-name>shortValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ByteTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:ByteTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>byteValue</java-variable-name>
+      <xml-element-name>byteValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.StringArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:StringArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>stringArray</java-variable-name>
+      <xml-element-name>StringArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.DoubleTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:DoubleTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>doubleValue</java-variable-name>
+      <xml-element-name>doubleValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IncludedStringResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:IncludedStringResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>myString</java-variable-name>
+      <xml-element-name>myString</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Base64BinaryTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:Base64BinaryTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>base64Binary_1</java-variable-name>
+      <xml-element-name>base64Binary_1</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.EchoEmployeeResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types3">typeNS:EchoEmployeeResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>employee</java-variable-name>
+      <xml-element-name>employee</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigIntegerTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BigIntegerTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>bigInteger</java-variable-name>
+      <xml-element-name>BigInteger</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.LongArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:LongArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>longArray</java-variable-name>
+      <xml-element-name>longArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Person</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types3">typeNS:Person</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>name</java-variable-name>
+      <xml-element-name>name</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>age</java-variable-name>
+      <xml-element-name>age</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>sex</java-variable-name>
+      <xml-element-name>sex</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>adult</java-variable-name>
+      <xml-element-name>adult</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>id</java-variable-name>
+      <xml-element-name>id</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.QNameTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:QNameTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>result</java-variable-name>
+      <xml-element-name>result</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigDecimalTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:BigDecimalTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>bigDecimal</java-variable-name>
+      <xml-element-name>BigDecimal</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.VoidTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:VoidTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ShortArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:ShortArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>shortArray</java-variable-name>
+      <xml-element-name>shortArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBean</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:JavaBean</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>myBigDecimal</java-variable-name>
+      <xml-element-name>myBigDecimal</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myDouble</java-variable-name>
+      <xml-element-name>myDouble</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myLong</java-variable-name>
+      <xml-element-name>myLong</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myJavaBean</java-variable-name>
+      <xml-element-name>myJavaBean</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myShort</java-variable-name>
+      <xml-element-name>myShort</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myInt</java-variable-name>
+      <xml-element-name>myInt</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myCalendar</java-variable-name>
+      <xml-element-name>myCalendar</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myByte</java-variable-name>
+      <xml-element-name>myByte</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myBoolean</java-variable-name>
+      <xml-element-name>myBoolean</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myString</java-variable-name>
+      <xml-element-name>myString</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myBigInteger</java-variable-name>
+      <xml-element-name>myBigInteger</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myFloat</java-variable-name>
+      <xml-element-name>myFloat</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.LongTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:LongTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>longValue</java-variable-name>
+      <xml-element-name>longValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooVariousSchemaTypes</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooVariousSchemaTypes</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>fooA</java-variable-name>
+      <xml-element-name>fooA</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooB</java-variable-name>
+      <xml-element-name>fooB</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooC</java-variable-name>
+      <xml-element-name>fooC</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooD</java-variable-name>
+      <xml-element-name>fooD</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooE</java-variable-name>
+      <xml-element-name>fooE</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooF</java-variable-name>
+      <xml-element-name>fooF</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.QNameArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:QNameArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>result</java-variable-name>
+      <xml-element-name>result</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IncludedStringRequest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:IncludedStringRequest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>myString</java-variable-name>
+      <xml-element-name>myString</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBeanArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:JavaBeanArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>javaBeanArray</java-variable-name>
+      <xml-element-name>JavaBeanArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Employee</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types3">typeNS:Employee</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>person</java-variable-name>
+      <xml-element-name>person</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>salary</java-variable-name>
+      <xml-element-name>salary</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>id</java-variable-name>
+      <xml-element-name>id</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.HexBinaryTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:HexBinaryTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>result</java-variable-name>
+      <xml-element-name>result</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.DoubleArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:DoubleArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>doubleArray</java-variable-name>
+      <xml-element-name>doubleArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.StringTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:StringTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>stringValue</java-variable-name>
+      <xml-element-name>StringValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.StringArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:StringArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>stringArray</java-variable-name>
+      <xml-element-name>StringArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.StringTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:StringTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>stringValue</java-variable-name>
+      <xml-element-name>StringValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FloatTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:FloatTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>floatValue</java-variable-name>
+      <xml-element-name>floatValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.OneWayMessage</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/OneWayTestDefs.xsd:&gt;OneWayMessage</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>stringValue</java-variable-name>
+      <xml-element-name>stringValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CalendarTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:CalendarTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>calendar</java-variable-name>
+      <xml-element-name>Calendar</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IntTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:IntTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>intValue</java-variable-name>
+      <xml-element-name>intValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooType</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>fooA</java-variable-name>
+      <xml-element-name>fooA</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooB</java-variable-name>
+      <xml-element-name>fooB</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooC</java-variable-name>
+      <xml-element-name>fooC</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooD</java-variable-name>
+      <xml-element-name>fooD</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooE</java-variable-name>
+      <xml-element-name>fooE</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooF</java-variable-name>
+      <xml-element-name>fooF</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooG</java-variable-name>
+      <xml-element-name>fooG</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooH</java-variable-name>
+      <xml-element-name>fooH</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooI</java-variable-name>
+      <xml-element-name>fooI</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooJ</java-variable-name>
+      <xml-element-name>fooJ</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooK</java-variable-name>
+      <xml-element-name>fooK</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooM</java-variable-name>
+      <xml-element-name>fooM</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>fooN</java-variable-name>
+      <xml-element-name>fooN</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ByteArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:ByteArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>byteArray</java-variable-name>
+      <xml-element-name>byteArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.LongArrayTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:LongArrayTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>longArray</java-variable-name>
+      <xml-element-name>longArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.DoubleTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:DoubleTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>doubleValue</java-variable-name>
+      <xml-element-name>doubleValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FloatArrayTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:FloatArrayTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>floatArray</java-variable-name>
+      <xml-element-name>floatArray</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.HexBinaryTest</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:HexBinaryTest</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>hexBinary_1</java-variable-name>
+      <xml-element-name>hexBinary_1</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FloatTestResponse</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types">typeNS:FloatTestResponse</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>floatValue</java-variable-name>
+      <xml-element-name>floatValue</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>javax.xml.namespace.QName[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:QNameArrayTest&gt;qnameArray_1[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.math.BigInteger[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:BigIntegerArrayTestResponse&gt;BigIntegerArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBean[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:JavaBeanArrayTestResponse&gt;JavaBeanArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.math.BigDecimal[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:BigDecimalArrayTestResponse&gt;BigDecimalArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>double[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:DoubleArrayTest&gt;doubleArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.util.Calendar[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:CalendarArrayTestResponse&gt;CalendarArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooVariousSchemaTypes[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types2:FooVariousSchemaTypesListType&gt;fooA[1,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>float[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:FloatArrayTest&gt;floatArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>boolean[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:BooleanArrayTestResponse&gt;booleanArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>int[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:IntArrayTest&gt;intArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>boolean[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:BooleanArrayTest&gt;booleanArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>int[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:IntArrayTestResponse&gt;intArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.util.Calendar[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:CalendarArrayTest&gt;CalendarArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnonymous[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types2:FooAnonymousType&gt;fooAnonymous[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.math.BigDecimal[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:BigDecimalArrayTest&gt;BigDecimalArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>short[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:ShortArrayTest&gt;shortArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.math.BigInteger[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:BigIntegerArrayTest&gt;BigIntegerArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.lang.String[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:StringArrayTestResponse&gt;StringArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>long[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:LongArrayTestResponse&gt;longArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>short[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:ShortArrayTestResponse&gt;shortArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>javax.xml.namespace.QName[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:QNameArrayTestResponse&gt;result[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBean[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:JavaBeanArrayTest&gt;JavaBeanArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>double[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:DoubleArrayTestResponse&gt;doubleArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>java.lang.String[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:StringArrayTest&gt;StringArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>long[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:LongArrayTest&gt;longArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>float[]</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types:FloatArrayTestResponse&gt;floatArray[0,unbounded]</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStringEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooStringEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooByteEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooByteEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.WhyTheFault</java-type>
+    <anonymous-type-qname>http://marshalltestservice.org/types2:&gt;FooFaultException&gt;WhyTheFault</anonymous-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooDoubleEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooDoubleEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooFloatEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooFloatEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooLongEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooLongEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooIntEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooIntEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooDecimalEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooDecimalEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooShortEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooShortEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnnotationType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooAnnotationType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooIntegerEnumType</java-type>
+    <root-type-qname xmlns:typeNS="http://marshalltestservice.org/types2">typeNS:FooIntegerEnumType</root-type-qname>
+    <qname-scope>simpleType</qname-scope>
+  </java-xml-type-mapping>
+  <exception-mapping>
+    <exception-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooFaultException</exception-type>
+    <wsdl-message xmlns:exMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">exMsgNS:FooFault</wsdl-message>
+    <constructor-parameter-order>
+      <element-name>WhyTheFault</element-name>
+    </constructor-parameter-order>
+  </exception-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.MarshallTestService</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://marshalltestservice.org/MarshallTestService.wsdl">serviceNS:MarshallTestService</wsdl-service-name>
+    <port-mapping>
+      <port-name>MarshallTestPort1</port-name>
+      <java-port-name>MarshallTestPort1</java-port-name>
+    </port-mapping>
+    <port-mapping>
+      <port-name>MarshallTestPort2</port-name>
+      <java-port-name>MarshallTestPort2</java-port-name>
+    </port-mapping>
+    <port-mapping>
+      <port-name>MarshallTestPort3</port-name>
+      <java-port-name>MarshallTestPort3</java-port-name>
+    </port-mapping>
+    <port-mapping>
+      <port-name>MarshallTestPort4</port-name>
+      <java-port-name>MarshallTestPort4</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.MarshallTest</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">portTypeNS:MarshallTest</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">bindingNS:MarshallTestSoapBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>bigDecimalArrayTest</java-method-name>
+      <wsdl-operation>bigDecimalArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigDecimalArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_bigDecimalArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigDecimalArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_bigDecimalArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>bigDecimalTest</java-method-name>
+      <wsdl-operation>bigDecimalTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigDecimalTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_bigDecimalTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigDecimalTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_bigDecimalTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>bigIntegerArrayTest</java-method-name>
+      <wsdl-operation>bigIntegerArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigIntegerArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_bigIntegerArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigIntegerArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_bigIntegerArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>bigIntegerTest</java-method-name>
+      <wsdl-operation>bigIntegerTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigIntegerTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_bigIntegerTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BigIntegerTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_bigIntegerTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>booleanArrayTest</java-method-name>
+      <wsdl-operation>booleanArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BooleanArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_booleanArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BooleanArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_booleanArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>booleanTest</java-method-name>
+      <wsdl-operation>booleanTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BooleanTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_booleanTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.BooleanTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_booleanTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>byteArrayTest</java-method-name>
+      <wsdl-operation>byteArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ByteArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_byteArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ByteArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_byteArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>byteTest</java-method-name>
+      <wsdl-operation>byteTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ByteTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_byteTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ByteTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_byteTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>calendarArrayTest</java-method-name>
+      <wsdl-operation>calendarArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CalendarArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_calendarArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CalendarArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_calendarArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>qnameTest</java-method-name>
+      <wsdl-operation>qnameTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.QNameTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_qnameTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.QNameTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_qnameTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>base64BinaryTest</java-method-name>
+      <wsdl-operation>base64BinaryTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Base64BinaryTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_base64BinaryTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Base64BinaryTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_base64BinaryTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>hexBinaryTest</java-method-name>
+      <wsdl-operation>hexBinaryTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.HexBinaryTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_hexBinaryTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.HexBinaryTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_hexBinaryTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>qnameArrayTest</java-method-name>
+      <wsdl-operation>qnameArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.QNameArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_qnameArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.QNameArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_qnameArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>calendarTest</java-method-name>
+      <wsdl-operation>calendarTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CalendarTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_calendarTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CalendarTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_calendarTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>doubleArrayTest</java-method-name>
+      <wsdl-operation>doubleArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.DoubleArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_doubleArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.DoubleArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_doubleArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>doubleTest</java-method-name>
+      <wsdl-operation>doubleTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.DoubleTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_doubleTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.DoubleTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_doubleTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>floatArrayTest</java-method-name>
+      <wsdl-operation>floatArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FloatArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_floatArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FloatArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_floatArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>floatTest</java-method-name>
+      <wsdl-operation>floatTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FloatTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_floatTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FloatTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_floatTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>intArrayTest</java-method-name>
+      <wsdl-operation>intArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IntArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_intArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IntArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_intArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>intTest</java-method-name>
+      <wsdl-operation>intTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IntTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_intTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IntTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_intTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>javaBeanArrayTest</java-method-name>
+      <wsdl-operation>javaBeanArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBeanArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_javaBeanArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBeanArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_javaBeanArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>javaBeanTest</java-method-name>
+      <wsdl-operation>javaBeanTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBeanTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_javaBeanTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.JavaBeanTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_javaBeanTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>longArrayTest</java-method-name>
+      <wsdl-operation>longArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.LongArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_longArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.LongArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_longArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>longTest</java-method-name>
+      <wsdl-operation>longTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.LongTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_longTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.LongTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_longTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>shortArrayTest</java-method-name>
+      <wsdl-operation>shortArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ShortArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_shortArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ShortArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_shortArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>shortTest</java-method-name>
+      <wsdl-operation>shortTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ShortTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_shortTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.ShortTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_shortTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>stringArrayTest</java-method-name>
+      <wsdl-operation>stringArrayTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.StringArrayTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_stringArrayTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.StringArrayTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_stringArrayTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>stringTest</java-method-name>
+      <wsdl-operation>stringTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.StringTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_stringTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.StringTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_stringTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>voidTest</java-method-name>
+      <wsdl-operation>voidTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.VoidTest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_voidTest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.VoidTestResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl">wsdlMsgNS:MarshallTest_voidTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.NewSchemaTest</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">portTypeNS:NewSchemaTest</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">bindingNS:NewSchemaTestSoapBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoIncludedStringTest</java-method-name>
+      <wsdl-operation>echoIncludedStringTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IncludedStringRequest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIncludedStringRequest</wsdl-message>
+          <wsdl-message-part-name>params</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.IncludedStringResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIncludedStringResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>sendFoo1Test</java-method-name>
+      <wsdl-operation>sendFoo1Test</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:Foo1Request</wsdl-message>
+          <wsdl-message-part-name>foo1Request</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStatusType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:Foo1Response</wsdl-message>
+        <wsdl-message-part-name>foo1Response</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>sendFoo2Test</java-method-name>
+      <wsdl-operation>sendFoo2Test</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:Foo2Request</wsdl-message>
+          <wsdl-message-part-name>foo2Request</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:Foo2Response</wsdl-message>
+        <wsdl-message-part-name>foo2Response</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoNormalizedStringTypeTest</java-method-name>
+      <wsdl-operation>echoNormalizedStringTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooITypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooITypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooITypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooITypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoVariousSchemaTypesTest</java-method-name>
+      <wsdl-operation>echoVariousSchemaTypesTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooVariousSchemaTypes</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooVariousSchemaTypesRequest</wsdl-message>
+          <wsdl-message-part-name>fooVariousSchemaTypesRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooVariousSchemaTypes</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooVariousSchemaTypesResponse</wsdl-message>
+        <wsdl-message-part-name>fooVariousSchemaTypesResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoVariousSchemaTypesListTypeTest</java-method-name>
+      <wsdl-operation>echoVariousSchemaTypesListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooVariousSchemaTypesListType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooVariousSchemaTypesListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooVariousSchemaTypesListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooVariousSchemaTypesListType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooVariousSchemaTypesListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooVariousSchemaTypesListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoIntegerRangeTypeTest</java-method-name>
+      <wsdl-operation>echoIntegerRangeTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntegerRangeTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooIntegerRangeTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigInteger</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntegerRangeTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooIntegerRangeTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoStringListTypeTest</java-method-name>
+      <wsdl-operation>echoStringListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooStringListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooStringListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooStringListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooStringListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFloatListTypeTest</java-method-name>
+      <wsdl-operation>echoFloatListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>float[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooFloatListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooFloatListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>float[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooFloatListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooFloatListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoIntListTypeTest</java-method-name>
+      <wsdl-operation>echoIntListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>int[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooIntListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>int[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooIntListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoDecimalListTypeTest</java-method-name>
+      <wsdl-operation>echoDecimalListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigDecimal[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDecimalListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooDecimalListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigDecimal[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDecimalListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooDecimalListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoDoubleListTypeTest</java-method-name>
+      <wsdl-operation>echoDoubleListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>double[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDoubleListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooDoubleListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>double[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDoubleListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooDoubleListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoIntegerListTypeTest</java-method-name>
+      <wsdl-operation>echoIntegerListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntegerListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooIntegerListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigInteger[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntegerListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooIntegerListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoLongListTypeTest</java-method-name>
+      <wsdl-operation>echoLongListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>long[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooLongListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooLongListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>long[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooLongListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooLongListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoShortListTypeTest</java-method-name>
+      <wsdl-operation>echoShortListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>short[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooShortListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooShortListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>short[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooShortListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooShortListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoByteListTypeTest</java-method-name>
+      <wsdl-operation>echoByteListTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>byte[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooByteListTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooByteListTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>byte[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooByteListTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooByteListTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoStringEnumTypeTest</java-method-name>
+      <wsdl-operation>echoStringEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStringEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooStringEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooStringEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStringEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooStringEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooStringEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoByteEnumTypeTest</java-method-name>
+      <wsdl-operation>echoByteEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooByteEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooByteEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooByteEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooByteEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooByteEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooByteEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoShortEnumTypeTest</java-method-name>
+      <wsdl-operation>echoShortEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooShortEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooShortEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooShortEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooShortEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooShortEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooShortEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoIntegerEnumTypeTest</java-method-name>
+      <wsdl-operation>echoIntegerEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooIntegerEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntegerEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooIntegerEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooIntegerEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntegerEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooIntegerEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoIntEnumTypeTest</java-method-name>
+      <wsdl-operation>echoIntEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooIntEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooIntEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooIntEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooIntEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoLongEnumTypeTest</java-method-name>
+      <wsdl-operation>echoLongEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooLongEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooLongEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooLongEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooLongEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooLongEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooLongEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoDecimalEnumTypeTest</java-method-name>
+      <wsdl-operation>echoDecimalEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooDecimalEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDecimalEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooDecimalEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooDecimalEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDecimalEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooDecimalEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFloatEnumTypeTest</java-method-name>
+      <wsdl-operation>echoFloatEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooFloatEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooFloatEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooFloatEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooFloatEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooFloatEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooFloatEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoDoubleEnumTypeTest</java-method-name>
+      <wsdl-operation>echoDoubleEnumTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooDoubleEnumType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDoubleEnumTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooDoubleEnumTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooDoubleEnumType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDoubleEnumTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooDoubleEnumTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoAnonymousTypeTest</java-method-name>
+      <wsdl-operation>echoAnonymousTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnonymousType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooAnonymousTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooAnonymousTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnonymousType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooAnonymousTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooAnonymousTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoAnnotationTypeTest</java-method-name>
+      <wsdl-operation>echoAnnotationTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnnotationType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooAnnotationTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooAnnotationTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnnotationType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooAnnotationTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooAnnotationTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoAnySimpleTypeTest</java-method-name>
+      <wsdl-operation>echoAnySimpleTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooAnySimpleTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooAnySimpleTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooAnySimpleTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooAnySimpleTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoAnyURITypeTest</java-method-name>
+      <wsdl-operation>echoAnyURITypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnyURIType</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooAnyURITypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooAnyURITypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooAnyURIType</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooAnyURITypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooAnyURITypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>fooFaultTest</java-method-name>
+      <wsdl-operation>fooFaultTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStringRequest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooStringRequest</wsdl-message>
+          <wsdl-message-part-name>fooStringRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.FooStringResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooStringResponse</wsdl-message>
+        <wsdl-message-part-name>fooStringResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoLanguageTypeTest</java-method-name>
+      <wsdl-operation>echoLanguageTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralLanguageMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralLanguageMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoTokenTypeTest</java-method-name>
+      <wsdl-operation>echoTokenTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralTokenMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralTokenMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoNameTypeTest</java-method-name>
+      <wsdl-operation>echoNameTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralNameMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralNameMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoNCNameTypeTest</java-method-name>
+      <wsdl-operation>echoNCNameTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralNCNameMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralNCNameMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoIDTypeTest</java-method-name>
+      <wsdl-operation>echoIDTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralIDMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:LiteralIDMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoUnsignedShortTest</java-method-name>
+      <wsdl-operation>echoUnsignedShortTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>int</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:UnsignedShortMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>int</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:UnsignedShortMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoUnsignedIntTest</java-method-name>
+      <wsdl-operation>echoUnsignedIntTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>long</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:UnsignedIntMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>long</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:UnsignedIntMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoUnsignedByteTest</java-method-name>
+      <wsdl-operation>echoUnsignedByteTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>short</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:UnsignedByteMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>short</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:UnsignedByteMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoUnsignedLongTest</java-method-name>
+      <wsdl-operation>echoUnsignedLongTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:UnsignedLongMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigInteger</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:UnsignedLongMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoNonPositiveIntegerTest</java-method-name>
+      <wsdl-operation>echoNonPositiveIntegerTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:NonPositiveIntegerMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigInteger</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:NonPositiveIntegerMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoNonNegativeIntegerTest</java-method-name>
+      <wsdl-operation>echoNonNegativeIntegerTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:NonNegativeIntegerMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigInteger</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:NonNegativeIntegerMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoPositiveIntegerTest</java-method-name>
+      <wsdl-operation>echoPositiveIntegerTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:PositiveIntegerMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigInteger</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:PositiveIntegerMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoNegativeIntegerTest</java-method-name>
+      <wsdl-operation>echoNegativeIntegerTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:NegativeIntegerMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigInteger</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:NegativeIntegerMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoTimeTest</java-method-name>
+      <wsdl-operation>echoTimeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.util.Calendar</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:TimeMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.util.Calendar</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:TimeMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoDateTest</java-method-name>
+      <wsdl-operation>echoDateTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.util.Calendar</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:DateMessageRequest</wsdl-message>
+          <wsdl-message-part-name>body</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.util.Calendar</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:DateMessageResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooStringTypeTest</java-method-name>
+      <wsdl-operation>echoFooStringTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooStringTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooStringTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooStringTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooStringTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooIntegerTypeTest</java-method-name>
+      <wsdl-operation>echoFooIntegerTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigInteger</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntegerTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooIntegerTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigInteger</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntegerTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooIntegerTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooIntTypeTest</java-method-name>
+      <wsdl-operation>echoFooIntTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>int</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooIntTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>int</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooIntTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooIntTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooLongTypeTest</java-method-name>
+      <wsdl-operation>echoFooLongTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>long</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooLongTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooLongTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>long</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooLongTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooLongTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooShortTypeTest</java-method-name>
+      <wsdl-operation>echoFooShortTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>short</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooShortTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooShortTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>short</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooShortTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooShortTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooDecimalTypeTest</java-method-name>
+      <wsdl-operation>echoFooDecimalTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.math.BigDecimal</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDecimalTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooDecimalTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.math.BigDecimal</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDecimalTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooDecimalTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooFloatTypeTest</java-method-name>
+      <wsdl-operation>echoFooFloatTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>float</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooFloatTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooFloatTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>float</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooFloatTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooFloatTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooDoubleTypeTest</java-method-name>
+      <wsdl-operation>echoFooDoubleTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>double</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDoubleTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooDoubleTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>double</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooDoubleTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooDoubleTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooBooleanTypeTest</java-method-name>
+      <wsdl-operation>echoFooBooleanTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>boolean</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooBooleanTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooBooleanTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooBooleanTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooBooleanTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooByteTypeTest</java-method-name>
+      <wsdl-operation>echoFooByteTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>byte</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooByteTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooByteTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>byte</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooByteTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooByteTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoFooQNameTypeTest</java-method-name>
+      <wsdl-operation>echoFooQNameTypeTest</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>javax.xml.namespace.QName</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooQNameTypeRequest</wsdl-message>
+          <wsdl-message-part-name>fooQNameTypeRequest</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>javax.xml.namespace.QName</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/NewSchemaDefs.wsdl">wsdlMsgNS:FooQNameTypeResponse</wsdl-message>
+        <wsdl-message-part-name>fooQNameTypeResponse</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CompoundTest</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://marshalltestservice.org/CompoundTestDefs.wsdl">portTypeNS:CompoundTest</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://marshalltestservice.org/CompoundTestDefs.wsdl">bindingNS:CompoundTestBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoEmployee</java-method-name>
+      <wsdl-operation>echoEmployee</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.EchoEmployeeRequest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/CompoundTestDefs.wsdl">wsdlMsgNS:echoEmployeeRequest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.EchoEmployeeResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/CompoundTestDefs.wsdl">wsdlMsgNS:echoEmployeeResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoPerson</java-method-name>
+      <wsdl-operation>echoPerson</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.EchoPersonRequest</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/CompoundTestDefs.wsdl">wsdlMsgNS:echoPersonRequest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.EchoPersonResponse</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/CompoundTestDefs.wsdl">wsdlMsgNS:echoPersonResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoDocument</java-method-name>
+      <wsdl-operation>echoDocument</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Document</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/CompoundTestDefs.wsdl">wsdlMsgNS:echoDocumentRequest</wsdl-message>
+          <wsdl-message-part-name>parameters</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.Document</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/CompoundTestDefs.wsdl">wsdlMsgNS:echoDocumentResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.OneWayTest</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://marshalltestservice.org/OneWayTestDefs.wsdl">portTypeNS:OneWayTest</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://marshalltestservice.org/OneWayTestDefs.wsdl">bindingNS:OneWayTestSoapBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>oneWayMethod</java-method-name>
+      <wsdl-operation>oneWayMethod</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.OneWayMessage</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://marshalltestservice.org/OneWayTestDefs.wsdl">wsdlMsgNS:OneWayRequest</wsdl-message>
+          <wsdl-message-part-name>name</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

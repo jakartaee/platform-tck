@@ -1,0 +1,100 @@
+<csiv2-log>
+  <assertion name="ew_ssl_sslr_upn_ccid_wb_sb_testid7a">
+    <invocation>
+      <ejb-home>
+        <client>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <anonymous/>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=localhost, OU=GlassFish, O=Oracle Corporation, L=Santa Clara, ST=California, C=US</principal>
+            </transport-client-principals>
+            <server>
+              <invocation-principal>ANONYMOUS</invocation-principal>
+            </server>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+          <reply>
+            <create-exception>
+              (expected result)
+            </create-exception>
+          </reply>
+        </client>
+      </ejb-home>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <anonymous/>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=localhost, OU=GlassFish, O=Oracle Corporation, L=Santa Clara, ST=California, C=US</principal>
+            </transport-client-principals>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+      <ejb-remote>
+        <client>
+          <server-interceptor>
+            <operation>invoke</operation>
+            <req-svc-context present="true">
+             <establish-context>
+               <client-context-id>0</client-context-id>
+               <identity-token>
+                 <anonymous/>
+               </identity-token>
+               <client-auth-token></client-auth-token>
+               <authz-token-count>0</authz-token-count>
+             </establish-context>
+            </req-svc-context>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=localhost, OU=GlassFish, O=Oracle Corporation, L=Santa Clara, ST=California, C=US</principal>
+            </transport-client-principals>
+            <server>
+              <invocation-principal>ANONYMOUS</invocation-principal>
+            </server>
+            <reply-svc-context present="true">
+             <complete-establish-context>
+               <client-context-id>0</client-context-id>
+               <context-stateful>false</context-stateful>
+               <final-context-token></final-context-token>
+             </complete-establish-context>
+            </reply-svc-context>
+          </server-interceptor>
+          <reply>
+            <no-exception/>
+          </reply>
+        </client>
+      </ejb-remote>
+    </invocation>
+  </assertion>
+</csiv2-log>

@@ -1,0 +1,2519 @@
+<?xml version = "1.0" encoding = "US-ASCII"?>
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<spec>
+	<next-available-id>283</next-available-id>
+	<previous-id>1</previous-id>
+	<technology>J2EE</technology>
+	<id>Java 2 Platform Enterprise Edition, v. 1.4</id>
+	<name>Java 2 Platform Enterprise Edition, v. 1.4 </name>
+	<version>Proposed Final Draft</version>
+	<location-names>
+		<chapters>
+			<chapter id = "3" name = "Security">
+				<sections>
+					<section id = "1" name = "Introduction"/>
+					<section id = "2" name = "A Simple Example"/>
+					<section id = "3" name = "Security Architecture"/>
+					<section id = "3.1" name = "Goals"/>
+					<section id = "3.2" name = "Non Goals"/>
+					<section id = "3.3" name = "Terminology"/>
+					<section id = "3.4" name = "Container Based Security"/>
+					<section id = "3.4.1" name = "Declarative Security"/>
+					<section id = "3.4.2" name = "Programmatic Security"/>
+					<section id = "3.5" name = "Distributed Security"/>
+					<section id = "3.6" name = "Authorization Model"/>
+					<section id = "3.6.1" name = "Role Mapping"/>
+					<section id = "3.7" name = "HTTP Login Gateways"/>
+					<section id = "3.8" name = "User Authentication"/>
+					<section id = "3.8.1" name = "Authentication by Web Clients"/>
+					<section id = "3.8.2" name = "Web Single Signon"/>
+					<section id = "3.8.3" name = "Login Session"/>
+					<section id = "3.8.4" name = "Authentication by Application Clients"/>
+					<section id = "3.9" name = "Lazy Authentication"/>
+					<section id = "4" name = "User Authentication Requirements"/>
+					<section id = "4.1" name = "Login Sessions"/>
+					<section id = "4.2" name = "Required Login Mechanisms"/>
+					<section id = "4.2.1" name = "HTTP Basic Authentication"/>
+					<section id = "4.2.2" name = "SSL Mutual Authentication"/>
+					<section id = "4.2.3" name = "Form-Based Login"/>
+					<section id = "4.3" name = "Unauthenticated Users"/>
+					<section id = "4.4" name = "Application Client User Authentication"/>
+					<section id = "4.5" name = "Resource Authentication Requirements"/>
+					<section id = "5" name = "Authorization Requirements"/>
+					<section id = "5.1" name = "Code Authorization"/>
+					<section id = "5.2" name = "Caller Authorization"/>
+					<section id = "5.3" name = "Propagated Caller Identities"/>
+					<section id = "5.4" name = "Run As Identities"/>
+					<section id = "6" name = "Deployment Requirements"/>
+					<section id = "7" name = "Future Directions"/>
+					<section id = "7.1" name = "Auditing"/>
+					<section id = "7.2" name = "Instance-based Access Control"/>
+					<section id = "7.3" name = "User Registration"/>
+				</sections>
+			</chapter>
+			<chapter id = "4" name = "Transaction Management">
+				<sections>
+					<section id = "1" name = "Overview"/>
+					<section id = "2" name = "Requirements"/>
+					<section id = "2.1" name = "Web Components"/>
+					<section id = "2.1.1" name = "Transaction Requirements"/>
+					<section id = "2.1.2" name = "Transaction Non-Requirements"/>
+					<section id = "2.2" name = "Transactions in Web Component Life Cycles"/>
+					<section id = "2.3" name = "Transactions and Threads"/>
+					<section id = "2.4" name = "Enterprise JavaBeans Components"/>
+					<section id = "2.5" name = "Application Clients"/>
+					<section id = "2.6" name = "Applet Clients"/>
+					<section id = "2.7" name = "Transactional JDBC Technology Support"/>
+					<section id = "2.8" name = "Transactional JMS Support"/>
+					<section id = "2.9" name = "Transactional Resource Adapter (Connector) Support"/>
+					<section id = "3" name = "Transaction Interoperability"/>
+					<section id = "3.1" name = "Multiple J2EE Platform Interoperability"/>
+					<section id = "3.2" name = "Support for Transactional Resource Managers"/>
+					<section id = "4" name = "Local Transaction Optimization"/>
+					<section id = "4.1" name = "Requirements"/>
+					<section id = "4.2" name = "A Possible Design"/>
+					<section id = "5" name = "Connection Sharing"/>
+					<section id = "6" name = "JDBC and JMS Deployment Issues"/>
+					<section id = "7" name = "Two-phase Commit Support"/>
+					<section id = "8" name = "System Administration Tools"/>
+				</sections>
+			</chapter>
+			<chapter id = "5" name = "Naming">
+				<sections>
+					<section id = "1" name = "Overview"/>
+					<section id = "1.1" name = "Chapter Organization"/>
+					<section id = "1.2" name = "Required Access to the JNDI Naming Environment"/>
+					<section id = "2" name = "Java Naming and Directory Interface (JNDI) Naming Context"/>
+					<section id = "2.1" name = "Application Component Provider's Responsibilities"/>
+					<section id = "2.1.1" name = "Access to application component's environment"/>
+					<section id = "2.1.2" name = "Declaration of environment entries"/>
+					<section id = "2.2" name = "Application Assembler's Responsibilities"/>
+					<section id = "2.3" name = "Deployer's Responsibilities"/>
+					<section id = "2.4" name = "J2EE Product Provider's Responsibilities"/>
+					<section id = "3" name = "Enterprise JavaBeans (EJB) References"/>
+					<section id = "3.1" name = "Application Component Provider's Responsibilities"/>
+					<section id = "3.1.1" name = "Programming Interfaces for EJB References"/>
+					<section id = "3.1.2" name = "Declaration of EJB References"/>
+					<section id = "3.2" name = "Application Assembler's Responsibilities"/>
+					<section id = "3.3" name = "Deployer's Responsibilities"/>
+					<section id = "3.4" name = "J2EE Product Provider's Responsibilities"/>
+					<section id = "4" name = "Resource Manager Connection Factory References"/>
+					<section id = "4.1" name = "Application Component Provider's Responsibilities"/>
+					<section id = "4.1.1" name = "Programming Interfaces for Resource Manager Connection Factory References"/>
+					<section id = "4.1.2" name = "Declaration of Resource Manager Connection Factory References in Deployment Descriptor"/>
+					<section id = "4.1.3" name = "Standard Resource Manager Connection Factory Types"/>
+					<section id = "4.2" name = "Deployer's Responsibilities"/>
+					<section id = "4.3" name = "J2EE Product Provider's Responsibilities"/>
+					<section id = "4.4" name = "System Administrator's Responsibilities"/>
+					<section id = "5" name = "Resource Environment References"/>
+					<section id = "5.1" name = "Application Component Provider's Responsibilities"/>
+					<section id = "5.1.1" name = "Resource Environment Reference Programming Interfaces"/>
+					<section id = "5.1.2" name = "Declaration of Resource Environment References in Deployment Descriptors"/>
+					<section id = "5.2" name = "Deployer's Responsibilities"/>
+					<section id = "5.3" name = "J2EE Product Provider's Responsibilities"/>
+					<section id = "6" name = "User Transaction References"/>
+					<section id = "6.1" name = "Application Component Provider's Responsibilities"/>
+					<section id = "6.2" name = "Deployer's Responsibilities"/>
+					<section id = "6.3" name = "J2EE Product Provider's Responsibilities"/>
+					<section id = "6.4" name = "System Administrator's Responsibilities"/>
+					<section id = "7" name = "ORB References"/>
+					<section id = "7.1" name = "Application Component Provider's Responsibilities"/>
+					<section id = "7.2" name = "Deployer's Responsibilities"/>
+					<section id = "7.3" name = "J2EE Product Provider's Responsibilities"/>
+					<section id = "7.4" name = "System Administrator's Responsibilities"/>
+				</sections>
+			</chapter>
+			<chapter id = "6" name = "Application Programming Interface">
+				<sections>
+					<section id = "1" name = "Required APIs"/>
+					<section id = "1.1" name = "Java Compatible APIs"/>
+					<section id = "1.2" name = "Java Optional Packages"/>
+					<section id = "2" name = "Java Platform, Standard Edition (J2SE) Requirements"/>
+					<section id = "2.1" name = "Programming Restrictions"/>
+					<section id = "2.2" name = "The J2EE Security Permissions Set"/>
+					<section id = "2.3" name = "Listing of the J2EE Security Permissions Set"/>
+					<section id = "2.4" name = "Additional Requirements"/>
+					<section id = "2.4.1" name = "Networking"/>
+					<section id = "2.4.2" name = "AWT"/>
+					<section id = "2.4.3" name = "JDBC API"/>
+					<section id = "2.4.4" name = "Java IDL"/>
+					<section id = "2.4.5" name = "RMI-JRMP"/>
+					<section id = "2.4.6" name = "RMI-IIOP"/>
+					<section id = "2.4.7" name = "JNDI"/>
+					<section id = "2.4.8" name = "Context Class Loader"/>
+					<section id = "2.4.9" name = "JAXP API"/>
+					<section id = "2.4.10" name = "Java Authentication and Authorization Services (JAAS) Requirements"/>
+					<section id = "2.4.11" name = "Logging API Requirements"/>
+					<section id = "2.4.12" name = "Preferences API Requirements"/>
+					<section id = "3" name = "Enterprise JavaBeans (EJB) 2.1 Requirements"/>
+					<section id = "4" name = "Servlet 2.4 Requirements"/>
+					<section id = "5" name = "Java Server Pages (JSP) 1.3 Requirements"/>
+					<section id = "6" name = "Java Message Service (JMS) 1.1 Requirements"/>
+					<section id = "7" name = "Java Transaction API (JTA) 1.0 Requirements"/>
+					<section id = "8" name = "JavaMail 1.3 Requirements"/>
+					<section id = "9" name = "JavaBeans Activation Framework 1.0 Requirements"/>
+					<section id = "10" name = "Java API for XML Parsing (JAXP) 1.2 Requirements"/>
+					<section id = "11" name = "J2EE Connector Architecture 1.5 Requirements"/>
+					<section id = "12" name = "Web Services for J2EE 1.0 Requirements"/>
+					<section id = "13" name = "Java API for XML-based RPC (JAX-RPC) 1.0 Requirements"/>
+					<section id = "14" name = "Java API for XML Registeries (JAXR) 1.0 Requirements"/>
+					<section id = "15" name = "Java 2 Platform, Enterprise Edition Management API 1.0 Requirements"/>
+					<section id = "16" name = "Java Management Extensions (JMX) 1.1 Requirements"/>
+					<section id = "17" name = "Java 2 Platform, Enterprise Edition Deployment API 1.1 Requirements"/>
+					<section id = "18" name = "Java Authorization Service Provider Contract for Containers (JACC) 1.0 Requirements"/>
+				</sections>
+			</chapter>
+			<chapter id = "7" name = "Interoperability">
+				<sections>
+					<section id = "1" name = "Introduction to Interoperability"/>
+					<section id = "2" name = "Interoperability Protocols"/>
+					<section id = "2.1" name = "Internet and Web Protocols"/>
+					<section id = "2.2" name = "OMG Protocols"/>
+					<section id = "2.3" name = "Java Technology Protocols"/>
+					<section id = "2.4" name = "Data Formats"/>
+				</sections>
+			</chapter>
+			<chapter id = "8" name = "Application Assembly and Deployment">
+				<sections>
+					<section id = "1" name = "Application Deployment Life Cycle"/>
+					<section id = "1.1" name = "Component Creation"/>
+					<section id = "1.2" name = "Application Assembly"/>
+					<section id = "1.3" name = "Deployment"/>
+					<section id = "2" name = "Optional Package Support"/>
+					<section id = "3" name = "Application Assembly"/>
+					<section id = "3.1" name = "Assembling a J2EE Application"/>
+					<section id = "3.2" name = "Adding and Removing Modules"/>
+					<section id = "4" name = "Deployment"/>
+					<section id = "4.1" name = "Deploying a Stand-Alone J2EE Module"/>
+					<section id = "4.2" name = "Deploying a J2EE Application"/>
+					<section id = "4.3" name = "Deploying an Optional Package"/>
+					<section id = "5" name = "Deployment Descriptor Extensibility"/>
+					<section id = "6" name = "J2EE Application XML Schema"/>
+					<section id = "7" name = "Common J2EE XML Schema Definitions"/>
+				</sections>
+			</chapter>
+			<chapter id = "9" name = "Application Clients">
+				<sections>
+					<section id = "1" name = "Overview"/>
+					<section id = "2" name = "Security"/>
+					<section id = "3" name = "Transactions"/>
+					<section id = "4" name = "Naming"/>
+					<section id = "5" name = "Application Programming Interfaces"/>
+					<section id = "6" name = "Packaging and Deployment"/>
+					<section id = "7" name = "J2EE Application Client XML Schema"/>
+				</sections>
+			</chapter>
+			<chapter id = "A" name = "Previous Version DTDs">
+				<sections>
+					<section id = "1" name = "J2EE:application 1.3 XML DTD"/>
+					<section id = "2" name = "J2EE:application 1.2 XML DTD"/>
+					<section id = "3" name = "J2EE:application-client 1.3 XML DTD"/>
+					<section id = "4" name = "J2EE:application-client 1.2 XML DTD"/>
+				</sections>
+			</chapter>
+		</chapters>
+	</location-names>
+	<assertions>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:1</id>
+			<description>          J2EE application clients are required to be able to define their
+          own CORBA services directly, using the RMI-IIOP APIs.
+        
+			</description>      
+			<keywords>
+				<keyword>RMI-IIOP</keyword>      
+			</keywords>      
+			<location chapter = "2" section = "6.4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:2</id>
+			<description>          J2EE application clients are required to be allowed to use
+          JavaIDL directly to present CORBA services themselves.
+        
+			</description>      
+			<keywords>
+				<keyword>JavaIDL</keyword>      
+			</keywords>      
+			<location chapter = "2" section = "6.5"/>    
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:16</id>
+			<description> The source of security attributes may vary across implementations of the
+J2EE platform. Security attributes may be transmitted in the calling principal's
+credential or in the security context. In other cases, security attributes may be
+retrieved from a trusted third party, such as a directory service or a security
+service.
+			</description>
+			<location chapter = "3" section = "3.6.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:19</id>
+			<description> .The J2EE Product Provider must meet the following requirements concerning user
+authentication.
+All J2EE web servers must maintain a login session for each web user. It must be
+possible for a login session to span more than one application, allowing a user to log
+in once and access multiple applications. The required login session support is
+described in the servlet specification. This requirement of a session for each web
+user supports single signon.
+			</description>
+			<location chapter = "3" section = "4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:20</id>
+			<description> Lazy authentication must be supported by web servers for protected web
+resources.
+ 
+			</description>
+			<location chapter = "3" section = "4.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:21</id>
+			<description> All J2EE products are required to support three login mechanisms: HTTP basic
+authentication, SSL mutual authentication, and form-based login. An application is
+not required to use any of these mechanisms, but they are required to be available
+for any application's use.
+			</description>
+			<location chapter = "3" section = "4.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:22</id>
+			<description>All J2EE products are required to support HTTP basic authentication (RFC2068).
+Platform Providers are also required to support basic authentication over SSL.
+ 
+			</description>
+			<location chapter = "3" section = "4.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:23</id>
+			<description> SSL Mutual Authentication
+SSL 3.0 and the means to perform mutual (client and server) certificate based
+authentication are required by this specification.
+All J2EE products must support the following cipher suites to ensure
+interoperable authentication with clients:
+ TLS_RSA_WITH_RC4_128_MD5
+ SSL_RSA_WITH_RC4_128_MD5
+ TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA
+ SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA
+ TLS_RSA_EXPORT_WITH_RC4_40_MD5
+ SSL_RSA_EXPORT_WITH_RC4_40_MD5
+ TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA
+ SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA
+			</description>
+			<location chapter = "3" section = "4.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:24</id>
+			<description>  Form Based Login
+The web application deployment descriptor contains an element that causes a J2EE
+product to associate an HTML form resource (perhaps dynamically generated) with
+the web application. If the Deployer chooses this form of authentication (over HTTP
+basic, or SSL certificate based authentication), this form must be used as the user
+interface for login to the application.
+The form based login mechanism and web application deployment descriptors
+are described in the servlet specification.
+			</description>
+			<location chapter = "3" section = "4.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:25</id>
+			<description>Web containers are required to support access to web resources by clients that have
+not authenticated themselves to the container. This is the common mode of access to
+web resources on the Internet.
+A web container reports that no user has been authenticated by returning null
+from the HttpServletRequest method getUserPrincipal. This is different than
+the corresponding result for EJB containers. The EJB specification requires that
+the EJBContext method getCallerPrincipal always return a valid Principal
+object. The method can never return null.
+Components running in a web container must be able to call enterprise beans
+even when no user has been authenticated in the web container. When a call is
+made in such a case from a component in a web container to an enterprise bean, a
+J2EE product must provide a principal for use in the call.
+A J2EE product may provide a principal for use by unauthenticated callers
+using many approaches, including, but not limited to:
+ Always use a single distinguished principal.
+ Use a different distinguished principal per server, or per session, or per application.
+ Allow the deployer or system administrator to choose which principal to use
+through the Run As capability of the web and enterprise bean containers.
+			</description>
+			<location chapter = "3" section = "4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:26</id>
+			<description> The application client container must provide authentication of application users to
+satisfy the authentication and authorization constraints enforced by the enterprise
+bean containers and web containers.
+The container will provide an appropriate user interface for interactions with
+the user to gather authentication data. In addition, an application client may
+provide a class that implements the
+javax.security.auth.callback.CallbackHandler interface and specify the class
+name in its deployment descriptor
+
+The Deployer may override the callback
+handler specified by the application and require use of the container's default
+authentication user interface instead.
+If use of a callback handler has been configured by the Deployer, the
+application client container must instantiate an object of this class and use it for all
+authentication interactions with the user. The application's callback handler must
+support all the Callback objects specified in the javax.security.auth.callback
+package.
+Application clients execute in an environment controlled by a J2SE security
+manager and are subject to the security permissions defined in J2EE.6.2, "Java 2
+Platform, Standard Edition (J2SE) Requirements". Although this specification does not
+define the relationship between the operating system identity associated with a
+running application client and the authenticated user identity, support for single
+signon requires that the J2EE product be able to relate these identities
+			</description>
+			<location chapter = "3" section = "4.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:27</id>
+			<description> A Product Provider must support both of the following:
+1. Configured Identity.AJ2EE container must be able to authenticate for access
+to the resource using a principal and authentication data specified by a Deployer
+at deployment time.The authentication must not depend in any way on data
+provided by the application components. Providing for the confidential storage
+of the authentication information is the responsibility of the Product Provider.
+2. Programmatic Authentication. The J2EE product must provide for specification
+of the principal and authentication data for a resource by the application
+component at runtime using appropriate APIs. The application may obtain the
+principal and authentication data through a variety of mechanisms, including
+receiving them as parameters, obtaining them from the component's environment,
+and so forth.
+			</description>
+			<location chapter = "3" section = "4.5"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:28</id>
+			<description> the following techniques are recommended but not required by
+this specification:
+1. Principal Mapping. A resource can have a principal and attributes that are determined
+by a mapping from the identity and security attributes of the requesting
+principal. In this case, a resource principal is not based on inheritance of
+the identity or security attributes from a requesting principal, but gets its identity
+and security attributes based on the mapping.
+2. Caller Impersonation. A resource principal acts on behalf of a requesting
+principal. Acting on behalf of a caller principal requires delegation of the caller's
+identity and credentials to the underlying resource manager. In some scenarios,
+a requesting principal can be a delegate of an initiating principal and
+the resource principal is transitively impersonating an initiating principal.
+The support for principal delegation is typically specific to a security mechanism.
+For example, Kerberos supports a mechanism for the delegation of
+authentication. (Refer to the Kerberos v5 specification for more details.)
+3. Credentials Mapping. This technique may be used when an application server
+and an EIS support different authentication domains. For example:
+a. The initiating principal may have been authenticated and have public key
+certificate-based credentials.
+b. The security environment for the resource manager may be configured
+with the Kerberos authentication service.
+The application server is configured to map the public key certificate-based
+credentials associated with the initiating principal to the Kerberos credentials.
+			</description>
+			<location chapter = "3" section = "4.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:29</id>
+			<description>Code Authorization
+A J2EE product may restrict the use of certain J2SE classes and methods to secure
+and insure proper operation of the system. The minimum set of permissions that a
+J2EE product is required to grant to a J2EE application is defined in
+Section J2EE.6.2, Java 2 Platform, Standard Edition (J2SE) Requirements. All
+J2EE products must be capable of deploying application components with exactly
+these permissions.
+A J2EE Product Provider may choose to enable selective access to resources
+using the Java 2 protection model. The mechanism used is J2EE product
+dependent.
+ 
+			</description>
+			<location chapter = "3" section = "5.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:30</id>
+			<description> Caller Authorization
+A J2EE product must enforce the access control rules specified at deployment time
+(see Section J2EE.3.6, Deployment Requirements) and more fully described in
+the EJB and servlet specifications.
+			</description>
+			<location chapter = "3" section = "5.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:31</id>
+			<description> Propagated Caller Identities.
+It must be possible to configure a J2EE product so that a propagated caller identity is
+used in all authorization decisions. With this configuration, for all calls to all
+enterprise beans from a single application within a single J2EE product, the
+principal name returned by the EJBContext method getCallerPrincipal must be
+the same as that returned by the first enterprise bean in the call chain. If the first
+enterprise bean in the call chain is called by a servlet or JSP page, the principal
+name must be the same as that returned by the HttpServletRequest method
+getUserPrincipal in the calling servlet or JSP page. (However, if the
+HttpServletRequest method getUserPrincipal returns null, the principal used in
+calls to enterprise beans is not specified by this specification, although it must still
+be possible to configure enterprise beans to be callable by such components.)
+Note that this does not require delegation of credentials, only identification of
+the caller. A single principal must be the principal used in authorization decisions
+for access to all enterprise beans in the call chain. The requirements in this section
+apply only when a J2EE product has been configured to propagate caller identity 
+			</description>
+			<location chapter = "3" section = "5.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:32</id>
+			<description> Run As Identities
+J2EE products must also support the Run As capability that allows the Application
+Component Provider and the Deployer to specify an identity under which an
+enterprise bean or web component must run. In this case it is the Run As identity
+that is propagated to subsequent components, rather than the original caller identity.
+			</description>
+			<location chapter = "3" section = "5.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:33</id>
+			<description> All J2EE products must implement the access control semantics described in the
+EJB, JSP, and servlet specifications, and provide a means of mapping the
+deployment descriptor security roles to the actual roles exposed by a J2EE product
+			</description>
+			<location chapter = "3" section = "6"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:34</id>
+			<description> While most J2EE products will allow the Deployer to customize the role
+mappings and change the assignment of roles to methods, all J2EE products must
+support the ability to deploy applications and components using exactly the
+mappings and assignments specified in their deployment descriptors.
+			</description>
+			<location chapter = "3" section = "6"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:35</id>
+			<description>As described in the EJB specification and the servlet specification, a J2EE
+product must provide a deployment tool or tools capable of assigning the security
+roles in deployment descriptors to the entities that are used to determine role
+membership at authorization time.
+ 
+			</description>
+			<location chapter = "3" section = "6"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:37</id>
+			<description>          An application might define a role representing all authenticated
+          and unauthenticated users and configure some enterprise bean
+          methods to be accessible by this role. 
+To support such usage, this specification requires that it be possible to map an
+application defined security role to the universal set of application principals
+independent of authentication.
+ 
+			</description>
+			<location chapter = "3" section = "6"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:39</id>
+			<description>Servlets and JSP pages demarcate a transaction using the javax.transaction.UserTransaction interface which is defined in the JTA specification.</description>
+			<location chapter = "4" section = "2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:40</id>
+			<description>Servlets and JSP pages may access multiple resource managers and invoke multiple enterprise beans within a single transaction.</description>
+			<location chapter = "4" section = "2.1"/>
+			<sub-assertions>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+					<id>J2EE:SPEC:40.1</id>
+					<description>The specified transaction context is automatically propagated to the enterprise beans and transactional resource managers.</description>
+					<location chapter = "4" section = "2.1"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+					<id>J2EE:SPEC:40.2</id>
+					<description>The result of the propagation may be subject to the enterprise bean transaction attributes.  </description>
+					<location chapter = "4" section = "2.1"/>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:43</id>
+			<description>Servlet filters may use transactional resources in a local transaction mode within their doFilter methods.</description>
+			<location chapter = "4" section = "2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:45</id>
+			<description>The J2EE platform must provide an object implementing the javax.transaction.UserTransaction interface to all web components.</description>
+			<location chapter = "4" section = "2.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:46</id>
+			<description>The platform must publish the UserTransaction object in the Java" Naming and Directory Interface (JNDI) name space available to web components under the name java:comp/UserTransaction.</description>
+			<location chapter = "4" section = "2.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:47</id>
+			<description>If a web component invokes an enterprise bean from a thread associated with a JTA transaction, the J2EE platform must propagate the transaction context with the enterprise bean invocation. Whether the target enterprise bean will be invoked in this transaction context or not is determined by the rules defined in the EJB specification.</description>
+			<location chapter = "4" section = "2.1.1"/>
+			<sub-assertions>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+					<id>J2EE:SPEC:47.1</id>
+					<description>This transaction propagation requirement applies only to invocations of enterprise beans in the same J2EE product instance as the invoking component.</description>
+					<location chapter = "4" section = "2.1.1"/>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:49</id>
+			<description>If a web component accesses a transactional resource manager from a thread associated with a JTA transaction, the J2EE platform must ensure that the re-source access is included as part of the JTA transaction.</description>
+			<location chapter = "4" section = "2.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:50</id>
+			<description>If a web component creates a thread, the J2EE platform must ensure that the newly created thread is not associated with any JTA transaction.</description>
+			<location chapter = "4" section = "2.1.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:51</id>
+			<description>The Product Provider is not required to support the importing of a transaction context from a client to a web component.</description>
+			<location chapter = "4" section = "2.1.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:52</id>
+			<description>The Product Provider is not required to support transaction context propagation via an HTTP request across web components.</description>
+			<location chapter = "4" section = "2.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:53</id>
+			<description>When a web component is invoked through the RequestDispatcher interface, any active transaction context must be propagated to the called servlet or JSP page.</description>
+			<location chapter = "4" section = "2.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:54</id>
+			<description>Transactions may not span web requests from a client.</description>
+			<location chapter = "4" section = "2.2"/>
+			<sub-assertions>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+					<id>J2EE:SPEC:54.1</id>
+					<description>Returning from the service method with an active transaction context is an error.  The web container is required to detect this error and abort the transaction.</description>
+					<location chapter = "4" section = "2.2"/>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:65</id>
+			<description>The Product Provider must provide support for transactions as defined in the EJB specification.</description>
+			<location chapter = "4" section = "2.4"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:66</id>
+			<description>The Product Provider is not required to provide transaction management support for application clients.</description>
+			<location chapter = "4" section = "2.5"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:67</id>
+			<description>The Product Provider is not required to provide transaction management support for applets.</description>
+			<location chapter = "4" section = "2.6"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:68</id>
+			<description>A J2EE product must support a JDBC technology database as a transactional resource manager. The platform must enable transactional JDBC API acess from web components and enterprise beans.</description>
+			<location chapter = "4" section = "2.7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:69</id>
+			<description>It must be possible to access the JDBC technology database from multiple application components within a single transaction.</description>
+			<location chapter = "4" section = "2.7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:70</id>
+			<description>A J2EE product must provide a transaction manager that is capable of coordinating two-phase commit operations across multiple XA-capable JDBC databases.</description>
+			<location chapter = "4" section = "2.7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:71</id>
+			<description> If a JDBC driver supports the Java Transaction API's XA interfaces(in the javax.transaction.xa package), then the J2EE product must be capable of using the XA interfaces provided by the JDBC driver to accomplish two-phase commit operations.</description>
+			<location chapter = "4" section = "2.7"/>
+			<comment>Since JDBC Driver is not required to support XA interfaces, vendor has an option not to provide XA capable driver for compatibility testing. </comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:72</id>
+			<description>The platform must enable transactional JMS access from servlets, JSP pages, and enterprise beans. It must be possible to access the JMS provider from multiple application components within a single transaction.</description>
+			<location chapter = "4" section = "2.8"/>
+			<comment>Diane</comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:73</id>
+			<description>A J2EE product must suport resource adapters that use XATransaction mode as transactional resource managers. The platform must enable transactional access to the resource adapter from servlets, JSP pages, and enterprise beans</description>
+			<location chapter = "4" section = "2.9"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:74</id>
+			<description>It must be possible to access the resource adapter from multiple application components within a single transaction.</description>
+			<location chapter = "4" section = "2.9"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:75</id>
+			<description>The Product Provider is not required to implement any particular protocol for transaction interportibility across multiple J2EE products. J2EE compatibility requires neither interportability among identical J2EE products from the same Product Provider, nor among heterogeneous J2EE products from multiple Product Providers.</description>
+			<location chapter = "4" section = "3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:76</id>
+			<description>All J2EE products are required to support the javax.transaction.xa.XAResource interface, as specified in the Connector specification.</description>
+			<location chapter = "4" section = "3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:77</id>
+			<description>All J2EE products are required to support the javax.transaction.xa.XAResource interface, for performing two-phase commit operations on JDBC drivers that support the JTA XA APIs. </description>
+			<location chapter = "4" section = "3.2"/>
+			<comment>Since JDBC Driver is not required to support XA interfaces, vendor has an option not to provide XA capable driver for compatibility testing.</comment>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:78</id>
+			<description>This specification does not require that JDBC drivers or JMS providers use the javax.transaction.xa.XAResource interface, although they may use this interface and in all cases they must meet the transactional resource manager requirements as described in the specification.</description>
+			<location chapter = "4" section = "3.2"/>
+			<comment>Since JDBC Driver/JMS Provider is not required to support XA interfaces, vendor has an option not to provide XA capable driver for compatibility testing.</comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:79</id>
+			<description>It must be possible to combine operations on one or more JDBC databases, one or more JMS sessions, one or more enterprise beans, and multiple resource adapters supporting the XATransaction mode in a single JTA transaction.</description>
+			<location chapter = "4" section = "3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:80</id>
+			<description>Containers may choose to provide local transaction optimisation, but are not required to do so. Local Transaction optimization must be transparent to a J2EE application.</description>
+			<location chapter = "4" section = "4.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:82</id>
+			<description>Containers must not attempt to share connections that are marked unshareable</description>
+			<location chapter = "4" section = "5"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:83</id>
+			<description>If a connection is not marked unshareable, it must be transaparent to the application whether the connection is actually shared or not.</description>
+			<location chapter = "4" section = "5"/>
+			<comment>Since connection sharing is optional, the question of testing this doen't arise.</comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:84</id>
+			<description>J2EE application components may use the optional deployment descriptor element res-sharing-scope to indicate whether a connection to a resource manager is shareable or unshareable. Containers must assume connections to be shareable if no deployment hint is provided. </description>
+			<location chapter = "4" section = "5"/>
+			<comment>res-sharing-scope is a optional element which can be avoided by the vendors.</comment>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:85</id>
+			<description>J2EE application components may cache connection objects and reuse them across multiple transaction. Containers that provide connection sharing must transaparently switch such cached connection objects (at dispatch time) to point to an appropriate shared connection with the correct transaction scope. Refer to the Connector specification for detailed description of connection sharing.</description>
+			<location chapter = "4" section = "5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:86</id>
+			<description>If the deployer configures a non-XA capable JDBC resource manager in a transaction, then a J2EE Product Provider may restrict all JDBC resource manager in a transaction to that non-XA-capable JDBC resource manager. Otherwise a J2EEE Product Provider must support use of multiple XA-capable JDBC resource managers within a transaction.</description>
+			<location chapter = "4" section = "6"/>
+			<comment>Since JDBC Driver is not required to support XA interfaces, vendor has an option not to provide XA capable driver for compatibility testing.</comment>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:87</id>
+			<description>A J2EE Product Provider may restrict the security configuration of all JDBC connections within a transaction to a single user identity.   A J2EE Product Provider is not required to support transactions where more than one JDBC identity is used. Specifically, this means that transactions that require the use of more than one JDBC security identity (as can explicitly be done via component provided user name and password) may not be portable.</description>
+			<location chapter = "4" section = "6"/>
+			<comment>The configuration mentioned is not mandatory.</comment>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:88</id>
+			<description>A J2EE Product Provider may make restrictions resulting in a transaction being restricted to a single JMS resource manager and user identity.</description>
+			<location chapter = "4" section = "6"/>
+			<comment>Refer to the assertion above this.</comment>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:89</id>
+			<description>When both a JDBC resource manager and JMS resource manager are used in the same transaction, A J2EE Product Provider may restrict both to a pairing that allows their combination to deliver the full transactional semantics required by the application, and may restrict the security identity of both to a single identity. To fully support such usage, portable applications that wish to include JDCB and JMS access in a single global transaction must not mark the corresponding transactional resources as "un sharable" </description>
+			<location chapter = "4" section = "6"/>
+			<comment>The Configuration mentioned is not mandatory.</comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:90</id>
+			<description>A J2EE product must support the use of multiple XA-capable resource adapters in a single transaction. To support such a scenario, full two-phase commit support is required.</description>
+			<location chapter = "4" section = "7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:91</id>
+			<description>A JMS provider may be provided as an XA-capable resource adapter. In such a case, it must be possible to include JMS operations in the same global transactions as other resource adapters. </description>
+			<location chapter = "4" section = "7"/>
+			<comment>It is required to understand the possibility of obtaining a JMS connector. </comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:92</id>
+			<description>While JDBC drivers are not required to be XA-capable, a JDBC driver may be delivered as an XA-capable resource adapter. In such a case, it must be possible to include JDBC operations in the same global transaction as other XA-capable resource adapters.</description>
+			<location chapter = "4" section = "7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:93</id>
+			<description>          In general, lookups of objects in the JNDI java: namespace are
+          required to return a new instance of the requested object on each
+          lookup.
+        
+			</description>      
+			<keywords>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = ""/>      
+			<sub-assertions>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">  
+					<id>J2EE:SPEC:93.1</id>  
+					<description>            Lookups of objects in the JNDI java: namespace are NOT required
+            to return a new instance of the requested object every time if
+            the container knows the object is immutable (for example,
+            objects of type java.lang.String), or knows that the
+            application can t change the state of the object.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">  
+					<id>J2EE:SPEC:93.2</id>  
+					<description>            Lookups of objects in the JNDI java: namespace are NOT required
+            to return a new instance of the requested object every time if
+            the object is defined to be a singleton, such that only one
+            instance of the object may exist in the JVM.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">  
+					<id>J2EE:SPEC:93.3</id>  
+					<description>            Lookups of objects in the JNDI java: namespace are NOT required
+            to return a new instance of the requested object every time if
+            the name used for the lookup is defined to return an instance
+            of the object that might be shared. The name java:comp/ORB is
+            such a name.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2"/>
+				</assertion>
+			</sub-assertions>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:97</id>
+			<description>          J2EE application clients, enterprise beans, and web components
+          are required to have access to a JNDI naming environment.
+        
+			</description>      
+			<keywords>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "1.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:98</id>
+			<description>          The container also provides the tools that allow the Deployer to
+          create and manage the environment of each application component.
+        
+			</description>      
+			<keywords>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:99</id>
+			<description>          All instances of an application component within the same
+          container share the same environment entries.
+        
+			</description>      
+			<keywords>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:100</id>
+			<description>          A component can create a javax.naming.InitialContext object by
+          using the constructor with no arguments, and lookup directly
+          an environment entry from this InitialContext (e.g.
+          initCtx.lookup("java:comp/env/foo/name1")).
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2.1.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:101</id>
+			<description>          A component can lookup the naming environment via the
+          InitialContext under the name "java:comp/env". The component can
+          then use the environment naming context to lookup an environment
+          entry (e.g. myEnv.lookup("foo/name1")).
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2.1.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:102</id>
+			<description>          An environment entry is scoped to the application component whose
+          declaration contains the env-entry element. This means that the
+          environment entry is not accessible from other application
+          components at runtime, and that other application components may
+          define env-entry elements with the same enventry- name without
+          causing a name conflict.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2.1.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:103</id>
+			<description>          The environment entry values may be one of the following Java
+          types: String, Character, Byte, Short, Integer, Long, Boolean,
+          Double, and Float.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2.1.2"/>    
+      
+			<sub-assertions>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.1</id>  
+					<description>            The environment entry values may be one of the String Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.2</id>  
+					<description>            The environment entry values may be one of the Character Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.3</id>  
+					<description>            The environment entry values may be one of the Byte Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.4</id>  
+					<description>            The environment entry values may be one of the Short Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.5</id>  
+					<description>            The environment entry values may be one of the Integer Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.6</id>  
+					<description>            The environment entry values may be one of the Double Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.7</id>  
+					<description>            The environment entry values may be one of the Boolean Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.8</id>  
+					<description>            The environment entry values may be one of the Long Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">  
+					<id>J2EE:SPEC:103.9</id>  
+					<description>            The environment entry values may be one of the Float Java
+            types.
+          
+					</description>  
+					<keywords>    
+						<keyword>Deployment</keyword>    
+						<keyword>Naming</keyword>  
+					</keywords>  
+					<location chapter = "5" section = "2.1.2"/>
+				</assertion>
+			</sub-assertions>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:113</id>
+			<description>          The J2EE Product Provider must provide a deployment tool that
+          allows the Deployer to set and modify the values of the
+          application component's environment entries.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2.4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:114</id>
+			<description>          The J2EE Product Provider must implement the java:comp/env
+          environment naming context, and provide it to the application
+          component instances at runtime. The naming context must include
+          all the environment entries declared by the Application Component
+          Provider, with their values supplied in the deployment descriptor
+          or set by the Deployer.
+        
+			</description>      
+			<keywords>
+				<keyword>Naming</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2.4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:115</id>
+			<description>          The environment naming context implemented by the J2EE Product
+          Provider must allow the Deployer to create subcontexts if they
+          are needed by an application component.
+        
+			</description>      
+			<keywords>
+				<keyword>Naming</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2.4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:116</id>
+			<description>          The container must ensure that the application component
+          instances have only read access to their environment
+          variables. The container must throw the
+          javax.naming.OperationNotSupportedException from all the methods
+          of the javax.naming.Context interface that modify the environment
+          naming context and its subcontexts.
+        
+			</description>      
+			<keywords>
+				<keyword>Naming</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "2.4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:117</id>
+			<description>          An EJB reference is scoped to the application component whose
+          declaration contains the ejb-ref element. This means that the EJB
+          reference is not accessible from other application components at
+          runtime, and that other application components may define ejb-ref
+          elements with the same ejb-ref-name without causing a name
+          conflict.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "3.1.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:10117</id>
+			<description>          
+	The Application Component Provider refers to the homes of enterprise beans
+	using logical names called EJB references. The Deployer binds the EJB
+	references to the enterprise beans' homes in the targer operational 
+	environment.
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:10118</id>
+			<description>          The Application Assembler can use the
+ejb-link element
+          in the deployment descriptor to link an EJB reference to a target enterprise bean.
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "3.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:118</id>
+			<description>          The J2EE Product Provider must support deployment of application
+          using ejb-link elements to reference target enterprise beans
+          that can be in any ejb-jar file in the same J2EE application as the
+          referencing application component.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "3.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:119</id>
+			<description>          The J2EE Product Provider must support deployment of applications
+          packaging multiple beans with the same ejb-name (but packaged in
+          distinct ejb-jar's) and using ejb-link elements following the
+          ejb-jar-path#ejb-name syntax. In this manner, multiple beans with
+          the same ejb-name may be uniquely identified when the Application
+          Assembler cannot change ejb-names.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "3.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:120</id>
+			<description>          At the minimum, the deployment tools provided by the J2EE Product
+          Provider must be able to preserve the application assembly
+          information in the ejb-link elements by binding an EJB reference
+          to the home interface of the specified target enterprise bean.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "3.4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:121</id>
+			<description>          At the minimum, the deployment tools provided by the J2EE Product
+          Provider must be able to inform the Deployer of any unresolved
+          EJB references, and allow him or her to resolve an EJB reference
+          by binding it to a specified compatible target enterprise bean.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "3.4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:122</id>
+			<description>          It is possible to obtain multiple connections from a Resource
+          Manager Connection Factory Reference by calling the factory
+          object multiple times.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4.1.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:123</id>
+			<description>          By default, connections to a resource manager are shareable
+          across other application components in the application that use
+          the same resource in the same transaction context.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4.1.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:124</id>
+			<description>          The Application Component Provider can specify that connections
+          obtained from a resource manager connection factory reference are
+          not shareable by specifying the value of the res-sharing-scope
+          deployment descriptor element to be Unshareable.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4.1.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:10125</id>
+			<description>          
+	The Application Component Provider refers to resource manager connection
+	factories using logical names called resource manager connection factory
+	references. The Deployer binds the resource manager connection factory
+	references to the resource manager connection factories that exist in 
+	the targer operational environment.
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:125</id>
+			<description>          A resource manager connection factory reference is scoped to the
+          application component whose declaration contains the resource-ref
+          element. This means that the resource manager connection factory
+          reference is not accessible from other application components at
+          runtime, and that other application components may define
+          resource-ref elements with the same res-ref-name without causing
+          a name conflict.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4.1.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:126</id>
+			<description>The Application Component Provider must use the javax.jms.QueueConnectionFactory or the javax.jms.TopicConnectionFactory for obtaining JMS connections.</description>
+			<location chapter = "5" section = "4.1.3"/>
+			<comment>Diane</comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:127</id>
+			<description>          The J2EE Product Provider is responsible for providing the
+          implementation of the resource manager connection factory classes
+          that are required by this specification.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:128</id>
+			<description>          If the Application Component Provider set the res-auth of a
+          resource reference to Application, the container must allow the
+          application component to perform explicit programmatic sign on
+          using the resource manager's API.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:129</id>
+			<description>          If the Application Component Provider sets the res-sharing-scope
+          of a resource manager connection factory reference to
+          Unshareable, the container must not attempt to share the
+          connections obtained from the resource manager connection factory
+          reference.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:130</id>
+			<description>          The container must provide tools that allow the Deployer to set
+          up resource sign on information for the resource manager
+          references whose res-auth element is set to Container. The
+          minimum requirement is that the Deployer must be able to specify
+          the username/password information for each resource manager
+          connection factory reference declared by the application
+          component, and the container must be able to use the
+          username/password combination for user authentication when obtaining
+          a connection by invoking the resource manager connection factory.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "4.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:132</id>
+			<description>          A resource environment reference is scoped to the application
+          component whose declaration contains the resource-env-ref
+          element. This means that the resource environment reference is
+          not accessible to other application components at runtime, and
+          that other application components may define resource-env-ref
+          elements with the same resource-env-ref-name without causing a
+          name conflict.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "5.1.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:133</id>
+			<description>          At the minimum, the deployment tools must be able to inform the
+          Deployer of any unresolved resource environment references, and
+          allow him or her to resolve a resource environment reference by
+          binding it to a specified compatible target object in the
+          environment.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "5.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:134</id>
+			<description>          A message destination reference is scoped to the application
+          component whose declaration contains the message-destination-ref
+          element. This means that the message destination reference is not
+          accessible to other application components at runtime, and that
+          other application components may define message-destination-ref
+          elements with the same message-destination-refname without
+          causing a name conflict.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>
+				<keyword>Messaging</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "5.6.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:135</id>
+			<description>          To avoid the need to rename message destinations to have unique
+          names within an entire J2EE application, the Application
+          Assembler may use the following syntax in the
+          message-destination-link element of the referencing application
+          component. The Application Assembler specifies the path name of
+          the ejb-jar file containing the referenced message destination
+          and appends the message-destination-name of the target
+          destination separated from the path name by #. The path name is
+          relative to the referencing application component jar file. In
+          this manner, multiple destinations with the same
+          messagedestination- name may be uniquely identified.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>
+				<keyword>Messaging</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "5.6.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:136</id>
+			<description>          The J2EE Product Provider must provide the deployment tools that
+          allow the Deployer to perform the tasks described in subsection
+          5.6.3 of the J2EE platform spec.
+          The deployment tools provided by the J2EE Product
+          Provider must be able to process the information supplied in the
+          message-destination-ref elements in the deployment descriptor.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>
+				<keyword>Messaging</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "5.6.4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:137</id>
+			<description>          The J2EE Product Provider is responsible for providing an
+          appropriate UserTransaction object as required by this
+          specification.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>
+				<keyword>Transaction</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "5.7.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:138</id>
+			<description>          The container is required to provide the java:comp/ORB name for
+          all components except applets. applications can find an
+          appropriate object implementing the ORB interface by looking up
+          the JNDI name java:comp/ORB.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>
+				<keyword>CORBA</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "5.8"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:139</id>
+			<description>          Any reference to a ORB object provided by the container under the
+          JNDI name java:comp/ORB name is only valid within the component
+          instance that performed the lookup.
+        
+			</description>      
+			<keywords>
+				<keyword>Deployment</keyword>
+				<keyword>Naming</keyword>
+				<keyword>CORBA</keyword>      
+			</keywords>      
+			<location chapter = "5" section = "5.8"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:141</id>
+			<description> 
+The containers provide all application components with the Java 2 Platform,
+Standard Edition, v1.4 (J2SE) APIs, which include the following enterprise APIs:
+Java IDL API, JDBC API, RMI-IIOP API, JNDI API, JAXP 1.1 API, JAAS API.
+			</description>
+			<location chapter = "6" section = "1.1"/>
+			<sub-assertions>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">    
+					<id>J2EE:SPEC:141.1</id>
+					<description> 
+	    In particular, the applet execution environment must be J2SE 1.4 compatible.
+					</description> 
+					<location chapter = "6" section = "1.1"/>    
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:162</id>
+			<description> 
+All classes and interfaces required by the specifications for APIs must be
+provided by the J2EE containers. In some cases, a J2EE product is not required to
+provide objects that implement interfaces intended to be implemented by an
+application server, nevertheless, the definitions of such interfaces must be
+included in the J2EE platform.
+			</description>
+			<location chapter = "6" section = "1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:163</id>
+			<description> The J2EE security permissions set
+is a required part of the J2EE API contract. To ensure the integrity of J2EE
+containers, all J2EE containers must install a security manager and must prevent
+applications from replacing or overriding the security manager.
+			</description>
+			<location chapter = "6" section = "2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:164</id>
+			<description>The J2EE security permissions set defines the minimum set of permissions that
+application components can expect. All J2EE products must be capable of
+deploying application components that require the set of permissions described
+here. The Product Provider must ensure that the application components do not use
+functions that conflict with the J2EE security permission set.
+
+The exact set of security permissions for application components in use at a
+particular installation is a matter of policy outside the scope of this specification.
+Some J2EE products will allow the set of permissions available to a component to
+be configurable, providing some components with more or fewer permissions than
+those described here. A future version of this specification will allow these
+security requirements to be specified in the deployment descriptor for application
+components. At the present time, application components that need permissions
+not in this minimal set should describe their requirements in their documentation.
+
+Table J2EE.6-2 lists the J2EE security permissions set. This is the typical set of
+permissions that components of each type should expect to have.
+ 
+			</description>
+			<location chapter = "6" section = "2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:171</id>
+			<description>When accessing data of the image/gif or image/jpeg MIME types using the getContent method of the URL class and 
+the URLConnection class, the java type java.awt.image must be returned.
+			</description>
+			<location chapter = "6" section = "2.4.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:172</id>
+			<description>Application components must not be required to configure proxy
+support in order to use an http URL.
+			</description>
+			<location chapter = "6" section = "2.4.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:173</id>
+			<description>This specification requires that
+HTTP access through firewalls be possible where local policy allows.
+			</description>
+			<location chapter = "6" section = "2.4.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:174</id>
+			<description>The J2EE specification does require that a database be available and accessible from a J2EE product through the JDBC API. Such a Database must be accessible from web components, enterprise beans, and application clients, but need not be accesssible from applets.</description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:176</id>
+			<description>The J2EE platform must be able to supply a DataSource that does not require the application to supply any authentication information when obtaining a database connection.</description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:179</id>
+			<description>JDBC Drivers are  required to provide accurate and complete metadata through the connection.getMetaData method. </description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:180</id>
+			<description>Drivers must support stored procedures. The DatabaseMetaData method supportsStoredProcedures must return true.</description>
+			<location chapter = "6" section = "2.4.3"/>
+			<comment>Refer to section 6.2.4.3 of J2EE Platform Specification.</comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:181</id>
+			<description>Drivers must support the full JDBC API escape syntax for calling stored procedures with the following methods on the Statement, PreparedStatement and CallableStatement classes; -executeUpdate -executeQuery.               A driver must support the Statement escape syntax for the following functions as specified by the JDBC specification: -CONCAT -SUBSTRING -LOCATE -LENGTH -ABS -SQRT -MOD</description>
+			<location chapter = "6" section = "2.4.3"/>
+			<comment>Refer EJB2.0 spec for detailed descriptiion of implementation of LOCATE.</comment>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:182</id>
+			<description>Support for calling stored procedures using the method execute on the Statement, PreparedStatement and CallableStatement intefaces is not required.</description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:183</id>
+			<description>Drivers must support CallableStatement methods that apply to SQL92 types, including the following: getBigDecimal getBoolean, getByte, getBytes, getDate,  getDouble, getFloat, getInt, getLong, getObject, getShort, getString, getTime, getTimestamp, registerOutParameter</description>
+			<location chapter = "6" section = "2.4.3"/>
+<comment>These methods need to be supported for both the parameters: parameterName and parameterIndex</comment>
+			<sub-assertions>
+				<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+					<id>J2EE:SPEC:183.1</id>
+					<description>Support for new BLOB, CLOB, ARRAY, REF STRUCT, and JAVA_OBJECT is not required.</description>
+					<location chapter = "6" section = "2.4.3"/>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:185</id>
+			<description>All parameter types (IN, OUT, and INOUT ) must be supported.</description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:186</id>
+			<description>Full support for PreparedStatement is required. This implies support for the following methods: setAsciiStream, setBigDecimal, setBinaryStream, setBoolean, setByte, setBytes, setCharacterStream, setDate,  setDouble, setFloat, setLong, setNull, setObject,  setShort, setString, setTime,  setTimestamp,  </description>
+			<location chapter = "6" section = "2.4.3"/>
+			<sub-assertions>
+				<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+					<id>J2EE:SPEC:186.1</id>
+					<description>Support for new BLOB, CLOB, ARRAY, REF STRUCT, and JAVA_OBJECT is not required.</description>
+					<location chapter = "6" section = "2.4.3"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+					<id>J2EE:SPEC:186.2</id>
+					<description>Support for PreparedStatement method getMetaData is not required. This method must throw an SQLException if it is not supported.</description>
+					<location chapter = "6" section = "2.4.3"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+					<id>J2EE:SPEC:186.3</id>
+					<description>Support for PreparedStatement method getParameterMetaData is  required.</description>
+					<location chapter = "6" section = "2.4.3"/>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:190</id>
+			<description>Full support for batch updates is required. This implies support for the following methods on the Statement, PreparedStatement and CallableStatement classes: - addBatch -clearBatch -executBatch</description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:191</id>
+			<description>Drivers must support the ResultSet type TYPE_FORWARD_ONLY, with a concurrency of CONCUR_READ_ONLY. </description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:192</id>
+			<description>Support for ResultSet types TYPE_SCROLL_INSENSITIVE and TYPE_SCROLL_SENSITIVE and concurrency CONCUR_UPDATABLE is not required.</description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:193</id>
+			<description>Drivers must provide full support for DatabaseMetaData. </description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:194</id>
+			<description>Drivers must provide full support for ResultSetMetaData. </description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:195</id>
+			<description>JDBC compliant drivers are required to support DROP TABLE command as specified by the SQL92, Transitional Level. However, support for the CASCADE and RESTRICT options of DROP TABLE is optional. </description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:196</id>
+			<description>The connection pooling and distributed transaction features are intended for use by JDBC drivers to coordinate with an application server. J2EE products are not required to support the application server facilities described by these APIs.</description>
+			<location chapter = "6" section = "2.4.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:197</id>
+			<description>          All J2EE application component types can be clients of RMI objects.
+        
+			</description>      
+			<keywords>
+				<keyword>RMI</keyword>
+				<keyword>JRMP</keyword>      
+			</keywords>      
+			<location chapter = "6" section = "2.4.5"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:198</id>
+			<description>          Any enterprise bean (or by extension, all enterprise
+          beans) can be made accessible using RMI-IIOP.
+        
+			</description>      
+			<keywords>
+				<keyword>RMI</keyword>
+				<keyword>IIOP</keyword>      
+			</keywords>      
+			<location chapter = "6" section = "2.4.6"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:199</id>
+			<description>          A COSNaming JNDI service provider must be available through the
+          web, EJB, and application client containers.
+        
+			</description>      
+			<keywords>
+				<keyword>JNDI</keyword>      
+			</keywords>      
+			<location chapter = "6" section = "2.4.6"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:200</id>
+			<description>          All J2EE application component types can be clients of RMI-IIOP
+          objects.
+        
+			</description>      
+			<keywords>
+				<keyword>RMI</keyword>
+				<keyword>IIOP</keyword>      
+			</keywords>      
+			<location chapter = "6" section = "2.4.6"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:201</id>
+			<description>          This specification requires that J2EE containers provide a per
+          thread context class loader for the use of system or library
+          classes in dynamicly loading classes provided by the application.
+        
+			</description>      
+			<keywords>
+				<keyword>Class Loader</keyword>
+				<keyword>Runtime</keyword>      
+			</keywords>      
+			<location chapter = "6" section = "2.4.8"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:202</id>
+			<description>          The EJB specification requires that all EJB client containers
+          provide a per thread context class loader for dynamicly loading
+          system value classes.
+        
+			</description>      
+			<keywords>
+				<keyword>Class Loader</keyword>
+				<keyword>Runtime</keyword>      
+			</keywords>      
+			<location chapter = "6" section = "2.4.8"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:203</id>
+			<description>All containers that support EJB clients must be capable of using the EJB interoperability protocol to invoke enterprise beans.</description>
+			<location chapter = "6" section = "3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:204</id>
+			<description>All EJB containers must support the invocation of enterprise beans using the EJB interoperability protocol.</description>
+			<location chapter = "6" section = "3"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:205</id>
+			<description>A J2EE product may support protocols other than the EJB interoperability protocol for the invocation of enterprise beans.</description>
+			<location chapter = "6" section = "3"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:206</id>
+			<description>A J2EE product may support multiple object systems (for example, RMI-IIOP and RMI-JRMP).</description>
+			<location chapter = "6" section = "3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:207</id>
+			<description>When an enterprise bean is using the RMI-IIOP protocol, it must be possible to pass object references for RMI-IIOP or JavaIDL objects as arguments to methods on such an enterprise bean, and to return such object references as return values of a method on such an enterprise bean.</description>
+			<location chapter = "6" section = "3"/>
+			<sub-assertions>
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+					<id>J2EE:SPEC:207.1</id>
+					<description>In addition, it must be possible to pass a reference to an RMI-IIOP-based enterprise bean's Home or Remote interface to a method on an RMI-IIOP or JavaIDL object, or to return such an enterprise bean object reference as a return value from such an RMI-IIOP or JavaIDL object.</description>
+					<location chapter = "6" section = "3"/>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:209</id>
+			<description>The EJB container and the web container are both required to support access to local enterprise beans.</description>
+			<location chapter = "6" section = "3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:211</id>
+			<description>Web containers must throw a java.lang.IllegalArgumentException if an object that is not one of the types  java.io.Serializable, javax.ejb.EJBObject, javax.ejb.EJBHome, javax.ejb.EJBLocalObject, javax.ejb.EJBLocalHome, javax.transaction.UserTransaction, a javax.naming.Context object for the java:comp/env context, or another type supported by the container, is passed to the setAttribute or putValue methods of an HttpSession object corresponding to a J2EE distributable session.</description>
+			<location chapter = "6" section = "4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:212</id>
+			<description>A web container that supports multi-VM operation must ensure that, when a session is moved from on VM to another, all objects of supported types are accurately recreated on the target VM</description>
+			<location chapter = "6" section = "4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">            
+			<id>J2EE:SPEC:214</id>            
+			<description>A Java Message Service provider must be included in a J2EE product. The JMS implementation must
+provide support for both JMS point-to-point and publish/ subscribe messaging, and thus must make those facilities availab
+le using the ConnectionFactory and Destination APIs.
+			</description>            
+			<location chapter = "6" section = "6"/>        
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">            
+			<id>J2EE:SPEC:215</id>            
+			<description>The JMS specification defines several interfaces intended for integration with an application se
+rver. A J2EE product need not provide objects that implement these interfaces, and portable J2EE applications must not us
+e the following interfaces: javax.jms.ServerSession; javax.jms.ServerSessionPool; javax.jms.ConnectionConsumer; all javax
+.jms.XA interfaces
+			</description>            
+			<location chapter = "6" section = "6"/>        
+		</assertion>        
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">            
+			<id>J2EE:SPEC:216</id>            
+			<description>The following methods may only be used by application components executing in the application client container: 
+A J2EE container may throw a JMSException (if allowed by the method) if the application component violates 
+these restrictions.
+			</description>            
+			<location chapter = "6" section = "6"/>            
+			<sub-assertions>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.1</id>                
+					<description>javax.jms.Session method setMessageListener; </description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.2</id>                
+					<description>javax.jms.Session method getMessageListener; </description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.3</id>                
+					<description>javax.jms.Session method run; </description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.4</id>                
+					<description>javax.jms.QueueConnection method createConnectionConsumer; </description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.5</id>                
+					<description>javax.jms.TopicConnection method createConnectionConsumer;</description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.6</id>                
+					<description>javax.jms.TopicConnection method createDurableConnectionConsumer; </description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.7</id>                
+					<description>javax.jms.MessageConsumer method getMessageListener;</description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.8</id>                
+					<description>javax.jms.MessageConsumer method setMessageListener;</description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.9</id>                
+					<description>javax.jms.Connection method setExceptionListener;</description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.10</id>                
+					<description>javax.jms.Connection method stop;</description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
+					<id>J2EE:SPEC:216.11</id>                
+					<description>javax.jms.Connection method setClientID.</description>                
+					<location chapter = "6" section = "6"/>            
+				</assertion>            
+			</sub-assertions>        
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">            
+			<id>J2EE:SPEC:228</id>            
+			<description>Application components in the web and EJB containers must not attempt to create more than one active (not closed) Session object per connection. An attempt to use the Connection object's createSession method when an active Session object exists for that connection should be prohibited by the container. The container may throw a JMSException if the application component violates this restriction.
+ssion object per connection. An attempt to use the Connection object's createSession method after a Session object has al
+ready been created for that connection should be prohibited by the container. The container may throw a JMSException if t
+he application component violates this restriction.
+			</description>            
+			<location chapter = "6" section = "6"/>        
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">            
+			<id>J2EE:SPEC:229</id>            
+			<description>Application client containers must support the creation of multiple sessions for each connection
+.
+			</description>            
+			<location chapter = "6" section = "6"/>        
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:232</id>
+			<description>Support for transaction facilities other than those provided by JTA may be provided transparently to the application by a J2EE product.</description>
+			<location chapter = "6" section = "7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:234</id>
+			<description>A JavaMail API Session object should be considered a resource factory, as described in section J2EE.5.4, "Resource Manager Connection Factory References." This Specification requires that J2EE platform support javax.mail.Session objects as resource factories, as described in that section.</description>
+			<location chapter = "6" section = "8"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:235</id>
+			<description>The J2EE platform requires that a message transport be provided that is capable of handling addresses of type javax.mail.internet.InternetAddress and messages of type javax.mail.internet.MimeMessage. The default message transport must be properly configured to send such messages using the send method of javax.mail.Transport class.</description>
+			<location chapter = "6" section = "8"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:236</id>
+			<description>Any authentication needed by the default transport must be handled without need for the application to provide a javax.mail.Authenticator or to explicitly connect to the transport and supply authentication information.</description>
+			<location chapter = "6" section = "8"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:237</id>
+			<description>This specification does not require that a J2EE product support any message store protocols.</description>
+			<location chapter = "6" section = "8"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:238</id>
+			<description>The JavaMail API must include javax.activation.DataContentHandlers for the following MIME data types, corresponding to the Java programming language type indiated in table J2EE.6-1</description>
+			<location chapter = "6" section = "8"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:239</id>
+			<description>This specification requires that a J2EE product provide only the DataContentHandlers for the JavaMail API. This includes requirement of a javax.activation.MimetypesFileTypeMap that supports the mapping listed in Table J2EE.6.5. </description>
+			<location chapter = "6" section = "9"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:240</id>
+			<description>All J2EE products, in addition to meeting the JAXP conformance requirements, must provide at least one SAX 2 parser, at least one DOM 2 parser, and at least one XSLT transform engine.</description>
+			<location chapter = "6" section = "10"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:241</id>
+			<description>All J2EE products must provide a SAX parser or parsers that support all combinations of validation modes (using either DTD or XML Schemas) and namespace support.</description>
+			<location chapter = "6" section = "10"/>
+			<comment>Marked 'testable' as false as this will be covered by the JAXP portion of the test suite.</comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:242</id>
+			<description>All J2EE products must provide a DOM parser or parsers that support all combinations of validation modes (using either DTDs or XML Schemas) and namespace support.</description>
+			<location chapter = "6" section = "10"/>
+			<comment>Marked 'testable' as false as this will be covered by the JAXP portion of the test suite.</comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:243</id>
+			<description>All EJB containers and all web containers must support the full set of Connector
+            APIs.
+			</description>
+			<location chapter = "6" section = "11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:244</id>
+			<description>All such containers must support Resource Adapters that use any of the
+            specified transaction capabilities.
+			</description>
+			<location chapter = "6" section = "11"/>            
+			<comment>This is already mentioned in the Connector Spec, therefore it will be tested in Connector test suite </comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:245</id>
+			<description>All application client containers must support the limited set of Connector APIs as described in the Connector specification; this supports pluggability for JMS providers in all containers.
+            
+			</description>
+			<location chapter = "6" section = "11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:246</id>
+			<description>The J2EE deployment tools must support deployment of Resource Adapters, as defined in the Connector
+            specification, and must support the deployment of applications that use Resource
+            Adapters.
+            
+			</description>
+			<location chapter = "6" section = "11"/>            
+			<comment>This is already mentioned in the Connector Spec, therefore it will be tested in Connector test suite </comment>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:247</id>
+			<description>The J2EE platform must support the deployment and access of JAX-RPC-based Web Services and Clients using all the supported deployment models as outlined in the EJB and Servlet specifications. The support for message handlers that can process message requests and responses and custom serializers and deserializers for handling custom data types must also be supported.</description>
+			<location chapter = "6" section = "13"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:248</id>
+			<description>          A J2EE web container must be capable of advertising its HTTP
+          services on the standard HTTP port, port 80.
+        
+			</description>      
+			<keywords>
+				<keyword>Interoperability</keyword>      
+			</keywords>      
+			<location chapter = "7" section = "2.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:249</id>
+			<description>          A J2EE web container must be capable of advertising its HTTPS
+          service on the standard HTTPS port, port 443.
+        
+			</description>      
+			<keywords>
+				<keyword>Interoperability</keyword>      
+			</keywords>      
+			<location chapter = "7" section = "2.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:250</id>
+			<description>          All J2EE products must provide a name service that meets the
+          requirements of the Interoperable Naming Service specification.
+          In addition, it must be possible to use the JavaIDL COSNaming API
+          to access the INS name service.
+        
+			</description>      
+			<keywords>
+				<keyword>Interoperability</keyword>      
+			</keywords>      
+			<location chapter = "7" section = "2.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:251</id>
+			<description>          It must be possible to use the JavaIDL COSNaming API to access
+          the INS name service provided by a J2EE product.
+        
+			</description>      
+			<keywords>
+				<keyword>Interoperability</keyword>      
+			</keywords>      
+			<location chapter = "7" section = "2.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:252</id>
+			<description>          This specification requires the J2EE platform to support the JRMP
+          protocol, which is the Java technology-specific Remote Method
+          Invocation (RMI) protocol.
+        
+			</description>      
+			<keywords>
+				<keyword>Interoperability</keyword>      
+			</keywords>      
+			<location chapter = "7" section = "2.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:253</id>
+			<description>          An individual J2EE module can be deployed as a stand-alone J2EE
+          module without an application level deployment descriptor and
+          represents a valid J2EE application. 
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "1.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:254</id>
+			<description>          J2EE products are required to support the use of bundled and
+          installed optional packages as specified in the Extension
+          Mechanism Architecture and Optional Package Versioning
+          specifications.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:255</id>
+			<description>          A JAR format file (such as a .jar file, .war file, or .rar file)
+          can reference a .jar file by naming the referenced .jar file in a
+          Class-Path header in the referencing JAR file's Manifest
+          file. The J2EE deployment tools must process all such referenced
+          files when processing a J2EE module. The deployment tool must
+          install the .jar files in a way that preserves the relative
+          references between the files. All referenced .jar files must
+          appear in the logical class path of the referencing JAR files at
+          runtime.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:256</id>
+			<description>          When a J2EE deployment tool process a JAR file referenced by J2EE
+          module, any deployment descriptors in referenced .jar files must be
+          ignored when processing the referencing .jar file.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "2"/>    
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:257</id>
+			<description>          If an application includes a bundled version of an optional
+          package, and the same optional package exists as an installed
+          optional package, the instance of the optional package bundled
+          with the application should be used in preference to any
+          installed version of the optional package. This allows an
+          application to bundle exactly the version of an optional package
+          it requires without being influenced by any installed optional
+          packages. Note that if the optional package is also a required
+          component of the J2EE platform version on which the application
+          is being deployed, the platform version may take precedence.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:258</id>
+			<description>          In addition to allowing access to referenced classes, as
+          described above, any resources contained in the referenced JAR
+          files must also be accessible using the Class and ClassLoader
+          getResource methods, as allowed by the security permissions of
+          the application. An application will typically have the security
+          permissions required to access resources in any of the JAR files
+          packaged with the application.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:259</id>
+			<description>          JAR format files of all types may contain an Extension-List
+          attribute in their Manifest file, indicating a dependency on an
+          installed optional package. The J2EE platform specification
+          requires support for such attributes for all component types and
+          corresponding JAR format files. The deployment tool is required
+          to check such dependency information and reject the deployment of
+          any component for which the dependency can not be met.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:260</id>
+			<description>          Referenced optional packages (Extension-List attribute) must be
+          made available to all components contained within the referencing
+          file, including any components contained within other JAR format
+          files within the referencing file. For example, if a .ear file
+          references an installed optional package, the optional package
+          must be made available to all components in all .war files, EJB
+          .jar files, application .jar files, and resource adapter .rar
+          files within the .ear file.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:10260</id>
+			<description>  
+	An optional element alt-dd may be used when it is desirable
+	to preserve the original deployment descriptor. The element alt-dd
+	specifies an alternate deployment descriptor to use at deployment time.
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "3.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:261</id>
+			<description>          A J2EE product provider must support the deployment of a
+          stand-alone J2EE modules.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:262</id>
+			<description>          A J2EE product provider must support the deployment of a J2EE
+          applications, consisting of one or more J2EE modules.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:263</id>
+			<description>          A J2EE product provider must support the deployment of
+          class libraries packaged as .jar files according to the Extension
+          Mechanism Architecture. These class libraries then become
+          installed optional packages.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:264</id>
+			<description>          Whatever the unit of deployment, a J2EE deployment tool must be
+          able to deploy the application such that the Java classes in the
+          application are in a separate namespace from classes in other
+          Java applications.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:265</id>
+			<description>          In all cases, the deployment of a J2EE application must be
+          complete before the container delivers requests to any of the
+          application's components. When an application is started, the
+          container must deliver requests to enterprise bean components
+          immediately. Containers must deliver requests to web components
+          and resource adapters only after initialization of the component
+          has completed.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:10265</id>
+			<description>          
+The deployment tools for J2EE containers must validate the deployment
+descriptors against the J2EE deployment descriptor schemas or DTDs that
+correspond to the deployment descriptors being processed. The appropriate
+schema or DTD is chosen by analyzing the deployment descriptor to determine
+which version it claims to conform to. Validation errors must cause an error to be
+reported to the Deployer. The deployment tool may allow the Deployer to correct
+the error and continue deployment.
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:266</id>
+			<description>          When deploying a stand-alone J2EE module the deployment tool must
+          deploy all of the components listed in the J2EE module deployment
+          descriptor according to the deployment requirements of the
+          respective J2EE component specification. If the module is a type
+          that contains JAR format files (for example, Web and Connector
+          modules), all classes in .jar files within the module referenced
+          from other JAR files within the module using the Class-Path
+          manifest header must be included in the deployment. If the
+          module, or any JAR format files within the module, declares a
+          dependency on an installed optional package, that dependency must
+          be satisfied.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:267</id>
+			<description>          When deploying a stand-alone J2EE module the deployment tool must
+          allow the Deployer to configure the container to reflect the
+          values of all the properties declared by the deployment
+          descriptor element for each component.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:268</id>
+			<description>          When deploying a stand-alone J2EE module the deployment tool must
+          allow the Deployer to deploy the same module multiple times, as
+          multiple independent applications, possibly with different
+          configurations. For example, the enterprise beans in an ejb-jar
+          file might be deployed multiple times under different JNDI names
+          and with different configurations of their resources.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.1"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:269</id>
+			<description>          When deploying a J2EE Application the deployment tool must allow
+          the Deployer to configure the container to reflect the values of
+          all the properties declared by the deployment descriptor element
+          for each component.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:270</id>
+			<description>          When deploying a J2EE Application the deployment tool must allow
+          the Deployer to deploy the same J2EE application multiple times,
+          as multiple independent applications, possibly with different
+          configurations. For example, the enterprise beans in an ejb-jar
+          file might be deployed multiple times under different JNDI names
+          and with different configurations of their resources.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:271</id>
+			<description>          When presenting security role descriptions to the Deployer, the
+          deployment tool must use the descriptions in the J2EE application
+          deployment descriptor rather than the descriptions in any module
+          deployment descriptors for security roles with the same name.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.2"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:272</id>
+			<description>          When deploying an optional package, the deployment tool must
+          record the extension name and version information from the
+          manifest file of the optional package JAR file. The deployment
+          tool must make the optional package available to other J2EE
+          deployment units that request it according to the version
+          matching rules described in the Optional Package Versioning
+          specification.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:273</id>
+			<description>          When deploying an optional package, the deployment tool must
+          satisfy the dependencies included in the optional package (if
+          any).
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:274</id>
+			<description>          When deploying an optional package, the deployment tool must make
+          the optional package available with at least the same security
+          permissions as any application or module that uses it.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:275</id>
+			<description>          The deployment tools for J2EE containers must validate the
+          deployment descriptors against the J2EE deployment descriptor
+          schemas and other vendorspecific schemas.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "4.3"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:276</id>
+			<description>          All deployment-extension elements using a namespace unknown to
+          the deployment tool will be ignored depending on the
+          mustUnderstand attribute. If an extension block is marked as
+          mustUnderstand=false , the deployment tool must be able to
+          deploy the application without the specified extension and ignore
+          the extension.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "5"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:277</id>
+			<description>          All deployment-extension elements using a namespace unknown to
+          the deployment tool will be ignored depending on the
+          mustUnderstand attribute.  If mustUnderstand= true is specified,
+          and the namespace is unknown, the deployment must fail.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "5"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">
+			<id>J2EE:SPEC:278</id>
+			<description>          If the deployment tool can support the extension designated by
+          the namespace, it must validate the extension block in the
+          deployment descriptor and resolve all type references for
+          extensions that it understands. Validation errors must cause an
+          error to be reported.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "5"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:279</id>
+			<description>          In a J2EE deployment descriptor, the content of the XML elements
+          is in general case sensitive.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword> 
+      
+			</keywords>      
+			<location chapter = "8" section = "6"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:279</id>
+			<description>          In a J2EE deployment descriptor, the content of the XML elements
+          is in general case sensitive.
+        
+			</description>      
+			<keywords>
+				<keyword>Assembly</keyword>
+				<keyword>Deployment</keyword> 
+      
+			</keywords>      
+			<location chapter = "8" section = "6"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:10280</id>
+			<description>
+          The url-pattern is assumed to be in
+URL-decoded form and must not contain CR(#xD) or LF(#xA). 
+			</description>      
+			<keywords>
+				<keyword>Application Client</keyword>      
+			</keywords>      
+			<location chapter = "8" section = "9"/>    
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:281</id>
+			<description>The J2EE authentication requirements for application clients are the same as for
+other J2EE components, and the same authentication techniques may be used as for
+other J2EE application components.
+
+No authentication is necessary when accessing unprotected web resources.
+When accessing protected web resources, the usual varieties of authentication
+may be used, namely HTTP Basic authentication, SSL client authentication, or
+HTTP Login Form authentication. Lazy authentication may be used.
+
+Authentication is required when accessing protected enterprise beans. The
+authentication mechanisms for enterprise beans include those required in the EJB
+specification for enterprise bean interoperability. Lazy authentication may be
+used.
+ 
+			</description>
+			<location chapter = "9" section = "2"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:282</id>
+			<description> If the container interacts with the user to gather authentication data, the
+container must provide an appropriate user interface. In addition, an application
+client may provide a class that implements the
+javax.security.auth.callback.CallbackHandler interface and specify the class
+name in its deployment descriptor (see Section J2EE.9.7, J2EE Application
+Client XML Schemas for details). The Deployer may override the callback
+handler specified by the application and use of the container's default
+authentication user interface instead.
+If a callback handler is configured by the Deployer, the application client
+container must instantiate an object of this class and use it for all authentication
+interactions with the user. The application's callback handler must fully support
+Callback objects specified in the javax.security.auth.callback package.
+ 
+			</description>
+			<location chapter = "9" section = "2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:283</id>
+			<description> 
+All J2EE products are required to
+support DTDs for previous versions as well as the DTDs specified in this version of the
+specification.
+			</description>
+			<location chapter = "A" section = ""/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
+			<id>J2EE:SPEC:284</id>
+			<description> 
+There are no restrictions on mixing versions of deployment
+descriptors in a single application; any combination of valid deployment descriptor
+versions must be supported.
+			</description>
+			<location chapter = "A" section = ""/>
+		</assertion>
+	</assertions>
+</spec>

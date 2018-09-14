@@ -1,0 +1,1716 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+	<TITLE>CTS JMS TestPlan</TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice 6.0  (Solaris Sparc)">
+	<META NAME="AUTHOR" CONTENT="arthur frechette">
+	<META NAME="CREATED" CONTENT="20020308;15474900">
+	<META NAME="CHANGEDBY" CONTENT="Dianne">
+	<META NAME="CHANGED" CONTENT="20020322;17211500">
+	<STYLE>
+	<!--
+		TD P { color: #000000 }
+		H2 { color: #000000 }
+		H3 { color: #000000 }
+		P { color: #000000 }
+		PRE { color: #000000 }
+		A:link { color: #00ee00 }
+		A:visited { color: #551a8b }
+	-->
+	</STYLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#00ee00" VLINK="#551a8b">
+<H2 ALIGN=CENTER><FONT SIZE=6 STYLE="font-size: 22pt">Compatibility
+Test Plan for JMS 1.1</FONT> 
+</H2>
+<P><BR><BR>
+</P>
+<P>Dianne Jiao x 22738</P>
+<P><BR><BR>
+</P>
+<P ALIGN=CENTER><IMG SRC="file:///usr/dist/share/staroffice,v6.0beta/share/gallery/rulers/blurulr1.gif" NAME="Graphic1" ALIGN=BOTTOM WIDTH=640 HEIGHT=12 BORDER=0></P>
+<OL>
+	<P><FONT SIZE=5><B>Table of Content</B></FONT></P>
+</OL>
+<P><A HREF="#rev"><FONT FACE="Albany"><FONT COLOR="#0000ff">Revision
+History</FONT></FONT></A></P>
+<P><A HREF="#intro"><FONT FACE="Albany"><FONT COLOR="#0000ff">Introduction</FONT></FONT></A></P>
+<P><A HREF="#goal"><FONT SIZE=3><FONT FACE="Albany"><FONT COLOR="#0000ff">Goals</FONT></FONT></FONT></A></P>
+<P><A HREF="#ngoal"><FONT SIZE=3><FONT FACE="Albany"><FONT COLOR="#0000ff">Non-Goals</FONT></FONT></FONT></A></P>
+<P><A HREF="#types"><FONT SIZE=3><FONT FACE="Albany"><FONT COLOR="#0000ff">Types
+of Compatibility Tests</FONT></FONT></FONT></A></P>
+<P><A HREF="#area"></A><A HREF="#area"><FONT SIZE=3><FONT FACE="Albany"><FONT COLOR="#0000ff">High
+Level Test Areas</FONT></FONT></FONT></A><A HREF="#area"></A></P>
+<UL>
+	<LI><P><A HREF="#mdb"><FONT SIZE=3><FONT FACE="Arial, sans-serif"><FONT COLOR="#0000ff">J2EE
+	Message-driven Bean Component</FONT></FONT></FONT></A></P>
+	<LI><P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#ejb"><FONT FACE="Arial, sans-serif"><FONT COLOR="#0000ff">JMS
+	API in EJB components</FONT></FONT></A></FONT></FONT></P>
+	<LI><P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#web"><FONT FACE="Arial, sans-serif"><FONT COLOR="#0000ff">JMS
+	API in WEB components</FONT></FONT></A></FONT></FONT></P>
+	<LI><P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#appclient"><FONT FACE="Arial, sans-serif"><FONT COLOR="#0000ff">JMS
+	API in Application Client components</FONT></FONT></A></FONT></FONT></P>
+	<LI><P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#xa"><FONT FACE="Arial, sans-serif"><FONT COLOR="#0000ff">Distributed
+	Transactions across J2EE Components</FONT></FONT></A></FONT></FONT></P>
+</UL>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#strategy"><FONT COLOR="#0000ff">Test
+Approach</FONT></A></FONT></FONT></P>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#deliverable"><FONT COLOR="#0000ff">Deliverables</FONT></A></FONT></FONT></P>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#dependency"><FONT COLOR="#0000ff">Dependencies</FONT></A></FONT></FONT></P>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#ref"><FONT COLOR="#0000ff">References</FONT></A></FONT></FONT></P>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#schedule"><FONT COLOR="#0000ff">Release
+Schedule </FONT></A></FONT></FONT>
+</P>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#support"><FONT COLOR="#0000ff">Support</FONT></A></FONT></FONT></P>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#risk"><FONT COLOR="#0000ff">Risks</FONT></A></FONT></FONT></P>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#team"><FONT COLOR="#0000ff">Team
+Members</FONT></A></FONT></FONT></P>
+<P><FONT FACE="Albany"><FONT SIZE=3><A HREF="#assertion"><FONT COLOR="#0000ff">Appendix
+A Test Assertions</FONT></A></FONT></FONT></P>
+<H2 ALIGN=CENTER><IMG SRC="file:///usr/dist/share/staroffice,v6.0beta/share/gallery/rulers/blurulr1.gif" NAME="Graphic2" ALIGN=BOTTOM WIDTH=640 HEIGHT=12 BORDER=0></H2>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<H2><A NAME="rev"></A>Revision History</H2>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=49*>
+	<COL WIDTH=85*>
+	<COL WIDTH=43*>
+	<COL WIDTH=78*>
+	<TR>
+		<TD WIDTH=19%>
+			<P>Document</P>
+		</TD>
+		<TD WIDTH=33%>
+			<P>Comments</P>
+		</TD>
+		<TD WIDTH=17%>
+			<P>Date</P>
+		</TD>
+		<TD WIDTH=31%>
+			<P>Reviewer</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=19%>
+			<P>Initial Draft</P>
+		</TD>
+		<TD WIDTH=33%>
+			<P>Based on JMS1.1 draft 0.2</P>
+		</TD>
+		<TD WIDTH=17%>
+			<P>03/22/02</P>
+		</TD>
+		<TD WIDTH=31%>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<H2><BR><BR>
+</H2>
+<HR>
+<H2><A NAME="intro"></A>Introduction</H2>
+<P>This test plan documents the high level Compatibility Test Suite
+(CTS) test plan for the Java Message Service (JMS), a component of
+J2EE. This includes JMS functionality as specified in the EJB 2.1
+specification, the J2EE Platform Specification version 1.4, the JMS
+Specification version 1.1 and the Java Servlet specification v2.4.
+Compatibility test cases are derived from the requirements of these
+specifications. The CTS tests are written to ensure application
+portability and compatibility among JMS implementations based on this
+API. The reference implementation will validate that the
+specifications can be implemented, will provide a reference point for
+the development community, and will be used for developing
+Compatibility Tests, which leads to a brand. This ensures Sun's,
+specifically Java's WORA (Write Once Run Anywhere) mission. 
+</P>
+<H2><BR><BR>
+</H2>
+<HR>
+<H2><A NAME="goal"></A>Goals</H2>
+<P>Provide the CTS for the functionality as defined in the J2EE 1.4:</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Message-driven Beans (MDB)</P>
+	<LI><P STYLE="margin-bottom: 0cm">JMS access from J2EE components
+	(excluding applets)</P>
+	<LI><P STYLE="margin-bottom: 0cm">JMS API</P>
+	<LI><P STYLE="margin-bottom: 0cm">Distributed Transactions</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<HR>
+<H2><A NAME="ngoal"></A>Non-Goals</H2>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"> Performance 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm"> Scalability 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm"> Ease of use 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm"> Non-required (implementation
+	specific) areas of the specification 
+	</P>
+</UL>
+<P><BR><BR>
+</P>
+<HR>
+<H2><A NAME="types"></A>Types of Compatibility Tests</H2>
+<P>There are 4 types of tests that make up the Compatibility Test
+Suite, these include: &nbsp; 
+</P>
+<UL>
+	<LI><P>Signature Tests - Checks that all of the required API
+	signatures are available for an implementation, no supersets or
+	subsets 
+	</P>
+	<LI><P>API Tests - Verifies that all of the required classes and
+	methods behave according to the specification on a method by method
+	basis. 
+	</P>
+	<LI><P>End-To-End Tests - A new type of compatibility test that was
+	introduced with the J2EE platform. These type of tests span across
+	N-tiers of the J2EE platform. These tests primarily focus and depend
+	on server-side container runtime environments for proper execution,
+	testing and validation. 
+	</P>
+	<LI><P>Interoperability Tests - A new type of compatibility test
+	that was introduced with the J2EE platform. These type of tests span
+	across different J2EE platforms from different vendor's to test
+	interoperability among these J2EE vendor's platforms. 
+	</P>
+	<P>For CTS JMS 1.1, we will be doing Signature, API, and End-To-End
+	tests for the J2EE 1.4 platform. There are new APIs introduced in
+	JMS 1.1, for which new tests will be added.</P>
+</UL>
+<H2><BR><BR>
+</H2>
+<HR>
+<H2><A NAME="area"></A>High Level Test Areas</H2>
+<P>The following features of JMS will be tested as specified by the
+EJB specification version 2.1, the J2EE Platform Specification
+version 1.4 and the JMS Specification version 1.1:</P>
+<P><A NAME="mdb"></A><B>J2EE Message-driven Bean Component</B></P>
+<P STYLE="margin-bottom: 0cm">asynchronous receives within MDB</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">Destination (?)</P>
+</UL>
+<P STYLE="margin-left: 0.03cm; margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-left: 0.03cm; margin-bottom: 0cm">Sending JMS
+messages from MDB</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">To other message driven bean Topic</P>
+	<LI><P STYLE="margin-bottom: 0cm">To other message driven bean Queue
+		</P>
+	<LI><P STYLE="margin-bottom: 0cm">To Topic ( not message listener)</P>
+	<LI><P STYLE="margin-bottom: 0cm">To Queue (not message listener)</P>
+	<LI><P STYLE="margin-bottom: 0cm">To Temporary Queue (not message
+	listener)</P>
+	<LI><P STYLE="margin-bottom: 0cm">To Temporary Topic (not message
+	listener)</P>
+	<LI><P STYLE="margin-bottom: 0cm">Destination ??</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Synchronous receiving of messages
+within MDB</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Topic</P>
+	<LI><P STYLE="margin-bottom: 0cm">Destination??? 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading of
+JMS Message Types</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Text</P>
+	<LI><P STYLE="margin-bottom: 0cm">Stream</P>
+	<LI><P STYLE="margin-bottom: 0cm">Byte</P>
+	<LI><P STYLE="margin-bottom: 0cm">Object</P>
+	<LI><P STYLE="margin-bottom: 0cm">Map</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading of
+JMS Message with different Headers</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading of
+JMS Message with different Properties</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Transaction with Container Managed
+Transaction(CMT)</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Sending JMS messages using
+	Container Managed Transaction (CMT) with Required Transaction
+	attributes</P>
+	<LI><P STYLE="margin-bottom: 0cm">Receiving asynchronous JMS
+	messages using CMT with Required Transaction attributes</P>
+	<LI><P STYLE="margin-bottom: 0cm">Commits Send/Receive 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Rollbacks Send/Receive 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Transaction with Bean Managed
+Transaction  (BMT)</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Sending JMS messages using Bean
+	Managed Transaction (BMT) 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Receiving asynchronous JMS
+	messages using BMT 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Commits Send/Receive 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Rollbacks Send/Receive 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Acknowledgment modes - for
+non-transactional delivery</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">AUTO_ACKNOWLEDGE</P>
+	<LI><P STYLE="margin-bottom: 0cm">DUPS_OK_ACKNOWLEDGE 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Topic Subscriptions</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Durable</P>
+	<LI><P STYLE="margin-bottom: 0cm">Non-Durable</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Message Selectors</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Security</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Programmatic signon 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Container signon 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">use-caller-identity</P>
+	<LI><P STYLE="margin-bottom: 0cm">runAs-specified-identity</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Use of environment entries to look up
+the following administered objects</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">ConnectionFactory ??</P>
+	<LI><P STYLE="margin-bottom: 0cm">Destination ??</P>
+	<LI><P STYLE="margin-bottom: 0cm">QueueConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">TopicConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">Topic</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Once and Only once delivery
+(Persistence)</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Queue receivers 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Durable topic subscribers</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Exception Handling</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">The following table contains the
+conditions that will cause an exception to be thrown</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=46*>
+	<COL WIDTH=117*>
+	<COL WIDTH=94*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>Method Called</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Description</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>Exception thrown</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>setRollbackOnly</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>BMT</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>setRollbackOnly</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>CMT with transaction attribute set to NotSupported 
+			</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>getRollbackOnly</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>BMT</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>getRollbackOnly</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>CMT with transaction attribute set to NotSupported</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>getUserTransaction</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>CMT with transaction attribute set to Required</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>getUserTransaction</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>CMT with transaction attribute set to NotSupported</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>getCallerPrincipal</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>CMT</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>isCallerInRole</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>CMT</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>getEJBHome</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>CMT</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>getRollbackOnly</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>CMT</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>java.lang.IllegalStateException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>Session.commit</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>JTA context</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>javax.jms.TransactionInProgressException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>Session.rollback</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>JTA context</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>javax.jms.TransactionInProgressException</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P>begin</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Previous instance not committed.</P>
+		</TD>
+		<TD WIDTH=37%>
+			<P>javax.transaction.NotSupportedException</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><A NAME="ejb"></A><B>JMS API in EJB
+components</B></P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Sending JMS messages</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">To Message-driven Bean Topic</P>
+	<LI><P STYLE="margin-bottom: 0cm">To Message-driven Bean Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination ( not MDB )
+	Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination ( not MDB )
+	Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination Temporary Queue
+		</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination Temporary Topic
+		</P>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Destination (?)</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Synchronous receiving of JMS messages</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Topic 
+	</P>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Destination (?)</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Queue Browsing JMS messages</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading JMS
+Message Types</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Text</P>
+	<LI><P STYLE="margin-bottom: 0cm">Stream</P>
+	<LI><P STYLE="margin-bottom: 0cm">Byte</P>
+	<LI><P STYLE="margin-bottom: 0cm">Object</P>
+	<LI><P STYLE="margin-bottom: 0cm">Map</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading of
+JMS Message with different Headers</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading of
+JMS Message with different Properties</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Transactions</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">JTA 
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Sending JMS messages using
+	Container Managed Transaction (CMT) with Required Transaction
+	attributes</P>
+	<LI><P STYLE="margin-bottom: 0cm">Sending JMS messages using Bean
+	Managed Transaction (BMT) 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Receiving asynchronous JMS
+	messages using CMT with Required Transaction attributes</P>
+	<LI><P STYLE="margin-bottom: 0cm">Receiving asynchronous JMS
+	messages using BMT 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Send/Receive Commits</P>
+	<LI><P STYLE="margin-bottom: 0cm">Send/Receive Rollbacks</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Acknowledgment modes - for
+non-transactional delivery</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">AUTO_ACKNOWLEDGE</P>
+	<LI><P STYLE="margin-bottom: 0cm">DUPS_OK_ACKNOWLEDGE 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Topic Subscriptions</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Durable (emphasis on durable)</P>
+	<LI><P STYLE="margin-bottom: 0cm">Non-Durable</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Message Selectors</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Security</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Programmatic signon 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Container signon 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">use-caller-identity</P>
+	<LI><P STYLE="margin-bottom: 0cm">runAs-specified-identity</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Use of environment entries to look up
+the following administered objects</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">ConnectionFactory ??</P>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Destination ??</P>
+	<LI><P STYLE="margin-bottom: 0cm">QueueConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">TopicConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">Topic</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Use of Helper methods</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Once and Only once delivery
+(Persistence)</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Queue receivers 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Durable topic subscribers</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Exception Handling</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">java.lang.IllegalStateExceptions</P>
+	<LI><P STYLE="margin-bottom: 0cm">JMS Exceptions</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">The following table lists the jms
+exceptions:</P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=72*>
+	<COL WIDTH=184*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>JMS Exception</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>Description</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>IllegalStateException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>When method is invoked at an invalid time.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>JMSSecurityException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>When provider rejects username/password</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>InvalidClientIDException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>When client attempts to set ClientID that is rejected by the
+			provider</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>InvalidDestinationException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>Destination is not valid</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>InvalidSelectorException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>Invalid selector syntax</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>MessageEOFException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>Unexpected end of stream encountered</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>MessageFormatException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>Attempt to use a data type not supported by a message.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>MessageNotReadableException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>Attempt to read a write-only message</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>MessageNotWriteableException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>Client attempts to write to a read-only message.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>TransactionInProgressException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>Client attempts to call Session.commit() when a session is part
+			of a distributed transaction</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28%>
+			<P>TransactionRolledBackException</P>
+		</TD>
+		<TD WIDTH=72%>
+			<P>When a call to Session.commit results in a rollback of the
+			current transaction 
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><A NAME="web"></A><B>JMS API in Web Components</B></P>
+<P STYLE="margin-bottom: 0cm">Sending JMS messages</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">To Message-driven Bean Topic</P>
+	<LI><P STYLE="margin-bottom: 0cm">To Message-driven Bean Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination ( not mdb )
+	Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination ( not mdb )
+	Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination Temporary Queue
+		</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination Temporary Topic
+		</P>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Destination (?)</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Synchronous receiving of JMS messages</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Topic 
+	</P>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Destination (?)</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Queue Browsing JMS messages</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading JMS
+Message Types</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Text</P>
+	<LI><P STYLE="margin-bottom: 0cm">Stream</P>
+	<LI><P STYLE="margin-bottom: 0cm">Byte</P>
+	<LI><P STYLE="margin-bottom: 0cm">Object</P>
+	<LI><P STYLE="margin-bottom: 0cm">Map</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading of
+JMS Message with different Headers</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading of
+JMS Message with different Properties</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Message Selectors</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Acknowledgment modes 
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">AUTO_ACKNOWLEDGE</P>
+	<LI><P STYLE="margin-bottom: 0cm">DUPS_OK_ACKNOWLEDGE 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">CLIENT_ACKNOWLEDGE</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Topic Subscriptions</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Durable (emphasis on durable)</P>
+	<LI><P STYLE="margin-bottom: 0cm">Non-Durable</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Security</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Programmatic signon 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Container signon 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Use of environment entries to look up
+the following administered objects</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">ConnectionFactory??</P>
+	<LI><P STYLE="margin-bottom: 0cm">Destination ??</P>
+	<LI><P STYLE="margin-bottom: 0cm">QueueConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">TopicConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">Topic</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Once and Only once delivery
+(Persistence)</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Queue receivers 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Durable topic subscribers</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Exception Handling</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">java.lang.IllegalStateExceptions</P>
+	<LI><P STYLE="margin-bottom: 0cm">JMS Exceptions - see table above 
+	</P>
+</UL>
+<P><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Transactions</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Sending JMS messages  
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Receiving asynchronous JMS
+	messages</P>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Send/Receive Commits</P>
+</UL>
+<UL>
+	<LI><P>Send/Receive Rollbacks</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><A NAME="appclient"></A><B>JMS API in Application Client</B></P>
+<P STYLE="margin-bottom: 0cm">Sending JMS messages</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">To Message-driven Bean Topic</P>
+	<LI><P STYLE="margin-bottom: 0cm">To Message-driven Bean Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination ( not mdb )
+	Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination ( not mdb )
+	Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination Temporary Queue
+		</P>
+	<LI><P STYLE="margin-bottom: 0cm">To JMS Destination Temporary Topic
+		</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Synchronous receiving of JMS messages</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Topic 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Asynchronous receiving of JMS messages</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Topic 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Queue 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Temporary Topic 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Queue Browsing JMS messages</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Creation/Sending/Receiving/Reading JMS
+Message Types</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Text</P>
+	<LI><P STYLE="margin-bottom: 0cm">Stream</P>
+	<LI><P STYLE="margin-bottom: 0cm">Byte</P>
+	<LI><P STYLE="margin-bottom: 0cm">Object</P>
+	<LI><P STYLE="margin-bottom: 0cm">Map</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">JMS Message Headers</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">JMS Message Properties</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Message Selectors</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Transactions</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">JTA 
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Sending JMS messages using
+	Container Managed Transaction (CMT) with Required Transaction
+	attributes</P>
+	<LI><P STYLE="margin-bottom: 0cm">Sending JMS messages using Bean
+	Managed Transaction (BMT) 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Receiving asynchronous JMS
+	messages using CMT with Required Transaction attributes</P>
+	<LI><P STYLE="margin-bottom: 0cm">Receiving asynchronous JMS
+	messages using BMT 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Send/Receive Commits</P>
+	<LI><P STYLE="margin-bottom: 0cm">Send/Receive Rollbacks</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Acknowledgment modes - for
+non-transactional delivery</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">AUTO_ACKNOWLEDGE</P>
+	<LI><P STYLE="margin-bottom: 0cm">CLIENT_ACKNOWLEDGE</P>
+	<LI><P STYLE="margin-bottom: 0cm">DUPS_OK_ACKNOWLEDGE 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Topic Subscriptions</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Durable (emphasis on durable)</P>
+	<LI><P STYLE="margin-bottom: 0cm">Non-Durable</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Transactions</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">local transactions 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Security</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Programmatic signon 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Container signon 
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Use of environment entries to look up
+the following administered objects</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">ConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">QueueConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">TopicConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">Topic</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Once and Only once delivery
+(Persistence)</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Queue receivers 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Durable topic subscribers</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Exception Handling</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">JMS Exceptions</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><A NAME="xa"></A><B>Distributed Transactions across J2EE
+Components</B></P>
+<P STYLE="font-weight: medium">Combined operations in a single JTA
+transaction including:</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">JDBC
+	databases</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">JMS sessions</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">Enterprise
+	Beans</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">Connectors</P>
+</UL>
+<P><BR><BR>
+</P>
+<P STYLE="font-weight: medium">Sample scenarios</P>
+<P STYLE="font-weight: medium"><B>Scenario1</B>: A client sends a
+message to a Topic A serviced by a Message-driven Bean X. Bean X
+updates data in Database B. The receipt of the message and database
+update are all committed. Also, test with a rollback. 
+</P>
+<P STYLE="font-weight: medium">Test with Queue, commit and rollback.</P>
+<P STYLE="font-weight: medium"><B>Scenario2</B>: A client invokes the
+enterprise Bean X. Bean X sends a message to a JMS queue A and
+updates data in a database B using connections that the Deployer
+configured to connect with a JMS provider and a database. Then X
+calls another enterprise Bean Y. 
+</P>
+<P STYLE="font-weight: medium">Bean Y updates data in database C.
+Commit operations on A,B and C. Also test with a rollback. Test with
+Topic, commit and rollback.</P>
+<P><A NAME="porting"></A><B>Porting Package</B></P>
+<P STYLE="font-weight: medium">Additional porting APIs needed for JMS
+CTS testing</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">createQueue</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">createTopic</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">deleteAllDestinations</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">startJmsService</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">stopJmsService</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">createQueueConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">createTopicConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">createConnectionFactory
+	??</P>
+	<LI><P STYLE="margin-bottom: 0cm; font-weight: medium">createDestination
+	??</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><A NAME="api"></A><B>APIs Tested</B> <BR><BR>The functionality
+required by the JMS specification for the&nbsp; following API classes
+will be verified as follows: 
+</P>
+<P><B>Explicit and Implicit Testing</B> APIs of the following
+classes/interfaces</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.QueueRequestor</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.JMSException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.IllegalStateException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.InvalidClientIDException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.InvalidDestinationException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.InvalidSelectorException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.JMSSecurityException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.MessageEOFException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.MessageFormatException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.MessageNotReadableException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.MessageNotWriteableException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.ResourceAllocationException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TransactionInProgressException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TransactionRolledBackException</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TopicRequestor</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.Connection</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.QueueConnection</P>
+	<LI><P STYLE="margin-bottom: 0cm"><A HREF="http://javax.jms.TopicConnection/"><FONT COLOR="#000000">javax.jms.TopicConnection</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.ConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.QueueConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TopicConnectionFactory</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.ConnectionMetaData</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.DeliveryMode</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.Destination</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.Queue</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TemporaryQueue</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.Topic</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TemporaryTopic</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.ExceptionListener</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.Message</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.BytesMessage</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.MapMessage</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.ObjectMessage</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.StreamMessage</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TextMessage</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.MessageConsumer</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.QueueReceiver</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TopicSubscriber</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.MessageListener</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.MessageProducer</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.QueueSender</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TopicPublisher</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.QueueBrowser</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.Session</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.QueueSession</P>
+	<LI><P STYLE="margin-bottom: 0cm">javax.jms.TopicSession</P>
+</UL>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H2><BR><BR>
+</H2>
+<HR>
+<H2><A NAME="strategy"></A>Test Approach</H2>
+<P STYLE="font-weight: medium">The CTS will utilize the J2EE
+reference implementation to develop JMS CTS tests. 
+</P>
+<P STYLE="font-weight: medium">The CTS will be adding to the Porting
+Package for JMS Administered Objects. 
+</P>
+<P STYLE="font-weight: medium">The creation of JMS Administered
+objects is implementation specific. Adding these api's to the porting
+package will keep the test suite implementation independent.
+Licensees will be required to modify these methods to comply with
+their implementation.</P>
+<P STYLE="font-weight: medium">The Signature tests will not be the
+same as for J2EE release 1.4 as the JMS signatures have been changed.
+</P>
+<P STYLE="font-weight: medium">The API tests will be implemented as
+service tests and run in Application Client, EJB and Web containers.
+Note that the EJB and Web tests will be a subset of the Application
+Client tests. Refer to section 6.6 of the J2EE Platform specification
+version 1.4 for a list of excluded methods. And section 17.3.5 of the
+EJB 2.1 specification concerning the use of createQueueSession and
+createTopicSession.</P>
+<H2><BR><BR>
+</H2>
+<HR>
+<H2><A NAME="deliverable"></A>Deliverables</H2>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Test assertion derived from JMS
+	javadoc and J2EE 1.4 specifications: EJB, platform and JMS</P>
+	<LI><P STYLE="margin-bottom: 0cm">Compatibility Test Plan for JMS 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">A set of tests for the JMS
+	component as part of the J2EE platform Compatibility Test Suite. 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">An updated CTS User's Guide for
+	setup and configuration specific details for the JMS tests</P>
+</UL>
+<H2><BR><BR>
+</H2>
+<HR>
+<H2><A NAME="dependency"></A>Dependencies</H2>
+<P>The following dependencies are necessary for development of these
+tests: 
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">JMS Reference Implementation (JMS
+	RI) 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">JMS Version 1.1 Specification</P>
+	<LI><P STYLE="margin-bottom: 0cm">EJB specification version 2.1</P>
+	<LI><P STYLE="margin-bottom: 0cm">J2EE Platform specification
+	version 1.4</P>
+	<LI><P STYLE="margin-bottom: 0cm">CTS porting package support</P>
+	<P STYLE="margin-bottom: 0cm"></P>
+</UL>
+<HR>
+<H2><A NAME="ref"></A>References</H2>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">JMS
+	Assertions to be tested in CTS:
+	</FONT><A HREF="http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/JMS1.1"><FONT COLOR="#000000">http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/JMS1.1</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">JMS 1.1
+	project schedule: </FONT><A HREF="http://invalid.domain.com/JMS/jmsmaint.html"><FONT COLOR="#000000">http://invalid.domain.com/JMS/jmsmaint.html</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">JMS 1.1
+	javadoc(1/31/2002): </FONT><A HREF="http://invalid.domain.com/~kstout/JMS/JMS-draft.zip"><FONT COLOR="#000000">http://invalid.domain.com/~kstout/JMS/JMS-draft.zip</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">JMS 1.1 spec
+	draft 2: </FONT><A HREF="http://invalid.domain.com/~kstout/JMS/jms_v1.1_draft2.pdf"><FONT COLOR="#000000">http://invalid.domain.com/~kstout/JMS/jms_v1.1_draft2.pdf</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">EJB 2.1 spec
+	draft 0.4: </FONT><A HREF="http://javaweb.eng/~lgd/EJB2.1/draft4"><FONT COLOR="#000000">http://javaweb.eng/~lgd/EJB2.1/draft4</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">J2EE 1.4
+	Platform Spec - Expert Draft 1:
+	</FONT><A HREF="http://anybodys.sfbay/j2ee/Specs/J2EE/1.4/latest/J2EE_Platform_Spec.pdf"><FONT COLOR="#000000">http://anybodys.sfbay/j2ee/Specs/J2EE/1.4/latest/J2EE_Platform_Spec.pdf</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT COLOR="#000000">JMS 1.0.2b
+	testplan: </FONT><A HREF="http://invalid.domain.com/CTS/JMSHighLevelTestPlan01.html"><FONT COLOR="#000000">http://invalid.domain.com/CTS/JMSHighLevelTestPlan01.html</FONT></A></P>
+</UL>
+<H2><BR><BR>
+</H2>
+<HR>
+<H2><A NAME="schedule"></A>Release Schedule 
+</H2>
+<H3>JMS 1.1 Release Schedule</H3>
+<TABLE WIDTH=419 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=234>
+	<COL WIDTH=166>
+	<TR>
+		<TD WIDTH=234>
+			<P>Deliverable</P>
+		</TD>
+		<TD WIDTH=166>
+			<P>Date</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=234>
+			<P>JMS Domain Unification integration</P>
+		</TD>
+		<TD WIDTH=166>
+			<P>4/3/2002 ??</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=234>
+			<P>JMS database change integration</P>
+		</TD>
+		<TD WIDTH=166>
+			<P>4/12/2002 ??</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=234>
+			<P>CTS BETA soft code freeze</P>
+		</TD>
+		<TD WIDTH=166>
+			<P>9/17/2002</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=234>
+			<P>CTS BETA hard code freeze</P>
+		</TD>
+		<TD WIDTH=166>
+			<P>10/8/2002</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=234>
+			<P>CTS FCS soft code freeze</P>
+		</TD>
+		<TD WIDTH=166>
+			<P>12/16/2002</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=234>
+			<P>CTS FCS hard code freeze</P>
+		</TD>
+		<TD WIDTH=166>
+			<P>1/10/2003</P>
+		</TD>
+	</TR>
+</TABLE>
+<H2>Test Development Schedules</H2>
+<H3 ALIGN=CENTER>JMS 1.1 CTS Test Suite Development Schedule</H3>
+<TABLE WIDTH=736 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=274>
+	<COL WIDTH=98>
+	<COL WIDTH=75>
+	<COL WIDTH=79>
+	<COL WIDTH=83>
+	<COL WIDTH=80>
+	<TR>
+		<TD WIDTH=274>
+			<P>Development</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Engineer</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>Time</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>Start Date</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>Complete Date</P>
+		</TD>
+		<TD WIDTH=80>
+			<P>Availability</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>javadoc assertion generation</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 day</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>2/19/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>2/19/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P>Done</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Spec assertion generation</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>3/4/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>3/8/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P>Done</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Assertion review</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Kate/Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>4/29/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>5/3/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Test plan</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>3/18/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>3/22/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Assertion mapping</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>3/25/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>3/29/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Ant conversion</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>4/2/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>4/6/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Test design</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>4/9/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>4/13/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Test prototype</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>4/16/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>4/20/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Test implementation</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>6 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>4/22/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>6/7/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>MDB test update and development</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>2 weeks</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>6/10/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>6/21/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Assertion/test plan beta update 
+			</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Dianne</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P>6/24/2002</P>
+		</TD>
+		<TD WIDTH=83>
+			<P>6/28/2002</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Harness support</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Kyle 
+			</P>
+		</TD>
+		<TD WIDTH=75>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=79>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=83>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Doc Support</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Eric 
+			</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1.5 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=83>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=274>
+			<P>Testing Support</P>
+		</TD>
+		<TD WIDTH=98>
+			<P>Steve C.</P>
+		</TD>
+		<TD WIDTH=75>
+			<P>1.5 week</P>
+		</TD>
+		<TD WIDTH=79>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=83>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=80>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<H2><BR><BR>
+</H2>
+<HR>
+<H2><A NAME="support"></A>Support</H2>
+<P>CTS Support is provided to Licensees via the Java Licensee
+Engineering (JLE) team. 
+</P>
+<HR>
+<H2><A NAME="risk"></A>Risks</H2>
+<PRE>Risks to schedule above.
+
+If there are late changing JMS specification changes or API changes
+then this will slip the schedule by the amount of time to rework those tests
+using these APIs.
+</PRE>
+<HR>
+<PRE><A NAME="team"></A><FONT FACE="Times New Roman"><FONT SIZE=5><B>Team Members</B></FONT></FONT>
+
+
+Carla Carlson, Program Manager
+Kate Stout,    JMS Version 1.1, Specification Lead
+Kate Stout,    Development Engineer Lead
+Dianne Jiao,   CTS Lead Test Development Engineer
+Kevin Osborn,  CTS Development Manager
+Tom Kincaid,   RI Engineering Manager</PRE>
+<HR>
+<H2><A NAME="assertion"></A>Appendix A Test Assertions</H2>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Javadoc assertions (Based on Jan
+	31, 2002 version) 
+	</P>
+	<P STYLE="margin-bottom: 0cm"><A HREF="http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/JMS1.1/JMSJavadocAssertion.html"><FONT COLOR="#000000">http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/JMS1.1/JMSJavadocAssertion.html</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm">JMS 1.1 spec assertion ( based on
+	draft 2)</P>
+	<P STYLE="margin-bottom: 0cm"><A HREF="http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/JMS1.1/JMSSpecAssertion.html"><FONT COLOR="#000000">http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/JMS1.1/JMSSpecAssertion.html</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm">Platform spec assertions (based on
+	draft 1)</P>
+	<P STYLE="margin-bottom: 0cm"><A HREF="http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/j2ee/SpecAssertion.html"><FONT COLOR="#000000">http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/j2ee/SpecAssertion.html</FONT></A></P>
+	<LI><P STYLE="margin-bottom: 0cm">EJB spec assertions ( based on
+	draft 4)</P>
+	<P STYLE="margin-bottom: 0cm"><A HREF="http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/EJB2.1/EJBSpecAssertion.html"><FONT COLOR="#000000">http://invalid.domain.com/CTS/XMLassertions/j2ee/1.4/EJB2.1/EJBSpecAssertion.html</FONT></A></P>
+</UL>
+</BODY>
+</HTML>

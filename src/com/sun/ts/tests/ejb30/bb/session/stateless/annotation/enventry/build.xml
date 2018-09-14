@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_bb_stateless_enventry"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/common/annotation/enventry"/>
+  <property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/bb/session/stateless/annotation/enventry/EnvEntryFieldBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/annotation/enventry/EnvEntrySetterBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/annotation/enventry/EnvEntryTypeBean.class,
+com/sun/ts/tests/ejb30/common/annotation/enventry/EnvEntryBeanBase.class,
+com/sun/ts/tests/ejb30/common/annotation/enventry/EnvEntryIF.class,
+com/sun/ts/tests/ejb30/common/annotation/enventry/Constants.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class
+"/>
+  
+  <property name="appclient.jar.classes" 
+            value="
+com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/annotation/enventry/Client.class,
+com/sun/ts/tests/ejb30/common/annotation/enventry/ClientBase.class,
+com/sun/ts/tests/ejb30/common/annotation/enventry/EnvEntryIF.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class
+"/>
+  
+  <!-- override package.ejb.jar target in ejb30/common/import.xml
+       adding <metainf> subelement.
+  -->
+  <target name="package.ejb.jar">
+    <dirname property="ejb.jar.xml.dir" file="${ejb.jar.xml}"/>
+    <basename property="ejb.jar.xml.base" file="${ejb.jar.xml}"/>
+    <ts.ejbjar descriptor="${ejb.jar.xml.base}" descriptordir="${ejb.jar.xml.dir}"
+               archivename="${app.name}" includedefaultfiles="false">
+      <fileset dir="${class.dir}" includes="${ejb.jar.classes}"/>
+      <zipfileset dir="${ts.home}/src/${app.common}" includes="env-entries.properties" prefix="META-INF"/>
+    </ts.ejbjar>
+  </target>
+  
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

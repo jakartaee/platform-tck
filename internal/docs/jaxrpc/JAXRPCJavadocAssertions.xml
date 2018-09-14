@@ -1,0 +1,2437 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE javadoc SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/javadoc_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<javadoc>
+  <next-available-id>331</next-available-id>
+  <previous-id>255</previous-id>
+  <technology>JAXRPC</technology>
+  <id>JAX-RPC</id>
+  <name>Java API for XML-based RPC</name>
+  <version>1.1</version>
+  <assertions>
+    <!-- ********************************************************************************** -->
+    <!-- ********************************************************************************** -->
+    <!-- UNMODIFIED ASSERTIONS LISTED BELOW -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:1</id>
+      <description>Constructs a new exception with &lt;code&gt;null&lt;/code&gt; as its detail message. The cause is not initialized.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceException</class-interface>
+      <method name="ServiceException" return-type="ServiceException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:2</id>
+      <description>Constructs a new exception with the specified detail message. The cause is not initialized.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceException</class-interface>
+      <method name="ServiceException" return-type="ServiceException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:3</id>
+      <description>Constructs a new exception with the specified detail message and cause.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceException</class-interface>
+      <method name="ServiceException" return-type="ServiceException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:4</id>
+      <description>Constructs a new exception with the specified cause and a detail message of &lt;tt&gt;(cause==null ? null : cause.toString())&lt;/tt&gt; (which typically contains the class and detail message of &lt;tt&gt;cause&lt;/tt&gt;).</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceException</class-interface>
+      <method name="ServiceException" return-type="ServiceException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:5</id>
+      <description>Gets the Linked cause</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceException</class-interface>
+      <method name="getLinkedCause" return-type="java.lang.Throwable" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:6</id>
+      <description>A constant representing the property used to lookup the name of a &lt;code&gt;ServiceFactory&lt;/code&gt; implementation class.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="SERVICEFACTORY_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:7</id>
+      <description>Gets an instance of the &lt;code&gt;ServiceFactory&lt;/code&gt; &lt;p&gt;Only one copy of a factory exists and is returned to the application each time this method is called. &lt;p&gt; The implementation class to be used can be overridden by setting the javax.xml.rpc.ServiceFactory system property.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceFactory</class-interface>
+      <method name="newInstance" return-type="javax.xml.rpc.ServiceFactory" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:8</id>
+      <description />
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceFactory</class-interface>
+      <method name="newInstance" return-type="javax.xml.rpc.ServiceFactory">
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:13</id>
+      <description>Constructs a new exception with &lt;code&gt;null&lt;/code&gt; as its detail message. The cause is not initialized.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>JAXRPCException</class-interface>
+      <method name="JAXRPCException" return-type="JAXRPCException" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:14</id>
+      <description>Constructs a new exception with the specified detail message. The cause is not initialized.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>JAXRPCException</class-interface>
+      <method name="JAXRPCException" return-type="JAXRPCException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:15</id>
+      <description>Constructs a new exception with the specified detail message and cause.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>JAXRPCException</class-interface>
+      <method name="JAXRPCException" return-type="JAXRPCException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:16</id>
+      <description>Constructs a new JAXRPCException with the specified cause and a detail message of &lt;tt&gt;(cause==null ? null : cause.toString())&lt;/tt&gt; (which typically contains the class and detail message of &lt;tt&gt;cause&lt;/tt&gt;).</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>JAXRPCException</class-interface>
+      <method name="JAXRPCException" return-type="JAXRPCException">
+        <parameters>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:17</id>
+      <description>Gets the Linked cause</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>JAXRPCException</class-interface>
+      <method name="getLinkedCause" return-type="java.lang.Throwable" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:18</id>
+      <description>IN mode for parameter passing</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ParameterMode</class-interface>
+      <field name="IN" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:19</id>
+      <description>OUT mode for parameter passing</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ParameterMode</class-interface>
+      <field name="OUT" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:20</id>
+      <description>INOUT mode for parameter passing</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ParameterMode</class-interface>
+      <field name="INOUT" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:21</id>
+      <description />
+      <package>javax.xml.rpc</package>
+      <class-interface>ParameterMode</class-interface>
+      <method name="toString" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:22</id>
+      <description>Standard property: User name for authentication. &lt;p&gt;Type: java.lang.String</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="USERNAME_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:23</id>
+      <description>Standard property: Password for authentication. &lt;p&gt;Type: java.lang.String</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="PASSWORD_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:24</id>
+      <description>Standard property: Target service endpoint address. The URI scheme for the endpoint address specification must correspond to the protocol/transport binding for this stub class. &lt;p&gt;Type: java.lang.String</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="ENDPOINT_ADDRESS_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:25</id>
+      <description>Standard property: This boolean property is used by a service client to indicate whether or not it wants to participate in a session with a service endpoint. If this property is set to true, the service client indicates that it wants the session to be maintained. If set to false, the session is not maintained. The default value for this property is false. &lt;p&gt;Type: java.lang.Boolean</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="SESSION_MAINTAIN_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:26</id>
+      <description>Sets the name and value of a configuration property for this Stub instance. If the Stub instances contains a value of the same property, the old value is replaced. &lt;p&gt;Note that the &lt;code&gt;_setProperty&lt;/code&gt; method may not perform validity check on a configured property value. An example is the standard property for the target service endpoint address that is not checked for validity in the &lt;code&gt;_setProperty&lt;/code&gt; method. In this case, stub configuration errors are detected at the remote method invocation.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Stub</class-interface>
+      <method name="_setProperty" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:27</id>
+      <description>Gets the value of a specific configuration property.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Stub</class-interface>
+      <method name="_getProperty" return-type="java.lang.Object">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:28</id>
+      <description>Returns an &lt;code&gt;Iterato&lt;/code&gt; view of the names of the properties that can be configured on this stub instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Stub</class-interface>
+      <method name="_getPropertyNames" return-type="java.util.Iterator" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:31</id>
+      <description>The getPort method returns either an instance of a generated stub implementation class or a dynamic proxy. The parameter &lt;code&gt;serviceEndpointInterface&lt;/code&gt; specifies the service endpoint interface that is supported by the returned stub or proxy. In the implementation of this method, the JAX-RPC runtime system takes the responsibility of selecting a protocol binding (and a port) and configuring the stub accordingly. The returned &lt;code&gt;Stub&lt;/code&gt; instance should not be reconfigured by the client.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getPort" return-type="java.rmi.Remote">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:32</id>
+      <description>&lt;UL&gt; &lt;LI&gt;If there is an error during creation of stub instance or dynamic proxy &lt;LI&gt;If there is any missing WSDL metadata as required by this method &lt;LI&gt;Optionally, if an illegal &lt;code&gt;serviceEndpointInterface&lt;/code&gt; is specified &lt;/UL&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getPort" return-type="java.rmi.Remote">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:41</id>
+      <description>Creates a &lt;code&gt;Call&lt;/code&gt; object not associated with specific operation or target service endpoint. This &lt;code&gt;Call&lt;/code&gt; object needs to be configured using the setter methods on the &lt;code&gt;Call&lt;/code&gt; interface.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="createCall" return-type="javax.xml.rpc.Call" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:42</id>
+      <description>If any error in the creation of the &lt;code&gt;Call&lt;/code&gt; object</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="createCall" return-type="javax.xml.rpc.Call">
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:44</id>
+      <description>Returns an &lt;code&gt;Iterator&lt;/code&gt; for the list of &lt;code&gt;QName&lt;/code&gt;s of service endpoints grouped by this service</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getPorts" return-type="java.util.Iterator" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:45</id>
+      <description>Gets the location of the WSDL document for this Service.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getWSDLDocumentLocation" return-type="java.net.URL" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:46</id>
+      <description>Gets the &lt;code&gt;TypeMappingRegistry&lt;/code&gt; for this &lt;code&gt;Service&lt;/code&gt; object. The returned &lt;code&gt;TypeMappingRegistry&lt;/code&gt; instance is pre-configured to support the standard type mapping between XML and Java types types as required by the JAX-RPC specification.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getTypeMappingRegistry" return-type="javax.xml.rpc.encoding.TypeMappingRegistry" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:47</id>
+      <description>Returns the configured &lt;code&gt;HandlerRegistry&lt;/code&gt; instance for this &lt;code&gt;Service&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getHandlerRegistry" return-type="javax.xml.rpc.handler.HandlerRegistry" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:48</id>
+      <description>Standard property: User name for authentication &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="USERNAME_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:49</id>
+      <description>Standard property: Password for authentication &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="PASSWORD_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:51</id>
+      <description>Standard property for operation style. This property is set to "rpc" if the operation style is rpc; "document" if the operation style is document. &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="OPERATION_STYLE_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:52</id>
+      <description>Standard property for SOAPAction. This boolean property indicates whether or not SOAPAction is to be used. The default value of this property is false indicating that the SOAPAction is not used. &lt;p&gt;Type: &lt;code&gt;java.lang.Boolean&lt;/code&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="SOAPACTION_USE_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:53</id>
+      <description>Standard property for SOAPAction. Indicates the SOAPAction URI if the &lt;code&gt;javax.xml.rpc.soap.http.soapaction.use&lt;/code&gt; property is set to &lt;code&gt;true&lt;/code&gt;. &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="SOAPACTION_URI_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:54</id>
+      <description>Standard property for encoding Style: Encoding style specified as a namespace URI. The default value is the SOAP 1.1 encoding &lt;code&gt;http://schemas.xmlsoap.org/soap/encoding/&lt;/code&gt; &lt;p&gt;Type: &lt;code&gt;java.lang.String&lt;/code&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="ENCODINGSTYLE_URI_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:55</id>
+      <description>Standard property: This boolean property is used by a service client to indicate whether or not it wants to participate in a session with a service endpoint. If this property is set to true, the service client indicates that it wants the session to be maintained. If set to false, the session is not maintained. The default value for this property is &lt;code&gt;false&lt;/code&gt;. &lt;p&gt;Type: &lt;code&gt;java.lang.Boolean&lt;/code&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="SESSION_MAINTAIN_PROPERTY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:63</id>
+      <description>Removes all specified parameters from this &lt;code&gt;Call&lt;/code&gt; instance. Note that this method removes only the parameters and not the return type. The &lt;code&gt;setReturnType(null)&lt;/code&gt; is used to remove the return type.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="removeAllParameters" return-type="void" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:68</id>
+      <description>Sets the address of the target service endpoint. This address must correspond to the transport specified in the binding for this &lt;code&gt;Call&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="setTargetEndpointAddress" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:69</id>
+      <description>Gets the address of a target service endpoint.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getTargetEndpointAddress" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:70</id>
+      <description>Sets the value for a named property. JAX-RPC specification specifies a standard set of properties that may be passed to the &lt;code&gt;Call.setProperty&lt;/code&gt; method.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="setProperty" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:71</id>
+      <description>Gets the value of a named property.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getProperty" return-type="java.lang.Object">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:72</id>
+      <description>Removes a named property.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="removeProperty" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:73</id>
+      <description>Gets the names of configurable properties supported by this &lt;code&gt;Call&lt;/code&gt; object.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getPropertyNames" return-type="java.util.Iterator" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:74</id>
+      <description>Invokes a specific operation using a synchronous request-response interaction mode.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="invoke" return-type="java.lang.Object">
+        <parameters>
+          <parameter>java.lang.Object[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:75</id>
+      <description>if there is any error in the remote method invocation</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="invoke" return-type="java.lang.Object">
+        <parameters>
+          <parameter>java.lang.Object[]</parameter>
+        </parameters>
+        <throw>java.rmi.RemoteException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:78</id>
+      <description>Invokes a remote method using the one-way interaction mode. The client thread does not block waiting for the completion of the server processing for this remote method invocation. This method must not throw any remote exceptions. This method may throw a &lt;code&gt;JAXRPCException&lt;/code&gt; during the processing of the one-way remote call.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="invokeOneWay" return-type="void">
+        <parameters>
+          <parameter>java.lang.Object[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:79</id>
+      <description>Returns a &lt;code&gt;Map&lt;/code&gt; of {name, value} for the output parameters of the last invoked operation. The parameter names in the returned Map are of type &lt;code&gt;java.lang.String&lt;/code&gt;.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getOutputParams" return-type="java.util.Map" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:80</id>
+      <description>Returns a &lt;code&gt;List&lt;/code&gt; values for the output parameters of the last invoked operation.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getOutputValues" return-type="java.util.List" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:81</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_STRING" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:82</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_FLOAT" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:83</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_BOOLEAN" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:84</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_DOUBLE" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:85</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_INTEGER" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:86</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_INT" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:87</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_LONG" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:88</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_SHORT" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:89</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_DECIMAL" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:90</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_BASE64" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:91</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_HEXBINARY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:92</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_BYTE" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:93</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_DATETIME" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:94</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="XSD_QNAME" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:95</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_STRING" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:96</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_BOOLEAN" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:97</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_DOUBLE" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:98</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_BASE64" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:99</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_FLOAT" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:100</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_INT" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:101</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_LONG" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:102</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_SHORT" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:103</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_BYTE" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:104</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>QName</class-interface>
+      <field name="SOAP_ARRAY" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:105</id>
+      <description />
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>XMLType</class-interface>
+      <method name="XMLType" return-type="XMLType" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:108</id>
+      <description>Gets the registered default &lt;code&gt;TypeMapping&lt;/code&gt; instance. This method returns &lt;code&gt;null&lt;/code&gt; if there is no registered default TypeMapping in the registry.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="getDefaultTypeMapping" return-type="javax.xml.rpc.encoding.TypeMapping" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:123</id>
+      <description>Returns a Serializer for the specified XML processing mechanism type.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>SerializerFactory</class-interface>
+      <method name="getSerializerAs" return-type="javax.xml.rpc.encoding.Serializer">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:124</id>
+      <description>Returns a list of all XML processing mechanism types supported by this SerializerFactory.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>SerializerFactory</class-interface>
+      <method name="getSupportedMechanismTypes" return-type="java.util.Iterator" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:125</id>
+      <description>Gets the type of the XML processing mechanism and representation used by this Serializer.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>Serializer</class-interface>
+      <method name="getMechanismType" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:126</id>
+      <description>Returns a Deserializer for the specified XML processing mechanism type.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>DeserializerFactory</class-interface>
+      <method name="getDeserializerAs" return-type="javax.xml.rpc.encoding.Deserializer">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:127</id>
+      <description>Returns a list of all XML processing mechanism types supported by this DeserializerFactory.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>DeserializerFactory</class-interface>
+      <method name="getSupportedMechanismTypes" return-type="java.util.Iterator" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:128</id>
+      <description>Gets the type of the XML processing mechanism and representation used by this Deserializer.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>Deserializer</class-interface>
+      <method name="getMechanismType" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:129</id>
+      <description>Default constructor</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerInfo</class-interface>
+      <method name="HandlerInfo" return-type="HandlerInfo" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:131</id>
+      <description>Sets the Handler class</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerInfo</class-interface>
+      <method name="setHandlerClass" return-type="void">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:132</id>
+      <description>Gets the Handler class</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerInfo</class-interface>
+      <method name="getHandlerClass" return-type="java.lang.Class" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:133</id>
+      <description>Sets the Handler configuration as &lt;code&gt;java.util.Map&lt;/code&gt;</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerInfo</class-interface>
+      <method name="setHandlerConfig" return-type="void">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:134</id>
+      <description>Gets the Handler configuration</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerInfo</class-interface>
+      <method name="getHandlerConfig" return-type="java.util.Map" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:137</id>
+      <description>Sets the name and value of a property associated with the &lt;code&gt;MessageContext&lt;/code&gt;. If the &lt;code&gt;MessageContext&lt;/code&gt; contains a value of the same property, the old value is replaced.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>MessageContext</class-interface>
+      <method name="setProperty" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:138</id>
+      <description>Gets the value of a specific property from the &lt;code&gt;MessageContext&lt;/code&gt;</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>MessageContext</class-interface>
+      <method name="getProperty" return-type="java.lang.Object">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:139</id>
+      <description>Removes a property (name-value pair) from the &lt;code&gt;MessageContext&lt;/code&gt;</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>MessageContext</class-interface>
+      <method name="removeProperty" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:140</id>
+      <description>Returns true if the &lt;code&gt;MessageContext&lt;/code&gt; contains a property with the specified name.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>MessageContext</class-interface>
+      <method name="containsProperty" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:141</id>
+      <description>Returns an Iterator view of the names of the properties in this &lt;code&gt;MessageContext&lt;/code&gt;</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>MessageContext</class-interface>
+      <method name="getPropertyNames" return-type="java.util.Iterator" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:144</id>
+      <description>The &lt;code&gt;handleRequest&lt;/code&gt; method processes the request message.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>Handler</class-interface>
+      <method name="handleRequest" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:152</id>
+      <description>Initializes the configuration for a HandlerChain.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerChain</class-interface>
+      <method name="init" return-type="void">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:153</id>
+      <description>Indicates the end of lifecycle for a HandlerChain.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerChain</class-interface>
+      <method name="destroy" return-type="void" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:155</id>
+      <description>Gets SOAP actor roles registered for this HandlerChain at this SOAP node. The returned array includes the special SOAP actor &lt;code&gt;next&lt;/code&gt;.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerChain</class-interface>
+      <method name="getRoles" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:156</id>
+      <description>Gets the SOAPMessage from this message context</description>
+      <package>javax.xml.rpc.handler.soap</package>
+      <class-interface>SOAPMessageContext</class-interface>
+      <method name="getMessage" return-type="SOAPMessage" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:157</id>
+      <description>Sets the SOAPMessage in this message context</description>
+      <package>javax.xml.rpc.handler.soap</package>
+      <class-interface>SOAPMessageContext</class-interface>
+      <method name="setMessage" return-type="void">
+        <parameters>
+          <parameter>SOAPMessage</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:158</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Object</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:159</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ObjectHolder</class-interface>
+      <method name="ObjectHolder" return-type="ObjectHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:160</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ObjectHolder</class-interface>
+      <method name="ObjectHolder" return-type="ObjectHolder">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:161</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Short</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:162</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ShortWrapperHolder</class-interface>
+      <method name="ShortWrapperHolder" return-type="ShortWrapperHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:163</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ShortWrapperHolder</class-interface>
+      <method name="ShortWrapperHolder" return-type="ShortWrapperHolder">
+        <parameters>
+          <parameter>java.lang.Short</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:164</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Long</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:165</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>LongWrapperHolder</class-interface>
+      <method name="LongWrapperHolder" return-type="LongWrapperHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:166</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>LongWrapperHolder</class-interface>
+      <method name="LongWrapperHolder" return-type="LongWrapperHolder">
+        <parameters>
+          <parameter>java.lang.Long</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:167</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Integer</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:168</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>IntegerWrapperHolder</class-interface>
+      <method name="IntegerWrapperHolder" return-type="IntegerWrapperHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:169</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>IntegerWrapperHolder</class-interface>
+      <method name="IntegerWrapperHolder" return-type="IntegerWrapperHolder">
+        <parameters>
+          <parameter>java.lang.Integer</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:170</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Float</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:171</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>FloatWrapperHolder</class-interface>
+      <method name="FloatWrapperHolder" return-type="FloatWrapperHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:172</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>FloatWrapperHolder</class-interface>
+      <method name="FloatWrapperHolder" return-type="FloatWrapperHolder">
+        <parameters>
+          <parameter>java.lang.Float</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:173</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Double</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:174</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>DoubleWrapperHolder</class-interface>
+      <method name="DoubleWrapperHolder" return-type="DoubleWrapperHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:175</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>DoubleWrapperHolder</class-interface>
+      <method name="DoubleWrapperHolder" return-type="DoubleWrapperHolder">
+        <parameters>
+          <parameter>java.lang.Double</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:176</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Byte</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:177</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ByteWrapperHolder</class-interface>
+      <method name="ByteWrapperHolder" return-type="ByteWrapperHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:178</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ByteWrapperHolder</class-interface>
+      <method name="ByteWrapperHolder" return-type="ByteWrapperHolder">
+        <parameters>
+          <parameter>java.lang.Byte</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:179</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>String</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:180</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>StringHolder</class-interface>
+      <method name="StringHolder" return-type="StringHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:181</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>StringHolder</class-interface>
+      <method name="StringHolder" return-type="StringHolder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:182</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>short</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:183</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ShortHolder</class-interface>
+      <method name="ShortHolder" return-type="ShortHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:184</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ShortHolder</class-interface>
+      <method name="ShortHolder" return-type="ShortHolder">
+        <parameters>
+          <parameter>short</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:185</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>QName</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:186</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>QNameHolder</class-interface>
+      <method name="QNameHolder" return-type="QNameHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:188</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>long</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:189</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>LongHolder</class-interface>
+      <method name="LongHolder" return-type="LongHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:190</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>LongHolder</class-interface>
+      <method name="LongHolder" return-type="LongHolder">
+        <parameters>
+          <parameter>long</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:191</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>int</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:192</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>IntHolder</class-interface>
+      <method name="IntHolder" return-type="IntHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:193</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>IntHolder</class-interface>
+      <method name="IntHolder" return-type="IntHolder">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:194</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>float</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:195</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>FloatHolder</class-interface>
+      <method name="FloatHolder" return-type="FloatHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:196</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>FloatHolder</class-interface>
+      <method name="FloatHolder" return-type="FloatHolder">
+        <parameters>
+          <parameter>float</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:197</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>double</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:198</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>DoubleHolder</class-interface>
+      <method name="DoubleHolder" return-type="DoubleHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:199</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>DoubleHolder</class-interface>
+      <method name="DoubleHolder" return-type="DoubleHolder">
+        <parameters>
+          <parameter>double</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:200</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Calendar</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:201</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>CalendarHolder</class-interface>
+      <method name="CalendarHolder" return-type="CalendarHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:202</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>CalendarHolder</class-interface>
+      <method name="CalendarHolder" return-type="CalendarHolder">
+        <parameters>
+          <parameter>java.util.Calendar</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:203</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>byte</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:204</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ByteHolder</class-interface>
+      <method name="ByteHolder" return-type="ByteHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:205</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ByteHolder</class-interface>
+      <method name="ByteHolder" return-type="ByteHolder">
+        <parameters>
+          <parameter>byte</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:206</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>byte</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:207</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ByteArrayHolder</class-interface>
+      <method name="ByteArrayHolder" return-type="ByteArrayHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:208</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>ByteArrayHolder</class-interface>
+      <method name="ByteArrayHolder" return-type="ByteArrayHolder">
+        <parameters>
+          <parameter>byte[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:209</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>boolean</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:210</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BooleanHolder</class-interface>
+      <method name="BooleanHolder" return-type="BooleanHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:211</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BooleanHolder</class-interface>
+      <method name="BooleanHolder" return-type="BooleanHolder">
+        <parameters>
+          <parameter>boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:212</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BigInteger</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:213</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BigIntegerHolder</class-interface>
+      <method name="BigIntegerHolder" return-type="BigIntegerHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:214</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BigIntegerHolder</class-interface>
+      <method name="BigIntegerHolder" return-type="BigIntegerHolder">
+        <parameters>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:215</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BigDecimal</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:216</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BigDecimalHolder</class-interface>
+      <method name="BigDecimalHolder" return-type="BigDecimalHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:217</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BigDecimalHolder</class-interface>
+      <method name="BigDecimalHolder" return-type="BigDecimalHolder">
+        <parameters>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:218</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>Boolean</class-interface>
+      <field name="value" type="public" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:219</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BooleanWrapperHolder</class-interface>
+      <method name="BooleanWrapperHolder" return-type="BooleanWrapperHolder" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:220</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>BooleanWrapperHolder</class-interface>
+      <method name="BooleanWrapperHolder" return-type="BooleanWrapperHolder">
+        <parameters>
+          <parameter>java.lang.Boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:240</id>
+      <description>If any error in initialization of the service endpoint; or if any illegal context has been provided in the init method</description>
+      <package>javax.xml.rpc.server</package>
+      <class-interface>ServiceLifecycle</class-interface>
+      <method name="init" return-type="void">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:244</id>
+      <description>The &lt;code&gt;getHttpSession&lt;/code&gt; method returns the current HTTP session (as a &lt;code&gt;javax.servlet.http.HTTPSession&lt;/code&gt;). When invoked by the service endpoint within a remote method implementation, the &lt;code&gt;getHttpSession&lt;/code&gt; returns the HTTP session associated currently with this method invocation. This method returns &lt;code&gt;null&lt;/code&gt; if there is no HTTP session currently active and associated with this service endpoint. An endpoint class should not rely on an active HTTP session being always there; the underlying JAX-RPC runtime system is responsible for managing whether or not there is an active HTTP session. &lt;p&gt;The getHttpSession method throws &lt;code&gt;JAXRPCException&lt;/code&gt; if invoked by an non HTTP bound endpoint.</description>
+      <package>javax.xml.rpc.server</package>
+      <class-interface>ServletEndpointContext</class-interface>
+      <method name="getHttpSession" return-type="javax.servlet.http.javax.servlet.http.HttpSession" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:245</id>
+      <description>The method &lt;code&gt;getServletContext&lt;/code&gt; returns the &lt;code&gt;ServletContex&lt;/code&gt;t associated with the web application that contain this endpoint. According to the Servlet specification, There is one context per web application (installed as a WAR) per JVM . A servlet based service endpoint is deployed as part of a web application.</description>
+      <package>javax.xml.rpc.server</package>
+      <class-interface>ServletEndpointContext</class-interface>
+      <method name="getServletContext" return-type="javax.servlet.javax.servlet.ServletContext" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:248</id>
+      <description>Gets the &lt;code&gt;faultstring&lt;/code&gt; element. The &lt;code&gt;faultstring&lt;/code&gt; provides a human-readable description of the SOAP fault and is not intended for algorithmic processing.</description>
+      <package>javax.xml.rpc.soap</package>
+      <class-interface>SOAPFaultException</class-interface>
+      <method name="getFaultString" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:249</id>
+      <description>Gets the &lt;code&gt;faultactor&lt;/code&gt; element. The &lt;code&gt;faultactor&lt;/code&gt; element provides information about which SOAP node on the SOAP message path caused the fault to happen. It indicates the source of the fault.</description>
+      <package>javax.xml.rpc.soap</package>
+      <class-interface>SOAPFaultException</class-interface>
+      <method name="getFaultActor" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:250</id>
+      <description>Gets the detail element. The detail element is intended for carrying application specific error information related to the SOAP Body.</description>
+      <package>javax.xml.rpc.soap</package>
+      <class-interface>SOAPFaultException</class-interface>
+      <method name="getDetail" return-type="Detail" />
+    </assertion>
+    <!-- ********************************************************************************** -->
+    <!-- ********************************************************************************** -->
+    <!-- MODIFIED ASSERTIONS LISTED BELOW -->
+    <!-- The original assertion is followed by the modified version -->
+    <!-- of the assertion. Users must edit the file to verify -->
+    <!-- that the modified assertion is correct. User should then -->
+    <!-- delete the original assertion or use the style sheet -->
+    <!-- that removes them automatically.  The original and modified -->
+    <!-- assertions differ by their IDs, notice the original assertion -->
+    <!-- now ends with "__OLD" -->
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:106</id>
+      <description>Registers a &lt;code&gt;TypeMapping&lt;/code&gt; instance with the &lt;code&gt;TypeMappingRegistry&lt;/code&gt;. This method replaces any existing registered &lt;code&gt;TypeMapping&lt;/code&gt; instance for the specified &lt;code&gt;encodingStyleURI&lt;/code&gt;.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="register" return-type="javax.xml.rpc.encoding.TypeMapping">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.xml.rpc.encoding.TypeMapping</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:107</id>
+      <description>Registers the &lt;code&gt;TypeMapping&lt;/code&gt; instance that is default for all encoding styles supported by the &lt;code&gt;TypeMappingRegistry&lt;/code&gt;. A default &lt;code&gt;TypeMapping&lt;/code&gt; should include serializers and deserializers that are independent of and usable with any encoding style. Successive invocations of the &lt;code&gt;registerDefault&lt;/code&gt; method replace any existing default &lt;code&gt;TypeMapping&lt;/code&gt; instance. &lt;p&gt;If the default &lt;code&gt;TypeMapping&lt;/code&gt; is registered, any other TypeMapping instances registered through the &lt;code&gt;TypeMappingRegistry.register&lt;/code&gt; method (for a set of encodingStyle URIs) override the default &lt;code&gt;TypeMapping&lt;/code&gt;.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="registerDefault" return-type="void">
+        <parameters>
+          <parameter>javax.xml.rpc.encoding.TypeMapping</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:110</id>
+      <description>Returns the registered &lt;code&gt;TypeMapping&lt;/code&gt; for the specified encodingStyle URI. If there is no registered &lt;code&gt;TypeMapping&lt;/code&gt; for the specified &lt;code&gt;encodingStyleURI&lt;/code&gt;, this method returns &lt;code&gt;null&lt;/code&gt;.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="getTypeMapping" return-type="javax.xml.rpc.encoding.TypeMapping">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:111</id>
+      <description>Creates a new empty &lt;code&gt;TypeMapping&lt;/code&gt; object.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="createTypeMapping" return-type="javax.xml.rpc.encoding.TypeMapping" />
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:112</id>
+      <description>Unregisters a TypeMapping instance, if present, from the specified encodingStyleURI.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="unregisterTypeMapping" return-type="javax.xml.rpc.encoding.TypeMapping">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:113</id>
+      <description>Removes a &lt;code&gt;TypeMapping&lt;/code&gt; from the TypeMappingRegistry. A &lt;code&gt;TypeMapping&lt;/code&gt; is associated with 1 or more encodingStyleURIs. This method unregisters the specified &lt;code&gt;TypeMapping&lt;/code&gt; instance from all associated &lt;code&gt;encodingStyleURIs&lt;/code&gt; and then removes this TypeMapping instance from the registry.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="removeTypeMapping" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.encoding.TypeMapping</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:114</id>
+      <description>Removes all registered TypeMappings and encodingStyleURIs from this TypeMappingRegistry.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="clear" return-type="void" />
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:145</id>
+      <description>The &lt;code&gt;handleResponse&lt;/code&gt; method processes the response SOAP message.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>Handler</class-interface>
+      <method name="handleResponse" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:147</id>
+      <description>The &lt;code&gt;init&lt;/code&gt; method enables the Handler instance to initialize itself. The &lt;code&gt;init&lt;/code&gt; method passes the handler configuration as a &lt;code&gt;HandlerInfo&lt;/code&gt; instance. The HandlerInfo is used to configure the Handler (for example: setup access to an external resource or service) during the initialization. &lt;p&gt;In the init method, the Handler class may get access to any resources (for example; access to a logging service or database) and maintain these as part of its instance variables. Note that these instance variables must not have any state specific to the SOAP message processing performed in the various handle method.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>Handler</class-interface>
+      <method name="init" return-type="void">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.HandlerInfo</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:148</id>
+      <description>The &lt;code&gt;destroy&lt;/code&gt; method indicates the end of lifecycle for a Handler instance. The Handler implementation class should release its resources and perform cleanup in the implementation of the &lt;code&gt;destroy&lt;/code&gt; method.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>Handler</class-interface>
+      <method name="destroy" return-type="void" />
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:154</id>
+      <description>Sets SOAP Actor roles for this &lt;code&gt;HandlerChain&lt;/code&gt;. This specifies the set of roles in which this HandlerChain is to act for the SOAP message processing at this SOAP node. These roles assumed by a HandlerChain must be invariant during the processing of an individual SOAP message through the HandlerChain. &lt;p&gt;A &lt;code&gt;HandlerChain&lt;/code&gt; always acts in the role of the special SOAP actor &lt;code&gt;next&lt;/code&gt;. Refer to the SOAP specification for the URI name for this special SOAP actor. There is no need to set this special role using this method.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerChain</class-interface>
+      <method name="setRoles" return-type="void">
+        <parameters>
+          <parameter>java.lang.String[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:239</id>
+      <description>Used for initialization of a service endpoint. After a service endpoint instance (an instance of a service endpoint class) is instantiated, the JAX-RPC runtime system invokes the &lt;code&gt;init&lt;/code&gt; method. The service endpoint class uses the &lt;code&gt;init&lt;/code&gt; method to initialize its configuration and setup access to any external resources. The context parameter in the &lt;code&gt;init&lt;/code&gt; method enables the endpoint instance to access the endpoint context provided by the underlying JAX-RPC runtime system. &lt;p&gt;The init method implementation should typecast the context parameter to an appropriate Java type. For service endpoints deployed on a servlet container based JAX-RPC runtime system, the &lt;code&gt;context&lt;/code&gt; parameter is of the Java type &lt;code&gt;javax.xml.rpc.server.ServletEndpointContext&lt;/code&gt;. The &lt;code&gt;ServletEndpointContext&lt;/code&gt; provides an endpoint context maintained by the underlying servlet container based JAX-RPC runtime system</description>
+      <package>javax.xml.rpc.server</package>
+      <class-interface>ServiceLifecycle</class-interface>
+      <method name="init" return-type="void">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:241</id>
+      <description>JAX-RPC runtime system ends the lifecycle of a service endpoint instance by invoking the destroy method. The service endpoint releases its resourcesin the implementation of the destroy method.</description>
+      <package>javax.xml.rpc.server</package>
+      <class-interface>ServiceLifecycle</class-interface>
+      <method name="destroy" return-type="void" />
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:242</id>
+      <description>The method &lt;code&gt;getMessageContext&lt;/code&gt; returns the &lt;code&gt;MessageContext&lt;/code&gt; targeted for this endpoint instance. This enables the service endpoint instance to acccess the &lt;code&gt;MessageContext&lt;/code&gt; propagated by request &lt;code&gt;HandlerChain&lt;/code&gt; (and its contained &lt;code&gt;Handler&lt;/code&gt; instances) to the target endpoint instance and to share any SOAP message processing related context. The endpoint instance can access and manipulate the &lt;code&gt;MessageContext&lt;/code&gt; and share the SOAP message processing related context with the response &lt;code&gt;HandlerChain&lt;/code&gt;.</description>
+      <package>javax.xml.rpc.server</package>
+      <class-interface>ServletEndpointContext</class-interface>
+      <method name="getMessageContext" return-type="javax.xml.rpc.handler.MessageContext" />
+    </assertion>
+    <!-- ****** MODIFIED ASSERTION ****** -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:243</id>
+      <description>Returns a &lt;code&gt;java.security.Principal&lt;/code&gt; instance that contains the name of the authenticated user for the current method invocation on the endpoint instance. This method returns &lt;code&gt;null&lt;/code&gt; if there is no associated principal yet. The underlying JAX-RPC runtime system takes the responsibility of providing the appropriate authenticated principal for a remote method invocation on the service endpoint instance.</description>
+      <package>javax.xml.rpc.server</package>
+      <class-interface>ServletEndpointContext</class-interface>
+      <method name="getUserPrincipal" return-type="java.security.Principal" />
+    </assertion>
+    <!-- ********************************************************************************** -->
+    <!-- NEW ASSERTIONS LISTED BELOW -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JAXRPC:JAVADOC:247</id>
+      <description>Returns a &lt;code&gt;boolean&lt;/code&gt; indicating whether the authenticated user for the current method invocation on the endpoint instance is included in the specified logical "role".</description>
+      <package>javax.xml.rpc.server</package>
+      <class-interface>ServletEndpointContext</class-interface>
+      <method name="isUserInRole" return-type="boolean" />
+    </assertion>
+    <!-- ********************************************************************************** -->
+    <!-- REMOVED ASSERTIONS LISTED BELOW -->
+    <!-- ********************************************************************************** -->
+    <!-- ********************************************************************************** -->
+    <!-- NEW ASSERTIONS LISTED BELOW -->
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:221</id>
+      <description>Namespace prefix for SOAP Envelope</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSPREFIX_SOAP_ENVELOPE" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:222</id>
+      <description>Namespace prefix for SOAP Encoding</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSPREFIX_SOAP_ENCODING" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:223</id>
+      <description>Namespace prefix for XML schema XSD</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSPREFIX_SCHEMA_XSD" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:224</id>
+      <description>Namespace prefix for XML Schema XSI</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSPREFIX_SCHEMA_XSI" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:225</id>
+      <description>Nameapace URI for SOAP 1.1 Envelope</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSURI_SOAP_ENVELOPE" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:226</id>
+      <description>Nameapace URI for SOAP 1.1 Encoding</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSURI_SOAP_ENCODING" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:227</id>
+      <description>Nameapace URI for SOAP 1.1 next actor role</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSURI_SOAP_NEXT_ACTOR" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:228</id>
+      <description>Namespace URI for XML Schema XSD</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSURI_SCHEMA_XSD" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:229</id>
+      <description>Namespace URI for XML Schema XSI</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>String</class-interface>
+      <field name="NSURI_SCHEMA_XSI" type="public static final" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:230</id>
+      <description />
+      <package>javax.xml.rpc</package>
+      <class-interface>NamespaceConstants</class-interface>
+      <method name="NamespaceConstants" return-type="NamespaceConstants" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:9</id>
+      <description>Create a &lt;code&gt;Service&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceFactory</class-interface>
+      <method name="createService" return-type="javax.xml.rpc.Service">
+        <parameters>
+          <parameter>java.net.URL</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:10</id>
+      <description>If any error in creation of the specified service</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceFactory</class-interface>
+      <method name="createService" return-type="javax.xml.rpc.Service">
+        <parameters>
+          <parameter>java.net.URL</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:11</id>
+      <description>Create a &lt;code&gt;Service&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceFactory</class-interface>
+      <method name="createService" return-type="javax.xml.rpc.Service">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:12</id>
+      <description>If any error in creation of the specified service</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>ServiceFactory</class-interface>
+      <method name="createService" return-type="javax.xml.rpc.Service">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:29</id>
+      <description>The getPort method returns either an instance of a generated stub implementation class or a dynamic proxy. A service client uses this dynamic proxy to invoke operations on the target service endpoint. The &lt;code&gt;serviceEndpointInterface&lt;/code&gt; specifies the service endpoint interface that is supported by the created dynamic proxy or stub instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getPort" return-type="java.rmi.Remote">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.Class</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:30</id>
+      <description>This exception is thrown in the following cases: &lt;UL&gt; &lt;LI&gt;If there is an error in creation of the dynamic proxy or stub instance &lt;LI&gt;If there is any missing WSDL metadata as required by this method &lt;LI&gt;Optionally, if an illegal &lt;code&gt;serviceEndpointInterface&lt;/code&gt; or &lt;code&gt;portName&lt;/code&gt; is specified &lt;/UL&gt;</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getPort" return-type="java.rmi.Remote">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.Class</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:33</id>
+      <description>Gets an array of preconfigured &lt;code&gt;Call&lt;/code&gt; objects for invoking operations on the specified port. There is one &lt;code&gt;Call&lt;/code&gt; object per operation that can be invoked on the specified port. Each &lt;code&gt;Call&lt;/code&gt; object is pre-configured and does not need to be configured using the setter methods on &lt;code&gt;Call&lt;/code&gt; interface. &lt;p&gt;Each invocation of the &lt;code&gt;getCalls&lt;/code&gt; method returns a new array of preconfigured &lt;code&gt;Call&lt;/code&gt; objects &lt;p&gt;This method requires the &lt;code&gt;Service&lt;/code&gt; implementation class to have access to the WSDL related metadata.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getCalls" return-type="javax.xml.rpc.Call[]">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:34</id>
+      <description>If this Service class does not have access to the required WSDL metadata or if an illegal &lt;code&gt;portName&lt;/code&gt; is specified.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getCalls" return-type="javax.xml.rpc.Call[]">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:35</id>
+      <description>Creates a &lt;code&gt;Call&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="createCall" return-type="javax.xml.rpc.Call">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:36</id>
+      <description>If any error in the creation of the &lt;code&gt;Call&lt;/code&gt; object</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="createCall" return-type="javax.xml.rpc.Call">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:37</id>
+      <description>Creates a &lt;code&gt;Call&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="createCall" return-type="javax.xml.rpc.Call">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:38</id>
+      <description>If any error in the creation of the &lt;code&gt;Call&lt;/code&gt; object</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="createCall" return-type="javax.xml.rpc.Call">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:39</id>
+      <description>Creates a &lt;code&gt;Call&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="createCall" return-type="javax.xml.rpc.Call">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:40</id>
+      <description>If any error in the creation of the &lt;code&gt;Call&lt;/code&gt; object</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="createCall" return-type="javax.xml.rpc.Call">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:43</id>
+      <description>Gets the name of this service.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getServiceName" return-type="javax.xml.namespace.QName" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:280</id>
+      <description>If this Service class does not have access to the required WSDL metadata</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Service</class-interface>
+      <method name="getPorts" return-type="java.util.Iterator">
+        <throw>javax.xml.rpc.ServiceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:56</id>
+      <description>Indicates whether &lt;code&gt;addParameter&lt;/code&gt; and &lt;code&gt;setReturnType&lt;/code&gt; methods are to be invoked to specify the parameter and return type specification for a specific operation.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="isParameterAndReturnSpecRequired" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:57</id>
+      <description>Adds a parameter type and mode for a specific operation. Note that the client code may not call any &lt;code&gt;addParameter&lt;/code&gt; and &lt;code&gt;setReturnType&lt;/code&gt; methods before calling the &lt;code&gt;invoke&lt;/code&gt; method. In this case, the Call implementation class determines the parameter types by using reflection on parameters, using the WSDL description and configured type mapping registry.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="addParameter" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>javax.xml.rpc.ParameterMode</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:58</id>
+      <description>Adds a parameter type and mode for a specific operation. This method is used to specify the Java type for either OUT or INOUT parameters.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="addParameter" return-type="void">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.Class</parameter>
+          <parameter>javax.xml.rpc.ParameterMode</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:59</id>
+      <description>Gets the XML type of a parameter by name</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getParameterTypeByName" return-type="javax.xml.namespace.QName">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:60</id>
+      <description>Sets the return type for a specific operation. Invoking &lt;code&gt;setReturnType(null)&lt;/code&gt; removes the return type for this Call object.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="setReturnType" return-type="void">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:61</id>
+      <description>Sets the return type for a specific operation.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="setReturnType" return-type="void">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.Class</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:62</id>
+      <description>Gets the return type for a specific operation</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getReturnType" return-type="javax.xml.namespace.QName" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:64</id>
+      <description>Gets the name of the operation to be invoked using this &lt;code&gt;Call&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getOperationName" return-type="javax.xml.namespace.QName" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:65</id>
+      <description>Sets the name of the operation to be invoked using this &lt;code&gt;Call&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="setOperationName" return-type="void">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:66</id>
+      <description>Gets the qualified name of the port type.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="getPortTypeName" return-type="javax.xml.namespace.QName" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:67</id>
+      <description>Sets the qualified name of the port type.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="setPortTypeName" return-type="void">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:76</id>
+      <description>Invokes a specific operation using a synchronous request-response interaction mode.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="invoke" return-type="java.lang.Object">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.Object[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:77</id>
+      <description>if there is any error in the remote method invocation.</description>
+      <package>javax.xml.rpc</package>
+      <class-interface>Call</class-interface>
+      <method name="invoke" return-type="java.lang.Object">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.Object[]</parameter>
+        </parameters>
+        <throw>java.rmi.RemoteException</throw>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:109</id>
+      <description>Returns a list of registered encodingStyle URIs in this &lt;code&gt;TypeMappingRegistry&lt;/code&gt; instance.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMappingRegistry</class-interface>
+      <method name="getRegisteredEncodingStyleURIs" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:115</id>
+      <description>Returns the encodingStyle URIs (as String[]) supported by this TypeMapping instance. A TypeMapping that contains only encoding style independent serializers and deserializers returns &lt;code&gt;null&lt;/code&gt; from this method.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMapping</class-interface>
+      <method name="getSupportedEncodings" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:116</id>
+      <description>Sets the encodingStyle URIs supported by this TypeMapping instance. A TypeMapping that contains only encoding independent serializers and deserializers requires &lt;code&gt;null&lt;/code&gt; as the parameter for this method.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMapping</class-interface>
+      <method name="setSupportedEncodings" return-type="void">
+        <parameters>
+          <parameter>java.lang.String[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:117</id>
+      <description>Checks whether or not type mapping between specified XML type and Java type is registered.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMapping</class-interface>
+      <method name="isRegistered" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:118</id>
+      <description>Registers SerializerFactory and DeserializerFactory for a specific type mapping between an XML type and Java type. This method replaces any existing registered SerializerFactory DeserializerFactory instances.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMapping</class-interface>
+      <method name="register" return-type="void">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>javax.xml.rpc.encoding.SerializerFactory</parameter>
+          <parameter>javax.xml.rpc.encoding.DeserializerFactory</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:119</id>
+      <description>Gets the SerializerFactory registered for the specified pair of Java type and XML data type.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMapping</class-interface>
+      <method name="getSerializer" return-type="javax.xml.rpc.encoding.SerializerFactory">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:120</id>
+      <description>Gets the DeserializerFactory registered for the specified pair of Java type and XML data type.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMapping</class-interface>
+      <method name="getDeserializer" return-type="javax.xml.rpc.encoding.DeserializerFactory">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:121</id>
+      <description>Removes the SerializerFactory registered for the specified pair of Java type and XML data type.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMapping</class-interface>
+      <method name="removeSerializer" return-type="void">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:122</id>
+      <description>Removes the DeserializerFactory registered for the specified pair of Java type and XML data type.</description>
+      <package>javax.xml.rpc.encoding</package>
+      <class-interface>TypeMapping</class-interface>
+      <method name="removeDeserializer" return-type="void">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:303</id>
+      <description>The &lt;code&gt;handleRequest&lt;/code&gt; method processes the request SOAP message. The default implementation of this method returns &lt;code&gt;true&lt;/code&gt;. This indicates that the handler chain should continue processing of the request SOAP message. This method should be overridden if the derived Handler class needs to specialize implementation of this method.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>GenericHandler</class-interface>
+      <method name="handleRequest" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:304</id>
+      <description>The &lt;code&gt;handleResponse&lt;/code&gt; method processes the response message. The default implementation of this method returns &lt;code&gt;true&lt;/code&gt;. This indicates that the handler chain should continue processing of the response SOAP message. This method should be overridden if the derived Handler class needs to specialize implementation of this method.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>GenericHandler</class-interface>
+      <method name="handleResponse" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:305</id>
+      <description>The &lt;code&gt;handleFault&lt;/code&gt; method processes the SOAP faults based on the SOAP message processing model. The default implementation of this method returns &lt;code&gt;true&lt;/code&gt;. This indicates that the handler chain should continue processing of the SOAP fault. This method should be overridden if the derived Handler class needs to specialize implementation of this method.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>GenericHandler</class-interface>
+      <method name="handleFault" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:306</id>
+      <description>The &lt;code&gt;init&lt;/code&gt; method to enable the Handler instance to initialize itself. This method should be overridden if the derived Handler class needs to specialize implementation of this method.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>GenericHandler</class-interface>
+      <method name="init" return-type="void">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.HandlerInfo</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:307</id>
+      <description>The &lt;code&gt;destroy&lt;/code&gt; method indicates the end of lifecycle for a Handler instance. This method should be overridden if the derived Handler class needs to specialize implementation of this method.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>GenericHandler</class-interface>
+      <method name="destroy" return-type="void" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:308</id>
+      <description>Gets the header blocks processed by this Handler instance.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>GenericHandler</class-interface>
+      <method name="getHeaders" return-type="javax.xml.namespace.QName[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:130</id>
+      <description>Constructor for HandlerInfo</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerInfo</class-interface>
+      <method name="HandlerInfo" return-type="HandlerInfo">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+          <parameter>java.util.Map</parameter>
+          <parameter>javax.xml.namespace.QName[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:135</id>
+      <description>Sets the header blocks processed by this Handler.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerInfo</class-interface>
+      <method name="setHeaders" return-type="void">
+        <parameters>
+          <parameter>javax.xml.namespace.QName[]</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:136</id>
+      <description>Gets the header blocks processed by this Handler.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerInfo</class-interface>
+      <method name="getHeaders" return-type="javax.xml.namespace.QName[]" />
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:142</id>
+      <description>Gets the handler chain for the specified service endpoint. The returned &lt;code&gt;List&lt;/code&gt; is used to configure this specific handler chain in this &lt;code&gt;HandlerRegistry&lt;/code&gt;. Each element in this list is required to be of the Java type &lt;code&gt;javax.xml.rpc.handler.HandlerInfo&lt;/code&gt;.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerRegistry</class-interface>
+      <method name="getHandlerChain" return-type="java.util.List">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="false" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:143</id>
+      <description>Sets the handler chain for the specified service endpoint as a &lt;code&gt;java.util.List&lt;/code&gt;. Each element in this list is required to be of the Java type &lt;code&gt;javax.xml.rpc.handler.HandlerInfo&lt;/code&gt;.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerRegistry</class-interface>
+      <method name="setHandlerChain" return-type="void">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.util.List</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:146</id>
+      <description>The &lt;code&gt;handleFault&lt;/code&gt; method processes the SOAP faults based on the SOAP message processing model.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>Handler</class-interface>
+      <method name="handleFault" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:149</id>
+      <description>Gets the header blocks that can be processed by this Handler instance.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>Handler</class-interface>
+      <method name="getHeaders" return-type="javax.xml.namespace.QName[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:150</id>
+      <description>The &lt;code&gt;handleRequest&lt;/code&gt; method initiates the request processing for this handler chain.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerChain</class-interface>
+      <method name="handleRequest" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:151</id>
+      <description>The &lt;code&gt;handleResponse&lt;/code&gt; method initiates the response processing for this handler chain.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerChain</class-interface>
+      <method name="handleResponse" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:318</id>
+      <description>The &lt;code&gt;handleFault&lt;/code&gt; method initiates the SOAP fault processing for this handler chain.</description>
+      <package>javax.xml.rpc.handler</package>
+      <class-interface>HandlerChain</class-interface>
+      <method name="handleFault" return-type="boolean">
+        <parameters>
+          <parameter>javax.xml.rpc.handler.MessageContext</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:319</id>
+      <description>Gets the SOAP actor roles associated with an execution of the HandlerChain and its contained Handler instances. Note that SOAP actor roles apply to the SOAP node and are managed using &lt;code&gt;HandlerChain.setRoles&lt;/code&gt; and &lt;code&gt;HandlerChain.getRoles&lt;/code&gt;. Handler instances in the HandlerChain use this information about the SOAP actor roles to process the SOAP header blocks. Note that the SOAP actor roles are invariant during the processing of SOAP message through the HandlerChain.</description>
+      <package>javax.xml.rpc.handler.soap</package>
+      <class-interface>SOAPMessageContext</class-interface>
+      <method name="getRoles" return-type="java.lang.String[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:187</id>
+      <description />
+      <package>javax.xml.rpc.holders</package>
+      <class-interface>QNameHolder</class-interface>
+      <method name="QNameHolder" return-type="QNameHolder">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:231</id>
+      <description>Constructor for the QName.</description>
+      <package>javax.xml.namespace</package>
+      <class-interface>QName</class-interface>
+      <method name="QName" return-type="QName">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:232</id>
+      <description>Constructor for the QName.</description>
+      <package>javax.xml.namespace</package>
+      <class-interface>QName</class-interface>
+      <method name="QName" return-type="QName">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:233</id>
+      <description>Gets the Namespace URI for this QName.</description>
+      <package>javax.xml.namespace</package>
+      <class-interface>QName</class-interface>
+      <method name="getNamespaceURI" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:234</id>
+      <description>Gets the Local part for this QName.</description>
+      <package>javax.xml.namespace</package>
+      <class-interface>QName</class-interface>
+      <method name="getLocalPart" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:235</id>
+      <description>Returns a string representation of this QName.</description>
+      <package>javax.xml.namespace</package>
+      <class-interface>QName</class-interface>
+      <method name="toString" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:236</id>
+      <description>Returns a QName holding the value of the specified String. The string must be in the form returned by the QName.toString() method, i.e. "{namespaceURI}localPart", with the "{namespaceURI}" part being optional. This method doesn't do a full validation of the resulting QName. In particular, it doesn't check that the resulting namespace URI is a legal URI (per RFC 2396 and RFC 2732), nor that the resulting local part is a legal NCName per the XML Namespaces specification.</description>
+      <package>javax.xml.namespace</package>
+      <class-interface>QName</class-interface>
+      <method name="valueOf" return-type="javax.xml.namespace.QName">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:237</id>
+      <description>Returns a hash code value for this QName object. The hash code is based on both the localPart and namespaceURI parts of the QName. This method satisfies the general contract of the method. &lt;/p&gt;</description>
+      <package>javax.xml.namespace</package>
+      <class-interface>QName</class-interface>
+      <method name="hashCode" return-type="int" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:238</id>
+      <description>Tests this QName for equality with another object. &lt;p&gt;If the given object is not a QName or is null then this method returns &lt;tt&gt;false&lt;/tt&gt;. &lt;p&gt;For two QNames to be considered equal requires that both localPart and namespaceURI must be equal. This method uses &lt;code&gt;String.equals&lt;/code&gt; to check equality of localPart and namespaceURI. Any class that extends QName is required to satisfy this equality contract. &lt;p&gt;This method satisfies the general contract of the method. &lt;/p&gt;</description>
+      <package>javax.xml.namespace</package>
+      <class-interface>QName</class-interface>
+      <method name="equals" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:246</id>
+      <description>Constructor for the SOAPFaultException</description>
+      <package>javax.xml.rpc.soap</package>
+      <class-interface>SOAPFaultException</class-interface>
+      <method name="SOAPFaultException" return-type="SOAPFaultException">
+        <parameters>
+          <parameter>javax.xml.namespace.QName</parameter>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.xml.soap.javax.xml.soap.Detail</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <modified />
+      <id>JAXRPC:JAVADOC:330</id>
+      <description>Gets the &lt;code&gt;faultcode&lt;/code&gt; element. The &lt;code&gt;faultcode&lt;/code&gt; element provides an algorithmic mechanism for identifying the fault. SOAP defines a small set of SOAP fault codes covering basic SOAP faults.</description>
+      <package>javax.xml.rpc.soap</package>
+      <class-interface>SOAPFaultException</class-interface>
+      <method name="getFaultCode" return-type="javax.xml.namespace.QName" />
+    </assertion>
+  </assertions>
+</javadoc>
+

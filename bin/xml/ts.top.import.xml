@@ -1,0 +1,1071 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="TopImport" basedir="." default="usage">
+
+    <!-- 
+    This is the main import file for the top level ${bin.dir}/build.xml
+    that exists in each deliverable.  It contains targets, macrodefs, 
+    presetdefs, and properties that are necessary for most top level
+    ${bin.dir}/build.xml files.  Whenever possible, these definitions
+    should be used and not be overridden by a deliverable's 
+    ${bin.dir}/build.xml file.
+    -->
+    
+    <dirname property="TopImport.basedir" file="${ant.file.TopImport}"/>
+    
+    <!-- IMPORTS -->
+    <import file="./ts.vehicles.xml"/>
+    
+    <!-- PROPERTIES -->
+    <!-- Set the archives to deploy - default to wars-->
+    <target name="setup.archive.set">
+        <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+            <include name="**/*.war"/>
+            <exclude name="**/vi_built*.war"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/ts_dep/**"/>
+        </fileset>
+
+        <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+            <include name="**/vi_built*.war"/>
+            <exclude name="**/*ejbembed*"/>
+            <exclude name="**/ts_dep/**"/>
+        </fileset>
+
+        <if>
+            <isset property="all.test.dir"/>
+            <then>
+                <elementappend original="${all.test.dir}" suffix="**/*.war" property="archive.files"/>
+                <elementappend original="${all.test.dir}" suffix="**/vi_built*.war" property="archive.files.vibuilt"/>
+                <fileset dir="${dist.dir}"
+                         includes="${archive.files}"
+                         excludes="${archive.files.vibuilt}"
+                         id="deploy.all.vi.archive.set">
+                </fileset>
+
+                <!--set for vibuilt archives-->
+                <fileset dir="${dist.dir}"
+                         includes="${archive.files.vibuilt}"
+                         id="deploy.all.ri.archive.set">
+                </fileset>
+            </then>
+            <else>
+                <fileset dir="${dist.dir}"
+                         id="deploy.all.vi.archive.set">
+                    <include name="**/*.war"/>
+                    <exclude name="**/*ejbembed*"/>
+                    <exclude name="**/vi_built*.war"/>
+                    <exclude name="**/ts_dep/**"/>
+                </fileset>
+
+                <!--set for vibuilt archives-->
+                <fileset dir="${dist.dir}"
+                         id="deploy.all.ri.archive.set">
+                    <include name="**/vi_built*.war"/>
+                    <exclude name="**/*ejbembed*"/>
+                    <exclude name="**/ts_dep/**"/>
+                </fileset>
+            </else>
+        </if>
+    </target>
+        
+    <!-- MACROS -->
+    
+    <!-- TARGETS -->
+    <target name="build.all" depends="build.all.jars, build.all.tests"
+            description="Builds everything for this deliverable"/>
+    
+    <target name="build.all.tests"
+            description="Builds all tests for this deliverable">
+        <dosubdirs srcdir="${src.dir}"
+                   todo="build" includes="${all.test.dir}"/>
+    </target>
+	
+	<!-- 
+		This target is being provided to make it easier to change values in the ts.jte
+	  file for test automation tools(like Hudson).  If you want to specify default properties
+	  with the target you can, but you need to over ride this target in your top lvl build.xml file
+	  and then do something like the following.
+	  
+		<target name="config.jte">
+			<props.sanitizer file="${bin.dir}/ts.jte" quiet="true">
+				<property name="webServerHost" value="localhost" />
+			</props.sanitizer>
+		</target>
+	   
+	  Below we show how you can set/over ride a property via the command line.  If you want
+	  you can not put any nested properties and still change any property in a given file via the 
+	  command line.
+	  
+	  example: 
+	  			ant -DwebServerHost=""config.jte
+	  
+	  -->
+	<target name="config.jte" description="Use to set specified props in ts.jte file.
+		(see ${ts.home}/bin/xml/ts.top.import.xml for detailed information)">
+		<props.sanitizer file="${bin.dir}/ts.jte" quiet="true"/>
+	</target>
+    
+    <!-- TARGETS -->
+    <macrodef name="check.server" description="Check that the server is up and running">
+
+    <attribute name="host"
+               default=""
+               description="Host for the server"/>
+    <attribute name="port"
+               default=""
+               description="port for the server"/>
+    <sequential>
+        <if>
+            <not>
+                <and>              
+                    <contains string="@{host}" substring="impl."/>
+                    <contains string="@{port}" substring="impl."/>
+                </and>
+            </not>
+            <then>
+                <if>
+                    <socket server="@{host}" port="@{port}" />
+                    <then>
+                        <echo message="Server is Running on host - @{host} and port - @{port}"/>
+                    </then>
+                    <else>
+                        <echo message="Exiting..."/>
+                        <echo message="Server is not Running on host - @{host} and port - @{port}!"/>
+                        <fail message="Start the server and try again!"/>
+                    </else>
+                </if>
+            </then>
+        </if>
+    </sequential>
+    </macrodef>
+
+     <target name="deploy" depends="setup.archive.set"
+           description="Deploy 'CWD' and any children.">
+       <check.keywords.direction/>
+       <if>
+           <isset property="pkg.dir"/>
+       <then>
+
+            <if>
+                <istrue value="${keywords.direction.forward}"/>
+            <then>
+                <check.server host="${impl.vi.host}" port="${impl.vi.port}"/>
+
+                <ant antfile="${common.bin.dir}/xml/impl/${impl.vi}/deploy.xml"
+                     target="-deploy"
+                     inheritRefs="true">
+                     <property name="deploy.dir" value="${impl.vi.deploy.dir}"/>
+                     <reference refid="deploy.vi.archive.set"
+                                torefid="deploy.archive.set"/>
+                </ant>
+            </then>
+            </if>
+
+
+           <for param="riarchive">
+              <fileset refid="deploy.ri.archive.set"/>
+              <sequential>
+                <var name="deploy.to.ri" value="true"/>
+              </sequential>
+            </for>
+
+           <if>
+                <and>
+                    <istrue value="${keywords.direction.reverse}"/>
+                    <istrue value="${deploy.to.ri}"/>
+                </and>
+            <then>
+                <ts.verbose message="Archives to deploy to the RI exist in this test dir"/>
+                
+                <if>
+               <available file="${impl.ri.deploy.dir}"/>
+               <then>
+                   <check.server host="${impl.ri.host}" port="${impl.ri.port}"/>
+                   <echo message="Deploying archives to the RI"/>
+                   <ant antfile="${common.bin.dir}/xml/impl/${impl.ri}/deploy.xml"
+                         target="-deploy"
+                         inheritRefs="true">
+                         <property name="deploy.dir" value="${impl.ri.deploy.dir}"/>
+                         <reference refid="deploy.ri.archive.set"
+                                    torefid="deploy.archive.set"/>
+                   </ant>
+               </then>
+               </if>
+           </then>
+           </if>
+       </then>
+       <else>
+           <fail message="You must be in a test directory to run the 'deploy' target."/>
+       </else>
+       </if>
+   </target>
+
+   <target name="undeploy" depends="setup.archive.set"
+           description="Undeploy archives for tests under this directory.">
+
+       <check.keywords.direction/>
+       <if>
+           <isset property="pkg.dir"/>
+       <then>
+           <if>
+                <istrue value="${keywords.direction.forward}"/>
+            <then>
+                <check.server host="${impl.vi.host}" port="${impl.vi.port}"/>
+                <ant antfile="${common.bin.dir}/xml/impl/${impl.vi}/deploy.xml"
+                     target="-undeploy"
+                     inheritRefs="true">
+                     <property name="deploy.dir" value="${impl.vi.deploy.dir}"/>
+                     <reference refid="deploy.vi.archive.set"
+                                torefid="deploy.archive.set"/>
+                </ant>
+            </then>
+            </if>
+
+            <for param="riarchive">
+              <fileset refid="deploy.ri.archive.set"/>
+              <sequential>
+                <var name="undeploy.from.ri" value="true"/>
+              </sequential>
+            </for>
+
+           <if>
+                <and>
+                    <istrue value="${keywords.direction.reverse}"/>
+                    <istrue value="${undeploy.from.ri}"/>
+                </and>
+            <then>
+                <echo message="Archives to undeploy from the RI exist in this test dir"/>
+                <if>
+               <available file="${impl.ri.deploy.dir}"/>
+               <then>
+                   <check.server host="${impl.ri.host}" port="${impl.ri.port}"/>
+                   <echo message="Undeploying archives from the RI"/>
+                   <ant antfile="${common.bin.dir}/xml/impl/${impl.ri}/deploy.xml"
+                         target="-undeploy"
+                         inheritRefs="true">
+                         <property name="deploy.dir" value="${impl.ri.deploy.dir}"/>
+                         <reference refid="deploy.ri.archive.set"
+                                    torefid="deploy.archive.set"/>
+                   </ant>
+               </then>
+               </if>
+           </then>
+           </if>
+       </then>
+       <else>
+           <fail message="You must be in a test directory to run the 'undeploy' target."/>
+       </else>
+       </if>
+   </target>
+
+   <target name="deploy.all" depends="setup.archive.set"
+           description="Deploy all archives.">
+        <check.keywords.direction/>
+        <if>
+            <istrue value="${keywords.direction.forward}"/>
+        <then>
+            <check.server host="${impl.vi.host}" port="${impl.vi.port}"/>
+            <ant antfile="${common.bin.dir}/xml/impl/${impl.vi}/deploy.xml"
+                 target="-deploy.all"
+                 inheritRefs="true">
+                 <property name="deploy.dir" value="${impl.vi.deploy.dir}"/>
+                 <reference refid="deploy.all.vi.archive.set"
+                            torefid="deploy.all.archive.set"/>
+            </ant>
+        </then>
+        </if>
+
+
+       <for param="riarchive">
+          <fileset refid="deploy.all.ri.archive.set"/>
+          <sequential>
+            <ts.verbose message="Archives to deploy to the RI exist"/>
+            <var name="deploy.to.ri" value="true"/>
+          </sequential>
+        </for>
+
+       <if>
+            <and>
+                <istrue value="${keywords.direction.reverse}"/>
+                <istrue value="${deploy.to.ri}"/>
+            </and>
+        <then>
+
+            <if>
+           <available file="${impl.ri.deploy.dir}"/>
+           <then>
+               <check.server host="${impl.ri.host}" port="${impl.ri.port}"/>
+               <echo message="Deploying archives to the RI"/>
+               <ant antfile="${common.bin.dir}/xml/impl/${impl.ri}/deploy.xml"
+                     target="-deploy.all"
+                     inheritRefs="true">
+                     <property name="deploy.dir" value="${impl.ri.deploy.dir}"/>
+                     <reference refid="deploy.all.ri.archive.set"
+                                torefid="deploy.all.archive.set"/>
+               </ant>
+           </then>
+           </if>
+       </then>
+       </if>
+   </target>
+
+   <target name="undeploy.all" depends="setup.archive.set"
+           description="Undeploy all archives.">
+       <check.keywords.direction/>
+        <if>
+            <istrue value="${keywords.direction.forward}"/>
+        <then>
+            <check.server host="${impl.vi.host}" port="${impl.vi.port}"/>
+            <ant antfile="${common.bin.dir}/xml/impl/${impl.vi}/deploy.xml"
+                 target="-undeploy.all"
+                 inheritRefs="true">
+                 <property name="deploy.dir" value="${impl.vi.deploy.dir}"/>
+                 <reference refid="deploy.all.vi.archive.set"
+                            torefid="deploy.all.archive.set"/>
+            </ant>
+        </then>
+        </if>
+
+
+       <for param="riarchive">
+          <fileset refid="deploy.all.ri.archive.set"/>
+          <sequential>
+            <ts.verbose message="Archives to deploy to the RI exist"/>
+            <var name="deploy.to.ri" value="true"/>
+          </sequential>
+        </for>
+
+       <if>
+            <and>
+                <istrue value="${keywords.direction.reverse}"/>
+                <istrue value="${deploy.to.ri}"/>
+            </and>
+        <then>
+
+            <if>
+           <available file="${impl.ri.deploy.dir}"/>
+           <then>
+               <check.server host="${impl.ri.host}" port="${impl.ri.port}"/>
+               <echo message="Deploying archives to the RI"/>
+               <ant antfile="${common.bin.dir}/xml/impl/${impl.ri}/deploy.xml"
+                     target="-undeploy.all"
+                     inheritRefs="true">
+                     <property name="deploy.dir" value="${impl.ri.deploy.dir}"/>
+                     <reference refid="deploy.all.ri.archive.set"
+                                torefid="deploy.all.archive.set"/>
+               </ant>
+           </then>
+           </if>
+       </then>
+       </if>
+   </target>
+    
+    <target name="tsharness"
+            description="Builds the tsharness jar">
+        <ant antfile="build.xml" dir="${ts.home}/src/com/sun/ts/lib" 
+             target="build" />
+    </target>
+    
+    <target name="build.all.jars"
+            description="Builds the tsharness jar and deliverable library jar">
+        <ant antfile="build.xml" dir="${ts.home}/src/com/sun/ts/lib" 
+             target="build"/>
+        <antcall target="tslib"/>
+    </target>
+    
+    <target name="tslib">
+        <echo message="No tslib target implemented for this deliverable"/>
+    </target>
+    
+    <!-- === internal targets to manage javatest work.dir and report.dir.=== -->
+    <!-- === See ts.jte for instruction                                  === -->
+    
+    <target name="set.prior.status">
+        <condition property="prior.status.isset">
+            <not>
+                <or>
+                    <equals arg1="${priorStatus}" arg2="$${priorStatus}"/>
+                    <equals arg1="${priorStatus}" arg2=""/>
+                </or>
+            </not>
+        </condition>
+    </target>
+    
+    <target name="prior.status" depends="set.prior.status">
+        <condition property="prior.status" value="${priorStatus}">
+            <istrue value="${prior.status.isset}"/>
+        </condition>
+        <property name="prior.status" value="pass,fail,error,notRun"/>
+    </target>
+    
+    <target name="set.keywords">
+        <if>
+            <or>
+                <not>
+                    <isset property="keywords"/>
+                </not>
+                <equals arg1="${keywords}" arg2=""/> 
+            </or>
+            <then>
+                <var name="keywords" value="all"/>
+            </then>
+        </if> 
+        <echo message="keywords are set to:  ${keywords}"/>
+    </target>
+    
+    <target name="check.results.mode" depends="prior.status">
+        <!-- must be set to backup, overwrite or append -->
+        <echo message="prior.status = ${prior.status}"/>
+        <condition property="report.mode" value="append">
+            <istrue value="${prior.status.isset}"/>
+        </condition>
+        <condition property="report.mode" value="overwrite">
+            <and>
+                <equals arg1="${if.existing.work.report.dirs}" arg2="auto"/>
+                <available file="${ts.home}/install" type="dir"/>
+            </and>
+        </condition>
+        <condition property="report.mode" value="append">
+            <equals arg1="${if.existing.work.report.dirs}" arg2="auto"/>
+        </condition>
+        <property name="report.mode" value="${if.existing.work.report.dirs}"/>
+        <echo message="Results Mode is ${report.mode}"/>
+    </target>
+    
+    <target name="prepare.work.report.dirs" 
+            depends="check.results.mode, check.existing.dirs, 
+                     delete.existing.dirs, backup.work.dir, backup.report.dir, 
+                     set.report.arg">
+        <mkdir dir="${work.dir}"/>
+        <property name="report.arg" value=""/>
+    </target>
+    
+    <target name="check.existing.dirs">
+        <condition property="overwrite.existing.dirs">
+            <equals arg1="${report.mode}" arg2="overwrite"/>
+        </condition>
+        <condition property="no.report">
+            <or>
+                <equals arg1="${report.dir}" arg2="$${report.dir}"/>
+                <equals arg1="${report.dir}" arg2="none"/>
+                <equals arg1="${report.dir}" arg2="no"/>
+                <and>
+                    <istrue value="${in.workspace}"/>
+                    <not>
+                        <isset property="report.target.called"/>
+                    </not>
+                </and>
+
+            </or>
+        </condition>
+        <condition property="backup.existing.work.dir">
+            <and>
+                <available file="${work.dir}" type="dir"/>
+                <equals arg1="${report.mode}" arg2="backup"/>
+            </and>
+        </condition>
+        <condition property="backup.existing.report.dir">
+            <and>
+                <available file="${report.dir}" type="dir"/>
+                <equals arg1="${report.mode}" arg2="backup"/>
+            </and>
+        </condition>
+    </target>
+    
+    <target name="delete.existing.dirs" if="overwrite.existing.dirs"
+            depends="check.existing.dirs">
+        <delete failonerror="no" includeEmptyDirs="yes">
+            <fileset dir="${work.dir}"/>
+        </delete>
+    </target>
+    
+    <target name="backup.work.dir" if="backup.existing.work.dir"
+            depends="check.existing.dirs">
+        <move todir="${work.dir}_${TSTAMP}_${DSTAMP}_bak" 
+              preservelastmodified="yes"
+              overwrite="yes" includeEmptyDirs="yes" failonerror="no">
+            <fileset dir="${work.dir}"/>
+        </move>
+    </target>
+    
+    <target name="backup.report.dir" if="backup.existing.report.dir" 
+            unless="no.report" depends="check.existing.dirs">
+        <move todir="${report.dir}_${TSTAMP}_${DSTAMP}_bak" 
+              preservelastmodified="yes"
+              overwrite="yes" includeEmptyDirs="yes" failonerror="no">
+            <fileset dir="${report.dir}"/>
+        </move>
+    </target>
+    
+    <target name="set.report.arg" unless="no.report" 
+            depends="check.existing.dirs">
+        <property name="report.arg" value="-writereport ${report.dir}"/>
+    </target>
+    <!-- === end internal targets to manage javatest work.dir and report.dir. === -->
+
+    <target name="get.client" if="test" unless="test.client">
+        <if>
+            <isset property="test"/>
+        <then>
+            <for param="file">
+              <path>
+                <fileset dir="${src.dir}/${pkg.dir}" includes="*lient*.java"/>
+              </path>
+              <sequential>
+                  <echo message="file= @{file}"/>
+                <propertyregex property="test.client"  input="@{file}"
+                  regexp=".*[\/|\\](.*)\.java" select="\1"/>
+              </sequential>
+            </for>
+            <echo message="test.client= ${test.client}"/>
+        </then>
+        </if>
+    </target>
+  
+    <target name="check.selected.test" if="test" depends="get.client">
+        <property name="one.test" value="${test.client}#${test}" />
+    </target>
+
+    <target name="no.selected.test" unless="test">
+        <property name="one.test" value="" />
+    </target>
+
+    <target name="check.java.options" if="env.JAVA_OPTIONS">
+        <property name="java.options" value="${env.JAVA_OPTIONS}" />
+    </target>
+
+    <target name="no.java.options" unless="env.JAVA_OPTIONS">
+        <property name="java.options" value="" />
+    </target>
+    
+  <target name="init">
+        <tstamp/>
+
+        <if>
+            <isset property="env.HARNESS_DEBUG"/>
+            <then>
+                <property name="cts.harness.debug"
+                          value="${env.HARNESS_DEBUG}"/>
+            </then>
+            <else>
+                <property name="env.HARNESS_DEBUG" value="false"/>
+                <property name="cts.harness.debug"
+                          value="false"/>
+            </else>
+        </if>
+
+        <property name="common.apps.only" value="false"/>
+        <property name="local.classes" value=""/>
+        <property name="LOCAL_CLASSES" value=""/>
+
+        <property name="same.jvm" value="false"/>
+
+        <condition property="ts.env" value="ts_win32">
+            <and>
+                <os family="windows"/>
+            </and>
+        </condition>
+        <condition property="ts.env" value="ts_unix">
+            <and>
+                <os family="unix"/>
+            </and>
+        </condition>
+
+    </target>
+    
+    <target name="translatepath">
+        <!--Empty target meant to be overriden by files that import this file-->
+    </target>
+    
+    <target name="javatest.batch" 
+            depends="init, set.keywords, prepare.work.report.dirs, 
+                     check.selected.test, no.selected.test, check.java.options, 
+                     no.java.options, translatepath">       
+        <ts.javatest.batch/>
+    </target>
+    
+    <target name="runclient.nobinaryfinder" 
+            depends="init, set.keywords, prepare.work.report.dirs, 
+                     check.selected.test, no.selected.test, check.java.options, 
+                     no.java.options, translatepath">       
+        <ts.javatest.batch.nobinaryfinder/>    
+    </target>
+    
+    <target name="runclient" 
+            depends="init, set.keywords, prepare.work.report.dirs, 
+                     check.selected.test, no.selected.test, check.java.options, 
+                     no.java.options, translatepath"> 
+        <ts.javatest.batch/>
+    </target>
+    
+    <target name="gui" 
+            depends="init, check.java.options, no.java.options, translatepath"
+            description="Starts the Javatest GUI"> 
+        <javatest.gui/>
+    </target>
+    
+    <target name="run.all"
+            description="Runs all tests in batch mode"> 
+        <property name="tests.string" value=""/>
+        <echo message="Running all tests from the following directories..."/>
+        <for list="${all.test.dir}" param="ii" trim="true">
+          <sequential>
+            <var name="tests.string" value="${tests.string} @{ii}"/>
+          </sequential>
+        </for>
+        <antcall target="runclient"/>
+    </target>
+    
+    <!-- target to generate test report for the complete testsuite or selected -->
+    <!-- test directories, based on current work.dir.  For example,            -->
+    <!-- ant report                                      complete testsuite  -->
+    <!-- ant report -Dreport.for=com/sun/ts/tests/samples      samples only  -->
+    <!-- ant report -Df.existing.work.report.dirs=backup  preserve existing  -->
+    <target name="report" 
+            depends="set.report.prop, init, backup.report.dir, set.report.arg, translatepath"
+            description="Generates the test report for all tests in the current work directory"> 
+        <condition property="report.for.arg" value="-tests ${report.for}">
+            <isset property="report.for"/>
+        </condition>
+        <property name="report.for.arg" value=""/>
+        <javatest.report/>
+    </target>
+    <target name="set.report.prop">
+        <property name="report.target.called" value="true"/>
+    </target>
+
+
+    <!-- Targets for creating the JAXB source classes used by DeploymentInfo -->
+    <property name="porting.package"     
+              value="com.sun.ts.lib.implementation.sun.javaee.runtime"/>
+    <property name="porting.package.dir" 
+              value="com/sun/ts/lib/implementation/sun/javaee/runtime"/>
+
+    <target name="clean.jaxb">
+        <antcall target="clean.jaxb.source" />  
+    </target>
+    
+    <!-- clean out the JAXB generated source code -->
+    <target name="clean.jaxb.source">
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${ts.home}/src/${porting.package.dir}">
+        <include name="app/**"/>
+        <include name="appclient/**"/>
+        <include name="web/**"/>
+        <include name="ejb/**"/>
+      </fileset>
+      </delete>
+    </target>
+
+    <!-- tslib depends on bind.dtds -->
+    <target name="bind.dtds">
+    
+    <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+        <classpath>
+            <pathelement path="${ts.harness.classpath}" />
+        </classpath>
+    </taskdef>
+  
+    <xjc schema="${ts.home}/lib/dtds/sun-application_6_0-0.dtd"
+         binding="${ts.home}/src/${porting.package.dir}/jaxb-cust.xml"
+         destdir="${ts.home}/src"
+         package="${porting.package}.app">
+        <arg value="-dtd"/>
+        <depends  dir="${ts.home}/lib/dtds" 
+                  includes="sun-application_6_0-0.dtd"/>
+        <produces dir="${ts.home}/src/${porting.package.dir}/app" 
+                  includes="**/*"/>
+    </xjc>
+    <xjc schema="${ts.home}/lib/dtds/sun-application-client_6_0-0.dtd"
+         binding="${ts.home}/src/${porting.package.dir}/jaxb-cust.xml"
+         destdir="${ts.home}/src"
+         package="${porting.package}.appclient">
+        <arg value="-dtd"/>
+        <depends  dir="${ts.home}/lib/dtds" 
+                  includes="sun-application-client_5_0-0.dtd"/>
+        <produces dir="${ts.home}/src/${porting.package.dir}/appclient" 
+                  includes="**/*"/>
+    </xjc>
+    <xjc schema="${ts.home}/lib/dtds/sun-ejb-jar_3_1-0.dtd"
+         binding="${ts.home}/src/${porting.package.dir}/jaxb-cust.xml"
+         destdir="${ts.home}/src"
+         package="${porting.package}.ejb">
+        <arg value="-dtd"/>
+        <depends  dir="${ts.home}/lib/dtds" includes="sun-ejb-jar_3_1-0.dtd"/>
+        <produces dir="${ts.home}/src/${porting.package.dir}/ejb" 
+                  includes="**/*"/>
+    </xjc>
+    <xjc schema="${ts.home}/lib/dtds/sun-web-app_3_0-0.dtd"
+         binding="${ts.home}/src/${porting.package.dir}/jaxb-cust.xml"
+         destdir="${ts.home}/src"
+         package="${porting.package}.web">
+        <arg value="-dtd"/>
+        <depends  dir="${ts.home}/lib/dtds" includes="sun-web-app_3_0-0.dtd"/>
+        <produces dir="${ts.home}/src/${porting.package.dir}/web" 
+                  includes="**/*"/>
+    </xjc>
+    </target>
+    
+    <presetdef name="javatest">
+
+        <!-- 
+          The javatest task is a presetdef that sets many of the common 
+          attributes and elements used by both the GUI and batch mode 
+          invocations of javatest with the spider workspace.  To see the preset 
+          values, refer to the included XML below that shows the content of
+          the javatest presetdef.
+        -->
+
+        <java classname="com.sun.javatest.tool.Main" 
+              failonerror="${failOnError}" fork="yes" >
+            <classpath>
+                <pathelement path="${ant.jars}:${ts.harness.classpath}:${class.dir}"/>
+            </classpath>	
+            
+            <sysproperty key="cts.harness.debug" value="${cts.harness.debug}" />
+            <sysproperty key="same.jvm" value="${same.jvm}"/>
+            <sysproperty key="java.compiler" value="NONE"/>
+            <sysproperty key="javatest.maxOutputSize" value="${harness.maxoutputsize}"/>
+            <sysproperty key="javatest.caseSensetiveJtx" value="true"/>
+            <sysproperty key="TS_HOME" value="${ts.home}" />
+            <sysproperty key="ts_home" value="${ts.home}" />
+            <sysproperty key="ts.home" value="${ts.home}" />
+            <sysproperty key="bin.dir" value="${bin.dir}" />
+            <sysproperty key="deliverable.dir" value="${deliverable.dir}" />
+            <sysproperty key="pathsep" value="${pathsep}" />
+            <sysproperty key="local.classes" value="${local.classes}" />
+            <sysproperty key="JAVA_HOME" value="${java.home}"/>
+            <sysproperty key="jdk.home" value="${env.JAVA_HOME}" />
+            <sysproperty key="JAVA_OPTIONS" value="${java.options}"/>
+            <sysproperty key="cts.jtroutput" value="true"/>
+            <sysproperty key="windir" value="${env.windir}"/>
+            <sysproperty key="TMP" value="${env.TMP}"/>
+            <sysproperty key="SYSTEMROOT" value="${env.SystemRoot}"/>
+            <sysproperty key="LOCAL_CLASSES" value="${local.classes}"/>
+            <sysproperty key="TZ" value="${tz}"/>
+            <sysproperty key="deliverable.class" value="${deliverable.class}"/>
+            <sysproperty key="common.apps.only" value="${common.apps.only}"/>
+            <sysproperty key="harness.executeMode" value="${exec.mode}"/>
+            <sysproperty key="DEPLOY_DELAY_IN_MINUTES" 
+                         value="${deploy.delay.in.minutes}"/>
+            <sysproperty key="javatest.security.allowPropertiesAccess" 
+                         value="true"/>
+            <sysproperty key="java.security.policy" 
+                         value="${bin.dir}/harness.policy"/>
+            <!--
+            <sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host}" />
+            <sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port}" />
+            <sysproperty key="com.sun.ejb.home" value="${javaee.home}" />
+            <sysproperty key="ORB_HOST" value="${orb.host}" />
+            <sysproperty key="ORB_PORT" value="${orb.port}" />
+            <sysproperty key="ORB_HOST_RI" value="${orb.host.ri}" />
+            <sysproperty key="ORB_PORT_RI" value="${orb.port.ri}" />
+            <sysproperty key="rmiiiop.http.server.host" value="${rmiiiop.http.server.host}" />
+            <sysproperty key="rmiiiop.http.server.port" value="${rmiiiop.http.server.port}" />
+            <sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
+            <sysproperty key="com.sun.aas.installRoot" value="${javaee.home.ri}"/>
+            <sysproperty key="com.sun.aas.configRoot" value="${javaee.home}/config"/>
+            -->
+        </java>
+    </presetdef>
+    
+
+    <presetdef name="javatest.batch">
+
+        <!-- 
+          The javatest.batch task is a presetdef that calls the javatest 
+          presetdef passing the additional XML content needed to invoke 
+          javatest in batch mode.  To see the preset values, refer to the 
+          included XML below that shows the content of the javatest.batch
+          presetdef.
+        -->
+
+        <javatest>
+            <arg line=" -EsysProps" />
+            <arg line=" -batch" />
+            <arg line=" -testsuite ${ts.home}/src" />
+            <arg line=" -workdir ${work.dir}" />
+            <!--<arg line=" -workdir -create ${ts.home}/tmp/deploy_only_workdir" />-->
+            <arg line=" -envFiles ${bin.dir}/ts.jte" />
+            <arg line=" -env ${ts.env}" />
+            <arg line=" -excludeList ${bin.dir}/ts.jtx" />
+            <arg line=" -timeoutFactor ${javatest.timeout.factor}" />
+            <arg line=" -priorStatus ${prior.status}" />
+            <arg line=" -keywords &quot;${keywords}&quot;"/>
+            <arg line=" ${tests.arg}" />
+            <arg line=" -runtests ${report.arg}"/>
+            <jvmarg value="-Xms256m"/>
+            <jvmarg value="-Xmx512m"/>
+        </javatest>    
+    </presetdef>
+    
+
+    <presetdef name="javatest.gui">
+
+        <!-- 
+          The javatest.gui task is a presetdef that calls the javatest presetdef
+          passing the additional XML content needed to invoke the javatest GUI.
+          To see the preset values, refer to the included XML below that shows 
+          the content of the javatest.gui presetdef.
+        -->
+
+        <javatest>
+            <arg    line="-EsysProps" />
+            <jvmarg value="-Xms150m"/>
+            <jvmarg value="-Xmx150m"/>
+        </javatest>    
+    </presetdef>
+    
+    <presetdef name="javatest.report">
+
+        <!-- 
+          The javatest.gui task is a presetdef that calls the javatest presetdef
+          passing the additional XML content needed to invoke the javatest GUI.
+          To see the preset values, refer to the included XML below that shows 
+          the content of the javatest.gui presetdef.
+        -->
+
+        <javatest>
+            <arg line=" -EsysProps" />
+            <arg line=" -batch" />
+            <arg line=" -testsuite ${ts.home}/src" />
+            <arg line=" -workDir ${work.dir}" />
+            <arg line=" -envFiles ${bin.dir}/ts.jte" />
+            <arg line=" -env ${ts.env}" />
+            <arg line=" -excludeList ${bin.dir}/ts.jtx" />
+            <arg line=" ${report.for.arg}" />
+            <arg line="  ${report.arg}"/>
+        </javatest>    
+    </presetdef>
+        
+    <!-- MACROS -->
+    <macrodef name="ts.javatest.batch">
+
+      <sequential>
+        <condition property="tests.string" value="${multiple.tests}">
+            <not>
+                <or>
+                    <equals arg1="${multiple.tests}" arg2="$${multiple.tests}"/>
+                    <equals arg1="${multiple.tests}" arg2=""/>
+                </or>
+            </not>
+        </condition>
+        <condition property="tests.string" 
+                   value="${ts.home}/src/${pkg.dir}/${one.test}">
+            <or>
+                <equals arg1="${multiple.tests}" arg2="$${multiple.tests}"/>
+                <equals arg1="${multiple.tests}" arg2=""/>
+            </or>
+        </condition>
+        <translatepath propname="tests.string" type="initialfile"/>
+        <condition property="tests.arg" value="-tests ${tests.string}">
+            <not>
+                <equals arg1="${tests.string}" arg2=""/>
+            </not>
+        </condition>
+        <condition property="tests.arg" value="">
+            <equals arg1="${tests.string}" arg2=""/>
+        </condition>
+        
+        <property name="failOnError" value="true" />
+        
+        <delete failonerror="false" quiet="true" includeEmptyDirs="true">
+            <fileset dir="${ts.home}/tmp/deploy_only_workdir"/>
+        </delete>
+        
+        <javatest.batch/>
+      </sequential>
+    </macrodef>
+
+    <macrodef name="ts.javatest.batch.nobinaryfinder">
+
+      <sequential>
+        <condition property="tests.string" value="${multiple.tests}">
+            <not>
+                <or>
+                    <equals arg1="${multiple.tests}" arg2="$${multiple.tests}"/>
+                    <equals arg1="${multiple.tests}" arg2=""/>
+                </or>
+            </not>
+        </condition>
+        <condition property="tests.string" 
+                   value="${ts.home}/src/${pkg.dir}/${one.test}">
+            <or>
+                <equals arg1="${multiple.tests}" arg2="$${multiple.tests}"/>
+                <equals arg1="${multiple.tests}" arg2=""/>
+            </or>
+        </condition>
+        <translatepath propname="tests.string" type="initialfile"/>
+        <condition property="tests.arg" value="-tests ${tests.string}">
+            <not>
+                <equals arg1="${tests.string}" arg2=""/>
+            </not>
+        </condition>
+        <condition property="tests.arg" value="">
+            <equals arg1="${tests.string}" arg2=""/>
+        </condition>
+        
+        <property name="failOnError" value="true" />
+        
+        <delete failonerror="false" quiet="true" includeEmptyDirs="true">
+            <fileset dir="${ts.home}/tmp/deploy_only_workdir"/>
+        </delete>
+        
+        <javatest.batch>
+            <sysproperty key="no.binary.finder" value="true" />
+            <sysproperty key="harness.executeMode" value="${harness.executeMode}"/>
+        </javatest.batch>
+      </sequential>
+    </macrodef>
+    
+    <macrodef name="check.keywords.direction">
+        <sequential>
+           <echo message="keywords=${keywords}"/>
+           <if>
+              <or>
+                 <not>
+                     <isset property="keywords"/>
+                 </not>
+                 <contains substring="forward" string="${keywords}" casesensitive="false"/>
+                 <contains substring="all" string="${keywords}" casesensitive="false"/>
+              </or>
+           <then>
+               <property name="keywords.direction.forward" value="true"/>
+           </then>
+           <else>
+               <property name="keywords.direction.forward" value="false"/>
+           </else>
+           </if>
+
+           <if>
+              <or>
+                 <not>
+                     <isset property="keywords"/>
+                 </not>
+                 <contains substring="reverse" string="${keywords}" casesensitive="false"/>
+                 <contains substring="all" string="${keywords}" casesensitive="false"/>
+              </or>
+           <then>
+               <property name="keywords.direction.reverse" value="true"/>
+           </then>
+           <else>
+               <property name="keywords.direction.reverse" value="false"/>
+           </else>
+           </if>
+           <echo message="keywords.direction.forward=${keywords.direction.forward}"/>
+           <echo message="keywords.direction.reverse=${keywords.direction.reverse}"/>
+        </sequential>
+    </macrodef>
+
+    <!--
+        The report.summary task allows you to echo the test result output from
+        specified test directories in ${report.dir}/summary.txt.  This is useful
+        when you have invoked multiple runclient invocations and want to display
+        the sum results of all the runs afterwards.  The dirs attribute should
+        be set to the list of dirs (, separated) that you want the results for.
+
+        Examples:
+
+        <report.summary dirs="com/sun/ts/tests/ejb30/persistence/annotations,    
+                             com/sun/ts/tests/ejb30/persistence/basic"/>
+      -->
+      <macrodef name="report.summary">
+        <attribute name="dirs"
+                   default=""
+                   description="Space separate list of test dirs to report"/>
+               
+        <sequential>
+           <var name="counter" value="0"/>
+           <var name="passedcounter" value="0"/>
+           <var name="failedcounter" value="0"/>
+           <var name="errorcounter" value="0"/>
+           <var name="notruncounter" value="0"/>
+           <for param="line.string" list="@{dirs}" delimiter=",, ">
+           <sequential>
+           <var name="dirs.report.summary" unset="true"/>
+           <loadfile
+              property="dirs.report.summary"
+              srcFile="${report.dir}/text/summary.txt"
+              failonerror="false">
+                <filterchain> 
+                    <linecontains>
+                        <contains value="@{line.string}"/>                       
+                    </linecontains>
+                    <linecontains negate="true">
+                        <contains value="Not run."/>                       
+                    </linecontains>
+                    <tokenfilter>
+                        <replacestring from=" " to="."/>
+                    </tokenfilter>
+                </filterchain>
+            </loadfile>
+            
+           <if>
+               <isset property="dirs.report.summary"/>
+           <then>
+               <echo message="${dirs.report.summary}"/>
+               <for param="lineprop.string" list="${dirs.report.summary}" delimiter="${line.separator}">
+                    <sequential>
+                        <math result="counter" operand1="${counter}" 
+                              operation="+" operand2="1" datatype="int"/>    
+                        
+                        <if>
+                            <contains string="@{lineprop.string}" substring="Passed."/>
+                            <then>
+                                <math result="passedcounter" operand1="${passedcounter}" 
+                                      operation="+" operand2="1" datatype="int"/>
+                            </then>
+                        <elseif>
+                             <contains string="@{lineprop.string}" substring="Failed."/>
+                             <then>
+                                <math result="failedcounter" operand1="${failedcounter}" 
+                                      operation="+" operand2="1" datatype="int"/>
+                             </then>
+                        </elseif>
+                        <elseif>
+                             <contains string="@{lineprop.string}" substring="Error."/>
+                             <then>
+                                <math result="errorcounter" operand1="${errorcounter}" 
+                                      operation="+" operand2="1" datatype="int"/>
+                             </then>
+                        </elseif>
+                        </if>
+                    </sequential>
+                </for>
+                </then>
+                <else>
+                    <echo message="Warning - Cannot find any test results from directory - @{line.string}"/>
+                </else>
+            </if>
+           </sequential>
+           </for>
+           
+           <echo message="********************************************************************************"/>
+           <echo message="Completed running ${counter} tests."/>
+           <echo message="Number of Tests Passed = ${passedcounter}"/>
+           <echo message="Number of Tests Failed = ${failedcounter}"/>
+           <echo message="Number of Tests with Errors = ${errorcounter}"/>
+           <echo message="********************************************************************************"/>
+           
+        </sequential>
+    </macrodef>
+    
+</project>

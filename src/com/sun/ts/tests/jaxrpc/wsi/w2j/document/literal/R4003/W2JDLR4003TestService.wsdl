@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="W2JDLR4003TestService"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://w2jdlr4003testservice.org/W2JDLR4003TestService.wsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://w2jdlr4003testservice.org/W2JDLR4003TestService.wsdl"
+    xmlns:tns8="http://w2jdlr4003testservice.org/W2JDLR4003ImportUTF8.wsdl"
+    xmlns:tns16="http://w2jdlr4003testservice.org/W2JDLR4003ImportUTF16.wsdl"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd1="http://w2jdlr4003testservice.org/xsd">
+
+	<import
+		namespace="http://w2jdlr4003testservice.org/W2JDLR4003ImportUTF8.wsdl"
+		location="W2JDLR4003ImportUTF8.wsdl"/>
+	<import
+		namespace="http://w2jdlr4003testservice.org/W2JDLR4003ImportUTF16.wsdl"
+		location="W2JDLR4003ImportUTF16.wsdl"/>
+    <types>
+        <schema targetNamespace="http://w2jdlr4003testservice.org/xsd"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+            elementFormDefault="qualified">
+
+            <element name="echoStringParam" type="xsd:string"/>
+
+            <element name="echoStringReturn" type="xsd:string"/>
+            
+        </schema>
+    </types>
+
+    <message name="echoString">
+        <part element="xsd1:echoStringParam" name="str"/>
+    </message>
+    <message name="echoStringResponse">
+        <part element="xsd1:echoStringReturn" name="result"/>
+    </message>
+
+    <portType name="W2JDLR4003Test">
+    	<operation name="echoString">
+            <input message="tns:echoString"/>
+            <output message="tns:echoStringResponse"/>
+    	</operation>
+    </portType>
+    
+    <binding name="W2JDLR4003TestBinding" type="tns:W2JDLR4003Test">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <service name="W2JDLR4003TestService">
+        <port binding="tns:W2JDLR4003TestBinding"
+            name="W2JDLR4003TestPort">
+            <soap:address
+                location="http://localhost:8000/W2JDLR4003TestService/ws4ee_1/W2JDLR4003Test"/>
+        </port>
+    </service>
+    
+</definitions>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="W2JDLCustomization"
+    targetNamespace="http://w2jdlcustomization/wsdl"
+    xmlns:tns="http://w2jdlcustomization/wsdl"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:types="http://w2jdlcustomization/types"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+  <types>
+        <xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+   	    <xsd:import namespace="http://w2jdlcustomization/types" schemaLocation="W2JDLCustomization.xsd"/>
+	</xsd:schema>
+  </types>
+
+  <message name="hello">
+    <part name="parameter" element="types:HelloStringElement"/>
+  </message>
+  <message name="helloResponse">
+    <part name="result" element="types:HelloStringElement"/>
+  </message>
+
+  <message name="hello2">
+    <part name="parameter" element="types:Hello2StringElement"/>
+  </message>
+  <message name="helloResponse2">
+    <part name="result" element="types:Hello2StringElement"/>
+  </message>
+
+  <message name="oneway">
+    <part name="varString" element="types:OneWayStringElement"/>
+  </message>
+
+  <message name="mode1">
+    <part name="varString" element="types:Mode1StringElement" />
+  </message>
+  <message name="mode1Response"/>
+
+  <message name="mode2">
+    <part name="varString" element="types:Mode2StringElement" />
+  </message>
+  <message name="mode2Response">
+    <part name="varString" element="types:Mode2StringElement" />
+  </message>
+
+  <message name="mode3"/>
+  <message name="mode3Response">
+    <part name="varString" element="types:Mode3StringElement" />
+  </message>
+
+  <message name="WrapperElement1">
+    <part name="parameter" element="types:WrapperElement1"/>
+  </message>
+  <message name="WrapperElement1Response">
+    <part name="result" element="types:WrapperElement11"/>
+  </message>
+  <message name="WrapperElement2">
+    <part name="parameter" element="types:WrapperElement2"/>
+  </message>
+  <message name="WrapperElement2Response">
+    <part name="result" element="types:WrapperElement22"/>
+  </message>
+
+  <message name="MyFault">
+    <part name="MyFault" element="types:MyFaultReason"/>
+  </message>
+  <message name="HisFault">
+    <part name="HisFault" element="types:MyFaultReason"/>
+  </message>
+  <message name="MyHeader">
+    <part name="MyHeader" element="types:MyHeader"/>
+  </message>
+  
+  <message name="HeaderMessage">
+    <part name="parameter" element="types:HeaderStringElement"/>
+    <part name="ConfigHeader" element="types:ConfigHeader"/>
+  </message>
+  
+  <message name="HeaderMessageResponse">
+    <part name="result" element="types:HeaderStringElement"/>
+  </message>
+  
+  <message name="AFault1">
+    <part name="AFault1" element="types:MyFaultReason"/>
+  </message>
+
+  <message name="AFault2">
+    <part name="AFault2" element="types:MyFaultReason"/>
+  </message>
+
+  <portType name="myW2JDLCustomizationEndpoint">
+    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+        <!-- rename the generated SEI from myW2JDLCustomizationEndpoint.java to W2JDLCustomizationEndpoint.java -->
+        <jaxws:class name="W2JDLCustomizationEndpoint"/>
+    </jaxws:bindings>
+
+    <operation name="myhelloOperation">
+      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+           <!-- rename the generated java method name-->
+           <jaxws:method name="helloOperation"/>
+      </jaxws:bindings>
+      <input message="tns:hello"/>
+      <output message="tns:helloResponse"/>
+      <fault name="MyFault" message="tns:MyFault">
+      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+        <!-- rename the Wrapper Exception from MyFault.java to W2JDLFault.java -->
+        <jaxws:class name="W2JDLFault"/>
+      </jaxws:bindings>
+      </fault>
+    </operation>
+    <operation name="helloOperation2">
+      <input message="tns:hello2"/>
+      <output message="tns:helloResponse2"/>
+      <fault name="HisFault" message="tns:MyFault">
+      </fault>
+    </operation>
+    <operation name="onewayOperation">
+      <input message="tns:oneway"/>
+    </operation>
+    <operation name="mode1Operation" parameterOrder="varString">
+      <input message="tns:mode1"/>
+      <output message="tns:mode1Response"/>
+    </operation>
+    <operation name="mode2Operation" parameterOrder="varString">
+      <input message="tns:mode2"/>
+      <output message="tns:mode2Response"/>
+    </operation>
+    <operation name="mode3Operation" parameterOrder="varString">
+      <input message="tns:mode3"/>
+      <output message="tns:mode3Response"/>
+    </operation>
+    <operation name="WrapperElement1" >
+      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+          <jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>
+      </jaxws:bindings>
+      <input message="tns:WrapperElement1"/>
+      <output message="tns:WrapperElement1Response"/>
+    </operation>
+    <operation name="WrapperElement2" >
+      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+          <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+      </jaxws:bindings>
+      <input message="tns:WrapperElement2"/>
+      <output message="tns:WrapperElement2Response"/>
+    </operation>
+    <operation name="operationWithHeaderAndFaults">
+      <input message="tns:HeaderMessage"/>
+      <output message="tns:HeaderMessageResponse"/>
+      <fault name="AFault1" message="tns:AFault1">
+          <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+            <!-- rename the Wrapper Exception from AFault1.java to Fault1.java -->
+            <jaxws:class name="Fault1"/>
+          </jaxws:bindings>
+      </fault>
+      <fault name="AFault2" message="tns:AFault2">
+          <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+            <!-- rename the Wrapper Exception from AFault2.java to Fault2.java -->
+            <jaxws:class name="Fault2"/>
+          </jaxws:bindings>
+      </fault>
+    </operation>
+  </portType>
+  <binding name="W2JDLCustomizationEndpointBinding" type="tns:myW2JDLCustomizationEndpoint">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="myhelloOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:MyHeader" part="MyHeader" use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="MyFault">
+        <soap:fault name="MyFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="helloOperation2">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:MyHeader" part="MyHeader" use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="HisFault">
+        <soap:fault name="HisFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="onewayOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+    </operation>
+    <operation name="mode1Operation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" parts="varString"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="mode2Operation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" parts="varString"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="varString"/>
+      </output>
+    </operation>
+    <operation name="mode3Operation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="varString"/>
+      </output>
+    </operation>
+    <operation name="WrapperElement1">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="WrapperElement2">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="operationWithHeaderAndFaults">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" parts="parameter"/>
+        <soap:header message="tns:HeaderMessage" part="ConfigHeader" use="literal">
+	</soap:header>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="AFault1">
+        <soap:fault name="AFault1" use="literal"/>
+      </fault>
+      <fault name="AFault2">
+        <soap:fault name="AFault2" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="myW2JDLCustomization">
+    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+
+        <!-- rename the generated SI from MyW2JDLCustomization.java to W2JDLCustomization.java -->
+        <jaxws:class name="W2JDLCustomization"/>
+    </jaxws:bindings>
+    <port name="W2JDLCustomizationEndpointPort" binding="tns:W2JDLCustomizationEndpointBinding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+  </service>
+</definitions>

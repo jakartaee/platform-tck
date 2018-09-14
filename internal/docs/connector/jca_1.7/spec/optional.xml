@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<spec>
+  <next-available-id>331</next-available-id>
+  <previous-id>330</previous-id>
+  <technology>Connector</technology>
+  <id>Connector</id>
+  <name>Java EE Connector API</name>
+  <version>1.7</version>
+  <location>
+    <chapters />
+    <chapter id="19" name="API Requirements">
+      <sections>
+        <section id="1" name="Requirements of the App Server" />
+      </sections>
+    </chapter>
+    <chapter id="17" name="Common Client Interface">
+      <sections>
+        <section id="6.2" name="InteractionSpec" />
+        <section id="10.3" name="ResultSetInfo" />
+        <section id="6.1" name="Interaction" />
+        <section id="10.1" name="ResultSet Interface" />
+        <section id="5.3" name="Connection" />
+        <section id="5.1" name="ConnectionFactory" />
+        <section id="5.2" name="ConnectionSpec" />
+        <section id="7.1" name="ConnectionMetaData" />
+        <section id="9.1" name="Component-view Contract" />
+        <section id="9.3" name="Resource Adapter-view Contract" />
+      </sections>
+    </chapter>
+    <chapter id="18" name="Metadata Annotations">
+      <sections>
+        <section id="3" name="Deployment Descriptores and Annotations" />
+        <section id="2" name="Goals" />
+        <section id="1" name="Overview" />
+        <section id="7" name="@Activation" />
+        <section id="6" name="@ConnectionDefinition and @ConnectionDefinitions" />
+        <section id="5" name="@ConfigProperty" />
+        <section id="4" name="@Connector" />
+        <section id="8" name="@AdministeredObject" />
+      </sections>
+    </chapter>
+    <chapter id="15" name="Transaction Inflow">
+      <sections>
+        <section id="4.4" name="Requirements" />
+        <section id="4.2" name="Transaction completion processing" />
+        <section id="4.6" name="Recommendations" />
+      </sections>
+    </chapter>
+    <chapter id="16" name="Security Inflow">
+      <sections>
+        <section id="4.1" name="Establishing the Security Context" />
+        <section id="4" name="SecurityContext Class" />
+        <section id="4.4" name="Security Configuration Responsibilities" />
+        <section id="4.5" name="Requirements" />
+        <section id="4.2" name="callbacks for Information from the App Server" />
+        <section id="4.3" name="Establishing a Principal as the Caller Identity" />
+      </sections>
+    </chapter>
+    <chapter id="13" name="Message Inflow">
+      <sections>
+        <section id="3" name="Message Inflow Model" />
+        <section id="5.6" name="Transacted delivery (using container managed transaction)" />
+        <section id="5.4" name="Concurrent delivery of messages" />
+        <section id="5.1" name="Sample resource adapter code to illustrate message delivery" />
+        <section id="5.9" name="Requirements" />
+        <section id="4.5" name="Application Server" />
+        <section id="4.9" name="Multiple endpoint activations with similar activation information" />
+        <section id="4.7" name="Requirements" />
+      </sections>
+    </chapter>
+    <chapter id="11" name="Generic inflow Context">
+      <sections>
+        <section id="3" name="Generic Inflow Context Model" />
+        <section id="2" name="Goals" />
+        <section id="1" name="Overview" />
+        <section id="7" name="WorkContextLifecycleListener Interface" />
+        <section id="6" name="HintsContext Interface" />
+        <section id="5" name="TransactionContext Class" />
+        <section id="4" name="WorkContextProvider and WorkContext Interface" />
+        <section id="8" name="Illustrative Example" />
+      </sections>
+    </chapter>
+    <chapter id="12" name="Inbound Communication">
+      <sections>
+        <section id="2" name="An Illustrative Use Case " />
+        <section id="1" name="Overview" />
+      </sections>
+    </chapter>
+    <chapter id="3" name="The Connector Architecture">
+      <sections>
+        <section id="3" name="Requirements" />
+        <section id="2" name="Client API" />
+        <section id="1" name="System Contracts" />
+        <section id="5" name="Standalone Container Environment" />
+        <section id="4" name="Non-Managed Environment" />
+      </sections>
+    </chapter>
+    <chapter id="20" name="Packaging Requirements">
+      <sections>
+        <section id="3" name="Class Loading Requirements" />
+        <section id="2" name="Packaging" />
+        <section id="1" name="Overview" />
+        <section id="7" name="Resource Adapter XML Schema Def" />
+        <section id="6" name="JNDI Configuration and Lookup" />
+        <section id="4.1" name="ResourceAdapter Provider" />
+        <section id="5" name="Interfaces/Classes" />
+        <section id="4" name="Deployment" />
+        <section id="4.2" name="Deployer" />
+      </sections>
+    </chapter>
+    <chapter id="10" name="Work Management">
+      <sections>
+        <section id="3" name="Work management Model" />
+        <section id="3.2" name="WorkManager Interface " />
+        <section id="3.3" name="WorkListener interface and WorkEvent class " />
+        <section id="3.5" name="Periodic execution of Work instances " />
+      </sections>
+    </chapter>
+    <chapter id="7" name="Transaction Management">
+      <sections>
+        <section id="6.2" name="Resource Adapter Requirements" />
+        <section id="6.3" name="Transaction Manager Requirements" />
+        <section id="13.2" name="Application Server" />
+        <section id="3.1" name="Interface: ManagedConnection" />
+        <section id="9" name="Connection Sharing" />
+        <section id="11" name="Connection Association" />
+      </sections>
+    </chapter>
+    <chapter id="6" name="Connection Management">
+      <sections>
+        <section id="8.3" name="Connection Event Notifications and Connection Close" />
+        <section id="2" name="Goals" />
+        <section id="10.1" name="Resource Adapter" />
+        <section id="5.3" name="ManagedConnectionFactory" />
+        <section id="10.2" name="Application Server" />
+        <section id="5.4" name="ManagedConnection" />
+        <section id="5.1" name="ConnectionFactory and Connection" />
+        <section id="5.2" name="ConnectionManager" />
+      </sections>
+    </chapter>
+    <chapter id="5" name="LifeCycle Management">
+      <sections>
+        <section id="3.2" name="ManagedConnectionFactory JavaBean and Outbound Communication" />
+        <section id="3.1" name="ResourceAdapter JavaBean and bootstraping a resource adapter instance" />
+        <section id="3.4" name="ResourceAdapter Shutdown procedure" />
+        <section id="3.3" name="ActivationSpec JavaBean and Inbound Communication" />
+      </sections>
+    </chapter>
+    <chapter id="9" name="Security Contract">
+      <sections>
+        <section id="3" name="Requirements" />
+        <section id="2.5" name="ConnectionManager" />
+        <section id="2.7" name="ManagedConnection" />
+        <section id="2.3" name="GenericCredential" />
+        <section id="2.2" name="ResourcePrincipal" />
+      </sections>
+    </chapter>
+  </location>
+  <assertions>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:13</id>
+      <description>The ResourceAdapter JavaBean should be treated as a central authority or registry for re-source adapter instance specific 				information, and it should have access to the overall state of the resource adapter instance (network endpoints, etc.).</description>
+      <location chapter="5" section="3.6" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:14</id>
+      <description>Any resource adapter specific object (for example, ManagedConnectionFactory JavaBean, 
+			ActivationSpec JavaBean or others) which creates network endpoints should register them with the 
+			ResourceAdapter JavaBean.</description>
+      <location chapter="5" section="3.6" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:15</id>
+      <description>The resource adapter threads should periodically scan the ResourceAdapter JavaBean state and behave accordingly. It is desirable 				that such threads avoid boundless blocking on I/O calls, and instead use a bounded blocking duration. This helps in resource adapter shutdown, and 			also potentially avoid deadlock situations during shutdown.</description>
+      <location chapter="5" section="3.6" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:16</id>
+      <description>An application server should use the connection management contract to implement a connection pooling mechanism in its own 				implementation-specific way.</description>
+      <location chapter="6" section="2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:19</id>
+      <description>A resource adapter should only introduce additional getConnection methods if it requires additional flexibility (beyond that offered by 				the default getConnection method) in the connection request invocations.</description>
+      <location chapter="6" section="5.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:21</id>
+      <description>The equals and hashCode method implementation should be based on a complete set of configuration properties that makes a 				ManagedConnectionFactory instance unique and specific to an EIS instance.</description>
+      <location chapter="6" section="5.3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:22</id>
+      <description>Any operations on the ManagedConnection from any previously created connection handles should result in an application level 				exception.</description>
+      <location chapter="6" section="5.4" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:23</id>
+      <description>The application server should use connection matching contract for ManagedConnection in-stances that have no existing connection 			handles.</description>
+      <location chapter="6" section="5.4" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:24</id>
+      <description>To avoid any unexpected matching behavior, the application server should not pass a ManagedConnection instance with existing 				connection handles to the matchManagedConnections method as part of a candidate set.</description>
+      <location chapter="6" section="5.4" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:25</id>
+      <description>An application server should explicitly call ManagedConnection.destroy to destroy a physical connection. An application server should 			destroy a physical connection to manage the size of its connection pool and to reclaim system resources.</description>
+      <location chapter="6" section="5.4" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:26</id>
+      <description>The application server should call ManagedConnection.cleanup to initiate the connection cleanup.</description>
+      <location chapter="6" section="8.3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:37</id>
+      <description>If a XAResource.prepare method is called on a RM that supports only one-phase commit, then the RM should throw an XAException 				with XAER_PROTO or XA_RB* flag.</description>
+      <location chapter="7" section="6.2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:38</id>
+      <description>The RM should discard its knowledge of the branch only when the TM calls XAResource.forget. RM is required to notify the TM of all 				  heuristic decisions.</description>
+      <location chapter="7" section="6.2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:45</id>
+      <description>The resource adapter is required to implement the associateConnection method to support connection sharing.</description>
+      <location chapter="7" section="6.2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:50</id>
+      <description>Containers should assume connections to be shareable if no deployment hint is provided. Refer to EJB specification and the Servlet 				specification for a description of the deployment descriptor element.</description>
+      <location chapter="7" section="9" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:51</id>
+      <description>The associateConnection method implementation for a ManagedConnection should disso-ciate the connection handle (passed as a 				parameter) from its currently associated ManagedConnection and associate the new connection handle with itself.</description>
+      <location chapter="7" section="11" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:57</id>
+      <description>An application server should use the Principal interface (or any 
+                      derived interface) to pass a resource principal as part of a 
+                      Subject to a resource adapter.</description>
+      <location chapter="9" section="1.3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:58</id>
+      <description>The mechanism type definition for GenericCredential must be consistent with the Object Identifier (OID) based representation specified 			 in the GSS [5] specification. In the GenericCredential interface, the mechanism type is returned as a stringified representation of the OID 					specification.</description>
+      <location chapter="9" section="1.4" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:59</id>
+      <description>In case of Kerberos mechanism type, the application server must pass the principal s TGT (ticket granting ticket) to a resource adapter 			in a private credential set.</description>
+      <location chapter="9" section="1.8.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:60</id>
+      <description>Resource adapter is required to support the security contract by implementing the method  								ManagedConnectionFactory.createManagedConnection.</description>
+      <location chapter="9" section="3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:67</id>
+      <description>The application server is required to use threads of the same thread 
+                       priority level to process Work instances submitted by a specific 
+                       resource adapter.</description>
+      <location chapter="10" section="3.1" />
+      <comment>This is being flagged as NOT required since it is a duplicate of 
+                  Connector:SPEC:66.  This is not being removed since it was an existing 
+                  assertion from previous releases and so is being left in for any historical 
+                  or potential reference value.</comment>
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:81</id>
+      <description>The resource adapter should instead use the BootstrapContext instance provided by the application server to obtain a Timer instance.</description>
+      <location chapter="10" section="3.5" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:105</id>
+      <description>Since it is possible that multiple resource adapters may use the same resource manager, there may 
+be more than one XAResource object in the collection representing a resource manager. The 
+application server may still need to narrow the collection of XAResource objects to a unique set of 
+resource managers, by using the isSameRM method on the XAResource object.</description>
+      <location chapter="13" section="5.2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:129</id>
+      <description>An implementation class for ConnectionFactory is required to implement the java.io.Se-rializable interface to support JNDI registration.</description>
+      <location chapter="17" section="5.1.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:130</id>
+      <description>A ConnectionFactory implementation class is also required to implement javax.resource.Referenceable.</description>
+      <location chapter="17" section="5.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:131</id>
+      <description>An implementation class for ConnectionFactory is required to provide a default constructor.</description>
+      <location chapter="17" section="5.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:132</id>
+      <description>The properties on the ConnectionSpec implementation class must be defined through the getter and setter methods pattern.</description>
+      <location chapter="17" section="5.2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:133</id>
+      <description>If a resource adapter does not allow a component to demarcate local transactions using LocalTransaction interface, then the method 			getLocalTransaction must throw a NotSupportedException.</description>
+      <location chapter="17" section="5.2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:134</id>
+      <description>The properties on the InteractionSpec implementation class must be defined through the getter and 
+			 setter methods pattern.</description>
+      <location chapter="17" section="5.2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:135</id>
+      <description>The properties on the InteractionSpec implementation class must be defined through the getter and 
+			 setter methods pattern.</description>
+      <location chapter="17" section="5.3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:136</id>
+      <description>A resource adapter is required to manage the auto-commit mode as follows:
+			A transactional resource adapter (either at XATransaction or LocalTransaction level) is required 
+			to set the auto-commit mode (for a Connection instance participating in the transaction) to off 
+			within a transaction. This requirement holds for both container-managed and bean-managed transaction 
+			demarcation.</description>
+      <location chapter="17" section="5.3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:137</id>
+      <description>A resource adapter is required to manage the auto-commit mode as follows:
+			 A transactional resource adapter is required to set the auto-commit mode to on (for Connection instances) outside a transaction.</description>
+      <location chapter="17" section="5.3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:138</id>
+      <description>If an Interaction implementation does not support a variant of execute method, the method is required to throw a 						javax.resource.NotSupportedException.</description>
+      <location chapter="17" section="6.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:139</id>
+      <description>An Interaction instance is created from a Connection and is required to maintain its asso-ciation with the Connection instance.</description>
+      <location chapter="17" section="6.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:140</id>
+      <description>The close of an Interaction instance should not close the associated Connection instance.</description>
+      <location chapter="17" section="6.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:141</id>
+      <description>It is required that the InteractionSpec interface be implemented as a JavaBean to support tools.</description>
+      <location chapter="17" section="6.2" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:142</id>
+      <description>A CCI implementation is required to provide an implementation class for the Connection-MetaData interface.</description>
+      <location chapter="17" section="7.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:143</id>
+      <description>A RecordFactory implementation should be capable of using the name of the desired Record and accessing meta information for the 				creation of the Record.</description>
+      <location chapter="17" section="9.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:144</id>
+      <description>The imple-mentations of both read and write methods for a Streamable object must call the read and write methods respectively on 				the super class if there is one.</description>
+      <location chapter="17" section="9.3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:145</id>
+      <description>A ResultSet implementation is required to establish a type mapping between the EIS specific data types and Java types.</description>
+      <location chapter="17" section="10.1" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:146</id>
+      <description>A CCI implementation is not required to support javax.resource.cci.ResultSetInfo in-terface.</description>
+      <location chapter="17" section="10.3" />
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:202</id>
+      <description>(further extending off assertion number 201)
+                    If a JTA implementation that is capable of providing support for distributed XA
+                    transactions is provided by the standalone connector container implementation,
+                    the standalone implementation must support XATransaction resource adapters
+                    (see Section 7.14.1, "Resource Adapter" on page 7-49). The standalone container
+                    environment must support a transaction manager that manages transactions
+                    using the JTA XAResource-based contract.</description>
+      <location chapter="3" section="5" />
+      <comment>Standalone container test.
+                    Also, this is not required to be supported by all standalone containers so
+                    is being flagged as optional.
+                    There was much discussion about using keywords to test this and while it is
+                    simple enough to implement - it goes against the intended use of keywords 
+                    in CTS so will not provide an optional test for this.</comment>
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:203</id>
+      <description>(further extending off assertion number 202)
+                    If a JTA implementation that is capable of providing support for distributed XA
+                    transactions is provided by the standalone connector container implementation,
+                    the standalone implementation must support XATransaction resource adapters
+                    (see Section 7.14.1, "Resource Adapter" on page 7-49). ...
+                    ...
+                    The standalone implementation, in this case, must also support Transaction Inflow.</description>
+      <location chapter="3" section="5" />
+      <comment>Standalone container test.
+                    Also, this is not required to be supported by all standalone containers so
+                    is being flagged as optional.
+                    There was much discussion about using keywords to test this and while it is
+                    simple enough to implement - it goes against the intended use of keywords 
+                    in CTS so will not provide an optional test for this.</comment>
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:237</id>
+      <description>The application server must provide tools to set up Caller Identity 
+                    information for a Work/Message Endpoint container. This includes 
+                    support for mapping of EIS/resource principals to Caller Principals 
+                    in the application server security domain.</description>
+      <location chapter="16" section="4.4" />
+      <comment>The deployer must use application server specific tools and techniques 
+                    to enable this mapping.
+
+                    is not portably testable.  The tool could be gui or cli and
+                    so may not be portable - unless we mandate as part of the test
+                    requirements that they must set up caller identity and mapp
+                    EIS/resource principals to Caller Principals ahead of time.</comment>
+    </assertion>
+    <assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:250</id>
+      <description>A WorkManager implementation that supports the submission of
+                    DistributableWork instances must implement the DistributableWorkManager
+                    marker interface.  This allows the resource adapter to programmatically 
+                    determine whether the WorkManager supports the submission of DistributableWork
+                    instances.</description>
+      <location chapter="10" section="3.11.2" />
+      <comment>-DistributableWork Interface is optional functionality
+                        -use keywords (or ts.jte prop) to indicate if a vendor supports it.
+                        -we can test that if a WM implements the DWM interface, than the
+                         vendors setting for this support better match accordingly</comment>
+    </assertion>
+    <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
+      <id>Connector:SPEC:319</id>
+      <description>The MessageEndpointFactory also provides the unique name for the 
+                      message endpoint deployment that it represents. . If the message 
+                      endpoint has been deployed into a clustered application server, 
+                      then the application server must provide the same name for that 
+                      message endpoints activation in each application server instance.</description>
+      <location chapter="13" section="3" />
+      <comment>- Not testable because it is not possible to test for unique names in 
+                      each/multiple app server instances (i.e. cluster).
+                    - Also, not required since MessageEndpointFactory is only required by 
+                      Java EE compliant app servers.</comment>
+    </assertion>
+  </assertions>
+</spec>
+

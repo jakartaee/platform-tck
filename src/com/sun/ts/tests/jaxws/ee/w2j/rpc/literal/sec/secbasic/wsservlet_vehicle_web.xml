@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name>wsservlet_vehicle</display-name>
+  <servlet>
+    <servlet-name>WSServlet_VehicleLogicalName</servlet-name>
+    <servlet-class>com.sun.ts.tests.common.vehicle.wsservlet.WSServletVehicle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WSServlet_VehicleLogicalName</servlet-name>
+    <url-pattern>/wsservlet_vehicle</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>54</session-timeout>
+  </session-config>
+  <service-ref>
+    <service-ref-name>service/unprotected</service-ref-name>
+    <service-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService</service-interface>
+    <wsdl-file>WEB-INF/wsdl/BasicAuthServiceTestService.wsdl</wsdl-file>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloUnprotected</service-endpoint-interface>
+    </port-component-ref>
+  </service-ref>
+  <service-ref>
+    <service-ref-name>service/protectednoid</service-ref-name>
+    <service-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService</service-interface>
+    <wsdl-file>WEB-INF/wsdl/BasicAuthServiceTestService.wsdl</wsdl-file>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected</service-endpoint-interface>
+    </port-component-ref>
+  </service-ref>
+  <service-ref>
+    <service-ref-name>service/protectedvalidid</service-ref-name>
+    <service-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService</service-interface>
+    <wsdl-file>WEB-INF/wsdl/BasicAuthServiceTestService.wsdl</wsdl-file>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected1</service-endpoint-interface>
+    </port-component-ref>
+  </service-ref>
+  <service-ref>
+    <service-ref-name>service/protectedinvalidid</service-ref-name>
+    <service-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService</service-interface>
+    <wsdl-file>WEB-INF/wsdl/BasicAuthServiceTestService.wsdl</wsdl-file>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected2</service-endpoint-interface>
+    </port-component-ref>
+  </service-ref>
+  <service-ref>
+    <service-ref-name>service/protectedunauthid</service-ref-name>
+    <service-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService</service-interface>
+    <wsdl-file>WEB-INF/wsdl/BasicAuthServiceTestService.wsdl</wsdl-file>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected3</service-endpoint-interface>
+    </port-component-ref>
+  </service-ref>
+  <service-ref>
+    <service-ref-name>service/guest</service-ref-name>
+    <service-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService</service-interface>
+    <wsdl-file>WEB-INF/wsdl/BasicAuthServiceTestService.wsdl</wsdl-file>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloGuest</service-endpoint-interface>
+    </port-component-ref>
+  </service-ref>
+</web-app>

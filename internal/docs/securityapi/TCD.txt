@@ -1,0 +1,86 @@
+
+TCK Coverage Document for JSR-375 Java EE Security API 1.0 Specification
+
+
+TCK Components:
+---------------
+- User's Guide
+- Compatibility Rules
+- Configuration Instructions
+- Test Suite
+- API Tests 
+- Signature Test
+- End-to-End Tests
+- Framework Code
+- JavaTest TM Harness
+
+
+Terminology of Metrics
+----------------------
+- Assertion: A specific statement of functionality or behavior derived from a
+  specification. A testable assertion is one that can be validated in an
+  implementation by testing.
+- Test: A binary application (or script) comprised of one or more Test Cases.
+- Test Case: A single set of test inputs, execution conditions, and expected
+  results developed to verify an implementation's conformance with a specific
+  assertion.
+- Specification Assertion Coverage: Ratio of all assertions tested by at least
+  one test case to the total number of testable assertions defined by the
+  specification.
+- API Coverage: Ratio of methods directly exercised by test cases to the total
+  number of methods defined by the specification.
+
+
+Coverage
+--------
+- Total testable assertions derived from JSR-375 Specification and Javadoc:
+        53 specification assertions 
+     + 180 API assertions 
+     ------------------------------
+       233 testable assertions
+
+
+- Total testable assertions tested
+       53 specification assertions tested
+     + 72 API assertions tested
+     --------------------------------------
+      125 testable assertions tested
+
+
+  - 100.00% of testable specification assertions tested
+  -  40.00% of testable API assertions tested
+  -  53.65% of all (specification and API) assertions tested
+
+- Assertions were identified through the use of CTS Tools and manual markup.
+
+- API Signature Coverage: 100% for all defined public and protected members and validated
+  by the signature test included with the JSR-375 TCK.
+
+- See the following HTML reports in this bundle for JSR-375 specification and API coverage metrics:
+    * coverage/api/summary.html
+    * coverage/spec/summary.html
+
+
+Quality Assurance
+-----------------
+- The TCK was run using representative configurations of the JavaEE Reference
+  Implementation on the following platforms; note all platforms use Java SE 8:
+   * Oracle Linux 7.1
+   * Microsoft Windows 10
+
+- Code quality was demonstrated through use of code reviews and inspections
+- User's Guide was constructed from the standard CTS User's Guide template
+- Documentation instructions were verified and tested
+
+
+Justification of Adequacy
+-------------------------
+The Java EE Security API TCK Version 1.0 provides a comprehensive set of tests to ensure
+all implementations of the Java EE Security API 1.0 specification are compatible.  As with
+all TCKs it is impossible to provide tests for 100% assertion coverage.  Note, while
+the CTS may not have tests for all assertions in the Security API 1.0 specification, all
+implementations must be compatible with the specification.
+
+Untested assertions are due to the effects of late specification changes, and
+the availability and cost of test development resources.
+

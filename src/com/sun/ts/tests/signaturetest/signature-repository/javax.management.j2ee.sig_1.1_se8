@@ -1,0 +1,220 @@
+#Signature file v4.1
+#Version 1.1_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public abstract interface java.rmi.Remote
+
+CLSS public abstract interface javax.ejb.EJBHome
+intf java.rmi.Remote
+meth public abstract javax.ejb.EJBMetaData getEJBMetaData() throws java.rmi.RemoteException
+meth public abstract javax.ejb.HomeHandle getHomeHandle() throws java.rmi.RemoteException
+meth public abstract void remove(java.lang.Object) throws java.rmi.RemoteException,javax.ejb.RemoveException
+meth public abstract void remove(javax.ejb.Handle) throws java.rmi.RemoteException,javax.ejb.RemoveException
+
+CLSS public abstract interface javax.ejb.EJBObject
+intf java.rmi.Remote
+meth public abstract boolean isIdentical(javax.ejb.EJBObject) throws java.rmi.RemoteException
+meth public abstract java.lang.Object getPrimaryKey() throws java.rmi.RemoteException
+meth public abstract javax.ejb.EJBHome getEJBHome() throws java.rmi.RemoteException
+meth public abstract javax.ejb.Handle getHandle() throws java.rmi.RemoteException
+meth public abstract void remove() throws java.rmi.RemoteException,javax.ejb.RemoveException
+
+CLSS public abstract interface javax.management.j2ee.ListenerRegistration
+intf java.io.Serializable
+meth public abstract void addNotificationListener(javax.management.ObjectName,javax.management.NotificationListener,javax.management.NotificationFilter,java.lang.Object) throws java.rmi.RemoteException,javax.management.InstanceNotFoundException
+meth public abstract void removeNotificationListener(javax.management.ObjectName,javax.management.NotificationListener) throws java.rmi.RemoteException,javax.management.InstanceNotFoundException,javax.management.ListenerNotFoundException
+
+CLSS public abstract interface javax.management.j2ee.Management
+intf javax.ejb.EJBObject
+meth public abstract boolean isRegistered(javax.management.ObjectName) throws java.rmi.RemoteException
+meth public abstract java.lang.Integer getMBeanCount() throws java.rmi.RemoteException
+meth public abstract java.lang.Object getAttribute(javax.management.ObjectName,java.lang.String) throws java.rmi.RemoteException,javax.management.AttributeNotFoundException,javax.management.InstanceNotFoundException,javax.management.MBeanException,javax.management.ReflectionException
+meth public abstract java.lang.Object invoke(javax.management.ObjectName,java.lang.String,java.lang.Object[],java.lang.String[]) throws java.rmi.RemoteException,javax.management.InstanceNotFoundException,javax.management.MBeanException,javax.management.ReflectionException
+meth public abstract java.lang.String getDefaultDomain() throws java.rmi.RemoteException
+meth public abstract java.util.Set queryNames(javax.management.ObjectName,javax.management.QueryExp) throws java.rmi.RemoteException
+meth public abstract javax.management.AttributeList getAttributes(javax.management.ObjectName,java.lang.String[]) throws java.rmi.RemoteException,javax.management.InstanceNotFoundException,javax.management.ReflectionException
+meth public abstract javax.management.AttributeList setAttributes(javax.management.ObjectName,javax.management.AttributeList) throws java.rmi.RemoteException,javax.management.InstanceNotFoundException,javax.management.ReflectionException
+meth public abstract javax.management.MBeanInfo getMBeanInfo(javax.management.ObjectName) throws java.rmi.RemoteException,javax.management.InstanceNotFoundException,javax.management.IntrospectionException,javax.management.ReflectionException
+meth public abstract javax.management.j2ee.ListenerRegistration getListenerRegistry() throws java.rmi.RemoteException
+meth public abstract void setAttribute(javax.management.ObjectName,javax.management.Attribute) throws java.rmi.RemoteException,javax.management.AttributeNotFoundException,javax.management.InstanceNotFoundException,javax.management.InvalidAttributeValueException,javax.management.MBeanException,javax.management.ReflectionException
+
+CLSS public abstract interface javax.management.j2ee.ManagementHome
+intf javax.ejb.EJBHome
+meth public abstract javax.management.j2ee.Management create() throws java.rmi.RemoteException,javax.ejb.CreateException
+
+CLSS public abstract interface javax.management.j2ee.statistics.BoundaryStatistic
+intf javax.management.j2ee.statistics.Statistic
+meth public abstract long getLowerBound()
+meth public abstract long getUpperBound()
+
+CLSS public abstract interface javax.management.j2ee.statistics.BoundedRangeStatistic
+intf javax.management.j2ee.statistics.BoundaryStatistic
+intf javax.management.j2ee.statistics.RangeStatistic
+
+CLSS public abstract interface javax.management.j2ee.statistics.CountStatistic
+intf javax.management.j2ee.statistics.Statistic
+meth public abstract long getCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.EJBStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.CountStatistic getCreateCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getRemoveCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.EntityBeanStats
+intf javax.management.j2ee.statistics.EJBStats
+meth public abstract javax.management.j2ee.statistics.RangeStatistic getPooledCount()
+meth public abstract javax.management.j2ee.statistics.RangeStatistic getReadyCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JCAConnectionPoolStats
+intf javax.management.j2ee.statistics.JCAConnectionStats
+meth public abstract javax.management.j2ee.statistics.BoundedRangeStatistic getFreePoolSize()
+meth public abstract javax.management.j2ee.statistics.BoundedRangeStatistic getPoolSize()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getCloseCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getCreateCount()
+meth public abstract javax.management.j2ee.statistics.RangeStatistic getWaitingThreadCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JCAConnectionStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract java.lang.String getConnectionFactory()
+meth public abstract java.lang.String getManagedConnectionFactory()
+meth public abstract javax.management.j2ee.statistics.TimeStatistic getUseTime()
+meth public abstract javax.management.j2ee.statistics.TimeStatistic getWaitTime()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JCAStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.JCAConnectionPoolStats[] getConnectionPools()
+meth public abstract javax.management.j2ee.statistics.JCAConnectionStats[] getConnections()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JDBCConnectionPoolStats
+intf javax.management.j2ee.statistics.JDBCConnectionStats
+meth public abstract javax.management.j2ee.statistics.BoundedRangeStatistic getFreePoolSize()
+meth public abstract javax.management.j2ee.statistics.BoundedRangeStatistic getPoolSize()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getCloseCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getCreateCount()
+meth public abstract javax.management.j2ee.statistics.RangeStatistic getWaitingThreadCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JDBCConnectionStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract java.lang.String getJdbcDataSource()
+meth public abstract javax.management.j2ee.statistics.TimeStatistic getUseTime()
+meth public abstract javax.management.j2ee.statistics.TimeStatistic getWaitTime()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JDBCStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.JDBCConnectionPoolStats[] getConnectionPools()
+meth public abstract javax.management.j2ee.statistics.JDBCConnectionStats[] getConnections()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JMSConnectionStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract boolean isTransactional()
+meth public abstract javax.management.j2ee.statistics.JMSSessionStats[] getSessions()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JMSConsumerStats
+intf javax.management.j2ee.statistics.JMSEndpointStats
+meth public abstract java.lang.String getOrigin()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JMSEndpointStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.CountStatistic getExpiredMessageCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getMessageCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getPendingMessageCount()
+meth public abstract javax.management.j2ee.statistics.TimeStatistic getMessageWaitTime()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JMSProducerStats
+intf javax.management.j2ee.statistics.JMSEndpointStats
+meth public abstract java.lang.String getDestination()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JMSSessionStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.CountStatistic getDurableSubscriptionCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getExpiredMessageCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getMessageCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getPendingMessageCount()
+meth public abstract javax.management.j2ee.statistics.JMSConsumerStats[] getConsumers()
+meth public abstract javax.management.j2ee.statistics.JMSProducerStats[] getProducers()
+meth public abstract javax.management.j2ee.statistics.TimeStatistic getMessageWaitTime()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JMSStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.JMSConnectionStats[] getConnections()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JTAStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.CountStatistic getActiveCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getCommittedCount()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getRolledbackCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JVMStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.BoundedRangeStatistic getHeapSize()
+meth public abstract javax.management.j2ee.statistics.CountStatistic getUpTime()
+
+CLSS public abstract interface javax.management.j2ee.statistics.JavaMailStats
+meth public abstract javax.management.j2ee.statistics.CountStatistic getSentMailCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.MessageDrivenBeanStats
+intf javax.management.j2ee.statistics.EJBStats
+meth public abstract javax.management.j2ee.statistics.CountStatistic getMessageCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.RangeStatistic
+intf javax.management.j2ee.statistics.Statistic
+meth public abstract long getCurrent()
+meth public abstract long getHighWaterMark()
+meth public abstract long getLowWaterMark()
+
+CLSS public abstract interface javax.management.j2ee.statistics.ServletStats
+intf javax.management.j2ee.statistics.Stats
+meth public abstract javax.management.j2ee.statistics.TimeStatistic getServiceTime()
+
+CLSS public abstract interface javax.management.j2ee.statistics.SessionBeanStats
+intf javax.management.j2ee.statistics.EJBStats
+meth public abstract javax.management.j2ee.statistics.RangeStatistic getMethodReadyCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.StatefulSessionBeanStats
+intf javax.management.j2ee.statistics.SessionBeanStats
+meth public abstract javax.management.j2ee.statistics.RangeStatistic getPassiveCount()
+
+CLSS public abstract interface javax.management.j2ee.statistics.StatelessSessionBeanStats
+intf javax.management.j2ee.statistics.SessionBeanStats
+
+CLSS public abstract interface javax.management.j2ee.statistics.Statistic
+meth public abstract java.lang.String getDescription()
+meth public abstract java.lang.String getName()
+meth public abstract java.lang.String getUnit()
+meth public abstract long getLastSampleTime()
+meth public abstract long getStartTime()
+
+CLSS public abstract interface javax.management.j2ee.statistics.Stats
+meth public abstract java.lang.String[] getStatisticNames()
+meth public abstract javax.management.j2ee.statistics.Statistic getStatistic(java.lang.String)
+meth public abstract javax.management.j2ee.statistics.Statistic[] getStatistics()
+
+CLSS public abstract interface javax.management.j2ee.statistics.TimeStatistic
+intf javax.management.j2ee.statistics.Statistic
+meth public abstract long getCount()
+meth public abstract long getMaxTime()
+meth public abstract long getMinTime()
+meth public abstract long getTotalTime()
+
+CLSS public abstract interface javax.management.j2ee.statistics.URLStats
+intf javax.management.j2ee.statistics.Stats
+

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!--
+  This schema is for ProviderConfiguration entries that describes the 
+  configuration necessary for loading a auth config security provider
+
+  The provider-config element is the root it may have zero or more
+  provider-config-entry
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://java.oracle.com/xml/ns/jaspic"
+           xmlns="http://java.oracle.com/xml/ns/jaspic"
+           elementFormDefault="qualified">
+
+  <xs:element name="provider-config" >
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="provider-config-entry"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--
+      provider-config-entry contains 
+         1) Optional provider-class name or null
+         2) optional properties that conform to the syntax defined by  
+            http://java.sun.com/dtd/properties.dtd
+         3) optional message-layer that indicates which message-layer the provider
+            will act on.
+         4) optional app-context-id the application context id for that specific 
+            application the provider is to be used.
+         5) optional reg-description describes the purpose of the provider.
+  -->
+  <xs:element name="provider-config-entry" >
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="provider-class"/>
+        <xs:element minOccurs="0" ref="properties"/>
+        <xs:element minOccurs="0" ref="message-layer"/>
+        <xs:element minOccurs="0" ref="app-context-id"/>
+        <xs:element minOccurs="0" ref="reg-description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="provider-class" type="xs:string"/>
+  <xs:element name="message-layer" type="xs:string"/>
+  <xs:element name="app-context-id" type="xs:string"/>
+  <xs:element name="reg-description" type="xs:string"/>
+  <xs:element name="properties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="comment"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="entry"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.properties"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.properties">
+    <xs:attribute name="version" default="1.0">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="1.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="comment" type="xs:string"/>
+  <xs:element name="entry">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.entry"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.entry">
+    <xs:attribute name="key" use="required"/>
+  </xs:attributeGroup>
+</xs:schema>

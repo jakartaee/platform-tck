@@ -1,0 +1,187 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="JSP" basedir="." default="build">
+
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+	
+    <property name="deliverable.version" value="2.3"/>
+    
+    <target name="init">
+        <mkdir dir="${deliverable.bundle.dir}/bin"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/none"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <mkdir dir="${deliverable.bundle.dir}/classes"/>
+        <mkdir dir="${deliverable.bundle.dir}/dist"/>
+        <mkdir dir="${deliverable.bundle.dir}/lib/dtds"/>
+	    <mkdir dir="${deliverable.bundle.dir}/docs"/>
+        <mkdir dir="${deliverable.bundle.dir}/src"/>
+        <mkdir dir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting"/>
+    </target>
+    
+    <target name="copyinstall">
+        <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+                     includes="**/*"
+                     excludes="**/workspace.xml"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/none"
+              overwrite="true">
+            <fileset dir="${common.bin.dir}/xml/impl/none" includes="*.xml"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"
+               overwrite="true">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish"
+                     includes="*.xml"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/src">
+            <fileset dir="${ts.home}/install/${deliverable.name.lower}/other"
+                     includes="testsuite.jtt"/>
+        </copy>
+		<copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+              <fileset dir="${ts.home}/install/jsp/docs" excludes="**svn**" />
+	   </copy>
+        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+            <fileset dir="${ts.home}" includes="NOTICE" />
+        </copy>
+        <copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+        </copy>
+    </target>
+	
+	<target name="jte.cleanup">
+			<props.sanitizer file="${basedir}/${deliverable.bundle.dir}/bin/ts.jte" quiet="true">
+				<property name="webServerHost" value="" />
+				<property name="webServerPort" value="" />
+				<property name="webServerHome" value="" />
+				<property name="impl.vi" value="" />
+				<property name="impl.vi.deploy.dir" value="" />
+				<property name="impl.deploy.timeout.multiplier" value="" />
+				<property name="jspservlet.classes" value="" />
+				<property name="jstl.classes" value="" />
+				<property name="sigTestClasspath=" value="" />
+			</props.sanitizer>
+		</target>
+
+    <target name="build" depends="init">
+        <antcall target="copyinstall"/>
+    	<antcall target="jte.cleanup"/>
+        
+        <!-- the classes directory -->
+        <copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/classes"
+                     includes="com/sun/ts/tests/jsp/**/*Client*.class,
+                     com/sun/ts/tests/jsp/**/*Validator*.class,
+                     com/sun/ts/tests/common/webclient/**/*.class,
+                     com/sun/ts/tests/common/vehicle/**/*.class,
+                     com/sun/ts/tests/common/el/**/*.class,
+                     com/sun/ts/lib/porting/TSURL.class,
+                     com/sun/ts/lib/porting/TSURLInterface.class,
+                     com/sun/ts/tests/signaturetest/*.class,
+                     com/sun/ts/tests/signaturetest/jsp/**/*"
+                     excludes="com/sun/ts/tests/signaturetest/**/*EE*,
+                     com/sun/ts/tests/jsp/spec/security/**/*,
+            com/sun/ts/tests/jsp/spec/tagext/resource/**/*"/>
+        </copy>
+        
+        <!-- the lib directory -->
+        <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib" includes="commons*jar,jsptck.jar"/>
+        </copy>
+        
+        <!-- copy relevant DTDs -->
+        <copy todir="${deliverable.bundle.dir}/lib/dtds" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib/dtds"
+                     includes="web-app*,web-jsptaglibrary*"/>
+        </copy>
+        
+        <!-- copy relevant Schemas -->
+        <copy todir="${deliverable.bundle.dir}/lib/schemas"
+              includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib/schemas"
+                     includes="web-app*xsd,web-jsptaglibrary*xsd,
+                     XMLSchema.xsd,
+                     xml.xsd,
+                     j2ee_1_4.xsd,
+                     javaee*xsd,
+                     jsp*xsd,
+                     j2ee_web_services_client_1_1.xsd,
+            j2ee_web_services_client*xsd"/>
+        </copy>
+        
+        <!-- the war files in the dist directory -->
+        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/dist"
+                     includes="com/sun/ts/tests/jsp/**/*.war"
+                     excludes="**/security/,**/tagext/resource/"/>
+        </copy>
+        
+        <!-- the specific deliverable source directories -->
+        <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src"
+                     includes="com/sun/ts/tests/jsp/**/*,
+                     com/sun/ts/tests/common/el/**/*, 
+                     com/sun/ts/tests/common/webclient/**/*, 
+                     web/jsp/**/*,
+                     ${lib.pkg.dir}/deliverable/jsp/*,
+                     com/sun/ts/tests/signaturetest/*,
+                     com/sun/ts/tests/signaturetest/jsp/**/*,
+                     com/sun/ts/tests/signaturetest/signature-repository/javax.servlet.jsp.sig_2.1_se5_se6,
+                     com/sun/ts/tests/signaturetest/signature-repository/javax.el.sig_1.1_se5_se6"
+                     excludes="web/jsp/spec/sec/,
+                     web/jsp/spec/tagext/resource/,
+                     com/sun/ts/tests/jsp/spec/security/,
+                     com/sun/ts/tests/jsp/spec/tagext/resource/,
+                     com/sun/ts/tests/signaturetest/*Record*,
+            com/sun/ts/tests/signaturetest/*record*"/>
+        </copy>
+        
+        <!-- the com/sun/ts/lib file -->
+        <copy file="${ts.home}/src/com/sun/ts/lib/build.xml"
+              todir="${deliverable.bundle.dir}/src/com/sun/ts/lib"/>
+        <!-- the com/sun/ts/lib/porting directory -->
+        <copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting"
+              includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src/com/sun/ts/lib/porting"
+                     includes="TSDeploymentException.java,
+                     TSDeploymentInterface.java,TSDeployment2.java,
+            TSURLInterface.java,TSURL.java"/>
+        </copy>
+        
+        <!-- the com/sun/ts/lib/implementation/sun/common file -->
+        <copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/common/SunRIURL.java"
+              todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/common"/>
+        
+        
+        <!-- delete uneeded JAR files from the deliverable lib directory -->
+        <delete quiet="true">
+            <fileset dir="${deliverable.bundle.dir}/lib"
+                     includes="*jaxb*,apiCheck.jar"/>
+        </delete>
+		<antcall target="create.doc.bundle"/>
+    </target>
+	<target name="create.doc.bundle">
+		  <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
+		  <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">
+			<zipfileset dir="${ts.home}/install/${deliverable.dir}/docs"
+					includes="**/*.html, **/*.gif, **/*.css"
+					excludes="*ReleaseNotes*.html"/>
+		  </zip>
+	</target>
+</project>

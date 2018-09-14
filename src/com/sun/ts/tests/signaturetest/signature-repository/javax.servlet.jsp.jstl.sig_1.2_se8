@@ -1,0 +1,285 @@
+#Signature file v4.1
+#Version 1.2_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public abstract javax.el.Expression
+cons public <init>()
+intf java.io.Serializable
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract boolean isLiteralText()
+meth public abstract int hashCode()
+meth public abstract java.lang.String getExpressionString()
+supr java.lang.Object
+
+CLSS public abstract javax.el.ValueExpression
+cons public <init>()
+meth public abstract boolean isReadOnly(javax.el.ELContext)
+meth public abstract java.lang.Class<?> getExpectedType()
+meth public abstract java.lang.Class<?> getType(javax.el.ELContext)
+meth public abstract java.lang.Object getValue(javax.el.ELContext)
+meth public abstract void setValue(javax.el.ELContext,java.lang.Object)
+meth public javax.el.ValueReference getValueReference(javax.el.ELContext)
+supr javax.el.Expression
+
+CLSS public abstract javax.servlet.jsp.jstl.core.ConditionalTagSupport
+cons public <init>()
+meth protected abstract boolean condition() throws javax.servlet.jsp.JspTagException
+meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth public void release()
+meth public void setScope(java.lang.String)
+meth public void setVar(java.lang.String)
+supr javax.servlet.jsp.tagext.TagSupport
+hfds result,scope,var
+
+CLSS public javax.servlet.jsp.jstl.core.Config
+cons public <init>()
+fld public final static java.lang.String FMT_FALLBACK_LOCALE = "javax.servlet.jsp.jstl.fmt.fallbackLocale"
+fld public final static java.lang.String FMT_LOCALE = "javax.servlet.jsp.jstl.fmt.locale"
+fld public final static java.lang.String FMT_LOCALIZATION_CONTEXT = "javax.servlet.jsp.jstl.fmt.localizationContext"
+fld public final static java.lang.String FMT_TIME_ZONE = "javax.servlet.jsp.jstl.fmt.timeZone"
+fld public final static java.lang.String SQL_DATA_SOURCE = "javax.servlet.jsp.jstl.sql.dataSource"
+fld public final static java.lang.String SQL_MAX_ROWS = "javax.servlet.jsp.jstl.sql.maxRows"
+meth public static java.lang.Object find(javax.servlet.jsp.PageContext,java.lang.String)
+meth public static java.lang.Object get(javax.servlet.ServletContext,java.lang.String)
+meth public static java.lang.Object get(javax.servlet.ServletRequest,java.lang.String)
+meth public static java.lang.Object get(javax.servlet.http.HttpSession,java.lang.String)
+meth public static java.lang.Object get(javax.servlet.jsp.PageContext,java.lang.String,int)
+meth public static void remove(javax.servlet.ServletContext,java.lang.String)
+meth public static void remove(javax.servlet.ServletRequest,java.lang.String)
+meth public static void remove(javax.servlet.http.HttpSession,java.lang.String)
+meth public static void remove(javax.servlet.jsp.PageContext,java.lang.String,int)
+meth public static void set(javax.servlet.ServletContext,java.lang.String,java.lang.Object)
+meth public static void set(javax.servlet.ServletRequest,java.lang.String,java.lang.Object)
+meth public static void set(javax.servlet.http.HttpSession,java.lang.String,java.lang.Object)
+meth public static void set(javax.servlet.jsp.PageContext,java.lang.String,java.lang.Object,int)
+supr java.lang.Object
+hfds APPLICATION_SCOPE_SUFFIX,PAGE_SCOPE_SUFFIX,REQUEST_SCOPE_SUFFIX,SESSION_SCOPE_SUFFIX
+
+CLSS public final javax.servlet.jsp.jstl.core.IndexedValueExpression
+cons public <init>(javax.el.ValueExpression,int)
+fld protected final java.lang.Integer i
+fld protected final javax.el.ValueExpression orig
+meth public boolean equals(java.lang.Object)
+meth public boolean isLiteralText()
+meth public boolean isReadOnly(javax.el.ELContext)
+meth public int hashCode()
+meth public java.lang.Class getExpectedType()
+meth public java.lang.Class getType(javax.el.ELContext)
+meth public java.lang.Object getValue(javax.el.ELContext)
+meth public java.lang.String getExpressionString()
+meth public void setValue(javax.el.ELContext,java.lang.Object)
+supr javax.el.ValueExpression
+hfds serialVersionUID
+
+CLSS public final javax.servlet.jsp.jstl.core.IteratedExpression
+cons public <init>(javax.el.ValueExpression,java.lang.String)
+fld protected final java.lang.String delims
+fld protected final javax.el.ValueExpression orig
+meth public java.lang.Object getItem(javax.el.ELContext,int)
+meth public javax.el.ValueExpression getValueExpression()
+supr java.lang.Object
+hfds base,index,iter,serialVersionUID
+
+CLSS public final javax.servlet.jsp.jstl.core.IteratedValueExpression
+cons public <init>(javax.servlet.jsp.jstl.core.IteratedExpression,int)
+fld protected final int i
+fld protected final javax.servlet.jsp.jstl.core.IteratedExpression iteratedExpression
+meth public boolean equals(java.lang.Object)
+meth public boolean isLiteralText()
+meth public boolean isReadOnly(javax.el.ELContext)
+meth public int hashCode()
+meth public java.lang.Class getExpectedType()
+meth public java.lang.Class getType(javax.el.ELContext)
+meth public java.lang.Object getValue(javax.el.ELContext)
+meth public java.lang.String getExpressionString()
+meth public void setValue(javax.el.ELContext,java.lang.Object)
+supr javax.el.ValueExpression
+hfds serialVersionUID
+
+CLSS public abstract interface javax.servlet.jsp.jstl.core.LoopTag
+intf javax.servlet.jsp.tagext.Tag
+meth public abstract java.lang.Object getCurrent()
+meth public abstract javax.servlet.jsp.jstl.core.LoopTagStatus getLoopStatus()
+
+CLSS public abstract interface javax.servlet.jsp.jstl.core.LoopTagStatus
+meth public abstract boolean isFirst()
+meth public abstract boolean isLast()
+meth public abstract int getCount()
+meth public abstract int getIndex()
+meth public abstract java.lang.Integer getBegin()
+meth public abstract java.lang.Integer getEnd()
+meth public abstract java.lang.Integer getStep()
+meth public abstract java.lang.Object getCurrent()
+
+CLSS public abstract javax.servlet.jsp.jstl.core.LoopTagSupport
+cons public <init>()
+fld protected boolean beginSpecified
+fld protected boolean endSpecified
+fld protected boolean stepSpecified
+fld protected int begin
+fld protected int end
+fld protected int step
+fld protected java.lang.String itemId
+fld protected java.lang.String statusId
+fld protected javax.el.ValueExpression deferredExpression
+intf javax.servlet.jsp.jstl.core.LoopTag
+intf javax.servlet.jsp.tagext.IterationTag
+intf javax.servlet.jsp.tagext.TryCatchFinally
+meth protected abstract boolean hasNext() throws javax.servlet.jsp.JspTagException
+meth protected abstract java.lang.Object next() throws javax.servlet.jsp.JspTagException
+meth protected abstract void prepare() throws javax.servlet.jsp.JspTagException
+meth protected java.lang.String getDelims()
+meth protected void validateBegin() throws javax.servlet.jsp.JspTagException
+meth protected void validateEnd() throws javax.servlet.jsp.JspTagException
+meth protected void validateStep() throws javax.servlet.jsp.JspTagException
+meth public int doAfterBody() throws javax.servlet.jsp.JspException
+meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth public java.lang.Object getCurrent()
+meth public javax.servlet.jsp.jstl.core.LoopTagStatus getLoopStatus()
+meth public void doCatch(java.lang.Throwable) throws java.lang.Throwable
+meth public void doFinally()
+meth public void release()
+meth public void setVar(java.lang.String)
+meth public void setVarStatus(java.lang.String)
+supr javax.servlet.jsp.tagext.TagSupport
+hfds count,index,item,iteratedExpression,last,oldMappedValue,status
+
+CLSS public javax.servlet.jsp.jstl.fmt.LocaleSupport
+cons public <init>()
+meth public static java.lang.String getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String)
+meth public static java.lang.String getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String,java.lang.Object[])
+meth public static java.lang.String getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String,java.lang.Object[],java.lang.String)
+meth public static java.lang.String getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String,java.lang.String)
+supr java.lang.Object
+hfds EMPTY_LOCALE,HYPHEN,REQUEST_CHAR_SET,UNDEFINED_KEY,UNDERSCORE
+
+CLSS public javax.servlet.jsp.jstl.fmt.LocalizationContext
+cons public <init>()
+cons public <init>(java.util.ResourceBundle)
+cons public <init>(java.util.ResourceBundle,java.util.Locale)
+meth public java.util.Locale getLocale()
+meth public java.util.ResourceBundle getResourceBundle()
+supr java.lang.Object
+hfds bundle,locale
+
+CLSS public abstract interface javax.servlet.jsp.jstl.sql.Result
+meth public abstract boolean isLimitedByMaxRows()
+meth public abstract int getRowCount()
+meth public abstract java.lang.Object[][] getRowsByIndex()
+meth public abstract java.lang.String[] getColumnNames()
+meth public abstract java.util.SortedMap[] getRows()
+
+CLSS public javax.servlet.jsp.jstl.sql.ResultSupport
+cons public <init>()
+meth public static javax.servlet.jsp.jstl.sql.Result toResult(java.sql.ResultSet)
+meth public static javax.servlet.jsp.jstl.sql.Result toResult(java.sql.ResultSet,int)
+supr java.lang.Object
+
+CLSS public abstract interface javax.servlet.jsp.jstl.sql.SQLExecutionTag
+meth public abstract void addSQLParameter(java.lang.Object)
+
+CLSS public javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
+cons public <init>()
+meth public javax.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,javax.servlet.jsp.tagext.PageData)
+meth public void release()
+supr javax.servlet.jsp.tagext.TagLibraryValidator
+hfds JSP_ROOT_NAME,JSP_ROOT_QN,JSP_ROOT_URI,PERMITTED_TAGLIBS_PARAM,failed,permittedTaglibs,uri
+hcls PermittedTaglibsHandler
+
+CLSS public javax.servlet.jsp.jstl.tlv.ScriptFreeTLV
+cons public <init>()
+meth public javax.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,javax.servlet.jsp.tagext.PageData)
+meth public void setInitParameters(java.util.Map<java.lang.String,java.lang.Object>)
+supr javax.servlet.jsp.tagext.TagLibraryValidator
+hfds allowDeclarations,allowExpressions,allowRTExpressions,allowScriptlets,factory
+hcls MyContentHandler
+
+CLSS public abstract interface javax.servlet.jsp.tagext.IterationTag
+fld public final static int EVAL_BODY_AGAIN = 2
+intf javax.servlet.jsp.tagext.Tag
+meth public abstract int doAfterBody() throws javax.servlet.jsp.JspException
+
+CLSS public abstract interface javax.servlet.jsp.tagext.JspTag
+
+CLSS public abstract interface javax.servlet.jsp.tagext.Tag
+fld public final static int EVAL_BODY_INCLUDE = 1
+fld public final static int EVAL_PAGE = 6
+fld public final static int SKIP_BODY = 0
+fld public final static int SKIP_PAGE = 5
+intf javax.servlet.jsp.tagext.JspTag
+meth public abstract int doEndTag() throws javax.servlet.jsp.JspException
+meth public abstract int doStartTag() throws javax.servlet.jsp.JspException
+meth public abstract javax.servlet.jsp.tagext.Tag getParent()
+meth public abstract void release()
+meth public abstract void setPageContext(javax.servlet.jsp.PageContext)
+meth public abstract void setParent(javax.servlet.jsp.tagext.Tag)
+
+CLSS public abstract javax.servlet.jsp.tagext.TagLibraryValidator
+cons public <init>()
+meth public java.util.Map<java.lang.String,java.lang.Object> getInitParameters()
+meth public javax.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,javax.servlet.jsp.tagext.PageData)
+meth public void release()
+meth public void setInitParameters(java.util.Map<java.lang.String,java.lang.Object>)
+supr java.lang.Object
+hfds initParameters
+
+CLSS public javax.servlet.jsp.tagext.TagSupport
+cons public <init>()
+fld protected java.lang.String id
+fld protected javax.servlet.jsp.PageContext pageContext
+intf java.io.Serializable
+intf javax.servlet.jsp.tagext.IterationTag
+meth public final static javax.servlet.jsp.tagext.Tag findAncestorWithClass(javax.servlet.jsp.tagext.Tag,java.lang.Class)
+meth public int doAfterBody() throws javax.servlet.jsp.JspException
+meth public int doEndTag() throws javax.servlet.jsp.JspException
+meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth public java.lang.Object getValue(java.lang.String)
+meth public java.lang.String getId()
+meth public java.util.Enumeration<java.lang.String> getValues()
+meth public javax.servlet.jsp.tagext.Tag getParent()
+meth public void release()
+meth public void removeValue(java.lang.String)
+meth public void setId(java.lang.String)
+meth public void setPageContext(javax.servlet.jsp.PageContext)
+meth public void setParent(javax.servlet.jsp.tagext.Tag)
+meth public void setValue(java.lang.String,java.lang.Object)
+supr java.lang.Object
+hfds parent,values
+
+CLSS public abstract interface javax.servlet.jsp.tagext.TryCatchFinally
+meth public abstract void doCatch(java.lang.Throwable) throws java.lang.Throwable
+meth public abstract void doFinally()
+

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_bb_stateful_busifacedd"/>
+  <property name="client" value="com.sun.ts.tests.ejb30.bb.session.stateful.busifacedd.Client"/>
+  <property name="pkg.dir" value="com/sun/ts/tests/ejb30/bb/session/stateful/busifacedd"/>
+
+  <property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/bb/session/stateful/busifacedd/BusinessBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateful/busifacedd/ExternalizableLocalBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateful/busifacedd/SerializableLocalBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateful/busifacedd/SessionBeanLocalBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateful/busifacedd/SessionSynchronizationLocalBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateful/busifacedd/TestBean.class,
+com/sun/ts/tests/ejb30/common/busiface/SessionBeanLocalBeanBase.class,
+com/sun/ts/tests/ejb30/common/busiface/BusinessBeanBase.class,
+com/sun/ts/tests/ejb30/common/busiface/BusinessIF1.class,
+com/sun/ts/tests/ejb30/common/busiface/BusinessIF2.class,
+com/sun/ts/tests/ejb30/common/busiface/BusinessLocal1Base.class,
+com/sun/ts/tests/ejb30/common/busiface/BusinessLocalIF1.class,
+com/sun/ts/tests/ejb30/common/busiface/BusinessLocalIF2.class,
+com/sun/ts/tests/ejb30/common/busiface/Constants.class,
+com/sun/ts/tests/ejb30/common/busiface/TestBeanBase.class,
+com/sun/ts/tests/ejb30/common/busiface/TestIF.class,
+com/sun/ts/tests/ejb30/common/busiface/AnnotatedBusinessInterface1.class,
+com/sun/ts/tests/ejb30/common/busiface/AnnotatedBusinessInterface2.class,
+com/sun/ts/tests/ejb30/common/busiface/AnnotatedLocalBusinessInterface1.class,
+com/sun/ts/tests/ejb30/common/busiface/AnnotatedLocalBusinessInterface2.class
+            "/>
+  
+  <property name="appclient.jar.classes" 
+            value="
+com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/bb/session/stateful/busifacedd/Client.class,
+com/sun/ts/tests/ejb30/common/busiface/BusinessIF1.class,
+com/sun/ts/tests/ejb30/common/busiface/BusinessIF2.class,
+com/sun/ts/tests/ejb30/common/busiface/AnnotatedBusinessInterface1.class,
+com/sun/ts/tests/ejb30/common/busiface/AnnotatedBusinessInterface2.class,
+com/sun/ts/tests/ejb30/common/busiface/ClientBase.class,
+com/sun/ts/tests/ejb30/common/busiface/Constants.class,
+com/sun/ts/tests/ejb30/common/busiface/TestIF.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class
+            "/>
+  
+  <import file="../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

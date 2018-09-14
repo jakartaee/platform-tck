@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 8.0 EJB 2.1//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_1-0.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<sun-ejb-jar>
+  <security-role-mapping>
+    <role-name>Manager</role-name>
+    <principal-name>javajoe</principal-name>
+  </security-role-mapping>
+  <enterprise-beans>
+    <unique-id>0</unique-id>
+    <ejb>
+      <ejb-name>TestNoSecEjb</ejb-name>
+      <jndi-name>TestNoSecEjb</jndi-name>
+      <pass-by-reference>false</pass-by-reference>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+      <webservice-endpoint>
+        <port-component-name>TestNoSecPort</port-component-name>
+        <endpoint-address-uri>HSTestRoot/TestNoSec</endpoint-address-uri>
+      </webservice-endpoint>
+    </ejb>
+    <ejb>
+      <ejb-name>TestUnAuthEjb</ejb-name>
+      <jndi-name>TestUnAuthEjb</jndi-name>
+      <pass-by-reference>false</pass-by-reference>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+      <webservice-endpoint>
+        <port-component-name>TestUnAuthPort</port-component-name>
+        <endpoint-address-uri>HSTestRoot/TestUnAuth</endpoint-address-uri>
+        <login-config>
+          <auth-method>BASIC</auth-method>
+        </login-config>
+        <transport-guarantee>NONE</transport-guarantee>
+      </webservice-endpoint>
+    </ejb>
+    <ejb>
+      <ejb-name>TestAuthEjb</ejb-name>
+      <jndi-name>TestAuthEjb</jndi-name>
+      <pass-by-reference>false</pass-by-reference>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+      <webservice-endpoint>
+        <port-component-name>TestAuthPort</port-component-name>
+        <endpoint-address-uri>HSTestRoot/TestAuth</endpoint-address-uri>
+        <login-config>
+          <auth-method>BASIC</auth-method>
+        </login-config>
+        <transport-guarantee>NONE</transport-guarantee>
+      </webservice-endpoint>
+    </ejb>
+    <ejb>
+      <ejb-name>TestQueryEjb</ejb-name>
+      <jndi-name>TestQueryEjb</jndi-name>
+      <pass-by-reference>false</pass-by-reference>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+      <webservice-endpoint>
+        <port-component-name>TestQueryPort</port-component-name>
+        <endpoint-address-uri>HSTestRoot/TestQuery</endpoint-address-uri>
+      </webservice-endpoint>
+    </ejb>
+    <webservice-description>
+      <webservice-description-name>HSTest</webservice-description-name>
+      <wsdl-publish-location>http://webServerHost.1:webServerPort.1/HSTestRoot/TestAuth?WSDL</wsdl-publish-location>
+    </webservice-description>
+  </enterprise-beans>
+</sun-ejb-jar>

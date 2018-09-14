@@ -1,0 +1,664 @@
+#Signature file v4.1
+#Version 1.0_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public java.lang.Exception
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Throwable
+hfds serialVersionUID
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public java.lang.Throwable
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+intf java.io.Serializable
+meth public final java.lang.Throwable[] getSuppressed()
+meth public final void addSuppressed(java.lang.Throwable)
+meth public java.lang.StackTraceElement[] getStackTrace()
+meth public java.lang.String getLocalizedMessage()
+meth public java.lang.String getMessage()
+meth public java.lang.String toString()
+meth public java.lang.Throwable fillInStackTrace()
+meth public java.lang.Throwable getCause()
+meth public java.lang.Throwable initCause(java.lang.Throwable)
+meth public void printStackTrace()
+meth public void printStackTrace(java.io.PrintStream)
+meth public void printStackTrace(java.io.PrintWriter)
+meth public void setStackTrace(java.lang.StackTraceElement[])
+supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
+
+CLSS public abstract interface javax.xml.registry.BulkResponse
+intf javax.xml.registry.JAXRResponse
+meth public abstract boolean isPartialResponse() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getCollection() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getExceptions() throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.BusinessLifeCycleManager
+intf javax.xml.registry.LifeCycleManager
+meth public abstract javax.xml.registry.BulkResponse deleteAssociations(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse deleteClassificationSchemes(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse deleteConcepts(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse deleteOrganizations(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse deleteServiceBindings(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse deleteServices(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse saveAssociations(java.util.Collection,boolean) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse saveClassificationSchemes(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse saveConcepts(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse saveOrganizations(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse saveServiceBindings(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse saveServices(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void confirmAssociation(javax.xml.registry.infomodel.Association) throws javax.xml.registry.JAXRException
+meth public abstract void unConfirmAssociation(javax.xml.registry.infomodel.Association) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.BusinessQueryManager
+intf javax.xml.registry.QueryManager
+meth public abstract javax.xml.registry.BulkResponse findAssociations(java.util.Collection,java.lang.String,java.lang.String,java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse findCallerAssociations(java.util.Collection,java.lang.Boolean,java.lang.Boolean,java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse findClassificationSchemes(java.util.Collection,java.util.Collection,java.util.Collection,java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse findConcepts(java.util.Collection,java.util.Collection,java.util.Collection,java.util.Collection,java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse findOrganizations(java.util.Collection,java.util.Collection,java.util.Collection,java.util.Collection,java.util.Collection,java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse findRegistryPackages(java.util.Collection,java.util.Collection,java.util.Collection,java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse findServiceBindings(javax.xml.registry.infomodel.Key,java.util.Collection,java.util.Collection,java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse findServices(javax.xml.registry.infomodel.Key,java.util.Collection,java.util.Collection,java.util.Collection,java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme findClassificationSchemeByName(java.util.Collection,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Concept findConceptByPath(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.CapabilityProfile
+meth public abstract int getCapabilityLevel() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getVersion() throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.Connection
+meth public abstract boolean isClosed() throws javax.xml.registry.JAXRException
+meth public abstract boolean isSynchronous() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Set getCredentials() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.RegistryService getRegistryService() throws javax.xml.registry.JAXRException
+meth public abstract void close() throws javax.xml.registry.JAXRException
+meth public abstract void setCredentials(java.util.Set) throws javax.xml.registry.JAXRException
+meth public abstract void setSynchronous(boolean) throws javax.xml.registry.JAXRException
+
+CLSS public abstract javax.xml.registry.ConnectionFactory
+cons public <init>()
+meth public abstract java.util.Properties getProperties() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.Connection createConnection() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.FederatedConnection createFederatedConnection(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setProperties(java.util.Properties) throws javax.xml.registry.JAXRException
+meth public static javax.xml.registry.ConnectionFactory newInstance() throws javax.xml.registry.JAXRException
+supr java.lang.Object
+hfds CONNECTION_FACTORY_CLASS,DEFAULT_CONNECTION_FACTORY
+
+CLSS public abstract interface javax.xml.registry.DeclarativeQueryManager
+intf javax.xml.registry.QueryManager
+meth public abstract javax.xml.registry.BulkResponse executeQuery(javax.xml.registry.Query) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.Query createQuery(int,java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public javax.xml.registry.DeleteException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr javax.xml.registry.RegistryException
+
+CLSS public abstract interface javax.xml.registry.FederatedConnection
+intf javax.xml.registry.Connection
+
+CLSS public javax.xml.registry.FindException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr javax.xml.registry.RegistryException
+
+CLSS public abstract interface javax.xml.registry.FindQualifier
+fld public final static java.lang.String AND_ALL_KEYS = "andAllKeys"
+fld public final static java.lang.String CASE_SENSITIVE_MATCH = "caseSensitiveMatch"
+fld public final static java.lang.String COMBINE_CLASSIFICATIONS = "combineClassifications"
+fld public final static java.lang.String EXACT_NAME_MATCH = "exactNameMatch"
+fld public final static java.lang.String OR_ALL_KEYS = "orAllKeys"
+fld public final static java.lang.String OR_LIKE_KEYS = "orLikeKeys"
+fld public final static java.lang.String SERVICE_SUBSET = "serviceSubset"
+fld public final static java.lang.String SORT_BY_DATE_ASC = "sortByDateAsc"
+fld public final static java.lang.String SORT_BY_DATE_DESC = "sortByDateDesc"
+fld public final static java.lang.String SORT_BY_NAME_ASC = "sortByNameAsc"
+fld public final static java.lang.String SORT_BY_NAME_DESC = "sortByNameDesc"
+fld public final static java.lang.String SOUNDEX = "soundex"
+
+CLSS public javax.xml.registry.InvalidRequestException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr javax.xml.registry.JAXRException
+
+CLSS public javax.xml.registry.JAXRException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+fld protected java.lang.Throwable cause
+intf javax.xml.registry.JAXRResponse
+meth public boolean isAvailable() throws javax.xml.registry.JAXRException
+meth public int getStatus()
+meth public java.lang.String getMessage()
+meth public java.lang.String getRequestId()
+meth public java.lang.Throwable getCause()
+meth public java.lang.Throwable initCause(java.lang.Throwable)
+supr java.lang.Exception
+
+CLSS public abstract interface javax.xml.registry.JAXRResponse
+fld public final static int STATUS_FAILURE = 2
+fld public final static int STATUS_SUCCESS = 0
+fld public final static int STATUS_UNAVAILABLE = 3
+fld public final static int STATUS_WARNING = 1
+meth public abstract boolean isAvailable() throws javax.xml.registry.JAXRException
+meth public abstract int getStatus() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getRequestId() throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.LifeCycleManager
+fld public final static java.lang.String ASSOCIATION = "Association"
+fld public final static java.lang.String AUDITABLE_EVENT = "AuditableEvent"
+fld public final static java.lang.String CLASSIFICATION = "Classification"
+fld public final static java.lang.String CLASSIFICATION_SCHEME = "ClassificationScheme"
+fld public final static java.lang.String CONCEPT = "Concept"
+fld public final static java.lang.String EMAIL_ADDRESS = "EmailAddress"
+fld public final static java.lang.String EXTERNAL_IDENTIFIER = "ExternalIdentifier"
+fld public final static java.lang.String EXTERNAL_LINK = "ExternalLink"
+fld public final static java.lang.String EXTRINSIC_OBJECT = "ExtrinsicObject"
+fld public final static java.lang.String INTERNATIONAL_STRING = "InternationalString"
+fld public final static java.lang.String KEY = "Key"
+fld public final static java.lang.String LOCALIZED_STRING = "LocalizedString"
+fld public final static java.lang.String ORGANIZATION = "Organization"
+fld public final static java.lang.String PERSON_NAME = "PersonName"
+fld public final static java.lang.String POSTAL_ADDRESS = "PostalAddress"
+fld public final static java.lang.String REGISTRY_ENTRY = "RegistryEntry"
+fld public final static java.lang.String REGISTRY_PACKAGE = "RegistryPackage"
+fld public final static java.lang.String SERVICE = "Service"
+fld public final static java.lang.String SERVICE_BINDING = "ServiceBinding"
+fld public final static java.lang.String SLOT = "Slot"
+fld public final static java.lang.String SPECIFICATION_LINK = "SpecificationLink"
+fld public final static java.lang.String TELEPHONE_NUMBER = "TelephoneNumber"
+fld public final static java.lang.String USER = "User"
+fld public final static java.lang.String VERSIONABLE = "Versionable"
+meth public abstract java.lang.Object createObject(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse deleteObjects(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse deleteObjects(java.util.Collection,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse deprecateObjects(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse saveObjects(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse unDeprecateObjects(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.RegistryService getRegistryService() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Association createAssociation(javax.xml.registry.infomodel.RegistryObject,javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Classification createClassification(javax.xml.registry.infomodel.ClassificationScheme,java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Classification createClassification(javax.xml.registry.infomodel.ClassificationScheme,javax.xml.registry.infomodel.InternationalString,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Classification createClassification(javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme createClassificationScheme(java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme createClassificationScheme(javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme createClassificationScheme(javax.xml.registry.infomodel.InternationalString,javax.xml.registry.infomodel.InternationalString) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Concept createConcept(javax.xml.registry.infomodel.RegistryObject,java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Concept createConcept(javax.xml.registry.infomodel.RegistryObject,javax.xml.registry.infomodel.InternationalString,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.EmailAddress createEmailAddress(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.EmailAddress createEmailAddress(java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ExternalIdentifier createExternalIdentifier(javax.xml.registry.infomodel.ClassificationScheme,java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ExternalIdentifier createExternalIdentifier(javax.xml.registry.infomodel.ClassificationScheme,javax.xml.registry.infomodel.InternationalString,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ExternalLink createExternalLink(java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ExternalLink createExternalLink(java.lang.String,javax.xml.registry.infomodel.InternationalString) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ExtrinsicObject createExtrinsicObject(javax.activation.DataHandler) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.InternationalString createInternationalString() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.InternationalString createInternationalString(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.InternationalString createInternationalString(java.util.Locale,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Key createKey(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.LocalizedString createLocalizedString(java.util.Locale,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.LocalizedString createLocalizedString(java.util.Locale,java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Organization createOrganization(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Organization createOrganization(javax.xml.registry.infomodel.InternationalString) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.PersonName createPersonName(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.PersonName createPersonName(java.lang.String,java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.PostalAddress createPostalAddress(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryPackage createRegistryPackage(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryPackage createRegistryPackage(javax.xml.registry.infomodel.InternationalString) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Service createService(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Service createService(javax.xml.registry.infomodel.InternationalString) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ServiceBinding createServiceBinding() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Slot createSlot(java.lang.String,java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Slot createSlot(java.lang.String,java.util.Collection,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.SpecificationLink createSpecificationLink() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.TelephoneNumber createTelephoneNumber() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.User createUser() throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.Query
+fld public final static int QUERY_TYPE_EBXML_FILTER_QUERY = 2
+fld public final static int QUERY_TYPE_SQL = 0
+fld public final static int QUERY_TYPE_XQUERY = 1
+meth public abstract int getType() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String toString()
+
+CLSS public abstract interface javax.xml.registry.QueryManager
+meth public abstract javax.xml.registry.BulkResponse getRegistryObjects() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse getRegistryObjects(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse getRegistryObjects(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse getRegistryObjects(java.util.Collection,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.RegistryService getRegistryService() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getRegistryObject(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getRegistryObject(java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public javax.xml.registry.RegistryException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+meth public javax.xml.registry.infomodel.Key getErrorObjectKey() throws javax.xml.registry.JAXRException
+meth public void setErrorObjectKey(javax.xml.registry.infomodel.Key) throws javax.xml.registry.JAXRException
+supr javax.xml.registry.JAXRException
+hfds errorObjectKey
+
+CLSS public abstract interface javax.xml.registry.RegistryService
+meth public abstract java.lang.String makeRegistrySpecificRequest(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BulkResponse getBulkResponse(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BusinessLifeCycleManager getBusinessLifeCycleManager() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.BusinessQueryManager getBusinessQueryManager() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.CapabilityProfile getCapabilityProfile() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.DeclarativeQueryManager getDeclarativeQueryManager() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme getDefaultPostalScheme() throws javax.xml.registry.JAXRException
+
+CLSS public javax.xml.registry.SaveException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr javax.xml.registry.RegistryException
+
+CLSS public javax.xml.registry.UnexpectedObjectException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr javax.xml.registry.JAXRException
+
+CLSS public javax.xml.registry.UnsupportedCapabilityException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.Association
+intf javax.xml.registry.infomodel.RegistryObject
+meth public abstract boolean isConfirmed() throws javax.xml.registry.JAXRException
+meth public abstract boolean isConfirmedBySourceOwner() throws javax.xml.registry.JAXRException
+meth public abstract boolean isConfirmedByTargetOwner() throws javax.xml.registry.JAXRException
+meth public abstract boolean isExtramural() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Concept getAssociationType() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getSourceObject() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getTargetObject() throws javax.xml.registry.JAXRException
+meth public abstract void setAssociationType(javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract void setSourceObject(javax.xml.registry.infomodel.RegistryObject) throws javax.xml.registry.JAXRException
+meth public abstract void setTargetObject(javax.xml.registry.infomodel.RegistryObject) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.AuditableEvent
+fld public final static int EVENT_TYPE_CREATED = 0
+fld public final static int EVENT_TYPE_DELETED = 1
+fld public final static int EVENT_TYPE_DEPRECATED = 2
+fld public final static int EVENT_TYPE_UNDEPRECATED = 5
+fld public final static int EVENT_TYPE_UPDATED = 3
+fld public final static int EVENT_TYPE_VERSIONED = 4
+intf javax.xml.registry.infomodel.RegistryObject
+meth public abstract int getEventType() throws javax.xml.registry.JAXRException
+meth public abstract java.sql.Timestamp getTimestamp() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getRegistryObject() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.User getUser() throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.Classification
+intf javax.xml.registry.infomodel.RegistryObject
+meth public abstract boolean isExternal() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getValue() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme getClassificationScheme() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Concept getConcept() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getClassifiedObject() throws javax.xml.registry.JAXRException
+meth public abstract void setClassificationScheme(javax.xml.registry.infomodel.ClassificationScheme) throws javax.xml.registry.JAXRException
+meth public abstract void setClassifiedObject(javax.xml.registry.infomodel.RegistryObject) throws javax.xml.registry.JAXRException
+meth public abstract void setConcept(javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract void setValue(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.ClassificationScheme
+fld public final static int VALUE_TYPE_EMBEDDED_PATH = 1
+fld public final static int VALUE_TYPE_NON_UNIQUE = 2
+fld public final static int VALUE_TYPE_UNIQUE = 0
+intf javax.xml.registry.infomodel.RegistryEntry
+meth public abstract boolean isExternal() throws javax.xml.registry.JAXRException
+meth public abstract int getChildConceptCount() throws javax.xml.registry.JAXRException
+meth public abstract int getValueType() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getChildrenConcepts() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getDescendantConcepts() throws javax.xml.registry.JAXRException
+meth public abstract void addChildConcept(javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract void addChildConcepts(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeChildConcept(javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract void removeChildConcepts(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setValueType(int) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.Concept
+intf javax.xml.registry.infomodel.RegistryObject
+meth public abstract int getChildConceptCount() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getPath() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getValue() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getChildrenConcepts() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getDescendantConcepts() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme getClassificationScheme() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Concept getParentConcept() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getParent() throws javax.xml.registry.JAXRException
+meth public abstract void addChildConcept(javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract void addChildConcepts(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeChildConcept(javax.xml.registry.infomodel.Concept) throws javax.xml.registry.JAXRException
+meth public abstract void removeChildConcepts(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setValue(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.EmailAddress
+meth public abstract java.lang.String getAddress() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getType() throws javax.xml.registry.JAXRException
+meth public abstract void setAddress(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setType(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.ExtensibleObject
+meth public abstract java.util.Collection getSlots() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Slot getSlot(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void addSlot(javax.xml.registry.infomodel.Slot) throws javax.xml.registry.JAXRException
+meth public abstract void addSlots(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeSlot(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void removeSlots(java.util.Collection) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.ExternalIdentifier
+intf javax.xml.registry.infomodel.RegistryObject
+meth public abstract java.lang.String getValue() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme getIdentificationScheme() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getRegistryObject() throws javax.xml.registry.JAXRException
+meth public abstract void setIdentificationScheme(javax.xml.registry.infomodel.ClassificationScheme) throws javax.xml.registry.JAXRException
+meth public abstract void setValue(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.ExternalLink
+intf javax.xml.registry.infomodel.RegistryObject
+intf javax.xml.registry.infomodel.URIValidator
+meth public abstract java.lang.String getExternalURI() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getLinkedObjects() throws javax.xml.registry.JAXRException
+meth public abstract void setExternalURI(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.ExtrinsicObject
+intf javax.xml.registry.infomodel.RegistryEntry
+meth public abstract boolean isOpaque() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getMimeType() throws javax.xml.registry.JAXRException
+meth public abstract javax.activation.DataHandler getRepositoryItem() throws javax.xml.registry.JAXRException
+meth public abstract void setMimeType(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setOpaque(boolean) throws javax.xml.registry.JAXRException
+meth public abstract void setRepositoryItem(javax.activation.DataHandler) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.InternationalString
+meth public abstract java.lang.String getValue() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getValue(java.util.Locale) throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getLocalizedStrings() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.LocalizedString getLocalizedString(java.util.Locale,java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void addLocalizedString(javax.xml.registry.infomodel.LocalizedString) throws javax.xml.registry.JAXRException
+meth public abstract void addLocalizedStrings(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeLocalizedString(javax.xml.registry.infomodel.LocalizedString) throws javax.xml.registry.JAXRException
+meth public abstract void removeLocalizedStrings(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setValue(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setValue(java.util.Locale,java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.Key
+meth public abstract java.lang.String getId() throws javax.xml.registry.JAXRException
+meth public abstract void setId(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.LocalizedString
+fld public final static java.lang.String DEFAULT_CHARSET_NAME = "UTF-8"
+meth public abstract java.lang.String getCharsetName() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getValue() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Locale getLocale() throws javax.xml.registry.JAXRException
+meth public abstract void setCharsetName(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setLocale(java.util.Locale) throws javax.xml.registry.JAXRException
+meth public abstract void setValue(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.Organization
+intf javax.xml.registry.infomodel.RegistryObject
+meth public abstract int getChildOrganizationCount() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getChildOrganizations() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getDescendantOrganizations() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getServices() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getTelephoneNumbers(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getUsers() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Organization getParentOrganization() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Organization getRootOrganization() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.PostalAddress getPostalAddress() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.User getPrimaryContact() throws javax.xml.registry.JAXRException
+meth public abstract void addChildOrganization(javax.xml.registry.infomodel.Organization) throws javax.xml.registry.JAXRException
+meth public abstract void addChildOrganizations(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void addService(javax.xml.registry.infomodel.Service) throws javax.xml.registry.JAXRException
+meth public abstract void addServices(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void addUser(javax.xml.registry.infomodel.User) throws javax.xml.registry.JAXRException
+meth public abstract void addUsers(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeChildOrganization(javax.xml.registry.infomodel.Organization) throws javax.xml.registry.JAXRException
+meth public abstract void removeChildOrganizations(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeService(javax.xml.registry.infomodel.Service) throws javax.xml.registry.JAXRException
+meth public abstract void removeServices(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeUser(javax.xml.registry.infomodel.User) throws javax.xml.registry.JAXRException
+meth public abstract void removeUsers(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setPostalAddress(javax.xml.registry.infomodel.PostalAddress) throws javax.xml.registry.JAXRException
+meth public abstract void setPrimaryContact(javax.xml.registry.infomodel.User) throws javax.xml.registry.JAXRException
+meth public abstract void setTelephoneNumbers(java.util.Collection) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.PersonName
+meth public abstract java.lang.String getFirstName() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getFullName() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getLastName() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getMiddleName() throws javax.xml.registry.JAXRException
+meth public abstract void setFirstName(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setFullName(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setLastName(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setMiddleName(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.PostalAddress
+intf javax.xml.registry.infomodel.ExtensibleObject
+meth public abstract java.lang.String getCity() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getCountry() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getPostalCode() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getStateOrProvince() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getStreet() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getStreetNumber() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getType() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ClassificationScheme getPostalScheme() throws javax.xml.registry.JAXRException
+meth public abstract void setCity(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setCountry(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setPostalCode(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setPostalScheme(javax.xml.registry.infomodel.ClassificationScheme) throws javax.xml.registry.JAXRException
+meth public abstract void setStateOrProvince(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setStreet(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setStreetNumber(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setType(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.RegistryEntry
+fld public final static int STABILITY_DYNAMIC = 0
+fld public final static int STABILITY_DYNAMIC_COMPATIBLE = 1
+fld public final static int STABILITY_STATIC = 2
+fld public final static int STATUS_APPROVED = 1
+fld public final static int STATUS_DEPRECATED = 2
+fld public final static int STATUS_SUBMITTED = 0
+fld public final static int STATUS_WITHDRAWN = 3
+intf javax.xml.registry.infomodel.RegistryObject
+intf javax.xml.registry.infomodel.Versionable
+meth public abstract int getStability() throws javax.xml.registry.JAXRException
+meth public abstract int getStatus() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Date getExpiration() throws javax.xml.registry.JAXRException
+meth public abstract void setExpiration(java.util.Date) throws javax.xml.registry.JAXRException
+meth public abstract void setStability(int) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.RegistryObject
+intf javax.xml.registry.infomodel.ExtensibleObject
+meth public abstract java.lang.String toXML() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getAssociatedObjects() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getAssociations() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getAuditTrail() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getClassifications() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getExternalIdentifiers() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getExternalLinks() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getRegistryPackages() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.LifeCycleManager getLifeCycleManager() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Concept getObjectType() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.InternationalString getDescription() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.InternationalString getName() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Key getKey() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Organization getSubmittingOrganization() throws javax.xml.registry.JAXRException
+meth public abstract void addAssociation(javax.xml.registry.infomodel.Association) throws javax.xml.registry.JAXRException
+meth public abstract void addAssociations(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void addClassification(javax.xml.registry.infomodel.Classification) throws javax.xml.registry.JAXRException
+meth public abstract void addClassifications(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void addExternalIdentifier(javax.xml.registry.infomodel.ExternalIdentifier) throws javax.xml.registry.JAXRException
+meth public abstract void addExternalIdentifiers(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void addExternalLink(javax.xml.registry.infomodel.ExternalLink) throws javax.xml.registry.JAXRException
+meth public abstract void addExternalLinks(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeAssociation(javax.xml.registry.infomodel.Association) throws javax.xml.registry.JAXRException
+meth public abstract void removeAssociations(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeClassification(javax.xml.registry.infomodel.Classification) throws javax.xml.registry.JAXRException
+meth public abstract void removeClassifications(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeExternalIdentifier(javax.xml.registry.infomodel.ExternalIdentifier) throws javax.xml.registry.JAXRException
+meth public abstract void removeExternalIdentifiers(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeExternalLink(javax.xml.registry.infomodel.ExternalLink) throws javax.xml.registry.JAXRException
+meth public abstract void removeExternalLinks(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setAssociations(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setClassifications(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setDescription(javax.xml.registry.infomodel.InternationalString) throws javax.xml.registry.JAXRException
+meth public abstract void setExternalIdentifiers(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setExternalLinks(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setKey(javax.xml.registry.infomodel.Key) throws javax.xml.registry.JAXRException
+meth public abstract void setName(javax.xml.registry.infomodel.InternationalString) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.RegistryPackage
+intf javax.xml.registry.infomodel.RegistryEntry
+meth public abstract java.util.Set getRegistryObjects() throws javax.xml.registry.JAXRException
+meth public abstract void addRegistryObject(javax.xml.registry.infomodel.RegistryObject) throws javax.xml.registry.JAXRException
+meth public abstract void addRegistryObjects(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeRegistryObject(javax.xml.registry.infomodel.RegistryObject) throws javax.xml.registry.JAXRException
+meth public abstract void removeRegistryObjects(java.util.Collection) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.Service
+intf javax.xml.registry.infomodel.RegistryEntry
+meth public abstract java.util.Collection getServiceBindings() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Organization getProvidingOrganization() throws javax.xml.registry.JAXRException
+meth public abstract void addServiceBinding(javax.xml.registry.infomodel.ServiceBinding) throws javax.xml.registry.JAXRException
+meth public abstract void addServiceBindings(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeServiceBinding(javax.xml.registry.infomodel.ServiceBinding) throws javax.xml.registry.JAXRException
+meth public abstract void removeServiceBindings(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setProvidingOrganization(javax.xml.registry.infomodel.Organization) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.ServiceBinding
+intf javax.xml.registry.infomodel.RegistryObject
+intf javax.xml.registry.infomodel.URIValidator
+meth public abstract java.lang.String getAccessURI() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getSpecificationLinks() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Service getService() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ServiceBinding getTargetBinding() throws javax.xml.registry.JAXRException
+meth public abstract void addSpecificationLink(javax.xml.registry.infomodel.SpecificationLink) throws javax.xml.registry.JAXRException
+meth public abstract void addSpecificationLinks(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void removeSpecificationLink(javax.xml.registry.infomodel.SpecificationLink) throws javax.xml.registry.JAXRException
+meth public abstract void removeSpecificationLinks(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setAccessURI(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setTargetBinding(javax.xml.registry.infomodel.ServiceBinding) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.Slot
+fld public final static java.lang.String ADDRESS_LINES_SLOT = "addressLines"
+fld public final static java.lang.String AUTHORIZED_NAME_SLOT = "authorizedName"
+fld public final static java.lang.String OPERATOR_SLOT = "operator"
+fld public final static java.lang.String SORT_CODE_SLOT = "sortCode"
+meth public abstract java.lang.String getName() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getSlotType() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getValues() throws javax.xml.registry.JAXRException
+meth public abstract void setName(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setSlotType(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setValues(java.util.Collection) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.SpecificationLink
+intf javax.xml.registry.infomodel.RegistryObject
+meth public abstract java.util.Collection getUsageParameters() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.InternationalString getUsageDescription() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.RegistryObject getSpecificationObject() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.ServiceBinding getServiceBinding() throws javax.xml.registry.JAXRException
+meth public abstract void setSpecificationObject(javax.xml.registry.infomodel.RegistryObject) throws javax.xml.registry.JAXRException
+meth public abstract void setUsageDescription(javax.xml.registry.infomodel.InternationalString) throws javax.xml.registry.JAXRException
+meth public abstract void setUsageParameters(java.util.Collection) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.TelephoneNumber
+meth public abstract java.lang.String getAreaCode() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getCountryCode() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getExtension() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getNumber() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getType() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getUrl() throws javax.xml.registry.JAXRException
+meth public abstract void setAreaCode(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setCountryCode(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setExtension(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setNumber(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setType(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setUrl(java.lang.String) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.URIValidator
+meth public abstract boolean getValidateURI() throws javax.xml.registry.JAXRException
+meth public abstract void setValidateURI(boolean) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.User
+intf javax.xml.registry.infomodel.RegistryObject
+meth public abstract java.lang.String getType() throws javax.xml.registry.JAXRException
+meth public abstract java.net.URL getUrl() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getEmailAddresses() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getPostalAddresses() throws javax.xml.registry.JAXRException
+meth public abstract java.util.Collection getTelephoneNumbers(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.Organization getOrganization() throws javax.xml.registry.JAXRException
+meth public abstract javax.xml.registry.infomodel.PersonName getPersonName() throws javax.xml.registry.JAXRException
+meth public abstract void setEmailAddresses(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setPersonName(javax.xml.registry.infomodel.PersonName) throws javax.xml.registry.JAXRException
+meth public abstract void setPostalAddresses(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setTelephoneNumbers(java.util.Collection) throws javax.xml.registry.JAXRException
+meth public abstract void setType(java.lang.String) throws javax.xml.registry.JAXRException
+meth public abstract void setUrl(java.net.URL) throws javax.xml.registry.JAXRException
+
+CLSS public abstract interface javax.xml.registry.infomodel.Versionable
+meth public abstract int getMajorVersion() throws javax.xml.registry.JAXRException
+meth public abstract int getMinorVersion() throws javax.xml.registry.JAXRException
+meth public abstract java.lang.String getUserVersion() throws javax.xml.registry.JAXRException
+meth public abstract void setMajorVersion(int) throws javax.xml.registry.JAXRException
+meth public abstract void setMinorVersion(int) throws javax.xml.registry.JAXRException
+meth public abstract void setUserVersion(java.lang.String) throws javax.xml.registry.JAXRException
+

@@ -1,0 +1,397 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="TS top level" default="usage">
+
+    <!-- IMPORTS -->
+    <import file="xml/ts.top.import.xml" optional="true"/>
+    <import file="../../../bin/xml/ts.top.import.xml" optional="true"/>
+    
+    <target name="usage">
+        <echo message="If you run ant in $${bin.dir}, use the following targets:"/>
+        <echo message="build.all build.all.tests build.all.smoke clean.all initdb start.rmiiiop.server start.sunri.porting.server start.sunri.porting.server13 ts.version usage"/>
+        <echo message="-"/>
+        <echo message="If you run ant in a test directory, use the following targets:"/>
+        <echo message="build clean runclient usage ld lld lc llc"/>
+        <echo message="-"/>
+        <echo message="ld lld lc llc list the content of corresponding dist dir and class dir."/>
+        <echo message="-"/>
+        <echo message="To run a single test in a leaf directory:"/>
+        <echo message="ant -Dtest=&lt;twobeanTest2&gt; [-Dtest.client=&lt;TwoBeanClient.java&gt;] runclient"/>
+    </target>
+
+    <target name="build.all" depends="build.all.jars,build.all.tests"/>
+
+    <target name="generate.coverage.numbers">
+      <ant antfile="coverage-build.xml" dir="${bin.dir}" target="all" />
+    </target>
+
+	<target name="build.all.smoke" depends="build.all.jars">
+		<ant antfile="smoke.xml" dir="${ts.home}/src/com/sun/ts/tests" target="build" />
+	</target>
+
+
+    <target name="build.all.tests" >
+      <property name="all.test.dir" value="
+        com/sun/ts/tests/jaxp,
+        com/sun/ts/tests/jacc,
+        com/sun/ts/tests/saaj,
+        com/sun/ts/tests/jaxrpc,
+        com/sun/ts/tests/jmx,
+        com/sun/ts/tests/compat12,
+        com/sun/ts/tests/compat13,
+        com/sun/ts/tests/signaturetest,
+        com/sun/ts/tests/interop,
+        com/sun/ts/tests/integration,
+        com/sun/ts/tests/ejb,
+        com/sun/ts/tests/common,
+        com/sun/ts/tests/jdbc,
+        com/sun/ts/tests/connector,
+        com/sun/ts/tests/jms,
+        com/sun/ts/tests/xa,
+        com/sun/ts/tests/servlet,
+        com/sun/ts/tests/jsp,
+        com/sun/ts/tests/appclient,
+        com/sun/ts/tests/javamail,
+        com/sun/ts/tests/rmiiiop,
+        com/sun/ts/tests/assembly,
+        com/sun/ts/tests/jta,
+        com/sun/ts/tests/samples,
+        com/sun/ts/tests/j2eetools/mgmt,
+        com/sun/ts/tests/j2eetools/deploy,
+        com/sun/ts/tests/jaxr"/>
+
+      <elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>
+
+      <property name="rmiiiop.stub.dir" 
+                value="org/omg/stub/com/sun/ts/tests/rmiiiop" />
+
+      <echo message="First building jaxrpc/common separately..."/>
+      <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests/jaxrpc/common" todo="build"/>
+
+      <echo message="Compiling:${all.java.file}"/>
+      <javac fork="true" srcdir="${ts.home}/src" 
+            destdir="${class.dir}" 
+            includes="${all.java.file}, ${rmiiiop.stub.dir}/**/*.java"
+            excludes="com/sun/ts/tests/compat12/**/*.java, com/sun/ts/tests/compat13/**/*.java, com/sun/ts/tests/interop/jaxrpc/**/*.java"
+            memoryInitialSize="100m"
+            memoryMaximumSize="200m"
+            debug="on" 
+            deprecation="off" >
+            <classpath>
+                <pathelement path="${ts.classpath}:${local.classes}" />
+            </classpath>    
+      </javac>
+      <dosubdirs srcdir="${ts.home}/src" todo="package" includes="${all.test.dir}"/>
+    </target>
+    
+    <target name="build" depends="compile">
+          <dosubdirs srcdir="${user.dir}" todo="package"/>
+     </target>
+
+	<target name="compile">
+		<javac fork="true" srcdir="${ts.home}/src" 
+			destdir="${class.dir}" 
+            includes="${pkg.dir}/**/*.java,com/sun/ts/tests/common/webclient/**/*.java"
+	    excludes="**/interop/jaxrpc/**"
+            memoryMaximumSize="200m"
+			debug="on" 
+			deprecation="on" >
+			<classpath>
+        		<pathelement path="${ts.classpath}:${local.classes}" />
+      		</classpath>	
+		</javac>
+	</target>
+		
+      
+    <target name="ts.version">
+      <property file="version"/>
+      <condition property="build.string" value="build ${ts.build}">
+        <not>
+          <or>
+            <equals arg1="${ts.build}" arg2="$${ts.build}"/>
+            <equals arg1="${ts.build}" arg2=""/>
+          </or>
+        </not>
+      </condition>
+      <condition property="build.string" value="">
+        <or>
+          <equals arg1="${ts.build}" arg2="$${ts.build}"/>
+          <equals arg1="${ts.build}" arg2=""/>
+        </or>
+      </condition>
+      <echo message="${ts.version} ${build.string}"/>
+    </target>
+
+    <target name="move.work.dir" if="work.dir.present">
+        <property name="work.dir.copy" value="${work.dir}copy"/>
+        <delete failonerror="false" dir="${work.dir.copy}"/>
+        <mkdir dir="${work.dir.copy}"/>
+        <move todir="${work.dir.copy}">
+          <fileset dir="${work.dir}"/>
+        </move>
+    </target>
+   
+  <target name="prepare.work.dir">
+    <condition property="ts.env" value="ts_win32">
+      <and>
+        <os family="windows"/>
+      </and>
+    </condition>
+    <condition property="ts.env" value="ts_unix">
+      <and>
+        <os family="unix"/>
+      </and>
+    </condition>
+
+<!-- /tmp works for both platforms -->
+    <property name="work.dir" value="/tmp/JTwork"/>
+    <available file="${work.dir}" type="dir" property="work.dir.present"/>
+    <antcall target="move.work.dir"/>
+    <mkdir dir="${work.dir}"/>
+  </target>
+ 
+   <target name="get.client" if="test" unless="test.client">
+     <getclient srcdir="${ts.home}/src/${pkg.dir}"/>
+   </target>
+   <target name="check.selected.test" if="test" depends="get.client">
+     <property name="one.test" value="${test.client}#${test}"/>
+   </target>
+   <target name="no.selected.test" unless="test">
+     <property name="one.test" value=""/>
+   </target>
+   <target name="check.java.options" if="env.JAVA_OPTIONS">
+     <property name="java.options" value="${env.JAVA_OPTIONS}"/>
+   </target>
+   <target name="no.java.options" unless="env.JAVA_OPTIONS">
+    <property name="java.options" value=""/>
+   </target>
+   
+   <target name="runclient">
+     <property name="java.options" value=""/>
+     <property name="cts.tmp" value="${ts.home}/tmp"/>
+
+     <!-- DISPLAY environment variable passed to client process, if not set, will use
+     env.DISPLAY -->
+     <property name="display" value=":0.0"/>
+     
+     <property name="exclude.list" value="${bin.dir}/ts.jtx"/>
+     
+     <!-- all tests recursively under ${testfrom} will be run, after applying
+     testincludes and testexcludes. Used in runjdbc task.  If ${testfrom}
+     not under src/com/sun/ts/tests, it will be reset to src/com/sun/ts/tests/jdbc -->
+     <property name="testfrom" value="${user.dir}"/>
+
+     <!-- explicitly includes tests under ${testfrom} to be run.  Used in
+     runjdbc task. Paths are relative to ${testfrom} -->
+     <property name="testincludes" value="**/*"/>
+
+    <!-- explicitly excludes tests under ${testfrom} from being run.  Used in
+    runjdbc task. Paths are relative to ${testfrom}-->
+     <property name="testexcludes" value=""/>
+
+     <taskdef name="runjdbc" classname="com.sun.ts.lib.deliverable.jdbc.PrepareJDBCDeploy"
+       classpath="${ts.classpath}"/>
+    
+     <!-- default settings is sufficient to run the whole testsutie -->
+     <runjdbc/>
+
+    <!-- an example to customize runjdbc task
+    If testfrom not set, and if current dir is a test dir, will use current dir as
+    testfrom value.  If testfrom not set and current dir is not a test dir, will 
+    use ${ts.home}/src/com/sun/ts/tests/jdbc as testfrom value.
+    These attributes can be overridden from command line, for example:
+        ant runclient -Dtestincludes="dateTime/dateTime2, exception" 
+                      -Dtestexcludes="exception/sqlException" 
+                      -Dtestfrom="/files/jdbc/src/com/sun/ts/tests/jdbc/ee"
+    -->
+   <!-- 
+    <runjdbc testfrom="${testfrom}" testincludes="${testincludes}"
+      testexcludes="${testexcludes}">   
+     </runjdbc>
+    -->
+   </target>
+
+    <target name="clean">
+        <delete failonerror="false" includeEmptyDirs="true">
+          <fileset dir="${class.dir}/${pkg.dir}"/>
+        </delete>
+        <delete failonerror="false" includeEmptyDirs="true">
+         <fileset dir="${dist.dir}/${pkg.dir}"/>
+        </delete>
+    </target>
+
+	<target name="clean.all.error.msg" >
+		<property name="msg" value="Cleanup of the classes/dist directory is not allowed" />
+	</target>
+
+	<target name="clean.all" depends="clean.all.error.msg,check.bin.workspace.file" if="bin.workspace.file.exists">
+		<ant antfile="workspace.xml" dir="${bin.dir}" target="clean.classes" />
+		<ant antfile="workspace.xml" dir="${bin.dir}" target="clean.dist" />
+	</target>
+
+  <target name="initdb">
+    <java classname="com.sun.ts.lib.util.InitTSDatabase" fork="yes" failonerror="yes" 
+      classpath="${ts.classpath}:${jdbc.classpath}">
+      <sysproperty key="TS_HOME" value="${ts.home}"/>
+      <arg line="-U ${dbuser}"/>
+      <arg line="-P ${dbpasswd}"/>
+      <arg line="-S ${dburl}"/>
+      <arg line="-p ${ddlfile}"/>
+      <arg line="-d ${dbdriver}"/>
+    </java>
+  </target>
+
+  <target name="start.sunri.porting.server" depends="init">
+    <java classname="com.sun.ts.lib.implementation.sun.javaee.SunRIPortingServer" fork="yes" failonerror="yes" 
+      classpath="${ts.classpath}">
+      <sysproperty key="java.security.policy" value="${bin.dir}/harness.policy"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host.ri}"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port.ri}"/>
+      <sysproperty key="java.endorsed.dirs" value="${java.endorsed.dirs}" />
+      <sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
+      <sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
+      <sysproperty key="deliverable.class" value="${deliverable.class}" />
+    </java>
+  </target>
+
+  <target name="start.sunri.porting.server13" depends="init">
+    <java classname="com.sun.ts.lib.implementation.sun.javaee.SunRIPortingServer13" fork="yes" failonerror="yes" 
+      classpath="${ts.classpath}">
+      <sysproperty key="java.security.policy" value="${bin.dir}/harness.policy"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host.ri}"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port.ri}"/>
+      <sysproperty key="java.endorsed.dirs" value="${java.endorsed.dirs}" />
+      <sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
+      <sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
+      <sysproperty key="deliverable.class" value="${deliverable.class}" />
+    </java>
+  </target>
+
+  <target name="start.rmiiiop.server">
+    <java classname="com.sun.ts.tests.rmiiiop.ee.standalone.RMIIIOPServer" fork="yes" failonerror="yes" 
+      classpath="${ts.classpath}:${class.dir}">
+      <sysproperty key="java.security.policy"
+                   value="${bin.dir}/java.policy"/>
+      <arg line="-v"/>
+      <arg line="-p ${rmiiiop.http.server.port}"/>
+    </java>
+  </target>
+
+  <target name="init" depends="get.harness.debug, default.harness.debug"/>
+
+  <target name="get.harness.debug" if="env.HARNESS_DEBUG">
+    <property name="cts.harness.debug" value="${env.HARNESS_DEBUG}"/>
+  </target>
+
+  <target name="default.harness.debug" unless="env.HARNESS_DEBUG">
+    <property name="cts.harness.debug" value="false"/>
+  </target>
+
+
+  <!-- Tasks for managing ts specific jar.  These automatically call 
+  the pkg target in the src/com/sun/ts/lib/build.xml file  -->
+  <!-- ts specific jar (in this case cts.jar) will be created in ts.home/lib 
+  and must be copied to ts.home/install/j2ee/lib.  
+  If you are builing it in the workspace, then you must sccs edit ts.home/
+  install/j2ee/lib/cts.jar prior to using this target.  -->
+
+	<target name="does.bin.workspace.file.exist" >
+		<available file="${bin.dir}/workspace.xml" type="file" property="bin.workspace.file.exists"/>
+	</target>
+	<target name="check.bin.workspace.file" depends="does.bin.workspace.file.exist" unless="bin.workspace.file.exists">
+		<echo message="WARNING: The workspace file (${bin.dir}/workspace.xml) does not exist - ${msg}"/>
+	</target>
+
+	<target name="tslib.error.msg" >
+		<property name="msg" value="building of ${ts.home}/lib/ctstck.jar is not allowed" />
+	</target>
+
+	<target name="tslib" depends="tslib.error.msg,check.bin.workspace.file" if="bin.workspace.file.exists">
+		<tstamp/>
+		<ant antfile="workspace.xml" dir="${bin.dir}" target="build" />
+ 	</target>
+
+	<target name="tsharness">
+       	  <ant antfile="build.xml" dir="${ts.home}/src/com/sun/ts/lib" target="build" />
+          <ant antfile="build.xml" dir="${ts.home}/src/com/sun/ts/lib/deliverable/jdbc" target="build"/>
+          <touch file="${ts.home}/lib/tsharness.jar" datetime="06/28/2000 2:02 pm"/>
+          <jar jarfile="${ts.home}/lib/tsharness.jar" update="true" basedir="${ts.home}/classes">
+            <include name="com/sun/ts/lib/deliverable/jdbc/"/>
+            <zipfileset src="${ts.home}/lib/javatest.jar" includes="com/sun/javatest/TestEnvironment.class, com/sun/javatest/TestEnvironment$$Fault.class, com/sun/javatest/TestEnvironment$$Element.class"/>
+        </jar>
+  	</target>
+
+	<target name="build.all.jars" depends="tsharness,tslib"/>
+
+    <target name="verify">
+      <verify/>
+    </target>
+
+    <!--
+        Copy the correct dml file to $TS_HOME/bin
+    -->
+    <target name="copy.dml.file">
+        <property name="tssql.stmt.file" value="tssql.stmt"/>
+        <copy file="${db.dml.file}" tofile="${bin.dir}/${tssql.stmt.file}" overwrite="yes"/>
+    </target>
+
+
+    <!--
+       Targets for configuring the databases as needed by CTS.
+    -->
+
+    <target name="init.db2">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.db2"/>
+    </target>
+
+    <target name="init.derby">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.derby"/>
+    </target>
+
+    <target name="init.mssqlserver">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.mssqlserver"/>
+    </target>
+
+    <target name="init.mssqlserverDD">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.mssqlserverDD"/>
+    </target>
+
+    <target name="init.oracle">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.oracle"/>
+    </target>
+
+    <target name="init.oracleDD">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.oracleDD"/>
+    </target>
+
+    <target name="init.pointbase">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.pointbase"/>
+    </target>
+
+    <target name="init.sybase">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.sybase"/>
+    </target>
+
+    <target name="init.custom" depends="copy.dml.file">
+        <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.custom"/>
+    </target>
+    <!-- END Tasks for managing ts specific jar  -->
+
+</project>
+

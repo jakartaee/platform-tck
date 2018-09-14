@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wshandlertest")
+HANDLERCHAIN=@HandlerChain(name="", file="handler.xml")
+SERVICE=com.sun.ts.tests.webservices12.servlet.HandlerTest.client.HandlerTestService
+SEI=com.sun.ts.tests.webservices12.servlet.HandlerTest.client.Hello
+NAMESPACEURI=http://handlertestservice.org/wsdl
+PORT=HelloPort
+URLALIAS=/jaxws/Hello
+SERVLETNAME=HelloPort
+WEBSERVICEDESCRIPTION=HandlerTestService
+SERVICEREFNAMEWSSERVLET=service/wshandlertest
+SERVICEREFNAMEWSEJB=service/wshandlertest
+SERVICEREFNAMEWSAPPCLIENT=service/wshandlertest

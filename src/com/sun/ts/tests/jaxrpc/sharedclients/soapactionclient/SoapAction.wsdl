@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://soapactionservice.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:ns2="http://soapactionservice.org/types/"
+             name="SoapActionTest"
+             targetNamespace="http://soapactionservice.org/wsdl/">
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		        xmlns:tns="http://soapactionservice.org/types/"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		        targetNamespace="http://soapactionservice.org/types/">
+		</schema>
+	</types>
+	<message name="SoapAction_helloWorld"/>
+	<message name="SoapAction_helloWorldResponse">
+		<part name="result" type="xsd:string"/>
+	</message>
+	<message name="SoapAction_emptySoapAction"/>
+	<message name="SoapAction_emptySoapActionResponse">
+		<part name="result" type="xsd:string"/>
+	</message>
+	<portType name="SoapAction">
+		<operation name="helloWorld" >
+			<input message="tns:SoapAction_helloWorld"/>
+			<output message="tns:SoapAction_helloWorldResponse"/>
+		</operation>
+		<operation name="emptySoapAction" >
+			<input message="tns:SoapAction_emptySoapAction"/>
+			<output message="tns:SoapAction_emptySoapActionResponse"/>
+		</operation>
+	</portType>
+	<binding name="SoapActionBinding" type="tns:SoapAction">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+		<operation name="helloWorld">
+		    <soap:operation soapAction="helloWorld"/>
+			<input>
+				<soap:body use="literal" message="tns:SoapAction_helloWorld" namespace="http://soapactionservice.org/wsdl/"/>
+			</input>
+			<output>
+				<soap:body use="literal" message="tns:SoapAction_helloWorldResponse" parts="result" namespace="http://soapactionservice.org/wsdl/"/>
+			</output>
+		</operation>
+		<operation name="emptySoapAction">
+		    <soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" message="tns:SoapAction_emptySoapAction" namespace="http://soapactionservice.org/wsdl/"/>
+			</input>
+			<output>
+				<soap:body use="literal" message="tns:SoapAction_emptySoapActionResponse" parts="result" namespace="http://soapactionservice.org/wsdl/"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="SoapActionTest">
+		<port name="SoapActionPort" binding="tns:SoapActionBinding">
+			<soap:address xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" location="http://localhost:8000/SoapActionService/ws4ee"/>
+		</port>
+	</service>
+</definitions>

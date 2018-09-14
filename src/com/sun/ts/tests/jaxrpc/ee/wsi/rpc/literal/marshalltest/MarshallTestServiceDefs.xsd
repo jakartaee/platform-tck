@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<schema
+	targetNamespace="http://marshalltestservice.org/types"
+	xmlns:tns="http://marshalltestservice.org/types"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+
+      <complexType name="BigDecimalArrayTest">
+        <sequence>
+          <element name="BigDecimalArray" type="decimal" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="BigDecimalArrayTestResponse">
+        <sequence>
+          <element name="BigDecimalArray" type="decimal" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="BigDecimalTest">
+        <sequence>
+          <element name="BigDecimal" type="decimal" nillable="true"/></sequence></complexType>
+      <complexType name="BigDecimalTestResponse">
+        <sequence>
+          <element name="BigDecimal" type="decimal" nillable="true"/></sequence></complexType>
+      <complexType name="BigIntegerArrayTest">
+        <sequence>
+          <element name="BigIntegerArray" type="integer" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="BigIntegerArrayTestResponse">
+        <sequence>
+          <element name="BigIntegerArray" type="integer" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="BigIntegerTest">
+        <sequence>
+          <element name="BigInteger" type="integer" nillable="true"/></sequence></complexType>
+      <complexType name="BigIntegerTestResponse">
+        <sequence>
+          <element name="BigInteger" type="integer" nillable="true"/></sequence></complexType>
+
+      <complexType name="BooleanArrayTest">
+        <sequence>
+          <element name="booleanArray" type="boolean" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+
+      <complexType name="BooleanArrayTestResponse">
+        <sequence>
+          <element name="booleanArray" type="boolean" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+
+      <complexType name="BooleanTest">
+        <sequence>
+          <element name="booleanValue" type="boolean"/></sequence></complexType>
+
+      <complexType name="BooleanTestResponse">
+        <sequence>
+          <element name="booleanValue" type="boolean"/></sequence></complexType>
+
+      <complexType name="ByteArrayTest">
+        <sequence>
+          <element name="byteArray" type="base64Binary" nillable="true"/></sequence></complexType>
+      <complexType name="ByteArrayTestResponse">
+        <sequence>
+          <element name="byteArray" type="base64Binary" nillable="true"/></sequence></complexType>
+      <complexType name="ByteTest">
+        <sequence>
+          <element name="byteValue" type="byte"/></sequence></complexType>
+      <complexType name="ByteTestResponse">
+        <sequence>
+          <element name="byteValue" type="byte"/></sequence></complexType>
+
+<!-- ********************************************************************** -->
+
+      <complexType name="QNameTest">
+        <sequence>
+          <element name="qname_1" type="QName" nillable="true"/></sequence></complexType>
+      <complexType name="QNameTestResponse">
+        <sequence>
+          <element name="result" type="QName" nillable="true"/></sequence></complexType>
+
+      <complexType name="Base64BinaryTest">
+        <sequence>
+          <element name="base64Binary_1" type="base64Binary" nillable="true"/></sequence></complexType>
+      <complexType name="Base64BinaryTestResponse">
+        <sequence>
+          <element name="result" type="base64Binary" nillable="true"/></sequence></complexType>
+
+      <complexType name="HexBinaryTest">
+        <sequence>
+          <element name="hexBinary_1" type="hexBinary" nillable="true"/></sequence></complexType>
+      <complexType name="HexBinaryTestResponse">
+        <sequence>
+          <element name="result" type="hexBinary" nillable="true"/></sequence></complexType>
+
+      <complexType name="QNameArrayTest">
+        <sequence>
+          <element name="qnameArray_1" type="QName" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="QNameArrayTestResponse">
+        <sequence>
+          <element name="result" type="QName" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+
+<!-- ********************************************************************** -->
+
+      <complexType name="CalendarArrayTest">
+        <sequence>
+          <element name="CalendarArray" type="dateTime" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="CalendarArrayTestResponse">
+        <sequence>
+          <element name="CalendarArray" type="dateTime" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="CalendarTest">
+        <sequence>
+          <element name="Calendar" type="dateTime" nillable="true"/></sequence></complexType>
+      <complexType name="CalendarTestResponse">
+        <sequence>
+          <element name="Calendar" type="dateTime" nillable="true"/></sequence></complexType>
+      <complexType name="DoubleArrayTest">
+        <sequence>
+          <element name="doubleArray" type="double" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="DoubleArrayTestResponse">
+        <sequence>
+          <element name="doubleArray" type="double" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="DoubleTest">
+        <sequence>
+          <element name="doubleValue" type="double"/></sequence></complexType>
+      <complexType name="DoubleTestResponse">
+        <sequence>
+          <element name="doubleValue" type="double"/></sequence></complexType>
+      <complexType name="FloatArrayTest">
+        <sequence>
+          <element name="floatArray" type="float" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="FloatArrayTestResponse">
+        <sequence>
+          <element name="floatArray" type="float" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="FloatTest">
+        <sequence>
+          <element name="floatValue" type="float"/></sequence></complexType>
+      <complexType name="FloatTestResponse">
+        <sequence>
+          <element name="floatValue" type="float"/></sequence></complexType>
+      <complexType name="IntArrayTest">
+        <sequence>
+          <element name="intArray" type="int" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="IntArrayTestResponse">
+        <sequence>
+          <element name="intArray" type="int" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="IntTest">
+        <sequence>
+          <element name="intValue" type="int"/></sequence></complexType>
+      <complexType name="IntTestResponse">
+        <sequence>
+          <element name="intValue" type="int"/></sequence></complexType>
+      <complexType name="JavaBeanArrayTest">
+        <sequence>
+          <element name="JavaBeanArray" type="tns:JavaBean" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="JavaBean">
+        <sequence>
+          <element name="myBigDecimal" type="decimal" nillable="true"/>
+          <element name="myDouble" type="double"/>
+          <element name="myLong" type="long"/>
+          <element name="myJavaBean" type="tns:JavaBean2" nillable="true"/>
+          <element name="myShort" type="short"/>
+          <element name="myInt" type="int"/>
+          <element name="myCalendar" type="dateTime" nillable="true"/>
+          <element name="myByte" type="byte"/>
+          <element name="myBoolean" type="boolean"/>
+          <element name="myString" type="string" nillable="true"/>
+          <element name="myBigInteger" type="integer" nillable="true"/>
+          <element name="myFloat" type="float"/></sequence></complexType>
+      <complexType name="JavaBean2">
+        <sequence>
+          <element name="myBigDecimal" type="decimal" nillable="true"/>
+          <element name="myDouble" type="double"/>
+          <element name="myLong" type="long"/>
+          <element name="myShort" type="short"/>
+          <element name="myInt" type="int"/>
+          <element name="myCalendar" type="dateTime" nillable="true"/>
+          <element name="myByte" type="byte"/>
+          <element name="myBoolean" type="boolean"/>
+          <element name="myString" type="string" nillable="true"/>
+          <element name="myBigInteger" type="integer" nillable="true"/>
+          <element name="myFloat" type="float"/></sequence></complexType>
+      <complexType name="JavaBeanArrayTestResponse">
+        <sequence>
+          <element name="JavaBeanArray" type="tns:JavaBean" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="JavaBeanTest">
+        <sequence>
+          <element name="JavaBean" type="tns:JavaBean" nillable="true"/></sequence></complexType>
+      <complexType name="JavaBeanTestResponse">
+        <sequence>
+          <element name="JavaBean" type="tns:JavaBean" nillable="true"/></sequence></complexType>
+      <complexType name="LongArrayTest">
+        <sequence>
+          <element name="longArray" type="long" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="LongArrayTestResponse">
+        <sequence>
+          <element name="longArray" type="long" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="LongTest">
+        <sequence>
+          <element name="longValue" type="long"/></sequence></complexType>
+      <complexType name="LongTestResponse">
+        <sequence>
+          <element name="longValue" type="long"/></sequence></complexType>
+      <complexType name="ShortArrayTest">
+        <sequence>
+          <element name="shortArray" type="short" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="ShortArrayTestResponse">
+        <sequence>
+          <element name="shortArray" type="short" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="ShortTest">
+        <sequence>
+          <element name="shortValue" type="short"/></sequence></complexType>
+      <complexType name="ShortTestResponse">
+        <sequence>
+          <element name="shortValue" type="short"/></sequence></complexType>
+      <complexType name="StringArrayTest">
+        <sequence>
+          <element name="StringArray" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="StringArrayTestResponse">
+        <sequence>
+          <element name="StringArray" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/></sequence></complexType>
+      <complexType name="StringTest">
+        <sequence>
+          <element name="StringValue" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="StringTestResponse">
+        <sequence>
+          <element name="StringValue" type="string" nillable="true"/></sequence></complexType>
+      <complexType name="VoidTest">
+        <sequence/></complexType>
+      <complexType name="VoidTestResponse">
+        <sequence/></complexType>
+</schema>

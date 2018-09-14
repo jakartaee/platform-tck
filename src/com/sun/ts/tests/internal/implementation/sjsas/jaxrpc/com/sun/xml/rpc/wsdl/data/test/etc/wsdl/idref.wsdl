@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:s="http://www.w3.org/2001/XMLSchema" 
+             xmlns:tns="http://idref.org/"
+	     xmlns:types="http://idref.org/xsd" 
+             targetNamespace="http://idref.org/"
+             
+	     xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://idref.org/xsd"  attributeFormDefault="qualified" >
+    
+<s:element name="Output" type="s:string"/>
+
+
+<s:element name="BookStore">
+<s:complexType>
+<s:sequence>
+  <s:element name="Book" type="types:BookType"/>
+  <s:element name="AuthorBio" type="types:AuthorBioType"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+
+<s:complexType name="BookType"> 
+  <s:sequence> 
+    <s:element name="title" type="s:string"/>
+    <s:element name="author" type="s:IDREF"/> 
+  </s:sequence> 
+</s:complexType> 
+
+<s:complexType name="AuthorBioType"> 
+  <s:sequence>
+    <s:element name="age" type="s:int"/>
+  </s:sequence> 
+  <s:attribute name="name" type="s:ID"/> 
+</s:complexType>
+
+    </s:schema>
+  </types>
+
+  <message name="echoString">
+        <part element="types:BookStore" name="BookStore"/>
+  </message>
+
+  <message name="echoStringResponse">
+         <part element="types:BookStore" name="output"/>
+  </message>
+
+  
+  <portType name="BookPort">
+    <operation name="echoString">
+      <input message="tns:echoString" />
+      <output message="tns:echoStringResponse" />     
+    </operation>
+  </portType>
+
+  <binding name = "BookBinding" type="tns:BookPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+
+    <operation name="echoString">
+      <soap:operation soapAction="http://idref.org/" style="document" />
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+  </binding>
+  <service name="BookService">
+    <port name="BookPort" binding="tns:BookBinding">
+      <soap:address location="http://idref.org/id.wsdl" />
+    </port>
+  </service>
+</definitions>

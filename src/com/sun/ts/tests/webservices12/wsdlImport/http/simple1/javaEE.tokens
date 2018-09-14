@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/WSSimple1Http")
+SERVICE=com.sun.ts.tests.webservices12.wsdlImport.http.simple1.Simple1HttpSvc
+SEI=com.sun.ts.tests.webservices12.wsdlImport.http.simple1.Tests
+IMPL=com.sun.ts.tests.webservices12.wsdlImport.http.simple1.TestsImpl
+NAMESPACEURI=http://Simple1HttpSvc.org/wsdl
+PORT=TestsPort
+URLALIAS=/jaxws/Tests
+SERVLETNAME=com.sun.ts.tests.webservices12.wsdlImport.http.simple1.TestsImpl
+WEBSERVICEDESCRIPTION=Simple1HttpSvc
+SERVICEREFNAMEWSSERVLET=service/WSSimple1Http
+SERVICEREFNAMEWSEJB=service/WSSimple1Http
+SERVICEREFNAMEWSAPPCLIENT=service/WSSimple1Http

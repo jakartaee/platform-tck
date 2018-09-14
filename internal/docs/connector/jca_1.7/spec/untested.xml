@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<spec>
+  <next-available-id>331</next-available-id>
+  <previous-id>330</previous-id>
+  <technology>Connector</technology>
+  <id>Connector</id>
+  <name>Java EE Connector API</name>
+  <version>1.7</version>
+  <location>
+    <chapters />
+    <chapter id="19" name="API Requirements">
+      <sections>
+        <section id="1" name="Requirements of the App Server" />
+      </sections>
+    </chapter>
+    <chapter id="17" name="Common Client Interface">
+      <sections>
+        <section id="6.2" name="InteractionSpec" />
+        <section id="10.3" name="ResultSetInfo" />
+        <section id="6.1" name="Interaction" />
+        <section id="10.1" name="ResultSet Interface" />
+        <section id="5.3" name="Connection" />
+        <section id="5.1" name="ConnectionFactory" />
+        <section id="5.2" name="ConnectionSpec" />
+        <section id="7.1" name="ConnectionMetaData" />
+        <section id="9.1" name="Component-view Contract" />
+        <section id="9.3" name="Resource Adapter-view Contract" />
+      </sections>
+    </chapter>
+    <chapter id="18" name="Metadata Annotations">
+      <sections>
+        <section id="3" name="Deployment Descriptores and Annotations" />
+        <section id="2" name="Goals" />
+        <section id="1" name="Overview" />
+        <section id="7" name="@Activation" />
+        <section id="6" name="@ConnectionDefinition and @ConnectionDefinitions" />
+        <section id="5" name="@ConfigProperty" />
+        <section id="4" name="@Connector" />
+        <section id="8" name="@AdministeredObject" />
+      </sections>
+    </chapter>
+    <chapter id="15" name="Transaction Inflow">
+      <sections>
+        <section id="4.4" name="Requirements" />
+        <section id="4.2" name="Transaction completion processing" />
+        <section id="4.6" name="Recommendations" />
+      </sections>
+    </chapter>
+    <chapter id="16" name="Security Inflow">
+      <sections>
+        <section id="4.1" name="Establishing the Security Context" />
+        <section id="4" name="SecurityContext Class" />
+        <section id="4.4" name="Security Configuration Responsibilities" />
+        <section id="4.5" name="Requirements" />
+        <section id="4.2" name="callbacks for Information from the App Server" />
+        <section id="4.3" name="Establishing a Principal as the Caller Identity" />
+      </sections>
+    </chapter>
+    <chapter id="13" name="Message Inflow">
+      <sections>
+        <section id="3" name="Message Inflow Model" />
+        <section id="5.6" name="Transacted delivery (using container managed transaction)" />
+        <section id="5.4" name="Concurrent delivery of messages" />
+        <section id="5.1" name="Sample resource adapter code to illustrate message delivery" />
+        <section id="5.9" name="Requirements" />
+        <section id="4.5" name="Application Server" />
+        <section id="4.9" name="Multiple endpoint activations with similar activation information" />
+        <section id="4.7" name="Requirements" />
+      </sections>
+    </chapter>
+    <chapter id="11" name="Generic inflow Context">
+      <sections>
+        <section id="3" name="Generic Inflow Context Model" />
+        <section id="2" name="Goals" />
+        <section id="1" name="Overview" />
+        <section id="7" name="WorkContextLifecycleListener Interface" />
+        <section id="6" name="HintsContext Interface" />
+        <section id="5" name="TransactionContext Class" />
+        <section id="4" name="WorkContextProvider and WorkContext Interface" />
+        <section id="8" name="Illustrative Example" />
+      </sections>
+    </chapter>
+    <chapter id="12" name="Inbound Communication">
+      <sections>
+        <section id="2" name="An Illustrative Use Case " />
+        <section id="1" name="Overview" />
+      </sections>
+    </chapter>
+    <chapter id="3" name="The Connector Architecture">
+      <sections>
+        <section id="3" name="Requirements" />
+        <section id="2" name="Client API" />
+        <section id="1" name="System Contracts" />
+        <section id="5" name="Standalone Container Environment" />
+        <section id="4" name="Non-Managed Environment" />
+      </sections>
+    </chapter>
+    <chapter id="20" name="Packaging Requirements">
+      <sections>
+        <section id="3" name="Class Loading Requirements" />
+        <section id="2" name="Packaging" />
+        <section id="1" name="Overview" />
+        <section id="7" name="Resource Adapter XML Schema Def" />
+        <section id="6" name="JNDI Configuration and Lookup" />
+        <section id="4.1" name="ResourceAdapter Provider" />
+        <section id="5" name="Interfaces/Classes" />
+        <section id="4" name="Deployment" />
+        <section id="4.2" name="Deployer" />
+      </sections>
+    </chapter>
+    <chapter id="10" name="Work Management">
+      <sections>
+        <section id="3" name="Work management Model" />
+        <section id="3.2" name="WorkManager Interface " />
+        <section id="3.3" name="WorkListener interface and WorkEvent class " />
+        <section id="3.5" name="Periodic execution of Work instances " />
+      </sections>
+    </chapter>
+    <chapter id="7" name="Transaction Management">
+      <sections>
+        <section id="6.2" name="Resource Adapter Requirements" />
+        <section id="6.3" name="Transaction Manager Requirements" />
+        <section id="13.2" name="Application Server" />
+        <section id="3.1" name="Interface: ManagedConnection" />
+        <section id="9" name="Connection Sharing" />
+        <section id="11" name="Connection Association" />
+      </sections>
+    </chapter>
+    <chapter id="6" name="Connection Management">
+      <sections>
+        <section id="8.3" name="Connection Event Notifications and Connection Close" />
+        <section id="2" name="Goals" />
+        <section id="10.1" name="Resource Adapter" />
+        <section id="5.3" name="ManagedConnectionFactory" />
+        <section id="10.2" name="Application Server" />
+        <section id="5.4" name="ManagedConnection" />
+        <section id="5.1" name="ConnectionFactory and Connection" />
+        <section id="5.2" name="ConnectionManager" />
+      </sections>
+    </chapter>
+    <chapter id="5" name="LifeCycle Management">
+      <sections>
+        <section id="3.2" name="ManagedConnectionFactory JavaBean and Outbound Communication" />
+        <section id="3.1" name="ResourceAdapter JavaBean and bootstraping a resource adapter instance" />
+        <section id="3.4" name="ResourceAdapter Shutdown procedure" />
+        <section id="3.3" name="ActivationSpec JavaBean and Inbound Communication" />
+      </sections>
+    </chapter>
+    <chapter id="9" name="Security Contract">
+      <sections>
+        <section id="3" name="Requirements" />
+        <section id="2.5" name="ConnectionManager" />
+        <section id="2.7" name="ManagedConnection" />
+        <section id="2.3" name="GenericCredential" />
+        <section id="2.2" name="ResourcePrincipal" />
+      </sections>
+    </chapter>
+  </location>
+  <assertions>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:12</id>
+      <description>The applcation server thread which calls the start and stop method on the ResourceAdapter JavaBean executes in a unspecified context. However, the application server thread must have at least the same level of security permissions as that of the resource adapter instance.</description>
+      <location chapter="5" section="3.5" />
+    </assertion>
+    <assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:41</id>
+      <description>The RM XAResource implementation is required to support XAResource.start and XAResource.end for association and disassociation 			of a transaction (as represented by unique XID) with recoverable units of work being done on the RM.</description>
+      <location chapter="7" section="6.2" />
+    </assertion>
+    <assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:42</id>
+      <description>Resource adapter is required to send local transaction events through the Connection-EventListener interface when an application 				component starts a local transaction using application level transaction demarcation interface.</description>
+      <location chapter="7" section="6.2" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:56</id>
+      <description>The application server is required to implement the javax.resource.spi.-ConnectionEventListener interface to get transaction-related 				event notifications.</description>
+      <location chapter="7" section="13.2" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:61</id>
+      <description>Resource adapter is required to specify its support for the security contract 
+                       as part of its deployment descriptor or through metadata annotations.. The 
+                       relevant deployment descriptor elements are [refer section 15.6 for a detailed 
+                       specification]: authentication-mechanism, authentication-mechanism- type, 
+                       reauthentication-support and credential-interface.</description>
+      <location chapter="9" section="3" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:72</id>
+      <description>When the application server is unable to recreate an execution context (if it is specified) for the submitted Work instance, it must 				throw a WorkCompletedException set to an appropriate error code.</description>
+      <location chapter="10" section="3.3.6" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:95</id>
+      <description>The resource adapter must treat each ActivationSpec JavaBean uniquely
+                            irrespective of its contents. That is, the resource adapter must not treat two
+                            separate ActivationSpec JavaBeans as equals.</description>
+      <location chapter="13" section="4.9" />
+      <comment>This statement changed from jca 1.5 to 1.6.  It used to state the following in jca 1.5:
+                            "An ActivationSpec JavaBean must not override the default java.lang.Object.equals 
+                             method. This ensures that each ActivationSpec JavaBean is treated uniquely (based 
+                             on the implicit Java object identity). The resource adapter must treat each 
+                             ActivationSpec JavaBean uniquely irrespective of its contents. That is, 
+                             the resource adapter must not treat two separate ActivationSpec JavaBeans 
+                             as equals."
+
+                            To test: You can have two MDBs using the same activation spec (but different
+                            configuration properties defined in the DD of the MDBs) and the RAR
+                            should not be receiving same instance of Activation Spec during
+                            endPointActivation.</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:98</id>
+      <description>The application server must pass by reference all the method parameter objects passed by the resource adapter during a message delivery 			method call on a proxy endpoint. The application server must not copy or clone the passed method parameter objects during message delivery to the actual 
+			endpoint instance.</description>
+      <location chapter="13" section="5.1" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:101</id>
+      <description>The application server must reject concurrent usage of an endpoint instance.</description>
+      <location chapter="13" section="5.1" />
+      <comment>Test as follows:
+                       Use an RA to try to deliver two messages to the same message 
+                       endpoint and expect failure.</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:112</id>
+      <description>The application server must wrap such an unchecked exception within a javax.ejb.EJBException (which is a java.lang.RuntimeException) 
+			and throw the javax.ejb.EJBException to the resource adapter.</description>
+      <location chapter="13" section="5.7" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:116</id>
+      <description>In the case where endpoint does not require a transcated delivery and there is a imported transaction (source managed transaction) the contaier must suspend the soruce managed transaction. The container must igonre the XAResource supplied by the resource adapter if any.</description>
+      <location chapter="13" section="5.9" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:119</id>
+      <description>The application server is required to propagate any exception thrown during a message delivery to the resource adapter irrespective of whether the delivery is transacted or not.</description>
+      <location chapter="13" section="5.9" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:123</id>
+      <description>When the application server is unable to recreate the transaction context (if any) specified for 
+a Work instance, it must throw a WorkCompletedException (set to an error code 
+WorkException.TX_RECREATE_FAILED).</description>
+      <location chapter="15" section="4.4" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:126</id>
+      <description>The application server must reject transaction completion or crash recovery calls (with a 
+javax.transaction.xa.XAException) when a Work instance associated with the transaction is present 
+and must not block or serialize transaction completion or crash recovery calls waiting for a Work 
+instance associated with the transaction to complete.</description>
+      <location chapter="15" section="4.4" />
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:205</id>
+      <description>The application server must support the decoration of the following 
+                    JavaBeans with constraint annotations: 
+                      - ResourceAdapter
+                      - ManagedConnectionFactory
+                      - ActivationSpec
+                      - Administered Objects</description>
+      <location chapter="5" section="3.7.5" />
+      <comment>Should be testable.
+                    This is saying that these javabeans must be able to handle annotations.
+                    Use anno's on these beans and it should be a valid test if the beans
+                    are handled/processed.</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:215</id>
+      <description>Since not all the WorkContext instances provided by the resource 
+                    adapter may be supported by the application server, the application 
+                    server must check to ensure that the WorkContexts provided by the 
+                    resource adapter are supported by the application server.</description>
+      <location chapter="11" section="4.3" />
+      <comment>Handling Errors During Context Assignment
+           	    To test do the following:
+                     - submit work w/unknown workContext to AS and see if it returns proper error.</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:217</id>
+      <description>The application server must employ a java.lang.Class.isAssignable(
+                    java.lang.Class) style check. Specifically, this method must check 
+                    whether an WorkContext class that is supported by the application 
+                    server, can be converted to the type provided by the resource adapter, 
+                    via an identity conversion or via a widening reference conversion.</description>
+      <location chapter="11" section="4.3" />
+      <comment>To test do the following:
+                     - BSC.isICSupported(tic) 
+                     - extend tic to make a sub-tic class
+                     - BSC.isICSupported(sub-tic)
+                     - submit work with sub-tic and it shouldpass and this validates our
+                       assertiion.</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:218</id>
+      <description>If a particular WorkContext type provided by the resource adapter 
+                    is supported by the application server, the application server must 
+                    use the WorkContext as-is and not attempt to use it as a supported 
+                    parent type. That is, an application server must use the most specific 
+                    WorkContext type it supports.</description>
+      <location chapter="11" section="4.3" />
+      <comment>To test do the following:
+                     - RA submits work sub-class
+                     - but RA supports parent class (tic) so the AS should 
+                       execute work as the parent tic that it supports</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:219</id>
+      <description>If a particular WorkContext type provided by the resource adapter 
+                    is not supported by the application server, the application server 
+                    must assume that it can safely fallback to a superclass(excluding 
+                    the WorkContext interface) that is supported by it.</description>
+      <location chapter="11" section="4.3" />
+      <comment>To test do the following:
+                     - RA submits work with a tic sub-class
+                     - but RA supports parent class (tic) so the AS should 
+                       execute work as the parent tic that it supports</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:220</id>
+      <description>The TransactionContext class extends the ExecutionContext class (
+                    see Section 10.3.5 "ExecutionContext Class" ). It represents the standard interface a
+                    resource adapter can use to propagate transaction context information from the EIS
+                    to the application server. The Work instance and any message deliveries to
+                    MessageEndpoints in that Work instance must all be carried out in the context of
+                    the transaction context provided by the TransactionContext class.</description>
+      <location chapter="11" section="5" />
+      <comment>This should be testable.  Testing this should involve testing Work and
+                    MessageEndpoint running under the context of the inflown transaction.
+                    Test for Transaction Inflow and refactor the existing test to use
+                    TransactionContext instead of ExecutionContext.</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:222</id>
+      <description>When a WorkManager sets up the execution context of a Work instance that
+                    implements WorkContextProvider, the WorkManager must make the relevant
+                    lifecycle notifications if an WorkContext instance implements this interface. 
+                    The possible error conditions that might occur while associating an WorkContext
+                    with a Work instance is captured in WorkContextErrorCodes. The
+                    WorkManager must call the contextSetupFailed method with the appropriate
+                    error code in WorkContextErrorCodes.</description>
+      <location chapter="11" section="7" />
+      <comment>test as follows:
+                      - RA submits work with ICP(tic, sic) and LifeCycleListener
+                      - get WorkMgr to induce a filuare (maybe pass -1 as xid) which 
+                        should generate a WorkContextLifecycleListener.contextSetupFailed()
+                        (if this is called, we know the test passed)</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:240</id>
+      <description>The Connector WorkManager must suspend any existing (if
+                    any) security context on a thread performing the containing 
+                    Work, and use the new security context established by the 
+                    SecurityContext of the nested Work.  Once the nested Work 
+                    instance completes, the Connector WorkManager must then restore 
+                    the security context of the containing Work instance in the thread.</description>
+      <location chapter="16" section="4.1" />
+    </assertion>
+    <assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:245</id>
+      <description>The application server must establish an association between the 
+                    resource adapter instance and the Work instance before the exection 
+                    of the Work instance has been started (Refer Section 10.3.3.4, 
+                    'Work Started' on page 10-13).</description>
+      <location chapter="10" section="3.10" />
+      <comment>- this should also apply to Distributed work
+            -</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:258</id>
+      <description>If the above conditions** are not met, the application server must 
+                    fail the Work submission with a WorkCompletedException with an 
+                    appropriate error code, to indicate the nature of the error condition.
+
+                    ** The "above conditions" would include all assertion checks for:
+                        Connector:SPEC:214
+                        Connector:SPEC:215
+                        Connector:SPEC:216
+                        Connector:SPEC:217
+                        Connector:SPEC:218
+                        Connector:SPEC:219</description>
+      <location chapter="11" section="4.3" />
+      <comment>We should be able to do something for this...</comment>
+    </assertion>
+    <assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:263</id>
+      <description>If the application server provides an implementation of the BeanValidation
+                    specification (See "Bean Validation" on page F-2), the application server must check
+                    the validity of the configuration settings provided by the deployer for a JavaBean,
+                    using the capabilities provided by the Bean Validation specification before calling
+                    the validate method.</description>
+      <location chapter="13" section="4.2.2" />
+      <comment>- required functionality (as of pfd) 
+                       will look into keyword use...
+                     - the RI for this TCk will support this feature.</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:284</id>
+      <description>The application server must support the deployment of a resource
+                  adapter in EJB and Web containers.</description>
+      <location chapter="19" section="1" />
+      <comment>Requirements of the Application Server</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:303</id>
+      <description>As detailed in Section 11.4 ?WorkContextProvider and WorkContext 
+                    Interface?, a Connector WorkManager must support nested Work submissions</description>
+      <location chapter="16" section="4.1" />
+      <comment>XXXX:</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:304</id>
+      <description>The Connector WorkManager must restrict the security
+                    context, established via the SecurityContext of a Work 
+                    instance, to that Work instance alone.</description>
+      <location chapter="16" section="4.1" />
+      <comment>XXXX:</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:308</id>
+      <description>The application server is required to process ConfigProperty annotations
+                  specified in the field or setter method declaration of the following JavaBeans: 
+                     - AdministeredObject</description>
+      <location chapter="18" section="5" />
+      <comment>- we want to verify that the container does allow and support this RA.
+                   - this annotation/bean prop assertion appear untestable but we should
+                     see how the EJB tests for these and maybe we can do something similar.
+                     ...this might even fall  under the category of a config tool requirement...</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:320</id>
+      <description>The application server must make the application component environment 
+                     namespace of the endpoint (that is being activated), available to the 
+                     resource adapter during the call to the endpointActivation method.</description>
+      <location chapter="13" section="4.4" />
+      <comment>- This is required for all EE compliant app servers but not necessarily all
+                      non-EE compliant app servers.  Not currently testable in non-EE container.</comment>
+    </assertion>
+    <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+      <id>Connector:SPEC:325</id>
+      <description>The mandatory fully qualified class name of the administered objects 
+                    class must be indicated by the className element. The fully qualified 
+                    class name of the administered objects interface must be indicated 
+                    by the interfaceName element, only if the class indicated in the 
+                    className element implements more than one interface and the application 
+                    server cannot determine the unique Java interface of the administered 
+                    object according the rules defined in Section 18.8, @AdministeredObject
+                    on page 18-15.</description>
+      <location chapter="18" section="9.3" />
+      <comment>- Note that this is still NOT guaranteed to be supported in ALL 
+                      standalone connector containers so can only be tested in envs
+                      such as:  (full) Java EE profile, Web Profile, Servlet, etc.</comment>
+    </assertion>
+  </assertions>
+</spec>
+

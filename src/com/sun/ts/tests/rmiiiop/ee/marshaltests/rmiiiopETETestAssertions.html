@@ -1,0 +1,267 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Alan Frechette">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (X11; I; SunOS 5.5.1 sun4u) [Netscape]">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+   <TITLE>RMI-IIOP End-To-End Test Assertions Test Suite</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFF0" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+<CENTER>
+<H2>RMI-IIOP End-To-End Test Assertions Test Suite</H2>
+</CENTER>
+<HR NOSHADE=2>
+
+<H2>Introduction</H2>
+<P>
+This document describes the RMI-IIOP End-To-End Test Assertions Test Suite 
+that will be developed by JavaSoft QA for end to end testing of the RMI-IIOP
+Standard Extension that will be part of Sun's (J2EE) Reference Implementation. 
+The RMI-IIOP End-To-End Test Assertions are based upon the latest RMI-IIOP
+related specifications from the Object Management Group (OMG).
+
+<H2>RMI Specification</H2>
+<UL>
+<LI><A HREF="http://www.javasoft.com/products/jdk/1.2/docs/guide/rmi/spec/rmiTOC.doc.html">Java Remote Method Invocation Specification (RMI)</A>
+</UL>
+
+<H2>RMI-IIOP Related OMG Specifications</H2>
+<UL>
+<LI><A HREF="ftp://ftp.omg.org/pub/docs/ptc/99-03-09.pdf">Java Language to IDL Mapping</A>
+<LI><A HREF="ftp://ftp.omg.org/pub/docs/orbos/98-01-18.pdf">Objects by Value</A>
+</UL>
+
+<H2>RMI-IIOP End-To-End Test Assertions</H2>
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 1</PRE> 
+<PRE><I>Section</I> : 1.2.2 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+All of the standard Java primitive types are supported as part of RMI/IDL
+for RMI-IIOP. These are: void, boolean, byte, char, short, int, long, float, 
+double. All of these Java primitives can be transmitted across an RMI/IDL
+remote interface at run time. 
+
+Test passing Java primitives as arguments.
+
+Test returning Java primitives as return values.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 2</PRE> 
+<PRE><I>Section</I> : 1.2.2 and 1.2.5 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+Arrays of any conforming RMI/IDL are also conforming RMI/IDL types. Arrays
+of Java primitives can be transmitted across and RMI/IDL remote interface
+at run time.
+
+Test passing arrays of Java primitives as arguments.
+
+Test returning arrays of Java primitives as return values.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 3</PRE> 
+<PRE><I>Section</I> : 1.2.4 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+Passing of objects by value is allowed in RMI-IIOP. An RMI/IDL value type 
+represents a class whose values can be moved between systems. So rather 
+than transmitting a reference between systems, the actual state of the 
+object is transmitted between systems. This requires that the receiving 
+system have an analogous class that can be used to hold the received value.
+A Java class is a conforming RMI/IDL value type if:
+
+(1) The class must directly or indirectly implement the java.io.Serializable
+    interface.
+
+(2) The class may implement the java.io.Externalizable.
+
+(3) The class and its superclasses are public.
+
+(4) If the class is an inner class, then its containg class must also be
+    a conforming RMI/IDL value type.
+
+(5) A value type must not either directly or indirectly implement the
+    java.rmi.Remote interface.
+
+(6) A value type may implement any public interface except for java.rmi.Remote.
+
+(7) There are no restrictions on method signatures for a value type.
+
+(8) There are no restrictions on static fields for a value type.
+
+(9) There are no restrictions on transient fields for a value type.
+
+Test passing objects by value as arguments.
+
+Test returning objects by value as return values.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 4</PRE> 
+<PRE><I>Section</I> : 1.2.4 and 1.2.5 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+Arrays of any conforming RMI/IDL are also conforming RMI/IDL types. Arrays
+of objects by value can be transmitted across and RMI/IDL remote interface
+at run time.
+
+Test passing arrays of objects by value as arguments.
+
+Test returning arrays of objects by value as return values.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 5</PRE> 
+<PRE><I>Section</I> : 1.2.3 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+An RMI remote interface defines a Java interface that can be invoked remotely.
+A Java interface is a conforming RMI/IDL remote interface if:
+
+(1) The interface inherits from java.rmi.Remote either directly or indirectly.
+
+(2) The interface and interfaces that it extends (either directly or indirectly)
+    are public.
+
+(3) All methods in the interface must throw java.rmi.RemoteException.
+
+(4) Method arguments and result types can be of any types.
+
+(5) All specified method exceptions other than java.rmi.RemoteException are
+    conforming RMI/IDL exception types.
+
+(6) Method names may be overloaded. However, when an interface directly
+    inherits from several base interfaces, it is forbidden for there to
+    be method name conflicts between inherited interfaces.
+
+(7) Constant definitions in the form of interface variables are permitted.
+
+When passing a remote interface as an argument in a method call or returing 
+a remote interface as a return value of a method call the remote interface
+is passed and returned by reference. The class of the actual object that is
+passed or returned must be either the stub class or the tie class of the
+remote interface.
+
+Test passing a remote interface as an argument and verify on the server side
+that you can call one of its methods.
+
+Test returning a remote interface as a return value and verify on the client
+side that you can call one of its methods.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 6</PRE> 
+<PRE><I>Section</I> : 1.2.2 and 1.2.5 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+Arrays of any conforming RMI/IDL are also conforming RMI/IDL types. Arrays
+of remote interfaces can be transmitted across and RMI/IDL remote interface
+at run time.
+
+Test passing arrays of remote interfaces as arguments.
+
+Test returning arrays of remote interfaces as return values.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 7</PRE> 
+<PRE><I>Section</I> : 1.2.6 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+An RMI/IDL exception type inherits from java.lang.Exception. A user should
+be able to throw any exception that inherits from java.lang.Exception in 
+RMI-IIOP. A user defined exception will be defined in a remote interface
+and the throwing of this user defined exception will be tested under 
+RMI-IIOP. System and runtime exceptions are also RMI/IDL exception types. 
+Throw a RemoteException, an EJBException, a NullPointerException, and an 
+Error. In all 4 cases the container should catch the exception, log it, and 
+then throw a RemoteException back to the client. A conforming RMI/IDL 
+exception class must have the following:
+
+(1) The class must directly or indirectly inherit java.lang.Exception.
+
+(2) The class must meet the requirements of the RMI/IDL value types.
+
+Test throwing a user defined exception.
+Test throwing system and runtime exceptions. The container should catch 
+the exception, log it, and then throw a RemoteException back to client.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 8</PRE> 
+<PRE><I>Section</I> : 1.2.4 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+Passing a graph of Java objects by value is allowed in RMI-IIOP. An RMI/IDL 
+value type represents a class whose values can be moved between systems. So 
+rather than transmitting a reference between systems, the actual state of the 
+object is transmitted between systems. This requires that the receiving 
+system have an analogous class that can be used to hold the received value.
+When passing or returning a graph of Java objects by value all of the Java 
+objects in the graph are traversed and transmitted across an RMI/IDL remote
+interface at run time.
+
+Test passing a graph of objects by value as arguments and verify that the
+graph of objects is correct.
+
+Test returning a graph of objects by value as return values and verify that
+the graph of objects is correct.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 9</PRE> 
+<PRE><I>Section</I> : 1.2.4 and 1.2.5 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+Arrays of any conforming RMI/IDL are also conforming RMI/IDL types. Arrays
+of Java graph objects can be transmitted across and RMI/IDL remote interface
+at run time. When passing or returning an array of Java graph objects by value 
+all of the Java graph objects are traversed and transmitted across an RMI/IDL 
+remote interface at run time.
+
+Test passing an array of graph objects by value as arguments and verify 
+that the array of graph objects is correct.
+
+Test returning an array of graph of objects by value as return values and 
+verify that the array of graph objects is correct.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 10</PRE> 
+<PRE><I>Section</I> : 1.2.4 and 1.2.5 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+Arrays of any conforming RMI/IDL are also conforming RMI/IDL types. Arrays
+of Java graph objects can be transmitted across and RMI/IDL remote interface
+at run time. When passing or returning an array of Java graph objects by value 
+all of the Java graph objects are traversed and transmitted across an RMI/IDL 
+remote interface at run time.
+
+Test passing a huge 3 dimensional array of objects by value as arguments and 
+verify that the huge 3 dimensional array of objects is correct.
+
+Test returning a huge 3 dimensional array of objects by value as arguments and 
+verify that the huge 3 dimensional array of objects is correct.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 11</PRE> 
+<PRE><I>Section</I> : 1.2.8, 1.3.9 and 1.3.10 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+Multi class types can be transmitted across and RMI/IDL remote interface 
+at run time.
+
+Test passing and returning multi class types.
+</PRE>
+
+<PRE><B><FONT SIZE=+1>Test</FONT></B> : 12</PRE> 
+<PRE><I>Section</I> : 1.2.8, 1.3.9 and 1.3.10 (Java-To-IDL Mapping Spec)</PRE>
+<P><P><PRE><U>Description</U> : 
+IDLEntity types can be transmitted across and RMI/IDL remote interface 
+at run time.
+
+Test passing and returning IDLEntity types.
+</PRE>
+
+<HR NOSHADE=2>
+</BODY>
+</HTML>

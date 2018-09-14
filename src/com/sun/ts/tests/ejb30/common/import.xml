@@ -1,0 +1,230 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb30 common import" basedir="." default="usage">
+<!--
+How deployment descriptors are defined and used:
+1. application.xml:
+  if exists ./application.xml, include it in EAR.
+  gen.application.xml target can be used to generate one, but it's skipped.
+  It copies from template/application.xml to ${dist.dir}/${pkg.dir}, and set
+  ${application.xml} to it. The generation step has been skipped since application.xml
+  is not required.
+
+3. ejb-jar.xml, application-client.xml, web.xml:
+  ${ejb.jar.xml} set to ${app.name}_ejb.xml
+  ${application.client.xml} set to ${app.name}_client.xml
+  ${web.xml} set to ${app.name}_web.xml
+  
+4. client.jar META-INF/MANIFEST.MF:
+  generated in place
+
+5. sun-application.xml, sun-ejb-jar.xml, sun-application-client.xml, sun-web.xml:
+  ${sun.ejb.jar.xml}: 
+  ${dist.dir}/${pkg.dir}/${ejb3.archive}.sun-ejb-jar.xml
+  
+  ${sun.application.client.xml}: 
+  ${dist.dir}/${pkg.dir}/${appclient.archive}.sun-application-client.xml
+  
+  ${sun.application.xml}: 
+  ${dist.dir}/${pkg.dir}/${application.archive}.sun-application.xml
+
+  ${sun.web.xml}:
+  ${dist.dir}/${pkg.dir}/${ejb3.archive}.sun-web.xml
+  
+6. If the property no.application.client has been set, package.appclient.jar target
+   will NOT be run.
+   
+7. package.war target is noop. If needed, leaf level
+   build.xml should import war-import.xml.  If the test directory only contains
+   ejb-jar and war without any application-client.jar, then leaf-level build.xml
+   should set property no.application.client (see #6).
+-->
+
+  <import file="../../../../../../../bin/xml/ts.import.xml"/>
+
+  <property name="ejb3.common.pkg" value="com/sun/ts/tests/ejb30/common"/>
+  <property name="ejb3.archive" value="${app.name}_ejb.jar"/>
+  <property name="appclient.archive" value="${app.name}_client.jar"/>
+  <property name="war.archive" value="${app.name}_web.war"/>
+  
+  <property name="ejb.jar.xml" value="${app.name}_ejb.xml"/>
+  <property name="application.client.xml" value="${app.name}_client.xml"/>
+  <property name="web.xml" value="${app.name}_web.xml"/>
+  
+  <property name="deletecomponentarchives" value="true"/>
+
+  <!-- ==================================================================-->
+  <!-- compile targets -->
+  <target name="compile">
+    <ts.javac includes="${ejb3.common.pkg}/**/*.java, 
+                        ${app.common}/**/*.java,
+                        ${app.common.2}/**/*.java,
+                        ${app.common.3}/**/*.java,
+                        ${app.common.4}/**/*.java,
+                        com/sun/ts/tests/common/webclient/validation/**/*.java,
+                        com/sun/ts/tests/common/ejb/**/*.java,
+                        com/sun/ts/tests/jms/common/**/*.java,
+                        com/sun/ts/tests/jms/commonee/**/*.java,
+                        ${pkg.dir}/**/*.java"/>
+    <ant antfile="${ts.home}/src/com/sun/ts/tests/servlet/common/build.xml" target="build"/>
+  </target>
+  
+  <!-- =============================================================== -->
+  <!-- package targets -->
+  <target name="package" 
+          depends="pre.package, package.ejb.jar, package.appclient.jar, package.war, package.ear">
+  </target>
+
+  <!-- for importing build files to add operations after compile and before package -->
+  <target name="pre.package">
+  </target>
+  
+  <target name="package.ejb.jar" unless="no.ejb.jar">
+    <dirname property="ejb.jar.xml.dir" file="${ejb.jar.xml}"/>
+    <basename property="ejb.jar.xml.base" file="${ejb.jar.xml}"/>
+    <ts.ejbjar descriptor="${ejb.jar.xml.base}" descriptordir="${ejb.jar.xml.dir}"
+               archivename="${app.name}" includedefaultfiles="false">
+      <fileset dir="${class.dir}" includes="${ejb.jar.classes}"/>
+    </ts.ejbjar>
+  </target>
+  
+  <target name="package.appclient.jar" unless="no.application.client">
+    <dirname property="application.client.xml.dir" file="${application.client.xml}"/>
+    <basename property="application.client.xml.base" file="${application.client.xml}"/>
+    <ts.clientjar descriptor="${application.client.xml.base}" 
+                  descriptordir="${application.client.xml.dir}"
+                  archivename="${app.name}" includedefaultfiles="false"
+                  mainclass="${client}">
+      <fileset dir="${class.dir}" includes="${appclient.jar.classes}">
+      </fileset>
+    </ts.clientjar>
+  </target>
+  
+  <target name="package.war">
+    <echo message="noop in import.package.war"/>
+  </target>
+  
+  <target name="package.ear" unless="no.ear">
+    <ts.ear archivename="${app.name}" descriptor="application.xml"
+            excludedfiles="*standalone_component*ar"
+            deletecomponentarchives="${deletecomponentarchives}">
+    </ts.ear>
+  </target>
+
+  <macrodef name="generate.sun-ejb-jar.xml">
+    <attribute name="ejblite.vehicles" default="ejbliteservlet ejbliteservlet2 ejblitejsf ejblitejsp" />
+    <attribute name="sun-ejb-jar.xml.template" default="sun-ejb-jar.xml.template" />
+    <sequential>
+      <for list="@{ejblite.vehicles}" param="vehicle" delimiter=" ">
+        <sequential>
+          <copy file="@{sun-ejb-jar.xml.template}" 
+                tofile="${app.name}_@{vehicle}_vehicle_web.war.sun-ejb-jar.xml"
+                overwrite="true">
+            <filterset>
+              <filter token="vehicle" value="@{vehicle}" />
+            </filterset>
+          </copy>
+        </sequential>
+      </for>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="clean.sun-ejb-jar.xml">
+    <attribute name="ejblite.vehicles" default="ejbliteservlet ejbliteservlet2 ejblitejsf ejblitejsp" />
+    <sequential>
+      <for list="@{ejblite.vehicles}" param="vehicle" delimiter=" ">
+        <sequential>
+          <delete file="${app.name}_@{vehicle}_vehicle_web.war.sun-ejb-jar.xml" failonerror="false" />
+        </sequential>
+      </for>
+    </sequential>
+  </macrodef>
+  
+  <macrodef name="fill.datasource">
+    <sequential>
+    <var name="jdbc.datasource.props.xml" value="" />
+    <echo message="jdbc.datasource.props in ts.jte: '${jdbc.datasource.props}'" />
+    <if>
+      <isset property="jdbc.datasource.props" />
+      <then>
+        <for list="${jdbc.datasource.props}" delimiter='",' param="pair">
+          <sequential>
+            <echo message="handle datasource property pair: @{pair}" />
+              <var name="jdbc.datasource.prop.key" unset="true" />
+              <var name="jdbc.datasource.prop.val" unset="true" />
+              <for list="@{pair}" delimiter="=" param="keyOrValue">
+                <sequential>
+                  <if>
+                    <not>
+                      <isset property="jdbc.datasource.prop.key" />
+                    </not>
+                    <then>
+                      <var name="jdbc.datasource.prop.key" value="@{keyOrValue}" />
+                    </then>
+                    <else>
+                      <var name="jdbc.datasource.prop.val" value="@{keyOrValue}" />
+                    </else>
+                  </if>
+                </sequential>
+              </for>
+
+            <var name="jdbc.datasource.props.xml" 
+        value="${jdbc.datasource.props.xml} &#10;
+        &lt;property&gt; &#10;
+          &lt;name&gt;${jdbc.datasource.prop.key}&lt;/name&gt; &#10;
+          &lt;value&gt;${jdbc.datasource.prop.val}&lt;/value&gt; &#10;
+        &lt;/property&gt; &#10;  "/>
+
+          </sequential>
+        </for>
+      </then>
+      <else>
+        <var name="jdbc.datasource.props" value="" />
+      </else>
+    </if>
+    <echo message="datasource properties for java files: ${jdbc.datasource.props}" />
+    <echo message="datasource properties for xml files : ${jdbc.datasource.props.xml}" />
+
+      <propertycopy name="_className_" from="${jdbc.db}.dataSource" />
+      <propertycopy name="_url_" from="${jdbc.db}.url" />
+      <propertycopy name="_user_" from="${jdbc.db}.user" />
+      <propertycopy name="_password_" from="${jdbc.db}.passwd" />
+      <propertycopy name="_databaseName_" from="${jdbc.db}.dbName" />
+      <propertycopy name="_portNumber_" from="${jdbc.db}.port" />
+      <propertycopy name="_serverName_" from="${jdbc.db}.server" />
+
+      <copy todir="${basedir}" overwrite="true">
+        <fileset dir="${basedir}" includes="*.template" />
+        <globmapper from="*.template" to="*" />
+        <filterset>
+          <filter token="className" value="${_className_}" />
+          <filter token="url" value="${_url_}" />
+          <filter token="user" value="${_user_}" />
+          <filter token="password" value="${_password_}" />
+          <filter token="databaseName" value="${_databaseName_}" />
+          <filter token="portNumber" value="${_portNumber_}" />
+          <filter token="serverName" value="${_serverName_}" />
+          <filter token="jdbc.datasource.props" value="${jdbc.datasource.props}" />
+          <filter token="jdbc.datasource.props.xml" value="${jdbc.datasource.props.xml}" />
+        </filterset>
+      </copy>
+    </sequential>
+  </macrodef>
+  
+</project>

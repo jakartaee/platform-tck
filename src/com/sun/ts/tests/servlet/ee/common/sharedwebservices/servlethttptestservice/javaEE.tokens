@@ -1,0 +1,10 @@
+WSRAnn=@WebServiceRef(name="service/servlethttptestservice")
+SERVICE=com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice.ServletHttpTestService
+IMPL=com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice.HelloImpl
+SEI=com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice.Hello
+NAMESPACEURI=http://servlethttptestservice.org/wsdl
+PORT=HelloPort
+URLALIAS=/jaxws/Hello
+SERVLETNAME=HelloImpl
+WEBSERVICEDESCRIPTION=ServletHttpTestService
+WEBSERVICECNTXROOT=ServletHttpTestService

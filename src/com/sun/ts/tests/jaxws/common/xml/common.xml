@@ -1,0 +1,1752 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jaxws_common_xml_common" >
+
+  <import file="../../../../../../../../bin/xml/ts.import.xml"/>
+
+  <!-- Add this property for jaxws/ee/j2w/document/literal/marshalltest/server
+       test to not package wrapper classes in war for this test. See the build.xml
+       file for this test and the target j2w_webservice_import_package in here
+       which has been modified below to handle this case. This is somewhat a HACK 
+       for now. We can look to clean it up later. TODO FIX THIS LATER. -->
+  <property name="includedefaultfiles" value="true"/>
+
+  <property name="sharedclient.classes" value="
+    com/sun/ts/tests/jaxws/sharedclients/*.class"/>
+
+  <property name="jaxws.common.classes" value="
+    com/sun/ts/tests/jaxws/wsi/constants/WSIConstants.class,
+    com/sun/ts/tests/jaxws/common/*.class"/>
+
+  <property name="vehicle.pkg.dir" value="com/sun/ts/tests/common/vehicle"/>
+
+  <property name="wsi.common.classes" value="
+    com/sun/ts/tests/jaxws/wsi/j2w/*.class,
+    com/sun/ts/tests/jaxws/wsi/constants/*.class,
+    com/sun/ts/tests/jaxws/wsi/utils/*.class,
+    com/sun/ts/tests/jaxws/wsi/requests/*.class"/>
+
+  <property name="wsa.common.classes" value="
+    com/sun/ts/tests/jaxws/wsa/common/*.class"/>
+
+  <property name="common.classes.all" value="
+    ${sharedclient.classes},
+    ${jaxws.common.classes},
+    ${wsa.common.classes},
+    ${wsi.common.classes}"/>
+
+  <property name="portable.classes" value="
+    ${pkg.dir}/**/*.class"/>
+
+  <property name="client.classes" value="
+    ${pkg.dir}/client/*.class,
+    ${pkg.dir}/**/*lient*.class"/>
+
+  <property name="wsdl.xsd.files" value="
+    **/*.wsdl, **/*.xsd"/>
+
+  <property name="jaxws.runtime.xml" value="sun-jaxws.xml"/>
+
+
+    <target name="predeploy.webservices" >
+      <ant antfile="build.xml" dir="${ts.home}/bin" target="predeploy.webservices" />
+    </target>
+
+    <target name="undeploy.webservices" >
+      <ant antfile="build.xml" dir="${ts.home}/bin" target="undeploy.webservices" />
+    </target>
+
+    <target name="deployall" >
+      <ant antfile="build.xml" dir="${ts.home}/bin" target="deployall" />
+    </target>
+    <target name="undeployall" >
+        <dosubdirs srcdir="${src.dir}/com/sun/ts/tests/jaxws" todo="undeployapp" />
+    </target>
+    <target name="undeployapp" >
+      <ant antfile="build.xml" dir="${ts.home}/bin" target="undeployapp" />
+    </target>
+
+    <target name="jaxws.dependency.checks"> 
+       <condition property="standalone.mode">
+            <or>
+               <contains substring="standalone" string="${platform.mode}"/>
+               <contains substring="standalone" string="${the.vehicles}"/>
+            </or>
+       </condition>
+       <!-- other check would also go here -->
+       <condition property="ok.copy.templates.dd.files">
+           <and>
+               <not>
+                   <contains substring="true" string="${standalone.mode}"/>
+               </not>
+               <not>
+                   <contains substring="true" string="${dd.files.already.exist}"/>
+               </not>
+           </and>
+       </condition>
+       <condition property="ok.copy.no.dd.files">
+           <and>
+               <not>
+                   <isset property="standalone.mode"/>
+               </not>
+               <contains substring="none" string="${which.dds}"/>
+           </and>
+       </condition>
+       <echo message="standalone.mode=${standalone.mode}"/>
+       <echo message="ok.copy.templates.dd.files=${ok.copy.templates.dd.files}"/>
+       <echo message="ok.copy.no.dd.files=${ok.copy.no.dd.files}"/>
+    </target>
+
+    <macrodef name="which.token.file">
+        <sequential>
+          <if>
+              <available file="${ts.home}/src/${pkg.dir}/${platform.mode}.tokens"/>
+          <then>
+              <property name="filter.file" value="${ts.home}/src/${pkg.dir}/${platform.mode}.tokens"/>
+              <echo message="Using filter file:${filter.file}"/>
+              <filterset id="token.replacements">
+                   <filtersfile file="${filter.file}"/>
+              </filterset>
+          </then>
+          <else>
+              <property name="filter.file" value="${ts.home}/src/com/sun/ts/tests/jaxws/common/xml/${platform.mode}.tokens"/>
+              <echo message="Using filter file:${filter.file}"/>
+              <filterset id="token.replacements">
+                   <filtersfile file="${filter.file}"/>
+              </filterset>
+          </else>
+          </if>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="check.for.numservices">
+        <sequential>
+             <if>
+                 <isset property="numservices"/>
+             <then>
+                 <property name="_numservices" value="numservices${numservices}" />
+             </then>
+             <else>
+                 <property name="_numservices" value=""/>
+             </else>
+             </if>
+             <echo message="numservices=${_numservices}"/>
+        </sequential>
+    </macrodef>
+
+
+    <target name="copy_client_dd_files" depends="jaxws.dependency.checks" if="ok.copy.templates.dd.files">
+        <which.token.file/>
+        <check.for.numservices/>
+        <!-- copy all template files that begin with appname to their appropriate name-->
+        <for list="${the.vehicles}" param="vehicle" delimiter=" " trim="true">
+          <sequential>
+             <echo message="vehicle=@{vehicle}"/>
+	     <if>
+		<isset property="app.name.endpoint"/>
+             <then>
+        	<var name="app.name.tmp" value="${app.name.endpoint}"/>
+             </then>
+             <else>
+        	<var name="app.name.tmp" value="${app.name}"/>
+             </else>
+             </if>
+             <if>
+               <not>
+                 <isset property="use.file.publishing"/>
+               </not>
+             <then>
+                 <echo message="Using HTTP publishing"/>
+                 <if>
+                     <contains substring="ejb" string="${endpoint.type}"/>
+                 <then>
+                     <echo message="Copying templates that will use appname as the contextRoot (ejb base endpoint)"/>
+                     <copy failonerror="false" overwrite="true" todir="${ts.home}/tmp">
+                       <fileset dir="${ts.home}/src/com/sun/ts/tests/jaxws/common/xml/deploymentDescriptors/httptemplates/client${_numservices}"
+                         includes="APPNAME_@{vehicle}*xml"/>
+                       <regexpmapper from="^APPNAME([\.|_])(.*)(xml)$$" to="${app.name}\1\2\3"/>
+                       <filterset>
+                           <filter token="APPNAME" value="${app.name.tmp}"/>
+                           <filter token="JNDINAME" value="${app.name}"/>
+                           <filterset refid="token.replacements"/>
+                       </filterset>
+                     </copy>
+                 </then>
+                 <else>
+                     <echo message="Copying templates that will use appname_web as the contextRoot (servlet base endpoint)"/>
+                     <copy failonerror="false" overwrite="true" todir="${ts.home}/tmp">
+                       <fileset dir="${ts.home}/src/com/sun/ts/tests/jaxws/common/xml/deploymentDescriptors/httptemplates/client${_numservices}"
+                         includes="APPNAME_@{vehicle}*xml"/>
+                       <regexpmapper from="^APPNAME([\.|_])(.*)(xml)$$" to="${app.name}\1\2\3"/>
+                       <filterset>
+                           <filter token="APPNAME" value="${app.name.tmp}_web"/>
+                           <filter token="JNDINAME" value="${app.name}"/>
+                           <filterset refid="token.replacements"/>
+                       </filterset>
+                     </copy>
+                 </else>
+                 </if>
+             </then>
+             <else>
+                 <echo message="Using file publishing"/>
+                 <copy failonerror="false" overwrite="true" todir="${ts.home}/tmp">
+                   <fileset dir="${ts.home}/src/com/sun/ts/tests/jaxws/common/xml/deploymentDescriptors/filetemplates/client${_numservices}"
+                     includes="APPNAME_@{vehicle}*xml"/>
+                   <regexpmapper from="^APPNAME([\.|_])(.*)(xml)$$" to="${app.name}\1\2\3"/>
+                   <filterset>
+                       <filter token="APPNAME" value="${app.name.tmp}"/>
+                       <filter token="JNDINAME" value="${app.name}"/>
+                       <filter token="WSDLFILENAME" value="${wsdl.filename}"/>
+                       <filter token="WSDLFILENAME2" value="${wsdl.filename2}"/>
+                       <filterset refid="token.replacements"/>
+                   </filterset>
+                 </copy>
+             </else>
+             </if>
+          </sequential>
+        </for>
+        <!-- override a specific dd file that has already been created -->
+        <if>
+             <isset property="override.dd.files"/>
+        <then>
+             <echo message="Overriding the following dd files:${override.dd.files}"/>
+             <copy failonerror="false" overwrite="true" todir="${ts.home}/tmp">
+               <fileset dir="${src.dir}/${pkg.dir}"
+                 includes="${override.dd.files}"/>
+             </copy>
+        </then>
+        </if>
+      
+    </target>
+
+    <target name="copy_endpoint_dd_files" depends="jaxws.dependency.checks" if="ok.copy.templates.dd.files">
+        <which.token.file/>
+        <check.for.numservices/>
+        <var name="appname.tmp" value="${app.name}"/>
+        <if>
+           <not>
+              <isset property="use.file.publishing"/>
+           </not>
+        <then>
+           <!-- this is for http publishing -->
+           <if>
+               <contains substring="servlet" string="${endpoint.type}"/>
+           <then>
+                 <echo message="Using http publishing for a servlet endpoint"/>
+                 <var name="template.dir.name" value="${ts.home}/src/com/sun/ts/tests/jaxws/common/xml/deploymentDescriptors/httptemplates/servletendpoint${_numservices}"/>
+                 <var name="appname.tmp" value="${app.name}_web"/>
+           </then>
+           <elseif>
+                  <contains substring="ejb" string="${endpoint.type}"/>
+              <then>
+                 <echo message="Using http publishing for an ejb endpoint"/>
+                 <var name="template.dir.name" value="${ts.home}/src/com/sun/ts/tests/jaxws/common/xml/deploymentDescriptors/httptemplates/ejbendpoint${_numservices}"/>
+              </then>
+           </elseif>
+           <else>
+              <fail message="ERROR:The specified endpoint ${endpoint.type} is not supported at this time"/>
+           </else>
+           </if>
+        </then>
+        <else>
+           <!-- this is for file publishing -->
+           <if>
+               <contains substring="servlet" string="${endpoint.type}"/>
+           <then>
+                 <echo message="Using file publishing for an servlet endpoint"/>
+                 <var name="template.dir.name" value="${ts.home}/src/com/sun/ts/tests/jaxws/common/xml/deploymentDescriptors/filetemplates/servletendpoint${_numservices}"/>
+           </then>
+           <elseif>
+                  <contains substring="ejb" string="${endpoint.type}"/>
+              <then>
+                 <echo message="Using file publishing for an ejb endpoint"/>
+                 <var name="template.dir.name" value="${ts.home}/src/com/sun/ts/tests/jaxws/common/xml/deploymentDescriptors/filetemplates/ejbendpoint${_numservices}"/>
+              </then>
+           </elseif>
+           <else>
+              <fail message="ERROR:The specified endpoint ${endpoint.type} is not supported at this time"/>
+           </else>
+           </if>
+        </else>
+        </if>
+        <echo message="template.dir.name = ${template.dir.name}"/>
+        <echo message="dest dir = ${ts.home}/tmp"/>
+        <copy failonerror="false" overwrite="true" todir="${ts.home}/tmp">
+          <fileset dir="${template.dir.name}" includes="*.xml"/>
+          <regexpmapper from="^APPNAME([\.|_])(.*)(xml)$$" to="${app.name}\1\2\3"/>
+          <filterset>
+              <filter token="APPNAME" value="${appname.tmp}"/>
+              <filterset refid="token.replacements"/>
+          </filterset>
+        </copy>
+    </target>
+
+    <target name="annotate_vehicles" depends="jaxws.dependency.checks" unless="standalone.mode">
+       <which.token.file/>
+       <for list="${the.vehicles}" param="vehicle" delimiter=" " trim="true">
+          <sequential>
+            <echo message="creating annotated vehicle files for @{vehicle} vehicle"/>
+            <ant antfile="build.xml" dir="${ts.home}/src/com/sun/ts/tests/common/vehicle/@{vehicle}" target="build">
+               <property name="the.filter.file" value="${filter.file}"/>
+            </ant>
+          </sequential>
+       </for>
+    </target>
+
+    <target name="copyendpointhandlerfile" depends="jaxws.dependency.checks" >
+           <echo message="Check if server-handler.xml file exists"/>
+           <if>
+                <available file="${src.dir}/${pkg.dir}/server-handler.xml"/>
+           <then>
+                 <echo message="Copying server-handler.xml file to classes dir"/>
+                 <copy file="${src.dir}/${pkg.dir}/server-handler.xml"
+                     todir="${class.dir}/${pkg.dir}" overwrite="yes"/>
+           </then>
+           </if>
+    </target>
+    <target name="removeendpointhandlerfile" depends="jaxws.dependency.checks" >
+           <echo message="Removing server-handler.xml file from classes dir"/>
+           <delete failonerror="false">
+               <fileset dir="${class.dir}/${pkg.dir}" includes="server-handler.xml" />
+           </delete>
+    </target>
+
+    <target name="copyclienthandlerfile" depends="jaxws.dependency.checks" unless="standalone.mode">
+       <for list="${the.vehicles}" param="vehicle" delimiter=" " trim="true">
+          <sequential>
+            <if>
+                <and>
+                    <not>
+                        <contains substring="standalone" string="@{vehicle}"/>
+                    </not>
+                    <or>
+                         <available file="${src.dir}/${pkg.dir}/client-handler.xml"/>
+                         <available file="${src.dir}/${pkg.dir}/handler.xml"/>
+                    </or>
+                </and>
+            <then>
+               <echo message="Copying handler file to common/vehicle/@{vehicle}"/>
+               <copy todir="${class.dir}/com/sun/ts/tests/common/vehicle/@{vehicle}" overwrite="yes">
+                     <fileset dir="${src.dir}/${pkg.dir}" includes="client-handler.xml handler.xml"/>
+               </copy>
+            </then>
+            </if>
+          </sequential>
+       </for>
+    </target>
+
+    <target name="removeclienthandlerfile" depends="jaxws.dependency.checks" unless="standalone.mode">
+       <for list="${the.vehicles}" param="vehicle" delimiter=" " trim="true">
+          <sequential>
+            <if>
+                <and>
+                   <not>
+                       <contains substring="standalone" string="@{vehicle}"/>
+                   </not>
+                   <available file="${src.dir}/${pkg.dir}/client-handler.xml"/>
+               </and>
+            <then>
+                <echo message="Removing handler file from common/vehicle/@{vehicle}"/>
+                <delete failonerror="false">
+                    <fileset dir="${class.dir}/com/sun/ts/tests/common/vehicle/@{vehicle}" includes="client-handler.xml handler.xml" />
+                </delete>
+            </then>
+            </if>
+          </sequential>
+       </for>
+    </target>
+        
+    <!-- default value for customization file name unless overridden by test -->
+    <property name="customization.binding.files" value="customfile.xml" />
+
+    <!-- list of customization files excluded from being processed by tools -->
+    <property name="excluded.customization.binding.files" value="" />
+
+    <!-- default value for generation of WSDL for wsgen invocations -->
+    <property name="genwsdl" value="true" />
+
+    <!-- default value for extension is (false) -->
+    <property name="extension" value="false" />
+
+    <!-- property constants for soap1.1 and soap1.2 protocols -->
+    <property name="soap11" value="soap1.1" />
+    <property name="soap12" value="Xsoap1.2" />
+
+    <!-- default value for protocol is (soap1.1) -->
+    <property name="protocol" value="${soap11}" />
+
+    <!-- default value for endpoint.type is (servlet) -->
+    <property name="endpoint.type" value="servlet" />
+
+    <!-- determine if this is an ejb or servlet(default) based endpoint -->
+    <macrodef name="set.endpoint.type">
+        <sequential>
+           <if>
+                   <contains substring="servlet" string="${endpoint.type}"/>
+           <then>
+                  <!-- this is a servlet based endpoint -->
+                  <var name="inf.wsdl.location" value="WEB-INF/wsdl"/>
+           </then>
+           <elseif>
+                   <contains substring="ejb" string="${endpoint.type}"/>
+              <then>
+                  <!-- this is an ejb based endpoint -->
+                  <var name="inf.wsdl.location" value="META-INF/wsdl"/>
+              </then>
+           </elseif>
+           <else>
+              <fail message="ERROR:The specified endpoint ${endpoint.type} is not supported at this time"/>
+           </else>
+           </if>
+           <echo message="inf.wsdl.location=${inf.wsdl.location}"/>
+        </sequential>
+    </macrodef>
+    <!-- set the value that will be put into the sei wsdlLocation attribute of the @WebServiceRef -->
+    <macrodef name="set.generationtime.endpoint.wsdl.location">
+        <sequential>
+            <if>
+                  <isset property="wsdl.location"/>
+            <then>
+               <!-- if it is set, then use it -->
+               <echo message="wsdl.location already set, using it"/>
+               <var name="tmp.wsdl.location" value="${wsdl.location}"/>
+            </then>
+            <elseif>
+                <contains substring="standalone" string="${platform.mode}"/>
+            <then>
+               <set.endpoint.type/>
+               <var name="tmp.wsdl.location" value="${inf.wsdl.location}/${wsdl.filename}"/>
+            </then>
+            </elseif>
+            <elseif>
+                <not>
+                   <contains substring="standalone" string="${platform.mode}"/>
+                </not>
+            <then>
+                <var name="tmp.wsdl.location" value="@wsdlLocation@"/>
+            </then>
+            </elseif>
+            </if>
+            <echo message="tmp.wsdl.location=${tmp.wsdl.location}"/>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="set.endpoint.wsdl.location">
+        <sequential>
+            <if>
+                  <isset property="wsdl.location"/>
+            <then>
+               <!-- if it is set, then use it -->
+               <echo message="wsdl.location already set, using it"/>
+               <var name="tmp.wsdl.location" value="${wsdl.location}"/>
+            </then>
+            <else>
+               <set.endpoint.type/>
+               <var name="tmp.wsdl.location" value="${inf.wsdl.location}/${wsdl.filename}"/>
+            </else>
+            </if>
+            <echo message="tmp.wsdl.location=${tmp.wsdl.location}"/>
+        </sequential>
+    </macrodef>
+
+    <!-- determine if this is an ejb or servlet(default) based endpoint -->
+    <macrodef name="set.clientvehicle.type">
+        <sequential>
+            <echo message="the.vehicle=${the.vehicle}"/>
+            <if>
+                  <isset property="the.vehicle"/>
+            <then>
+               <!-- is this an ejb or appclient vehicle -->
+               <if>
+                 <or>
+                   <contains substring="ejb" string="${the.vehicle}"/>
+                   <contains substring="appclient" string="${the.vehicle}"/>
+                 </or>
+               <then>
+                   <var name="inf.wsdl.location" value="META-INF/wsdl"/>
+               </then>
+               <else>
+                  <var name="inf.wsdl.location" value="WEB-INF/wsdl"/>
+               </else>
+               </if>
+           </then>
+           <else>
+              <!-- the default is servlet vehicle -->
+              <echo message="using default value for vehicle"/>
+              <var name="inf.wsdl.location" value="WEB-INF/wsdl"/>
+           </else>
+           </if>
+           <echo message="inf.wsdl.location=${inf.wsdl.location}"/>
+        </sequential>
+    </macrodef>
+    <!-- set the value that will be put into the sei wsdlLocation attribute of the @WebServiceRef -->
+    <macrodef name="set.clientvehicle.wsdl.location">
+        <sequential>
+            <if>
+                  <isset property="wsdl.location"/>
+            <then>
+               <echo message="wsdl.location already set, using it"/>
+               <var name="tmp.wsdl.location" value="${wsdl.location}"/>
+            </then>
+            <else>
+               <set.clientvehicle.type/>
+               <var name="tmp.wsdl.location" value="${inf.wsdl.location}/${wsdl.filename}"/>
+            </else>
+            </if>
+            <echo message="tmp.wsdl.location=${tmp.wsdl.location}"/>
+        </sequential>
+    </macrodef>
+
+    <!-- create the sei and gsi class files that have the correct endpoint wsdl location -->
+    <macrodef name="createEndpointSEIGSI">
+        <sequential>
+          <set.endpoint.wsdl.location/>
+          <if>
+              <and>
+                 <not>
+                   <contains substring="standalone" string="${platform.mode}"/>
+                 </not>
+                 <not>
+                    <isset property="wsdl.location"/>
+                 </not>
+              </and>
+          <then>
+             <echo message="Correcting the wsdl location for the endpoint in the SEI and GSI"/>
+             <echo message="The wsdl location will be set to:${tmp.wsdl.location}"/>
+             <echo message="The vehicle is: ${the.vehicle}"/>
+             <createSEIGSI/>
+          </then>
+          </if>
+        </sequential>
+    </macrodef>
+
+    <!-- create the sei and gsi class files that have the correct client side wsdl location -->
+    <macrodef name="createClientVehicleSEIGSI">
+        <sequential>
+          <set.clientvehicle.wsdl.location/>
+          <echo message="platform.mode=${platform.mode}"/>
+          <echo message="wsdl.location=${wsdl.location}"/>
+          <echo message="the.vehicle=${the.vehicle}"/>
+          <echo message="the.vehicles=${the.vehicles}"/>
+          <if>
+             <and>
+                 <not>
+                   <contains substring="standalone" string="${platform.mode}"/>
+                 </not>
+                 <not>
+                   <isset property="wsdl.location"/>
+                 </not>
+                 <contains substring="${the.vehicle}" string="${the.vehicles}"/>
+             </and>
+           <then>
+             <echo message="Correcting the wsdl location for the ${the.vehicle} vehicle in the SEI and GSI"/>
+             <echo message="The wsdl location will be set to:${tmp.wsdl.location}"/>
+             <createSEIGSI/>
+           </then>
+           <else>
+             <echo message="No correction of the wsdl location for the ${the.vehicle} vehicle will take place"/>
+           </else>
+           </if>
+        </sequential>
+    </macrodef>
+    <macrodef name="createSEIGSI">
+        <sequential>
+             <if>
+                 <isset property="dependency.pkg"/>
+             <then> 
+                 <var name="tmp.pkg.dir" value="${dependency.pkg}"/>
+             </then> 
+             <else> 
+                 <var name="tmp.pkg.dir" value="${pkg.dir}"/>
+             </else> 
+             </if>
+
+             <!-- build the list of sei and gsi files -->
+             <var name="cnt" value="1"/>
+	     <var name="cnt2" value="1"/>
+             <for list="${service.names}" param="service" delimiter="," trim="true">
+               <sequential>
+                 <var name="service.java.files" value=""/>
+                 <var name="service.pkg.java.files" value=""/>
+                 <var name="service.class.files" value=""/>
+
+                 <var name="service.java.files" value="${service.java.files} @{service}.java"/>
+                 <var name="service.pkg.java.files" value="${service.pkg.java.files} ${pkg.dir}/@{service}.java"/>
+                 <var name="service.class.files" value="${service.class.files} @{service}.class"/>
+
+		 <if>
+		     <isset property="wsdl.names"/>
+		 <then>
+		     <var name="the.wsdl" value=""/>
+		     <propertyindex from="wsdl.names" name="_wsdl.names.tmp" delimiter="," index="${cnt2}"/>
+		     <for list="${_wsdl.names.tmp}" param="wsdl" delimiter="," trim="true">
+		     <sequential>
+		         <var name="tmp.wsdl.location" value="${inf.wsdl.location}/@{wsdl}"/>
+		     </sequential>
+		     </for>
+		 </then>
+		 </if>
+
+                 <var name="sei.java.files" value=""/>
+                 <var name="sei.pkg.java.files" value=""/>
+                 <var name="sei.class.files" value=""/>
+                 <propertyindex from="sei.names" name="_sei.names.tmp" delimiter=":" index="${cnt}"/>
+
+                 <for list="${_sei.names.tmp}" param="sei" delimiter="," trim="true">
+                   <sequential>
+                     <var name="sei.java.files" value="${sei.java.files} @{sei}.java"/>
+                     <var name="sei.pkg.java.files" value="${sei.pkg.java.files} ${pkg.dir}/@{sei}.java"/>
+                     <var name="sei.class.files" value="${sei.class.files} @{sei}.class"/>
+                   </sequential>
+                 </for>
+
+                 <echo message="service.java.files=${service.java.files}"/>
+                 <echo message="service.pkg.java.files=${service.pkg.java.files}"/>
+                 <echo message="service.class.files=${service.class.files}"/>
+                 <echo message="sei.java.files=${sei.java.files}"/>
+                 <echo message="sei.pkg.java.files=${sei.pkg.java.files}"/>
+                 <echo message="sei.class.files=${sei.class.files}"/>
+
+                 <echo message="copying the SEI and GSI sources to ${tmp.pkg.dir}"/>
+                 <mkdir dir="${src.dir}/${pkg.dir}/${the.vehicle}"/>
+                 <copy failonerror="false" overwrite="true" todir="${src.dir}/${pkg.dir}/${the.vehicle}">
+                     <fileset dir="${class.dir}/${tmp.pkg.dir}/generated_sources/${tmp.pkg.dir}"
+                        includes="${service.java.files} ${sei.java.files}"/>
+                       <filterset>
+                           <filter token="wsdlLocation" value="${tmp.wsdl.location}"/>
+                       </filterset>
+                 </copy>
+
+                 <echo message="compiling the newly filtered SEI and GSI sources"/>
+                 <echo message="SEI=(${sei.java.files})"/>
+                 <echo message="GSI=(${service.java.files})"/>
+                 <ts.javac includes="${pkg.dir}/${the.vehicle}/**/*.java"/>
+                 <math result="cnt" operand1="${cnt}" operation="+" operand2="1" datatype="int" />
+                 <math result="cnt2" operand1="${cnt2}" operation="+" operand2="1" datatype="int" />
+               </sequential>
+             </for>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="removeSEIGSIsources">
+        <sequential>
+             <echo message="removing the new SEI and GSI sources for vehicle: ${the.vehicle}"/>
+             <!-- COMMENT THE FOLLOWING LINE OUT TO RETAIN THE FILES -->
+             <delete failonerror="false" dir="${src.dir}/${pkg.dir}/${the.vehicle}"/>
+        </sequential>
+    </macrodef>
+
+    <!-- generates portable artifacts for WSDL-to-Java -->
+    <macrodef name="do_wsimport">
+        <sequential>
+          <if><or><equals arg1="${ant.java.version}" arg2="1.8"/><equals arg1="${ant.java.version}" arg2="1.7"/></or>
+            <then><if><istrue value="${build.vi}"/><then><property name="do.wsimport.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs}"/></then><else><property name="do.wsimport.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs.ri}"/></else></if></then>
+            <else><property name="do.wsimport.jvmarg" value="-XaddExports:java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED,java.xml/com.sun.xml.internal.stream.writers=ALL-UNNAMED,java.base/sun.reflect.misc=ALL-UNNAMED"/></else>
+          </if>                                                           		             
+           <setup_target_dirs/>
+           <echo message="wsdlFile=${wsdl.file}"/>
+           <echo message="class.dir=${class.dir}/${pkg.dir}"/>
+           <if>
+               <!-- Ultimately we want to verify that if the wsdl has been updated then we need
+                    to regenerate. We are using reverse logic here so that we can check the wsdl
+                    against all the class files, since uptodate only allows the includes on the 
+                    srcfiles side, or if the test directory wants the generation to occur regardless
+                    of the timestamp by use of the always.generate property. 
+                    The use of always.generate can use use in cases when a java class has 
+                    been compiled before the wsimport task is called. In this case if always.generate
+                    isn't used, then generation won't occur since there is a class file that is already
+                    up todate. An example is src/com/sun/ts/tests/jaxws/wsi/w2j/rpc/literal/R1005 -->
+               <or>
+                   <uptodate targetfile="${wsdl.file}">
+                      <srcfiles dir= "${class.dir}/${pkg.dir}" includes="*.class"/>
+                   </uptodate>
+                   <isset property="always.generate"/>
+               </or>
+      
+          <then>
+               <var name="wsdl.filename" value="${the.wsdl.filename}" />
+               <set.generationtime.endpoint.wsdl.location/>
+               <var name="_src.pkg.dir" value="${src.dir}/${pkg.dir}" />
+               <var name="_pkg.dir.gensrc" value="${class.dir}/${pkg.dir}/generated_sources" />
+               <var name="_pkg.dir.genclasses" value="${class.dir}/${pkg.dir}/generated_classes" />
+               <mkdir dir="${_pkg.dir.gensrc}" />
+               <mkdir dir="${_pkg.dir.genclasses}" />
+               <translatepath propname="_src.pkg.dir" />
+               <translatepath propname="_pkg.dir.gensrc" />
+               <translatepath propname="_pkg.dir.genclasses" />
+               <echo message="pkg.dir=${pkg.dir}"/>
+               <echo message="_src.pkg.dir=${_src.pkg.dir}"/>
+               <echo message="current.dir=${src.dir}/${pkg.dir}"/>
+               <echo message="wsdlLocation=${wsdl.location}"/>
+               <echo message="tmp.wsdl.location=${tmp.wsdl.location}"/>
+               <echo message="binding files=${customization.binding.files}" />
+               <echo message="excluded binding files=${excluded.customization.binding.files}" />
+               <echo message="build.vi=${build.vi}"/>
+
+               <if>
+                   <istrue value="${build.vi}"/>
+               <then>
+                  <echo message="----------------------------------------------------------"/>
+                  <echo message="Doing WSDL-to-Java generation using vendor specific tools"/>
+                  <echo message="----------------------------------------------------------"/>
+                  <!-- task definition for the Vendors ant task which inturn calls their WSDL-to-Java tool -->
+                  <taskdef name="wsimport" classname="${wsimport.ant.classname}">
+                      <classpath>
+                          <pathelement path="${wsimport.classpath}" />
+                      </classpath>
+                  </taskdef>
+                  <wsimport 
+                     fork="true"
+                     verbose="${wsimport.verbose}"
+                     debug="${wsimport.debug}"
+                     destdir="${_pkg.dir.genclasses}"
+                     sourcedestdir="${_pkg.dir.gensrc}"
+                     keep="true"
+                     extension="${extension}"
+                     wsdllocation="${tmp.wsdl.location}"
+                     catalog="${src.dir}/com/sun/ts/tests/jaxws/common/xml/catalog/META-INF/jax-ws-catalog.xml"
+                     wsdl="${wsdl.file}">
+                     <binding dir="${_src.pkg.dir}" includes="${customization.binding.files}" excludes="${excluded.customization.binding.files}"/>
+                     <jvmarg line="${ri.wsimport.jvmargs} ${do.wsimport.jvmarg}"/>
+                  </wsimport>
+               </then>
+               <else>
+                  <echo message="----------------------------------------------------------"/>
+                  <echo message="Doing WSDL-to-Java generation using the SUN specific tools"/>
+                  <echo message="----------------------------------------------------------"/>
+                  <!-- task definition for the Sun's ant task which inturn calls the WSDL-to-Java tool -->
+                  <taskdef name="wsimport" classname="${ri.wsimport.ant.classname}">
+                      <classpath>
+                          <pathelement path="${ri.wsimport.classpath}" />
+                      </classpath>
+                  </taskdef>
+                  <wsimport 
+                     fork="true"
+                     verbose="${ri.wsimport.verbose}"
+                     debug="${ri.wsimport.debug}"
+                     destdir="${_pkg.dir.genclasses}"
+                     sourcedestdir="${_pkg.dir.gensrc}"
+                     keep="true"
+                     extension="${extension}"
+                     wsdllocation="${tmp.wsdl.location}" 
+                     catalog="${src.dir}/com/sun/ts/tests/jaxws/common/xml/catalog/META-INF/jax-ws-catalog.xml"
+                     wsdl="${wsdl.file}">
+                     <binding dir="${_src.pkg.dir}" includes="${customization.binding.files}" excludes="${excluded.customization.binding.files}"/>
+                     <jvmarg line="${ri.wsimport.jvmargs} ${do.wsimport.jvmarg}"/>
+                  </wsimport>
+               </else>
+               </if>
+           </then>
+           <else>
+              <echo message="WSImport: No generation is necessary, files are up to date"/>
+           </else>
+           </if>
+        </sequential>
+    </macrodef> 
+
+    <!-- generates portable artifacts for WSDL-to-Java -->
+    <macrodef name="do_wsimport_with_package_option">
+        <sequential>
+          <if><or><equals arg1="${ant.java.version}" arg2="1.8"/><equals arg1="${ant.java.version}" arg2="1.7"/></or>
+            <then><if><istrue value="${build.vi}"/><then><property name="do.wsimport.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs}"/></then><else><property name="do.wsimport.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs.ri}"/></else></if></then>
+            <else><property name="do.wsimport.jvmarg" value="-XaddExports:java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED,java.xml/com.sun.xml.internal.stream.writers=ALL-UNNAMED,java.base/sun.reflect.misc=ALL-UNNAMED"/></else>
+          </if> 
+           <setup_target_dirs/>
+           <echo message="wsdlFile=${wsdl.file}"/>
+           <echo message="class.dir=${class.dir}/${pkg.dir}"/>
+           <if>
+               <!-- Ultimately we want to verify that if the wsdl has been updated then we need
+                    to regenerate. We are using reverse logic here so that we can check the wsdl
+                    against all the class files, since uptodate only allows the includes on the 
+                    srcfiles side, or if the test directory wants the generation to occur regardless
+                    of the timestamp by use of the always.generate property. 
+                    The use of always.generate can use use in cases when a java class has 
+                    been compiled before the wsimport task is called. In this case if always.generate
+                    isn't used, then generation won't occur since there is a class file that is already
+                    up todate. An example is src/com/sun/ts/tests/jaxws/wsi/w2j/rpc/literal/R1005 -->
+               <or>
+                   <uptodate targetfile="${wsdl.file}">
+                      <srcfiles dir= "${class.dir}/${pkg.dir}" includes="*.class"/>
+                   </uptodate>
+                   <isset property="always.generate"/>
+               </or>
+      
+          <then>
+               <var name="wsdl.filename" value="${the.wsdl.filename}" />
+               <set.generationtime.endpoint.wsdl.location/>
+               <var name="_src.pkg.dir" value="${src.dir}/${pkg.dir}" />
+               <var name="_pkg.dir.gensrc" value="${class.dir}/${pkg.dir}/generated_sources" />
+               <var name="_pkg.dir.genclasses" value="${class.dir}/${pkg.dir}/generated_classes" />
+               <mkdir dir="${_pkg.dir.gensrc}" />
+               <mkdir dir="${_pkg.dir.genclasses}" />
+               <translatepath propname="_src.pkg.dir" />
+               <translatepath propname="_pkg.dir.gensrc" />
+               <translatepath propname="_pkg.dir.genclasses" />
+               <echo message="pkg.dir=${pkg.dir}"/>
+               <echo message="_src.pkg.dir=${_src.pkg.dir}"/>
+               <echo message="current.dir=${src.dir}/${pkg.dir}"/>
+               <echo message="wsdlLocation=${wsdl.location}"/>
+               <echo message="tmp.wsdl.location=${tmp.wsdl.location}"/>
+               <echo message="binding files=${customization.binding.files}" />
+               <echo message="excluded binding files=${excluded.customization.binding.files}" />
+               <echo message="build.vi=${build.vi}"/>
+
+               <if>
+                   <istrue value="${build.vi}"/>
+               <then>
+                  <echo message="----------------------------------------------------------"/>
+                  <echo message="Doing WSDL-to-Java generation using vendor specific tools"/>
+                  <echo message="----------------------------------------------------------"/>
+                  <!-- task definition for the Vendors ant task which inturn calls their WSDL-to-Java tool -->
+                  <taskdef name="wsimport" classname="${wsimport.ant.classname}">
+                      <classpath>
+                          <pathelement path="${wsimport.classpath}" />
+                      </classpath>
+                  </taskdef>
+                  <wsimport 
+                     fork="true"
+                     verbose="${wsimport.verbose}"
+                     debug="${wsimport.debug}"
+                     destdir="${_pkg.dir.genclasses}"
+                     sourcedestdir="${_pkg.dir.gensrc}"
+                     keep="true"
+                     package="${package}"
+                     extension="${extension}"
+                     wsdllocation="${tmp.wsdl.location}"
+                     catalog="${src.dir}/com/sun/ts/tests/jaxws/common/xml/catalog/META-INF/jax-ws-catalog.xml"
+                     wsdl="${wsdl.file}">
+                     <binding dir="${_src.pkg.dir}" includes="${customization.binding.files}" excludes="${excluded.customization.binding.files}"/>
+                     <jvmarg line="${ri.wsimport.jvmargs} ${do.wsimport.jvmarg}"/>
+                  </wsimport>
+               </then>
+               <else>
+                  <echo message="----------------------------------------------------------"/>
+                  <echo message="Doing WSDL-to-Java generation using the SUN specific tools"/>
+                  <echo message="----------------------------------------------------------"/>
+                  <!-- task definition for the Sun's ant task which inturn calls the WSDL-to-Java tool -->
+                  <taskdef name="wsimport" classname="${ri.wsimport.ant.classname}">
+                      <classpath>
+                          <pathelement path="${ri.wsimport.classpath}" />
+                      </classpath>
+                  </taskdef>
+                  <wsimport 
+                     fork="true"
+                     verbose="${ri.wsimport.verbose}"
+                     debug="${ri.wsimport.debug}"
+                     destdir="${_pkg.dir.genclasses}"
+                     sourcedestdir="${_pkg.dir.gensrc}"
+                     keep="true"
+                     package="${package}"
+                     extension="${extension}"
+                     wsdllocation="${tmp.wsdl.location}" 
+                     catalog="${src.dir}/com/sun/ts/tests/jaxws/common/xml/catalog/META-INF/jax-ws-catalog.xml"
+                     wsdl="${wsdl.file}">
+                     <binding dir="${_src.pkg.dir}" includes="${customization.binding.files}" excludes="${excluded.customization.binding.files}"/>
+                     <jvmarg line="${ri.wsimport.jvmargs} ${do.wsimport.jvmarg}"/>
+                  </wsimport>
+               </else>
+               </if>
+           </then>
+           <else>
+              <echo message="WSImport: No generation is necessary, files are up to date"/>
+           </else>
+           </if>
+        </sequential>
+    </macrodef> 
+
+<!-- generates portable artifacts for Java-to-WSDL -->
+    <macrodef name="do_wsgen">
+        <sequential>
+          <if><or><equals arg1="${ant.java.version}" arg2="1.8"/><equals arg1="${ant.java.version}" arg2="1.7"/></or>
+            <then><if><istrue value="${build.vi}"/><then><property name="do.wsgen.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs}"/></then><else><property name="do.wsgen.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs.ri}"/></else></if></then>
+            <else><property name="do.wsgen.jvmarg" value="-XaddExports:java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED,java.xml/com.sun.xml.internal.stream.writers=ALL-UNNAMED,java.base/sun.reflect.misc=ALL-UNNAMED"/></else>
+          </if>
+           <setup_target_dirs/>
+           <echo message="wsdlFile=${wsdl.file}"/>
+           <echo message="impl=${impl.class}" />
+           <propertyregex property="_impl.class"
+              input="${impl.class}"
+              regexp="(\.)"
+              replace="\/"
+              casesensitive="false" 
+              global="true"/>
+           <echo message="_impl=${_impl.class}" />
+           <echo message="_impl2=${class.dir}/${_impl.class}.class" />
+           <if>
+               <!-- Ultimately we want to verify that if the classes have been updated then we need
+                    to regenerate. We are using reverse logic here so that we can check the class files
+                    against the wsdl file, since uptodate only allows the includes on the 
+                    srcfiles side, or if the test directory wants the generation to occur regardless
+                    of the timestamp by use of the always.generate property -->
+                <or>
+                   <uptodate targetfile="${class.dir}/${_impl.class}.class">
+                      <srcfiles file="${wsdl.file}"/>
+                   </uptodate>
+                   <isset property="always.generate"/>
+               </or>
+          <then>
+               <property name="_pkg.dir" value="${ts.home}/src/${pkg.dir}" />
+               <property name="_pkg.dir.gensrc" value="${class.dir}/${pkg.dir}/generated_sources" />
+               <property name="_pkg.dir.genclasses" value="${class.dir}/${pkg.dir}/generated_classes" />
+               <translatepath propname="_pkg.dir" />
+               <translatepath propname="_pkg.dir.gensrc" />
+               <translatepath propname="_pkg.dir.genclasses" />
+               <mkdir dir="${_pkg.dir.gensrc}"/>
+               <mkdir dir="${_pkg.dir.genclasses}"/>
+               <property name="_classpath" value="${wsgen.classpath}:${class.dir}:${_pkg.dir}"/>
+               <translatepath propname="_classpath" />
+               <echo message="build.vi=${build.vi}"/>
+               <if>
+                   <istrue value="${build.vi}"/>
+               <then>
+                  <echo message="----------------------------------------------------------"/>
+                  <echo message="Doing Java-to-WSDL generation using vendor specific tools"/>
+                  <echo message="----------------------------------------------------------"/>
+                  <!-- task definition for the Vendors task which inturn calls their Java-to-WSDL tool -->
+                  <taskdef name="wsgen" classname="${wsgen.ant.classname}">
+                      <classpath>
+                          <pathelement path="${wsgen.classpath}" />
+                      </classpath>
+                  </taskdef>
+                  <wsgen 
+                     fork="true"
+                     debug="${wsgen.debug}"
+                     keep="true"
+                     destdir="${_pkg.dir.genclasses}"
+                     resourcedestdir="${_pkg.dir}"
+                     verbose="${wsgen.verbose}"
+                     classpath="${_classpath}"
+                     sei="${impl.class}"
+                     genwsdl="${genwsdl}"
+                     extension="${extension}"
+                     protocol="${protocol}"
+                     sourcedestdir="${_pkg.dir.gensrc}">
+                     <classpath>
+                         <pathelement path="${_classpath}" />
+                     </classpath>
+                     <jvmarg line="${do.wsgen.jvmarg}"/>
+                  </wsgen>
+               </then>
+               <else>
+                  <echo message="----------------------------------------------------------"/>
+                  <echo message="Doing Java-to-WSDL generation using the SUN specific tools"/>
+                  <echo message="----------------------------------------------------------"/>
+                  <!-- task definition for the Vendors task which inturn calls their Java-to-WSDL tool -->
+                  <taskdef name="wsgen" classname="${ri.wsgen.ant.classname}">
+                      <classpath>
+                          <pathelement path="${ri.wsgen.classpath}" />
+                      </classpath>
+                  </taskdef>
+                  <wsgen 
+                     fork="true"
+                     debug="${ri.wsgen.debug}"
+                     keep="true"
+                     destdir="${_pkg.dir.genclasses}"
+                     resourcedestdir="${_pkg.dir}"
+                     verbose="${ri.wsgen.verbose}"
+                     classpath="${_classpath}"
+                     sei="${impl.class}"
+                     genwsdl="${genwsdl}"
+                     extension="${extension}"
+                     protocol="${protocol}"
+                     sourcedestdir="${_pkg.dir.gensrc}">
+                     <classpath>
+                        <pathelement path="${_classpath}" />
+                     </classpath>
+                     <jvmarg line="${do.wsgen.jvmarg}"/>
+                  </wsgen>
+               </else>
+               </if>
+           </then>
+           <else>
+              <echo message="WSGen: No generation is necessary, files are up to date"/>
+           </else>
+           </if>
+        </sequential>
+    </macrodef>
+
+
+
+    <!-- creates initial directories used during generation process -->
+    <macrodef  name="add_generated_class_dir">
+        <sequential>
+           <mkdir dir="${class.dir}/${pkg.dir}/generated_classes" />
+           <mkdir dir="${class.dir}/${pkg.dir}/generated_sources" />
+        </sequential>
+    </macrodef>
+
+    <!-- re-initializes the directories used during repetitive generation process -->
+    <macrodef name="setup_target_dirs" >
+        <sequential>
+            <add_generated_class_dir/>
+            <if>
+                <istrue value="${no.setup}"/>
+            <then>
+                <!-- nothing to do, we don't want to do setup -->
+            </then>
+            <else>
+<!--
+               <delete failonerror="false" dir="${class.dir}/${pkg.dir}/generated_classes" />
+               <delete failonerror="false" dir="${class.dir}/${pkg.dir}/generated_sources" />
+-->
+
+               <mkdir dir="${class.dir}/${pkg.dir}/generated_classes" />
+               <mkdir dir="${class.dir}/${pkg.dir}/generated_sources" />
+            </else>
+            </if>
+        </sequential>
+    </macrodef>
+
+    <!-- moves the generated classes to the package class directory for the test -->
+    <macrodef name="move_generated_artifacts">
+        <sequential>
+           <move todir="${class.dir}">
+               <fileset dir="${class.dir}/${pkg.dir}/generated_classes" includes="**/*.class, **/*.xml"/>
+           </move>
+           <delete_generated_classes/>
+        </sequential>
+    </macrodef>
+
+    <!-- deletes the generated classes -->
+    <macrodef name="delete_generated_classes">
+        <sequential>
+           <delete failonerror="false">
+               <fileset dir="${class.dir}/${pkg.dir}/generated_classes" includes="**/*" />
+           </delete>
+        </sequential>
+    </macrodef>
+
+    <!-- Copies the wsdl and xsd files from the corresponding dependency directory -->
+    <macrodef name="copy_wsdl_xsd_from_dependency_dir">
+        <attribute name="dir" default="${dependency.dir}" />
+        <sequential>
+           <echo message="copying wsdl and xsd from dependency directory"/>
+           <copy todir="${src.dir}/${pkg.dir}" failonerror="false">
+               <fileset dir="@{dir}" includes="**/*.wsdl, **/*.xsd" />
+           </copy>
+        </sequential>
+    </macrodef>
+
+    <!-- removes WSDL's and XSD files from the src directory -->
+    <macrodef name="remove_wsdl_xsd">
+        <sequential>
+           <delete failonerror="false">
+               <fileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" />
+           </delete>
+        </sequential>
+    </macrodef>
+
+    <!-- starts from a client only directory and copies the wsdl and xsd files -->
+    <!-- from the corresponding server directory -->
+    <macrodef name="remove_copied_wsdl_xsd">
+        <sequential>
+            <if>
+                <isset property="dependency.dir"/>
+            <then>
+                <remove_wsdl_xsd/>
+            </then>
+            </if>
+        </sequential>
+    </macrodef>
+
+    <!-- copy the platform specific runtime file -->
+    <macrodef name="copy_runtime_file">
+        <sequential>
+           <copy failonerror="false" overwrite="true" file="${ts.home}/src/${pkg.dir}/${platform.mode}-${jaxws.runtime.xml}" tofile="${ts.home}/src/${pkg.dir}/${jaxws.runtime.xml}"/>
+        </sequential>
+    </macrodef>
+
+    <!-- removes the platform specific runtime file -->
+    <macrodef name="remove_runtime_file">
+        <sequential>
+           <delete failonerror="false">
+               <fileset dir="${ts.home}/src/${pkg.dir}" includes="sun-jaxws.xml" />
+           </delete>
+        </sequential>
+    </macrodef>
+
+    <!-- copies the platform specific webxml file to web.xml -->
+    <target name="copy_webxml_file">
+       <which.token.file/>
+       <if>
+          <contains substring="servlet" string="${endpoint.type}"/>
+       <then>
+           <copy file="${ts.home}/src/${pkg.dir}/${platform.mode}.web.xml" tofile="${ts.home}/src/${pkg.dir}/web.xml" overwrite="true" >
+              <filterset>
+                 <filter token="APPNAME" value="${app.name}"/>
+                 <filterset refid="token.replacements"/>
+              </filterset>
+          </copy>
+       </then>
+       </if>
+       <copy failonerror="false" file="${ts.home}/src/${pkg.dir}/${platform.mode}.webservices.xml" tofile="${ts.home}/src/${pkg.dir}/webservices.xml" overwrite="true" />
+       <copy failonerror="false" file="${ts.home}/src/${pkg.dir}/${platform.mode}.sun-web.xml" tofile="${ts.home}/src/${pkg.dir}/sun-web.xml" overwrite="true" />
+    </target>
+
+    <!-- removes the copied web.xml file -->
+    <macrodef name="remove_webxml_file">
+        <sequential>
+           <delete failonerror="false">
+               <fileset dir="${ts.home}/src/${pkg.dir}" includes="web.xml" />
+           </delete>
+           <delete failonerror="false">
+               <fileset dir="${ts.home}/src/${pkg.dir}" includes="webservices.xml" />
+           </delete>
+           <delete failonerror="false">
+               <fileset dir="${ts.home}/src/${pkg.dir}" includes="sun-web.xml" />
+           </delete>
+        </sequential>
+    </macrodef>
+
+    <!-- WSDL-to-Java generation of portable artifacts (intermediate step) -->
+    <!-- populates WEB-INF, WEB-INF/wsdl with appropriate artifacts -->
+    <target name="do_wsdl2java_generate">
+        <do_wsimport/>
+        <copy_runtime_file/>
+    </target>
+
+    <!-- WSDL-to-Java generation of portable artifacts for server for inclusion within WAR -->
+    <!-- populates WEB-INF, WEB-INF/wsdl, WEB-INF/lib with appropriate artifacts -->
+    <target name="do_wsdl2java_generate_server" >
+        <antcall target="do_wsdl2java_generate"/>
+        <move_generated_artifacts/>
+    </target>
+
+    <!-- WSDL-to-Java generation of portable artifacts for client -->
+    <target name="do_wsdl2java_generate_client">
+        <do_wsimport/>
+        <move_generated_artifacts/>
+    </target>
+
+    <target name="do_wsdl2java_generate_client_with_package_option">
+        <do_wsimport_with_package_option/>
+        <move_generated_artifacts/>
+    </target>
+
+    <!-- Java-to-WSDL generation of portable artifacts for server for inclusion within WAR -->
+    <!-- populates WEB-INF, WEB-INF/lib with appropriate artifacts -->
+    <target name="do_java2wsdl_generate_server" >
+        <do_wsgen/>
+        <copy_runtime_file/>
+        <move_generated_artifacts/>
+    </target>
+
+<!-- ==========================================================
+     These are all the packaging targets
+     ========================================================== -->
+
+    <macrodef name="build_package_wsvehicles">
+        <sequential>
+           <var name="tmpexcludefiles" value="${impl.classes}, ${other.excludes}"/>
+           <createstandalonevehicle/>
+           <createwsejbvehicle/>
+           <createwsappclientvehicle/>
+           <createwsservletvehicle/>
+        </sequential>
+    </macrodef>
+
+
+  <target name="vehicles_import_package" depends="copy_webxml_file">
+    <var name="the.vehicle" value="endpoint"/>
+    <createEndpointSEIGSI/>
+    <antcall target="copy_endpoint_dd_files" />
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.war archivename="${app.name}" descriptor="web.xml">
+             <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${client.classes}" prefix="WEB-INF/classes"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="WEB-INF/wsdl"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="WEB-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml" prefix="WEB-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="sun-web.xml" prefix="WEB-INF"/>
+             <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" prefix="WEB-INF/classes"/>
+        </ts.war>
+        <remove_webxml_file/>
+        <createendpointpublishjar/>
+    </then>
+    <elseif>
+            <contains substring="ejb" string="${endpoint.type}"/>
+        <then>
+           <ts.ejbjar archivename="${app.name}" descriptor="${app.name}_ejb.xml" >
+                <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${client.classes}"/>
+                <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="META-INF/wsdl"/>
+                <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="META-INF"/>
+                <zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml" prefix="META-INF"/>
+                <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" />
+           </ts.ejbjar>
+        </then>
+    </elseif>
+    <else>
+       <fail message="ERROR:The specified endpoint ${endpoint.type} is not supported at this time"/>
+    </else>
+    </if>
+    <remove_runtime_file/>
+    <var name="the.vehicle" value="endpoint"/>
+    <removeSEIGSIsources/>
+
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.ear archivename="${app.name}" descriptor="endpoint.ear.application.xml" includedefaultfiles="false">
+             <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war" />
+        </ts.ear>
+    </then>
+    <else>
+        <ts.ear archivename="${app.name}" descriptor="endpoint.ear.application.xml" includedefaultfiles="false">
+             <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar" />
+        </ts.ear>
+    </else>
+    </if>
+
+    <determine.vehicles/>
+    <property name="the.vehicles" value="${vehicles}"/>
+    <antcall target="annotate_vehicles" />
+    <antcall target="copy_client_dd_files" />
+    <build_package_wsvehicles/>
+
+    <delete_generated_classes/>
+  </target>
+
+  <target name="vehicles_import_package_with_content" depends="copy_webxml_file">
+    <var name="the.vehicle" value="endpoint"/>
+    <createEndpointSEIGSI/>
+    <antcall target="copy_endpoint_dd_files" />
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.war archivename="${app.name}" descriptor="web.xml">
+             <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${client.classes}" prefix="WEB-INF/classes"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="WEB-INF/wsdl"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="WEB-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml" prefix="WEB-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="sun-web.xml" prefix="WEB-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}/contentRoot" includes="**/*" />
+             <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" prefix="WEB-INF/classes"/>
+        </ts.war>
+        <remove_webxml_file/>
+        <createendpointpublishjar/>
+    </then>
+    <elseif>
+            <contains substring="ejb" string="${endpoint.type}"/>
+        <then>
+           <ts.ejbjar archivename="${app.name}" descriptor="${app.name}_ejb.xml">
+             <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${client.classes}" />
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="META-INF/wsdl"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="META-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml" prefix="META-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}/contentRoot" includes="**/*" />
+             <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" />
+           </ts.ejbjar>
+        </then>
+    </elseif>
+    <else>
+       <fail message="ERROR:The specified endpoint ${endpoint.type} is not supported at this time"/>
+    </else>
+    </if>
+
+    <remove_runtime_file/>
+    <var name="the.vehicle" value="endpoint"/>
+    <removeSEIGSIsources/>
+
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.ear archivename="${app.name}" descriptor="application.xml" includedefaultfiles="false">
+             <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war" />
+        </ts.ear>
+    </then>
+    <else>
+        <ts.ear archivename="${app.name}" descriptor="application.xml" includedefaultfiles="false">
+             <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar" />
+        </ts.ear>
+    </else>
+    </if>
+
+    <determine.vehicles/>
+    <property name="the.vehicles" value="${vehicles}"/>
+    <antcall target="annotate_vehicles" />
+    <antcall target="copy_client_dd_files" />
+
+    <build_package_wsvehicles/>
+
+    <delete_generated_classes/>
+    <remove_copied_wsdl_xsd/>
+  </target>
+
+  <target name="webservice_import_package" depends="copy_webxml_file">
+    <var name="the.vehicle" value="endpoint"/>
+    <createEndpointSEIGSI/>
+    <antcall target="copy_endpoint_dd_files" />
+    <antcall target="copyendpointhandlerfile"/>
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.war archivename="${app.name}" descriptor="web.xml">
+             <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${client.classes}" prefix="WEB-INF/classes"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="WEB-INF/wsdl"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="WEB-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml" prefix="WEB-INF"/>
+             <zipfileset dir="${src.dir}/${pkg.dir}" includes="sun-web.xml" prefix="WEB-INF"/>
+             <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" prefix="WEB-INF/classes"/>
+        </ts.war>
+        <remove_webxml_file/>
+        <createendpointpublishjar/>
+    </then>
+    <elseif>
+            <contains substring="ejb" string="${endpoint.type}"/>
+        <then>
+           <ts.ejbjar archivename="${app.name}" descriptor="${app.name}_ejb.xml">
+                <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${client.classes}"/>
+                <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="META-INF/wsdl"/>
+                <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="META-INF"/>
+                <zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml" prefix="META-INF"/>
+                <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" />
+           </ts.ejbjar>
+        </then>
+    </elseif>
+    <else>
+       <fail message="ERROR:The specified endpoint ${endpoint.type} is not supported at this time"/>
+    </else>
+    </if>
+
+    <var name="the.vehicle" value="endpoint"/>
+    <removeSEIGSIsources/>
+    <remove_runtime_file/>
+
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.ear archivename="${app.name}" descriptor="application.xml" includedefaultfiles="false">
+             <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war" />
+        </ts.ear>
+    </then>
+    <else>
+        <ts.ear archivename="${app.name}" descriptor="application.xml" includedefaultfiles="false">
+             <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar" />
+        </ts.ear>
+    </else>
+    </if>
+
+    <antcall target="removeendpointhandlerfile"/>
+    <delete_generated_classes/>
+  </target>
+
+  <target name="webservice_import_package_with_content" depends="copy_webxml_file">
+    <var name="the.vehicle" value="endpoint"/>
+    <createEndpointSEIGSI/>
+    <antcall target="copy_endpoint_dd_files" />
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.war archivename="${app.name}" descriptor="web.xml">
+              <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${client.classes}" prefix="WEB-INF/classes"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="WEB-INF/wsdl"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="WEB-INF"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml" prefix="WEB-INF"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="sun-web.xml" prefix="WEB-INF"/>
+              <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" prefix="WEB-INF/classes"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}/contentRoot" includes="*" />
+        </ts.war>
+        <remove_webxml_file/>
+        <createendpointpublishjar/>
+    </then>
+    <elseif>
+            <contains substring="ejb" string="${endpoint.type}"/>
+        <then>
+           <ts.ejbjar archivename="${app.name}" descriptor="${app.name}_ejb.xml">
+              <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${client.classes}" />
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="META-INF/wsdl"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="META-INF"/>
+              <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" />
+              <zipfileset dir="${src.dir}/${pkg.dir}/contentRoot" includes="*" />
+           </ts.ejbjar>
+        </then>
+    </elseif>
+    <else>
+       <fail message="ERROR:The specified endpoint ${endpoint.type} is not supported at this time"/>
+    </else>
+    </if>
+
+    <var name="the.vehicle" value="endpoint"/>
+    <removeSEIGSIsources/>
+    <remove_runtime_file/>
+
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.ear archivename="${app.name}" descriptor="application.xml" includedefaultfiles="false">
+           <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war" />
+        </ts.ear>
+    </then>
+    <else>
+        <ts.ear archivename="${app.name}" descriptor="application.xml" includedefaultfiles="false">
+           <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar" />
+        </ts.ear>
+    </else>
+    </if>
+
+    <delete_generated_classes/>
+  </target>
+
+  <target name="j2w_webservice_import_package" depends="copy_webxml_file">
+    <var name="the.vehicle" value="endpoint"/>
+    <createEndpointSEIGSI/>
+    <antcall target="copy_endpoint_dd_files" />
+    <antcall target="copyendpointhandlerfile"/>
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.war includedefaultfiles="${includedefaultfiles}" archivename="${app.name}" descriptor="web.xml">
+              <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${excludedfiles}, ${client.classes}" prefix="WEB-INF/classes"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="WEB-INF"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="webservices.xml" prefix="WEB-INF"/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="sun-web.xml" prefix="WEB-INF"/>
+              <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" prefix="WEB-INF/classes"/>
+              <zipfileset dir="${src.dir}" includes="${pkg.dir}/*handler.xml" prefix="WEB-INF/classes"/>
+        </ts.war>
+        <remove_webxml_file/>
+        <createendpointpublishjar/>
+    </then>
+    <elseif>
+            <contains substring="ejb" string="${endpoint.type}"/>
+        <then>
+           <ts.ejbjar includedefaultfiles="${includedefaultfiles}" archivename="${app.name}" descriptor="${app.name}_ejb.xml">
+              <zipfileset dir="${class.dir}" includes="${impl.classes}, 
+                                                  ${portable.classes}, 
+                                                  ${other.classes}, 
+                                                  ${jaxws.common.classes}, 
+                                                  ${wsi.common.classes}" 
+                                        excludes="${excludedfiles}, ${client.classes}" />/>
+              <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="META-INF"/>
+              <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/server/*.xml" />
+              <zipfileset dir="${src.dir}" includes="${pkg.dir}/*handler.xml" />
+           </ts.ejbjar>
+        </then>
+    </elseif>
+    <else>
+       <fail message="ERROR:The specified endpoint ${endpoint.type} is not supported at this time"/>
+    </else>
+    </if>
+
+    <var name="the.vehicle" value="endpoint"/>
+    <removeSEIGSIsources/>
+    <remove_runtime_file/>
+
+    <if>
+        <contains substring="servlet" string="${endpoint.type}"/>
+    <then>
+        <ts.ear archivename="${app.name}" descriptor="application.xml" includedefaultfiles="false">
+             <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war" />
+        </ts.ear>
+    </then>
+    <else>
+        <ts.ear archivename="${app.name}" descriptor="application.xml" includedefaultfiles="false">
+             <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar" />
+        </ts.ear>
+    </else>
+    </if>
+
+    <antcall target="removeendpointhandlerfile"/>
+    <delete_generated_classes/>
+  </target>
+
+  <target name="client_import_package" >
+    <determine.vehicles/>
+    <property name="the.vehicles" value="${vehicles}"/>
+    <antcall target="annotate_vehicles" />
+    <antcall target="copyclienthandlerfile"/>
+    <antcall target="copy_client_dd_files" />
+
+    <build_package_wsvehicles/>
+
+    <antcall target="removeclienthandlerfile"/>
+    <remove_copied_wsdl_xsd/>
+  </target>
+
+  <target name="client_import_package_nocreateseigsi" >
+    <determine.vehicles/>
+    <property name="the.vehicles" value="${vehicles}"/>
+    <antcall target="copy_client_dd_files" />
+
+    <var name="tmpexcludefiles" value="${impl.classes}, ${other.excludes}"/>
+    <createstandalonevehicle/>
+    <createejbnocreateseigsivehicle/>
+    <createappclientnocreateseigsivehicle/>
+    <createservletnocreateseigsivehicle/>
+
+    <remove_copied_wsdl_xsd/>
+  </target>
+
+  <macrodef name="createstandalonevehicle">
+      <sequential>
+        <!-- if standalone vehicle is enabled -->
+        <var name="the.vehicle" value="standalone"/>
+        <if>
+           <contains substring="${the.vehicle}" string="${the.vehicles}"/>
+        <then>
+            <ts.vehicles name="${app.name}" vehicleoverride="standalone" includedefaultfiles="false"/>
+        </then>
+        </if>
+      </sequential>
+  </macrodef>
+
+  <macrodef name="createwsejbvehicle">
+      <sequential>
+        <!-- if wsejb vehicle is enabled -->
+        <var name="the.vehicle" value="wsejb"/>
+        <if>
+           <contains substring="${the.vehicle}" string="${the.vehicles}"/>
+        <then>
+            <createClientVehicleSEIGSI/>
+            <ts.vehicles name="${app.name}" vehicleoverride="wsejb" includedefaultfiles="false">
+                 <wsejb-elements>
+                    <zipfileset dir="${class.dir}" includes="${common.classes}, 
+                                                             ${portable.classes}, 
+                                                             ${other.classes}"
+                                                   excludes="${tmpexcludefiles}" />
+                    <zipfileset dir="${class.dir}" includes="${vehicle.pkg.dir}/wsejb/*handler*.xml"/>
+                    <zipfileset dir="${class.dir}" includes="${pkg.dir}/*handler*.xml" excludes="**/server-handler.xml"/>
+                 </wsejb-elements>
+            </ts.vehicles>
+            <removeSEIGSIsources/>
+        </then>
+        </if>
+      </sequential>
+  </macrodef>
+
+  <macrodef name="createejbnocreateseigsivehicle">
+      <sequential>
+        <!-- if ejb vehicle is enabled -->
+        <var name="the.vehicle" value="ejb"/>
+        <if>
+           <contains substring="${the.vehicle}" string="${the.vehicles}"/>
+        <then>
+            <ts.vehicles name="${app.name}" vehicleoverride="ejb" includedefaultfiles="false">
+                 <ejb-elements>
+                    <zipfileset dir="${class.dir}" includes="${common.classes}, 
+                                                             ${portable.classes}, 
+                                                             ${other.classes}" 
+                                                   excludes="${tmpexcludefiles}" />
+                 </ejb-elements>
+            </ts.vehicles>
+        </then>
+        </if>
+      </sequential>
+  </macrodef>
+  <macrodef name="createwsservletvehicle">
+      <sequential>
+        <!-- if wsservlet vehicle is enabled -->
+        <var name="the.vehicle" value="wsservlet"/>
+        <if>
+           <contains substring="${the.vehicle}" string="${the.vehicles}"/>
+        <then>
+            <createClientVehicleSEIGSI/>
+            <ts.vehicles name="${app.name}" vehicleoverride="wsservlet" includedefaultfiles="false">
+                 <wsservlet-elements>
+                    <zipfileset dir="${class.dir}" includes="${common.classes}, 
+                                                             ${portable.classes}, 
+                                                             ${other.classes}"
+                                                   excludes="${tmpexcludefiles}" prefix="WEB-INF/classes"/>
+                    <zipfileset dir="${class.dir}" includes="${vehicle.pkg.dir}/wsservlet/*handler*.xml" prefix="WEB-INF/classes"/>
+                    <zipfileset dir="${class.dir}" includes="${pkg.dir}/*handler*.xml" excludes="**/server-handler.xml" prefix="WEB-INF/classes"/>
+                 </wsservlet-elements>
+            </ts.vehicles>
+            <removeSEIGSIsources/>
+        </then>
+        </if>
+      </sequential>
+  </macrodef>
+
+  <macrodef name="createservletnocreateseigsivehicle">
+      <sequential>
+        <!-- if servlet vehicle is enabled -->
+        <var name="the.vehicle" value="servlet"/>
+        <if>
+           <contains substring="${the.vehicle}" string="${the.vehicles}"/>
+        <then>
+            <ts.vehicles name="${app.name}" vehicleoverride="servlet" includedefaultfiles="false">
+                 <servlet-elements>
+                    <zipfileset dir="${class.dir}" includes="${common.classes}, 
+                                                             ${portable.classes}, 
+                                                             ${other.classes}" 
+                                                   excludes="${tmpexcludefiles}" prefix="WEB-INF/classes"/>
+                    <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/client/*.xml" prefix="WEB-INF/classes"/>
+                 </servlet-elements>
+            </ts.vehicles>
+        </then>
+        </if>
+      </sequential>
+  </macrodef>
+  <macrodef name="createwsappclientvehicle">
+      <sequential>
+        <!-- if appclient vehicle is enabled -->
+        <var name="the.vehicle" value="wsappclient"/>
+        <if>
+           <contains substring="${the.vehicle}" string="${the.vehicles}"/>
+        <then>
+            <createClientVehicleSEIGSI/>
+            <ts.vehicles name="${app.name}" vehicleoverride="wsappclient" includedefaultfiles="false">
+                 <client-elements>
+                    <zipfileset dir="${class.dir}" includes="${common.classes}, 
+                                                             ${portable.classes}, 
+                                                             ${other.classes}"
+                                                   excludes="${tmpexcludefiles}" />
+                    <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="META-INF/wsdl" />
+                    <zipfileset dir="${class.dir}" includes="${vehicle.pkg.dir}/wsappclient/*handler*.xml"/>
+                    <zipfileset dir="${class.dir}" includes="${pkg.dir}/*handler*.xml" excludes="**/server-handler.xml" />
+                 </client-elements>
+            </ts.vehicles>
+            <removeSEIGSIsources/>
+        </then>
+        </if>
+      </sequential>
+  </macrodef>
+
+  <macrodef name="createappclientnocreateseigsivehicle">
+      <sequential>
+        <!-- if appclient vehicle is enabled -->
+        <var name="the.vehicle" value="appclient"/>
+        <if>
+           <contains substring="${the.vehicle}" string="${the.vehicles}"/>
+        <then>
+            <ts.vehicles name="${app.name}" vehicleoverride="appclient" includedefaultfiles="false">
+                 <client-elements>
+                    <zipfileset dir="${class.dir}" includes="${common.classes}, 
+                                                             ${portable.classes}, 
+                                                             ${other.classes}" 
+                                                   excludes="${tmpexcludefiles}" />
+                    <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}" prefix="META-INF/wsdl" />
+                    <zipfileset dir="${class.dir}" includes="${pkg.dir}/*.xml, ${pkg.dir}/client/*.xml" prefix="META-INF/classes"/>
+                 </client-elements>
+            </ts.vehicles>
+        </then>
+        </if>
+      </sequential>
+  </macrodef>
+
+
+  <macrodef name="createendpointpublishjar">
+      <sequential>
+        <if>
+          <and>
+            <contains substring="standalone" string="${platform.mode}"/>
+	    <not>
+                <istrue value="${build.vi}"/>
+            </not> 
+          </and> 
+        <then>
+          <property name="contextroot" value="${app.name}_web"/>
+          <property name="contextroottmpdir" value="${ts.home}/tmp/${contextroot}"/>
+          <delete dir="${contextroottmpdir}" failonerror="false"/>
+          <mkdir dir="${contextroottmpdir}"/>
+
+          <delete dir="${dist.dir}/${pkg.dir}/${contextroot}.jar"/>
+          <unzip dest="${contextroottmpdir}" src="${dist.dir}/${pkg.dir}/${contextroot}.war"/>
+          <jar destfile="${dist.dir}/${pkg.dir}/${contextroot}.jar"
+               basedir="${ts.home}/tmp/${contextroot}/WEB-INF/classes"
+               includes="**/*">
+          </jar>
+          <jar destfile="${dist.dir}/${pkg.dir}/${contextroot}.jar"
+               basedir="${ts.home}/tmp/${contextroot}"
+               includes="**/*"
+               excludes="WEB-INF/classes/**"
+               update="true">
+          </jar>
+          <delete dir="${contextroottmpdir}" failonerror="false"/>
+        </then>
+        </if>
+      </sequential>
+  </macrodef>
+
+   <target name="-precompile">
+      <if>
+          <isset property="dependency.dir"/>
+      <then>
+          <for list="${dependency.dir}" param="the.dir" delimiter=" " trim="true">
+            <sequential>
+               <echo message="building @{the.dir}"/>
+               <ant dir="@{the.dir}" target="build" inheritAll="false"/>
+               <copy_wsdl_xsd_from_dependency_dir dir="@{the.dir}"/>
+            </sequential>
+          </for>
+      </then>
+      </if>
+   </target>
+   <target name="-preclean">
+      <if>
+          <isset property="dependency.dir"/>
+      <then>
+          <for list="${dependency.dir}" param="the.dir" delimiter=" " trim="true">
+            <sequential>
+               <echo message="cleaning @{the.dir}"/>
+               <ant dir="@{the.dir}" target="clean" inheritAll="false"/>
+            </sequential>
+          </for>
+          <remove_copied_wsdl_xsd/>
+      </then>
+      </if>
+   </target>
+
+</project>

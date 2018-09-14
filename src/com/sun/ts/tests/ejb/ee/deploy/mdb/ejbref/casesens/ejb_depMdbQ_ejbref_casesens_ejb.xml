@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+  <display-name>Ejb1</display-name>
+  <enterprise-beans>
+    <message-driven>
+      <ejb-name>TestBean</ejb-name>
+      <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.MsgBean</ejb-class>
+      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <transaction-type>Container</transaction-type>
+      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <ejb-ref>
+        <ejb-ref-name>ejb/philosopher</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <home>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBeanHome</home>
+        <remote>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBean</remote>
+        <ejb-link>CaseBean2</ejb-link>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Philosopher</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <home>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBeanHome</home>
+        <remote>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBean</remote>
+        <ejb-link>CaseBean1</ejb-link>
+      </ejb-ref>
+      <resource-ref>
+        <description>description</description>
+        <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
+        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <resource-env-ref>
+        <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
+        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+      </resource-env-ref>
+    </message-driven>
+    <session>
+      <ejb-name>CaseBean2</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBeanHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBean</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBeanEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+        <env-entry-name>myName</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>Rousseau</env-entry-value>
+      </env-entry>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+    <session>
+      <ejb-name>CaseBean1</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBeanHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBean</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens.CaseBeanEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+        <env-entry-name>myName</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>Voltaire</env-entry-value>
+      </env-entry>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>TestBean</ejb-name>
+        <method-name>onMessage</method-name>
+        <method-params>
+          <method-param>javax.jms.Message</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

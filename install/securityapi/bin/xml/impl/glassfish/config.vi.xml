@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!--
+  **   This build file contains targets that will need to have 
+  **   equivilent functional support on vendors implementation.
+  **   Ensure these targets are ported over to the vendors 
+  **   impl unless specifically noted otherwise.
+  -->
+
+
+
+<project name="SecurityAPI config targets that should be done on any implementation" basedir="." default="usage">
+
+
+    <!-- IMPORTS -->
+    <import file="./s1as.xml" optional="true"/>
+    <import file="../../../../../../bin/xml/impl/glassfish/s1as.xml" optional="true"/>
+
+    <property name="create.jdbc.pools.prop" value="true"/>
+    <property name="enable.jms" value="true"/>
+    <property name="password.file" value="${bin.dir}/password.txt"/>
+
+   <target name="usage">
+        <echo message="The following ant targets are available to configure a Java EE server for CTS:"/>
+        <echo message="ant -f config_vi.xml task"/>
+        <echo message=""/>
+        <echo message="The tasks are:"/>
+        <echo message=""/>
+        <echo message="clean.vi" />
+        <echo message="config.vi" />
+   </target>
+
+   <target name="check.db.jars">
+        <condition property="found.db.jars">
+            <available file="${jdbc.lib.class.path}" type="dir"/>
+        </condition>
+   </target>
+
+   <target name="start.javadb">
+         <ant antfile="s1as.xml" target="start.javadb" dir="${common.bin.dir}/xml/impl/glassfish"/>
+   </target>
+
+    <target name="start.javadb.asadmin" >
+         <ant antfile="s1as.xml" target="start.javadb.asadmin" dir="${common.bin.dir}/xml/impl/glassfish"/>
+    </target>
+
+    <target name="stop.javadb.asadmin" >
+         <ant antfile="s1as.xml" target="stop.javadb.asadmin" dir="${common.bin.dir}/xml/impl/glassfish"/>
+    </target>
+
+    <target name="enable.security.manager"  depends="configPlatform">
+	<antcall target="create-jvm-options" >
+	 	<param name="jvm.options" value=" -Djava.security.manager"/>
+    	</antcall>
+    </target>
+
+    <target name="config.vi" depends="start.javadb.asadmin,start.javadb">
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/>
+       <ant antfile="initdb.xml" dir="${bin.dir}" target="init.derby"/>
+       <antcall target="add.jdbc.pools.securityapi"/> 
+       <antcall target="drop.jdbc.resources.securityapi"/> 
+       <antcall target="add.jdbc.resources.securityapi"/> 
+       <antcall target="enable.security.manager"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/> 
+    </target>
+
+    <target name="add.jdbc.pools.securityapi" depends="configPlatform" if="create.jdbc.pools.prop">
+       <antcall target="create-jdbc-connection-pool" >
+	   <param name="restype" value="javax.sql.DataSource"/>
+           <param name="datasourceclassname" value="${derby.dataSource}"/>
+           <param name="pool.properties" value="${derby.properties}"/>
+           <param name="poolName" value="${derby.poolName}"/>
+        </antcall>
+   </target>
+
+   <target name="drop.jdbc.resources.securityapi" depends="configPlatform" if="create.jdbc.pools.prop">
+	<antcall target="delete-jdbc-resource" >
+      	    <param name="jndiName" value="${jdbc.jndi.name}"/>
+        </antcall>
+   </target>
+
+   <target name="add.jdbc.resources.securityapi" depends="configPlatform" if="create.jdbc.pools.prop">
+ 	<antcall target="set" >
+          <param name="set.value" value=" ${resources.dottedname.prefix}.jdbc-connection-pool.${derby.poolName}.max_pool_size=${jdbc.maxpoolsize}"/>
+         </antcall>
+
+        <antcall target="set" >
+           <param name="set.value" value=" ${resources.dottedname.prefix}.jdbc-connection-pool.${derby.poolName}.steady_pool_size=${jdbc.steadypoolsize}"/>
+        </antcall>
+
+        <antcall target="create-jdbc-resource" >
+           <param name="connectionpoolid" value="${jdbc.poolName}"/>
+           <param name="jndiName" value="${jdbc.jndi.name}"/>
+        </antcall>
+   </target>
+
+
+   <!--  Target to remove the configuration for the Java EE app server under test -->
+   <target name="clean.vi">
+   </target>
+
+
+</project>
+

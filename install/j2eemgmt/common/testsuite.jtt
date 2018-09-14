@@ -1,0 +1,2 @@
+classpath=$TS_HOME/lib/harness.jar
+testsuite=com.sun.ts.lib.harness.TS

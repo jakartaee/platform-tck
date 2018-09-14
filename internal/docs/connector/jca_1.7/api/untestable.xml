@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE javadoc SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/javadoc_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<javadoc>
+  <next-available-id>413</next-available-id>
+  <previous-id>1</previous-id>
+  <technology>Connector</technology>
+  <id>Connector</id>
+  <name>J2EE Connector Architeture Spec</name>
+  <version>1.7</version>
+  <assertions>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>179</id>
+      <description>This method is called by an application server (that is capable of lazy connection association optimization) in order to dissociate a ManagedConnection instance from all of its connection handles.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>DissociatableManagedConnection</class-interface>
+      <method name="dissociateConnections" return-type="void" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>180</id>
+      <description>generic exception if operation fails.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>DissociatableManagedConnection</class-interface>
+      <method name="dissociateConnections" return-type="void">
+        <throw>javax.resource.ResourceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>198</id>
+      <description>This method is called by a resource adapter (that is capable of lazy connection association optimization) in order to lazily associate a connection object with a ManagedConnection instance.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LazyAssociatableConnectionManager</class-interface>
+      <method name="associateConnection" return-type="void">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+          <parameter>javax.resource.spi.ManagedConnectionFactory</parameter>
+          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>199</id>
+      <description>Generic exception.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LazyAssociatableConnectionManager</class-interface>
+      <method name="associateConnection" return-type="void">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+          <parameter>javax.resource.spi.ManagedConnectionFactory</parameter>
+          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+        </parameters>
+        <throw>javax.resource.ResourceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>200</id>
+      <description>This method is called by the resource adapter (that is capable of lazy connection association optimization) in order to notify the application server that a disassociated connection handle is closed. The application server can then perform any cleanup operations related to the disassociated connection handle in its connection pool.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LazyAssociatableConnectionManager</class-interface>
+      <method name="inactiveConnectionClosed" return-type="void">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+          <parameter>javax.resource.spi.ManagedConnectionFactory</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>201</id>
+      <description>This method is called by a resource adapter (that is capable of lazy transaction enlistment optimization) in order to lazily enlist a connection object with a XA transaction.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LazyEnlistableConnectionManager</class-interface>
+      <method name="lazyEnlist" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ManagedConnection</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>202</id>
+      <description>Generic exception.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>LazyEnlistableConnectionManager</class-interface>
+      <method name="lazyEnlist" return-type="void">
+        <parameters>
+          <parameter>javax.resource.spi.ManagedConnection</parameter>
+        </parameters>
+        <throw>javax.resource.ResourceException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>215</id>
+      <description>Used typically by the container to change the association of an application-level connection handle with a ManagedConneciton instance. The container should find the right ManagedConnection instance and call the associateConnection method. In order to set a Connection Handle as the active connection handle, the container may also use the associateConnection method to set the same ManagedConnection associated with the Connection handle. The resource adapter is required to implement the associateConnection method. The method implementation for a ManagedConnection should dissociate the connection handle (passed as a parameter) from its currently associated ManagedConnection and associate the new connection handle with itself.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnection</class-interface>
+      <method name="associateConnection" return-type="void">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>217</id>
+      <description>Application server calls this method to force any cleanup on the ManagedConnection instance. The method ManagedConnection.cleanup initiates a cleanup of the any client-specific state as maintained by a ManagedConnection instance. The cleanup should invalidate all connection handles that had been created using this ManagedConnection instance. Any attempt by an application component to use the connection handle after cleanup of the underlying ManagedConnection should result in an exception. The cleanup of ManagedConnection is always driven by an application server. An application server should not invoke ManagedConnection.cleanup when there is an uncompleted transaction (associated with a ManagedConnection instance) in progress. The invocation of ManagedConnection.cleanup method on an already cleaned-up connection should not throw an exception. The cleanup of ManagedConnection instance resets its client specific state and prepares the connection to be put back in to a connection pool. The cleanup method should not cause resource adapter to close the physical pipe and reclaim system resources associated with the physical connection.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnection</class-interface>
+      <method name="cleanup" return-type="void" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>219</id>
+      <description>Destroys the physical connection to the underlying resource manager. To manage the size of the connection pool, an application server can explictly call ManagedConnection.destroy to destroy a physical connection. A resource adapter should destroy all allocated system resources for this ManagedConnection instance when the method destroy is called.</description>
+      <package>javax.resource.spi</package>
+      <class-interface>ManagedConnection</class-interface>
+      <method name="destroy" return-type="void" />
+    </assertion>
+  </assertions>
+</javadoc>
+

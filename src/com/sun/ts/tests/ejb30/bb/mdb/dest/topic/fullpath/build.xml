@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="mdb_dest_topic_fullpath"/>
+  <property name="client" value="com.sun.ts.tests.ejb30.bb.mdb.dest.topic.fullpath.Client"/>
+  <property name="pkg.dir" value="com/sun/ts/tests/ejb30/bb/mdb/dest/topic/fullpath"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/bb/mdb/dest/common"/>
+  
+  <property name="ejb.jar1.classes" 
+            value="
+com/sun/ts/tests/ejb30/bb/mdb/dest/common/DestBeanBase.class,
+com/sun/ts/tests/ejb30/bb/mdb/dest/common/TopicDestBean.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/messaging/Constants.class,
+com/sun/ts/tests/ejb30/common/messaging/StatusReporter.class,
+com/sun/ts/tests/jms/common/JmsUtil.class
+"/>
+
+  <property name="ejb.jar2.classes" 
+            value="
+com/sun/ts/tests/ejb30/bb/session/stateless/basic/RemoteCalculatorBean.class,
+com/sun/ts/tests/ejb30/common/calc/BaseRemoteCalculator.class,
+com/sun/ts/tests/ejb30/common/calc/CalculatorException.class,
+com/sun/ts/tests/ejb30/common/calc/NoInterfaceRemoteCalculator.class,
+com/sun/ts/tests/ejb30/common/calc/RemoteCalculator.class
+"/>
+
+  <property name="appclient.jar.classes" 
+            value="
+com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/bb/mdb/dest/common/TopicClientBase.class,
+com/sun/ts/tests/ejb30/bb/mdb/dest/topic/fullpath/Client.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/messaging/ClientBase.class,
+com/sun/ts/tests/ejb30/common/messaging/Constants.class,
+com/sun/ts/tests/ejb30/common/messaging/TopicClientBase.class,
+com/sun/ts/tests/jms/commonee/Client.class
+            "/>
+ 
+  <!-- override target in import.xml -->
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/twojars-import.xml"/>  
+   
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

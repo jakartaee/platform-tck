@@ -1,0 +1,906 @@
+#Signature file v4.1
+#Version 2.0_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public abstract interface java.lang.AutoCloseable
+meth public abstract void close() throws java.lang.Exception
+
+CLSS public java.lang.Exception
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Throwable
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation java.lang.FunctionalInterface
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public abstract interface java.lang.Runnable
+ anno 0 java.lang.FunctionalInterface()
+meth public abstract void run()
+
+CLSS public java.lang.RuntimeException
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Exception
+hfds serialVersionUID
+
+CLSS public java.lang.Throwable
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+intf java.io.Serializable
+meth public final java.lang.Throwable[] getSuppressed()
+meth public final void addSuppressed(java.lang.Throwable)
+meth public java.lang.StackTraceElement[] getStackTrace()
+meth public java.lang.String getLocalizedMessage()
+meth public java.lang.String getMessage()
+meth public java.lang.String toString()
+meth public java.lang.Throwable fillInStackTrace()
+meth public java.lang.Throwable getCause()
+meth public java.lang.Throwable initCause(java.lang.Throwable)
+meth public void printStackTrace()
+meth public void printStackTrace(java.io.PrintStream)
+meth public void printStackTrace(java.io.PrintWriter)
+meth public void setStackTrace(java.lang.StackTraceElement[])
+supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
+
+CLSS public abstract interface java.lang.annotation.Annotation
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract int hashCode()
+meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> annotationType()
+meth public abstract java.lang.String toString()
+
+CLSS public abstract interface !annotation java.lang.annotation.Documented
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation java.lang.annotation.Retention
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.RetentionPolicy value()
+
+CLSS public abstract interface !annotation java.lang.annotation.Target
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract interface javax.jms.BytesMessage
+intf javax.jms.Message
+meth public abstract boolean readBoolean() throws javax.jms.JMSException
+meth public abstract byte readByte() throws javax.jms.JMSException
+meth public abstract char readChar() throws javax.jms.JMSException
+meth public abstract double readDouble() throws javax.jms.JMSException
+meth public abstract float readFloat() throws javax.jms.JMSException
+meth public abstract int readBytes(byte[]) throws javax.jms.JMSException
+meth public abstract int readBytes(byte[],int) throws javax.jms.JMSException
+meth public abstract int readInt() throws javax.jms.JMSException
+meth public abstract int readUnsignedByte() throws javax.jms.JMSException
+meth public abstract int readUnsignedShort() throws javax.jms.JMSException
+meth public abstract java.lang.String readUTF() throws javax.jms.JMSException
+meth public abstract long getBodyLength() throws javax.jms.JMSException
+meth public abstract long readLong() throws javax.jms.JMSException
+meth public abstract short readShort() throws javax.jms.JMSException
+meth public abstract void reset() throws javax.jms.JMSException
+meth public abstract void writeBoolean(boolean) throws javax.jms.JMSException
+meth public abstract void writeByte(byte) throws javax.jms.JMSException
+meth public abstract void writeBytes(byte[]) throws javax.jms.JMSException
+meth public abstract void writeBytes(byte[],int,int) throws javax.jms.JMSException
+meth public abstract void writeChar(char) throws javax.jms.JMSException
+meth public abstract void writeDouble(double) throws javax.jms.JMSException
+meth public abstract void writeFloat(float) throws javax.jms.JMSException
+meth public abstract void writeInt(int) throws javax.jms.JMSException
+meth public abstract void writeLong(long) throws javax.jms.JMSException
+meth public abstract void writeObject(java.lang.Object) throws javax.jms.JMSException
+meth public abstract void writeShort(short) throws javax.jms.JMSException
+meth public abstract void writeUTF(java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.CompletionListener
+meth public abstract void onCompletion(javax.jms.Message)
+meth public abstract void onException(javax.jms.Message,java.lang.Exception)
+
+CLSS public abstract interface javax.jms.Connection
+intf java.lang.AutoCloseable
+meth public abstract java.lang.String getClientID() throws javax.jms.JMSException
+meth public abstract javax.jms.ConnectionConsumer createConnectionConsumer(javax.jms.Destination,java.lang.String,javax.jms.ServerSessionPool,int) throws javax.jms.JMSException
+meth public abstract javax.jms.ConnectionConsumer createDurableConnectionConsumer(javax.jms.Topic,java.lang.String,java.lang.String,javax.jms.ServerSessionPool,int) throws javax.jms.JMSException
+meth public abstract javax.jms.ConnectionConsumer createSharedConnectionConsumer(javax.jms.Topic,java.lang.String,java.lang.String,javax.jms.ServerSessionPool,int) throws javax.jms.JMSException
+meth public abstract javax.jms.ConnectionConsumer createSharedDurableConnectionConsumer(javax.jms.Topic,java.lang.String,java.lang.String,javax.jms.ServerSessionPool,int) throws javax.jms.JMSException
+meth public abstract javax.jms.ConnectionMetaData getMetaData() throws javax.jms.JMSException
+meth public abstract javax.jms.ExceptionListener getExceptionListener() throws javax.jms.JMSException
+meth public abstract javax.jms.Session createSession() throws javax.jms.JMSException
+meth public abstract javax.jms.Session createSession(boolean,int) throws javax.jms.JMSException
+meth public abstract javax.jms.Session createSession(int) throws javax.jms.JMSException
+meth public abstract void close() throws javax.jms.JMSException
+meth public abstract void setClientID(java.lang.String) throws javax.jms.JMSException
+meth public abstract void setExceptionListener(javax.jms.ExceptionListener) throws javax.jms.JMSException
+meth public abstract void start() throws javax.jms.JMSException
+meth public abstract void stop() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.ConnectionConsumer
+meth public abstract javax.jms.ServerSessionPool getServerSessionPool() throws javax.jms.JMSException
+meth public abstract void close() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.ConnectionFactory
+meth public abstract javax.jms.Connection createConnection() throws javax.jms.JMSException
+meth public abstract javax.jms.Connection createConnection(java.lang.String,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.JMSContext createContext()
+meth public abstract javax.jms.JMSContext createContext(int)
+meth public abstract javax.jms.JMSContext createContext(java.lang.String,java.lang.String)
+meth public abstract javax.jms.JMSContext createContext(java.lang.String,java.lang.String,int)
+
+CLSS public abstract interface javax.jms.ConnectionMetaData
+meth public abstract int getJMSMajorVersion() throws javax.jms.JMSException
+meth public abstract int getJMSMinorVersion() throws javax.jms.JMSException
+meth public abstract int getProviderMajorVersion() throws javax.jms.JMSException
+meth public abstract int getProviderMinorVersion() throws javax.jms.JMSException
+meth public abstract java.lang.String getJMSProviderName() throws javax.jms.JMSException
+meth public abstract java.lang.String getJMSVersion() throws javax.jms.JMSException
+meth public abstract java.lang.String getProviderVersion() throws javax.jms.JMSException
+meth public abstract java.util.Enumeration getJMSXPropertyNames() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.DeliveryMode
+fld public final static int NON_PERSISTENT = 1
+fld public final static int PERSISTENT = 2
+
+CLSS public abstract interface javax.jms.Destination
+
+CLSS public abstract interface javax.jms.ExceptionListener
+meth public abstract void onException(javax.jms.JMSException)
+
+CLSS public javax.jms.IllegalStateException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.IllegalStateRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public javax.jms.InvalidClientIDException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.InvalidClientIDRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public javax.jms.InvalidDestinationException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.InvalidDestinationRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public javax.jms.InvalidSelectorException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.InvalidSelectorRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.jms.JMSConnectionFactory
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD, PARAMETER, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.String value()
+
+CLSS public abstract interface !annotation javax.jms.JMSConnectionFactoryDefinition
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean transactional()
+meth public abstract !hasdefault int maxPoolSize()
+meth public abstract !hasdefault int minPoolSize()
+meth public abstract !hasdefault java.lang.String className()
+meth public abstract !hasdefault java.lang.String clientId()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String interfaceName()
+meth public abstract !hasdefault java.lang.String password()
+meth public abstract !hasdefault java.lang.String resourceAdapter()
+meth public abstract !hasdefault java.lang.String user()
+meth public abstract !hasdefault java.lang.String[] properties()
+meth public abstract java.lang.String name()
+
+CLSS public abstract interface !annotation javax.jms.JMSConnectionFactoryDefinitions
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract javax.jms.JMSConnectionFactoryDefinition[] value()
+
+CLSS public abstract interface javax.jms.JMSConsumer
+intf java.lang.AutoCloseable
+meth public abstract <%0 extends java.lang.Object> {%%0} receiveBody(java.lang.Class<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> {%%0} receiveBody(java.lang.Class<{%%0}>,long)
+meth public abstract <%0 extends java.lang.Object> {%%0} receiveBodyNoWait(java.lang.Class<{%%0}>)
+meth public abstract java.lang.String getMessageSelector()
+meth public abstract javax.jms.Message receive()
+meth public abstract javax.jms.Message receive(long)
+meth public abstract javax.jms.Message receiveNoWait()
+meth public abstract javax.jms.MessageListener getMessageListener()
+meth public abstract void close()
+meth public abstract void setMessageListener(javax.jms.MessageListener)
+
+CLSS public abstract interface javax.jms.JMSContext
+fld public final static int AUTO_ACKNOWLEDGE = 1
+fld public final static int CLIENT_ACKNOWLEDGE = 2
+fld public final static int DUPS_OK_ACKNOWLEDGE = 3
+fld public final static int SESSION_TRANSACTED = 0
+intf java.lang.AutoCloseable
+meth public abstract boolean getAutoStart()
+meth public abstract boolean getTransacted()
+meth public abstract int getSessionMode()
+meth public abstract java.lang.String getClientID()
+meth public abstract javax.jms.BytesMessage createBytesMessage()
+meth public abstract javax.jms.ConnectionMetaData getMetaData()
+meth public abstract javax.jms.ExceptionListener getExceptionListener()
+meth public abstract javax.jms.JMSConsumer createConsumer(javax.jms.Destination)
+meth public abstract javax.jms.JMSConsumer createConsumer(javax.jms.Destination,java.lang.String)
+meth public abstract javax.jms.JMSConsumer createConsumer(javax.jms.Destination,java.lang.String,boolean)
+meth public abstract javax.jms.JMSConsumer createDurableConsumer(javax.jms.Topic,java.lang.String)
+meth public abstract javax.jms.JMSConsumer createDurableConsumer(javax.jms.Topic,java.lang.String,java.lang.String,boolean)
+meth public abstract javax.jms.JMSConsumer createSharedConsumer(javax.jms.Topic,java.lang.String)
+meth public abstract javax.jms.JMSConsumer createSharedConsumer(javax.jms.Topic,java.lang.String,java.lang.String)
+meth public abstract javax.jms.JMSConsumer createSharedDurableConsumer(javax.jms.Topic,java.lang.String)
+meth public abstract javax.jms.JMSConsumer createSharedDurableConsumer(javax.jms.Topic,java.lang.String,java.lang.String)
+meth public abstract javax.jms.JMSContext createContext(int)
+meth public abstract javax.jms.JMSProducer createProducer()
+meth public abstract javax.jms.MapMessage createMapMessage()
+meth public abstract javax.jms.Message createMessage()
+meth public abstract javax.jms.ObjectMessage createObjectMessage()
+meth public abstract javax.jms.ObjectMessage createObjectMessage(java.io.Serializable)
+meth public abstract javax.jms.Queue createQueue(java.lang.String)
+meth public abstract javax.jms.QueueBrowser createBrowser(javax.jms.Queue)
+meth public abstract javax.jms.QueueBrowser createBrowser(javax.jms.Queue,java.lang.String)
+meth public abstract javax.jms.StreamMessage createStreamMessage()
+meth public abstract javax.jms.TemporaryQueue createTemporaryQueue()
+meth public abstract javax.jms.TemporaryTopic createTemporaryTopic()
+meth public abstract javax.jms.TextMessage createTextMessage()
+meth public abstract javax.jms.TextMessage createTextMessage(java.lang.String)
+meth public abstract javax.jms.Topic createTopic(java.lang.String)
+meth public abstract void acknowledge()
+meth public abstract void close()
+meth public abstract void commit()
+meth public abstract void recover()
+meth public abstract void rollback()
+meth public abstract void setAutoStart(boolean)
+meth public abstract void setClientID(java.lang.String)
+meth public abstract void setExceptionListener(javax.jms.ExceptionListener)
+meth public abstract void start()
+meth public abstract void stop()
+meth public abstract void unsubscribe(java.lang.String)
+
+CLSS public abstract interface !annotation javax.jms.JMSDestinationDefinition
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String className()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String destinationName()
+meth public abstract !hasdefault java.lang.String resourceAdapter()
+meth public abstract !hasdefault java.lang.String[] properties()
+meth public abstract java.lang.String interfaceName()
+meth public abstract java.lang.String name()
+
+CLSS public abstract interface !annotation javax.jms.JMSDestinationDefinitions
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract javax.jms.JMSDestinationDefinition[] value()
+
+CLSS public javax.jms.JMSException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+meth public java.lang.Exception getLinkedException()
+meth public java.lang.String getErrorCode()
+meth public void setLinkedException(java.lang.Exception)
+supr java.lang.Exception
+hfds errorCode,linkedException,serialVersionUID
+
+CLSS public abstract interface !annotation javax.jms.JMSPasswordCredential
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD, PARAMETER, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.String password()
+meth public abstract java.lang.String userName()
+
+CLSS public abstract interface javax.jms.JMSProducer
+meth public abstract boolean getBooleanProperty(java.lang.String)
+meth public abstract boolean getDisableMessageID()
+meth public abstract boolean getDisableMessageTimestamp()
+meth public abstract boolean propertyExists(java.lang.String)
+meth public abstract byte getByteProperty(java.lang.String)
+meth public abstract byte[] getJMSCorrelationIDAsBytes()
+meth public abstract double getDoubleProperty(java.lang.String)
+meth public abstract float getFloatProperty(java.lang.String)
+meth public abstract int getDeliveryMode()
+meth public abstract int getIntProperty(java.lang.String)
+meth public abstract int getPriority()
+meth public abstract java.lang.Object getObjectProperty(java.lang.String)
+meth public abstract java.lang.String getJMSCorrelationID()
+meth public abstract java.lang.String getJMSType()
+meth public abstract java.lang.String getStringProperty(java.lang.String)
+meth public abstract java.util.Set<java.lang.String> getPropertyNames()
+meth public abstract javax.jms.CompletionListener getAsync()
+meth public abstract javax.jms.Destination getJMSReplyTo()
+meth public abstract javax.jms.JMSProducer clearProperties()
+meth public abstract javax.jms.JMSProducer send(javax.jms.Destination,byte[])
+meth public abstract javax.jms.JMSProducer send(javax.jms.Destination,java.io.Serializable)
+meth public abstract javax.jms.JMSProducer send(javax.jms.Destination,java.lang.String)
+meth public abstract javax.jms.JMSProducer send(javax.jms.Destination,java.util.Map<java.lang.String,java.lang.Object>)
+meth public abstract javax.jms.JMSProducer send(javax.jms.Destination,javax.jms.Message)
+meth public abstract javax.jms.JMSProducer setAsync(javax.jms.CompletionListener)
+meth public abstract javax.jms.JMSProducer setDeliveryDelay(long)
+meth public abstract javax.jms.JMSProducer setDeliveryMode(int)
+meth public abstract javax.jms.JMSProducer setDisableMessageID(boolean)
+meth public abstract javax.jms.JMSProducer setDisableMessageTimestamp(boolean)
+meth public abstract javax.jms.JMSProducer setJMSCorrelationID(java.lang.String)
+meth public abstract javax.jms.JMSProducer setJMSCorrelationIDAsBytes(byte[])
+meth public abstract javax.jms.JMSProducer setJMSReplyTo(javax.jms.Destination)
+meth public abstract javax.jms.JMSProducer setJMSType(java.lang.String)
+meth public abstract javax.jms.JMSProducer setPriority(int)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,boolean)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,byte)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,double)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,float)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,int)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,java.lang.Object)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,java.lang.String)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,long)
+meth public abstract javax.jms.JMSProducer setProperty(java.lang.String,short)
+meth public abstract javax.jms.JMSProducer setTimeToLive(long)
+meth public abstract long getDeliveryDelay()
+meth public abstract long getLongProperty(java.lang.String)
+meth public abstract long getTimeToLive()
+meth public abstract short getShortProperty(java.lang.String)
+
+CLSS public javax.jms.JMSRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+meth public java.lang.String getErrorCode()
+supr java.lang.RuntimeException
+hfds errorCode,serialVersionUID
+
+CLSS public javax.jms.JMSSecurityException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.JMSSecurityRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.jms.JMSSessionMode
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD, PARAMETER, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault int value()
+
+CLSS public abstract interface javax.jms.MapMessage
+intf javax.jms.Message
+meth public abstract boolean getBoolean(java.lang.String) throws javax.jms.JMSException
+meth public abstract boolean itemExists(java.lang.String) throws javax.jms.JMSException
+meth public abstract byte getByte(java.lang.String) throws javax.jms.JMSException
+meth public abstract byte[] getBytes(java.lang.String) throws javax.jms.JMSException
+meth public abstract char getChar(java.lang.String) throws javax.jms.JMSException
+meth public abstract double getDouble(java.lang.String) throws javax.jms.JMSException
+meth public abstract float getFloat(java.lang.String) throws javax.jms.JMSException
+meth public abstract int getInt(java.lang.String) throws javax.jms.JMSException
+meth public abstract java.lang.Object getObject(java.lang.String) throws javax.jms.JMSException
+meth public abstract java.lang.String getString(java.lang.String) throws javax.jms.JMSException
+meth public abstract java.util.Enumeration getMapNames() throws javax.jms.JMSException
+meth public abstract long getLong(java.lang.String) throws javax.jms.JMSException
+meth public abstract short getShort(java.lang.String) throws javax.jms.JMSException
+meth public abstract void setBoolean(java.lang.String,boolean) throws javax.jms.JMSException
+meth public abstract void setByte(java.lang.String,byte) throws javax.jms.JMSException
+meth public abstract void setBytes(java.lang.String,byte[]) throws javax.jms.JMSException
+meth public abstract void setBytes(java.lang.String,byte[],int,int) throws javax.jms.JMSException
+meth public abstract void setChar(java.lang.String,char) throws javax.jms.JMSException
+meth public abstract void setDouble(java.lang.String,double) throws javax.jms.JMSException
+meth public abstract void setFloat(java.lang.String,float) throws javax.jms.JMSException
+meth public abstract void setInt(java.lang.String,int) throws javax.jms.JMSException
+meth public abstract void setLong(java.lang.String,long) throws javax.jms.JMSException
+meth public abstract void setObject(java.lang.String,java.lang.Object) throws javax.jms.JMSException
+meth public abstract void setShort(java.lang.String,short) throws javax.jms.JMSException
+meth public abstract void setString(java.lang.String,java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.Message
+fld public final static int DEFAULT_DELIVERY_MODE = 2
+fld public final static int DEFAULT_PRIORITY = 4
+fld public final static long DEFAULT_DELIVERY_DELAY = 0
+fld public final static long DEFAULT_TIME_TO_LIVE = 0
+meth public abstract <%0 extends java.lang.Object> {%%0} getBody(java.lang.Class<{%%0}>) throws javax.jms.JMSException
+meth public abstract boolean getBooleanProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract boolean getJMSRedelivered() throws javax.jms.JMSException
+meth public abstract boolean isBodyAssignableTo(java.lang.Class) throws javax.jms.JMSException
+meth public abstract boolean propertyExists(java.lang.String) throws javax.jms.JMSException
+meth public abstract byte getByteProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract byte[] getJMSCorrelationIDAsBytes() throws javax.jms.JMSException
+meth public abstract double getDoubleProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract float getFloatProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract int getIntProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract int getJMSDeliveryMode() throws javax.jms.JMSException
+meth public abstract int getJMSPriority() throws javax.jms.JMSException
+meth public abstract java.lang.Object getObjectProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract java.lang.String getJMSCorrelationID() throws javax.jms.JMSException
+meth public abstract java.lang.String getJMSMessageID() throws javax.jms.JMSException
+meth public abstract java.lang.String getJMSType() throws javax.jms.JMSException
+meth public abstract java.lang.String getStringProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract java.util.Enumeration getPropertyNames() throws javax.jms.JMSException
+meth public abstract javax.jms.Destination getJMSDestination() throws javax.jms.JMSException
+meth public abstract javax.jms.Destination getJMSReplyTo() throws javax.jms.JMSException
+meth public abstract long getJMSDeliveryTime() throws javax.jms.JMSException
+meth public abstract long getJMSExpiration() throws javax.jms.JMSException
+meth public abstract long getJMSTimestamp() throws javax.jms.JMSException
+meth public abstract long getLongProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract short getShortProperty(java.lang.String) throws javax.jms.JMSException
+meth public abstract void acknowledge() throws javax.jms.JMSException
+meth public abstract void clearBody() throws javax.jms.JMSException
+meth public abstract void clearProperties() throws javax.jms.JMSException
+meth public abstract void setBooleanProperty(java.lang.String,boolean) throws javax.jms.JMSException
+meth public abstract void setByteProperty(java.lang.String,byte) throws javax.jms.JMSException
+meth public abstract void setDoubleProperty(java.lang.String,double) throws javax.jms.JMSException
+meth public abstract void setFloatProperty(java.lang.String,float) throws javax.jms.JMSException
+meth public abstract void setIntProperty(java.lang.String,int) throws javax.jms.JMSException
+meth public abstract void setJMSCorrelationID(java.lang.String) throws javax.jms.JMSException
+meth public abstract void setJMSCorrelationIDAsBytes(byte[]) throws javax.jms.JMSException
+meth public abstract void setJMSDeliveryMode(int) throws javax.jms.JMSException
+meth public abstract void setJMSDeliveryTime(long) throws javax.jms.JMSException
+meth public abstract void setJMSDestination(javax.jms.Destination) throws javax.jms.JMSException
+meth public abstract void setJMSExpiration(long) throws javax.jms.JMSException
+meth public abstract void setJMSMessageID(java.lang.String) throws javax.jms.JMSException
+meth public abstract void setJMSPriority(int) throws javax.jms.JMSException
+meth public abstract void setJMSRedelivered(boolean) throws javax.jms.JMSException
+meth public abstract void setJMSReplyTo(javax.jms.Destination) throws javax.jms.JMSException
+meth public abstract void setJMSTimestamp(long) throws javax.jms.JMSException
+meth public abstract void setJMSType(java.lang.String) throws javax.jms.JMSException
+meth public abstract void setLongProperty(java.lang.String,long) throws javax.jms.JMSException
+meth public abstract void setObjectProperty(java.lang.String,java.lang.Object) throws javax.jms.JMSException
+meth public abstract void setShortProperty(java.lang.String,short) throws javax.jms.JMSException
+meth public abstract void setStringProperty(java.lang.String,java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.MessageConsumer
+intf java.lang.AutoCloseable
+meth public abstract java.lang.String getMessageSelector() throws javax.jms.JMSException
+meth public abstract javax.jms.Message receive() throws javax.jms.JMSException
+meth public abstract javax.jms.Message receive(long) throws javax.jms.JMSException
+meth public abstract javax.jms.Message receiveNoWait() throws javax.jms.JMSException
+meth public abstract javax.jms.MessageListener getMessageListener() throws javax.jms.JMSException
+meth public abstract void close() throws javax.jms.JMSException
+meth public abstract void setMessageListener(javax.jms.MessageListener) throws javax.jms.JMSException
+
+CLSS public javax.jms.MessageEOFException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.MessageFormatException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.MessageFormatRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public abstract interface javax.jms.MessageListener
+meth public abstract void onMessage(javax.jms.Message)
+
+CLSS public javax.jms.MessageNotReadableException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.MessageNotWriteableException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.MessageNotWriteableRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public abstract interface javax.jms.MessageProducer
+intf java.lang.AutoCloseable
+meth public abstract boolean getDisableMessageID() throws javax.jms.JMSException
+meth public abstract boolean getDisableMessageTimestamp() throws javax.jms.JMSException
+meth public abstract int getDeliveryMode() throws javax.jms.JMSException
+meth public abstract int getPriority() throws javax.jms.JMSException
+meth public abstract javax.jms.Destination getDestination() throws javax.jms.JMSException
+meth public abstract long getDeliveryDelay() throws javax.jms.JMSException
+meth public abstract long getTimeToLive() throws javax.jms.JMSException
+meth public abstract void close() throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Destination,javax.jms.Message) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Destination,javax.jms.Message,int,int,long) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Destination,javax.jms.Message,int,int,long,javax.jms.CompletionListener) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Destination,javax.jms.Message,javax.jms.CompletionListener) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Message) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Message,int,int,long) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Message,int,int,long,javax.jms.CompletionListener) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Message,javax.jms.CompletionListener) throws javax.jms.JMSException
+meth public abstract void setDeliveryDelay(long) throws javax.jms.JMSException
+meth public abstract void setDeliveryMode(int) throws javax.jms.JMSException
+meth public abstract void setDisableMessageID(boolean) throws javax.jms.JMSException
+meth public abstract void setDisableMessageTimestamp(boolean) throws javax.jms.JMSException
+meth public abstract void setPriority(int) throws javax.jms.JMSException
+meth public abstract void setTimeToLive(long) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.ObjectMessage
+intf javax.jms.Message
+meth public abstract java.io.Serializable getObject() throws javax.jms.JMSException
+meth public abstract void setObject(java.io.Serializable) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.Queue
+intf javax.jms.Destination
+meth public abstract java.lang.String getQueueName() throws javax.jms.JMSException
+meth public abstract java.lang.String toString()
+
+CLSS public abstract interface javax.jms.QueueBrowser
+intf java.lang.AutoCloseable
+meth public abstract java.lang.String getMessageSelector() throws javax.jms.JMSException
+meth public abstract java.util.Enumeration getEnumeration() throws javax.jms.JMSException
+meth public abstract javax.jms.Queue getQueue() throws javax.jms.JMSException
+meth public abstract void close() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.QueueConnection
+intf javax.jms.Connection
+meth public abstract javax.jms.ConnectionConsumer createConnectionConsumer(javax.jms.Queue,java.lang.String,javax.jms.ServerSessionPool,int) throws javax.jms.JMSException
+meth public abstract javax.jms.QueueSession createQueueSession(boolean,int) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.QueueConnectionFactory
+intf javax.jms.ConnectionFactory
+meth public abstract javax.jms.QueueConnection createQueueConnection() throws javax.jms.JMSException
+meth public abstract javax.jms.QueueConnection createQueueConnection(java.lang.String,java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.QueueReceiver
+intf javax.jms.MessageConsumer
+meth public abstract javax.jms.Queue getQueue() throws javax.jms.JMSException
+
+CLSS public javax.jms.QueueRequestor
+cons public <init>(javax.jms.QueueSession,javax.jms.Queue) throws javax.jms.JMSException
+meth public javax.jms.Message request(javax.jms.Message) throws javax.jms.JMSException
+meth public void close() throws javax.jms.JMSException
+supr java.lang.Object
+hfds receiver,sender,session,tempQueue
+
+CLSS public abstract interface javax.jms.QueueSender
+intf javax.jms.MessageProducer
+meth public abstract javax.jms.Queue getQueue() throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Message) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Message,int,int,long) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Queue,javax.jms.Message) throws javax.jms.JMSException
+meth public abstract void send(javax.jms.Queue,javax.jms.Message,int,int,long) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.QueueSession
+intf javax.jms.Session
+meth public abstract javax.jms.Queue createQueue(java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.QueueBrowser createBrowser(javax.jms.Queue) throws javax.jms.JMSException
+meth public abstract javax.jms.QueueBrowser createBrowser(javax.jms.Queue,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.QueueReceiver createReceiver(javax.jms.Queue) throws javax.jms.JMSException
+meth public abstract javax.jms.QueueReceiver createReceiver(javax.jms.Queue,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.QueueSender createSender(javax.jms.Queue) throws javax.jms.JMSException
+meth public abstract javax.jms.TemporaryQueue createTemporaryQueue() throws javax.jms.JMSException
+
+CLSS public javax.jms.ResourceAllocationException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.ResourceAllocationRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public abstract interface javax.jms.ServerSession
+meth public abstract javax.jms.Session getSession() throws javax.jms.JMSException
+meth public abstract void start() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.ServerSessionPool
+meth public abstract javax.jms.ServerSession getServerSession() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.Session
+fld public final static int AUTO_ACKNOWLEDGE = 1
+fld public final static int CLIENT_ACKNOWLEDGE = 2
+fld public final static int DUPS_OK_ACKNOWLEDGE = 3
+fld public final static int SESSION_TRANSACTED = 0
+intf java.lang.AutoCloseable
+intf java.lang.Runnable
+meth public abstract boolean getTransacted() throws javax.jms.JMSException
+meth public abstract int getAcknowledgeMode() throws javax.jms.JMSException
+meth public abstract javax.jms.BytesMessage createBytesMessage() throws javax.jms.JMSException
+meth public abstract javax.jms.MapMessage createMapMessage() throws javax.jms.JMSException
+meth public abstract javax.jms.Message createMessage() throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createConsumer(javax.jms.Destination) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createConsumer(javax.jms.Destination,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createConsumer(javax.jms.Destination,java.lang.String,boolean) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createDurableConsumer(javax.jms.Topic,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createDurableConsumer(javax.jms.Topic,java.lang.String,java.lang.String,boolean) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createSharedConsumer(javax.jms.Topic,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createSharedConsumer(javax.jms.Topic,java.lang.String,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createSharedDurableConsumer(javax.jms.Topic,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageConsumer createSharedDurableConsumer(javax.jms.Topic,java.lang.String,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.MessageListener getMessageListener() throws javax.jms.JMSException
+meth public abstract javax.jms.MessageProducer createProducer(javax.jms.Destination) throws javax.jms.JMSException
+meth public abstract javax.jms.ObjectMessage createObjectMessage() throws javax.jms.JMSException
+meth public abstract javax.jms.ObjectMessage createObjectMessage(java.io.Serializable) throws javax.jms.JMSException
+meth public abstract javax.jms.Queue createQueue(java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.QueueBrowser createBrowser(javax.jms.Queue) throws javax.jms.JMSException
+meth public abstract javax.jms.QueueBrowser createBrowser(javax.jms.Queue,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.StreamMessage createStreamMessage() throws javax.jms.JMSException
+meth public abstract javax.jms.TemporaryQueue createTemporaryQueue() throws javax.jms.JMSException
+meth public abstract javax.jms.TemporaryTopic createTemporaryTopic() throws javax.jms.JMSException
+meth public abstract javax.jms.TextMessage createTextMessage() throws javax.jms.JMSException
+meth public abstract javax.jms.TextMessage createTextMessage(java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.Topic createTopic(java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.TopicSubscriber createDurableSubscriber(javax.jms.Topic,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.TopicSubscriber createDurableSubscriber(javax.jms.Topic,java.lang.String,java.lang.String,boolean) throws javax.jms.JMSException
+meth public abstract void close() throws javax.jms.JMSException
+meth public abstract void commit() throws javax.jms.JMSException
+meth public abstract void recover() throws javax.jms.JMSException
+meth public abstract void rollback() throws javax.jms.JMSException
+meth public abstract void run()
+meth public abstract void setMessageListener(javax.jms.MessageListener) throws javax.jms.JMSException
+meth public abstract void unsubscribe(java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.StreamMessage
+intf javax.jms.Message
+meth public abstract boolean readBoolean() throws javax.jms.JMSException
+meth public abstract byte readByte() throws javax.jms.JMSException
+meth public abstract char readChar() throws javax.jms.JMSException
+meth public abstract double readDouble() throws javax.jms.JMSException
+meth public abstract float readFloat() throws javax.jms.JMSException
+meth public abstract int readBytes(byte[]) throws javax.jms.JMSException
+meth public abstract int readInt() throws javax.jms.JMSException
+meth public abstract java.lang.Object readObject() throws javax.jms.JMSException
+meth public abstract java.lang.String readString() throws javax.jms.JMSException
+meth public abstract long readLong() throws javax.jms.JMSException
+meth public abstract short readShort() throws javax.jms.JMSException
+meth public abstract void reset() throws javax.jms.JMSException
+meth public abstract void writeBoolean(boolean) throws javax.jms.JMSException
+meth public abstract void writeByte(byte) throws javax.jms.JMSException
+meth public abstract void writeBytes(byte[]) throws javax.jms.JMSException
+meth public abstract void writeBytes(byte[],int,int) throws javax.jms.JMSException
+meth public abstract void writeChar(char) throws javax.jms.JMSException
+meth public abstract void writeDouble(double) throws javax.jms.JMSException
+meth public abstract void writeFloat(float) throws javax.jms.JMSException
+meth public abstract void writeInt(int) throws javax.jms.JMSException
+meth public abstract void writeLong(long) throws javax.jms.JMSException
+meth public abstract void writeObject(java.lang.Object) throws javax.jms.JMSException
+meth public abstract void writeShort(short) throws javax.jms.JMSException
+meth public abstract void writeString(java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.TemporaryQueue
+intf javax.jms.Queue
+meth public abstract void delete() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.TemporaryTopic
+intf javax.jms.Topic
+meth public abstract void delete() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.TextMessage
+intf javax.jms.Message
+meth public abstract java.lang.String getText() throws javax.jms.JMSException
+meth public abstract void setText(java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.Topic
+intf javax.jms.Destination
+meth public abstract java.lang.String getTopicName() throws javax.jms.JMSException
+meth public abstract java.lang.String toString()
+
+CLSS public abstract interface javax.jms.TopicConnection
+intf javax.jms.Connection
+meth public abstract javax.jms.ConnectionConsumer createConnectionConsumer(javax.jms.Topic,java.lang.String,javax.jms.ServerSessionPool,int) throws javax.jms.JMSException
+meth public abstract javax.jms.ConnectionConsumer createDurableConnectionConsumer(javax.jms.Topic,java.lang.String,java.lang.String,javax.jms.ServerSessionPool,int) throws javax.jms.JMSException
+meth public abstract javax.jms.TopicSession createTopicSession(boolean,int) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.TopicConnectionFactory
+intf javax.jms.ConnectionFactory
+meth public abstract javax.jms.TopicConnection createTopicConnection() throws javax.jms.JMSException
+meth public abstract javax.jms.TopicConnection createTopicConnection(java.lang.String,java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.TopicPublisher
+intf javax.jms.MessageProducer
+meth public abstract javax.jms.Topic getTopic() throws javax.jms.JMSException
+meth public abstract void publish(javax.jms.Message) throws javax.jms.JMSException
+meth public abstract void publish(javax.jms.Message,int,int,long) throws javax.jms.JMSException
+meth public abstract void publish(javax.jms.Topic,javax.jms.Message) throws javax.jms.JMSException
+meth public abstract void publish(javax.jms.Topic,javax.jms.Message,int,int,long) throws javax.jms.JMSException
+
+CLSS public javax.jms.TopicRequestor
+cons public <init>(javax.jms.TopicSession,javax.jms.Topic) throws javax.jms.JMSException
+meth public javax.jms.Message request(javax.jms.Message) throws javax.jms.JMSException
+meth public void close() throws javax.jms.JMSException
+supr java.lang.Object
+hfds publisher,session,subscriber,tempTopic
+
+CLSS public abstract interface javax.jms.TopicSession
+intf javax.jms.Session
+meth public abstract javax.jms.TemporaryTopic createTemporaryTopic() throws javax.jms.JMSException
+meth public abstract javax.jms.Topic createTopic(java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.TopicPublisher createPublisher(javax.jms.Topic) throws javax.jms.JMSException
+meth public abstract javax.jms.TopicSubscriber createDurableSubscriber(javax.jms.Topic,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.TopicSubscriber createDurableSubscriber(javax.jms.Topic,java.lang.String,java.lang.String,boolean) throws javax.jms.JMSException
+meth public abstract javax.jms.TopicSubscriber createSubscriber(javax.jms.Topic) throws javax.jms.JMSException
+meth public abstract javax.jms.TopicSubscriber createSubscriber(javax.jms.Topic,java.lang.String,boolean) throws javax.jms.JMSException
+meth public abstract void unsubscribe(java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.TopicSubscriber
+intf javax.jms.MessageConsumer
+meth public abstract boolean getNoLocal() throws javax.jms.JMSException
+meth public abstract javax.jms.Topic getTopic() throws javax.jms.JMSException
+
+CLSS public javax.jms.TransactionInProgressException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.TransactionInProgressRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public javax.jms.TransactionRolledBackException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+supr javax.jms.JMSException
+hfds serialVersionUID
+
+CLSS public javax.jms.TransactionRolledBackRuntimeException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+supr javax.jms.JMSRuntimeException
+hfds serialVersionUID
+
+CLSS public abstract interface javax.jms.XAConnection
+intf javax.jms.Connection
+meth public abstract javax.jms.Session createSession(boolean,int) throws javax.jms.JMSException
+meth public abstract javax.jms.XASession createXASession() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.XAConnectionFactory
+meth public abstract javax.jms.XAConnection createXAConnection() throws javax.jms.JMSException
+meth public abstract javax.jms.XAConnection createXAConnection(java.lang.String,java.lang.String) throws javax.jms.JMSException
+meth public abstract javax.jms.XAJMSContext createXAContext()
+meth public abstract javax.jms.XAJMSContext createXAContext(java.lang.String,java.lang.String)
+
+CLSS public abstract interface javax.jms.XAJMSContext
+intf javax.jms.JMSContext
+meth public abstract boolean getTransacted()
+meth public abstract javax.jms.JMSContext getContext()
+meth public abstract javax.transaction.xa.XAResource getXAResource()
+meth public abstract void commit()
+meth public abstract void rollback()
+
+CLSS public abstract interface javax.jms.XAQueueConnection
+intf javax.jms.QueueConnection
+intf javax.jms.XAConnection
+meth public abstract javax.jms.QueueSession createQueueSession(boolean,int) throws javax.jms.JMSException
+meth public abstract javax.jms.XAQueueSession createXAQueueSession() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.XAQueueConnectionFactory
+intf javax.jms.QueueConnectionFactory
+intf javax.jms.XAConnectionFactory
+meth public abstract javax.jms.XAQueueConnection createXAQueueConnection() throws javax.jms.JMSException
+meth public abstract javax.jms.XAQueueConnection createXAQueueConnection(java.lang.String,java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.XAQueueSession
+intf javax.jms.XASession
+meth public abstract javax.jms.QueueSession getQueueSession() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.XASession
+intf javax.jms.Session
+meth public abstract boolean getTransacted() throws javax.jms.JMSException
+meth public abstract javax.jms.Session getSession() throws javax.jms.JMSException
+meth public abstract javax.transaction.xa.XAResource getXAResource()
+meth public abstract void commit() throws javax.jms.JMSException
+meth public abstract void rollback() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.XATopicConnection
+intf javax.jms.TopicConnection
+intf javax.jms.XAConnection
+meth public abstract javax.jms.TopicSession createTopicSession(boolean,int) throws javax.jms.JMSException
+meth public abstract javax.jms.XATopicSession createXATopicSession() throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.XATopicConnectionFactory
+intf javax.jms.TopicConnectionFactory
+intf javax.jms.XAConnectionFactory
+meth public abstract javax.jms.XATopicConnection createXATopicConnection() throws javax.jms.JMSException
+meth public abstract javax.jms.XATopicConnection createXATopicConnection(java.lang.String,java.lang.String) throws javax.jms.JMSException
+
+CLSS public abstract interface javax.jms.XATopicSession
+intf javax.jms.XASession
+meth public abstract javax.jms.TopicSession getTopicSession() throws javax.jms.JMSException
+

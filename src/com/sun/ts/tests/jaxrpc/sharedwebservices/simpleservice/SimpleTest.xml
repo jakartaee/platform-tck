@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.sharedwebservices.simpleservice</package-type>
+    <namespaceURI>http://simpletestservice.org/types</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.sharedwebservices.simpleservice</package-type>
+    <namespaceURI>http://simpletestservice.org/wsdl</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.sharedwebservices.simpleservice._arrays.java.lang</package-type>
+    <namespaceURI>http://simpletestservice.org/types/arrays/java/lang</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.sharedwebservices.simpleservice.SimpleBean</java-type>
+    <root-type-qname xmlns:typeNS="http://simpletestservice.org/types">typeNS:SimpleBean</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>myInt</java-variable-name>
+      <xml-element-name>myInt</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>myString</java-variable-name>
+      <xml-element-name>myString</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.sharedwebservices.simpleservice.SimpleTest</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://simpletestservice.org/wsdl">serviceNS:SimpleTest</wsdl-service-name>
+    <port-mapping>
+      <port-name>SimpleEndpointPort</port-name>
+      <java-port-name>SimpleEndpointPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.sharedwebservices.simpleservice.SimpleEndpoint</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://simpletestservice.org/wsdl">portTypeNS:SimpleEndpoint</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://simpletestservice.org/wsdl">bindingNS:SimpleEndpointBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>arrayOperation</java-method-name>
+      <wsdl-operation>arrayOperation</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String[]</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_arrayOperationResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>arrayOperationFromClient</java-method-name>
+      <wsdl-operation>arrayOperationFromClient</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String[]</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_arrayOperationFromClient</wsdl-message>
+          <wsdl-message-part-name>arrayOfString_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_arrayOperationFromClientResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>getBean</java-method-name>
+      <wsdl-operation>getBean</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>com.sun.ts.tests.jaxrpc.sharedwebservices.simpleservice.SimpleBean</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_getBeanResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>helloWorld</java-method-name>
+      <wsdl-operation>helloWorld</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_helloWorldResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>holderOperation</java-method-name>
+      <wsdl-operation>holderOperation</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_holderOperation</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_holderOperation</wsdl-message>
+          <wsdl-message-part-name>String_2</wsdl-message-part-name>
+          <parameter-mode>INOUT</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_holderOperationResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>oneWayOperation</java-method-name>
+      <wsdl-operation>oneWayOperation</wsdl-operation>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>overloadedOperation</java-method-name>
+      <wsdl-operation>overloadedOperation</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_overloadedOperation</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_overloadedOperationResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>overloadedOperation</java-method-name>
+      <wsdl-operation>overloadedOperation2</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_overloadedOperation2</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <method-param-parts-mapping>
+        <param-position>1</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_overloadedOperation2</wsdl-message>
+          <wsdl-message-part-name>String_2</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://simpletestservice.org/wsdl">wsdlMsgNS:SimpleEndpoint_overloadedOperation2Response</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

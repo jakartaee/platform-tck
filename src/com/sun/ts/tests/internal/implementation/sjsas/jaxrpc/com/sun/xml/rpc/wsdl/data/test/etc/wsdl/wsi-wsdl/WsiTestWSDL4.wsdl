@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="HelloWorldService" targetNamespace="http://hello.org/wsdl" xmlns:tns="http://hello.org/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://hello.org/types" xmlns:ns3="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns4="http://java.sun.com/jax-rpc-ri/internal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <schema targetNamespace="http://hello.org/types" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://java.sun.com/jax-rpc-ri/internal" xmlns:tns="http://hello.org/types" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://www.w3.org/2002/06/soap-encoding"/>
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <import namespace="http://java.sun.com/jax-rpc-ri/internal"/>
+      <complexType name="Address">
+        <sequence>
+          <element name="detail" type="string"/>
+          <element name="street" type="string"/>
+          <element name="zip" type="string"/></sequence></complexType>
+      <complexType name="Hobbies">
+        <sequence>
+          <element name="hobby" type="ns2:vector"/>
+          <element name="name" type="tns:Name"/>
+          <element name="places" type="ns2:collection"/></sequence></complexType>
+      <complexType name="Name">
+        <sequence>
+          <element name="fn" type="string"/>
+          <element name="ln" type="string"/></sequence></complexType>
+      <complexType name="ArrayOfimage">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="ns2:image[]"/></restriction></complexContent></complexType>
+      <complexType name="Outer.Inner">
+        <sequence>
+          <element name="innerValue" type="string"/></sequence></complexType>
+      <complexType name="ArrayOfmultipart">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="ns2:multipart[]"/></restriction></complexContent></complexType>
+      <complexType name="Recursive">
+        <sequence>
+          <element name="children" type="tns:ArrayOfRecursive"/>
+          <element name="id" type="int"/>
+          <element name="name" type="string"/></sequence></complexType>
+      <complexType name="ArrayOfRecursive">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:Recursive[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOftext_xml">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="ns2:text_xml[]"/></restriction></complexContent></complexType>
+      <complexType name="ValueType">
+        <sequence>
+          <element name="boolProperty" type="boolean"/>
+          <element name="integerProperty" type="soap11-enc:int"/>
+          <element name="stringProperty" type="string"/></sequence></complexType>
+      <complexType name="ArrayOfValueType">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:ValueType[]"/></restriction></complexContent></complexType>
+      <complexType name="IndexedNames">
+        <sequence>
+          <element name="names" type="tns:ArrayOfName"/></sequence></complexType>
+      <complexType name="ArrayOfName">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:Name[]"/></restriction></complexContent></complexType>
+      <complexType name="HelloException">
+        <sequence>
+          <element name="message" type="string"/></sequence></complexType>
+      <complexType name="ArrayOfstring">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="string[]"/></restriction></complexContent></complexType>
+      <complexType name="OnePropBean">
+        <sequence>
+          <element name="firstProperty" type="boolean"/></sequence></complexType></schema>
+    <schema targetNamespace="http://java.sun.com/jax-rpc-ri/internal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://java.sun.com/jax-rpc-ri/internal" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://www.w3.org/2002/06/soap-encoding"/>
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <import namespace="http://hello.org/types"/>
+      <complexType name="arrayList">
+        <complexContent>
+          <extension base="tns:list">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="list">
+        <complexContent>
+          <extension base="tns:collection">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="collection">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="anyType[]"/></restriction></complexContent></complexType>
+      <complexType name="hashMap">
+        <complexContent>
+          <extension base="tns:map">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="map">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:mapEntry[]"/></restriction></complexContent></complexType>
+      <complexType name="mapEntry">
+        <sequence>
+          <element name="key" type="anyType"/>
+          <element name="value" type="anyType"/></sequence></complexType>
+      <complexType name="hashSet">
+        <complexContent>
+          <extension base="tns:set">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="set">
+        <complexContent>
+          <extension base="tns:collection">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="hashtable">
+        <complexContent>
+          <extension base="tns:map">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="vector">
+        <complexContent>
+          <extension base="tns:list">
+            <sequence/></extension></complexContent></complexType>
+      <simpleType name="image">
+        <restriction base="base64Binary"/></simpleType>
+      <complexType name="linkedList">
+        <complexContent>
+          <extension base="tns:list">
+            <sequence/></extension></complexContent></complexType>
+      <simpleType name="multipart">
+        <restriction base="base64Binary"/></simpleType>
+      <complexType name="properties">
+        <complexContent>
+          <extension base="tns:map">
+            <sequence/></extension></complexContent></complexType>
+      <simpleType name="text_xml">
+        <restriction base="string"/></simpleType>
+      <complexType name="stack">
+        <complexContent>
+          <extension base="tns:list">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="treeMap">
+        <complexContent>
+          <extension base="tns:map">
+            <sequence/></extension></complexContent></complexType>
+      <complexType name="treeSet">
+        <complexContent>
+          <extension base="tns:set">
+            <sequence/></extension></complexContent></complexType></schema></types>
+  <message name="HelloIF_checkHandlerPropertiesClient"/>
+  <message name="HelloIF_checkHandlerPropertiesClientResponse"/>
+  <message name="HelloIF_checkHandlerPropertiesServer"/>
+  <message name="HelloIF_checkHandlerPropertiesServerResponse"/>
+  <message name="HelloIF_checkHandlerPropertiesServerModified"/>
+  <message name="HelloIF_checkHandlerPropertiesServerModifiedResponse"/>
+  <message name="HelloIF_consumeHeadersClient"/>
+  <message name="HelloIF_consumeHeadersClientResponse"/>
+  <message name="HelloIF_consumeHeadersServer"/>
+  <message name="HelloIF_consumeHeadersServerResponse"/>
+  <message name="HelloIF_echoAddress">
+    <part name="Address_1" type="ns2:Address"/></message>
+  <message name="HelloIF_echoAddressResponse">
+    <part name="result" type="ns2:Address"/></message>
+  <message name="HelloIF_echoArrayList">
+    <part name="ArrayList_1" type="ns4:arrayList"/></message>
+  <message name="HelloIF_echoArrayListResponse">
+    <part name="result" type="ns4:arrayList"/></message>
+  <message name="HelloIF_echoHashMap">
+    <part name="HashMap_1" type="ns4:hashMap"/></message>
+  <message name="HelloIF_echoHashMapResponse">
+    <part name="result" type="ns4:hashMap"/></message>
+  <message name="HelloIF_echoHashSet">
+    <part name="HashSet_1" type="ns4:hashSet"/></message>
+  <message name="HelloIF_echoHashSetResponse">
+    <part name="result" type="ns4:hashSet"/></message>
+  <message name="HelloIF_echoHashtable">
+    <part name="Hashtable_1" type="ns4:hashtable"/></message>
+  <message name="HelloIF_echoHashtableResponse">
+    <part name="result" type="ns4:hashtable"/></message>
+  <message name="HelloIF_echoHobbies">
+    <part name="Hobbies_1" type="ns2:Hobbies"/></message>
+  <message name="HelloIF_echoHobbiesResponse">
+    <part name="result" type="ns2:Hobbies"/></message>
+  <message name="HelloIF_echoImage">
+    <part name="Image_1" type="ns4:image"/></message>
+  <message name="HelloIF_echoImageResponse">
+    <part name="result" type="ns4:image"/></message>
+  <message name="HelloIF_echoImageArray">
+    <part name="arrayOfImage_1" type="ns2:ArrayOfimage"/></message>
+  <message name="HelloIF_echoImageArrayResponse">
+    <part name="result" type="ns2:ArrayOfimage"/></message>
+  <message name="HelloIF_echoInnerClass">
+    <part name="Outer_Inner_1" type="ns2:Outer.Inner"/></message>
+  <message name="HelloIF_echoInnerClassResponse">
+    <part name="result" type="ns2:Outer.Inner"/></message>
+  <message name="HelloIF_echoLinkedList">
+    <part name="LinkedList_1" type="ns4:linkedList"/></message>
+  <message name="HelloIF_echoLinkedListResponse">
+    <part name="result" type="ns4:linkedList"/></message>
+  <message name="HelloIF_echoList">
+    <part name="List_1" type="ns4:list"/></message>
+  <message name="HelloIF_echoListResponse">
+    <part name="result" type="ns4:list"/></message>
+  <message name="HelloIF_echoMap">
+    <part name="Map_1" type="ns4:map"/></message>
+  <message name="HelloIF_echoMapResponse">
+    <part name="result" type="ns4:map"/></message>
+  <message name="HelloIF_echoMimeMultipart">
+    <part name="MimeMultipart_1" type="ns4:multipart"/></message>
+  <message name="HelloIF_echoMimeMultipartResponse">
+    <part name="result" type="ns4:multipart"/></message>
+  <message name="HelloIF_echoMimeMultipartArray">
+    <part name="arrayOfMimeMultipart_1" type="ns2:ArrayOfmultipart"/></message>
+  <message name="HelloIF_echoMimeMultipartArrayResponse">
+    <part name="result" type="ns2:ArrayOfmultipart"/></message>
+  <message name="HelloIF_echoName"/>
+  <message name="HelloIF_echoNameResponse">
+    <part name="result" type="ns2:Name"/></message>
+  <message name="HelloIF_echoName2">
+    <part name="Name_1" type="ns2:Name"/></message>
+  <message name="HelloIF_echoName2Response">
+    <part name="result" type="ns2:Name"/></message>
+  <message name="HelloIF_echoProperties">
+    <part name="Properties_1" type="ns4:properties"/></message>
+  <message name="HelloIF_echoPropertiesResponse">
+    <part name="result" type="ns4:properties"/></message>
+  <message name="HelloIF_echoRecursive">
+    <part name="Recursive_1" type="ns2:Recursive"/></message>
+  <message name="HelloIF_echoRecursiveResponse">
+    <part name="result" type="ns2:Recursive"/></message>
+  <message name="HelloIF_echoSet">
+    <part name="Set_1" type="ns4:set"/></message>
+  <message name="HelloIF_echoSetResponse">
+    <part name="result" type="ns4:set"/></message>
+  <message name="HelloIF_echoSource">
+    <part name="Source_1" type="ns4:text_xml"/></message>
+  <message name="HelloIF_echoSourceResponse">
+    <part name="result" type="ns4:text_xml"/></message>
+  <message name="HelloIF_echoSourceArray">
+    <part name="arrayOfSource_1" type="ns2:ArrayOftext_xml"/></message>
+  <message name="HelloIF_echoSourceArrayResponse">
+    <part name="result" type="ns2:ArrayOftext_xml"/></message>
+  <message name="HelloIF_echoStack">
+    <part name="Stack_1" type="ns4:stack"/></message>
+  <message name="HelloIF_echoStackResponse">
+    <part name="result" type="ns4:stack"/></message>
+  <message name="HelloIF_echoTreeMap">
+    <part name="TreeMap_1" type="ns4:treeMap"/></message>
+  <message name="HelloIF_echoTreeMapResponse">
+    <part name="result" type="ns4:treeMap"/></message>
+  <message name="HelloIF_echoTreeSet">
+    <part name="TreeSet_1" type="ns4:treeSet"/></message>
+  <message name="HelloIF_echoTreeSetResponse">
+    <part name="result" type="ns4:treeSet"/></message>
+  <message name="HelloIF_echoValueType">
+    <part name="ValueType_1" type="ns2:ValueType"/></message>
+  <message name="HelloIF_echoValueTypeResponse">
+    <part name="result" type="ns2:ValueType"/></message>
+  <message name="HelloIF_echoValueTypeArray">
+    <part name="arrayOfValueType_1" type="ns2:ArrayOfValueType"/></message>
+  <message name="HelloIF_echoValueTypeArrayResponse">
+    <part name="result" type="ns2:ArrayOfValueType"/></message>
+  <message name="HelloIF_echoVector">
+    <part name="Vector_1" type="ns4:vector"/></message>
+  <message name="HelloIF_echoVectorResponse">
+    <part name="result" type="ns4:vector"/></message>
+  <message name="HelloIF_getIndexedNames"/>
+  <message name="HelloIF_getIndexedNamesResponse">
+    <part name="result" type="ns2:IndexedNames"/></message>
+  <message name="HelloIF_getNameArray"/>
+  <message name="HelloIF_getNameArrayResponse">
+    <part name="result" type="ns2:ArrayOfName"/></message>
+  <message name="HelloIF_jaxrpcExceptionClientRequest"/>
+  <message name="HelloIF_jaxrpcExceptionClientRequestResponse"/>
+  <message name="HelloIF_jaxrpcExceptionClientResponse"/>
+  <message name="HelloIF_jaxrpcExceptionClientResponseResponse"/>
+  <message name="HelloIF_jaxrpcExceptionServerRequest"/>
+  <message name="HelloIF_jaxrpcExceptionServerRequestResponse"/>
+  <message name="HelloIF_jaxrpcExceptionServerResponse"/>
+  <message name="HelloIF_jaxrpcExceptionServerResponseResponse"/>
+  <message name="HelloIF_modifyName">
+    <part name="Name_1" type="ns2:Name"/>
+    <part name="Name_2" type="ns2:Name"/></message>
+  <message name="HelloIF_modifyNameResponse">
+    <part name="Name_2" type="ns2:Name"/></message>
+  <message name="HelloIF_returnFalseClientRequest">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="HelloIF_returnFalseClientRequestResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_returnFalseClientRequestInvalidResponse"/>
+  <message name="HelloIF_returnFalseClientRequestInvalidResponseResponse"/>
+  <message name="HelloIF_returnFalseClientResponse">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="HelloIF_returnFalseClientResponseResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_returnFalseServerRequest">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="HelloIF_returnFalseServerRequestResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_returnFalseServerRequestInvalidResponse"/>
+  <message name="HelloIF_returnFalseServerRequestInvalidResponseResponse"/>
+  <message name="HelloIF_returnFalseServerResponse">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="HelloIF_returnFalseServerResponseResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_runtimeExceptionClientRequest"/>
+  <message name="HelloIF_runtimeExceptionClientRequestResponse"/>
+  <message name="HelloIF_runtimeExceptionClientResponse"/>
+  <message name="HelloIF_runtimeExceptionClientResponseResponse"/>
+  <message name="HelloIF_runtimeExceptionServerRequest"/>
+  <message name="HelloIF_runtimeExceptionServerRequestResponse"/>
+  <message name="HelloIF_runtimeExceptionServerResponse"/>
+  <message name="HelloIF_runtimeExceptionServerResponseResponse"/>
+  <message name="HelloIF_sayHello"/>
+  <message name="HelloIF_sayHelloResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello2">
+    <part name="float_1" type="xsd:float"/>
+    <part name="String_2" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello2Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello3">
+    <part name="int_1" type="xsd:int"/>
+    <part name="String_2" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello3Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello4">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello4Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello5">
+    <part name="String_1" type="xsd:string"/>
+    <part name="float_2" type="xsd:float"/></message>
+  <message name="HelloIF_sayHello5Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello6">
+    <part name="String_1" type="xsd:string"/>
+    <part name="int_2" type="xsd:int"/></message>
+  <message name="HelloIF_sayHello6Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello7">
+    <part name="String_1" type="xsd:string"/>
+    <part name="String_2" type="xsd:string"/></message>
+  <message name="HelloIF_sayHello7Response">
+    <part name="result" type="xsd:string"/></message>
+  <message name="HelloIF_sayHelloException"/>
+  <message name="HelloIF_sayHelloExceptionResponse"/>
+  <message name="HelloException">
+    <part name="HelloException" type="ns2:HelloException"/></message>
+  <message name="HelloIF_sayHelloOneway"/>
+  <message name="HelloIF_sayHelloOnewayResponse"/>
+  <message name="HelloIF_sayHellos"/>
+  <message name="HelloIF_sayHellosResponse">
+    <part name="result" type="ns2:ArrayOfstring"/></message>
+  <message name="HelloIF_setIntAndByte">
+    <part name="int_1" type="xsd:int"/>
+    <part name="byte_2" type="xsd:byte"/>
+    <part name="Integer_3" type="ns3:int"/>
+    <part name="byte_4" type="xsd:byte"/></message>
+  <message name="HelloIF_setIntAndByteResponse">
+    <part name="Integer_3" type="ns3:int"/>
+    <part name="byte_4" type="xsd:byte"/></message>
+  <message name="HelloIF_setSOAPMessageClientRequest"/>
+  <message name="HelloIF_setSOAPMessageClientRequestResponse"/>
+  <message name="HelloIF_setSOAPMessageClientResponse"/>
+  <message name="HelloIF_setSOAPMessageClientResponseResponse"/>
+  <message name="HelloIF_setSOAPMessageServerRequest"/>
+  <message name="HelloIF_setSOAPMessageServerRequestResponse"/>
+  <message name="HelloIF_setSOAPMessageServerResponse"/>
+  <message name="HelloIF_setSOAPMessageServerResponseResponse"/>
+  <message name="HelloIF_soapFaultExceptionClientRequest"/>
+  <message name="HelloIF_soapFaultExceptionClientRequestResponse"/>
+  <message name="HelloIF_soapFaultExceptionClientResponse"/>
+  <message name="HelloIF_soapFaultExceptionClientResponseResponse"/>
+  <message name="HelloIF_soapFaultExceptionServerRequest"/>
+  <message name="HelloIF_soapFaultExceptionServerRequestResponse"/>
+  <message name="HelloIF_soapFaultExceptionServerResponse"/>
+  <message name="HelloIF_soapFaultExceptionServerResponseResponse"/>
+  <message name="HelloIF_typeMappingOneProp">
+    <part name="OnePropBean_1" type="ns2:OnePropBean"/></message>
+  <message name="HelloIF_typeMappingOnePropResponse">
+    <part name="result" type="ns2:OnePropBean"/></message>
+  <message name="Hello2IF_sayHello">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="Hello2IF_sayHelloResponse">
+    <part name="result" type="xsd:string"/></message>
+  <portType name="HelloIF">
+    <operation name="checkHandlerPropertiesClient" parameterOrder="">
+      <input message="tns:HelloIF_checkHandlerPropertiesClient"/>
+      <output message="tns:HelloIF_checkHandlerPropertiesClientResponse"/></operation>
+    <operation name="checkHandlerPropertiesServer" parameterOrder="">
+      <input message="tns:HelloIF_checkHandlerPropertiesServer"/>
+      <output message="tns:HelloIF_checkHandlerPropertiesServerResponse"/></operation>
+    <operation name="checkHandlerPropertiesServerModified" parameterOrder="">
+      <input message="tns:HelloIF_checkHandlerPropertiesServerModified"/>
+      <output message="tns:HelloIF_checkHandlerPropertiesServerModifiedResponse"/></operation>
+    <operation name="consumeHeadersClient" parameterOrder="">
+      <input message="tns:HelloIF_consumeHeadersClient"/>
+      <output message="tns:HelloIF_consumeHeadersClientResponse"/></operation>
+    <operation name="consumeHeadersServer" parameterOrder="">
+      <input message="tns:HelloIF_consumeHeadersServer"/>
+      <output message="tns:HelloIF_consumeHeadersServerResponse"/></operation>
+    <operation name="echoAddress" parameterOrder="Address_1">
+      <input message="tns:HelloIF_echoAddress"/>
+      <output message="tns:HelloIF_echoAddressResponse"/></operation>
+    <operation name="echoArrayList" parameterOrder="ArrayList_1">
+      <input message="tns:HelloIF_echoArrayList"/>
+      <output message="tns:HelloIF_echoArrayListResponse"/></operation>
+    <operation name="echoHashMap" parameterOrder="HashMap_1">
+      <input message="tns:HelloIF_echoHashMap"/>
+      <output message="tns:HelloIF_echoHashMapResponse"/></operation>
+    <operation name="echoHashSet" parameterOrder="HashSet_1">
+      <input message="tns:HelloIF_echoHashSet"/>
+      <output message="tns:HelloIF_echoHashSetResponse"/></operation>
+    <operation name="echoHashtable" parameterOrder="Hashtable_1">
+      <input message="tns:HelloIF_echoHashtable"/>
+      <output message="tns:HelloIF_echoHashtableResponse"/></operation>
+    <operation name="echoHobbies" parameterOrder="Hobbies_1">
+      <input message="tns:HelloIF_echoHobbies"/>
+      <output message="tns:HelloIF_echoHobbiesResponse"/></operation>
+    <operation name="echoImage" parameterOrder="Image_1">
+      <input message="tns:HelloIF_echoImage"/>
+      <output message="tns:HelloIF_echoImageResponse"/></operation>
+    <operation name="echoImageArray" parameterOrder="arrayOfImage_1">
+      <input message="tns:HelloIF_echoImageArray"/>
+      <output message="tns:HelloIF_echoImageArrayResponse"/></operation>
+    <operation name="echoInnerClass" parameterOrder="Outer_Inner_1">
+      <input message="tns:HelloIF_echoInnerClass"/>
+      <output message="tns:HelloIF_echoInnerClassResponse"/></operation>
+    <operation name="echoLinkedList" parameterOrder="LinkedList_1">
+      <input message="tns:HelloIF_echoLinkedList"/>
+      <output message="tns:HelloIF_echoLinkedListResponse"/></operation>
+    <operation name="echoList" parameterOrder="List_1">
+      <input message="tns:HelloIF_echoList"/>
+      <output message="tns:HelloIF_echoListResponse"/></operation>
+    <operation name="echoMap" parameterOrder="Map_1">
+      <input message="tns:HelloIF_echoMap"/>
+      <output message="tns:HelloIF_echoMapResponse"/></operation>
+    <operation name="echoMimeMultipart" parameterOrder="MimeMultipart_1">
+      <input message="tns:HelloIF_echoMimeMultipart"/>
+      <output message="tns:HelloIF_echoMimeMultipartResponse"/></operation>
+    <operation name="echoMimeMultipartArray" parameterOrder="arrayOfMimeMultipart_1">
+      <input message="tns:HelloIF_echoMimeMultipartArray"/>
+      <output message="tns:HelloIF_echoMimeMultipartArrayResponse"/></operation>
+    <operation name="echoName" parameterOrder="">
+      <input message="tns:HelloIF_echoName"/>
+      <output message="tns:HelloIF_echoNameResponse"/></operation>
+    <operation name="echoName2" parameterOrder="Name_1">
+      <input message="tns:HelloIF_echoName2"/>
+      <output message="tns:HelloIF_echoName2Response"/></operation>
+    <operation name="echoProperties" parameterOrder="Properties_1">
+      <input message="tns:HelloIF_echoProperties"/>
+      <output message="tns:HelloIF_echoPropertiesResponse"/></operation>
+    <operation name="echoRecursive" parameterOrder="Recursive_1">
+      <input message="tns:HelloIF_echoRecursive"/>
+      <output message="tns:HelloIF_echoRecursiveResponse"/></operation>
+    <operation name="echoSet" parameterOrder="Set_1">
+      <input message="tns:HelloIF_echoSet"/>
+      <output message="tns:HelloIF_echoSetResponse"/></operation>
+    <operation name="echoSource" parameterOrder="Source_1">
+      <input message="tns:HelloIF_echoSource"/>
+      <output message="tns:HelloIF_echoSourceResponse"/></operation>
+    <operation name="echoSourceArray" parameterOrder="arrayOfSource_1">
+      <input message="tns:HelloIF_echoSourceArray"/>
+      <output message="tns:HelloIF_echoSourceArrayResponse"/></operation>
+    <operation name="echoStack" parameterOrder="Stack_1">
+      <input message="tns:HelloIF_echoStack"/>
+      <output message="tns:HelloIF_echoStackResponse"/></operation>
+    <operation name="echoTreeMap" parameterOrder="TreeMap_1">
+      <input message="tns:HelloIF_echoTreeMap"/>
+      <output message="tns:HelloIF_echoTreeMapResponse"/></operation>
+    <operation name="echoTreeSet" parameterOrder="TreeSet_1">
+      <input message="tns:HelloIF_echoTreeSet"/>
+      <output message="tns:HelloIF_echoTreeSetResponse"/></operation>
+    <operation name="echoValueType" parameterOrder="ValueType_1">
+      <input message="tns:HelloIF_echoValueType"/>
+      <output message="tns:HelloIF_echoValueTypeResponse"/></operation>
+    <operation name="echoValueTypeArray" parameterOrder="arrayOfValueType_1">
+      <input message="tns:HelloIF_echoValueTypeArray"/>
+      <output message="tns:HelloIF_echoValueTypeArrayResponse"/></operation>
+    <operation name="echoVector" parameterOrder="Vector_1">
+      <input message="tns:HelloIF_echoVector"/>
+      <output message="tns:HelloIF_echoVectorResponse"/></operation>
+    <operation name="getIndexedNames" parameterOrder="">
+      <input message="tns:HelloIF_getIndexedNames"/>
+      <output message="tns:HelloIF_getIndexedNamesResponse"/></operation>
+    <operation name="getNameArray" parameterOrder="">
+      <input message="tns:HelloIF_getNameArray"/>
+      <output message="tns:HelloIF_getNameArrayResponse"/></operation>
+    <operation name="jaxrpcExceptionClientRequest" parameterOrder="">
+      <input message="tns:HelloIF_jaxrpcExceptionClientRequest"/>
+      <output message="tns:HelloIF_jaxrpcExceptionClientRequestResponse"/></operation>
+    <operation name="jaxrpcExceptionClientResponse" parameterOrder="">
+      <input message="tns:HelloIF_jaxrpcExceptionClientResponse"/>
+      <output message="tns:HelloIF_jaxrpcExceptionClientResponseResponse"/></operation>
+    <operation name="jaxrpcExceptionServerRequest" parameterOrder="">
+      <input message="tns:HelloIF_jaxrpcExceptionServerRequest"/>
+      <output message="tns:HelloIF_jaxrpcExceptionServerRequestResponse"/></operation>
+    <operation name="jaxrpcExceptionServerResponse" parameterOrder="">
+      <input message="tns:HelloIF_jaxrpcExceptionServerResponse"/>
+      <output message="tns:HelloIF_jaxrpcExceptionServerResponseResponse"/></operation>
+    <operation name="modifyName" parameterOrder="Name_1 Name_2">
+      <input message="tns:HelloIF_modifyName"/>
+      <output message="tns:HelloIF_modifyNameResponse"/></operation>
+    <operation name="returnFalseClientRequest" parameterOrder="String_1">
+      <input message="tns:HelloIF_returnFalseClientRequest"/>
+      <output message="tns:HelloIF_returnFalseClientRequestResponse"/></operation>
+    <operation name="returnFalseClientRequestInvalidResponse" parameterOrder="">
+      <input message="tns:HelloIF_returnFalseClientRequestInvalidResponse"/>
+      <output message="tns:HelloIF_returnFalseClientRequestInvalidResponseResponse"/></operation>
+    <operation name="returnFalseClientResponse" parameterOrder="String_1">
+      <input message="tns:HelloIF_returnFalseClientResponse"/>
+      <output message="tns:HelloIF_returnFalseClientResponseResponse"/></operation>
+    <operation name="returnFalseServerRequest" parameterOrder="String_1">
+      <input message="tns:HelloIF_returnFalseServerRequest"/>
+      <output message="tns:HelloIF_returnFalseServerRequestResponse"/></operation>
+    <operation name="returnFalseServerRequestInvalidResponse" parameterOrder="">
+      <input message="tns:HelloIF_returnFalseServerRequestInvalidResponse"/>
+      <output message="tns:HelloIF_returnFalseServerRequestInvalidResponseResponse"/></operation>
+    <operation name="returnFalseServerResponse" parameterOrder="String_1">
+      <input message="tns:HelloIF_returnFalseServerResponse"/>
+      <output message="tns:HelloIF_returnFalseServerResponseResponse"/></operation>
+    <operation name="runtimeExceptionClientRequest" parameterOrder="">
+      <input message="tns:HelloIF_runtimeExceptionClientRequest"/>
+      <output message="tns:HelloIF_runtimeExceptionClientRequestResponse"/></operation>
+    <operation name="runtimeExceptionClientResponse" parameterOrder="">
+      <input message="tns:HelloIF_runtimeExceptionClientResponse"/>
+      <output message="tns:HelloIF_runtimeExceptionClientResponseResponse"/></operation>
+    <operation name="runtimeExceptionServerRequest" parameterOrder="">
+      <input message="tns:HelloIF_runtimeExceptionServerRequest"/>
+      <output message="tns:HelloIF_runtimeExceptionServerRequestResponse"/></operation>
+    <operation name="runtimeExceptionServerResponse" parameterOrder="">
+      <input message="tns:HelloIF_runtimeExceptionServerResponse"/>
+      <output message="tns:HelloIF_runtimeExceptionServerResponseResponse"/></operation>
+    <operation name="sayHello" parameterOrder="">
+      <input message="tns:HelloIF_sayHello"/>
+      <output message="tns:HelloIF_sayHelloResponse"/></operation>
+    <operation name="sayHello2" parameterOrder="float_1 String_2">
+      <input message="tns:HelloIF_sayHello2"/>
+      <output message="tns:HelloIF_sayHello2Response"/></operation>
+    <operation name="sayHello3" parameterOrder="int_1 String_2">
+      <input message="tns:HelloIF_sayHello3"/>
+      <output message="tns:HelloIF_sayHello3Response"/></operation>
+    <operation name="sayHello4" parameterOrder="String_1">
+      <input message="tns:HelloIF_sayHello4"/>
+      <output message="tns:HelloIF_sayHello4Response"/></operation>
+    <operation name="sayHello5" parameterOrder="String_1 float_2">
+      <input message="tns:HelloIF_sayHello5"/>
+      <output message="tns:HelloIF_sayHello5Response"/></operation>
+    <operation name="sayHello6" parameterOrder="String_1 int_2">
+      <input message="tns:HelloIF_sayHello6"/>
+      <output message="tns:HelloIF_sayHello6Response"/></operation>
+    <operation name="sayHello7" parameterOrder="String_1 String_2">
+      <input message="tns:HelloIF_sayHello7"/>
+      <output message="tns:HelloIF_sayHello7Response"/></operation>
+    <operation name="sayHelloException" parameterOrder="">
+      <input message="tns:HelloIF_sayHelloException"/>
+      <output message="tns:HelloIF_sayHelloExceptionResponse"/>
+      <fault name="HelloException" message="tns:HelloException"/></operation>
+    <operation name="sayHelloOneway" parameterOrder="">
+      <input message="tns:HelloIF_sayHelloOneway"/>
+      <output message="tns:HelloIF_sayHelloOnewayResponse"/></operation>
+    <operation name="sayHellos" parameterOrder="">
+      <input message="tns:HelloIF_sayHellos"/>
+      <output message="tns:HelloIF_sayHellosResponse"/></operation>
+    <operation name="setIntAndByte" parameterOrder="int_1 byte_2 Integer_3 byte_4">
+      <input message="tns:HelloIF_setIntAndByte"/>
+      <output message="tns:HelloIF_setIntAndByteResponse"/></operation>
+    <operation name="setSOAPMessageClientRequest" parameterOrder="">
+      <input message="tns:HelloIF_setSOAPMessageClientRequest"/>
+      <output message="tns:HelloIF_setSOAPMessageClientRequestResponse"/></operation>
+    <operation name="setSOAPMessageClientResponse" parameterOrder="">
+      <input message="tns:HelloIF_setSOAPMessageClientResponse"/>
+      <output message="tns:HelloIF_setSOAPMessageClientResponseResponse"/></operation>
+    <operation name="setSOAPMessageServerRequest" parameterOrder="">
+      <input message="tns:HelloIF_setSOAPMessageServerRequest"/>
+      <output message="tns:HelloIF_setSOAPMessageServerRequestResponse"/></operation>
+    <operation name="setSOAPMessageServerResponse" parameterOrder="">
+      <input message="tns:HelloIF_setSOAPMessageServerResponse"/>
+      <output message="tns:HelloIF_setSOAPMessageServerResponseResponse"/></operation>
+    <operation name="soapFaultExceptionClientRequest" parameterOrder="">
+      <input message="tns:HelloIF_soapFaultExceptionClientRequest"/>
+      <output message="tns:HelloIF_soapFaultExceptionClientRequestResponse"/></operation>
+    <operation name="soapFaultExceptionClientResponse" parameterOrder="">
+      <input message="tns:HelloIF_soapFaultExceptionClientResponse"/>
+      <output message="tns:HelloIF_soapFaultExceptionClientResponseResponse"/></operation>
+    <operation name="soapFaultExceptionServerRequest" parameterOrder="">
+      <input message="tns:HelloIF_soapFaultExceptionServerRequest"/>
+      <output message="tns:HelloIF_soapFaultExceptionServerRequestResponse"/></operation>
+    <operation name="soapFaultExceptionServerResponse" parameterOrder="">
+      <input message="tns:HelloIF_soapFaultExceptionServerResponse"/>
+      <output message="tns:HelloIF_soapFaultExceptionServerResponseResponse"/></operation>
+    <operation name="typeMappingOneProp" parameterOrder="OnePropBean_1">
+      <input message="tns:HelloIF_typeMappingOneProp"/>
+      <output message="tns:HelloIF_typeMappingOnePropResponse"/></operation></portType>
+  <portType name="Hello2IF">
+    <operation name="sayHello" parameterOrder="String_1">
+      <input message="tns:Hello2IF_sayHello"/>
+      <output message="tns:Hello2IF_sayHelloResponse"/></operation></portType>
+  <binding name="HelloIFBinding" type="tns:HelloIF">
+    <operation name="checkHandlerPropertiesClient">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="checkHandlerPropertiesServer">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="checkHandlerPropertiesServerModified">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="consumeHeadersClient">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="consumeHeadersServer">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoAddress">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoArrayList">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoHashMap">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoHashSet">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoHashtable">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoHobbies">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoImage">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoImageArray">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoInnerClass">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoLinkedList">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoList">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoMap">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoMimeMultipart">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoMimeMultipartArray">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoName">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoName2">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoProperties">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoRecursive">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoSet">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoSource">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoSourceArray">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoStack">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoTreeMap">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoTreeSet">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoValueType">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoValueTypeArray">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echoVector">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getIndexedNames">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="getNameArray">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="jaxrpcExceptionClientRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="jaxrpcExceptionClientResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="jaxrpcExceptionServerRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="jaxrpcExceptionServerResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="modifyName">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="returnFalseClientRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="returnFalseClientRequestInvalidResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="returnFalseClientResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="returnFalseServerRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="returnFalseServerRequestInvalidResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="returnFalseServerResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="runtimeExceptionClientRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="runtimeExceptionClientResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="runtimeExceptionServerRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="runtimeExceptionServerResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHello">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHello2">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHello3">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHello4">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHello5">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHello6">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHello7">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHelloException">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <fault name="HelloException">
+        <soap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></fault>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHelloOneway">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="sayHellos">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="setIntAndByte">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="setSOAPMessageClientRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="setSOAPMessageClientResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="setSOAPMessageServerRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="setSOAPMessageServerResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="soapFaultExceptionClientRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="soapFaultExceptionClientResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="soapFaultExceptionServerRequest">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="soapFaultExceptionServerResponse">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="typeMappingOneProp">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/></binding>
+  <binding name="Hello2IFBinding" type="tns:Hello2IF">
+    <operation name="sayHello">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://hello.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/></binding>
+  <service name="HelloWorldService">
+    <port name="HelloIFPort" binding="tns:HelloIFBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/></port>
+    <port name="Hello2IFPort" binding="tns:Hello2IFBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/></port></service></definitions>

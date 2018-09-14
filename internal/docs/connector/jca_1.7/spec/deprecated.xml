@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<spec>
+  <next-available-id>331</next-available-id>
+  <previous-id>330</previous-id>
+  <technology>Connector</technology>
+  <id>Connector</id>
+  <name>Java EE Connector API</name>
+  <version>1.7</version>
+  <location>
+    <chapters />
+    <chapter id="19" name="API Requirements">
+      <sections>
+        <section id="1" name="Requirements of the App Server" />
+      </sections>
+    </chapter>
+    <chapter id="17" name="Common Client Interface">
+      <sections>
+        <section id="6.2" name="InteractionSpec" />
+        <section id="10.3" name="ResultSetInfo" />
+        <section id="6.1" name="Interaction" />
+        <section id="10.1" name="ResultSet Interface" />
+        <section id="5.3" name="Connection" />
+        <section id="5.1" name="ConnectionFactory" />
+        <section id="5.2" name="ConnectionSpec" />
+        <section id="7.1" name="ConnectionMetaData" />
+        <section id="9.1" name="Component-view Contract" />
+        <section id="9.3" name="Resource Adapter-view Contract" />
+      </sections>
+    </chapter>
+    <chapter id="18" name="Metadata Annotations">
+      <sections>
+        <section id="3" name="Deployment Descriptores and Annotations" />
+        <section id="2" name="Goals" />
+        <section id="1" name="Overview" />
+        <section id="7" name="@Activation" />
+        <section id="6" name="@ConnectionDefinition and @ConnectionDefinitions" />
+        <section id="5" name="@ConfigProperty" />
+        <section id="4" name="@Connector" />
+        <section id="8" name="@AdministeredObject" />
+      </sections>
+    </chapter>
+    <chapter id="15" name="Transaction Inflow">
+      <sections>
+        <section id="4.4" name="Requirements" />
+        <section id="4.2" name="Transaction completion processing" />
+        <section id="4.6" name="Recommendations" />
+      </sections>
+    </chapter>
+    <chapter id="16" name="Security Inflow">
+      <sections>
+        <section id="4.1" name="Establishing the Security Context" />
+        <section id="4" name="SecurityContext Class" />
+        <section id="4.4" name="Security Configuration Responsibilities" />
+        <section id="4.5" name="Requirements" />
+        <section id="4.2" name="callbacks for Information from the App Server" />
+        <section id="4.3" name="Establishing a Principal as the Caller Identity" />
+      </sections>
+    </chapter>
+    <chapter id="13" name="Message Inflow">
+      <sections>
+        <section id="3" name="Message Inflow Model" />
+        <section id="5.6" name="Transacted delivery (using container managed transaction)" />
+        <section id="5.4" name="Concurrent delivery of messages" />
+        <section id="5.1" name="Sample resource adapter code to illustrate message delivery" />
+        <section id="5.9" name="Requirements" />
+        <section id="4.5" name="Application Server" />
+        <section id="4.9" name="Multiple endpoint activations with similar activation information" />
+        <section id="4.7" name="Requirements" />
+      </sections>
+    </chapter>
+    <chapter id="11" name="Generic inflow Context">
+      <sections>
+        <section id="3" name="Generic Inflow Context Model" />
+        <section id="2" name="Goals" />
+        <section id="1" name="Overview" />
+        <section id="7" name="WorkContextLifecycleListener Interface" />
+        <section id="6" name="HintsContext Interface" />
+        <section id="5" name="TransactionContext Class" />
+        <section id="4" name="WorkContextProvider and WorkContext Interface" />
+        <section id="8" name="Illustrative Example" />
+      </sections>
+    </chapter>
+    <chapter id="12" name="Inbound Communication">
+      <sections>
+        <section id="2" name="An Illustrative Use Case " />
+        <section id="1" name="Overview" />
+      </sections>
+    </chapter>
+    <chapter id="3" name="The Connector Architecture">
+      <sections>
+        <section id="3" name="Requirements" />
+        <section id="2" name="Client API" />
+        <section id="1" name="System Contracts" />
+        <section id="5" name="Standalone Container Environment" />
+        <section id="4" name="Non-Managed Environment" />
+      </sections>
+    </chapter>
+    <chapter id="20" name="Packaging Requirements">
+      <sections>
+        <section id="3" name="Class Loading Requirements" />
+        <section id="2" name="Packaging" />
+        <section id="1" name="Overview" />
+        <section id="7" name="Resource Adapter XML Schema Def" />
+        <section id="6" name="JNDI Configuration and Lookup" />
+        <section id="4.1" name="ResourceAdapter Provider" />
+        <section id="5" name="Interfaces/Classes" />
+        <section id="4" name="Deployment" />
+        <section id="4.2" name="Deployer" />
+      </sections>
+    </chapter>
+    <chapter id="10" name="Work Management">
+      <sections>
+        <section id="3" name="Work management Model" />
+        <section id="3.2" name="WorkManager Interface " />
+        <section id="3.3" name="WorkListener interface and WorkEvent class " />
+        <section id="3.5" name="Periodic execution of Work instances " />
+      </sections>
+    </chapter>
+    <chapter id="7" name="Transaction Management">
+      <sections>
+        <section id="6.2" name="Resource Adapter Requirements" />
+        <section id="6.3" name="Transaction Manager Requirements" />
+        <section id="13.2" name="Application Server" />
+        <section id="3.1" name="Interface: ManagedConnection" />
+        <section id="9" name="Connection Sharing" />
+        <section id="11" name="Connection Association" />
+      </sections>
+    </chapter>
+    <chapter id="6" name="Connection Management">
+      <sections>
+        <section id="8.3" name="Connection Event Notifications and Connection Close" />
+        <section id="2" name="Goals" />
+        <section id="10.1" name="Resource Adapter" />
+        <section id="5.3" name="ManagedConnectionFactory" />
+        <section id="10.2" name="Application Server" />
+        <section id="5.4" name="ManagedConnection" />
+        <section id="5.1" name="ConnectionFactory and Connection" />
+        <section id="5.2" name="ConnectionManager" />
+      </sections>
+    </chapter>
+    <chapter id="5" name="LifeCycle Management">
+      <sections>
+        <section id="3.2" name="ManagedConnectionFactory JavaBean and Outbound Communication" />
+        <section id="3.1" name="ResourceAdapter JavaBean and bootstraping a resource adapter instance" />
+        <section id="3.4" name="ResourceAdapter Shutdown procedure" />
+        <section id="3.3" name="ActivationSpec JavaBean and Inbound Communication" />
+      </sections>
+    </chapter>
+    <chapter id="9" name="Security Contract">
+      <sections>
+        <section id="3" name="Requirements" />
+        <section id="2.5" name="ConnectionManager" />
+        <section id="2.7" name="ManagedConnection" />
+        <section id="2.3" name="GenericCredential" />
+        <section id="2.2" name="ResourcePrincipal" />
+      </sections>
+    </chapter>
+  </location>
+</spec>
+

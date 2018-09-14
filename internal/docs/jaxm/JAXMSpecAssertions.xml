@@ -1,0 +1,222 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<spec>
+	<next-available-id>22</next-available-id>
+	<previous-id>21</previous-id>
+	<technology>JAXM</technology>
+	<id>JAXM</id>
+	<name>Java API for XML Messaging</name>
+	<version>1.1</version>
+	<location-names>
+		<chapters>
+			<chapter id = "P" name = "Preface">
+				<sections>
+					<section id = "JAXM.P.1" name = "Audience"/>
+					<section id = "JAXM.P.2" name = "Abstract"/>
+				</sections>
+			</chapter>
+			<chapter id = "1" name = "Background">
+				<sections>
+					<section id = "JAXM.1.1" name = "Conceptual Model"/>
+					<section id = "JAXM.1.2" name = "Scope"/>
+					<section id = "JAXM.1.3" name = "Interoperability"/>
+					<section id = "JAXM.1.4" name = "SOAP Packaging Model"/>
+					<section id = "JAXM.1.5" name = "JAXM, JMS, JavaMail"/>
+					<section id = "JAXM.1.5" name = "JAXM, JMS, JavaMail"/>
+				</sections>
+			</chapter>
+			<chapter id = "2" name = "Infrastructure">
+				<sections>
+					<section id = "JAXM.2.1" name = "JAXM Client"/>
+					<section id = "JAXM.2.1.1" name = "JAXM Client Using a JAXM Provider"/>
+					<section id = "JAXM.2.1.2" name = "Standalone JAXM Client"/>
+					<section id = "JAXM.2.1.3" name = "Relationship between JAXM Clients"/>
+					<section id = "JAXM.2.1.4" name = "Client and Service Implementations"/>
+					<section id = "JAXM.2.2" name = "Error Messages"/>
+					<section id = "JAXM.2.3" name = "Messaging Profiles"/>
+					<section id = "JAXM.2.4" name = "JAXM Deployment"/>
+					<section id = "JAXM.2.5" name = "OnewayListener"/>
+					<section id = "JAXM.2.6" name = "ReqRespListener"/>
+					<section id = "JAXM.2.7" name = "Message Security"/>
+				</sections>
+			</chapter>
+			<chapter id = "3" name = "Package Overview">
+				<sections>
+					<section id = "JAXM.3.1" name = "javax.xml.messaging Package"/>
+					<section id = "JAXM.3.1.1" name = "Endpoint and URLEndpoint"/>
+					<section id = "JAXM.3.1.2" name = "ProviderConnection and ProviderConnectionFactory"/>
+					<section id = "JAXM.3.1.3" name = "ProviderMetaData and JAXMException"/>
+					<section id = "JAXM.3.1.4" name = "Oneway and Request-Response Listeners"/>
+					<section id = "JAXM.3.2" name = "javax.xml.soap Package"/>
+					<section id = "JAXM.3.2.1" name = "MessageFactory and SOAPMessage"/>
+					<section id = "JAXM.3.2.2" name = "SOAPPart and AttachmentPart"/>
+					<section id = "JAXM.3.2.3" name = "MimeHeader and MimeHeaders"/>
+					<section id = "JAXM.3.2.4" name = "SOAPElement"/>
+					<section id = "JAXM.3.2.5" name = "SOAPEnvelope and SOAPBody"/>
+					<section id = "JAXM.3.2.6" name = "SOAPBodyElement and SOAPFault"/>
+					<section id = "JAXM.3.2.7" name = "SOAPFaultElement and Detail"/>
+					<section id = "JAXM.3.2.8" name = "SOAPHeader and SOAPHeaderElement"/>
+					<section id = "JAXM.3.2.9" name = "SOAPConnection"/>
+					<section id = "JAXM.3.2.10" name = "SOAPException"/>
+					<section id = "JAXM.3.2.11" name = "Node and Text"/>
+					<section id = "JAXM.3.2.12" name = "Name"/>
+					<section id = "JAXM.3.2.13" name = "SOAPElementFactory"/>
+					<section id = "JAXM.3.2.14" name = "SOAPElementFactory"/>
+				</sections>
+			</chapter>
+		</chapters>
+	</location-names>
+	<assertions>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>1</id>
+			<description>A JAXM implementation must support SOAP 1.1 and SOAP with Attachments.</description>
+			<location chapter = "P" section = "JAXM.P.1"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>2</id>
+			<description>A JAXM implementation may support one or more SOAP messaging profiles.</description>
+			<location chapter = "P" section = "JAXM.P.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>3</id>
+			<description>A JAXM implementations must support five message exchange scenarios.</description>
+			<location chapter = "1" section = "JAXM.1.2"/>
+			<sub-assertions>
+				<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+					<id>3.1</id>
+					<description>Asynchronous Inquiry</description>
+					<location chapter = "1" section = "JAXM.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+					<id>3.2</id>
+					<description>Asynchronous Update with Acknowledgement</description>
+					<location chapter = "1" section = "JAXM.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+					<id>3.3</id>
+					<description>Synchronous Update</description>
+					<location chapter = "1" section = "JAXM.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+					<id>3.4</id>
+					<description>Synchronous Inquiry</description>
+					<location chapter = "1" section = "JAXM.1.2"/>
+				</assertion>
+				<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+					<id>3.5</id>
+					<description>Fire and Forget</description>
+					<location chapter = "1" section = "JAXM.1.2"/>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>4</id>
+			<description>A JAXM client must be capable of interoperating with a peer buisness application whether or not the other application uses JAXM.</description>
+			<location chapter = "1" section = "JAXM.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>5</id>
+			<description>JAXM providers must be able to produce and consume SOAP messages with and without attachments.</description>
+			<location chapter = "1" section = "JAXM.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>6</id>
+			<description>JAXM providers must implement their protocol bindings in accordance with the SOAP 1.1 specification and must therefore support SOAP 1.1 bindings for the HTTP protocol.</description>
+			<location chapter = "1" section = "JAXM.1.3"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>7</id>
+			<description>JAXM providers may choose to support bindings for other protocols such as FTP and SMTP(IMAP,POP)</description>
+			<location chapter = "1" section = "JAXM.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>8</id>
+			<description>A SOAP message that contains one or more attachments must have a MIME encoded envelope which contains the SOAP part of the message and the attachment part of the message.</description>
+			<location chapter = "1" section = "JAXM.1.4"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>9</id>
+			<description>A JAXM provider may choose to transport SOAP messages over Message Oriented Middleware (MOM) infrastructures or E-Mail infrastructures.</description>
+			<location chapter = "1" section = "JAXM.1.5"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>10</id>
+			<description>A JAXM provider must be able to consume SOAP messages from JAXM clients and non-JAXM clients.</description>
+			<location chapter = "2" section = "JAXM.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>11</id>
+			<description>A JAXM implementation must handle both one-way (asynchronous) and request-response (synchronous) styles of messaging. The implementation of point-to-point request-response messaging, which does not require a JAXM provider, ensures that a JAXM application in a service role is capable of receiving requests from a standalone JAXM application.</description>
+			<location chapter = "2" section = "JAXM.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>12</id>
+			<description>JAXM applications may be deployed in a Servlet 2.2/2.3 or J2EE 1.3 container. When a JAXM application is deployed on a Servlet 2.2/2.3 or J2EE 1.3 Web Container, the SOAP 1.1 protocol must be bound to the HTTP protocol.</description>
+			<location chapter = "2" section = "JAXM.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>13</id>
+			<description>A JAXM client can be a standalone JAXM client or a JAXM client that is deployed in a container, which means that it can send messages both synchronously and asynchronously. The container may be either a Servlet 2.2/2.3 container or a J2EE 1.3 container. A JAXM client is either connected to a JAXM messaging provider in an (asynchronous) one-way style of interaction or is connected directly to a JAXM service (using a URL) in a (synchronous) request-response style of interaction.</description>
+			<location chapter = "2" section = "JAXM.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>14</id>
+			<description>JAXM promotes a standard way of delivering SOAP messages asynchronously through the use of a OnewayListerner interface. The SOAP messages must be bound to HTTP if deployed in a Servlet 2.2/2.3 or J2EE 1.3 container.</description>
+			<location chapter = "2" section = "JAXM.2.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>15</id>
+			<description>JAXM promotes a standard way of delivering SOAP messages synchronously through the use of a ReqRespListener interface. The SOAP messages must be bound to HTTP if deployed in a Servlet 2.2/2.3 or J2EE 1.3 container.</description>
+			<location chapter = "2" section = "JAXM.2.6"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>16</id>
+			<description>Given that JAXM supports both one-way and request-response forms of messaging, the Endpoint object has been modeled such that it must be specified explicitly on the call method of the SOAPConnection object. By contrast, the send method of the ProviderConnection object does not allow for the specification of an Endpoint object because there is an assumption that one-way messaging is inherently asynchronous, this requiring self-addressed (that is, profiled) messages. The URLEndpoint object is a direct subclass of the Endpoint object class. JAXM clients wishing to contact a SOAP based service in a point-to-point, request-response (that is, synchronous) manner, may choose to do so without utilizing the services of a JAXM provider. A URLEndpoint object contains a URL that is passed to the call method to send a SOAP message to a SOAP service and block while waiting for a response from the service.</description>
+			<location chapter = "3" section = "JAXM.3.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>17</id>
+			<description>The ProviderConnection and ProviderConnectionFactory objects must be used when a JAXM application requires one-way (asynchronous) messaging semantics. JAXM clients that choose to use the services of a JAXM messaging provider must create a ProviderConnection object that connects the application to the JAXM provider. JAXM clients may create a default ProviderConnectionFactory object by using the newInstance() method.</description>
+			<location chapter = "3" section = "JAXM.3.1.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>18</id>
+			<description>JAXM Provider specific information is obtanied using an instance of the ProviderMetaData object.</description>
+			<location chapter = "3" section = "JAXM.3.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>19</id>
+			<description>A JAXMException object is a subclass of SOAPException and may contain a String denoting the reason for the exception, and an embedded Throwable object, or both.</description>
+			<location chapter = "3" section = "JAXM.3.1.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>20</id>
+			<description>A JAXM service must implement either the OnewayListener or the ReqRespListener marker interface. The OnewayListener interface is intended for services that are implemented to use a one-way, asynchronous style of messaging. The ReqRespListener interface is intended for services that are implemented to use a request-response, synchronous style of messaging.</description>
+			<location chapter = "3" section = "JAXM.3.1.4"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
+			<id>21</id>
+			<description>The JAXMServlet class is a utility class that provides the support for the two types of listener interfaces for a JAXM service deployed in a Servlet 2.2/2.3 container. A developer will simply extend this class to define and create a JAXM service and will implement the specific listener interface whether performing asynchronous one-way or synchronous request-response type messaging.</description>
+			<location chapter = "3" section = "JAXM.3.1.4"/>
+		</assertion>
+        </assertions>
+</spec>

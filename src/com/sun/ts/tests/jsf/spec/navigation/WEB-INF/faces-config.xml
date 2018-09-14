@@ -1,0 +1,133 @@
+<!DOCTYPE faces-config
+          PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+          "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<!--
+
+    Copyright (c) 2004, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<faces-config>
+
+    <navigation-rule>
+        <from-view-id>/nullOutcome.jsp</from-view-id>
+        <navigation-case>
+            <from-action>#{someBean.someAction}</from-action>
+            <to-view-id>/failed1.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <to-view-id>/failed2.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/exactMatch.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>match</from-outcome>
+            <to-view-id>/passed.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <to-view-id>/failed.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/longest*</from-view-id>
+        <navigation-case>
+            <to-view-id>/failed1.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/long*</from-view-id>
+        <navigation-case>
+            <to-view-id>/failed2.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+     <navigation-rule>
+        <from-view-id>/longestv*</from-view-id>
+        <navigation-case>
+            <to-view-id>/passed.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/operation1.jsp</from-view-id>
+        <navigation-case>
+            <to-view-id>/passed1.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/operation*</from-view-id>
+        <navigation-case>
+            <to-view-id>/passed2.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <to-view-id>/wildcard.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/navigationCase.jsp</from-view-id>
+        <navigation-case>
+            <from-action>#{someBean.someAction}</from-action>
+            <from-outcome>go</from-outcome>
+            <to-view-id>/passed1.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>go</from-outcome>
+            <to-view-id>/passed2.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{someBean.someAction}</from-action>
+            <to-view-id>/passed3.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <to-view-id>/passed4.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/redirect.jsp</from-view-id>
+        <navigation-case>
+            <to-view-id>/target.jsp</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/matching*</from-view-id>
+        <navigation-case>
+            <from-action>#{someBean.someAction}</from-action>
+            <from-outcome>go</from-outcome>
+            <to-view-id>/failed.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/mat*</from-view-id>
+        <navigation-case>
+            <to-view-id>/passed.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

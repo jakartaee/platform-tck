@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="MimeTypesMultiPartTestService"
+  targetNamespace="http://MimeTypesMultiPartTestService.org/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://MimeTypesMultiPartTestService.org/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:s="http://MimeTypesMultiPartTestService.org/xsd"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema targetNamespace="http://MimeTypesMultiPartTestService.org/xsd" 
+      xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="MimeTypeMultiPartTypeRequest">
+        <all>
+          <element name="mimetype" type="string"/>
+        </all>
+      </complexType>
+      <complexType name="MimeTypeMultiPartDataRequest">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="byte[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="MimeTypeMultiPartTypeResponse">
+        <all>
+          <element name="mimetype" type="string"/>
+        </all>
+      </complexType>
+      <complexType name="MimeTypeMultiPartDataResponse">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="byte[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+  </types>
+
+  <message name="messageInput">
+    <part name="mimetypeIn" type="s:MimeTypeMultiPartTypeRequest"/>
+    <part name="mimedataIn" type="s:MimeTypeMultiPartDataRequest"/>
+  </message>
+
+  <message name="messageOutput">
+    <part name="mimetypeOut" type="s:MimeTypeMultiPartTypeResponse"/>
+    <part name="mimedataOut" type="s:MimeTypeMultiPartDataResponse"/>
+  </message>
+
+  <portType name="MimeTypesMultiPartPortType">
+    <operation name="EchoMimeTypeMultiPartContent">
+      <input message="tns:messageInput"/>
+      <output message="tns:messageOutput"/>
+    </operation>
+  </portType>
+
+  <binding name="MimeTypesMultiPartBinding" type="tns:MimeTypesMultiPartPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="EchoMimeTypeMultiPartContent">
+      <soap:operation soapAction="http://localhost:8080/W2JMimeTypesMultiPartTest/jaxrpc/GetMimeTypeMultiPartContent" style="document"/>
+        <input>
+          <soap:body use="literal"/>
+        </input>
+        <output>
+          <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="mimetypeOut" use="literal"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="mimedataOut" type="image/gif"/>
+              <mime:content part="mimedataOut" type="image/jpeg"/>
+              <mime:content part="mimedataOut" type="text/plain"/>
+              <mime:content part="mimedataOut" type="text/xml"/>
+              <mime:content part="mimedataOut" type="application/xml"/>
+              <mime:content part="mimedataOut" type="multipart/*"/>
+            </mime:part>
+          </mime:multipartRelated>
+        </output>
+    </operation>
+  </binding>
+
+  <service name="MimeTypesMultiPartTestService">
+    <port name="MimeTypesMultiPartPort" binding="tns:MimeTypesMultiPartBinding">
+      <soap:address location="http://localhost:8080/W2JMimeTypesMultiPartTest/jaxrpc"/>
+    </port>
+  </service>
+</definitions>

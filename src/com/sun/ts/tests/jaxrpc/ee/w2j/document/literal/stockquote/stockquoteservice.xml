@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.w2j.document.literal.stockquote</package-type>
+    <namespaceURI>http://example.com/stockquote/service</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.w2j.document.literal.stockquote</package-type>
+    <namespaceURI>http://example.com/stockquote/schemas</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.ee.w2j.document.literal.stockquote</package-type>
+    <namespaceURI>http://example.com/stockquote/definitions</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.document.literal.stockquote.GetLastTradePrice</java-type>
+    <anonymous-type-qname>http://example.com/stockquote/schemas:&gt;GetLastTradePrice</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>tickerSymbol</java-variable-name>
+      <xml-element-name>tickerSymbol</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.ee.w2j.document.literal.stockquote.GetLastTradePriceOutput</java-type>
+    <anonymous-type-qname>http://example.com/stockquote/schemas:&gt;GetLastTradePriceOutput</anonymous-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>price</java-variable-name>
+      <xml-element-name>price</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.ee.w2j.document.literal.stockquote.StockQuoteService</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://example.com/stockquote/service">serviceNS:StockQuoteService</wsdl-service-name>
+    <port-mapping>
+      <port-name>StockQuotePort</port-name>
+      <java-port-name>StockQuotePort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.w2j.document.literal.stockquote.StockQuotePortType</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://example.com/stockquote/definitions">portTypeNS:StockQuotePortType</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://example.com/stockquote/service">bindingNS:StockQuoteSoapBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>getLastTradePrice</java-method-name>
+      <wsdl-operation>GetLastTradePrice</wsdl-operation>
+      <wrapped-element/>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message xmlns:wsdlMsgNS="http://example.com/stockquote/definitions">wsdlMsgNS:GetLastTradePrice</wsdl-message>
+          <wsdl-message-part-name>tickerSymbol</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>float</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://example.com/stockquote/definitions">wsdlMsgNS:GetLastTradePriceOutput</wsdl-message>
+        <wsdl-message-part-name>price</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>
+

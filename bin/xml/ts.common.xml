@@ -1,0 +1,1297 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ComponentImport" basedir=".">
+
+	<!-- IMPORTS -->
+	<import file="./ts.common.props.xml"/>
+
+	<!-- 
+    This is a common import file that contains targets, macrodefs, 
+    and presetdefs that are necessary for top level
+    ${bin.dir}/build.xml files as well as src leaf build.xml files.  
+    -->
+
+	<!--  We need to remove these after cleaning the src level build files 
+    from calling to the top for clean and compile-->
+	<target name="compile" 
+            description="Compiles all java files under a src directory">
+		<ts.javac/>
+	</target>
+
+	<target name="deploy.run.undeploy">
+		<antcall target="deploy" />
+		<sleep seconds="10" />
+		<antcall target="runclient" />
+		<antcall target="undeploy" />
+	</target>
+
+	<target name="-preclean"
+            description="Initial dependency target for the clean target"/>
+
+	<target name="clean" depends="-preclean"
+            description="Cleans all classes and archives that were built from a src directory">
+		<ts.clean/>
+	</target>
+
+	<!-- Targets -->
+	<target name="clean.all.classes" 
+            description="Cleans all classes from the classes directory">
+		<delete failonerror="false" includeEmptyDirs="true">
+			<fileset dir="${class.dir}" includes="*/**"/>
+		</delete>
+	</target>
+
+	<target name="clean.all.dist"
+            description="Cleans everything from the dist directory">
+		<delete failonerror="false" includeEmptyDirs="true">
+			<fileset dir="${dist.dir}" includes="*/**"/>
+		</delete>
+	</target>
+
+	<target name="clean.all" 
+            description="Cleans everything from the dist + classes directory"
+            depends="clean.all.classes, clean.all.dist"/>
+
+	<target name="usage" 
+            description="Displays usage information">
+		<ts.usage/>
+	</target>
+
+	<target name="version"
+            description="Displays the version information for this TCK">
+
+		<if>
+			<available file="${common.bin.dir}/version"/>
+			<then>
+				<loadfile property="ts.version.file" srcFile="${common.bin.dir}/version"/>
+				<echo message="${ts.version.file}"/>
+				<property name="has.version" value="true"/>
+			</then>
+		</if>
+
+		<if>
+			<available file="${common.bin.dir}/version-cts-internal"/>
+			<then>
+				<loadfile property="ts.internal.version.file" srcFile="${common.bin.dir}/version-cts-internal"/>
+				<echo message="${ts.internal.version.file}"/>
+				<property name="has.version" value="true"/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<isset property="has.version"/>
+			</not>
+			<then>
+				<echo message="No version information available."/>
+			</then>
+		</if>
+	</target>
+
+	<!--<target name="createbuildfile" 
+            description="Generates a template build.xml for a given src directory"
+            depends="-check.in.src">
+        <ts.buildfile create="true"/>
+    </target>
+    -->
+
+	<!-- Temporary target-should be removed once all targets use check.in.src-->
+	<target name="check.in.bin" depends="-check.in.src"/>
+
+	<target name="-check.in.src">
+		<if>
+			<not>
+				<contains string="${basedir}" substring="${src.path}"/>
+			</not>
+			<then>
+				<fail message="This target must be executed from under the src directory."/>
+			</then>
+		</if>
+	</target>
+  
+  <condition property="compile.arg" value="-Djava.endorsed.dirs=${endorsed.dirs}" else="${jdk9.compiler.arg}">
+     <or><equals arg1="${ant.java.version}" arg2="1.8"/><equals arg1="${ant.java.version}" arg2="1.7"/><equals arg1="${ant.java.version}" arg2="1.6"/></or>
+  </condition>
+
+	<presetdef name="ts.javac">
+
+		<!-- 
+          The ts.javac task is a presetdef that sets many of the common attributes and elements
+          used by all javac commands with the spider workspace.  To see the preset values, refer
+          to the included XML below that shows the content of the ts.javac presetdef.
+        -->
+		<javac fork="true" srcdir="${ts.home}/src" 
+               includeAntRuntime="false"
+               debug="on"
+               destdir="${class.dir}" 
+               includes="${pkg.dir}/**/*.java"
+               memoryMaximumSize="400m"
+               deprecation="on" >
+			<classpath>
+				<pathelement path="${ts.classpath}${pathsep}${ant.home}/lib/ant.jar" />
+			</classpath>
+			<compilerarg line="${compile.arg}"/>
+		</javac>
+	</presetdef>
+
+	<presetdef name="ts.pmd">
+		<pmd rulesetfiles="basic,imports,unusedcode,design">
+			<auxClasspath path="${pmd.home}/lib/pmd-4.3.jar" />
+			<formatter type="xml" toFile="${src.dir}/pmd_output.xml" />
+			<fileset dir="${src.dir}/${pkg.dir}">
+				<include name="**/*.java" />
+			</fileset>
+		</pmd>
+	</presetdef>
+
+	<presetdef name="ts.findbugs">
+		<findbugs home="${findbugs.dir}" output="text" quietErrors="true" jvmargs="-Xms64m -Xmx512m" timeout="3600000" excludeFilter="${ts.home}/internal/findbugs/exclude.xml">
+			<auxClasspath path="${ts.classpath}:${ts.home}/classes:${ant.home}/lib/ant-launcher.jar" />
+			<sourcePath path="${src.dir}/${pkg.dir}" />
+			<class location="${class.dir}/${pkg.dir}" />
+		</findbugs>
+	</presetdef>
+
+	<presetdef name="ts.findbugs.xml">
+		<ts.findbugs output="xml:withMessages" outputFile="findbugs.xml">
+		</ts.findbugs>
+	</presetdef>
+
+	<presetdef name="ts.findbugs.html">
+		<ts.findbugs output="html"
+                     outputFile="findbugs.html">
+		</ts.findbugs>
+	</presetdef>
+
+	<presetdef name="ts.lib.jar">
+
+		<!-- 
+          The ts.lib.jar task is a presetdef that calls the jar task
+          passing common manifest information for all deliverable library jars.
+          To see the preset values, refer to the included XML below that shows 
+          the content of the ts.lib.jar presetdef.
+        -->
+
+		<jar jarfile="${ts.home}/lib/${tslib.name}.jar"
+             basedir="${class.dir}">
+			<manifest>
+				<attribute name="Extension-Name"         value="${tslib.name}"/>
+				<attribute name="Specification-Title"    value="${tslib.name}"/>
+				<attribute name="Specification-Version"    value="${extension.lib.version}"/>
+				<attribute name="Implementation-Version"   value="${extension.lib.version}"/>
+				<attribute name="Implementation-Vendor-Id" value="com.sun"/>
+				<attribute name="Implementation-Vendor"    
+                           value="Sun Microsystems, Inc"/>
+				<attribute name="Specification-Vendor" 
+                           value="Sun Microsystems"/>
+			</manifest>
+		</jar>
+
+	</presetdef>
+
+	<presetdef name="ts.clean.classes">
+
+		<!-- 
+          The clean task is used when cleaning only classes directories.
+          The default behavior is to delete all files under 
+          ${class.dir}/${pkg.dir}.
+        -->
+		<delete failonerror="false" includeEmptyDirs="true"
+                dir="${class.dir}/${pkg.dir}"/>
+	</presetdef>
+
+	<macrodef name="ts.usage">
+
+		<!-- 
+        The ts.usage task displays standard usage information for build files
+        executed from under $TS_HOME/src.
+      -->
+
+		<sequential>
+			<echo message="If you run ant in a test directory, use the following targets:"/>
+			<echo message="gui build clean runclient usage ld lld lc llc pd pc pcvi"/>
+			<echo message="-"/>
+			<echo message="ld lld lc llc lists the content of corresponding dist dir and classes dir."/>
+			<echo message="pd pc pcvi - opens a new terminal window with dist dir or classes dir being the current dir"/>
+			<echo message="-"/>
+			<echo message="To run a single test in a leaf directory:"/>
+			<echo message="ant -Dtest=&lt;twobeanTest2&gt; [-Dtest.client=&lt;TwoBeanClient.java&gt;] runclient
+        ${line.separator} ${line.separator} ${line.separator}"/>
+
+			<echo message="*******************************************"/>
+			<echo message="*******************************************"/>
+			<echo message="List of targets, generated via ant -p:"/>
+			<java classname="org.apache.tools.ant.Main">
+				<arg value="-p"/>
+				<classpath path="${java.class.path}"/>
+			</java>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="ts.buildfile">
+
+		<!-- 
+        If a build.xml file exists already, the ts.buildfile task displays a 
+        template for a leaf level build file.  If no build.xml file exists,
+      -->
+
+		<attribute name="create"
+                 default="false"
+                 description="Generate a template build.xml file."/>
+
+		<sequential>
+			<propertyregex property="relative.archive.name"
+                       input="${basedir}"
+                       regexp=".*[\/|\\]src[\/|\\](.*)"
+                       select="\1"
+                       casesensitive="false"
+                       override="true"/>
+
+			<var name="newval" value="../"/>
+
+			<var name="counter2" value="1"/>
+			<for list="${relative.archive.name}" delimiter="\" param="word">
+				<sequential>
+					<var name="newval" value="../${newval}"/>
+					<math result="counter2" operand1="${counter2}" 
+                  operation="+" operand2="1" datatype="int"/>
+				</sequential>
+			</for>
+
+			<if>
+				<istrue value="@{create}"/>
+				<then>
+					<if>
+						<available file="${basedir}/build.xml"/>
+						<then>
+							<echo message="${basedir}/build.xml was not generated as it already exists!"/>
+							<echo message="Run the 'listimport' target to print the relative import info for this directory."/>
+							<fail message="build.xml file already exists in this directory!"/>
+						</then>
+						<else>
+							<echoxml file="${basedir}/build.xml">
+								<project name="put_project_name_here" basedir="." 
+                             default="usage">
+									<!-- IMPORTS -->
+									<import file="${newval}bin/xml/ts.import.xml"/>
+								</project>
+							</echoxml>
+							<echo message="Created ${basedir}/build.xml with the following contents."/>
+							<echo message="Please add an appropriate project name and (if applicable) provide an implementation of the package target."/>
+						</else>
+					</if>
+				</then>
+				<else>
+					<echo message="Build file import info for ${basedir} is..."/>
+				</else>
+			</if>
+			<echo message="-----------------------------------------------"/>
+			<echoxml>
+				<project name="put_project_name_here" basedir="." 
+                     default="usage">
+					<!-- IMPORTS -->
+					<import file="${newval}bin/xml/ts.import.xml"/>
+				</project>
+			</echoxml>
+			<echo message="-----------------------------------------------"/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="determine.vehicles">
+
+		<!-- 
+        The determine.vehicles task examines the 
+        TS_HOME/src/com/sun/ts/lib/harness/vehicle.properties file and
+        determines which vehicles a test, or set of tests, must be built for and executed in.
+        After this task is invoked the list of vehicles is contained in the property ${vehicles}.
+        Users can examine this space delimted list to see the names of the vehicles that the
+        current test should be built and run for.
+
+        In most cases users should not call this task directly.  The ts.vehicles task invokes
+        this task to determine which vehicles a given test should be built for.  In some rare
+        circumstances, users may invoke this task directly, if for example thay have specific
+        tasks that need to be invoked for specific vehicles.
+
+        Examples:
+
+        <target name="print.vehicles">
+          <determine.vehicles/>
+          <var name="counter" value="1"/>
+          <for list="${vehicles}" param="vehicle" delimiter=" ">
+           <sequential>
+             <echo message="vehicle name ${counter}: @{vehicle}"/>
+             <math result="counter" operand1="${counter}" operation="+" operand2="1" datatype="int"/>
+           </sequential>
+          </for>
+        </target>
+
+        The example above invokes the determine.vehicles task and prints the vehicles found
+        for the current test.
+
+      -->
+
+		<sequential>
+			<var name="vehicle.prop.name" value=""/>
+			<!--  This is an ant based version of the VehicleVerifier  -->
+			<for list="${pkg.dir}" param="token" delimiter="/\">
+				<sequential>
+					<ts.verbose message="vehicle.prop.name = ${vehicle.prop.name}"/>
+
+					<if>
+						<equals arg1="${vehicle.prop.name}" arg2=""/>
+						<then>
+							<var name="vehicle.prop.name" value="@{token}"/>
+						</then>
+						<else>
+							<var name="vehicle.prop.name" 
+                     value="${vehicle.prop.name}/@{token}"/>
+						</else>
+					</if>
+
+					<if>
+						<isset property="${vehicle.prop.name}"/>
+						<then>
+							<propertycopy name="vehicles" 
+                      from="${vehicle.prop.name}"  
+                      silent="true"
+                      override="true"/>
+							<ts.verbose message="vehicle.prop.name, ${vehicle.prop.name} is set to:   ${vehicles}"/>
+						</then>
+						<else>
+							<ts.verbose message="vehicle.prop.name, ${vehicle.prop.name} is not set.  Vehicles still set to:  ${vehicles}"/>
+						</else>
+					</if>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="determine.if.rebuildable">
+
+		<!-- 
+        The determine.if.rebuildable task examines the TS_HOME/src/com/sun/ts/lib/harness/rebuildable.properties file
+        and determines if a test directory is meant to be rebuilt by licensees as part of
+        running the tck.  After this task is invoked, the value contained in the 
+        property ${is.rebuildable.dir} will either be set to true or false.  
+        All test dirs default to not being rebuildable unless explictly specified 
+        in TS_HOME/src/rebuildable.properties.
+
+        In most cases users should not call this task directly.
+
+        Examples:
+
+        <target name="print.rebuildable">
+          <determine.if.rebuildable/>
+          <if>
+              <istrue value="@{is.rebuildable.dir}"/>
+            <then>
+              <echo message="This directory contains rebuildable tests"/>
+            </then>
+            <else>
+              <echo message="This directory does not contain rebuildable tests"/>
+            </else>
+          </if>
+        </target>
+
+        The example above invokes the determine.if.rebuildable task and echos a message
+        based on its value.
+
+      -->
+
+		<sequential>
+			<if>
+				<not>
+					<equals arg1="${saved.pkg.dir}" arg2="${pkg.dir}"/>
+				</not>
+				<then>
+					<var name="saved.pkg.dir" value="${pkg.dir}"/>
+					<var name="rebuildable.prop.name" value=""/>
+					<var name="rebuildable" value="false"/>
+
+					<!--  This is an ant based version of the VehicleVerifier  -->
+					<for list="${pkg.dir}" param="token" delimiter="/\">
+						<sequential>
+							<if>
+								<equals arg1="${rebuildable.prop.name}" arg2=""/>
+								<then>
+									<var name="rebuildable.prop.name" value="rebuildable.@{token}"/>
+								</then>
+								<else>
+									<var name="rebuildable.prop.name" 
+                         value="${rebuildable.prop.name}/@{token}"/>
+								</else>
+							</if>
+
+							<ts.verbose message="rebuildable.prop.name = ${rebuildable.prop.name}"/>
+
+							<if>
+								<isset property="${rebuildable.prop.name}"/>
+								<then>
+									<propertycopy name="rebuildable" 
+                          from="${rebuildable.prop.name}"  
+                          silent="true"
+                          override="true"/>
+									<ts.verbose message="rebuildable.prop.name, ${rebuildable.prop.name} is set to:   ${rebuildable}"/>
+								</then>
+								<else>
+									<ts.verbose message="rebuildable.prop.name, ${rebuildable.prop.name} is not set.  Directory is rebuildable?:  ${rebuildable}"/>
+								</else>
+							</if>
+						</sequential>
+					</for>
+					<echo message="Directory, ${pkg.dir} is rebuildable: ${rebuildable}"/>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="determine.commonarchives">
+
+		<!--
+        The determine.commonarchives task examines the
+        TS_HOME/src/com/sun/ts/lib/harness/commonarchives.properties file
+        and determines the common archives associated with a given test
+        directory.  After this task is invoked, the value contained in the
+        property ${is.rebuildable.dir} will either be set to true or false.
+        All test dirs default to not being rebuildable unless explictly specified
+        in TS_HOME/src/rebuildable.properties.
+
+        In most cases users should not call this task directly.
+
+        Examples:
+
+        <target name="print.rebuildable">
+          <determine.if.rebuildable/>
+          <if>
+              <istrue value="@{is.rebuildable.dir}"/>
+            <then>
+              <echo message="This directory contains rebuildable tests"/>
+            </then>
+            <else>
+              <echo message="This directory does not contain rebuildable tests"/>
+            </else>
+          </if>
+        </target>
+
+        The example above invokes the determine.if.rebuildable task and echos a message
+        based on its value.
+
+      -->
+
+		<sequential>
+			<if>
+				<not>
+					<equals arg1="${saved.pkg.dir}" arg2="${pkg.dir}"/>
+				</not>
+				<then>
+					<var name="saved.pkg.dir" value="${pkg.dir}"/>
+					<var name="commonarchives.prop.name" value=""/>
+					<var name="commonarchives" value="false"/>
+
+					<!--  This is an ant based version of the CommonAppVerifier  -->
+					<for list="${pkg.dir}" param="token" delimiter="/\">
+						<sequential>
+							<if>
+								<equals arg1="${commonarchives.prop.name}" arg2=""/>
+								<then>
+									<var name="commonarchives.prop.name" value="commonarchives.@{token}"/>
+								</then>
+								<else>
+									<var name="commonarchives.prop.name"
+                         value="${commonarchives.prop.name}/@{token}"/>
+								</else>
+							</if>
+
+							<ts.verbose message="commonarchives.prop.name = ${commonarchives.prop.name}"/>
+
+							<if>
+								<isset property="${commonarchives.prop.name}"/>
+								<then>
+									<propertycopy name="commonarchives"
+                          from="${commonarchives.prop.name}"
+                          silent="true"
+                          override="true"/>
+									<ts.verbose message="commonarchives.prop.name, ${commonarchives.prop.name} is set to:   ${commonarchives}"/>
+								</then>
+								<else>
+									<ts.verbose message="commonarchives.prop.name, ${commonarchives.prop.name} is not set.  Directory is commonarchives?:  ${commonarchives}"/>
+								</else>
+							</if>
+						</sequential>
+					</for>
+					<echo message="Common archives prop for ${pkg.dir} is set to:  ${commonarchives}"/>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="ts.clean">
+
+		<!-- 
+          The clean task is used when cleaning dist and classes directories based on the
+          attributes supplied.  The default behavior is to delete all files under 
+          ${class.dir}/${pkg.dir} and ${dist.dir}/${pkg.dir}.
+        -->
+		<attribute name="classdir"
+                   default="${class.dir}/${pkg.dir}"
+                   description="The default directory to clean classes from"/>
+		<attribute name="distdir"
+                   default="${dist.dir}/${pkg.dir}"
+                   description="The default directory to clean archives from"/>
+
+		<element name="additional-classes" implicit="yes" optional="true" 
+                 description="Extra class files to be cleaned"/>
+
+		<sequential>
+			<delete failonerror="false" includeEmptyDirs="true">
+				<fileset dir="@{classdir}"/>
+				<additional-classes/>
+			</delete>
+
+			<if>
+				<istrue value="${build.vi}"/>
+				<then>
+					<delete failonerror="false" includeEmptyDirs="true">
+						<fileset dir="@{distdir}" 
+                         includes="**/${vi.build.string}_*"/>
+					</delete>
+				</then>
+				<else>
+					<delete failonerror="false" includeEmptyDirs="true">
+						<fileset dir="@{distdir}" 
+                         excludes="**/${vi.build.string}_*"/>
+					</delete>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="ts.clean.dist">
+
+		<!-- 
+          The clean task is used when cleaning only dist directories based on the
+          attribute supplied.  The default behavior is to delete all files under 
+          ${dist.dir}/${pkg.dir}.
+        -->
+		<attribute name="distdir"
+                   default="${dist.dir}/${pkg.dir}"
+                   description="The default directory to clean archives from"/>
+
+		<sequential>
+			<if>
+				<istrue value="${build.vi}"/>
+				<then>
+					<delete failonerror="false" includeEmptyDirs="true">
+						<fileset dir="@{distdir}" 
+                         includes="**/${vi.build.string}_*"/>
+					</delete>
+				</then>
+				<else>
+					<delete failonerror="false" includeEmptyDirs="true">
+						<fileset dir="@{distdir}" 
+                         excludes="**/${vi.build.string}_*"/>
+					</delete>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="_component">
+
+		<!--
+      The _component task creates application component archives as well as application archives.
+      This task should never be called by users.  This task is leveraged by the component
+      archive tasks as well as the application archive task.
+
+      This task supports the build.level defined in the ts.jte.  The build levels are:
+       1: compile only
+       2: compile and build component archives (e.g., jar's, war's)
+       3: compile and build component and application archives (default value)
+    -->
+
+		<attribute name="descriptor"
+                   default=""        
+                   description="Deployment descriptor if there is one"/>
+
+		<attribute name="permissionsdescriptor"
+                   default=""        
+                   description="Permisssions descriptor added to the archive if the archive requires a deployment descriptor"/>
+        
+                <attribute name="manifest"
+                   default=""
+                   description="Manifest to be used within the archive"/>
+
+		<attribute name="archivename"   
+                   description="Archive name minus the file suffix"/>
+
+		<!--Attributes defined only by presetdefs and other attributes-->
+		<attribute name="archivesuffix"    
+                   description="Suffix for the archive name"/>
+
+		<attribute name="archivefile"
+                   default="${dist.dir}/${pkg.dir}/@{archivename}@{archivesuffix}"    
+                   description="Full path to archive to be created"/>
+
+		<attribute name="descriptordir"
+                   default="${src.dir}/${pkg.dir}"
+                   description="Directory containing the deployment descriptor"/>
+
+		<attribute name="permissionsdescriptordir"
+                   default="${src.dir}/${pkg.dir}"
+                   description="Directory containing the permissions descriptor"/>               
+        
+                <attribute name="internaldescriptorname"
+                   description="Descriptor path and name within the archive"/>
+
+                <attribute name="internalpermissionsdescriptorname"
+                   default="META-INF/permissions.xml"
+                   description="Permissions descriptor path and name within the archive"/>
+
+		<attribute name="update"
+                   default="false"
+                   description="Update an archive if it exists"/>
+
+		<attribute name="mainclass"
+                   default=""    
+                   description="main-class MANIFEST entry for the appclient archive"/>
+
+		<element name="jar-elements" implicit="yes"
+                 description="The content to be added to the archive"/>
+
+		<sequential>
+			<if>
+				<or>
+					<equals arg1="${build.level}" arg2="3"/>
+					<equals arg1="${build.level}" arg2="2"/>
+				</or>
+				<then>
+					<var name="final.archive.file" value="@{archivefile}"/>
+					<if>
+						<istrue value="${build.vi}"/>
+						<then>
+							<determine.if.rebuildable/>
+							<if>
+								<istrue value="${rebuildable}"/>
+								<then>
+									<var name="final.archive.file" 
+                             value="${dist.dir}/${pkg.dir}/${vi.build.string}_@{archivename}@{archivesuffix}"/>
+								</then>
+							</if>
+						</then>
+					</if>
+
+					<ts.verbose message="pkg.dir:                    ${pkg.dir}"/>
+					<ts.verbose message="descriptor:                 @{descriptor}"/>
+					<ts.verbose message="descriptordir:              @{descriptordir}"/>
+					<ts.verbose message="permissionsdescriptor:      @{permissionsdescriptor}"/>
+					<ts.verbose message="permissionsdescriptordir:   @{permissionsdescriptordir}"/>
+					<ts.verbose message="manifest:                   @{manifest}"/>
+					<ts.verbose message="archivename:                @{archivename}"/>
+					<ts.verbose message="archivefile:                ${final.archive.file}"/>
+					<ts.verbose message="internaldescriptorname:     @{internaldescriptorname}"/>
+					<ts.verbose message="internalpermissionsdescriptorname:     @{internaldescriptorname}"/>
+					<ts.verbose message="archivesuffix:              @{archivesuffix}"/>
+					<ts.verbose message="deliverable.class:          ${deliverable.class}"/>
+
+					<!--Define presets for the jar command for Java EE archives-->
+
+					<if>
+						<isset property="create.manifest.extension.entries"/>
+						<then>
+							<if>
+								<isset property="tslib.name"/>
+								<then>
+									<presetdef name="preservejar">
+										<jar destfile="${final.archive.file}" duplicate="preserve"
+                             update="@{update}">
+											<manifest>
+												<attribute name="Extension-List" 
+                                       value="tsharness ${tslib.name}"/>
+												<attribute name="tsharness-Extension-Name" 
+                                       value="tsharness"/>
+												<attribute name="tsharness-Specification-Version" 
+                                       value="${extension.lib.version}"/>
+												<attribute name="tsharness-Implementation-Version" 
+                                       value="${extension.lib.version}"/>
+												<attribute name="tsharness-Implementation-Vendor-Id" 
+                                       value="com.sun"/>
+												<attribute name="${tslib.name}-Extension-Name" 
+                                       value="${tslib.name}"/>
+												<attribute name="${tslib.name}-Specification-Version" 
+                                       value="${extension.lib.version}"/>
+												<attribute name="${tslib.name}-Implementation-Version" 
+                                       value="${extension.lib.version}"/>
+												<attribute name="${tslib.name}-Implementation-Vendor-Id" 
+                                       value="com.sun"/>
+											</manifest>
+										</jar>
+									</presetdef>
+								</then>
+								<else>
+									<presetdef name="preservejar">
+										<jar destfile="${final.archive.file}" 
+                                 duplicate="preserve"
+                                 update="@{update}">
+											<manifest>
+												<attribute name="Extension-List" 
+                                           value="tsharness"/>
+												<attribute name="tsharness-Extension-Name" 
+                                           value="tsharness"/>
+												<attribute name="tsharness-Specification-Version" 
+                                           value="${extension.lib.version}"/>
+												<attribute name="tsharness-Implementation-Version" 
+                                           value="${extension.lib.version}"/>
+												<attribute name="tsharness-Implementation-Vendor-Id" 
+                                           value="com.sun"/>
+											</manifest>
+										</jar>
+									</presetdef>
+								</else>
+							</if>
+						</then>
+						<else>
+							<presetdef name="preservejar">
+								<jar destfile="${final.archive.file}" duplicate="preserve"
+                            update="@{update}"/>
+							</presetdef>
+						</else>
+					</if>
+
+					<mkdir dir="${dist.dir}/${pkg.dir}"/>
+
+					<!--Add the descriptor if necessary, else create the archive-->
+					<if>
+						<not>
+							<equals arg1="@{descriptor}" arg2="" />
+						</not>
+						<then>
+							<preservejar>
+								<jar-elements/>
+								<zipfileset dir="@{descriptordir}"
+                                 includes="@{descriptor}"
+                                 fullpath="@{internaldescriptorname}"/>
+							</preservejar>
+						</then>
+						<else>
+							<preservejar>
+								<jar-elements/>
+							</preservejar>
+						</else>
+					</if>
+
+					<!--Add the permissions descriptor if necessary-->
+					<if>
+						<not>
+							<equals arg1="@{permissionsdescriptor}" arg2="" />
+						</not>
+						<then>
+							<preservejar update="true">
+								<jar-elements/>
+								<zipfileset dir="@{permissionsdescriptordir}"
+                                 includes="@{permissionsdescriptor}"
+                                 fullpath="@{internalpermissionsdescriptorname}"/>
+							</preservejar>
+						</then>						
+					</if>
+                                        
+                                        <!--Add the client class to the manifest if we are in an 
+                    appclient jar-->
+					<if>
+						<not>
+							<equals arg1="@{mainclass}" arg2="" />
+						</not>
+						<then>
+							<preservejar destfile="${final.archive.file}"
+                                     update="true">
+								<manifest>
+									<attribute name="main-class" 
+                                           value="@{mainclass}"/>
+								</manifest>
+
+							</preservejar>
+						</then>
+					</if>
+
+					<!--Add the custom manifest to built jar if necessary-->
+					<if>
+						<not>
+							<equals arg1="@{manifest}" arg2="" />
+						</not>
+						<then>
+							<preservejar manifest="@{manifest}"
+                                     update="true"/>
+						</then>
+					</if>
+
+					<echo message="Copying sun runtime file to dist"/>
+
+					<if>
+						<and>
+							<istrue value="${rebuildable}"/>
+							<istrue value="${build.vi}"/>
+						</and>
+						<then>
+							<copy todir="${dist.dir}/${pkg.dir}"
+                          failonerror="false">
+								<fileset dir="${basedir}"
+                                 includes="@{archivename}@{archivesuffix}.sun-*.xml"/>
+								<globmapper from="*" to="${vi.build.string}_*"/>
+							</copy>
+
+							<copy todir="${dist.dir}/${pkg.dir}"
+                          failonerror="false">
+								<fileset dir="${ts.home}/tmp"
+                                 includes="@{archivename}@{archivesuffix}.sun-*.xml"/>
+								<globmapper from="*" to="${vi.build.string}_*"/>
+							</copy>
+
+							<!--<replace dir="${dist.dir}/${pkg.dir}"
+                             includes="${vi.build.string}_*@{archivename}@{archivesuffix}.sun-*.xml">
+                        <replacetoken><![CDATA[<web-uri>@{archivename}]]></replacetoken>
+                        <replacevalue><![CDATA[<web-uri>vi_built_@{archivename}]]></replacevalue>
+                    </replace>
+        -->
+						</then>
+						<else>
+							<copy todir="${dist.dir}/${pkg.dir}"
+                          failonerror="false">
+								<fileset dir="${basedir}"
+                                 includes="@{archivename}@{archivesuffix}.sun-*.xml"/>
+							</copy>
+							<copy todir="${dist.dir}/${pkg.dir}"
+                          failonerror="false">
+								<fileset dir="${ts.home}/tmp"
+                                 includes="@{archivename}@{archivesuffix}.sun-*.xml"/>
+							</copy>
+						</else>
+					</if>
+					<delete>
+						<fileset dir="${ts.home}/tmp" includes="*@{archivename}@{archivesuffix}.sun-*.xml"
+                             excludes="*ear.sun-application*"/>
+					</delete>
+				</then>
+				<else>
+					<echo message="*** ts.common.xml: build.level is set to ${build.level}" />
+					<echo message="*** ts.common.xml: packaging will not be executed" />
+				</else>
+			</if>
+
+		</sequential>
+	</macrodef>
+
+
+	<!--
+      These properties are passed to the verifier macrodef by the verify targets in
+      bin/build.xml and ts.import.xml.  They are declared here so they can be reused
+      in both files, since both files include this file.  We also use props so users
+      can override the default values if they choose to do so when invoking the
+      verifier from the command line.
+    -->
+	<property name="verifierresultsdir" value="${ts.home}/tmp"/>
+	<property name="verifierarchivedir" value="${ts.home}/dist/${pkg.dir}"/>
+	<property name="verifierdefaultincludes"
+              value="**/*.ear, **/*.war, **/*.jar, **/*.rar, **/*.par, **/*.car"/>
+	<property name="verifierfailonerror" value="false"/>
+	<property name="verifiersaveresults" value="false"/>
+
+	<macrodef name="verifier">
+		<!--
+        The verifier task allows users to run the verify utility included with the Sun appserver.
+        Invoking this task runs the verifier script in the ${javaee.home.ri}/bin directory.  Results
+        are written to the directory specified by the resultsdir attribute.  Users can specify a
+        resultsdir or use the default which is set to ${ts.home}/tmp.  Note, if the
+        specified results directory does not exist, it is created.  If it does exist, its contents
+        are deleted unless saveresults is set to true.  If saveresults is true the results are copied
+        to a time stamped backup directory before running the verifier.
+
+        Users can invoke this task by invoking the verifier task in their Ant build files.  Users
+        may also invoke the verifier task by invoking the verify target that lives in ts.import.xml
+        as well as bin/build.xml.   Both of these Ant build files import this file (ts.common.xml).
+        This gives users two ways to invoke the verifier, from within an Ant build file using this
+        task definition or from the command line invoking the verify target which calls this task.
+
+        When invoking the verify target from the command line users can override the following
+        properties.  These properties are passed to the attributes of this task and are defaulted
+        to the same values as the task attributes.  This provides users a way to override the
+        default attribute values when invoking the verifier task on the command line using the
+        verify target.
+
+        verifierresultsdir: directory to store results in, passed to the resultsdir
+                            attribute of this task
+
+        verifierarchivedir: base directory to search for archives to verify, passed to the
+                            archivedir attribute of this task
+
+        verifierdefaultincludes: the filters used to find archives files to verify, passed to the
+                                 defaultincludes attribute of this task
+
+        verifierfailonerror: stop the verifier from running as soon as a single archive fails
+                             the verifier, meaning an error or failure is encountered, warnings
+                             will not stop the verifier run
+
+        verifiersaveresults: save the previous verifier results if they exist, they will be
+                             moved to a directory named verifier-results-backup-<timestamp>
+
+
+        Examples:
+
+        <verifier/>
+
+        This example runs the verifier task using the default attribute settings.  This xml fragment
+        would appear in an Ant build file.
+
+        This command line invocation does the exact same thing as the xml fragment above.  The verifier
+        will validate the archives (application and component) found in the associated dist directory
+        relative to the current source directory:
+
+          $ANT_HOME/bin/ant verify
+
+        If this command were invoked from $TS_HOME/src/com/sun/ts/tests/samples the verifier would
+        run against all the archives found under $TS_HOME/dist/com/sun/ts/tests/samples.
+
+
+
+        <verifier resultsdir="/tmp"
+                  defaultincludes="*.ear"
+                  failonerror="true"
+                  saveresults="true"/>
+        
+        This example runs the verifier task with the user specified attributes.  In this case the
+        verifier results will be written to /tmp/verifier-results.  The task always appends
+        the verifier-results directory to the specified results directory so the results are always
+        in their own directory.  In this case the user has opted to only run the verifier on application
+        archives (ears only, component archives are skipped).  Since the user specified a value of true
+        for failonerror, this task will terminate if the verifier finds an application archive with an
+        error or failure.  The task will continue to execute if the verifier finds warnings.  Since
+        saveresults is true, if the directory /tmp/verifier-results exists its contents will be copied
+        to /tmp/verifier-results-backup-<timestamp>.  This xml fragment should be placed in an Ant build
+        file.
+
+        The following command line invocation does exactly what the xml fragment above does:
+
+          $ANT_HOME/bin/ant -Dverifierresultsdir=/tmp -Dverifierdefaultincludes="*.ear" \
+                             -Dverifierfailonerror=true -Dverifiersaveresults=true
+
+        If this command were invoked from $TS_HOME/src/com/sun/ts/tests/samples the verifier would
+        run against all the application archives (ear files) found under
+        $TS_HOME/dist/com/sun/ts/tests/samples.
+
+
+
+        $ANT_HOME/bin/ant -Dverifierarchivedir=${ts.home}/dist/com/sun/ts/samples verify
+ 
+        This example runs the verifer from the command line on any application or component archives
+        found under ${ts.home}/dist/com/sun/ts/samples no matter what directory the user is located
+        in when they invoke ant.  Not sure this attribute should ever be overridden by a user but
+        if someone thinks of an appropriate use case then by all means override this attribute.  I
+        suppose invoking the verify target from a script may be easier using this attribute instead
+        of cd'ing into the respective source directory then invoking the verify target.
+        
+      -->
+
+		<attribute name="resultsdir"
+                 default="${ts.home}/tmp"
+                 description="The directory used to store verifier results, verifier-results will be appended to this directory"/>
+
+		<attribute name="archivedir"
+                 default="${ts.home}/dist/${pkg.dir}"
+                 description="The base directory containing the archives to be verified"/>
+
+		<attribute name="defaultincludes"
+                 default="**/*.ear, **/*.war, **/*.jar, **/rar, **/*.par, **/*.car"
+                 description="The default filter used to find archives for verification relative to the archivedir"/>
+
+		<attribute name="failonerror"
+                 default="false"
+                 description="Stops the verification process if any archive fails verification, meaning if the verifier finds an error or a failure it terminates the task"/>
+
+		<attribute name="saveresults"
+                 default="false"
+                 description="If the specified results directory exists it will be moved to save the previous results,  the saved directory will be named verifier-results-backup-[timestamp]"/>
+
+
+		<sequential>
+			<property name="resultsdirectory" value="@{resultsdir}/verifier-results"/>
+			<var name="total.errors"   value="0"/>
+			<var name="total.failures" value="0"/>
+			<var name="total.warnings" value="0"/>
+			<var name="unique.counter" value="0"/>
+			<tstamp>
+				<format property="last.updated" pattern="MM/dd/yyyy hh:mm aa"/>
+			</tstamp>
+			<tstamp>
+				<format property="backup.stamp" pattern="MM-dd-yyyy-hh:mm:ss"/>
+			</tstamp>
+
+			<!-- If the specified results directory doesn't exist, create it.  If it does exist and   -->
+			<!-- saveresults is true, backup the current results by saving them to a backup directory -->
+			<!-- with an appropriate time stamp.  If the results directory exists and saveresults is  -->
+			<!-- false simply delete the contents of the results directory.                           -->
+			<if>
+				<available file="${resultsdirectory}" type="dir"/>
+				<then>
+					<if>
+						<istrue value="@{saveresults}"/>
+						<then>
+							<move todir="@{resultsdir}/verifier-results-backup-${backup.stamp}">
+								<fileset dir="${resultsdirectory}" includes="**/*"/>
+							</move>
+						</then>
+						<else>
+							<delete includeemptydirs="true">
+								<fileset dir="${resultsdirectory}" includes="**/*"/>
+							</delete>
+						</else>
+					</if>
+				</then>
+				<else>
+					<mkdir dir="${resultsdirectory}"/>
+				</else>
+			</if>
+
+			<!-- create an index file with the verifier results -->
+			<touch file="${resultsdirectory}/index.html"/>
+			<echo append="true" file="${resultsdirectory}/index.html">
+				<![CDATA[
+            <html>
+				<head>
+					<meta content="text/html; charset=ISO-8859-1"
+                      http-equiv="content-type">
+						<title>@{archivedir}</title>
+					</head>
+					<body>
+						<center>
+							<big>
+								<big>Verifier Results for @{archivedir}</big>
+							</big>
+						</center>
+						<br>
+							<hr style="width: 100%; height: 2px;">
+          ]]>
+        </echo>
+
+							<!-- process each archive -->
+							<for param="archive">
+								<fileset dir="@{archivedir}"
+                   includes="@{defaultincludes}"
+                   excludes="**/ts_dep/*"/>
+								<sequential>
+									<propertyregex property="archive.name.only"
+              input="@{archive}"
+              regexp=".*[\/|\\](.*)"
+              select="\1"
+              casesensitive="false"
+              override="true"/>
+									<propertyregex property="relative.archive.name"
+              input="@{archive}"
+              regexp=".*[\/|\\]dist[\/|\\](.*)"
+              select="\1"
+              casesensitive="false"
+              override="true"/>
+
+									<!-- run the verifier -->
+									<echo message="${line.separator}${line.separator}*****************************************************"/>
+									<echo message="*****************************************************"/>
+									<echo message="*****************************************************"/>
+									<echo message="*** Verifying &quot;@{archive}&quot;"/>
+									<echo message="*** Results written to &quot;${resultsdirectory}&quot;"/>
+
+									<if>
+										<os family="windows"/>
+										<then>
+											<exec executable="cmd.exe">
+												<arg line=" /c"/>
+												<arg line="${javaee.home.ri}/bin/verifier"/>
+												<arg line="-ra"/>
+												<arg line="-p"/>
+												<!-- -p for portable archive check, not Sun speciifc -->
+												<arg line="-d ${resultsdirectory}"/>
+												<arg line="@{archive}"/>
+											</exec>
+										</then>
+										<else>
+											<exec executable="${javaee.home.ri}/bin/verifier">
+												<arg line="-ra"/>
+												<arg line="-p"/>
+												<!-- -p for portable archive check, not Sun speciifc -->
+												<arg line="-d ${resultsdirectory}"/>
+												<arg line="@{archive}"/>
+											</exec>
+										</else>
+									</if>
+
+									<!--
+              Load the resulting XML file to get the counts for failures, warnings and errors.
+              We need to prefix each attribute with a unique ID since property values can not
+              be reset in Ant.  We use the full archive name and path since this is guaranteed
+              to be unique.  We then use ant-contrib's propertycopy to get the counts.  These
+              property values can be overridden.
+            -->
+									<echo message="*** Loading Result XML File &quot;${resultsdirectory}/${archive.name.only}.xml&quot;"/>
+									<xmlproperty prefix="@{archive}" file="${resultsdirectory}/${archive.name.only}.xml"/>
+									<propertycopy property="errors" override="true"
+                          from="@{archive}.static-verification.failure-count.error-number"/>
+									<propertycopy property="failures" override="true"
+                          from="@{archive}.static-verification.failure-count.failure-number"/>
+									<propertycopy property="warnings" override="true"
+                          from="@{archive}.static-verification.failure-count.warning-number"/>
+
+									<!-- Move the result files so they have a unique id across all of spider -->
+									<math result="unique.counter" operand1="${unique.counter}"
+                  operation="+" operand2="1"
+                  datatype="int"/>
+									<move file="${resultsdirectory}/${archive.name.only}.xml"
+                  tofile="${resultsdirectory}/${unique.counter}-${archive.name.only}.xml"/>
+									<move file="${resultsdirectory}/${archive.name.only}.txt"
+                  tofile="${resultsdirectory}/${unique.counter}-${archive.name.only}.txt"/>
+									<var name="unique.archive.name.only" value="${unique.counter}-${archive.name.only}"/>
+
+									<!-- Add a message to the index file noting the overall staus of an archive.  If -->
+									<!-- we are in fail fast mode we finish the index.html file and exit the ant run -->
+									<!-- when we see an error or failure.                                            -->
+									<if>
+										<!-- We have errors -->
+										<not>
+											<equals arg1="${errors}" arg2="0"/>
+										</not>
+										<then>
+											<echo append="true" file="${resultsdirectory}/index.html">
+												<![CDATA[<span style="color: rgb(51, 51, 255);">Errors</span>&nbsp]]>
+                </echo>
+										<if>
+											<istrue value="@{failonerror}"/>
+											<then>
+												<echo append="true" file="${resultsdirectory}/index.html">
+                      (${relative.archive.name})  -  Detailed Results: 
+                      <![CDATA[<a href="${unique.archive.name.only}.html">html</a>&nbsp]]>
+                      <![CDATA[<a href="${unique.archive.name.only}.xml">xml</a>&nbsp]]>
+                      <![CDATA[<a href="${unique.archive.name.only}.txt">text</a>
+										<br>]]>
+                    </echo>
+										<echo append="true" file="${resultsdirectory}/index.html">
+											<![CDATA[<hr style="width: 100%; height: 2px;">
+                      This file was generated on ${last.updated}.</body>
+									</html>]]>
+                    </echo>
+								<fail message="*** Errors found in archive &quot;@{archive}&quot;, verification terminated. ***"/>
+							</then>
+						</if>
+					</then>
+					<elseif>
+						<!-- We have failures -->
+						<not>
+							<equals arg1="${failures}" arg2="0"/>
+						</not>
+						<then>
+							<echo append="true" file="${resultsdirectory}/index.html">
+								<![CDATA[<span style="color: rgb(255, 0, 0);">Failures</span>&nbsp]]>
+                  </echo>
+						<if>
+							<istrue value="@{failonerror}"/>
+							<then>
+								<echo append="true" file="${resultsdirectory}/index.html">
+                        (${relative.archive.name})  -  Detailed Results: 
+                        <![CDATA[<a href="${unique.archive.name.only}.html">html</a>&nbsp]]>
+                        <![CDATA[<a href="${unique.archive.name.only}.xml">xml</a>&nbsp]]>
+                        <![CDATA[<a href="${unique.archive.name.only}.txt">text</a>
+						<br>]]>
+                      </echo>
+						<echo append="true" file="${resultsdirectory}/index.html">
+							<![CDATA[<hr style="width: 100%; height: 2px;">
+                        This file was generated on ${last.updated}.</body>
+					</html>]]>
+                      </echo>
+				<fail message="*** Failures found in archive &quot;@{archive}&quot;, verification terminated. ***"/>
+			</then>
+		</if>
+	</then>
+</elseif>
+<elseif>
+	<!-- We have warnings -->
+	<not>
+		<equals arg1="${warnings}" arg2="0"/>
+	</not>
+	<then>
+		<echo append="true" file="${resultsdirectory}/index.html">
+			<![CDATA[<span style="color: rgb(255, 204, 0);">Warnings</span>&nbsp]]>
+                  </echo>
+</then>
+</elseif>
+<else>
+<!-- all is well -->
+<echo append="true" file="${resultsdirectory}/index.html">
+	<![CDATA[<span style="color: rgb(0, 153, 0);">Passed</span>&nbsp]]>
+                </echo>
+</else>
+</if>
+
+<!-- Add the links to the three flavors of results files -->
+<echo append="true" file="${resultsdirectory}/index.html">
+               (${relative.archive.name})  -  Detailed Results: 
+               <![CDATA[<a href="${unique.archive.name.only}.html">html</a>&nbsp]]>
+               <![CDATA[<a href="${unique.archive.name.only}.xml">xml</a>&nbsp]]>
+               <![CDATA[<a href="${unique.archive.name.only}.txt">text</a>
+<br>]]>
+            </echo>
+
+<!-- Update total errors, failures and warnings -->
+<math result="total.errors" operand1="${total.errors}"
+                  operation="+" operand2="${errors}"
+                  datatype="int"/>
+<math result="total.failures" operand1="${total.failures}"
+                  operation="+" operand2="${failures}"
+                  datatype="int"/>
+<math result="total.warnings" operand1="${total.warnings}"
+                  operation="+" operand2="${warnings}"
+                  datatype="int"/>
+
+</sequential>
+</for>
+
+<!-- end the index file -->
+<echo append="true" file="${resultsdirectory}/index.html">
+<![CDATA[<hr style="width: 100%; height: 2px;">
+          This file was generated on ${last.updated}.</body>
+</html>]]>
+        </echo>
+
+<!-- transform the xml results to html for easy viewing -->
+<echo message="${line.separator}${line.separator}*****************************************************"/>
+<xslt basedir="${resultsdirectory}"
+              destdir="${resultsdirectory}"
+              includes="*.xml"
+              style="${bin.dir}/xml/verifier-results.xsl"/>
+
+<!-- spit out summary results for errors, failures and warnings as well as the index file location -->
+<echo message="${line.separator}${line.separator}********************** Totals ***********************"/>
+<echo message="*****************************************************"/>
+<echo message="** Total Archives Processed : ${unique.counter}"/>
+<echo message="**   Total Errors   : ${total.errors}"/>
+<echo message="**   Total Failures : ${total.failures}"/>
+<echo message="**   Total Warnings : ${total.warnings}"/>
+<echo message="**   See summary file for details"/>
+<echo message="**     &quot;${resultsdirectory}/index.html&quot;"/>
+<echo message="*****************************************************"/>
+<echo message="*****************************************************"/>
+
+</sequential>
+</macrodef>
+
+</project>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <description>SimpleTagSupport Validation</description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>simpletagsupport</short-name>
+    <tag>
+        <name>checkinstance</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.CheckInstanceSimpleTag</tag-class>
+        <body-content>scriptless</body-content> 
+    </tag>
+    <tag>
+        <name>cskippage</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.ClassicSkipPage</tag-class>
+        <body-content>JSP</body-content> 
+    </tag>
+    <tag>
+        <name>sskippage</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleSkipPage</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>simpledefault</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.DefaultSimpleTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>fail</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.FailingTag</tag-class>
+        <body-content>JSP</body-content> 
+    </tag>
+    <tag>
+        <name>jspcontext</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleGetSetJspContext</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>jspbody</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleGetSetJspBody</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>parent</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleGetSetParent</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>simpleemptybody</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleEmptyBody</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>noparent</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleNoParent</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>jspFragmentGetJspContextSimple</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleJspFragmentGetJspContext</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>jspFragmentGetJspContextClassic</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.ClassicJspFragmentGetJspContext</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>fragment</name>
+            <fragment>true</fragment>
+        </attribute>
+    </tag>
+    <tag>
+        <name>cparent</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.ClassicParent</tag-class>
+        <body-content>JSP</body-content> 
+        <attribute>
+            <name>level</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+    <tag>
+        <name>ancestor</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleAncestor</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>sparent</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleParentTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>level</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+    <tag>
+        <name>sync</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleSyncTag</tag-class>
+        <tei-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SyncTEI</tei-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    <tag>
+        <name>sync1</name>
+        <tag-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.simpletagsupport.SimpleSyncTag</tag-class>
+        <body-content>scriptless</body-content>
+        <variable>
+            <name-given>begin</name-given>
+            <variable-class>java.lang.Integer</variable-class>
+            <scope>AT_BEGIN</scope>
+        </variable>
+        <variable>
+            <name-given>end</name-given>
+            <variable-class>java.lang.Integer</variable-class>
+            <scope>AT_END</scope>
+        </variable>
+    </tag>
+</taglib>

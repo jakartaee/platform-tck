@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.1" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+    <enterprise-beans>
+	<session>
+	    <ejb-name>OneBean</ejb-name>
+	    <env-entry>
+		<description>spaces should be preserved</description>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myString</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value> OneBean ${java.home} </env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myBooleanTrue</env-entry-name>
+		<env-entry-type>java.lang.Boolean</env-entry-type>
+		<env-entry-value>TRue</env-entry-value> <!-- true -->
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myBooleanTrue2</env-entry-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean</injection-target-class>
+                    <injection-target-name>myBooleanTrue2</injection-target-name>
+                </injection-target>
+		<lookup-name>java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myBooleanTrue</lookup-name>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myBooleanFalse</env-entry-name>
+		<env-entry-type>java.lang.Boolean</env-entry-type>
+		<env-entry-value>yes</env-entry-value> <!-- false -->
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myByte</env-entry-name>
+		<env-entry-type>java.lang.Byte</env-entry-type>
+		<env-entry-value>1</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myShort</env-entry-name>
+		<env-entry-type>java.lang.Short</env-entry-type>
+		<env-entry-value>1</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myInt</env-entry-name>
+		<env-entry-type>java.lang.Integer</env-entry-type>
+		<env-entry-value>1</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myLong</env-entry-name>
+		<env-entry-type>java.lang.Long</env-entry-type>
+		<env-entry-value>1</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myFloat</env-entry-name>
+		<env-entry-type>java.lang.Float</env-entry-type>
+		<env-entry-value>1</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myDouble</env-entry-name>
+		<env-entry-type>java.lang.Double</env-entry-type>
+		<env-entry-value>1</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myChar</env-entry-name>
+		<env-entry-type>java.lang.Character</env-entry-type>
+		<env-entry-value> </env-entry-value>
+	    </env-entry>
+	</session>
+	<session>
+	    <ejb-name>TwoBean</ejb-name>
+	    <env-entry>
+		<description>spaces should be preserved</description>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myString</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value> TwoBean ${java.home} </env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myBooleanTrue</env-entry-name>
+		<env-entry-type>java.lang.Boolean</env-entry-type>
+		<env-entry-value>TRUe</env-entry-value> <!-- true -->
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myBooleanFalse</env-entry-name>
+		<env-entry-type>java.lang.Boolean</env-entry-type>
+		<env-entry-value>null</env-entry-value> <!-- false -->
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myByte</env-entry-name>
+		<env-entry-type>java.lang.Byte</env-entry-type>
+		<env-entry-value>2</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myShort</env-entry-name>
+		<env-entry-type>java.lang.Short</env-entry-type>
+		<env-entry-value>2</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myInt</env-entry-name>
+		<env-entry-type>java.lang.Integer</env-entry-type>
+		<env-entry-value>2</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myLong</env-entry-name>
+		<env-entry-type>java.lang.Long</env-entry-type>
+		<env-entry-value>2</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myFloat</env-entry-name>
+		<env-entry-type>java.lang.Float</env-entry-type>
+		<env-entry-value>2</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myDouble</env-entry-name>
+		<env-entry-type>java.lang.Double</env-entry-type>
+		<env-entry-value>2</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myChar</env-entry-name>
+		<env-entry-type>java.lang.Character</env-entry-type>
+		<env-entry-value>2</env-entry-value>
+	    </env-entry>
+	</session>
+	<session>
+	    <ejb-name>ThreeBean</ejb-name>
+	    <env-entry>
+		<description>spaces should be preserved</description>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myString</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value> ThreeBean ${java.home} </env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myBooleanTrue</env-entry-name>
+		<env-entry-type>java.lang.Boolean</env-entry-type>
+		<env-entry-value>TRUE</env-entry-value> <!-- true -->
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myBooleanFalse</env-entry-name>
+		<env-entry-type>java.lang.Boolean</env-entry-type>
+		<env-entry-value>true.</env-entry-value> <!-- false -->
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myByte</env-entry-name>
+		<env-entry-type>java.lang.Byte</env-entry-type>
+		<env-entry-value>3</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myShort</env-entry-name>
+		<env-entry-type>java.lang.Short</env-entry-type>
+		<env-entry-value>3</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myInt</env-entry-name>
+		<env-entry-type>java.lang.Integer</env-entry-type>
+		<env-entry-value>3</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myLong</env-entry-name>
+		<env-entry-type>java.lang.Long</env-entry-type>
+		<env-entry-value>3</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myFloat</env-entry-name>
+		<env-entry-type>java.lang.Float</env-entry-type>
+		<env-entry-value>3</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myDouble</env-entry-name>
+		<env-entry-type>java.lang.Double</env-entry-type>
+		<env-entry-value>3</env-entry-value>
+	    </env-entry>
+	    <env-entry>
+		<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myChar</env-entry-name>
+		<env-entry-type>java.lang.Character</env-entry-type>
+		<env-entry-value>3</env-entry-value>
+	    </env-entry>
+	</session>
+    </enterprise-beans>
+    
+    <interceptors>
+        <interceptor>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Interceptor0</interceptor-class>
+        </interceptor>
+    </interceptors>
+    
+    <assembly-descriptor>
+        <interceptor-binding>
+            <ejb-name>*</ejb-name>
+            <interceptor-class>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Interceptor0</interceptor-class>
+        </interceptor-binding>
+    </assembly-descriptor>
+</ejb-jar>

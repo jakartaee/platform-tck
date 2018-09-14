@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+ <title>Release Notes for Java EE 8 CTS</title>
+<style type="text/css">
+<!--
+body {  background-color: #ffffdd; color: #000000}
+pre {  background-color: #eeeeee; color: #000099}
+code {  color: #000099}
+h1 {  color: #000099}
+h2 {  color: #000099}
+h3 {  color: #000099; text-decoration: underline}
+h4 {  font-style: italic; color: #000099}
+.tabletitle {  font-style: italic; color: #ffffcc; font-size: small; font-variant: small-caps}
+.subtitle {  font-style: italic; color: #ffffcc; font-variant: small-caps}
+.emphasize  {  font-style: italic; color: #000099}
+.step  { font-weight: bold}
+-->
+</style>
+</head>
+<body bgcolor="#ffffdd" text="#000000" link="#0000ff" vlink="#840084" alink="#0000ff">
+
+<div align="center">
+<h1>Java<small><sup>TM</sup></small> Enterprise Edition 8 Compatibility Test Suite<br>
+<em class="emphasize">Release Notes, @DATE@</em></h1>
+</div>
+
+<hr>
+<table border="0" title="Note">
+ <tr valign="top">
+ <td><strong>Note:</strong></td>
+ <td><em>This is <strong>version &quot;@DATE@&quot;</strong> of the Java EE 8 CTS. The Release Notes file that is posted on the <a href="https://javapartner.oracle.com" target="_blank">Java Partner Engineering</a> Web site contains the most current information about the Java EE CTS test suite, including any last minute changes. Always check that file for the most up-to-date information.</em></td>
+ </tr>
+</table>
+
+<hr>
+<h2>Java EE CTS Requirements, Facts, and Figures</h2>
+<blockquote>
+<p>The Java EE 8 CTS requires a minimum of 3.7 GB of free disk space:</p>
+
+<ul>
+   <li>Java EE CTS (zipped): 661 MB</li>
+   <li>Java EE CTS (unzipped):  1 GB</li>
+   <li>Space for CTS log/report files: 2 GB minimum (trace off)</li>
+</ul>
+
+<p>The test suite bundle contains the following:</p>
+
+<ul>
+ <li>EARs: 3367</li>
+ <li>RARs: 22</li>
+ <li>JARs: 4637</li>
+ <li>WARs: 2905</li>
+ <p/>
+ <li>52,192 total tests:
+ <ul>
+    <li>CTS (JSR 366): 47103</li>
+    <li>CDI 2.0(JSR 365) TCK: 1810</li>
+    <li>Bean Validation 2.0(JSR 380) TCK: 1050</li>
+    <li>Dependency Injection for Java (JSR 330) TCK: 50</li>
+    <li>JWS-WS 2.3 (JSR 224) TCK: 1703</li>
+    <li>SAAJ 1.4 (JSR 067) TCK : 450</li>
+    <li>StAX TCK (JSR 173): 26</li>
+	 </ul></li>
+</ul>
+
+<p>The tests for JAX-WS and SAAJ are removed from Java EE CTS, as these technologies are part of Java SE Platform now. However, they are available as standalone TCKs and licensees are required to run these standalone TCKs if they provide their own implementations of these APIs that override the implementations in the Java SE platform.</p>
+
+<p>Chapter 4, &quot;Installation&quot; in the <em>Java EE 8 CTS User's Guide</em>, explains how to install the Java EE Compatibility Test Suite on Solaris, Linux, and Windows systems.</p>
+</blockquote>
+
+<hr>
+<h2>These are the stand alone TCKs, porting bundles, and JDK used to test the Java EE 8 Reference Implementation</h2>
+<ul>
+  <li>JDK version 1.8.0_144</li>
+  <li>Java EE 8 RI version 5.0</li>
+  <li>CDI version 2.0 [porting bundle file name cdi-tck-glassfish-porting-2.0_Latest.zip]</li>
+  <li>Bean Validation version 2.0 [porting bundle file name bv-tck-glassfish-porting-2.0_15-Aug-2017.zip]</li>
+  <li>Dependency Injection for Java version 1.0</li>
+  <li>JAXB version 2.3</li>
+  <li>JAX-WS version 2.3</li>
+  <li>SAAJ version 1.4</li>
+  <li>StAX version 1.3</li>
+</ul>
+
+<hr>
+<h2>Status Information</h2>
+<h3>Exclude List</h3>
+<blockquote>
+<p>You can find the exclude list in the CTS bundle in <code>&lt;TS_HOME&gt;/bin/ts.jtx</code>. Since the list can change over time, please be sure to get the latest exclude list available on the <a href="https://javapartner.oracle.com">Java Partner Engineering</a> Web site.</p>
+</blockquote>
+
+<hr>
+<h2>Known Problems and Workarounds</h2>
+
+<h3>Running the CTS Against Java EE RI on Windows</h3>
+<blockquote>
+<p>When configuring and running the CTS against the Java EE RI on Windows, please make sure to install all related software (Java SE, Java EE RI, CTS, etc.) on the same drive (for example, <code>C:</code>). If you want to install on a drive other than <code>C:</code>, please be sure to change the following properties in <code>&lt;TS_HOME&gt;/bin/ts.jte:</code></p>
+
+<pre>
+pathsep=;
+ri.applicationRoot=c:
+s1as.applicationRoot=c:
+</pre>
+</blockquote>
+
+<hr>
+<h2>Attributions</h2>
+<blockquote>
+<p>The Java EE CTS test suite includes software developed by the Apache Software Foundation (<a href="http://www.apache.org/">http://www.apache.org/</a>), the dom4j Project (<a href="http://sourceforge.net/projects/dom4j/">http://sourceforge.net/projects/dom4j/</a>), and the JDOM<small><sup>TM</sup></small> Project (<a href="http://www.jdom.org/">http://www.jdom.org/</a>). The Apache Ant Contrib project is located at <a href="http://ant-contrib.sourceforge.net/ ">http://ant-contrib.sourceforge.net/</a>.</p>
+</blockquote>
+
+<hr size="3">
+<small>Copyright (c) 2013,2018, Oracle and/or its affiliates. All rights reserved.</small>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee    http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.sharedwebservices.faultservice</package-type>
+    <namespaceURI>http://faulttestservice.org/types</namespaceURI>
+  </package-mapping>
+  <package-mapping>
+    <package-type>com.sun.ts.tests.jaxrpc.sharedwebservices.faultservice</package-type>
+    <namespaceURI>http://faulttestservice.org/wsdl</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.jaxrpc.sharedwebservices.faultservice.DummyException</java-type>
+    <root-type-qname xmlns:typeNS="http://faulttestservice.org/types">typeNS:DummyException</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>dummyField1</java-variable-name>
+      <xml-element-name>dummyField1</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>dummyField2</java-variable-name>
+      <xml-element-name>dummyField2</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <exception-mapping>
+    <exception-type>com.sun.ts.tests.jaxrpc.sharedwebservices.faultservice.DummyException</exception-type>
+    <wsdl-message xmlns:exMsgNS="http://faulttestservice.org/wsdl">exMsgNS:DummyException</wsdl-message>
+    <constructor-parameter-order>
+      <element-name>dummyField1</element-name>
+      <element-name>dummyField2</element-name>
+    </constructor-parameter-order>
+  </exception-mapping>
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.jaxrpc.sharedwebservices.faultservice.FaultTest</service-interface>
+    <wsdl-service-name xmlns:serviceNS="http://faulttestservice.org/wsdl">serviceNS:FaultTest</wsdl-service-name>
+    <port-mapping>
+      <port-name>SoapFaultTestPort</port-name>
+      <java-port-name>SoapFaultTestPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.jaxrpc.sharedwebservices.faultservice.SoapFaultTest</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://faulttestservice.org/wsdl">portTypeNS:SoapFaultTest</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://faulttestservice.org/wsdl">bindingNS:SoapFaultTestBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>alwaysThrowsException</java-method-name>
+      <wsdl-operation>alwaysThrowsException</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://faulttestservice.org/wsdl">wsdlMsgNS:SoapFaultTest_alwaysThrowsExceptionResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>alwaysThrowsSOAPFaultExceptionDetailNoAttributes</java-method-name>
+      <wsdl-operation>alwaysThrowsSOAPFaultExceptionDetailNoAttributes</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://faulttestservice.org/wsdl">wsdlMsgNS:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoAttributesResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>alwaysThrowsSOAPFaultExceptionDetailNoChildren</java-method-name>
+      <wsdl-operation>alwaysThrowsSOAPFaultExceptionDetailNoChildren</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://faulttestservice.org/wsdl">wsdlMsgNS:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoChildrenResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributes</java-method-name>
+      <wsdl-operation>alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributes</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://faulttestservice.org/wsdl">wsdlMsgNS:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributesResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren</java-method-name>
+      <wsdl-operation>alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://faulttestservice.org/wsdl">wsdlMsgNS:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedChildrenResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren</java-method-name>
+      <wsdl-operation>alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://faulttestservice.org/wsdl">wsdlMsgNS:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildrenResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>alwaysThrowsServerException</java-method-name>
+      <wsdl-operation>alwaysThrowsServerException</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message xmlns:wsdlMsgNS="http://faulttestservice.org/wsdl">wsdlMsgNS:SoapFaultTest_alwaysThrowsServerExceptionResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

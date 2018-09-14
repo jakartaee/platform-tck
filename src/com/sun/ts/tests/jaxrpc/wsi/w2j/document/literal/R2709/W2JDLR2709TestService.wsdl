@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="W2JDLR2709TestService"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://w2jdlr2709testservice.org/W2JDLR2709TestService.wsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://w2jdlr2709testservice.org/W2JDLR2709TestService.wsdl"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd1="http://w2jdlr2709testservice.org/xsd">
+
+	<documentation>
+		Documentation.
+	</documentation>
+	
+    <types>
+        <schema targetNamespace="http://w2jdlr2709testservice.org/xsd"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+            elementFormDefault="qualified">
+
+            <element name="echoStringParam" type="xsd:string"/>
+
+            <element name="echoStringReturn" type="xsd:string"/>
+            
+            <element name="echoStringZeroParam" type="xsd:string"/>
+
+            <element name="echoStringZeroReturn" type="xsd:string"/>
+            
+            <element name="echoStringOneParam" type="xsd:string"/>
+
+            <element name="echoStringOneReturn" type="xsd:string"/>
+            
+            <element name="echoStringTwoParam" type="xsd:string"/>
+
+            <element name="echoStringTwoReturn" type="xsd:string"/>
+            
+        </schema>
+    </types>
+    
+    <message name="echoString">
+        <part element="xsd1:echoStringParam" name="str"/>
+    </message>
+    <message name="echoStringResponse">
+        <part element="xsd1:echoStringReturn" name="result"/>
+    </message>
+        
+    <message name="echoStringZero">
+        <part element="xsd1:echoStringZeroParam" name="str"/>
+    </message>
+    <message name="echoStringZeroResponse">
+        <part element="xsd1:echoStringReturn" name="result"/>
+    </message>
+        
+    <message name="echoStringOne">
+        <part element="xsd1:echoStringOneParam" name="str"/>
+    </message>
+    <message name="echoStringOneResponse">
+        <part element="xsd1:echoStringOneReturn" name="result"/>
+    </message>
+        
+    <message name="echoStringTwo">
+        <part element="xsd1:echoStringTwoParam" name="str"/>
+    </message>
+    <message name="echoStringTwoResponse">
+        <part element="xsd1:echoStringTwoReturn" name="result"/>
+    </message>
+        
+    <portType name="W2JDLR2709Test">
+    	<operation name="echoString">
+            <input message="tns:echoString"/>
+            <output message="tns:echoStringResponse"/>
+    	</operation>
+    </portType>
+    
+    <portType name="W2JDLR2709TestZero">
+    	<operation name="echoString">
+            <input message="tns:echoStringZero"/>
+            <output message="tns:echoStringZeroResponse"/>
+    	</operation>
+    </portType>
+    
+    <portType name="W2JDLR2709TestOne">
+    	<operation name="echoString">
+            <input message="tns:echoStringOne"/>
+            <output message="tns:echoStringOneResponse"/>
+    	</operation>
+    </portType>
+    
+    <portType name="W2JDLR2709TestTwo">
+    	<operation name="echoString">
+            <input message="tns:echoStringTwo"/>
+            <output message="tns:echoStringTwoResponse"/>
+    	</operation>
+    </portType>
+    
+    <binding name="W2JDLR2709TestBinding" type="tns:W2JDLR2709Test">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+    	</operation>
+    </binding>
+
+	<!-- There is to be no binding's for the 'W2JDLR2709TestZero' port type -->
+	
+	<!-- There is to be one binding for the 'W2JDLR2709TestOne' port type -->
+	
+    <binding name="W2JDLR2709TestOneBinding" type="tns:W2JDLR2709TestOne">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+    	</operation>
+    </binding>
+
+	<!-- There is to be two bindings for the 'W2JDLR2709TestTwo' port type -->
+	
+    <binding name="W2JDLR2709TestTwoABinding" type="tns:W2JDLR2709TestTwo">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <binding name="W2JDLR2709TestTwoBBinding" type="tns:W2JDLR2709TestTwo">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <service name="W2JDLR2709TestService">
+        <port binding="tns:W2JDLR2709TestBinding"
+            name="W2JDLR2709TestPort">
+            <soap:address
+                location="http://localhost:8000/W2JDLR2709TestService/ws4ee_1/W2JDLR2709Test"/>
+        </port>
+    </service>
+    
+</definitions>

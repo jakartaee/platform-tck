@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+    <enterprise-beans>
+        <session>
+            <ejb-name>ResourceFieldBean</ejb-name>
+            <resource-ref>
+                <res-ref-name>dataSource</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>dataSource</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>myDataSource2</res-ref-name>
+                <res-type>javax.sql.DataSource</res-type>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>dataSource2</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>mailSession</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>mailSession</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <description>description</description>
+                <res-ref-name>url</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>url</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>queueConnectionFactory</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>queueConnectionFactory</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>topicConnectionFactory</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>topicConnectionFactory</injection-target-name>
+                </injection-target>
+            </resource-ref>
+            <resource-ref>
+                <res-ref-name>connectionFactoryQ</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>connectionFactoryQ</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>connectionFactoryT</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>connectionFactoryT</injection-target-name>
+                </injection-target>
+            </resource-ref>
+            
+            <resource-env-ref>
+                <resource-env-ref-name>myUserTransaction</resource-env-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>userTransaction</injection-target-name>
+                </injection-target>
+            </resource-env-ref>
+
+            <!--
+            <resource-ref>
+                <res-ref-name>myUserTransaction</res-ref-name>
+                <res-type>javax.transaction.UserTransaction</res-type>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>userTransaction</injection-target-name>
+                </injection-target>
+            </resource-ref>
+-->
+            
+            <message-destination-ref>
+                <message-destination-ref-name>queue</message-destination-ref-name>
+                <!-- <message-destination-type>javax.jms.Queue</message-destination-type> -->
+                <message-destination-usage>Consumes</message-destination-usage>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>queue</injection-target-name>
+                </injection-target>
+            </message-destination-ref>
+
+            <message-destination-ref>
+                <message-destination-ref-name>topic</message-destination-ref-name>
+                <!-- <message-destination-type>javax.jms.Topic</message-destination-type> -->
+                <message-destination-usage>Consumes</message-destination-usage>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
+                    <injection-target-name>topic</injection-target-name>
+                </injection-target>
+            </message-destination-ref>
+
+        </session>
+   
+        <session>
+            <ejb-name>ResourceSetterBean</ejb-name>
+
+            <resource-ref>
+                <description>description</description>
+                <res-ref-name>dataSource</res-ref-name>
+                <res-type>javax.sql.DataSource</res-type>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>dataSource</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>myDataSource2</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>dataSource2</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>mailSession</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>mailSession</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>url</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>url</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>queueConnectionFactory</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>queueConnectionFactory</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>topicConnectionFactory</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>topicConnectionFactory</injection-target-name>
+                </injection-target>
+            </resource-ref>
+            <resource-ref>
+                <res-ref-name>connectionFactoryQ</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>connectionFactoryQ</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-ref>
+                <res-ref-name>connectionFactoryT</res-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>connectionFactoryT</injection-target-name>
+                </injection-target>
+            </resource-ref>
+
+            <resource-env-ref>
+                <resource-env-ref-name>myUserTransaction</resource-env-ref-name>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>userTransaction</injection-target-name>
+                </injection-target>
+            </resource-env-ref>
+
+<!--
+            <resource-ref>
+                <res-ref-name>myUserTransaction</res-ref-name>
+                <res-type>javax.transaction.UserTransaction</res-type>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>userTransaction</injection-target-name>
+                </injection-target>
+            </resource-ref>
+    -->
+           
+            <message-destination-ref>
+                <message-destination-ref-name>queue</message-destination-ref-name>
+                <!-- <message-destination-type>javax.jms.Queue</message-destination-type> -->
+                <message-destination-usage>Consumes</message-destination-usage>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>queue</injection-target-name>
+                </injection-target>
+            </message-destination-ref>
+
+            <message-destination-ref>
+                <message-destination-ref-name>topic</message-destination-ref-name>
+                <!-- <message-destination-type>javax.jms.Topic</message-destination-type> -->
+                <message-destination-usage>Consumes</message-destination-usage>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
+                    <injection-target-name>topic</injection-target-name>
+                </injection-target>
+            </message-destination-ref>
+
+
+        </session>
+    </enterprise-beans>
+</ejb-jar>

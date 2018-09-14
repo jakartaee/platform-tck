@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- =============================== Chapter 2 ============================= -->
+
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The JSF implementation must perform the following tasks during
+        the Restore View phase of the request processing lifecycle:
+    </description>
+    <location chapter="2" section="2.1"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Examine the FacesContext instance for the current
+                request. If it already contains a UIViewRoot:
+            </description>
+            <location chapter="2" section="2.1"/>
+            <sub-assertions>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.1.1</id>
+                    <description>
+                        Set the locale on the UIViewRoot to the value
+                        returned by getRequestLocale() method on the
+                        ExternalContext for this request
+                    </description>
+                    <location chapter="2" section="2.1"/>
+                </assertion>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.1.2</id>
+                    <description>
+                        For each component in the component tree,
+                        determine if a ValueExpression for binding is
+                        present. If so, call the setValue() method on
+                        this ValueExpression, passing the component
+                        instance on which it was found.
+                    </description>
+                    <location chapter="2" section="2.1"/>
+                </assertion>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.1.3</id>
+                    <description>
+                        Take no further action during this phase, and
+                        return.
+                    </description>
+                    <location chapter="2" section="2.1"/>
+                </assertion>
+            </sub-assertions>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                Derive the view identifier that corresponds to this
+                request, as follows:
+            </description>
+            <location chapter="2" section="2.1"/>
+            <sub-assertions>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.2.1</id>
+                    <description>
+                        If prefix mapping (such as /faces/*) is
+                        used for FacesServlet, the viewId is set from
+                        the extra path information of the request
+                        URI.
+                    </description>
+                    <location chapter="2" section="2.1"/>
+                </assertion>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.2.2</id>
+                    <description>
+                        If suffix mapping (such as *.faces) is used for
+                        FacesServlet, the viewId is set from the servlet
+                        path information of the request URI, after
+                        replacing the suffix with the value of the
+                        context initialization parameter named by the
+                        symbolic constant
+                        ViewHandler.DEFAULT_SUFFIX_PARAM_NAME (if no
+                        such context initialization parameter is
+                        present, use the value of the symbolic constant
+                        ViewHandler.DEFAULT_SUFIX as the replacement
+                        suffix).
+                    </description>
+                    <location chapter="2" section="2.1"/>
+                </assertion>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.2.3</id>
+                    <description>
+                        If no view identifier can be derived, throw an
+                        exception.
+                    </description>
+                    <location chapter="2" section="2.1"/>
+                </assertion>
+            </sub-assertions>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                Determine if this request is a postback or initial
+                request by executing the following algorithm. Find the
+                render-kit-id for the current request by calling
+                calculateRenderKitId() on the Application's ViewHandler.
+                Get the RenderKit's ResponseStateManager and call its
+                isPostback() method, passin gthe current FacesContext
+            </description>
+            <location chapter="2" section="2.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                A request that is a non-postback request must call
+                FacesContext.renderResponse() to cause intervening
+                phases to be skipped.
+            </description>
+            <location chapter="2" section="2.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.5</id>
+            <description>
+                If the request is a postback, call
+                ViewHandler.restoreView() passing the FacesCOntext
+                isntance for the current request and the derived view
+                identifier, and returning a UIViewRoot for the restored
+                view. If the return from ViewHandler.restoreView() is
+                null, throw a FacesException with an appropriate error
+                message.
+            </description>
+            <location chapter="2" section="2.1"/>
+            <sub-assertions>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.5.1</id>
+                    <description>
+                        For each component in the component tree,
+                        determine if a ValueExpression for binding is
+                        present. If so, call the setValeu() method on
+                        this ValueExpression, passing the component
+                        instance on which it was found. Do this in a
+                        parent-first fashion, calling setValue() method
+                        and then traversing the children.
+                    </description>
+                    <location chapter="2" section="2.1"/>
+                </assertion>
+            </sub-assertions>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.6</id>
+            <description>
+                If the request is a non-postback, call
+                ViewHandler.createView(), passing the FacesContext
+                instance for the current request and the derived view
+                identifier.
+            </description>
+            <location chapter="2" section="2.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.7</id>
+            <description>
+                Store the restored or created UIViewRoot in the
+                FacesContext
+            </description>
+            <location chapter="2" section="2.1"/>
+        </assertion>
+                <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.8</id>
+	<description>
+		Use the protected view API to determine if the view for this viewId is
+		protected. If not, assume the requested view is
+		not protected and take no additional view protection steps. Otherwise,
+		look for a Referer [sic] request header. If the
+		header is present, use the protected view API to determine if any of the
+		declared protected views match the value of
+		the Referer header. If so, conclude that the previously visited page is
+		also a protected view and it is therefore safe
+		to continue. Otherwise, try to determine if the value of the Referer
+		header corresponds to any of the views in the
+		current web application. If not, throw a ProtectedViewException. If the
+		Referer header is not present, fall back on inspecting the incoming URL. 
+		Obtain the value of the value of the request parameter whose name is 
+		given by the value of ResponseStateManager.NON_POSTBACK_VIEW_TOKEN_PARAM. 
+		If such a request parameter value is not present, throw 
+		ProtectedViewException. If the value is present, compare it to the 
+		return from 
+		ResponseStateManager.getCrpytographicallyStrongTokenFromSession(). If
+		the values do not match, throw ProtectedViewException.
+	</description>
+            <location chapter="2" section="2.1"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        During the Apply Request Values phase, the JSF implementation
+        must call the processDecodes() method of the UIViewRoot of the
+        component tree.
+    </description>
+    <location chapter="2" section="2.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        During the decoding of request values, some components perform
+        special processing:
+    </description>
+    <location chapter="2" section="2.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Components that implement ActionSource, which recognize
+                that they were activated, will queue an ActionEvent.
+            </description>
+            <location chapter="2" section="2.2"/>
+            <sub-assertions>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.1.1</id>
+                    <description>
+                        The event will be delivered at the end of Apply
+                        Request Values phase if the immediate property
+                        is true
+                    </description>
+                    <location chapter="2" section="2.2"/>
+                </assertion>
+                <assertion required="true" impl-spec="false"
+                    defined-by="technology" status="active"
+                    testable="true">
+                    <id>__NUMBER__.1.2</id>
+                    <description>
+                        The event will be delivered at the end of Invoke
+                        Application phase if the immediate property is
+                        false
+                    </description>
+                    <location chapter="2" section="2.2"/>
+                </assertion>
+            </sub-assertions>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                Components that implement EditableValueHolder, and whose
+                immediate property is set to true, will cause the
+                conversion and validation processing that normally
+                happens during Process Validations phase to occur during
+                Apply Requst Values phase instead.
+            </description>
+            <location chapter="2" section="2.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        If any of the decode() methods that were invoked, or an event
+        listener that processed a queued event, called
+        responseComplete() on the FacesContext instance for the current
+        request, clear the remaining events from the event queue and
+        terminate the lifecycle processing of the current request.
+    </description>
+    <location chapter="2" section="2.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        If any of the decode() methods that were invoked, or an event
+        listener that processed a queued event, called renderResponse()
+        on the FacesContext instance for the current request, clear the
+        remaining events from the event queue and terminate the
+        lifecycle processing of the current request.
+    </description>
+    <location chapter="2" section="2.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        If any of the decode() methods that were invoked, or an event
+        listener that processed a queued event, did not call
+        responseComplete() or renderResponse() on the FacesContext
+        instance for the current request, the implementation must
+        proceed to the Process Validations phase.
+    </description>
+    <location chapter="2" section="2.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active"
+    testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        During the Process Validations phase of the request processing
+        lifecycle, the JSF implementation must call the
+        processValidators() method of the UIViewRoot of the tree.
+    </description>
+    <location chapter="2" section="2.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active"
+    testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        If any of the validate() methods that were invoked, or an event 
+        listener that processed a queued event, called renderResponse() 
+        on the FacesContext instance for the current request, clear the
+        remaining events from the event queue and transfer control to
+        the Render Response phase of the request processing lifecycle.
+        Otherwise, control must proceed to the Update Model Values 
+        phase.
+    </description>
+    <location chapter="2" section="2.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active"
+    testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        During the Update Model Values phase, the JSF implementation
+        must call the processUpdates() method of the UIViewRoot
+        component of the tree.
+    </description>
+    <location chapter="2" section="2.4"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active"
+    testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        If any of the updateModel() methods that was invoked, 
+        or an event listener that processed a queued event, called 
+        renderResponse() on the FacesContext instance for the current 
+        request, clear the remaining events from the event queue and 
+        transfer control to the Render Response phase of the request 
+        processing lifecycle. Otherwise, control must proceed to the
+        Invoke Application phase.
+    </description>
+    <location chapter="2" section="2.4"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active"
+    testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The implementation must ensure that the processApplication() 
+        method of the UIViewRoot instance is called.
+    </description>
+    <location chapter="2" section="2.5"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.1.1</id>
+            <description>
+                The default behavior of this method will be to broadcast
+                any queued events that specify a phase identifier of
+                PhaseId.INVOKE_APPLICATION.
+            </description>
+            <location chapter="2" section="2.5"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active"
+    testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        During the Render Response phase All JSF implementations
+        must conform to the following requirements.             
+    </description>
+    <location chapter="2" section="2.6"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.1.1</id>
+            <description>
+                JSF implementations must provide a default ViewHandler
+                implementation that performs a 
+                RequestDispatcher.forward() call to a web application
+                resource whose context-relative path is equal to the
+                view identifier of the component tree
+            </description>
+            <location chapter="2" section="2.6"/>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.1.2</id>
+            <description>
+                During the rendering process, additional components may 
+                be added to the component tree based on information 
+                available to the ViewHandler implementation. However, 
+                before adding a new component, the ViewHandler 
+                implementation must first check for the existence of the
+                corresponding component in the component tree. If the
+                component already exists (perhaps because a previous
+                phase has pre-created one or more components), the 
+                existing component’s properties and attributes must be 
+                utilized.
+            </description>
+            <location chapter="2" section="2.6"/>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active"
+            testable="true">
+            <id>__NUMBER__.1.3</id>
+            <description>
+                Under no circumstances should a component be selected 
+                for rendering when its parent component, or any of its 
+                ancestors in the component tree, has its rendersChildren
+                property set to true. In such cases, the parent or 
+                ancestor component must render the content of this child
+                component when the parent or ancestor was selected.
+            </description>
+            <location chapter="2" section="2.6"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        For each queued event, the broadcast() method of the source
+        UIComponent must be called to broadcast the event to all event
+        listeners who have registered an interest, on this source
+        component for events of the specified type, after which the
+        event is removed from the event queue.
+    </description>
+    <location chapter="2" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        It is also possible for event listeners to cause additional
+        events to be enqueued for processing during the current phase
+        of the request processing lifecycle. Such events must be
+        broadcast in the order they were enqueued, after all originally
+        queued events have been broadcast, before the lifecycle
+        management method returns.
+    </description>
+    <location chapter="2" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The UIViewRoot instance returned by the createView() method must
+        minimally contain a single UIViewRoot provided by the JSF
+        implementation, which must encapsulate any 
+        implementation-specific component management that is required.
+    </description>
+    <location chapter="2" section="4.2.1"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The caller of ViewHandler.createView() must cause the
+        FacesContext to be populated with the new UIViewRoot.
+    </description>
+    <location chapter="2" section="4.2.1"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The default ViewHandler must call calculateRenderKitId() on
+        itself and set the result into the UIViewRoot’s renderKitId
+        property.
+    </description>
+    <location chapter="2" section="4.2.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        Once the view has been created and configured, the FacesContext
+        instance for this request must be made aware of it by calling
+        setViewRoot().
+    </description>
+    <location chapter="2" section="4.2.4"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The create ViewHandler’s createView() method must cause the
+        active Locale to be determined by looking at the user’s
+        preferences combined with the application’s stated supported
+        locales.
+    </description>
+    <location chapter="2" section="5.2.1"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        At the beginning of the render-response phase, the ViewHandler
+        must ensure that the response Locale is set to be that of the
+        UIViewRoot, for example by calling ServletResponse.setLocale()
+        when running in the servlet environment.
+    </description>
+    <location chapter="2" section="5.2.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        At the end of the render-response phase, the ViewHandler must 
+        store the response character encoding used by the underlying 
+        response object (e.g., the servlet or portlet response) in the 
+        session (if and only if a session already exists) under a well 
+        known, implementation-dependent key  
+    </description>
+    <location chapter="2" section="5.2.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                On a subsequent postback, before any of the 
+                ExternalContext methods for accessing request
+                parameters are invoked, the ViewHandler must examine the
+                Content-Type header to read the charset attribute and
+                use its value to set it as the request encoding for the
+                underlying request object. If the Content-Type header
+                doesn't contain a charset attribute, the encoding
+                previously stored in the session (if and only if a
+                session already exists), must be used to set the
+                encoding for the underlying request object.
+            </description>
+            <location chapter="2" section="5.2.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false"
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                If no character encoding is found, the request encoding
+                must be left unmodified.
+            </description>
+            <location chapter="2" section="5.2.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        A JSF implementation must provide a javax.faces.Messages
+        ResourceBundle containing all of the necessary keys for the
+        standard messages.
+    </description>
+    <location chapter="2" section="5.2.4"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                javax.faces.component.UIInput.CONVERSION -- 
+                {0}: Conversion error occurred
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                javax.faces.component.UIInput.REQUIRED -- 
+                {0}: Validation Error: Value is required
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                javax.faces.component.UIInput.UPDATE -- 
+                {0}: An error occurred when processing your submitted 
+                information
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                javax.faces.component.UISelectOne.INVALID -- 
+                {0}: Validation Error: Value is not valid
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.5</id>
+            <description>
+                javax.faces.component.UISelectMany.INVALID -- 
+                {0}: Validation Error: Value is not valid
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.6</id>
+            <description>
+                javax.faces.converter.BigDecimalConverter.DECIMAL={2}: 
+                ''{0}'' must be a signed decimal number.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.7</id>
+            <description>
+                javax.faces.converter.BigDecimalConverter.DECIMAL_detail
+                ={2}: ''{0}'' must be asigned decimal number consisting
+                of zero or more digits, that may be followed by a
+                decimal point and fraction. Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.8</id>
+            <description>
+                javax.faces.converter.BigIntegerConverter.BIGINTEGER
+                ={2}: ''{0}'' must be a number consisting of one or more
+                digits.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.9</id>
+            <description>
+                javax.faces.converter.BigIntegerConverter.BIGINTEGER_
+                detail={2}: ''{0}'' must be a number consisting of one
+                or more digits. Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.10</id>
+            <description>
+                javax.faces.converter.BooleanConverter.BOOLEAN={1}:
+                ''{0}'' must be 'true' or 'false'.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.11</id>
+            <description>
+                javax.faces.converter.BooleanConverter.BOOLEAN_detail
+                ={1}: ''{0}'' must be 'true' or 'false'. Any value other
+                than 'true' will evaluate to 'false'. 
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.12</id>
+            <description>
+                javax.faces.converter.ByteConverter.BYTE={2}: ''{0}''
+                must be a number between 0 and 255.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.13</id>
+            <description>
+                javax.faces.converter.ByteConverter.BYTE_detail={2}:
+                ''{0}'' must be a number between 0 and 255. Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.14</id>
+            <description>
+                javax.faces.converter.CharacterConverter.CHARACTER={1}:
+                ''{0}'' must be a valid character.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.15</id>
+            <description>
+                javax.faces.converter.CharacterConverter.CHARACTER_
+                detail={1}: ''{0}'' must be a valid ASCII character.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.16</id>
+            <description>
+                javax.faces.converter.DateTimeConverter.DATE={2}: 
+                ''{0}'' could not be understood as a date.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.17</id>
+            <description>
+                javax.faces.converter.DateTimeConverter.DATE_detail={2}:
+                ''{0}'' could not be understood as a date. Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.18</id>
+            <description>
+                javax.faces.converter.DateTimeConverter.TIME={2}: 
+                ''{0}'' could not be understood as a time.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.19</id>
+            <description>
+                javax.faces.converter.DateTimeConverter.TIME_detail={2}: 
+                ''{0}'' could not be understood as a time. Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.20</id>
+            <description>
+                javax.faces.converter.DateTimeConverter.DATETIME={2}: 
+                ''{0}'' could not be understood as a date and time.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.21</id>
+            <description>
+                javax.faces.converter.DateTimeConverter.DATETIME_detail=
+                {2}: ''{0}'' could not be understood as a date and time. 
+                Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.22</id>
+            <description>
+                javax.faces.converter.DateTimeConverter.PATTERN_TYPE=
+                {1}: A 'pattern' or 'type' attribute must be specified 
+                to convert the value ''{0}''.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.23</id>
+            <description>
+                javax.faces.converter.DoubleConverter.DOUBLE={2}: 
+                ''{0}'' must be a number consisting of one or more
+                digits.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.24</id>
+            <description>
+                javax.faces.converter.DoubleConverter.DOUBLE_detail={2}:
+                ''{0}'' must be a number between 4.9E-324 and
+                1.7976931348623157E308 Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.25</id>
+            <description>
+                javax.faces.converter.EnumConverter.ENUM={2}: ''{0}'' 
+                must be convertible to an enum.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.26</id>
+            <description>
+                javax.faces.converter.EnumConverter.ENUM_detail={2}: 
+                ''{0}'' must be convertible to an enum from the enum 
+                that contains the constant ''{1}''.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.27</id>
+            <description>
+                javax.faces.converter.EnumConverter.ENUM_NO_CLASS={1}:
+                ''{0}'' must be convertible to an enum from the enum, 
+                but no enum class provided.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.28</id>
+            <description>
+                javax.faces.converter.EnumConverter.ENUM_NO_CLASS_detail
+                ={1}: ''{0}'' must be convertible to an enum from the 
+                enum, but no enum class provided.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.29</id>
+            <description>
+                javax.faces.converter.FloatConverter.FLOAT={2}: ''{0}'' 
+                must be a number consisting of one or more digits.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.30</id>
+            <description>
+                javax.faces.converter.FloatConverter.FLOAT_detail={2}:
+                ''{0}'' must be a number between 1.4E-45 and 
+                3.4028235E38 Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.31</id>
+            <description>
+                javax.faces.converter.IntegerConverter.INTEGER={2}:
+                ''{0}'' must be a number consisting of one or more
+                digits.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.32</id>
+            <description>
+                javax.faces.converter.IntegerConverter.INTEGER_detail=
+                {2}: ''{0}'' must be a number between -2147483648
+                and 2147483647 Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.33</id>
+            <description>
+                javax.faces.converter.LongConverter.LONG={2}: ''{0}'' 
+                must be a number consisting of one or more digits.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.34</id>
+            <description>
+                javax.faces.converter.LongConverter.LONG_detail={2}: 
+                ''{0}'' must be a number between -9223372036854775808 
+                to 9223372036854775807 Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.35</id>
+            <description>
+                javax.faces.converter.NumberConverter.CURRENCY={2}: 
+                ''{0}'' could not be understood as a currency value.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.36</id>
+            <description>
+                javax.faces.converter.NumberConverter.CURRENCY_detail=
+                {2}: ''{0}'' could not be understood as a currency value. 
+                Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.37</id>
+            <description>
+                javax.faces.converter.NumberConverter.PERCENT={2}: 
+                ''{0}'' could not be understood as a percentage.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.38</id>
+            <description>
+                javax.faces.converter.NumberConverter.PERCENT_detail=
+                {2}: ''{0}'' could not be understood as a percentage. 
+                Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.39</id>
+            <description>
+                javax.faces.converter.NumberConverter.NUMBER={2}: 
+                ''{0}'' is not a number.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.40</id>
+            <description>
+                javax.faces.converter.NumberConverter.NUMBER_detail={2}:
+                ''{0}'' is not a number. Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.41</id>
+            <description>
+                javax.faces.converter.NumberConverter.PATTERN={2}: 
+                ''{0}'' is not a number pattern.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.42</id>
+            <description>
+                javax.faces.converter.NumberConverter.PATTERN_detail=
+                {2}: ''{0}'' is not a number pattern. Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.43</id>
+            <description>
+                javax.faces.converter.ShortConverter.SHORT={2}: ''{0}'' 
+                must be a number consisting of one or more digits.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.44</id>
+            <description>
+                javax.faces.converter.ShortConverter.SHORT_detail={2}: 
+                ''{0}'' must be a number between -32768 and 32767 
+                Example: {1}
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.45</id>
+            <description>
+                javax.faces.converter.STRING={1}: Could not convert 
+                ''{0}'' to a string.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.46</id>
+            <description>
+                javax.faces.validator.DoubleRangeValidator.MAXIMUM -- 
+                {1}: Validation Error: Value is greater than allowable 
+                maximum of ‘’{0}’’
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.47</id>
+            <description>
+                javax.faces.validator.DoubleRangeValidator.MINIMUM -- 
+                {1}: Validation Error: Value is less than allowable 
+                minimum of ‘’{0}’’
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.48</id>
+            <description>
+                javax.faces.validator.DoubleRangeValidator.NOT_IN_RANGE 
+                -- {2}: Validation Error: Specified attribute is not 
+                between the expected values of {0} and {1}.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.49</id>
+            <description>
+                javax.faces.validator.DoubleRangeValidator.TYPE -- {0}: 
+                Validation Error: Value is not of the correct type
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.50</id>
+            <description>
+                javax.faces.validator.LengthValidator.MAXIMUM -- {1}: 
+                Validation Error: Value is greater than allowable 
+                maximum of ‘’{0}’’
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.51</id>
+            <description>
+                javax.faces.validator.LengthValidator.MINIMUM -- {1}: 
+                Validation Error: Value is less than allowable minimum
+                of ‘’{0}’’
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.52</id>
+            <description>
+                javax.faces.validator.LongRangeValidator.MAXIMUM -- 
+                {1}: Validation Error: Value is greater than allowable
+                maximum of ‘’{0}’’
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.53</id>
+            <description>
+                javax.faces.validator.LongRangeValidator.MINIMUM -- {1}:
+                Validation Error Value is less than allowable minimum of
+                ‘’{0}’’
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.54</id>
+            <description>
+                javax.faces.validator.LongRangeValidator.NOT_IN_RANGE=
+                {2}: Validation Error: Specified attribute is not
+                between the expected values of {0} and {1}.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.55</id>
+            <description>
+                javax.faces.validator.LongRangeValidator.TYPE -- {0}:
+                Validation Error: Value is not of the correct type
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        These ResourceBundle keys must be used to look up the necessary
+        values to create a localized FacesMessage instance. Note that
+        the value of the summary and detail keys in the ResourceBundle
+        may contain parameter substitution tokens, which must be
+        substituted with the appropriate values using 
+        java.text.MessageFormat.   
+    </description>
+    <location chapter="2" section="5.2.4"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The following algorithm must be used to create a FacesMessage
+        instance given a message key.
+    </description>
+    <location chapter="2" section="5.2.4"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Call getMessageBundle() on the Application instance for 
+                this web application, to determine if the application 
+                has defined a resource bundle name. If so, load that
+                ResourceBundle and look for the message there.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                If not there, look in the javax.faces.Messages 
+                resource bundle.
+            </description>
+            <location chapter="2" section="5.2.4"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        A custom component that extends UIComponent directly, and does
+        not extend any of the standard components must implement 
+        StateHolder manually.
+    </description>
+    <location chapter="2" section="5.3.1"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        A custom component that does extend from one of the standard 
+        components and maintains its own state, in addition to the state
+        maintained by the superclass must take special care to implement
+        StateHolder correctly. Notably, calls to saveState() must not 
+        alter the state in any way.
+    </description>
+    <location chapter="2" section="5.3.1"/>
+</assertion>
+

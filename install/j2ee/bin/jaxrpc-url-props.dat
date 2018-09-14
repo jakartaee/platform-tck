@@ -1,0 +1,114 @@
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+###############################################################################
+# $Id$
+#
+# URL's for webservice endpoints and published WSDL's
+#
+# URL format is as follows:
+#
+# o http:#HOST:PORT/CONTEXTROOT/URLALIAS/PORTTYPE
+#
+# All URL's given below start from CONTEXTROOT. The
+# http:#HOST:PORT (HOST and PORT are defined and
+# configured in ts.jte file) is prepended to each URL.
+#
+# For each portType the URL for the JAX-RPC RI is:
+#
+# o http:#HOST:PORT/HelloService_web/jaxrpc/Hello
+#
+# For each WSDL published the URL for the JAX-RPC RI is:
+#
+# o http:#HOST:PORT/HelloService_web/jaxrpc/Hello?WSDL
+
+###############################################################################
+
+#jaxrpc/sharedwebservices/helloservice
+helloservice.endpoint.1=/HelloService_web/ws4ee
+helloservice.servlet.1=/HelloService_web/dummyservlet
+
+#jaxrpc/ee/w2j/rpc/encoded/simpletest
+w2jsimpletest.endpoint.1=/W2JRESimpleTest_web/ws4ee
+
+//jaxrpc/ee/j2w/simpletest
+j2wst.endpoint.1=/J2WST_web/ws4ee
+
+# webservices/deploy/GenSvc
+gensvc.endpoint.1=/GenSvc_web/ws4ee
+
+# webservices/deploy/ServiceNPA
+servicenpa.endpoint.1=/ServiceNPA_web/ws4ee
+
+# webservices/deploy/ServicePW
+servicepw.endpoint.1=/ServicePW_web/ws4ee
+
+# jaxrpc/wsi/* URL's
+wsi.simple.endpoint.1=/SimpleService_web/ws4ee
+wsi.simple.wsdlloc.1=/SimpleService_web/ws4ee?WSDL
+
+wsi.fault.endpoint.1=/FaultService_web/ws4ee
+wsi.fault.wsdlloc.1=/FaultService_web/ws4ee?WSDL
+
+wsi.soap-action.endpoint.1=/SoapActionService_web/ws4ee
+wsi.soap-action.wsdlloc.1=/SoapActionService_web/ws4ee?WSDL
+
+wsi.w2jrlshared.endpoint.1=/W2JRLShared_web/ws4ee
+wsi.w2jrlshared.wsdlloc.1=/W2JRLShared_web/ws4ee?WSDL
+
+wsi.w2jrlr1014.endpoint.1=/W2JRLR1014TestService_web/ws4ee_1/SimpleTest
+wsi.w2jrlr1014.wsdlloc.1=/W2JRLR1014TestService_web/ws4ee_1/SimpleTest?WSDL
+
+wsi.w2jrlr1005.endpoint.1=/W2JRLR1005TestService_web/ws4ee_1/SimpleTest
+wsi.w2jrlr1005.wsdlloc.1=/W2JRLR1005TestService_web/ws4ee_1/SimpleTest?WSDL
+
+wsi.w2jrlr1006.endpoint.1=/W2JRLR1006TestService_web/ws4ee_1/SimpleTest
+wsi.w2jrlr1006.wsdlloc.1=/W2JRLR1006TestService_web/ws4ee_1/SimpleTest?WSDL
+
+wsi.w2jrlr0007.endpoint.1=/W2JRLR0007TestService_web/ws4ee_1/W2JRLR0007Test/one
+wsi.w2jrlr0007.wsdlloc.1=/W2JRLR0007TestService_web/ws4ee_1/W2JRLR0007Test/one?WSDL
+
+wsi.w2jrlr1007.endpoint.1=/W2JRLR1007TestService_web/ws4ee_1/SimpleTest
+wsi.w2jrlr1007.wsdlloc.1=/W2JRLR1007TestService_web/ws4ee_1/SimpleTest?WSDL
+
+wsi.w2jrlr1011.endpoint.1=/W2JRLR1011TestService_web/ws4ee_1/W2JRLR1011Test/one
+wsi.w2jrlr1011.wsdlloc.1=/W2JRLR1011TestService_web/ws4ee_1/W2JRLR1011Test/one?WSDL
+
+wsi.w2jrlr1012.endpoint.1=/W2JRLR1012TestService_web/ws4ee_1/W2JRLR1012Test/one
+wsi.w2jrlr1012.wsdlloc.1=/W2JRLR1012TestService_web/ws4ee_1/W2JRLR1012Test/one?WSDL
+
+wsi.w2jrlr1109.endpoint.1=/W2JRLR1109TestService_web/ws4ee_1/W2JRLR1109Test/one
+wsi.w2jrlr1109.wsdlloc.1=/W2JRLR1109TestService_web/ws4ee_1/W2JRLR1109Test/one?WSDL
+wsi.w2jrlr1109.endpoint.2=/W2JRLR1109TestService_web/ws4ee_1/W2JRLR1109Test/two
+wsi.w2jrlr1109.wsdlloc.2=/W2JRLR1109TestService_web/ws4ee_1/W2JRLR1109Test/two?WSDL
+
+wsi.w2jrlr2113.endpoint.1=/W2JRLR2113TestService_web/ws4ee_1/SimpleTest
+wsi.w2jrlr2113.wsdlloc.1=/W2JRLR2113TestService_web/ws4ee_1/SimpleTest?WSDL
+
+wsi.w2jrlr2729.endpoint.1=/W2JRLR2729TestService_web/ws4ee_1/W2JRLR2729Test
+wsi.w2jrlr2729.wsdlloc.1=/W2JRLR2729TestService_web/ws4ee_1/W2JRLR2729Test?WSDL
+
+wsi.w2jrlr4001.endpoint.1=/W2JRLR4001TestService_web/ws4ee_1/W2JRLR4001Test/one
+wsi.w2jrlr4001.wsdlloc.1=/W2JRLR4001TestService_web/ws4ee_1/W2JRLR4001Test/one?WSDL
+
+wsi.w2jrlr1117.endpoint.1=/W2JRLR1117TestService_web/ws4ee_1/W2JRLR1117Test
+wsi.w2jrlr1117.wsdlloc.1=/W2JRLR1117TestService_web/ws4ee_1/W2JRLR1117Test?WSDL
+
+wsi.w2jrlr2714.endpoint.1=/W2JRLR2714TestService_web/ws4ee_1/SimpleTest
+wsi.w2jrlr2714.wsdlloc.1=/W2JRLR2714TestService_web/ws4ee_1/SimpleTest?WSDL
+
+wsi.w2jrlr1027.endpoint.1=/W2JRLR1027TestService_web/ws4ee_1/SimpleTest
+wsi.w2jrlr1027.wsdlloc.1=/W2JRLR1027TestService_web/ws4ee_1/SimpleTest?WSDL

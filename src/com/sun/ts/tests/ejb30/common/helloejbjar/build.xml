@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="helloejbjar" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_common_helloejbjar_standalone_component"/>
+
+  <property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloCommonIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloLocalIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloBeanBase.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloBean.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class
+"/>
+
+  <target name="package.appclient.jar"/>
+
+  <target name="package.ear"/>
+  
+  <import file="../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         version="3.1"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+    <!-- timer info is the same as the info used in Client to find timer -->
+    <enterprise-beans>
+        <session>
+            <ejb-name>ScheduleBean</ejb-name>
+            <local-bean/>
+            <ejb-class>com.sun.ts.tests.ejb32.lite.timer.schedule.expression.descriptor.ScheduleBean</ejb-class>
+            <session-type>Singleton</session-type>
+            <timer>
+                <schedule></schedule>
+                <timeout-method>
+                    <method-name>auto</method-name>
+                </timeout-method>
+                <persistent>false</persistent>
+                <info>defaultSchedule</info>
+            </timer>
+            <timer>
+                <schedule>
+                    <second>2 - 1</second>
+                    <minute>* / 5</minute>
+                    <hour>2 - 1</hour>
+                    <day-of-month>31</day-of-month>
+                    <month>2 - 1</month>
+                    <day-of-week>0 - 7</day-of-week>
+                </schedule>
+                <timeout-method>
+                    <method-name>auto</method-name>
+                </timeout-method>
+                <persistent>false</persistent>
+                <info>schedule1</info>
+            </timer>
+            <timer>
+                <schedule>
+                    <second>1, 8 - 9, 1</second>
+                    <minute>2-3, 3-4, 4-5, 4</minute>
+                    <hour>1, 3 - 2, 2-3</hour>
+                    <day-of-month>-3,-7, -2</day-of-month>
+                    <month>maR, jUn, Nov</month>
+                    <day-of-week>Fri-Tue, Mon, Mon - Fri</day-of-week>
+                </schedule>
+                <timeout-method>
+                    <method-name>auto</method-name>
+                </timeout-method>
+                <persistent>false</persistent>
+                <info>schedule2</info>
+            </timer>
+            <timer>
+                <schedule>
+                    <second>59-0</second>
+                    <minute>1, 59-1, 3-5</minute>
+                    <hour>1, 3 - 2, 2-3</hour>
+                    <day-of-month>3rd Wed, 1st Tue, Last</day-of-month>
+                    <month>12-3, 4-6, Sep, Oct-Nov</month>
+                    <day-of-week>0, 6-5, 5-4</day-of-week>
+                </schedule>
+                <timeout-method>
+                    <method-name>auto</method-name>
+                </timeout-method>
+                <persistent>false</persistent>
+                <info>schedule3</info>
+            </timer>
+            <timer>
+                <schedule>
+                    <second>30 / 19</second>
+                    <hour>*/5</hour>
+                    <day-of-month>Last, 1, 2nd Mon</day-of-month>
+                    <month>9-1, 5-6</month>
+                </schedule>
+                <timeout-method>
+                    <method-name>auto</method-name>
+                </timeout-method>
+                <persistent>false</persistent>
+                <info>schedule4</info>
+            </timer>
+
+        </session>
+    </enterprise-beans>
+</ejb-jar>

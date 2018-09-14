@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="EjbjarImport" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./ts.common.xml"/>
+
+    <!-- LOCAL PROPERTY DEFINITIONS -->  
+    
+    <!-- MACROS -->
+    <macrodef name="ts.ejbjar">
+
+    <!--
+        The ts.ejbjar task allows users to build EJB archives.  By default all classes
+        under TS_HOME/classes/<pkg.dir> are included in the generated archive.  Users
+        may specify additional content using nested fileset and zipfileset elements.
+        User may also tweak the contents of the generated archive by specifying various
+        attribute values, see the attribute and element tables for details.
+
+        Examples:
+
+        <ts.ejbjar descriptor="ejb_sam_Hello_ejb.xml" 
+                   archivename="ejb_sam_Hello"/>
+
+        This example builds an EJB archive named ejb_sam_Hello_ejb.jar.  The deployment
+        descriptor in the EJB archive, ejb-jar.xml, is specified using the descriptor
+        attribute.  Note, the ejb_sam_Hello_ejb.xml file ends up in the EJB archive as
+        the META-INF/ejb-jar.xml with no diffs.  The classes added to the archive are the
+        default classes, TS_HOME/classes/<pkg.dir>/**/*.class.  Where <pkg.dir> is the
+        package name of the test being built.
+ 
+
+        <ts.ejbjar descriptor="ejb_sam_Hello_ejb.xml" 
+                   archivename="ejb_sam_Hello"/>
+          <fileset dir="TS_HOME/classes" includes="<some-package>/*.class"/>
+          <fileset dir="TS_HOME/classes" includes="<some-other-package>/*.class"/>
+        </ts.ejbjar>
+
+        This example is the same as the previous example except the user has opted to add
+        additional classes in addition to the default classes.  The additional classes are
+        specified using nested fileset elements.  Note, users may specify additional classes
+        using nested fileset or zipfileset elements.
+
+
+        <ts.ejbjar descriptor="ejb_sam_Hello_ejb.xml" 
+                   archivename="ejb_sam_Hello"/>
+                   includedefaultfiles="false">
+          <fileset dir="TS_HOME/classes" includes="<some-package>/*.class"/>
+          <fileset dir="TS_HOME/classes" includes="<some-other-package>/*.class"/>
+        </ts.ejbjar>
+
+        This example is the same as the previous example except the user has opted
+        to add additional classes instead of the default classes.  The additional classes
+        are specified using nested fileset elements.  Note, users may specify additional
+        classes using nested fileset or zipfileset elements.
+
+
+        <ts.ejbjar descriptor="ejb_sam_Hello_ejb.xml" 
+                   archivename="ejb_sam_Hello"/>
+                   excludedfiles="${pkg.dir}/B*.class">
+        </ts.ejbjar>
+
+        This example excludes all class files that start with "B" that live in the
+        TS_HOME/classes/${pkg.dir}.  If the TS_HOME/classes/${pkg.dir} contained the classes A.class,
+        B1.class, B2.class and C.class only classes A and C would end up in the archive.  Using the
+        excludedfiles attribute is another way of customizing the content of the archive by excluding
+        some of the default content.  Users can also use the includedefaultfiles attribute to exclude
+        all default content but the user must then use nested filesets and or zipfilesets to include
+        the appropriate content.  Using the excludedfiles attribute may be simpler in some cases.
+
+        To continue this example, the following XML does the exact same thing as the example above
+        but it uses the includedefaultfiles attribute and a nested fileset element.
+
+        <ts.ejbjar descriptor="ejb_sam_Hello_ejb.xml" 
+                   archivename="ejb_sam_Hello"/>
+                   includedefaultfiles="false">
+          <fileset dir="TS_HOME/classes" includes="${pkg.dir}/A.class, ${pkg.dir}/C.class"/>
+        </ts.ejbjar>
+
+      -->
+
+        <attribute name="descriptor"
+                   default=""        
+                   description="Deployment descriptor added to the archive if the archive requires a deployment descriptor"/>
+                              
+        <attribute name="manifest"
+                   default=""
+                   description="Manifest to be used within the archive"/>
+        
+        <attribute name="archivename"   
+                   description="Archive name minus the file suffix"/>
+                   
+        <attribute name="descriptordir"
+                   default="${src.dir}/${pkg.dir}"
+                   description="Directory containing the deployment descriptor"/>           
+        
+        <attribute name="includedefaultfiles"
+                   default="true"
+                   description="Include default files in the component archive"/>
+        
+        <attribute name="excludedfiles"
+                   default=""
+                   description="A comma separated list of file expressions to exclude from the set of default included files  This list of file expressions is relative to the TS_HOME/classes directory."/>
+        
+        <element name="jar-elements" implicit="yes" optional="yes"
+                 description="The content to be added to the archive"/>
+        
+        <sequential>
+        
+        <!-- Define commmon preset regardless of includedefaultfiles value-->
+        <presetdef name="component.ejbjar">
+            <_component descriptor="@{descriptor}"
+                       manifest="@{manifest}"
+                       archivename="@{archivename}"
+                       archivesuffix="_ejb.jar"
+                       descriptordir="@{descriptordir}"
+                       internaldescriptorname="META-INF/ejb-jar.xml">
+            </_component>
+        </presetdef>
+        
+        <if>
+          <istrue value="@{includedefaultfiles}"/>
+        <then>
+          <component.ejbjar>
+              <fileset dir="${class.dir}"
+                       includes="${pkg.dir}/**/*.class"
+                       excludes="${pkg.dir}/*lient*.class, @{excludedfiles}"/>
+              <jar-elements/>
+          </component.ejbjar>
+        </then>
+        <else>
+          <component.ejbjar>
+            <jar-elements/>
+          </component.ejbjar>
+        </else>
+        </if>
+        </sequential>
+    </macrodef>
+    
+    
+    <!-- PRESETS -->
+    
+    <!-- TARGETS -->
+            
+</project>

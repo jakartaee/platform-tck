@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/query/filter/RegistryObjectQuery.xml,v 1.3 2005/03/29 09:34:54 farrukh_najmi Exp $ -->
+<RegistryObjectQuery xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+  xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/query.xsd">
+  
+  
+  <!--PrimaryFilter comparator="EQ" domainAttribute="id"
+    value="urn:freebxml:registry:demoDB:Sun" xsi:type="query:StringFilterType"/-->
+    
+  <!--PrimaryFilter logicalOperator="OR" xsi:type="query:CompoundFilterType">
+    <LeftFilter domainAttribute="id" comparator="EQ"
+      value="urn:freebxml:registry:demoDB:Sun" xsi:type="query:StringFilterType"/>
+    <RightFilter domainAttribute="versionName" comparator="EQ"
+      value="1.1" xsi:type="query:StringFilterType"/>
+  </PrimaryFilter>
+  
+  <SlotBranch>
+    <PrimaryFilter comparator="Like" domainAttribute="name"
+      value="SUN%" xsi:type="StringFilterType"/>
+  </SlotBranch-->
+  
+  <NameBranch>
+    <LocalizedStringFilter comparator="Like" domainAttribute="value"
+      value="%Object_For_FilterQueryT%" xsi:type="StringFilterType"/>
+  </NameBranch>
+  
+  <!--DescriptionBranch>
+    <LocalizedStringFilter comparator="Like" domainAttribute="value"
+      value="%Java%" xsi:type="StringFilterType"/>
+  </DescriptionBranch>
+  
+  <ExternalIdentifierQuery>
+    <PrimaryFilter comparator="EQ" domainAttribute="value"
+      value="SUNW" xsi:type="query:StringFilterType"/>
+  </ExternalIdentifierQuery>          
+
+  <VersionInfoFilter negate="false" comparator="Like" domainAttribute="versionName"
+    value="1.%"
+    xsi:type="query:StringFilterType"/> 
+     
+  <ClassificationQuery>
+    <ClassificationNodeQuery xsi:type="query:ClassificationNodeQueryType">
+      <PrimaryFilter comparator="Like" domainAttribute="path"
+        value="%America%" xsi:type="query:StringFilterType"/>  
+    </ClassificationNodeQuery>
+  </ClassificationQuery>      
+  
+  <ObjectTypeQuery xsi:type="query:ClassificationNodeQueryType">
+    <PrimaryFilter comparator="Like" domainAttribute="path"
+      value="%Policy%" xsi:type="query:StringFilterType"/>  
+  </ObjectTypeQuery>    
+  
+  <StatusQuery xsi:type="query:ClassificationNodeQueryType">
+    <PrimaryFilter comparator="Like" domainAttribute="path"
+      value="%Deprecated%" xsi:type="query:StringFilterType"/>  
+  </StatusQuery>
+  
+  <SourceAssociationQuery xsi:type="query:AssociationQueryType">
+    <AssociationTypeQuery xsi:type="query:ClassificationNodeQueryType">
+      <PrimaryFilter comparator="Like" domainAttribute="id"
+        value="%OffersService%" xsi:type="query:StringFilterType"/>
+    </AssociationTypeQuery>
+  </SourceAssociationQuery>
+
+  <TargetAssociationQuery xsi:type="query:AssociationQueryType">
+    <AssociationTypeQuery xsi:type="query:ClassificationNodeQueryType">
+      <PrimaryFilter comparator="Like" domainAttribute="id"
+        value="%OffersService%" xsi:type="query:StringFilterType"/>
+    </AssociationTypeQuery>
+  </TargetAssociationQuery-->
+     
+  
+</RegistryObjectQuery>

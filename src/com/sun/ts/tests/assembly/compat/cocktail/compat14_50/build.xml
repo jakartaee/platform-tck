@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="assembly_compat_cocktail_compat14_50" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="../../../../../../../../../bin/xml/ts.import.xml"/>
+
+    <property name="common.dir" value="com/sun/ts/tests/assembly/util/shared/ejbref/common"/>  
+    <property name="wrapper.dir" value="com/sun/ts/tests/common/ejb/wrappers"/>  
+
+
+    <target name="package">
+
+      <!-- Custom packager
+        ** Since the cts packager automatically revises all DD's to 1.4, we
+        ** must implement a custom packager that preserves DD's from
+        ** previus J2EE versions.
+        --> 
+
+        <!-- build ejb jar using an older (J2EE 1.4) ejb descriptor file  -->
+        <!-- then clean up the META-INF dir once our jar file is created. -->
+        <copy file="assembly_compat_cocktail_compat14_50_jar1_ejb.xml"
+              tofile="${basedir}/META-INF/ejb-jar.xml"/>
+        <ts.ejbjar descriptor="META-INF/ejb-jar.xml"
+                   archivename="assembly_compat_cocktail_compat14_50_jar1">
+                   <fileset dir="${class.dir}" includes="${pkg.dir}/R*.class,
+                            ${wrapper.dir}/StatelessWrapper.class,
+                            ${common.dir}/ReferencedBeanCode.class"/>
+        </ts.ejbjar>
+        <delete file="${basedir}/META-INF/ejb-jar.xml"/>
+
+
+        <!-- build ejb jar using a newer (JavaEE 5.0) ejb 3.0 descriptor file  -->
+        <!-- then clean up the META-INF dir once our jar file is created.      -->
+        <copy file="assembly_compat_cocktail_compat14_50_jar2_ejb.xml"
+              tofile="${basedir}/META-INF/ejb-jar.xml"/>
+        <ts.ejbjar descriptor="META-INF/ejb-jar.xml"
+                   archivename="assembly_compat_cocktail_compat14_50_jar2">
+                   <fileset dir="${class.dir}" includes="${pkg.dir}/R*.class,
+                            ${wrapper.dir}/StatelessWrapper.class,
+                            ${common.dir}/ReferencedBeanCode.class"/>
+        </ts.ejbjar>
+        <delete file="${basedir}/META-INF/ejb-jar.xml"/>
+
+
+
+        <!-- build client jar file using a J2EE 1.4 application descriptor file -->
+        <!-- then clean up the META-INF dir once our jar file is created.       -->
+        <copy file="assembly_compat_cocktail_compat14_50_client.xml"
+              tofile="${basedir}/META-INF/application-client.xml"/>
+
+        <ts.clientjar   descriptor="META-INF/application-client.xml"
+                        archivename="assembly_compat_cocktail_compat14_50"
+                        mainclass="com.sun.ts.tests.assembly.compat.cocktail.compat14_50.Client">
+            <fileset dir="${class.dir}"
+                 includes="${pkg.dir}/Client.class,
+                           ${pkg.dir}/ReferencedBean.class,
+                           ${pkg.dir}/ReferencedBeanHome.class,
+                           ${wrapper.dir}/StatelessWrapper.class,
+                           ${common.dir}/ReferencedBeanCode.class"/>
+        </ts.clientjar>
+        <delete file="${basedir}/META-INF/application-client.xml"/>
+
+
+        <!-- build client jar file using a J2EE 1.4 application descriptor file -->
+        <!-- then clean up the META-INF dir once our jar file is created.       -->
+        <copy file="assembly_compat_cocktail_compat14_50_another_client.xml"
+              tofile="${basedir}/META-INF/application-client.xml"/>
+        <ts.clientjar   descriptor="META-INF/application-client.xml"
+                        archivename="assembly_compat_cocktail_compat14_50_another"
+                        mainclass="com.sun.ts.tests.assembly.compat.cocktail.compat14_50.Client">
+            <fileset dir="${class.dir}"
+                 includes="${pkg.dir}/Client.class,
+                           ${pkg.dir}/ReferencedBean.class,
+                           ${pkg.dir}/ReferencedBeanHome.class,
+                           ${wrapper.dir}/StatelessWrapper.class,
+                           ${common.dir}/ReferencedBeanCode.class"/>
+        </ts.clientjar>
+        <delete file="${basedir}/META-INF/application-client.xml"/>
+
+
+        <!-- build ear -->
+        <ts.ear archivename="assembly_compat_cocktail_compat14_50">
+            <fileset dir="${dist.dir}/${pkg.dir}"
+                     includes="*.jar"/>
+        </ts.ear>
+
+
+        <delete>
+          <fileset dir="${dist.dir}/${pkg.dir}" includes="*.jar"/>
+        </delete>
+        <copy todir="${dist.dir}/${pkg.dir}">
+          <fileset dir="${basedir}" 
+              includes="*sun-application-client.xml, *sun-ejb-jar.xml"/>
+        </copy>   
+
+  </target>
+
+</project>

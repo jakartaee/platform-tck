@@ -1,0 +1,2219 @@
+<?xml version = "1.0" encoding = "US-ASCII"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<spec>   
+	<next-available-id>282</next-available-id>   
+	<previous-id>189</previous-id>   
+	<technology>JMS</technology>   
+	<id>JMS</id>   
+	<name>Java Message System</name>   
+	<version>2.0</version>   
+	<location-names>      
+		<chapters>         
+			<chapter id = "1" name = "Introduction">            
+				<sections>               
+					<section id = "1.1" name = "Abstract"/>               
+					<section id = "1.2" name = "Overview"/>               
+					<section id = "1.2.1" name = "Is This a Mail API"/>               
+					<section id = "1.2.2" name = "Existing Messaging Systems"/>               
+					<section id = "1.2.3" name = "JMS Objectives"/>               
+					<section id = "1.2.3.1" name = "JMS Provider"/>               
+					<section id = "1.2.3.2" name = "JMS Messages"/>               
+					<section id = "1.2.3.3" name = "JMS Domains"/>               
+					<section id = "1.2.3.4" name = "Portability"/>               
+					<section id = "1.2.4" name = "What JMS Does Not Include"/>               
+					<section id = "1.3" name = "What Is Required by JMS"/>               
+					<section id = "1.4" name = "Relationship to Other JavaSoft Enterprise APIs"/>               
+					<section id = "1.4.1" name = "Java DataBase Connectivity (JDBC TM ) Software"/>               
+					<section id = "1.4.2" name = "JavaBeans TM Components"/>               
+					<section id = "1.4.3" name = "Enterprise JavaBeans TM Components"/>               
+					<section id = "1.4.4" name = "Java Transaction API (JTA)"/>               
+					<section id = "1.4.5" name = "Java Transaction Service (JTS)"/>               
+					<section id = "1.4.6" name = "Java Naming and Directory Interface TM (JNDI)"/>               
+					<section id = "1.4.7" name = "Java 2, Enterprise Edition (J2EE)Platform"/>               
+					<section id = "1.4.8" name = "Integration of JMS with the J2EE platform and EJB components"/>               
+					<section id = "1.5" name = "What is New in JMS 1.1?"/>                                                                                                                                    
+				</sections>
+			</chapter>                  
+			<chapter id = "2" name = "Architecture">            
+				<sections>               
+					<section id = "2.1" name = "Overviewr"/>               
+					<section id = "2.2" name = "What is a JMS Application?"/>               
+					<section id = "2.3" name = "Administration"/>
+					<section id = "2.4" name = "Two messaging styles"/>
+					<section id = "2.5" name = "JMS APIs"/>
+					<section id = "2.6" name = "Interfaces common to multiple APIs"/>
+					<section id = "2.7" name = "Classic API interfaces"/>
+					<section id = "2.8" name = "Simplified API interfaces"/>
+					<section id = "2.9" name = "Legacy domain-specific API interfaces"/>
+					<section id = "2.10" name = "Relationship between interfaces"/>
+					<section id = "2.11" name = "Terminology for sending and receiving messages"/>
+					<section id = "2.12" name = "Developing a JMS Application"/>
+					<section id = "2.12.1" name = "Developing a JMS Client"/>
+					<section id = "2.13" name = "Security"/>
+					<section id = "2.14" name = "Multithreading"/>
+					<section id = "2.15" name = "Triggering Clients"/>
+					<section id = "2.16" name = "Request/Reply"/>                      
+				</sections>         
+			</chapter>         
+			<chapter id = "3" name = "JMS Message Model">            
+				<sections>               
+					<section id = "3.1" name = "Background"/>
+					<section id = "3.2" name = "Goals"/>
+					<section id = "3.3" name = "JMS Messages"/>
+					<section id = "3.4" name = "Message Header Fields"/>
+					<section id = "3.4.1" name = "JMSDestination"/>
+					<section id = "3.4.2" name = "JMSDeliveryMode"/>
+					<section id = "3.4.3" name = "JMSMessageID"/>
+					<section id = "3.4.4" name = "JMSTimestamp"/>
+					<section id = "3.4.5" name = "JMSCorrelationID"/>
+					<section id = "3.4.6" name = "JMSReplyTo"/>
+					<section id = "3.4.7" name = "JMSRedelivered"/>
+					<section id = "3.4.8" name = "JMSType"/>
+					<section id = "3.4.9" name = "JMSExpiration"/>
+					<section id = "3.4.10" name = "JMSPriority"/>
+					<section id = "3.4.11" name = "How Message Header Values Are Set"/>
+					<section id = "3.4.12" name = "Overriding Message Header Fields"/>
+					<section id = "3.4.13" name = "JMSDeliveryTime"/>
+					<section id = "3.5" name = "Message Properties"/>
+					<section id = "3.5.1" name = "Property Names"/>
+					<section id = "3.5.2" name = "Property Values"/>
+					<section id = "3.5.3" name = "Using Properties"/>
+					<section id = "3.5.4" name = "Property Value Conversion"/>
+					<section id = "3.5.5" name = "Property Values as Objects"/>
+					<section id = "3.5.6" name = "Property Iteration"/>   
+					<section id = "3.5.7" name = "Clearing a Message's Property Values"/>
+					<section id = "3.5.8" name = "Nonexistent Properties"/>
+					<section id = "3.5.9" name = "JMS Defined Properties"/>
+					<section id = "3.5.10" name = "Provider-Specific Properties"/>
+					<section id = "3.5.11" name = "JMXDeliveryCount"/>
+					<section id = "3.6" name = "Message Acknowledgment"/>
+					<section id = "3.7" name = "The Message Interface"/>            
+					<section id = "3.8" name = "Message Selection"/>
+					<section id = "3.8.1" name = "Message Selector"/>            
+					<section id = "3.8.1.1" name = "Message Selector Syntax"/>
+					<section id = "3.8.1.2" name = "Null Values"/>            
+					<section id = "3.8.1.3" name = "Special Notes"/>
+					<section id = "3.9" name = "Access to Sent Messages"/>            
+					<section id = "3.10" name = "Changing the Value of a Received Message"/>
+					<section id = "3.11" name = "JMS Message Body"/>            
+					<section id = "3.11.1" name = "Clearing a Message Body"/>
+					<section id = "3.11.2" name = "Read-Only Message Body"/>            
+					<section id = "3.11.3" name = "Conversions Provided by StreamMessage and MapMessage"/>
+					<section id = "3.11.4" name = "Messages for Non-JMS Clients"/>            
+					<section id = "3.12" name = "Messages for Non-JMS Clients"/>           
+				</sections>         
+			</chapter>     
+			<chapter id = "4" name = "Messaging Domains">    
+				<sections>    
+					<section id = "4.1" name = "JMS Point-to-Point Model"/>            
+					<section id = "4.1.1" name = "Overview"/>            
+					<section id = "4.1.2" name = "Queue Management"/>
+					<section id = "4.1.3" name = "Queue"/>            
+					<section id = "4.1.4" name = "TemporaryQueue"/>
+					<section id = "4.1.5" name = "QueueBrowser"/>
+					<section id = "4.1.6" name = "QueueRequestor"/>            
+					<section id = "4.1.7" name = "Reliability"/>
+					<section id = "4.2" name = "JMS Publish/Subscribe Model"/>            
+					<section id = "4.2.1" name = "Overview"/>            
+					<section id = "4.2.2" name = "Pub/Sub Latency"/>
+					<section id = "4.2.3" name = "Topic Subscriptions"/>
+					<section id = "4.2.4" name = "Subscription name characters and length"/>
+					<section id = "4.2.5" name = "Topic Management"/>
+					<section id = "4.2.6" name = "Topic"/>            
+					<section id = "4.2.7" name = "TemporaryTopic"/>
+					<section id = "4.2.8" name = "Recovery and Redelivery"/>
+					<section id = "4.2.9" name = "Administering Subscriptions"/>
+					<section id = "4.2.10" name = "TopicRequestor"/>            
+					<section id = "4.2.11" name = "Reliability"/> 
+                		</sections>    
+			</chapter>    
+			<chapter id = "5" name = "Administered Objects">    
+				<sections>    
+					<section id = "5.1" name = "Overview"/>            
+					<section id = "5.2" name = "Destination"/>            
+					<section id = "5.3" name = "Connection Factories"/>            
+				</sections>    
+			</chapter>    
+			<chapter id = "6" name = "Connecting to a JMS Provider">    
+				<sections>    
+					<section id = "6.1" name = "Connections"/>            
+					<section id = "6.1.1" name = "Authentication"/>
+					<section id = "6.1.2" name = "Client Identifier"/>            
+					<section id = "6.1.3" name = "Connection Setup"/>
+					<section id = "6.1.4" name = "Starting a connection"/>            
+					<section id = "6.1.5" name = "Stopping or Pausing Delivery of Incoming Messages"/>
+					<section id = "6.1.6" name = "ConnectionMetaData"/>
+					<section id = "6.1.7" name = "ExceptionListener"/>            
+					<section id = "6.1.8" name = "Closing a Connection"/>
+					<section id = "6.2" name = "Sessions"/>            
+					<section id = "6.2.1" name = "Producer and Consumer Creation"/>
+					<section id = "6.2.2" name = "Creating Temporary Destinations"/>            
+					<section id = "6.2.3" name = "Creating Destination Objects"/>
+					<section id = "6.2.4" name = "Optimized Message Implementations"/> 
+					<section id = "6.2.5" name = "Threading restrictions on a Session"/>
+					<section id = "6.2.6" name = "Threading restrictions on a JMSContext"/>
+					<section id = "6.2.7" name = "Transactions"/> 
+					<section id = "6.2.8" name = "Distributed Transactions"/>            
+					<section id = "6.2.9" name = "Message Order"/>            
+					<section id = "6.2.9.1" name = "Order of Message Receipt"/>
+					<section id = "6.2.9.2" name = "Order of Message Sends"/>            
+					<section id = "6.2.10" name = "Message Acknowledgment"/>
+					<section id = "6.2.11" name = "Duplicate Delivery of Messages"/> 
+					<section id = "6.2.12" name = "Duplicate Production of Messages"/> 
+					<section id = "6.2.13" name = "Serial Execution of Client Code"/>
+					<section id = "6.2.14" name = "Concurrent Message Delivery and Multiple Sessions"/>
+					<section id = "6.2.15" name = "Closing a Session"/>            
+				</sections>    
+			</chapter>    
+			<chapter id = "7" name = "Sending Messages">    
+				<sections>    
+					<section id = "7.1" name = "Producers"/>
+					<section id = "7.2" name = "Synchronous send"/>
+					<section id = "7.3" name = "Asynchronous send"/>
+					<section id = "7.3.1" name = "Quality of Service"/> 
+					<section id = "7.3.2" name = "Exceptions"/>            
+					<section id = "7.3.3" name = "Message Order"/> 
+					<section id = "7.3.4" name = "Close, commit or rollback"/> 
+					<section id = "7.3.5" name = "Restritions on usage in Java EE"/> 
+					<section id = "7.3.6" name = "Message headers"/> 
+					<section id = "7.3.7" name = "Restrictions on threading"/> 
+					<section id = "7.3.8" name = "Use of CompletionListener by the JMS provider"/> 
+					<section id = "7.3.9" name = "Restrictions on the use of the Message object"/> 
+					<section id = "7.4" name = "Setting message delivery options"/>
+					<section id = "7.5" name = "Setting message properties"/>
+					<section id = "7.6" name = "Setting message headers"/>
+					<section id = "7.7" name = "Message Delivery Mode"/>            
+					<section id = "7.8" name = "Message Time-To-Live"/>
+					<section id = "7.9" name = "Message Delivery delay"/>
+					<section id = "7.10" name = "JMSProducer method chaining"/>
+				</sections>    
+			</chapter>
+			<chapter id = "8" name = "Receiving Messages">    
+				<sections>    
+					<section id = "8.1" name = "Consumers"/>
+					<section id = "8.2" name = "Creating a consumer on a Queue"/>            
+					<section id = "8.2.1" name = "Behavior of consumers on a Queue"/>            
+					<section id = "8.3" name = "Creating a consumer on a Topic"/>
+					<section id = "8.3.1" name = "Unshared non-durable subscriptions"/>
+					<section id = "8.3.2" name = "Shared non-durable subscriptions"/>
+					<section id = "8.3.3" name = "Unshared durable subscriptions"/>
+					<section id = "8.3.4" name = "Shared durable subscriptions"/>
+					<section id = "8.4" name = "Starting message delivery"/>
+					<section id = "8.5" name = "Receiving messages synchronously"/>
+					<section id = "8.6" name = "Receiving message bodies synchronously"/>
+					<section id = "8.7" name = "Receiving messages asynchronously"/>
+					<section id = "8.8" name = "Closing a consumer"/>
+				</sections>    
+			</chapter>
+			<chapter id = "9" name = "Other JMS Facilities">    
+				<sections>    
+					<section id = "9.1" name = "Reliability"/>
+					<section id = "9.2" name = "Method Inheritance across Messaging Domains"/>
+				</sections>    
+			</chapter>
+			<chapter id = "10" name = "JMS Exceptions">   
+				<sections>    
+					<section id = "10.1" name = "Overview"/>            
+					<section id = "10.2" name = "The JMSException"/>
+					<section id = "10.3" name = "Standard Exceptions"/>                                                                                                             
+				</sections>    
+			</chapter> 
+			<chapter id = "11" name = "JMS Application Server Facilities">   
+				<sections>    
+					<section id = "11.1" name = "Overview"/>            
+					<section id = "11.2" name = "Concurrent Processing of a Subscription's Messages"/>
+					<section id = "11.2.1" name = "Session"/>            
+					<section id = "11.2.2" name = "ServerSession"/>
+					<section id = "11.2.3" name = "ServerSessionPool"/>            
+					<section id = "11.2.4" name = "ConnectionConsumer"/>
+					<section id = "11.2.5" name = "How a ConnectionConsumer Uses a ServerSession"/>            
+					<section id = "11.2.6" name = "How an Application Server Implements a ServerSession"/>
+					<section id = "11.2.7" name = "The Result"/>            
+					<section id = "11.3" name = "Support for distributed transactions"/>
+					<section id = "11.3.1" name = "XAConnectionFactory"/>
+					<section id = "11.3.2" name = "XAConnection"/>            
+					<section id = "11.3.3" name = "XASession"/>
+					<section id = "11.3.4" name = "XAJMSContext"/>
+					<section id = "11.3.5" name = "XAResource"/>
+					<section id = "11.4" name = "JMS Application Server Interfaces"/>                                                 
+				</sections>    
+			</chapter>        
+			<chapter id = "12" name = "Use of JMS API in Java EE applications">   
+				<sections>    
+					<section id = "12.1" name = "Overview"/>
+					<section id = "12.2" name = "Restrictions on the use of JMS API in Java EE Web or EJB container"/>
+					<section id = "12.3" name = "Behavior of JMS sessions in Java EE Web or EJB container"/>
+					<section id = "12.4" name = "Injection of JMSContext objects"/>
+					<section id = "12.4.1" name = "Support for injection"/>
+					<section id = "12.4.2" name = "Container-managed and application-managed JMSContexts"/>
+					<section id = "12.4.3" name = "Injection syntax"/>
+					<section id = "12.4.4" name = "Scope of injected JMSContext objects"/>
+					<section id = "12.4.5" name = "Restrictions on use of injected JMSContext objects"/>
+				</sections>    
+			</chapter>        
+			<chapter id = "13" name = "Resource Adapter">   
+				<sections>    
+					<section id = "13.1" name = "MDB activation properties"/>
+				</sections>    
+			</chapter>        
+			<chapter id = "B" name = "Change History">   
+				<sections>    
+					<section id = "B.1" name = "Version 1.0.1"/>            
+					<section id = "B.2" name = "Version 1.0.2"/>            
+					<section id = "B.3" name = "Version 1.0.2b"/>            
+					<section id = "B.4" name = "Version 1.1"/>            
+					<section id = "B.5" name = "Version 2.0"/>            
+				</sections>    
+			</chapter>        
+		</chapters>   
+	</location-names>
+	<assertions>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:2</id>         
+			<description>The JMSDestination header field contains the destination to which the message is being sent. When a message is sent, this field is ignored. After completion of the send, it holds the destination object specified by the sending method. When a message is received, its destination value must be equivalent to the value assigned when it was sent.</description>         
+			<location chapter = "3" section = "3.4.1"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:3</id>
+			<description>The JMSDeliveryMode header field contains the delivery mode specified when the message was sent. When a message is sent, this field is ignored. After completion of the send, it holds the delivery mode specified by the sending method.</description>
+			<location chapter = "3" section = "3.4.2"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:4</id>         
+			<description>All JMSMessageID values must start with the prefix  ID: . </description>         
+			<location chapter = "3" section = "3.4.3"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:5</id>
+			<description>The JMSMessageID header field contains a value that uniquely identifies each message sent by a provider. Uniqueness of message ID values across different providers is not required.</description>
+			<location chapter = "3" section = "3.4.3"/>
+		</assertion>      
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:6</id>         
+			<description>When a client sets a producer to disable message ID, it is saying that it does not depend on the value of message ID for the messages it produces. If the JMS provider accepts this hint, these messages must have the message ID set to null; if the provider ignores the hint, the message ID must be set to its normal unique value.</description>         
+			<location chapter = "3" section = "3.4.3"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:7</id>
+			<description>When the send method returns, the field (JMSTimestamp) contains a a time value somewhere in the interval between the call and the return. It is in the format of a normal Java millis time value.</description>
+			<location chapter = "3" section = "3.4.4"/>
+		</assertion>      
+		<assertion required = "false" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:8</id>         
+			<description>When a client sets a producer to disable timestamps it is saying that it does not depend on the value of timestamp for the messages it produces. If the JMS provider accepts this hint, these messages must have the timestamp set to zero; if the provider ignores the hint, the timestamp must be set to its normal value.</description>         
+			<location chapter = "3" section = "3.4.4"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:11</id>         
+			<description>Application-specified values must not start with the  ID:  prefix; this is reserved for provider-generated message ID values.</description>         
+			<location chapter = "3" section = "3.4.5"/>      
+		</assertion>            
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:12</id>         
+			<description>The JMSReplyTo header field contains a Destination supplied by a client when a message is sent. It is the destination where a reply to the message should be sent. Messages sent with a null JMSReplyTo value may be a notification of some event or they may just be some data the sender thinks is of interest. </description>         
+			<location chapter = "3" section = "3.4.6"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:13</id>
+			<description>In general, a provider must set the JMSRedelivered message header field of a message whenever it is redelivering a message.</description>
+			<location chapter = "3" section = "3.4.7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:14</id>
+			<description>The JMSType header field contains a message type identifier supplied by a client when a message is sent.</description>
+			<location chapter = "3" section = "3.4.8"/>
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:15</id>
+			<description>JMSExpiration</description>
+            <location chapter = "3" section = "3.4.9"/>
+            <sub-assertions>
+                  <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+                      <id>JMS:SPEC:15.1</id>
+                      <description>When a message is sent, its expiration time is calculated as the sum of the time-to-live value specified on the send method and the current GMT value. On return from the send method, the message's JMSExpiration header field contains this value. </description>
+			          <location chapter = "3" section = "3.4.9"/>
+		          </assertion>      
+		          <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:15.2</id>
+			          <description>When a message is received its JMSExpiration header field contains this same value.</description>
+			          <location chapter = "3" section = "3.4.9"/>
+		          </assertion>      
+		          <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:15.3</id>
+			          <description>If the time-to-live is specified as zero, expiration is set to zero to indicate that the message does not expire.</description>
+			          <location chapter = "3" section = "3.4.9"/>
+		          </assertion>      
+        </sub-assertions>
+        </assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:16</id>
+			<description>The JMSPriority header field contains the message's priority. When a message is sent, this field is ignored. After completion of the send, it holds the value specified by the method sending the message. </description>
+			<location chapter = "3" section = "3.4.10"/>
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:246</id>
+			<description>How Message Header Values Are Set</description>
+			<location chapter = "3" section = "3.4.11"/>
+        <sub-assertions>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.1</id>
+			<description>Header Field JMSDestination Set By Send Method</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.2</id>
+			<description>Header Field JMSDeliveryMode Set By Send Method</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.3</id>
+			<description>Header Field JMSExpiration Set By Send Method</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.4</id>
+			<description>Header Field JMSPriority Set By Send Method</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.5</id>
+			<description>Header Field JMSMessageID Set By Send Method</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.6</id>
+			<description>Header Field JMSTimestamp Set By Send Method</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.7</id>
+			<description>Header Field JMSCorrelationID Set By Client</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.8</id>
+			<description>Header Field JMSReplyTo Set By Client</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.9</id>
+			<description>Header Field JMSType Set By Client</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.10</id>
+			<description>Header Field JMSRedelivered Set By Provider</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:246.11</id>
+			<description>Header Field JMSDeliveryTime Set By Provider</description>
+			<location chapter = "3" section = "3.4.11"/>
+		</assertion>
+        </sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:18</id>
+			<description>JMS permits an administrator to configure JMS to override the client-specified values for JMSDeliveryMode, JMSExpiration and JMSPriority. If this is done, the header field value must reflect the administratively specified value.</description>
+			<location chapter = "3" section = "3.4.12"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:256</id>
+			<description>When a message is sent, its delivery time is calculated as the sum of the delivery delay value specified on the send method and the current GMT value. On return from the send method, the message's JMSDeliveryTime header field contains this value. When a message is received its JMSDeliveryTime header field contains this same value. A message's delivery time is the earliest time when a provider may make the message visible on the target destination and available for delivery to consumers. Clients must not receive messages before the delivery time is reached.</description>
+			<location chapter = "3" section = "3.4.13"/>
+		</assertion>
+        <assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "false">
+            <id>JMS:SPEC:9</id>
+            <description>Property names must obey the rules for a message selector identifier.</description>
+            <location chapter = "3" section = "3.5.1"/>
+        </assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:20</id>
+			<description>Property Values</description>
+			<location chapter = "3" section = "3.5.2"/>
+            <sub-assertions>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">>
+            <id>JMS:SPEC:20.1</id>
+			<description>Property values can be boolean</description>
+			<location chapter = "3" section = "3.5.2"/>
+		    </assertion>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">>
+            <id>JMS:SPEC:20.2</id>
+			<description>Property values can be byte</description>
+			<location chapter = "3" section = "3.5.2"/>
+		    </assertion>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">>
+            <id>JMS:SPEC:20.3</id>
+			<description>Property values can be short</description>
+			<location chapter = "3" section = "3.5.2"/>
+		    </assertion>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">>
+            <id>JMS:SPEC:20.4</id>
+			<description>Property values can be int</description>
+			<location chapter = "3" section = "3.5.2"/>
+		    </assertion>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">>
+            <id>JMS:SPEC:20.5</id>
+			<description>Property values can be long</description>
+			<location chapter = "3" section = "3.5.2"/>
+		    </assertion>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">>
+            <id>JMS:SPEC:20.6</id>
+			<description>Property values can be float</description>
+			<location chapter = "3" section = "3.5.2"/>
+		    </assertion>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">>
+            <id>JMS:SPEC:20.7</id>
+			<description>Property values can be double</description>
+			<location chapter = "3" section = "3.5.2"/>
+		    </assertion>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">>
+            <id>JMS:SPEC:20.8</id>
+			<description>Property values can be String</description>
+			<location chapter = "3" section = "3.5.2"/>
+		    </assertion>
+            </sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:19</id>
+			<description>Property values are set prior to sending a message.</description> 
+			<location chapter = "3" section = "3.5.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:21</id>
+			<description>When a client receives a message, its properties are in read-only mode. If a client attempts to set properties at this point, a MessageNotWriteableException is thrown.</description>
+			<location chapter = "3" section = "3.5.3"/>
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:22</id>
+			<description>Properties support the following conversion table. The marked cases must be supported. The unmarked cases must throw the JMS MessageFormatException.</description>
+			<location chapter = "3" section = "3.5.4"/>
+		  <sub-assertions>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.1</id>
+              <description>Conversion of property values from type boolean to type boolean must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.2</id>
+              <description>Conversion of property values from type boolean to types byte, short, int, long, float, and double must throw the JMS MessageFormatException.</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.3</id>
+              <description>Conversion of property values from type boolean to type String must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.4</id>
+              <description>Conversion of property values from type byte to type byte, short, int, long, and String must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.5</id>
+              <description>Conversion of property values from type byte to type boolean, float and double must throw the JMS MessageFormatException.</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.6</id>
+              <description>Conversion of property values from type short to type short, int, long, and String must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.7</id>
+              <description>Conversion of property values from type short to type boolean, byte, float and double must throw the JMS MessageFormatException</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.8</id>
+              <description>Conversion of property values from type int to type int, long, and String must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.9</id>
+              <description>Conversion of property values from type int to type boolean, byte, short, float and double must throw the JMS MessageFormatException</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.10</id>
+              <description>Conversion of property values from type long to type long and String must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.11</id>
+              <description>Conversion of property values from type long to type boolean, byte, short, int, float and double must throw the JMS MessageFormatException</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.12</id>
+              <description>Conversion of property values from type float to type float, double and String must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.13</id>
+              <description>Conversion of property values from type float to type boolean, byte, short, int and long must throw the JMS MessageFormatException</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.14</id>
+              <description>Conversion of property values from type double to type double and String must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.15</id>
+              <description>Conversion of property values from type double to type boolean, byte, short, int, long and float must throw the JMS MessageFormatException</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:22.16</id>
+              <description>Conversion of property values from type String to type boolean, byte, short, int, long, float, double and String must be supported</description>
+			  <location chapter = "3" section = "3.5.4"/>
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			  <id>JMS:SPEC:23</id>         
+			  <description>The String to numeric conversions must throw the java.lang.NumberFormatException if the numeric's valueOf() method does not accept the String value as a valid representation.</description> 
+         
+			  <location chapter = "3" section = "3.5.4"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			  <id>JMS:SPEC:24</id>         
+			  <description>Attempting to read a null value as a Java primitive type must be treated as calling the primitive's corresponding valueOf(String) conversion method with a null value.</description>         
+			  <location chapter = "3" section = "3.5.4"/>      
+		    </assertion>      
+		  </sub-assertions>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:25</id>         
+			<description>The setObjectProperty method accepts values of Boolean, Byte, Short, Integer, Long, Float, Double and String. An attempt to use any other class must throw a JMS MessageFormatException.</description>         
+			<location chapter = "3" section = "3.5.5"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:26</id>
+			<description>The getObjectProperty method only returns values of null, Boolean, Byte, Short, Integer, Long, Float, Double and String. </description>
+			<location chapter = "3" section = "3.5.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:10</id>
+			<description>A null value is returned (by the getObjectProperty method) if a property by the specified name does not exist.</description>
+			<location chapter = "3" section = "3.5.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:27</id>
+			<description>To iterate through a message's property values, use getPropertyNames to retrieve a property name enumeration and then use the various property get methods to retrieve their values.</description>
+			<location chapter = "3" section = "3.5.6"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:28</id>
+			<description>A message's properties are deleted by the clearProperties method. This leaves the message with an empty set of properties. New property entries can then be both created and read. </description>
+			<location chapter = "3" section = "3.5.7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:29</id>
+			<description>Clearing a message's property entries does not clear the value of its body.</description>
+			<location chapter = "3" section = "3.5.7"/>
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:34</id>         
+			<description>JMS Defined Properties</description>         
+			<location chapter = "3" section = "3.5.9"/>      
+			<sub-assertions>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:31</id>
+			    <description>The Enumeration ConnectionMetaData.getJMSXPropertyNames() method returns the names of the JMSX properties supported by a connection.</description>
+			    <location chapter = "3" section = "3.5.9"/>
+		      </assertion>      
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:32</id>         
+			    <description>JMSXGroupID and JMSXGroupSeq are standard properties clients should use if they want to group messages. All providers must support them.</description>         
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			    <id>JMS:SPEC:33</id>
+			    <description>JMSX properties set by the provider on send are available to both the producer and the consumers of the message. JSMX properties set by the provider on receive are available only to the consumers.</description>
+			    <location chapter = "3" section = "3.5.9"/>
+		      </assertion>      
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			    <id>JMS:SPEC:34.1</id>         
+                <description>JMSX property JMSXUserID set by provider on send with value type String</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			    <id>JMS:SPEC:34.2</id>         
+                <description>JMSX property JMSXAppID set by provider on send with value type String</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:34.3</id>         
+                <description>JMSX property JMSXDeliveryCount set by provider on receive with value type int</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:34.4</id>         
+                <description>JMSX property JMSXGroupID set by client with value type String</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:34.5</id>         
+                <description>JMSX property JMSXGroupSeq set by client with value type int</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			    <id>JMS:SPEC:34.6</id>         
+                <description>JMSX property JMSXProducerTXID set by provider on send with value type String</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			    <id>JMS:SPEC:34.7</id>         
+                <description>JMSX property JMSXConsumerTXID set by provider on receive with value type String</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			    <id>JMS:SPEC:34.8</id>         
+                <description>JMSX property JMSXRcvTimestamp set by provider on receive with value type long</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			    <id>JMS:SPEC:34.9</id>         
+                <description>JMSX property JMSXState set by provider with value type int</description>
+			    <location chapter = "3" section = "3.5.9"/>      
+		      </assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:35</id>
+			<description>JMS reserves the  JMS_*vendor_name*  property name prefix for provider-specific properties. Each provider defines their own value of vendor_name.</description>
+			<location chapter = "3" section = "3.5.10"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:257</id>
+			<description>When a client receives a message the mandatory JMS-defined message property JMSXDeliveryCount will be set to the number of times the message has been delivered. The first time a message is received it will be set to 1, so a value of 2 or more means the message has been redelivered. If the JMSRedelivered message header value is set then the JMSXDeliveryCount property must always be 2 or more. See section 3.4.7 "JMSRedelivered" for more information about the JMSRedelivered message header. The purpose of the JMSXDeliveryCount property is to allow consuming applications to identify whether a particular message is being repeatedly redelivered and take appropriate action. The value of the JMSXDeliveryCount property is not guaranteed to be exactly correct. The JMS provider is not expected to persist this value to ensure that its value is not lost in the event of a failure.</description>
+			<location chapter = "3" section = "3.5.11"/>
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:36</id>
+			<description>A message selector is a String whose syntax is based on a subset of the SQL92 * conditional expression syntax.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:37</id>
+			<description>If the value of a message selector is an empty string, the value is treated as a null and indicates that there is no message selector for the message consumer.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:38</id>
+			<description>A JMS message selector allows a client to specify, by message header, the messages it's interested in. Only messages whose headers and properties match the selector are delivered.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:39</id>
+			<description>A selector can contain: " Literals:   A string literal is enclosed in single quotes, with an included single quote represented by doubled single quote; for example,  literal and literal 's. Like Java String literals, these use the Unicode character encoding.  </description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:40</id>
+			<description>A selector can contain: " Literals:  An exact numeric literal is a numeric value without a decimal point, such as 57, -957, +62; numbers in the range of Java long are supported. Exact numeric literals use the Java integer literal syntax.   </description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:41</id>
+			<description>A selector can contain: " Literals: An approximate numeric literal is a numeric value in scientific notation, such as 7E3 and -57.9E2, or a numeric value with a decimal, such as 7., -95. 7, and +6.2; numbers in the range of Java double are supported. Approximate literals use the Java floating-point literal syntax.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:42</id>
+			<description>A selector can contain: " Literals: The boolean literals TRUE and FALSE.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:43</id>         
+			<description>An identifier is an unlimited-length character sequence that must begin with a Java identifier start character; all following characters must be Java identifier part characters. An identifier start character is any character for which the method Character.isJavaIdentifierStart returns true. This includes  _  and  $ . An identifier part character is any character for which the method Character.isJavaIdentifierPart returns true.</description>         
+			<location chapter = "3" section = "3.8.1.1"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:44</id>
+			<description>Identifiers cannot be the names NULL, TRUE, or FALSE.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:45</id>
+			<description>Identifiers cannot be NOT, AND, OR, BETWEEN, LIKE, IN, IS, or ESCAPE.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:46</id>
+			<description>Identifiers are either header field references or property references. The type of a property value in a message selector corresponds to the type used to set the property. If a property that does not exist in a message is referenced, its value is NULL.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:47</id>
+			<description>The conversions that apply to the get methods for properties do not apply when a property is used in a message selector expression. For example, suppose you set a property as a string value, as in the following: myMessage.setStringProperty("NumberOfOrders", "2"); The following expression in a message selector would evaluate to false, because a string cannot be used in an arithmetic expression: "NumberOfOrders > 1"</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:48</id>
+			<description>Identifiers are case sensitive.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:49</id>
+			<description>Message header field references are restricted to JMSDeliveryMode, JMSPriority, JMSMessageID, JMSTimestamp, JMSCorrelationID, and JMSType. JMSMessageID, JMSCorrelationID, and JMSType values may be null and if so are treated as a NULL value.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:53</id>
+			<description>Whitespace is the same as that defined for Java: space, horizontal tab, form feed and line terminator.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:54</id>
+			<description>A selector is a conditional expression; a selector that evaluates to true matches; a selector that evaluates to false or unknown does not match.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:55</id>
+			<description>Arithmetic expressions are composed of themselves, arithmetic operations, identifiers with numeric values, and numeric literals.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:56</id>
+			<description>Conditional expressions are composed of themselves, comparison operations, logical operations, identifiers with boolean values, and boolean literals.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:57</id>
+			<description>Standard bracketing () for ordering expression evaluation is supported.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:58</id>
+			<description>Logical operators in precedence order: NOT, AND, OR</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:59</id>
+			<description>Comparison operators: =, >, >=, &lt;, &lt;=, &lt;> (not equal)</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:60</id>
+			<description>Only like type values can be compared. One exception is that it is valid to compare exact numeric values and approximate numeric values (the type conversion required is defined by the rules of Java numeric promotion). If the comparison of non-like type values is attempted, the value of the operation is false. If either of the type values evaluates to NULL, the value of the expression is unknown.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:61</id>
+			<description>String and Boolean comparison is restricted to = and &lt;>. Two strings are equal if and only if they contain the same sequence of characters.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:62</id>
+			<description>Arithmetic operators in precedence order:   +, - (unary)   *, / (multiplication and division)   +, - (addition and subtraction)</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:63</id>         
+			<description>Arithmetic operations must use Java numeric promotion.</description>         
+			<location chapter = "3" section = "3.8.1.1"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:64</id>
+			<description>arithmetic-expr1 [NOT] BETWEEN arithmetic-expr2 and arithmetic-expr3 (comparison operator)    age BETWEEN 15 AND 19  is equivalent to  age >= 15 AND age &lt;= 19     age NOT BETWEEN 15 AND 19  is equivalent to  age &lt; 15 OR age > 19 </description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:65</id>
+			<description>identifier [NOT] IN (string-literal1, string-literal2,...) (comparison operator where identifier has a String or NULL value)    Country IN (  UK ,  US ,  France )  is true for  UK  and false for  Peru ; it is equivalent to the expression  (Country =   UK ) OR (Country =   US ) OR (Country =   France )     Country NOT IN (  UK ,  US ,  France )  is false for  UK  and true for  Peru ; it is equivalent to the expression  NOT ((Country =   UK ) OR (Country =   US ) OR (Country =   France ))    If identifier of an IN or NOT IN operation is NULL, the value of the operation is unknown.</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:66</id>
+			<description>identifier [NOT] LIKE pattern-value [ESCAPE escape-character] (comparison operator, where identifier has a String value; pattern-value is a string literal where  _  stands for any single character;  %  stands for any sequence of characters, including the empty sequence, and all other characters stand for themselves. The optional escape-character is a single-character string literal whose character is used to escape the special meaning of the  _  and  %  in pattern-value.)</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:67</id>
+			<description>identifier IS NULL (comparison operator that tests for a null header field value or a missing property value)</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:68</id>
+			<description>identifier IS NOT NULL (comparison operator that tests for the existence of a non-null header field value or property value)</description>
+			<location chapter = "3" section = "3.8.1.1"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:69</id>         
+			<description>JMS providers are required to verify the syntactic correctness of a message selector at the time it is presented. A method providing a syntactically incorrect selector must result in a JMS InvalidSelectorException.</description>         
+			<location chapter = "3" section = "3.8.1.1"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:247</id>         
+			<description>Predefined selector literals and operator names are written here in upper case; however, they are case insensitive.</description>         
+			<location chapter = "3" section = "3.8.1.1"/>      
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:248</id>         
+			<description>The Definition of the AND Operator</description>         
+			<location chapter = "3" section = "3.8.1.2"/>      
+			<sub-assertions>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.1</id>         
+                <description>TRUE AND TRUE = TRUE</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.2</id>         
+                <description>TRUE AND FALSE = FALSE</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.3</id>         
+                <description>TRUE AND UNDEFINED = UNDEFINED</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.4</id>         
+                <description>FALSE AND FALSE = FALSE</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.5</id>         
+                <description>FALSE AND FALSE = FALSE</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.6</id>         
+                <description>FALSE AND UNDEFINED = FALSE</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.7</id>         
+                <description>UNDEFINED AND TRUE = UNDEFINED</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.8</id>         
+                <description>UNDEFINED AND FALSE = FALSE</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+		      <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			    <id>JMS:SPEC:248.9</id>         
+                <description>UNDEFINED AND UNDEFINED = UNDEFINED</description>
+			    <location chapter = "3" section = "3.8.1.2"/>      
+		      </assertion>
+			</sub-assertions>
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:249</id>         
+			<description>The Definition of the OR Operator</description>         
+			<location chapter = "3" section = "3.8.1.2"/>      
+            <sub-assertions>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.1</id>
+                <description>TRUE OR TRUE = TRUE</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.2</id>
+                <description>TRUE OR FALSE = TRUE</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.3</id>
+                <description>TRUE OR UNDEFINED = TRUE</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.4</id>
+                <description>FALSE OR TRUE = TRUE</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.5</id>
+                <description>FALSE OR FALSE = FALSE</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.6</id>
+                <description>FALSE OR UNDEFINED = UNDEFINED</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.7</id>
+                <description>UNDEFINED OR TRUE = TRUE</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.8</id>
+                <description>UNDEFINED OR FALSE = UNDEFINED</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:249.9</id>
+                <description>UNDEFINED OR UNDEFINED = UNDEFINED</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+              </assertion>
+            </sub-assertions>
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:250</id>         
+			<description>The Definition of the NOT Operator</description>         
+			<location chapter = "3" section = "3.8.1.2"/>      
+			<sub-assertions>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:250.1</id>
+                <description>NOT TRUE = FALSE</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+		      </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:250.2</id>
+                <description>NOT FALSE = TRUE</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+		      </assertion>
+              <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                <id>JMS:SPEC:250.3</id>
+                <description>NOT UNDEFINED = UNDEFINED</description>
+                <location chapter = "3" section = "3.8.1.2"/>
+		      </assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:70</id>
+			<description>When a message is received, its header field values can be changed;</description>
+			<location chapter = "3" section = "3.10"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:71</id>         
+			<description>A consumer can modify a received message after calling either the clearBody or clearProperties method to make the body or properties writable. If the consumer modifies a received message, and the message is subsequently redelivered, the redelivered message must be the original, unmodified message (except for headers and properties modified by the JMS provider as a result of the redelivery, such as the JMSRedelivered header and the JMSXDeliveryCount property).</description>         
+			<location chapter = "3" section = "3.10"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:197</id>
+			<description>JMS provides five forms of message body. Each form is defined by a message interface: " StreamMessage - a message whose body contains a stream of Java primitive values. It is filled and read sequentially. " MapMessage - a message whose body contains a set of name-value pairs where names are Strings and values are Java primitive types. The entries can be accessed sequentially by enumerator or randomly by name. The order of the entries is undefined. " TextMessage - a message whose body contains a java.lang.String. The inclusion of this message type is based on our presumption that String messages will be used extensively. One reason for this is that XML will likely become a popular mechanism for representing the content of JMS messages. " ObjectMessage - a message that contains a Serializable Java object. If a collection of Java objects is needed, one of the collection classes provided in JDK 1.2 can be used. " BytesMessage - a message that contains a stream of uninterpreted bytes. This message type is for literally encoding a body to match an existing message format. In many cases, it will be possible to use one of the other, self-defining, message types instead. Although JMS allows the use of message properties with byte messages, they are typically not used, since the inclusion of properties may affect the format.</description>
+			<location chapter = "3" section = "3.11"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:72</id>
+			<description>The clearBody method of Message resets the value of the message body to the  empty  initial message value as set by the message type's create method provided by Session. Clearing a message's body does not clear its property entries.</description>
+			<location chapter = "3" section = "3.11.1"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:73</id>         
+			<description>When a message is received, its body is read only. If an attempt is made to change the body, a MessageNotWriteableException must be thrown.</description> 
+			<location chapter = "3" section = "3.11.2"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:73.1</id>         
+			<description>When a message is received, its body is read only. If its body is subsequently cleared, the body is in the same state as an empty body in a newly created message.</description>         
+			<location chapter = "3" section = "3.11.2"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:74</id>         
+			<description>Both StreamMessage and MapMessage support the same set of primitive data types. The types can be read or written explicitly using methods for each type. They may also be read or written generically as objects. </description>         
+			<location chapter = "3" section = "3.11.3"/>      
+		</assertion>      
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:75</id>         
+			<description>Both StreamMessage and MapMessage support the following conversion table. The marked cases must be supported. The unmarked cases must throw a JMS MessageFormatException.</description>         
+			<location chapter = "3" section = "3.11.3"/>      
+		  <sub-assertions>
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.1</id>
+              <description>Conversion from type boolean to type boolean and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.2</id>
+              <description>Conversion from type boolean to types byte, short, char, int, long, float, double and byte[] must throw the JMS MessageFormatException.</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.3</id>
+              <description>Conversion from type byte to type byte, short, int, long, and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.4</id>
+              <description>Conversion from type byte to type boolean, char, float, double and byte[] must throw the JMS MessageFormatException.</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.5</id>
+              <description>Conversion from type short to type short, int, long, and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.6</id>
+              <description>Conversion from type short to type boolean, byte, char, float, double and byte[] must throw the JMS MessageFormatException</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.7</id>
+              <description>Conversion from type char to type char and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.8</id>
+              <description>Conversion from type char to type boolean, byte, short, int, long, float, double and byte[] must throw the JMS MessageFormatException</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.9</id>
+              <description>Conversion from type int to type int, long, and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.10</id>
+              <description>Conversion from type int to type boolean, byte, short, char, float, double and byte[] must throw the JMS MessageFormatException</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.11</id>
+              <description>Conversion from type long to type long and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.12</id>
+              <description>Conversion from type long to type boolean, byte, short, char, int, float, double and byte[] must throw the JMS MessageFormatException</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.13</id>
+              <description>Conversion from type float to type float, double and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.14</id>
+              <description>Conversion from type float to type boolean, byte, short, char, int, long and byte[] must throw the JMS MessageFormatException</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.15</id>
+              <description>Conversion from type double to type double and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.16</id>
+              <description>Conversion from type double to type boolean, byte, short, char, int, long, float and byte[] must throw the JMS MessageFormatException</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.17</id>
+              <description>Conversion from type String to type boolean, byte, short, int, long, float, double and String must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.18</id>
+              <description>Conversion from type String to type char and byte[] must throw the JMS MessageFormatException</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.19</id>
+              <description>Conversion from type byte[] to type byte[] must be supported</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		    <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			  <id>JMS:SPEC:75.20</id>
+              <description>Conversion from type byte[] to type boolean, byte, short, char, int, long, float, double and String must throw the JMS MessageFormatException</description>
+			<location chapter = "3" section = "3.11.3"/>      
+		    </assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:76</id>         
+			<description>The String to numeric conversions must throw a java.lang.NumberFormatException if the numeric's valueOf() method does not accept the String value as a valid representation.</description>         
+			<location chapter = "3" section = "3.11.3"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:77</id>         
+			<description>StreamMessage and MapMessage must implement the String to boolean conversion as specified by the valueOf(String) method of Boolean as defined by the Java language.</description>         
+			<location chapter = "3" section = "3.11.3"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:78</id>         
+			<description>Attempting to read a null value as a Java primitive type must be treated as calling the primitive's corresponding valueOf(String) conversion method with a null value.</description>         
+			<location chapter = "3" section = "3.11.3"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:79</id>         
+			<description>Since char does not support a String conversion, attempting to read a null value as a char must throw NullPointerException.</description>         
+			<location chapter = "3" section = "3.11.3"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:80</id>         
+			<description>Getting a MapMessage field for a field name that has not been set is handled as if the field exists with a null value.</description>         
+			<location chapter = "3" section = "3.11.3"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:81</id>         
+			<description>If a read 
+ method of StreamMessage or BytesMessage throws a MessageFormatException or NumberFormatException, the current position of the rea
+d pointer must not be incremented. A subsequent read must be capable of recovering from the exception by rereading the data as a d
+ifferent type.
+			</description>         
+			<location chapter = "3" section = "3.11.3"/>      
+		</assertion>      
+		  </sub-assertions>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:82</id>         
+			<description>If a JMS client sends a StreamMessage or MapMessage, it must be translated by a receiving JMS provider into an equivalent StreamMessage or MapMessage. When passed between JMS clients, a message must always retain its full form. For instance, a message sent as MapMessage must not arrive at a JMS client as a BytesMessage.</description>         
+			<location chapter = "3" section = "3.11.4"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:190</id>
+			<description>JMS provides five forms of message body. Each form is defined by a message interface: " StreamMessage - a message whose body contains a stream of Java primitive values. It is filled and read sequentially. " MapMessage - a message whose body contains a set of name-value pairs where names are Strings and values are Java primitive types. The entries can be accessed sequentially by enumerator or randomly by name. The order of the entries is undefined. " TextMessage - a message whose body contains a java.lang.String. The inclusion of this message type is based on our presumption that String messages will be used extensively. One reason for this is that XML will likely become a popular mechanism for representing the content of JMS messages. " ObjectMessage - a message that contains a Serializable Java object. If a collection of Java objects is needed, one of the collection classes provided in JDK 1.2 can be used. " BytesMessage - a message that contains a stream of uninterpreted bytes. This message type is for literally encoding a body to match an existing message format. In many cases, it will be possible to use one of the other, self-defining, message types instead. Although JMS allows the use of message properties with byte messages, they are typically not used, since the inclusion of properties may affect the format.</description>
+			<location chapter = "3" section = "3.11.4"/>
+		</assertion>      
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:83</id>
+			<description>If a JMS provider receives a message created by a native client, the provider should do its best to transform it into the  best  JMS message type. For instance, if it is a native stream message it should be transformed into a StreamMessage. If this is not possible, the provider is always able to transform it into a BytesMessage.</description>
+			<location chapter = "3" section = "3.11.4"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:84</id>         
+			<description>A provider must be prepared to accept, from a client, a message whose implementation is not one of its own.</description>
+			<location chapter = "3" section = "3.12"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:85</id>         
+			<description>The JMS message interfaces provide write/set methods for setting object values in a message body and message properties. All of these methods must be implemented to copy their input objects into the message. The value of an input object is allowed to be null and will return null when accessed. </description>         
+			<location chapter = "3" section = "3.12"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:86</id>
+			<description> The value of an input object is allowed to be null and will return null when accessed.</description> 
+			<location chapter = "3" section = "3.12"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:86.1</id>
+			<description>One exception to this (null input object) is that BytesMessage does not support the concept of a null stream, and attempting to write a null into it must throw java.lang.NullPointerException.</description>
+			<location chapter = "3" section = "3.12"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:87</id>
+			<description>If the foreign message implementation contains a JMSReplyTo header field that is set to a foreign destination implementation, the provider is not required to handle or preserve the value of this header field.</description>
+			<location chapter = "3" section = "3.12"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:88</id>         
+			<description>The JMS message interfaces provide read/get methods for accessing objects in a message body and message properties. All of these methods must be implemented to return a copy of the accessed message objects.</description>         
+			<location chapter = "3" section = "3.12"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:191</id>
+			<description>An administered object should not hold on to any remote resources. Its lookup should not use remote resources other than those used by JNDI itself.</description>
+			<location chapter = "5" section = "5.1"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:89</id>
+			<description>Destination objects support concurrent use.</description>
+			<location chapter = "5" section = "5.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:90</id>
+			<description>ConnectionFactory objects support concurrent use.</description>
+			<location chapter = "5" section = "5.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:91</id>
+			<description>Connection objects support concurrent use.</description>
+			<location chapter = "6" section = "6.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:92</id>
+			<description>When creating a connection, a client may specify its credentials as name/password. If no credentials are specified, the current thread's credentials are used. At this point, the JDK does not define the concept of a thread's default credentials; however, it is likely this will be defined in the near future. For now, the identity of the user under which the JMS client is running should be used.</description>
+			<location chapter = "6" section = "6.1.1"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:93</id>         
+			<description>If one (the client identifier) does exist, an attempt to change it by setting it must throw a IllegalStateException.</description>
+			<location chapter = "6" section = "6.1.2"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:198</id>         
+			<description>If a client explicitly does the set(the client identifier) it must do this immediately after creating the connection and before any other action on the connection is taken. </description>         
+			<location chapter = "6" section = "6.1.2"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:94</id>
+			<description>After this point, setting the client identifier is a programming error that should throw an IllegalStateException.</description>
+			<location chapter = "6" section = "6.1.2"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:95</id>         
+			<description>By definition, the client state identified by a client identifier can be  in use  by only one client at a time. A JMS provider must prevent concurrently executing clients from using it. The only use of a client identifier defined by JMS is its optional use in identifying a durable subscription.</description>         
+			<location chapter = "6" section = "6.1.2"/>      
+		</assertion>            
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:262</id>         
+			<description>The only use of a client identifier defined identified by JMS is its optional use in identifying a durable subscription.</description>
+			<location chapter = "6" section = "6.1.2"/>      
+		</assertion>            
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:96</id>         
+			<description>A Connection can be started immediately and the setup can be done afterwards. Clients that do this must be prepared to handle asynchronous message delivery while they are still in the process of setting up.</description>         
+			<location chapter = "6" section = "6.1.3"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:97</id>         
+			<description>It is important to note that clients rely on the fact that no messages are delivered by a connection until it has been started. JMS providers must insure that this is the case.</description>         
+			<location chapter = "6" section = "6.1.3"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:98</id> 
+			<description>A MessageProducer can send messages while a Connection is stopped.</description>
+			<location chapter = "6" section = "6.1.3"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:99</id>         
+			<description>Stopping a stopped connection and starting a started connection are ignored.</description>         
+			<location chapter = "6" section = "6.1.5"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:100</id>
+			<description>A connection's delivery of incoming messages can be temporarily stopped using its stop() method. It can be restarted using its start() method. When the connection is stopped, delivery to all the connection's MessageConsumers is inhibited: synchronous receives block, and messages are not delivered to any message listeners.</description>
+			<location chapter = "6" section = "6.1.5"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:101</id>         
+			<description>A stop method call must not return until delivery of messages has paused. This means a client can rely on the fact that none of its message listeners will be called and all threads of control waiting for receive to return will not return with a message until the connection is restarted. The receive timers for a stopped connection continue to advance, so receives may time out and return a null message while the connection is stopped. If any message listeners are running when stop is invoked, stop must wait until all of them have returned before it may return. While these message listeners are completing, they must have the full services of the connection available to them.</description>         
+			<location chapter = "6" section = "6.1.5"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:102</id>         
+			<description>If one or more of the connection's session's message listeners is processing a message at the point when connection close is invoked, all the facilities of the connection and its sessions must remain available to those listeners until they return control to the JMS provider.</description>         
+			<location chapter = "6" section = "6.1.8"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:103</id>
+			<description>When connection close is invoked it should not return until message processing has been shut down in an orderly fashion. This means that all message listeners that may have been running have returned, and that all pending receives have returned.</description>
+			<location chapter = "6" section = "6.1.8"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:104</id>         
+			<description>Closing a connection must roll back the transactions in progress on its transacted sessions(The term  transacted session  refers to the case where a session's commit and rollback methods are used to demarcate a transaction local to the session. In the case where a session's work is coordinated by an external transaction manager, a session's commit and rollback methods are not used and the result of a closed session's work is determined later by the transaction manager.). </description>         
+			<location chapter = "6" section = "6.1.8"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:105</id>
+			<description>Closing a connection does NOT force an acknowledgement of client-acknowledged sessions.</description>
+			<location chapter = "6" section = "6.1.8"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:106</id>
+			<description> Invoking the acknowledge method of a received message from a closed connection's sessions must throw an IllegalStateException</description>
+			<location chapter = "6" section = "6.1.8"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+            <id>JMS:SPEC:107</id>         
+			<description>Once a connection has been closed, an attempt to use it or its sessions or their message consumers and producers must throw an IllegalStateException.</description> 
+			<location chapter = "6" section = "6.1.8"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+            <id>JMS:SPEC:201</id>         
+			<description>Once a connection has been closed, calls to the close method of its sessions or their message consumers and producers must be ignored. </description>
+			<location chapter = "6" section = "6.1.8"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+            <id>JMS:SPEC:199</id>         
+			<description>Once a connection has been closed, it is valid to continue to use message objects created or received via the connection, with the exception of a received message's acknowledge method.</description>         
+			<location chapter = "6" section = "6.1.8"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:108</id>         
+			<description>Closing a closed connection must NOT throw an exception.</description>         
+			<location chapter = "6" section = "6.1.8"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:251</id>         
+			<description>If a connection is closed, there is no need to close its constituent sessions, message producers, messages consumers or queue browsers. The connection close is sufficient to signal the JMS provider that all resources for the connection should be released. The Connection interface extends the java.lang.AutoCloseable interface. This means that applications which create the connection in a try-with-resources statement do not need to call the close method when the connection is no longer needed. Instead the connection will be closed automatically at the end of the statement. The use of a try-with-resources statement also simplifies the handling of any exceptions thrown by the close method</description>         
+			<location chapter = "6" section = "6.1.8"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:258</id>         
+			<description>A message listener must not attempt to close its own connection as this would lead to deadlock. The JMS provider must detect this and throw a javax.jms.IllegalStateException.</description>
+			<location chapter = "6" section = "6.1.8"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:187</id>         
+			<description>If a JMS provider detects a problem with a connection, it will inform the connection's ExceptionListener, if one has been registered. To retrieve an ExceptionListener, the connection's getExceptionListerer() method is called. It returns the ExceptionListener for the connection.</description> 
+			<location chapter = "6" section = "6.1.7"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:200</id>         
+			<description>If a JMS provider detects a problem with a connection, it will inform the connection's ExceptionListener, if one has been registered. To retrieve an ExceptionListener, the connection's getExceptionListerer() method is called. If no ExceptionListener is registered, the value null is returned.</description>         
+			<location chapter = "6" section = "6.1.7"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:109</id>         
+			<description>The exceptions delivered to ExceptionListener are those that have no other place to be reported. If an exception is thrown on a JMS call it, by definition, must not be delivered to an ExceptionListener (in other words, ExceptionListener is not for the purpose of monitoring all exceptions thrown by a connection). There is no restriction on the use of the JMS API by the listener's onException method. However since that method will only be called when there is a serious problem with the connection, any attempt to use that connection may fail and cause exceptions.</description>         
+			<location chapter = "6" section = "6.1.7"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:110</id>         
+			<description>Session close terminates all message processing on the session. It must handle the shutdown of pending receives by the session's consumers or a running message listener</description>         
+			<location chapter = "6" section = "6.2.15"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:111</id>         
+			<description>Closing a transacted session must roll back its transaction in progress.(The term  transacted session  refers to the case where a session's commit and rollback methods are used to demarcate a transaction local to the session. In the case where a session's work is coordinated by an external transaction manager, a session's commit and rollback methods are not used and the result of a closed session's work is determined later by the transaction manager.) </description>         
+			<location chapter = "6" section = "6.2.15"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:113</id>         
+			<description>Once a session has been closed, an attempt to use it or its message consumers and producers must throw an IllegalStateException (calls to the close method of these objects must be ignored). It is valid to continue to use message objects created or received via the session, with the exception of a received message's acknowledge method.</description>         
+			<location chapter = "6" section = "6.2.15"/>      
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:114</id>         
+			<description>Closing a closed session must NOT throw an exception.</description>         
+			<location chapter = "6" section = "6.2.15"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:252</id>         
+			<description>When a session is closed, there is no need to close its constituent message producers, message consumers or queue browsers. The session close is sufficient to signal the JMS provider that all resources for the session should be released. Note that closing a connection will cause any sessions created from it to be closed, so, although a session should be closed when no longer needed, there is no need to close a session immediately prior to closing its connection. The Session interface extends the java.lang.AutoCloseable interface. This means that applications which create the session in a try-with-resources statement do not need to call the close method when the connection is no longer needed. Instead the session will be closed automatically at the end of the statement. The use of a try-with-resources statement also simplifies the handling of any exceptions thrown by the close method.</description>         
+			<location chapter = "6" section = "6.2.15"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:259</id>         
+			<description>A message listener must not attempt to close its own session as this would lead to deadlock. The JMS provider must detect this and throw a javax.jms.IllegalStateException.</description>
+			<location chapter = "6" section = "6.2.15"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:260</id>         
+			<description>Note that closing a connection will cause any sessions created from it to be closed, so, although a session should be closed when no longer needed, there is no need to close a session immediately prior to closing its connection. The Session interface extends the java.lang.AutoCloseable interface. This means that applications which create the session in a try-with-resources statement do not need to call the close method when the connection is no longer needed. Instead the session will be closed automatically at the end of the statement. The use of a try-with-resources statement also simplifies the handling of any exceptions thrown by the close method.</description>
+			<location chapter = "6" section = "6.2.15"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:115</id>
+			<description>A session can create and service multiple MessageProducers and MessageConsumers.</description>
+			<location chapter = "6" section = "6.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:116</id>
+			<description>Although a session may create multiple producers and consumers, they are restricted to serial use. In effect, only a single logical thread of control can use them.</description>
+			<location chapter = "6" section = "6.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:117</id>
+			<description>Temporary destinations ( TemporaryQueue or TemporaryTopic objects) are destinations that are system-generated uniquely for their connection. Only their own connection is allowed to create MessageConsumers for them.</description>
+			<location chapter = "6" section = "6.2.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:118</id>
+			<description>Each TemporaryQueue or TemporaryTopic object is unique. It cannot be copied.</description>
+			<location chapter = "6" section = "6.2.2"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:120</id>
+			<description>Sessions are designed for serial use by one thread at a time. The only exception to this occurs during the orderly shutdown of the session or its connection.</description>
+			<location chapter = "6" section = "6.2.5"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:121</id>         
+			<description>Another consequence is that a connection must be in stopped mode to set up a session with more than one message listener. The reason is that when a connection is actively delivering messages, once the first message listener for a session has been registered, the session is now controlled by the thread of control that delivers messages to it. At this point a client thread of control cannot be used to further configure the session.</description>         
+			<location chapter = "6" section = "6.2.5"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:122</id>
+			<description>When a transaction commits, its atomic unit of input is acknowledged and its associated atomic unit of output is sent.(The term  transacted session  refers to the case where a session's commit and rollback methods are used to demarcate a transaction local to the session. In the case where a session's work is coordinated by an external transaction manager, a session's commit and rollback methods are not used and the result of a closed session's work is determined later by the transaction manager.)</description>
+			<location chapter = "6" section = "6.2.7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:123</id>
+			<description>If a transaction rollback is done, its produced messages are destroyed and its consumed messages are automatically recovered.</description>
+			<location chapter = "6" section = "6.2.7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:124</id>            
+			<description>A transaction is completed using its session's commit() or rollback() method.</description>
+			<location chapter = "6" section = "6.2.7"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:125</id>
+			<description>The completion of a session's current transaction automatically begins the next.</description>
+			<location chapter = "6" section = "6.2.7"/>
+		</assertion>
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:192</id>
+			<description>JMS does not require that a provider support distributed transactions; however, it does require that if a provider supplies this support, it should be done via the JTA XAResource API.</description>
+			<location chapter = "6" section = "6.2.8"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:126</id>
+			<description>For Pub/Sub, if two sessions each have a TopicSubscriber that subscribes to the same Topic, each subscriber is given each message. Delivery to one subscriber does not block if the other gets behind.</description>
+			<location chapter = "6" section = "6.2.14"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:127</id>         
+			<description>JMS defines that messages sent by a session to a destination must be received in the order in which they were sent (see Section 6.2.9.2,  for a few qualifications). This defines a partial ordering constraint on a session's input message stream.</description>         
+			<location chapter = "6" section = "6.2.9.1"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:128</id>
+			<description>If both PERSISTENT and NON_PERSISTENT messages are sent to a destination, order is only guaranteed within delivery mode. That is, a later NON_PERSISTENT message may arrive ahead of an earlier PERSISTENT message; however, it will never arrive ahead of an earlier NON_PERSISTENT message with the same priority.</description>
+			<location chapter = "6" section = "6.2.9.2"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:193</id>
+			<description>A client may use a transacted session to group its sent messages into atomic units (the producer component of a JMS transaction). A transaction's order of messages to a particular destination is significant. The order of sent messages across destinations is not significant. See Section 6.2.7,  for more information.</description>
+			<location chapter = "6" section = "6.2.9.2"/>
+		</assertion>      
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:129</id>         
+			<description>A session must set the redelivered flag and implement the JMSXDeliveryCount of messages it redelivers due to a recovery.</description>
+			<location chapter = "6" section = "6.2.10"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:130</id>
+			<description>If a session is transacted, message acknowledgment is handled automatically by commit, and recovery is handled automatically by rollback.</description>
+			<location chapter = "6" section = "6.2.10"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:131</id>
+			<description>CLIENT_ACKNOWLEDGE - With this option, a client acknowledges a message by calling the message's acknowledge method. Acknowledging a consumed message automatically acknowledges the receipt of all messages that have been delivered by its session.</description>
+			<location chapter = "6" section = "6.2.10"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:132</id>
+			<description>AUTO_ACKNOWLEDGE - With this option, the session automatically acknowledges a client's receipt of a message when it has either successfully returned from a call to receive or the MessageListener it has called to process the message successfully returns.</description>
+			<location chapter = "6" section = "6.2.10"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:194</id>
+			<description>A session's recover method is used to stop a session and restart it with its first unacknowledged message. In effect, the session's series of delivered messages is reset to the point after its last acknowledged message. The messages it now delivers may be different from those that were originally delivered due to message expiration and the arrival of higher-priority messages.</description>
+			<location chapter = "6" section = "6.2.10"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:133</id>         
+			<description>A JMS provider must never deliver a second copy of an acknowledged message.</description>         
+			<location chapter = "6" section = "6.2.11"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:134</id>         
+			<description>When a client uses the AUTO_ACKNOWLEDGE mode, it is not in direct control of message acknowledgment. Since such clients cannot know for certain if a particular message has been acknowledged, they must be prepared for redelivery of the last consumed message. This can be caused by the client completing its work just prior to a failure that prevents the message acknowledgment from occurring. Only a session's last consumed message is subject to this ambiguity. The JMSRedelivered message header field will be set for a message redelivered under these circumstances.</description>         
+			<location chapter = "6" section = "6.2.11"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:135</id>         
+			<description>JMS providers must never produce duplicate messages. This means that a client that produces a message can rely on its JMS provider to insure that consumers of the message will receive it only once. No client error can cause a provider to duplicate a message.</description>         
+			<location chapter = "6" section = "6.2.12"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:136</id>         
+			<description>To receive messages asynchronously, a client registers an object that implements the JMS MessageListener interface with a MessageConsumer. In effect, a Session uses a single thread to run all its message listeners. While the thread is busy executing one listener, all other messages to be asynchronously delivered to the session must wait.</description>         
+			<location chapter = "6" section = "6.2.13"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:137</id>         
+			<description>A client can register an object that implements the JMS MessageListener interface with a MessageConsumer. As messages arrive for the consumer, the provider delivers them by calling the listener's onMessage method. Messages that arrive for the consumer will be delivered in batches by calling the listener's onMessages method.</description>         
+			<location chapter = "4" section = "8.1.2"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:138</id>
+			<description>A client can request the next message from a MessageConsumer using one of its receive methods.</description>
+			<location chapter = "4" section = "8.1.1"/>
+		</assertion> 
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:139</id>         
+			<description>A client also has the option of creating a producer without supplying a destination. In this case, a destination must be input on every send operation.</description>         
+			<location chapter = "7" section = "7.1"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:140</id>
+			<description>A client can specify a default delivery mode, priority, and time-to-live for messages sent by a producer. It(the client) can also specify delivery mode, priority, and time-to-live per message.</description>
+			<location chapter = "7" section = "7.6"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:253</id>
+			<description>The following methods on MessageProducer may be used to send a message synchronously:
+void send(Message message) void send(Destination destination, Message message) void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive) void send(Message message, int deliveryMode, int priority, long timeToLive) These methods will block until the message has been sent. If necessary the call will block until a confirmation message has been received back from the JMS server.
+</description>
+			<location chapter = "7" section = "7.2"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:254</id>
+			<description>Clients may alternatively use the following methods which return immediately and use a separate thread to send the message and, if necessary, wait for a confirmation message back from the JMS server: send(Destination destination, Message message, CompletionListener completionListener) send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive, CompletionListener completionListener) send(Message message, CompletionListener completionListener) send(Message message, int deliveryMode, int priority, long timeToLive, CompletionListener completionListener). When the message has been successfully sent the JMS provider invokes the callback method onCompletion on an application-specified CompletionListener object. Only when that callback has been invoked can the application be sure that the message has been successfully sent with the same degree of confidence as if a normal synchronous send had been performed. An application which requires this degree of confidence must therefore wait for the callback to be invoked before continuing.
+The following information is intended to give an indication of how an asynchronous send would typically be implemented.
+In some JMS providers, a normal synchronous send involves sending the message to a remote JMS server and then waiting for an acknowledgement to be received before returning. It is expected that such a provider would implement an asynchronous send by sending the message to the remote JMS server and then returning without waiting for an acknowledgement. When the acknowledgement is received, the JMS provider would notify the application by invoking the onCompletion method on the application-specified CompletionListener object. If for some reason the acknowledgement is not received the JMS provider would notify the application by invoking the CompletionListener's onException method. In those cases where the JMS specification permits a lower level of reliability, a normal synchronous send might not wait for an acknowledgement. In that case it is expected that an asynchronous send would be similar to a synchronous send: the JMS provider would send the message to the remote JMS server and then return without waiting for an acknowledgement. However the JMS provider would still notify the application that the send had completed by invoking the onCompletion method on the application-specified CompletionListener object.
+It is up to the JMS provider to decide exactly what is performed in the calling thread and what, if anything, is performed asynchronously, so long as it satisfies the requirements given in the following sections.</description>
+			<location chapter = "7" section = "7.3"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:275.1</id>         
+			<description>After the send operation is complete, which means that the message has been successfully sent with the same degree of confidence as if a normal synchronous send had been performed, the JMS provider must invoke the CompletionListener. The CompletionListener must not be invoked earlier than this.</description>         
+			<location chapter = "7" section = "7.3.1"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:275.2</id>         
+			<description>If the same MessageProducer or JMSContext is used to send multiple messages then JMS message ordering requirements (see section 6.2.9 "Message order") must be satisfied. This applies even if a combination of synchronous and asynchronous sends has been performed. The application is not required to wait for an asynchronous send to complete before sending the next message.</description>         
+			<location chapter = "7" section = "7.3.3"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:275.3</id>         
+			<description>If the session is transacted (uses a local transaction) then when the commit or rollback method is called the JMS provider must block until any incomplete send operations have been completed and all callbacks have returned before performing the commit or rollback.
+If the close method is called on the MessageProducer, Session, Connection or JMSContext object then the JMS provider must block until any incomplete send operations have been completed and all callbacks have returned before closing the object and returning.</description>         
+			<location chapter = "7" section = "7.3.4"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:275.4</id>         
+			<description>An asynchronous send is not permitted in a Java EE EJB or web container. If the application component violates this restriction the send method may throw a JMSException or JMSRuntimeException (depending on the method signature).</description>         
+			<location chapter = "7" section = "7.3.5"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:275.5</id>         
+			<description>JMS defines a number of message header fields and message properties which must be set by the "JMS provider on send". See section 3.4.11 "How message header values are set" and section 3.5.9 "JMS defined properties". If the send is asynchronous these fields and properties may be accessed on the sending client only after the CompletionListener has been invoked. If the CompletionListener's onException method is called then the state of these message header fields and properties is undefined. See also section 4.6.2.8 "Restrictions on the use of the Message object" below.</description>         
+			<location chapter = "7" section = "7.3.6"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:275.6</id>         
+			<description>Applications that perform an asynchronous send must confirm to the threading restrictions defined in section 6.2.5". This means that the session may be used by only one thread at a time.
+Setting a CompletionListener does not cause the session to be dedicated to the thread of control which calls the CompletionListener. The application thread may therefore continue to use the session after performing an asynchronous send. However the CompletionListener's callback methods must not use the session if an application thread might be using the session at the same time.</description>         
+			<location chapter = "7" section = "7.3.7"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:275.7</id>         
+			<description>A session will only invoke one CompletionListener callback method at a time. For a given MessageProducer or JMSContext, callbacks will be performed in the same order as the corresponding calls to the asynchronous send method.  A JMS provider must not invoke the CompletionListener from the thread that is calling the asynchronous send method.</description>         
+			<location chapter = "7" section = "7.3.8"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:275.8</id>         
+			<description>Applications which perform an asynchronous send must take account of the restriction that a Message object is designed to be accessed by one logical thread of control at a time and does not support concurrent use. See section 2.8 "Multi-threading".
+After the send method has returned, the application must not attempt to read the headers, properties or payload of the Message object until the CompletionListener's onCompletion or onException method has
+been called. This is because the JMS provider may be modifying the Message object in another thread during this time.
+A JMS provider may throw a JMSException if the application attempts to access or modify the Message object after the send method has returned and before the CompletionListener has been invoked. If the JMS provider does not throw an exception then the behaviour is undefined.</description>         
+			<location chapter = "7" section = "7.3.9"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:141</id>         
+			<description>A JMS provider must deliver a NON_PERSISTENT message at-most-once. This means that it may lose the message, but it must not deliver it twice.</description>         
+			<location chapter = "7" section = "7.7"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:142</id>         
+			<description>A JMS provider must deliver a PERSISTENT message once-and-only-once. This means a JMS provider failure must not cause it to be lost, and it must not deliver it twice.</description>         
+			<location chapter = "7" section = "7.7"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:143</id>         
+			<description>Unacknowledged messages redelivered due to system failure must have the JMSRedelivered message header field set by the JMS provider.</description>         
+			<location chapter = "9" section = "9.1"/>      
+		</assertion>
+        <assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+			<id>JMS:SPEC:185</id>         
+			<description>If an application attempts to call any of the methods listed below, the JMS providers must throw an IllegalStateException.</description>
+            <location chapter = "9" section = "9.2"/>      
+            <sub-assertions>
+                <assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.1</id>
+                  <description>QueueConnection.createDurableConnectionConsumer</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.2</id>
+                  <description>QueueSession.createDurableSubscriber</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.3</id>
+                  <description>QueueSession.createTemporayTopic</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.4</id>
+                  <description>QueueSession.createTopic</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.5</id>
+                  <description>QueueSession.unsubscribe</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.6</id>
+                  <description>TopicSession.createQueueBrowser</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.7</id>
+                  <description>TopicSession.createQueue</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.8</id>
+                  <description>TopicSession.createTemporaryQueue</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.9</id>
+                  <description>QueueSession.createDurableConsumer</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                  <id>JMS:SPEC:185.10</id>
+                  <description>QueueSession.createSharedConsumer</description>
+                  <location chapter = "9" section = "9.2"/>
+                </assertion>
+            </sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:261</id>
+			<description>A client can specify a delivery delay value in milliseconds for each message it sends. This value defines a message delivery time which is the sum of the message's delivery delay and the GMT it is sent (for transacted sends, this is the time the client sends the message, not the time the transaction is committed). A message's delivery time is the earliest time when a JMS provider may make the message visible on the target destination and available for delivery to consumers. The provider must not deliver messages before the delivery time has been reached. For more information on message delivery delay, see Section 3.4.13 "JMSDeliveryTime".</description>
+			<location chapter = "7" section = "7.9"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:195</id>
+			<description>This chapter describes the semantics of the Point-to-Point model. These semantics must be supported regardless of whether the client programmer uses the PTP domain-specific interfaces, or the common interfaces that are described in Chapter 4,  JMS Common Facilities. The following table shows the interfaces that are specific to the PTP domain and the JMS common interfaces.The common interfaces are preferred for creating JMS client programs, because they are domain-independent.</description>
+			<location chapter = "4" section = "4.1.1"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:144</id>
+			<description>A TemporaryQueue is a unique Queue object created for the duration of a Connection or QueueConnection. It is a system-defined queue that can be consumed only by the Connection or QueueConnection that created it.</description>
+			<location chapter = "4" section = "4.1.4"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:145</id>         
+			<description>If there are messages that have been received but not acknowledged when a QueueSession terminates, these messages must be retained and redelivered when a consumer next accesses the queue.</description>         
+			<location chapter = "2" section = "2.9"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:146</id>
+			<description>If a QueueReceiver specifies a message selector, the messages that are not selected remain on the queue.</description>
+			<location chapter = "2" section = "2.9"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:147</id>
+			<description>Only QueueReceivers without a message selector will read messages in message producer order.</description>
+			<location chapter = "2" section = "2.9"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:148</id>
+			<description>A client uses a QueueBrowser to look at messages on a queue without removing them.</description>
+			<location chapter = "4" section = "4.1.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:149</id>
+			<description>The browse methods (of a QueueBrowser) return a java.util.Enumeration that is used to scan the queue's messages. It may be an enumeration of the entire content of a queue, or it may contain only the messages matching a message selector.</description>
+			<location chapter = "4" section = "4.1.5"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:273</id>
+			<description>The QueueRequestor constructor is given a QueueSession and a destination queue. It creates a TemporaryQueue for the responses and provides a request() method that sends the request message and waits for its reply.</description>
+			<location chapter = "4" section = "4.1.6"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:150</id>
+			<description>It(Queue) is always available to hold messages sent to it, whether or not the client that consumes its messages is active.</description>
+			<location chapter = "4" section = "4.1.7"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:196</id>
+			<description>This chapter describes the semantics of the Pub/Sub model. These semantics must be supported regardless of whether the client programmer uses the Pub/Sub domain interfaces, or the JMS common interfaces that are described in Chapter 4,  JMS Common Facilities.  The following table shows the interfaces that are specific to the Pub/Sub domain, and the JMS common interfaces. It is preferable to use the common interfaces when creating client programs, as they are domain-independent.</description>
+			<location chapter = "4" section = "4.1"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:151</id>         
+			<description>All JMS providers must be able to run JMS applications that dynamically create and delete durable subscriptions. Some JMS providers may, in addition, provide facilities to administratively configure durable subscriptions. If a durable subscription has been administratively configured, it is valid for it to silently override the subscription specified by the client.</description>         
+			<location chapter = "4" section = "4.2.1"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:152</id>
+			<description>Nondurable subscriptions last for the lifetime of their subscriber object. This means that a client will only see the messages published on a topic while its subscriber is active. If the subscriber is not active, it is missing messages published on its topic.</description>
+			<location chapter = "4" section = "4.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:153</id>
+			<description>A durable subscriber registers a durable subscription with a unique identity that is retained by JMS. Subsequent subscriber objects with the same identity resume the subscription in the state it was left in by the prior subscriber.</description>
+			<location chapter = "4" section = "4.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:154</id>
+			<description>If there is no active subscriber for a durable subscription, JMS retains the subscription's messages until they are received by the subscription or until they expire.</description>
+			<location chapter = "4" section = "4.2.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:155</id>
+			<description>A TemporaryTopic is a unique Topic object created for the duration of a Connection or TopicConnection. </description>
+			<location chapter = "4" section = "4.2.7"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:243</id> 
+			<description>It(TemporaryTopic) is a system-defined Topic that can be consumed only by the Connection or TopicConnection that created it. By definition, it does not make sense to create a durable subscription to a temporary topic. To do this is a programming error that may or may not be detected by a JMS provider.</description>
+			<location chapter = "4" section = "4.2.7"/>
+		</assertion>  
+        
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">            
+			<id>JMS:SPEC:242</id>            
+			<description>             A TopicConnection is an active connection to a JMS Pub/Sub provider. A client uses a TopicConnection to create one or more TopicSessions for producing and consuming messages.
+            
+			</description>            
+			<location chapter = "2" section = "2.9"/>        
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:156</id>         
+			<description>If there are messages that have been received but not acknowledged when a TopicSession terminates, a durable TopicSubscriber must retain and redeliver them; a nondurable subscriber need not do so.</description>         
+			<location chapter = "2" section = "2.9"/>      
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:158</id>
+			<description>A client uses a TopicPublisher for publishing messages on a topic.</description>
+			<location chapter = "2" section = "2.9"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:159</id>
+			<description>Ordinary TopicSubscribers are not durable. They only receive messages that are published while they are active.</description>
+			<location chapter = "4" section = "4.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:160</id>
+			<description>Messages filtered out by a subscriber's message selector will never be delivered to the subscriber. From the subscriber's perspective, they simply don't exist.</description>
+			<location chapter = "6" section = "4.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:161</id>
+			<description>In some cases, a connection may both publish and subscribe to a topic. The subscriber NoLocal attribute allows a subscriber to inhibit the delivery of messages published by its own connection.</description>
+			<location chapter = "4" section = "4.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:162</id>
+			<description>A client consumes messages from a topic by creating a subscription on that topic, and creating a MessageConsumer or TopicSubscriber on that subscription.  In general, a subscription will receive a copy of every message sent to the topic. However if a message selector is specified then only those messages whose properties match the message selector will be added to the subscription.  In addition, the noLocal flag may be specified when a MessageConsumer or TopicSubscriber is created. The effect of setting this flag depends on the type of subscription and is defined in the following sections.  Each copy of the message is treated as a completely separate message. Work done on one copy has no effect on any other; acknowledging one does not acknowledge any other; one message may be delivered immediately, while another waits for its consumer to process messages ahead of it.
+Subscriptions may be durable or non-durable.
+A non-durable subscription exists only so long as a MessageConsumer or TopicSubscriber object exists to consume messages from it. A non-durable subscription may be either unshared or shared.
+An unshared non-durable subscription does not have a name and may have only a single MessageConsumer or TopicSubscriber object associated with it. It is created automatically when the MessageConsumer or TopicSubscriber object is created. It is not persisted and is deleted automatically when it is closed. See section 6.11.1 "Unshared non-durable subscriptions" below.
+A shared non-durable subscription is identified by name, which may be used to associate several MessageConsumer or TopicSubscriber objects with it. It is created automatically when the first MessageConsumer or TopicSubscriber object is created. It is not persisted and is deleted automatically when the last MessageConsumer or TopicSubscriber object is closed. See section 6.11.2 "Shared non-durable subscriptions" below.
+A durable subscription is identified by a name and an optional client identifier, which may be used to associate several MessageConsumer or TopicSubscriber objects with it. A durable subscription is created automatically when the first MessageConsumer or TopicSubscriber object is created. It is persisted and continues to exist until explicitly deleted, even if there are no MessageConsumer or TopicSubscriber objects consuming messages from it. See section 4.2.3.3 "Durable subscriptions" below.</description>
+			<location chapter = "4" section = "4.2.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:266</id>
+			<description>An unshared non-durable subscription is the simplest way to consume messages from a topic. An unshared non-durable subscription is created, and a MessageConsumer created on that subscription, using one of the createConsumer methods on Session, JMSContext or TopicSession. Alternatively an unshared non-durable subscription is created, and a TopicSubscription created on that subscription, using one of the createSubscriber methods on TopicSession. An unshared non-durable subscription does not have a name. Each call to createConsumer or createSubscriber creates a new subscription. An unshared non-durable subscription only exists for as long as the MessageConsumer o
+r TopicSubscriber exists. This means that any messages sent to the topic will only be added to the subscription whilst the
+ MessageConsumer or TopicSubscriber is active. The subscription is not persisted and will be deleted (together with any un
+delivered messages associated with it) when the consumer is closed.</description>
+			<location chapter = "8" section = "8.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:267</id>
+			<description>If a message selector is specified then only messages with properties matching the message selector expression will be added to the subscription.  The noLocal argument may be used to specify that messages published to the topic by its own connection must not be added to the subscription.</description>
+			<location chapter = "8" section = "8.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:268</id>
+			<description>Each unshared non-durable subscription has a single consumer. If the application needs to create multiple consumers on the same subscription then a shared non-durable subscription should be used instead. See section 8.3.2 "Shared non-durable subscriptions".  If the application needs to be able to receive messages that were sent to the topic even when there was no active consumer on it then a durable subscription should be used instead. See section 8.3.3 "Durable subscriptions".</description>
+			<location chapter = "8" section = "8.3.1"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:269</id>
+			<description>A non-durable shared subscription is used by a client which needs to be able to share the work of receiving messages from a topic subscription amongst multiple consumers. A non-durable shared subscription may therefore have more than one consumer. Each message from the subscription will be delivered to only one of the consumers on that subscription.  A shared non-durable subscription is created, and a MessageConsumer created on that subscription, using one of the createSharedConsumer methods on Session, JMSContext or TopicSession. The same methods may be used to create a MessageConsumer on an existing shared non-durable subscription.  A shared non-durable subscription is identified by a name specified by the client. A shared non-durable subscription only exists for as long as a MessageConsumer or TopicSubscriber exists on the subscription. This means that any messages sent to the topic will only be added to the subscription whilst a MessageConsumer or TopicSubscriber is active. The subscription is not persisted and will be deleted (together with any undelivered messages associated with it) when the last consumer on the subscription is closed.</description>
+			<location chapter = "8" section = "8.3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:270</id>
+			<description>If a message selector is specified then only messages with properties matching the message selector expression will be added to the subscription. The noLocal argument may be used to specify that messages published to the topic by its own connection must not be added to the subscription.</description>
+			<location chapter = "8" section = "8.3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:271</id>
+			<description>If there is an active consumer on the non-durable shared subscription (or a consumed message from that subscription is still part of a pending transaction or is not yet acknowledged in the session), and an attempt is made to create an additional consumer, specifying the same name but a different topic or message selector, then a JMSException or JMSRuntimeException will be thrown. There is no restriction to prevent a shared non-durable subscription and a durable subscription having the same name. Such subscriptions would be completely separate.</description>
+			<location chapter = "8" section = "8.3.2"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:164</id>         
+			<description>A durable subscription is used by a client which needs to receive all the messages published on a topic, including the ones published when there is no MessageConsumer or TopicSubscriber associated with it. The JMS provider retains a record of this durable subscription and ensures that all messages from the topic's publishers are retained until they are delivered to, and acknowledged by, a MessageConsumer or TopicSubscriber on the durable subscription or until they have expired.
+A durable subscription is created, and a MessageConsumer created on that durable subscription, using the createDurableConsumer methods on a Session or TopicSession. The same methods may be used to create a MessageConsumer on an existing durable subscription. There are also createDurableSubscriber methods which have the same behavior as createDurableConsumer but which return a TopicSubscriber. These methods are deprecated since the object they return is deprecated. A durable subscription which has a MessageConsumer or TopicSubscriber associated with it is described as being active. A durable subscription which has no MessageConsumer or TopicSubscriber associated with it is described as being inactive. Only one session at a time can have a MessageConsumer or TopicSubscriber for a particular durable subscription. A durable subscription is identified by a name specified by the client and by the client identifier if set. If the client identifier was set when the durable subscription was first created then a client which subsequently wishes to create a MessageConsumer or TopicSubscriber on that durable subscription must use the same client identifier.</description>         
+			<location chapter = "4" section = "4.2.3.3"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:274</id>         
+			<description>A durable subscription may have more than one active consumer (this was not permitted prior to JMS 2.0). Each message from the subscription will be delivered to only one of the consumers on that subscription.</description>         
+			<location chapter = "4" section = "4.2.3.3"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:165</id>
+			<description>A client can change an existing durable subscription by calling one of the createDurableConsumer methods with the same name and client identifier (if used), and a new topic and/or message selector. Changing a durable subscriber is equivalent to unsubscribing (deleting) the old one and creating a new one.</description>
+			<location chapter = "4" section = "4.2.3.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:166</id>
+			<description>A durable subscription will continue to accumulate messages until it is deleted using the unsubscribe method on the Sessions and or TopicSession. This deletes the state being maintained on behalf of the subscriber by its provider. It is erroneous for a client to delete a durable subscription while it has an active MessageConsumer or TopicSubscriber for it or while a message received by it is part of a current transaction or has not been acknowledged in the session.
+When a durable subscription is created on a topic, the noLocal argument may be used to specify that messages published to the topic by its own connection must not be added to the durable subscription.</description>
+			<location chapter = "4" section = "4.2.3.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:272</id>
+			<description>If there are no active consumers on the durable subscription (and no consumed messages from that subscription are still part of a pending transaction or are not yet acknowledged in the session), and this method is used to create a new consumer on that durable subscription, specifying the same name and client identifier (if set) but a different topic or message selector, then the durable subscription will be deleted and a new one created. However if there is an active consumer on the durable subscription (or a consumed message from that subscription is still part of a pending transaction or is not yet acknowledged in the session), and an attempt is made to create an additional consumer, specifying the same name and client identifier (if set) but a different topic or message selector, then a JMSException or JMSRuntimeException will be thrown.</description>
+			<location chapter = "4" section = "4.2.3.3"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:167</id>
+			<description>Unacknowledged messages of a nondurable subscriber should be able to be recovered for the lifetime of that nondurable subscriber. When a nondurable subscriber terminates, messages waiting for it will likely be dropped whether or not they have been acknowledged.</description>
+			<location chapter = "4" section = "4.2.8"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:168</id>
+			<description>Only durable subscriptions are reliably able to recover unacknowledged messages.</description>
+			<location chapter = "4" section = "4.2.8"/>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			<id>JMS:SPEC:170</id>
+			<description>The TopicRequestor constructor is given a TopicSession and a destination topic. It creates a TemporaryTopic for the responses and provides a request() method that sends the request message and waits for its reply.</description>
+			<location chapter = "4" section = "4.2.10"/>
+		</assertion>  
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:171</id>         
+			<description>IllegalStateException: This exception is thrown when a method is invoked at an illegal or inappropriate time or if the provider is not in an appropriate state for the requested operation. For example, this exception must be thrown if Session.commit() is called on a non-transacted session.</description>         
+			<location chapter = "10" section = "10.3"/> 
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:172</id>         
+			<description>JMSSecurityException: This exception must be thrown when a provider rejects a user name/password submitted by a client. It may also be thrown for any case where a security restriction prevents a method from completing.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:173</id>         
+			<description>InvalidClientIDException: This exception must be thrown when a client attempts to set a connection's client identifier to a value that is rejected by a provider.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:174</id>         
+			<description>InvalidDestinationException: This exception must be thrown when a destination is either not understood by a provider or is no longer valid.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:175</id>         
+			<description>InvalidSelectorException: This exception must be thrown when a JMS client attempts to give a provider a message selector with invalid syntax.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:176</id>         
+			<description>MessageEOFException: This exception must be thrown when an unexpected end of stream has been reached when a StreamMessage or BytesMessage is being read.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:177</id>         
+			<description>MessageFormatException: This exception must be thrown when a JMS client attempts to use a data type not supported by a message or attempts to read data in a message as the wrong type. It must also be thrown when equivalent type errors are made with message property values. For example, this exception must be thrown if StreamMessage.writeObject() is given an unsupported class or if StreamMessage.readShort() is used to read a boolean value. This exception also must be thrown if a provider is given a type of message it cannot accept. Note that the special case of a failure caused by attempting to read improperly formatted String data as numeric values must throw the java.lang.NumberFormatException.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:178</id>         
+			<description>MessageNotReadableException: This exception must be thrown when a JMS client attempts to read a write-only message.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:179</id>         
+			<description>MessageNotWriteableException: This exception must be thrown when a JMS client attempts to write to a read-only message.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:180</id>         
+			<description>ResourceAllocationException: This exception is thrown when a provider is unable to allocate the resources required by a method. For example, this exception should be thrown when a call to createTopicConnection fails due to lack of JMS provider resources.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:181</id>         
+			<description>TransactionInProgressException: This exception is thrown when an operation is invalid because a transaction is in progress. For instance, attempting to call Session.commit() when a session is part of a distributed transaction should throw a TransactionInProgressException.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			<id>JMS:SPEC:182</id>         
+			<description>TransactionRolledBackException: This exception must be thrown when a call to Session.commit results in a rollback of the current transaction.</description>         
+			<location chapter = "10" section = "10.3"/>      
+		</assertion>   
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:183</id>         
+			<description>For application servers, connections provide a special facility for creating a ConnectionConsumer. The messages it is to consume are specified by a destination and a message selector. In addition, a ConnectionConsumer must be given a ServerSessionPool to use for processing its messages.</description>         
+			<location chapter = "11" section = "11.2.4"/>      
+		</assertion>   
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:184</id>         
+			<description>An XAResource provides some fairly sophisticated facilities for interleaving work on multiple transactions, recovering a list of transactions in progress, and so on. A JTA aware JMS provider must fully implement this functionality.</description>         
+			<location chapter = "11" section = "11.3.5"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
+			<id>JMS:SPEC:263</id>         
+			<description>The Java Platform, Enterprise Edition (Java EE) Specification, v7 requires support for the JMS API as part of the full Java EE platform.
+The Java EE platform provides a number of additional features which are not available in the Java Platform Standard Edition (Java SE). These include the following: 1) Support for distributed transactions which are demarcated either programmatically, using methods on javax.transaction.UserTransaction, or automatically by the container. These are referred to in this specification as JTA transactions to distinguish them from JMS local transactions.  2) Support for JMS message-driven beans.  These features are defined in detail in other specifications including the Java EE 7 specification and the Enterprise JavaBeans 3.2 specification. However the use of the Java EE platform imposes restrictions on the way that the JMS API may be used by applications, and those restrictions are described here.  The JMS specification does not define how a Java EE container integrates with its JMS provider. Different Java EE containers may integrate with their JMS provider in different ways.  In the future, an integration point for JMS integration into J2EE platforms will be provided using the J2EE Connector Architecture.
+</description>
+			<location chapter = "12" section = "12.1"/>      
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:264</id>         
+			<description>JMS applications which run in the Java EE web or EJB container are subject to a number of restrictions in the way the JMS API may be used. These restrictions are necessary for the following reasons:
+1) In a Java EE web or EJB container, a JMS provider operates as a transactional resource manager which must participate in JTA transactions as defined in the Java EE platform specification. This overrides the behaviour of JMS sessions as defined elsewhere in the JMS specification. For more details see section 12.3 "Behaviour of JMS sessions in the Java EE web or EJB container".
+2) The Java EE web or EJB containers need to be able to manage the threads used to run applications.
+3) The Java EE web and EJB containers perform connection management which may include the pooling of JMS connections.
+The restrictions described in this section do not apply to the Java EE application client container.
+Applications running in the Java EE web and EJB containers must not attempt to create more than one active (not closed) Session object per connection.</description>
+			<location chapter = "12" section = "12.2"/>      
+                        <sub-assertions>
+		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:264.1</id>
+			          <description>If an application attempts to use the Connection object's createSession method when an active Session object exists for that connection then a JMSException should be thrown.</description>
+			          <location chapter = "12" section = "12.2"/>
+		             </assertion>      
+		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:264.2</id>
+			          <description>If an application attempts to use the JMSContext object's createContext method then a JMSRuntimeException should be thrown, since the first messaging context already contains a connection and session and this method would create a second session on the same connection.</description>
+			          <location chapter = "12" section = "12.2"/>
+		             </assertion>      
+		             <assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:264.3</id>
+			          <description>The following methods are intended for use by the application server and their use by applications running in the Java EE web or EJB container may interfere with the container's ability to properly manage the threads used in the runtime environment. They must therefore not be called by applications running in the Java EE web or EJB container:
+1) javax.jms.Session method setMessageListener
+2) javax.jms.Session method getMessageListener
+3) javax.jms.Session method run
+4) javax.jms.Connection method createConnectionConsumer
+5) javax.jms.Connection method createDurableConnectionConsumer
+</description>
+			          <location chapter = "12" section = "12.2"/>
+		             </assertion>      
+		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:264.4</id>
+			          <description>The following methods may interfere with the container's ability to properly manage the threads used in the runtime environment and must not be used by applications running in the Java EE web or EJB container:
+1) javax.jms.MessageConsumer method setMessageListener
+2) javax.jms.MessageConsumer method getMessageListener
+3) javax.jms.JMSContext method setMessageListener
+4) javax.jms.JMSContext method getMessageListener This restriction means that applications running in the Java EE web or EJB container which need to receive messages asynchronously may only do so using message-driven beans.</description>
+			          <location chapter = "12" section = "12.2"/>
+		             </assertion>      
+		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:264.5</id>
+			          <description>The following methods may interfere with the container's management of connections and must not be used by applications running in the Java EE web or EJB container:
+1) javax.jms.Connection method setClientID
+2) javax.jms.Connection method stop
+3) javax.jms.Connection method setExceptionListener
+4) javax.jms.JMSContext method setClientID
+5) javax.jms.JMSContext method stop
+6) javax.jms.JMSContext method setExceptionListener
+Applications which need to use a specific client identifier must set it on the connection factory, as described in section 6.1.2 "Client Identifier"
+All the methods listed in this section may throw a javax.jms.JMSException (if allowed by the method) or a javax.jms.JMSRuntimeException (if not) when called by an application running in the Java EE web or EJB container. This is recommended but not required.</description>
+			          <location chapter = "12" section = "12.2"/>
+		             </assertion>      
+                        </sub-assertions>
+		</assertion>   
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:265</id>         
+			<description>The behaviour of a JMS session in respect of transactions and message acknowledgement is different for applications which run in a Java EE web or EJB container than it is for applications which run in a normal Java SE environment or in the Java EE application client container.
+These differences also apply to JMS messaging context objects, since these incorporate a JMS session.
+When an application creates a JMS session or messaging context in a Java EE web or EJB container, and there is an active JTA transaction in progress, then the session that is created will participate in the JTA transaction and will be committed or rolled back when the JTA transaction is committed or rolled back. Any session parameters that are specified when creating the session or messaging context are ignored. The use of local transactions or client acknowledgement is not permitted.
+This applies irrespective of whether the JTA transaction is demarcated automatically by the container or programmatically using methods on javax.transaction.UserTransaction.
+The term "session parameters" here refers to the arguments that may be passed into a call to the createSession or createContext methods to specify whether the session should use a local transaction and, if the session is non-transacted, what the acknowledgement mode should be.
+When an application creates a JMS session or messaging context in a Java EE web or EJB container, and there is no active JTA transaction in progress, then the session that is created will be non-transacted and will be automatically-acknowledged. The use of local transactions or client acknowledgement is still not permitted. Parameters may be specified when creating the session or messaging context to specify whether the acknowledgement mode should be AUTO_ACKNOWLEDGE or DUPS_OK_ACKNOWLEDGE. If any other session parameter values are specified they will be ignored and an acknowledgement mode of AUTO_ACKNOWLEDGE used.
+The use of local transactions or client acknowledgement is not permitted in a Java EE web or EJB container even if there is no active JTA transaction because this would require applications to be written differently depending on whether there was a JTA transaction or not.</description>
+			<location chapter = "12" section = "12.3"/>      
+                        <sub-assertions>
+		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:265.1</id>
+			          <description>The JMS API provides the following methods to create a session which allow the session to be defined using either the two parameters transacted and acknowledgeMode or by the single parameter sessionMode. If these methods are called in a Java EE web or EJB container then these parameters will be overridden as described above.
+1) javax.jms.Connection method createSession(boolean transacted, int acknowledgeMode)
+2) javax.jms.QueueConnection method createQueueSession(boolean transacted, int acknowledgeMode)
+3) javax.jms.TopicConnection method createTopicSession(boolean transacted, int acknowledgeMode)
+4) javax.jms.Connection method createSession(int sessionMode)
+It is recommended that applications that run in the Java EE web or EJB container create a session using the following method which does not specify a parameter: javax.jms.Connection method createSession() </description>
+			          <location chapter = "12" section = "12.3"/>
+		             </assertion>      
+		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:265.2</id>
+			          <description>The JMS API provides the following methods to create a messaging context which allow the session to be defined using the single parameter sessionMode. If these methods are called in a Java EE web or EJB container then this parameter will be overridden as described above.
+1) javax.jms.ConnectionFactory method createContext(int sessionMode)
+2) javax.jms.ConnectionFactory method createContext(String userName, String password, int sessionMode)</description>
+			          <location chapter = "12" section = "12.3"/>
+		             </assertion>      
+		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			          <id>JMS:SPEC:265.3</id>
+			          <description>The following method to create a messaging context from an existing messaging context is not permitted in a Java EE web or EJB container because it would create a second session on an existing connection, which is not permitted in a java EE web or EJB container.]
+1) javax.jms.JMSContext method createContext(int sessionMode)
+It is recommended that applications that run in the Java EE web or EJb container creates a messaging context using one of the following methods which does do specify a sessionMode:
+1) javax.jms.ConnectionFactory method createContext() 
+2) javax.jms.ConnectionFactory method createContext(String username, String password)</description>
+			          <location chapter = "12" section = "12.3"/>
+		             </assertion>      
+		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
+			          <id>JMS:SPEC:265.4</id>
+			          <description>When programmatic transaction demarcation is being used, the session should be both created and used within an active JTA transaction.
+If a session or messaging context is created when there is an active JTA transaction, then after that transaction is committed or rolled back the session remains available for use in any subsequent JTA transaction until the session or messaging context is closed.
+However, if a session or messaging context is created when there is an active JTA transaction but is subsequently used to send or receive messages when there is no active JTA transaction then the behaviour is undefined.
+Similarly, if a session or messaging context is created when there is no active JTA transaction but subsequently used to send or receive messages when there is an active JTA transaction then the behaviour is undefined.
+The Bean Provider should not make use of the JMS request/reply paradigm (sending of a JMS message, followed by the synchronous receipt of a reply to that message) within a single transaction. Because a JMS message is typically not delivered to its final destination until the transaction commits, the receipt of the reply within the same transaction will not take place.</description>
+			          <location chapter = "12" section = "12.3"/>
+		             </assertion>      
+                        </sub-assertions>
+		</assertion>   
+		<assertion testable = "true" defined-by = "technology" impl-spec = "false" required = "true" status = "active">
+		    <id>JMS:SPEC:276</id>
+		    <description>
+A JMS standard resource adapter must support the ActivationSpec JavaBean properties defined in the following table. It may support additional properties in addition to those listed.
+		    </description>
+		    <location chapter = "13" section = "13.1"/>
+		    <sub-assertions>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.1</id>
+			    <description>
+destinationLookup -
+This property may be used to specify the lookup name of an administratively-defined javax.jms.Queue or javax.jms.Topic object which defines the JMS queue or topic from which the endpoint (message-driven bean) is to receive messages.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.2</id>
+			    <description>
+connectionFactoryLookup -
+This property may be used to specify the lookup name of an administratively-defined javax.jms.ConnectionFactory, javax.jms.QueueConnectionFactory or javax.jms.TopicConnectionFactory object that will be used to connect to the JMS provider from which the endpoint (message-driven bean) is to receive messages.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.3</id>
+			    <description>
+acknowledgeMode -
+If bean-managed transaction demarcation is used, this property may be used to indicate whether JMS AUTO_ACKNOWLEDGE semantics or DUPS_OK_ACKNOWLEDGE semantics should apply.
+This property may be set to either Auto-acknowledge or Dups-ok-acknowledge. If this property is not specified, a default of Auto-acknowledge will be used.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.4</id>
+			    <description>
+messageSelector -
+This property may be used to specify a message selector. If this property is not specified then a message selector will not be used.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.5</id>
+			    <description>
+destinationType -
+This property may be used to specify whether the specified destination is a queue or topic. The valid values are javax.jms.Queue or javax.jms.Topic.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.6</id>
+			    <description>
+subscriptionDurability -
+This property only applies to endpoints (message-driven beans) that receive messages published to a topic. It may be used to specify whether the subscription is durable or non-durable.
+This property may be set to either Durable or NonDurable. If this property is not specified, a default of NonDurable will be used.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.7</id>
+			    <description>
+clientId -
+This property may be used to specify the client identifier that will be used when connecting to the JMS provider from which the endpoint (message-driven bean) is to receive messages. Setting this property is always optional.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.8</id>
+			    <description>
+subscriptionName -
+This property only applies to endpoints (message-driven beans) that receive messages published to a topic. It may be used to specify the name of the durable or non-durable subscription.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+			<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+			    <id>JMS:SPEC:276.9</id>
+			    <description>
+MDB activation properties. Message-driven beans are defined in the Enterprise JavaBeans specification. JMS defines the following activation properties for message-driven beans.
+			    </description>
+			    <location chapter = "13" section = "13.1"/>
+			</assertion>
+		    </sub-assertions>
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:277</id>         
+			<description>Support for injection.
+Injection of JMSContext objects is supported in those Java EE application classes which support dependency injection using CDI and for which CDI support has been enabled by means of a META_INF/beans.xml descriptor.
+Section EE.5.20 of the Java EE specification lists the application classes that support dependency injection using CDI.
+Section 12.1 of the CDI specification specifies how CDI support may be enabled for a particular application.</description>
+			<location chapter = "12" section = "12.4.1"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:278</id>         
+			<description>Container-managed and application-managed JMSContexts.
+A JMSContext object which has been injected is described as being container-managed, as it is created and closed by the container, not the application.
+A JMSContext object which has been created by calling the ConnectionFactory method createContext is described as being application-managed. The application is responsible for calling close when the object is not longer needed.</description>
+			<location chapter = "12" section = "12.4.2"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:279</id>         
+			<description>Injection syntax.
+Applications may declare a field of type javax.jms.JMSContext and annotate it with the javax.inject.Inject annotation:
+@Inject private JMSContext context; The container will inject a JMSContext. This object will have a scope as defined by section 12.4.3 "Scope of injected JMSContext objects". The annotation javax.jms.JMSConnectionFactory may be used to specify the JNDI lookup name of the ConnectionFactory used to create the JMSContext. For example:
+@Inject @JMSConnectionFactory("jms/connectionFactory") private JMSContext context;
+If no lookup name is specified or the JMSConnectionFactory annotation is omitted then the platform default JMS connection factory will be used.
+The annotation javax.jms.JMSPasswordCredential may be used to specify a user name and password which will be used when the JMSContext is created. For example:
+@Inject @JMSConnectionFactory("jms/connectionFactory") @JMSPasswordCredential(userName="admin",password="mypassword")
+private JMSContext context;
+Since it is undesirable to hardcode clear text passwords in an application, the password may be specified as an alias:
+@Inject @JMSPasswordCredential( username="admin", password="${ALIAS=myAdminPassword}")
+private JMSContext context;
+The use of a password alias allows the password to be defined in a secure manner separately from the application. See the Java EE 7 platform specification for more information on password aliases.
+The annotation javax.jms.JMSSessionMode may be used to specify the session mode of the JMSContext. For example:
+@Inject
+@JMSConnectionFactory("jms/connectionFactory")
+@JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)
+private JMSContext context;
+The meaning and possible values of session mode are the same as for the ConnectionFactory method createContext(int sessionMode):
+In the Java EE application client container, session mode may be set to any of JMSContext.SESSION_TRANSACTED, JMSContext.CLIENT_ACKNOWLEDGE, JMSContext.AUTO_ACKNOWLEDGE or
+JMSContext.DUPS_OK_ACKNOWLEDGE. If no session mode is specified or the JMSSessionMode annotation is omitted a session mode of JMSContext.AUTO_ACKNOWLEDGE will be used.
+In a Java EE web or EJB container, when there is an active JTA transaction in progress, session mode is ignored and the JMSSessionMode annotation is unnecessary.
+In a Java EE web or EJB container, when there is no active JTA transaction in progress, session mode may be set to either of JMSContext.AUTO_ACKNOWLEDGE or JMSContext.DUPS_OK_ACKNOWLEDGE. If no session mode is specified or the JMSSessionMode annotation is omitted a session mode of JMSContext.AUTO_ACKNOWLEDGE will be used.
+For more information about the use of session mode when creating a messaging context, see section 12.3 "Behaviour of JMS sessions in the Java EE web or EJB container" and the API documentation for the ConnectionFactory method createContext(int sessionMode).</description>
+			<location chapter = "12" section = "12.4.3"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:280</id>         
+			<description>Scope of injected JMSContext objects.
+The scope of an injected JMSContext defines whether different injected JMSContext objects will actually refer to the same JMSContext object
+It also defines when the injected JMSContext will be closed by the container. When the object falls out of scope, the container will automatically call close().
+The scope of an injected JMSContext object will depend on whether it is used in a transaction.
+If an injected JMSContext is used in a JTA transaction (both bean-managed and container-managed), its scope will be that of the transaction. This means that:
+The JMSContext object will be automatically created the first time it is used within the transaction.
+The JMSContext object will be automatically closed when the transaction is committed.
+Within the same JTA transaction, different injected JMSContext objects which are injected using identical annotations will all refer to the same JMSContext object.
+If an injected JMSContext is used when there is no JTA transaction then its scope will be the existing CDI scope @RequestScoped. This means that:
+The JMSContext object will be automatically created the first time it is used within a request.
+The JMSContext object will be automatically closed when the request ends.
+Within the same request, different injected JMSContext objects which are injected using identical annotations will all refer to the same JMSContext object.
+If an injected JMSContext is used both in a JTA transaction and outside a JTA transaction then separate JMSContext objects will be used, with a separate JMSContext object being used for each JTA transaction as described above.</description>
+			<location chapter = "12" section = "12.4.4"/>      
+		</assertion>
+		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
+			<id>JMS:SPEC:281</id>         
+			<description>Restrictions on use of injected JMSContext objects.
+Within the same scope, different injected JMSContext objects which are injected using identical annotations will all refer to the same JMSContext object.
+This means that they will all use the same connection. This will reduce the resource usage of the application and improve performance.
+It also means that messages would be sent using the same session. Messages sent using different JMSContext objects in the same scope will be therefore received in order in which they were sent (see section 6.2.9.2 "Order of message sends" for a few qualifications).
+However, to avoid the possibility of code in one bean having an unexpected effect on a different bean, the following methods which change the public state of a JMSContext will not be permitted if the JMSContext is injected.
+O setClientID
+O setExceptionListener
+O stop
+O acknowledge
+O commit
+O rollback
+O recover
+O setAutoStart
+O start
+O close
+These methods must throw a JMSRuntimeException if the JMSContext is injected. These restrictions do not apply when the JMSContext is managed by the application; though note that several of these methods are in any case prohibited in a Java EE web or EJB container.</description>
+			<location chapter = "12" section = "12.4.5"/>      
+		</assertion>
+	</assertions>   
+</spec>

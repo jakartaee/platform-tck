@@ -1,0 +1,17 @@
+WSRAnn=@WebServiceRef(name="service/WSW2JRLR1012TestService")
+SERVICE=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestService
+SERVLETNAME=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestOneImpl
+IMPL=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestOneImpl
+URLALIAS=/jaxws/W2JRLR1012TestOne
+SERVLETNAME2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestTwoImpl
+IMPL2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestTwoImpl
+URLALIAS2=/jaxws/W2JRLR1012TestTwo
+SEI=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestOne
+SEI2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestTwo
+NAMESPACEURI=http://w2jrlr1012testservice.org/W2JRLR1012TestService.wsdl
+PORT=W2JRLR1012TestOnePort
+PORT2=W2JRLR1012TestTwoPort
+WEBSERVICEDESCRIPTION=W2JRLR1012TestService
+SERVICEREFNAMEWSSERVLET=service/WSW2JRLR1012TestService
+SERVICEREFNAMEWSEJB=service/WSW2JRLR1012TestService
+SERVICEREFNAMEWSAPPCLIENT=service/WSW2JRLR1012TestService

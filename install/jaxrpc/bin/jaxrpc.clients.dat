@@ -1,0 +1,12 @@
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc.Call=HelloService
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc.Service=HelloService
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc.Stub=HelloService
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc_encoding.TypeMappingRegistry=HelloService
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc_handler.HandlerRegistry=HandlerRegistryService
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc_handler.MessageContext=HandlerService
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc_handler_soap.SOAPMessageContext=HandlerService
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc_server.ServiceLifecycle=HelloService
+com.sun.ts.tests.jaxrpc.api.javax_xml_rpc_server.ServletEndpointContext=HelloService
+com.sun.ts.tests.jaxrpc.sharedclients.faultclient=FaultTest
+com.sun.ts.tests.jaxrpc.sharedclients.simpleclient=SimpleTest
+com.sun.ts.tests.jaxrpc.sharedclients.soapactionclient=SoapAction

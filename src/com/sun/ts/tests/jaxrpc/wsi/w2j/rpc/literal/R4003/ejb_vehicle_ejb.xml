@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1">
+  <display-name>Ejb1</display-name>
+  <enterprise-beans>
+    <session>
+      <ejb-name>com_sun_ts_tests_common_vehicle_ejb_EJBVehicle</ejb-name>
+      <home>com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome</home>
+      <remote>com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote</remote>
+      <ejb-class>com.sun.ts.tests.common.vehicle.ejb.EJBVehicle</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+      <service-ref>
+        <service-ref-name>service/W2JRLR4003TestService</service-ref-name>
+        <service-interface>javax.xml.rpc.Service</service-interface>
+        <wsdl-file>META-INF/wsdl/W2JRLR4003TestService.wsdl</wsdl-file>
+        <jaxrpc-mapping-file>W2JRLR4003TestService.xml</jaxrpc-mapping-file>
+        <port-component-ref>
+          <service-endpoint-interface>com.sun.ts.tests.jaxrpc.wsi.w2j.rpc.literal.R4003.W2JRLR4003Test</service-endpoint-interface>
+        </port-component-ref>
+      </service-ref>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>com_sun_ts_tests_common_vehicle_ejb_EJBVehicle</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>runTest</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

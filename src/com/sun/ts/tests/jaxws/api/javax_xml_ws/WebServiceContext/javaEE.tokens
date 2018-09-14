@@ -1,0 +1,7 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jhellosecureservice")
+SERVICE=com.sun.ts.tests.jaxws.sharedclients.hellosecureclient.HelloService
+URLALIAS=/jaxws/Hello
+WEBSERVICEDESCRIPTION=HelloService
+SERVICEREFNAMEWSSERVLET=service/wsw2jhellosecureservice
+SERVICEREFNAMEWSEJB=service/wsw2jhellosecureservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jhellosecureservice

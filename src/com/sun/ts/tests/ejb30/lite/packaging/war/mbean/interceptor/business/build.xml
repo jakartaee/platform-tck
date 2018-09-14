@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3 lite" basedir="." default="usage">
+  <import file="../../../../../../common/import.xml" />
+  <property name="app.name" value="ejblite_packaging_war_mbean_interceptor_business" />
+  <property name="app.common" value="com/sun/ts/tests/ejb30/lite/interceptor/common/business"/>
+  <property name="app.common.2" value="com/sun/ts/tests/ejb30/common/appexception"/>
+
+  <target name="package">
+    <ts.vehicles name="${app.name}" buildleveloverride="2"
+      classes="
+      com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+      com/sun/ts/tests/ejb30/lite/interceptor/common/business/InterceptorBeanBase.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/InterceptorIF.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/InterceptorBaseBase.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/InterceptorBase.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/InterceptorOverrideBase.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/ClientBase.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor1.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor2.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor3.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor4.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor5.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor6.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor7.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor8.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor9.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/TestBean.class,
+        com/sun/ts/tests/ejb30/common/appexception/AtCheckedRollbackAppException.class
+	    ">
+    </ts.vehicles>
+  </target>
+
+</project>

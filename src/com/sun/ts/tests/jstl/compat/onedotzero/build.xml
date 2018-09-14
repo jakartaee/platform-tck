@@ -1,0 +1,59 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jstl_1_0_compat" basedir="." default="usage">
+    
+    <!-- IMPORTS -->
+    <import file="../../../../../../../../src/com/sun/ts/tests/jstl/common/build.xml"/>
+    
+    <property name="app.name" value="jstl_1_0_compat"/>
+    <property name="pkg.name" value="compat/onedotzero"/>
+    <property name="classes.dir" value="${ts.home}/classes/com/sun/ts/tests/jstl"/>
+    <property name="contentroot.dir" value="${ts.home}/src/web/jstl/compat/onedotzero"/>
+
+    <!-- DO NO USE PACKAGER -->
+    <target name="package" depends="dist">
+        <mkdir dir="${ts.home}/webtmp"/>
+        <mkdir dir="${ts.home}/weblib"/>
+        <mkdir dir="${ts.home}/dist/com/sun/ts/tests/jstl/compat/onedotzero"/>
+        <unjar src="${basedir}/jstl_1_0_compat_web.war" dest="${ts.home}/webtmp"/>
+        <delete dir="${ts.home}/webtmp/META-INF"/>
+        <copy file="${basedir}/jstl_1_0_compat_web.xml" tofile="${ts.home}/webtmp/WEB-INF/web.xml"/>
+        <copy todir="${ts.home}/webtmp/WEB-INF/lib">
+            <fileset dir="${ts.home}/weblib" includes="**/*.jar" />
+            <fileset dir="${ts.home}/lib" includes="jstltck-common.jar" />
+            <fileset dir="${ant.home}/lib" includes="ant.jar" />
+        </copy>
+        <copy tofile="${ts.home}/webtmp/WEB-INF/jstl-sql.properties" file="${bin.dir}/tssql.stmt"/>
+        <jar destfile="${ts.home}/dist/com/sun/ts/tests/jstl/compat/onedotzero/jstl_1_0_compat_web.war"
+            basedir="${ts.home}/webtmp"/>
+        <delete dir="${ts.home}/webtmp"/>
+    </target>
+
+    <target name="package.compat" depends="compile">
+        <mkdir dir="${ts.home}/webtmp/WEB-INF/lib"/>
+        <copy todir="${ts.home}/webtmp">
+            <fileset dir="${contentroot.dir}" excludes="**/*.gf"/>
+        </copy>
+        <jar destfile="${basedir}/jstl_1_0_compat_web.war"
+             basedir="${ts.home}/webtmp"
+	     excludes="**/*.jar"/>
+        <delete dir="${ts.home}/webtmp"/>
+    </target>
+
+</project>

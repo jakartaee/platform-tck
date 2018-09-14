@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE application-client PUBLIC '-//Sun Microsystems, Inc.//DTD J2EE Application Client 1.2//EN' 'http://java.sun.com/j2ee/dtds/application-client_1_2.dtd'>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<application-client>
+  <display-name>compat12_ejb_sec_client</display-name>
+  <description>TS appclient stateful sec test</description>
+  <ejb-ref>
+    <ejb-ref-name>ejb/SecTest</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.compat12.ejb.sec.SecTestHome</home>
+    <remote>com.sun.ts.tests.compat12.ejb.sec.SecTest</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/SecTestRoleRef</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.compat12.ejb.sec.SecTestRoleRefHome</home>
+    <remote>com.sun.ts.tests.compat12.ejb.sec.SecTestRoleRef</remote>
+  </ejb-ref>
+</application-client>
+

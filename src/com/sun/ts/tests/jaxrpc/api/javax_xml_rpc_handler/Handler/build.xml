@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jaxrpc_api_javax_xml_rpc_handler_handler" basedir="." default="usage">
+<import file="../../../../../../../../../bin/xml/ts.import.xml"/>
+
+  <property name="app.name" value="Handler"/>
+  <property name="wsdl.file" value="HandlerService.wsdl"/>
+  <property name="MetaData.file" value="HandlerService.xml"/>
+  <property name="impl.classes" value="com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/HelloImpl.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/Hello2Impl.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ServerHandler1.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ServerHandler2.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ServerHandler3.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ServerHandler4.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ServerHandler5.class"/>
+  <property name="portable.classes" value="com/sun/ts/tests/jaxrpc/common/HandlerTracker.class,     com/sun/ts/tests/jaxrpc/common/HandlerBase.class,     com/sun/ts/tests/jaxrpc/common/JAXRPC_Util.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ClientHandler1.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ClientHandler2.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ClientHandler3.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ClientHandler4.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ClientHandler5.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/Hello.class,     com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/Hello2.class"/>
+
+  <target name="-precompile">
+    <ant dir="../../../sharedwebservices/helloservice" target="build" inheritAll="false"/>
+    <ant dir="../../../sharedwebservices/hellosecureservice" target="build" inheritAll="false"/>
+  </target>
+
+  <target name="package" >
+
+      <ts.war archivename="${app.name}" descriptor="web.xml">
+        <zipfileset dir="${class.dir}" includes="${portable.classes}" prefix="WEB-INF/classes"/>
+        <zipfileset dir="${class.dir}" includes="${impl.classes}" prefix="WEB-INF/classes"/>
+        <zipfileset dir="." includes="webservices.xml" prefix="WEB-INF"/>
+        <zipfileset dir="." includes="${wsdl.file}" prefix="WEB-INF/wsdl"/>
+        <zipfileset dir="." includes="${MetaData.file}"/>
+      </ts.war>
+
+      <ts.ear archivename="${app.name}" includedefaultfiles="false">
+        <fileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war"/>
+      </ts.ear>
+
+      <ts.vehicles name="${app.name}"
+                   excludedfiles="com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/Hello*Impl.class,
+                                  com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler/ServerHandler*.class">
+        <ejb-elements>
+          <fileset dir="${class.dir}" includes="${portable.classes}"/>
+          <fileset dir="." includes="${MetaData.file}"/>
+          <zipfileset dir="." includes="${wsdl.file}" prefix="META-INF/wsdl"/>
+        </ejb-elements>
+        <client-elements>
+          <fileset dir="${class.dir}" includes="${portable.classes}"/>
+          <fileset dir="." includes="${MetaData.file}"/>
+          <zipfileset dir="." includes="${wsdl.file}" prefix="META-INF/wsdl"/>
+        </client-elements>
+        <servlet-elements>
+          <zipfileset dir="${class.dir}" includes="${portable.classes}" prefix="WEB-INF/classes"/>
+          <fileset dir="." includes="${MetaData.file}"/>
+          <zipfileset dir="." includes="${wsdl.file}" prefix="WEB-INF/wsdl"/>
+        </servlet-elements>
+        <jsp-elements>
+          <zipfileset dir="${class.dir}" includes="${portable.classes}" prefix="WEB-INF/classes"/>
+          <fileset dir="." includes="${MetaData.file}"/>
+          <zipfileset dir="." includes="${wsdl.file}" prefix="WEB-INF/wsdl"/>
+        </jsp-elements>
+      </ts.vehicles>
+
+  </target>
+
+</project>
+

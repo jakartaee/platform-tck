@@ -1,0 +1,717 @@
+#Signature file v4.1
+#Version 3.2_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public abstract interface java.lang.AutoCloseable
+meth public abstract void close() throws java.lang.Exception
+
+CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
+meth public abstract int compareTo({java.lang.Comparable%0})
+
+CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
+cons protected <init>(java.lang.String,int)
+intf java.io.Serializable
+intf java.lang.Comparable<{java.lang.Enum%0}>
+meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected final void finalize()
+meth public final boolean equals(java.lang.Object)
+meth public final int compareTo({java.lang.Enum%0})
+meth public final int hashCode()
+meth public final int ordinal()
+meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
+meth public final java.lang.String name()
+meth public java.lang.String toString()
+meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
+supr java.lang.Object
+hfds name,ordinal
+
+CLSS public java.lang.Exception
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Throwable
+hfds serialVersionUID
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public java.lang.RuntimeException
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Exception
+hfds serialVersionUID
+
+CLSS public java.lang.Throwable
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+intf java.io.Serializable
+meth public final java.lang.Throwable[] getSuppressed()
+meth public final void addSuppressed(java.lang.Throwable)
+meth public java.lang.StackTraceElement[] getStackTrace()
+meth public java.lang.String getLocalizedMessage()
+meth public java.lang.String getMessage()
+meth public java.lang.String toString()
+meth public java.lang.Throwable fillInStackTrace()
+meth public java.lang.Throwable getCause()
+meth public java.lang.Throwable initCause(java.lang.Throwable)
+meth public void printStackTrace()
+meth public void printStackTrace(java.io.PrintStream)
+meth public void printStackTrace(java.io.PrintWriter)
+meth public void setStackTrace(java.lang.StackTraceElement[])
+supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
+
+CLSS public abstract interface java.lang.annotation.Annotation
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract int hashCode()
+meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> annotationType()
+meth public abstract java.lang.String toString()
+
+CLSS public abstract interface !annotation java.lang.annotation.Documented
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation java.lang.annotation.Retention
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.RetentionPolicy value()
+
+CLSS public abstract interface !annotation java.lang.annotation.Target
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract interface java.rmi.Remote
+
+CLSS public abstract interface java.util.concurrent.Future<%0 extends java.lang.Object>
+meth public abstract boolean cancel(boolean)
+meth public abstract boolean isCancelled()
+meth public abstract boolean isDone()
+meth public abstract {java.util.concurrent.Future%0} get() throws java.lang.InterruptedException,java.util.concurrent.ExecutionException
+meth public abstract {java.util.concurrent.Future%0} get(long,java.util.concurrent.TimeUnit) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException,java.util.concurrent.TimeoutException
+
+CLSS public javax.ejb.AccessLocalException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Exception)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.ejb.AccessTimeout
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.util.concurrent.TimeUnit unit()
+meth public abstract long value()
+
+CLSS public abstract interface !annotation javax.ejb.ActivationConfigProperty
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.String propertyName()
+meth public abstract java.lang.String propertyValue()
+
+CLSS public abstract interface !annotation javax.ejb.AfterBegin
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.ejb.AfterCompletion
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.ejb.ApplicationException
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean inherited()
+meth public abstract !hasdefault boolean rollback()
+
+CLSS public final javax.ejb.AsyncResult<%0 extends java.lang.Object>
+cons public <init>({javax.ejb.AsyncResult%0})
+intf java.util.concurrent.Future<{javax.ejb.AsyncResult%0}>
+meth public boolean cancel(boolean)
+meth public boolean isCancelled()
+meth public boolean isDone()
+meth public {javax.ejb.AsyncResult%0} get() throws java.lang.InterruptedException,java.util.concurrent.ExecutionException
+meth public {javax.ejb.AsyncResult%0} get(long,java.util.concurrent.TimeUnit) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException,java.util.concurrent.TimeoutException
+supr java.lang.Object
+hfds resultValue
+
+CLSS public abstract interface !annotation javax.ejb.Asynchronous
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.ejb.BeforeCompletion
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.ejb.ConcurrencyManagement
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault javax.ejb.ConcurrencyManagementType value()
+
+CLSS public final !enum javax.ejb.ConcurrencyManagementType
+fld public final static javax.ejb.ConcurrencyManagementType BEAN
+fld public final static javax.ejb.ConcurrencyManagementType CONTAINER
+meth public static javax.ejb.ConcurrencyManagementType valueOf(java.lang.String)
+meth public static javax.ejb.ConcurrencyManagementType[] values()
+supr java.lang.Enum<javax.ejb.ConcurrencyManagementType>
+
+CLSS public javax.ejb.ConcurrentAccessException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Exception)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public javax.ejb.ConcurrentAccessTimeoutException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr javax.ejb.ConcurrentAccessException
+hfds serialVersionUID
+
+CLSS public javax.ejb.CreateException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr java.lang.Exception
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.ejb.DependsOn
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.String[] value()
+
+CLSS public javax.ejb.DuplicateKeyException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr javax.ejb.CreateException
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.ejb.EJB
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class beanInterface()
+meth public abstract !hasdefault java.lang.String beanName()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String lookup()
+meth public abstract !hasdefault java.lang.String mappedName()
+meth public abstract !hasdefault java.lang.String name()
+
+CLSS public javax.ejb.EJBAccessException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public abstract interface javax.ejb.EJBContext
+meth public abstract boolean getRollbackOnly()
+meth public abstract boolean isCallerInRole(java.lang.String)
+meth public abstract boolean isCallerInRole(java.security.Identity)
+meth public abstract java.lang.Object lookup(java.lang.String)
+meth public abstract java.security.Identity getCallerIdentity()
+meth public abstract java.security.Principal getCallerPrincipal()
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getContextData()
+meth public abstract java.util.Properties getEnvironment()
+meth public abstract javax.ejb.EJBHome getEJBHome()
+meth public abstract javax.ejb.EJBLocalHome getEJBLocalHome()
+meth public abstract javax.ejb.TimerService getTimerService()
+meth public abstract javax.transaction.UserTransaction getUserTransaction()
+meth public abstract void setRollbackOnly()
+
+CLSS public javax.ejb.EJBException
+cons public <init>()
+cons public <init>(java.lang.Exception)
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Exception)
+meth public java.lang.Exception getCausedByException()
+supr java.lang.RuntimeException
+hfds serialVersionUID
+
+CLSS public abstract interface javax.ejb.EJBHome
+intf java.rmi.Remote
+meth public abstract javax.ejb.EJBMetaData getEJBMetaData() throws java.rmi.RemoteException
+meth public abstract javax.ejb.HomeHandle getHomeHandle() throws java.rmi.RemoteException
+meth public abstract void remove(java.lang.Object) throws java.rmi.RemoteException,javax.ejb.RemoveException
+meth public abstract void remove(javax.ejb.Handle) throws java.rmi.RemoteException,javax.ejb.RemoveException
+
+CLSS public abstract interface javax.ejb.EJBLocalHome
+meth public abstract void remove(java.lang.Object) throws javax.ejb.RemoveException
+
+CLSS public abstract interface javax.ejb.EJBLocalObject
+meth public abstract boolean isIdentical(javax.ejb.EJBLocalObject)
+meth public abstract java.lang.Object getPrimaryKey()
+meth public abstract javax.ejb.EJBLocalHome getEJBLocalHome()
+meth public abstract void remove() throws javax.ejb.RemoveException
+
+CLSS public abstract interface javax.ejb.EJBMetaData
+meth public abstract boolean isSession()
+meth public abstract boolean isStatelessSession()
+meth public abstract java.lang.Class getHomeInterfaceClass()
+meth public abstract java.lang.Class getPrimaryKeyClass()
+meth public abstract java.lang.Class getRemoteInterfaceClass()
+meth public abstract javax.ejb.EJBHome getEJBHome()
+
+CLSS public abstract interface javax.ejb.EJBObject
+intf java.rmi.Remote
+meth public abstract boolean isIdentical(javax.ejb.EJBObject) throws java.rmi.RemoteException
+meth public abstract java.lang.Object getPrimaryKey() throws java.rmi.RemoteException
+meth public abstract javax.ejb.EJBHome getEJBHome() throws java.rmi.RemoteException
+meth public abstract javax.ejb.Handle getHandle() throws java.rmi.RemoteException
+meth public abstract void remove() throws java.rmi.RemoteException,javax.ejb.RemoveException
+
+CLSS public javax.ejb.EJBTransactionRequiredException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public javax.ejb.EJBTransactionRolledbackException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Exception)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.ejb.EJBs
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract javax.ejb.EJB[] value()
+
+CLSS public abstract interface javax.ejb.EnterpriseBean
+intf java.io.Serializable
+
+CLSS public abstract interface javax.ejb.EntityBean
+intf javax.ejb.EnterpriseBean
+meth public abstract void ejbActivate() throws java.rmi.RemoteException
+meth public abstract void ejbLoad() throws java.rmi.RemoteException
+meth public abstract void ejbPassivate() throws java.rmi.RemoteException
+meth public abstract void ejbRemove() throws java.rmi.RemoteException,javax.ejb.RemoveException
+meth public abstract void ejbStore() throws java.rmi.RemoteException
+meth public abstract void setEntityContext(javax.ejb.EntityContext) throws java.rmi.RemoteException
+meth public abstract void unsetEntityContext() throws java.rmi.RemoteException
+
+CLSS public abstract interface javax.ejb.EntityContext
+intf javax.ejb.EJBContext
+meth public abstract java.lang.Object getPrimaryKey()
+meth public abstract javax.ejb.EJBLocalObject getEJBLocalObject()
+meth public abstract javax.ejb.EJBObject getEJBObject()
+
+CLSS public javax.ejb.FinderException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr java.lang.Exception
+hfds serialVersionUID
+
+CLSS public abstract interface javax.ejb.Handle
+intf java.io.Serializable
+meth public abstract javax.ejb.EJBObject getEJBObject() throws java.rmi.RemoteException
+
+CLSS public abstract interface javax.ejb.HomeHandle
+intf java.io.Serializable
+meth public abstract javax.ejb.EJBHome getEJBHome() throws java.rmi.RemoteException
+
+CLSS public javax.ejb.IllegalLoopbackException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr javax.ejb.ConcurrentAccessException
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.ejb.Init
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String value()
+
+CLSS public abstract interface !annotation javax.ejb.Local
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class[] value()
+
+CLSS public abstract interface !annotation javax.ejb.LocalBean
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.ejb.LocalHome
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.Class value()
+
+CLSS public abstract interface !annotation javax.ejb.Lock
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault javax.ejb.LockType value()
+
+CLSS public final !enum javax.ejb.LockType
+fld public final static javax.ejb.LockType READ
+fld public final static javax.ejb.LockType WRITE
+meth public static javax.ejb.LockType valueOf(java.lang.String)
+meth public static javax.ejb.LockType[] values()
+supr java.lang.Enum<javax.ejb.LockType>
+
+CLSS public abstract interface !annotation javax.ejb.MessageDriven
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class messageListenerInterface()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String mappedName()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault javax.ejb.ActivationConfigProperty[] activationConfig()
+
+CLSS public abstract interface javax.ejb.MessageDrivenBean
+intf javax.ejb.EnterpriseBean
+meth public abstract void ejbRemove()
+meth public abstract void setMessageDrivenContext(javax.ejb.MessageDrivenContext)
+
+CLSS public abstract interface javax.ejb.MessageDrivenContext
+intf javax.ejb.EJBContext
+
+CLSS public javax.ejb.NoMoreTimeoutsException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public javax.ejb.NoSuchEJBException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Exception)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public javax.ejb.NoSuchEntityException
+cons public <init>()
+cons public <init>(java.lang.Exception)
+cons public <init>(java.lang.String)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public javax.ejb.NoSuchObjectLocalException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Exception)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public javax.ejb.ObjectNotFoundException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr javax.ejb.FinderException
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.ejb.PostActivate
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.ejb.PrePassivate
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.ejb.Remote
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class[] value()
+
+CLSS public abstract interface !annotation javax.ejb.RemoteHome
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.Class value()
+
+CLSS public abstract interface !annotation javax.ejb.Remove
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean retainIfException()
+
+CLSS public javax.ejb.RemoveException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr java.lang.Exception
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation javax.ejb.Schedule
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean persistent()
+meth public abstract !hasdefault java.lang.String dayOfMonth()
+meth public abstract !hasdefault java.lang.String dayOfWeek()
+meth public abstract !hasdefault java.lang.String hour()
+meth public abstract !hasdefault java.lang.String info()
+meth public abstract !hasdefault java.lang.String minute()
+meth public abstract !hasdefault java.lang.String month()
+meth public abstract !hasdefault java.lang.String second()
+meth public abstract !hasdefault java.lang.String timezone()
+meth public abstract !hasdefault java.lang.String year()
+
+CLSS public javax.ejb.ScheduleExpression
+cons public <init>()
+intf java.io.Serializable
+meth public java.lang.String getDayOfMonth()
+meth public java.lang.String getDayOfWeek()
+meth public java.lang.String getHour()
+meth public java.lang.String getMinute()
+meth public java.lang.String getMonth()
+meth public java.lang.String getSecond()
+meth public java.lang.String getTimezone()
+meth public java.lang.String getYear()
+meth public java.lang.String toString()
+meth public java.util.Date getEnd()
+meth public java.util.Date getStart()
+meth public javax.ejb.ScheduleExpression dayOfMonth(int)
+meth public javax.ejb.ScheduleExpression dayOfMonth(java.lang.String)
+meth public javax.ejb.ScheduleExpression dayOfWeek(int)
+meth public javax.ejb.ScheduleExpression dayOfWeek(java.lang.String)
+meth public javax.ejb.ScheduleExpression end(java.util.Date)
+meth public javax.ejb.ScheduleExpression hour(int)
+meth public javax.ejb.ScheduleExpression hour(java.lang.String)
+meth public javax.ejb.ScheduleExpression minute(int)
+meth public javax.ejb.ScheduleExpression minute(java.lang.String)
+meth public javax.ejb.ScheduleExpression month(int)
+meth public javax.ejb.ScheduleExpression month(java.lang.String)
+meth public javax.ejb.ScheduleExpression second(int)
+meth public javax.ejb.ScheduleExpression second(java.lang.String)
+meth public javax.ejb.ScheduleExpression start(java.util.Date)
+meth public javax.ejb.ScheduleExpression timezone(java.lang.String)
+meth public javax.ejb.ScheduleExpression year(int)
+meth public javax.ejb.ScheduleExpression year(java.lang.String)
+supr java.lang.Object
+hfds dayOfMonth_,dayOfWeek_,end_,hour_,minute_,month_,second_,serialVersionUID,start_,timezoneID_,year_
+
+CLSS public abstract interface !annotation javax.ejb.Schedules
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract javax.ejb.Schedule[] value()
+
+CLSS public abstract interface javax.ejb.SessionBean
+intf javax.ejb.EnterpriseBean
+meth public abstract void ejbActivate() throws java.rmi.RemoteException
+meth public abstract void ejbPassivate() throws java.rmi.RemoteException
+meth public abstract void ejbRemove() throws java.rmi.RemoteException
+meth public abstract void setSessionContext(javax.ejb.SessionContext) throws java.rmi.RemoteException
+
+CLSS public abstract interface javax.ejb.SessionContext
+intf javax.ejb.EJBContext
+meth public abstract <%0 extends java.lang.Object> {%%0} getBusinessObject(java.lang.Class<{%%0}>)
+meth public abstract boolean wasCancelCalled()
+meth public abstract java.lang.Class getInvokedBusinessInterface()
+meth public abstract javax.ejb.EJBLocalObject getEJBLocalObject()
+meth public abstract javax.ejb.EJBObject getEJBObject()
+meth public abstract javax.xml.rpc.handler.MessageContext getMessageContext()
+
+CLSS public abstract interface javax.ejb.SessionSynchronization
+meth public abstract void afterBegin() throws java.rmi.RemoteException
+meth public abstract void afterCompletion(boolean) throws java.rmi.RemoteException
+meth public abstract void beforeCompletion() throws java.rmi.RemoteException
+
+CLSS public abstract interface !annotation javax.ejb.Singleton
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String mappedName()
+meth public abstract !hasdefault java.lang.String name()
+
+CLSS public abstract interface !annotation javax.ejb.Startup
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.ejb.Stateful
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean passivationCapable()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String mappedName()
+meth public abstract !hasdefault java.lang.String name()
+
+CLSS public abstract interface !annotation javax.ejb.StatefulTimeout
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.util.concurrent.TimeUnit unit()
+meth public abstract long value()
+
+CLSS public abstract interface !annotation javax.ejb.Stateless
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String mappedName()
+meth public abstract !hasdefault java.lang.String name()
+
+CLSS public abstract interface javax.ejb.TimedObject
+meth public abstract void ejbTimeout(javax.ejb.Timer)
+
+CLSS public abstract interface !annotation javax.ejb.Timeout
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface javax.ejb.Timer
+meth public abstract boolean isCalendarTimer()
+meth public abstract boolean isPersistent()
+meth public abstract java.io.Serializable getInfo()
+meth public abstract java.util.Date getNextTimeout()
+meth public abstract javax.ejb.ScheduleExpression getSchedule()
+meth public abstract javax.ejb.TimerHandle getHandle()
+meth public abstract long getTimeRemaining()
+meth public abstract void cancel()
+
+CLSS public javax.ejb.TimerConfig
+cons public <init>()
+cons public <init>(java.io.Serializable,boolean)
+meth public boolean isPersistent()
+meth public java.io.Serializable getInfo()
+meth public java.lang.String toString()
+meth public void setInfo(java.io.Serializable)
+meth public void setPersistent(boolean)
+supr java.lang.Object
+hfds info_,persistent_
+
+CLSS public abstract interface javax.ejb.TimerHandle
+intf java.io.Serializable
+meth public abstract javax.ejb.Timer getTimer()
+
+CLSS public abstract interface javax.ejb.TimerService
+meth public abstract java.util.Collection<javax.ejb.Timer> getAllTimers()
+meth public abstract java.util.Collection<javax.ejb.Timer> getTimers()
+meth public abstract javax.ejb.Timer createCalendarTimer(javax.ejb.ScheduleExpression)
+meth public abstract javax.ejb.Timer createCalendarTimer(javax.ejb.ScheduleExpression,javax.ejb.TimerConfig)
+meth public abstract javax.ejb.Timer createIntervalTimer(java.util.Date,long,javax.ejb.TimerConfig)
+meth public abstract javax.ejb.Timer createIntervalTimer(long,long,javax.ejb.TimerConfig)
+meth public abstract javax.ejb.Timer createSingleActionTimer(java.util.Date,javax.ejb.TimerConfig)
+meth public abstract javax.ejb.Timer createSingleActionTimer(long,javax.ejb.TimerConfig)
+meth public abstract javax.ejb.Timer createTimer(java.util.Date,java.io.Serializable)
+meth public abstract javax.ejb.Timer createTimer(java.util.Date,long,java.io.Serializable)
+meth public abstract javax.ejb.Timer createTimer(long,java.io.Serializable)
+meth public abstract javax.ejb.Timer createTimer(long,long,java.io.Serializable)
+
+CLSS public abstract interface !annotation javax.ejb.TransactionAttribute
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault javax.ejb.TransactionAttributeType value()
+
+CLSS public final !enum javax.ejb.TransactionAttributeType
+fld public final static javax.ejb.TransactionAttributeType MANDATORY
+fld public final static javax.ejb.TransactionAttributeType NEVER
+fld public final static javax.ejb.TransactionAttributeType NOT_SUPPORTED
+fld public final static javax.ejb.TransactionAttributeType REQUIRED
+fld public final static javax.ejb.TransactionAttributeType REQUIRES_NEW
+fld public final static javax.ejb.TransactionAttributeType SUPPORTS
+meth public static javax.ejb.TransactionAttributeType valueOf(java.lang.String)
+meth public static javax.ejb.TransactionAttributeType[] values()
+supr java.lang.Enum<javax.ejb.TransactionAttributeType>
+
+CLSS public abstract interface !annotation javax.ejb.TransactionManagement
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault javax.ejb.TransactionManagementType value()
+
+CLSS public final !enum javax.ejb.TransactionManagementType
+fld public final static javax.ejb.TransactionManagementType BEAN
+fld public final static javax.ejb.TransactionManagementType CONTAINER
+meth public static javax.ejb.TransactionManagementType valueOf(java.lang.String)
+meth public static javax.ejb.TransactionManagementType[] values()
+supr java.lang.Enum<javax.ejb.TransactionManagementType>
+
+CLSS public javax.ejb.TransactionRequiredLocalException
+cons public <init>()
+cons public <init>(java.lang.String)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public javax.ejb.TransactionRolledbackLocalException
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Exception)
+supr javax.ejb.EJBException
+hfds serialVersionUID
+
+CLSS public abstract javax.ejb.embeddable.EJBContainer
+cons public <init>()
+fld public final static java.lang.String APP_NAME = "javax.ejb.embeddable.appName"
+fld public final static java.lang.String MODULES = "javax.ejb.embeddable.modules"
+fld public final static java.lang.String PROVIDER = "javax.ejb.embeddable.provider"
+intf java.lang.AutoCloseable
+meth public abstract javax.naming.Context getContext()
+meth public abstract void close()
+meth public static javax.ejb.embeddable.EJBContainer createEJBContainer()
+meth public static javax.ejb.embeddable.EJBContainer createEJBContainer(java.util.Map<?,?>)
+supr java.lang.Object
+hfds newLine,providers
+
+CLSS public abstract interface javax.ejb.spi.EJBContainerProvider
+meth public abstract javax.ejb.embeddable.EJBContainer createEJBContainer(java.util.Map<?,?>)
+
+CLSS public abstract interface javax.ejb.spi.HandleDelegate
+meth public abstract javax.ejb.EJBHome readEJBHome(java.io.ObjectInputStream) throws java.io.IOException,java.lang.ClassNotFoundException
+meth public abstract javax.ejb.EJBObject readEJBObject(java.io.ObjectInputStream) throws java.io.IOException,java.lang.ClassNotFoundException
+meth public abstract void writeEJBHome(javax.ejb.EJBHome,java.io.ObjectOutputStream) throws java.io.IOException
+meth public abstract void writeEJBObject(javax.ejb.EJBObject,java.io.ObjectOutputStream) throws java.io.IOException
+

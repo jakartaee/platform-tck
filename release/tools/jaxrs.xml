@@ -1,0 +1,226 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="JAXRS" basedir="." default="build">
+    
+    <property name="deliverable.version"  value="2.1"/>
+    <property name="platform.folder" value="com/sun/ts/tests/jaxrs/platform/**"/>
+    <property name="platform21.folder" value="com/sun/ts/tests/jaxrs/jaxrs21/platform/**"/>
+    <property name="servlet3.folder" value="com/sun/ts/tests/jaxrs/servlet3/**"/>
+
+    <!-- For TCK, exclude servlet3 and platform dependencies, e.g. to run on servlet 2.5 container only
+         For JAXRS CTS, no need to exclude anything, to run e.g. on Glassfish -->
+    <condition property="exclude.classes" value="">
+        <contains string="${test.areas}" substring="jaxrs" casesensitive="false"/>
+    </condition>
+    <condition property="exclude.classes" value="${platform.folder}/*.class, ${servlet3.folder}/*.class, ${platform21.folder}/*.class">
+        <not><contains string="${test.areas}" substring="jaxrs" casesensitive="false"/></not>
+    </condition>
+    
+    <condition property="exclude.sunwebxml" value="">
+        <contains string="${test.areas}" substring="jaxrs" casesensitive="false"/>
+    </condition>
+    <condition property="exclude.sunwebxml" value="${platform.folder}/*.sun-web.xml, ${servlet3.folder}/*.sun-web.xml, ${platform21.folder}/*.sun-web.xml">
+        <not><contains string="${test.areas}" substring="jaxrs" casesensitive="false"/></not>
+    </condition>
+    
+    <condition property="exclude.src" value="">
+        <contains string="${test.areas}" substring="jaxrs" casesensitive="false"/>
+    </condition>
+    <condition property="exclude.src" value="${platform.folder}/*, ${servlet3.folder}/*, ${platform21.folder}/*">
+        <not><contains string="${test.areas}" substring="jaxrs" casesensitive="false"/></not>
+    </condition>
+    
+    <condition property="exclude.wars" value="">
+        <contains string="${test.areas}" substring="jaxrs" casesensitive="false"/>
+    </condition>
+    <condition property="exclude.wars" value="${platform.folder}/*.war, ${servlet3.folder}/*.war, ${platform21.folder}/*.war">
+        <not><contains string="${test.areas}" substring="jaxrs" casesensitive="false"/></not>
+    </condition>
+
+    <target name="init">
+        <mkdir dir="${deliverable.bundle.dir}/bin"/>
+        <mkdir dir="${deliverable.bundle.dir}/classes"/>
+        <mkdir dir="${deliverable.bundle.dir}/dist"/>
+        <mkdir dir="${deliverable.bundle.dir}/lib/dtds"/>
+        <mkdir dir="${deliverable.bundle.dir}/src"/>
+        <mkdir dir="${deliverable.bundle.dir}/docs"/>
+        <mkdir dir="${deliverable.bundle.dir}/docs/assertions"/>
+        <mkdir dir="${deliverable.bundle.dir}/src/com/sun/ts/lib/deliverable"/>
+        <mkdir dir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting"/>
+        <mkdir dir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/jersey"/>
+    </target>
+    
+    <target name="copyinstall">
+        <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/jaxrs/bin"
+                     includes="**/*"
+                    excludes="**/workspace.xml, **/*.log, **/out"/>
+        </copy>
+
+          <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+              <fileset dir="${ts.home}/install/jaxrs/docs" excludes="**svn**, tck_properties.txt" />
+          </copy>  
+        <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib"
+                     includes="**/*"
+                     excludes="ts-toplink-essentials.jar,
+                     saxpath.jar,
+                     jaxen-core-1.0.jar"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/src">
+            <fileset dir="${ts.home}/install/jaxrs/other" 
+                     includes="**/*"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+            <fileset dir="${ts.home}" includes="NOTICE" />
+        </copy>
+	<copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+	  </copy>
+    </target>
+    
+    <target name="copyBin">
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish/templates">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish/templates"
+                     includes="**/password.template"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish"
+                     includes="**/jersey.xml,**/s1as.xml,**/common.xml"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/tomcat">
+            <fileset dir="${common.bin.dir}/xml/impl/tomcat"
+                     includes="**/deploy.xml"/>
+        </copy>
+    </target>
+        
+    <target name="build" depends="init, copyinstall, copyBin">
+        <!-- the classes directory -->
+        <copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/classes"
+                     includes="com/sun/ts/tests/jaxrs/**/*.class, 
+                     com/sun/ts/tests/common/webclient/**/*.class,
+                     com/sun/ts/tests/common/vehicle/*.class,
+					 com/sun/ts/tests/common/vehicle/standalone/*.class,
+                     com/sun/ts/tests/common/servlet/common/util/Data.class,
+                     com/sun/ts/lib/porting/TSURL.class,
+                     com/sun/ts/lib/porting/TSURLInterface.class,
+                     com/sun/ts/lib/deliverable/tck/*.class,
+                     com/sun/ts/lib/implementation/sun/common/*.class,
+                     com/sun/ts/lib/implementation/sun/jersey/*.class,
+                     com/sun/ts/tests/signaturetest/*.class,
+                     com/sun/ts/tests/signaturetest/jaxrs/JAXRSSigTest.class"
+                     excludes="${exclude.classes}"/>
+        </copy>
+        
+        <!-- the lib/dtds directory -->
+        <copy todir="${deliverable.bundle.dir}/lib/dtds" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib/dtds" includes="web-app*"/>
+        </copy>
+        
+        <!-- include schemas needed for the technology -->
+        <copy todir="${deliverable.bundle.dir}/lib/schemas" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib/schemas" 
+                     includes="web-app*, 
+                     XMLSchema.xsd, xml.xsd, 
+            "/>
+        </copy>
+        
+        <!-- copy the commons-httpclient and dependent JARs -->
+        <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/lib" includes="commons-*.jar" />
+        </copy>
+        
+        <!-- copy the documentation --> 
+        <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/install/jaxrs/docs" excludes="**svn**" />
+        </copy>
+        <!-- 
+        <copy todir="${deliverable.bundle.dir}/docs/assertions" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/internal/docs/jaxrs" includes="JAXRSSpecAssertions.html, JAXRSJavadocAssertions.html" />
+        </copy>
+        -->
+
+        <!-- the war files in the dist directory -->
+        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/jaxrs/**/*.war" 
+                     excludes="${exclude.wars}" />
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/jaxrs/**/*sun-web.xml" 
+                     excludes="${exclude.sunwebxml}" />
+        </copy>        
+        
+        <!-- the specific deliverable source directories -->
+        <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src"
+                     includes="com/sun/ts/tests/jaxrs/**/*,
+                     com/sun/ts/tests/common/webclient/**/*,
+                     com/sun/ts/tests/common/vehicle/*.java,
+					 com/sun/ts/tests/common/vehicle/standalone/*,
+                     com/sun/ts/tests/servlet/common/util/Data.java,
+                     com/sun/ts/tests/signaturetest/*,
+                     com/sun/ts/tests/signaturetest/signature-repository/*javax.ws.rs*, 
+                     com/sun/ts/tests/signaturetest/jaxrs/*"
+                     excludes="${exclude.src}" />
+        </copy>
+        
+        <!-- the com/sun/ts/lib file -->
+        <copy file="${ts.home}/src/com/sun/ts/lib/build.xml" 
+              todir="${deliverable.bundle.dir}/src/com/sun/ts/lib"/>
+        
+        <!-- the com/sun/ts/lib/porting directory -->
+        <copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting" 
+              includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src/com/sun/ts/lib/porting" 
+                     includes="TSDeploymentInterface.java, 
+                     TSDeploymentException.java, 
+            TSURLInterface.java, TSURL.java"/>
+        </copy>
+        
+        <!-- the com/sun/ts/lib/deliverable/tck files -->
+        <copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/deliverable/tck"
+              includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src/com/sun/ts/lib/deliverable/tck" 
+                     includes="TCKDeliverable.java, 
+            TCKPropertyManager.java" />
+        </copy>
+        
+        <!-- the com/sun/ts/lib/implementation/sun/common file -->
+        <copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/common/SunRIURL.java" 
+              todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/common"/>
+        
+        <!-- the com/sun/ts/lib/implementation/sun/jersey file -->
+        <copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/jersey/TSWebConfiguration.java" 
+              todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/jersey"/>
+        
+        <delete quiet="true">
+            <fileset dir="${deliverable.bundle.dir}/lib" 
+                     includes="*jaxb*"/>
+        </delete>
+        <antcall target="create.doc.bundle"/>
+    </target>
+    <target name="create.doc.bundle">
+      <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
+      <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">
+        <zipfileset dir="${ts.home}/install/${deliverable.dir}/docs"
+                includes="**/*.html, **/*.gif, **/*.css"
+                excludes="*ReleaseNotes*.html"/>
+      </zip>
+    </target>
+</project>

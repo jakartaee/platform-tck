@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="connector_resourceDefs_servlet" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/>
+
+    <property name="app.name"         value="servlet_resourcedefs" />
+    <property name="pkg.name"         value="resourceDefs" />
+    <property name="pkg.dir"          value="com/sun/ts/tests/connector/resourceDefs/servlet" />
+
+    <target name="package">
+        <antcall target="makeTheRar"/>
+        <antcall target="make.war"/>
+        <antcall target="make.ear"/>
+    </target>
+
+
+    <target name="make.war">
+        <mkdir dir="${dist.dir}/${pkg.dir}"/>
+        <ts.war archivename="servlet_resourcedefs" 
+            descriptor="servlet_resourcedefs_web.xml" 
+            descriptordir="${ts.home}/src/${pkg.dir}">
+            <zipfileset dir="${class.dir}" 
+                        includes="${pkg.dir}/AODTestServlet.class,
+                                  ${pkg.dir}/CRDTestServlet.class,
+                                  ${pkg.dir}/Client.class"
+                        prefix="WEB-INF/classes"
+            />
+
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness cts whitebox"/>
+                <attribute name="tsharness-Extension-Name"         value="tsharness"/>
+                <attribute name="tsharness-Specification-Version"  value="1.4"/>
+                <attribute name="tsharness-Implementation-Version"    value="1.4"/>
+                <attribute name="tsharness-Implementation-Vendor-Id"  value="com.sun"/>
+                <attribute name="dts-Extension-Name"         value="dts"/>
+                <attribute name="dts-Specification-Version"  value="1.4"/>
+                <attribute name="dts-Implementation-Version"    value="1.4"/>
+                <attribute name="dts-Implementation-Vendor-Id"  value="com.sun"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+
+        </ts.war>
+    </target>
+
+
+    <!--
+          this builds the whitebox-rd.rar file.  whitebox-rd.rar is used as an embedded rar 
+          and was specifically created for testing connector resource definitions.
+      -->
+    <target name="makeTheRar">
+        <ant dir="${ts.home}/src/com/sun/ts/tests/common/connector/embedded/adapter1" target="build" inheritAll="false"/>
+    </target>
+
+
+    <target name="make.ear">
+
+        <!-- copy rar file into same dir to help with the packaging -->
+        <mkdir dir="${dist.dir}/${pkg.dir}"/>
+        <copy file="${dist.dir}/com/sun/ts/tests/common/connector/embedded/adapter1/whitebox-rd.rar" todir="${dist.dir}/${pkg.dir}"/>
+
+        <ts.ear archivename="${app.name}">
+            <zipfileset dir="${dist.dir}/${pkg.dir}"
+                        includes="servlet_resourcedefs_web.war,
+                                  whitebox-rd.rar"
+            />
+        </ts.ear>
+
+        <!-- okay, now we can get rid of this .rar file since we are done packaging -->
+        <delete file="${dist.dir}/${pkg.dir}/whitebox-rd.rar"/>
+
+    </target>
+
+
+    <target name="all" depends="build,deploy,runclient" />
+</project>

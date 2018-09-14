@@ -1,0 +1,8 @@
+WSRAnn=@WebServiceRef(name="service/wsrlowhandlertestservice")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.RLOWHandlerTestService
+URLALIAS=/jaxws/Hello
+URLALIAS4=/jaxws/GetTrackerData
+WEBSERVICEDESCRIPTION=RLOWHandlerTestService
+SERVICEREFNAMEWSSERVLET=service/wsrlowhandlertestservice
+SERVICEREFNAMEWSEJB=service/wsrlowhandlertestservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsrlowhandlertestservice

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+<enterprise-beans>
+  <session>
+    <display-name>TwoTestBean</display-name>
+    <ejb-name>TwoTestBean</ejb-name>
+    <home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome</home>
+    <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteIF</remote>
+    <ejb-class>com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestBean</ejb-class>
+    <session-type>Stateless</session-type>
+    
+    <ejb-ref>
+        <ejb-ref-name>ejb/tworemote</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome</home>
+        <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF</remote>
+        <ejb-link>MigrationBean</ejb-link>
+    </ejb-ref>
+    
+    <ejb-local-ref>
+        <ejb-ref-name>ejb/twolocal</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local-home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome</local-home>
+        <local>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF</local>
+        <ejb-link>MigrationBean</ejb-link>
+    </ejb-local-ref>
+
+    </session>
+    
+    <session>
+    <display-name>MigrationBean</display-name>
+    <ejb-name>MigrationBean</ejb-name>
+    
+    <home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome</home>
+    <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF</remote>
+    
+    <local-home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome</local-home>
+    <local>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF</local>
+    
+    <business-local>com.sun.ts.tests.ejb30.common.migration.twothree.ThreeLocalIF</business-local>
+    <business-remote>com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF</business-remote> 
+    
+    <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.descriptor.MigrationBean</ejb-class>
+    <session-type>Stateless</session-type>
+
+     <resource-env-ref>
+       <resource-env-ref-name>sessionContext</resource-env-ref-name>
+       <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+       <injection-target>
+       <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.descriptor.MigrationBean</injection-target-class>
+       <injection-target-name>sessionContext</injection-target-name>
+       </injection-target>
+     </resource-env-ref>
+
+    </session>
+  </enterprise-beans>
+</ejb-jar>

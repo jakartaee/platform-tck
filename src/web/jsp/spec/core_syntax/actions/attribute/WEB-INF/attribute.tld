@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <tlib-version>1.0</tlib-version>
+    <short-name>attribute</short-name>
+    <tag>
+        <name>classic</name>
+        <tag-class>com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute.ClassicAttributeTestTag</tag-class>
+        <body-content>JSP</body-content> 
+        <attribute>
+            <name>fragment</name>
+            <fragment>true</fragment>
+        </attribute>
+        <dynamic-attributes>true</dynamic-attributes>
+    </tag>
+    <tag>
+        <name>simple</name>
+        <tag-class>com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute.SimpleAttributeTestTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>fragment</name>
+            <fragment>true</fragment>
+        </attribute>
+        <dynamic-attributes>true</dynamic-attributes>
+    </tag>
+    <tag>
+        <name>dynamic</name>
+        <tag-class>com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute.DynamicTag</tag-class>
+        <body-content>JSP</body-content> 
+        <dynamic-attributes>true</dynamic-attributes>
+    </tag>
+    <tag>
+        <name>attribute</name>
+        <tag-class>com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute.AttributeTag</tag-class>
+        <body-content>JSP</body-content> 
+        <attribute>
+            <name>expected</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>attribute</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>ctype</name>
+        <tag-class>com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute.ClassicTypeTag</tag-class>
+        <body-content>JSP</body-content> 
+        <attribute>
+            <name>boolean</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <name>character</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Character</type>
+        </attribute>
+        <attribute>
+            <name>short</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Short</type>
+        </attribute>
+        <attribute>
+            <name>integer</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Integer</type>
+        </attribute>
+        <attribute>
+            <name>long</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Long</type>
+        </attribute>
+        <attribute>
+            <name>float</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Float</type>
+        </attribute>
+        <attribute>
+            <name>double</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Double</type>
+        </attribute>
+        <attribute>
+            <name>string</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+    <tag>
+        <name>stype</name>
+        <tag-class>com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute.SimpleTypeTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>boolean</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <name>character</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Character</type>
+        </attribute>
+        <attribute>
+            <name>short</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Short</type>
+        </attribute>
+        <attribute>
+            <name>integer</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Integer</type>
+        </attribute>
+        <attribute>
+            <name>long</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Long</type>
+        </attribute>
+        <attribute>
+            <name>float</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Float</type>
+        </attribute>
+        <attribute>
+            <name>double</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Double</type>
+        </attribute>
+        <attribute>
+            <name>string</name>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+</taglib>

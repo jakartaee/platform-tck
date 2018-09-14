@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="W2JDLR2748TestService"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://w2jdlr2748testservice.org/W2JDLR2748TestService.wsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://w2jdlr2748testservice.org/W2JDLR2748TestService.wsdl"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd1="http://w2jdlr2748testservice.org/xsd">
+
+    <types>
+        <schema targetNamespace="http://w2jdlr2748testservice.org/xsd"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+            elementFormDefault="qualified">
+
+            <element name="echoStringParam" type="xsd:string"/>
+
+            <element name="echoStringReturn" type="xsd:string"/>
+            
+        </schema>
+    </types>
+    
+    <message name="echoString">
+        <part element="xsd1:echoStringParam" name="str"/>
+    </message>
+    <message name="echoStringResponse">
+        <part element="xsd1:echoStringReturn" name="result"/>
+    </message>
+        
+    <portType name="W2JDLR2748TestOne">
+    	<operation name="echoString">
+            <input message="tns:echoString"/>
+            <output message="tns:echoStringResponse"/>
+    	</operation>
+    </portType>
+    
+    <portType name="W2JDLR2748TestTwo">
+    	<operation name="echoString">
+            <input message="tns:echoString"/>
+            <output message="tns:echoStringResponse"/>
+    	</operation>
+    </portType>
+    
+    <binding name="W2JDLR2748TestOneBinding" type="tns:W2JDLR2748TestOne">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <binding name="W2JDLR2748TestTwoBinding" type="tns:W2JDLR2748TestTwo">
+    	<soap:binding wsdl:required="0" style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation wsdl:required="0"/>
+            <input>
+                <soap:body wsdl:required="0" use="literal"/>
+            </input>
+            <output>
+                <soap:body wsdl:required="0" use="literal"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <service name="W2JDLR2748TestService">
+        <port binding="tns:W2JDLR2748TestOneBinding"
+            name="W2JDLR2748TestOnePort">
+            <soap:address
+                location="http://localhost:8000/W2JDLR2748TestService/ws4ee_1/W2JDLR2748Test/one"/>
+        </port>
+        <port binding="tns:W2JDLR2748TestTwoBinding"
+            name="W2JDLR2748TestTwoPort">
+            <soap:address wsdl:required="0"
+                location="http://localhost:8000/W2JDLR2748TestService/ws4ee_1/W2JDLR2748Test/two"/>
+        </port>
+    </service>
+    
+</definitions>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 8.0 EJB 2.1//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_1-0.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<sun-ejb-jar>
+  <enterprise-beans>
+    <unique-id>0</unique-id>
+    <ejb>
+      <ejb-name>MultiDeployEjb2</ejb-name>
+      <jndi-name>MultiDeployEjb2</jndi-name>
+      <pass-by-reference>false</pass-by-reference>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+      <webservice-endpoint>
+        <port-component-name>MultiDeployEjbPC2</port-component-name>
+        <endpoint-address-uri>MultiDeployEjb2/pc2</endpoint-address-uri>
+      </webservice-endpoint>
+    </ejb>
+    <ejb>
+      <ejb-name>MultiDeployEjb1</ejb-name>
+      <jndi-name>MultiDeployEjb1</jndi-name>
+      <pass-by-reference>false</pass-by-reference>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+      <webservice-endpoint>
+        <port-component-name>MultiDeployEjbPC1</port-component-name>
+        <endpoint-address-uri>MultiDeployEjb1/pc1</endpoint-address-uri>
+      </webservice-endpoint>
+    </ejb>
+    <webservice-description>
+      <webservice-description-name>MultiDeployEjb1</webservice-description-name>
+      <wsdl-publish-location>http://webServerHost.1:webServerPort.1/MultiDeployEjb1/pc1?WSDL</wsdl-publish-location>
+    </webservice-description>
+    <webservice-description>
+      <webservice-description-name>MultiDeployEjb2</webservice-description-name>
+      <wsdl-publish-location>http://webServerHost.1:webServerPort.1/MultiDeployEjb2/pc2?WSDL</wsdl-publish-location>
+    </webservice-description>
+  </enterprise-beans>
+</sun-ejb-jar>

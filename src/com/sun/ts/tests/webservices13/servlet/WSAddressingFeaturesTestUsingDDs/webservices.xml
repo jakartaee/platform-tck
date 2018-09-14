@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<webservices xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.3" xmlns:wsdl="http://Echo.org" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/javaee_web_services_1_3.xsd">
+  <webservice-description>
+    <webservice-description-name>EchoService</webservice-description-name>
+    <wsdl-file>WEB-INF/wsdl/EchoService.wsdl</wsdl-file>
+    <port-component>
+      <port-component-name>EchoImpl</port-component-name>
+      <wsdl-port>wsdl:EchoPort</wsdl-port>
+      <addressing>
+	<enabled>true</enabled>
+        <required>false</required>
+        <responses>ALL</responses>
+      </addressing>
+      <protocol-binding>##SOAP11_HTTP</protocol-binding>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>EchoImpl</servlet-link>
+      </service-impl-bean>
+    </port-component>
+    <port-component>
+      <port-component-name>Echo2Impl</port-component-name>
+      <wsdl-port>wsdl:Echo2Port</wsdl-port>
+      <addressing>
+	<enabled>false</enabled>
+        <required>false</required>
+      </addressing>
+      <protocol-binding>##SOAP11_HTTP</protocol-binding>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo2</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>Echo2Impl</servlet-link>
+      </service-impl-bean>
+    </port-component>
+    <port-component>
+      <port-component-name>Echo3Impl</port-component-name>
+      <wsdl-port>wsdl:Echo3Port</wsdl-port>
+      <addressing>
+	<enabled>true</enabled>
+        <required>true</required>
+        <responses>ANONYMOUS</responses>
+      </addressing>
+      <protocol-binding>##SOAP11_HTTP</protocol-binding>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo3</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>Echo3Impl</servlet-link>
+      </service-impl-bean>
+    </port-component>
+    <port-component>
+      <port-component-name>Echo4Impl</port-component-name>
+      <wsdl-port>wsdl:Echo4Port</wsdl-port>
+      <addressing>
+	<enabled>true</enabled>
+        <required>true</required>
+        <responses>NON_ANONYMOUS</responses>
+      </addressing>
+      <protocol-binding>##SOAP11_HTTP</protocol-binding>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo4</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>Echo4Impl</servlet-link>
+      </service-impl-bean>
+    </port-component>
+  </webservice-description> 
+</webservices>

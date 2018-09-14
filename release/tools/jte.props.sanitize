@@ -1,0 +1,40 @@
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+#
+# find and replace values used to sanitize the ts.jte file before shipping
+#
+
+find_1    = ${line.separator}orb.host=
+replace_1 = ${line.separator}orb.host=
+find_2    = ${line.separator}javaee.home=
+replace_2 = ${line.separator}javaee.home=
+find_3    = ${line.separator}orb.host.ri=
+replace_3 = ${line.separator}orb.host.ri=
+find_4    = ${line.separator}javaee.home.ri=
+replace_4 = ${line.separator}javaee.home.ri=
+find_5    = ${line.separator}mailuser1=
+replace_5 = ${line.separator}mailuser1=
+find_6    = ${line.separator}mailHost=
+replace_6 = ${line.separator}mailHost=
+find_7    = ${line.separator}wsimport.jvmargs=
+replace_7 = ${line.separator}wsimport.jvmargs=
+find_8    = ${line.separator}ri.wsimport.jvmargs=
+replace_8 = ${line.separator}ri.wsimport.jvmargs=
+find_9    = ${line.separator}mailFrom=
+replace_9 = ${line.separator}mailFrom=
+find_10   = ${line.separator}javamail.password=
+replace_10= ${line.separator}javamail.password=

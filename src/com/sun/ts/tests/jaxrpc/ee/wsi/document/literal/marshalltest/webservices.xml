@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<webservices xmlns="http://java.sun.com/xml/ns/j2ee"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:wsdl="http://marshalltestservice.org/MarshallTestService.wsdl"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://www.ibm.com/webservices/xsd/j2ee_web_services_1_1.xsd"
+             version="1.1">
+
+    <webservice-description>
+         <webservice-description-name>WSIDLMarshallTest</webservice-description-name>
+         <wsdl-file>WEB-INF/wsdl/MarshallTestService.wsdl</wsdl-file>
+         <jaxrpc-mapping-file>MarshallTestService.xml</jaxrpc-mapping-file>
+         <port-component>
+             <port-component-name>MarshallTestPort1</port-component-name>
+             <wsdl-port>wsdl:MarshallTestPort1</wsdl-port>
+             <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.MarshallTest</service-endpoint-interface>
+             <service-impl-bean>
+                 <servlet-link>XmlServletName1</servlet-link>
+             </service-impl-bean>
+         </port-component>
+         <port-component>
+             <port-component-name>MarshallTestPort2</port-component-name>
+             <wsdl-port>wsdl:MarshallTestPort2</wsdl-port>
+             <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.NewSchemaTest</service-endpoint-interface>
+             <service-impl-bean>
+                 <servlet-link>XmlServletName2</servlet-link>
+             </service-impl-bean>
+         </port-component>
+         <port-component>
+             <port-component-name>MarshallTestPort3</port-component-name>
+             <wsdl-port>wsdl:MarshallTestPort3</wsdl-port>
+             <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.CompoundTest</service-endpoint-interface>
+             <service-impl-bean>
+                 <servlet-link>XmlServletName3</servlet-link>
+             </service-impl-bean>
+         </port-component>
+         <port-component>
+             <port-component-name>MarshallTestPort4</port-component-name>
+             <wsdl-port>wsdl:MarshallTestPort4</wsdl-port>
+             <service-endpoint-interface>com.sun.ts.tests.jaxrpc.ee.wsi.document.literal.marshalltest.OneWayTest</service-endpoint-interface>
+             <service-impl-bean>
+                 <servlet-link>XmlServletName4</servlet-link>
+             </service-impl-bean>
+         </port-component>
+    </webservice-description> 
+</webservices>

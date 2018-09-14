@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+     	name="NewSchemaDefs"
+	targetNamespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"
+	xmlns:tns="http://marshalltestservice.org/NewSchemaDefs.wsdl" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ns2="http://marshalltestservice.org/types2">
+
+  	<types>
+    		<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<xsd:import namespace="http://marshalltestservice.org/types2" schemaLocation="NewSchemaDefs.xsd"/>
+    		</xsd:schema>
+ 	</types>
+
+
+        <message name="FooIncludedStringRequest">
+                <part name="params" element="ns2:FooIncludedStringRequest"/>
+        </message>
+
+        <message name="FooIncludedStringResponse">
+                <part name="result" element="ns2:FooIncludedStringResponse"/>
+        </message>
+
+	<message name="Foo1Request">
+		<part name="foo1Request" element="ns2:Foo1Request"/>
+	</message>
+
+	<message name="Foo1Response">
+		<part name="foo1Response" element="ns2:Foo1Response"/>
+	</message>
+
+	<message name="Foo2Request">
+		<part name="foo2Request" element="ns2:Foo2Request"/>
+	</message>
+
+	<message name="Foo2Response">
+		<part name="foo2Response" element="ns2:Foo2Response"/>
+	</message>
+
+	<message name="FooFault">
+		<part name="fooFault" element="ns2:FooFault"/>
+	</message>
+
+	<message name="FooStringRequest">
+		<part name="fooStringRequest" element="ns2:FooStringRequest"/>
+	</message>
+
+	<message name="FooStringResponse">
+		<part name="fooStringResponse" element="ns2:FooStringResponse"/>
+	</message>
+
+	<message name="FooITypeRequest">
+		<part name="fooITypeRequest" element="ns2:FooIType"/>
+	</message>
+
+	<message name="FooITypeResponse">
+		<part name="fooITypeResponse" element="ns2:FooIType"/>
+	</message>
+
+	<message name="FooVariousSchemaTypesRequest">
+		<part name="fooVariousSchemaTypesRequest" element="ns2:FooVariousSchemaTypes"/>
+	</message>
+
+	<message name="FooVariousSchemaTypesResponse">
+		<part name="fooVariousSchemaTypesResponse" element="ns2:FooVariousSchemaTypes"/>
+	</message>
+
+	<message name="FooVariousSchemaTypesListTypeRequest">
+		<part name="fooVariousSchemaTypesListTypeRequest" element="ns2:FooVariousSchemaTypesListType"/>
+	</message>
+
+	<message name="FooVariousSchemaTypesListTypeResponse">
+		<part name="fooVariousSchemaTypesListTypeResponse" element="ns2:FooVariousSchemaTypesListType"/>
+	</message>
+
+	<message name="FooIntegerRangeTypeRequest">
+		<part name="fooIntegerRangeTypeRequest" element="ns2:FooIntegerRangeType"/>
+	</message>
+
+	<message name="FooIntegerRangeTypeResponse">
+		<part name="fooIntegerRangeTypeResponse" element="ns2:FooIntegerRangeType"/>
+	</message>
+
+	<message name="FooStringListTypeRequest">
+		<part name="fooStringListTypeRequest" element="ns2:FooStringListType"/>
+	</message>
+
+	<message name="FooStringListTypeResponse">
+		<part name="fooStringListTypeResponse" element="ns2:FooStringListType"/>
+	</message>
+
+       <message name="FooFloatListTypeRequest">
+                <part name="fooFloatListTypeRequest" element="ns2:FooFloatListType"/>
+        </message>
+
+        <message name="FooFloatListTypeResponse">
+                <part name="fooFloatListTypeResponse" element="ns2:FooFloatListType"/>
+        </message>
+
+        <message name="FooIntListTypeRequest">
+                <part name="fooIntListTypeRequest" element="ns2:FooIntListType"/>
+        </message>
+
+        <message name="FooIntListTypeResponse">
+                <part name="fooIntListTypeResponse" element="ns2:FooIntListType"/>
+        </message>
+
+        <message name="FooDecimalListTypeRequest">
+                <part name="fooDecimalListTypeRequest" element="ns2:FooDecimalListType"/>
+        </message>
+
+        <message name="FooDecimalListTypeResponse">
+                <part name="fooDecimalListTypeResponse" element="ns2:FooDecimalListType"/>
+        </message>
+
+        <message name="FooDoubleListTypeRequest">
+                <part name="fooDoubleListTypeRequest" element="ns2:FooDoubleListType"/>
+        </message>
+
+        <message name="FooDoubleListTypeResponse">
+                <part name="fooDoubleListTypeResponse" element="ns2:FooDoubleListType"/>
+        </message>
+
+        <message name="FooIntegerListTypeRequest">
+                <part name="fooIntegerListTypeRequest" element="ns2:FooIntegerListType"/>
+        </message>
+
+        <message name="FooIntegerListTypeResponse">
+                <part name="fooIntegerListTypeResponse" element="ns2:FooIntegerListType"/>
+        </message>
+
+        <message name="FooLongListTypeRequest">
+                <part name="fooLongListTypeRequest" element="ns2:FooLongListType"/>
+        </message>
+
+        <message name="FooLongListTypeResponse">
+                <part name="fooLongListTypeResponse" element="ns2:FooLongListType"/>
+        </message>
+
+        <message name="FooShortListTypeRequest">
+                <part name="fooShortListTypeRequest" element="ns2:FooShortListType"/>
+        </message>
+
+        <message name="FooShortListTypeResponse">
+                <part name="fooShortListTypeResponse" element="ns2:FooShortListType"/>
+        </message>
+        <message name="FooByteListTypeRequest">
+                <part name="fooByteListTypeRequest" element="ns2:FooByteListType"/>
+        </message>
+
+        <message name="FooByteListTypeResponse">
+                <part name="fooByteListTypeResponse" element="ns2:FooByteListType"/>
+        </message>
+
+
+	<message name="FooStringEnumTypeRequest">
+		<part name="fooStringEnumTypeRequest" element="ns2:FooStringEnumType"/>
+	</message>
+
+	<message name="FooStringEnumTypeResponse">
+		<part name="fooStringEnumTypeResponse" element="ns2:FooStringEnumType"/>
+	</message>
+
+	<message name="FooByteEnumTypeRequest">
+		<part name="fooByteEnumTypeRequest" element="ns2:FooByteEnumType"/>
+	</message>
+
+	<message name="FooByteEnumTypeResponse">
+		<part name="fooByteEnumTypeResponse" element="ns2:FooByteEnumType"/>
+	</message>
+
+	<message name="FooShortEnumTypeRequest">
+		<part name="fooShortEnumTypeRequest" element="ns2:FooShortEnumType"/>
+	</message>
+
+	<message name="FooShortEnumTypeResponse">
+		<part name="fooShortEnumTypeResponse" element="ns2:FooShortEnumType"/>
+	</message>
+
+	<message name="FooIntegerEnumTypeRequest">
+		<part name="fooIntegerEnumTypeRequest" element="ns2:FooIntegerEnumType"/>
+	</message>
+
+	<message name="FooIntegerEnumTypeResponse">
+		<part name="fooIntegerEnumTypeResponse" element="ns2:FooIntegerEnumType"/>
+	</message>
+
+	<message name="FooIntEnumTypeRequest">
+		<part name="fooIntEnumTypeRequest" element="ns2:FooIntEnumType"/>
+	</message>
+
+	<message name="FooIntEnumTypeResponse">
+		<part name="fooIntEnumTypeResponse" element="ns2:FooIntEnumType"/>
+	</message>
+
+	<message name="FooLongEnumTypeRequest">
+		<part name="fooLongEnumTypeRequest" element="ns2:FooLongEnumType"/>
+	</message>
+
+	<message name="FooLongEnumTypeResponse">
+		<part name="fooLongEnumTypeResponse" element="ns2:FooLongEnumType"/>
+	</message>
+
+	<message name="FooDecimalEnumTypeRequest">
+		<part name="fooDecimalEnumTypeRequest" element="ns2:FooDecimalEnumType"/>
+	</message>
+
+	<message name="FooDecimalEnumTypeResponse">
+		<part name="fooDecimalEnumTypeResponse" element="ns2:FooDecimalEnumType"/>
+	</message>
+
+	<message name="FooFloatEnumTypeRequest">
+		<part name="fooFloatEnumTypeRequest" element="ns2:FooFloatEnumType"/>
+	</message>
+
+	<message name="FooFloatEnumTypeResponse">
+		<part name="fooFloatEnumTypeResponse" element="ns2:FooFloatEnumType"/>
+	</message>
+
+	<message name="FooDoubleEnumTypeRequest">
+		<part name="fooDoubleEnumTypeRequest" element="ns2:FooDoubleEnumType"/>
+	</message>
+
+	<message name="FooDoubleEnumTypeResponse">
+		<part name="fooDoubleEnumTypeResponse" element="ns2:FooDoubleEnumType"/>
+	</message>
+
+	<message name="FooAnonymousTypeRequest">
+		<part name="fooAnonymousTypeRequest" element="ns2:FooAnonymousType"/>
+	</message>
+
+	<message name="FooAnonymousTypeResponse">
+		<part name="fooAnonymousTypeResponse" element="ns2:FooAnonymousType"/>
+	</message>
+
+	<message name="FooAnnotationTypeRequest">
+    		<part name="fooAnnotationTypeRequest" element="ns2:FooAnnotationType"/>
+  	</message>
+
+  	<message name="FooAnnotationTypeResponse">
+    		<part name="fooAnnotationTypeResponse" element="ns2:FooAnnotationType"/>
+  	</message>
+
+	<message name="FooAnySimpleTypeRequest">
+    		<part name="fooAnySimpleTypeRequest" element="ns2:FooAnySimpleType"/>
+  	</message>
+
+  	<message name="FooAnySimpleTypeResponse">
+    		<part name="fooAnySimpleTypeResponse" element="ns2:FooAnySimpleType"/>
+  	</message>
+
+	<message name="FooAnyURITypeRequest">
+    		<part name="fooAnyURITypeRequest" element="ns2:FooAnyURIType"/>
+  	</message>
+
+  	<message name="FooAnyURITypeResponse">
+    		<part name="fooAnyURITypeResponse" element="ns2:FooAnyURIType"/>
+  	</message>
+
+  	<message name="LiteralLanguageMessageRequest">
+    		<part name="body" element="ns2:languageElem"/>
+  	</message>
+
+  	<message name="LiteralLanguageMessageResponse">
+    		<part name="result" element="ns2:languageElem"/>
+  	</message>
+  
+  	<message name="LiteralTokenMessageRequest">
+    		<part name="body" element="ns2:tokenElem"/>
+  	</message>
+
+  	<message name="LiteralTokenMessageResponse">
+    		<part name="result" element="ns2:tokenElem"/>
+  	</message>
+
+  	<message name="LiteralNameMessageRequest">
+    		<part name="body" element="ns2:nameElem"/>
+  	</message>
+
+  	<message name="LiteralNameMessageResponse">
+    		<part name="result" element="ns2:nameElem"/>
+  	</message>
+
+  	<message name="LiteralNCNameMessageRequest">
+    		<part name="body" element="ns2:NCNameElem"/>
+  	</message>
+
+  	<message name="LiteralNCNameMessageResponse">
+    		<part name="result" element="ns2:NCNameElem"/>
+  	</message>
+
+  	<message name="LiteralIDMessageRequest">
+    		<part name="body" element="ns2:IDElem"/>
+  	</message>
+
+  	<message name="LiteralIDMessageResponse">
+    		<part name="result" element="ns2:IDElem"/>
+  	</message>
+
+  	<message name="UnsignedShortMessageRequest">
+    		<part name="body" element="ns2:UnsignedShort"/>
+  	</message>
+
+  	<message name="UnsignedShortMessageResponse">
+    		<part name="result" element="ns2:UnsignedShort"/>
+  	</message>
+
+  	<message name="UnsignedIntMessageRequest">
+    		<part name="body" element="ns2:UnsignedInt"/>
+  	</message>
+
+  	<message name="UnsignedIntMessageResponse">
+    		<part name="result" element="ns2:UnsignedInt"/>
+  	</message>
+
+  	<message name="UnsignedByteMessageRequest">
+    		<part name="body" element="ns2:UnsignedByte"/>
+  	</message>
+
+  	<message name="UnsignedByteMessageResponse">
+    		<part name="result" element="ns2:UnsignedByte"/>
+  	</message>
+
+  	<message name="UnsignedLongMessageRequest">
+    		<part name="body" element="ns2:UnsignedLong"/>
+  	</message>
+
+  	<message name="UnsignedLongMessageResponse">
+    		<part name="result" element="ns2:UnsignedLong"/>
+  	</message>
+
+  	<message name="NonPositiveIntegerMessageRequest">
+    		<part name="body" element="ns2:NonPositiveInteger"/>
+  	</message>
+
+  	<message name="NonPositiveIntegerMessageResponse">
+    		<part name="result" element="ns2:NonPositiveInteger"/>
+  	</message>
+
+  	<message name="NonNegativeIntegerMessageRequest">
+    		<part name="body" element="ns2:NonNegativeInteger"/>
+  	</message>
+
+  	<message name="NonNegativeIntegerMessageResponse">
+    		<part name="result" element="ns2:NonNegativeInteger"/>
+  	</message>
+
+  	<message name="PositiveIntegerMessageRequest">
+    		<part name="body" element="ns2:PositiveInteger"/>
+  	</message>
+
+  	<message name="PositiveIntegerMessageResponse">
+    		<part name="result" element="ns2:PositiveInteger"/>
+  	</message>
+
+  	<message name="NegativeIntegerMessageRequest">
+    		<part name="body" element="ns2:NegativeInteger"/>
+  	</message>
+
+  	<message name="NegativeIntegerMessageResponse">
+    		<part name="result" element="ns2:NegativeInteger"/>
+  	</message>
+
+  	<message name="TimeMessageRequest">
+    		<part name="body" element="ns2:Time"/>
+  	</message>
+
+  	<message name="TimeMessageResponse">
+    		<part name="result" element="ns2:Time"/>
+  	</message>
+
+  	<message name="DateMessageRequest">
+    		<part name="body" element="ns2:Date"/>
+  	</message>
+
+  	<message name="DateMessageResponse">
+    		<part name="result" element="ns2:Date"/>
+  	</message>
+
+        <message name="FooStringTypeRequest">
+                <part name="fooStringTypeRequest" element="ns2:FooString"/>
+        </message>
+
+        <message name="FooStringTypeResponse">
+                <part name="fooStringTypeResponse" element="ns2:FooString"/>
+        </message>
+
+        <message name="FooIntegerTypeRequest">
+                <part name="fooIntegerTypeRequest" element="ns2:FooInteger"/>
+        </message>
+
+        <message name="FooIntegerTypeResponse">
+                <part name="fooIntegerTypeResponse" element="ns2:FooInteger"/>
+        </message>
+
+        <message name="FooIntTypeRequest">
+                <part name="fooIntTypeRequest" element="ns2:FooInt"/>
+        </message>
+
+        <message name="FooIntTypeResponse">
+                <part name="fooIntTypeResponse" element="ns2:FooInt"/>
+        </message>
+
+        <message name="FooLongTypeRequest">
+                <part name="fooLongTypeRequest" element="ns2:FooLong"/>
+        </message>
+
+        <message name="FooLongTypeResponse">
+                <part name="fooLongTypeResponse" element="ns2:FooLong"/>
+        </message>
+
+        <message name="FooShortTypeRequest">
+                <part name="fooShortTypeRequest" element="ns2:FooShort"/>
+        </message>
+
+        <message name="FooShortTypeResponse">
+                <part name="fooShortTypeResponse" element="ns2:FooShort"/>
+        </message>
+
+        <message name="FooDecimalTypeRequest">
+                <part name="fooDecimalTypeRequest" element="ns2:FooDecimal"/>
+        </message>
+
+        <message name="FooDecimalTypeResponse">
+                <part name="fooDecimalTypeResponse" element="ns2:FooDecimal"/>
+        </message>
+
+
+        <message name="FooFloatTypeRequest">
+                <part name="fooFloatTypeRequest" element="ns2:FooFloat"/>
+        </message>
+
+        <message name="FooFloatTypeResponse">
+                <part name="fooFloatTypeResponse" element="ns2:FooFloat"/>
+        </message>
+
+        <message name="FooDoubleTypeRequest">
+                <part name="fooDoubleTypeRequest" element="ns2:FooDouble"/>
+        </message>
+
+        <message name="FooDoubleTypeResponse">
+                <part name="fooDoubleTypeResponse" element="ns2:FooDouble"/>
+        </message>
+
+
+        <message name="FooBooleanTypeRequest">
+                <part name="fooBooleanTypeRequest" element="ns2:FooBoolean"/>
+        </message>
+
+        <message name="FooBooleanTypeResponse">
+                <part name="fooBooleanTypeResponse" element="ns2:FooBoolean"/>
+        </message>
+
+        <message name="FooByteTypeRequest">
+                <part name="fooByteTypeRequest" element="ns2:FooByte"/>
+        </message>
+
+        <message name="FooByteTypeResponse">
+                <part name="fooByteTypeResponse" element="ns2:FooByte"/>
+        </message>
+
+        <message name="FooQNameTypeRequest">
+                <part name="fooQNameTypeRequest" element="ns2:FooQName"/>
+        </message>
+
+        <message name="FooQNameTypeResponse">
+                <part name="fooQNameTypeResponse" element="ns2:FooQName"/>
+        </message>
+
+	<portType name="NewSchemaTest">
+
+                <operation name="echoIncludedStringTest">
+                        <input message="tns:FooIncludedStringRequest" />
+                        <output message="tns:FooIncludedStringResponse" />
+                </operation>
+
+
+		<operation name="sendFoo1Test">
+			<input message="tns:Foo1Request"/>
+			<output message="tns:Foo1Response"/>
+		</operation>
+		<operation name="sendFoo2Test">
+			<input message="tns:Foo2Request"/>
+			<output message="tns:Foo2Response"/>
+		</operation>
+		<operation name="echoNormalizedStringTypeTest">
+			<input message="tns:FooITypeRequest"/>
+			<output message="tns:FooITypeResponse"/>
+		</operation>
+		<operation name="echoVariousSchemaTypesTest">
+			<input message="tns:FooVariousSchemaTypesRequest"/>
+			<output message="tns:FooVariousSchemaTypesResponse"/>
+		</operation>
+		<operation name="echoVariousSchemaTypesListTypeTest">
+			<input message="tns:FooVariousSchemaTypesListTypeRequest"/>
+			<output message="tns:FooVariousSchemaTypesListTypeResponse"/>
+		</operation>
+		<operation name="echoIntegerRangeTypeTest">
+			<input message="tns:FooIntegerRangeTypeRequest"/>
+			<output message="tns:FooIntegerRangeTypeResponse"/>
+		</operation>
+		<operation name="echoStringListTypeTest">
+			<input message="tns:FooStringListTypeRequest"/>
+			<output message="tns:FooStringListTypeResponse"/>
+		</operation>
+
+               <operation name="echoFloatListTypeTest">
+                        <input message="tns:FooFloatListTypeRequest"/>
+                        <output message="tns:FooFloatListTypeResponse"/>
+                </operation>
+
+                <operation name="echoIntListTypeTest">
+                        <input message="tns:FooIntListTypeRequest"/>
+                        <output message="tns:FooIntListTypeResponse"/>
+                </operation>
+
+                <operation name="echoDecimalListTypeTest">
+                        <input message="tns:FooDecimalListTypeRequest"/>
+                        <output message="tns:FooDecimalListTypeResponse"/>
+                </operation>
+
+                <operation name="echoDoubleListTypeTest">
+                        <input message="tns:FooDoubleListTypeRequest"/>
+                        <output message="tns:FooDoubleListTypeResponse"/>
+                </operation>
+
+                <operation name="echoIntegerListTypeTest">
+                        <input message="tns:FooIntegerListTypeRequest"/>
+                        <output message="tns:FooIntegerListTypeResponse"/>
+                </operation>
+
+                <operation name="echoLongListTypeTest">
+                        <input message="tns:FooLongListTypeRequest"/>
+                        <output message="tns:FooLongListTypeResponse"/>
+                </operation>
+                <operation name="echoShortListTypeTest">
+                        <input message="tns:FooShortListTypeRequest"/>
+                        <output message="tns:FooShortListTypeResponse"/>
+                </operation>
+                <operation name="echoByteListTypeTest">
+                        <input message="tns:FooByteListTypeRequest"/>
+                        <output message="tns:FooByteListTypeResponse"/>
+                </operation>
+
+
+		<operation name="echoStringEnumTypeTest">
+			<input message="tns:FooStringEnumTypeRequest"/>
+			<output message="tns:FooStringEnumTypeResponse"/>
+		</operation>
+		<operation name="echoByteEnumTypeTest">
+			<input message="tns:FooByteEnumTypeRequest"/>
+			<output message="tns:FooByteEnumTypeResponse"/>
+		</operation>
+		<operation name="echoShortEnumTypeTest">
+			<input message="tns:FooShortEnumTypeRequest"/>
+			<output message="tns:FooShortEnumTypeResponse"/>
+		</operation>
+		<operation name="echoIntegerEnumTypeTest">
+			<input message="tns:FooIntegerEnumTypeRequest"/>
+			<output message="tns:FooIntegerEnumTypeResponse"/>
+		</operation>
+		<operation name="echoIntEnumTypeTest">
+			<input message="tns:FooIntEnumTypeRequest"/>
+			<output message="tns:FooIntEnumTypeResponse"/>
+		</operation>
+		<operation name="echoLongEnumTypeTest">
+			<input message="tns:FooLongEnumTypeRequest"/>
+			<output message="tns:FooLongEnumTypeResponse"/>
+		</operation>
+		<operation name="echoDecimalEnumTypeTest">
+			<input message="tns:FooDecimalEnumTypeRequest"/>
+			<output message="tns:FooDecimalEnumTypeResponse"/>
+		</operation>
+		<operation name="echoFloatEnumTypeTest">
+			<input message="tns:FooFloatEnumTypeRequest"/>
+			<output message="tns:FooFloatEnumTypeResponse"/>
+		</operation>
+		<operation name="echoDoubleEnumTypeTest">
+			<input message="tns:FooDoubleEnumTypeRequest"/>
+			<output message="tns:FooDoubleEnumTypeResponse"/>
+		</operation>
+		<operation name="echoAnonymousTypeTest">
+			<input message="tns:FooAnonymousTypeRequest"/>
+			<output message="tns:FooAnonymousTypeResponse"/>
+		</operation>
+		<operation name="echoAnnotationTypeTest">
+			<input message="tns:FooAnnotationTypeRequest"/>
+			<output message="tns:FooAnnotationTypeResponse"/>
+		</operation>
+		<operation name="echoAnySimpleTypeTest">
+			<input message="tns:FooAnySimpleTypeRequest"/>
+			<output message="tns:FooAnySimpleTypeResponse"/>
+		</operation>
+		<operation name="echoAnyURITypeTest">
+			<input message="tns:FooAnyURITypeRequest"/>
+			<output message="tns:FooAnyURITypeResponse"/>
+		</operation>
+		<operation name="fooFaultTest">
+			<input message="tns:FooStringRequest"/>
+			<output message="tns:FooStringResponse"/>
+			<fault name="FooFault" message="tns:FooFault"/>
+		</operation>
+    		<operation name="echoLanguageTypeTest">
+      			<input message="tns:LiteralLanguageMessageRequest"/>
+      			<output message="tns:LiteralLanguageMessageResponse"/>
+    		</operation>  
+    		<operation name="echoTokenTypeTest">
+      			<input message="tns:LiteralTokenMessageRequest"/>
+      			<output message="tns:LiteralTokenMessageResponse"/>
+    		</operation>  
+    		<operation name="echoNameTypeTest">
+      			<input message="tns:LiteralNameMessageRequest"/>
+      			<output message="tns:LiteralNameMessageResponse"/>
+    		</operation>  
+    		<operation name="echoNCNameTypeTest">
+      			<input message="tns:LiteralNCNameMessageRequest"/>
+      			<output message="tns:LiteralNCNameMessageResponse"/>
+    		</operation>  
+    		<operation name="echoIDTypeTest">
+      			<input message="tns:LiteralIDMessageRequest"/>
+      			<output message="tns:LiteralIDMessageResponse"/>
+    		</operation> 
+    		<operation name="echoUnsignedShortTest">
+      			<input message="tns:UnsignedShortMessageRequest"/>
+      			<output message="tns:UnsignedShortMessageResponse"/>
+    		</operation>
+    		<operation name="echoUnsignedIntTest">
+      			<input message="tns:UnsignedIntMessageRequest"/>
+      			<output message="tns:UnsignedIntMessageResponse"/>
+    		</operation>
+    		<operation name="echoUnsignedByteTest">
+      			<input message="tns:UnsignedByteMessageRequest"/>
+      			<output message="tns:UnsignedByteMessageResponse"/>
+    		</operation>
+    		<operation name="echoUnsignedLongTest">
+      			<input message="tns:UnsignedLongMessageRequest"/>
+      			<output message="tns:UnsignedLongMessageResponse"/>
+    		</operation>
+                <operation name="echoNonPositiveIntegerTest">
+                        <input message="tns:NonPositiveIntegerMessageRequest"/>
+                        <output message="tns:NonPositiveIntegerMessageResponse"/>
+                </operation>
+                <operation name="echoNonNegativeIntegerTest">
+                        <input message="tns:NonNegativeIntegerMessageRequest"/>
+                        <output message="tns:NonNegativeIntegerMessageResponse"/>
+                </operation>
+                <operation name="echoPositiveIntegerTest">
+                        <input message="tns:PositiveIntegerMessageRequest"/>
+                        <output message="tns:PositiveIntegerMessageResponse"/>
+                </operation>
+                <operation name="echoNegativeIntegerTest">
+                        <input message="tns:NegativeIntegerMessageRequest"/>
+                        <output message="tns:NegativeIntegerMessageResponse"/>
+                </operation>
+    		<operation name="echoTimeTest">
+      			<input message="tns:TimeMessageRequest"/>
+      			<output message="tns:TimeMessageResponse"/>
+    		</operation>
+    		<operation name="echoDateTest">
+      			<input message="tns:DateMessageRequest"/>
+      			<output message="tns:DateMessageResponse"/>
+    		</operation>
+
+               <operation name="echoFooIntegerTypeTest">
+                        <input message="tns:FooIntegerTypeRequest" />
+                        <output message="tns:FooIntegerTypeResponse" />
+                </operation>
+
+                <operation name="echoFooStringTypeTest">
+                        <input message="tns:FooStringTypeRequest" />
+                        <output message="tns:FooStringTypeResponse" />
+                </operation>
+
+                <operation name="echoFooIntTypeTest">
+                        <input message="tns:FooIntTypeRequest" />
+                        <output message="tns:FooIntTypeResponse" />
+                </operation>
+
+                <operation name="echoFooLongTypeTest">
+                        <input message="tns:FooLongTypeRequest" />
+                        <output message="tns:FooLongTypeResponse" />
+                </operation>
+
+                <operation name="echoFooShortTypeTest">
+                        <input message="tns:FooShortTypeRequest" />
+                        <output message="tns:FooShortTypeResponse" />
+                </operation>
+
+               <operation name="echoFooDecimalTypeTest">
+                        <input message="tns:FooDecimalTypeRequest" />
+                        <output message="tns:FooDecimalTypeResponse" />
+                </operation>
+               <operation name="echoFooFloatTypeTest">
+                        <input message="tns:FooFloatTypeRequest" />
+                        <output message="tns:FooFloatTypeResponse" />
+                </operation>
+
+               <operation name="echoFooDoubleTypeTest">
+                        <input message="tns:FooDoubleTypeRequest" />
+                        <output message="tns:FooDoubleTypeResponse" />
+                </operation>
+
+               <operation name="echoFooBooleanTypeTest">
+                        <input message="tns:FooBooleanTypeRequest" />
+                        <output message="tns:FooBooleanTypeResponse" />
+                </operation>
+
+               <operation name="echoFooByteTypeTest">
+                        <input message="tns:FooByteTypeRequest" />
+                        <output message="tns:FooByteTypeResponse" />
+                </operation>
+
+               <operation name="echoFooQNameTypeTest">
+                        <input message="tns:FooQNameTypeRequest" />
+                        <output message="tns:FooQNameTypeResponse" />
+                </operation>
+	</portType>
+
+
+	<binding name="NewSchemaTestSoapBinding" type="tns:NewSchemaTest">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+                <operation name="echoIncludedStringTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body  use="literal"/>
+                        </input>
+                        <output>
+                                <soap:body  use="literal"/>
+                        </output>
+                </operation>
+
+
+		<operation name="sendFoo1Test">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="sendFoo2Test">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoNormalizedStringTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoVariousSchemaTypesTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoVariousSchemaTypesListTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoIntegerRangeTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoStringListTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+
+                <operation name="echoFloatListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output> <soap:body use="literal"/> </output>
+                </operation>
+
+                <operation name="echoIntListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output> <soap:body use="literal"/> </output>
+                </operation>
+
+
+                <operation name="echoDecimalListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output> <soap:body use="literal"/> </output>
+                </operation>
+
+                <operation name="echoDoubleListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output> <soap:body use="literal"/> </output>
+                </operation>
+
+                <operation name="echoIntegerListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output> <soap:body use="literal"/> </output>
+                </operation>
+
+                <operation name="echoLongListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output> <soap:body use="literal"/> </output>
+                </operation>
+                <operation name="echoShortListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output> <soap:body use="literal"/> </output>
+                </operation>
+                <operation name="echoByteListTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output> <soap:body use="literal"/> </output>
+                </operation>
+
+
+		<operation name="echoStringEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoByteEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoShortEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoIntegerEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoIntEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoLongEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoDecimalEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoFloatEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoDoubleEnumTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoAnonymousTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoAnnotationTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/> 
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoAnySimpleTypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/> 
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="echoAnyURITypeTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/> 
+			</input>
+			<output> <soap:body use="literal"/> </output>
+		</operation>
+		<operation name="fooFaultTest">
+			<soap:operation soapAction=""/>
+			<input> 
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="FooFault">
+				<soap:fault name="FooFault" use="literal"/>
+			</fault>
+		</operation>
+    		<operation name="echoLanguageTypeTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>      
+    		<operation name="echoTokenTypeTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>      
+    		<operation name="echoNameTypeTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>      
+    		<operation name="echoNCNameTypeTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>      
+    		<operation name="echoIDTypeTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation> 
+    		<operation name="echoUnsignedShortTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>
+    		<operation name="echoUnsignedIntTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>
+    		<operation name="echoUnsignedByteTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>
+    		<operation name="echoUnsignedLongTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>
+                <operation name="echoNonPositiveIntegerTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal"/>
+                        </output>
+                </operation>
+                <operation name="echoNonNegativeIntegerTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal"/>
+                        </output>
+                </operation>
+                <operation name="echoPositiveIntegerTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal"/>
+                        </output>
+                </operation>
+                <operation name="echoNegativeIntegerTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal"/>
+                        </input>
+                        <output>
+                                <soap:body use="literal"/>
+                        </output>
+                </operation>
+    		<operation name="echoTimeTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>
+    		<operation name="echoDateTest">
+      			<soap:operation soapAction=""/>
+      			<input>
+        			<soap:body use="literal"/>
+      			</input>
+      			<output>
+        			<soap:body use="literal"/>
+      			</output>
+    		</operation>
+                <operation name="echoFooStringTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+
+               <operation name="echoFooIntegerTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+
+               <operation name="echoFooIntTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+
+                <operation name="echoFooLongTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+
+                <operation name="echoFooShortTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+
+                <operation name="echoFooDecimalTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+                <operation name="echoFooFloatTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+                <operation name="echoFooDoubleTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+                <operation name="echoFooBooleanTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+                <operation name="echoFooByteTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+
+                <operation name="echoFooQNameTypeTest">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="literal" />
+                        </input>
+                        <output> <soap:body use="literal" />
+                        </output>
+                </operation>
+	</binding>
+</definitions>

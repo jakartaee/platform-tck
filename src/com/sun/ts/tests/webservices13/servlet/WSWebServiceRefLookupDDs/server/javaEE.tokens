@@ -1,0 +1,4 @@
+IMPL=com.sun.ts.tests.webservices13.servlet.WSWebServiceRefLookupDDs.server.EchoImpl
+URLALIAS=/jaxws/Echo
+SERVLETNAME=com.sun.ts.tests.webservices13.servlet.WSWebServiceRefLookupDDs.server.EchoImpl
+WEBSERVICEDESCRIPTION=EchoService

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+  <display-name>Ejb2</display-name>
+  <enterprise-beans>
+    <entity>
+      <ejb-name>Bean1_MultJar</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.scope.BeanHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.scope.Bean</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.scope.BeanEJB</ejb-class>
+      <persistence-type>Container</persistence-type>
+      <prim-key-class>java.lang.Integer</prim-key-class>
+      <reentrant>false</reentrant>
+      <cmp-version>1.x</cmp-version>
+      <cmp-field>
+        <field-name>KEY_ID</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>PRICE</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>BRAND_NAME</field-name>
+      </cmp-field>
+      <primkey-field>KEY_ID</primkey-field>
+      <env-entry>
+        <env-entry-name>Duende</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>Vincente Amigo</env-entry-value>
+      </env-entry>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </entity>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>Bean1_MultJar</ejb-name>
+        <method-intf>Home</method-intf>
+        <method-name>create</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+          <method-param>int</method-param>
+          <method-param>java.lang.String</method-param>
+          <method-param>float</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>Bean1_MultJar</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>checkEntry</method-name>
+        <method-params>
+          <method-param>java.lang.String</method-param>
+          <method-param>java.lang.String</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>Bean1_MultJar</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>remove</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>Bean1_MultJar</ejb-name>
+        <method-intf>Home</method-intf>
+        <method-name>remove</method-name>
+        <method-params>
+          <method-param>javax.ejb.Handle</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>Bean1_MultJar</ejb-name>
+        <method-intf>Home</method-intf>
+        <method-name>remove</method-name>
+        <method-params>
+          <method-param>java.lang.Object</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>Bean1_MultJar</ejb-name>
+        <method-intf>Home</method-intf>
+        <method-name>findByPrimaryKey</method-name>
+        <method-params>
+          <method-param>java.lang.Integer</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

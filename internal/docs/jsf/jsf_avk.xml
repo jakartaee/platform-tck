@@ -1,0 +1,273 @@
+<?xml version="1.0" ?>
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<?xml-stylesheet href='http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl'?>
+		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
+			<id/>
+			<description>It is also legal to specify a different lifecycle identifier as a parameter to the getLifecycle() method, as long as this identifier is recognized and supported by the JSF implementation you are using. However, using a non-default lifecycle identifier will generally not be portable to any other JSF implementation.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+			<location chapter="2" section="4.1.1"/>
+		</assertion>
+		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+			<id/>
+			<description>A custom component that extends UIComponent directly, and does not extend any of the standard components must implement StateHolder manually.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+			<location chapter="2" section="5.3.1"/>
+		</assertion>
+		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+			<id/>
+			<description>Component identifiers must conform to the following rules:</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+			<location chapter="3" section="1.1"/>
+			<sub-assertions>
+				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+					<id/>
+					<description>They must start with a letter (as defined by the Character.isLetter() method) or underscore ( _ ).</description>
+                    <keywords>
+                        <keyword>application-role</keyword>
+                    </keywords>
+					<location chapter="3" section="1.1"/>
+				</assertion>
+				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+					<id/>
+					<description>Subsequent characters may be letters (as defined by the Character.isLetter() method), digits as defined by the Character.isDigit() method, dashes ( - ), and underscores ( _ ).</description>
+                    <keywords>
+                        <keyword>application-role</keyword>
+                    </keywords>
+					<location chapter="3" section="1.1"/>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
+            <id/>
+            <description>If a component has been given an identifier, it must be unique in the namespace of the closest ancestor to that component that is a NamingContainer (if any).</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="3" section="1.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>The method names for the render-independent property getters and setters must conform to the design patterns in the JavaBeans specification.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="3" section="1.11"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>Any class implementing StateHolder must have a public no-args constructor.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="3" section="2.4.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>listener implementation classes must have a public zero-argument constructor</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="3" section="2.4.5"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
+            <id/>
+            <description>Value expressions that appear in the attribute definition for a faces tag must have  '#{}'  as the delimiter, instead of  '${}'.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="5" section="1.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
+            <id/>
+            <description>The syntax of a method expression must conform to one of the following patterns: ? #{expr-a.value-b} or?#{expr-a[value-b]} where expr-a  is a value expression (see Section 5.1.2  ValueExpression Syntax ) and  value-b  is an identifier whose syntax matches that of a Java method name.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="5" section="2.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>managed-bean-class -- The fully qualified class name of the application class used to instantiate a new instance. This class must conform to JavaBeans design patterns -- in particular, it must have a public zero-args constructor, and must have public property setters for any properties referenced with nested managed-property elements -- or it must be a class that implements java.util.Map or java.util.List.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>Managed bean names must conform to the syntax of a Java language identifier.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>Attached objects that do not implement either StateHolder or Serializable must have a public, zero-arg constructor, and will be restored only to their initial, default object state.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="7" section="6.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>If your application uses client state saving, the values of all component attributes and properties (as well as the saved state of attached objects) must implement java.io.Serializable.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="7" section="6.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>an implementation might choose a different RenderKit based on the  User-Agent  header included in the request, or the Locale that has been established for the response view. Note that applications which depend on this feature are not guaranteed to be portable across JSF implementations.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="8" section="4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>Custom actions that correspond to JSF UIComponent instances must subclass either javax.faces.webapp.UIComponentTag (see Section 10.2.6.3  UIComponentTag ) or javax.faces.webapp.UIComponentBodyTag (see Section 10.2.6.4  UIComponentBodyTag ), depending on whether the custom action needs to support javax.servlet.jsp.tagext.BodyTag functionality or not.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="9" section="2.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
+            <id/>
+            <description>Each facet action must have one and only one child UIComponent custom action.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="9" section="2.7"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
+            <id/>
+            <description>The fmt:parseDate and fmt:parseNumber custom actions should not be used. The corresponding JSF facility is to use an h:inputText component custom action with an appropriate DateTimeConverter or NumberConverter.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="9" section="2.8"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
+            <id/>
+            <description>The fmt:requestEncoding custom action should not be used. By the time it is executed, the request parameters will have already been parsed, so any change in the setting here will have no impact.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="9" section="2.8"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
+            <id/>
+            <description>The fmt:setLocale custom action should not be used. Even though it might work in some circumstances, it would result in JSF and JSTL assuming different locales. If the two locales use different character sets, the results will be undefined. Applications should use JSF facilities for setting the locale property on the UIViewRoot component to change locales for a particular user.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="9" section="2.8"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>The corresponding UIComponent implementation class must implement ActionSource, and therefore define a public addActionListener() method that accepts an ActionListener parameter.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="9" section="4.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>The specified listener class must implement javax.faces.event.ActionListener.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="9" section="4.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>If both limits are specified, the maximum limit must be greater than the minimum limit.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="9" section="4.13"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>javax.servlet.* classes will typically be made available to all web applications using the shared class facilities of the servlet container. Therefore, these classes should not be included inside the web application archive.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="10" section="2.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>Each of the following referenced classes must have a public zero-arguments constructor:</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="10" section="3.4"/>
+            <sub-assertions>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                    <id/>
+                    <description>/faces-config/factory/application-factory</description>
+                    <keywords>
+                        <keyword>application-role</keyword>
+                    </keywords>
+                    <location chapter = "10" section = "3.4"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                    <id/>
+                    <description>/faces-config/factory/faces-context-factory</description>
+                    <keywords>
+                        <keyword>application-role</keyword>
+                    </keywords>
+                    <location chapter = "10" section = "3.4"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                    <id/>
+                    <description>/faces-config/factory/lifecycle-factory</description>
+                    <keywords>
+                        <keyword>application-role</keyword>
+                    </keywords>
+                    <location chapter = "10" section = "3.4"/>
+                </assertion>
+                <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+                    <id/>
+                    <description>/faces-config/factory/render-kit-factory</description>
+                    <keywords>
+                        <keyword>application-role</keyword>
+                    </keywords>
+                    <location chapter = "10" section = "3.4"/>
+                </assertion>
+            </sub-assertions>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+            <id/>
+            <description>javax.servlet.* classes will typically be made available to all web applications using the shared class facilities of the servlet container. Therefore, these classes should not be included inside the web application archive.</description>
+            <keywords>
+                <keyword>application-role</keyword>
+            </keywords>
+            <location chapter="10" section="2.2"/>
+        </assertion>

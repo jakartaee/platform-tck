@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="CompoundTestDefs"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://marshalltestservice.org/CompoundTestDefs.wsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://marshalltestservice.org/CompoundTestDefs.wsdl"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns3="http://marshalltestservice.org/types3">
+
+    <types>
+                <xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+                        <xsd:import namespace="http://marshalltestservice.org/types3" schemaLocation="CompoundTestDefs.xsd"/>
+                </xsd:schema>
+    </types>
+
+    <message name="echoEmployeeRequest">
+        <part name="parameters" type="ns3:EchoEmployeeRequest"/> 
+    </message>
+    <message name="echoEmployeeResponse">
+        <part name="result" type="ns3:EchoEmployeeResponse"/>
+    </message>
+    <message name="echoPersonRequest">
+        <part name="parameters" type="ns3:EchoPersonRequest"/> 
+    </message>
+    <message name="echoPersonResponse">
+        <part name="result" type="ns3:EchoPersonResponse"/>
+    </message>
+    <message name="echoDocumentRequest">
+        <part name="parameters" type="ns3:Document"/> 
+    </message>
+    <message name="echoDocumentResponse">
+        <part name="result" type="ns3:Document"/>
+    </message>
+    <portType name="CompoundTest">
+        <operation name="echoEmployee">
+            <input message="tns:echoEmployeeRequest" name="echoEmployeeRequest"/>
+            <output message="tns:echoEmployeeResponse" name="echoEmployeeResponse"/>
+        </operation>
+        <operation name="echoPerson">
+            <input message="tns:echoPersonRequest" name="echoPersonResquest"/>
+            <output message="tns:echoPersonResponse" name ="echoPersonResponse"/>
+        </operation>
+        <operation name="echoDocument">
+            <input message="tns:echoDocumentRequest" name="echoDocumentRequest"/>
+            <output message="tns:echoDocumentResponse" name="echoDocumentResponse"/>
+        </operation>
+    </portType>
+    <binding name="CompoundTestBinding" type="tns:CompoundTest">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="echoEmployee">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="http://marshalltestservice.org/CompoundTestDefs.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://marshalltestservice.org/CompoundTestDefs.wsdl"/>
+            </output>
+        </operation>
+        <operation name="echoPerson">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="http://marshalltestservice.org/CompoundTestDefs.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://marshalltestservice.org/CompoundTestDefs.wsdl"/>
+            </output>
+        </operation>
+        <operation name="echoDocument">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal" namespace="http://marshalltestservice.org/CompoundTestDefs.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://marshalltestservice.org/CompoundTestDefs.wsdl"/>
+            </output>
+        </operation>
+    </binding>
+</definitions>

@@ -1,0 +1,7 @@
+WSRAnn=@WebServiceRef(name="service/wsj2wsimpletest")
+SERVICE=com.sun.ts.tests.jaxws.sharedclients.simpleclient.SimpleTest
+URLALIAS=/jaxws/SimpleTest
+WEBSERVICEDESCRIPTION=SimpleTest
+SERVICEREFNAMEWSSERVLET=service/wsj2wsimpletest
+SERVICEREFNAMEWSEJB=service/wsj2wsimpletest
+SERVICEREFNAMEWSAPPCLIENT=service/wsj2wsimpletest

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<webServices
+    xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/dd"
+    version="1.0"
+    targetNamespaceBase="http://com.acme/wsdl"
+    typeNamespaceBase="http://com.acme/types"
+    urlPatternBase="/ws">
+
+    <endpoint
+        name="Hello"
+        displayName="Hello Service"
+        description="A simple web service"
+        interface="com.acme.hello.Hello"
+        implementation="com.acme.hello.HelloImpl"/>
+
+    <endpoint
+        name="Interop"
+        displayName="SOAP Builders"
+        description="SOAP Builders Round 2 web service"
+        interface="com.acme.sbr2.SoapInterop"
+        implementation="com.acme.sbr2.SoapInteropImpl"
+        model="interop.xml"/>
+
+    <endpoint
+        name="Inquire"
+        displayName="UDDI Inquire Service"
+        description="UDDI v1 web service"
+        interface="com.acme.uddi.InquirePort"
+        implementation="com.acme.sbr2.InquirePortImpl"
+        model="inquire_v1.xml"/>
+
+    <endpoint
+        name="Hello2"
+        displayName="Hello2 Service"
+        description="A somewhat more complex web service"
+        interface="com.acme.hello.Hello2"
+        implementation="com.acme.hello.Hello2Impl">
+        <handlerChains>
+            <chain runAt="server">
+                <handler className="com.acme.MyHandler"
+                         headers="ns1:foo ns2:bar"
+                         xmlns:ns1="urn:foo"
+                         xmlns:ns2="urn:bar"/>
+                <handler className="com.acme.AnotherHandler">
+                    <property name="sample.property" value="abc"/>
+                    <property name="sample.property2" value="xyz"/>
+                </handler>
+            </chain>
+        </handlerChains>
+    </endpoint>
+
+    <endpointMapping
+        endpointName="Hello"
+        urlPattern="/hello"/>
+
+    <endpointMapping
+        endpointName="Interop"
+        urlPattern="/interop"/>
+
+    <endpointMapping
+        endpointName="Hello2"
+        urlPattern="/myservice/hello"/>
+
+</webServices>

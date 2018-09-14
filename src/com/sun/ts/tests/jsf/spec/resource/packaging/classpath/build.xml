@@ -1,0 +1,87 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsf_resource_pkg_classpath" basedir="." default="usage">
+    
+    <!-- IMPORTS -->
+    <import file="../../common/resource.common.xml"/>
+    
+    <property name="app.name" value="jsf_resource_classpath_web"/>
+    <property name="resource.prefix" value="META-INF/resources"/>
+
+    <target name="package">
+        <!-- Build the resource jarfile. -->
+        <mkdir dir="${dist.dir}/${pkg.dir}"/>
+        <jar destfile="${dist.dir}/${pkg.dir}/jsftck-resource.jar">
+            <!-- Used by reourceClassResPkgTest -->
+            <zipfileset dir="${common.images}"
+                        includes="duke-class.gif"
+                        prefix="${resource.prefix}"/>
+            
+            <!-- Used by reourceClassLibResPkgTest -->
+            <zipfileset dir="${common.images}"
+                        includes="duke-class-1.gif"
+                        prefix="${resource.prefix}/images"/>
+            
+            <!-- Used by reourceClassPathTrailingUSNegativePkgTest -->
+            <zipfileset dir="${common.stylesheets}"
+                        includes="42_.css"
+                        prefix="${resource.prefix}/class-styles/2_0/trailing.css"/>
+            
+            <!-- Used by reourceClassPathNoFileExtNegetivePkgTest -->
+            <zipfileset dir="${common.images}"
+                        includes="negative_test_image"
+                        prefix="${resource.prefix}/"/>
+            
+            <!-- Used by Locale Tests -->
+            <zipfileset dir="${common.locales}/de"
+                        includes="duke-de.gif"
+                        prefix="${resource.prefix}/de"/>
+            <zipfileset dir="${common.locales}/en"
+                        includes="duke-en.gif"
+                        prefix="${resource.prefix}/en/locLib"/>
+            <zipfileset dir="${common.locales}/fr"
+                        includes="duke-fr.gif"
+                        prefix="${resource.prefix}/fr"/>
+        </jar>
+        
+        <!-- Build the war file. -->
+        <ts.war archivename="jsf_resource_classpath"
+                descriptor="jsf_resource_classpath_web.xml">
+            <zipfileset dir="${class.dir}"
+                        includes="${jsf.common}/servlets/HttpTCKServlet.class,
+                        ${jsf.common}/util/JSFTestUtil.class"
+                        prefix="WEB-INF/classes"/>
+            <zipfileset dir="${class.dir}" 
+                        includes="${tests.pkg.dir}/jsf/spec/resource/common/util/ResourceChecker.class"
+                        prefix="WEB-INF/classes"/>
+            <zipfileset dir="${dist.dir}/${pkg.dir}" 
+                        includes="jsftck-resource.jar"
+                        prefix="WEB-INF/lib"/> 
+            <zipfileset dir="${common.locales}"
+                        includes="faces-config.xml"
+                        prefix="WEB-INF"/>
+            <zipfileset dir="${common.locales}"
+                        includes="*.properties"
+                        prefix="WEB-INF/classes/${tests.pkg.dir}/jsf/spec/resource/common"/>
+        </ts.war>
+        
+        <delete file="${dist.dir}/${pkg.dir}/jsftck-resource.jar"/>
+    </target>
+    
+</project>

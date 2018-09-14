@@ -1,0 +1,93 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb30 twojars import" basedir="." default="usage">
+<!--
+Used by directories that have two ejb-jars. For instance:
+com/sun/ts/tests/ejb30/bb/mdb/dest/fullpath
+com/sun/ts/tests/ejb30/bb/mdb/dest/twojars
+com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/one
+
+These properties should be declared in the importing build.xml. For instance:
+<property name="ejb.jar1.classes" value=""/>
+<property name="ejb.jar2.classes" value=""/>
+
+These properties can be optionally declared in importing build.xml to override
+the default values defined here:
+"ejb.jar1.name.minus.ejb.jar"
+"ejb.jar1.xml"
+"ejb.jar1.inside.name"
+"ejb3.archive.1"
+
+"ejb.jar2.name.minus.ejb.jar"
+"ejb.jar2.xml"
+"ejb.jar2.inside.name"
+"ejb3.archive.2"
+-->
+  <property name="ejb.jar1.name.minus.ejb.jar" value="one"/>
+  <property name="ejb.jar1.xml" value="${ejb.jar1.name.minus.ejb.jar}_ejb.xml"/>
+  <property name="ejb.jar1.inside.name" value="${ejb.jar1.name.minus.ejb.jar}_ejb.jar"/>
+  <property name="ejb3.archive.1" value="${ejb.jar1.inside.name}"/>
+
+  <property name="ejb.jar2.name.minus.ejb.jar" value="two"/>
+  <property name="ejb.jar2.xml" value="${ejb.jar2.name.minus.ejb.jar}_ejb.xml"/>
+  <property name="ejb.jar2.inside.name" value="${ejb.jar2.name.minus.ejb.jar}_ejb.jar"/>
+  <property name="ejb3.archive.2" value="${ejb.jar2.inside.name}"/>
+
+  <!-- ============================================================ -->
+  <!-- override target in import.xml -->
+
+  <target name="package.ejb.jar" depends="package.ejb.jar1, package.ejb.jar2">
+  </target>
+
+  <target name="package.ejb.jar1">
+    <echo message="package.ejb.jar1 target in twojar-import.xml"/>
+    <dirname property="ejb.jar1.xml.dir" file="${ejb.jar1.xml}"/>
+    <basename property="ejb.jar1.xml.base" file="${ejb.jar1.xml}"/>
+
+     <ts.ejbjar descriptor="${ejb.jar1.xml.base}" descriptordir="${ejb.jar1.xml.dir}"
+                archivename="${ejb.jar1.name.minus.ejb.jar}" includedefaultfiles="false">
+      <fileset dir="${class.dir}" includes="${ejb.jar1.classes}"/>
+    </ts.ejbjar>
+  </target>
+
+   <target name="package.ejb.jar2">
+    <echo message="package.ejb.jar2 target in twojar-import.xml"/>
+    <dirname property="ejb.jar2.xml.dir" file="${ejb.jar2.xml}"/>
+    <basename property="ejb.jar2.xml.base" file="${ejb.jar2.xml}"/>
+
+     <ts.ejbjar descriptor="${ejb.jar2.xml.base}" descriptordir="${ejb.jar2.xml.dir}"
+                archivename="${ejb.jar2.name.minus.ejb.jar}" includedefaultfiles="false">
+      <fileset dir="${class.dir}" includes="${ejb.jar2.classes}"/>
+    </ts.ejbjar>
+  </target>
+ 
+  <target name="package.ear">
+    <echo message="package.ear target in twojar-import.xml"/>
+    <ts.ear descriptor="application.xml" archivename="${app.name}" 
+            deletecomponentarchives="${deletecomponentarchives}" 
+            includedefaultfiles="false">
+      <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${ejb3.archive.1}"
+                  fullpath="${ejb.jar1.inside.name}"/>
+      <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${ejb3.archive.2}"
+                  fullpath="${ejb.jar2.inside.name}"/>
+      <fileset dir="${dist.dir}/${pkg.dir}" includes="${appclient.archive}"/>
+    </ts.ear>
+  </target>
+
+</project>

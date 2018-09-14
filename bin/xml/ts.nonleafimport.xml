@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="NonLeafImport" basedir="." default="usage">
+
+    <!-- 
+    This is the main import file for all nonleaf test directory nbuild.xml 
+    files.  It contains targets and properties necessary to build everything
+    under a nonleaf level directory (accoring to the leaf level build file
+    definitions.
+    -->
+    
+    <!-- IMPORTS -->
+    <import file="./ts.import.xml"/>
+    
+    <!-- PROPERTIES -->
+    
+    <!-- TARGETS -->
+    <target name="build" description="Compiles classes and packages archives"
+            unless="called.by.dosubdirs">
+            <ts.javac includes="*.java"/>
+            <dosubdirs srcdir="${basedir}" todo="build"/>
+    </target>
+    
+    <target name="package" unless="called.by.dosubdirs">
+        <dosubdirs srcdir="${basedir}" todo="package"/>    
+    </target>
+    
+    <target name="compile" unless="called.by.dosubdirs">
+        <ts.javac includes="*.java"/>
+        <dosubdirs srcdir="${basedir}" todo="compile"/>    
+    </target>
+  
+    <target name="lc" unless="called.by.dosubdirs" 
+            description="Displays the list of classes in this pkg">
+        <dosubdirs srcdir="${basedir}" todo="lc"/>    
+    </target>
+    
+    <target name="ld" unless="called.by.dosubdirs"
+            description="Displays the list of archives in this pkg">
+        <dosubdirs srcdir="${basedir}" todo="ld"/>  
+    </target>
+    
+    <target name="runclient"
+            depends="-check.for.deliverable.subset, -check.for.test.dir.file"
+            description="Executes all tests under a src directory">
+        <antcall target="TestImport.runclient"/>
+    </target>
+
+    <target name="runclient.nobinaryfinder"
+            depends="-check.for.deliverable.subset, -check.for.test.dir.file"
+            description="Executes all tests under a src directory">
+        <antcall target="TestImport.runclient.nobinaryfinder"/>    
+    </target>
+    
+    <target name="list.tests"
+            depends="-check.for.deliverable.subset, -check.for.test.dir.file"
+            description="Lists all tests under a src directory">
+        <antcall target="TestImport.list.tests"/>
+    </target>
+
+    <target name="listarchivecontents" unless="called.by.dosubdirs"
+            description="Displays the contents of archives in this pkg">
+        <!-- 
+          The listarchivecontents target prints out the contents of all 
+          archives under ${dist.dir}/${pkg.dir}.  This is very useful when
+          working within Netbeans.
+        -->
+       <dosubdirs srcdir="${basedir}" todo="listarchivecontents"/>
+    </target>
+    
+    <target name="createnonleafbuildfiles" 
+            description="Generates non leaf level build files where needed">
+        <!-- 
+        Run this target from an existing non leaf src directory.  It will check
+        each non leaf level dir below it and, if no build.xml file exists,
+        a nonleaf build.xml file will be created.  It will create the build.xml
+        file with a project name attribute equal to the directory relative to
+        com/sun/ts/tests (with underscores replacing the dir path separator).
+        -->   
+        <ts.nonleafbuildfile/>
+    </target>
+    
+    <target name="-sweepbuildfiles" 
+            description="sweeps build files">
+        
+
+                <replace dir="${ts.home}/install"
+                             includes="**/*.xml">
+                        <replacetoken><![CDATA[${ts.home}/bin]]></replacetoken>
+                        <replacevalue><![CDATA[${bin.dir}]]></replacevalue>
+                    </replace>
+                    
+                
+    </target>
+    
+    <!-- MACROS -->
+    
+    <macrodef name="ts.nonleafbuildfile">
+        
+        <!-- 
+        This macro will check each non leaf level dir below it and, if no 
+        build.xml file exists, a nonleaf build.xml file will be created.  
+        It will create the build.xml file with a project name attribute equal 
+        to the directory relative to com/sun/ts/tests (with underscores 
+        replacing the dir path separator).
+        -->
+      
+        <sequential>
+        <var name="counter" value="0"/>
+          
+        <for param="dir">
+            <path>
+                <dirset dir="${basedir}"/>
+            </path>
+            <sequential>
+ 
+            <if>
+                <not>    
+                    <or>
+                        <available file="@{dir}/build.xml"/>
+                        <available file="@{dir}/common.xml"/>
+                        <contains string="@{dir}" substring="META-INF"/>
+                        <contains string="@{dir}" substring="WEB-INF"/>
+                        <contains string="@{dir}" substring="webFiles"/>
+                        <contains string="@{dir}" substring="contentRoot"/>
+                        <contains string="@{dir}" substring="ts/tests/common"/>
+                    </or>
+                </not>  
+            <then>
+                <var name="skip.build.file.creation" value="false"/>
+                <for param="dircontent">
+                  <path>
+                    <fileset dir="@{dir}" includes="*"
+                             excludes="README"/>
+                  </path>
+                  <sequential>
+                    <if>
+                        <isfileselected file="@{dircontent}">
+                          <type type="file"/>
+                        </isfileselected>                  
+                   <then>
+                       <var name="skip.build.file.creation" value="true"/>
+                   </then>
+                   </if>
+                  </sequential>
+                </for>    
+
+                <if>
+                    <equals arg1="${skip.build.file.creation}" arg2="false"/>
+                <then>
+                    <propertyregex property="relative.archive.dir"
+                                       input="@{dir}"
+                                       regexp=".*[\/|\\]src[\/|\\]com[\/|\\]sun[\/|\\]ts[\/|\\]tests[\/|\\](.*)"
+                                       select="\1"
+                                       casesensitive="false"
+                                       override="true"/>
+
+                    <if>
+                        <contains string="${relative.archive.dir}" substring="${file.separator}"/>
+                    <then>
+                        <propertyregex property="relative.archive.dir.underscores" input="${relative.archive.dir}" 
+                             regexp="[\/|\\]" replace="_"
+                             casesensitive="false" override="true"/>
+                    </then>
+                    <else>
+                        <var name="relative.archive.dir.underscores" value="${relative.archive.dir}"/>
+                    </else>
+                    </if>
+                
+                    <propertyregex property="relative.archive.name"
+                           input="@{dir}"
+                           regexp=".*[\/|\\]src[\/|\\](.*)"
+                           select="\1"
+                           casesensitive="false"
+                           override="true"/>
+
+                    <var name="newval" value="../"/>
+
+                    <for list="${relative.archive.name}" 
+                         delimiter="${file.separator}"
+                         param="word">
+                    <sequential>
+                        <var name="newval" value="../${newval}"/>    
+                    </sequential>
+                    </for>
+
+                    <!--file="@{dir}/build.xml"-->
+                    <echoxml file="@{dir}/build.xml">
+                        <project name="${relative.archive.dir.underscores}" basedir="." 
+                                 default="usage"> 
+                            <!-- IMPORTS -->
+                            <import file="${newval}bin/xml/ts.nonleafimport.xml"/>   
+                        </project>
+                    </echoxml>
+                    
+                    <math result="counter" operand1="${counter}" 
+                              operation="+" operand2="1" datatype="int"/>
+                              
+                    <echo message="CREATED   - dir = @{dir}/build.xml"/>
+                    
+                    <echo message="-----------------------------------------------"/>
+               </then>
+               <else>
+                    <echo message="SKIPPED   - dir = @{dir}"/>
+                </else>
+                </if>
+            </then>
+            <else>
+                <echo message="SKIPPED   - dir = @{dir}"/>
+            </else>
+            </if>  
+            </sequential>
+        </for>
+        <echo message="-----------------------------------------------"/>
+        <echo message="${counter} non-leaf level build.xml file(s) created"/>
+        </sequential>  
+    </macrodef>
+    
+    <macrodef name="ts.replaceinbuildxml">
+        
+        <!-- 
+        This macro, when run from a target from an existing non leaf src 
+        directory will check each build.xml file below it for the string 
+        specified by the filecontains attribute.  By default, all non leaf 
+        build.xml files are used and the string, "src_nonleaf" is replaced
+        by a string equal to the directory relative to com/sun/ts/tests 
+        (with underscores replacing the dir path separator).
+        
+        NOTE - This macro was originally used to replace the project name,
+        "src_nonleaf" in all non leaf build.xml files.  I'm leaving it around
+        in case we have anohter need for it.
+        -->
+        
+        <attribute name="filecontains"
+                   default="nonleafimport.xml"
+                   description="Search for files containg this string."/>
+                 
+        <attribute name="tokentoreplace"
+                   default="src_nonleaf"
+                   description="The token to replace"/>
+        
+        <sequential>
+        <var name="counter" value="0"/>
+          
+        <for param="file">
+            <path>
+                <fileset dir="${basedir}" includes="**/build.xml"/>
+            </path>
+            <sequential>
+            
+            <if>
+                <isfileselected file="@{file}">
+                    <contains text="@{filecontains}"/>
+                </isfileselected>
+            <then>
+                <propertyregex property="relative.archive.dir"
+                                       input="@{file}"
+                                       regexp=".*[\/|\\]src[\/|\\]com[\/|\\]sun[\/|\\]ts[\/|\\]tests[\/|\\](.*)"
+                                       select="\1"
+                                       casesensitive="false"
+                                       override="true"/>
+
+                <propertyregex property="relative.archive.dir.withoutfile" input="${relative.archive.dir}" 
+                         regexp="[\/|\\]build\.xml" replace=""
+                         casesensitive="false" override="true"/>
+
+                <if>
+                    <contains string="${relative.archive.dir.withoutfile}" substring="${file.separator}"/>
+                <then>
+                    <propertyregex property="relative.archive.dir.underscores" input="${relative.archive.dir.withoutfile}" 
+                         regexp="[\/|\\]" replace="_"
+                         casesensitive="false" override="true"/>
+                </then>
+                <else>
+                    <var name="relative.archive.dir.underscores" value="${relative.archive.dir.withoutfile}"/>
+                </else>
+                </if>
+
+                <replace file="@{file}" token="src_nonleaf" value="${relative.archive.dir.underscores}"/>
+                <echo message="MODIFIED           = @{file}"/>
+                <echo message="NEW PROJECT STRING = ${relative.archive.dir.underscores}"/>
+                <echo message="-----------------------------------------------"/>
+                <math result="counter" operand1="${counter}" 
+                      operation="+" operand2="1" datatype="int"/>
+            </then>
+            <else>
+                <echo message="SKIPPED            = @{file}"/>
+                <echo message="-----------------------------------------------"/>    
+            </else>
+            </if>
+        </sequential>
+        </for>
+            <echo message="-----------------------------------------------"/>
+            <echo message="Total files updated:  ${counter}"/>         
+        </sequential>  
+    </macrodef>
+</project>

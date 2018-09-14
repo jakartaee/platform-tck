@@ -1,0 +1,579 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!--
+  **   This contains connector related build targets that are needed
+  **   to configure the AppServer for connector tests.  These targets
+  **   should be called as part of the config.vi process.
+  -->
+
+<project name="CTS Connector RI configuration" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./common.xml"/>
+    <import file="./deploy.xml"/>
+
+    <property name="deploy.dir" value="${impl.vi.deploy.dir}/"/>
+
+
+    <target name="configPlatform"
+            depends="checkPlatform, configUnix, configWindows">
+    </target>
+
+
+    <!--
+       config.vi configures all of the settings required by connector.
+       Note this does not configure the JMS and security resources.
+    -->
+    <target name="config.connector" depends="configPlatform">
+
+        <!-- 
+            Lets make sure the .rars are built before we deploy them. This
+            step should not be necessary for bundles but it may be necessary
+            when running config.vi from within a new workspace.  We are choosing
+            to look for one .rar and if it exists, we assume all are built.
+         -->
+        <if>
+            <not> <available file="${ts.home}/dist/com/sun/ts/tests/common/connector/whitebox/whitebox-tx.rar"/></not>
+            <then>
+                <ant dir="${ts.home}/src/com/sun/ts/tests/common/connector/whitebox" 
+                     target="build"/>
+            </then>
+        </if>
+
+        <!-- 
+             We must copy whitebox.jar (a shared extension lib) to GF/domains/domain1/lib/applibs 
+             The whitebox.jar will need to be treated as an extension lib such that its classes
+             can be accessed by the rars.  
+         -->
+        <copy file="${ts.home}/dist/com/sun/ts/tests/common/connector/whitebox/whitebox.jar"
+              tofile="${server.domain}/lib/applibs/whitebox.jar"
+              overwrite="yes" />
+
+        <antcall target="restart.server"/>
+
+        <antcall target="create-jvm-options" >
+             <param name="jvm.options" value="${ri.jvm.options}"/>
+        </antcall>
+
+        <antcall target="create.security.eis.mappings" />
+
+        <antcall target="setup.all.rars.and.pools" />
+    </target>
+
+
+    <!-- 
+        .rar based security tests will require a mapping to map eis user
+        names to a username that exists within the connector Server.
+        There should be one mapping for each Resource Adapter.
+        It is sepected each vendor will need its own way of handling 
+        these sort of security mappings of eis users to appserver users.
+    -->
+    <target name="create.security.eis.mappings" depends="configPlatform">
+        <antcall target="create-jvm-options" >
+             <param name="jvm.options" value="-Dwhitebox-tx-map=${rauser1}=${user}:-Dwhitebox-tx-param-map=${rauser1}=${user}:-Dwhitebox-notx-map=${rauser1}=${user}:-Dwhitebox-notx-param-map=${rauser1}=${user}:-Dwhitebox-xa-map=${rauser1}=${user}:-Dwhitebox-xa-param-map=${rauser1}=${user}"/>
+        </antcall>
+    </target>
+
+
+    <target name="deploy.all.rars">
+        <!-- 
+             Due to bug# 6842858, we need to deploy an annotation based .rar before
+             the non-annotation based .rar files.  Failure to do so currently results
+             in a ClassCastException at runtime of the TCK tests.
+          -->
+        <fileset  id="anno_rar_file"
+                  dir="${ts.home}/dist/"
+                  includes="com/sun/ts/tests/common/connector/whitebox/annotated/whitebox-anno_no_md.rar"/>
+        <ts.glassfish.deploy>
+            <fileset refid="anno_rar_file"/>
+        </ts.glassfish.deploy>
+
+        <fileset  id="archives"
+                  dir="${ts.home}/dist/"
+                  includes="com/sun/ts/tests/common/connector/whitebox/**/*.rar"/>
+        <ts.glassfish.deploy>
+            <fileset refid="archives"/>
+        </ts.glassfish.deploy>
+    </target>
+
+    <target name="undeploy.all.rars">
+        <fileset  id="archives"
+                  dir="${impl.vi.deploy.dir}"
+                  includes="*.rar"/>
+
+        <ts.glassfish.undeploy>
+            <fileset refid="archives"/>
+        </ts.glassfish.undeploy>
+    </target>
+
+    <target name="setup.all.rars.and.pools">
+        <antcall target="deploy.all.rars" />
+        <antcall target="create-connection-pools" />
+        <antcall target="create-connection-resources" />
+    </target>
+
+    <target name="undeploy.all.rars.and.pools">
+        <antcall target="delete-connection-resources" />
+        <antcall target="delete-connection-pools" />
+        <antcall target="undeploy.all.rars" />
+    </target>
+
+
+    <target name="create-connection-pools" depends="configPlatform" >
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-tx"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-tx.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-tx-param"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-tx-param.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-xa"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-xa.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-xa-param"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-xa-param.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-notx"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-notx.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-notx-param"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-notx-param.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-anno_no_md"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-anno_no_md.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-ibanno_no_md"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-ibanno_no_md.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-mixedmode"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-mixedmode.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-mdcomplete"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-mdcomplete.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-multianno"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-multianno.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="old-dd-whitebox-tx"/>
+            <param name="connectionFactory" value="com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"/>
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-tx.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="old-dd-whitebox-xa"/>
+            <param name="connectionFactory" value="com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"/>
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="old-dd-whitebox-notx"/>
+            <param name="connectionFactory" value="com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"/>
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-notx.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="old-dd-whitebox-notx-param"/>
+            <param name="connectionFactory" value="com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"/>
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-notx-param.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="old-dd-whitebox-tx-param"/>
+            <param name="connectionFactory" value="com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"/>
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-tx-param.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="old-dd-whitebox-xa-param"/>
+            <param name="connectionFactory" value="com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"/>
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa-param.rar"/>
+        </antcall>
+
+        <antcall target="create-a-connection-pool" >
+            <param name="rarName" value="whitebox-permissiondd"/>
+            <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
+        </antcall>
+
+    </target>
+
+
+    <target name="delete-connection-pools" depends="configPlatform" >
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-tx.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-tx-param.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-xa.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-xa-param.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-notx.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-notx-param.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-anno_no_md.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-ibanno_no_md.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-mixedmode.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-mdcomplete.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-multianno.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-tx.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-notx.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-tx-param.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-notx-param.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa-param.rar"/>
+        </antcall>
+
+        <antcall target="delete-connector-connection-pool" >
+            <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
+        </antcall>
+
+    </target>
+
+    <!--
+        AS9.1.1's "asadmin create-connector-resource" command expects the
+        resource name to be in the form of "eis/whitebox-notx-param" and NOT in
+        the form of "java:comp/env/eis/whitebox-notx-param".
+      -->
+    <target name="create-connection-resources" depends="configPlatform" >
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-tx.rar"/>
+            <param name="jndiName" value="${whitebox-tx}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-tx-param.rar"/>
+            <param name="jndiName" value="${whitebox-tx-param}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-xa.rar"/>
+            <param name="jndiName" value="${whitebox-xa}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-xa-param.rar"/>
+            <param name="jndiName" value="${whitebox-xa-param}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-notx.rar"/>
+            <param name="jndiName" value="${whitebox-notx}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-notx-param.rar"/>
+            <param name="jndiName" value="${whitebox-notx-param}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-anno_no_md.rar"/>
+            <param name="jndiName" value="${whitebox-anno_no_md}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-ibanno_no_md.rar"/>
+            <param name="jndiName" value="${whitebox-ibanno_no_md}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-mixedmode.rar"/>
+            <param name="jndiName" value="${whitebox-mixedmode}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-mdcomplete.rar"/>
+            <param name="jndiName" value="${whitebox-mdcomplete}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-multianno.rar"/>
+            <param name="jndiName" value="${whitebox-multianno}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-tx.rar"/>
+            <param name="jndiName" value="${oldwhitebox-tx}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-notx.rar"/>
+            <param name="jndiName" value="${oldwhitebox-notx}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa.rar"/>
+            <param name="jndiName" value="${oldwhitebox-xa}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-tx-param.rar"/>
+            <param name="jndiName" value="${oldwhitebox-tx-param}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-notx-param.rar"/>
+            <param name="jndiName" value="${oldwhitebox-notx-param}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa-param.rar"/>
+            <param name="jndiName" value="${oldwhitebox-xa-param}"/>
+        </antcall>
+
+        <antcall target="create-a-connector-resource" >
+            <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
+            <param name="jndiName" value="${whitebox-permissiondd}"/>
+        </antcall>
+
+    </target>
+
+
+    <target name="delete-connection-resources" depends="configPlatform" >
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-tx}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-tx-param}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-xa}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-xa-param}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-notx}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-notx-param}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-anno_no_md}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-permissiondd}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-ibanno_no_md}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-mixedmode}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-mdcomplete}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${whitebox-multianno}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${oldwhitebox-tx}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${oldwhitebox-notx}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${oldwhitebox-xa}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${oldwhitebox-tx-param}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${oldwhitebox-notx-param}"/>
+        </antcall>
+
+        <antcall target="delete-a-connector-resource" >
+            <param name="jndiName" value="${oldwhitebox-xa-param}"/>
+        </antcall>
+
+    </target>
+
+
+     <target name="create-a-connection-pool" >
+
+        <!--
+              we want to use the same TSRValue that is in ts.jte property of tsrJndiName
+              except that we do not want the preceeding "java:" so we are hardcoding for now.
+          -->
+        <property name="pool_args"
+                  value = "user=${user1}:password=${password1}:TSRValue=comp/TransactionSynchronizationRegistry"/>
+       <exec executable="${exec.asadmin}" >
+            <arg line="${exec.asadmin.part2}" />
+            <arg line=" --user ${admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${server.host}"/>
+            <arg line=" --port ${server.port}"/>
+            <arg line=" create-connector-connection-pool"/>
+            <arg line=" --raname ${rarName}"/>
+            <arg line=" --property ${pool_args}"/>
+            <arg line=" --connectiondefinition com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"/>
+            <arg line=" ${poolName}"/>
+        </exec>
+     </target>
+
+
+     <target name="delete-connector-connection-pool" >
+        <exec executable="${exec.asadmin}" >
+            <arg line="${exec.asadmin.part2}" />
+            <arg line=" --user ${admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${server.host}"/>
+            <arg line=" --port ${server.port}"/>
+            <arg line=" delete-connector-connection-pool"/>
+            <arg line=" --cascade=true"/>
+            <arg line=" ${poolName}"/>
+        </exec>
+    </target>
+
+
+     <target name="create-a-connector-resource" >
+
+        <propertyregex property="jndiName.minus.prefix"
+                     input="${jndiName}"
+                     regexp="java:comp/env/"
+                     replace=""
+                     casesensitive="false"
+                     override="true"
+                     defaultvalue="${jndiName}"/>
+        
+        <echo>jndiName = ${jndiName} </echo>
+        <echo>jndiName.minus.prefix = ${jndiName.minus.prefix} </echo>
+
+        <exec executable="${exec.asadmin}" >
+            <arg line="${exec.asadmin.part2}" />
+            <arg line=" --user ${admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${server.host}"/>
+            <arg line=" --port ${server.port}"/>
+            <arg line=" create-connector-resource"/>
+            <arg line=" --poolname ${poolName}"/>
+            <arg line=" ${jndiName.minus.prefix}"/>
+        </exec>
+    </target>
+
+
+     <!--
+       Delete a Connector Resource
+     -->
+     <target name="delete-a-connector-resource" >
+
+        <propertyregex property="jndiName.minus.prefix"
+                     input="${jndiName}"
+                     regexp="java:comp/env/"
+                     replace=""
+                     casesensitive="false"
+                     override="true"
+                     defaultvalue="${jndiName}"/>
+        
+        <echo>jndiName = ${jndiName} </echo>
+        <echo>jndiName.minus.prefix = ${jndiName.minus.prefix} </echo>
+        <exec executable="${exec.asadmin}" >
+            <arg line="${exec.asadmin.part2}" />
+            <arg line=" --user ${admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${server.host}"/>
+            <arg line=" --port ${server.port}"/>
+            <arg line=" delete-connector-resource"/>
+            <arg line=" ${jndiName.minus.prefix}"/>
+        </exec>
+     </target>
+
+
+</project>

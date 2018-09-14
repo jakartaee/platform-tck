@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 8.0 EJB 2.1//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_1-0.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<sun-ejb-jar>
+  <enterprise-beans>
+    <unique-id>0</unique-id>
+    <ejb>
+      <ejb-name>compat12_ejb_Tx_Single_TxRequired</ejb-name>
+      <jndi-name>compat12_ejb_Tx_Single_TxRequired</jndi-name>
+      <resource-ref>
+        <res-ref-name>jdbc/DB1</res-ref-name>
+        <jndi-name>jdbc/DB1</jndi-name>
+        <default-resource-principal>
+          <name>user1</name>
+          <password>password1</password>
+        </default-resource-principal>
+      </resource-ref>
+      <pass-by-reference>false</pass-by-reference>
+      <cmp>
+        <mapping-properties>compat12_ejb_txECMPbean_ejb.jar/com/sun/ts/tests/compat12/ejb/Tx_Single/TxECMPBeanEJB_1587818361_JDOState.mapping</mapping-properties>
+       <is-one-one-cmp>true</is-one-one-cmp>
+       <one-one-finders>
+       <finder>
+               <method-name>findByName</method-name>
+               <query-params>String bname</query-params>
+               <query-filter>BRAND_NAME == bname</query-filter>
+               <query-variables/>
+               
+        </finder>
+         <finder>
+               <method-name>findByPrice</method-name>
+               <query-params>float price</query-params>
+               <query-filter>PRICE == price</query-filter>
+                <query-variables/>
+        </finder>
+        <finder>
+               <method-name>findWithinPriceRange</method-name>
+               <query-params>float start,float end</query-params>
+               <query-filter>start &lt;= PRICE &amp;&amp; PRICE &lt;= end</query-filter>
+                <query-variables/>
+        </finder>
+        <finder>
+               <method-name>findWithinPrimaryKeyRange</method-name>
+               <query-params>Integer start, Integer end</query-params>
+               <query-filter>start &lt;= KEY_ID &amp;&amp; KEY_ID &lt;= end</query-filter>
+                <query-variables/>
+         </finder>
+         </one-one-finders>
+      </cmp>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+    </ejb>
+    <ejb>
+      <ejb-name>compat12_ejb_Tx_Single_TxMandatory</ejb-name>
+      <jndi-name>compat12_ejb_Tx_Single_TxMandatory</jndi-name>
+      <resource-ref>
+        <res-ref-name>jdbc/DB1</res-ref-name>
+        <jndi-name>jdbc/DB1</jndi-name>
+        <default-resource-principal>
+          <name>user1</name>
+          <password>password1</password>
+        </default-resource-principal>
+      </resource-ref>
+      <pass-by-reference>false</pass-by-reference>
+      <cmp>
+        <mapping-properties>compat12_ejb_txECMPbean_ejb.jar/com/sun/ts/tests/compat12/ejb/Tx_Single/TxECMPBeanEJB_374854125_JDOState.mapping</mapping-properties>
+  <is-one-one-cmp>true</is-one-one-cmp>
+         <one-one-finders>
+         <finder>
+               <method-name>findByName</method-name>
+               <query-params>String bname</query-params>
+               <query-filter>BRAND_NAME == bname</query-filter>
+               <query-variables/>
+                 
+        </finder>
+         <finder>
+               <method-name>findByPrice</method-name>
+               <query-params>float price</query-params>
+               <query-filter>PRICE == price</query-filter>
+                <query-variables/>
+        </finder>
+        <finder>
+               <method-name>findWithinPriceRange</method-name>
+               <query-params>float start,float end</query-params>
+               <query-filter>start &lt;= PRICE &amp;&amp; PRICE &lt;= end</query-filter>
+                <query-variables/>
+        </finder>
+        <finder>
+               <method-name>findWithinPrimaryKeyRange</method-name>
+               <query-params>Integer start, Integer end</query-params>
+               <query-filter>start &lt;= KEY_ID &amp;&amp; KEY_ID &lt;= end</query-filter>
+                <query-variables/>
+        </finder>
+         
+         </one-one-finders>
+      </cmp>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+    </ejb>
+    <cmp-resource>
+      <jndi-name>jdbc/DB1</jndi-name>
+      <default-resource-principal>
+        <name>user1</name>
+        <password>password1</password>
+      </default-resource-principal>
+    </cmp-resource>
+  </enterprise-beans>
+</sun-ejb-jar>

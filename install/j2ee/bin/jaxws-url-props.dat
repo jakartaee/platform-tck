@@ -1,0 +1,904 @@
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+###############################################################################
+# $Id$
+#
+# Data file containing URLs for webservice endpoints and wsdl locations
+#
+# Sun's JAX-WS RI Implementation specifys URL's for webservice endpoints
+# and final published WSDL's in the following format defined below.
+#
+# URL format for endpoints is as follows:
+#
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE
+#
+# URL format for wsdl locations of given endpoints is as follows:
+#
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE?WSDL
+#			or
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE?wsdl
+#
+# All URL's given below start from CONTEXT_ROOT. The
+# http://HOST:PORT (HOST and PORT are defined and
+# configured in ts.jte file) is prepended to each URL.
+#
+# Example)
+#
+# For a webservice with a PORT_TYPE of Hello the URL endpoint for
+# the JAX-WS RI is:
+#
+# o http://localhost:8080/HelloService_web/jaxws/Hello
+#
+# For the final published WSDL URL for the above endpoint in
+# the JAX-WS RI is:
+#
+# o http://localhost:8080/HelloService_web/jaxws/Hello?WSDL
+#			or
+# o http://localhost:8080/HelloService_web/jaxws/Hello?wsdl
+###############################################################################
+
+# jaxws/api sharedwebservices URL's
+# =================================
+
+# jaxws/sharedwebservices/hellosecureservice URL's		(rpc/lit)
+WSHelloSecureService_web=hellosecureservice
+hellosecureservice.endpoint.1=/WSHelloSecureService_web/jaxws/Hello
+hellosecureservice.wsdlloc.1=/WSHelloSecureService_web/jaxws/Hello?WSDL
+hellosecureservice.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.HelloImpl
+
+# jaxws/sharedwebservices/doclithelloservice URL's		(doc/lit)
+WSDLHelloService_web=dlhelloservice
+dlhelloservice.endpoint.1=/WSDLHelloService_web/jaxws/Hello
+dlhelloservice.wsdlloc.1=/WSDLHelloService_web/jaxws/Hello?WSDL
+dlhelloservice.endpoint.2=/WSDLHelloService_web/jaxws/Hello2
+dlhelloservice.wsdlloc.2=/WSDLHelloService_web/jaxws/Hello2?WSDL
+dlhelloservice.endpoint.3=/WSDLHelloService_web/jaxws/Hello3
+dlhelloservice.wsdlloc.3=/WSDLHelloService_web/jaxws/Hello3?WSDL
+dlhelloservice.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.HelloImpl
+dlhelloservice.impl.2=com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello2Impl
+dlhelloservice.impl.3=com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello3Impl
+
+# Provider Impl SOAP 1.1 over HTTP BINDING
+# jaxws/sharedwebservices/dlhelloproviderservice URL's		(doc/lit)
+WSDLHelloProviderService_web=dlhelloproviderservice
+dlhelloproviderservice.endpoint.1=/WSDLHelloProviderService_web/jaxws/Hello
+dlhelloproviderservice.endpoint.2=/WSDLHelloProviderService_web/jaxws/Hello2
+dlhelloproviderservice.endpoint.3=/WSDLHelloProviderService_web/jaxws/Hello3
+dlhelloproviderservice.wsdlloc.1=/WSDLHelloProviderService_web/jaxws/Hello?WSDL
+dlhelloproviderservice.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.dlhelloproviderservice.HelloImpl
+dlhelloproviderservice.impl.2=com.sun.ts.tests.jaxws.sharedwebservices.dlhelloproviderservice.Hello2Impl
+dlhelloproviderservice.impl.3=com.sun.ts.tests.jaxws.sharedwebservices.dlhelloproviderservice.Hello3Impl
+
+# Provider Impl XML/HTTP BINDING
+# jaxws/sharedwebservices/xmlbinddlhelloproviderservice URL's		(doc/lit)
+WSXMLBindDLHelloProviderService_web=xmlbinddlhelloproviderservice
+xmlbinddlhelloproviderservice.endpoint.1=/WSXMLBindDLHelloProviderService_web/jaxws/Hello
+xmlbinddlhelloproviderservice.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.xmlbinddlhelloproviderservice.HelloImpl
+
+# jaxws/sharedwebservices/dlhandlerservice URL's            (doc/lit)
+WSDLHandlerService_web=dlhandlerservice
+dlhandlerservice.wsdlloc.1=/WSDLHandlerService_web/jaxws/Hello?WSDL
+dlhandlerservice.wsdlloc.2=/WSDLHandlerService_web/jaxws/Hello2?WSDL
+dlhandlerservice.wsdlloc.3=/WSDLHandlerService_web/jaxws/Hello3?WSDL
+dlhandlerservice.wsdlloc.4=/WSDLHandlerService_web/jaxws/GetTrackerData?WSDL
+dlhandlerservice.endpoint.1=/WSDLHandlerService_web/jaxws/Hello
+dlhandlerservice.endpoint.2=/WSDLHandlerService_web/jaxws/Hello2
+dlhandlerservice.endpoint.3=/WSDLHandlerService_web/jaxws/Hello3
+dlhandlerservice.endpoint.4=/WSDLHandlerService_web/jaxws/GetTrackerData
+dlhandlerservice.ctxroot.1=/WSDLHandlerService_web
+dlhandlerservice.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.HelloImpl
+dlhandlerservice.impl.2=com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello2Impl
+dlhandlerservice.impl.3=com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello3Impl
+dlhandlerservice.impl.4=com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.GetTrackerDataImpl
+
+# jaxws/sharedwebservices/rlhandlerservice URL's            (doc/lit)
+WSRLHandlerService_web=rlhandlerservice
+rlhandlerservice.wsdlloc.1=/WSRLHandlerService_web/jaxws/Hello?WSDL
+rlhandlerservice.wsdlloc.2=/WSRLHandlerService_web/jaxws/GetTrackerData?WSDL
+rlhandlerservice.endpoint.1=/WSRLHandlerService_web/jaxws/Hello
+rlhandlerservice.endpoint.2=/WSRLHandlerService_web/jaxws/GetTrackerData
+rlhandlerservice.ctxroot.1=/WSRLHandlerService_web
+rlhandlerservice.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.HelloImpl
+rlhandlerservice.impl.2=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.GetTrackerDataImpl
+
+# jaxws/wsi sharedwebservices URL's
+# =================================
+
+# jaxws/sharedwebservices/rpclitservice URL's			(rpc/lit)
+WSJ2WRLShared_web=wsi.j2wrlshared
+wsi.j2wrlshared.endpoint.1=/WSJ2WRLShared_web/jaxws/J2WRLShared
+wsi.j2wrlshared.wsdlloc.1=/WSJ2WRLShared_web/jaxws/J2WRLShared?WSDL
+wsi.j2wrlshared.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedEndpointImpl
+
+# jaxws/sharedwebservices/faultservice URL's			(rpc/lit)
+WSJ2WFaultService_web=wsi.fault
+wsi.fault.endpoint.1=/WSJ2WFaultService_web/jaxws/FaultTest
+wsi.fault.wsdlloc.1=/WSJ2WFaultService_web/jaxws/FaultTest?WSDL
+wsi.fault.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTestImpl
+
+# jaxws/sharedwebservices/simpleservice URL's			(rpc/lit)
+WSJ2WSimpleService_web=wsi.simple
+wsi.simple.endpoint.1=/WSJ2WSimpleService_web/jaxws/SimpleTest
+wsi.simple.wsdlloc.1=/WSJ2WSimpleService_web/jaxws/SimpleTest?WSDL
+wsi.simple.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpointImpl
+
+# jaxws/sharedwebservices/doclitservice URL's			(doc/lit)
+WSJ2WDLShared_web=wsi.j2wdlshared
+wsi.j2wdlshared.endpoint.1=/WSJ2WDLShared_web/jaxws/J2WDLShared
+wsi.j2wdlshared.wsdlloc.1=/WSJ2WDLShared_web/jaxws/J2WDLShared?WSDL
+wsi.j2wdlshared.impl.1=com.sun.ts.tests.jaxws.sharedwebservices.doclitservice.J2WDLSharedEndpointImpl
+
+# ------------------------------------------------------------------------------
+# jaxws/ee URL's
+# ==============
+
+# jaxws/ee/w2j/rpc/literal/parmetermodetest URL's
+WSW2JRLParameterModeTest_web=w2jrlparametermodetest
+w2jrlparametermodetest.endpoint.1=/WSW2JRLParameterModeTest_web/jaxws/ParameterModeTest
+w2jrlparametermodetest.wsdlloc.1=/WSW2JRLParameterModeTest_web/jaxws/ParameterModeTest?WSDL
+w2jrlparametermodetest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.parametermodetest.ParameterModeTestImpl
+
+# jaxws/ee/w2j/rpc/literal/xmlnamemappingtest URL's
+WSW2JXMLNameMappingTest_web=xmlnamemappingtest
+xmlnamemappingtest.endpoint.1=/WSW2JXMLNameMappingTest_web/jaxws/XMLNameMappingTest
+xmlnamemappingtest.wsdlloc.1=/WSW2JXMLNameMappingTest_web/jaxws/XMLNameMappingTest?WSDL
+xmlnamemappingtest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest.XMLNameMappingTestImpl
+
+# jaxws/ee/w2j/rpc/literal/sec/secbasic URL's
+WSW2JBAT_web=secbasic
+secbasic.endpoint.1=/WSW2JBAT_web/jaxws1/HelloUnprotected
+secbasic.wsdlloc.1=/WSW2JBAT_web/jaxws1/HelloUnprotected?WSDL
+secbasic.endpoint.2=/WSW2JBAT_web/jaxws2/HelloProtected
+secbasic.wsdlloc.2=/WSW2JBAT_web/jaxws2/HelloProtected?WSDL
+secbasic.endpoint.3=/WSW2JBAT_web/jaxws3/HelloGuest
+secbasic.wsdlloc.3=/WSW2JBAT_web/jaxws3/HelloGuest?WSDL
+secbasic.endpoint.4=/WSW2JBAT_web/jaxws2/HelloProtected1
+secbasic.wsdlloc.4=/WSW2JBAT_web/jaxws2/HelloProtected1?WSDL
+secbasic.endpoint.5=/WSW2JBAT_web/jaxws2/HelloProtected2
+secbasic.wsdlloc.5=/WSW2JBAT_web/jaxws2/HelloProtected2?WSDL
+secbasic.endpoint.6=/WSW2JBAT_web/jaxws2/HelloProtected3
+secbasic.wsdlloc.6=/WSW2JBAT_web/jaxws2/HelloProtected3?WSDL
+secbasic.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtectedImpl
+secbasic.impl.2=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloUnprotectedImpl
+secbasic.impl.3=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloGuestImpl
+secbasic.impl.4=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtectedImpl1
+secbasic.impl.5=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtectedImpl2
+secbasic.impl.6=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtectedImpl3
+
+# jaxws/ee/w2j/rpc/literal/marshalltest URL's
+WSW2JRLMarshallTest_web=w2jrlmarshalltest
+w2jrlmarshalltest.endpoint.1=/WSW2JRLMarshallTest_web/jaxws/MarshallTest
+w2jrlmarshalltest.endpoint.2=/WSW2JRLMarshallTest_web/jaxws/NewSchemaTest
+w2jrlmarshalltest.endpoint.3=/WSW2JRLMarshallTest_web/jaxws/CompoundTest
+w2jrlmarshalltest.endpoint.4=/WSW2JRLMarshallTest_web/jaxws/OneWayTest
+w2jrlmarshalltest.wsdlloc.1=/WSW2JRLMarshallTest_web/jaxws/MarshallTest?WSDL
+w2jrlmarshalltest.wsdlloc.2=/WSW2JRLMarshallTest_web/jaxws/NewSchemaTest?WSDL
+w2jrlmarshalltest.wsdlloc.3=/WSW2JRLMarshallTest_web/jaxws/CompoundTest?WSDL
+w2jrlmarshalltest.wsdlloc.4=/WSW2JRLMarshallTest_web/jaxws/OneWayTest?WSDL
+w2jrlmarshalltest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.MarshallTestImpl
+w2jrlmarshalltest.impl.2=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.NewSchemaTestImpl
+w2jrlmarshalltest.impl.3=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.CompoundTestImpl
+w2jrlmarshalltest.impl.4=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.OneWayTestImpl
+w2jrlmarshalltest.metadata.1=WEB-INF/wsdl/WSW2JRLMarshallTestCompoundTestDefs.wsdl
+w2jrlmarshalltest.metadata.2=WEB-INF/wsdl/WSW2JRLMarshallTestCompoundTestDefs.xsd
+w2jrlmarshalltest.metadata.3=WEB-INF/wsdl/WSW2JRLMarshallTestIncludedDefs.xsd
+w2jrlmarshalltest.metadata.4=WEB-INF/wsdl/WSW2JRLMarshallTestNewSchemaDefs.wsdl
+w2jrlmarshalltest.metadata.5=WEB-INF/wsdl/WSW2JRLMarshallTestNewSchemaDefs.xsd
+w2jrlmarshalltest.metadata.6=WEB-INF/wsdl/WSW2JRLMarshallTestOneWayTestDefs.wsdl
+w2jrlmarshalltest.metadata.7=WEB-INF/wsdl/WSW2JRLMarshallTestOneWayTestDefs.xsd
+w2jrlmarshalltest.metadata.8=WEB-INF/wsdl/WSW2JRLMarshallTestServiceDefs.wsdl
+w2jrlmarshalltest.metadata.9=WEB-INF/wsdl/WSW2JRLMarshallTestServiceDefs.xsd
+
+# jaxws/ee/w2j/rpc/literal/onewayhandlertest URL's
+WSRLOWHandlerTestService_web=rlowhandlertest
+rlowhandlertest.wsdlloc.1=/WSRLOWHandlerTestService_web/jaxws/Hello?WSDL
+rlowhandlertest.wsdlloc.2=/WSRLOWHandlerTestService_web/jaxws/GetTrackerData?WSDL
+rlowhandlertest.endpoint.1=/WSRLOWHandlerTestService_web/jaxws/Hello
+rlowhandlertest.endpoint.2=/WSRLOWHandlerTestService_web/jaxws/GetTrackerData
+rlowhandlertest.ctxroot.1=/WSRLOWHandlerTestService_web
+rlowhandlertest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.HelloImpl
+rlowhandlertest.impl.2=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.GetTrackerDataImpl
+
+# jaxws/ee/w2j/rpc/literal/httptest URL's
+WSW2JRLHttpTest_web=w2jrlhttptest
+w2jrlhttptest.endpoint.1=/WSW2JRLHttpTest_web/jaxws/Hello
+w2jrlhttptest.wsdlloc.1=/WSW2JRLHttpTest_web/jaxws/Hello?WSDL
+w2jrlhttptest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest.HelloImpl
+
+# jaxws/ee/w2j/rpc/literal/w2jrlhttpservletmsgctxpropstest URL's
+WSW2JRLHttpServletMsgCtxPropsTest_web=w2jrlhttpservletmsgctxpropstest
+w2jrlhttpservletmsgctxpropstest.endpoint.1=/WSW2JRLHttpServletMsgCtxPropsTest_web/jaxws/HttpTest
+w2jrlhttpservletmsgctxpropstest.wsdlloc.1=/WSW2JRLHttpServletMsgCtxPropsTest_web/jaxws/HttpTest?WSDL
+w2jrlhttpservletmsgctxpropstest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTestImpl
+
+# jaxws/ee/w2j/rpc/literal/headertest URL's
+WSW2JRLHeaderTest_web=w2jrlheadertest
+w2jrlheadertest.endpoint.1=/WSW2JRLHeaderTest_web/jaxws/HeaderTest
+w2jrlheadertest.wsdlloc.1=/WSW2JRLHeaderTest_web/jaxws/HeaderTest?WSDL
+w2jrlheadertest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.headertest.HeaderTestImpl
+w2jrlheadertest.metadata.1=WEB-INF/wsdl/WSW2JRLHeaderTestDefs.wsdl
+w2jrlheadertest.metadata.2=WEB-INF/wsdl/WSW2JRLHeaderTestDefs.xsd
+
+# jaxws/ee/w2j/rpc/literal/holdertest URL's
+WSW2JRLHolderTest_web=w2jrlholdertest
+w2jrlholdertest.endpoint.1=/WSW2JRLHolderTest_web/jaxws/HolderTest
+w2jrlholdertest.wsdlloc.1=/WSW2JRLHolderTest_web/jaxws/HolderTest?WSDL
+w2jrlholdertest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.HolderTestImpl
+
+# jaxws/ee/w2j/document/literal/holder URL's
+WSW2JDLHolderTest_web=w2jdlholdertest
+w2jdlholdertest.endpoint.1=/WSW2JDLHolderTest_web/jaxws/HolderTest
+w2jdlholdertest.wsdlloc.1=/WSW2JDLHolderTest_web/jaxws/HolderTest?WSDL
+w2jdlholdertest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.HolderTestImpl
+
+# jaxws/ee/w2j/document/literal/wrapperstyle/marshalltest URL's
+WSW2JDLWMarshallTest_web=w2jdlwmarshalltest
+w2jdlwmarshalltest.endpoint.1=/WSW2JDLWMarshallTest_web/jaxws/MarshallTest
+w2jdlwmarshalltest.wsdlloc.1=/WSW2JDLWMarshallTest_web/jaxws/MarshallTest?WSDL
+w2jdlwmarshalltest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.wrapperstyle.marshalltest.MarshallTestImpl
+
+
+# jaxws/ee/w2j/document/literal/onewayhandlertest URL's
+WSDLOWHandlerTestService_web=dlowhandlertest
+dlowhandlertest.wsdlloc.1=/WSDLOWHandlerTestService_web/jaxws/Hello?WSDL
+dlowhandlertest.wsdlloc.2=/WSDLOWHandlerTestService_web/jaxws/GetTrackerData?WSDL
+dlowhandlertest.endpoint.1=/WSDLOWHandlerTestService_web/jaxws/Hello
+dlowhandlertest.endpoint.2=/WSDLOWHandlerTestService_web/jaxws/GetTrackerData
+dlowhandlertest.ctxroot.1=/WSDLOWHandlerTestService_web
+dlowhandlertest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server.HelloImpl
+dlowhandlertest.impl.2=com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server.GetTrackerDataImpl
+
+# jaxws/ee/w2j/document/literal/customization/embedded URL's
+WSW2JDLCustomizationEmbeddedTest_web=w2jcustomizationembeddedtest
+w2jcustomizationembeddedtest.endpoint.1=/WSW2JDLCustomizationEmbeddedTest_web/jaxws/Hello
+w2jcustomizationembeddedtest.wsdlloc.1=/WSW2JDLCustomizationEmbeddedTest_web/jaxws/Hello?WSDL
+w2jcustomizationembeddedtest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.embedded.HelloImpl
+
+# jaxws/ee/w2j/document/literal/customization/external URL's
+WSW2JDLCustomizationExternalTest_web=w2jcustomizationexternaltest
+w2jcustomizationexternaltest.endpoint.1=/WSW2JDLCustomizationExternalTest_web/jaxws/Hello
+w2jcustomizationexternaltest.wsdlloc.1=/WSW2JDLCustomizationExternalTest_web/jaxws/Hello?WSDL
+w2jcustomizationexternaltest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external.HelloImpl
+
+# jaxws/ee/w2j/document/literal/asynctest URL's
+WSW2JDLAsyncTest_web=w2jasynctest
+w2jasynctest.endpoint.1=/WSW2JDLAsyncTest_web/jaxws/Hello
+w2jasynctest.wsdlloc.1=/WSW2JDLAsyncTest_web/jaxws/Hello?WSDL
+w2jasynctest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.server.HelloImpl
+
+# jaxws/ee/w2j/document/literal/marshalltest URL's
+WSW2JDLMarshallTest_web=w2jdlmarshalltest
+w2jdlmarshalltest.endpoint.1=/WSW2JDLMarshallTest_web/jaxws/MarshallTest
+w2jdlmarshalltest.endpoint.2=/WSW2JDLMarshallTest_web/jaxws/NewSchemaTest
+w2jdlmarshalltest.endpoint.3=/WSW2JDLMarshallTest_web/jaxws/CompoundTest
+w2jdlmarshalltest.endpoint.4=/WSW2JDLMarshallTest_web/jaxws/OneWayTest
+w2jdlmarshalltest.wsdlloc.1=/WSW2JDLMarshallTest_web/jaxws/MarshallTest?WSDL
+w2jdlmarshalltest.wsdlloc.2=/WSW2JDLMarshallTest_web/jaxws/NewSchemaTest?WSDL
+w2jdlmarshalltest.wsdlloc.3=/WSW2JDLMarshallTest_web/jaxws/CompoundTest?WSDL
+w2jdlmarshalltest.wsdlloc.4=/WSW2JDLMarshallTest_web/jaxws/OneWayTest?WSDL
+w2jdlmarshalltest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.MarshallTestImpl
+w2jdlmarshalltest.impl.2=com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.NewSchemaTestImpl
+w2jdlmarshalltest.impl.3=com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.CompoundTestImpl
+w2jdlmarshalltest.impl.4=com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.OneWayTestImpl
+w2jdlmarshalltest.metadata.1=WEB-INF/wsdl/WSW2JDLMarshallTestCompoundTestDefs.wsdl
+w2jdlmarshalltest.metadata.2=WEB-INF/wsdl/WSW2JDLMarshallTestCompoundTestDefs.xsd
+w2jdlmarshalltest.metadata.3=WEB-INF/wsdl/WSW2JDLMarshallTestIncludedDefs.xsd
+w2jdlmarshalltest.metadata.4=WEB-INF/wsdl/WSW2JDLMarshallTestNewSchemaDefs.wsdl
+w2jdlmarshalltest.metadata.5=WEB-INF/wsdl/WSW2JDLMarshallTestNewSchemaDefs.xsd
+w2jdlmarshalltest.metadata.6=WEB-INF/wsdl/WSW2JDLMarshallTestOneWayTestDefs.wsdl
+w2jdlmarshalltest.metadata.7=WEB-INF/wsdl/WSW2JDLMarshallTestOneWayTestDefs.xsd
+w2jdlmarshalltest.metadata.8=WEB-INF/wsdl/WSW2JDLMarshallTestServiceDefs.wsdl
+w2jdlmarshalltest.metadata.9=WEB-INF/wsdl/WSW2JDLMarshallTestServiceDefs.xsd
+
+# jaxws/ee/w2j/document/literal/catalogtest URL's
+WSW2JDLCatalogTest_web=w2jdlcatalogtest
+w2jdlcatalogtest.endpoint.1=/WSW2JDLCatalogTest_web/jaxws/Hello
+w2jdlcatalogtest.wsdlloc.1=/WSW2JDLCatalogTest_web/jaxws/Hello?WSDL
+w2jdlcatalogtest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest.HelloImpl
+
+# jaxws/ee/w2j/document/literal/httptest URL's
+WSW2JDLHttpTest_web=w2jdlhttptest
+w2jdlhttptest.endpoint.1=/WSW2JDLHttpTest_web/jaxws/Hello
+w2jdlhttptest.wsdlloc.1=/WSW2JDLHttpTest_web/jaxws/Hello?WSDL
+w2jdlhttptest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.httptest.HelloImpl
+
+# jaxws/ee/w2j/document/literal/headertest URL's
+WSW2JDLHeaderTest_web=w2jdlheadertest
+w2jdlheadertest.endpoint.1=/WSW2JDLHeaderTest_web/jaxws/HeaderTest
+w2jdlheadertest.wsdlloc.1=/WSW2JDLHeaderTest_web/jaxws/HeaderTest?WSDL
+w2jdlheadertest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.headertest.HeaderTestImpl
+w2jdlheadertest.metadata.1=WEB-INF/wsdl/WSW2JDLHeaderTestDefs.wsdl
+w2jdlheadertest.metadata.2=WEB-INF/wsdl/WSW2JDLHeaderTestDefs.xsd
+
+# jaxws/ee/w2j/document/literal/mtomtest URL's
+WSW2JDLMTOMTest_web=w2jdlmtomtest
+w2jdlmtomtest.ctxroot.1=/WSW2JDLMTOMTest_web
+w2jdlmtomtest.endpoint.1=/WSW2JDLMTOMTest_web/jaxws/MTOMTest
+w2jdlmtomtest.wsdlloc.1=/WSW2JDLMTOMTest_web/jaxws/MTOMTest?WSDL
+w2jdlmtomtest.ctxroot.2=/WSW2JDLMTOMTest_web
+w2jdlmtomtest.endpoint.2=/WSW2JDLMTOMTest_web/jaxws/MTOMTestTwo
+w2jdlmtomtest.wsdlloc.2=/WSW2JDLMTOMTest_web/jaxws/MTOMTestTwo?WSDL
+w2jdlmtomtest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomtest.MTOMTestImpl
+w2jdlmtomtest.impl.2=com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomtest.MTOMTestTwoImpl
+
+# jaxws/ee/w2j/document/literal/handlerchaintest URL's
+WSW2JHandlerChainTestService_web=w2jdlhandlerchaintest
+w2jdlhandlerchaintest.endpoint.1=/WSW2JHandlerChainTestService_web/jaxws/HandlerChainTest
+w2jdlhandlerchaintest.wsdlloc.1=/WSW2JHandlerChainTestService_web/jaxws/HandlerChainTest?WSDL
+w2jdlhandlerchaintest.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.handlerchaintest.HandlerChainTestImpl
+
+# jaxws/ee/j2w/document/literal/nosei URL's
+WSJ2WDLNOSEI_web=j2wdlnosei
+j2wdlnosei.endpoint.1=/WSJ2WDLNOSEI_web/jaxws/Echo
+j2wdlnosei.wsdlloc.1=/WSJ2WDLNOSEI_web/jaxws/Echo?WSDL
+j2wdlnosei.impl.1=com.sun.ts.tests.jaxws.ee.j2w.document.literal.nosei.server.EchoImpl
+
+# jaxws/ee/j2w/document/literal/webmethod URL's
+WSJ2WDLWEBMETHOD_web=j2wdlwebmethod
+j2wdlwebmethod.endpoint.1=/WSJ2WDLWEBMETHOD_web/jaxws/Test
+j2wdlwebmethod.wsdlloc.1=/WSJ2WDLWEBMETHOD_web/jaxws/Test?WSDL
+j2wdlwebmethod.impl.1=com.sun.ts.tests.jaxws.ee.j2w.document.literal.webmethod.server.TestImpl
+
+# jaxws/ee/j2w/document/literal/marshalltest URL's
+WSJ2WDLMT_web=j2wdlmarshalltest
+j2wdlmarshalltest.endpoint.1=/WSJ2WDLMT_web/jaxws/MarshallTest
+j2wdlmarshalltest.wsdlloc.1=/WSJ2WDLMT_web/jaxws/MarshallTest?WSDL
+j2wdlmarshalltest.impl.1=com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTestImpl
+
+# jaxws/ee/j2w/document/literal/sessionmaintaintest URL's
+WSJ2WDLSMT_web=j2wdlsessionmaintaintest
+j2wdlsessionmaintaintest.endpoint.1=/WSJ2WDLSMT_web/jaxws/Test
+j2wdlsessionmaintaintest.wsdlloc.1=/WSJ2WDLSMT_web/jaxws/Test?WSDL
+j2wdlsessionmaintaintest.impl.1=com.sun.ts.tests.jaxws.ee.j2w.document.literal.sessionmaintaintest.server.TestImpl
+
+# jaxws/ee/j2w/document/literal/restful URL's
+WSJ2WDLRESTFUL_web=j2wdlrestful
+j2wdlrestful.endpoint.1=/WSJ2WDLRESTFUL_web/jaxws/tokens
+j2wdlrestful.wsdlloc.1=/WSJ2WDLRESTFUL_web/jaxws/tokens?WSDL
+j2wdlrestful.impl.1=com.sun.ts.tests.jaxws.ee.j2w.document.literal.restful.server.TokensImpl
+
+# jaxws/ee/j2w/rpc/literal/nosei URL's
+WSJ2WRLNOSEI_web=j2wrlnosei
+j2wrlnosei.endpoint.1=/WSJ2WRLNOSEI_web/jaxws/Echo
+j2wrlnosei.wsdlloc.1=/WSJ2WRLNOSEI_web/jaxws/Echo?WSDL
+j2wrlnosei.impl.1=com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.nosei.server.EchoImpl
+
+# jaxws/ee/j2w/rpc/literal/handlerchaintest1 URL's
+WSJ2WHandlerChainTest1Service_web=j2wrlhandlerchaintest1
+j2wrlhandlerchaintest1.endpoint.1=/WSJ2WHandlerChainTest1Service_web/jaxws/HandlerChainTest
+j2wrlhandlerchaintest1.wsdlloc.1=/WSJ2WHandlerChainTest1Service_web/jaxws/HandlerChainTest?WSDL
+j2wrlhandlerchaintest1.impl.1=com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest1.HandlerChainTestImpl
+
+# jaxws/ee/j2w/rpc/literal/handlerchaintest2 URL's
+WSJ2WHandlerChainTest2Service_web=j2wrlhandlerchaintest2
+j2wrlhandlerchaintest2.endpoint.1=/WSJ2WHandlerChainTest2Service_web/jaxws/HandlerChainTest
+j2wrlhandlerchaintest2.wsdlloc.1=/WSJ2WHandlerChainTest2Service_web/jaxws/HandlerChainTest?WSDL
+j2wrlhandlerchaintest2.impl.1=com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2.HandlerChainTestImpl
+
+# ------------------------------------------------------------------------------
+# jaxws/wsi/w2j/document/literal URL's
+# ===================================
+
+WSW2JDLR1141TestService_web=wsi.w2jdlr1141
+wsi.w2jdlr1141.endpoint.1=/WSW2JDLR1141TestService_web/jaxws/Hello
+wsi.w2jdlr1141.wsdlloc.1=/WSW2JDLR1141TestService_web/jaxws/Hello?WSDL
+wsi.w2jdlr1141.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R1141.HelloImpl
+
+WSW2JDLR2030TestService_web=wsi.w2jdlr2030
+wsi.w2jdlr2030.endpoint.1=/WSW2JDLR2030TestService_web/jaxws/W2JDLR2030Test
+wsi.w2jdlr2030.wsdlloc.1=/WSW2JDLR2030TestService_web/jaxws/W2JDLR2030Test?WSDL
+wsi.w2jdlr2030.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2030.W2JDLR2030TestImpl
+wsi.w2jdlr2030.metadata.1=WEB-INF/wsdl/W2JDLR2030Import.wsdl
+
+WSW2JDLR2707TestService_web=wsi.w2jdlr2707
+wsi.w2jdlr2707.endpoint.1=/WSW2JDLR2707TestService_web/jaxws/W2JDLR2707Test
+wsi.w2jdlr2707.wsdlloc.1=/WSW2JDLR2707TestService_web/jaxws/W2JDLR2707Test?WSDL
+wsi.w2jdlr2707.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2707.W2JDLR2707TestImpl
+
+WSW2JDLR2709TestService_web=wsi.w2jdlr2709
+wsi.w2jdlr2709.endpoint.1=/WSW2JDLR2709TestService_web/jaxws/W2JDLR2709Test
+wsi.w2jdlr2709.wsdlloc.1=/WSW2JDLR2709TestService_web/jaxws/W2JDLR2709Test?WSDL
+wsi.w2jdlr2709.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709TestImpl
+
+WSW2JDLR2712TestService_web=wsi.w2jdlr2712
+wsi.w2jdlr2712.endpoint.1=/WSW2JDLR2712TestService_web/jaxws/W2JDLR2712TestOne
+wsi.w2jdlr2712.wsdlloc.1=/WSW2JDLR2712TestService_web/jaxws/W2JDLR2712TestOne?WSDL
+wsi.w2jdlr2712.endpoint.2=/WSW2JDLR2712TestService_web/jaxws/W2JDLR2712TestTwo
+wsi.w2jdlr2712.wsdlloc.2=/WSW2JDLR2712TestService_web/jaxws/W2JDLR2712TestTwo?WSDL
+wsi.w2jdlr2712.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2712.W2JDLR2712TestOneImpl
+wsi.w2jdlr2712.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2712.W2JDLR2712TestTwoImpl
+
+WSW2JDLR2747TestService_web=wsi.w2jdlr2747
+wsi.w2jdlr2747.endpoint.1=/WSW2JDLR2747TestService_web/jaxws/W2JDLR2747TestOne
+wsi.w2jdlr2747.wsdlloc.1=/WSW2JDLR2747TestService_web/jaxws/W2JDLR2747TestOne?WSDL
+wsi.w2jdlr2747.endpoint.2=/WSW2JDLR2747TestService_web/jaxws/W2JDLR2747TestTwo
+wsi.w2jdlr2747.wsdlloc.2=/WSW2JDLR2747TestService_web/jaxws/W2JDLR2747TestTwo?WSDL
+wsi.w2jdlr2747.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2747.W2JDLR2747TestOneImpl
+wsi.w2jdlr2747.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2747.W2JDLR2747TestTwoImpl
+
+WSW2JDLR2748TestService_web=wsi.w2jdlr2748
+wsi.w2jdlr2748.endpoint.1=/WSW2JDLR2748TestService_web/jaxws/W2JDLR2748TestOne
+wsi.w2jdlr2748.wsdlloc.1=/WSW2JDLR2748TestService_web/jaxws/W2JDLR2748TestOne?WSDL
+wsi.w2jdlr2748.endpoint.2=/WSW2JDLR2748TestService_web/jaxws/W2JDLR2748TestTwo
+wsi.w2jdlr2748.wsdlloc.2=/WSW2JDLR2748TestService_web/jaxws/W2JDLR2748TestTwo?WSDL
+wsi.w2jdlr2748.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2748.W2JDLR2748TestOneImpl
+wsi.w2jdlr2748.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2748.W2JDLR2748TestTwoImpl
+
+WSW2JDLR4002TestService_web=wsi.w2jdlr4002
+wsi.w2jdlr4002.endpoint.1=/WSW2JDLR4002TestService_web/jaxws/W2JDLR4002Test
+wsi.w2jdlr4002.wsdlloc.1=/WSW2JDLR4002TestService_web/jaxws/W2JDLR4002Test?WSDL
+wsi.w2jdlr4002.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R4002.W2JDLR4002TestImpl
+
+WSW2JDLR4003TestService_web=wsi.w2jdlr4003
+wsi.w2jdlr4003.endpoint.1=/WSW2JDLR4003TestService_web/jaxws/W2JDLR4003Test
+wsi.w2jdlr4003.wsdlloc.1=/WSW2JDLR4003TestService_web/jaxws/W2JDLR4003Test?WSDL
+wsi.w2jdlr4003.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R4003.W2JDLR4003TestImpl
+wsi.w2jdlr4003.metadata.1=WEB-INF/wsdl/W2JDLR4003ImportUTF8.wsdl
+wsi.w2jdlr4003.metadata.2=WEB-INF/wsdl/W2JDLR4003ImportUTF16.wsdl
+
+WSWSIDLSwaTest_web=wsidlswatest
+wsidlswatest.ctxroot.1=/WSWSIDLSwaTest_web
+wsidlswatest.endpoint.1=/WSWSIDLSwaTest_web/jaxws/SwaTestOne
+wsidlswatest.wsdlloc.1=/WSWSIDLSwaTest_web/jaxws/SwaTestOne?WSDL
+wsidlswatest.ctxroot.2=/WSWSIDLSwaTest_web
+wsidlswatest.endpoint.2=/WSWSIDLSwaTest_web/jaxws/SwaTestTwo
+wsidlswatest.wsdlloc.2=/WSWSIDLSwaTest_web/jaxws/SwaTestTwo?WSDL
+wsidlswatest.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTestImpl1
+wsidlswatest.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTestImpl2
+wsidlswatest.metadata.1=WEB-INF/wsdl/WS-ISwA.xsd
+
+WSWSIDLSwaRefTest_web=wsidlswareftest
+wsidlswareftest.ctxroot.1=/WSWSIDLSwaRefTest_web
+wsidlswareftest.endpoint.1=/WSWSIDLSwaRefTest_web/jaxws/SwaRefTest
+wsidlswareftest.wsdlloc.1=/WSWSIDLSwaRefTest_web/jaxws/SwaRefTest?WSDL
+wsidlswareftest.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTestImpl
+
+# ------------------------------------------------------------------------------
+# jaxws/wsi/w2j/rpc/literal URL's
+# ===============================
+
+WSW2JRLR1005TestService_web=wsi.w2jrlr1005
+wsi.w2jrlr1005.endpoint.1=/WSW2JRLR1005TestService_web/jaxws/SimpleTest
+wsi.w2jrlr1005.wsdlloc.1=/WSW2JRLR1005TestService_web/jaxws/SimpleTest?WSDL
+wsi.w2jrlr1005.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1005.SimpleEndpointImpl
+
+WSW2JRLR1006TestService_web=wsi.w2jrlr1006
+wsi.w2jrlr1006.endpoint.1=/WSW2JRLR1006TestService_web/jaxws/SimpleTest
+wsi.w2jrlr1006.wsdlloc.1=/WSW2JRLR1006TestService_web/jaxws/SimpleTest?WSDL
+wsi.w2jrlr1006.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1006.SimpleEndpointImpl
+
+WSW2JRLR1007TestService_web=wsi.w2jrlr1007
+wsi.w2jrlr1007.endpoint.1=/WSW2JRLR1007TestService_web/jaxws/SimpleTest
+wsi.w2jrlr1007.wsdlloc.1=/WSW2JRLR1007TestService_web/jaxws/SimpleTest?WSDL
+wsi.w2jrlr1007.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1007.SimpleEndpointImpl
+
+WSW2JRLR1011TestService_web=wsi.w2jrlr1011
+wsi.w2jrlr1011.endpoint.1=/WSW2JRLR1011TestService_web/jaxws/W2JRLR1011TestOne
+wsi.w2jrlr1011.wsdlloc.1=/WSW2JRLR1011TestService_web/jaxws/W2JRLR1011TestOne?WSDL
+wsi.w2jrlr1011.endpoint.2=/WSW2JRLR1011TestService_web/jaxws/W2JRLR1011TestTwo
+wsi.w2jrlr1011.wsdlloc.2=/WSW2JRLR1011TestService_web/jaxws/W2JRLR1011TestTwo?WSDL
+wsi.w2jrlr1011.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1011.W2JRLR1011TestOneImpl
+wsi.w2jrlr1011.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1011.W2JRLR1011TestTwoImpl
+
+WSW2JRLR1012TestService_web=wsi.w2jrlr1012
+wsi.w2jrlr1012.endpoint.1=/WSW2JRLR1012TestService_web/jaxws/W2JRLR1012TestOne
+wsi.w2jrlr1012.wsdlloc.1=/WSW2JRLR1012TestService_web/jaxws/W2JRLR1012TestOne?WSDL
+wsi.w2jrlr1012.endpoint.2=/WSW2JRLR1012TestService_web/jaxws/W2JRLR1012TestTwo
+wsi.w2jrlr1012.wsdlloc.2=/WSW2JRLR1012TestService_web/jaxws/W2JRLR1012TestTwo?WSDL
+wsi.w2jrlr1012.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestOneImpl
+wsi.w2jrlr1012.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012.W2JRLR1012TestTwoImpl
+
+WSW2JRLR1014TestService_web=wsi.w2jrlr1014
+wsi.w2jrlr1014.endpoint.1=/WSW2JRLR1014TestService_web/jaxws/SimpleTest
+wsi.w2jrlr1014.wsdlloc.1=/WSW2JRLR1014TestService_web/jaxws/SimpleTest?WSDL
+wsi.w2jrlr1014.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1014.SimpleEndpointImpl
+
+WSW2JRLR1016TestService_web=wsi.w2jrlr1016
+wsi.w2jrlr1016.endpoint.1=/WSW2JRLR1016TestService_web/jaxws/SimpleTest
+wsi.w2jrlr1016.wsdlloc.1=/WSW2JRLR1016TestService_web/jaxws/SimpleTest?WSDL
+wsi.w2jrlr1016.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1016.SimpleEndpointImpl
+
+WSW2JRLR1027TestService_web=wsi.w2jrlr1027
+wsi.w2jrlr1027.endpoint.1=/WSW2JRLR1027TestService_web/jaxws/SimpleTest
+wsi.w2jrlr1027.wsdlloc.1=/WSW2JRLR1027TestService_web/jaxws/SimpleTest?WSDL
+wsi.w2jrlr1027.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1027.SimpleEndpointImpl
+
+WSW2JRLR1141TestService_web=wsi.w2jrlr1141
+wsi.w2jrlr1141.endpoint.1=/WSW2JRLR1141TestService_web/jaxws/Hello
+wsi.w2jrlr1141.wsdlloc.1=/WSW2JRLR1141TestService_web/jaxws/Hello?WSDL
+wsi.w2jrlr1141.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1141.HelloImpl
+
+WSW2JRLR11XXTestService_web=wsi.w2jrlr11XX
+wsi.w2jrlr11XX.endpoint.1=/WSW2JRLR11XXTestService_web/jaxws/W2JRLR11XXTestOne
+wsi.w2jrlr11XX.wsdlloc.1=/WSW2JRLR11XXTestService_web/jaxws/W2JRLR11XXTestOne?WSDL
+wsi.w2jrlr11XX.endpoint.2=/WSW2JRLR11XXTestService_web/jaxws/W2JRLR11XXTestTwo
+wsi.w2jrlr11XX.wsdlloc.2=/WSW2JRLR11XXTestService_web/jaxws/W2JRLR11XXTestTwo?WSDL
+wsi.w2jrlr11XX.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R11XX.W2JRLR11XXTestOneImpl
+wsi.w2jrlr11XX.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R11XX.W2JRLR11XXTestTwoImpl
+
+WSW2JRLR2009TestService_web=wsi.w2jrlr2009
+wsi.w2jrlr2009.endpoint.1=/WSW2JRLR2009TestService_web/jaxws/W2JRLR2009Test
+wsi.w2jrlr2009.wsdlloc.1=/WSW2JRLR2009TestService_web/jaxws/W2JRLR2009Test?WSDL
+wsi.w2jrlr2009.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2009.W2JRLR2009TestImpl
+wsi.w2jrlr2009.metadata.1=WEB-INF/wsdl/W2JRLR2009ImportUTF16.xsd
+
+WSW2JRLR2010TestService_web=wsi.w2jrlr2010
+wsi.w2jrlr2010.endpoint.1=/WSW2JRLR2010TestService_web/jaxws/W2JRLR2010Test
+wsi.w2jrlr2010.wsdlloc.1=/WSW2JRLR2010TestService_web/jaxws/W2JRLR2010Test?WSDL
+wsi.w2jrlr2010.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2010.W2JRLR2010TestImpl
+wsi.w2jrlr2010.metadata.1=WEB-INF/wsdl/W2JRLR2010ImportDirectlyUTF16.xsd
+wsi.w2jrlr2010.metadata.2=WEB-INF/wsdl/W2JRLR2010ImportDirectlyUTF8.xsd
+wsi.w2jrlr2010.metadata.3=WEB-INF/wsdl/W2JRLR2010ImportIndirectlyUTF16.xsd
+wsi.w2jrlr2010.metadata.4=WEB-INF/wsdl/W2JRLR2010ImportIndirectlyUTF8.xsd
+wsi.w2jrlr2010.metadata.5=WEB-INF/wsdl/W2JRLR2010ImportIndirectly.wsdl
+
+WSW2JRLR2011TestService_web=wsi.w2jrlr2011
+wsi.w2jrlr2011.endpoint.1=/WSW2JRLR2011TestService_web/jaxws/W2JRLR2011Test
+wsi.w2jrlr2011.wsdlloc.1=/WSW2JRLR2011TestService_web/jaxws/W2JRLR2011Test?WSDL
+wsi.w2jrlr2011.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.W2JRLR2011TestImpl
+wsi.w2jrlr2011.metadata.1=WEB-INF/wsdl/W2JRLR2011ImportDirectly.xsd
+wsi.w2jrlr2011.metadata.2=WEB-INF/wsdl/W2JRLR2011ImportIndirectly.wsdl
+wsi.w2jrlr2011.metadata.3=WEB-INF/wsdl/W2JRLR2011ImportIndirectly.xsd
+
+WSW2JRLR2030TestService_web=wsi.w2jrlr2030
+wsi.w2jrlr2030.endpoint.1=/WSW2JRLR2030TestService_web/jaxws/W2JRLR2030Test
+wsi.w2jrlr2030.wsdlloc.1=/WSW2JRLR2030TestService_web/jaxws/W2JRLR2030Test?WSDL
+wsi.w2jrlr2030.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2030.W2JRLR2030TestImpl
+wsi.w2jrlr2030.metadata.1=WEB-INF/wsdl/W2JRLR2030Import.wsdl
+
+WSW2JRLR2113TestService_web=wsi.w2jrlr2113
+wsi.w2jrlr2113.endpoint.1=/WSW2JRLR2113TestService_web/jaxws/SimpleTest
+wsi.w2jrlr2113.wsdlloc.1=/WSW2JRLR2113TestService_web/jaxws/SimpleTest?WSDL
+wsi.w2jrlr2113.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2113.SimpleEndpointImpl
+
+WSW2JRLR2114TestService_web=wsi.w2jrlr2114
+wsi.w2jrlr2114.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2114.W2JRLR2114TestImpl
+wsi.w2jrlr2114.endpoint.1=/WSW2JRLR2114TestService_web/jaxws/W2JRLR2114Test
+wsi.w2jrlr2114.wsdlloc.1=/WSW2JRLR2114TestService_web/jaxws/W2JRLR2114Test?WSDL
+
+WSW2JRLR2706TestService_web=wsi.w2jrlr2706
+wsi.w2jrlr2706.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2706.W2JRLR2706TestImpl
+wsi.w2jrlr2706.endpoint.1=/WSW2JRLR2706TestService_web/jaxws/W2JRLR2706Test
+wsi.w2jrlr2706.wsdlloc.1=/WSW2JRLR2706TestService_web/jaxws/W2JRLR2706Test?WSDL
+
+WSW2JRLR2707TestService_web=wsi.w2jrlr2707
+wsi.w2jrlr2707.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2707.W2JRLR2707TestImpl
+wsi.w2jrlr2707.endpoint.1=/WSW2JRLR2707TestService_web/jaxws/W2JRLR2707Test
+wsi.w2jrlr2707.wsdlloc.1=/WSW2JRLR2707TestService_web/jaxws/W2JRLR2707Test?WSDL
+
+WSW2JRLR2709TestService_web=wsi.w2jrlr2709
+wsi.w2jrlr2709.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2709.W2JRLR2709TestImpl
+wsi.w2jrlr2709.endpoint.1=/WSW2JRLR2709TestService_web/jaxws/W2JRLR2709Test
+wsi.w2jrlr2709.wsdlloc.1=/WSW2JRLR2709TestService_web/jaxws/W2JRLR2709Test?WSDL
+
+WSW2JRLR2714TestService_web=wsi.w2jrlr2714
+wsi.w2jrlr2714.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2714.SimpleEndpointImpl
+wsi.w2jrlr2714.endpoint.1=/WSW2JRLR2714TestService_web/jaxws/SimpleTest
+wsi.w2jrlr2714.wsdlloc.1=/WSW2JRLR2714TestService_web/jaxws/SimpleTest?WSDL
+
+WSW2JRLR2728TestService_web=wsi.w2jrlr2728
+wsi.w2jrlr2728.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2728.W2JRLR2728TestImpl
+wsi.w2jrlr2728.endpoint.1=/WSW2JRLR2728TestService_web/jaxws/W2JRLR2728Test
+wsi.w2jrlr2728.wsdlloc.1=/WSW2JRLR2728TestService_web/jaxws/W2JRLR2728Test?WSDL
+
+WSW2JRLR2729TestService_web=wsi.w2jrlr2729
+wsi.w2jrlr2729.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2729.W2JRLR2729TestImpl
+wsi.w2jrlr2729.endpoint.1=/WSW2JRLR2729TestService_web/jaxws/W2JRLR2729Test
+wsi.w2jrlr2729.wsdlloc.1=/WSW2JRLR2729TestService_web/jaxws/W2JRLR2729Test?WSDL
+
+WSW2JRLR2738TestService_web=wsi.w2jrlr2738
+wsi.w2jrlr2738.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2738.W2JRLR2738TestImpl
+wsi.w2jrlr2738.metadata.1=WEB-INF/wsdl/W2JRLR2738TestDefs.wsdl
+wsi.w2jrlr2738.metadata.2=WEB-INF/wsdl/W2JRLR2738TestDefs.xsd
+wsi.w2jrlr2738.endpoint.1=/WSW2JRLR2738TestService_web/jaxws/W2JRLR2738Test
+wsi.w2jrlr2738.wsdlloc.1=/WSW2JRLR2738TestService_web/jaxws/W2JRLR2738Test?WSDL
+
+WSW2JRLR2739TestService_web=wsi.w2jrlr2739
+wsi.w2jrlr2739.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2739.SimpleEndpointImpl
+wsi.w2jrlr2739.endpoint.1=/WSW2JRLR2739TestService_web/jaxws/SimpleTest
+wsi.w2jrlr2739.wsdlloc.1=/WSW2JRLR2739TestService_web/jaxws/SimpleTest?WSDL
+
+WSW2JRLR273XTestService_web=wsi.w2jrlr273X
+wsi.w2jrlr273X.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R273X.W2JRLR273XTest1Impl
+wsi.w2jrlr273X.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R273X.W2JRLR273XTest2Impl
+wsi.w2jrlr273X.endpoint.1=/WSW2JRLR273XTestService_web/jaxws/W2JRLR273XTest1
+wsi.w2jrlr273X.wsdlloc.1=/WSW2JRLR273XTestService_web/jaxws/W2JRLR273XTest1?WSDL
+wsi.w2jrlr273X.endpoint.2=/WSW2JRLR273XTestService_web/jaxws/W2JRLR273XTest2
+wsi.w2jrlr273X.wsdlloc.2=/WSW2JRLR273XTestService_web/jaxws/W2JRLR273XTest2?WSDL
+
+WSW2JRLR2744TestService_web=wsi.w2jrlr2744
+wsi.w2jrlr2744.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2744.DummyImpl
+wsi.w2jrlr2744.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2744.W2JRLR2744TestImpl
+wsi.w2jrlr2744.endpoint.1=/WSW2JRLR2744TestService_web/jaxws/Dummy
+wsi.w2jrlr2744.wsdlloc.1=/WSW2JRLR2744TestService_web/jaxws/Dummy?WSDL
+wsi.w2jrlr2744.endpoint.2=/WSW2JRLR2744TestService_web/jaxws/W2JRLR2744Test
+wsi.w2jrlr2744.wsdlloc.2=/WSW2JRLR2744TestService_web/jaxws/W2JRLR2744Test?WSDL
+
+WSW2JRLR2745TestService_web=wsi.w2jrlr2745
+wsi.w2jrlr2745.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2745.DummyImpl
+wsi.w2jrlr2745.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2745.W2JRLR2745TestOneImpl
+wsi.w2jrlr2745.impl.3=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2745.W2JRLR2745TestTwoImpl
+wsi.w2jrlr2745.endpoint.1=/WSW2JRLR2745TestService_web/jaxws/Dummy
+wsi.w2jrlr2745.wsdlloc.1=/WSW2JRLR2745TestService_web/jaxws/Dummy?WSDL
+wsi.w2jrlr2745.endpoint.2=/WSW2JRLR2745TestService_web/jaxws/W2JRLR2745TestOne
+wsi.w2jrlr2745.wsdlloc.2=/WSW2JRLR2745TestService_web/jaxws/W2JRLR2745TestOne?WSDL
+wsi.w2jrlr2745.endpoint.3=/WSW2JRLR2745TestService_web/jaxws/W2JRLR2745TestTwo
+wsi.w2jrlr2745.wsdlloc.3=/WSW2JRLR2745TestService_web/jaxws/W2JRLR2745TestTwo?WSDL
+
+WSW2JRLR2747TestService_web=wsi.w2jrlr2747
+wsi.w2jrlr2747.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2747.W2JRLR2747TestOneImpl
+wsi.w2jrlr2747.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2747.W2JRLR2747TestTwoImpl
+wsi.w2jrlr2747.endpoint.1=/WSW2JRLR2747TestService_web/jaxws/W2JRLR2747TestOne
+wsi.w2jrlr2747.wsdlloc.1=/WSW2JRLR2747TestService_web/jaxws/W2JRLR2747TestOne?WSDL
+wsi.w2jrlr2747.endpoint.2=/WSW2JRLR2747TestService_web/jaxws/W2JRLR2747TestTwo
+wsi.w2jrlr2747.wsdlloc.2=/WSW2JRLR2747TestService_web/jaxws/W2JRLR2747TestTwo?WSDL
+
+WSW2JRLR2748TestService_web=wsi.w2jrlr2748
+wsi.w2jrlr2748.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2748.W2JRLR2748TestOneImpl
+wsi.w2jrlr2748.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2748.W2JRLR2748TestTwoImpl
+wsi.w2jrlr2748.endpoint.1=/WSW2JRLR2748TestService_web/jaxws/W2JRLR2748TestOne
+wsi.w2jrlr2748.wsdlloc.1=/WSW2JRLR2748TestService_web/jaxws/W2JRLR2748TestOne?WSDL
+wsi.w2jrlr2748.endpoint.2=/WSW2JRLR2748TestService_web/jaxws/W2JRLR2748TestTwo
+wsi.w2jrlr2748.wsdlloc.2=/WSW2JRLR2748TestService_web/jaxws/W2JRLR2748TestTwo?WSDL
+
+WSW2JRLR2751TestService_web=wsi.w2jrlr2751
+wsi.w2jrlr2751.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751.W2JRLR2751TestImpl
+wsi.w2jrlr2751.metadata.1=WEB-INF/wsdl/W2JRLR2751TestDefs.wsdl
+wsi.w2jrlr2751.metadata.2=WEB-INF/wsdl/W2JRLR2751TestDefs.xsd
+wsi.w2jrlr2751.endpoint.1=/WSW2JRLR2751TestService_web/jaxws/W2JRLR2751Test
+wsi.w2jrlr2751.wsdlloc.1=/WSW2JRLR2751TestService_web/jaxws/W2JRLR2751Test?WSDL
+
+WSW2JRLR2753TestService_web=wsi.w2jrlr2753
+wsi.w2jrlr2753.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2753.SimpleEndpointImpl
+wsi.w2jrlr2753.endpoint.1=/WSW2JRLR2753TestService_web/jaxws/SimpleTest
+wsi.w2jrlr2753.wsdlloc.1=/WSW2JRLR2753TestService_web/jaxws/SimpleTest?WSDL
+
+WSW2JRLR4001TestService_web=wsi.w2jrlr4001
+wsi.w2jrlr4001.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4001.W2JRLR4001TestOneImpl
+wsi.w2jrlr4001.endpoint.1=/WSW2JRLR4001TestService_web/jaxws/W2JRLR4001TestOne
+wsi.w2jrlr4001.wsdlloc.1=/WSW2JRLR4001TestService_web/jaxws/W2JRLR4001TestOne?WSDL
+
+WSW2JRLR4002TestService_web=wsi.w2jrlr4002
+wsi.w2jrlr4002.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4002.W2JRLR4002TestImpl
+wsi.w2jrlr4002.endpoint.1=/WSW2JRLR4002TestService_web/jaxws/W2JRLR4002Test
+wsi.w2jrlr4002.wsdlloc.1=/WSW2JRLR4002TestService_web/jaxws/W2JRLR4002Test?WSDL
+
+WSW2JRLR4003TestService_web=wsi.w2jrlr4003
+wsi.w2jrlr4003.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4003.W2JRLR4003TestImpl
+wsi.w2jrlr4003.metadata.1=WEB-INF/wsdl/W2JRLR4003ImportUTF16.wsdl
+wsi.w2jrlr4003.metadata.2=WEB-INF/wsdl/W2JRLR4003ImportUTF16.xsd
+wsi.w2jrlr4003.metadata.3=WEB-INF/wsdl/W2JRLR4003ImportUTF8.wsdl
+wsi.w2jrlr4003.metadata.4=WEB-INF/wsdl/W2JRLR4003ImportUTF8.xsd
+wsi.w2jrlr4003.endpoint.1=/WSW2JRLR4003TestService_web/jaxws/W2JRLR4003Test
+wsi.w2jrlr4003.wsdlloc.1=/WSW2JRLR4003TestService_web/jaxws/W2JRLR4003Test?WSDL
+
+WSW2JRLR97XXTestService_web=wsi.w2jrlr97XX
+wsi.w2jrlr97XX.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R97XX.W2JRLR97XXTestOneImpl
+wsi.w2jrlr97XX.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R97XX.W2JRLR97XXTestTwoImpl
+wsi.w2jrlr97XX.endpoint.1=/WSW2JRLR97XXTestService_web/jaxws/W2JRLR97XXTestOne
+wsi.w2jrlr97XX.wsdlloc.1=/WSW2JRLR97XXTestService_web/jaxws/W2JRLR97XXTestOne?WSDL
+wsi.w2jrlr97XX.endpoint.2=/WSW2JRLR97XXTestService_web/jaxws/W2JRLR97XXTestTwo
+wsi.w2jrlr97XX.wsdlloc.2=/WSW2JRLR97XXTestService_web/jaxws/W2JRLR97XXTestTwo?WSDL
+
+# jaxws/wsi/w2j/rpc/literal/swatest URL's
+WSWSIRLSwaTest_web=wsirlswatest
+wsirlswatest.impl.1=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTestImpl1
+wsirlswatest.impl.2=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTestImpl2
+wsirlswatest.metadata.1=WEB-INF/wsdl/WS-ISwA.xsd
+wsirlswatest.ctxroot.1=/WSWSIRLSwaTest_web
+wsirlswatest.endpoint.1=/WSWSIRLSwaTest_web/jaxws/SwaTestOne
+wsirlswatest.wsdlloc.1=/WSWSIRLSwaTest_web/jaxws/SwaTestOne?WSDL
+wsirlswatest.ctxroot.2=/WSWSIRLSwaTest_web
+wsirlswatest.endpoint.2=/WSWSIRLSwaTest_web/jaxws/SwaTestTwo
+wsirlswatest.wsdlloc.2=/WSWSIRLSwaTest_web/jaxws/SwaTestTwo?WSDL
+
+# jaxws/api/javax_xml_ws/Endpoint test urls
+WSW2JDLEndpointTest_web=w2jdlendpointtest
+w2jdlendpointtest.endpoint.1=/WSW2JDLEndpointTest_web/jaxws/RunTest
+w2jdlendpointtest.wsdlloc.1=/WSW2JDLEndpointTest_web/jaxws/RunTest?WSDL
+w2jdlendpointtest.ctxroot.1=/WSW2JDLEndpointTest_web
+w2jdlendpointtest.impl.1=com.sun.ts.tests.jaxws.api.javax_xml_ws.Endpoint.RunTestImpl
+
+# ------------------------------------------------------------------------------
+# jaxws/mapping/j2wmapping/document/literal URL's
+# ====================================================
+j2wdlbare.wsdlloc.1=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/document/literal/bare/J2WDLSharedService.wsdl
+j2wdlbare.wsdlloc.2=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/document/literal/bare/AddressingService.wsdl
+j2wdlwrapped.wsdlloc.1=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/document/literal/wrapped/J2WDLSharedService.wsdl
+
+# ------------------------------------------------------------------------------
+# jaxws/mapping/j2wmapping/rpc/literal URL's
+# ====================================================
+j2wrlwithannotations.wsdlloc.1=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/rpc/literal/withannotations/J2WRLSharedService.wsdl
+j2wrlwithannotations.wsdlloc.2=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/rpc/literal/withannotations/AddressingService.wsdl
+j2wrlwithannotations.wsdlloc.3=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/rpc/literal/withannotations/AddressingService3.wsdl
+j2wrlwithannotations.wsdlloc.4=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/rpc/literal/withannotations/AddressingService4.wsdl
+j2wrlwithannotations.wsdlloc.5=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/rpc/literal/withannotations/AddressingService5.wsdl
+j2wrlwithannotations.wsdlloc.6=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/rpc/literal/withannotations/AddressingService6.wsdl
+j2wrlwithoutannotations.wsdlloc.1=/src/com/sun/ts/tests/jaxws/mapping/j2wmapping/rpc/literal/withoutannotations/J2WRLSharedEndpointImplService.wsdl
+
+# jaxws/wsa/j2w/document/literal/requestresponse URL's
+WSAJ2WDLRequestResponseTest_web=wsaj2wdlrequestresponsetest
+wsaj2wdlrequestresponsetest.endpoint.1=/WSAJ2WDLRequestResponseTest_web/jaxws/AddNumbers
+wsaj2wdlrequestresponsetest.wsdlloc.1=/WSAJ2WDLRequestResponseTest_web/jaxws/AddNumbers?WSDL
+wsaj2wdlrequestresponsetest.impl.1=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse.AddNumbersImpl
+
+# jaxws/wsa/j2w/document/literal/refps URL's
+WSAJ2WDLReferenceParamsTest_web=wsaj2wdlreferenceparamstest
+wsaj2wdlreferenceparamstest.endpoint.1=/WSAJ2WDLReferenceParamsTest_web/jaxws/AddNumbers
+wsaj2wdlreferenceparamstest.wsdlloc.1=/WSAJ2WDLReferenceParamsTest_web/jaxws/AddNumbers?WSDL
+wsaj2wdlreferenceparamstest.impl.1=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.refps.AddNumbersImpl
+
+# jaxws/wsa/j2w/document/literal/action URL's
+WSAJ2WDLActionTest_web=wsaj2wdlactiontest
+wsaj2wdlactiontest.endpoint.1=/WSAJ2WDLActionTest_web/jaxws/AddNumbers
+wsaj2wdlactiontest.wsdlloc.1=/WSAJ2WDLActionTest_web/jaxws/AddNumbers?WSDL
+wsaj2wdlactiontest.impl.1=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.action.AddNumbersImpl
+
+# jaxws/wsa/j2w/document/literal/epr URL's
+WSAJ2WDLEPRTest_web=wsaj2wdleprtest
+wsaj2wdleprtest.endpoint.1=/WSAJ2WDLEPRTest_web/jaxws/AddNumbers
+wsaj2wdleprtest.wsdlloc.1=/WSAJ2WDLEPRTest_web/jaxws/AddNumbers?WSDL
+wsaj2wdleprtest.impl.1=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr.AddNumbersImpl
+
+# jaxws/wsa/j2w/document/literal/addressingfeature URL's
+WSAJ2WDLAddressingFeatureTest_web=wsaj2wdladdressingfeaturetest
+wsaj2wdladdressingfeaturetest.endpoint.1=/WSAJ2WDLAddressingFeatureTest_web/jaxws/AddressingFeatureTest1
+wsaj2wdladdressingfeaturetest.wsdlloc.1=/WSAJ2WDLAddressingFeatureTest_web/jaxws/AddressingFeatureTest1?WSDL
+wsaj2wdladdressingfeaturetest.impl.1=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl1
+wsaj2wdladdressingfeaturetest.endpoint.2=/WSAJ2WDLAddressingFeatureTest_web/jaxws/AddressingFeatureTest2
+wsaj2wdladdressingfeaturetest.wsdlloc.2=/WSAJ2WDLAddressingFeatureTest_web/jaxws/AddressingFeatureTest2?WSDL
+wsaj2wdladdressingfeaturetest.impl.2=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl2
+wsaj2wdladdressingfeaturetest.endpoint.3=/WSAJ2WDLAddressingFeatureTest_web/jaxws/AddressingFeatureTest3
+wsaj2wdladdressingfeaturetest.wsdlloc.3=/WSAJ2WDLAddressingFeatureTest_web/jaxws/AddressingFeatureTest3?WSDL
+wsaj2wdladdressingfeaturetest.impl.3=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl3
+wsaj2wdladdressingfeaturetest.endpoint.4=/WSAJ2WDLAddressingFeatureTest_web/jaxws/AddressingFeatureTest4
+wsaj2wdladdressingfeaturetest.wsdlloc.4=/WSAJ2WDLAddressingFeatureTest_web/jaxws/AddressingFeatureTest4?WSDL
+wsaj2wdladdressingfeaturetest.impl.4=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl4
+
+# jaxws/wsa/j2w/document/literal/anonymous URL's
+WSAJ2WDLAnonymousTest_web=wsaj2wdlanonymoustest
+wsaj2wdlanonymoustest.endpoint.3=/WSAJ2WDLAnonymousTest_web/jaxws/AddNumbers3
+wsaj2wdlanonymoustest.wsdlloc.3=/WSAJ2WDLAnonymousTest_web/jaxws/AddNumbers3?WSDL
+wsaj2wdlanonymoustest.endpoint.4=/WSAJ2WDLAnonymousTest_web/jaxws/AddNumbers4
+wsaj2wdlanonymoustest.wsdlloc.4=/WSAJ2WDLAnonymousTest_web/jaxws/AddNumbers4?WSDL
+wsaj2wdlanonymoustest.impl.3=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl3
+wsaj2wdlanonymoustest.impl.4=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl4
+
+# jaxws/jaxws23/wsa/j2w/document/literal/anonymous URL's
+WSAJ2WDLAnonymousTest23_web=wsaj2wdlanonymoustest23
+wsaj2wdlanonymoustest23.endpoint.23001=/WSAJ2WDLAnonymousTest23_web/jaxws/AddNumbers23001
+wsaj2wdlanonymoustest23.wsdlloc.23001=/WSAJ2WDLAnonymousTest23_web/jaxws/AddNumbers23001?wsdl
+wsaj2wdlanonymoustest23.endpoint.23002=/WSAJ2WDLAnonymousTest23_web/jaxws/AddNumbers23002
+wsaj2wdlanonymoustest23.wsdlloc.23002=/WSAJ2WDLAnonymousTest23_web/jaxws/AddNumbers23002?wsdl
+wsaj2wdlanonymoustest23.impl.23001=com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous.AddNumbersImpl23002
+wsaj2wdlanonymoustest23.impl.23002=com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous.AddNumbersImpl23002
+
+# jaxws/wsa/w2j/document/literal/typesubstitution URL's
+WSAW2JDLTypeSubstitutionTest_web=wsaw2jdltypesubstitution
+wsaw2jdltypesubstitution.endpoint.1=/WSAW2JDLTypeSubstitutionTest_web/jaxws/CarDealer
+wsaw2jdltypesubstitution.wsdlloc.1=/WSAW2JDLTypeSubstitutionTest_web/jaxws/CarDealer?WSDL
+wsaw2jdltypesubstitution.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution.CarDealerImpl
+wsaw2jdltypesubstitution.metatdata.1=WEB-INF/wsdl/cars.xsd
+
+# jaxws/wsa/j2w/document/literal/typesubstitution URL's
+WSAJ2WDLTypeSubstitutionTest_web=wsaj2wdltypesubstitution
+wsaj2wdltypesubstitution.endpoint.1=/WSAJ2WDLTypeSubstitutionTest_web/jaxws/CarDealer
+wsaj2wdltypesubstitution.wsdlloc.1=/WSAJ2WDLTypeSubstitutionTest_web/jaxws/CarDealer?WSDL
+wsaj2wdltypesubstitution.impl.1=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.CarDealerImpl
+
+# jaxws/wsa/w2j/document/literal/respectbindingfeature URL's
+WSAW2JDLRespectBindingFeature_web=wsaw2jdlrespectbindingfeature
+wsaw2jdlrespectbindingfeature.ctxroot.1=/WSAW2JDLRespectBindingFeature_web
+wsaw2jdlrespectbindingfeature.endpoint.1=/WSAW2JDLRespectBindingFeature_web/jaxws/RespectBindingFeatureTest2
+wsaw2jdlrespectbindingfeature.wsdlloc.1=/WSAW2JDLRespectBindingFeature_web/jaxws/RespectBindingFeatureTest2?WSDL
+wsaw2jdlrespectbindingfeature.endpoint.2=/WSAW2JDLRespectBindingFeature_web/jaxws/RespectBindingFeatureTest21
+wsaw2jdlrespectbindingfeature.wsdlloc.2=/WSAW2JDLRespectBindingFeature_web/jaxws/RespectBindingFeatureTest21?WSDL
+wsaw2jdlrespectbindingfeature.endpoint.3=/WSAW2JDLRespectBindingFeature_web/jaxws/RespectBindingFeatureTest3
+wsaw2jdlrespectbindingfeature.wsdlloc.3=/WSAW2JDLRespectBindingFeature_web/jaxws/RespectBindingFeatureTest3?WSDL
+wsaw2jdlrespectbindingfeature.endpoint.4=/WSAW2JDLRespectBindingFeature_web/jaxws/RespectBindingFeatureTest31
+wsaw2jdlrespectbindingfeature.wsdlloc.4=/WSAW2JDLRespectBindingFeature_web/jaxws/RespectBindingFeatureTest31?WSDL
+wsaw2jdlrespectbindingfeature.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTestImpl2
+wsaw2jdlrespectbindingfeature.impl.2=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTestImpl21
+wsaw2jdlrespectbindingfeature.impl.3=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTestImpl3
+wsaw2jdlrespectbindingfeature.impl.4=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTestImpl31
+
+# jaxws/wsa/w2j/document/literal/addressingfeature URL's
+WSAW2JDLAddressingFeature_web=addressingfeature
+wsaw2jdladdressingfeature.ctxroot.1=/WSAW2JDLAddressingFeature_web
+wsaw2jdladdressingfeature.endpoint.1=/WSAW2JDLAddressingFeature_web/jaxws/AddressingFeatureTest1
+wsaw2jdladdressingfeature.wsdlloc.1=/WSAW2JDLAddressingFeature_web/jaxws/AddressingFeatureTest1?WSDL
+wsaw2jdladdressingfeature.endpoint.2=/WSAW2JDLAddressingFeature_web/jaxws/AddressingFeatureTest2
+wsaw2jdladdressingfeature.wsdlloc.2=/WSAW2JDLAddressingFeature_web/jaxws/AddressingFeatureTest2?WSDL
+wsaw2jdladdressingfeature.endpoint.3=/WSAW2JDLAddressingFeature_web/jaxws/AddressingFeatureTest3
+wsaw2jdladdressingfeature.wsdlloc.3=/WSAW2JDLAddressingFeature_web/jaxws/AddressingFeatureTest3?WSDL
+wsaw2jdladdressingfeature.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature.AddressingFeatureTestImpl1
+wsaw2jdladdressingfeature.impl.2=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature.AddressingFeatureTestImpl2
+wsaw2jdladdressingfeature.impl.3=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature.AddressingFeatureTestImpl3
+
+# jaxws/wsa/w2j/document/literal/action URL's
+WSAW2JDLActionTest_web=wsaw2jdlactiontest
+wsaw2jdlactiontest.endpoint.1=/WSAW2JDLActionTest_web/jaxws/AddNumbers
+wsaw2jdlactiontest.wsdlloc.1=/WSAW2JDLActionTest_web/jaxws/AddNumbers?WSDL
+wsaw2jdlactiontest.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.action.AddNumbersImpl
+
+# jaxws/wsa/w2j/document/literal/delimiter URL's
+WSAW2JDLDelimiterTest_web=wsaw2jdldelimitertest
+wsaw2jdldelimitertest.endpoint.1=/WSAW2JDLDelimiterTest_web/jaxws/AddNumbers
+wsaw2jdldelimitertest.wsdlloc.1=/WSAW2JDLDelimiterTest_web/jaxws/AddNumbers?WSDL
+wsaw2jdldelimitertest.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter.AddNumbersImpl
+
+# jaxws/wsa/w2j/document/literal/eprinwsdl URL's
+WSAEPRInWsdlTestService_web=eprinwsdl
+eprinwsdl.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.eprinwsdl.TestImpl1
+eprinwsdl.endpoint.1=/WSAEPRInWsdlTestService_web/jaxws/Test1
+eprinwsdl.wsdlloc.1=/WSAEPRInWsdlTestService_web/jaxws/Test1?WSDL
+
+# jaxws/wsa/w2j/document/literal/oneway URL's
+WSAW2JDLOneWayTest_web=wsaw2jdlonewaytest
+wsaw2jdlonewaytest.endpoint.1=/WSAW2JDLOneWayTest_web/jaxws/AddNumbers
+wsaw2jdlonewaytest.wsdlloc.1=/WSAW2JDLOneWayTest_web/jaxws/AddNumbers?WSDL
+wsaw2jdlonewaytest.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway.AddNumbersImpl
+
+# jaxws/wsa/w2j/document/literal/requiredfalse URL's
+WSAW2JDLRequiredFalseTest_web=wsaw2jdlrequiredfalsetest
+wsaw2jdlrequiredfalsetest.endpoint.1=/WSAW2JDLRequiredFalseTest_web/jaxws/AddNumbers
+wsaw2jdlrequiredfalsetest.wsdlloc.1=/WSAW2JDLRequiredFalseTest_web/jaxws/AddNumbers?WSDL
+wsaw2jdlrequiredfalsetest.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.requiredfalse.AddNumbersImpl
+
+# jaxws/wsa/w2j/document/literal/refps URL's
+WSAW2JDLReferenceParamsTest_web=wsaw2jdlreferenceparamstest
+wsaw2jdlreferenceparamstest.endpoint.1=/WSAW2JDLReferenceParamsTest_web/jaxws/AddNumbers
+wsaw2jdlreferenceparamstest.wsdlloc.1=/WSAW2JDLReferenceParamsTest_web/jaxws/AddNumbers?WSDL
+wsaw2jdlreferenceparamstest.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.refps.AddNumbersImpl
+
+# jaxws/wsa/w2j/document/literal/anonymous URL's
+WSAW2JDLAnonymousTest_web=wsaw2jdlanonymoustest
+wsaw2jdlanonymoustest.endpoint.3=/WSAW2JDLAnonymousTest_web/jaxws/AddNumbers3
+wsaw2jdlanonymoustest.wsdlloc.3=/WSAW2JDLAnonymousTest_web/jaxws/AddNumbers3?WSDL
+wsaw2jdlanonymoustest.endpoint.4=/WSAW2JDLAnonymousTest_web/jaxws/AddNumbers4
+wsaw2jdlanonymoustest.wsdlloc.4=/WSAW2JDLAnonymousTest_web/jaxws/AddNumbers4?WSDL
+wsaw2jdlanonymoustest.impl.3=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.anonymous.AddNumbersImpl3
+wsaw2jdlanonymoustest.impl.4=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.anonymous.AddNumbersImpl4
+
+# jaxws/wsa/w2j/document/literal/providertest URL's
+WSAProviderTestService_web=providertest
+providertest.impl.1=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ProviderTestImpl
+providertest.endpoint.1=/WSAProviderTestService_web/jaxws/ProviderTest
+providertest.wsdlloc.1=/WSAProviderTestService_web/jaxws/ProviderTest?WSDL
+
+# jaxws/ee/w2j/document/literal/mtomfeature URL's
+WSW2JDLMTOMFeature_web=mtomfeature
+mtomfeature.ctxroot.1=/WSW2JDLMTOMFeature_web
+mtomfeature.endpoint.1=/WSW2JDLMTOMFeature_web/jaxws/MTOMFeatureTest1
+mtomfeature.wsdlloc.1=/WSW2JDLMTOMFeature_web/jaxws/MTOMFeatureTest1?WSDL
+mtomfeature.ctxroot.2=/WSW2JDLMTOMFeature_web
+mtomfeature.endpoint.2=/WSW2JDLMTOMFeature_web/jaxws/MTOMFeatureTest2
+mtomfeature.wsdlloc.2=/WSW2JDLMTOMFeature_web/jaxws/MTOMFeatureTest2?WSDL
+mtomfeature.endpoint.3=/WSW2JDLMTOMFeature_web/jaxws/MTOMFeatureTest3
+mtomfeature.wsdlloc.3=/WSW2JDLMTOMFeature_web/jaxws/MTOMFeatureTest3?WSDL
+mtomfeature.endpoint.4=/WSW2JDLMTOMFeature_web/jaxws/MTOMFeatureTest4
+mtomfeature.wsdlloc.4=/WSW2JDLMTOMFeature_web/jaxws/MTOMFeatureTest4?WSDL
+mtomfeature.impl.1=com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTestImpl1
+mtomfeature.impl.2=com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTestImpl2
+mtomfeature.impl.3=com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTestImpl3
+mtomfeature.impl.4=com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTestImpl4
+
+# ------------------------------------------------------------------------------
+
+# Enable/Disable ri specific soap logging of messages for debug
+EnableSoapLogging=false

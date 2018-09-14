@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="appclient_deploy_ejblink_path" basedir="." default="usage">
+    <import file="../../../../../../../../../bin/xml/ts.import.xml"/> 
+
+    <target name="package">
+        <ts.ejbjar descriptor="appclient_dep_ejblink_path_jar1_ejb.xml" 
+                   archivename="appclient_dep_ejblink_path_jar1"
+                   includedefaultfiles="false">
+        <fileset dir="${class.dir}" 
+                 includes="${ts.wrappers.classes.stateless.ejb},
+                 com/sun/ts/tests/assembly/util/shared/ejbref/common/ReferencedBeanCode.class,
+                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean.class,
+                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBeanEJB.class,
+                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBeanHome.class"/>        
+        </ts.ejbjar>
+
+        <ts.ejbjar descriptor="appclient_dep_ejblink_path_jar2_ejb.xml" 
+                   archivename="appclient_dep_ejblink_path_jar2"
+                   includedefaultfiles="false">
+        <fileset dir="${class.dir}" 
+                 includes="${ts.wrappers.classes.stateless.ejb},
+                 com/sun/ts/tests/assembly/util/shared/ejbref/common/ReferencedBeanCode.class
+                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean2.class,
+                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean2EJB.class,
+                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean2Home.class"/>        
+        </ts.ejbjar>
+        
+        <ts.clientjar descriptor="appclient_dep_ejblink_path_client.xml" 
+                      archivename="appclient_dep_ejblink_path"
+                      mainclass="com.sun.ts.tests.appclient.deploy.ejblink.path.Client"
+                      excludedfiles="com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean2EJB.class,
+                                     com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBeanEJB.class"/>
+
+        <ts.ear archivename="appclient_dep_ejblink_path"/>
+      
+    </target>
+
+</project>

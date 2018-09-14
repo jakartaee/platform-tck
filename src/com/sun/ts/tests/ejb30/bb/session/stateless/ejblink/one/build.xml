@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_stateless_ejblink_one"/>
+  <property name="client" value="com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.one.Client"/>
+  <property name="pkg.dir" value="com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/one"/>
+
+  <property name="ejb.jar1.classes" 
+            value="
+com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/one/EjbLink1Bean.class,
+com/sun/ts/tests/ejb30/common/ejblink/Constants.class,
+com/sun/ts/tests/ejb30/common/ejblink/EjbLinkBeanBase.class,
+com/sun/ts/tests/ejb30/common/ejblink/EjbLinkIF.class,
+com/sun/ts/tests/ejb30/common/ejblink/CommonIF.class,
+com/sun/ts/tests/ejb30/common/ejblink/EjbLinkLocalIF.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class
+"/>
+  <property name="ejb.jar2.classes" 
+            value="
+com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/one/EjbLink2Bean.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/one/EjbLink3Bean.class,
+com/sun/ts/tests/ejb30/common/ejblink/Constants.class,
+com/sun/ts/tests/ejb30/common/ejblink/EjbLinkBeanBase.class,
+com/sun/ts/tests/ejb30/common/ejblink/EjbLinkIF.class,
+com/sun/ts/tests/ejb30/common/ejblink/CommonIF.class,
+com/sun/ts/tests/ejb30/common/ejblink/EjbLinkLocalIF.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class
+"/>
+  
+  <property name="appclient.jar.classes" 
+            value="
+com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/ejblink/one/Client.class,
+com/sun/ts/tests/ejb30/common/ejblink/ClientBase.class,
+com/sun/ts/tests/ejb30/common/ejblink/Constants.class,
+com/sun/ts/tests/ejb30/common/ejblink/EjbLinkIF.class,
+com/sun/ts/tests/ejb30/common/ejblink/CommonIF.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class
+"/>
+  
+  <!-- override target in import.xml -->
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/twojars-import.xml"/>  
+
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

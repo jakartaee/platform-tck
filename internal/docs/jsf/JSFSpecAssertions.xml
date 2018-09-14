@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd" [
+    <!ENTITY jsf_ch2    SYSTEM "jsf_ch2.xml">
+    <!ENTITY jsf_ch3    SYSTEM "jsf_ch3.xml">
+    <!ENTITY jsf_ch4    SYSTEM "jsf_ch4.xml">
+    <!ENTITY jsf_ch5    SYSTEM "jsf_ch5.xml">
+    <!ENTITY jsf_ch6    SYSTEM "jsf_ch6.xml">
+    <!ENTITY jsf_ch7    SYSTEM "jsf_ch7.xml">
+    <!ENTITY jsf_ch8    SYSTEM "jsf_ch8.xml">
+    <!ENTITY jsf_ch9    SYSTEM "jsf_ch9.xml">
+    <!ENTITY jsf_ch10   SYSTEM "jsf_ch10.xml">
+    <!ENTITY jsf_ch11   SYSTEM "jsf_ch11.xml">
+    <!ENTITY jsf_ch12   SYSTEM "jsf_ch12.xml">
+    <!ENTITY jsf_ch13   SYSTEM "jsf_ch13.xml">
+    <!ENTITY jsf_ch14   SYSTEM "jsf_ch14.xml">
+    <!ENTITY jsf_avk    SYSTEM "jsf_avk.xml">
+    ]>
+
+<?xml-stylesheet href='http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl'?>
+
+<spec>
+    <next-available-id/>
+    <previous-id/>
+    <technology>JSF</technology>
+    <id>JSF 2.3</id>
+    <name>JavaServer Faces(TM)</name>
+    <version>Version 2.3</version>
+    <location-names>
+        <chapters>
+            <chapter id="2" name="Request Processing Lifecycle">
+                <sections>
+                    <section id="1" name="Request Processing Lifecycle"/>
+                    <section id="1.1" name="Non-Faces Request Generates Faces Response"/>
+                    <section id="1.2" name="Faces Request Generates Faces Response"/>
+                    <section id="1.3" name="Faces Request Generates Non-Faces Response"/>
+                    <section id="2" name="Standard Request Processing Lifecycle Phases"/>
+                    <section id="2.1" name="Restore View"/>
+                    <section id="2.2" name="Apply Request Values"/>
+					<section id="2.2.1" name="Apply Request Values Partial Processing"/>
+                    <section id="2.3" name="Process Validations"/>
+					<section id="2.3.1" name="Partial Validations Partial Processing"/>
+                    <section id="2.4" name="Update Model Values"/>
+					<section id="2.4.1" name="Update Model Values Partial Processing"/>
+                    <section id="2.5" name="Invoke Application"/>
+                    <section id="2.6" name="Render Response"/>
+					<section id="2.6.1" name="Render Response Partial Processing"/>
+                    <section id="3" name="Common Event Processing"/>
+                    <section id="4" name="Common Application Activities"/>
+                    <section id="4.1" name="Acquire Faces Object References"/>
+                    <section id="4.1.1" name="Acquire and Configure Lifecycle Reference"/>
+                    <section id="4.1.2" name="Acquire and Configure FacesContext Reference"/>
+                    <section id="4.2" name="Create And Configure A New View"/>
+                    <section id="4.2.1" name="Create A New View"/>
+                    <section id="4.2.2" name="Configure the Desired RenderKit"/>
+                    <section id="4.2.3" name="Configure The View’s Components"/>
+                    <section id="4.2.4" name="Store the new View in the FacesContext"/>
+                    <section id="5" name="Concepts that impact several lifecycle phases"/>
+                    <section id="5.1" name="Value Handling"/>
+                    <section id="5.1.1" name="Apply Request Values Phase"/>
+                    <section id="5.1.2" name="Process Validators Phase"/>
+                    <section id="5.1.3" name="Executing Validation"/>
+                    <section id="5.1.4" name="Update Model Values Phase"/>
+                    <section id="5.2" name="Localization and Internationalization (L10N/I18N)"/>
+                    <section id="5.2.1" name="Determining the active Locale"/>
+                    <section id="5.2.2" name="Determining the Character Encoding"/>
+                    <section id="5.2.3" name="Localized Text"/>
+                    <section id="5.2.4" name="Localized Application Messages"/>
+                    <section id="5.3" name="State Management"/>
+                    <section id="5.3.1" name="State Management Considerations for the Custom Component Author"/>
+                    <section id="5.3.2" name="State Management Considerations for the JSF Implementor"/>
+					<section id="5.4" name="Resource Handling"/>
+					<section id="5.5" name="View Parameters"/>
+					<section id="5.6" name="Bookmarkability"/>
+					<section id="5.7" name="JSR 303 Bean Validation"/>
+					<section id="5.8" name="Ajax"/>
+					<section id="5.9" name="Component Behaviors"/>
+					<section id="5.10" name="System Events"/>
+					<section id="6" name="Resource Handling"/>
+					<section id="6.1" name="Packaging Resources"/>
+					<section id="6.1.1" name="Packaging Resources into the Web Application Root"/>
+					<section id="6.1.2" name="Packaging Resources into the Classpath"/>
+					<section id="6.1.3" name="Resource Identifiers"/>
+					<section id="6.1.4" name="Libraries of Localized and Versioned Resources"/>
+					<section id="6.2" name="Rendering Resources"/>
+					<section id="6.2.1" name="Relocatable Resources"/>
+					<section id="6.2.2" name="Resource Rendering Using Annotations"/>
+					<section id="7" name="Resource Library Contracts"/>
+                </sections>
+            </chapter>
+            <chapter id="3" name="User Interface Compopnent Model">
+                <sections>
+                    <section id="1" name="UIComponent and UIComponentBase"/>
+                    <section id="1.1" name="Component Identifiers"/>
+                    <section id="1.2" name="Component Type"/>
+                    <section id="1.3" name="Component Family"/>
+                    <section id="1.4" name="ValueExpression properties"/>
+                    <section id="1.5" name="Component Bindings"/>
+                    <section id="1.6" name="Client Identifiers"/>
+                    <section id="1.7" name="Component Tree Manipulation"/>
+                    <section id="1.8" name="Component Tree Navigation"/>
+                    <section id="1.9" name="Facet Management"/>
+                    <section id="1.10" name="Generic Attributes"/>
+					<section id="1.11" name="Special Attributes"/>
+                    <section id="1.12" name="Render-Independent Properties"/>
+                    <section id="1.13" name="Component Specialization Methods"/>
+                    <section id="1.14" name="Lifecycle Management Methods"/>
+                    <section id="1.15" name="Utility Methods"/>
+                    <section id="2" name="Component Behavioral Interfaces"/>
+                    <section id="2.1" name="ActionSource"/>
+                    <section id="2.1.1" name="Properties"/>
+                    <section id="2.1.2" name="Methods"/>
+                    <section id="2.1.3" name="Events"/>
+                    <section id="2.2" name="ActionSource2"/>
+                    <section id="2.2.1" name="Properties"/>
+                    <section id="2.2.2" name="Methods"/>
+                    <section id="2.2.3" name="Events"/>
+                    <section id="2.3" name="Naming Container"/>
+                    <section id="2.4" name="StateHolder"/>
+                    <section id="2.4.1" name="Properties"/>
+                    <section id="2.4.2" name="Methods"/>
+                    <section id="2.4.3" name="Events"/>
+					<section id="2.5" name="PartialStateHolder"/>
+                    <section id="2.5.1" name="Properties"/>
+                    <section id="2.5.2" name="Methods"/>
+                    <section id="2.5.3" name="Events"/>
+                    <section id="2.6" name="ValueHolder"/>
+                    <section id="2.6.1" name="Properties"/>
+                    <section id="2.6.2" name="Methods"/>
+                    <section id="2.6.3" name="Events"/>
+					<section id="2.7" name="EditableValueHolder"/>
+					<section id="2.7.1" name="Properties"/>
+					<section id="2.7.2" name="Methods"/>
+					<section id="2.7.3" name="Events"/>
+					<section id="2.8" name="SystemEventListenerHolder"/>
+					<section id="2.8.1" name="Properties"/>
+					<section id="2.8.2" name="Methods"/>
+					<section id="2.8.3" name="Events"/>
+					<section id="2.9" name="ClientBehaviorHolder"/>
+					<section id="3" name="Conversion Model"/>
+					<section id="3.1" name="Overview"/>
+					<section id="3.2" name="Converter"/>
+					<section id="3.3" name="Standard Converter Implementations"/>
+					<section id="4" name="Event and Listener Model"/>
+					<section id="4.1" name="Overview"/>
+                    <section id="4.2" name="Application Events"/>
+                    <section id="4.2.1" name="Event Classes"/>
+                    <section id="4.2.2" name="Listener Classes"/>
+                    <section id="4.2.3" name="Phase Identifiers"/>
+                    <section id="4.2.4" name="Listener Registration"/>
+                    <section id="4.2.5" name="Event Queueing"/>
+					<section id="4.2.6" name="Event Broadcasting"/>
+                    <section id="4.3" name="System Events"/>
+                    <section id="4.3.1" name="Event Classes"/>
+                    <section id="4.3.2" name="Listener Classes"/>
+                    <section id="4.3.3" name="Programmatic Listener Registration"/>
+                    <section id="4.3.4" name="Declarative Listener Registration"/>
+                    <section id="4.3.5" name="Listener Registration By Annotation"/>
+                    <section id="4.3.6" name="Listener Registration By Application Configuration Resources"/>
+                    <section id="4.3.7" name="Event Broadcasting"/>
+                    <section id="5" name="Validation Model"/>
+                    <section id="5.1" name="Overview"/>
+                    <section id="5.2" name="Validator Classes"/>
+                    <section id="5.3" name="Validation Registration"/>
+                    <section id="5.4" name="Validation Processing"/>
+                    <section id="5.5" name="Standard Validator Implementations"/>
+					<section id="5.6" name="Bean Validation Integration"/>
+					<section id="5.6.1" name="Bean Validator Activation"/>
+					<section id="5.6.2" name="Obtaining a ValidatorFactory"/>
+					<section id="5.6.3" name="Class-Level Validation"/>
+					<section id="5.6.4" name="Localization of Bean Validation Messages"/>
+					<section id="6" name="Composite User Interface Components"/>
+					<section id="6.1" name="Non-normative Background"/>
+					<section id="6.1.1" name="What does it mean to be a JSF User Interface component?"/>
+					<section id="6.1.2" name="How does one make a custom JSF User Interface component (JSF 1.2 and earlier)?"/>
+					<section id="6.1.3" name="How does one make a composite component?"/>
+					<section id="6.1.4" name="A simple composite component example"/>
+					<section id="6.1.5" name="Walk through of the run-time for the simple composite component example"/>
+					<section id="6.1.6" name="Composite Component Terms"/>
+					<section id="6.2" name="Normative Requirements"/>
+					<section id="6.2.1" name="Composite Component Metadata"/>
+					<section id="7" name="Component Behavior Model"/>
+					<section id="7.1" name="Overview"/>
+					<section id="7.2" name="Behavior Interface"/>
+					<section id="7.3" name="BehaviorBase"/>
+					<section id="7.4" name="The Client Behavior Contract"/>
+					<section id="7.5" name="ClientBehaviorHolder"/>
+					<section id="7.6" name="ClientBehaviorRenderer"/>
+					<section id="7.7" name="ClientBehaviorContext"/>
+					<section id="7.8" name="ClientBehaviorHint"/>
+					<section id="7.9" name="ClientBehaviorBase"/>
+					<section id="7.10" name="Behavior Event / Listener Model"/>
+					<section id="7.10.1" name="Event Classes"/>
+					<section id="7.10.2" name="Listener Classes"/>
+					<section id="7.10.3" name="Listener Registration"/>
+					<section id="7.11" name="Ajax Behavior"/>
+					<section id="7.11.1" name="AjaxBehavior"/>
+					<section id="7.11.2" name="Ajax Behavior Event / Listener Model"/>
+					<section id="7.12" name="Adding Behavior To Components"/>
+					<section id="7.13" name="Behavior Registration"/>
+					<section id="7.13.1" name="XML Registration"/>
+					<section id="7.13.2" name="Registration By Annotation"/>
+                </sections>
+            </chapter>
+            <chapter id="4" name="Standard User Interface Components">
+                <sections>
+                    <section id="1" name="Standard User Interface Components"/>
+                    <section id="1.1" name="UIColumn"/>
+                    <section id="1.1.1" name="Component Type"/>
+                    <section id="1.1.2" name="Properties"/>
+                    <section id="1.1.3" name="Methods"/>
+                    <section id="1.1.4" name="Events"/>
+                    <section id="1.2" name="UICommand"/>
+                    <section id="1.2.1" name="Component Type"/>
+                    <section id="1.2.2" name="Properties"/>
+                    <section id="1.2.3" name="Methods"/>
+                    <section id="1.2.4" name="Events"/>
+                    <section id="1.3" name="UIData"/>
+                    <section id="1.3.1" name="Component Type"/>
+                    <section id="1.3.2" name="Properties"/>
+                    <section id="1.3.3" name="Methods"/>
+                    <section id="1.3.4" name="Events"/>
+                    <section id="1.4" name="UIForm"/>
+                    <section id="1.4.1" name="Component Type"/>
+                    <section id="1.4.2" name="Properties"/>
+                    <section id="1.4.3" name="Methods"/>
+                    <section id="1.4.4" name="Events"/>
+                    <section id="1.5" name="UIGraphic"/>
+                    <section id="1.5.1" name="Component Type"/>
+                    <section id="1.5.2" name="Properties"/>
+                    <section id="1.5.3" name="Methods"/>
+                    <section id="1.5.4" name="Events"/>
+                    <section id="1.6" name="UIInput"/>
+                    <section id="1.6.1" name="Component Type"/>
+                    <section id="1.6.2" name="Properties"/>
+                    <section id="1.6.3" name="Methods"/>
+                    <section id="1.6.4" name="Events"/>
+                    <section id="1.7" name="UIMessage"/>
+                    <section id="1.7.1" name="Component Type"/>
+                    <section id="1.7.2" name="Properties"/>
+                    <section id="1.7.3" name="Methods"/>
+                    <section id="1.7.4" name="Events"/>
+                    <section id="1.8" name="UIMessages"/>
+                    <section id="1.8.1" name="Component Type"/>
+                    <section id="1.8.2" name="Properties"/>
+                    <section id="1.8.3" name="Methods"/>
+                    <section id="1.8.4" name="Events"/>
+					<section id="1.9" name="UIOutcomeTarget"/>
+                    <section id="1.9.1" name="Component Type"/>
+                    <section id="1.9.2" name="Properties"/>
+                    <section id="1.9.3" name="Methods"/>
+                    <section id="1.9.4" name="Events"/>
+                    <section id="1.10" name="UIOutput"/>
+                    <section id="1.10.1" name="Component Type"/>
+                    <section id="1.10.2" name="Properties"/>
+                    <section id="1.10.3" name="Methods"/>
+                    <section id="1.10.4" name="Events"/>
+                    <section id="1.11" name="UIPanel"/>
+                    <section id="1.11.1" name="Component Type"/>
+                    <section id="1.11.2" name="Properties"/>
+                    <section id="1.11.3" name="Methods"/>
+                    <section id="1.11.4" name="Events"/>
+                    <section id="1.12" name="UIParameter"/>
+                    <section id="1.12.1" name="Component Type"/>
+                    <section id="1.12.2" name="Properties"/>
+                    <section id="1.12.3" name="Methods"/>
+                    <section id="1.12.4" name="Events"/>
+                    <section id="1.13" name="UISelectBoolean"/>
+                    <section id="1.13.1" name="Component Type"/>
+                    <section id="1.13.2" name="Properties"/>
+                    <section id="1.13.3" name="Methods"/>
+                    <section id="1.13.4" name="Events"/>
+                    <section id="1.14" name="UISelectItem"/>
+                    <section id="1.14.1" name="Component Type"/>
+                    <section id="1.14.2" name="Properties"/>
+                    <section id="1.14.3" name="Methods"/>
+                    <section id="1.14.4" name="Events"/>
+                    <section id="1.15" name="UISelectItems"/>
+                    <section id="1.15.1" name="Component Type"/>
+                    <section id="1.15.2" name="Properties"/>
+                    <section id="1.15.3" name="Methods"/>
+                    <section id="1.15.4" name="Events"/>
+                    <section id="1.16" name="UISelectMany"/>
+                    <section id="1.16.1" name="Component Type"/>
+                    <section id="1.16.2" name="Properties"/>
+                    <section id="1.16.3" name="Methods"/>
+                    <section id="1.16.4" name="Events"/>
+                    <section id="1.17" name="UISelectOne"/>
+                    <section id="1.17.1" name="Component Type"/>
+                    <section id="1.17.2" name="Properties"/>
+                    <section id="1.17.3" name="Methods"/>
+                    <section id="1.17.4" name="Events"/>
+					<section id="1.18" name="UIViewParameter"/>
+                    <section id="1.19" name="UIViewRoot"/>
+                    <section id="1.19.1" name="Component Type"/>
+                    <section id="1.19.2" name="Properties"/>
+                    <section id="1.19.3" name="Methods"/>
+                    <section id="1.19.4" name="Events"/>
+					<section id="1.19.5" name="Partial Processing"/>
+                    <section id="2" name="Standard UIComponent Model Beans"/>
+                    <section id="2.1" name="DataModel"/>
+                    <section id="2.1.1" name="Properties"/>
+                    <section id="2.1.2" name="Methods"/>
+                    <section id="2.1.3" name="Events"/>
+                    <section id="2.1.4" name="Concrete Implementations"/>
+                    <section id="2.2" name="SelectItem"/>
+                    <section id="2.2.1" name="Properties"/>
+                    <section id="2.2.2" name="Methods"/>
+                    <section id="2.2.3" name="Events"/>
+                    <section id="2.3" name="SelectItemGroup"/>
+                    <section id="2.3.1" name="Properties"/>
+                    <section id="2.3.2" name="Methods"/>
+                    <section id="2.3.3" name="Events"/>
+                </sections>
+            </chapter>
+            <chapter id="5" name="Expression Language and Managed Bean Facility">
+                <sections>
+                    <section id="1" name="ValueExpressions"/>
+                    <section id="1.1" name="Overview"/>
+                    <section id="1.2" name="Value Expression Syntax and Semantics"/>
+                    <section id="2" name="MethodExpressions"/>
+                    <section id="2.1" name="MethodExpression Syntax and Semantics"/>
+                    <section id="3" name="The Managed Bean Facility"/>
+                    <section id="3.1" name="Managed Bean Configuration Example"/>
+					<section id="4" name="Managed Bean Annotations"/>
+					<section id="4.1" name="JSF Managed Classes and Java EE Annotations"/>
+					<section id="4.2" name="Managed Bean Lifecycle Annotations"/>
+                    <section id="5" name="How Faces Leverages the Unified EL"/>
+                    <section id="5.1" name="ELContext"/>
+                    <section id="5.1.1" name="Lifetime, Ownership and Cardinality"/>
+                    <section id="5.1.2" name="Properties"/>
+                    <section id="5.1.3" name="Methods"/>
+                    <section id="5.1.4" name="Events"/>
+                    <section id="5.2" name="ELResolver"/>
+                    <section id="5.2.1" name="Lifetime, Ownership and Cardinality"/>
+                    <section id="5.2.2" name="Properties"/>
+                    <section id="5.2.3" name="Methods"/>
+                    <section id="5.2.4" name="Events"/>
+                    <section id="5.3" name="Expression Factory"/>
+                    <section id="5.3.1" name="Lifetime, Ownership and Cardinality"/>
+                    <section id="5.3.2" name="Properties"/>
+                    <section id="5.3.3" name="Methods"/>
+                    <section id="5.3.4" name="Events"/>
+                    <section id="6" name="ELResolver Instances Provided by Faces"/>
+                    <section id="6.1" name="Faces ELResolver for JSP Pages"/>
+                    <section id="6.1.1" name="Faces Implicit Object ELResolver For JSP"/>
+                    <section id="6.1.2" name="ManagedBean ELResolver"/>
+                    <section id="6.1.3" name="Resource ELResolver"/>
+                    <section id="6.1.4" name="ResourceBundle ELResolver for JSP Pages"/>
+                    <section id="6.1.5" name="ELResolvers in the application configuration resources"/>
+                    <section id="6.1.6" name="VariableResolver Chain Wrapper"/>
+					<section id="6.1.7" name="PropertyResolver Chain Wrapper"/>
+					<section id="6.1.8" name="ELResolvers from Application.addELResolver()"/>
+                    <section id="6.2" name="ELResolver for Facelets and Programmatic Access"/>
+                    <section id="6.2.1" name="Implicit Object ELResolver for Facelets and Programmatic Access"/>
+                    <section id="6.2.2" name="Composite Component Attributes ELResolver"/>
+                    <section id="6.2.3" name="The CompositeELResolver"/>
+                    <section id="6.2.4" name="ManagedBean ELResolver"/>
+                    <section id="6.2.5" name="Resource ELResolver"/>
+					<section id="6.2.6" name="el.ResourceBundleELResolver"/>
+					<section id="6.2.7" name="ResourceBundle ELResolver for Programmatic Access"/>
+					<section id="6.2.8" name="Stream, StaticField, Map, List, Array, and Bean ELResolvers"/>
+					<section id="6.2.9" name="ScopedAttribute ELResolver"/>
+					<section id="6.3" name="CDI for EL Resolution"/>
+                    <section id="7" name="Current Expression Evaluation APIs"/>
+                    <section id="7.1" name="ELResolver"/>
+                    <section id="7.2" name="ValueExpression"/>
+                    <section id="7.3" name="MethodExpression"/>
+                    <section id="7.4" name="Expression Evaluation Exceptions"/>
+					<section id="8" name="Deprecated Expression Evaluation APIs"/>
+					<section id="8.1" name="VariableResolver and the Default VariableResolver"/>
+					<section id="8.2" name="PropertyResolver and the Default PropertyResolver"/>
+					<section id="8.3" name="ValueBinding"/>
+					<section id="8.4" name="MethodBinding"/>
+					<section id="8.5" name="Expression Evaluation Exceptions"/>
+					<section id="9" name="CDI Integration"/>
+					<section id="9.1" name="JSF Objects Valid for @Inject Injection"/>
+					<section id="9.2" name="EL Resolution"/>
+                </sections>
+            </chapter>
+            <chapter id="6" name="Per-Request State Information">
+                <sections>
+                    <section id="1" name="FacesContext"/>
+                    <section id="1.1" name="Application"/>
+                    <section id="1.2" name="Attributes"/>
+                    <section id="1.3" name="ELContext"/>
+                    <section id="1.4" name="ExternalContext"/>
+					<section id="1.4.1" name="Flash"/>
+                    <section id="1.5" name="ViewRoot"/>
+                    <section id="1.6" name="Message Queue"/>
+                    <section id="1.7" name="RenderKit"/>
+                    <section id="1.8" name="ResponseStream and ResponseWriter"/>
+                    <section id="1.9" name="Flow Control Methods"/>
+					<section id="1.10" name="Partial Processing Methods"/>
+					<section id="1.11" name="Partial View Context"/>
+					<section id="1.12" name="Access To The Current FacesContext Instance"/>
+					<section id="1.13" name="CurrentPhaseId"/>
+					<section id="1.14" name="ExceptionHandler"/>
+					<section id="2" name="ExceptionHandler"/>
+					<section id="2.1" name="Default ExceptionHandler implementation"/>
+					<section id="2.2" name="Backwards Compatible ExceptionHandler"/>
+					<section id="2.3" name="Default Error Page"/>
+                    <section id="3" name="FacesMessage"/>
+                    <section id="4" name="ResponseStream"/>
+                    <section id="5" name="ResponseWriter"/>
+                    <section id="6" name="FacesContextFactory"/>
+					<section id="7" name="ExceptionHandlerFactory"/>
+					<section id="8" name="ExternalContextFactory"/>
+                </sections>
+            </chapter>
+            <chapter id="7" name="Application Integration">
+                <sections>
+                    <section id="1" name="Application"/>
+                    <section id="1.1" name="ActionListener Property"/>
+                    <section id="1.2" name="DefaultRenderKitId Property"/>
+                    <section id="1.3" name="FlowHandler Property"/>
+                    <section id="1.4" name="NavigationHandler Property"/>
+                    <section id="1.5" name="StateManager Property"/>
+                    <section id="1.6" name="ELResolver Property"/>
+                    <section id="1.7" name="ELContextListener Property"/>
+                    <section id="1.8" name="ViewHandler Property"/>
+                    <section id="1.9" name="ProjectStage Property"/>
+                    <section id="1.10" name="Acquiring ExpressionFactory Instance"/>
+                    <section id="1.11" name="Programmatically Evaluating Expressions"/>
+                    <section id="1.12" name="Object Factories"/>
+                    <section id="1.12.1" name="Default Validator Ids"/>
+                    <section id="1.13" name="Internationalization Support"/>
+                    <section id="1.14" name="System Event Methods"/>
+                    <section id="1.14.1" name="Subscribing to system events"/>
+                    <section id="1.14.2" name="Unsubscribing from system events"/>
+                    <section id="2" name="ApplicationFactory"/>
+                    <section id="3" name="Application Actions"/>
+                    <section id="4" name="NavigationHandler"/>
+                    <section id="4.1" name="Overview"/>
+                    <section id="4.2" name="Default NavigationHandler Algorithm"/>
+                    <section id="4.2.1" name="Requirements for Explicit Navigation in Faces Flow Call Nodes other than ViewNodes"/>
+                    <section id="4.2.2" name="Requirements for Entering a Flow"/>
+                    <section id="4.2.3" name="Requirements for Exiting a Flow"/>
+                    <section id="4.2.4" name="Requirements for Calling A Flow from the Current Flow"/>
+                    <section id="4.3" name="Example NavigationHandler Configuration"/>
+                    <section id="5" name="FlowHandler"/>
+                    <section id="5.1" name="Non-normative Example"/>
+                    <section id="5.2" name="Non-normative Feature Overview"/>
+                    <section id="6" name="ViewHandler"/>
+                    <section id="6.1" name="Overview"/>
+                    <section id="6.2.1" name="ViewHandler Methods that Derive Information From the Incoming Request"/>
+                    <section id="6.2.2" name="ViewHandler Methods that are Called to Fill a Specific Role in the Lifecycle"/>
+                    <section id="6.2.3" name="ViewHandler Methods Relating to Navigation"/>
+                    <section id="6.2.4" name="ViewHandler Methods that relate to View Protection"/>
+                    <section id="7" name="ViewDeclarationLanguage"/>
+                    <section id="7.1" name="ViewDeclarationLanguageFactory"/>
+                    <section id="7.2" name="Default ViewDeclarationLanguage Implementation"/>
+                    <section id="7.2.1" name="ViewDeclarationLanguage.createView()"/>
+                    <section id="7.2.2" name="ViewDeclarationLanguage.calculateResourceLibraryContracts()"/>
+                    <section id="7.2.3" name="ViewDeclarationLanguage.buildView()"/>
+                    <section id="7.2.4" name="ViewDeclarationLanguage.getComponentMetadata()"/>
+                    <section id="7.2.5" name="ViewDeclarationLanguage.getViewMetadata() and getViewParameters()"/>
+                    <section id="7.2.6" name="ViewDeclarationLanguage.getScriptComponentResource()"/>
+                    <section id="7.2.7" name="ViewDeclarationLanguage.renderView()"/>
+                    <section id="7.2.8" name="ViewDeclarationLanguage.restoreView()"/>
+                    <section id="8" name="StateManager"/>
+                    <section id="8.1" name="Overview"/>
+                    <section id="8.1.1" name="Stateless Views"/>
+                    <section id="8.2" name="State Saving Alternatives and Implications"/>
+                    <section id="8.3" name="State Saving Methods"/>
+                    <section id="8.4" name="State Restoring Methods"/>
+                    <section id="8.5" name="Convenience Methods"/>
+                    <section id="9" name="ResourceHandler"/>
+                    <section id="10" name="Deprecated APIs"/>
+                    <section id="10.1" name="PropertyResolver Property"/>
+                    <section id="10.2" name="VariableResolver Property"/>
+                    <section id="10.3" name="Acquiring ValueBinding Instances"/>
+                    <section id="10.4" name="Acquiring MethodBinding Instances"/>
+                    <section id="10.5" name="Object Factories"/>
+                    <section id="10.6" name="StateManager"/>
+                    <section id="10.7" name="ResponseStateManager"/>
+                </sections>
+            </chapter>
+            <chapter id="8" name="Rendering Model">
+                <sections>
+                    <section id="1" name="RenderKit"/>
+                    <section id="2" name="Renderer"/>
+                    <section id="3" name="ClientBehaviourRenderer"/>
+                    <section id="3.1" name="ClientBehaviorRenderer Registration"/>
+                    <section id="4" name="ResponseStateManager"/>
+                    <section id="5" name="RenderKitFactory"/>
+                    <section id="6" name="Standard HTML RenderKit Implementation"/>
+                    <section id="7" name="The Concrete HTML Component Classes"/>
+                </sections>
+            </chapter>
+            <chapter id="9" name="Integration with JSP">
+                <sections>
+                    <section id="1" name="UIComponent Custom Actions"/>
+                    <section id="2" name="Using UIComponent Custom Actions in JSP Pages"/>
+                    <section id="2.1" name="Declaring the Tag Libraries"/>
+                    <section id="2.2" name="Including Components in a Page"/>
+                    <section id="2.3" name="Creating Components and Overriding Attributes"/>
+                    <section id="2.4" name="Deleting Components on Redisplay"/>
+                    <section id="2.5" name="Representing Component Hierarchies"/>
+                    <section id="2.6" name="Registering Converters, Event Listeners, and Validators"/>
+                    <section id="2.7" name="Using Facets"/>
+                    <section id="2.8" name="Interoperability with JSP Template Text and Other Tag Libraries"/>
+                    <section id="2.9" name="Composing Pages from Multiple Sources"/>
+                    <section id="3" name="UIComponent Custom Action Implementation Requirements"/>
+                    <section id="3.1" name="Considerations for Custom Actions written for JavaServer Faces 1.1 and 1.0"/>
+                    <section id="3.1.1" name="Past and Present Tag constraints"/>
+                    <section id="3.1.2" name="Faces 1.0 and 1.1 Taglib migration story"/>
+                    <section id="4" name="JSF Core Tag Library"/>
+                    <section id="4.1" name="f:actionListener"/>
+                    <section id="4.2" name="f:attribute"/>
+                    <section id="4.3" name="f:convertDateTime"/>
+                    <section id="4.4" name="f:convertNumber"/>
+                    <section id="4.5" name="f:converter"/>
+                    <section id="4.6" name="f:facet"/>
+                    <section id="4.7" name="f:loadBundle"/>
+                    <section id="4.8" name="f:param"/>
+                    <section id="4.9" name="f:phaseListener"/>
+                    <section id="4.10" name="f:selectItem"/>
+                    <section id="4.11" name="f:selectItems"/>
+                    <section id="4.12" name="f:setPropertyActionListener"/>
+                    <section id="4.13" name="f:subview"/>
+                    <section id="4.14" name="f:validateDoubleRange"/>
+                    <section id="4.15" name="f:validateLength"/>
+                    <section id="4.16" name="f:validateRegex"/>
+                    <section id="4.17" name="f:validateLongRange"/>
+                    <section id="4.18" name="f:validator"/>
+                    <section id="4.19" name="f:valueChangeListener"/>
+                    <section id="4.20" name="f:verbatim"/>
+                    <section id="4.21" name="f:view"/>
+                    <section id="5" name="Standard HTML RenderKit Tag Library"/>
+                </sections>
+            </chapter>
+            <chapter id="10" name="Facelets and its use in Web Applications">
+                <sections>
+                    <section id="1" name="Non-normative Background"/>
+                    <section id="1.1" name="Differences between JSP and Facelets"/>
+                    <section id="1.2" name="Differences between Pre JSF 2.0 Facelets and Facelets in JSF 2.0"/>
+                    <section id="1.3" name="Resource Library Contracts Background"/>
+                    <section id="1.3.1" name="Non-normative Example"/>
+                    <section id="1.3.2" name="Non-normative Feature Overview"/>
+                    <section id="1.4" name="HTML5 Friendly Markup"/>
+                    <section id="1.4.1" name="Non-normative Feature Overview"/>
+                    <section id="2" name="Java Programming Language Specification for Facelets in JSF 2.0"/>
+                    <section id="2.1" name="Specification of the ViewDeclarationLanguage Implementation for Facelets for JSF 2.0"/>
+                    <section id="3" name="XHTML Specification for Facelets for JSF 2.0"/>
+                    <section id="3.1" name="General Requirements"/>
+                    <section id="3.2" name="Facelet Tag Library mechanism"/>
+                    <section id="3.3" name="Requirements specific to composite components"/>
+                    <section id="3.3.1" name="Declaring a composite component library for use in a Facelet page"/>
+                    <section id="3.3.2" name="Creating an instance of a top level component"/>
+                    <section id="3.3.3" name="Populating a top level component instance with children"/>
+                    <section id="4" name="Non-normative Background"/>
+                    <section id="4.1" name="JSF Core Tag Library"/>
+                    <section id="4.1.1" name="&lt;f:ajax&gt;"/>
+                    <section id="4.1.2" name="&lt;f:event&gt;"/>
+                    <section id="4.1.3" name="&lt;f:metadata&gt;"/>
+                    <section id="4.1.4" name="&lt;f:validateBean&gt;"/>
+                    <section id="4.1.5" name="&lt;f:validateRequired&gt;"/>
+                    <section id="4.1.6" name="&lt;f:validateWholeBean&gt;"/>
+                    <section id="4.1.7" name="&lt;f:websocket&gt;"/>
+                    <section id="4.2" name="Standard HTML RenderKit Tag Library"/>
+                    <section id="4.3" name="Facelet Templating Tag Library"/>
+                    <section id="4.4" name="Composite Component Tag Library"/>
+                    <section id="4.5" name="JSTL Core and Function Tag Libraries"/>
+                    <section id="5" name="Assertions relating to the construction of the view hierarchy"/>
+                </sections>
+            </chapter>
+            <chapter id="11" name="Using JSF in Web Applications">
+                <sections>
+                    <section id="1" name="Web Application Deployment Descriptor"/>
+                    <section id="1.1" name="Servlet Definition"/>
+                    <section id="1.2" name="Servlet Mapping"/>
+                    <section id="1.3" name="Application Configuration Parameters"/>
+                    <section id="2" name="Included Classes and Resources"/>
+                    <section id="2.1" name="Application-Specific Classes and Resources"/>
+                    <section id="2.2" name="Servlet and JSP API Classes (javax.servlet.*)"/>
+                    <section id="2.3" name="JSP Standard Tag Library (JSTL) API Classes (javax.servlet.jsp.jstl.*)"/>
+                    <section id="2.4" name="JSP Standard Tag Library (JSTL) Implementation Classes"/>
+                    <section id="2.5" name="JavaServer Faces API Classes (javax.faces.*)"/>
+                    <section id="2.6" name="JavaServer Faces Implementation Classes"/>
+                    <section id="2.6.1" name="FactoryFinder"/>
+                    <section id="2.6.2" name="FacesServlet"/>
+                    <section id="2.6.3" name="UIComponentELTag"/>
+                    <section id="2.6.4" name="FacetTag"/>
+                    <section id="2.6.5" name="ValidatorTag"/>
+                    <section id="3" name="Deprecated APIs in the webapp package"/>
+                    <section id="3.1" name="AttributeTag"/>
+                    <section id="3.2" name="ConverterTag"/>
+                    <section id="3.3" name="UIComponentBodyTag"/>
+                    <section id="3.4" name="UIComponentTag"/>
+                    <section id="3.5" name="ValidatorTag"/>
+                    <section id="4" name="Application Configuration Resources"/>
+                    <section id="4.1" name="Overview"/>
+                    <section id="4.2" name="Application Startup Behavior"/>
+                    <section id="4.2.1" name="Resource Library Contracts"/>
+                    <section id="4.3" name="Faces Flow"/>
+                    <section id="4.3.1" name="Defining Flows"/>
+                    <section id="4.3.2" name="Packaging Faces Flow in JAR Files"/>
+                    <section id="4.3.3" name="Packaging Flows in Directories"/>
+                    <section id="4.4" name="Application Shutdown Behavior"/>
+                    <section id="4.4" name="Application Configuration Resource Format"/>
+                    <section id="4.6" name="Configuration Impact on JSF Runtime"/>
+                    <section id="4.7" name="Delegating Implementation Support"/>
+                    <section id="4.8" name="Ordering of Artifacts"/>
+                    <section id="4.9" name="Example Application Configuration Resource"/>
+                    <section id="5" name="Annotations that correspond to and may take the place of
+entries in the Application Configuration Resources"/>
+					<section id="5.1" name="Requirements for scanning of classes for annotations"/>
+                </sections>
+            </chapter>
+            <chapter id="12" name="Lifecycle Management">
+                <sections>
+                    <section id="12.1" name="Lifecycle"/>
+                    <section id="12.2" name="PhaseEvent"/>
+                    <section id="12.3" name="PhaseListener"/>
+                    <section id="12.4" name="LifecycleFactory"/>
+                </sections>
+            </chapter>
+            <chapter id="13" name="Ajax Integration ">
+                <sections>
+                    <section id="13.1" name="JavaScript Resource"/>
+                    <section id="13.1.1" name="JavaScript Resource Loading"/>
+                    <section id="13.1.1.1" name="The Annotation Approach"/>
+                    <section id="13.1.1.2" name="The Resource API Approach"/>
+                    <section id="13.1.1.3" name="The Page Declaration Language Approach"/>
+                    <section id="13.2" name="JavaScript Namespacing"/>
+                    <section id="13.3" name="Ajax Interaction"/>
+                    <section id="13.3.1" name="Sending an Ajax Request"/>
+                    <section id="13.3.2" name="Ajax Request Queueing"/>
+                    <section id="13.3.3" name="Request Callback Function"/>
+                    <section id="13.3.4" name="Receiving The Ajax Response"/>
+                    <section id="13.3.5" name="Monitoring Events On The Client"/>
+                    <section id="13.3.5.1" name="Monitoring Events For An Ajax Request"/>
+                    <section id="13.3.5.2" name="Monitoring Events For All Ajax Requests"/>
+                    <section id="13.3.5.3" name="Sending Events"/>
+                    <section id="13.3.6" name="Handling Errors On the Client"/>
+                    <section id="13.3.6.1" name="Handling Errors For An Ajax Request"/>
+                    <section id="13.3.6.2" name="Handling Errors For All Ajax Requests"/>
+                    <section id="13.3.6.3" name="Signaling Errors"/>
+                    <section id="13.3.7" name="Handling Errors On The Server"/>
+                    <section id="13.4" name="Partial View Traversal"/>
+                    <section id="13.4.1" name="Partial Traversal Strategy"/>
+                    <section id="13.4.2" name="Partial View Processing"/>
+                    <section id="13.4.3" name="Partial View Rendering"/>
+                    <section id="13.4.4" name="Sending The Response to The Client"/>
+                    <section id="13.4.4.1" name="Writing The Partial Response"/>
+                </sections>
+            </chapter>
+            <chapter id="14" name="JavaScript API">
+                <sections>
+                    <section id="14.1" name="Collecting and Encoding View State"/>
+                    <section id="14.1.1" name="Use Case"/>
+                    <section id="14.2" name="Initiating an Ajax Request"/>
+                    <section id="14.2.1" name="Usage"/>
+                    <section id="14.2.2" name="Keywords"/>
+                    <section id="14.2.3" name="Default Values"/>
+                    <section id="14.2.4" name="Request Sending Specifics"/>
+                    <section id="14.2.5" name="Use Case"/>
+                    <section id="14.3" name="Processing The Ajax Response"/>
+                    <section id="14.4" name="Registering Callback Functions"/>
+                    <section id="14.4.1" name="Request/Response Event Handling"/>
+                    <section id="14.4.1.1" name="Use Case"/>
+                    <section id="14.4.2" name="Error Handling"/>
+                    <section id="14.4.2.1" name="Use Case"/>
+                    <section id="14.5" name="Determining An Application’s Project Stage"/>
+                    <section id="14.5.1" name="Use Case"/>
+                    <section id="14.6" name="Script Chaining"/>
+                </sections>
+            </chapter>
+        </chapters>
+    </location-names>
+    <assertions>
+        &jsf_ch2;
+        &jsf_ch3;
+        &jsf_ch4;
+        &jsf_ch5;
+        &jsf_ch6;
+        &jsf_ch7;
+        &jsf_ch8;
+        &jsf_ch9;
+        &jsf_ch10;
+        &jsf_ch11;
+        &jsf_ch12;
+        &jsf_ch13;
+        &jsf_ch14;
+    </assertions>
+</spec>

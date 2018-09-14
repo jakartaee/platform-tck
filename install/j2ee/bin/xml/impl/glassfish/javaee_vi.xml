@@ -1,0 +1,401 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="CTS 7 for use with a vendor's Java EE implementation" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./ts.common.props.xml" optional="true"/>
+    <import file="../../../../../../bin/xml/ts.common.props.xml" optional="true"/>
+
+   <property name="enable.jms" value="true"/>
+   <property name="create.jdbc.pools" value="true"/>
+
+
+   <!-- The targets in this file are intended to be used by licensees for configuring their
+        Java EE app servers for testing with CTS.
+   -->
+
+   <target name="usage">
+        <echo message="The following ant targets are available to configure a Java EE server for CTS:"/>
+        <echo message="ant -f javaee_vi.xml task"/>
+        <echo message=""/>
+        <echo message="The tasks are:"/>
+        <echo message=""/>
+        <echo message="clean.vi" />
+        <echo message="config.vi" />
+        <echo message="enable.jacc" />
+        <echo message="disable.jacc" />
+        <echo message="enable.wss.providers" />
+        <echo message="disable.wss.providers" />
+        <echo message="modify.jdbc.resources" />
+        <echo message="add.interop.certs" />
+   </target>
+
+   <target name="build.porting.impl.jar">
+    <tstamp/>
+   </target>
+   
+   <target name="check.for.cts.internal.jar">
+     <available file="${ts.home}/lib/cts-internal.jar" property="found.cts.internal.jar"/>
+     <!--     <echo message="found.cts.internal.jar is ${found.cts.internal.jar}"/> -->
+   </target>
+
+   <target name="update.jar" if="found.cts.internal.jar">
+     <!--     <echo message="update.jar running"/> -->
+     <delete dir="${harness.temp.directory}/com" quiet="true" includeEmptyDirs="true"/>
+     <unjar src="${ts.home}/lib/cts-internal.jar" dest="${harness.temp.directory}"/>
+     <touch>
+         <fileset dir="${ts.home}/tmp/com" includes="**"/>
+     </touch>
+     <jar destfile="${ts.home}/lib/cts.jar" basedir="${harness.temp.directory}"
+          includes="com/**" update="true"/>
+   </target>
+
+   <target name="update.cts.jar" depends="check.for.cts.internal.jar, update.jar"/>
+
+   <!--  Target to configure the Java EE app server under test -->
+   <target name="config.vi" depends="checkCTSConfiguration, update.cts.jar, copy.db.jars, copy.cts.ext.jars">
+
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="filter.password.file"/>
+       
+       <!--
+         Now called from here instead of from s1as.xml's add.jdbc.resources
+         target. Since the get command is broken (issue tracker bug id 7151)
+         we need to use our regular expression hack to set the extension
+         directories while the server is down. If we modify the domain.xml disk
+         file while the server is up, the server process can overwrite our
+         changes to the domain.xml file. See set.ext.dirs target in s1as.xml
+         to see the hack. This code can be reverted once they fix bug ID 7151.
+         We can go back to using the get command.
+       -->
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="reset.ext.dirs"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="add.ext.dirs"/>
+       
+       <antcall target="config.das"/>
+       <antcall target="config.remoteInstance"/>
+
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/>
+
+       <!-- this is used to configure connector related targets on the app server -->
+       <if>
+         <isset property="skip.config.connector"/>
+       <then>
+         <echo>******** Skipping config.connector... *********</echo>
+       </then>
+       <else>
+         <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="config.connector"/>
+       </else>
+       </if>
+       
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="ping.jdbc.pool.check"/>
+       <ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.derbyEmbedded"/>
+
+   </target>
+
+
+
+    <!-- Configure PE for the JASPIC(JSR-196) tests -->
+    <target name="config.jaspic" if="testingAgainstDAS" depends="checkCTSConfiguration, update.jaspic.jar, copy.cts.ext.jars">
+        <echo message="****Configuring for JASPIC (JSR-196) tests *****" />
+        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="config.jaspic"/>
+    </target>
+
+    <!-- convenience method to support un-configuration of jaspic -->
+    <target name="unconfig.jaspic">
+        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="unconfig.jaspic"/>
+    </target>
+
+    <target name="update.jaspic.jar" depends="check.for.cts.internal.jar, update.jar"/>
+
+
+   <!--
+        Configure PE or the DAS(SE/EE) for CTS
+   -->
+   <target name="config.das" if="testingAgainstDAS" depends="use.jms,no.jms">
+       <echo message="****Configuring the DAS/PE *****" />
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="${configTarget}"/>
+   </target>
+
+   <!--
+        Configure a remote instance(SE/EE) for CTS
+   -->
+   <target name="config.remoteInstance" if="testingAgainstRemoteInstance" depends="use.jms,no.jms">
+       <echo message="****Configuring a remote instance (SE/EE) *****" />
+       <ant antfile="sjsas_ee.xml" dir="${bin.dir}/xml" target="config.remoteInstance">
+          <property name="configTarget" value="${configTarget}"/>
+       </ant>
+   </target>
+
+   <!--  Target to remove the configuration for the Java EE app server under test -->
+
+   <target name="clean.vi" depends="checkCTSConfiguration">
+        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="filter.password.file"/>
+        <!-- <antcall target="delete.cts.ext.jars"/> -->
+        <antcall target="clean.das"/>
+        <antcall target="clean.remoteInstance"/>
+        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/>
+   </target>
+	
+	
+   <target name="restart.vi" depends="checkCTSConfiguration">
+	     <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/>
+   </target>
+
+   <!--
+        Remove  PE or the DAS(SE/EE) configuration for CTS
+   -->
+   <target name="clean.das" if="testingAgainstDAS" depends="use.jms,no.jms">
+       <echo message="****Removing CTS configuration for DAS/PE *****" />
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="${cleanTarget}"/>
+   </target>
+
+   <!--
+        Remove Configuration of a remote instance(SE/EE) for CTS
+   -->
+   <target name="clean.remoteInstance" if="testingAgainstRemoteInstance" depends="use.jms,no.jms">
+       <echo message="****Removing CTS configuration for SE/EE *****" />
+       <ant antfile="sjsas_ee.xml" dir="${bin.dir}/xml" target="clean.remoteInstance">
+          <property name="cleanTarget" value="${cleanTarget}"/>
+       </ant>
+   </target>
+
+
+   <!--  Target to shutdown the Java EE app server under test -->
+
+   <target name="stop.vi" depends="checkCTSConfiguration">
+       <antcall target="stop.remoteInstance"/>
+       <echo message="****Stopping the domain under test *****" />
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="stop-domain"/>
+   </target>
+
+   <!--
+        Shutdown the remote instance(SE/EE) for CTS
+   -->
+   <target name="stop.remoteInstance" if="testingAgainstRemoteInstance" >
+       <echo message="****Stopping the Remote Instance under test *****" />
+       <ant antfile="sjsas_ee.xml" dir="${bin.dir}/xml" target="stop.remoteInstance"/>
+   </target>
+
+   <!-- Change the JDBC resource under test  -->
+    <target name="modify.jdbc.resources" depends="checkCTSConfiguration">
+       <antcall target="copy.db.jars"/>       
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="modify.jdbc.resources"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="ping.jdbc.pool"/>
+    </target>
+
+   <!--  Target to enable jacc for the Java EE app server under test -->
+   <target name="enable.jacc" depends="checkCTSConfiguration">
+       <antcall target="enable.jacc.das"/>
+   </target>
+
+   <!--  Target to enable jacc for the DAS/PE -->
+   <target name="enable.jacc.das"  >
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="enable.jacc"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/>
+   </target>
+
+   <!--  Target to disable jacc for the Java EE app server under test -->
+   <target name="disable.jacc" depends="checkCTSConfiguration">
+       <antcall target="disable.jacc.das"/>
+   </target>
+
+   <!--  Target to disable jacc for the DAS/PE -->
+   <target name="disable.jacc.das"  >
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="disable.jacc"/>
+   </target>
+   
+   <!--  Target to disable jacc for the Java EE app server under test -->
+   <target name="disable.wss.providers" depends="checkCTSConfiguration">
+       <antcall target="disable.wss.providers.das"/>
+   </target>
+
+   <!--  Target to disable jacc for the DAS/PE -->
+   <target name="disable.wss.providers.das"  >
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="disable.wss.providers"/>
+   </target>
+   
+   <!--  Target to enable wss providers for the Java EE app server under test -->
+   <target name="enable.wss.providers" depends="checkCTSConfiguration">
+       <antcall target="enable.wss.providers.das"/>
+   </target>
+   
+   <!--  Target to enable wss providers for the DAS/PE -->
+   <target name="enable.wss.providers.das"  >
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="enable.wss.providers"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/>
+   </target>
+
+   <!--  Target to enable tx interop for the Java EE app server under test -->
+   <target name="enable.tx.interop" depends="checkCTSConfiguration" >
+       <antcall target="enable.tx.interop.das"/>
+       <antcall target="enable.tx.interop.remoteInstance"/>
+   </target>
+
+   <!--  Target to enable tx interop for the PE/DAS -->
+   <target name="enable.tx.interop.das"  if="testingAgainstDAS">
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="enable.tx.interop"/>
+   </target>
+
+   <!--  Target to enable tx interop for RemoteInstance -->
+   <target name="enable.tx.interop.remoteInstance"  if="testingAgainstRemoteInstance">
+       <ant antfile="sjsas_ee.xml" dir="${bin.dir}/xml" target="enable.tx.interop"/>
+   </target>
+
+   <!--  Target to disable tx interop for the Java EE app server under test -->
+   <target name="disable.tx.interop" depends="checkCTSConfiguration">
+       <antcall target="disable.tx.interop.das"/>
+       <antcall target="disable.tx.interop.remoteInstance"/>
+   </target>
+
+   <!--  Target to disable tx interop for the PE/DAS -->
+   <target name="disable.tx.interop.das"  if="testingAgainstDAS">
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="disable.tx.interop"/>
+   </target>
+
+   <!--  Target to disable tx interop for RemoteInstance -->
+   <target name="disable.tx.interop.remoteInstance"  if="testingAgainstRemoteInstance">
+       <ant antfile="sjsas_ee.xml" dir="${bin.dir}/xml" target="disable.tx.interop"/>
+   </target>
+
+   <!-- Determine the S1AS target to be executed (with JMS)  -->
+    <target name="use.jms" if="useJms">
+        <echo message="*** Configuring/Cleaning S1AS including JMS ***" />
+         <property name="configTarget" value="configall.s1as"/>
+         <property name="cleanTarget" value="cleanall.s1as"/>
+    </target>
+
+   <!-- Determine the S1AS target to be executed (without JMS)  -->
+    <target name="no.jms" if="skip.jms">
+        <echo message="*** Configuring/Cleaning S1AS WITHOUT JMS ***" />
+         <property name="configTarget" value="config.s1as"/>
+         <property name="cleanTarget" value="clean.s1as"/>
+    </target>
+
+    <target name="delete.cts.ext.jars">
+       <delete file="${extension.dir}/cts.jar" quiet="true"/>
+       <delete file="${extension.dir}/tsharness.jar" quiet="true"/>
+    </target>
+
+    <target name="copy.cts.ext.jars">
+        <copy file="${ts.home}/lib/cts.jar" todir="${extension.dir}"/>
+        <copy file="${ts.home}/lib/tsharness.jar" todir="${extension.dir}"/>
+    </target>
+
+    <!--
+          Install the JDBC drivers that we could possible be testing.
+     -->
+    <target name="copy.db.jars" depends="check.db.jars" if="found.db.jars" >
+        <mkdir dir="${s1as.lib}/jdbcdrivers"/>
+        <copy todir="${s1as.lib}/jdbcdrivers" overwrite="yes" failonerror="false" >
+             <fileset dir="${jdbc.lib.class.path}">
+                <include name="*"/>
+                <exclude name="db2*"/>
+             </fileset>
+        </copy>
+    </target>
+
+    <!-- If one user installs the RI and a different user installs the VI the   -->
+    <!-- config directories need to have their permissions loosened so at       -->
+    <!-- runtime, the appclient container may access the cacerts.jks file in    -->
+    <!-- both the RI and VI.  It also allows one user to config both the RI     -->
+    <!-- and VI.                                                                -->
+    <target name="vi.perms">
+      <echo message="****server.config.dir: ${sjsas.instance.config.dir}"/>
+      <chmod file="${s1as.domain}/${sjsas.instance.config.dir}" perm="ugo+rwx" type="dir"/>
+      <chmod dir="${s1as.domain}/${sjsas.instance.config.dir}" perm="ugo+rwx" includes="*"/>
+
+    </target>
+
+    <!--
+      Check to see which configuration we are using for testing CTS.
+      Possible values:
+      DAS            -  Normal PE testing (or against DAS on SE/EE)
+      remote         -  Test against a remote instance (SE/EE only)
+      cluster        -  Testing in a cluster configuration (SE/EE only)
+
+      Also determine if we need to worry about JMS or not.
+
+    -->
+    <target name="checkCTSConfiguration" >
+        <condition property="testingAgainstDAS">
+          <equals arg1="${sjsas.env.type}" arg2="das" casesensitive="true" trim="true"/>
+        </condition>
+
+        <condition property="testingAgainstRemoteInstance">
+          <equals arg1="${sjsas.env.type}" arg2="remote" casesensitive="true" trim="true"/>
+        </condition>
+
+        <condition property="testingAgainstCluster">
+          <equals arg1="${sjsas.env.type}" arg2="cluster" casesensitive="true" trim="true"/>
+        </condition>
+   
+        <condition property="useJms">
+           <istrue value="${enable.jms}"/>
+        </condition >
+        <condition property="skip.jms">
+           <not>
+           <istrue value="${enable.jms}"/>
+           </not>
+        </condition >
+
+        <condition property="create.jdbc.pools.prop">
+          <istrue value="${create.jdbc.pools}"/>
+        </condition>
+        <echo message="*** create.jdbc.pools is ${create.jdbc.pools} ***"/>       
+
+    </target>
+
+   <!--
+        Check to see if the directory where the jdbc drivers live actually
+        exists.
+   -->
+   <target name="check.db.jars">
+        <condition property="found.db.jars">
+              <available file="${jdbc.lib.class.path}" type="dir"/>
+        </condition>
+
+    </target>
+
+   <!--  Target to enable tx interop for RemoteInstance -->
+   <target name="restart.remote.instance"  if="testingAgainstRemoteInstance">
+        <ant antfile="sjsas_ee.xml" dir="${bin.dir}/xml" target="stop.remoteInstance"/>
+        <ant antfile="sjsas_ee.xml" dir="${bin.dir}/xml" target="start.remoteInstance"/>
+   </target>
+
+   <!--  Add the certificates needed for interop to the RI and SJSAS -->
+   <target name="add.interop.certs" depends="checkCTSConfiguration">
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="add.interop.certs"/>
+       <antcall target="restart.remote.instance"/>
+   </target>
+
+    <target name="start.javadb">
+      <ant antfile="s1as.xml" target="start.javadb" dir="${common.bin.dir}/xml/impl/glassfish"/>
+    </target>
+
+    <target name="start.javadb.asadmin" >
+        <ant antfile="s1as.xml" target="start.javadb.asadmin" dir="${common.bin.dir}/xml/impl/glassfish"/>
+    </target>
+
+    <target name="stop.javadb.asadmin" >
+        <ant antfile="s1as.xml" target="stop.javadb.asadmin" dir="${common.bin.dir}/xml/impl/glassfish"/>
+    </target>
+
+
+</project>
+

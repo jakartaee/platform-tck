@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="false" version="3.1" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+    <enterprise-beans>
+        <session>
+            <ejb-name>RemoveBean</ejb-name>
+            <home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome</home>
+            <remote>com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF</remote>
+            <local-home>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome</local-home>
+            <local>com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF</local>
+            <business-local>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF</business-local>
+            <business-local>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF</business-local>
+            <business-remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF</business-remote>
+            <business-remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF</business-remote>
+            <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.RemoveBean</ejb-class>
+            <session-type>Stateful</session-type>
+            <remove-method>
+                <bean-method>
+                    <method-name>retain</method-name>
+                </bean-method>
+                <retain-if-exception>true</retain-if-exception>
+            </remove-method>
+
+            <!-- this remove-method is already annotated in bean class 
+            <remove-method>
+                <bean-method>
+                    <method-name>retain2</method-name>
+                </bean-method>
+                <retain-if-exception>true</retain-if-exception>
+            </remove-method>
+            -->
+
+            <remove-method>
+                <bean-method>
+                    <method-name>remove</method-name>
+                </bean-method>
+                <!-- optional, default is false
+                <retain-if-exception>false</retain-if-exception>
+                -->
+            </remove-method>
+            <!-- this remove-method is already annotated in bean class 
+            <remove-method>
+                <bean-method>
+                    <method-name>remove2</method-name>
+                </bean-method>
+                <retain-if-exception>false</retain-if-exception>
+            </remove-method>
+            -->
+            <transaction-type>Container</transaction-type>
+            <security-identity>
+                <use-caller-identity/>
+            </security-identity>
+        </session>
+        <session>
+            <ejb-name>StatelessTestBean</ejb-name>
+            <business-remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF</business-remote>
+            <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.descriptor.StatelessTestBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+            <ejb-local-ref>
+                <ejb-ref-name>removeBean</ejb-ref-name>
+                <ejb-ref-type>Session</ejb-ref-type>
+                <local>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF</local>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.descriptor.StatelessTestBean</injection-target-class>
+                    <injection-target-name>removeBean</injection-target-name>
+                </injection-target>
+                <lookup-name>java:module/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF</lookup-name>
+            </ejb-local-ref>
+            <ejb-local-ref>
+                <ejb-ref-name>removeBean2</ejb-ref-name>
+                <ejb-ref-type>Session</ejb-ref-type>
+                <local>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF</local>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.descriptor.StatelessTestBean</injection-target-class>
+                    <injection-target-name>removeBean2</injection-target-name>
+                </injection-target>
+                <lookup-name>java:module/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF</lookup-name>
+            </ejb-local-ref>
+            <resource-env-ref>
+                <resource-env-ref-name>sessionContext</resource-env-ref-name>
+                <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.descriptor.StatelessTestBean</injection-target-class>
+                    <injection-target-name>sessionContext</injection-target-name>
+                </injection-target>
+                <lookup-name>java:comp/EJBContext</lookup-name>
+            </resource-env-ref>
+
+            <security-identity>
+                <use-caller-identity/>
+            </security-identity>
+        </session>
+
+        <session>
+            <ejb-name>RemoveNotRetainBean</ejb-name>
+            <business-remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF</business-remote>
+            <ejb-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.RemoveNotRetainBean</ejb-class>
+            <session-type>Stateful</session-type>
+            <remove-method>
+                <bean-method>
+                    <method-name>remove</method-name>
+                    <method-params>
+                    </method-params>
+                </bean-method>
+                <!-- optional, default is false
+                <retain-if-exception>false</retain-if-exception>
+                -->
+            </remove-method>
+
+
+            <!-- this remove-method is already annotated in bean class 
+            <remove-method>
+                <bean-method>
+                    <method-name>remove</method-name>
+                    <method-params>
+                        <method-param>boolean</method-param>
+                    </method-params>
+                </bean-method>
+                <retain-if-exception>true</retain-if-exception>
+            </remove-method>
+
+            <remove-method>
+                <bean-method>
+                    <method-name>remove2</method-name>
+                </bean-method>
+            </remove-method>
+            -->
+
+            <remove-method>
+                <bean-method>
+                    <method-name>remove2</method-name>
+                    <method-params>
+                        <method-param>boolean</method-param>
+                        <method-param>boolean</method-param>
+                    </method-params>
+                </bean-method>
+                <retain-if-exception>true</retain-if-exception>
+            </remove-method>
+            <remove-method>
+                <bean-method>
+                    <method-name>alwaysRemoveAfterSystemException</method-name>
+                </bean-method>
+                <retain-if-exception>true</retain-if-exception>
+            </remove-method>
+            <transaction-type>Container</transaction-type>
+            <security-identity>
+                <use-caller-identity/>
+            </security-identity>
+        </session>
+
+
+    </enterprise-beans>
+    <assembly-descriptor>
+        <application-exception>
+            <exception-class>com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException</exception-class>
+        </application-exception>
+    </assembly-descriptor>
+</ejb-jar>

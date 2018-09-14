@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="LiteralEcho_Service" targetNamespace="http://literalechoservice.org/wsdl" xmlns:tns="http://literalechoservice.org/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns3="http://literalechoservice.org/types" xmlns:ns4="http://echoservice.org/types3" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <import namespace="http://echoservice.org/types3" location="EchoSchema.xsd"/>
+  <types>
+    <schema targetNamespace="http://literalechoservice.org/types" xmlns:tns="http://literalechoservice.org/types" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="http://echoservice.org/types3" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <import namespace="http://echoservice.org/types3" schemaLocation="EchoSchema.xsd"/>
+      <complexType name="ArrayOfdecimal">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="decimal[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfinteger">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="integer[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfBoolean">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="soap11-enc:boolean[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfByte">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="soap11-enc:byte[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfdateTime">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="dateTime[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfDouble">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="soap11-enc:double[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfFloat">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="soap11-enc:float[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfInteger">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="soap11-enc:int[]"/></restriction></complexContent></complexType>
+      <complexType name="JavaBean">
+        <sequence>
+          <element name="myBigDecimal" type="decimal"/>
+          <element name="myBigDecimalArray" type="tns:ArrayOfdecimal"/>
+          <element name="myBigInteger" type="integer"/>
+          <element name="myBigIntegerArray" type="tns:ArrayOfinteger"/>
+          <element name="myBoolean" type="boolean"/>
+          <element name="myBoolean1" type="soap11-enc:boolean"/>
+          <element name="myBoolean1Array" type="tns:ArrayOfBoolean"/>
+          <element name="myBooleanArray" type="tns:ArrayOfboolean"/>
+          <element name="myByte" type="byte"/>
+          <element name="myByte1" type="soap11-enc:byte"/>
+          <element name="myByte1Array" type="tns:ArrayOfByte"/>
+          <element name="myByteArray" type="base64Binary"/>
+          <element name="myCalendar" type="dateTime"/>
+          <element name="myCalendarArray" type="tns:ArrayOfdateTime"/>
+          <element name="myDate" type="dateTime"/>
+          <element name="myDateArray" type="tns:ArrayOfdateTime"/>
+          <element name="myDouble" type="double"/>
+          <element name="myDouble1" type="soap11-enc:double"/>
+          <element name="myDouble1Array" type="tns:ArrayOfDouble"/>
+          <element name="myDoubleArray" type="tns:ArrayOfdouble"/>
+          <element name="myFloat" type="float"/>
+          <element name="myFloat1" type="soap11-enc:float"/>
+          <element name="myFloat1Array" type="tns:ArrayOfFloat"/>
+          <element name="myFloatArray" type="tns:ArrayOffloat"/>
+          <element name="myInt" type="int"/>
+          <element name="myInt1" type="soap11-enc:int"/>
+          <element name="myInt1Array" type="tns:ArrayOfInteger"/>
+          <element name="myIntArray" type="tns:ArrayOfint"/>
+          <element name="myLong" type="long"/>
+          <element name="myLong1" type="soap11-enc:long"/>
+          <element name="myLong1Array" type="tns:ArrayOfLong"/>
+          <element name="myLongArray" type="tns:ArrayOflong"/>
+          <element name="myShort" type="short"/>
+          <element name="myShort1" type="soap11-enc:short"/>
+          <element name="myShort1Array" type="tns:ArrayOfShort"/>
+          <element name="myShortArray" type="tns:ArrayOfshort"/>
+          <element name="myString" type="string"/>
+          <element name="myStringArray" type="tns:ArrayOfstring"/></sequence></complexType>
+      <complexType name="ArrayOfboolean">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="boolean[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfdouble">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="double[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOffloat">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="float[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfint">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="int[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfLong">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="soap11-enc:long[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOflong">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="long[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfShort">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="soap11-enc:short[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfshort">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="short[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfstring">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="string[]"/></restriction></complexContent></complexType>
+      <complexType name="Orders">
+        <sequence>
+          <element name="age" type="short"/>
+          <element name="orders" type="tns:ArrayOfstring"/></sequence></complexType>
+      <complexType name="ArrayOfQName">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="QName[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfanyURI">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="anyURI[]"/></restriction></complexContent></complexType>
+      <complexType name="Bar">
+        <sequence>
+          <element name="foo" type="ns2:Foo"/>
+          <element name="foo2" type="tns:Foo2"/>
+          <element name="string" type="string"/></sequence></complexType>
+      <complexType name="Foo2">
+        <sequence>
+          <element name="i2" type="short"/>
+          <element name="l" type="long"/>
+          <element name="SA" type="tns:ArrayOfstring"/>
+          <element name="SMember" type="string"/>
+          <element name="i" type="int"/>
+          <element name="integer" type="soap11-enc:int"/>
+          <element name="subI2" type="int"/></sequence></complexType>
+      <complexType name="ArrayOfBar">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:Bar[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfboolean">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:ArrayOfboolean[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfbase64Binary">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="base64Binary[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfFoo">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="ns2:Foo[]"/></restriction></complexContent></complexType>
+      <complexType name="RecursiveLiteral">
+        <sequence>
+          <element name="children" type="tns:ArrayOfRecursiveLiteral"/>
+          <element name="id" type="int"/>
+          <element name="name" type="string"/></sequence></complexType>
+      <complexType name="ArrayOfRecursiveLiteral">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:RecursiveLiteral[]"/></restriction></complexContent></complexType></schema></types>
+  <message name="LiteralEcho_echo_BigDecimal">
+    <part name="BigDecimal_1" type="xsd:decimal"/></message>
+  <message name="LiteralEcho_echo_BigDecimalResponse">
+    <part name="result" type="xsd:decimal"/></message>
+  <message name="LiteralEcho_echo_BigDecimal_array">
+    <part name="arrayOfBigDecimal_1" type="ns3:ArrayOfdecimal"/></message>
+  <message name="LiteralEcho_echo_BigDecimal_arrayResponse">
+    <part name="result" type="ns3:ArrayOfdecimal"/></message>
+  <message name="LiteralEcho_echo_BigInteger">
+    <part name="BigInteger_1" type="xsd:integer"/></message>
+  <message name="LiteralEcho_echo_BigIntegerResponse">
+    <part name="result" type="xsd:integer"/></message>
+  <message name="LiteralEcho_echo_BigInteger_array">
+    <part name="arrayOfBigInteger_1" type="ns3:ArrayOfinteger"/></message>
+  <message name="LiteralEcho_echo_BigInteger_arrayResponse">
+    <part name="result" type="ns3:ArrayOfinteger"/></message>
+  <message name="LiteralEcho_echo_Boolean">
+    <part name="Boolean_1" type="ns2:boolean"/></message>
+  <message name="LiteralEcho_echo_BooleanResponse">
+    <part name="result" type="ns2:boolean"/></message>
+  <message name="LiteralEcho_echo_Boolean_array">
+    <part name="arrayOfBoolean_1" type="ns3:ArrayOfBoolean"/></message>
+  <message name="LiteralEcho_echo_Boolean_arrayResponse">
+    <part name="result" type="ns3:ArrayOfBoolean"/></message>
+  <message name="LiteralEcho_echo_Byte">
+    <part name="Byte_1" type="ns2:byte"/></message>
+  <message name="LiteralEcho_echo_ByteResponse">
+    <part name="result" type="ns2:byte"/></message>
+  <message name="LiteralEcho_echo_Byte_array">
+    <part name="arrayOfByte_1" type="ns3:ArrayOfByte"/></message>
+  <message name="LiteralEcho_echo_Byte_arrayResponse">
+    <part name="result" type="ns3:ArrayOfByte"/></message>
+  <message name="LiteralEcho_echo_Calendar">
+    <part name="Calendar_1" type="xsd:dateTime"/></message>
+  <message name="LiteralEcho_echo_CalendarResponse">
+    <part name="result" type="xsd:dateTime"/></message>
+  <message name="LiteralEcho_echo_Calendar_array">
+    <part name="arrayOfCalendar_1" type="ns3:ArrayOfdateTime"/></message>
+  <message name="LiteralEcho_echo_Calendar_arrayResponse">
+    <part name="result" type="ns3:ArrayOfdateTime"/></message>
+  <message name="LiteralEcho_echo_Date">
+    <part name="Date_1" type="xsd:dateTime"/></message>
+  <message name="LiteralEcho_echo_DateResponse">
+    <part name="result" type="xsd:dateTime"/></message>
+  <message name="LiteralEcho_echo_Date_array">
+    <part name="arrayOfDate_1" type="ns3:ArrayOfdateTime"/></message>
+  <message name="LiteralEcho_echo_Date_arrayResponse">
+    <part name="result" type="ns3:ArrayOfdateTime"/></message>
+  <message name="LiteralEcho_echo_Double">
+    <part name="Double_1" type="ns2:double"/></message>
+  <message name="LiteralEcho_echo_DoubleResponse">
+    <part name="result" type="ns2:double"/></message>
+  <message name="LiteralEcho_echo_Double_array">
+    <part name="arrayOfDouble_1" type="ns3:ArrayOfDouble"/></message>
+  <message name="LiteralEcho_echo_Double_arrayResponse">
+    <part name="result" type="ns3:ArrayOfDouble"/></message>
+  <message name="LiteralEcho_echo_Float">
+    <part name="Float_1" type="ns2:float"/></message>
+  <message name="LiteralEcho_echo_FloatResponse">
+    <part name="result" type="ns2:float"/></message>
+  <message name="LiteralEcho_echo_Float_array">
+    <part name="arrayOfFloat_1" type="ns3:ArrayOfFloat"/></message>
+  <message name="LiteralEcho_echo_Float_arrayResponse">
+    <part name="result" type="ns3:ArrayOfFloat"/></message>
+  <message name="LiteralEcho_echo_Integer">
+    <part name="Integer_1" type="ns2:int"/></message>
+  <message name="LiteralEcho_echo_IntegerResponse">
+    <part name="result" type="ns2:int"/></message>
+  <message name="LiteralEcho_echo_Integer_array">
+    <part name="arrayOfInteger_1" type="ns3:ArrayOfInteger"/></message>
+  <message name="LiteralEcho_echo_Integer_arrayResponse">
+    <part name="result" type="ns3:ArrayOfInteger"/></message>
+  <message name="LiteralEcho_echo_JavaBean">
+    <part name="JavaBean_1" type="ns3:JavaBean"/></message>
+  <message name="LiteralEcho_echo_JavaBeanResponse">
+    <part name="result" type="ns3:JavaBean"/></message>
+  <message name="LiteralEcho_echo_Long">
+    <part name="Long_1" type="ns2:long"/></message>
+  <message name="LiteralEcho_echo_LongResponse">
+    <part name="result" type="ns2:long"/></message>
+  <message name="LiteralEcho_echo_Long_array">
+    <part name="arrayOfLong_1" type="ns3:ArrayOfLong"/></message>
+  <message name="LiteralEcho_echo_Long_arrayResponse">
+    <part name="result" type="ns3:ArrayOfLong"/></message>
+  <message name="LiteralEcho_echo_Orders">
+    <part name="Orders_1" type="ns3:Orders"/></message>
+  <message name="LiteralEcho_echo_OrdersResponse">
+    <part name="result" type="ns3:Orders"/></message>
+  <message name="LiteralEcho_echo_QName">
+    <part name="QName_1" type="xsd:QName"/></message>
+  <message name="LiteralEcho_echo_QNameResponse">
+    <part name="result" type="xsd:QName"/></message>
+  <message name="LiteralEcho_echo_QName_array">
+    <part name="arrayOfQName_1" type="ns3:ArrayOfQName"/></message>
+  <message name="LiteralEcho_echo_QName_arrayResponse">
+    <part name="result" type="ns3:ArrayOfQName"/></message>
+  <message name="LiteralEcho_echo_Short">
+    <part name="Short_1" type="ns2:short"/></message>
+  <message name="LiteralEcho_echo_ShortResponse">
+    <part name="result" type="ns2:short"/></message>
+  <message name="LiteralEcho_echo_Short_array">
+    <part name="arrayOfShort_1" type="ns3:ArrayOfShort"/></message>
+  <message name="LiteralEcho_echo_Short_arrayResponse">
+    <part name="result" type="ns3:ArrayOfShort"/></message>
+  <message name="LiteralEcho_echo_URI">
+    <part name="URI_1" type="xsd:anyURI"/></message>
+  <message name="LiteralEcho_echo_URIResponse">
+    <part name="result" type="xsd:anyURI"/></message>
+  <message name="LiteralEcho_echo_URI_array">
+    <part name="arrayOfURI_1" type="ns3:ArrayOfanyURI"/></message>
+  <message name="LiteralEcho_echo_URI_arrayResponse">
+    <part name="result" type="ns3:ArrayOfanyURI"/></message>
+  <message name="LiteralEcho_echo_bar">
+    <part name="Bar_1" type="ns3:Bar"/></message>
+  <message name="LiteralEcho_echo_barResponse">
+    <part name="result" type="ns3:Bar"/></message>
+  <message name="LiteralEcho_echo_bar_array">
+    <part name="arrayOfBar_1" type="ns3:ArrayOfBar"/></message>
+  <message name="LiteralEcho_echo_bar_arrayResponse">
+    <part name="result" type="ns3:ArrayOfBar"/></message>
+  <message name="LiteralEcho_echo_boolean">
+    <part name="boolean_1" type="xsd:boolean"/></message>
+  <message name="LiteralEcho_echo_booleanResponse">
+    <part name="result" type="xsd:boolean"/></message>
+  <message name="LiteralEcho_echo_boolean_array">
+    <part name="arrayOfboolean_1" type="ns3:ArrayOfboolean"/></message>
+  <message name="LiteralEcho_echo_boolean_arrayResponse">
+    <part name="result" type="ns3:ArrayOfboolean"/></message>
+  <message name="LiteralEcho_echo_boolean_array_array">
+    <part name="arrayOfarrayOfboolean_1" type="ns3:ArrayOfArrayOfboolean"/></message>
+  <message name="LiteralEcho_echo_boolean_array_arrayResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfboolean"/></message>
+  <message name="LiteralEcho_echo_byte">
+    <part name="byte_1" type="xsd:byte"/></message>
+  <message name="LiteralEcho_echo_byteResponse">
+    <part name="result" type="xsd:byte"/></message>
+  <message name="LiteralEcho_echo_byte_array">
+    <part name="arrayOfbyte_1" type="xsd:base64Binary"/></message>
+  <message name="LiteralEcho_echo_byte_arrayResponse">
+    <part name="result" type="xsd:base64Binary"/></message>
+  <message name="LiteralEcho_echo_byte_array_array">
+    <part name="arrayOfarrayOfbyte_1" type="ns3:ArrayOfbase64Binary"/></message>
+  <message name="LiteralEcho_echo_byte_array_arrayResponse">
+    <part name="result" type="ns3:ArrayOfbase64Binary"/></message>
+  <message name="LiteralEcho_echo_double">
+    <part name="double_1" type="xsd:double"/></message>
+  <message name="LiteralEcho_echo_doubleResponse">
+    <part name="result" type="xsd:double"/></message>
+  <message name="LiteralEcho_echo_double_array">
+    <part name="arrayOfdouble_1" type="ns3:ArrayOfdouble"/></message>
+  <message name="LiteralEcho_echo_double_arrayResponse">
+    <part name="result" type="ns3:ArrayOfdouble"/></message>
+  <message name="LiteralEcho_echo_float">
+    <part name="float_1" type="xsd:float"/></message>
+  <message name="LiteralEcho_echo_floatResponse">
+    <part name="result" type="xsd:float"/></message>
+  <message name="LiteralEcho_echo_float_array">
+    <part name="arrayOffloat_1" type="ns3:ArrayOffloat"/></message>
+  <message name="LiteralEcho_echo_float_arrayResponse">
+    <part name="result" type="ns3:ArrayOffloat"/></message>
+  <message name="LiteralEcho_echo_foo">
+    <part name="Foo_1" type="ns4:Foo"/></message>
+  <message name="LiteralEcho_echo_fooResponse">
+    <part name="result" type="ns4:Foo"/></message>
+  <message name="LiteralEcho_echo_foo_array">
+    <part name="arrayOfFoo_1" type="ns3:ArrayOfFoo"/></message>
+  <message name="LiteralEcho_echo_foo_arrayResponse">
+    <part name="result" type="ns3:ArrayOfFoo"/></message>
+  <message name="LiteralEcho_echo_int">
+    <part name="int_1" type="xsd:int"/></message>
+  <message name="LiteralEcho_echo_intResponse">
+    <part name="result" type="xsd:int"/></message>
+  <message name="LiteralEcho_echo_int_array">
+    <part name="arrayOfint_1" type="ns3:ArrayOfint"/></message>
+  <message name="LiteralEcho_echo_int_arrayResponse">
+    <part name="result" type="ns3:ArrayOfint"/></message>
+  <message name="LiteralEcho_echo_long">
+    <part name="long_1" type="xsd:long"/></message>
+  <message name="LiteralEcho_echo_longResponse">
+    <part name="result" type="xsd:long"/></message>
+  <message name="LiteralEcho_echo_long_array">
+    <part name="arrayOflong_1" type="ns3:ArrayOflong"/></message>
+  <message name="LiteralEcho_echo_long_arrayResponse">
+    <part name="result" type="ns3:ArrayOflong"/></message>
+  <message name="LiteralEcho_echo_recursive">
+    <part name="RecursiveLiteral_1" type="ns3:RecursiveLiteral"/></message>
+  <message name="LiteralEcho_echo_recursiveResponse">
+    <part name="result" type="ns3:RecursiveLiteral"/></message>
+  <message name="LiteralEcho_echo_short">
+    <part name="short_1" type="xsd:short"/></message>
+  <message name="LiteralEcho_echo_shortResponse">
+    <part name="result" type="xsd:short"/></message>
+  <message name="LiteralEcho_echo_short_array">
+    <part name="arrayOfshort_1" type="ns3:ArrayOfshort"/></message>
+  <message name="LiteralEcho_echo_short_arrayResponse">
+    <part name="result" type="ns3:ArrayOfshort"/></message>
+  <message name="LiteralEcho_echo_string">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="LiteralEcho_echo_stringResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="LiteralEcho_echo_string_array">
+    <part name="arrayOfString_1" type="ns3:ArrayOfstring"/></message>
+  <message name="LiteralEcho_echo_string_arrayResponse">
+    <part name="result" type="ns3:ArrayOfstring"/></message>
+  <message name="LiteralEcho_echo_void"/>
+  <message name="LiteralEcho_echo_voidResponse"/>
+  <portType name="LiteralEcho">
+    <operation name="echo_BigDecimal" parameterOrder="BigDecimal_1">
+      <input message="tns:LiteralEcho_echo_BigDecimal"/>
+      <output message="tns:LiteralEcho_echo_BigDecimalResponse"/></operation>
+    <operation name="echo_BigDecimal_array" parameterOrder="arrayOfBigDecimal_1">
+      <input message="tns:LiteralEcho_echo_BigDecimal_array"/>
+      <output message="tns:LiteralEcho_echo_BigDecimal_arrayResponse"/></operation>
+    <operation name="echo_BigInteger" parameterOrder="BigInteger_1">
+      <input message="tns:LiteralEcho_echo_BigInteger"/>
+      <output message="tns:LiteralEcho_echo_BigIntegerResponse"/></operation>
+    <operation name="echo_BigInteger_array" parameterOrder="arrayOfBigInteger_1">
+      <input message="tns:LiteralEcho_echo_BigInteger_array"/>
+      <output message="tns:LiteralEcho_echo_BigInteger_arrayResponse"/></operation>
+    <operation name="echo_Boolean" parameterOrder="Boolean_1">
+      <input message="tns:LiteralEcho_echo_Boolean"/>
+      <output message="tns:LiteralEcho_echo_BooleanResponse"/></operation>
+    <operation name="echo_Boolean_array" parameterOrder="arrayOfBoolean_1">
+      <input message="tns:LiteralEcho_echo_Boolean_array"/>
+      <output message="tns:LiteralEcho_echo_Boolean_arrayResponse"/></operation>
+    <operation name="echo_Byte" parameterOrder="Byte_1">
+      <input message="tns:LiteralEcho_echo_Byte"/>
+      <output message="tns:LiteralEcho_echo_ByteResponse"/></operation>
+    <operation name="echo_Byte_array" parameterOrder="arrayOfByte_1">
+      <input message="tns:LiteralEcho_echo_Byte_array"/>
+      <output message="tns:LiteralEcho_echo_Byte_arrayResponse"/></operation>
+    <operation name="echo_Calendar" parameterOrder="Calendar_1">
+      <input message="tns:LiteralEcho_echo_Calendar"/>
+      <output message="tns:LiteralEcho_echo_CalendarResponse"/></operation>
+    <operation name="echo_Calendar_array" parameterOrder="arrayOfCalendar_1">
+      <input message="tns:LiteralEcho_echo_Calendar_array"/>
+      <output message="tns:LiteralEcho_echo_Calendar_arrayResponse"/></operation>
+    <operation name="echo_Date" parameterOrder="Date_1">
+      <input message="tns:LiteralEcho_echo_Date"/>
+      <output message="tns:LiteralEcho_echo_DateResponse"/></operation>
+    <operation name="echo_Date_array" parameterOrder="arrayOfDate_1">
+      <input message="tns:LiteralEcho_echo_Date_array"/>
+      <output message="tns:LiteralEcho_echo_Date_arrayResponse"/></operation>
+    <operation name="echo_Double" parameterOrder="Double_1">
+      <input message="tns:LiteralEcho_echo_Double"/>
+      <output message="tns:LiteralEcho_echo_DoubleResponse"/></operation>
+    <operation name="echo_Double_array" parameterOrder="arrayOfDouble_1">
+      <input message="tns:LiteralEcho_echo_Double_array"/>
+      <output message="tns:LiteralEcho_echo_Double_arrayResponse"/></operation>
+    <operation name="echo_Float" parameterOrder="Float_1">
+      <input message="tns:LiteralEcho_echo_Float"/>
+      <output message="tns:LiteralEcho_echo_FloatResponse"/></operation>
+    <operation name="echo_Float_array" parameterOrder="arrayOfFloat_1">
+      <input message="tns:LiteralEcho_echo_Float_array"/>
+      <output message="tns:LiteralEcho_echo_Float_arrayResponse"/></operation>
+    <operation name="echo_Integer" parameterOrder="Integer_1">
+      <input message="tns:LiteralEcho_echo_Integer"/>
+      <output message="tns:LiteralEcho_echo_IntegerResponse"/></operation>
+    <operation name="echo_Integer_array" parameterOrder="arrayOfInteger_1">
+      <input message="tns:LiteralEcho_echo_Integer_array"/>
+      <output message="tns:LiteralEcho_echo_Integer_arrayResponse"/></operation>
+    <operation name="echo_JavaBean" parameterOrder="JavaBean_1">
+      <input message="tns:LiteralEcho_echo_JavaBean"/>
+      <output message="tns:LiteralEcho_echo_JavaBeanResponse"/></operation>
+    <operation name="echo_Long" parameterOrder="Long_1">
+      <input message="tns:LiteralEcho_echo_Long"/>
+      <output message="tns:LiteralEcho_echo_LongResponse"/></operation>
+    <operation name="echo_Long_array" parameterOrder="arrayOfLong_1">
+      <input message="tns:LiteralEcho_echo_Long_array"/>
+      <output message="tns:LiteralEcho_echo_Long_arrayResponse"/></operation>
+    <operation name="echo_Orders" parameterOrder="Orders_1">
+      <input message="tns:LiteralEcho_echo_Orders"/>
+      <output message="tns:LiteralEcho_echo_OrdersResponse"/></operation>
+    <operation name="echo_QName" parameterOrder="QName_1">
+      <input message="tns:LiteralEcho_echo_QName"/>
+      <output message="tns:LiteralEcho_echo_QNameResponse"/></operation>
+    <operation name="echo_QName_array" parameterOrder="arrayOfQName_1">
+      <input message="tns:LiteralEcho_echo_QName_array"/>
+      <output message="tns:LiteralEcho_echo_QName_arrayResponse"/></operation>
+    <operation name="echo_Short" parameterOrder="Short_1">
+      <input message="tns:LiteralEcho_echo_Short"/>
+      <output message="tns:LiteralEcho_echo_ShortResponse"/></operation>
+    <operation name="echo_Short_array" parameterOrder="arrayOfShort_1">
+      <input message="tns:LiteralEcho_echo_Short_array"/>
+      <output message="tns:LiteralEcho_echo_Short_arrayResponse"/></operation>
+    <operation name="echo_URI" parameterOrder="URI_1">
+      <input message="tns:LiteralEcho_echo_URI"/>
+      <output message="tns:LiteralEcho_echo_URIResponse"/></operation>
+    <operation name="echo_URI_array" parameterOrder="arrayOfURI_1">
+      <input message="tns:LiteralEcho_echo_URI_array"/>
+      <output message="tns:LiteralEcho_echo_URI_arrayResponse"/></operation>
+    <operation name="echo_bar" parameterOrder="Bar_1">
+      <input message="tns:LiteralEcho_echo_bar"/>
+      <output message="tns:LiteralEcho_echo_barResponse"/></operation>
+    <operation name="echo_bar_array" parameterOrder="arrayOfBar_1">
+      <input message="tns:LiteralEcho_echo_bar_array"/>
+      <output message="tns:LiteralEcho_echo_bar_arrayResponse"/></operation>
+    <operation name="echo_boolean" parameterOrder="boolean_1">
+      <input message="tns:LiteralEcho_echo_boolean"/>
+      <output message="tns:LiteralEcho_echo_booleanResponse"/></operation>
+    <operation name="echo_boolean_array" parameterOrder="arrayOfboolean_1">
+      <input message="tns:LiteralEcho_echo_boolean_array"/>
+      <output message="tns:LiteralEcho_echo_boolean_arrayResponse"/></operation>
+    <operation name="echo_boolean_array_array" parameterOrder="arrayOfarrayOfboolean_1">
+      <input message="tns:LiteralEcho_echo_boolean_array_array"/>
+      <output message="tns:LiteralEcho_echo_boolean_array_arrayResponse"/></operation>
+    <operation name="echo_byte" parameterOrder="byte_1">
+      <input message="tns:LiteralEcho_echo_byte"/>
+      <output message="tns:LiteralEcho_echo_byteResponse"/></operation>
+    <operation name="echo_byte_array" parameterOrder="arrayOfbyte_1">
+      <input message="tns:LiteralEcho_echo_byte_array"/>
+      <output message="tns:LiteralEcho_echo_byte_arrayResponse"/></operation>
+    <operation name="echo_byte_array_array" parameterOrder="arrayOfarrayOfbyte_1">
+      <input message="tns:LiteralEcho_echo_byte_array_array"/>
+      <output message="tns:LiteralEcho_echo_byte_array_arrayResponse"/></operation>
+    <operation name="echo_double" parameterOrder="double_1">
+      <input message="tns:LiteralEcho_echo_double"/>
+      <output message="tns:LiteralEcho_echo_doubleResponse"/></operation>
+    <operation name="echo_double_array" parameterOrder="arrayOfdouble_1">
+      <input message="tns:LiteralEcho_echo_double_array"/>
+      <output message="tns:LiteralEcho_echo_double_arrayResponse"/></operation>
+    <operation name="echo_float" parameterOrder="float_1">
+      <input message="tns:LiteralEcho_echo_float"/>
+      <output message="tns:LiteralEcho_echo_floatResponse"/></operation>
+    <operation name="echo_float_array" parameterOrder="arrayOffloat_1">
+      <input message="tns:LiteralEcho_echo_float_array"/>
+      <output message="tns:LiteralEcho_echo_float_arrayResponse"/></operation>
+    <operation name="echo_foo" parameterOrder="Foo_1">
+      <input message="tns:LiteralEcho_echo_foo"/>
+      <output message="tns:LiteralEcho_echo_fooResponse"/></operation>
+    <operation name="echo_foo_array" parameterOrder="arrayOfFoo_1">
+      <input message="tns:LiteralEcho_echo_foo_array"/>
+      <output message="tns:LiteralEcho_echo_foo_arrayResponse"/></operation>
+    <operation name="echo_int" parameterOrder="int_1">
+      <input message="tns:LiteralEcho_echo_int"/>
+      <output message="tns:LiteralEcho_echo_intResponse"/></operation>
+    <operation name="echo_int_array" parameterOrder="arrayOfint_1">
+      <input message="tns:LiteralEcho_echo_int_array"/>
+      <output message="tns:LiteralEcho_echo_int_arrayResponse"/></operation>
+    <operation name="echo_long" parameterOrder="long_1">
+      <input message="tns:LiteralEcho_echo_long"/>
+      <output message="tns:LiteralEcho_echo_longResponse"/></operation>
+    <operation name="echo_long_array" parameterOrder="arrayOflong_1">
+      <input message="tns:LiteralEcho_echo_long_array"/>
+      <output message="tns:LiteralEcho_echo_long_arrayResponse"/></operation>
+    <operation name="echo_recursive" parameterOrder="RecursiveLiteral_1">
+      <input message="tns:LiteralEcho_echo_recursive"/>
+      <output message="tns:LiteralEcho_echo_recursiveResponse"/></operation>
+    <operation name="echo_short" parameterOrder="short_1">
+      <input message="tns:LiteralEcho_echo_short"/>
+      <output message="tns:LiteralEcho_echo_shortResponse"/></operation>
+    <operation name="echo_short_array" parameterOrder="arrayOfshort_1">
+      <input message="tns:LiteralEcho_echo_short_array"/>
+      <output message="tns:LiteralEcho_echo_short_arrayResponse"/></operation>
+    <operation name="echo_string" parameterOrder="String_1">
+      <input message="tns:LiteralEcho_echo_string"/>
+      <output message="tns:LiteralEcho_echo_stringResponse"/></operation>
+    <operation name="echo_string_array" parameterOrder="arrayOfString_1">
+      <input message="tns:LiteralEcho_echo_string_array"/>
+      <output message="tns:LiteralEcho_echo_string_arrayResponse"/></operation>
+    <operation name="echo_void" parameterOrder="">
+      <input message="tns:LiteralEcho_echo_void"/>
+      <output message="tns:LiteralEcho_echo_voidResponse"/></operation></portType>
+  <binding name="LiteralEchoBinding" type="tns:LiteralEcho">
+    <operation name="echo_BigDecimal">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_BigDecimal_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_BigInteger">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_BigInteger_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Boolean">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Boolean_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Byte">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Byte_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Calendar">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Calendar_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Date">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Date_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Double">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Double_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Float">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Float_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Integer">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Integer_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_JavaBean">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Long">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Long_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Orders">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_QName">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_QName_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Short">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_Short_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_URI">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_URI_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_bar">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_bar_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_boolean">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_boolean_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_boolean_array_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_byte">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_byte_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_byte_array_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_double">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_double_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_float">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_float_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_foo">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_foo_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_int">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_int_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_long">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_long_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_recursive">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_short">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_short_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_string">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_string_array">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <operation name="echo_void">
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://literalechoservice.org/wsdl"/></output>
+      <soap:operation soapAction=""/></operation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/></binding>
+  <service name="LiteralEcho_Service">
+    <port name="LiteralEchoPort" binding="tns:LiteralEchoBinding">
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/></port></service></definitions>

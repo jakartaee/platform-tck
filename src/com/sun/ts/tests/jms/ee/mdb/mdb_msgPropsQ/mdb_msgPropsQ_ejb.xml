@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar version="3.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+  <display-name>Ejb1</display-name>
+  <enterprise-beans>
+    <session>
+    <ejb-name>MDB_Q_TestEJB</ejb-name>
+    <ejb-class>com.sun.ts.tests.jms.commonee.MDB_Q_TestEJB</ejb-class>
+    <session-type>Stateful</session-type>
+    <transaction-type>Container</transaction-type>
+    <resource-ref>
+      <description>description</description>
+      <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
+      <res-type>javax.jms.QueueConnectionFactory</res-type>
+      <res-auth>Application</res-auth>
+      <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+	<message-destination-ref>
+		<message-destination-ref-name>jms/MDB_QUEUE</message-destination-ref-name>
+		<message-destination-type>javax.jms.Queue</message-destination-type>
+	</message-destination-ref>
+	<message-destination-ref>
+		<message-destination-ref-name>jms/MDB_QUEUE_REPLY</message-destination-ref-name>
+		<message-destination-type>javax.jms.Queue</message-destination-type>
+	</message-destination-ref>
+    <security-identity>
+      <use-caller-identity/>
+    </security-identity>
+    </session>
+    <message-driven>
+    <ejb-name>MDB_QUEUE</ejb-name>
+    <ejb-class>com.sun.ts.tests.jms.ee.mdb.mdb_msgPropsQ.MsgBeanMsgTestPropsQ</ejb-class>
+    <messaging-type>javax.jms.MessageListener</messaging-type>
+    <transaction-type>Container</transaction-type>
+    <message-destination-type>javax.jms.Queue</message-destination-type>            
+    <resource-ref>
+      <description>description</description>
+      <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
+      <res-type>javax.jms.QueueConnectionFactory</res-type>
+      <res-auth>Container</res-auth>
+      <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>    
+ 	<message-destination-ref>
+		<message-destination-ref-name>jms/MDB_QUEUE</message-destination-ref-name>
+		<message-destination-type>javax.jms.Queue</message-destination-type>
+	</message-destination-ref>
+	<message-destination-ref>
+		<message-destination-ref-name>jms/MDB_QUEUE_REPLY</message-destination-ref-name>
+		<message-destination-type>javax.jms.Queue</message-destination-type>
+	</message-destination-ref>
+    </message-driven>
+  </enterprise-beans>
+  <assembly-descriptor>
+   <container-transaction>    
+   <method>
+    <ejb-name>MDB_Q_TestEJB</ejb-name>
+    <method-intf>Remote</method-intf>
+    <method-name>checkOnResponse</method-name>
+    <method-params>
+    <method-param>java.lang.String</method-param>
+    </method-params>
+    </method>
+    <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+   <container-transaction>    
+   <method>
+    <ejb-name>MDB_Q_TestEJB</ejb-name>
+    <method-intf>Remote</method-intf>
+    <method-name>askMDBToRunATest</method-name>
+    <method-params>
+    <method-param>java.lang.String</method-param>
+    </method-params>
+    </method>
+    <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+   <container-transaction>    
+   <method>
+    <ejb-name>MDB_Q_TestEJB</ejb-name>
+    <method-intf>Remote</method-intf>
+    <method-name>askMDBToSendAMessage</method-name>
+    <method-params>
+    <method-param>java.lang.String</method-param>
+    </method-params>
+    </method>
+    <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+   <container-transaction>    
+   <method>
+    <ejb-name>MDB_Q_TestEJB</ejb-name>
+    <method-intf>Remote</method-intf>
+    <method-name>cleanTheQueue</method-name>
+    </method>
+    <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+   <container-transaction>    
+   <method>
+    <ejb-name>MDB_Q_TestEJB</ejb-name>
+    <method-intf>Remote</method-intf>
+    <method-name>isThereSomethingInTheQueue</method-name>
+    </method>
+    <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+   <container-transaction>    
+   <method>
+    <ejb-name>MDB_QUEUE</ejb-name>
+    <method-name>onMessage</method-name>
+    <method-params>
+    <method-param>javax.jms.Message</method-param>
+    </method-params>
+    </method>
+    <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

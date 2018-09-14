@@ -1,0 +1,1039 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="sm11"
+targetNamespace="http://dopg.gr.jp/sm11.wsdl"
+    xmlns:tns="http://dopg.gr.jp/sm11.wsdl"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd1="http://dopg.gr.jp/sm11.xsd"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema targetNamespace="http://dopg.gr.jp/sm11.xsd"
+        xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="C_struct">
+        <all>
+          <element name="e_boolean" type="boolean"/>
+          <element name="e_short" type="short"/>
+          <element name="e_int" type="int"/>
+          <element name="e_long" type="long"/>
+          <element name="e_float" type="float"/>
+          <element name="e_double" type="double"/>
+          <element name="e_String" type="string"/>
+        </all>
+      </complexType>
+      <complexType name="ArrayOfboolean">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <sequence>
+              <element name="item" type="boolean" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="boolean[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOfshort">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <sequence>
+              <element name="item" type="short" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="short[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOfint">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <sequence>
+              <element name="item" type="int" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="int[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOflong">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <sequence>
+              <element name="item" type="long" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="long[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOffloat">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <sequence>
+              <element name="item" type="float" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="float[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOfdouble">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <sequence>
+              <element name="item" type="double" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="double[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOfstring">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <sequence>
+              <element name="item" type="string" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="string[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="F_struct">
+        <all>
+          <element name="e_c_struct" type="xsd1:C_struct"/>
+          <element name="e_c_array_e_boolean" type="xsd1:ArrayOfboolean"/>
+          <element name="e_c_array_e_short" type="xsd1:ArrayOfshort"/>
+          <element name="e_c_array_e_int" type="xsd1:ArrayOfint"/>
+          <element name="e_c_array_e_long" type="xsd1:ArrayOflong"/>
+          <element name="e_c_array_e_float" type="xsd1:ArrayOffloat"/>
+          <element name="e_c_array_e_double" type="xsd1:ArrayOfdouble"/>
+          <element name="e_c_array_e_String" type="xsd1:ArrayOfstring"/>
+        </all>
+      </complexType>
+      <complexType name="ArrayOfC_struct">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <sequence>
+              <element name="item" type="xsd1:C_struct" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd1:C_struct[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="A_except">
+        <all>
+          <element name="v1" type="boolean"/>
+          <element name="v4" type="short"/>
+          <element name="v5" type="int"/>
+          <element name="v6" type="long"/>
+          <element name="v7" type="float"/>
+          <element name="v8" type="double"/>
+          <element name="v9" type="string"/>
+        </all>
+      </complexType>
+      <complexType name="C_except">
+        <all>
+          <element name="v10" type="xsd1:C_struct"/>
+          <element name="v21" type="xsd1:ArrayOfboolean"/>
+          <element name="v24" type="xsd1:ArrayOfshort"/>
+          <element name="v25" type="xsd1:ArrayOfint"/>
+          <element name="v26" type="xsd1:ArrayOflong"/>
+          <element name="v27" type="xsd1:ArrayOffloat"/>
+          <element name="v28" type="xsd1:ArrayOfdouble"/>
+          <element name="v29" type="xsd1:ArrayOfstring"/>
+        </all>
+      </complexType>
+      <complexType name="F_except1">
+        <all>
+          <element name="v40" type="xsd1:F_struct"/>
+        </all>
+      </complexType>
+      <complexType name="F_except2">
+        <all>
+          <element name="v50" type="xsd1:ArrayOfC_struct"/>
+        </all>
+      </complexType>
+    </schema>
+  </types>
+
+  <message name="op0">
+  </message>
+  <message name="op0Response">
+  </message>
+
+  <message name="op1">
+    <part name="arg0" type="xsd:boolean"/>
+  </message>
+  <message name="op1Response">
+  </message>
+
+  <message name="op4">
+    <part name="arg0" type="xsd:short"/>
+  </message>
+  <message name="op4Response">
+  </message>
+
+  <message name="op5">
+    <part name="arg0" type="xsd:int"/>
+  </message>
+  <message name="op5Response">
+  </message>
+
+  <message name="op6">
+    <part name="arg0" type="xsd:long"/>
+  </message>
+  <message name="op6Response">
+  </message>
+
+  <message name="op7">
+    <part name="arg0" type="xsd:float"/>
+  </message>
+  <message name="op7Response">
+  </message>
+
+  <message name="op8">
+    <part name="arg0" type="xsd:double"/>
+  </message>
+  <message name="op8Response">
+  </message>
+
+  <message name="op9">
+    <part name="arg0" type="xsd:string"/>
+  </message>
+  <message name="op9Response">
+  </message>
+
+  <message name="op11">
+  </message>
+  <message name="op11Response">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+
+  <message name="op14">
+  </message>
+  <message name="op14Response">
+    <part name="result" type="xsd:short"/>
+  </message>
+
+  <message name="op15">
+  </message>
+  <message name="op15Response">
+    <part name="result" type="xsd:int"/>
+  </message>
+
+  <message name="op16">
+  </message>
+  <message name="op16Response">
+    <part name="result" type="xsd:long"/>
+  </message>
+
+  <message name="op17">
+  </message>
+  <message name="op17Response">
+    <part name="result" type="xsd:float"/>
+  </message>
+
+  <message name="op18">
+  </message>
+  <message name="op18Response">
+    <part name="result" type="xsd:double"/>
+  </message>
+
+  <message name="op19">
+  </message>
+  <message name="op19Response">
+    <part name="result" type="xsd:string"/>
+  </message>
+
+  <message name="op21">
+    <part name="arg0" type="xsd:boolean"/>
+  </message>
+  <message name="op21Response">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+
+  <message name="op24">
+    <part name="arg0" type="xsd:short"/>
+    <part name="arg1" type="xsd:int"/>
+    <part name="arg2" type="xsd:long"/>
+  </message>
+  <message name="op24Response">
+    <part name="result" type="xsd:short"/>
+  </message>
+
+  <message name="op25">
+    <part name="arg0" type="xsd:int"/>
+    <part name="arg1" type="xsd:long"/>
+    <part name="arg2" type="xsd:float"/>
+  </message>
+  <message name="op25Response">
+    <part name="result" type="xsd:int"/>
+  </message>
+
+  <message name="op26">
+    <part name="arg0" type="xsd:long"/>
+    <part name="arg1" type="xsd:float"/>
+    <part name="arg2" type="xsd:double"/>
+  </message>
+  <message name="op26Response">
+    <part name="result" type="xsd:long"/>
+  </message>
+
+  <message name="op27">
+    <part name="arg0" type="xsd:float"/>
+    <part name="arg1" type="xsd:double"/>
+    <part name="arg2" type="xsd:string"/>
+  </message>
+  <message name="op27Response">
+    <part name="result" type="xsd:float"/>
+  </message>
+
+  <message name="op28">
+    <part name="arg0" type="xsd:double"/>
+    <part name="arg1" type="xsd:string"/>
+    <part name="arg2" type="xsd:boolean"/>
+  </message>
+  <message name="op28Response">
+    <part name="result" type="xsd:double"/>
+  </message>
+
+  <message name="op29">
+    <part name="arg0" type="xsd:string"/>
+    <part name="arg1" type="xsd:boolean"/>
+  </message>
+  <message name="op29Response">
+    <part name="result" type="xsd:string"/>
+  </message>
+
+  <message name="op30">
+    <part name="arg0" type="xsd1:C_struct"/>
+  </message>
+  <message name="op30Response">
+    <part name="result" type="xsd1:C_struct"/>
+  </message>
+
+  <message name="op31">
+    <part name="arg0" type="xsd1:ArrayOfboolean"/>
+  </message>
+  <message name="op31Response">
+    <part name="result" type="xsd1:ArrayOfboolean"/>
+  </message>
+
+  <message name="op34">
+    <part name="arg0" type="xsd1:ArrayOfshort"/>
+  </message>
+  <message name="op34Response">
+    <part name="result" type="xsd1:ArrayOfshort"/>
+  </message>
+
+  <message name="op35">
+    <part name="arg0" type="xsd1:ArrayOfint"/>
+  </message>
+  <message name="op35Response">
+    <part name="result" type="xsd1:ArrayOfint"/>
+  </message>
+
+  <message name="op36">
+    <part name="arg0" type="xsd1:ArrayOflong"/>
+  </message>
+  <message name="op36Response">
+    <part name="result" type="xsd1:ArrayOflong"/>
+  </message>
+
+  <message name="op37">
+    <part name="arg0" type="xsd1:ArrayOffloat"/>
+  </message>
+  <message name="op37Response">
+    <part name="result" type="xsd1:ArrayOffloat"/>
+  </message>
+
+  <message name="op38">
+    <part name="arg0" type="xsd1:ArrayOfdouble"/>
+  </message>
+  <message name="op38Response">
+    <part name="result" type="xsd1:ArrayOfdouble"/>
+  </message>
+
+  <message name="op39">
+    <part name="arg0" type="xsd1:ArrayOfstring"/>
+  </message>
+  <message name="op39Response">
+    <part name="result" type="xsd1:ArrayOfstring"/>
+  </message>
+
+  <message name="op40">
+    <part name="arg0" type="xsd1:C_struct"/>
+    <part name="arg1" type="xsd1:ArrayOfboolean"/>
+    <part name="arg2" type="xsd1:ArrayOfint"/>
+    <part name="arg3" type="xsd1:ArrayOfdouble"/>
+    <part name="arg4" type="xsd1:ArrayOfstring"/>
+  </message>
+  <message name="op40Response">
+  </message>
+
+  <message name="op41">
+    <part name="arg0" type="xsd1:F_struct"/>
+  </message>
+  <message name="op41Response">
+    <part name="result" type="xsd1:F_struct"/>
+  </message>
+
+  <message name="op42">
+    <part name="arg0" type="xsd1:ArrayOfC_struct"/>
+  </message>
+  <message name="op42Response">
+    <part name="result" type="xsd1:ArrayOfC_struct"/>
+  </message>
+
+  <message name="op43">
+    <part name="arg0" type="xsd1:F_struct"/>
+    <part name="arg1" type="xsd1:ArrayOfC_struct"/>
+  </message>
+  <message name="op43Response">
+  </message>
+
+  <message name="excop1">
+  </message>
+  <message name="excop1Response">
+  </message>
+  <message name="excop1Fault">
+    <part name="arg0" type="xsd1:A_except"/>
+  </message>
+
+  <message name="excop2">
+  </message>
+  <message name="excop2Response">
+  </message>
+  <message name="excop2Fault">
+    <part name="arg0" type="xsd1:C_except"/>
+  </message>
+
+  <message name="excop3">
+  </message>
+  <message name="excop3Response">
+  </message>
+  <message name="excop3Fault">
+    <part name="arg0" type="xsd1:F_except1"/>
+  </message>
+
+  <message name="excop4">
+  </message>
+  <message name="excop4Response">
+  </message>
+  <message name="excop4Fault">
+    <part name="arg0" type="xsd1:F_except2"/>
+  </message>
+
+
+  <portType name="sm11PortType">
+    <operation name="op0">
+      <input name="op0" message="tns:op0"/>
+      <output name="op0Response" message="tns:op0Response"/>
+    </operation>
+
+    <operation name="op1">
+      <input name="op1" message="tns:op1"/>
+      <output name="op1Response" message="tns:op1Response"/>
+    </operation>
+
+    <operation name="op4">
+      <input name="op4" message="tns:op4"/>
+      <output name="op4Response" message="tns:op4Response"/>
+    </operation>
+
+    <operation name="op5">
+      <input name="op5" message="tns:op5"/>
+      <output name="op5Response" message="tns:op5Response"/>
+    </operation>
+
+    <operation name="op6">
+      <input name="op6" message="tns:op6"/>
+      <output name="op6Response" message="tns:op6Response"/>
+    </operation>
+
+    <operation name="op7">
+      <input name="op7" message="tns:op7"/>
+      <output name="op7Response" message="tns:op7Response"/>
+    </operation>
+
+    <operation name="op8">
+      <input name="op8" message="tns:op8"/>
+      <output name="op8Response" message="tns:op8Response"/>
+    </operation>
+
+    <operation name="op9">
+      <input name="op9" message="tns:op9"/>
+      <output name="op9Response" message="tns:op9Response"/>
+    </operation>
+
+    <operation name="op11">
+      <input name="op11" message="tns:op11"/>
+      <output name="op11Response" message="tns:op11Response"/>
+    </operation>
+
+    <operation name="op14">
+      <input name="op14" message="tns:op14"/>
+      <output name="op14Response" message="tns:op14Response"/>
+    </operation>
+
+    <operation name="op15">
+      <input name="op15" message="tns:op15"/>
+      <output name="op15Response" message="tns:op15Response"/>
+    </operation>
+
+    <operation name="op16">
+      <input name="op16" message="tns:op16"/>
+      <output name="op16Response" message="tns:op16Response"/>
+    </operation>
+
+    <operation name="op17">
+      <input name="op17" message="tns:op17"/>
+      <output name="op17Response" message="tns:op17Response"/>
+    </operation>
+
+    <operation name="op18">
+      <input name="op18" message="tns:op18"/>
+      <output name="op18Response" message="tns:op18Response"/>
+    </operation>
+
+    <operation name="op19">
+      <input name="op19" message="tns:op19"/>
+      <output name="op19Response" message="tns:op19Response"/>
+    </operation>
+
+    <operation name="op21">
+      <input name="op21" message="tns:op21"/>
+      <output name="op21Response" message="tns:op21Response"/>
+    </operation>
+
+    <operation name="op24">
+      <input name="op24" message="tns:op24"/>
+      <output name="op24Response" message="tns:op24Response"/>
+    </operation>
+
+    <operation name="op25">
+      <input name="op25" message="tns:op25"/>
+      <output name="op25Response" message="tns:op25Response"/>
+    </operation>
+
+    <operation name="op26">
+      <input name="op26" message="tns:op26"/>
+      <output name="op26Response" message="tns:op26Response"/>
+    </operation>
+
+    <operation name="op27">
+      <input name="op27" message="tns:op27"/>
+      <output name="op27Response" message="tns:op27Response"/>
+    </operation>
+
+    <operation name="op28">
+      <input name="op28" message="tns:op28"/>
+      <output name="op28Response" message="tns:op28Response"/>
+    </operation>
+
+    <operation name="op29">
+      <input name="op29" message="tns:op29"/>
+      <output name="op29Response" message="tns:op29Response"/>
+    </operation>
+
+    <operation name="op30">
+      <input name="op30" message="tns:op30"/>
+      <output name="op30Response" message="tns:op30Response"/>
+    </operation>
+
+    <operation name="op31">
+      <input name="op31" message="tns:op31"/>
+      <output name="op31Response" message="tns:op31Response"/>
+    </operation>
+
+    <operation name="op34">
+      <input name="op34" message="tns:op34"/>
+      <output name="op34Response" message="tns:op34Response"/>
+    </operation>
+
+    <operation name="op35">
+      <input name="op35" message="tns:op35"/>
+      <output name="op35Response" message="tns:op35Response"/>
+    </operation>
+
+    <operation name="op36">
+      <input name="op36" message="tns:op36"/>
+      <output name="op36Response" message="tns:op36Response"/>
+    </operation>
+
+    <operation name="op37">
+      <input name="op37" message="tns:op37"/>
+      <output name="op37Response" message="tns:op37Response"/>
+    </operation>
+
+    <operation name="op38">
+      <input name="op38" message="tns:op38"/>
+      <output name="op38Response" message="tns:op38Response"/>
+    </operation>
+
+    <operation name="op39">
+      <input name="op39" message="tns:op39"/>
+      <output name="op39Response" message="tns:op39Response"/>
+    </operation>
+
+    <operation name="op40">
+      <input name="op40" message="tns:op40"/>
+      <output name="op40Response" message="tns:op40Response"/>
+    </operation>
+
+    <operation name="op41">
+      <input name="op41" message="tns:op41"/>
+      <output name="op41Response" message="tns:op41Response"/>
+    </operation>
+
+    <operation name="op42">
+      <input name="op42" message="tns:op42"/>
+      <output name="op42Response" message="tns:op42Response"/>
+    </operation>
+
+    <operation name="op43">
+      <input name="op43" message="tns:op43"/>
+      <output name="op43Response" message="tns:op43Response"/>
+    </operation>
+
+    <operation name="excop1">
+      <input name="excop1" message="tns:excop1"/>
+      <output name="excop1Response" message="tns:excop1Response"/>
+      <fault name="Fault" message="tns:excop1Fault"/>
+    </operation>
+
+    <operation name="excop2">
+      <input name="excop2" message="tns:excop2"/>
+      <output name="excop2Response" message="tns:excop2Response"/>
+      <fault name="Fault" message="tns:excop2Fault"/>
+    </operation>
+
+    <operation name="excop3">
+      <input name="excop3" message="tns:excop3"/>
+      <output name="excop3Response" message="tns:excop3Response"/>
+      <fault name="Fault" message="tns:excop3Fault"/>
+    </operation>
+
+    <operation name="excop4">
+      <input name="excop4" message="tns:excop4"/>
+      <output name="excop4Response" message="tns:excop4Response"/>
+      <fault name="Fault" message="tns:excop4Fault"/>
+    </operation>
+
+  </portType>
+
+  <binding name="sm11SoapBinding" type="tns:sm11PortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="op0">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op0">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op0Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op1">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op1">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op1Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op4">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op4">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op4Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op5">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op5">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op5Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op6">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op6">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op6Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op7">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op7">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op7Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op8">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op8">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op8Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op9">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op9">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op9Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op11">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op11">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op11Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op14">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op14">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op14Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op15">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op15">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op15Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op16">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op16">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op16Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op17">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op17">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op17Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op18">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op18">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op18Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op19">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op19">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op19Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op21">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op21">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op21Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op24">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op24">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op24Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op25">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op25">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op25Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op26">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op26">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op26Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op27">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op27">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op27Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op28">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op28">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op28Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op29">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op29">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op29Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op30">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op30">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op30Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op31">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op31">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op31Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op34">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op34">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op34Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op35">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op35">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op35Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op36">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op36">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op36Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op37">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op37">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op37Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op38">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op38">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op38Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op39">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op39">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op39Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op40">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op40">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op40Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op41">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op41">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op41Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op42">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op42">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op42Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="op43">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="op43">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="op43Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+    </operation>
+
+    <operation name="excop1">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="excop1">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="excop1Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+      <fault name="Fault">
+        <soap:fault use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </fault>
+    </operation>
+
+    <operation name="excop2">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="excop2">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="excop2Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+      <fault name="Fault">
+        <soap:fault use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </fault>
+    </operation>
+
+    <operation name="excop3">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="excop3">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="excop3Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+      <fault name="Fault">
+        <soap:fault use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </fault>
+    </operation>
+
+    <operation name="excop4">
+      <soap:operation soapAction="http://dopg.gr.jp/sm11"/>
+      <input name="excop4">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </input>
+      <output name="excop4Response">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </output>
+      <fault name="Fault">
+        <soap:fault use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://dopg.gr.jp/sm11"/>
+      </fault>
+    </operation>
+
+  </binding>
+
+  <service name="sm11Service">
+    <port name="sm11Port" binding="tns:sm11SoapBinding">
+    <soap:address location="http://localhost/sm11"/>
+    </port>
+  </service>
+  
+</definitions>

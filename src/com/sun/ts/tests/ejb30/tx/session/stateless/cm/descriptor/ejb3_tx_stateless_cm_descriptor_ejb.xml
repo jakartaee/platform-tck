@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+<!--
+This section is not needed.  See glassfish issue 1186    
+    <enterprise-beans>
+        <session>
+            <ejb-name>TestBean</ejb-name>
+        </session>    
+        <session>
+            <ejb-name>LocalTxBean</ejb-name>
+        </session>  
+        <session>
+            <ejb-name>TxBean</ejb-name>
+        </session>  
+    </enterprise-beans>
+-->
+
+    <assembly-descriptor>
+        <container-transaction>
+            <description>RequiresNew</description>
+            <method>
+                <ejb-name>LocalTxBean</ejb-name>
+                <method-intf>Local</method-intf>
+                <method-name>requiresNewNoop</method-name>
+            </method>
+            <trans-attribute>RequiresNew</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <description>Mandatory</description>
+            <method>
+                <ejb-name>LocalTxBean</ejb-name>
+                <method-intf>Local</method-intf>
+                <method-name>localMandatoryTest</method-name>
+            </method>
+            <trans-attribute>Mandatory</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <description>Never</description>
+            <method>
+                <ejb-name>LocalTxBean</ejb-name>
+                <method-intf>Local</method-intf>
+                <method-name>neverTest</method-name>
+            </method>
+            <trans-attribute>Never</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <description>RequiresNew</description>
+            <method>
+                <ejb-name>LocalTxBean</ejb-name>
+                <method-intf>Local</method-intf>
+                <method-name>localRequiresNewRemoveTest</method-name>
+            </method>
+            <trans-attribute>RequiresNew</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <description>RequiresNew</description>
+            <method>
+                <ejb-name>LocalTxBean</ejb-name>
+                <method-intf>Local</method-intf>
+                <method-name>localRequiresNewTest</method-name>
+            </method>
+            <trans-attribute>RequiresNew</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <description>Mandatory</description>
+            <!-- all overloaded methods named mandatoryTest will have 
+            tx attribute mandatory
+            -->
+            <method>
+                <ejb-name>TxBean</ejb-name>
+                <method-intf>Remote</method-intf>
+                <method-name>mandatoryTest</method-name>
+            </method>
+            <trans-attribute>Mandatory</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <description>Never</description>
+            <!-- all overloaded methods named neverTest will have 
+            tx attribute Never
+            -->
+            <method>
+                <ejb-name>TxBean</ejb-name>
+                <method-intf>Remote</method-intf>
+                <method-name>neverTest</method-name>
+            </method>
+            <trans-attribute>Never</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <description>Never for method sameMethod on remote intf</description>
+            <method>
+                <ejb-name>TxBean</ejb-name>
+                <method-intf>Remote</method-intf>
+                <method-name>sameMethod</method-name>
+            </method>
+            <trans-attribute>Never</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <description>Mandatory for method sameMethod on local intf</description>
+            <method>
+                <ejb-name>TxBean</ejb-name>
+                <method-intf>Local</method-intf>
+                <method-name>sameMethod</method-name>
+            </method>
+            <trans-attribute>Mandatory</trans-attribute>
+        </container-transaction>
+    </assembly-descriptor>
+</ejb-jar>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!--
+$Id$
+-->
+<project name="jms_ee20_resourcedefs_descriptor" basedir="." default="usage">
+<import file="../../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <property name="includes"
+            value="com/sun/ts/tests/jms/common/JmsTool.class"/>
+
+  <target name="package">
+      <ts.vehicles name="resourcedefs_descriptor"> 
+        <ejb-elements>
+          <fileset dir="${class.dir}" includes="${includes}"/>
+        </ejb-elements>
+        <client-elements>
+          <fileset dir="${class.dir}" includes="${includes}"/>
+        </client-elements>
+        <servlet-elements>
+	  <zipfileset dir="${class.dir}" includes="${includes}"
+                      prefix="WEB-INF/classes"/>
+        </servlet-elements>
+        <jsp-elements>
+	  <zipfileset dir="${class.dir}" includes="${includes}"
+                      prefix="WEB-INF/classes"/>
+        </jsp-elements>
+      </ts.vehicles>
+  </target>
+
+  <target name="create.xml.files">
+    <copy failonerror="false" overwrite="true" 
+      file="${ts.home}/src/${pkg.dir}/xml/appclient_vehicle_client.xml"
+      tofile="${ts.home}/src/${pkg.dir}/appclient_vehicle_client.xml">
+        <filterset>
+	  <filter token="raname" value="${jmsra.name}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+    <copy failonerror="false" overwrite="true" 
+      file="${ts.home}/src/${pkg.dir}/xml/ejb_vehicle_ejb.xml"
+      tofile="${ts.home}/src/${pkg.dir}/ejb_vehicle_ejb.xml">
+        <filterset>
+	  <filter token="raname" value="${jmsra.name}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+    <copy failonerror="false" overwrite="true" 
+      file="${ts.home}/src/${pkg.dir}/xml/jsp_vehicle_web.xml"
+      tofile="${ts.home}/src/${pkg.dir}/jsp_vehicle_web.xml">
+        <filterset>
+	  <filter token="raname" value="${jmsra.name}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+    <copy failonerror="false" overwrite="true" 
+      file="${ts.home}/src/${pkg.dir}/xml/servlet_vehicle_web.xml"
+      tofile="${ts.home}/src/${pkg.dir}/servlet_vehicle_web.xml">
+        <filterset>
+	  <filter token="raname" value="${jmsra.name}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+  </target>
+
+  <target name="compile" depends="clean, create.xml.files">
+      <ts.javac includes="${pkg.dir}/**/*.java,
+                          com/sun/ts/tests/jms/common/**/*.java"/>
+  </target>
+
+  <target name="build" depends="clean, create.xml.files, TestImport.build"/>
+  
+  <target name="clean" >
+    <delete failonerror="false" file="${ts.home}/src/${pkg.dir}/appclient_vehicle_client.xml"/>
+    <delete failonerror="false" file="${ts.home}/src/${pkg.dir}/ejb_vehicle_ejb.xml"/>
+    <delete failonerror="false" file="${ts.home}/src/${pkg.dir}/jsp_vehicle_web.xml"/>
+    <delete failonerror="false" file="${ts.home}/src/${pkg.dir}/servlet_vehicle_web.xml"/>
+    <ts.clean/>
+  </target>
+
+</project>

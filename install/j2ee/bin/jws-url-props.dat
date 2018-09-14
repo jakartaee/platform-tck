@@ -1,0 +1,137 @@
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+##############################################################################
+# $Id$
+#
+# Data file containing URLs for webservice endpoints and wsdl locations
+#
+# Sun's JAX-WS RI Implementation specifys URL's for webservice endpoints
+# and final published WSDL's in the following format defined below.
+#
+# URL format for endpoints is as follows:
+#
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE
+#
+# URL format for wsdl locations of given endpoints is as follows:
+#
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE?WSDL
+#			or
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE?wsdl
+#
+# All URL's given below start from CONTEXT_ROOT. The
+# http://HOST:PORT (HOST and PORT are defined and
+# configured in ts.jte file) is prepended to each URL.
+#
+# Example)
+#
+# For a webservice with a PORT_TYPE of Hello the URL endpoint for
+# the JAX-WS RI is:
+#
+# o http://localhost:8080/HelloService_web/jws/Hello
+#
+# For the final published WSDL URL for the above endpoint in
+# the JAX-WS RI is:
+#
+# o http://localhost:8080/HelloService_web/jws/Hello?WSDL
+#			or
+# o http://localhost:8080/HelloService_web/jws/Hello?wsdl
+###############################################################################
+#
+# jws/oneway/client URL's
+jwstest.onewaywebservice.endpoint.1=/WSOnewayWebServiceApp_web/jws/OnewayWebService
+jwstest.onewaywebservice.wsdlloc.1=/WSOnewayWebServiceApp_web/jws/OnewayWebService?WSDL
+
+# jws/handlerchain/client URL's
+jwstest.handlerchainwebservice.endpoint.1=/WSHandlerChainWebServiceApp_web/jws/HandlerChainWebService
+jwstest.handlerchainwebservice.wsdlloc.1=/WSHandlerChainWebServiceApp_web/jws/HandlerChainWebService?WSDL
+
+
+# jws/webservice/webservice1/client URL's
+
+jwstest.defaultwebservice.endpoint.1=/WSDefaultWebServiceApp_web/jws/defaultWebService
+jwstest.defaultwebservice.wsdlloc.1=/WSDefaultWebServiceApp_web/jws/defaultWebService?WSDL
+
+
+# jws/webservice/webservice2/client URL's
+
+jwstest.endpointinterfacewebservice.endpoint.1=/WSEndpointInterfaceWebServiceApp_web/jws/endpointInterfaceWebService
+jwstest.endpointinterfacewebservice.wsdlloc.1=/WSEndpointInterfaceWebServiceApp_web/jws/endpointInterfaceWebService?WSDL
+
+# jws/webservice/webservice3/client URL's
+
+jwstest.nameservicenametargetnamespacewebservice.endpoint.1=/WSNameSNTNSWSVCApp_web/jws/nameServiceNameTargetNamespaceWebService
+jwstest.nameservicenametargetnamespacewebservice.wsdlloc.1=/WSNameSNTNSWSVCApp_web/jws/nameServiceNameTargetNamespaceWebService?WSDL
+
+# jws/webservice/webservice4/client URL's
+
+jwstest.endpointinterface2webservice.endpoint.1=/WSEndpointInterface2WebServiceApp_web/jws/endpointInterface2WebService
+jwstest.endpointinterface2webservice.wsdlloc.1=/WSEndpointInterface2WebServiceApp_web/jws/endpointInterface2WebService?WSDL
+
+
+# jws/webmethod/webmethod1/client URL's
+
+jwstest.defaultwebmethodwebservice.endpoint.1=/WSDefaultWebMethodWebServiceApp_web/jws/defaultWebMethodWebService
+jwstest.defaultwebmethodwebservice.wsdlloc.1=/WSDefaultWebMethodWebServiceApp_web/jws/defaultWebMethodWebService?WSDL
+
+# jws/webmethod/webmethod2/client URL's
+
+jwstest.defaultwebmethod2webservice.endpoint.1=/WSDefaultWebMethod2WebServiceApp_web/jws/defaultWebMethod2WebService
+jwstest.defaultwebmethod2webservice.wsdlloc.1=/WSDefaultWebMethod2WebServiceApp_web/jws/defaultWebMethod2WebService?WSDL
+
+# jws/webmethod/webmethod3/client URL's
+
+jwstest.webmethodwebservice.endpoint.1=/WSWebMethodWebServiceApp_web/jws/webMethodWebService
+jwstest.webmethodwebservice.wsdlloc.1=/WSWebMethodWebServiceApp_web/jws/webMethodWebService?WSDL
+
+# jws/webparam/webparam1/client URL's
+# Doc Bare Service
+
+jwstest.webparamwebservice.endpoint.1=/WSWebParamWebServiceApp_web/jws/webParamWebService
+jwstest.webparamwebservice.wsdlloc.1=/WSWebParamWebServiceApp_web/jws/webParamWebService?WSDL
+
+
+# jws/webparam/webparam2/client URL's
+# Doc Wrapped Service
+
+jwstest.webparam2webservice.endpoint.1=/WSWebParam2WebServiceApp_web/jws/webParam2WebService
+jwstest.webparam2webservice.wsdlloc.1=/WSWebParam2WebServiceApp_web/jws/webParam2WebService?WSDL
+
+# jws/webparam/webparam3/client URL's
+# RPC Literal Service
+
+jwstest.webparam3webservice.endpoint.1=/WSWebParam3WebServiceApp_web/jws/webParam3WebService
+jwstest.webparam3webservice.wsdlloc.1=/WSWebParam3WebServiceApp_web/jws/webParam3WebService?WSDL
+
+# jws/webresult/webresult/client URL's
+# Doc Bare Service
+
+jwstest.webresultwebservice.endpoint.1=/WSWebResultWebServiceApp_web/jws/webResultWebService
+jwstest.webresultwebservice.wsdlloc.1=/WSWebResultWebServiceApp_web/jws/webResultWebService?WSDL
+
+
+# jws/webresult/webresult2/client URL's
+# Doc Wrapped Service
+
+jwstest.webresult2webservice.endpoint.1=/WSWebResult2WebServiceApp_web/jws/webResult2WebService
+jwstest.webresult2webservice.wsdlloc.1=/WSWebResult2WebServiceApp_web/jws/webResult2WebService?WSDL
+
+
+# jws/webresult/webresult3/client URL's
+# RPC Lit Service
+
+jwstest.webresult3webservice.endpoint.1=/WSWebResult3WebServiceApp_web/jws/webResult3WebService
+jwstest.webresult3webservice.wsdlloc.1=/WSWebResult3WebServiceApp_web/jws/webResult3WebService?WSDL

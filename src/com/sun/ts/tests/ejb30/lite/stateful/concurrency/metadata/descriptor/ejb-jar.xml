@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    version="3.1" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+    <enterprise-beans>
+        <session>
+            <ejb-name>DefaultConcurrencyBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF</business-local>
+            <local-bean />
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.StatefulConcurrencyBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+        </session>
+        <session>
+            <ejb-name>ContainerConcurrencyBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF</business-local>
+            <local-bean />
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.StatefulConcurrencyBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        <session>
+            <ejb-name>NotAllowedConcurrencyBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF</business-local>
+            <local-bean />
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.StatefulConcurrencyBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <concurrent-method>
+                <method>
+                    <method-name>ping</method-name>
+                    <method-params/>
+                </method>
+                <lock>Write</lock>
+                <access-timeout>
+                    <timeout>0</timeout>
+                    <unit>Nanoseconds</unit>
+                </access-timeout>
+            </concurrent-method>
+            
+        </session>
+    </enterprise-beans>
+</ejb-jar>

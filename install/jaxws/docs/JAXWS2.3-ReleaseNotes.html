@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+    <title>JAX-WS TCK, Version 2.3 Release Notes, May 2017</title>
+<style type="text/css">
+<!--
+body {  background-color: #ffffdd; color: #000000}
+pre {  background-color: #eeeeee; color: #000099}
+code {  color: #000099}
+h1 {  color: #000099}
+h2 {  color: #000099}
+h3 {  color: #000099; text-decoration: underline}
+h4 {  font-style: italic; color: #000099}
+.tabletitle {  font-style: italic; color: #ffffcc; font-size: small; font-variant: small-caps}
+.subtitle {  font-style: italic; color: #ffffcc; font-variant: small-caps}
+.emphasize  {  font-style: italic; color: #000099}
+.step  { font-weight: bold}
+-->
+</style>
+</head>
+
+<body>
+<div align="Center">
+<h1>JAX-WS Technology Compatibility Kit, Version 2.3<br>
+<em class="emphasize">Release Notes, May 2017</em></h1>
+</div>
+
+<hr>
+<h2><a name="kit_contents">Kit Contents</a></h2>
+
+<p>The JAX-WS, Version 2.3 Technology Compatibility Kit (TCK) includes the following items:</p>
+   <li><p><strong>JAX-WS TCK Signature, API, End-to-end, WS-I Conformance, Java-to-WSDL/WSDL-to-Java Mapping and Web Services Addressing Conformance tests:</strong></p>
+   <ul>
+      <li><p>A <strong>Signature test</strong> that checks that all of the public APIs are supported/defined as specified in the JAX-WS Version 2.3 implementation that is being tested.</p></li>
+
+      <li><p><strong>API tests</strong> to verify the functionality of all the public APIs under <code>javax.xml.ws</code>, <code>javax.xml.ws.handler</code>, <code>javax.xml.ws.handler.soap</code>, <code>javax.xml.ws.http</code>, <code>javax.xml.ws.spi</code>, <code>javax.xml.ws.spi.http</code>, <code>javax.xml.ws.soap</code>, and <code>javax.xml.ws.wsaddressing</code>.</p>
+      </li>
+
+      <li><strong>End-to-end tests</strong> that demonstrate marshalling/unmarshalling of all XML supported data types when going from WSDL-to-Java and all JAX-WS supported Java data types when going from Java-to-WSDL as JAX-WS Soap Messages both through synchronous (request/response) and asynchronous (request/response) and (one-way) RPC invocations. All client programming model invocation methods (Stub-based, Dynamic Proxy, and Dispatch interface) are tested.</li>
+
+      <li><p><strong>WS-I Conformance Tests</strong> that test and check for conformance to the WS-I Basic Profile 1.1, Attachment Profile 1.0, and Simple Soap Binding Profile 1.0 conformance specifications.</p></li>
+
+      <li><p><strong>Java-to-WSDL/WSDL-to-Java Mapping Tests</strong> that test and check for conformance to the Java-to-WSDL and WSDL-to-Java mappings.</p></li>
+
+      <li><p><strong>Web Services Addressing Conformance Tests</strong> that test and check for conformance to the Web Services Addressing 1.0 - Core, Web Services Addressing 1.0 - Metadata, and Web Services Addressing 1.0 - SOAP Binding conformance specifications.</p></li>
+   </ul>
+<hr>
+
+<h2><a name="platform">Platform Notes</a></h2>
+
+<p>The JAX-WS TCK tests have been built and tested with the Sun GlassFish Enterprise Server v5 running on the Java(tm) Standard Edition 8 (Java SE 8) platforms. If you are using a different Web server, you will need to make adjustments to the procedures outlined in this document.</p>
+
+<p>The JAX-WS TCK tests run on the following platforms:</p>
+
+<ul>
+<li>Oracle Linux 7.1</li>
+<li>Windows 10</li>
+</ul>
+
+<p>In the instructions in this document, variables in angle brackets need to be expanded for each platform. For example, <code>&lt;TS_HOME&gt;</code> becomes <code>$TS_HOME</code> on Solaris/Linux and <code>%TS_HOME%</code> on Windows 10. In addition, the forward slashes (<code>/</code>) used in all of the examples need to be replaced with backslashes (<code>\</code>) for Windows XP.</p>
+<hr>
+<h2><a name="updates">Updates for the JAX-WS TCK 2.3 Release</a></h2>
+<p>
+Added support for Java SE 8 based signatures.<br>
+Added tests for @Repeatable(value=WebServiceRefs.class) @WebServiceRef.
+</p>
+<hr>
+
+<h2><a name="Notes">Notes for JAX-WS TCK 2.3 Release</a></h2>
+
+<p>
+There are a few JAX-WS tests that reference schemas over the internet and this
+caused build issues when attempting the rebuildable portion of JAX-WS when test
+machines had no access to the internet.
+</p>
+
+<p>
+The following test references schema [ <code>http://www.w3.org/2006/03/addressing/ws-addr.xsd</code> ]
+</p>
+<ul>
+<li><code>src/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/epr</code></li>
+</ul>
+<p>
+The following test references schema [ <code>http://ws-i.org/profiles/basic/1.1/swaref.xsd</code> ]
+</p>
+
+<ul>
+<li><code>src/com/sun/ts/tests/jaxws/wsi/w2j/document/literal/swareftest</code></li>
+</ul>
+
+<p>
+If you attempt to build the jaxws tree for the VI as part of the rebuildable
+technology rules and you do not have access to the internet than the build will
+fail for these test cases. You need to use a jax-ws catalog to resolve the URI's
+locally. A jax-ws catalog file exists under the following directory:
+</p>
+
+<ul>
+<li><code>TS_HOME/src/com/sun/ts/tests/jaxws/common/xml/catalog/META-INF/jax-ws-catalog.xml</code></li>
+</ul>
+<p>
+The wsimport ant task within <code>TS_HOME/src/com/sun/ts/tests/jaxws/common/xml/common.xml</code>
+refers to this catalog file appropriately for both the RI and VI wsimport ant task tool wrappers.
+</p>
+
+<p>
+We do not distribute these standards defined schema files as part of our test suite.
+So the licensee will have to ensure to download and get a copy of the above schemas
+however they decide to and place them in the TS_HOME/lib/schemas directory of the test
+suite in order to build these tests with no internet access. The catalog file mentioned
+above will resolve these URI's locally to these schema files under the TS_HOME/lib/schemas.
+</p>
+
+<hr>
+<h2><a name="props"><code>javax.xml.ws.Endpoint</code> publishing API's</a></h2>
+<p>
+The following properties, which are used by the Endpoint API tests in the
+<code>jaxws/api/javax_xml_ws/Endpoint</code> directory, must be set in the ts.jte file:
+</p>
+<ul>
+<li>The <code>http.server.supports.endpoint.publish</code> property indicates whether or not your HTTP server supports endpoint publishing.
+</li>
+<li>The <code>http.server.supports.endpoint.publish.2</code> property indicates whether or not the Java EE 8 RI server supports endpoint publishing.
+</ul>
+<p>
+If your server supports endpoint publishing (supports the use of
+<code>javax.xml.ws.Endpoint.publish()</code> methods), set the property value
+to "true". In an unmanaged environment, such as that in standalone mode, this
+call is usually allowed. When the property is set to "true", the test will check
+that the endpoint publish methods publish the endpoints without throwing an
+exception. When this result occurs with this scenario, the result is considered
+a PASS.
+</p>
+
+<p>
+If your server does not support endpoint publishing (does not support the use of
+<code>javax.xml.ws.Endpoint.publish()</code> methods), set the property value to
+"false". In a managed environment, such as the Java EE 8 Reference Implementation,
+this is usually the case and this call would not be allowed. When the property is
+set to "false", the tests will check that these endpoint publish methods do not
+publish the endpoints and an exception will be thrown. When this result occurs
+with this scenario, the result is considered a PASS.
+</p>
+
+<p>
+The <code>http.server.supports.endpoint.publish.2</code> property settings are used to specify
+whether or not endpoint publishing is supported by the Java EE 8 RI HTTP server.
+The same settings and caveats as the <code>http.server.supports.endpoint.publish
+</code> property apply to this property, based on whether or not the Java EE 8 RI
+supports endpoint publishing.
+</p>
+
+<hr>
+<h2><a name="install_setup_run">Installing, Setting Up, and Running the JAX-WS TCK</a></h2>
+
+<p>Refer to the <cite>JAX-WS TCK 2.3 User's Guide</cite>, available in the JAX-WS TCK 2.3 documentation bundle, for complete instructions on installing, setting up, and running the JAX-WS TCK.
+The online version of the JT Harness version 5.0 documentation is available <a href="https://wiki.openjdk.java.net/display/CodeTools/Documentation">here</a>.</p>
+
+<hr>
+<h2><a name="install_config_tomcat8">Quick Steps to Configure Apache Tomcat 8 for JAX-WS TCK</a></h2>
+
+<p>Follow the steps below to configure Apache Tomcat 8 for JAX-WS TCK 2.3</p>
+
+<ul>
+<li>Install Apache Tomcat 8.5.x to /apache-tomcat-8.5.x</li>
+<li>Install JAX-WS RI 2.3 to /jaxws-ri</li>
+<li>Install JAX-WS TCK 2.3 to /jaxwstck</li>
+<li>Copy JAX-WS RI 2.3 and JAX-WS TCK 2.3 jars to appropriate Apache Tomcat 8.5.x directories
+<li>mkdir -p /apache-tomcat-8.5.x/shared/lib /apache-tomcat-8.5.x/endorsed</li>
+<ul>For Java SE 8 do the following steps and use the ts.jte.tomcat.jdk18 file:<ul>
+<li>cp /jaxws-ri/lib/*.jar /apache-tomcat-8.5.x/shared/lib</li>
+<li>cd /apache-tomcat-8.5.x/shared/lib; &nbsp; mv jaxws-api.jar jaxb-api.jar /apache-tomcat-8.5.x/endorsed</li>
+<li>cp /jaxwstck/lib/jaxwstck.jar /jaxwstck/lib/tsharness.jar /apache-tomcat-8.5.x/shared/lib</li>
+<li>cd /jaxwstck/bin; &nbsp; mv ts.jte ts.jte.javaee8; &nbsp; cp ts.jte.tomcat.jdk18 ts.jte</li>
+<li>Make sure endorsed.dirs, endorsed.dirs.ri properties in ts.jte file point to Apache Tomcat 8.5.x endorsed directory</li></ul></ul>
+<li>Configure the rest of ts.jte as per JAX-WS TCK 2.3 User's Guide (Example: jaxws.classes, webcontainer.home, etc)</li>
+<li>Edit /apache-tomcat-8.5.x/conf/catalina.properties and set shared.loader property to:</li>
+<ul><li>shared.loader=${catalina.home}/shared/lib/*.jar,${catalina.home}/endorsed/*.jar</li></ul>
+<li>Configure the tomcat users in the /apache-tomcat-8.5.x/conf/tomcat-users.xml file as follows:</li>
+<pre>
+&lt;tomcat-users&gt;
+  &lt;role rolename="tomcat"/&gt;
+  &lt;role rolename="role1"/&gt;
+  &lt;role rolename="Administrator"/&gt;
+  &lt;role rolename="Manager"/&gt;
+  &lt;role rolename="Employee"/&gt;
+  &lt;user username="both" password="tomcat" roles="tomcat,role1"/&gt;
+  &lt;user username="tomcat" password="tomcat" roles="tomcat"/&gt;
+  &lt;user username="j2ee" password="j2ee" roles="Administrator,Employee"/&gt;
+  &lt;user username="javajoe" password="javajoe" roles="Manager,Employee"/&gt;
+  &lt;user username="role1" password="tomcat" roles="role1"/&gt;
+&lt;/tomcat-users&gt;
+</pre>
+<li>Restart Apache Tomcat 8.5.x which is now ready for JAX-WS TCK 2.3 testing</li>
+</ul>
+
+<hr>
+<p><cite><small>Copyright (c) 2011, 2018 Oracle and/or its affiliates. All rights reserved.</small></cite></p>
+</body>
+</html>

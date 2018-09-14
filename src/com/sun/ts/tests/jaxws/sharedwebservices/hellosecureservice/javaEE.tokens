@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jhellosecureservice")
+SERVICE=com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.HelloService
+IMPL=com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.HelloImpl
+SEI=com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.Hello
+NAMESPACEURI=http://helloservice.org/wsdl
+PORT=HelloPort
+URLALIAS=/jaxws/Hello
+WEBSERVICEDESCRIPTION=HelloService
+SERVLETNAME=com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.HelloImpl
+SERVICEREFNAMEWSSERVLET=service/wsw2jhellosecureservice
+SERVICEREFNAMEWSEJB=service/wsw2jhellosecureservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jhellosecureservice

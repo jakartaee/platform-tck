@@ -1,0 +1,3218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE javadoc SYSTEM "http://invalid.domain.com/CTS/XMLassertions/dtd/javadoc_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<javadoc>
+  <next-available-id>572</next-available-id>
+  <previous-id>555</previous-id>
+  <technology>JSONP</technology>
+  <id>JSON-P</id>
+  <name>Java API for JSON Processing</name>
+  <version>1.0</version>
+  <assertions>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:6</id>
+      <description>Adds a value to the array.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:8</id>
+      <description>Adds a value to the array as a JsonString.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:10</id>
+      <description>Adds a value to the array as a JsonNumber.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:12</id>
+      <description>Adds a value to the array as a JsonNumber.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:14</id>
+      <description>Adds a value to the array as a JsonNumber.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:16</id>
+      <description>Adds a value to the array as a JsonNumber.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>long</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:18</id>
+      <description>Adds a value to the array as a JsonNumber.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>double</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:20</id>
+      <description>if the value is Not-a-Number(NaN) or infinity</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>java.lang.NumberFormatException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:21</id>
+      <description>Adds a JsonValue#TRUE or JsonValue#FALSE value to the array.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:25</id>
+      <description>Adds a JsonValue#NULL value to the array.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="addNull" return-type="javax.json.JsonArrayBuilder"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:37</id>
+      <description>Constructs a new runtime exception with the specified detail message. The cause is not initialized, and may subsequently be initialized by a call to #initCause.</description>
+      <package>javax.json</package>
+      <class-interface>JsonException</class-interface>
+      <method name="JsonException" return-type="JsonException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:38</id>
+      <description>Constructs a new runtime exception with the specified detail message and cause. Note that the detail message associated with cause is not automatically incorporated in this runtime exception's detail message.</description>
+      <package>javax.json</package>
+      <class-interface>JsonException</class-interface>
+      <method name="JsonException" return-type="JsonException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:40</id>
+      <description>Returns this JSON number as a BigDecimal object.</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="bigDecimalValue" return-type="java.math.BigDecimal"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:41</id>
+      <description>Returns this JSON number as a BigInteger object. This is a a convenience method for bigDecimalValue().toBigInteger(). Note that this conversion can lose information about the overall magnitude and precision of the number value as well as return a result with the opposite sign.</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="bigIntegerValue" return-type="java.math.BigInteger"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:42</id>
+      <description>Returns this JSON number as a BigDecimal object. This is a convenience method for bigDecimalValue().toBigIntegerExact().</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="bigIntegerValueExact" return-type="java.math.BigInteger"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:43</id>
+      <description>if the number has a nonzero fractional part</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="bigIntegerValueExact" return-type="java.math.BigInteger">
+        <throw>java.lang.ArithmeticException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:44</id>
+      <description>Returns this JSON number as a double. This is a a convenience method for bigDecimalValue().doubleValue(). Note that this conversion can lose information about the overall magnitude and precision of the number value as well as return a result with the opposite sign.</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="doubleValue" return-type="double"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:45</id>
+      <description>Returns this JSON number as an int. Note that this conversion can lose information about the overall magnitude and precision of the number value as well as return a result with the opposite sign.</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="intValue" return-type="int"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:46</id>
+      <description>Returns this JSON number as an int.</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="intValueExact" return-type="int"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:47</id>
+      <description>if the number has a nonzero fractional part or if it does not fit in an int</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="intValueExact" return-type="int">
+        <throw>java.lang.ArithmeticException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:48</id>
+      <description>Returns this JSON number as a long. Note that this conversion can lose information about the overall magnitude and precision of the number value as well as return a result with the opposite sign.</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="longValue" return-type="long"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:49</id>
+      <description>Returns this JSON number as a long.</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="longValueExact" return-type="long"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:50</id>
+      <description>if the number has a non-zero fractional part or if it does not fit in a long</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="longValueExact" return-type="long">
+        <throw>java.lang.ArithmeticException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:51</id>
+      <description>Returns true if this JSON number is a integral number. This method semantics are defined using bigDecimalValue().scale(). If the scale is zero, then it is considered integral type. This integral type information can be used to invoke an appropriate accessor method to obtain a numeric value as in the following example: JsonNumber num = ... if (num.isIntegral()) { num.longValue(); // or other methods to get integral value } else { num.doubleValue(); // or other methods to get decimal number value }</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="isIntegral" return-type="boolean"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:58</id>
+      <description>Adds a name/JsonValue pair to the JSON object associated with this object builder. If the object contains a mapping for the specified name, this method replaces the old value with the specified value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:61</id>
+      <description>Adds a name/JsonString pair to the JSON object associated with this object builder. If the object contains a mapping for the specified name, this method replaces the old value with the specified value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:64</id>
+      <description>Adds a name/JsonNumber pair to the JSON object associated with this object builder. If the object contains a mapping for the specified name, this method replaces the old value with the specified value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:67</id>
+      <description>Adds a name/JsonNumber pair to the JSON object associated with this object builder. If the object contains a mapping for the specified name, this method replaces the old value with the specified value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:70</id>
+      <description>Adds a name/JsonNumber pair to the JSON object associated with this object builder. If the object contains a mapping for the specified name, this method replaces the old value with the specified value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:73</id>
+      <description>Adds a name/JsonNumber pair to the JSON object associated with this object builder. If the object contains a mapping for the specified name, this method replaces the old value with the specified value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>long</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:76</id>
+      <description>Adds a name/JsonNumber pair to the JSON object associated with this object builder. If the object contains a mapping for the specified name, this method replaces the old value with the specified value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>double</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:79</id>
+      <description>if the value is Not-a-Number(NaN) or infinity</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>java.lang.NumberFormatException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:80</id>
+      <description>Adds a name/JsonValue#TRUE or name/JsonValue#FALSE pair to the JSON object associated with this object builder. If the object contains a mapping for the specified name, this method replaces the old value with the specified value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:86</id>
+      <description>Adds a name/JsonValue#NULL pair to the JSON object associated with this object builder where the value is null. If the object contains a mapping for the specified name, this method replaces the old value with null.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="addNull" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:96</id>
+      <description>Closes this reader and frees any resources associated with the reader. This method closes the underlying input source.</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="close" return-type="void"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:97</id>
+      <description>Creates a JSON reader from a character stream.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createReader" return-type="javax.json.JsonReader">
+        <parameters>
+          <parameter>java.io.Reader</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:101</id>
+      <description>Returns the JSON string value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonString</class-interface>
+      <method name="getString" return-type="java.lang.String"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:102</id>
+      <description>Returns the value type of this JSON value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonValue</class-interface>
+      <method name="getValueType" return-type="javax.json.JsonValue.JsonValue.ValueType"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:103</id>
+      <description/>
+      <package>javax.json</package>
+      <class-interface>JsonValue.ValueType</class-interface>
+      <method name="valueOf" return-type="javax.json.JsonValue.JsonValue.ValueType">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:104</id>
+      <description/>
+      <package>javax.json</package>
+      <class-interface>JsonValue.ValueType</class-interface>
+      <method name="values" return-type="javax.json.JsonValue.JsonValue.ValueType[]"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:105</id>
+      <description>Closes this JSON writer and frees any resources associated with the writer. This method closes the underlying output source.</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="close" return-type="void"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:106</id>
+      <description>Creates a JSON writer to write a JSON JsonObject object or JsonArray array structure to the specified character stream.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createWriter" return-type="javax.json.JsonWriter">
+        <parameters>
+          <parameter>java.io.Writer</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:107</id>
+      <description>Writes the specified JSON JsonArray array to the output source. This method needs to be called only once for a writer instance.</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="writeArray" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonArray</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:108</id>
+      <description>if the specified JSON object cannot be written due to i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="writeArray" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonArray</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:109</id>
+      <description>if writeArray, writeObject, write or close method is already called</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="writeArray" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonArray</parameter>
+        </parameters>
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:110</id>
+      <description>Writes the specified JSON JsonObject object to the output source. This method needs to be called only once for a writer instance.</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="writeObject" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonObject</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:111</id>
+      <description>if the specified JSON object cannot be written due to i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="writeObject" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonObject</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:112</id>
+      <description>if writeArray, writeObject, write or close method is already called</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="writeObject" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonObject</parameter>
+        </parameters>
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:115</id>
+      <description>Closes this generator and frees any resources associated with it. This method closes the underlying output source.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="close" return-type="void"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:117</id>
+      <description>Closes this parser and frees any resources associated with the parser. This method closes the underlying input source.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="close" return-type="void"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:120</id>
+      <description>Returns true if the JSON number at the current parser state is a integral number. A BigDecimal may be used to store the value internally and this method semantics are defined using its scale(). If the scale is zero, then it is considered integral type. This integral type information can be used to invoke an appropriate accessor method to obtain a numeric value as in the following example: JsonParser parser = ... if (parser.isIntegralNumber()) { parser.getInt(); // or other methods to get integral value } else { parser.getBigDecimal(); }</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="isIntegralNumber" return-type="boolean"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:121</id>
+      <description>when the parser state is not VALUE_NUMBER</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="isIntegralNumber" return-type="boolean">
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:122</id>
+      <description>Returns a String for the name in a name/value pair, for a string value or a number value. This method should only be called when the parser state is Event#KEY_NAME, Event#VALUE_STRING, or Event#VALUE_NUMBER.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getString" return-type="java.lang.String"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:123</id>
+      <description>when the parser state is not KEY_NAME, VALUE_STRING, or VALUE_NUMBER</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:128</id>
+      <description/>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser.Event</class-interface>
+      <method name="valueOf" return-type="javax.json.stream.JsonParser.JsonParser.Event">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:129</id>
+      <description/>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser.Event</class-interface>
+      <method name="values" return-type="javax.json.stream.JsonParser.JsonParser.Event[]"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:131</id>
+      <description>Creates a JSON generator for writing JSON to a character stream.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createGenerator" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.io.Writer</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:133</id>
+      <description>Creates a JSON parser from a character stream.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.Reader</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:144</id>
+      <description>Creates a JSON generator for writing JSON text to a character stream.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createGenerator" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.io.Writer</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:146</id>
+      <description>Creates a JSON parser from a character stream.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.Reader</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:152</id>
+      <description>Creates a JSON provider object. The provider is loaded using the ServiceLoader#load(Class) method. If there are no available service providers, this method returns the default service provider.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="provider" return-type="javax.json.spi.JsonProvider"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:162</id>
+      <description>Creates a JSON generator to write JSON text to a character stream. The generator is configured with the factory configuration.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGeneratorFactory</class-interface>
+      <method name="createGenerator" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.io.Writer</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:163</id>
+      <description>Creates a JSON generator to write JSON text to a byte stream. Characters written to the stream are encoded into bytes using the specified charset. The generator is configured with the factory's configuration.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGeneratorFactory</class-interface>
+      <method name="createGenerator" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.io.OutputStream</parameter>
+          <parameter>java.nio.charset.Charset</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:164</id>
+      <description>Creates a JSON parser from a character stream.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParserFactory</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.Reader</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:165</id>
+      <description>Creates a JSON parser from the specified byte stream. The character encoding of the stream is determined as specified in RFC 4627.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParserFactory</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:166</id>
+      <description>Creates a JSON parser from the specified JSON object.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParserFactory</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>javax.json.JsonObject</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:167</id>
+      <description>Creates a JSON parser from the specified JSON array.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParserFactory</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>javax.json.JsonArray</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:168</id>
+      <description>Creates a JSON generator for writing JSON to a byte stream.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createGenerator" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.io.OutputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:172</id>
+      <description>Creates a JSON parser from a byte stream. The character encoding of the stream is determined as specified in RFC 4627.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:178</id>
+      <description>Creates a JSON reader from a byte stream. The character encoding of the stream is determined as described in RFC 4627.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createReader" return-type="javax.json.JsonReader">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:181</id>
+      <description>Returns a JSON array or object that is represented in the input source. This method needs to be called only once for a reader instance.</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="read" return-type="javax.json.JsonStructure"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:182</id>
+      <description>if a JSON object or array cannot be created due to i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="read" return-type="javax.json.JsonStructure">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:183</id>
+      <description>if read, readObject, readArray or close method is already called</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="read" return-type="javax.json.JsonStructure">
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:184</id>
+      <description>Returns a JSON array that is represented in the input source. This method needs to be called only once for a reader instance.</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="readArray" return-type="javax.json.JsonArray"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:185</id>
+      <description>Returns a JSON object that is represented in the input source. This method needs to be called only once for a reader instance.</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="readObject" return-type="javax.json.JsonObject"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:187</id>
+      <description>Creates a JSON writer to write a JSON JsonObject object or JsonArray array structure to the specified byte stream. Characters written to the stream are encoded into bytes using UTF-8 encoding.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createWriter" return-type="javax.json.JsonWriter">
+        <parameters>
+          <parameter>java.io.OutputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:191</id>
+      <description>Writes the specified JSON JsonObject object or JsonArray array to the output source. This method needs to be called only once for a writer instance.</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="write" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonStructure</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:192</id>
+      <description>Creates a JSON generator for writing JSON text to a byte stream.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createGenerator" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.io.OutputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:196</id>
+      <description>Creates a JSON parser from the specified byte stream. The character encoding of the stream is determined as defined in RFC 4627 .</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:200</id>
+      <description>Creates a JSON generator to write JSON text to a byte stream. Characters written to the stream are encoded into bytes using UTF-8 encoding. The generator is configured with the factory's configuration.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGeneratorFactory</class-interface>
+      <method name="createGenerator" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.io.OutputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:201</id>
+      <description>Creates a JSON parser from the specified byte stream. The bytes of the stream are decoded to characters using the specified charset.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParserFactory</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+          <parameter>java.nio.charset.Charset</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:207</id>
+      <description>if encoding cannot be determined or i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:215</id>
+      <description>Returns a JSON text representation of the JSON number. The representation is equivalent to BigDecimal#toString().</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="toString" return-type="java.lang.String"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:217</id>
+      <description>if a JSON array cannot be created due to i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="readArray" return-type="javax.json.JsonArray">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:218</id>
+      <description>if read, readObject, readArray or close method is already called</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="readArray" return-type="javax.json.JsonArray">
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:219</id>
+      <description>if a JSON object cannot be created due to i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="readObject" return-type="javax.json.JsonObject">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:220</id>
+      <description>if read, readObject, readArray or close method is already called</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="readObject" return-type="javax.json.JsonObject">
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:221</id>
+      <description>if the specified JSON object cannot be written due to i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="write" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonStructure</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:222</id>
+      <description>if writeArray, writeObject, write or close method is already called</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="write" return-type="void">
+        <parameters>
+          <parameter>javax.json.JsonStructure</parameter>
+        </parameters>
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:223</id>
+      <description>if encoding cannot be determined or i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:225</id>
+      <description>if encoding cannot be determined or i/o error (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParserFactory</class-interface>
+      <method name="createParser" return-type="javax.json.stream.JsonParser">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:235</id>
+      <description>Returns a JSON number as a BigDecimal. The BigDecimal is created using new BigDecimal(getString()). This method should only called when the parser state is Event#VALUE_NUMBER.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getBigDecimal" return-type="java.math.BigDecimal"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:236</id>
+      <description>when the parser state is not VALUE_NUMBER</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getBigDecimal" return-type="java.math.BigDecimal">
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:237</id>
+      <description>Returns a JSON number as an integer. The returned value is equal to new BigDecimal(getString()).intValue(). Note that this conversion can lose information about the overall magnitude and precision of the number value as well as return a result with the opposite sign. This method should only be called when the parser state is Event#VALUE_NUMBER.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getInt" return-type="int"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:238</id>
+      <description>when the parser state is not VALUE_NUMBER</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getInt" return-type="int">
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:239</id>
+      <description>Returns a JSON number as a long. The returned value is equal to new BigDecimal(getString()).longValue(). Note that this conversion can lose information about the overall magnitude and precision of the number value as well as return a result with the opposite sign. This method is only called when the parser state is Event#VALUE_NUMBER.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getLong" return-type="long"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:240</id>
+      <description>when the parser state is not VALUE_NUMBER</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getLong" return-type="long">
+        <throw>java.lang.IllegalStateException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:250</id>
+      <description>Compares the specified object with this JsonNumber object for equality. Returns true if and only if the type of the specified object is also JsonNumber and their #bigDecimalValue() objects are equal</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="equals" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:251</id>
+      <description>Returns the hash code value for this JsonNumber object. The hash code of a JsonNumber object is defined as the hash code of its #bigDecimalValue() object.</description>
+      <package>javax.json</package>
+      <class-interface>JsonNumber</class-interface>
+      <method name="hashCode" return-type="int"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:254</id>
+      <description>Compares the specified object with this JsonString for equality. Returns true if and only if the specified object is also a JsonString, and their #getString() objects are equal.</description>
+      <package>javax.json</package>
+      <class-interface>JsonString</class-interface>
+      <method name="equals" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:255</id>
+      <description>Returns the hash code value for this JsonString object. The hash code of a JsonString object is defined to be its #getString() object's hash code.</description>
+      <package>javax.json</package>
+      <class-interface>JsonString</class-interface>
+      <method name="hashCode" return-type="int"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:262</id>
+      <description>A convenience method for getJsonNumber(index).intValue().</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getInt" return-type="int">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:263</id>
+      <description>A convenience method for getJsonString(index).getString().</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:264</id>
+      <description>A convenience method for getJsonNumber(name).intValue()</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getInt" return-type="int">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:265</id>
+      <description>A convenience method for getJsonString(name).getString()</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:278</id>
+      <description>Constructs a new runtime exception with the specified detail message. The cause is not initialized, and may subsequently be initialized by a call to #initCause.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerationException</class-interface>
+      <method name="JsonGenerationException" return-type="JsonGenerationException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:279</id>
+      <description>Constructs a new runtime exception with the specified detail message and cause. Note that the detail message associated with cause is not automatically incorporated in this runtime exception's detail message.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerationException</class-interface>
+      <method name="JsonGenerationException" return-type="JsonGenerationException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:285</id>
+      <description>Constructs a new runtime exception with the specified detail message. The cause is not initialized, and may subsequently be initialized by a call to #initCause.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParsingException</class-interface>
+      <method name="JsonParsingException" return-type="JsonParsingException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.stream.JsonLocation</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:286</id>
+      <description>Constructs a new runtime exception with the specified detail message and cause. Note that the detail message associated with cause is not automatically incorporated in this runtime exception's detail message.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParsingException</class-interface>
+      <method name="JsonParsingException" return-type="JsonParsingException">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.Throwable</parameter>
+          <parameter>javax.json.stream.JsonLocation</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:288</id>
+      <description>Returns JSON text for this JSON value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonValue</class-interface>
+      <method name="toString" return-type="java.lang.String"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:289</id>
+      <description>Writes the end of the current context. If the current context is an array context, this method writes the end-of-array character (']'). If the current context is an object context, this method writes the end-of-object character ('}'). After writing the end of the current context, the parent context becomes the new current context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeEnd" return-type="javax.json.stream.JsonGenerator"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:290</id>
+      <description>if this method is called in no context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeEnd" return-type="javax.json.stream.JsonGenerator">
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:291</id>
+      <description>Flushes the underlying output source. If the generator has saved any characters in a buffer, writes them immediately to the underlying output source before flushing it.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="flush" return-type="void"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:292</id>
+      <description>Writes a JSON name/value pair in the current object context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:293</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:295</id>
+      <description>Writes a JSON name/string value pair in the current object context. The specified value is written as JSON string value.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:296</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:297</id>
+      <description>if this method is not called within an object context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:298</id>
+      <description>Writes a JSON name/number value pair in the current object context. The specified value is written as a JSON number value. The string new BigDecimal(value).toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:299</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:301</id>
+      <description>Writes a JSON name/number value pair in the current object context. The specified value is written as a JSON number value. The specified value's toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:302</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:303</id>
+      <description>if this method is not called within an object context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:304</id>
+      <description>Writes a JSON name/number value pair in the current object context. The specified value is written as a JSON number value. The string new BigDecimal(value).toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:305</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:306</id>
+      <description>if this method is not called within an object context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:307</id>
+      <description>Writes a JSON name/number value pair in the current object context. The specified value is written as a JSON number value. The string new BigDecimal(value).toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>long</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:308</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>long</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:309</id>
+      <description>if this method is not called within an object context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>long</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:310</id>
+      <description>Writes a JSON name/number value pair in the current object context. The specified value is written as a JSON number value. The string BigDecimal.valueOf(double).toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>double</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:311</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:312</id>
+      <description>if this method is not called within an object context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:314</id>
+      <description>Writes a JSON name/boolean value pair in the current object context. If value is true, it writes the JSON true value, otherwise it writes the JSON false value.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:315</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>boolean</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:316</id>
+      <description>if this method is not called within an object context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>boolean</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:317</id>
+      <description>Writes the specified value as a JSON value within the current array context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:319</id>
+      <description>Writes the specified value as a JSON string value within the current array context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:321</id>
+      <description>Writes the specified value as a JSON number value within the current array context. The specified value's toString() is used as the the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:323</id>
+      <description>Writes the specified value as a JSON number value within the current array context. The string new BigDecimal(value).toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:325</id>
+      <description>Writes the specified value as a JSON number value within the current array context. The string new BigDecimal(value).toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:327</id>
+      <description>Writes the specified value as a JSON number value within the current array context. The string new BigDecimal(value).toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>long</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:329</id>
+      <description>Writes the specified value as a JSON number value within the current array context. The string BigDecimal.valueOf(value).toString() is used as the text value for writing.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>double</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:331</id>
+      <description>if the value is Not-a-Number(NaN) or infinity.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>java.lang.NumberFormatException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:332</id>
+      <description>Writes a JSON true or false value within the current array context. If value is true, this method writes the JSON true value, otherwise it writes the JSON false value.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:334</id>
+      <description>Writes a JSON name/null value pair in an current object context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeNull" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:335</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeNull" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:336</id>
+      <description>if this method is not called within an object context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeNull" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:337</id>
+      <description>Writes a JSON null value within the current array context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeNull" return-type="javax.json.stream.JsonGenerator"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:339</id>
+      <description>Writes the JSON start array character. It starts a new child array context within which JSON values can be written to the array. This method is valid only in an array context or in no context (when a context is not yet started). This method can only be called once in no context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartArray" return-type="javax.json.stream.JsonGenerator"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:340</id>
+      <description>Writes the JSON name/start array character pair with in the current object context. It starts a new child array context within which JSON values can be written to the array.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartArray" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:341</id>
+      <description>Writes the JSON start object character. It starts a new child object context within which JSON name/value pairs can be written to the object. This method is valid only in an array context or in no context (when a context is not yet started). This method can only be called once in no context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartObject" return-type="javax.json.stream.JsonGenerator"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:342</id>
+      <description>Writes the JSON name/start object character pair in the current object context. It starts a new child object context within which JSON name/value pairs can be written to the object.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartObject" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:343</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeEnd" return-type="javax.json.stream.JsonGenerator">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:344</id>
+      <description>if the value for specified name mapping is not assignable to JsonNumber</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getInt" return-type="int">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:345</id>
+      <description>if the value for specified name mapping is not assignable to JsonString</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:346</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="close" return-type="void">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:347</id>
+      <description>if this method is not called within an object context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:348</id>
+      <description>if this method is not called within an object context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:349</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:350</id>
+      <description>if this method is not called within an array context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:351</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:352</id>
+      <description>if this method is not called within an array context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:353</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:354</id>
+      <description>if this method is not called within an array context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:355</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:356</id>
+      <description>if this method is not called within an array context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:357</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:358</id>
+      <description>if this method is not called within an array context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:359</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>long</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:360</id>
+      <description>if this method is not called within an array context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>long</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:361</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:362</id>
+      <description>if this method is not called within an array context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:363</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>boolean</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:364</id>
+      <description>if this method is not called within an array context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>boolean</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:365</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeNull" return-type="javax.json.stream.JsonGenerator">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:366</id>
+      <description>if this method is not called within an array context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeNull" return-type="javax.json.stream.JsonGenerator">
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:367</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartArray" return-type="javax.json.stream.JsonGenerator">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:368</id>
+      <description>if this method is called within an object context or if called more than once in no context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartArray" return-type="javax.json.stream.JsonGenerator">
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:369</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartArray" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:370</id>
+      <description>if this method is not called within an object context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartArray" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:371</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartObject" return-type="javax.json.stream.JsonGenerator">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:372</id>
+      <description>if this method is called within an object context or if it is called more than once in no context.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartObject" return-type="javax.json.stream.JsonGenerator">
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:373</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartObject" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:374</id>
+      <description>if this method is not called within an object context</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="writeStartObject" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:375</id>
+      <description>Returns true if there are more parsing states. This method returns false if the parser reaches the end of the JSON text.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="hasNext" return-type="boolean"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:376</id>
+      <description>Returns the event for the next parsing state.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="next" return-type="javax.json.stream.JsonParser.JsonParser.Event"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:377</id>
+      <description>if the index is out of range</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getInt" return-type="int">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.IndexOutOfBoundsException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:378</id>
+      <description>if the value at the specified position is not assignable to JsonNumber</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getInt" return-type="int">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:379</id>
+      <description>if the index is out of range</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.IndexOutOfBoundsException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:380</id>
+      <description>if the value at the specified position is not assignable to JsonString</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:381</id>
+      <description>if an incomplete JSON is generated</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="close" return-type="void">
+        <throw>javax.json.stream.JsonGenerationException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:382</id>
+      <description>if the value is Not-a-Number(NaN) or infinity.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="write" return-type="javax.json.stream.JsonGenerator">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>java.lang.NumberFormatException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:383</id>
+      <description>Returns the char sequence for the JSON String value</description>
+      <package>javax.json</package>
+      <class-interface>JsonString</class-interface>
+      <method name="getChars" return-type="java.lang.CharSequence"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:387</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="hasNext" return-type="boolean">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="false">
+      <id>JSONP:JAVADOC:388</id>
+      <description>if the parser encounters invalid JSON when advancing to next state.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="hasNext" return-type="boolean">
+        <throw>javax.json.stream.JsonParsingException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:389</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="next" return-type="javax.json.stream.JsonParser.JsonParser.Event">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:390</id>
+      <description>if the parser encounters invalid JSON when advancing to next state.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="next" return-type="javax.json.stream.JsonParser.JsonParser.Event">
+        <throw>javax.json.stream.JsonParsingException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:391</id>
+      <description>if there are no more parsing states.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="next" return-type="javax.json.stream.JsonParser.JsonParser.Event">
+        <throw>java.util.NoSuchElementException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:400</id>
+      <description>Adds a JsonObject from an object builder to the array.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>javax.json.JsonObjectBuilder</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:401</id>
+      <description>Adds a JsonArray from an array builder to the array.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>javax.json.JsonArrayBuilder</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:402</id>
+      <description>Returns the current array.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="build" return-type="javax.json.JsonArray"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:403</id>
+      <description>Creates a JSON array builder</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createArrayBuilder" return-type="javax.json.JsonArrayBuilder"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:404</id>
+      <description>Adds a name/JsonObject pair to the JSON object associated with this object builder. The value JsonObject is built from the specified object builder. If the object contains a mapping for the specified name, this method replaces the old value with the JsonObject from the specified object builder.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonObjectBuilder</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:406</id>
+      <description>Adds a name/JsonArray pair to the JSON object associated with this object builder. The value JsonArray is built from the specified array builder. If the object contains a mapping for the specified name, this method replaces the old value with the JsonArray from the specified array builder.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonArrayBuilder</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:408</id>
+      <description>Returns the JSON object associated with this object builder. The iteration order for the JsonObject is based on the order in which name/value pairs are added to the object using this builder.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="build" return-type="javax.json.JsonObject"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:409</id>
+      <description>Creates a JSON object builder</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createObjectBuilder" return-type="javax.json.JsonObjectBuilder"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:410</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="close" return-type="void">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:411</id>
+      <description>if a JSON object or array cannot be created due to incorrect representation</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="read" return-type="javax.json.JsonStructure">
+        <throw>javax.json.stream.JsonParsingException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:412</id>
+      <description>if a JSON array cannot be created due to incorrect representation</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="readArray" return-type="javax.json.JsonArray">
+        <throw>javax.json.stream.JsonParsingException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:413</id>
+      <description>if a JSON object cannot be created due to incorrect representation</description>
+      <package>javax.json</package>
+      <class-interface>JsonReader</class-interface>
+      <method name="readObject" return-type="javax.json.JsonObject">
+        <throw>javax.json.stream.JsonParsingException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:414</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriter</class-interface>
+      <method name="close" return-type="void">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:415</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="close" return-type="void">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:416</id>
+      <description>Creates a generator factory for creating JsonGenerator objects. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createGeneratorFactory" return-type="javax.json.stream.JsonGeneratorFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:417</id>
+      <description>Creates a parser factory for creating JsonParser objects. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createParserFactory" return-type="javax.json.stream.JsonParserFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:419</id>
+      <description>Creates a JSON reader from a character stream. The reader is configured with the factory configuration.</description>
+      <package>javax.json</package>
+      <class-interface>JsonReaderFactory</class-interface>
+      <method name="createReader" return-type="javax.json.JsonReader">
+        <parameters>
+          <parameter>java.io.Reader</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:420</id>
+      <description>Creates a JSON reader from a byte stream. The bytes of the stream are decoded to characters using the specified charset. The reader is configured with the factory configuration.</description>
+      <package>javax.json</package>
+      <class-interface>JsonReaderFactory</class-interface>
+      <method name="createReader" return-type="javax.json.JsonReader">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+          <parameter>java.nio.charset.Charset</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:422</id>
+      <description>Creates a JSON writer to write a JSON JsonObject object or JsonArray array structure to the specified character stream. The writer is configured with the factory configuration.</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriterFactory</class-interface>
+      <method name="createWriter" return-type="javax.json.JsonWriter">
+        <parameters>
+          <parameter>java.io.Writer</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:423</id>
+      <description>Creates a JSON writer to write a JSON JsonObject object or JsonArray array structure to the specified byte stream. Characters written to the stream are encoded into bytes using UTF-8 encoding. The writer is configured with the factory configuration.</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriterFactory</class-interface>
+      <method name="createWriter" return-type="javax.json.JsonWriter">
+        <parameters>
+          <parameter>java.io.OutputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:424</id>
+      <description>Creates a JSON writer to write a JSON JsonObject object or JsonArray array structure to the specified byte stream. Characters written to the stream are encoded into bytes using the specified charset. The writer is configured with the factory configuration.</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriterFactory</class-interface>
+      <method name="createWriter" return-type="javax.json.JsonWriter">
+        <parameters>
+          <parameter>java.io.OutputStream</parameter>
+          <parameter>java.nio.charset.Charset</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:425</id>
+      <description>Creates a generator factory for creating JsonGenerator instances. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createGeneratorFactory" return-type="javax.json.stream.JsonGeneratorFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:426</id>
+      <description>Creates a parser factory for creating JsonParser instances. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createParserFactory" return-type="javax.json.stream.JsonParserFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:427</id>
+      <description>Returns a read-only map of supported provider specific configuration properties that are used to configure the JSON generators. If there are any specified configuration properties that are not supported by the provider, they won't be part of the returned map.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGeneratorFactory</class-interface>
+      <method name="getConfigInUse" return-type="java.util.Map"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:428</id>
+      <description>Returns a read-only map of supported provider specific configuration properties that are used to configure the JSON parsers. If there are any specified configuration properties that are not supported by the provider, they won't be part of the returned map.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParserFactory</class-interface>
+      <method name="getConfigInUse" return-type="java.util.Map"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:429</id>
+      <description>Creates a JSON reader from a byte stream. The character encoding of the stream is determined as described in RFC 4627. The reader is configured with the factory configuration.</description>
+      <package>javax.json</package>
+      <class-interface>JsonReaderFactory</class-interface>
+      <method name="createReader" return-type="javax.json.JsonReader">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:430</id>
+      <description>Returns the boolean value at the specified position. If the value at the specified position is JsonValue.TRUE this method returns true. If the value at the specified position is JsonValue.FALSE this method returns false.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getBoolean" return-type="boolean">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:431</id>
+      <description>if the index is out of range</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getBoolean" return-type="boolean">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.IndexOutOfBoundsException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:432</id>
+      <description>if the value at the specified position is not assignable to JsonValue.TRUE or JsonValue.FALSE</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getBoolean" return-type="boolean">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:433</id>
+      <description>Returns the boolean value at the specified position. If the value at the specified position is JsonValue.TRUE this method returns true. If the value at the specified position is JsonValue.FALSE this method returns false. Otherwise this method returns the specified default value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getBoolean" return-type="boolean">
+        <parameters>
+          <parameter>int</parameter>
+          <parameter>boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:434</id>
+      <description>Returns the int value of the JsonNumber at the specified position. If the value at that position is a JsonNumber, this method returns javax.json.JsonNumber#intValue(). Otherwise this method returns the specified default value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getInt" return-type="int">
+        <parameters>
+          <parameter>int</parameter>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:435</id>
+      <description>Returns the String value of JsonString at the specified position in this JSON array values. If JsonString is found, its javax.json.JsonString#getString() is returned. Otherwise, the specified default value is returned.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <parameters>
+          <parameter>int</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:436</id>
+      <description>Returns the boolean value of the associated mapping for the specified name. If the associated mapping is JsonValue.TRUE, then returns true. If the associated mapping is JsonValue.FALSE, then returns false.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getBoolean" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:437</id>
+      <description>if the specified name doesn't have any mapping</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getBoolean" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:438</id>
+      <description>if the value for specified name mapping is not assignable to JsonValue.TRUE or JsonValue.FALSE</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getBoolean" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:439</id>
+      <description>Returns the boolean value of the associated mapping for the specified name. If the associated mapping is JsonValue.TRUE, then returns true. If the associated mapping is JsonValue.FALSE, then returns false. Otherwise, the specified default value is returned.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getBoolean" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>boolean</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:440</id>
+      <description>if the specified name doesn't have any mapping</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getInt" return-type="int">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:441</id>
+      <description>Returns the int value of the associated JsonNumber mapping for the specified name. If JsonNumber is found, then its javax.json.JsonNumber#intValue() is returned. Otherwise, the specified default value is returned.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getInt" return-type="int">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:442</id>
+      <description>if the specified name doesn't have any mapping</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:443</id>
+      <description>Returns the string value of the associated JsonString mapping for the specified name. If JsonString is found, then its javax.json.JsonString#getString() is returned. Otherwise, the specified default value is returned.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getString" return-type="java.lang.String">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:445</id>
+      <description>Creates a builder factory for creating JsonArrayBuilder and JsonObjectBuilder objects. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createBuilderFactory" return-type="javax.json.JsonBuilderFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:449</id>
+      <description>Creates a reader factory for creating JsonReader objects. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createReaderFactory" return-type="javax.json.JsonReaderFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:452</id>
+      <description>Creates a writer factory for creating JsonWriter objects. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json</package>
+      <class-interface>Json</class-interface>
+      <method name="createWriterFactory" return-type="javax.json.JsonWriterFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:453</id>
+      <description>Creates a JsonArrayBuilder instance that is used to build JsonArray</description>
+      <package>javax.json</package>
+      <class-interface>JsonBuilderFactory</class-interface>
+      <method name="createArrayBuilder" return-type="javax.json.JsonArrayBuilder"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:454</id>
+      <description>Creates a JsonObjectBuilder instance that is used to build JsonObject.</description>
+      <package>javax.json</package>
+      <class-interface>JsonBuilderFactory</class-interface>
+      <method name="createObjectBuilder" return-type="javax.json.JsonObjectBuilder"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:455</id>
+      <description>Returns read-only map of supported provider specific configuration properties that are used to configure the created JSON builders. If there are any specified configuration properties that are not supported by the provider, they won't be part of the returned map.</description>
+      <package>javax.json</package>
+      <class-interface>JsonBuilderFactory</class-interface>
+      <method name="getConfigInUse" return-type="java.util.Map"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:459</id>
+      <description>Returns read-only map of supported provider specific configuration properties that are used to configure the created JSON readers. If there are any specified configuration properties that are not supported by the provider, they won't be part of the returned map.</description>
+      <package>javax.json</package>
+      <class-interface>JsonReaderFactory</class-interface>
+      <method name="getConfigInUse" return-type="java.util.Map"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:463</id>
+      <description>Returns read-only map of supported provider specific configuration properties that are used to configure the created JSON writer objects. If there are any specified configuration properties that are not supported by the provider, they won't be part of the returned map.</description>
+      <package>javax.json</package>
+      <class-interface>JsonWriterFactory</class-interface>
+      <method name="getConfigInUse" return-type="java.util.Map"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:464</id>
+      <description>Creates a JSON array builder</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createArrayBuilder" return-type="javax.json.JsonArrayBuilder"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:465</id>
+      <description>Creates a builder factory for creating JsonArrayBuilder and JsonObjectBuilder objects. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createBuilderFactory" return-type="javax.json.JsonBuilderFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:466</id>
+      <description>Creates a JSON object builder</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createObjectBuilder" return-type="javax.json.JsonObjectBuilder"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:467</id>
+      <description>Creates a JSON reader from a character stream.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createReader" return-type="javax.json.JsonReader">
+        <parameters>
+          <parameter>java.io.Reader</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:468</id>
+      <description>Creates a JSON reader from a byte stream. The character encoding of the stream is determined as described in RFC 4627.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createReader" return-type="javax.json.JsonReader">
+        <parameters>
+          <parameter>java.io.InputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:469</id>
+      <description>Creates a reader factory for creating JsonReader objects. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createReaderFactory" return-type="javax.json.JsonReaderFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:470</id>
+      <description>Creates a JSON writer to write a JSON JsonObject object or JsonArray array structure to the specified character stream.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createWriter" return-type="javax.json.JsonWriter">
+        <parameters>
+          <parameter>java.io.Writer</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:471</id>
+      <description>Creates a JSON writer to write a JSON JsonObject object or JsonArray array structure to the specified byte stream. Characters written to the stream are encoded into bytes using UTF-8 encoding.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createWriter" return-type="javax.json.JsonWriter">
+        <parameters>
+          <parameter>java.io.OutputStream</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:472</id>
+      <description>Creates a writer factory for creating JsonWriter objects. The factory is configured with the specified map of provider specific configuration properties. Provider implementations should ignore any unsupported configuration properties specified in the map.</description>
+      <package>javax.json.spi</package>
+      <class-interface>JsonProvider</class-interface>
+      <method name="createWriterFactory" return-type="javax.json.JsonWriterFactory">
+        <parameters>
+          <parameter>java.util.Map</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:474</id>
+      <description>Return the column number for the current JSON event in the input source.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonLocation</class-interface>
+      <method name="getColumnNumber" return-type="long"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:475</id>
+      <description>Return the line number for the current JSON event in the input source.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonLocation</class-interface>
+      <method name="getLineNumber" return-type="long"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:476</id>
+      <description>Return the stream offset into the input source this location is pointing to. If the input source is a file or a byte stream then this is the byte offset into that stream, but if the input source is a character media then the offset is the character offset. Returns -1 if there is no offset available.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonLocation</class-interface>
+      <method name="getStreamOffset" return-type="long"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:477</id>
+      <description>Return the location that corresponds to the parser's current state in the JSON input source. The location information is only valid in the current parser state (or until the parser is advanced to a next state).</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParser</class-interface>
+      <method name="getLocation" return-type="javax.json.stream.JsonLocation"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:478</id>
+      <description>Return the location of the incorrect JSON.</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonParsingException</class-interface>
+      <method name="getLocation" return-type="javax.json.stream.JsonLocation"/>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:481</id>
+      <description>Returns a list a view of the specified type for the array. This method does not verify if there is a value of wrong type in the array. Providing this typesafe view dynamically may cause a program fail with a ClassCastException, if there is a value of wrong type in this array. Unfortunately, the exception can occur at any time after this method returns.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getValuesAs" return-type="java.util.List">
+        <parameters>
+          <parameter>java.lang.Class</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:490</id>
+      <description>Returns the array value at the specified position in this array. This is a convenience method for (JsonArray)get(index).</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonArray" return-type="javax.json.JsonArray">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:491</id>
+      <description>if the index is out of range</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonArray" return-type="javax.json.JsonArray">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.IndexOutOfBoundsException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:492</id>
+      <description>if the value at the specified position is not assignable to the JsonArray type</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonArray" return-type="javax.json.JsonArray">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:493</id>
+      <description>Returns the number value at the specified position in this array. This is a convenience method for (JsonNumber)get(index).</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonNumber" return-type="javax.json.JsonNumber">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:494</id>
+      <description>if the index is out of range</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonNumber" return-type="javax.json.JsonNumber">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.IndexOutOfBoundsException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:495</id>
+      <description>if the value at the specified position is not assignable to the JsonNumber type</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonNumber" return-type="javax.json.JsonNumber">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:496</id>
+      <description>Returns the object value at the specified position in this array. This is a convenience method for (JsonObject)get(index).</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonObject" return-type="javax.json.JsonObject">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:497</id>
+      <description>if the index is out of range</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonObject" return-type="javax.json.JsonObject">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.IndexOutOfBoundsException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:498</id>
+      <description>if the value at the specified position is not assignable to the JsonObject type</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonObject" return-type="javax.json.JsonObject">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:499</id>
+      <description>Returns the string value at ths specified position in this array. This is a convenience method for (JsonString)get(index).</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonString" return-type="javax.json.JsonString">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:500</id>
+      <description>if the index is out of range</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonString" return-type="javax.json.JsonString">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.IndexOutOfBoundsException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:501</id>
+      <description>if the value at the specified position is not assignable to the JsonString type</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="getJsonString" return-type="javax.json.JsonString">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:506</id>
+      <description>Returns true if the value at the specified location in this array is JsonValue.NULL.</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="isNull" return-type="boolean">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:507</id>
+      <description>if the index is out of range</description>
+      <package>javax.json</package>
+      <class-interface>JsonArray</class-interface>
+      <method name="isNull" return-type="boolean">
+        <parameters>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.IndexOutOfBoundsException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:527</id>
+      <description>Returns the array value to which the specified name is mapped. This is a convenience method for (JsonArray)get(name) to get the value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getJsonArray" return-type="javax.json.JsonArray">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:528</id>
+      <description>if the value to which the specified name is mapped is not assignable to JsonArray type</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getJsonArray" return-type="javax.json.JsonArray">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:529</id>
+      <description>Returns the number value to which the specified name is mapped. This is a convenience method for (JsonNumber)get(name) to get the value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getJsonNumber" return-type="javax.json.JsonNumber">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:530</id>
+      <description>if the value to which the specified name is mapped is not assignable to JsonNumber type</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getJsonNumber" return-type="javax.json.JsonNumber">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:531</id>
+      <description>Returns the object value to which the specified name is mapped. This is a convenience method for (JsonObject)get(name) to get the value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getJsonObject" return-type="javax.json.JsonObject">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:532</id>
+      <description>if the value to which the specified name is mapped is not assignable to JsonObject type</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getJsonObject" return-type="javax.json.JsonObject">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:533</id>
+      <description>Returns the string value to which the specified name is mapped. This is a convenience method for (JsonString)get(name) to get the value.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getJsonString" return-type="javax.json.JsonString">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:534</id>
+      <description>if the value to which the specified name is mapped is not assignable to JsonString type</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="getJsonString" return-type="javax.json.JsonString">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.ClassCastException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:539</id>
+      <description>Returns true if the associated value for the specified name is JsonValue.NULL.</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="isNull" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:540</id>
+      <description>if the specified name doesn't have any mapping</description>
+      <package>javax.json</package>
+      <class-interface>JsonObject</class-interface>
+      <method name="isNull" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:551</id>
+      <description>if an i/o error occurs (IOException would be cause of JsonException)</description>
+      <package>javax.json.stream</package>
+      <class-interface>JsonGenerator</class-interface>
+      <method name="flush" return-type="void">
+        <throw>javax.json.JsonException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:555</id>
+      <description>if the specified value is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:556</id>
+      <description>if the specified value is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:557</id>
+      <description>if the specified value is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:558</id>
+      <description>if the specified value is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:559</id>
+      <description>if the specified builder is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>javax.json.JsonObjectBuilder</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:560</id>
+      <description>if the specified builder is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonArrayBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonArrayBuilder">
+        <parameters>
+          <parameter>javax.json.JsonArrayBuilder</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:561</id>
+      <description>if the specified name or value is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonValue</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:562</id>
+      <description>if the specified name or value is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:563</id>
+      <description>if the specified name or value is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigInteger</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:564</id>
+      <description>if the specified name or value is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>java.math.BigDecimal</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:565</id>
+      <description>if the specified name is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>int</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:566</id>
+      <description>if the specified name is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>long</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:567</id>
+      <description>if the specified name is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>double</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:568</id>
+      <description>if the specified name is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>boolean</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:569</id>
+      <description>if the specified name or builder is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonObjectBuilder</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:570</id>
+      <description>if the specified name or builder is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="add" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+          <parameter>javax.json.JsonArrayBuilder</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+<assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>JSONP:JAVADOC:571</id>
+      <description>if the specified name is null</description>
+      <package>javax.json</package>
+      <class-interface>JsonObjectBuilder</class-interface>
+      <method name="addNull" return-type="javax.json.JsonObjectBuilder">
+        <parameters>
+          <parameter>java.lang.String</parameter>
+        </parameters>
+        <throw>java.lang.NullPointerException</throw>
+      </method>
+    </assertion>
+</assertions>
+</javadoc>

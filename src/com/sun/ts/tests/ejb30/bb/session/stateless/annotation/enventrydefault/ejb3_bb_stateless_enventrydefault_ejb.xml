@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+    <enterprise-beans>
+        <session>
+            <ejb-name>EnvEntryFieldBean</ejb-name>
+            <env-entry>
+                <description>regular env-entry</description>
+                <env-entry-name>myString</env-entry-name>
+                <!-- <env-entry-type>java.lang.String</env-entry-type> -->
+                <!-- <env-entry-value>EnvEntryFieldBean</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myString</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myBoolean</env-entry-name>
+                <!-- <env-entry-type>java.lang.Boolean</env-entry-type> -->
+                <!-- <env-entry-value>true</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myBoolean</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myByte</env-entry-name>
+                <!-- <env-entry-type>java.lang.Byte</env-entry-type> -->
+                <!-- <env-entry-value>8</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myByte</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myShort</env-entry-name>
+                <!-- <env-entry-type>java.lang.Short</env-entry-type> -->
+                <!-- <env-entry-value>1</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myShort</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myInt</env-entry-name>
+                <!-- <env-entry-type>java.lang.Integer</env-entry-type> -->
+                <!-- <env-entry-value>-1</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myInt</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myLong</env-entry-name>
+                <!-- <env-entry-type>java.lang.Long</env-entry-type> -->
+                <!-- <env-entry-value>100</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myLong</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myFloat</env-entry-name>
+                <!-- <env-entry-type>java.lang.Float</env-entry-type> -->
+                <!-- <env-entry-value>1.1</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myFloat</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myDouble</env-entry-name>
+                <!-- <env-entry-type>java.lang.Double</env-entry-type> -->
+                <!-- <env-entry-value>1.11</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myDouble</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myChar</env-entry-name>
+                <!-- <env-entry-type>java.lang.Character</env-entry-type> -->
+                <!-- <env-entry-value>f</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myChar</injection-target-name>
+                </injection-target>
+            </env-entry>
+      
+            <!-- env-entry with subcontexts -->
+            <env-entry>
+                <description>regular env-entry</description>
+                <env-entry-name>a/a/a/myString</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <!-- <env-entry-value>EnvEntryFieldBeanDeep</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myStringDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myBoolean</env-entry-name>
+                <env-entry-type>java.lang.Boolean</env-entry-type>
+                <!-- <env-entry-value>false</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myBooleanDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myByte</env-entry-name>
+                <env-entry-type>java.lang.Byte</env-entry-type>
+                <!-- <env-entry-value>16</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myByteDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myShort</env-entry-name>
+                <env-entry-type>java.lang.Short</env-entry-type>
+                <!-- <env-entry-value>2</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myShortDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myInt</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <!-- <env-entry-value>-2</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myIntDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myLong</env-entry-name>
+                <env-entry-type>java.lang.Long</env-entry-type>
+                <!-- <env-entry-value>200</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myLongDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myFloat</env-entry-name>
+                <env-entry-type>java.lang.Float</env-entry-type>
+                <!-- <env-entry-value>2.2</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myFloatDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myDouble</env-entry-name>
+                <env-entry-type>java.lang.Double</env-entry-type>
+                <!-- <env-entry-value>2.22</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myDoubleDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myChar</env-entry-name>
+                <env-entry-type>java.lang.Character</env-entry-type>
+                <!-- <env-entry-value>F</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntryFieldBean</injection-target-class>
+                    <injection-target-name>myCharDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+      
+        </session>
+   
+        <session>
+            <ejb-name>EnvEntrySetterBean</ejb-name>
+            <env-entry>
+                <description>regular env-entry</description>
+                <env-entry-name>myString</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <!-- <env-entry-value>EnvEntrySetterBean</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myString</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myBoolean</env-entry-name>
+                <env-entry-type>java.lang.Boolean</env-entry-type>
+                <!-- <env-entry-value>true</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myBoolean</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myByte</env-entry-name>
+                <env-entry-type>java.lang.Byte</env-entry-type>
+                <!-- <env-entry-value>8</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myByte</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myShort</env-entry-name>
+                <env-entry-type>java.lang.Short</env-entry-type>
+                <!-- <env-entry-value>1</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myShort</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myInt</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <!-- <env-entry-value>-1</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myInt</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myLong</env-entry-name>
+                <env-entry-type>java.lang.Long</env-entry-type>
+                <!-- <env-entry-value>100</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myLong</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myFloat</env-entry-name>
+                <env-entry-type>java.lang.Float</env-entry-type>
+                <!-- <env-entry-value>1.1</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myFloat</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myDouble</env-entry-name>
+                <env-entry-type>java.lang.Double</env-entry-type>
+                <!-- <env-entry-value>1.11</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myDouble</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>myChar</env-entry-name>
+                <env-entry-type>java.lang.Character</env-entry-type>
+                <!-- <env-entry-value>f</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myChar</injection-target-name>
+                </injection-target>
+            </env-entry>
+      
+            <!-- env-entry with subcontexts -->
+            <env-entry>
+                <description>regular env-entry</description>
+                <env-entry-name>a/a/a/myString</env-entry-name>
+                <!-- <env-entry-type>java.lang.String</env-entry-type> -->
+                <!-- <env-entry-value>EnvEntrySetterBeanDeep</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myStringDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myBoolean</env-entry-name>
+                <!-- <env-entry-type>java.lang.Boolean</env-entry-type> -->
+                <!-- <env-entry-value>false</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myBooleanDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myByte</env-entry-name>
+                <!-- <env-entry-type>java.lang.Byte</env-entry-type> -->
+                <!-- <env-entry-value>16</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myByteDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myShort</env-entry-name>
+                <!-- <env-entry-type>java.lang.Short</env-entry-type> -->
+                <!-- <env-entry-value>2</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myShortDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myInt</env-entry-name>
+                <!-- <env-entry-type>java.lang.Integer</env-entry-type> -->
+                <!-- <env-entry-value>-2</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myIntDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myLong</env-entry-name>
+                <!-- <env-entry-type>java.lang.Long</env-entry-type> -->
+                <!-- <env-entry-value>200</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myLongDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myFloat</env-entry-name>
+                <!-- <env-entry-type>java.lang.Float</env-entry-type> -->
+                <!-- <env-entry-value>2.2</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myFloatDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myDouble</env-entry-name>
+                <!-- <env-entry-type>java.lang.Double</env-entry-type> -->
+                <!-- <env-entry-value>2.22</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myDoubleDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>a/a/a/myChar</env-entry-name>
+                <!-- <env-entry-type>java.lang.Character</env-entry-type> -->
+                <!-- <env-entry-value>F</env-entry-value> -->
+                <injection-target>
+                    <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault.EnvEntrySetterBean</injection-target-class>
+                    <injection-target-name>myCharDeep</injection-target-name>
+                </injection-target>
+            </env-entry>
+        </session>
+    </enterprise-beans>
+</ejb-jar>

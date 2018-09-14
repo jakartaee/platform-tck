@@ -1,0 +1,472 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.79C-CCK-MCD  [en] (X11; U; SunOS 5.7 sun4u) [Netscape]">
+   <meta name="AUTHOR" content="Irene Caruso">
+   <meta name="CREATED" content="20000710;10525321">
+   <meta name="CHANGEDBY" content="Irene Caruso">
+   <meta name="CHANGED" content="20000925;14012592">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<style>
+	<!--
+		@page { margin-left: 1.25in; margin-right: 1.25in; margin-top: 1in; margin-bottom: 1in }
+		P { margin-bottom: 0.08in }
+		H3 { margin-bottom: 0.08in; font-family: "Arial", sans-serif }
+		TD P { margin-bottom: 0.08in }
+		TH P { margin-bottom: 0.08in; font-style: italic }
+	-->
+	</style>
+</head>
+<body>
+<b><font size=+1>J2EE Compatibility Test Plan (CTS) for Connector 1.5 Plan</font></b>
+<br>&nbsp;
+<div STYLE="margin-bottom: 0in"><font size=-1>Gursharan Singh</font></div>
+
+<div STYLE="margin-bottom: 0in"><font size=-1>last updated&nbsp; 08/23/2002</font></div>
+
+<div STYLE="margin-bottom: 0in"><b><font size=+1>Introduction</font></b></div>
+
+<div STYLE="margin-bottom: 0in">This specification documents the Connector
+1.5 high level Compatiblity CTS test plan for the Connector 1.5 specification.
+Compatibility test cases are derived from the requirements of these engineering
+specifications. The reference implementation will validate that the specifications
+can be implemented, will provide a reference point for the development
+community, and will be used for developing Compatibility Tests, which leads
+to a brand. It is a requirement of the compatibility program that all tests
+cases be passed before a brand can be applied.</div>
+
+<br>&nbsp;
+<p><b><font size=+1>Goals</font></b>
+
+<p STYLE="margin-bottom: 0in">Provide Connector 1.5 compatibility tests
+for J2EE version 1.4. This will include writing tests for system level
+contracts between a J2EE 1.4 Application Server and a resource adapter
+which satisfies J2EE Connector 1.5 specifications. The contracts between
+J2EE 1.4 Application Server and resource adapter are:
+<br>&nbsp;
+<ul>
+<li STYLE="margin-bottom: 0in">
+Work management contract: This allows a resource adapter to submit Work
+instances to be executed by an application server.</li>
+
+<li STYLE="margin-bottom: 0in">
+Life cycle management contract: This allows the runtime and deployment
+behaviour of the resource adapter into application server.</li>
+
+<li STYLE="margin-bottom: 0in">
+Message Inflow: This provides a mechanism for EIS to the use resource adapter
+to dispatch calls to MDB.</li>
+
+<li STYLE="margin-bottom: 0in">
+Transaction Inflow : This provides a contract to import external transaction
+into the application server.</li>
+</ul>
+<b><font size=+1>Non-Goals</font></b>
+<ul>
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Performance</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scalability</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ease of use</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Non-required areas of
+the specification.</li>
+
+<li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The capability to certify
+any Resource Adapter Connector 1.5 specification.</li>
+</ul>
+<b><font size=+1>Types of Compatibility Tests</font></b>
+<br>&nbsp;
+<div STYLE="margin-bottom: 0in">There are 3 types of tests that make up
+the Compatibility Test Suite, these include:</div>
+
+<ul>
+<li STYLE="margin-bottom: 0in">
+Signature Tests - Checks that all of the required API signatures are available
+for an implementation, no supersets or subsets.</li>
+
+<li STYLE="margin-bottom: 0in">
+API Tests - Verifies that all of the required classes and methods behave
+according to the specification on a method by method basis.</li>
+
+<li STYLE="margin-bottom: 0in">
+End to End Tests - A new type of compatibility test which is new to the
+J2EE platform. These type of tests span across n-tiers of the J2EE Platform.The
+CTS Connectors tests will be end to end tests, which allow the testing
+of life cycles, state transitions, and general behaviour.</li>
+</ul>
+<b><font size=+1>CTS Tragated High Level Areas</font></b>
+<p>The following areas have been identified as requirements of the Connector
+specification and are targeted for CTS test development. Please see the
+Connector specification for
+<br>details on these requirements.
+<br>&nbsp;
+<ul>
+<li>
+The Connector defined SPI (Server Provider Interface) for the Life Cycle
+contracts. Described in Connector 1.5 Specification Chapter 5.</li>
+
+<li>
+&nbsp;The Connector defined SPI (Server Provider Interface) for the Work
+Management contracts. Described in Connector 1.5 Specification Chapter
+10.</li>
+
+<li>
+The Connector defined SPI (Server Provider Interface) for the Transaction
+Inflow contracts. Described in Connector 1.5 Specification Chapter 12.</li>
+
+<li>
+The Connector defined SPI (Server Provider Interface) for the Message Inflow
+contracts. Described in Connector 1.5 Specification Chapter 14.</li>
+
+<li>
+The Connector defined SPI (Server Provider Interface) for the Packaging
+and Deployment contracts. Described in Connector 1.5 Specification Chapter
+17.</li>
+</ul>
+
+<p><br><b><font size=+1>CTS Non-Targeted High Level Areas</font></b>
+<br>&nbsp;
+<ul>
+<li>
+&nbsp;The Connector 1.5 specification recommends, but does not require,
+that a resource adapter support CCI.&nbsp; As described earlier, the CTS
+is a "standard bar" applied to all&nbsp;&nbsp;&nbsp;&nbsp; Licensees.&nbsp;
+CTS tests are derived from the requirements of the specifications.&nbsp;
+The CTS will not contain any tests for the CCI.</li>
+</ul>
+
+<ul>
+<li>
+&nbsp;The CTS Connectors tests will not be written for any resource adapter.&nbsp;
+A specific, known Resource Adapter (described later in this document) will
+be deployed on a licensees J2EE server in order to test the J2EE application
+servers' Connector implementation.&nbsp; A TCK for Resource Adapters is
+beyond the scope of this specification.</li>
+</ul>
+
+<p><br><b><font size=+1>Test Approach</font></b>
+<p>The purpose of the CTS connector is to insure that J2EE 1.4 Application
+server has fullfiled all the Connector 1.5 specification which allows any
+Connector 1.5 resource adpater to be deployed and function correctly.
+<p>It will be necessary to have a resource adapter which fullfils the Connector
+1.5 specification to be deployed on J2EE 1.4 server. Previouly, for Connector
+1.0, CTS took the approach to built its own CTS resource adapter and write
+tests on top of it. For Connector 1.5 three resource adapter will be built
+by the CTS team with will use CTS EIS for transaction support and on that
+assertions will be built on the following areas
+<br>&nbsp;
+<ul>
+<li>
+Life Cycle Contract: The following areas will be coverd</li>
+</ul>
+
+<ul>
+<ul>
+<ul>
+<li>
+ResourceAdapter runtime behavior</li>
+
+<li>
+ResourceAdapter association with ManagedConnectionFactory and ActivationSpec</li>
+</ul>
+</ul>
+</ul>
+
+<ul>
+<li>
+WorkManager Contract: The following areas will be coverd</li>
+
+<ul>
+<ul>
+<li>
+To ensure that WorkManager is correctly implemented by J2EE 1.4 Application
+server</li>
+
+<li>
+Work Object from resource adapter can be passed to WorkManager.</li>
+</ul>
+</ul>
+</ul>
+
+<ul>
+<li>
+Transaction Inflow contract:&nbsp; The following areas will be covered</li>
+
+<ul>
+<ul>
+<li>
+Message delivery is transacted or not.</li>
+
+<li>
+XAResource being used by the Transaction Manager.</li>
+</ul>
+</ul>
+</ul>
+
+<ul>
+<li>
+Message Inflow Contract:</li>
+
+<ul>
+<ul>
+<li>
+Messages can be dispactched to an non transaction requried MDB.</li>
+
+<li>
+Messages can be dispactched to an transaction requried MDB.</li>
+</ul>
+</ul>
+</ul>
+
+<ul>
+<li>
+Deployment Tests.</li>
+
+<ul>
+<ul>
+<li>
+Embeded resource adapter can be deployed correctly and can be used by the
+application it is deployed with.</li>
+</ul>
+</ul>
+</ul>
+
+<ul>
+<li>
+Set of Regression tests for Connector 1.0 outbound contracts.</li>
+
+<ul>
+<ul>
+<li>
+A set of connection tests to verify it the Connector 1.0 Resource adapter
+can work on J2EE 1.4 server.</li>
+</ul>
+</ul>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp; Furthermore, the test strategies will evolve with
+discussions with CTS, RI&nbsp; team and as the Connector 1.5 spec progresses.
+<p><b><font size=+1>Test Organization</font></b>
+<p>The tree for the tests looks like this:
+<p>$CTS_HOME/src/com/sun/ts/tests/
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----common/connector/whitebox&nbsp; (the CTS Resource Adapter, to be
+deployed by licensee)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----common/connector/whitebox (CTS EIS which used by Resource Adapter)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----common/connector/util (used by the RA for SPI logging)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/localTx/lifecycle&nbsp; ( for localTx Life Cycle contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/localTx/workmgt ( for localTx Work Management contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/localTx/transinflow&nbsp; ( for localTx Transaction
+Inflow contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/localTx/msginflow ( for localTx Message Inflow contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/noTx/lifecycle&nbsp; ( for noTx Life Cycle contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/noTx/workmgt ( for noTx Work Management contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/noTx/transinflow&nbsp; ( for noTx Transaction Inflow
+contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/noTx/msginflow ( for noTx Message Inflow contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/xa/lifecycle&nbsp; ( for xa Life Cycle contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/xa/workmgt ( for xa Work Management contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/xa/transinflow&nbsp; ( for xa Transaction Inflow contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/xa/msginflow ( for xa Message Inflow contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/regression/transinflow&nbsp; ( Set of Regression tests
+which tests the Connector 1.0 outbound contracts)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/mdb&nbsp; ( mdb which is used by the msginflow tests)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----connector/ee/deployment (deployment tests for embeded resource adapter)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----compat13/connector/localTx (compat13 tests for localTx)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----compat13/connector/xa (compat13 tests for xa)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|-----compat13/connector/noTx (compat13 tests for noTx)
+<p><b><font size=+1>Deliverables</font></b>
+<p>&nbsp;TS resource adapters (Bi-directional) and has all 3 flavours (XA,
+Local, No Transaction), which will be part of the CTS.
+<br>&nbsp;A TS EIS which is used by resource adapters. (Brief Description
+of TSeis)
+<br>&nbsp;A set of tests for the Connector 1.5&nbsp; component as part
+of the J2EE 1.4 platform Compatibility Test Suite.
+<br>&nbsp;An updated CTS User's Guide for setup and configuration specific
+details for the Connector 1.5&nbsp; tests.
+<br>&nbsp;
+<p><b><font size=+1>Dependencies</font></b>
+
+<p STYLE="margin-bottom: 0in">J2EE 1.4 Platform Specification
+<div STYLE="margin-bottom: 0in">J2EE 1.4 Reference Implementation</div>
+
+<div STYLE="margin-bottom: 0in">J2EE Connector 1.5 Specification</div>
+
+<p><br><b><font size=+1>Team Members</font></b>
+<br>Ram Jeyaraman - Specification Lead
+<br>Qingqing-&nbsp; RI Lead
+<br>Gursharan Singh - CTS Lead
+<br>Balaji - SQE Lead
+<br>Vijay Sarathy - Product Manager
+<br>Jennifer Douglas - Program Manager
+<br>Anita Jindal - Project Manager
+<p><b><font size=+1>Assertions Coverage</font></b>
+<p><font size=+1><a href="http://invalid.domain.com/~gsingh/Assertion/Connector15CommunityDraft.html">Specification
+Assertion Details after Assertion Review 1 (04/16/2002)</a></font>
+<br><font size=+1><a href="/home/gsingh/public_html/Assertion/Connector15ProposedFinal.html">Specification
+Assertion Details after Assertion Review 2 (08/20/2002)</a></font>
+<p><font size=+1><a href="ConnectorJavadocAssertions.html">JavaDoc Assertion
+Details</a></font>
+<p>Specification Assertion Details after AssertionReview 2 ( 04/26/2002)
+<p><b><font size=+1>Schedules</font></b>
+<div STYLE="margin-bottom: 0in">&nbsp;
+<br>Task Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Finish
+<br>--------------------------------------------------------------------------------------------
+<br>&nbsp;
+<p>CTS Test plan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+21 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 1/14/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 2/12/02
+<br>Implement Simple CTS EIS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+22 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Thu 1/17/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 2/19/02
+<br>Implement Connector 1.5 RA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+25 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Wed 2/20/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 03/22/02
+<br>Vacation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp; days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Wed 03/27/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Fri 03/29/02
+<br>Continue with Connector 1.5 RA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 4/1/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Fri 4/5/02
+<br>Assertion Coverage and Planning&nbsp;&nbsp;&nbsp; 5 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 4/8/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Fri 4/12/02
+<br>Assertion Coverage Review&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 4/15/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 4/16/02
+<br>Life Cycle Assertions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+9 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Wed 4/17/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 4/29/02
+<br>Work Management Assertions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 4/30/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 5/13/02
+<br>Transaction Inflow Assertions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+19 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 5/14/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 6/10/02
+<br>Message Inflow Assertions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+19 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 6/11/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 7/08/02
+<br>Connector 1.0 Tests for CTS EIS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+20 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 7/09/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 8/5/02
+<br>Ant Related Tasks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 8/06/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Mon 8/19/02
+<br>TestReviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1 days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tue 8/20/02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Wed 8/20/02
+<br>&nbsp;
+<br>&nbsp;</div>
+<b><font size=+1>Support</font></b>
+<br>&nbsp;
+<div STYLE="margin-bottom: 0in">Support is provided to the CTS Licencees
+via the Java Licensee Engineering (JLE) team.</div>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

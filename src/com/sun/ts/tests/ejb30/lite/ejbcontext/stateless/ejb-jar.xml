@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="3.1" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+  <enterprise-beans>
+    <session>
+      <ejb-name>EJBContextBean</ejb-name>
+      <env-entry>
+        <env-entry-name>java:comp/env/myString</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>comp</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>java:app/env/myString</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>app</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>java:module/env/myString2</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>module</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>java:global/env/ejb30/lite/ejbcontext/myString</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>global</env-entry-value>
+      </env-entry>
+
+      <resource-env-ref>
+        <resource-env-ref-name>ejbContextFromDescriptorInjection</resource-env-ref-name>
+        <!--
+		<resource-env-ref-type>javax.ejb.EJBContext</resource-env-ref-type>
+		-->
+        <injection-target>
+          <injection-target-class>com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase</injection-target-class>
+          <injection-target-name>ejbContextFromDescriptorInjection</injection-target-name>
+        </injection-target>
+        <injection-target>
+          <injection-target-class>com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1</injection-target-class>
+          <injection-target-name>ejbContextFromDescriptorInjection</injection-target-name>
+        </injection-target>
+        <injection-target>
+          <injection-target-class>com.sun.ts.tests.ejb30.lite.ejbcontext.stateless.EJBContextBean</injection-target-class>
+          <injection-target-name>ejbContextFromDescriptorInjection</injection-target-name>
+        </injection-target>
+      </resource-env-ref>
+    </session>
+
+    <session>
+      <ejb-name>EJBContext2Bean</ejb-name>
+      <env-entry>
+        <env-entry-name>java:comp/env/myString</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>comp</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>java:app/env/myString</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>app</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>java:module/env/myString2</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>module</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>java:global/env/ejb30/lite/ejbcontext/myString</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>global</env-entry-value>
+      </env-entry>
+
+      <resource-env-ref>
+        <resource-env-ref-name>ejbContextFromDescriptorInjection2</resource-env-ref-name>
+        <injection-target>
+          <injection-target-class>com.sun.ts.tests.ejb30.lite.ejbcontext.stateless.EJBContext2Bean</injection-target-class>
+          <injection-target-name>ejbContextFromDescriptorInjection</injection-target-name>
+        </injection-target>
+      </resource-env-ref>
+
+      <resource-env-ref>
+        <resource-env-ref-name>ejbContextFromDescriptorInjection</resource-env-ref-name>
+        <injection-target>
+          <injection-target-class>com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase</injection-target-class>
+          <injection-target-name>ejbContextFromDescriptorInjection</injection-target-name>
+        </injection-target>
+        <injection-target>
+          <injection-target-class>com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1</injection-target-class>
+          <injection-target-name>ejbContextFromDescriptorInjection</injection-target-name>
+        </injection-target>
+        <injection-target>
+          <injection-target-class>com.sun.ts.tests.ejb30.lite.ejbcontext.stateless.EJBContext2Bean</injection-target-class>
+          <injection-target-name>ejbContextFromDescriptorInjection</injection-target-name>
+        </injection-target>
+      </resource-env-ref>
+    </session>
+  </enterprise-beans>
+
+  <interceptors>
+    <interceptor>
+      <interceptor-class>com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1</interceptor-class>
+    </interceptor>
+  </interceptors>
+  <assembly-descriptor>
+    <interceptor-binding>
+      <ejb-name>*</ejb-name>
+      <interceptor-class>com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1</interceptor-class>
+    </interceptor-binding>
+  </assembly-descriptor>
+</ejb-jar>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="sec_ejb" basedir="." default="usage">
+<import file="../../../../../../../../../bin/xml/ts.import.xml"/>
+
+  <property name="app.name" value="SecEjb"/>
+  <property name="wsdl.file" value="HelloBasic.wsdl"/>
+  <property name="MetaData.file" value="HelloBasic.xml"/>
+  <property name="more.wsdl.file" value="HelloUnprotected.wsdl"/>
+  <property name="more.MetaData.file" value="HelloUnprotected.xml"/>
+
+
+  <target name="package" depends="compile">
+
+      <ts.ejbjar archivename="${app.name}Unprotected" descriptor="SecEjbUnprotected_ejb.xml"
+                 excludedfiles="com/sun/ts/tests/webservices/sec/ejb/basicSSL/HelloBasic*.class">
+        <zipfileset dir= "." includes="webservices_unprotected.xml" fullpath="META-INF/webservices.xml"/>
+        <zipfileset dir= "." includes="${more.wsdl.file}" prefix="META-INF/wsdl"/>
+        <fileset dir="." includes="${more.MetaData.file}"/>
+      </ts.ejbjar>
+
+      <ts.ejbjar archivename="${app.name}Basic" descriptor="SecEjbBasic_ejb.xml"
+                 excludedfiles="com/sun/ts/tests/webservices/sec/ejb/basicSSL/HelloUnprotected*.class">
+        <zipfileset dir= "." includes="webservices_basic.xml" fullpath="META-INF/webservices.xml"/>
+        <zipfileset dir= "." includes="${wsdl.file}" prefix="META-INF/wsdl"/>
+        <fileset dir="." includes="${MetaData.file}"/>
+      </ts.ejbjar>
+
+      <ts.ear archivename="${app.name}" includedefaultfiles="false">
+         <fileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}Unprotected_ejb.jar"/>
+         <fileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}Basic_ejb.jar"/>
+      </ts.ear>
+
+
+     <ts.vehicles name="${app.name}"
+                  excludedfiles="com/sun/ts/tests/webservices/sec/ejb/basicSSL/HelloBasicBean.class,
+                                 com/sun/ts/tests/webservices/sec/ejb/basicSSL/HelloBasicHome.class,
+                                 com/sun/ts/tests/webservices/sec/ejb/basicSSL/HelloBasicRemote.class,
+                                 com/sun/ts/tests/webservices/sec/ejb/basicSSL/HelloUnprotectedBean.class,
+                                 com/sun/ts/tests/webservices/sec/ejb/basicSSL/HelloUnprotectedHome.class,
+                                 com/sun/ts/tests/webservices/sec/ejb/basicSSL/HelloUnprotectedRemote.class">
+        <ejb-elements>
+          <fileset dir="." includes="${MetaData.file}, ${more.MetaData.file}"/>
+          <zipfileset dir= "." includes="${wsdl.file}, ${more.wsdl.file}" prefix="META-INF/wsdl"/>
+        </ejb-elements>
+        <client-elements>
+          <fileset dir="." includes="${MetaData.file}, ${more.MetaData.file}"/>
+          <zipfileset dir= "." includes="${wsdl.file}, ${more.wsdl.file}" prefix="META-INF/wsdl"/>
+        </client-elements>
+        <servlet-elements>
+          <fileset dir="." includes="${MetaData.file}, ${more.MetaData.file}"/>
+          <zipfileset dir="." includes="${wsdl.file}, ${more.wsdl.file}" prefix="WEB-INF/wsdl"/>
+        </servlet-elements>
+        <jsp-elements>
+          <fileset dir="." includes="${MetaData.file}, ${more.MetaData.file}"/>
+          <zipfileset dir="." includes="${wsdl.file}, ${more.wsdl.file}" prefix="WEB-INF/wsdl"/>
+        </jsp-elements>
+      </ts.vehicles>
+
+  </target>
+
+</project>

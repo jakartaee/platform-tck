@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <display-name>servlet_ee_platform_deploy_ejblink_single</display-name>
+  <servlet>
+    <servlet-name>MyServletTestLogicalName</servlet-name>
+    <servlet-class>com.sun.ts.tests.servlet.ee.platform.deploy.ejblink.single.ServletTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyServletTestLogicalName</servlet-name>
+    <url-pattern>/testDriver</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>54</session-timeout>
+  </session-config>
+  <ejb-ref>
+    <ejb-ref-name>ejb/StatelessBean_ExternalJAR</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.assembly.util.refbean.StatelessExternalHome</home>
+    <remote>com.sun.ts.tests.assembly.util.refbean.StatelessExternal</remote>
+    <ejb-link>Stateless</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/StatefulBean_ExternalJAR</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>com.sun.ts.tests.assembly.util.refbean.StatefulExternalHome</home>
+    <remote>com.sun.ts.tests.assembly.util.refbean.StatefulExternal</remote>
+    <ejb-link>Stateful</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/BMPBean_ExternalJAR</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>com.sun.ts.tests.assembly.util.refbean.BMPExternalHome</home>
+    <remote>com.sun.ts.tests.assembly.util.refbean.BMPExternal</remote>
+    <ejb-link>BMP</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/CMP11Bean_ExternalJAR</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>com.sun.ts.tests.assembly.util.refbean.CMP11ExternalHome</home>
+    <remote>com.sun.ts.tests.assembly.util.refbean.CMP11External</remote>
+    <ejb-link>CMP11</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/CMP20Bean_ExternalJAR</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>com.sun.ts.tests.assembly.util.refbean.CMP20ExternalHome</home>
+    <remote>com.sun.ts.tests.assembly.util.refbean.CMP20External</remote>
+    <ejb-link>CMP20</ejb-link>
+  </ejb-ref>
+</web-app>

@@ -1,0 +1,100 @@
+
+This document comprises meeting minutes and the review comments for the
+documents,
+
+- JDBC section 6.2.4.3 in J2EE Commnunity Draft 1.4.
+- JDBC 3.0 Final Draft
+- Javadoc API for java.sql and javax.sql package.
+to ensure that the assertions identified conform to the Specifications.
+
+*********************************************
+
+Attendees:
+
+Jonathan Bruce - Spec Lead
+Binod PG - JDBC RI Lead
+Harminder Singh - CTS
+Amit Handa - RI Developer
+Sai Kiran Surya - RI Developer
+
+
+
+
+I. Minutes of the J2EE/JDBC3.0 Community Draft 1.4 Assertion Review Meeting - 05/30/02
+---------------------------------------------------------------------------------------
+
+# of Total assertions:  24
+
+# of required assertions: 20
+
+# of optional assertions: 4
+
+Total # Reviewed at Meeting:  All
+
+Issues Addressed:
+
+J2EE/JDBC:SPEC:7 - needs reference to spec
+
+J2EE/JDBC:SPEC:12 - add comments to indicate parameterName and paramterIndex
+
+J2EE/JDBC:SPEC:12.2 - reference to EJB spec
+
+J2EE/JDBC:SPEC:12.3 - add assertion for ParameterData
+
+J2EE/JDBC:SPEC:16 - list additional methods support in DatabaseMetaData. Remove "None .. implemented".
+
+J2EE/JDBC:SPEC:17 - remove "None... implemented".
+
+J2EE/JDBC:SPEC:18 - remove, same as 17
+
+J2EE/JDBC:SPEC:19 - J2EE spec needs to clarify whether Cascade & Restrict optional or required
+
+J2EE/JDBC:SPEC:20 - integrate with the other escape syntax
+
+J2EE/JDBC:SPEC:21 - rephrase the sentence (incomplete)
+
+
+
+II. Minutes of the JDBC3.0 Final Draft Assertion Review Meeting - 05/30/02
+--------------------------------------------------------------------------
+
+# of Total assertions:  26
+
+# of required assertions: 17
+
+# of optional assertions: 9
+
+Total # Reviewed at Meeting:  All
+
+Issues Addressed:
+
+JDBC:SPEC:7 - Testable is false
+
+JDBC:SPEC:9 - rephrase the paragraph
+
+JDBC:SPEC:10 - rephrase the paragraph
+
+JDBC:SPEC:16 - split into two assertions
+
+JDBC:SPEC:19 - add comments as why ConnectionpoolDataSource is required "false"
+
+JDBC:SPEC:23 - add comments
+
+JDBC:SPEC:25 - add comments explaining Table B1, Table B2 etc.
+
+
+
+
+III. Minutes of the Javadoc API Assertion Review Meeting - 05/30/02
+-------------------------------------------------------------------
+
+# of Total assertions:  1639
+
+# of required assertions: 707
+
+# of optional assertions: 932
+
+Issues Addressed:
+Add assertions for ParameterMetaData
+Add assertions for ParameterName
+

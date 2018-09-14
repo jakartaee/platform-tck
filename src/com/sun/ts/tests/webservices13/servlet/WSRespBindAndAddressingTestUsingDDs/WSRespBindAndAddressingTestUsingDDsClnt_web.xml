@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name>ServletClient</display-name>
+  <servlet>
+    <servlet-name>ServletClient</servlet-name>
+    <servlet-class>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.ServletClient</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletClient</servlet-name>
+    <url-pattern>/ServletTest</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>54</session-timeout>
+  </session-config>
+
+  <service-ref>
+    <service-ref-name>service/wsrespbindandaddrtestusingddsport4a</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.EchoService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo</service-ref-type>
+    <wsdl-file>WEB-INF/wsdl/EchoService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://Echo.org">servicens:EchoService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo</service-endpoint-interface>
+      <addressing>
+	<enabled>true</enabled>
+	<required>false</required>
+      </addressing>
+      <respect-binding>
+	<enabled>true</enabled>
+      </respect-binding>
+    </port-component-ref>
+    <handler-chains>
+      <handler-chain>
+        <handler>
+          <handler-name>ClientSOAPHandler</handler-name>
+          <handler-class>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.ClientSOAPHandler</handler-class>
+        </handler>
+      </handler-chain>
+    </handler-chains>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsrespbindandaddrtestusingddsport5a</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.EchoService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo</service-ref-type>
+    <wsdl-file>WEB-INF/wsdl/EchoService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://Echo.org">servicens:EchoService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo</service-endpoint-interface>
+      <addressing>
+	<enabled>true</enabled>
+	<required>true</required>
+      </addressing>
+      <respect-binding>
+	<enabled>true</enabled>
+      </respect-binding>
+    </port-component-ref>
+    <handler-chains>
+      <handler-chain>
+        <handler>
+          <handler-name>ClientSOAPHandler</handler-name>
+          <handler-class>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.ClientSOAPHandler</handler-class>
+        </handler>
+      </handler-chain>
+    </handler-chains>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsrespbindandaddrtestusingddsport6a</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.EchoService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo</service-ref-type>
+    <wsdl-file>WEB-INF/wsdl/EchoService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://Echo.org">servicens:EchoService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo</service-endpoint-interface>
+      <addressing>
+	<enabled>false</enabled>
+      </addressing>
+      <respect-binding>
+	<enabled>true</enabled>
+      </respect-binding>
+    </port-component-ref>
+    <handler-chains>
+      <handler-chain>
+        <handler>
+          <handler-name>ClientSOAPHandler</handler-name>
+          <handler-class>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.ClientSOAPHandler</handler-class>
+        </handler>
+      </handler-chain>
+    </handler-chains>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsrespbindandaddrtestusingddsport7a</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.EchoService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo2</service-ref-type>
+    <wsdl-file>WEB-INF/wsdl/EchoService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://Echo.org">servicens:EchoService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo2</service-endpoint-interface>
+      <addressing>
+	<enabled>true</enabled>
+	<required>false</required>
+      </addressing>
+      <respect-binding>
+	<enabled>true</enabled>
+      </respect-binding>
+    </port-component-ref>
+    <handler-chains>
+      <handler-chain>
+        <handler>
+          <handler-name>ClientSOAPHandler</handler-name>
+          <handler-class>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.ClientSOAPHandler</handler-class>
+        </handler>
+      </handler-chain>
+    </handler-chains>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsrespbindandaddrtestusingddsport8a</service-ref-name>
+    <service-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.EchoService</service-interface>
+    <service-ref-type>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo2</service-ref-type>
+    <wsdl-file>WEB-INF/wsdl/EchoService.wsdl</wsdl-file>
+    <service-qname xmlns:servicens="http://Echo.org">servicens:EchoService</service-qname>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo2</service-endpoint-interface>
+      <addressing>
+	<enabled>true</enabled>
+	<required>true</required>
+      </addressing>
+      <respect-binding>
+	<enabled>true</enabled>
+      </respect-binding>
+    </port-component-ref>
+    <handler-chains>
+      <handler-chain>
+        <handler>
+          <handler-name>ClientSOAPHandler</handler-name>
+          <handler-class>com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.ClientSOAPHandler</handler-class>
+        </handler>
+      </handler-chain>
+    </handler-chains>
+  </service-ref>
+</web-app>

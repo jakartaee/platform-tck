@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="interop_csiv2_ew_ssln_ssln_upn_upid_forward" basedir="." default="usage">
+<import file="../../../../../../../../../bin/xml/ts.import.xml"/> 
+
+
+  <target name="build.common.apps">
+    <ant dir="../../rionly" target="build"/>
+  </target>
+
+
+  <target name="compile">
+      <ts.javac includes="${pkg.dir}/**/*.java,
+                          com/sun/ts/tests/interop/csiv2/common/**/*.java"/>
+  </target>
+
+
+  <target name="package" depends="compile, build.common.apps">
+
+      <ts.ejbjar descriptor="interop_csiv2_ew_ssln_ssln_upn_upid_f_ejb.xml"
+                 archivename="interop_csiv2_ew_ssln_ssln_upn_upid_f">
+        <fileset dir="${class.dir}"
+                 includes="com/sun/ts/tests/interop/csiv2/common/*.class"
+                 excludes="com/sun/ts/tests/interop/csiv2/common/CSIv2AppClient.class,
+                           com/sun/ts/tests/interop/csiv2/common/CSIv2Servlet.class,
+                           com/sun/ts/tests/interop/csiv2/common/CSIv2Util.class,
+                           com/sun/ts/tests/interop/csiv2/common/LoggingSec*.class"/>
+      </ts.ejbjar>
+
+      <ts.war descriptor="interop_csiv2_ew_ssln_ssln_upn_upid_f_web.xml" 
+              archivename="interop_csiv2_ew_ssln_ssln_upn_upid_f">
+        <zipfileset dir="${class.dir}"
+                    includes="com/sun/ts/tests/interop/csiv2/common/*.class"
+                    excludes="com/sun/ts/tests/interop/csiv2/common/CSIv2AppClient.class,
+                              com/sun/ts/tests/interop/csiv2/common/CSIv2Util.class,
+                              com/sun/ts/tests/interop/csiv2/common/CSIv2EntityBean.class,
+                              com/sun/ts/tests/interop/csiv2/common/CSIv2SessionBean.class
+                              com/sun/ts/tests/interop/csiv2/common/LoggingSec*.class"
+                    prefix="WEB-INF/classes"/>
+        <fileset dir="contentRoot"/>
+      </ts.war>
+
+      <ts.clientjar descriptor="interop_csiv2_ew_ssln_ssln_upn_upid_f_client.xml"
+                    archivename="interop_csiv2_ew_ssln_ssln_upn_upid_f"
+                    mainclass="com.sun.ts.tests.interop.csiv2.ew_ssln_ssln_upn_upid.forward.Client">
+        <fileset dir="${class.dir}"
+                 includes="com/sun/ts/tests/interop/csiv2/common/**/*.class"
+                 excludes="com/sun/ts/tests/interop/csiv2/common/CSIv2EntityBean.class,
+                           com/sun/ts/tests/interop/csiv2/common/CSIv2Servlet.class,
+                           com/sun/ts/tests/interop/csiv2/common/CSIv2SessionBean.class,
+                           com/sun/ts/tests/interop/csiv2/common/CSIv2Util.class,
+                           com/sun/ts/tests/interop/csiv2/common/LoggingSec*.class"/>
+      </ts.clientjar>
+
+      <ts.ear archivename="interop_csiv2_ew_ssln_ssln_upn_upid_f" includedefaultfiles="false">
+        <fileset dir="${dist.dir}/${pkg.dir}"
+                 includes="interop_csiv2_ew_ssln_ssln_upn_upid_f_ejb.jar,
+                           interop_csiv2_ew_ssln_ssln_upn_upid_f_web.war,
+                           interop_csiv2_ew_ssln_ssln_upn_upid_f_client.jar"/>
+      </ts.ear>
+
+      <ts.ejbjar descriptor="interop_csiv2_ew_ssln_ssln_upn_upid_f_j2ee2_ejb.xml"
+                 archivename="interop_csiv2_ew_ssln_ssln_upn_upid_f_j2ee2">
+        <fileset dir="${class.dir}"
+                 includes="com/sun/ts/tests/interop/csiv2/common/*.class"
+                 excludes="com/sun/ts/tests/interop/csiv2/common/CSIv2AppClient.class,
+                           com/sun/ts/tests/interop/csiv2/common/CSIv2Servlet.class,
+                           com/sun/ts/tests/interop/csiv2/common/CSIv2Util.class,
+                           com/sun/ts/tests/interop/csiv2/common/LoggingSec*.class"/>
+      </ts.ejbjar>
+
+      <ts.ear archivename="interop_csiv2_ew_ssln_ssln_upn_upid_f_j2ee2" includedefaultfiles="false">
+        <fileset dir="${dist.dir}/${pkg.dir}" includes="interop_csiv2_ew_ssln_ssln_upn_upid_f_j2ee2_ejb.jar"/>
+      </ts.ear>
+
+  </target>
+
+</project>

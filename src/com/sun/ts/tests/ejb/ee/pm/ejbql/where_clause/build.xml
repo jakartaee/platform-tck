@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb_ee_pm_ejbql_where_clause" basedir="." default="usage">
+<import file="../../../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <target name="build.common.app">
+    <ant dir="../schema" target="build"/>
+  </target>
+
+  <target name="package" depends="build.common.app">
+
+      <ts.clientjar descriptor="ejb_ECmpQL_where_client.xml" 
+                    archivename="ejb_ECmpQL_where"
+                    mainclass="com.sun.ts.tests.ejb.ee.pm.ejbql.where_clause.Client">
+        <fileset dir="${class.dir}"
+                 includes="com/sun/ts/tests/ejb/ee/pm/ejbql/schema/Product.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/AliasHome.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/ProductHome.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/CustomerHome.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/LineItemDVC.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/CreditCardDVC.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/LineItemException.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/Country.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/CreditCardException.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/AddressException.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/PhoneException.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/OrderHome.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/PhoneDVC.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/Schema.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/Alias.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/Order.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/Customer.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/AddressDVC.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/Util.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/SpouseDVC.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/SpouseException.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/InfoDVC.class, com/sun/ts/tests/ejb/ee/pm/ejbql/schema/InfoException.class"/>
+      </ts.clientjar>
+
+      <ts.ear archivename="ejb_ECmpQL_where"/>
+
+  </target>
+
+</project>

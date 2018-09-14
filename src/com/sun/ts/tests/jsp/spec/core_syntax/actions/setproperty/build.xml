@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsp_core_syntax_actions_setproperty" basedir="." default="usage">
+<import file="../../../../../../../../../../bin/xml/ts.import.xml"/>
+	<property name="app.name" value="jsp_coresyntx_act_setproperty"/>
+	<property name="pkg.name" value="core_syntax/actions/setproperty"/>
+	<property name="contentroot.dir" value="${ts.home}/src/web/jsp/spec/${pkg.name}"/>
+	<property name="bean.tmp" value="beantmp"/>
+	<property name="bean.tmp.pkg" value="${bean.tmp}/${pkg.name}"/>
+	<property name="tmp.dir" value="${ts.home}/tmp/${app.name}"/>
+
+	<target name="clean">
+		<delete dir="${bean.tmp}"/>
+		<ant antfile="build.xml" dir="${bin.dir}" target="clean"/>
+	</target>
+	
+	<target name="prepackage">
+		<delete dir="${tmp.dir}"/>
+		<mkdir dir="${tmp.dir}/WEB-INF/lib"/>
+		<jar jarfile="${tmp.dir}/WEB-INF/lib/propertybean.jar" compress="false">
+			<fileset dir="${class.dir}" includes="${pkg.dir}/*.class" excludes="${pkg.dir}/URLClient.class"/>
+			<manifest>
+				<section name="com/sun/ts/tests/jsp/spec/core_syntax/actions/setproperty/PropertyBean.class">
+					<attribute name="Java-Bean" value="True"/>
+				</section>
+				<section name="com/sun/ts/tests/jsp/spec/core_syntax/actions/setproperty/PropertyBeanBeanInfo.class"/>
+				<section name="com/sun/ts/tests/jsp/spec/core_syntax/actions/setproperty/PStringPropertyEditor.class"/>
+				<section name="com.sun.ts.tests.jsp.spec.core_syntax/actions/setproperty/PBooleanPropertyEditor.class"/>
+				<section name="com/sun/ts/tests/jsp/spec/core_syntax/actions/setproperty/PIntegerPropertyEditor.class"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="package" depends="prepackage">
+		<ts.war archivename="${app.name}" descriptor="${app.name}_web.xml" includedefaultfiles="false">
+                  <zipfileset dir="${contentroot.dir}" includes="**/*" excludes="**/*.gf"/>
+                  <zipfileset dir="${tmp.dir}" includes="**/*" excludes="**/*.gf"/>
+                  <zipfileset dir="${class.dir}" includes="${pkg.dir}/MiscBean.class, ${pkg.dir}/SetpropBean.class"
+                              prefix="WEB-INF/classes"/>
+		</ts.war>
+		<ts.ear archivename="${app.name}"/>
+	</target>
+
+        <target name="compile">
+          <ts.javac includes="${pkg.dir}/**/*.java,
+                              com/sun/ts/tests/common/webclient/**/*.java"/>
+        </target>
+
+</project>

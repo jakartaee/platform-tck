@@ -1,0 +1,36 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="Java WSDP Deployment" default="deploy">
+
+    <!--
+        Java WSDP Deployment properties: These must be set by the user
+
+        jwsdp.home - base directory of the Java WSDP installation
+    -->
+    <property name="jwsdp.home" value=""/>
+
+    <!-- Deployment: DO NOT EDIT -->
+    <property name="jwsdp.webapps" value="${jwsdp.home}/webapps"/>
+    <target name="deploy">
+        <translatepath propname="jwsdp.webapps"/>
+        <copy todir="${jwsdp.webapps}">
+            <fileset dir="${dist.dir}/${pkg.dir}" includes="**/*.war"/>
+        </copy>
+    </target>
+</project>

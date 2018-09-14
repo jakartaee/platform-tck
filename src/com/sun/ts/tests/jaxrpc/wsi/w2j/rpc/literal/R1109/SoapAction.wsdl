@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions targetNamespace="http://soapactionservice.org/wsdl/"
+             name="W2JRLR1109TestService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://soapactionservice.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+	<types/>
+	<message name="echoString">
+        <part type="xsd:string" name="str"/>
+    </message>
+    <message name="echoStringResponse">
+        <part type="xsd:string" name="result"/>
+    </message>
+
+    <portType name="W2JRLR1109Test">
+    	<operation name="echoString">
+            <input message="tns:echoString"/>
+            <output message="tns:echoStringResponse"/>
+    	</operation>
+    </portType>
+
+    <binding name="W2JRLR1109TestBinding" type="tns:W2JRLR1109Test">
+    	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation soapAction="helloWorld"/>
+            <input>
+                <soap:body use="literal" message="tns:echoString" parts="str" namespace="http://soapactionservice.org/wsdl/"/>
+            </input>
+            <output>
+                <soap:body use="literal" message="tns:echoStringResponse" parts="result" namespace="http://soapactionservice.org/wsdl/"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <service name="W2JRLR1109TestService">
+        <port binding="tns:W2JRLR1109TestBinding"
+            name="W2JRLR1109TestOnePort">
+            <soap:address xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+               location="http://localhost:8000/W2JRLR1109TestService/ws4ee_1/W2JRLR1109Test/One"/>
+        </port>
+        <port binding="tns:W2JRLR1109TestBinding"
+            name="W2JRLR1109TestTwoPort">
+            <soap:address xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+               location="http://localhost:8000/W2JRLR1109TestService/ws4ee_1/W2JRLR1109Test/Two"/>
+        </port>
+    </service>
+</definitions>

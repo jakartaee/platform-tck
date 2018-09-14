@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="InterfaceTestService" targetNamespace="http://interfacetestservice.org/wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://interfacetestservice.org/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+  </types>
+  <message name="InterfaceTest2_hello2Response">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="InterfaceTest1_hello1">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <message name="InterfaceTest2_hello1Response">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="InterfaceTest2_hello1">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <message name="InterfaceTest2_hello2">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <message name="InterfaceTest1_hello1Response">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <portType name="InterfaceTest1">
+    <operation name="hello1" parameterOrder="String_1">
+      <input message="tns:InterfaceTest1_hello1"/>
+      <output message="tns:InterfaceTest1_hello1Response"/>
+    </operation>
+  </portType>
+  <portType name="InterfaceTest2">
+    <operation name="hello1" parameterOrder="String_1">
+      <input message="tns:InterfaceTest2_hello1"/>
+      <output message="tns:InterfaceTest2_hello1Response"/>
+    </operation>
+    <operation name="hello2" parameterOrder="String_1">
+      <input message="tns:InterfaceTest2_hello2"/>
+      <output message="tns:InterfaceTest2_hello2Response"/>
+    </operation>
+  </portType>
+  <binding name="InterfaceTest1Binding" type="tns:InterfaceTest1">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="hello1">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://interfacetestservice.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://interfacetestservice.org/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="InterfaceTest2Binding" type="tns:InterfaceTest2">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="hello1">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://interfacetestservice.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://interfacetestservice.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="hello2">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://interfacetestservice.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://interfacetestservice.org/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="InterfaceTestService">
+    <port name="InterfaceTest1Port" binding="tns:InterfaceTest1Binding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+    <port name="InterfaceTest2Port" binding="tns:InterfaceTest2Binding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+  </service>
+</definitions>

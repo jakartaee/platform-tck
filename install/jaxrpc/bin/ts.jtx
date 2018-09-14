@@ -1,0 +1,68 @@
+#
+# Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+#
+# @(#)ts.jtx	1.6 03/11/03
+#
+
+#
+# HTTP status code tests cannot portably be tested in latest version of WS-I BP1.0 spec
+#
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestMissingSoapStartEnvelopeTag_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestMissingSoapEndEnvelopeTag_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestMissingSoapNamespace_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestMissingSoapMessage_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestWrongXMLVersion_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestUnsupportedContentType_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestSOAPMessageContainingDTD_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestSOAPMessageContainingPI_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestSOAPMessageUsingHttpGet_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestWrongArgType_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/document/literal/httptest/Client.java#TestUnknownOperation_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestMissingSoapStartEnvelopeTag_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestMissingSoapEndEnvelopeTag_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestMissingSoapNamespace_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestMissingSoapMessage_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestWrongXMLVersion_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestUnsupportedContentType_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestSOAPMessageContainingDTD_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestSOAPMessageContainingPI_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestSOAPMessageUsingHttpGet_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestWrongArgType_from_standalone
+com/sun/ts/tests/jaxrpc/ee/wsi/rpc/literal/httptest/Client.java#TestUnknownOperation_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/j2w/rpc/literal/R1108/Client.java#testNoHTTPExtensionFramework_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/j2w/rpc/literal/R1125/Client.java#testBadHTTPRequestStatusCode_from_standalone
+#
+# Assertion ID's no longer existant in latest version of WS-I BP1.0 spec
+#
+com/sun/ts/tests/jaxrpc/wsi/j2w/rpc/literal/R1116/Client.java#testUnsuccessfulOutcomeResponseStatusCode_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/j2w/rpc/literal/R2700/Client.java#testSOAPBindingProtocolVersion_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/w2j/document/literal/R2713/Client.java#testEmptySOAPAction_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/w2j/rpc/literal/R2713/Client.java#testEmptySOAPAction_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/w2j/rpc/literal/R1117/Client.java#testSoapActionHeaderIsQuotedInResponse_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/w2j/rpc/literal/R1117/Client.java#testSoapActionHeaderIsQuotedInRequest_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/w2j/rpc/literal/R1118/Client.java#testSoapActionHeaderIsQuoted_from_standalone
+#
+# Bug #4944734 - This assertion became optional in the final version of the BP1.0 spec
+#
+com/sun/ts/tests/jaxrpc/wsi/j2w/rpc/literal/R2724/Client.java#testVersionMismatchFaultcode_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/j2w/rpc/literal/R2724/Client.java#testMustUnderstandFaultcode_from_standalone
+com/sun/ts/tests/jaxrpc/wsi/j2w/rpc/literal/R2724/Client.java#testClientFaultcode_from_standalone
+#
+# Bug #4968222 - The tests related to R1109 for asserting quoted response in header
+#                was removed in the later version of TCK due to licensee challenge.
+#
+com/sun/ts/tests/jaxrpc/wsi/w2j/rpc/literal/R1109/Client.java#testSoapActionHeaderIsQuotedInResponse_from_standalone

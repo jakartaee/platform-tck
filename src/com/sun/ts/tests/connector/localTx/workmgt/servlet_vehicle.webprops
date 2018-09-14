@@ -1,0 +1,70 @@
+webApplication.name=servlet_vehicle
+
+webApplication.contextRoot=servlet_vehicle
+#mandatory - takes "true" or "false"
+webApplication.distributable=false
+
+webApplication.#contextParameters=0
+webApplication.#environmentProperties=6
+
+#resource reference
+#Container Managed
+environmentProperty0.isResourceReference=true
+environmentProperty0.name=eis/whitebox-tx
+environmentProperty0.value=env/eis/whitebox-tx
+environmentProperty0.type=com.sun.cts.tests.connector.ee.whitebox.CTSConnectionFactory
+environmentProperty0.authorization=Container
+environmentProperty0.defaultDBAccount=user1,password1
+
+environmentProperty1.isResourceReference=true
+environmentProperty1.name=eis/whitebox-notx
+environmentProperty1.value=env/eis/whitebox-notx
+environmentProperty1.type=com.sun.cts.tests.connector.ee.whitebox.CTSConnectionFactory
+environmentProperty1.authorization=Container
+environmentProperty1.defaultDBAccount=user1,password1
+
+environmentProperty2.isResourceReference=true
+environmentProperty2.name=eis/whitebox-xa
+environmentProperty2.value=env/eis/whitebox-xa
+environmentProperty2.type=com.sun.cts.tests.connector.ee.whitebox.CTSConnectionFactory
+environmentProperty2.authorization=Container
+environmentProperty2.defaultDBAccount=user1,password1
+
+#Application Managed
+environmentProperty3.isResourceReference=true
+environmentProperty3.name=eis/whitebox-tx-param
+environmentProperty3.value=env/eis/whitebox-tx-param
+environmentProperty3.type=com.sun.cts.tests.connector.ee.whitebox.CTSConnectionFactory
+environmentProperty3.authorization=Application
+
+environmentProperty4.isResourceReference=true
+environmentProperty4.name=eis/whitebox-notx-param
+environmentProperty4.value=env/eis/whitebox-notx-param
+environmentProperty4.type=com.sun.cts.tests.connector.ee.whitebox.CTSConnectionFactory
+environmentProperty4.authorization=Application
+
+environmentProperty5.isResourceReference=true
+environmentProperty5.name=eis/whitebox-xa-param
+environmentProperty5.value=env/eis/whitebox-xa-param
+environmentProperty5.type=com.sun.cts.tests.connector.ee.whitebox.CTSConnectionFactory
+environmentProperty5.authorization=Application
+
+#combined number of jsps and servlets you want to describe
+webApplication.#webComponents=1
+
+#type must be 'jsp' or 'servlet'
+webComponent0.type=servlet
+webComponent0.classname=com.sun.ts.tests.common.vehicle.servlet.ServletVehicle
+webComponent0.name=Servlet_Vehicle
+webComponent0.logicalName=Servlet_VehicleLogicalName
+
+webComponent0.#initializationParameters=0
+webComponent0.#urlAliases=1
+webComponent0.urlAlias0.name=/servlet_vehicle
+webApplication.sessionTimeout=54
+
+webApplication.#localizedContentDescriptors=0
+webApplication.#mimeMappings=0
+webApplication.#welcomeFiles=0
+webApplication.#errorPages=0
+webApplication.#securityRoles=0

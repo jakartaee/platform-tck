@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="rmiiiop_ee_standalone" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <!-- ============================================================ -->
+  <!--               Helper properties used for packaging           -->
+  <!-- ============================================================ -->
+
+
+  <property name="my.marshaltests.pkg.dir" value="com/sun/ts/tests/rmiiiop/ee/marshaltests"/>  
+
+  <!-- Utility classes used in this test (courtesy of marshaltests) -->
+  <property name="my.util.classes"
+            value="${my.marshaltests.pkg.dir}/Color.class,
+                   ${my.marshaltests.pkg.dir}/Fuzzy.class,
+                   ${my.marshaltests.pkg.dir}/Bear.class,
+                   ${my.marshaltests.pkg.dir}/PolarBear.class,
+                   ${my.marshaltests.pkg.dir}/Multi.class,
+                   ${my.marshaltests.pkg.dir}/MyUtil.class,
+                   ${my.marshaltests.pkg.dir}/Graph.class,
+                   ${my.marshaltests.pkg.dir}/IDLStruct.class,
+                   ${my.marshaltests.pkg.dir}/IDLStructHelper.class,
+                   ${my.marshaltests.pkg.dir}/IDLStructHolder.class,
+                   ${my.marshaltests.pkg.dir}/IDLSequenceHelper.class,
+                   ${my.marshaltests.pkg.dir}/IDLSequenceHolder.class,
+                   ${my.marshaltests.pkg.dir}/Data.class, 
+                   ${my.marshaltests.pkg.dir}/Timer.class, 
+                   ${my.marshaltests.pkg.dir}/UserException.class"/>
+
+
+  <!-- Remote objects and interfaces. Used to generate stubs/ties --> 
+  <property name="my.remote.classes"
+            value="${pkg.dir}/CallBackInterface.class, 
+                   ${pkg.dir}/CallBackImpl.class,
+                   ${pkg.dir}/RMIIIOPServer.class,
+                   ${pkg.dir}/RMIIIOPTests.class"/>
+
+
+  <!-- Classes for client view RMI-IIOP objects  -->
+  <property name="my.server.clientview.classes"
+            value="${pkg.dir}/CallBackInterface.class,
+                   ${pkg.dir}/CallBackImpl.class,
+                   ${pkg.dir}/RMIIIOPServer.class,
+                   ${pkg.dir}/RMIIIOPTests.class"/>
+
+  <property name="old.stub.tie.classes"
+            value="org/omg/stub/${pkg.dir}/_CallBackImpl_Tie.class,
+                   org/omg/stub/${pkg.dir}/_RMIIIOPServer_Tie.class,
+                   org/omg/stub/${pkg.dir}/_RMIIIOPTests_Stub.class,
+                   org/omg/stub/${pkg.dir}/_CallBackInterface_Stub.class"/>
+
+  <property name="new.stub.tie.classes"
+            value="${pkg.dir}/_CallBackImpl_Tie.class, 
+                   ${pkg.dir}/_RMIIIOPServer_Tie.class,
+                   ${pkg.dir}/_RMIIIOPTests_Stub.class,
+                   ${pkg.dir}/_CallBackInterface_Stub.class"/>
+
+  <property name="includes"
+            value="${my.util.classes},
+                   ${my.server.clientview.classes},
+                   ${old.stub.tie.classes},
+                   ${new.stub.tie.classes},
+                   com/sun/ts/tests/rmiiiop/ee/standalone/RMIIIOPHttpServer.class,
+                   com/sun/ts/tests/rmiiiop/ee/standalone/PrintUtil.class"/>
+
+  <!-- ============================================================ -->
+  <!--                        Build targets                         -->
+  <!-- ============================================================ -->
+
+  <!-- 
+    Stubs and Ties do not have to be (re)generated at build time.
+    The source code for these stubs/ties is checked-in the test
+    directory.
+
+    Nevertheless you could use this target if you want to generate
+    a new version of of these stubs/ties and then check-in these new 
+    version in the workspace. This would be required if JDK team fix 
+    a rmic bug for instance...
+  -->
+  <target name="generate-stubs-ties">
+    <rmic verify="yes" iiop="yes" iiopopts="-poa" 
+          base="${class.dir}" sourcebase="${class.dir}"
+          classpath="${class.dir}" includes="${my.remote.classes}"/>
+  </target>
+
+
+  <!-- Standard targets -->
+
+  <target name="package">
+      <ts.vehicles name="rmiiiop_standalone"> 
+        <ejb-elements>
+          <fileset dir="${class.dir}" includes="${includes}"/>
+        </ejb-elements>
+        <client-elements>
+          <fileset dir="${class.dir}" includes="${includes}"/>
+        </client-elements>
+        <servlet-elements>
+          <zipfileset dir="${class.dir}" includes="${includes}"
+                      prefix="WEB-INF/classes"/>
+        </servlet-elements>
+        <jsp-elements>
+          <zipfileset dir="${class.dir}" includes="${includes}"
+                      prefix="WEB-INF/classes"/>
+        </jsp-elements>
+      </ts.vehicles>
+  </target>
+
+  <target name="compile">
+      <ts.javac includes="${pkg.dir}/**/*.java,
+                          ${my.marshaltests.pkg.dir}/**/*.java"/>
+  </target>
+
+  <target name="clean">
+    <ant antfile="build.xml" dir="${bin.dir}" target="clean"/>
+    <delete failonerror="false" includeEmptyDirs="true">
+       <fileset dir="${class.dir}/org"/>
+    </delete>
+  </target>
+
+</project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2012 International Business Machines Corp. See the NOTICE file distributed with this work 
+	for additional information regarding copyright ownership. Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain 
+	a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law 
+	or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language 
+	governing permissions and limitations under the License. -->
+<job id="decider_as_first_job_element_fails" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+	<properties>
+		<property name="step.complete.but.force.job.stop.status" value="STEP_COMPLETE_BUT_FORCE_JOB_STOP_STATUS" />
+		<property name="step.complete.but.force.job.fail.status" value="STEP_COMPLETE_BUT_FORCE_JOB_FAIL_STATUS" />
+	</properties>
+	<decision id="decider1" ref="transitionDecider">
+		<next on="*" to="step1" />
+	</decision>
+	<step id="step1" allow-start-if-complete="true">
+		<batchlet ref="multipleExitStatusBatchlet">
+			<properties>
+				<!-- The job parameters pass info on what exit status to return for a particular step. -->
+				<property name="stop.job.after.this.step" value="#{jobParameters['stop.job.after.this.step']}" />
+				<property name="fail.job.after.this.step" value="#{jobParameters['fail.job.after.this.step']}" />
+				<property name="step.complete.but.force.job.stop.status" value="#{jobProperties['step.complete.but.force.job.stop.status']}" />
+				<property name="step.complete.but.force.job.fail.status" value="#{jobProperties['step.complete.but.force.job.fail.status']}" />
+			</properties>
+		</batchlet>
+	</step>
+</job>

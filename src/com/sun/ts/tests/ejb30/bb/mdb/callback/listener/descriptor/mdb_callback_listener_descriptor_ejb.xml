@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  metadata-complete="false" version="3.1"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+
+  <enterprise-beans>
+    <message-driven>
+      <ejb-name>CallbackBean</ejb-name>
+      <messaging-type>javax.jms.MessageListener</messaging-type>
+    </message-driven>
+  </enterprise-beans>
+
+  <interceptors>
+    <interceptor>
+      <interceptor-class>com.sun.ts.tests.ejb30.bb.mdb.callback.listener.descriptor.MDBCallbackListener</interceptor-class>
+
+      <around-invoke>
+        <method-name>intercept</method-name>
+      </around-invoke>
+
+      <post-construct>
+        <lifecycle-callback-method>myCreate</lifecycle-callback-method>
+      </post-construct>
+
+      <pre-destroy>
+        <lifecycle-callback-method>myRemove</lifecycle-callback-method>
+      </pre-destroy>
+    </interceptor>
+  </interceptors>
+
+
+  <assembly-descriptor>
+  <!--  To verify method-intf value MessageEndpoint is processed correctly.  -->
+    <container-transaction>
+      <method>
+        <ejb-name>CallbackBean</ejb-name>
+        <method-intf>MessageEndpoint</method-intf>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <interceptor-binding>
+      <ejb-name>CallbackBean</ejb-name>
+      <interceptor-order>
+        <interceptor-class>com.sun.ts.tests.ejb30.bb.mdb.callback.listener.descriptor.MDBCallbackListener</interceptor-class>
+      </interceptor-order>
+    </interceptor-binding>
+  </assembly-descriptor>
+</ejb-jar>

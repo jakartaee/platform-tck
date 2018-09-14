@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_assembly_metainf_appclientejb"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/assembly/common"/>
+  <property name="app.common.2" value="com/sun/ts/tests/ejb30/common/calc"/>
+
+  <property name="ejb.jar.manifest" value="ejb-jar.mf"/>
+  <property name="client.jar.manifest" value="client-jar.mf"/>
+  
+  <property name="common.referenced.jar.name" value="4common-1.0.1.jar"/>
+  <property name="ejb.referenced.jar.name" value="4ejb.jar"/>
+  <property name="client.referenced.jar.name" value="4client.jar"/>
+  <property name="hello.ejb.client.view.jar.name" value="hello-client-view.jar"/>
+  <property name="second.level.dir" value="2"/>
+  
+  <property name="second.level.dir.classes" value="
+  com/sun/ts/tests/ejb30/common/calc/CalculatorException.class
+  "/>
+  
+  <property name="hello.ejb.client.view.classes" value="
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloCommonIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloLocalIF.class
+  "/>
+
+  <property name="common.referenced.jar.classes" value="
+com/sun/ts/tests/ejb30/assembly/common/AssemblyCommonIF.class,
+com/sun/ts/tests/ejb30/assembly/common/Util.class,
+com/sun/ts/tests/ejb30/assembly/common/ConcurrentLookup*.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyLocalIF.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class
+  "/>
+  
+  <property name="ejb.referenced.jar.classes" value="
+com/sun/ts/tests/ejb30/assembly/common/AssemblyBeanBase.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyInterceptor.class
+  "/>
+  
+  <property name="client.referenced.jar.classes" value="
+com/sun/ts/tests/ejb30/assembly/common/ClientBase.class
+  "/>
+  
+  <property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/assembly/metainf/appclientejb/AssemblyBean.class
+"/>
+  
+  <property name="appclient.jar.classes" value="
+com/sun/ts/tests/ejb30/assembly/metainf/appclientejb/Client.class
+"/>
+
+  <target name="-precompile">
+    <echo message="Building dependency dir..."/>
+    <ant dir="${src.dir}/com/sun/ts/tests/ejb30/common/helloejbjar" target="build" inheritAll="false"/>
+  </target>
+
+  <target name="package.ear">
+    <echo message="package.ear target in leaf-level build.xml"/>
+    <echo message="creating library jars"/>
+    <jar destfile="${dist.dir}/${pkg.dir}/${hello.ejb.client.view.jar.name}">
+        <fileset dir="${class.dir}" includes="${hello.ejb.client.view.classes}"/>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/${common.referenced.jar.name}">
+        <fileset dir="${class.dir}" includes="${common.referenced.jar.classes}"/>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/${ejb.referenced.jar.name}">
+        <fileset dir="${class.dir}" includes="${ejb.referenced.jar.classes}"/>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/${client.referenced.jar.name}">
+        <fileset dir="${class.dir}" includes="${client.referenced.jar.classes}"/>
+    </jar>
+
+    <ts.ear descriptor="application.xml" archivename="${app.name}" 
+            deletecomponentarchives="${deletecomponentarchives}" 
+            includedefaultfiles="true">
+      <zipfileset dir="${class.dir}" includes="${second.level.dir.classes}"
+                  prefix="${second.level.dir}"/>
+    </ts.ear>
+  </target>
+
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/use-manifest-import.xml"/>
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

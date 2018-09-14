@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="assembly_classpath_util" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/> 
+  <property name="direct.classpath.util.jar" value="${dist.dir}/${pkg.dir}/direct_classpath_util.jar"/>
+  <property name="indirect.classpath.util.jar" value="${dist.dir}/${pkg.dir}/indirect_classpath_util.jar"/>
+  <property name="manifest" value="META-INF/MY_MANIFEST.MF"/>
+  <property name="dummy.dd" value="ejb-jar.xml"/>
+  
+  <target name="package">
+    <mkdir dir="${dist.dir}/${pkg.dir}"/>
+    <jar jarfile="${direct.classpath.util.jar}" manifest="${manifest}" basedir="${class.dir}" includes="${pkg.dir}/ClassPathUtil.class">
+      <metainf dir="META-INF" includes="${dummy.dd}"/>
+    </jar>
+
+    <jar jarfile="${indirect.classpath.util.jar}" basedir="${class.dir}" includes="${pkg.dir}/IndirectClassPathUtil.class">
+      <metainf dir="META-INF" includes="${dummy.dd}"/>
+    </jar>
+  </target>
+  
+</project>

@@ -1,0 +1,121 @@
+/*
+ * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0, which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the
+ * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+ * version 2 with the GNU Classpath Exception, which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+package @package@;
+
+import javax.servlet.jsp.JspContext;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.JspFragment;
+import javax.servlet.jsp.tagext.JspTag;
+import javax.servlet.jsp.tagext.SimpleTag;
+import java.io.IOException;
+
+public class EJBLiteSecuredJSPTag extends Client implements SimpleTag {
+    /** Reference to the enclosing tag. */
+    private JspTag parentTag;
+
+    /** The JSP context for the upcoming tag invocation. */
+    private JspContext jspContext;
+
+    /** The body of the tag. */
+    private JspFragment jspBody;
+
+    /**
+     * Called by the container to invoke this tag. 
+     * The implementation of this method is provided by the tag library developer,
+     * and handles all tag processing, body iteration, etc.
+     */
+    public void doTag() throws JspException {
+	JspWriter out = getJspContext().getOut();
+	String sta = getStatus();  //to trigger the test run
+	getJspContext().setAttribute("statusAndReason", sta + " " + getReason());
+	JspFragment f = getJspBody();
+	if (f != null) {
+	    try {
+		f.invoke(out);
+	    } catch (IOException e) {
+		throw new JspException(e);
+	    }
+	}
+    }
+
+    /**
+     * Sets the parent of this tag, for collaboration purposes.
+     * <p>
+     * The container invokes this method only if this tag invocation is
+     * nested within another tag invocation.
+     *
+     * @param parent the tag that encloses this tag
+     */
+    public void setParent(JspTag parent) {
+        this.parentTag = parent;
+    }
+
+    /**
+     * Returns the parent of this tag, for collaboration purposes.
+     *
+     * @return the parent of this tag
+     */
+    public JspTag getParent() {
+        return this.parentTag;
+    }
+
+    /**
+     * Stores the provided JSP context in the private jspContext field.
+     * Subclasses can access the <code>JspContext</code> via 
+     * <code>getJspContext()</code>.
+     * 
+     * @param pc the page context for this invocation
+     * @see SimpleTag#setJspContext
+     */
+    public void setJspContext(JspContext pc) {
+        this.jspContext = pc;
+    }
+
+    /**
+     * Returns the page context passed in by the container via 
+     * setJspContext.
+     *
+     * @return the page context for this invocation
+     */
+    protected JspContext getJspContext() {
+        return this.jspContext;
+    }
+
+    /** 
+     * Stores the provided JspFragment.
+     *
+     * @param jspBody The fragment encapsulating the body of this tag.
+     *     If the action element is empty in the page, this method is 
+     *     not called at all.
+     * @see SimpleTag#setJspBody
+     */
+    public void setJspBody(JspFragment jspBody) {
+        this.jspBody = jspBody;
+    }
+
+    /**
+     * Returns the body passed in by the container via setJspBody.
+     *
+     * @return the fragment encapsulating the body of this tag, or
+     *    null if the action element is empty in the page.
+     */
+    protected JspFragment getJspBody() {
+        return this.jspBody;
+    }
+
+}

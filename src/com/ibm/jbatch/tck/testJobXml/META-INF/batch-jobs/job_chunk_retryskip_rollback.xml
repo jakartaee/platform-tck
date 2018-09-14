@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2012 International Business Machines Corp.
+  
+  See the NOTICE file distributed with this work for additional information
+  regarding copyright ownership. Licensed under the Apache License, 
+  Version 2.0 (the "License"); you may not use this file except in compliance
+  with the License. You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<job id="job_chunk_retryskip_rollback" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0" >
+    <!--  step1: Init numbers database tables to their initial values  -->
+	<step id="step1" next="step2" allow-start-if-complete="false">
+		<properties>
+		    <property name="javax.transaction.global.mode" value="false"/>
+		    <property name="javax.transaction.global.timeout" value="10"/>
+        </properties>
+		<chunk item-count="1"
+		 checkpoint-policy="item">
+		 	 <reader ref="retryInitReader"/>
+		     <processor ref="retryInitProcessor">
+		 	     <properties>
+		    	    <property name="init.numbers.quantity" value="#{jobParameters['init.numbers.quantity']}"/>
+   	             </properties>
+		     </processor>
+		     <writer ref="retryInitWriter"/>
+		 </chunk>		
+	</step>
+	
+<!--  step2: perform test -->
+	<step id="step2">
+		<properties>
+		    <property name="javax.transaction.global.mode" value="#{jobParameters['javax.transaction.global.mode']}"/>
+		    <property name="javax.transaction.global.timeout" value="#{jobParameters['javax.transaction.global.timeout']}"/>
+        </properties>
+        <listeners>
+        	<listener ref="numbersRetryReadListener"/>
+        	<listener ref="numbersSkipReadListener"/>
+        	<listener ref="numbersRetryProcessListener"/>
+        	<listener ref="numbersSkipProcessListener"/>
+        	<listener ref="numbersRetryWriteListener"/>
+        	<listener ref="numbersSkipWriteListener"/>
+    	</listeners>
+		<chunk item-count="5"
+		 retry-limit="2"
+		 skip-limit="2"
+		 checkpoint-policy="item">
+		     <reader ref="retryReader">
+		         <properties>
+			         <!-- 0 means don't force an exception -->
+		    	     <property name="forced.fail.count.read" value="#{jobParameters['forced.fail.count.read']}"/>
+		    	     <property name="dummy.delay.seconds" value="#{jobParameters['dummy.delay.seconds']}"/>
+		    	     <property name="rollback" value="#{jobParameters['rollback']}"/>
+   	             </properties>
+		     </reader>
+		     <processor ref="retryProcessor" >
+		     		 <properties>
+			         <!-- 0 means don't force an exception -->
+		    	     <property name="forced.fail.count.process" value="#{jobParameters['forced.fail.count.process']}"/>
+		    	     <property name="dummy.delay.seconds" value="#{jobParameters['dummy.delay.seconds']}"/>
+		    	     <property name="rollback" value="#{jobParameters['rollback']}"/>
+   	             </properties>
+		     </processor>
+             <writer ref="retryWriter" >
+		     		 <properties>
+			         <!-- 0 means don't force an exception -->
+		    	     <property name="forced.fail.count.write" value="#{jobParameters['forced.fail.count.write']}"/>
+		    	     <property name="dummy.delay.seconds" value="#{jobParameters['dummy.delay.seconds']}"/>
+		    	     <property name="rollback" value="#{jobParameters['rollback']}"/>
+		    	     </properties>     
+             </writer>			 
+             <skippable-exception-classes>
+			<include class="com.ibm.jbatch.tck.artifacts.reusable.MyParentException"/>
+		</skippable-exception-classes>
+        <retryable-exception-classes>
+			<include class="com.ibm.jbatch.tck.artifacts.reusable.MyParentException"/>
+		</retryable-exception-classes>
+		 </chunk>
+	</step>
+</job>

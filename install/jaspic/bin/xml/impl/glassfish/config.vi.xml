@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!--
+  **   This build file contains targets that will need to have 
+  **   equivilent functional support on vendors implementation.
+  **   Ensure these targets are ported over to the vendors 
+  **   impl unless specifically noted otherwise.
+  -->
+
+
+
+<project name="JASPIC config targets that should be done on any implementation" basedir="." default="usage">
+
+
+    <!-- IMPORTS -->
+    <import file="./s1as.xml" optional="true"/>
+    <import file="../../../../../../bin/xml/impl/glassfish/s1as.xml" optional="true"/>
+
+ 
+   <property name="enable.jms" value="true"/>
+
+   <target name="usage">
+        <echo message="The following ant targets are available to configure a Java EE server for CTS:"/>
+        <echo message="ant -f config_vi.xml task"/>
+        <echo message=""/>
+        <echo message="The tasks are:"/>
+        <echo message=""/>
+        <echo message="clean.vi" />
+        <echo message="config.vi" />
+        <echo message="enable.jaspic" />
+        <echo message="disable.jaspic" />
+        <echo message="enable.wss.providers" />
+        <echo message="disable.wss.providers" />
+        <echo message="add.interop.certs" />
+   </target>
+
+   <target name="check.for.cts.internal.jar">
+     <available file="${ts.home}/lib/cts-internal.jar" property="found.cts.internal.jar"/>
+     <!--     <echo message="found.cts.internal.jar is ${found.cts.internal.jar}"/> -->
+   </target>
+
+   <target name="update.jar" if="found.cts.internal.jar">
+     <delete dir="${harness.temp.directory}/com" quiet="true" includeEmptyDirs="true"/>
+     <unjar src="${ts.home}/lib/cts-internal.jar" dest="${harness.temp.directory}"/>
+     <touch>
+         <fileset dir="${ts.home}/tmp/com" includes="**"/>
+     </touch>
+     <jar destfile="${ts.home}/lib/jaspic.jar" basedir="${harness.temp.directory}"
+          includes="com/**" update="true"/>
+   </target>
+
+   <target name="update.jaspic.jar" depends="check.for.cts.internal.jar, update.jar"/>
+
+
+   <!-- set prop to be used for case where we have glassfish app server -->
+   <if>
+       <equals arg1="${platform.mode}" arg2="javaEE"/>
+       <then>
+            <property name="use.create.system.properties"   value="true"/>
+       </then>
+       <else>
+            <property name="use.create.system.properties"   value="false"/>
+       </else>
+   </if>
+
+   <!--  Target to configure the JASPIC-server under test -->
+   <target name="config.vi"  depends="checkCTSConfiguration, update.jaspic.jar, copy.cts.ext.jars, copy.jsr196.hooks.config.jar">
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="start.appserver"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="add.classpathsuffix"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="add.cts.users"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="drop.jvm.options"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="add.jvm.options"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="create.asadmin.bat"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="concat.security"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="add.cert"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="set.http.ports"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="filter.password.file"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/>
+   </target>
+
+
+   <target name="foo">
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="set.http.ports"/>
+   </target>
+
+
+   <!--  Target to remove the configuration for the Java EE app server under test -->
+   <target name="clean.vi" depends="checkCTSConfiguration">
+       <antcall target="delete.cts.ext.jars"/>
+       <antcall target="delete.jsr196.hooks.config.jar"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="delete.tssv.config.files"/>
+
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="start.appserver"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="drop.classpathsuffix"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="drop.cts.users"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="drop.jvm.options"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="drop.certs"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="disable.tssv"/>
+   </target>
+
+
+   <!--  Target to shutdown the Java EE app server under test -->
+   <target name="stop.vi" depends="checkCTSConfiguration">
+       <antcall target="stop.remoteInstance"/>
+       <echo message="****Stopping the domain under test *****" />
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="stop-domain"/>
+   </target>
+
+
+   <!--  Target to disable jacc for the Java EE app server under test -->
+   <target name="disable.wss.providers" depends="checkCTSConfiguration">
+       <antcall target="disable.wss.providers.das"/>
+   </target>
+
+
+   <!--  Target to disable SOAPs Web Services Security  -->
+   <target name="disable.wss.providers.das"  >
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="disable.wss.providers"/>
+   </target>
+   
+
+   <!--  Target to enable wss providers for the Java EE app server under test -->
+   <target name="enable.wss.providers" depends="checkCTSConfiguration">
+       <antcall target="enable.wss.providers.das"/>
+   </target>
+   
+
+   <!--  Target to enable wss providers for the DAS/PE -->
+   <target name="enable.wss.providers.das"  >
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="enable.wss.providers"/>
+       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="restart.server"/>
+   </target>
+
+
+   <!-- Determine the S1AS target to be executed (with JMS)  -->
+    <target name="use.jms" if="useJms">
+         <property name="configTarget" value="config.s1as"/>
+         <property name="cleanTarget" value="clean.s1as"/>
+    </target>
+
+
+   <!-- Determine the S1AS target to be executed (without JMS)  -->
+    <target name="no.jms" if="skip.jms">
+         <echo message="*** Configuring/Cleaning S1AS WITHOUT JMS ***" />
+         <property name="configTarget" value="config.s1as"/>
+         <property name="cleanTarget" value="clean.s1as"/>
+    </target>
+
+    <target name="delete.cts.ext.jars">
+       <delete file="${extension.dir}/jaspic.jar" quiet="true"/>
+       <delete file="${extension.dir}/tsharness.jar" quiet="true"/>
+    </target>
+
+    <target name="copy.cts.ext.jars">
+        <copy file="${ts.home}/lib/jaspic.jar" todir="${extension.dir}"/>
+        <copy file="${ts.home}/lib/tsharness.jar" todir="${extension.dir}"/>
+    </target>
+
+    <target name="copy.jsr196.hooks.config.jar">
+       <copy file="${ts.home}/lib/gf-196-hookv3.jar"
+              tofile="${javaee.home}/lib/gf-196-hookv3.jar" overwrite="yes" />
+    </target>
+
+    <target name="delete.jsr196.hooks.config.jar">
+       <delete file="${javaee.home}/lib/gf-196-hookv3.jar" quiet="true"/>
+    </target>
+
+
+    <!-- This allows one user to config both the RI/VI     -->
+    <target name="vi.perms">
+      <echo message="****server.config.dir: ${sjsas.instance.config.dir}"/>
+      <chmod file="${s1as.domain}/${sjsas.instance.config.dir}" perm="ugo+rwx" type="dir"/>
+      <chmod dir="${s1as.domain}/${sjsas.instance.config.dir}" perm="ugo+rwx" includes="*"/>
+    </target>
+
+
+    <!--
+      Check to see which configuration we are using for testing CTS.
+      Possible values:
+      DAS            -  Normal PE testing (or against DAS on SE/EE)
+      remote         -  Test against a remote instance (SE/EE only)
+      cluster        -  Testing in a cluster configuration (SE/EE only)
+
+      Also determine if we need to worry about JMS or not.
+    -->
+    <target name="checkCTSConfiguration" >
+        <condition property="useJms">
+           <istrue value="${enable.jms}"/>
+        </condition >
+        <condition property="skip.jms">
+           <not>
+           <istrue value="${enable.jms}"/>
+           </not>
+        </condition >
+    </target>
+
+
+     <!-- Configure the OS specific properties based on the OS
+         is being utilized.
+      -->
+     <target name="checkIfGlassfish" >
+        <!-- Check if glassfish is installed and if so, set a property to indicate that -->
+        <condition property="glassfish.installed">
+            <or>
+                <available file="${s1as.admin}" />
+                <available file="${s1as.admin}.bat" />
+            </or>
+        </condition>
+     </target>
+
+
+    <target name="config.acc.template" depends="checkIfGlassfish, configPlatform"   if="glassfish.installed" >
+       <echo message="NOTE - filter.sun-acc.xml called for RI" />
+       <antcall target="filter.sun-acc.xml">
+            <param name="sun-acc.xml"  value="jaspic.sun-acc.xml"/>
+            <param name="sun-acc.host" value="${orb.host}"/>
+            <param name="sun-acc.port" value="${orb.port}"/>
+            <param name="as.base"      value="${jaspic.home}"/>
+       </antcall>
+    </target>
+
+</project>
+

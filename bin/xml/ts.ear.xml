@@ -1,0 +1,341 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="Test Import" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./ts.common.xml"/>
+
+    <!-- LOCAL PROPERTY DEFINITIONS -->  
+    
+    <!-- PRESETS -->
+    <!-- MACROS -->    
+    <macrodef name="_delete.component.archives">
+        <sequential>
+        <!--
+             The _delete.component.archives task is a macro that removes all files with 
+             the extensions jar, war, car and rar from the the current 
+             $TS_HOME/${dist.dir}/${pkg.dir}.  This task should not be called directly by 
+             users.  It is currently used by the ts.ear and ts.vehicles tasks.
+        -->
+        
+        <!--
+        <if>
+            <equals arg1="${build.level}" arg2="3"/>
+            <then>
+                <delete failonerror="false">
+                    <fileset dir="${dist.dir}/${pkg.dir}" 
+                        includes="*.jar, *.war, *.car, *.rar"
+                        excludes="*_component*ar"/>
+                </delete>
+           </then>
+        </if>
+        -->
+        </sequential>
+    </macrodef>
+
+    <macrodef name="ts.ear">
+
+    <!--
+        The ts.ear task allows users to build application archives.  By default all
+        component archives under TS_HOME/dist/<pkg.dir> are included in the
+        generated archive.  Component archives have the following file suffixes: jar,
+        war, car, and rar.  After the application archive is created the component
+        archives are delted from TS_HOME/dist/<pkg-dir>.  Users may specify additional
+        content using nested fileset and zipfileset elements.  User may also tweak the
+        contents of the generated archive by specifying various attribute values, see
+        the attribute and element tables for details.
+
+        Examples:
+
+        <ts.ear archivename="ejb_sam_Hello"
+                descriptor="application.xml"/>
+
+        This example builds an application archive named ejb_sam_Hello.ear.  The deployment
+        descriptor in the application archive, application.xml, is specified using the
+        descriptor attribute.  Note, the application.xml file ends up in the application
+        archive as the META-INF/application.xml with no diffs.  Note, in Java EE 5
+        application deployment descriptors are optional.
+ 
+
+        <ts.ear archivename="ejb_sam_Hello"
+                descriptor="application.xml"
+                manifest="my-manifest"/>
+
+        This example is the same as the previous example except the user has opted to
+        specify a custom manifest file.  This file becomes the META-INF/MANIFEST.MF file
+        within the application archive.
+
+
+        <ts.ear archivename="ejb_sam_Hello"
+                descriptor="application.xml"
+                manifest="my-manifest">
+          <fileset dir="<some-directory>" includes="<some-file-filter-expression>"/>
+        </ts.ear>
+
+        This example is the same as the previous example except the user has opted
+        to add additional content to the application archive.  Note, users may specify
+        additional content using nested fileset or zipfileset elements.
+
+
+        <ts.ear archivename="ejb_sam_Hello"
+                descriptor="application.xml"
+                manifest="my-manifest"
+                excludedfiles="*.war, *.rar"/>
+        </ts.ear>
+
+        This example excludes all war and rar component archives that live in the
+        TS_HOME/${dist.dir}/${pkg.dir}.  If the TS_HOME/${dist.dir}/${pkg.dir} contained the archives
+        classes A.jar and B.rar, C.jar and D.war only archives A and C would end up in the application
+        archive.  Using the excludedfiles attribute is another way of customizing the content of the
+        archive by excluding some of the default content.  Users can also use the includedefaultfiles
+        attribute to exclude all default content but the user must then use nested filesets and or
+        zipfilesets to include the appropriate content.  Using the excludedfiles attribute may be
+        simpler in some cases.
+
+        To continue this example, the following XML does the exact same thing as the example above
+        but it uses the includedefaultfiles attribute and a nested fileset element.
+
+        <ts.ear archivename="ejb_sam_Hello"
+                descriptor="application.xml"
+                manifest="my-manifest"
+                includedefaultfiles="false">
+          <fileset dir="TS_HOME/${dist.dir}/${pkg.dir}" includes="A.jar, C.jar"/>
+        </ts.ear>
+
+      -->
+
+        <attribute name="descriptor"
+                   default=""        
+                   description="Deployment descriptor added to the archive if the archive requires a deployment descriptor"/>
+                              
+        <attribute name="permissionsdescriptor"
+                   default=""        
+                   description="Permisssions descriptor added to the archive if the archive requires a deployment descriptor"/>
+        
+        <attribute name="manifest"
+                   default=""
+                   description="Manifest to be used in the archive"/>
+        
+        <attribute name="archivename"   
+                   description="Archive name minus the file suffix"/>
+                   
+        <attribute name="descriptordir"
+                   default="${src.dir}/${pkg.dir}"
+                   description="Directory containing the deployment descriptor"/>           
+        
+        <attribute name="permissionsdescriptordir"
+                   default="${src.dir}/${pkg.dir}"
+                   description="Directory containing the permissions descriptor"/>           
+        
+        <attribute name="deletecomponentarchives"
+                   default="true"
+                   description="If set to true, all *.jar, *.par, *.war, *.car, *.rar 
+                                except for files matching *_component*ar
+                                in ${dist.dir}/${pkg.dir} will be deleted after the ear
+                                has been created.  If set to false, no files will
+                                be deleted, and it will be up to the caller of this macro
+                                to clean up the appropriate archives."/>
+                   
+        <attribute name="includedefaultfiles"
+                   default="true"
+                   description="Include default files in the ear"/>
+
+        <attribute name="excludedfiles"
+                   default=""
+                   description="A comma separated list of file expressions to exclude from the set of default included files.  This list of file expressions is relative to the TS_HOME/${dist.dir}/${pkg.dir} directory."/>
+
+        <attribute name="update"
+                   default="false"
+                   description="Update an ear if it exists"/>
+
+        <element name="jar-elements" implicit="yes" optional="true"
+                 description="The content to be added to the archive"/>
+        
+        <sequential>
+        
+        <!-- Define commmon preset regardless of includedefaultfiles value-->
+        <presetdef name="component.ear">
+            <_component descriptor="@{descriptor}"
+                        permissionsdescriptor="@{permissionsdescriptor}"
+                       manifest="@{manifest}"
+                       archivename="@{archivename}"
+                       archivesuffix=".ear"
+                       descriptordir="@{descriptordir}"
+                       permissionsdescriptordir="@{permissionsdescriptordir}"
+                       internaldescriptorname="META-INF/application.xml"
+                       update="@{update}">
+            </_component>
+        </presetdef>
+
+       <if>
+          <equals arg1="${build.level}" arg2="3"/>
+        <then>
+            <if>
+              <istrue value="@{includedefaultfiles}"/>
+            <then>
+                <if>
+                    <and>
+                        <istrue value="${rebuildable}"/>
+                        <istrue value="${build.vi}"/>
+                    </and>
+                    <then>
+
+                        <var name="files.to.package.vi.built" unset="true"/>
+
+                        <pathconvert property="files.to.package.vi.built"
+                             pathsep=",">
+                            <fileset dir="${dist.dir}/${pkg.dir}"
+                               includes="*.jar, *.war, *.car, *.rar"
+                               excludes="@{excludedfiles}"/>
+                            <jar-elements/>
+                            <chainedmapper>
+                                <filtermapper>
+                                    <replacestring from="vi_built_" to=""/>
+                                </filtermapper>
+                                <regexpmapper handledirsep="yes" from="^(.*)/([^/]+)/([^/]*)$$" to="\1/\2/vi_built_\3"/>
+                                <regexpmapper handledirsep="yes" from=".*[\/|\\](.*)" to="\1"/>
+                            </chainedmapper>
+                        </pathconvert>
+
+                        <var name="files.to.package" value="${files.to.package.vi.built}"/>
+
+                        <echo message="files.to.package = ${files.to.package}"/>
+                        
+                        <mkdir dir="${tmp.dir}/@{archivename}.vibuilt"/>
+                        <copy todir="${tmp.dir}/@{archivename}.vibuilt">
+                            <fileset dir="${dist.dir}/${pkg.dir}"
+                                 includes="${files.to.package}">
+                            </fileset>
+                            <filtermapper>
+                                <replacestring from="vi_built_" to=""/>
+                            </filtermapper>
+                        </copy>
+                        <component.ear>
+                            <fileset dir="${tmp.dir}/@{archivename}.vibuilt"
+                                 includes="*">
+                            </fileset>
+                        </component.ear>
+                        <delete dir="${tmp.dir}/@{archivename}.vibuilt" quiet="true"/>
+                    </then>
+                    <else>
+                        <component.ear>
+                            <fileset dir="${dist.dir}/${pkg.dir}"
+                                     includes="*.jar, *.war, *.car, *.rar"
+                                     excludes="@{excludedfiles}, vi_built*"/>
+                            <jar-elements/>
+                        </component.ear>
+                    </else>
+                </if>              
+            </then>
+            <else>
+                <if>
+                    <and>
+                        <istrue value="${rebuildable}"/>
+                        <istrue value="${build.vi}"/>
+                    </and>
+                    <then>
+
+                        <var name="files.to.package.vi.built" unset="true"/>
+                        <pathconvert property="files.to.package.vi.built"
+                             pathsep=",">
+                            <jar-elements/>
+                            <chainedmapper>
+                                <filtermapper>
+                                    <replacestring from="vi_built_" to=""/>
+                                </filtermapper>
+                                <regexpmapper handledirsep="yes" from="^(.*)/([^/]+)/([^/]*)$$" to="\1/\2/vi_built_\3"/>
+                                <regexpmapper handledirsep="yes" from=".*[\/|\\](.*)" to="\1"/>
+                            </chainedmapper>
+                        </pathconvert>
+
+                        <var name="files.to.package" value="${files.to.package.vi.built}"/>
+
+                        <echo message="files.to.package = ${files.to.package}"/>
+
+                        <mkdir dir="${tmp.dir}/@{archivename}.vibuilt"/>
+                        <copy todir="${tmp.dir}/@{archivename}.vibuilt">
+                            <fileset dir="${dist.dir}/${pkg.dir}"
+                                 includes="${files.to.package}">
+                            </fileset>
+                            <filtermapper>
+                                <replacestring from="vi_built_" to=""/>
+                            </filtermapper>
+                        </copy>
+                        <component.ear>
+                            <fileset dir="${tmp.dir}/@{archivename}.vibuilt"
+                                 includes="*">
+                            </fileset>
+                        </component.ear>
+                        <delete dir="${tmp.dir}/@{archivename}.vibuilt" quiet="true"/>
+                    </then>
+                    <else>
+                        <component.ear>
+                            <jar-elements/>
+                        </component.ear>
+                    </else>
+                </if>
+                
+            </else>
+            </if>
+
+            <if>
+                <isset property="keep.archives"/>
+            <then>
+                <delete dir="${dist.dir}/${pkg.dir}/archives" quiet="true"/>
+                <mkdir dir="${dist.dir}/${pkg.dir}/archives"/>
+                <copy todir="${dist.dir}/${pkg.dir}/archives">
+                    <fileset dir="${dist.dir}/${pkg.dir}"
+                             includes="*.jar, *.war, *.rar, *.car"/>
+                </copy>
+                <for param="archive">
+                  <fileset dir="${dist.dir}/${pkg.dir}/archives"
+                           includes="*.jar, *.war, *.rar, *.car"/>
+                  <sequential>
+                    <echo message="Unjarring Archive: @{archive}"/>
+                    <mkdir dir="@{archive}.contents"/>
+                    <unjar src="@{archive}"
+                           dest="@{archive}.contents"/>
+                  </sequential>
+                </for>
+            </then>
+            </if>
+
+            <!--
+            <if>
+                <equals arg1="@{deletecomponentarchives}" arg2="true"/>
+            <then>
+                <_delete.component.archives/>
+            </then>
+            </if>
+            -->
+        </then>
+            <else>
+            <echo message="*** ts.ear.xml: build.level is set to ${build.level}" />
+            <echo message="*** ts.ear.xml: an ear file will not be created" />
+            </else>
+        </if>
+        </sequential>
+    </macrodef>
+    
+    <!-- PRESETS -->
+    
+    <!-- TARGETS -->
+
+</project>

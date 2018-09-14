@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="signaturetest_javaee" basedir="." default="usage">
+
+    <import file="../build.xml"/> 
+  
+    <target name="compile">
+        <antcall target="signaturetest.compile"/>
+        <ts.javac/>
+    </target>
+
+    <target name="clean">
+        <antcall target="signaturetest.clean"/>
+        <ts.clean/>
+    </target>
+
+    <target name="package">
+        <ts.vehicles name="JavaEESigTest"
+                     classes="${pkg.dir}/JavaEESigTest.class,
+                              ${fw.pkg.dir}/SigTestData.class,
+                              ${fw.pkg.dir}/SigTestDriver.class,
+                              ${fw.pkg.dir}/ApiCheckDriver.class,
+                              ${fw.pkg.dir}/SigTestResult.class,
+                              ${fw.pkg.dir}/PackageList.class,
+                              ${fw.pkg.dir}/SigTest.class,
+                              ${fw.pkg.dir}/SigTestEE.class,
+                              ${fw.pkg.dir}/SignatureTestDriverFactory.class,
+                              ${fw.pkg.dir}/SignatureTestDriver*.class">
+
+                     <servlet-elements>
+                         <zipfileset dir="${ts.home}/lib" includes="sigtest.jar" prefix="WEB-INF/lib"/>
+                     </servlet-elements>
+                     <jsp-elements>
+                         <zipfileset dir="${ts.home}/lib" includes="sigtest.jar" prefix="WEB-INF/lib"/>
+                     </jsp-elements>
+        </ts.vehicles>
+
+        <antcall target="add.sigtest"/>
+
+    </target>
+
+    <target name="add.sigtest">
+
+        <jar destfile="${ts.home}/dist/${pkg.dir}/JavaEESigTest_appclient_vehicle.ear"
+             update="true">
+            <zipfileset dir="${ts.home}/lib"
+                        includes="sigtest.jar"
+                        fullpath="lib/sigtest.jar"/>
+        </jar>
+
+        <echo message="DONE Updating ears."/>
+        <jar destfile="${ts.home}/dist/${pkg.dir}/JavaEESigTest_ejb_vehicle.ear"
+             update="true">
+            <zipfileset dir="${ts.home}/lib"
+                        includes="sigtest.jar"
+                        fullpath="lib/sigtest.jar"/>
+        </jar> 
+        <echo message="DONE Updating ears."/>
+
+    </target>
+
+</project>

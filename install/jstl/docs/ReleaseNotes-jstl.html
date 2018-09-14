@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<title>A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+(JSTL) Technology Compatibility Kit, Version 1.2 Release Notes</title>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #ffffdd;
+	color: #000000
+}
+
+pre {
+	background-color: #eeeeee;
+	color: #000099
+}
+
+code {
+	color: #000099;
+	font-size: smaller
+}
+
+h1 {
+	color: #000099
+}
+
+h2 {
+	color: #000099
+}
+
+h3 {
+	color: #000099;
+	text-decoration: underline
+}
+
+h4 {
+	font-style: italic;
+	color: #000099
+}
+
+.tabletitle {
+	font-style: italic;
+	color: #ffffcc;
+	font-size: small;
+	font-variant: small-caps
+}
+
+.subtitle {
+	font-style: italic;
+	color: #ffffcc;
+	font-variant: small-caps
+}
+
+.emphasize {
+	font-style: italic;
+	color: #000099
+}
+
+.step {
+	font-weight: bold
+}
+
+.note {
+	background-color: #fffff0;
+	border-bottom-width: thin;
+	border-top-width: thin;
+	border-top-style: inset;
+	border-bottom-style: inset;
+	font-size: -10%;
+	font-style: italic;
+}
+
+th {
+	background-color: #eeeeee;
+	padding-left: 2pt;
+	padding-right: 2pt;
+	text-align: left;
+}
+
+td {
+	padding-left: 3pt;
+}
+-->
+</style>
+</head>
+
+<body>
+<div align="center">
+<h1>A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+(JSTL) Technology Compatibility Kit, Version 1.2<br>
+<span class="emphasize">Release Notes, March 2010</span></h1>
+</div>
+<hr size="3">
+
+<hr>
+<h2>Kit Contents</h2>
+<p>A Standard Tag Library for JavaServer Pages(JSTL), Version 1.2, Technology
+Compatibility Kit (TCK) includes the following items:</p>
+<ul>
+	<li>
+	<p><strong>JSTL TCK signature, API and specification
+	tests:</strong></p>
+	<ul type="circle">
+		<li>
+		<p>A <strong>signature test</strong> that checks that all of the
+		public APIs are supported or defined in the Standard Tag Library for JavaServer Pages
+		<small><sup>TM</sup></small>
+		Version 1.2 implementation that is under test.</p>
+		</li>
+		<li>
+		<p><strong>Specification tests</strong> for the testable
+		assertions required by the JSTL Revision 1.2 Specification.</p>
+		</li>
+		<li>
+		<p><strong>API tests</strong> for the public APIs and language
+		elements defined by the JSTL 1.2 Specification.</p>
+		</li>
+	</ul>
+	</li>
+</ul>
+
+<hr>
+<h2>Platform Notes</h2>
+
+<p>The JSTL 1.2 TCK tests and the JSTL 1.2 Reference Implementation
+(RI) can be run with either Java<small><sup>TM</sup></small> Platform,
+Standard Edition (Java SE) version 1.5 or JDK 6, depending on the web
+container in which you run the tests. See <a href="#ReferenceRuntime">Reference
+Runtime for JSTL 1.2</a> for additional information.</p>
+
+<p>Refer to the <cite>A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+ User's Guide</cite>
+for platform compatibility requirements and notes.</p>
+
+<hr>
+<a name="ReferenceRuntime">
+<h2>Reference Runtime for A Standard Tag Library<small><sup>TM</sup></small>
+ 1.2</h2>
+<P>The designated Reference Runtime for compatibility testing of
+implementations based upon the Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+ Specification 1.2 is as follows:</P>
+<UL>
+	<LI>
+	<P>J2SE 1.5 or JDK 6, referred to in the Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+	1.2 documentation as the appropriate &lt;<em>JDK_Version</em>&gt;</P>
+
+	<P>
+	<hr>
+	<B>Note</B> - The J2SE 1.5 software can only be used with a non-Java EE
+	6 profile/application server (for example, Tomcat 6.x, which supports
+	Servlet 2.5); JDK 6 must be used with a Java EE 6 profile/application
+	server, such as the GlassFish v3 server.
+	<hr>
+	</P>
+	</LI>
+
+	<LI>
+	<P>Sun Reference Implementation (RI) of A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+	1.2 available as a standalone implementation from Java Partner
+	Engineering or included as part of the Java EE 6 RI or the Java EE 6
+	Web Profile RI, neither of which have been finalized at the time of
+	this writing but are also available from Java Partner Engineering</P>
+
+	<P>
+	<hr>
+	<B>Note</B> - Java EE 6 is not required; this TCK only requires a
+	container that supports A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+	 1.2 and its requirements.
+	<hr>
+	</P>
+	</LI>
+
+	<LI>
+	<P>A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+	 TCK tests run on the following platforms:</P>
+
+	<UL>
+		<LI>Solaris 9 Operating System on Sparc and x86</LI>
+		<LI>Solaris 10 Operating System on Sparc and Opteron</LI>
+		<LI>Windows XP Professional Edition</LI>
+		<LI>Windows Vista</LI>
+		<LI>RedHat Linux 9.0</LI>
+		<LI>RedHat Linux AS 3.0 (including Update 4)</LI>
+		<LI>MacOS X 10.5.7g</LI>
+	</UL>
+	</LI>
+
+
+	<hr>
+	<h2><a name="install_setup_run">Installing, Setting Up, and
+	Running the A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small> TCK</a></h2>
+
+	<p>Refer to the <cite>A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small>
+	 TCK 1.2 User's Guide</cite>, for complete instructions on installing, setting
+	up, and running the Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small> TCK.
+	The online version of the JT Harness version 5.0 documentation is available <a href="https://wiki.openjdk.java.net/display/CodeTools/Documentation">here</a>.</p>
+
+	<hr>
+	<h2>Attributions</h2>
+	<p>The A Standard Tag Library for JavaServer Pages<small><sup>TM</sup></small> TCK 1.2 includes software
+	developed by the Apache Software Foundation (<a
+		href="http://www.apache.org/">http://www.apache.org/</a>), the dom4j
+	Project (<a href="http://www.dom4j.org/">http://www.dom4j.org/</a>),
+	and the JDOM<small><sup>TM</sup></small> Project (<a
+		href="http://www.jdom.org/">http://www.jdom.org/</a>). The Apache Ant
+	Contrib project is located at <a
+		href="http://ant-contrib.sourceforge.net/">http://ant-contrib.sourceforge.net/</a>.</p>
+	<hr>
+
+	<h2>Changes/Addtions</h2>
+	<UL>
+		<LI>
+		<p><strong>jstltck-1.2_30-Jun-2008.zip - New release for
+		JSTL B 1.2. This release does not include any additional tests, we
+		have updated the configuration of the TCK. </strong></p>
+		</LI>
+	</UL>
+	<hr>
+
+	<p><small>
+	<address>Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.</address>
+	</small></p>
+</body>
+</html>

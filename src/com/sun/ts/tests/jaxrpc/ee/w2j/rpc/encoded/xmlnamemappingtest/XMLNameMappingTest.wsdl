@@ -1,0 +1,912 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="XMLNameMappingTest"
+		targetNamespace="http://XMLNameMappingTest.org/wsdl" 
+		xmlns:tns="http://XMLNameMappingTest.org/wsdl" 
+		xmlns="http://schemas.xmlsoap.org/wsdl/" 
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+		xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		xmlns:xsd1="http://XMLNameMappingTest.org/xsd"> 
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://XMLNameMappingTest.org/xsd">
+
+			<!-- ########################################## -->
+			<!-- Beginning lowercase complex types must be  -->
+			<!-- mapped to a java class beginning with an   -->
+			<!-- uppercase class name.                      -->
+			<!-- ########################################## -->
+
+			<complexType name="soapStruct">
+				<all>
+					<element name="varString" type="string"/>
+					<element name="varInt" type="int"/>
+					<element name="varFloat" type="float"/>
+				</all>
+			</complexType>
+
+                        <element name="eyeColor" type="xsd1:eyeColor"/>
+                        <simpleType name="eyeColor">
+                                <restriction base="xsd:string">
+                                        <enumeration value="Brown" />
+                                        <enumeration value="Blue" />
+                                        <enumeration value="Green" />
+                                </restriction>
+                        </simpleType>
+
+		</schema>
+	</types>
+
+	<message name="echoVoidRequest"/>
+	<message name="echoVoidResponse"/>
+
+	<message name="echoEyeColorRequest">
+		<part name="inputEyeColor" type="xsd1:eyeColor"/>
+	</message>
+
+	<message name="echoEyeColorResponse">
+		<part name="return" type="xsd1:eyeColor"/>
+	</message>
+
+	<message name="echoSoapStructRequest">
+		<part name="inputSoapStruct" type="xsd1:soapStruct"/>
+	</message>
+	<message name="echoSoapStructResponse">
+		<part name="return" type="xsd1:soapStruct"/>
+	</message>
+
+	<portType name="xMLNameMappingTest">
+
+		<!-- ########################################### -->
+		<!-- Beginning uppercase operation names must be -->
+		<!-- mapped to a java method beginning with a    -->
+		<!-- lowercase method name                       -->
+		<!-- ########################################### -->
+
+                <operation name="EchoEyeColor" parameterOrder="inputEyeColor">
+                        <input message="tns:echoEyeColorRequest"/>
+                        <output message="tns:echoEyeColorResponse"/>
+                </operation>
+
+                <operation name="EchoSoapStruct" parameterOrder="inputSoapStruct">
+                        <input message="tns:echoSoapStructRequest"/>
+                        <output message="tns:echoSoapStructResponse"/>
+                </operation>
+
+		<!-- ########################################### -->
+		<!-- Names with invalid characters for java      -->
+		<!-- identifiers should be stripped out          -->
+		<!-- ########################################### -->
+
+<!--
+
+		<operation name="name-withdash">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="name_withunderscore">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="name:withcolon">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="name.withdot">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+-->
+
+		<!-- ########################################## -->
+		<!-- Java Language Keywords must be mapped to a -->
+		<!-- java name prepending an underscore "_"     -->
+		<!-- ########################################## -->
+
+		<operation name="null">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="true">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="false">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="abstract">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="boolean">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="break">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="byte">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="case">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="catch">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="char">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="class">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="const">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="continue">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="default">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="do">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="double">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="else">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="extends">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="final">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="finally">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="float">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="for">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="goto">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="if">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="implements">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="import">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="instanceof">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="int">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="interface">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="long">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="native">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="new">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="package">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="private">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="protected">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="public">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="return">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="short">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="static">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="super">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="switch">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="synchronized">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="this">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="throw">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="throws">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="transient">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="try">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="void">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="volatile">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+
+		<operation name="while">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+	</portType>
+
+	<binding name="XMLNameMappingTestSoapBinding" type="tns:xMLNameMappingTest">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+                <operation name="EchoEyeColor">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                        </input>
+                        <output>
+                                <soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                        </output>
+                </operation>    
+
+                <operation name="EchoSoapStruct">
+                        <soap:operation soapAction=""/>
+                        <input>
+                                <soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                        </input>
+                        <output>
+                                <soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                        </output>
+                </operation>    
+
+<!--
+		<operation name="name-withdash">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<operation name="name_withunderscore">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<operation name="name:withcolon">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<operation name="name.withdot">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+-->
+
+		<operation name="null">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<operation name="true">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<operation name="false">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<operation name="abstract">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="boolean">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="break">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="byte">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="case">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="catch">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="char">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="class">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="const">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="continue">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="default">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="do">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="double">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="else">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="extends">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="final">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="finally">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="float">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="for">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="goto">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="if">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="implements">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="import">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="instanceof">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="int">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="interface">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="long">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="native">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="new">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="package">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="private">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="protected">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="public">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="return">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="short">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="static">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="super">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="switch">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="synchronized">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="this">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="throw">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="throws">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="transient">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="try">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="void">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="volatile">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="while">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://XMLNameMappingTest.org/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+	</binding>
+
+	<!-- ############################################# -->
+	<!-- Service and Ports with the same name must be  -->
+	<!-- mapped by suffixing _Service and _Port to the -->
+	<!-- mapped Java names for WSDL service and port   -->
+	<!-- type respectively.                            -->
+	<!-- ############################################# -->
+
+	<service name="xMLNameMappingTestService">
+  		<port name="XMLNameMappingTestService" binding="tns:XMLNameMappingTestSoapBinding">
+            	<soap:address location="http://localhost:8080/XMLNameMappingTest/jaxrpc/XMLNameMappingTest"/>
+  		</port>
+	</service>
+
+</definitions>
+

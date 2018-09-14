@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="common_connector_whitebox" basedir="." default="usage">
+    <import file="../../../../../../../../bin/xml/ts.import.xml"/> 
+  
+
+
+    <target name="compile">
+              <ts.javac includes="${pkg.dir}/**/*.java,
+                                  ${pkg.dir}/*.java,
+                                  com/sun/ts/tests/common/connector/util/**/*.java,
+                                 "/>
+    </target>
+
+
+    <!-- 
+          whitebox.jar will be a common lib that will be used by all .rars
+      -->
+    <target name="build.whitebox.jar" depends="compile">
+        <property name="whitebox.dir" 
+                  value="com/sun/ts/tests/common/connector/whitebox"/>
+        <mkdir dir="${dist.dir}/${whitebox.dir}"/>   
+
+        <jar jarfile="${dist.dir}/${whitebox.dir}/whitebox.jar" 
+             basedir="${class.dir}" 
+             includes="${whitebox.dir}/**/*, 
+                       com/sun/ts/tests/connector/ee/mdb/**,
+                       com/sun/ts/tests/common/connector/util/**/*"
+             excludes="${whitebox.dir}/annotated/**,
+                       ${whitebox.dir}/permissiondd/**,
+                       ${whitebox.dir}/ibanno/**,
+                       ${whitebox.dir}/mdcomplete/**,
+                       ${whitebox.dir}/mixedmode/**,
+                       ${whitebox.dir}/multianno/**">
+
+            <!-- our whitebox is going to be referenced by .rars -->
+            <manifest>
+                <attribute name="Extension-Name"           value="whitebox"/>
+                <attribute name="Specification-Title"      value="whitebox"/>
+                <attribute name="Specification-Version"    value="1.6"/>
+                <attribute name="Implementation-Vendor-Id" value="com.sun"/>
+                <attribute name="Implementation-Vendor"    value="Sun Microsystems, Inc"/>
+                <attribute name="Implementation-Version"   value="1.6"/>
+            </manifest>
+        </jar>
+    </target>
+
+
+    <target name="package" depends="compile">
+        <antcall target="build.whitebox.jar" />
+
+        <ts.rar archivename="whitebox-xa-param"   
+                descriptor="ra-xa-param.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="whitebox-notx-param" 
+                descriptor="ra-notx-param.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="whitebox-tx-param"   
+                descriptor="ra-tx-param.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="whitebox-xa"         
+                descriptor="ra-xa.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="whitebox-notx"       
+                descriptor="ra-notx.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="whitebox-tx"         
+                descriptor="ra-tx.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <!-- now create some rars that use 1.0 DD -->
+        <antcall target="make-old-compat-rars" />
+
+        <ant dir="${ts.home}/src/${pkg.dir}/annotated" target="build" inheritAll="false"/>
+        <ant dir="${ts.home}/src/${pkg.dir}/permissiondd" target="build" inheritAll="false"/>
+        <ant dir="${ts.home}/src/${pkg.dir}/multianno" target="build" inheritAll="false"/>
+        <ant dir="${ts.home}/src/${pkg.dir}/mixedmode" target="build" inheritAll="false"/>
+        <ant dir="${ts.home}/src/${pkg.dir}/ibanno" target="build" inheritAll="false"/>
+        <ant dir="${ts.home}/src/${pkg.dir}/mdcomplete" target="build" inheritAll="false"/>
+    </target>
+
+
+    <!-- 
+         This target makes the .rar files which use older formated (1.0) DD files.
+         These are used to make sure our .rars are backwards compatible with older
+         DD formats.
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+    -->
+    <target name="make-old-compat-rars" >
+
+        <ts.rar archivename="old-dd-whitebox-tx"   
+                descriptor="ra-compat-tx.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="old-dd-whitebox-tx-param"   
+                descriptor="ra-compat-tx-param.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="old-dd-whitebox-xa"   
+                descriptor="ra-compat-xa.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="old-dd-whitebox-xa-param"   
+                descriptor="ra-compat-xa-param.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="old-dd-whitebox-notx"   
+                descriptor="ra-compat-notx.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+
+        <ts.rar archivename="old-dd-whitebox-notx-param"   
+                descriptor="ra-compat-notx-param.xml"
+                excludedfiles="whitebox.jar, permissiondd/**, annotated/**, ibanno/**, mdcomplete/**, mixedmode/**, multianno/**">
+            <manifest>
+                <attribute name="Extension-List"                  value="tsharness ${tslib.name} whitebox"/>
+                <attribute name="whitebox-Extension-Name"         value="whitebox"/>
+                <attribute name="whitebox-Specification-Version"  value="1.6"/>
+                <attribute name="whitebox-Implementation-Version"    value="1.6"/>
+                <attribute name="whitebox-Implementation-Vendor-Id"  value="com.sun"/>
+            </manifest>
+        </ts.rar>
+    </target>
+
+</project>

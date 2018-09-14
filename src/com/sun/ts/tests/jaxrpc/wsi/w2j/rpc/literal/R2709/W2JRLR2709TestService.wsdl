@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="W2JRLR2709TestService"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd1="http://w2jrlr2709testservice.org/xsd">
+
+	<documentation>
+		Documentation.
+	</documentation>
+	
+    <types>
+        <schema targetNamespace="http://w2jrlr2709testservice.org/xsd"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+            elementFormDefault="qualified">
+
+    		<complexType name="NonNullString">
+        		<sequence>
+                	<element name="p1" type="xsd:string" nillable="false"/>
+        		</sequence>
+		    </complexType>
+		    
+    		<complexType name="NonNullStringZero">
+        		<sequence>
+                	<element name="p1" type="xsd:string" nillable="false"/>
+        		</sequence>
+		    </complexType>
+    		<complexType name="NonNullStringOne">
+        		<sequence>
+                	<element name="p1" type="xsd:string" nillable="false"/>
+        		</sequence>
+		    </complexType>
+    		<complexType name="NonNullStringTwo">
+        		<sequence>
+                	<element name="p1" type="xsd:string" nillable="false"/>
+        		</sequence>
+		    </complexType>
+            
+        </schema>
+    </types>
+    
+    <message name="echoString">
+        <part type="xsd1:NonNullString" name="str"/>
+    </message>
+    <message name="echoStringResponse">
+        <part type="xsd1:NonNullString" name="result"/>
+    </message>
+        
+    <message name="echoStringZero">
+        <part type="xsd1:NonNullStringZero" name="str"/>
+    </message>
+    <message name="echoStringZeroResponse">
+        <part type="xsd1:NonNullStringZero" name="result"/>
+    </message>
+        
+    <message name="echoStringOne">
+        <part type="xsd1:NonNullStringOne" name="str"/>
+    </message>
+    <message name="echoStringOneResponse">
+        <part type="xsd1:NonNullStringOne" name="result"/>
+    </message>
+        
+    <message name="echoStringTwo">
+        <part type="xsd1:NonNullStringTwo" name="str"/>
+    </message>
+    <message name="echoStringTwoResponse">
+        <part type="xsd1:NonNullStringTwo" name="result"/>
+    </message>
+        
+    <portType name="W2JRLR2709Test">
+    	<operation name="echoString">
+            <input message="tns:echoString"/>
+            <output message="tns:echoStringResponse"/>
+    	</operation>
+    </portType>
+    
+    <portType name="W2JRLR2709TestZero">
+    	<operation name="echoString">
+            <input message="tns:echoStringZero"/>
+            <output message="tns:echoStringZeroResponse"/>
+    	</operation>
+    </portType>
+    
+    <portType name="W2JRLR2709TestOne">
+    	<operation name="echoString">
+            <input message="tns:echoStringOne"/>
+            <output message="tns:echoStringOneResponse"/>
+    	</operation>
+    </portType>
+    
+    <portType name="W2JRLR2709TestTwo">
+    	<operation name="echoString">
+            <input message="tns:echoStringTwo"/>
+            <output message="tns:echoStringTwoResponse"/>
+    	</operation>
+    </portType>
+    
+    <binding name="W2JRLR2709TestBinding" type="tns:W2JRLR2709Test">
+    	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal" namespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"/>
+            </output>
+    	</operation>
+    </binding>
+
+	<!-- There is to be no binding's for the 'W2JRLR2709TestZero' port type -->
+	
+	<!-- There is to be one binding for the 'W2JRLR2709TestOne' port type -->
+	
+    <binding name="W2JRLR2709TestOneBinding" type="tns:W2JRLR2709TestOne">
+    	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal" namespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"/>
+            </output>
+    	</operation>
+    </binding>
+
+	<!-- There is to be two bindings for the 'W2JRLR2709TestTwo' port type -->
+	
+    <binding name="W2JRLR2709TestTwoABinding" type="tns:W2JRLR2709TestTwo">
+    	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal" namespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <binding name="W2JRLR2709TestTwoBBinding" type="tns:W2JRLR2709TestTwo">
+    	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="echoString">
+    		<soap:operation/>
+            <input>
+                <soap:body use="literal" namespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://w2jrlr2709testservice.org/W2JRLR2709TestService.wsdl"/>
+            </output>
+    	</operation>
+    </binding>
+
+    <service name="W2JRLR2709TestService">
+        <port binding="tns:W2JRLR2709TestBinding"
+            name="W2JRLR2709TestPort">
+            <soap:address
+                location="http://localhost:8000/W2JRLR2709TestService/ws4ee_1/W2JRLR2709Test"/>
+        </port>
+    </service>
+    
+</definitions>

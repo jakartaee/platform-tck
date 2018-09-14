@@ -1,0 +1,126 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="JAXWS" basedir="." default="build">
+
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+    
+        <target name="init">
+		<mkdir dir="${deliverable.bundle.dir}/bin"/>
+		<mkdir dir="${deliverable.bundle.dir}/bin/xml"/>
+		<mkdir dir="${deliverable.bundle.dir}/docs"/>
+		<mkdir dir="${deliverable.bundle.dir}/classes"/>
+		<mkdir dir="${deliverable.bundle.dir}/dist"/>
+		<mkdir dir="${deliverable.bundle.dir}/lib"/>
+		<mkdir dir="${deliverable.bundle.dir}/src"/>
+		<mkdir dir="${deliverable.bundle.dir}/tmp"/>
+	</target>
+
+	<target name="copyinstall">
+      <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+          <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
+                   includes="**/*"
+                   excludes="**/workspace.xml"/>
+      </copy>
+	  <copy todir="${deliverable.bundle.dir}/bin/xml" includeEmptyDirs="no">
+		  <fileset dir="${common.bin.dir}/xml" includes="ts.*"/>
+	  </copy>
+
+      <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+          <fileset dir="${ts.home}/lib"
+                   includes="dtds/"/>
+      </copy>
+
+      <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
+          <fileset dir="${ts.home}/lib" 
+                   includes="schemas/"/>
+      </copy>        
+
+      <copy todir="${deliverable.bundle.dir}/lib">
+          <fileset dir="${ts.home}/lib"
+                   includes="jaxb-*.jar,jaxwstck.jar, sigtest.jar"/>
+      </copy>
+
+	  <copy todir="${deliverable.bundle.dir}/src">
+		<fileset dir="${ts.home}/install/${deliverable.name.lower}/other" 
+			includes="testsuite.jtt, vehicle.properties"/>
+	  </copy>
+
+	  <!-- Copy over jaxwsdocs -->
+      <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+          <fileset dir="${ts.home}/install/jaxws/docs" includes="**/*"/>
+      </copy>
+	</target>
+
+	<target name="build" depends="init">
+		<antcall target="copyinstall"/>
+
+		<!-- the classes directory -->
+		<!-- ********************* -->
+		<!-- Also include any handler.xml files found since -->
+		<!-- these are to configure the handlers -->
+		<!-- ********************* -->
+		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+                     <fileset dir="${ts.home}/classes" includes="
+		        com/sun/ts/tests/common/vehicle/*.class,
+		        com/sun/ts/tests/common/vehicle/standalone/*.class,
+		        com/sun/ts/tests/jaxws/**/*.class,
+		        com/sun/ts/tests/jaxws/**/*_handler.xml,
+		        com/sun/ts/tests/signaturetest/**/*.class,
+		        com/sun/ts/lib/porting/**/*TSURL*.class,
+		        w2jdlnoncustomization/**/*.class,
+		        w2jrlnoncustomization/**/*.class,
+		        com/sun/ts/lib/implementation/sun/common/**/SunRIURL.class"
+			excludes="
+			com/sun/ts/tests/jaxws/javasehttpserver/**,
+			com/sun/ts/tests/jaxws/se/**"/>
+		</copy>
+
+		<!-- the war files in the dist directory -->
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/jaxws/**/*.war" excludes="**/*-portable.war"/>
+			<mapper type="flatten"/>
+		</copy>
+
+		<!-- maintain dist class heirarchy of test directory wars -->
+		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="yes">
+			<fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/jaxws/**/*.war"/>
+		</copy>
+
+		<!-- the specific deliverable source directories -->
+		<copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+			<fileset dir="${ts.home}/src"
+			includes="
+com/sun/ts/tests/jaxws/**/*,
+com/sun/ts/tests/signaturetest/signature-repository/javax.xml.ws.*,
+com/sun/ts/tests/signaturetest/jaxws/**/*,
+com/sun/ts/tests/common/vehicle/*,
+com/sun/ts/tests/common/vehicle/standalone/*,
+com/sun/ts/lib/porting/**/*TSURLInterface*,
+${lib.pkg.dir}/deliverable/jaxws/*,
+com/sun/ts/lib/implementation/sun/common/**/SunRIURL*"
+			excludes="
+**/*log,
+com/sun/ts/tests/jaxws/javasehttpserver/**,
+com/sun/ts/tests/jaxws/se/**,
+com/sun/ts/tests/signaturetest/jaxws/record.sh"/>
+		</copy>
+
+	</target>
+</project>

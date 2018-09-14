@@ -1,0 +1,792 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="TestImport" basedir="." default="usage">
+
+    <!-- 
+    This is the main import file for all leaf test directory build.xml files.
+    It contains targets and properties necessary in lower level build files.
+    -->
+    
+    <dirname property="TestImport.basedir" file="${ant.file.TestImport}"/>
+    
+    <!-- IMPORTS -->
+    <import file="./ts.vehicles.xml"/>
+    
+    <!-- PROPERTIES -->
+    
+    <!-- MACROS -->
+    
+    <!-- TARGETS -->
+    <target name="cbr" depends="clean, build, runclient" 
+            description="CTS convenience target for clean, build, runclient"/>
+    
+    <target name="compile" 
+            description="Compiles all java files under a src directory">
+        <ts.javac/>
+    </target>
+
+    <target name="-preclean"
+            description="Initial dependency target for the clean target"/>
+    
+    <target name="clean" depends="-preclean"
+            description="Cleans all classes and archives that were built from a src directory">
+        <ts.clean/>
+    </target>
+    
+    <target name="-precompile"
+            description="Initial dependency target for the compile target"/>
+
+    <target name="-postcompile"
+            description="Post dependency target for the compile target"/>
+
+    <target name="build" depends="-precompile, compile, -postcompile, package"
+            description="Compiles classes and packages archives"/>
+    
+    <target name="build.all"  
+            description="Builds everything for this deliverable">
+        <ant antfile="build.xml" dir="${bin.dir}" target="build.all"/>
+    </target>
+
+    <target name="build.all.jars"  
+            description="Builds tsharness and tck library jars for this deliverable">
+        <ant antfile="build.xml" dir="${bin.dir}" target="build.all.jars"/>
+    </target>
+    
+    <target name="build.all.tests"
+            description="Builds all tests for this deliverable">
+        <ant antfile="build.xml" dir="${bin.dir}" target="build.all.tests"/>
+    </target>
+
+    <target name="clean.classes" 
+            description="Cleans all classes for this pkg.dir">
+        <ts.clean.classes/>    
+    </target>
+    
+    <target name="clean.dist"
+            description="Cleans all archives for this pkg.dir">
+        <ts.clean.dist/>
+    </target>
+    
+    <target name="runclient"
+            depends="-check.for.test.dir.file"
+            description="Executes all tests under a src directory">
+        <ant antfile="build.xml" dir="${bin.dir}" target="runclient"/>
+    </target>
+    
+    <target name="runclient.nobinaryfinder"
+            description="Executes all tests under a src directory">
+        <ant antfile="build.xml" dir="${bin.dir}" target="runclient.nobinaryfinder"/>    
+    </target>
+    
+    <target name="report" 
+            description="Generates a report for all tests under a src directory">
+        <ant antfile="build.xml" dir="${bin.dir}" target="report"/>
+    </target>
+
+    <target name="list.tests"
+            depends="-check.for.test.dir.file"
+            description="Lists all tests under a src directory">
+        <ant antfile="build.xml" dir="${bin.dir}" target="runclient">
+            <property name="exec.mode" value="5"/>
+        </ant>
+    </target>
+
+    <target name="deploy" 
+            description="Deploys all archives under a src directory">
+        <ant antfile="build.xml" dir="${bin.dir}" target="deploy"/>
+    </target>
+    
+    <target name="undeploy" 
+            description="Undeploys all archives under a src directory">
+        <ant antfile="build.xml" dir="${bin.dir}" target="undeploy"/>
+    </target>
+
+    <target name="deploy.all"
+            description="Deploys all currently deployed archives">
+        <ant antfile="build.xml" dir="${bin.dir}" target="deploy.all"/>
+    </target>
+
+    <target name="undeploy.all"
+            description="Undeploys all currently deployed archives">
+        <ant antfile="build.xml" dir="${bin.dir}" target="undeploy.all"/>
+    </target>
+    
+    <target name="run.all"
+            description="Runs all tests">
+        <ant antfile="build.xml" dir="${bin.dir}" target="run.all"/>
+    </target>
+
+    <target name="all" depends="-allcalled, clean, build, deploy, runclient"
+            description="Executes clean, build, deploy, and runclient targets"/>
+    
+    <target name="-allcalled">
+        <property name="all.target.called" value="true"/>    
+    </target>
+    
+    <target name="package">
+        <echo message="No package target implemented for ${pkg.dir}"/>    
+    </target>
+    
+    <target name="-check.for.deliverable.subset">
+        <if>
+        <isset property="${deliverable.dir}.test.dirs" />
+        <then>
+            <propertycopy name="dirs.to.use" from="${deliverable.dir}.test.dirs" />
+            <var name="tests.string" value=""/>
+            <for list="${dirs.to.use}" param="ii" trim="true">
+              <sequential>
+                <var name="tests.string" value="${tests.string} @{ii}"/>
+              </sequential>
+            </for>
+            <echo>Since ${deliverable.dir}.test.dirs is defined, </echo>
+            <echo>the following subset of tests under this directory will be used:</echo>
+            <echo>${tests.string}</echo>
+        </then>
+        </if>
+    </target>
+    
+    <target name="-check.for.test.dir.file">
+        <if>
+        <isset property="tests.file" />
+        <then>
+            <var name="tests.string" value=""/>
+            <loadfile property="tests.from.file" srcFile="${tests.file}"/>
+            <for param="line" list="${tests.from.file}" delimiter="${line.separator}">
+                <sequential>
+                    <var name="tests.string" value="${tests.string} @{line}"/>
+                </sequential>
+            </for>
+            <echo>tests.file set:  ${tests.file}, </echo>
+            <echo>The following subset of tests as listed in the file will be run:</echo>
+            <echo>${tests.from.file}</echo>
+        </then>
+        </if>
+    </target>
+    
+    <!--
+      Using the xmlvalidate task with full xmlcatalog support requires two
+      additional files.  ANT_HOME/lib/resolver.jar is the Apache
+      commons resolver that provides a fully spec compliant XML catalog
+      resolver.  This allows the xmlvalidate task to use an XML catalog that
+      contains rewriteSystem directives.  TS_HOME/lib/catalog is the actual
+      XML catalog file used by the xmlvalidate task.  It contains the mapping
+      of HTTP schema URLs to local file URLs.
+      
+      When using this tool on OWAN you should set a proxy host and port using
+      the ANT_OPTS environment variable.  Here is an example:
+      
+      ANT_OPTS="-Dhttp.proxyHost=www-proxyhost.domain.com -Dhttp.proxyPort=80"
+      
+      Even when using the local XML catalog on OWAN, you should still set the
+      proxy server and port since the resolver will attempt to download any
+      referenced schemas it can not find locally over the network.  This will
+      cause the validate task to run very slowly since it is waiting for the
+      schema requests to timeout.
+    -->
+    <property name="use.xml.catalog" value="true"/>
+    
+    <macrodef name="ts.xmlvalidate">
+      <element name="catalog" optional="true"/>
+      <sequential>
+        <xmlvalidate failonerror="no" lenient="no" warn="yes">
+          <fileset dir="${src.dir}/${pkg.dir}" includes="**/*.xml, **/*.tld"
+                   excludes="**/build.xml"/>
+          <catalog/>
+          <attribute name="http://xml.org/sax/features/validation" value="true"/>
+          <attribute name="http://apache.org/xml/features/validation/schema" value="true"/>
+          <attribute name="http://xml.org/sax/features/namespaces" value="true"/>
+        </xmlvalidate>
+      </sequential>
+    </macrodef>
+    
+    <target name="validate">
+      <if>
+        <istrue value="${use.xml.catalog}"/>
+      <then>
+        <echo>**** Using XML catalog '${ts.home}/lib/catalog' to locate schemas.</echo>
+        <echo>**** To use the schema URLs declared within the XML instances, specify "-Duse.xml.catalog=false" when invoking validate</echo>
+        <loadfile srcFile="${ts.home}/lib/catalog" property="catalog.contents"/>
+        <propertyregex property="mod"
+                       input="${catalog.contents}"
+                       regexp='(rewritePrefix\=\"file\:\/\/)(.*)(\/lib\/.*\/\>)'
+                       replace="\1${ts.home}\3"
+                       defaultvalue="${catalog.contents}"
+                       override="true"
+                       global="true"/>
+        <echo message="${mod}" file="${ts.home}/lib/catalog"/>
+        <echo>Filtered ${ts.home}/lib/catalog</echo>
+        <ts.xmlvalidate>
+          <catalog>
+            <xmlcatalog>
+              <catalogpath>
+                <fileset dir="${ts.home}/lib" includes="catalog"/>
+              </catalogpath>
+            </xmlcatalog>
+          </catalog>        
+        </ts.xmlvalidate>
+      </then>
+      <else>
+        <echo>**** Using schema URLs defined within XML instances.</echo>
+        <ts.xmlvalidate/>
+      </else>
+      </if>
+    </target>
+
+
+	  <macrodef name="long.dir.listing">
+	  	<attribute name="dir"/>
+	  	<sequential>
+	  		<echo>@{dir}</echo>
+<echo>---------------------------------------------------------------</echo>
+	  		<if>
+	        <os family="windows"/>
+	      <then>
+	        <shellscript shell="cmd.exe" tmpsuffix=".bat" dir="@{dir}">
+	          <arg value="/c"/>
+	          dir /P /O-D
+	        </shellscript>
+	        </then>
+	      <elseif>
+	        <os family="unix"/>
+	      <then>
+	      <shellscript shell="bash"
+	        dir="@{dir}"
+	        inputstring="ls -tlF"/>
+	      </then>
+	     	</elseif>
+	     	<else>
+	     		<echo>Error, OS Family not recognized.</echo>
+	     	</else>
+	      </if>
+	    </sequential>
+	  </macrodef>
+	
+	  <target name="llc"
+              description="Displays a long listing of classes in this pkg">
+	    <long.dir.listing dir="${class.dir}/${pkg.dir}"/>
+    </target>
+ 
+	  <target name="lld"
+              description="Displays a long listing of archives in this pkg">
+       <long.dir.listing dir="${dist.dir}/${pkg.dir}"/>
+    </target>
+ 
+    <target name="lc" 
+            description="Displays the list of classes in this pkg">
+        <if>
+            <available type="dir" file="${class.dir}/${pkg.dir}"/>
+        <then>
+            <echo message="Classes under"/>
+            <echo message="${class.dir}/${pkg.dir}"/>
+            <echo message="--------------------------------------------------"/>
+            <for param="file">
+                <path>
+                    <fileset dir="${class.dir}/${pkg.dir}" includes="*"/>
+                </path>
+                <sequential>
+                    <propertyregex property="file.name.only"
+                                   input="@{file}"
+                                   regexp=".*[\/|\\](.*)"
+                                   select="\1"
+                                   casesensitive="false"
+                                   override="true"/>
+                    <echo message="${file.name.only}"/>
+                </sequential>
+            </for>
+        </then>
+        <else>
+            <echo message="${class.dir}/${pkg.dir} does not exist"/>
+            <echo message="The 'compile' target must be run prior to the 'lc' target"/>
+        </else>
+        </if>         
+    </target>
+    
+    <target name="ld"
+            description="Displays the list of archives in this pkg">
+
+
+        <if>
+            <available type="dir" file="${dist.dir}/${pkg.dir}"/>
+        <then>
+            <echo message="Files under"/>
+            <echo message="${dist.dir}/${pkg.dir}"/>
+            <echo message="--------------------------------------------------"/>
+            <for param="file">
+                <path>
+                    <fileset dir="${dist.dir}/${pkg.dir}" includes="*"/>
+                </path>
+                <sequential>
+                    <propertyregex property="file.name.only"
+                                   input="@{file}"
+                                   regexp=".*[\/|\\](.*)"
+                                   select="\1"
+                                   casesensitive="false"
+                                   override="true"/>
+                    <echo message="${file.name.only}"/>
+                </sequential>
+            </for>
+        </then>
+        <else>
+            <echo message="${dist.dir}/${pkg.dir} does not exist"/>
+            <echo message="The 'build' target must be run prior to the 'ld' target"/>
+        </else>
+        </if>   
+    </target>
+    <target name="pd"
+            description="spawns a window to the associated dist dir for the current src dir">
+        <if>
+            <available type="dir" file="${dist.dir}/${pkg.dir}"/>
+        <then>
+             <if>
+                 <os family="windows"/>
+               <then>
+                 <property name="script" value="${common.bin.dir}/xml/other/windows.bat"/>
+                 <chmod file="${script}" perm="ugo+rwx"/>
+                 <exec executable="${script}" spawn="true">
+                   <arg value="startcmd"/>
+                   <arg value="${dist.dir}/${pkg.dir}"/>
+                 </exec>
+               </then>
+               <elseif>
+                 <os family="unix"/>
+               <then>
+                 <property name="script" value="${common.bin.dir}/xml/other/unix.sh"/>
+                 <chmod file="${script}" perm="ugo+rwx"/>
+                 <exec executable="${script}" spawn="true">
+                   <arg value="startxterm"/>
+                   <arg value="${dist.dir}/${pkg.dir}"/>
+                 </exec>
+               </then>
+               </elseif>
+             </if>
+        </then>
+        <else>
+            <echo message="${dist.dir}/${pkg.dir} does not exist"/>
+            <echo message="The 'build' target must be run prior to the 'pd' target"/>
+        </else>
+        </if>   
+    </target>
+    
+    <target name="pc"
+            description="spawns a window to the associated classes dir for the current src dir">
+        <if>
+            <available type="dir" file="${class.dir}/${pkg.dir}"/>
+        <then>
+             <if>
+                 <os family="windows"/>
+               <then>
+                 <property name="script" value="${common.bin.dir}/xml/other/windows.bat"/>
+                 <chmod file="${script}" perm="ugo+rwx"/>
+                 <exec executable="${script}" spawn="true">
+                   <arg value="startcmd"/>
+                   <arg value="${class.dir}/${pkg.dir}"/>
+                 </exec>
+               </then>
+               <elseif>
+                 <os family="unix"/>
+               <then>
+                 <property name="script" value="${common.bin.dir}/xml/other/unix.sh"/>
+                 <chmod file="${script}" perm="ugo+rwx"/>
+                 <exec executable="${script}" spawn="true">
+                   <arg value="startxterm"/>
+                   <arg value="${class.dir}/${pkg.dir}"/>
+                 </exec>
+               </then>
+               </elseif>
+             </if>
+        </then>
+        <else>
+            <echo message="${class.dir}/${pkg.dir} does not exist"/>
+            <echo message="The 'build' target must be run prior to the 'pc' target"/>
+        </else>
+        </if>   
+    </target>
+    
+    <target name="verify" description="Runs Java EE Verification on the archives under this directory">
+        <echo message="Running verify from ts.common.xml"/>
+        <verifier resultsdir="${verifierresultsdir}"
+        archivedir="${verifierarchivedir}"
+        defaultincludes="${verifierdefaultincludes}"
+        failonerror="${verifierfailonerror}"
+        saveresults="${verifiersaveresults}"/>
+    </target>
+	
+    <target name="pmd" description="Runs the PMD tool on the src directory">
+        <if>
+          <isfalse value="${in.workspace}"/>
+        <then>
+            <echo message="This target is only valid within a workspace since PMD is not included in a bundle."/>
+        </then>
+        <else>
+            <ts.pmd/>
+        </else>
+        </if>    
+    </target>
+
+    <target name="findbugs" description="Runs the Findbugs tool on the classes under this directory">
+        <if>
+          <isfalse value="${in.workspace}"/>
+        <then>
+            <echo message="This target is only valid within a workspace since Findbugs is not included in a bundle."/>
+        </then>
+        <else>
+            <if>
+              <not> <available file="${class.dir}/${pkg.dir}" type="dir"/> </not>
+            <then>
+               <antcall target="build" />
+            </then>
+            </if>
+            <ts.findbugs/>
+        </else>
+        </if>    
+    </target>
+    
+    <target name="findbugsxml" description="Runs the Findbugs tool (with XML output) on the classes under this directory">
+        <if>
+          <isfalse value="${in.workspace}"/>
+        <then>
+            <echo message="This target is only valid within a workspace since Findbugs is not included in a bundle."/>
+        </then>
+        <else>
+            <if>
+              <not> <available file="${class.dir}/${pkg.dir}" type="dir"/> </not>
+            <then>
+               <antcall target="build" />
+            </then>
+            </if>
+            <ts.findbugs.xml/>
+        </else>
+        </if>
+    </target>
+
+    <target name="findbugshtml" description="Runs the Findbugs tool (with html output) on the classes under this directory">
+        <if>
+          <isfalse value="${in.workspace}"/>
+        <then>
+            <echo message="This target is only valid within a workspace since Findbugs is not included in a bundle."/>
+        </then>
+        <else>
+            <if>
+              <not> <available file="${class.dir}/${pkg.dir}" type="dir"/> </not>
+            <then>
+               <antcall target="build" />
+            </then>
+            </if>
+            <ts.findbugs.html/>
+        </else>
+        </if>
+    </target>
+
+    <target name="listimport" 
+            description="Lists the ant import path for a given src directory">
+        <ts.buildfile/>
+    </target>
+    
+    <target name="listarchivecontents"
+            description="Displays the contents of archives in this pkg">
+        <!-- 
+          The listarchivecontents target prints out the contents of all 
+          archives under ${dist.dir}/${pkg.dir}.  This is very useful when
+          working within Netbeans.
+        -->
+        
+        <if>
+            <available type="dir" file="${dist.dir}/${pkg.dir}"/>
+        <then>
+            <for param="file">
+                <path>
+                    <fileset dir="${dist.dir}/${pkg.dir}" 
+                             includes="*.ear, *.jar, *.rar, *.war, *.car"/>
+                </path>
+                <sequential>
+                    <trycatch>
+                    <try>
+                        <propertyregex property="archive.name.only"
+                          input="@{file}"
+                          regexp=".*[\/|\\](.*)"
+                          select="\1"
+                          casesensitive="false"
+                          override="true"/>
+
+                        <propertyregex property="relative.archive.name"
+                          input="@{file}"
+                          regexp=".*[\/|\\]dist[\/|\\](.*)"
+                          select="\1"
+                          casesensitive="false"
+                          override="true"/>
+
+                        <mkdir dir="${dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+                        <unjar src="@{file}" dest="${dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+                        <echo message="Contents of ${archive.name.only}"/>
+                        <echo message="---------------------------------------------"/>
+                        <for param="file2">
+                            <path>
+                                <fileset dir="${dist.dir}/${pkg.dir}/${archive.name.only}.dir" includes="**"/>
+                            </path>
+                            <sequential>
+                            <propertyregex property="relative.archive.name2"
+                                           input="@{file2}"
+                                           regexp=".*[\/|\\]${archive.name.only}.dir[\/|\\](.*)"
+                                           select="\1"
+                                           casesensitive="false"
+                                           override="true"/>
+                            <echo message="${relative.archive.name2}"/>
+                            </sequential>
+                        </for>
+                    </try>
+                    <finally>
+                        <echo message="---------------------------------------------"/>
+                        <delete includeEmptyDirs="true">
+                              <fileset dir="${dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+                        </delete>
+                    </finally>
+              </trycatch>
+
+                </sequential>
+            </for>
+        </then>
+        <else>
+            <echo message="${dist.dir}/${pkg.dir} does not exist"/>
+            <echo message="The 'build' target must be run prior to the 'listarchivecontents' target"/>
+        </else>
+        </if>
+    </target>
+    
+  <!-- Temporary target which compares built archives with those from an
+       existing CTS bundle.  The only requirement is to set old.dist.dir
+       to point to a CTS 5 patch bundle's dist dir.  You also must be sure
+       that the "_delete.component.archives" macro is disabled in ts.ear.xml.
+  -->
+    <target name="check"
+            description="Compares archive contents with another build">
+        
+        <for param="earfile">
+            <path>
+                <fileset dir="${old.dist.dir}/${pkg.dir}" 
+                         includes="*.ear"/>
+            </path>
+            
+        <sequential>
+            <unjar src="@{earfile}" dest="${old.dist.dir}/${pkg.dir}"/>
+        </sequential>
+        </for>
+        
+        <for param="file">
+            <path>
+                <fileset dir="${dist.dir}/${pkg.dir}" 
+                         includes="*.ear, *.jar, *.rar, *.war, *.car"/>
+            </path>
+            <sequential>
+            
+            <var name="found.match" value="false"/>
+            <var name="extra.files" value=""/>
+            <var name="missing.files" value=""/>
+        
+            <propertyregex property="archive.name.only"
+              input="@{file}"
+              regexp=".*[\/|\\](.*)"
+              select="\1"
+              casesensitive="false"
+              override="true"/>
+              
+            <propertyregex property="relative.archive.name"
+              input="@{file}"
+              regexp=".*[\/|\\]dist[\/|\\](.*)"
+              select="\1"
+              casesensitive="false"
+              override="true"/>
+              
+            <mkdir dir="${dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+            <unjar src="@{file}" dest="${dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+            
+            <mkdir dir="${old.dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+            <unjar src="${old.dist.dir}/${pkg.dir}/${archive.name.only}" dest="${old.dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+                            
+            <for param="newfile">
+                <path>
+                    <fileset dir="${dist.dir}/${pkg.dir}/${archive.name.only}.dir" includes="**"/>
+                </path>
+                <sequential>
+                <propertyregex property="relative.archive.name2"
+                               input="@{newfile}"
+                               regexp=".*[\/|\\]${archive.name.only}.dir[\/|\\](.*)"
+                               select="\1"
+                               casesensitive="false"
+                               override="true"/>
+                
+                                <!--check against old files-->
+                            <if>
+                                <not>
+                                    <available file="${old.dist.dir}/${pkg.dir}/${archive.name.only}.dir/${relative.archive.name2}"/>                            
+                                </not>
+                            <then>
+                                <var name="extra.files" value="${extra.files}, ${relative.archive.name2}"/>
+                            </then>
+                            </if>  
+                </sequential>
+            </for>
+            
+            <echo message="EXTRA FILES IN NEW:  ${archive.name.only}"/>
+            <echo message="-----------------------------------------------------"/>
+            
+            <if>
+                <equals arg1="${extra.files}" arg2=""/>                            
+            <then>
+                <echo message="None"/>
+            </then>
+            <else>
+                <property name="extra.file.errors.exist" value="true"/>
+                <for list="${extra.files}" param="extra">
+                <sequential>
+                    <echo>@{extra}</echo>
+                </sequential>
+                </for>
+            </else>
+            </if> 
+            
+            <for param="oldfile">
+                <path>
+                    <fileset dir="${old.dist.dir}/${pkg.dir}/${archive.name.only}.dir" includes="**"/>
+                </path>
+                <sequential>
+                <propertyregex property="old.relative.archive.name2"
+                               input="@{oldfile}"
+                               regexp=".*[\/|\\]${archive.name.only}.dir[\/|\\](.*)"
+                               select="\1"
+                               casesensitive="false"
+                               override="true"/>
+                
+                                <!--check against new files-->
+                                
+
+                            <if>
+                                <not>
+                                    <available file="${dist.dir}/${pkg.dir}/${archive.name.only}.dir/${old.relative.archive.name2}"/>
+                                </not>                            
+                            <then>
+                                <var name="missing.files" value="${missing.files}, ${old.relative.archive.name2}"/>
+                            </then>
+                            </if>
+                            
+                </sequential>
+            </for>
+            
+            <echo message=""/>
+            
+            <echo message="-----------------------------------------------------"/>
+            <echo message="MISSING FILES IN NEW:  ${archive.name.only}"/>
+            <echo message="-----------------------------------------------------"/>
+            
+            <if>
+                <equals arg1="${missing.files}" arg2=""/>                            
+            <then>
+                <echo message="None"/>
+            </then>
+            <else>
+                <property name="missing.file.errors.exist" value="true"/>
+                <for list="${missing.files}" param="missing">
+                <sequential>
+                    <echo>@{missing}</echo>
+                </sequential>
+                </for>
+            </else>
+            </if>
+
+            <echo message="---------------------------------------------"/>
+            <echo message="------- DIFFS (*.xml and MANIFEST) ----------"/>
+
+            <for param="newfile2">
+                <path>
+                    <fileset dir="${dist.dir}/${pkg.dir}/${archive.name.only}.dir"
+                             includes="**/*.xml, **/MANIFEST.MF"/>
+                </path>
+                <sequential>
+                  <propertyregex property="relative.newfile2"
+                               input="@{newfile2}"
+                               regexp=".*[\/|\\]${archive.name.only}.dir[\/|\\](.*)"
+                               select="\1"
+                               casesensitive="false"
+                               override="true"/>
+                  <var name="old.file"
+                       value="${old.dist.dir}/${pkg.dir}/${archive.name.only}.dir/${relative.newfile2}"/>
+                  <if>
+                    <available file="${old.file}"/>
+                  <then>
+                    <if>
+                      <contains string="${relative.newfile2}" substring=".xml"/>
+                    <then>
+                      <echo>${line.separator}Pretty printing: ${old.file}</echo>
+                      <ant dir="${env.TOOLS_HOME}/tools/pretty-xml" target="run">
+                        <property name="input.file"  value="${old.file}"/>
+                        <property name="output.file" value="${old.file}"/>
+                      </ant>
+                      <echo>${line.separator}Pretty printing: @{newfile2}</echo>
+                      <ant dir="${env.TOOLS_HOME}/tools/pretty-xml" target="run">
+                        <property name="input.file"  value="@{newfile2}"/>
+                        <property name="output.file" value="@{newfile2}"/>
+                      </ant>
+                    </then>
+                    </if>
+                    <echo>${line.separator}DIFFING:</echo>
+                    <echo>   @{newfile2}</echo>
+                    <echo>   ${old.file}</echo>
+                    <exec executable="diff">
+                      <arg line="@{newfile2} ${old.file}"/>
+                    </exec>
+                  </then>
+                  </if>
+                </sequential>
+            </for>
+
+            <echo message="---------------------------------------------"/>
+            <delete includeEmptyDirs="true">
+                <fileset dir="${dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+                <fileset dir="${old.dist.dir}/${pkg.dir}/${archive.name.only}.dir"/>
+            </delete>
+            </sequential>
+        </for>
+        
+        <echo message="---------------------------------------------"/>
+        <echo message="EXTRA/MISSING FILE SUMMARY"/>
+        <echo message="---------------------------------------------"/>
+        <if>
+            <isset property="extra.file.errors.exist"/>                            
+        <then>
+            <echo message="Extra:    Errors exist"/>
+        </then>
+        <else>
+            <echo message="Extra:    No errors"/>
+        </else>
+        </if>
+        
+        <if>
+            <isset property="missing.file.errors.exist"/>                            
+        <then>
+            <echo message="Missing:  Errors exist"/>
+        </then>
+        <else>
+            <echo message="Missing:  No errors"/>
+        </else>
+        </if>
+            
+        
+    </target>
+
+</project>

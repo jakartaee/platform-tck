@@ -1,0 +1,52 @@
+This README file describes how the integration interoperability tests 
+work. The integration interoperability tests contain the following 4 
+"ear" files:
+
+o interop_integration_jspejbjdbc.ear
+o interop_integration_jspejbjdbc_tellerbean_j2ee2.ear
+
+o interop_integration_servletejbjdbc.ear
+o interop_integration_servletejbjdbc_tellerbean_j2ee2.ear
+
+The integration interoperability tests consists of the client-side
+tests which runs in the jsp or servlet web containers of J2EE Server
+#1 and the server-side tests which is the tellerbean ejb which runs 
+in the ejb container of J2EE Server #2.
+
+EJB 2.0 Specification (Chapter 19) Support For Interoperability
+
+----------------------------------
+jspejbjdbc
+jsp to ejb to jdbc end-to-end test
+----------------------------------
+1) Deploys the ejb to J2EE Server #2.  
+   Deploys the ear "interop_integration_jspejbjdbc_tellerbean_j2ee2.ear"
+   to J2EE Server #2.
+2) Deploys the jsp to J2EE Server #1.
+   Deploys the ear "interop_integration_jspejbjdbc.ear" to J2EE Server #1.
+3) Runs the jsp to ejb to jdbc integration interoperability tests.
+4) The jsp deployed in J2EE Server #1 looks up the ejb deployed
+   in J2EE Server #2 and invokes its buisness methods to run the
+   integration interoperability tests. This verifies jsp to ejb
+   interoperability between 2 J2EE Servers.
+5) Verifies that a jsp deployed in one J2EE Server can communicate
+   with an ejb deployed in another J2EE Server.
+6) All tests should PASS.
+
+--------------------------------------
+servletejbjdbc
+servlet to ejb to jdbc end-to-end test
+--------------------------------------
+1) Deploys the ejb to J2EE Server #2.
+   Deploys the ear "interop_integration_servletejbjdbc_tellerbean_j2ee2.ear"
+   to J2EE Server #2.
+2) Deploys the servlet to J2EE Server #1.
+   Deploys the ear "interop_integration_servletejbjdbc.ear" to J2EE Server #1.
+3) Runs the servlet to ejb to jdbc integration interoperability tests.
+4) The servlet deployed in J2EE Server #1 looks up the ejb deployed
+   in J2EE Server #2 and invokes its buisness methods to run the
+   integration interoperability tests. This verifies servlet to ejb
+   interoperability between 2 J2EE Servers.
+5) Verifies that a servlet deployed in one J2EE Server can communicate
+   with an ejb deployed in another J2EE Server.
+6) All tests should PASS.

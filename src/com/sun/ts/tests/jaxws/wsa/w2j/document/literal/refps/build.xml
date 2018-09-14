@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="wsa_w2j_document_literal_refps" basedir="." default="usage">
+  <property name="app.name" value="WSAW2JDLReferenceParamsTest"/>
+  <property name="service.names" value="AddNumbersService"/>
+  <property name="wsdl.filename" value="WSAW2JDLReferenceParamsTest.wsdl"/>
+  <property name="sei.names" value="AddNumbersPortType"/>
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+
+  <property name="client.class" value="com.sun.ts.tests.jaxws.wsa.w2j.document.literal.refps.Client"/>
+  <property name="impl.classes" value="
+	${pkg.dir}/*Impl.class"/>
+
+  <property name="other.classes" value="${wsa.common.classes}"/>
+
+   <property name="common.classes" value="${common.classes.all}"/>
+
+
+  <target name="generate_server">
+        <antcall  target="do_wsdl2java_generate_server">
+          <param name="customization.binding.files" value="custom-server.xml"/>
+        </antcall>
+       <ts.javac/>
+       <antcall target="webservice_import_package"/>
+    </target>
+
+    <target name="generate_client" depends="generate_server">
+       <ts.clean.classes/>
+       <antcall  target="do_wsdl2java_generate_client">
+         <param name="customization.binding.files" value="custom-client.xml"/>
+       </antcall>
+       <ts.javac/>
+       <antcall target="client_import_package"/>
+    </target>
+
+     <target name="build" depends="generate_client"/>
+
+
+
+</project>

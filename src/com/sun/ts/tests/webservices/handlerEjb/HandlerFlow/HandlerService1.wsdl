@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="HandlerService1" targetNamespace="http://handlerservice1.org/wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://handlerservice1.org/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+  </types>
+  <message name="wasInitCalledResponse">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+  <message name="wasInitCalled">
+  </message>
+  <message name="hello">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <message name="hi">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <message name="howdy">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <message name="enventry">
+    <part name="String_1" type="xsd:string"/>
+  </message>
+  <message name="getServletContextTest">
+  </message>
+  <message name="getUserPrincipalTestResponse">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+  <message name="wasDestroyCalledResponse">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+  <message name="helloResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="hiResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="howdyResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="enventryResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="getMessageContextTestResponse">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+  <message name="getServletContextTestResponse">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+  <message name="getMessageContextTest">
+  </message>
+  <message name="getUserPrincipalTest">
+  </message>
+  <message name="wasDestroyCalled">
+  </message>
+  <message name="getHttpSessionTest">
+  </message>
+  <message name="getHttpSessionTestResponse">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+  <portType name="Hello">
+    <operation name="getHttpSessionTest" >
+      <input message="tns:getHttpSessionTest"/>
+      <output message="tns:getHttpSessionTestResponse"/>
+    </operation>
+    <operation name="getMessageContextTest" >
+      <input message="tns:getMessageContextTest"/>
+      <output message="tns:getMessageContextTestResponse"/>
+    </operation>
+    <operation name="getServletContextTest" >
+      <input message="tns:getServletContextTest"/>
+      <output message="tns:getServletContextTestResponse"/>
+    </operation>
+    <operation name="getUserPrincipalTest" >
+      <input message="tns:getUserPrincipalTest"/>
+      <output message="tns:getUserPrincipalTestResponse"/>
+    </operation>
+    <operation name="hello" parameterOrder="String_1">
+      <input message="tns:hello"/>
+      <output message="tns:helloResponse"/>
+    </operation>
+    <operation name="hi" parameterOrder="String_1">
+      <input message="tns:hi"/>
+      <output message="tns:hiResponse"/>
+    </operation>
+    <operation name="howdy" parameterOrder="String_1">
+      <input message="tns:howdy"/>
+      <output message="tns:howdyResponse"/>
+    </operation>
+    <operation name="enventry" parameterOrder="String_1">
+      <input message="tns:enventry"/>
+      <output message="tns:enventryResponse"/>
+    </operation>
+    <operation name="wasDestroyCalled" >
+      <input message="tns:wasDestroyCalled"/>
+      <output message="tns:wasDestroyCalledResponse"/>
+    </operation>
+    <operation name="wasInitCalled" >
+      <input message="tns:wasInitCalled"/>
+      <output message="tns:wasInitCalledResponse"/>
+    </operation>
+  </portType>
+  <portType name="Hello2">
+   <operation name="hello" parameterOrder="String_1">
+      <input message="tns:hello"/>
+      <output message="tns:helloResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="HelloBinding" type="tns:Hello">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getHttpSessionTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="getMessageContextTest">
+      <soap:operation soapAction="http://action1"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="getServletContextTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="getUserPrincipalTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="hello">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="hi">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="howdy">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="enventry">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="wasDestroyCalled">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+    <operation name="wasInitCalled">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="Hello2Binding" type="tns:Hello2">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="hello">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://handlerservice1.org/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="HandlerService1">
+    <port name="HelloPort" binding="tns:HelloBinding">
+      <soap:address location="http://localhost:8000/HFlowEjb/ws4ee/HandlerFlowPort"/>
+    </port>
+    <port name="Hello2Port" binding="tns:Hello2Binding">
+      <soap:address location="http://localhost:8000/HFlowEjb/ws4ee/HandlerFlow2Port"/>
+    </port>
+  </service>
+</definitions>

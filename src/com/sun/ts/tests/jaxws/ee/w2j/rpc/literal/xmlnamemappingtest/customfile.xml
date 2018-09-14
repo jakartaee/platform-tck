@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<bindings wsdlLocation="WSW2JXMLNameMappingTestService.wsdl" xmlns="http://java.sun.com/xml/ns/jaxws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <bindings node="ns1:definitions" xmlns:ns1="http://schemas.xmlsoap.org/wsdl/">
+        <package name="com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest"/>
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://XMLNameMappingTest.org/xsd']" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <jxb:schemaBindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+            <jxb:package name="com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest"/>
+        </jxb:schemaBindings>
+    </bindings>
+
+    <!-- insert the method customization for each of the wsdl:operation whose java method name you wish to change -->
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='null']">
+        <method name="nullTest"/>        
+    </bindings>
+    
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='true']">
+        <method name="trueTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='false']">
+        <method name="falseTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='abstract']">
+        <method name="abstractTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='boolean']">
+        <method name="booleanTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='break']">
+        <method name="breakTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='byte']">
+        <method name="byteTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='case']">
+        <method name="caseTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='catch']">
+        <method name="catchTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='char']">
+        <method name="charTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='class']">
+        <method name="classTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='const']">
+        <method name="constTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='continue']">
+        <method name="continueTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='default']">
+        <method name="defaultTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='do']">
+        <method name="doTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='double']">
+        <method name="doubleTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='else']">
+        <method name="elseTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='extends']">
+        <method name="extendsTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='final']">
+        <method name="finalTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='finally']">
+        <method name="finallyTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='float']">
+        <method name="floatTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='for']">
+        <method name="forTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='goto']">
+        <method name="gotoTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='if']">
+        <method name="ifTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='implements']">
+        <method name="implementsTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='import']">
+        <method name="importTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='instanceof']">
+        <method name="instanceofTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='int']">
+        <method name="intTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='interface']">
+        <method name="interfaceTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='long']">
+        <method name="longTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='native']">
+        <method name="nativeTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='new']">
+        <method name="newTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='package']">
+        <method name="packageTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='private']">
+        <method name="privateTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='protected']">
+        <method name="protectedTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='public']">
+        <method name="publicTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='return']">
+        <method name="returnTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='short']">
+        <method name="shortTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='static']">
+        <method name="staticTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='super']">
+        <method name="superTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='switch']">
+        <method name="switchTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='synchronized']">
+        <method name="synchronizedTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='this']">
+        <method name="thisTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='throw']">
+        <method name="throwTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='throws']">
+        <method name="throwsTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='transient']">
+        <method name="transientTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='try']">
+        <method name="tryTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='void']">
+        <method name="voidTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='volatile']">
+        <method name="volatileTest"/>        
+    </bindings>
+
+    <bindings node="wsdl:definitions/wsdl:portType[@name='xMLNameMappingTest']/wsdl:operation[@name='while']">
+        <method name="whileTest"/>        
+    </bindings>
+
+</bindings>

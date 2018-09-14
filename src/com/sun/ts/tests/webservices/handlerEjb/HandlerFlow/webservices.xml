@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<webservices xmlns="http://java.sun.com/xml/ns/j2ee"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:wsdl="http://handlerservice1.org/wsdl"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://www.ibm.com/webservices/xsd/j2ee_web_services_1_1.xsd"
+             version="1.1">
+
+  <webservice-description>
+    <webservice-description-name>HandlerFlow</webservice-description-name>
+    <wsdl-file>META-INF/wsdl/HandlerService1.wsdl</wsdl-file>
+    <jaxrpc-mapping-file>HandlerService1.xml</jaxrpc-mapping-file>
+    <port-component>
+      <port-component-name>HandlerFlowPort</port-component-name>
+      <wsdl-port>wsdl:HelloPort</wsdl-port>
+      <service-endpoint-interface>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow.Hello</service-endpoint-interface>
+      <service-impl-bean>
+        <ejb-link>HFlowEjb_server</ejb-link>
+      </service-impl-bean>
+      <handler>
+	    <handler-name>SHandler1</handler-name>
+	    <handler-class>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow.ServerHandler1</handler-class>
+      </handler>
+      <handler>
+	    <handler-name>SHandler2</handler-name>
+	    <handler-class>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow.ServerHandler2</handler-class>
+      </handler>
+      <handler>
+	    <handler-name>SHandler3</handler-name>
+	    <handler-class>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow.ServerHandler3</handler-class>
+      </handler>
+    </port-component>
+
+    <port-component>
+      <port-component-name>HandlerFlow2Port</port-component-name>
+      <wsdl-port>wsdl:Hello2Port</wsdl-port>
+      <service-endpoint-interface>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow.Hello2</service-endpoint-interface>
+      <service-impl-bean>
+        <ejb-link>HFlowEjb_server2</ejb-link>
+      </service-impl-bean>
+    </port-component>
+  </webservice-description>
+</webservices>

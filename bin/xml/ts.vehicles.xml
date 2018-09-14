@@ -1,0 +1,1473 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="VehiclesImport" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./ts.clientjar.xml"/>
+    <import file="./ts.ejbjar.xml"/>
+    <import file="./ts.war.xml"/>
+    <import file="./ts.par.xml"/>
+    <import file="./ts.rar.xml"/>
+    <import file="./ts.ear.xml"/>
+
+    <!-- MACROS -->
+    <macrodef name="ts.vehicles">
+
+    <!--
+      The ts.vehicles task is responsible for building all vehicle archives that a test runs in.
+      Note, this only applies to vehicles tests.  If a test is not a vehicle test users should use
+      the component archive tasks.  The vehicle archives built by this task are determined by
+      examining the content of the TS_HOME/src/vehicle.properties file.  This file maps test
+      directories to space delimited lists of vehicles.  When a test is built and that test
+      lives under a directory that has an entry in the vehicle.properties file, the test is built
+      for the vehicles mapped to that test directory.  Note, the mapping hueristic allows users
+      to specify a directory at any level.  Any vehicle test living under this directory will be
+      built for the specified vehicles.
+
+      Examples:
+ 
+      These example assumes we are in a test directory under com/sun/ts/tests/samples/jdbc.
+      Specifically, the test lives under the directory com/sun/ts/tests/samples/jdbc/ee/testConn.
+
+      <ts.vehicles name="testConnClient"/>
+
+      This example builds the four vehicle archives that this test runs in.  Based on the content
+      of the TS_HOME/src/vehicle.properties file, we see the four vehicles
+      (ejb, servlet, jsp and appclient):
+
+        com/sun/ts/tests/samples/jdbc = ejb servlet jsp appclient
+
+      The archives that are generated are:
+        testConnClient_appclient_vehicle.ear
+        testConnClient_jsp_vehicle.ear
+        testConnClient_servlet_vehicle.ear
+        testConnClient_ejb_vehicle.ear
+
+
+      <ts.vehicles name="testConnClient">
+        <jar-elements>
+          <fileset dir="TS_HOME/classes" includes="com/sun/ts/tests/utils/*.class"/>
+        </jar-elements>
+      </ts.vehicles>
+
+      This example is the same as the previous example except the user has opted to include additional
+      content in all of the vehicle archives as well as the default content.  The nested jar-elements
+      tells the task to add every class file found under the directory
+      TS_HOME/classes/com/sun/ts/tests/utils to all the component vehicle archives.  Meaning any class
+      file found in TS_HOME/classes/com/sun/ts/tests/utils is added to every component archive, in this
+      case the vehicles are; ejb, servlet, jsp and appclient.
+
+     
+      <ts.vehicles name="testConnClient"
+                   classes="com/sun/ts/tests/utils/*.class"/>
+
+      This example above is the same as the previous example except the user used the classes attribute
+      to specify a set of classes that should be added to every vehicle archive.  The difference between
+      the examples is where the classes are added in the vehicle archive.  In the first example the
+      classes are added to the root directory of the archive.  In this example the classes are added
+      to the appropriate location in the vehicle archive.  Meaning classes are added to the root of
+      the archive for non-web vehicles and to the WEB-INF/classes directory of web vehicles.  Also
+      note that the classes specified using the classes attribute must be relative to the
+      TS_HOME/classes directory.  See the classes entry in the attribute table for ore information.
+
+
+      <ts.vehicles name="testConnClient">
+        <jar-elements>
+          <zipfileset dir="." includes="LICENSE" prefix="META-INF"/>
+        </jar-elements>
+        <ejb-elements>
+          <fileset dir="TS_HOME/classes" includes="com/sun/ts/tests/ejb/utils/*.class"/>
+          <zipfileset dir="." include="ejb-readme" prefix="META-INF"/>
+        </ejb-elements>
+        <client-elements>
+          <fileset dir="TS_HOME/classes" includes="com/sun/ts/tests/client/utils/*.class"/>
+          <zipfileset dir="." include="client-readme" prefix="META-INF"/>
+        </client-elements>
+        <servlet-elements>
+          <zipfileset dir="TS_HOME/classes" includes="com/sun/ts/tests/servlet/utils/*.class"
+                      prefix="WEB-INF/classes"/>
+          <zipfileset dir="." include="servlet-readme" prefix="META-INF"/>
+        </servlet-elements>
+        <jsp-elements>
+          <zipfileset dir="TS_HOME/classes" includes="com/sun/ts/tests/jsp/utils/*.class"
+                   prefix="WEB-INF/classes"/>
+          <zipfileset dir="." include="jsp-readme" prefix="META-INF"/>
+        </jsp-elements>
+      </ts.vehicles>
+      
+      This example adds content to every vehicle as well as vehicle specific content.  The
+      content specified by the filesets and zipfilesets nested nested under the jar-elements is added
+      to every vehicle archive that is generated.  The nested filesets and zipfilesets nested under the
+      other *-elements is added to that specific vehicle archive only.  So in this example, a LICENSE
+      file is added to the META-INF directory of every vehicle archive.  Each vehicle has vehicle
+      specific content, namely a set of utility classes added to tyhe appropriate location in the
+      archive.  As well as a vehicle specifc readme added to the META-INF directory.
+
+    -->
+        
+        <attribute name="name"    
+                   description="Name used to construct vehicle archive names"/>
+        
+        <attribute name="manifest"
+                   description="Custom manifest to be included in each vehicle archive"
+                   default=""/>
+
+        <attribute name="earpermissionsdescriptor"
+                   default=""        
+                   description="Permisssions descriptor added to the archive if the archive requires a deployment descriptor"/>
+        
+        <attribute name="earpermissionsdescriptordir"
+                   default="${src.dir}/${pkg.dir}"
+                   description="Directory containing the permissions descriptor"/>           
+       
+        <attribute name="excludedfiles"
+                   default=""    
+                   description="List of files to exclude from all vehicle archives relative to the classes directory."/>
+     
+        <attribute name="includedefaultfiles"
+                   default="true"    
+                   description="Include default files in the component archive.  This attribute only affects the appclient vehicle."/>
+                                  
+        <attribute name="classes"
+                   default=""    
+                   description="A comma separated list of class file regular expressions to include in each vehicle that gets built, relative to the TS_HOME/classes directory"/>
+
+        <attribute name="vehicleoverride"
+                   default=""
+                   description="A single vehicle to process. if set, this overrides the default vehicles that are set in vehicle.properties"/>
+        
+        <attribute name="buildleveloverride"
+                   default="${build.level}"
+                   description="Set to 1 (classes), 2 (wars, jars, etc.), or 3 
+                   (ears).  This overrides the default build.level property for 
+                   the deliverable."/>
+
+        <attribute name="singleear"
+                   default="false"
+                   description="If true, bundle all vehicle component archives into a single Java EE Ear file.  If false, a unique Ear will
+                                be used for each vehicle component archive.  The default is false"/>
+
+        <element name="ejb-elements"     optional="true"
+                 description="Set of filesets and/or zipfilesets to be added to the ejb component archive"/>
+
+        <element name="client-elements"  optional="true"
+                 description="Set of filesets and/or zipfilesets to be added to the client component archive, the component archive in the EJB vehicle as well as the appclient vehicle"/>
+
+        <element name="servlet-elements" optional="true"
+                 description="Set of filesets and/or zipfilesets to be added to the servlet vehicle archive"/>
+
+        <element name="jsp-elements"     optional="true"
+                 description="Set of filesets and/or zipfilesets to be added to the jsp vehicle archive"/>
+
+        <element name="wsservlet-elements"     optional="true"
+                 description="Set of filesets and/or zipfilesets to be added to the wsservlet archives"/>
+
+        <element name="wsejb-elements"     optional="true"
+                 description="Set of filesets and/or zipfilesets to be added to the wsejb archives"/>
+
+        <element name="ear-elements"     optional="true"
+                 description="Set of filesets and/or zipfilesets to be added to all vehicle ear archives"/>
+
+        <element name="jar-elements"     optional="true"
+                 description="Set of filesets and/or zipfilesets to be added to all vehicle archives"/>        
+                
+        <sequential>
+        
+        <determine.vehicles/>
+
+        <!-- determine if the default list of vehicles should be built or a specified one -->
+        <if>
+            <equals arg1="@{vehicleoverride}" arg2=""/>
+        <then>
+            <var name="vehiclestobuild" value="${vehicles}"/>
+        </then>
+        <elseif>
+            <contains substring="@{vehicleoverride}" string="${vehicles}"/>
+        <then>
+            <var name="vehiclestobuild" value="@{vehicleoverride}"/>
+        </then>
+        </elseif>
+        <else>
+            <var name="vehiclestobuild" value="none"/>
+        </else>
+        </if>
+
+        <echo message="vehiclestobuild:    ${vehiclestobuild}"/>
+        <echo message="vehicleoverride:    @{vehicleoverride}"/>
+
+        <if>
+            <not>
+                <equals arg1="${vehiclestobuild}" arg2="none"/>
+            </not>
+        <then>
+
+            <property name="descriptor.dir" 
+                      value="${ts.home}/tmp"/>
+
+            <if>
+                <and>
+                    <istrue value="@{singleear}"/>
+                    <or>
+                        <contains substring="servlet" string="${vehiclestobuild}"/>
+                        <contains substring="web" string="${vehiclestobuild}"/>
+                        <contains substring="jsp" string="${vehiclestobuild}"/>
+                    </or>
+                </and>
+            <then>
+                <delete file="${harness.temp.directory}/@{name}_vehicles.ear.sun-application.xml" quiet="true"/>
+            </then>
+            </if>
+        
+            <!-- Cycle through the vehicles and package-->
+            <for list="${vehiclestobuild}" param="vehicle" delimiter=" ">
+                
+                <sequential>
+                <echo message="name:    @{name}"/>
+                <echo message="vehicle: @{vehicle}"/>
+                 
+                <var name="runner.classes" 
+                     value="${vehicle.pkg.dir}/**/*Runner.class, ${vehicle.pkg.dir}/**/*Runner$$*.class "/>
+                 
+                <var name="vehicle.name" 
+                     value="@{vehicle}_vehicle"/>
+                <var name="vehicle.prefix" 
+                     value="${vehicle.name}_@{vehicle}"/>
+                
+                <echo message="Building @{vehicle} vehicle" />
+                
+                <!-- Compile common and vehicle specific classes-->
+                <ts.javac includes="${vehicle.pkg.dir}/@{vehicle}/*.java,
+                                    ${vehicle.pkg.dir}/*.java"/>
+                
+                <!-- Filter default vehicle deployment descriptor in case it's needed-->
+                <_filter.default.vehicle.descriptors 
+                        vehicle="@{vehicle}"
+                        testname="@{name}"/>
+                                    
+              <!-- *******************************
+                     EJB
+                   ******************************* -->
+                <if>
+                    <equals arg1="@{vehicle}" arg2="ejb"/>
+                <then>
+                    <ts.ejbjar descriptor="${vehicle.prefix}.xml"
+                               descriptordir="${descriptor.dir}" 
+                               archivename="@{name}_${vehicle.name}"
+                               includedefaultfiles="@{includedefaultfiles}"
+                               manifest="@{manifest}"
+                               excludedfiles="@{excludedfiles}">
+                        <fileset dir="${class.dir}"
+                             includes="${test.base.classes},
+                                       ${harness.pkg.dir}/ServiceEETest*.class,
+                                       ${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                       ${vehicle.pkg.dir}/*.class,
+                                       ${pkg.dir}/**/*.class, @{classes}"
+                             excludes="${runner.classes}, @{excludedfiles}"/>
+                        <ejb-elements/>
+                        <jar-elements/>
+                    </ts.ejbjar>       
+                    
+                    <var name="vehicle.prefix" value="${vehicle.name}_client"/>
+                    
+                    <ts.clientjar descriptor="${vehicle.prefix}.xml"
+                                  descriptordir="${descriptor.dir}" 
+                                  archivename="@{name}_${vehicle.name}"
+                                  mainclass="com.sun.ts.tests.common.vehicle.VehicleClient"
+                                  includedefaultfiles="false"
+                                  excludedfiles="@{excludedfiles}">
+                        <fileset dir="${class.dir}"
+                                 includes="${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                           ${vehicle.pkg.dir}/*.class,
+                                           ${harness.pkg.dir}/ServiceEETest*.class"
+                                 excludes="@{excludedfiles},
+                                           ${vehicle.pkg.dir}/@{vehicle}/EJBVehicle.class"/>
+                        
+                    </ts.clientjar>   
+                </then>
+               <!-- *******************************
+                     APPLICATION CLIENT
+                    ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="appclient"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_client"/>
+                    
+                    <ts.clientjar descriptor="${vehicle.prefix}.xml"
+                                  descriptordir="${descriptor.dir}" 
+                                  archivename="@{name}_${vehicle.name}"
+                                  mainclass="com.sun.ts.tests.common.vehicle.VehicleClient"
+                                  includedefaultfiles="@{includedefaultfiles}"
+                                  manifest="@{manifest}"
+                                  excludedfiles="@{excludedfiles}">
+                        <fileset dir="${class.dir}"
+                                 includes="${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                           ${pkg.dir}/**/*.class,
+                                           ${vehicle.pkg.dir}/*.class, @{classes},
+                                           ${harness.pkg.dir}/ServiceEETest*.class"
+                                 excludes="@{excludedfiles}"/>
+                        <client-elements/>
+                        <jar-elements/>
+                    </ts.clientjar>
+                </then>
+                </elseif>
+                <!-- *******************************
+                     WEB SERVICES APPLICATION CLIENT
+                     ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="wsappclient"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_client"/>
+                    
+                    <ts.clientjar descriptor="${vehicle.prefix}.xml"
+                                  descriptordir="${descriptor.dir}" 
+                                  archivename="@{name}_${vehicle.name}"
+                                  mainclass="com.sun.ts.tests.common.vehicle.wsappclient.WSAppclient"
+                                  includedefaultfiles="@{includedefaultfiles}"
+                                  manifest="@{manifest}"
+                                  excludedfiles="@{excludedfiles}">
+                        <fileset dir="${class.dir}"
+                                 includes="${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                           ${vehicle.pkg.dir}/@{vehicle}/handler.xml,
+                                           ${vehicle.pkg.dir}/*.class, 
+                                           @{classes},
+                                           ${harness.pkg.dir}/ServiceEETest*.class"
+                                 excludes="@{excludedfiles}"/>
+                        <client-elements/>
+                        <jar-elements/>
+                    </ts.clientjar>
+                </then>
+                </elseif>
+              <!-- *******************************
+                     SERVLET
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="servlet"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+                    
+                    <!-- Compile common web vehicle classes-->
+                    <ts.javac includes="${vehicle.pkg.dir}/web/*.java"/>
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="@{includedefaultfiles}"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class,
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                              @{classes},
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <servlet-elements/>
+                        <jar-elements/>
+                    </ts.war>
+                </then>
+                </elseif>
+              <!-- *******************************
+                     JSP
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="jsp"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+                    
+                    <!-- Compile common web vehicle classes-->
+                    <ts.javac includes="${vehicle.pkg.dir}/web/*.java"/>
+  
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="@{includedefaultfiles}"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class, 
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                              @{classes},
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}/contentRoot"
+                                    includes="**"/>
+                        <jsp-elements/>
+                        <jar-elements/>
+                    </ts.war>
+                </then>
+                </elseif>
+
+                <!-- *******************************
+                     ejbembed
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="ejbembed"/>
+                <then>
+                    <ts.ejbjar archivename="${vehicle.name}" descriptor="ejb-jar.xml" includedefaultfiles="false">
+                        <fileset dir="${class.dir}"
+                                 includes="${test.base.classes},
+                                           ${pkg.dir}/**/*.class,
+                                           ${vehicle.pkg.dir}/*.class, 
+                                           ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                           ${vehicle.pkg.dir}/ejbliteshare/*.class, 
+                                           @{classes},
+                                           com/sun/ts/tests/ejb30/common/lite/*.class,
+                                           com/sun/ts/tests/ejb30/common/helper/Helper.class,
+                                           ${harness.pkg.dir}/ServiceEETest*.class"
+                                 excludes="@{excludedfiles}"/>
+                    </ts.ejbjar>
+                </then>
+                </elseif>
+                
+                <!-- *******************************
+                     ejblitejsf
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="ejblitejsf"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+
+                    <copy todir="${dist.dir}/${pkg.dir}">
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="faces-config.xml"/>
+                        <filterset>
+                            <filter token="package" value="${package}"/>
+                        </filterset>
+                    </copy> 
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="false"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class, 
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                              ${vehicle.pkg.dir}/ejbliteshare/*.class, 
+                                              @{classes},
+                                              com/sun/ts/tests/ejb30/common/lite/*.class,
+                                              com/sun/ts/tests/ejb30/common/helper/Helper.class,
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="faces-config.xml" prefix="WEB-INF"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
+                        <zipfileset dir="${basedir}" includes="*.tld" prefix="WEB-INF/tlds"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.jsp"/>
+                        <jsp-elements/>
+                        <jar-elements/>
+                    </ts.war>
+                    <delete failonerror="false">
+                        <fileset dir="${dist.dir}/${pkg.dir}" includes="faces-config.xml"/>
+                    </delete>
+                </then>
+                </elseif>
+                
+                <!-- *******************************
+                     ejblitejsp
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="ejblitejsp"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+
+                    <ts.javac includes="${vehicle.pkg.dir}/ejbliteshare/*.java"/>
+
+                    <copy todir="${dist.dir}/${pkg.dir}">
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="ejblitejsp.tld"/>
+                        <filterset>
+                            <filter token="package" value="${package}"/>
+                        </filterset>
+                    </copy> 
+                    <copy tofile="${class.dir}/${pkg.dir}/EJBLiteJSPTag.java">
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="EJBLiteJSPTag.java.txt"/>
+                        <filterset>
+                            <filter token="package" value="${package}"/>
+                        </filterset>
+                    </copy>
+                    <ts.javac srcdir="${class.dir}" fork="false"
+                              includes="${pkg.dir}/EJBLiteJSPTag.java"/>
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="false"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class, 
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                              ${vehicle.pkg.dir}/ejbliteshare/*.class, 
+                                              @{classes},
+                                              com/sun/ts/tests/ejb30/common/lite/*.class,
+                                              com/sun/ts/tests/ejb30/common/helper/Helper.class,
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="ejblitejsp.tld" prefix="WEB-INF/tlds"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.jsp"/>
+                        <jsp-elements/>
+                        <jar-elements/>
+                    </ts.war>
+                    <delete failonerror="false">
+                        <fileset dir="${dist.dir}/${pkg.dir}" includes="ejblitejsp.tld"/>
+                        <fileset dir="${class.dir}/${pkg.dir}" includes="EJBLiteJSPTag.*"/>
+                    </delete>
+                </then>
+                </elseif>
+
+
+                <!-- *******************************
+                     ejblitesecuredjsp
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="ejblitesecuredjsp"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+
+                    <ts.javac includes="${vehicle.pkg.dir}/ejbliteshare/*.java"/>
+
+                    <copy todir="${dist.dir}/${pkg.dir}">
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="ejblitesecuredjsp.tld"/>
+                        <filterset>
+                            <filter token="package" value="${package}"/>
+                        </filterset>
+                    </copy> 
+                    <copy tofile="${class.dir}/${pkg.dir}/EJBLiteSecuredJSPTag.java">
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="EJBLiteSecuredJSPTag.java.txt"/>
+                        <filterset>
+                            <filter token="package" value="${package}"/>
+                        </filterset>
+                    </copy>
+                    <ts.javac srcdir="${class.dir}" fork="false"
+                              includes="${pkg.dir}/EJBLiteSecuredJSPTag.java"/>
+                    
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="false"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class, 
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                              ${vehicle.pkg.dir}/ejbliteshare/*.class, 
+                                              @{classes},
+                                              com/sun/ts/tests/ejb30/common/lite/*.class,
+                                              com/sun/ts/tests/ejb30/common/helper/Helper.class,
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="ejblitesecuredjsp.tld" prefix="WEB-INF/tlds"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.jsp"/>
+                        <jsp-elements/>
+                        <jar-elements/>
+                    </ts.war>
+                    <delete failonerror="false">
+                        <fileset dir="${dist.dir}/${pkg.dir}" includes="ejblitesecuredjsp.tld"/>
+                        <fileset dir="${class.dir}/${pkg.dir}" includes="EJBLiteSecuredJSPTag.*"/>
+                    </delete>
+                </then>
+                </elseif>
+                
+                
+                <!-- *******************************
+                     ejbliteservlet2
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="ejbliteservlet2"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+
+                    <!-- If exists custom web.xml, it has been copied to ts.home/tmp.
+                    Otherwise, filter-copy it from vehicle dir to ts.home/tmp
+                    -->
+                    <if><not><available file="${basedir}/ejbliteservlet2_vehicle_web.xml"/></not>
+                    <then>
+                        <copy todir="${ts.home}/tmp" overwrite="true" failonerror="true">
+                            <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" 
+                                includes="ejbliteservlet2_vehicle_web.xml"/>
+                            <filterset>
+                                <filter token="package" value="${package}"/>
+                            </filterset>
+                        </copy>
+                    </then></if>
+                    
+                    <copy tofile="${class.dir}/${pkg.dir}/EJBLiteServlet2Filter.java">
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="EJBLiteServlet2Filter.java.txt"/>
+                        <filterset>
+                            <filter token="package" value="${package}"/>
+                        </filterset>
+                    </copy>
+                    <ts.javac srcdir="${class.dir}" fork="false"
+                              includes="${pkg.dir}/EJBLiteServlet2Filter.java"/>
+
+                    <ts.javac includes="${vehicle.pkg.dir}/ejbliteshare/*.java"/>
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}"
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="false"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class, 
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                              ${vehicle.pkg.dir}/ejbliteshare/*.class, 
+                                              @{classes},
+                                              com/sun/ts/tests/ejb30/common/lite/*.class,
+                                              com/sun/ts/tests/ejb30/common/helper/Helper.class,
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.jsp"/>
+                    </ts.war>
+                    <delete failonerror="false">
+                        <fileset dir="${class.dir}/${pkg.dir}" includes="EJBLiteServlet2Filter.*"/>
+                    </delete>
+                </then>
+                </elseif>
+		
+		<!-- *******************************
+                     ejbliteservletcal
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="ejbliteservletcal"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+
+                    <!-- If exists custom web.xml, it has been copied to ts.home/tmp.
+                    Otherwise, filter-copy it from vehicle dir to ts.home/tmp
+                    -->
+                    <if><not><available file="${basedir}/ejbliteservletcal_vehicle_web.xml"/></not>
+                    <then>
+                        <copy todir="${ts.home}/tmp" overwrite="true" failonerror="true">
+                            <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" 
+                                includes="ejbliteservletcal_vehicle_web.xml"/>
+                            <filterset>
+                                <filter token="package" value="${package}"/>
+                            </filterset>
+                        </copy>
+                    </then></if>
+                    
+                    <copy tofile="${class.dir}/${pkg.dir}/EJBLiteServletContextAttributeListener.java">
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="EJBLiteServletContextAttributeListener.java.txt"/>
+                        <filterset>
+                            <filter token="package" value="${package}"/>
+                        </filterset>
+                    </copy>
+                    <ts.javac srcdir="${class.dir}" fork="false"
+                              includes="${pkg.dir}/EJBLiteServletContextAttributeListener.java"/>
+                              
+                    <ts.javac includes="${vehicle.pkg.dir}/ejbliteshare/*.java"/>
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}"
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="false"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class, 
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                              ${vehicle.pkg.dir}/ejbliteshare/*.class, 
+                                              @{classes},
+                                              com/sun/ts/tests/ejb30/common/lite/*.class,
+                                              com/sun/ts/tests/ejb30/common/helper/Helper.class,
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.jsp"/>
+                    </ts.war>
+                    <delete failonerror="false">
+                        <fileset dir="${class.dir}/${pkg.dir}" includes="EJBLiteServletContextAttributeListener.*"/>
+                    </delete>
+                </then>
+                </elseif>
+		
+                <!-- *******************************
+                     ejbliteservlet
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="ejbliteservlet"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+
+                    <!-- If exists custom web.xml, it has been copied to ts.home/tmp.
+                    Otherwise, filter-copy it from vehicle dir to ts.home/tmp
+                    -->
+                    <if><not><available file="${basedir}/ejbliteservlet_vehicle_web.xml"/></not>
+                    <then>
+                        <copy todir="${ts.home}/tmp" overwrite="true" failonerror="true">
+                            <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" 
+                                includes="ejbliteservlet_vehicle_web.xml"/>
+                            <filterset>
+                                <filter token="package" value="${package}"/>
+                            </filterset>
+                        </copy>
+                    </then></if>
+                    
+                    <copy tofile="${class.dir}/${pkg.dir}/EJBLiteServletVehicle.java">
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="EJBLiteServletVehicle.java.txt"/>
+                        <filterset>
+                            <filter token="package" value="${package}"/>
+                        </filterset>
+                    </copy>
+                    <copy tofile="${class.dir}/${pkg.dir}/HttpServletDelegate.java">
+                              <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="HttpServletDelegate.java.txt"/>
+                              <filterset>
+                                  <filter token="package" value="${package}"/>
+                              </filterset>
+                    </copy>
+                    <ts.javac srcdir="${class.dir}" fork="false"
+                              includes="${pkg.dir}/EJBLiteServletVehicle.java,
+                    					${pkg.dir}/HttpServletDelegate.java"/>
+
+                    <ts.javac includes="${vehicle.pkg.dir}/ejbliteshare/*.java"/>
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}"
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="false"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class, 
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                              ${vehicle.pkg.dir}/ejbliteshare/*.class, 
+                                              @{classes},
+                                              com/sun/ts/tests/ejb30/common/lite/*.class,
+                                              com/sun/ts/tests/ejb30/common/helper/Helper.class,
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.jsp"/>
+                    </ts.war>
+                    <delete failonerror="false">
+                        <fileset dir="${class.dir}/${pkg.dir}" includes="EJBLiteServletVehicle*"/>
+                    </delete>
+                </then>
+                </elseif>
+
+              <!-- ********************************
+                     WEB (Combined JSP and Servlet)
+                   ******************************** -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="web"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+                    
+                    <!-- Compile common web vehicle classes-->
+                    <ts.javac includes="${vehicle.pkg.dir}/web/*.java,
+                                        ${vehicle.pkg.dir}/servlet/*.java"/>
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="@{includedefaultfiles}"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class, 
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class, 
+                                              ${vehicle.pkg.dir}/servlet/*.class,
+                                              @{classes},
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/jsp/contentRoot"
+                                    includes="**"/>
+                        <servlet-elements/>
+                        <jsp-elements/>
+                        <jar-elements/>
+                    </ts.war>
+                </then>
+                </elseif>
+              <!-- *******************************
+                     WS SERVLET
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="wsservlet"/>
+                <then>
+
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+                    
+                    <!-- Compile common web vehicle classes-->
+                    <ts.javac includes="${vehicle.pkg.dir}/web/*.java"/>
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="@{includedefaultfiles}"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                              ${vehicle.pkg.dir}/*.class,
+                                              ${vehicle.pkg.dir}/@{vehicle}/handler.xml,
+                                              ${test.base.classes}
+                                              ${jaxws.common.classes},
+                                              @{classes},
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <zipfileset dir="${src.dir}/${pkg.dir}"
+                                    includes="${wsdl.xsd.files}"
+                                    prefix="WEB-INF/wsdl"/>
+                        <wsservlet-elements/>
+                        <jar-elements/>
+                    </ts.war>
+                </then>
+                </elseif>
+              <!-- *******************************
+                     WS EJB
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="wsejb"/>
+                <then>
+                    
+                    <var name="vehicle.prefix" value="${vehicle.name}_ejb"/>
+                    <ts.ejbjar descriptor="${vehicle.prefix}.xml"
+                               descriptordir="${descriptor.dir}"
+                               archivename="@{name}_${vehicle.name}"
+                               includedefaultfiles="@{includedefaultfiles}"
+                               manifest="@{manifest}"
+                               excludedfiles="@{excludedfiles}">
+                        <fileset dir="${class.dir}"
+                             includes="${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                       ${vehicle.pkg.dir}/*.class,
+                                       ${vehicle.pkg.dir}/@{vehicle}/handler.xml,
+                                       ${test.base.classes},
+                                       ${jaxws.common.classes},
+                                       @{classes},
+                                       ${harness.pkg.dir}/ServiceEETest*.class"
+                             excludes="${runner.classes}, @{excludedfiles}"/>
+                        <zipfileset dir="${src.dir}/${pkg.dir}"
+                                    includes="${wsdl.xsd.files}"
+                                    prefix="META-INF/wsdl"/>
+                        <wsejb-elements/>
+                        <jar-elements/>
+                    </ts.ejbjar>
+
+                    <var name="vehicle.prefix" value="${vehicle.name}_client"/>
+
+                    <ts.clientjar descriptor="${vehicle.prefix}.xml"
+                                  descriptordir="${descriptor.dir}"
+                                  archivename="@{name}_${vehicle.name}"
+                                  mainclass="com.sun.ts.tests.common.vehicle.VehicleClient"
+                                  includedefaultfiles="@{includedefaultfiles}"
+                                  excludedfiles="@{excludedfiles}">
+                        <fileset dir="${class.dir}"
+                                 includes="${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                           ${vehicle.pkg.dir}/*.class,
+                                           ${vehicle.pkg.dir}/@{vehicle}/handler.xml,
+                                           @{classes},
+                                           ${jaxws.common.classes},
+                                           ${harness.pkg.dir}/ServiceEETest*.class"
+                                 excludes="@{excludedfiles},
+                                           ${vehicle.pkg.dir}/@{vehicle}/WSEJBVehicle.class"/>
+                        <wsejb-elements/>
+                        <jar-elements/>
+                    </ts.clientjar>
+                </then>
+                </elseif>
+              <!-- ***************************************
+                     STATELESS3
+                        a bean-managed stateless session bean
+                        bean using JNDI to lookup a 
+                        JTA EntityManager and uses
+                        UserTransaction methods for transaction
+                        demarcation
+
+                     STATEFUL3
+                        a container-managed stateful session
+                        bean using @PersistenceContext annotation
+                        to inject JTA EntityManager and uses
+                        container-managed transaction demarcation
+                        with transaction attribute: REQUIRED
+
+                    APPMANAGED
+                        a container-managed stateful session bean
+                        using @PersistenceUnit annotation to
+                        inject an EntityManagerFactory.  The EMF API
+                        is used to create an Application-Managed JTA
+                        EntityManager and uses the container to demarcate
+                        transactions
+
+                    APPMANAGEDNoTx
+                        a container-managed stateful session bean
+                        using @PersistenceUnit annotation to
+                        inject an EntityManagerFactory.  The EMF API
+                        is used to create an Application-Managed Resource
+                        Local EntityManager and uses the EntityTransaction
+                        APIs to control transactions
+
+                   *************************************** -->
+                <elseif>
+                  <or>
+                     <equals arg1="@{vehicle}" arg2="stateless3"/>
+                     <equals arg1="@{vehicle}" arg2="stateful3"/>
+                     <equals arg1="@{vehicle}" arg2="appmanaged"/>
+      		     <equals arg1="@{vehicle}" arg2="appmanagedNoTx"/>
+                  </or>
+                <then>
+                    
+                    <ts.ejbjar descriptor="${vehicle.prefix}.xml"
+                               descriptordir="${descriptor.dir}"
+                               archivename="@{name}_${vehicle.name}"
+                               includedefaultfiles="false"
+                               manifest="@{manifest}"
+                               excludedfiles="@{excludedfiles}">
+                        <fileset dir="${class.dir}"
+                             includes="${test.base.classes},
+                                       ${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                       ${vehicle.pkg.dir}/*.class,
+                                       ${vehicle.pkg.dir}/ejb3share/*.class,
+                                       ${pkg.dir}/Client*.class,
+                                       com/sun/ts/tests/jpa/common/PMClientBase.class,
+                                       com/sun/ts/tests/jpa/common/helper/*.class,
+                                       ${harness.pkg.dir}/ServiceEETest*.class"
+                             excludes="${runner.classes}, @{excludedfiles}"/>
+                        <ejb-elements/>
+                        <jar-elements/>
+                    </ts.ejbjar>
+
+                    <var name="vehicle.prefix" value="${vehicle.name}_client"/>
+
+                   <ts.clientjar descriptor="${vehicle.prefix}.xml"
+                                  descriptordir="${descriptor.dir}"
+                                  archivename="@{name}_${vehicle.name}"
+                                  mainclass="com.sun.ts.tests.common.vehicle.VehicleClient"
+                                  includedefaultfiles="false"
+                                  excludedfiles="@{excludedfiles}">
+                        <fileset dir="${class.dir}"
+                                 includes="${vehicle.pkg.dir}/@{vehicle}/*.class, ${vehicle.pkg.dir}/*.class,
+                                           ${vehicle.pkg.dir}/ejb3share/*.class,
+                        	               com/sun/ts/tests/jpa/common/PMClientBase.class,
+                                           ${harness.pkg.dir}/ServiceEETest*.class"
+                                 excludes="@{excludedfiles},
+                                           ${vehicle.pkg.dir}/@{vehicle}/*Bean.class,
+                                           ${vehicle.pkg.dir}/ejb3share/*Bean.class"/>
+                        <jar-elements/>
+                   </ts.clientjar>
+
+                </then>
+                </elseif>
+              <!-- *******************************
+                     PMSERVLET
+
+		     Servlet which injects an EntityManager
+		     using the @PersistenceContext annotation
+   		     to inject JTA EntityManager and uses
+                     UserTransaction methods for transaction
+                     demarcation
+
+                     PUSERVLET
+
+                     Servlet which injects an EntityManagerFactory
+                     using the @PersistenceUnit annotation
+                     to inject Resource Local EntityManager and uses
+                     EntityTransaction APIs for transaction
+                     demarcation
+
+                   ******************************* -->
+                <elseif>
+                  <or>
+                    <equals arg1="@{vehicle}" arg2="pmservlet"/>
+                    <equals arg1="@{vehicle}" arg2="puservlet"/>
+                  </or>
+                <then>
+
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+                    
+                    <!-- Compile common web vehicle classes-->
+                    <ts.javac includes="${vehicle.pkg.dir}/web/*.java"/>
+
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}"
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="false"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+			    includes="${test.base.classes},
+                            	${vehicle.pkg.dir}/@{vehicle}/*.class,
+                            	${vehicle.pkg.dir}/*.class,
+                            	${vehicle.pkg.dir}/servlet/ServletVehicle.class,
+			    	${vehicle.pkg.dir}/ejb3share/*.class,
+                                ${harness.pkg.dir}/ServiceEETest*.class
+                            	${pkg.dir}/Client*.class,
+                                com/sun/ts/tests/jpa/common/PMClientBase.class,
+                                com/sun/ts/tests/jpa/common/helper/*.class"
+                            excludes="${runner.classes}, @{excludedfiles}"
+                            prefix="WEB-INF/classes"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="@{name}.jar" prefix="WEB-INF/lib"/>
+                       <servlet-elements/>
+                    </ts.war>
+                </then>
+                </elseif>
+
+              <!-- *******************************
+                     CONNECTOR SERVLET
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="connectorservlet"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+                    <var name="connectorservletdd" value="servlet_vehicle_web.xml"/>
+                    
+                    <echo message="Inside the connector servlet vehicle part of ts.vehicles" />
+                    <echo message="vehicle.name = ${vehicle.name}" />
+                    <echo message="vehicle.prefix = ${vehicle.prefix}" />
+                    <echo message="name = @{name}" />
+                    <echo message="connectorservletdd = ${connectorservletdd}" />
+
+                    <!-- Compile common web vehicle classes-->
+                    <ts.javac includes="${vehicle.pkg.dir}/connectorservlet/*.java"/>
+
+                    <!-- 
+                          the web.xml will come from the tests/common/vehicle/connectorservlet/connectorservlet_vehicle_web.xml
+                     -->
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="@{includedefaultfiles}"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class,
+                            	              ${vehicle.pkg.dir}/connectorservlet/*.class,
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                              @{classes},
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <servlet-elements/>
+                        <jar-elements/>
+                    </ts.war>
+
+
+                    <!-- copy the servlets xxx.sun-web.xml into the dist dir but give it a name that 
+                         matches the connectorservlet vehiclename.  In short, our connectorservlet vehilce
+                         is essentially a copy of the servlet vehicle.  It was down to present the venodr
+                         with a real example of how to create their own vendor specific vehicle if such 
+                         a need should arise.   -->
+                    <if> 
+                        <available file="${src.dir}/${pkg.dir}/@{name}_servlet_vehicle_web.war.sun-web.xml"/>
+                    <then>
+                        <echo message="Copying @{name}_servlet_vehicle_web.war.sun-web.xml to @{name}_connectorservlet_vehicle_web.war.sun-web.xml" />
+                        <copy file="${src.dir}/${pkg.dir}/@{name}_servlet_vehicle_web.war.sun-web.xml"
+                              toFile="${dist.dir}/${pkg.dir}/@{name}_connectorservlet_vehicle_web.war.sun-web.xml"
+                              overwrite="true"
+                              failonerror="false">
+                        </copy> 
+
+                    </then>
+                    </if>
+
+
+
+                </then>
+                </elseif>
+
+
+              <!-- *******************************
+                     JASPIC SERVLET  (for jaspic baseline requirements only)
+                         note:  this is only necessary when no SOAP Profile nor Servlet Profile support
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="jaspicservlet"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_web"/>
+                    <var name="jaspicservletdd" value="servlet_vehicle_web.xml"/>
+                    
+                    <echo message="Inside the jaspic servlet vehicle part of ts.vehicles" />
+                    <echo message="vehicle.name = ${vehicle.name}" />
+                    <echo message="vehicle.prefix = ${vehicle.prefix}" />
+                    <echo message="name = @{name}" />
+                    <echo message="jaspicservletdd = ${jaspicservletdd}" />
+
+                    <!-- Compile common web vehicle classes-->
+                    <ts.javac includes="${vehicle.pkg.dir}/jaspicservlet/*.java"/>
+
+                    <!-- 
+                          the web.xml will come from the tests/common/vehicle/jaspicservlet/jaspicservlet_vehicle_web.xml
+                     -->
+                    <ts.war descriptor="${vehicle.prefix}.xml"
+                            descriptordir="${descriptor.dir}" 
+                            archivename="@{name}_${vehicle.name}"
+                            includedefaultfiles="@{includedefaultfiles}"
+                            manifest="@{manifest}"
+                            excludedfiles="@{excludedfiles}">
+                        <zipfileset dir="${class.dir}"
+                                    includes="${test.base.classes},
+                                              ${pkg.dir}/**/*.class,
+                                              ${vehicle.pkg.dir}/*.class,
+                            	              ${vehicle.pkg.dir}/jaspicservlet/*.class,
+                                              ${vehicle.pkg.dir}/@{vehicle}/*.class,
+                                              @{classes},
+                                              ${harness.pkg.dir}/ServiceEETest*.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    prefix="WEB-INF/classes"/>
+                        <servlet-elements/>
+                        <jar-elements/>
+                    </ts.war>
+
+
+                    <!-- copy the servlets xxx.sun-web.xml into the dist dir but give it a name that 
+                         matches the jaspicservlet vehiclename.  In short, our jaspicservlet vehicle
+                         is essentially a copy of the servlet vehicle.  It was down to present the venodr
+                         with a real example of how to create their own vendor specific vehicle if such 
+                         a need should arise.   -->
+                    <if> 
+                        <available file="${src.dir}/${pkg.dir}/@{name}_servlet_vehicle_web.war.sun-web.xml"/>
+                    <then>
+                        <echo message="Copying @{name}_servlet_vehicle_web.war.sun-web.xml to @{name}_jaspicservlet_vehicle_web.war.sun-web.xml" />
+                        <copy file="${src.dir}/${pkg.dir}/@{name}_servlet_vehicle_web.war.sun-web.xml"
+                              toFile="${dist.dir}/${pkg.dir}/@{name}_jaspicservlet_vehicle_web.war.sun-web.xml"
+                              overwrite="true"
+                              failonerror="false">
+                        </copy> 
+
+                    </then>
+                    </if>
+
+
+                </then>
+                </elseif>
+
+              <!-- *******************************
+                     Custom Vehicle 
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="customvehicle"/>
+                <then>
+                    <var name="vehicle.prefix" value="${vehicle.name}_custom"/>
+
+                    <!-- Compile custom vehicle classes-->
+                    <ts.javac includes="${vehicle.pkg.dir}/customvehicle/*.java"/>
+
+                    <!-- 
+                         The use of this target should only be done on a 
+                         case by case basis as allowed by the TCK under test.
+                         This is should only be needed when there is a need
+                         to execute tests within a custom vehicle.
+                      -->
+
+                </then>
+                </elseif>
+
+
+              <!-- *******************************
+                     STAND ALONE
+                   ******************************* -->
+                <elseif>
+                    <equals arg1="@{vehicle}" arg2="standalone"/>
+                <then>
+                    <!--
+                         Do nothing for the standalone case except catch it.  We're doing this because
+                         people found the else message confusing, since they consider standalone a valid
+                         vehicle.
+                      -->
+                </then>
+                </elseif>
+                <else>
+                    <echo message="Invalid vehicle type: @{vehicle}" />
+                    <echo message="Defaulting to standalone vehicle" />
+                </else>
+                </if>
+
+                <!-- Only build the application archive (ear) if the build level is 3 -->
+                <if>
+                  <and>
+                    <equals arg1="@{buildleveloverride}" arg2="3"/>
+                    <not>
+                      <equals arg1="@{vehicle}" arg2="standalone"/>
+                    </not>
+                  </and>
+                <then>
+                    <!--
+                        Previously we were only passing in the names of the forward archives, which when
+                        they did not exist caused an empty fileset to be passed to ts.ear. The result was
+                        that all contents in the dist dir were being included in the ear file.
+                        We are now setting real.app.name to prepend vi_built to the archive name so that
+                        the vi_built archives will be passed to ts.ear instead of an empty list or just
+                        the forward archives. In the none vi_built case (default) the original name is used.
+                    -->
+                    <var name="real.app.name" unset="true"/>
+                    <if>
+                        <and>
+                            <istrue value="${rebuildable}"/>
+                            <istrue value="${build.vi}"/>
+                        </and>
+                    <then>
+                        <var name="real.app.name" value="${vi.build.string}_@{name}"/>
+                    </then>
+                    <else>
+                        <var name="real.app.name" value="@{name}"/>
+                    </else>
+                    </if>
+                    <if>
+                        <equals arg1="@{singleear}" arg2="true"/>
+                    <then>
+                        <ts.ear archivename="@{name}_vehicles"
+                                permissionsdescriptor="@{earpermissionsdescriptor}"
+                                permissionsdescriptordir="@{earpermissionsdescriptordir}"
+                                includedefaultfiles="false"
+                                update="true">
+                          <fileset dir="${dist.dir}/${pkg.dir}"
+                                   includes="${real.app.name}_${vehicle.name}*.jar,
+                                             ${real.app.name}_${vehicle.name}*.war,
+                                             ${real.app.name}_${vehicle.name}*.rar,
+                                             ${real.app.name}_${vehicle.name}*.par,
+                                             ${real.app.name}_${vehicle.name}*.car"/>
+                          <ear-elements/>
+                        </ts.ear>    
+                    </then>
+                    <else>
+                        <ts.ear archivename="@{name}_${vehicle.name}"
+                                permissionsdescriptor="@{earpermissionsdescriptor}"
+                                permissionsdescriptordir="@{earpermissionsdescriptordir}"
+                                deletecomponentarchives="false"
+                              includedefaultfiles="false">
+                          <fileset dir="${dist.dir}/${pkg.dir}"
+                                   includes="${real.app.name}_${vehicle.name}*.jar,
+                                             ${real.app.name}_${vehicle.name}*.war,
+                                             ${real.app.name}_${vehicle.name}*.rar,
+                                             ${real.app.name}_${vehicle.name}*.par,
+                                             ${real.app.name}_${vehicle.name}*.car"/>
+                          <ear-elements/>
+                        </ts.ear>
+                    </else>
+                    </if>
+                </then>
+                </if>
+                
+                <_copy.vehicle.runtime.files singleear="@{singleear}"
+                                                     vehicle="@{vehicle}"
+                                                     vehiclename="${vehicle.name}"
+                                                     testname="@{name}"/>
+                                            
+            </sequential>
+            </for>
+            
+            <!--
+            <if>
+                <equals arg1="@{buildleveloverride}" arg2="3"/>
+                <then>
+                    <_delete.component.archives/>
+                </then>
+            </if>
+            -->
+        </then>
+        </if>
+        </sequential>
+    </macrodef>
+                                    
+
+
+    <macrodef name="_filter.default.vehicle.descriptors">
+
+    <!--
+      The _filter.default.vehicle.descriptor task copies and filters a single 
+      vehicle's default standard deployment descriptors and copies them to the
+      ${ts.home}/tmp directory.  Users should not invoke this task directly.  
+      This task is used by the ts.vehicles task.
+    -->
+
+        <attribute name="vehicle"    
+                   description="Vehicle being processed"/>
+        <attribute name="testname"    
+                   description="Test name unique to this test dir"/>
+                              
+        <sequential>
+
+        <if> 
+          <not>
+            <available file="${ts.home}/tmp"/>
+          </not>
+        <then>
+          <mkdir dir="${ts.home}/tmp"/>
+        </then>
+        </if>
+        
+        <delete>
+            <fileset dir="${ts.home}/tmp" includes="*@{vehicle}_vehicle*.xml"
+                                          excludes="*sun-*"/>
+        </delete>
+        
+        <copy toDir="${ts.home}/tmp"
+              overwrite="true"
+              failonerror="true">
+            <fileset dir="${vehicle.src.dir}/@{vehicle}"
+                 includes="*@{vehicle}_vehicle*.xml"
+                 excludes="*.sun*.xml"/>
+        </copy>
+        
+        <copy toDir="${ts.home}/tmp"
+              overwrite="true"
+              failonerror="true">
+            <fileset dir="${basedir}"
+                 includes="*@{vehicle}_vehicle*.xml"
+                 excludes="*.sun*.xml"/>
+        </copy>
+        
+        <!--filter all vehicle filters even though some are unique to certain vehicles-->
+        <replace dir="${ts.home}/tmp"
+                 includes="*@{vehicle}_vehicle*.xml">
+            <replacetoken><![CDATA[display-name>@{vehicle}]]></replacetoken>
+            <replacevalue><![CDATA[display-name>@{testname}_@{vehicle}]]></replacevalue>
+        </replace>
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="_copy.vehicle.runtime.files">
+
+    <!--
+      The _copy.vehicle.runtime.files task copies and filters runtime deployment descriptors
+      from the test directory to the dist directory.  Users should not invoke this task 
+      directly.  This task is used by the ts.vehicles task.
+    -->
+
+        <attribute name="vehicle"    
+                   description="Vehicle being processed"/>
+        <attribute name="vehiclename"    
+                   default="@{vehicle}_vehicle"
+                   description="Vehicle name being processed, i.e ejb_vehicle"/>
+        <attribute name="testname"    
+                   description="Test name unique to this test dir"/>
+        <attribute name="singleear"
+                   default="false"
+                   description="If true, bundle all vehicle component archives into a single Java EE Ear file.  If false, a unique Ear will be used for each vehicle component archive.  The default is false"/>
+ 
+        <sequential>
+
+        <if> 
+          <not>
+            <available file="${dist.dir}/${pkg.dir}"/>
+          </not>
+        <then>
+          <mkdir dir="${dist.dir}/${pkg.dir}"/>
+        </then>
+        </if>
+
+        <for param="runtimefile">
+            <fileset dir="${vehicle.src.dir}/@{vehicle}"
+                     includes="*@{vehiclename}*.sun*.xml"/>
+          <sequential>
+            
+          <propertyregex property="runtimefile.name"
+                         input="@{runtimefile}"
+                         regexp="com[\/|\\]sun[\/|\\]ts[\/|\\]tests[\/|\\]common[\/|\\]vehicle[\/|\\]@{vehicle}[\/|\\](.*)"
+                         select="\1"
+                         casesensitive="true"
+                         override="true"/>
+            
+            <if>
+                <and>
+                    <istrue value="${rebuildable}"/>
+                    <istrue value="${build.vi}"/>
+                </and>
+            <then>
+                <var name="tofile.name" value="${vi.build.string}_@{testname}_${runtimefile.name}"/>
+            </then>
+            <else>
+                <var name="tofile.name" value="@{testname}_${runtimefile.name}"/>
+            </else>
+            </if>
+            
+            <copy file="@{runtimefile}"
+                  toFile="${dist.dir}/${pkg.dir}/${tofile.name}"
+                  overwrite="false"
+                  failonerror="false">
+                </copy> 
+          </sequential>
+        </for>
+        
+        <!--filter all vehicle filters even though some are unique to certain vehicles-->
+        <replace dir="${dist.dir}/${pkg.dir}"
+                 includes="*@{vehiclename}*.sun*.xml">
+            <replacetoken><![CDATA[jndi-name>com_sun_ts_tests_common_vehicle]]></replacetoken>
+            <replacevalue><![CDATA[jndi-name>@{testname}_@{vehiclename}]]></replacevalue>
+        </replace>
+        
+        <replace dir="${dist.dir}/${pkg.dir}"
+                 includes="*@{vehiclename}*.sun*.xml">
+            <replacetoken><![CDATA[display-name>@{vehiclename}]]></replacetoken>
+            <replacevalue><![CDATA[display-name>@{testname}_@{vehiclename}]]></replacevalue>
+        </replace>
+        
+        <replace dir="${dist.dir}/${pkg.dir}"
+                 includes="*@{vehiclename}*.sun*.xml">
+            <replacetoken><![CDATA[context-root>@{vehiclename}]]></replacetoken>
+            <replacevalue><![CDATA[context-root>@{testname}_@{vehiclename}]]></replacevalue>
+        </replace>
+       <echo message="about to sweep vehicle runtime"/>
+        <replace dir="${dist.dir}/${pkg.dir}"
+                 includes="${vi.build.string}_*@{vehiclename}*.sun*.xml">
+            <replacetoken><![CDATA[web-uri>@{vehiclename}]]></replacetoken>
+            <replacevalue><![CDATA[web-uri>vi_built_@{testname}_@{vehiclename}]]></replacevalue>
+        </replace>
+ 
+        <replace dir="${dist.dir}/${pkg.dir}"
+                 includes="*@{vehiclename}*.sun*.xml"
+                 excludes="${vi.build.string}_*">
+            <replacetoken><![CDATA[web-uri>@{vehiclename}]]></replacetoken>
+            <replacevalue><![CDATA[web-uri>@{testname}_@{vehiclename}]]></replacevalue>
+        </replace>
+        
+        </sequential>
+    </macrodef>
+    
+    <!-- PRESETS -->
+    
+</project>

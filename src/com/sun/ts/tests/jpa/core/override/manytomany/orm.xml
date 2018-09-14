@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+    http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
+    version="2.1">
+    <package>com.sun.ts.tests.jpa.core.override.manytomany</package>
+    <entity class="com.sun.ts.tests.jpa.core.override.manytomany.Course">
+        <attributes>
+            <many-to-many name="students" mapped-by="courses">
+                <cascade>
+                    <cascade-persist/>
+                </cascade>
+            </many-to-many>
+        </attributes>
+    </entity>
+    <entity class="com.sun.ts.tests.jpa.core.override.manytomany.Student">
+        <attributes>
+            <many-to-many name="courses">
+                <join-table name="STUDENT_2_COURSE_2">
+                    <join-column name="STUDENTS_ID"/>
+                    <inverse-join-column name="COURSES_ID"/>
+                </join-table>
+                <cascade>
+                    <cascade-persist/>
+                </cascade>
+            </many-to-many>
+        </attributes>
+    </entity>
+</entity-mappings>
+
+

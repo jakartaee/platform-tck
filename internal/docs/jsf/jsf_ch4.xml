@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- =============================== Chapter 4 ============================= -->   
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The implementation for each standard UIComponent class
+        must specify two public static final String constant values:
+    </description>
+    <location chapter="4" section="1"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                COMPONENT_TYPE -- The standard component type identifier
+                under which the corresponding component class is 
+                registered with the Application object for this 
+                application. This value may be used as a parameter to 
+                the createComponent() method.
+            </description>
+            <location chapter="4" section="1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                COMPONENT_FAMILY -- The standard component family 
+                identifier used to select an appropriate Renderer for 
+                this component.
+            </description>
+            <location chapter="4" section="1"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIColumn specializes the behavior of render-independent
+        properties inherited from the parent class as follows:
+    </description>
+    <location chapter="4" section="1.1.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.Column”.
+            </description>
+            <location chapter="4" section="1.1.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to null.
+            </description>
+            <location chapter="4" section="1.1.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UICommand components specialize the behavior of 
+        renderindependent properties inherited from the parent class as 
+        follows:
+    </description>
+    <location chapter="4" section="1.2.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.Command”.
+            </description>
+            <location chapter="4" section="1.2.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Button”.
+            </description>
+            <location chapter="4" section="1.2.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIData specializes the behavior of render-independent properties
+        inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.3.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.Data”.
+            </description>
+            <location chapter="4" section="1.3.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Table”.
+            </description>
+            <location chapter="4" section="1.3.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        A DataModel wrapper instance must automatically be provided by 
+        the JSF implementation if the current value is of one of the 
+        following types:
+    </description>
+    <location chapter="4" section="1.3.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                java.util.List
+            </description>
+            <location chapter="4" section="1.3.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                Array of java.util.Object
+            </description>
+            <location chapter="4" section="1.3.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                java.sql.ResultSet (which therefore also supports 
+                javax.sql.RowSet)
+            </description>
+            <location chapter="4" section="1.3.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                javax.servlet.jsp.jstl.sql.Result
+            </description>
+            <location chapter="4" section="1.3.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.5</id>
+            <description>
+                Any other Java object is wrapped by a DataModel instance 
+                with a single row
+            </description>
+            <location chapter="4" section="1.3.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIData specializes the behavior of the processDecodes(), 
+        processValidators(), and processUpdates() methods inherited from
+        its parent as follows:
+    </description>
+    <location chapter="4" section="1.3.3"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                For each of these methods, the UIData implementation 
+                must iterate over each row in the underlying data model, 
+                starting with the row identified by the first property, 
+                for the number of rows indicated by the rows property, 
+                by calling the setRowIndex() method.
+            </description>
+            <location chapter="4" section="1.3.3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                When iteration is complete, set the rowIndex property of 
+                this component, and of the underlying DataModel, to 
+                zero, and remove any request attribute exposed via the
+                var property.
+            </description>
+            <location chapter="4" section="1.3.3"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The encodeEnd() method of the renderer for UIForm must call 
+        ViewHandler.writeState() before writing out the markup for the 
+        closing tag of the form.
+    </description>
+    <location chapter="4" section="1.4.1"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIForm specializes the behavior of render-independent properties
+        inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.4.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.Form”.
+            </description>
+            <location chapter="4" section="1.4.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Form”.
+            </description>
+            <location chapter="4" section="1.4.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The setSubmitted() method of each UIForm instance in the view 
+        must be called during the Apply Request Values phase of the 
+        request processing lifecycle, during the processing performed by
+        the UIComponent.decode() method.  If this UIForm instance 
+        represents the form actually being submitted on this request, 
+        the parameter must be set to true; otherwise, it must be set to 
+        false. 
+    </description>
+    <location chapter="4" section="1.4.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The value of a UIForm's submitted property must not be saved as 
+        part of its state.
+    </description>
+    <location chapter="4" section="1.4.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The saveState() method of UIForm must call setSubmitted(false) 
+        before calling super.saveState().
+    </description>
+    <location chapter="4" section="1.4.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        Override the parent method to ensure that children of this 
+        UIForm instance in the view have the form’s clientId prepended 
+        to their clientIds if and only if the form’s prependId property 
+        is true.
+    </description>
+    <location chapter="4" section="1.4.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIGraphic specializes the behavior of render-independent
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.5.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.Graphic”.
+            </description>
+            <location chapter="4" section="1.5.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Image”.
+            </description>
+            <location chapter="4" section="1.5.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIInput specializes the behavior of render-independent 
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.6.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.Input”.
+            </description>
+            <location chapter="4" section="1.6.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Text”.
+            </description>
+            <location chapter="4" section="1.6.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                The Converter specified by the converter property (if 
+                any) must also be used to perform String->Object 
+                conversions during decoding.
+            </description>
+            <location chapter="4" section="1.6.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                If the value property has an associated ValueExpression, 
+                the setValue() method of that ValueExpression will be 
+                called during the Update Model Values phase of the
+                request processing lifecycle to push the local value of
+                the component back to the corresponding model bean 
+                property.
+            </description>
+            <location chapter="4" section="1.6.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIMessage specializes the behavior of render-independent
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.7.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.Message”.
+            </description>
+            <location chapter="4" section="1.7.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Message”.
+            </description>
+            <location chapter="4" section="1.7.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIOutput specializes the behavior of render-independent
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.9.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.Output”.
+            </description>
+            <location chapter="4" section="1.9.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Text”.
+            </description>
+            <location chapter="4" section="1.9.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIPanel specializes the behavior of render-independent
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.10.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description >
+                The default value of the family property must be set to 
+                “javax.faces.Panel”.
+            </description>
+            <location chapter="4" section="1.10.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to null.
+            </description>
+            <location chapter="4" section="1.10.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIParameter specializes the behavior of renderindependent
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.11.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description >
+                The default value of the family property must be set to 
+                “javax.faces.Parameter”.
+            </description>
+            <location chapter="4" section="1.11.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to null.
+            </description>
+            <location chapter="4" section="1.11.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UISelectBoolean specializes the behavior of render-independent 
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.12.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description >
+                The default value of the family property must be set to
+                “javax.faces.SelectBoolean”.
+            </description>
+            <location chapter="4" section="1.12.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Checkbox”.
+            </description>
+            <location chapter="4" section="1.12.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UISelectItem specializes the behavior of renderindependent
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.13.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description >
+                The default value of the family property must be set to 
+                “javax.faces.SelectItem”.
+            </description>
+            <location chapter="4" section="1.13.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to null.
+            </description>
+            <location chapter="4" section="1.13.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                If the value property is non-null, it must contain a 
+                SelectItem instance used to configure the selection item
+                specified by this component.
+            </description>
+            <location chapter="4" section="1.13.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                If the value property is a value expression, it must 
+                point at a SelectItem instance used to configure the 
+                selection item specified by this component.
+            </description>
+            <location chapter="4" section="1.13.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.5</id>
+            <description>
+                If the value property is null, and there is no 
+                corresponding value expression, the itemDescription, 
+                itemDisabled, itemLabel and itemValue properties must be
+                used to construct a new SelectItem representing the 
+                selection item specified by this component.
+            </description>
+            <location chapter="4" section="1.13.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UISelectItems specializes the behavior of renderindependent
+        properties inherited
+    </description>
+    <location chapter="4" section="1.14.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to
+                “javax.faces.SelectItems”.
+            </description>
+            <location chapter="4" section="1.14.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to null.
+            </description>
+            <location chapter="4" section="1.14.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                If the value property (or the value returned by a value 
+                expression associated with the value property) is 
+                non-null, it must contain a SelectItem bean, an array of
+                SelectItem beans, a Collection of SelectItem beans, or a 
+                Map, where each map entry is used to construct a 
+                SelectItem bean with the key as the label property of 
+                the bean, and the value as the value property of the
+                bean (which must be of the same basic type as the value 
+                of the parent component’s value).
+            </description>
+            <location chapter="4" section="1.14.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UISelectMany must provide a specialized validate() method which 
+        ensures that any decoded values are valid options (from the
+        nested UISelectItem and UISelectItems children).
+    </description>
+    <location chapter="4" section="1.15.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UISelectOne specializes the behavior of renderindependent
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.16.2"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to
+                “javax.faces.SelectOne”.
+            </description>
+            <location chapter="4" section="1.16.2"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to “javax.faces.Menu”.
+            </description>
+            <location chapter="4" section="1.16.2"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UISelectOne must provide a specialized validate() method which 
+        ensures that any decoded value is a valid option (from the 
+        nested UISelectItem and UISelectItems children).
+    </description>
+    <location chapter="4" section="1.16.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        UIViewRoot specializes the behavior of render-independent
+        properties inherited from the parent component as follows:
+    </description>
+    <location chapter="4" section="1.17.3"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                The default value of the family property must be set to 
+                “javax.faces.ViewRoot”.
+            </description>
+            <location chapter="4" section="1.17.3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                The default value of the rendererType property must be 
+                set to null.
+            </description>
+            <location chapter="4" section="1.17.3"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology" 
+    status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The JSF implementation must provide concrete implementations of
+        DataModel (in the javax.faces.model package) for the following 
+        data wrapping scenarios:
+    </description>
+    <location chapter="4" section="2.1.4"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                ArrayDataModel -- Wrap an array of Java objects.
+            </description>
+            <location chapter="4" section="2.1.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                ListDataModel -- Wrap a java.util.List of Java objects.
+            </description>
+            <location chapter="4" section="2.1.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                ResultDataModel -- Wrap an object of type 
+                javax.servlet.jsp.jstl.sql.Result (the query results 
+                from JSTL’s SQL tag library)
+            </description>
+            <location chapter="4" section="2.1.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                ResultSetDataModel -- Wrap an object of type 
+                java.sql.ResultSet (which therefore means that
+                javax.sql.RowSet instances are also supported).
+            </description>
+            <location chapter="4" section="2.1.4"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" 
+            defined-by="technology" status="active" testable="true">
+            <id>__NUMBER__.5</id>
+            <description>
+                ScalarDataModel -- Wrap a single Java object in what 
+                appears to be a one-row data set.
+            </description>
+            <location chapter="4" section="2.1.4"/>
+        </assertion>
+    </sub-assertions>
+</assertion>

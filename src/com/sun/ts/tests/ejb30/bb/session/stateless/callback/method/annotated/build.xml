@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_bb_stateless_callback_method_annotated"/>
+  <property name="client" value="com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.annotated.Client"/>
+
+  <property name="ejb.jar.classes" 
+            value="com/sun/ts/tests/ejb30/bb/session/stateless/callback/method/annotated/Callback2Bean.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/callback/method/annotated/CallbackBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/callback/method/annotated/SessionBeanCallbackBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/callback/method/annotated/EjbCreateCallbackBeanBase.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/callback/method/annotated/EjbCreateCallbackBean.class,
+com/sun/ts/tests/ejb30/common/callback/Callback2BeanBase.class,
+com/sun/ts/tests/ejb30/common/callback/Callback2IF.class,
+com/sun/ts/tests/ejb30/common/callback/CallbackBeanBase.class,
+com/sun/ts/tests/ejb30/common/callback/SharedCallbackBeanBase.class,
+com/sun/ts/tests/ejb30/common/callback/CallbackIF.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class"/>
+  
+  <property name="appclient.jar.classes" 
+            value="com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/bb/session/stateless/callback/method/annotated/Client.class,
+com/sun/ts/tests/ejb30/common/callback/Callback2IF.class,
+com/sun/ts/tests/ejb30/common/callback/CallbackIF.class,
+com/sun/ts/tests/ejb30/common/callback/ClientBase.class,
+com/sun/ts/tests/ejb30/common/callback/ClientBase2.class,
+com/sun/ts/tests/ejb30/common/callback/ClientBase2NoAnnotation.class,
+com/sun/ts/tests/ejb30/common/callback/ClientBase3.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/common/helper/Helper.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class"/>
+
+  <import file="../../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

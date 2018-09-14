@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="MarshallTestService" targetNamespace="http://marshalltestservice.org/wsdl" xmlns:tns="http://marshalltestservice.org/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns3="http://marshalltestservice.org/types">
+  <types>
+    <schema targetNamespace="http://marshalltestservice.org/types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://marshalltestservice.org/types" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <complexType name="ArrayOfdecimal">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="decimal[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfdecimal">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfdecimal[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfinteger">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="integer[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfinteger">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfinteger[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfboolean">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="boolean[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfboolean">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfboolean[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfbase64Binary">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="base64Binary[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfdateTime">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="dateTime[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfdateTime">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfdateTime[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfdouble">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="double[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfdouble">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfdouble[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOffloat">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="float[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOffloat">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOffloat[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfint">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="int[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfint">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfint[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfJavaBean">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:JavaBean[]"/></restriction></complexContent></complexType>
+      <complexType name="JavaBean">
+        <sequence>
+          <element name="myBigDecimal" type="decimal"/>
+          <element name="myBigDecimalArray" type="tns:ArrayOfdecimal"/>
+          <element name="myBigInteger" type="integer"/>
+          <element name="myBigIntegerArray" type="tns:ArrayOfinteger"/>
+          <element name="myBoolean" type="boolean"/>
+          <element name="myBoolean1" type="soap-enc:boolean"/>
+          <element name="myBoolean1Array" type="tns:ArrayOfBoolean"/>
+          <element name="myBooleanArray" type="tns:ArrayOfboolean"/>
+          <element name="myByte" type="byte"/>
+          <element name="myByte1" type="soap-enc:byte"/>
+          <element name="myByteArray" type="base64Binary"/>
+          <element name="myCalendar" type="dateTime"/>
+          <element name="myCalendarArray" type="tns:ArrayOfdateTime"/>
+          <element name="myDouble" type="double"/>
+          <element name="myDouble1" type="soap-enc:double"/>
+          <element name="myDouble1Array" type="tns:ArrayOfDouble"/>
+          <element name="myDoubleArray" type="tns:ArrayOfdouble"/>
+          <element name="myFloat" type="float"/>
+          <element name="myFloat1" type="soap-enc:float"/>
+          <element name="myFloat1Array" type="tns:ArrayOfFloat"/>
+          <element name="myFloatArray" type="tns:ArrayOffloat"/>
+          <element name="myInt" type="int"/>
+          <element name="myInt1" type="soap-enc:int"/>
+          <element name="myInt1Array" type="tns:ArrayOfInteger"/>
+          <element name="myIntArray" type="tns:ArrayOfint"/>
+          <element name="myLong" type="long"/>
+          <element name="myLong1" type="soap-enc:long"/>
+          <element name="myLong1Array" type="tns:ArrayOfLong"/>
+          <element name="myLongArray" type="tns:ArrayOflong"/>
+          <element name="myShort" type="short"/>
+          <element name="myShort1" type="soap-enc:short"/>
+          <element name="myShort1Array" type="tns:ArrayOfShort"/>
+          <element name="myShortArray" type="tns:ArrayOfshort"/>
+          <element name="myString" type="string"/>
+          <element name="myStringArray" type="tns:ArrayOfstring"/></sequence></complexType>
+      <complexType name="ArrayOfBoolean">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="soap-enc:boolean[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfDouble">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="soap-enc:double[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfFloat">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="soap-enc:float[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfInteger">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="soap-enc:int[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfLong">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="soap-enc:long[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOflong">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="long[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfShort">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="soap-enc:short[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfshort">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="short[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfstring">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="string[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfJavaBean">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfJavaBean[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOflong">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOflong[]"/></restriction></complexContent></complexType>
+      <complexType name="MyServiceException">
+        <sequence>
+          <element name="theMessage" type="string"/></sequence></complexType>
+      <complexType name="ArrayOfArrayOfshort">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfshort[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfArrayOfstring">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfstring[]"/></restriction></complexContent></complexType>
+      <complexType name="ArrayOfValueType">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ValueType[]"/></restriction></complexContent></complexType>
+      <complexType name="ValueType">
+        <sequence>
+          <element name="myBigDecimal" type="decimal"/>
+          <element name="myBigDecimalArray" type="tns:ArrayOfdecimal"/>
+          <element name="myBigInteger" type="integer"/>
+          <element name="myBigIntegerArray" type="tns:ArrayOfinteger"/>
+          <element name="myBoolean" type="boolean"/>
+          <element name="myBoolean1" type="soap-enc:boolean"/>
+          <element name="myBoolean1Array" type="tns:ArrayOfBoolean"/>
+          <element name="myBooleanArray" type="tns:ArrayOfboolean"/>
+          <element name="myByte" type="byte"/>
+          <element name="myByte1" type="soap-enc:byte"/>
+          <element name="myByteArray" type="base64Binary"/>
+          <element name="myCalendar" type="dateTime"/>
+          <element name="myCalendarArray" type="tns:ArrayOfdateTime"/>
+          <element name="myDouble" type="double"/>
+          <element name="myDouble1" type="soap-enc:double"/>
+          <element name="myDouble1Array" type="tns:ArrayOfDouble"/>
+          <element name="myDoubleArray" type="tns:ArrayOfdouble"/>
+          <element name="myFloat" type="float"/>
+          <element name="myFloat1" type="soap-enc:float"/>
+          <element name="myFloat1Array" type="tns:ArrayOfFloat"/>
+          <element name="myFloatArray" type="tns:ArrayOffloat"/>
+          <element name="myInt" type="int"/>
+          <element name="myInt1" type="soap-enc:int"/>
+          <element name="myInt1Array" type="tns:ArrayOfInteger"/>
+          <element name="myIntArray" type="tns:ArrayOfint"/>
+          <element name="myLong" type="long"/>
+          <element name="myLong1" type="soap-enc:long"/>
+          <element name="myLong1Array" type="tns:ArrayOfLong"/>
+          <element name="myLongArray" type="tns:ArrayOflong"/>
+          <element name="myShort" type="short"/>
+          <element name="myShort1" type="soap-enc:short"/>
+          <element name="myShort1Array" type="tns:ArrayOfShort"/>
+          <element name="myShortArray" type="tns:ArrayOfshort"/>
+          <element name="myString" type="string"/>
+          <element name="myStringArray" type="tns:ArrayOfstring"/></sequence></complexType>
+      <complexType name="ArrayOfArrayOfValueType">
+        <complexContent>
+          <restriction base="soap-enc:Array">
+            <attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:ArrayOfValueType[]"/></restriction></complexContent></complexType></schema></types>
+  <message name="MarshallTest_bigDecimalArrayTest">
+    <part name="arrayOfBigDecimal_1" type="ns3:ArrayOfdecimal"/></message>
+  <message name="MarshallTest_bigDecimalArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfdecimal"/></message>
+  <message name="MarshallTest_bigDecimalMultiArrayTest">
+    <part name="arrayOfarrayOfBigDecimal_1" type="ns3:ArrayOfArrayOfdecimal"/></message>
+  <message name="MarshallTest_bigDecimalMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfdecimal"/></message>
+  <message name="MarshallTest_bigDecimalTest">
+    <part name="BigDecimal_1" type="xsd:decimal"/></message>
+  <message name="MarshallTest_bigDecimalTestResponse">
+    <part name="result" type="xsd:decimal"/></message>
+  <message name="MarshallTest_bigIntegerArrayTest">
+    <part name="arrayOfBigInteger_1" type="ns3:ArrayOfinteger"/></message>
+  <message name="MarshallTest_bigIntegerArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfinteger"/></message>
+  <message name="MarshallTest_bigIntegerMultiArrayTest">
+    <part name="arrayOfarrayOfBigInteger_1" type="ns3:ArrayOfArrayOfinteger"/></message>
+  <message name="MarshallTest_bigIntegerMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfinteger"/></message>
+  <message name="MarshallTest_bigIntegerTest">
+    <part name="BigInteger_1" type="xsd:integer"/></message>
+  <message name="MarshallTest_bigIntegerTestResponse">
+    <part name="result" type="xsd:integer"/></message>
+  <message name="MarshallTest_booleanArrayTest">
+    <part name="arrayOfboolean_1" type="ns3:ArrayOfboolean"/></message>
+  <message name="MarshallTest_booleanArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfboolean"/></message>
+  <message name="MarshallTest_booleanMultiArrayTest">
+    <part name="arrayOfarrayOfboolean_1" type="ns3:ArrayOfArrayOfboolean"/></message>
+  <message name="MarshallTest_booleanMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfboolean"/></message>
+  <message name="MarshallTest_booleanTest">
+    <part name="boolean_1" type="xsd:boolean"/></message>
+  <message name="MarshallTest_booleanTestResponse">
+    <part name="result" type="xsd:boolean"/></message>
+  <message name="MarshallTest_byteArrayTest">
+    <part name="arrayOfbyte_1" type="xsd:base64Binary"/></message>
+  <message name="MarshallTest_byteArrayTestResponse">
+    <part name="result" type="xsd:base64Binary"/></message>
+  <message name="MarshallTest_byteMultiArrayTest">
+    <part name="arrayOfarrayOfbyte_1" type="ns3:ArrayOfbase64Binary"/></message>
+  <message name="MarshallTest_byteMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfbase64Binary"/></message>
+  <message name="MarshallTest_byteTest">
+    <part name="byte_1" type="xsd:byte"/></message>
+  <message name="MarshallTest_byteTestResponse">
+    <part name="result" type="xsd:byte"/></message>
+  <message name="MarshallTest_calendarArrayTest">
+    <part name="arrayOfCalendar_1" type="ns3:ArrayOfdateTime"/></message>
+  <message name="MarshallTest_calendarArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfdateTime"/></message>
+  <message name="MarshallTest_calendarMultiArrayTest">
+    <part name="arrayOfarrayOfCalendar_1" type="ns3:ArrayOfArrayOfdateTime"/></message>
+  <message name="MarshallTest_calendarMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfdateTime"/></message>
+  <message name="MarshallTest_calendarTest">
+    <part name="Calendar_1" type="xsd:dateTime"/></message>
+  <message name="MarshallTest_calendarTestResponse">
+    <part name="result" type="xsd:dateTime"/></message>
+  <message name="MarshallTest_doubleArrayTest">
+    <part name="arrayOfdouble_1" type="ns3:ArrayOfdouble"/></message>
+  <message name="MarshallTest_doubleArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfdouble"/></message>
+  <message name="MarshallTest_doubleMultiArrayTest">
+    <part name="arrayOfarrayOfdouble_1" type="ns3:ArrayOfArrayOfdouble"/></message>
+  <message name="MarshallTest_doubleMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfdouble"/></message>
+  <message name="MarshallTest_doubleTest">
+    <part name="double_1" type="xsd:double"/></message>
+  <message name="MarshallTest_doubleTestResponse">
+    <part name="result" type="xsd:double"/></message>
+  <message name="MarshallTest_floatArrayTest">
+    <part name="arrayOffloat_1" type="ns3:ArrayOffloat"/></message>
+  <message name="MarshallTest_floatArrayTestResponse">
+    <part name="result" type="ns3:ArrayOffloat"/></message>
+  <message name="MarshallTest_floatMultiArrayTest">
+    <part name="arrayOfarrayOffloat_1" type="ns3:ArrayOfArrayOffloat"/></message>
+  <message name="MarshallTest_floatMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOffloat"/></message>
+  <message name="MarshallTest_floatTest">
+    <part name="float_1" type="xsd:float"/></message>
+  <message name="MarshallTest_floatTestResponse">
+    <part name="result" type="xsd:float"/></message>
+  <message name="MarshallTest_intArrayTest">
+    <part name="arrayOfint_1" type="ns3:ArrayOfint"/></message>
+  <message name="MarshallTest_intArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfint"/></message>
+  <message name="MarshallTest_intMultiArrayTest">
+    <part name="arrayOfarrayOfint_1" type="ns3:ArrayOfArrayOfint"/></message>
+  <message name="MarshallTest_intMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfint"/></message>
+  <message name="MarshallTest_intTest">
+    <part name="int_1" type="xsd:int"/></message>
+  <message name="MarshallTest_intTestResponse">
+    <part name="result" type="xsd:int"/></message>
+  <message name="MarshallTest_javaBeanArrayTest">
+    <part name="arrayOfJavaBean_1" type="ns3:ArrayOfJavaBean"/></message>
+  <message name="MarshallTest_javaBeanArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfJavaBean"/></message>
+  <message name="MarshallTest_javaBeanMultiArrayTest">
+    <part name="arrayOfarrayOfJavaBean_1" type="ns3:ArrayOfArrayOfJavaBean"/></message>
+  <message name="MarshallTest_javaBeanMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfJavaBean"/></message>
+  <message name="MarshallTest_javaBeanTest">
+    <part name="JavaBean_1" type="ns3:JavaBean"/></message>
+  <message name="MarshallTest_javaBeanTestResponse">
+    <part name="result" type="ns3:JavaBean"/></message>
+  <message name="MarshallTest_longArrayTest">
+    <part name="arrayOflong_1" type="ns3:ArrayOflong"/></message>
+  <message name="MarshallTest_longArrayTestResponse">
+    <part name="result" type="ns3:ArrayOflong"/></message>
+  <message name="MarshallTest_longMultiArrayTest">
+    <part name="arrayOfarrayOflong_1" type="ns3:ArrayOfArrayOflong"/></message>
+  <message name="MarshallTest_longMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOflong"/></message>
+  <message name="MarshallTest_longTest">
+    <part name="long_1" type="xsd:long"/></message>
+  <message name="MarshallTest_longTestResponse">
+    <part name="result" type="xsd:long"/></message>
+  <message name="MarshallTest_myServiceExceptionTest"/>
+  <message name="MarshallTest_myServiceExceptionTestResponse"/>
+  <message name="MyServiceException">
+    <part name="MyServiceException" type="ns3:MyServiceException"/></message>
+  <message name="MarshallTest_shortArrayTest">
+    <part name="arrayOfshort_1" type="ns3:ArrayOfshort"/></message>
+  <message name="MarshallTest_shortArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfshort"/></message>
+  <message name="MarshallTest_shortMultiArrayTest">
+    <part name="arrayOfarrayOfshort_1" type="ns3:ArrayOfArrayOfshort"/></message>
+  <message name="MarshallTest_shortMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfshort"/></message>
+  <message name="MarshallTest_shortTest">
+    <part name="short_1" type="xsd:short"/></message>
+  <message name="MarshallTest_shortTestResponse">
+    <part name="result" type="xsd:short"/></message>
+  <message name="MarshallTest_stringArrayTest">
+    <part name="arrayOfString_1" type="ns3:ArrayOfstring"/></message>
+  <message name="MarshallTest_stringArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfstring"/></message>
+  <message name="MarshallTest_stringMultiArrayTest">
+    <part name="arrayOfarrayOfString_1" type="ns3:ArrayOfArrayOfstring"/></message>
+  <message name="MarshallTest_stringMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfstring"/></message>
+  <message name="MarshallTest_stringTest">
+    <part name="String_1" type="xsd:string"/></message>
+  <message name="MarshallTest_stringTestResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="MarshallTest_valueTypeArrayTest">
+    <part name="arrayOfValueType_1" type="ns3:ArrayOfValueType"/></message>
+  <message name="MarshallTest_valueTypeArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfValueType"/></message>
+  <message name="MarshallTest_valueTypeMultiArrayTest">
+    <part name="arrayOfarrayOfValueType_1" type="ns3:ArrayOfArrayOfValueType"/></message>
+  <message name="MarshallTest_valueTypeMultiArrayTestResponse">
+    <part name="result" type="ns3:ArrayOfArrayOfValueType"/></message>
+  <message name="MarshallTest_valueTypeTest">
+    <part name="ValueType_1" type="ns3:ValueType"/></message>
+  <message name="MarshallTest_valueTypeTestResponse">
+    <part name="result" type="ns3:ValueType"/></message>
+  <message name="MarshallTest_voidTest"/>
+  <message name="MarshallTest_voidTestResponse"/>
+  <message name="MarshallTest_wrapperBooleanTest">
+    <part name="Boolean_1" type="ns2:boolean"/></message>
+  <message name="MarshallTest_wrapperBooleanTestResponse">
+    <part name="result" type="ns2:boolean"/></message>
+  <message name="MarshallTest_wrapperByteTest">
+    <part name="Byte_1" type="ns2:byte"/></message>
+  <message name="MarshallTest_wrapperByteTestResponse">
+    <part name="result" type="ns2:byte"/></message>
+  <message name="MarshallTest_wrapperDoubleTest">
+    <part name="Double_1" type="ns2:double"/></message>
+  <message name="MarshallTest_wrapperDoubleTestResponse">
+    <part name="result" type="ns2:double"/></message>
+  <message name="MarshallTest_wrapperFloatTest">
+    <part name="Float_1" type="ns2:float"/></message>
+  <message name="MarshallTest_wrapperFloatTestResponse">
+    <part name="result" type="ns2:float"/></message>
+  <message name="MarshallTest_wrapperIntegerTest">
+    <part name="Integer_1" type="ns2:int"/></message>
+  <message name="MarshallTest_wrapperIntegerTestResponse">
+    <part name="result" type="ns2:int"/></message>
+  <message name="MarshallTest_wrapperLongTest">
+    <part name="Long_1" type="ns2:long"/></message>
+  <message name="MarshallTest_wrapperLongTestResponse">
+    <part name="result" type="ns2:long"/></message>
+  <message name="MarshallTest_wrapperShortTest">
+    <part name="Short_1" type="ns2:short"/></message>
+  <message name="MarshallTest_wrapperShortTestResponse">
+    <part name="result" type="ns2:short"/></message>
+  <portType name="MarshallTest">
+    <operation name="bigDecimalArrayTest" parameterOrder="arrayOfBigDecimal_1">
+      <input message="tns:MarshallTest_bigDecimalArrayTest"/>
+      <output message="tns:MarshallTest_bigDecimalArrayTestResponse"/></operation>
+    <operation name="bigDecimalMultiArrayTest" parameterOrder="arrayOfarrayOfBigDecimal_1">
+      <input message="tns:MarshallTest_bigDecimalMultiArrayTest"/>
+      <output message="tns:MarshallTest_bigDecimalMultiArrayTestResponse"/></operation>
+    <operation name="bigDecimalTest" parameterOrder="BigDecimal_1">
+      <input message="tns:MarshallTest_bigDecimalTest"/>
+      <output message="tns:MarshallTest_bigDecimalTestResponse"/></operation>
+    <operation name="bigIntegerArrayTest" parameterOrder="arrayOfBigInteger_1">
+      <input message="tns:MarshallTest_bigIntegerArrayTest"/>
+      <output message="tns:MarshallTest_bigIntegerArrayTestResponse"/></operation>
+    <operation name="bigIntegerMultiArrayTest" parameterOrder="arrayOfarrayOfBigInteger_1">
+      <input message="tns:MarshallTest_bigIntegerMultiArrayTest"/>
+      <output message="tns:MarshallTest_bigIntegerMultiArrayTestResponse"/></operation>
+    <operation name="bigIntegerTest" parameterOrder="BigInteger_1">
+      <input message="tns:MarshallTest_bigIntegerTest"/>
+      <output message="tns:MarshallTest_bigIntegerTestResponse"/></operation>
+    <operation name="booleanArrayTest" parameterOrder="arrayOfboolean_1">
+      <input message="tns:MarshallTest_booleanArrayTest"/>
+      <output message="tns:MarshallTest_booleanArrayTestResponse"/></operation>
+    <operation name="booleanMultiArrayTest" parameterOrder="arrayOfarrayOfboolean_1">
+      <input message="tns:MarshallTest_booleanMultiArrayTest"/>
+      <output message="tns:MarshallTest_booleanMultiArrayTestResponse"/></operation>
+    <operation name="booleanTest" parameterOrder="boolean_1">
+      <input message="tns:MarshallTest_booleanTest"/>
+      <output message="tns:MarshallTest_booleanTestResponse"/></operation>
+    <operation name="byteArrayTest" parameterOrder="arrayOfbyte_1">
+      <input message="tns:MarshallTest_byteArrayTest"/>
+      <output message="tns:MarshallTest_byteArrayTestResponse"/></operation>
+    <operation name="byteMultiArrayTest" parameterOrder="arrayOfarrayOfbyte_1">
+      <input message="tns:MarshallTest_byteMultiArrayTest"/>
+      <output message="tns:MarshallTest_byteMultiArrayTestResponse"/></operation>
+    <operation name="byteTest" parameterOrder="byte_1">
+      <input message="tns:MarshallTest_byteTest"/>
+      <output message="tns:MarshallTest_byteTestResponse"/></operation>
+    <operation name="calendarArrayTest" parameterOrder="arrayOfCalendar_1">
+      <input message="tns:MarshallTest_calendarArrayTest"/>
+      <output message="tns:MarshallTest_calendarArrayTestResponse"/></operation>
+    <operation name="calendarMultiArrayTest" parameterOrder="arrayOfarrayOfCalendar_1">
+      <input message="tns:MarshallTest_calendarMultiArrayTest"/>
+      <output message="tns:MarshallTest_calendarMultiArrayTestResponse"/></operation>
+    <operation name="calendarTest" parameterOrder="Calendar_1">
+      <input message="tns:MarshallTest_calendarTest"/>
+      <output message="tns:MarshallTest_calendarTestResponse"/></operation>
+    <operation name="doubleArrayTest" parameterOrder="arrayOfdouble_1">
+      <input message="tns:MarshallTest_doubleArrayTest"/>
+      <output message="tns:MarshallTest_doubleArrayTestResponse"/></operation>
+    <operation name="doubleMultiArrayTest" parameterOrder="arrayOfarrayOfdouble_1">
+      <input message="tns:MarshallTest_doubleMultiArrayTest"/>
+      <output message="tns:MarshallTest_doubleMultiArrayTestResponse"/></operation>
+    <operation name="doubleTest" parameterOrder="double_1">
+      <input message="tns:MarshallTest_doubleTest"/>
+      <output message="tns:MarshallTest_doubleTestResponse"/></operation>
+    <operation name="floatArrayTest" parameterOrder="arrayOffloat_1">
+      <input message="tns:MarshallTest_floatArrayTest"/>
+      <output message="tns:MarshallTest_floatArrayTestResponse"/></operation>
+    <operation name="floatMultiArrayTest" parameterOrder="arrayOfarrayOffloat_1">
+      <input message="tns:MarshallTest_floatMultiArrayTest"/>
+      <output message="tns:MarshallTest_floatMultiArrayTestResponse"/></operation>
+    <operation name="floatTest" parameterOrder="float_1">
+      <input message="tns:MarshallTest_floatTest"/>
+      <output message="tns:MarshallTest_floatTestResponse"/></operation>
+    <operation name="intArrayTest" parameterOrder="arrayOfint_1">
+      <input message="tns:MarshallTest_intArrayTest"/>
+      <output message="tns:MarshallTest_intArrayTestResponse"/></operation>
+    <operation name="intMultiArrayTest" parameterOrder="arrayOfarrayOfint_1">
+      <input message="tns:MarshallTest_intMultiArrayTest"/>
+      <output message="tns:MarshallTest_intMultiArrayTestResponse"/></operation>
+    <operation name="intTest" parameterOrder="int_1">
+      <input message="tns:MarshallTest_intTest"/>
+      <output message="tns:MarshallTest_intTestResponse"/></operation>
+    <operation name="javaBeanArrayTest" parameterOrder="arrayOfJavaBean_1">
+      <input message="tns:MarshallTest_javaBeanArrayTest"/>
+      <output message="tns:MarshallTest_javaBeanArrayTestResponse"/></operation>
+    <operation name="javaBeanMultiArrayTest" parameterOrder="arrayOfarrayOfJavaBean_1">
+      <input message="tns:MarshallTest_javaBeanMultiArrayTest"/>
+      <output message="tns:MarshallTest_javaBeanMultiArrayTestResponse"/></operation>
+    <operation name="javaBeanTest" parameterOrder="JavaBean_1">
+      <input message="tns:MarshallTest_javaBeanTest"/>
+      <output message="tns:MarshallTest_javaBeanTestResponse"/></operation>
+    <operation name="longArrayTest" parameterOrder="arrayOflong_1">
+      <input message="tns:MarshallTest_longArrayTest"/>
+      <output message="tns:MarshallTest_longArrayTestResponse"/></operation>
+    <operation name="longMultiArrayTest" parameterOrder="arrayOfarrayOflong_1">
+      <input message="tns:MarshallTest_longMultiArrayTest"/>
+      <output message="tns:MarshallTest_longMultiArrayTestResponse"/></operation>
+    <operation name="longTest" parameterOrder="long_1">
+      <input message="tns:MarshallTest_longTest"/>
+      <output message="tns:MarshallTest_longTestResponse"/></operation>
+    <operation name="myServiceExceptionTest" >
+      <input message="tns:MarshallTest_myServiceExceptionTest"/>
+      <output message="tns:MarshallTest_myServiceExceptionTestResponse"/>
+      <fault name="MyServiceException" message="tns:MyServiceException"/></operation>
+    <operation name="shortArrayTest" parameterOrder="arrayOfshort_1">
+      <input message="tns:MarshallTest_shortArrayTest"/>
+      <output message="tns:MarshallTest_shortArrayTestResponse"/></operation>
+    <operation name="shortMultiArrayTest" parameterOrder="arrayOfarrayOfshort_1">
+      <input message="tns:MarshallTest_shortMultiArrayTest"/>
+      <output message="tns:MarshallTest_shortMultiArrayTestResponse"/></operation>
+    <operation name="shortTest" parameterOrder="short_1">
+      <input message="tns:MarshallTest_shortTest"/>
+      <output message="tns:MarshallTest_shortTestResponse"/></operation>
+    <operation name="stringArrayTest" parameterOrder="arrayOfString_1">
+      <input message="tns:MarshallTest_stringArrayTest"/>
+      <output message="tns:MarshallTest_stringArrayTestResponse"/></operation>
+    <operation name="stringMultiArrayTest" parameterOrder="arrayOfarrayOfString_1">
+      <input message="tns:MarshallTest_stringMultiArrayTest"/>
+      <output message="tns:MarshallTest_stringMultiArrayTestResponse"/></operation>
+    <operation name="stringTest" parameterOrder="String_1">
+      <input message="tns:MarshallTest_stringTest"/>
+      <output message="tns:MarshallTest_stringTestResponse"/></operation>
+    <operation name="valueTypeArrayTest" parameterOrder="arrayOfValueType_1">
+      <input message="tns:MarshallTest_valueTypeArrayTest"/>
+      <output message="tns:MarshallTest_valueTypeArrayTestResponse"/></operation>
+    <operation name="valueTypeMultiArrayTest" parameterOrder="arrayOfarrayOfValueType_1">
+      <input message="tns:MarshallTest_valueTypeMultiArrayTest"/>
+      <output message="tns:MarshallTest_valueTypeMultiArrayTestResponse"/></operation>
+    <operation name="valueTypeTest" parameterOrder="ValueType_1">
+      <input message="tns:MarshallTest_valueTypeTest"/>
+      <output message="tns:MarshallTest_valueTypeTestResponse"/></operation>
+    <operation name="voidTest" >
+      <input message="tns:MarshallTest_voidTest"/>
+      <output message="tns:MarshallTest_voidTestResponse"/></operation>
+    <operation name="wrapperBooleanTest" parameterOrder="Boolean_1">
+      <input message="tns:MarshallTest_wrapperBooleanTest"/>
+      <output message="tns:MarshallTest_wrapperBooleanTestResponse"/></operation>
+    <operation name="wrapperByteTest" parameterOrder="Byte_1">
+      <input message="tns:MarshallTest_wrapperByteTest"/>
+      <output message="tns:MarshallTest_wrapperByteTestResponse"/></operation>
+    <operation name="wrapperDoubleTest" parameterOrder="Double_1">
+      <input message="tns:MarshallTest_wrapperDoubleTest"/>
+      <output message="tns:MarshallTest_wrapperDoubleTestResponse"/></operation>
+    <operation name="wrapperFloatTest" parameterOrder="Float_1">
+      <input message="tns:MarshallTest_wrapperFloatTest"/>
+      <output message="tns:MarshallTest_wrapperFloatTestResponse"/></operation>
+    <operation name="wrapperIntegerTest" parameterOrder="Integer_1">
+      <input message="tns:MarshallTest_wrapperIntegerTest"/>
+      <output message="tns:MarshallTest_wrapperIntegerTestResponse"/></operation>
+    <operation name="wrapperLongTest" parameterOrder="Long_1">
+      <input message="tns:MarshallTest_wrapperLongTest"/>
+      <output message="tns:MarshallTest_wrapperLongTestResponse"/></operation>
+    <operation name="wrapperShortTest" parameterOrder="Short_1">
+      <input message="tns:MarshallTest_wrapperShortTest"/>
+      <output message="tns:MarshallTest_wrapperShortTestResponse"/></operation></portType>
+  <binding name="MarshallTestBinding" type="tns:MarshallTest">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="bigDecimalArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="bigDecimalMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="bigDecimalTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="bigIntegerArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="bigIntegerMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="bigIntegerTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="booleanArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="booleanMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="booleanTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="byteArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="byteMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="byteTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="calendarArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="calendarMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="calendarTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="doubleArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="doubleMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="doubleTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="floatArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="floatMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="floatTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="intArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="intMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="intTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="javaBeanArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="javaBeanMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="javaBeanTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="longArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="longMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="longTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="myServiceExceptionTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+      <fault name="MyServiceException">
+        <soap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></fault>
+    </operation>
+    <operation name="shortArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="shortMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="shortTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="stringArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="stringMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="stringTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="valueTypeArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="valueTypeMultiArrayTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="valueTypeTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="voidTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wrapperBooleanTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wrapperByteTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wrapperDoubleTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wrapperFloatTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wrapperIntegerTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wrapperLongTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="wrapperShortTest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://marshalltestservice.org/wsdl"/></output>
+    </operation>
+  </binding>
+  <service name="MarshallTestService">
+    <port name="MarshallTestPort" binding="tns:MarshallTestBinding">
+      <soap:address location="http://localhost:8080/J2WMT/jaxrpc/MarshallTest"/></port></service></definitions>

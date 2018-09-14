@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+  http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd"
+  version="1.1">
+  <package-mapping>
+    <package-type>com.sun.ts.tests.webservices.handler.HandlerSec</package-type>
+    <namespaceURI>http://handlersec.org/wsdl</namespaceURI>
+  </package-mapping>
+  <java-xml-type-mapping>
+    <java-type>com.sun.ts.tests.webservices.handler.HandlerSec.ClassLoaderInfo</java-type>
+    <root-type-qname xmlns:typeNS="http://handlersec.org/wsdl">typeNS:ClassLoaderInfo</root-type-qname>
+    <qname-scope>complexType</qname-scope>
+    <variable-mapping>
+      <java-variable-name>hasHandlerClassLoader</java-variable-name>
+      <xml-element-name>hasHandlerClassLoader</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>hasBeanClassLoader</java-variable-name>
+      <xml-element-name>hasBeanClassLoader</xml-element-name>
+    </variable-mapping>
+    <variable-mapping>
+      <java-variable-name>sameClassLoaders</java-variable-name>
+      <xml-element-name>sameClassLoaders</xml-element-name>
+    </variable-mapping>
+  </java-xml-type-mapping>
+  <service-interface-mapping>
+      <service-interface>com.sun.ts.tests.webservices.handler.HandlerSec.HandlerSec</service-interface>
+      <wsdl-service-name xmlns:serviceNS="http://handlersec.org/wsdl">serviceNS:HandlerSec</wsdl-service-name>
+    <port-mapping>
+        <port-name>TestQueryPort</port-name>
+        <java-port-name>TestQueryPort</java-port-name>
+    </port-mapping>
+    <port-mapping>
+        <port-name>TestNoSecPort</port-name>
+        <java-port-name>TestNoSecPort</java-port-name>
+    </port-mapping>
+    <port-mapping>
+        <port-name>TestAuthPort</port-name>
+        <java-port-name>TestAuthPort</java-port-name>
+    </port-mapping>
+    <port-mapping>
+        <port-name>TestUnAuthPort</port-name>
+        <java-port-name>TestUnAuthPort</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.webservices.handler.HandlerSec.TestQuery</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://handlersec.org/wsdl">portTypeNS:TestQuery</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://handlersec.org/wsdl">bindingNS:TestQueryBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>clearTracker</java-method-name>
+      <wsdl-operation>clearTracker</wsdl-operation>
+        <wsdl-return-value-mapping>
+            <method-return-value>boolean</method-return-value>
+            <wsdl-message xmlns:wsdlMsgNS="http://handlersec.org/wsdl">wsdlMsgNS:clearTrackerResponse</wsdl-message>
+            <wsdl-message-part-name>result</wsdl-message-part-name>
+        </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>getClassLoaderInfo</java-method-name>
+      <wsdl-operation>getClassLoaderInfo</wsdl-operation>
+        <wsdl-return-value-mapping>
+            <method-return-value>com.sun.ts.tests.webservices.handler.HandlerSec.ClassLoaderInfo</method-return-value>
+            <wsdl-message xmlns:wsdlMsgNS="http://handlersec.org/wsdl">wsdlMsgNS:getClassLoaderInfoResponse</wsdl-message>
+            <wsdl-message-part-name>result</wsdl-message-part-name>
+        </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.webservices.handler.HandlerSec.TestNoSec</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://handlersec.org/wsdl">portTypeNS:TestNoSec</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://handlersec.org/wsdl">bindingNS:TestNoSecBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>testingNoSec</java-method-name>
+      <wsdl-operation>testingNoSec</wsdl-operation>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>echoString</java-method-name>
+      <wsdl-operation>echoString</wsdl-operation>
+        <method-param-parts-mapping>
+          <param-position>0</param-position>
+          <param-type>java.lang.String</param-type>
+          <wsdl-message-mapping>
+              <wsdl-message xmlns:wsdlMsgNS="http://handlersec.org/wsdl">wsdlMsgNS:echoString</wsdl-message>
+              <wsdl-message-part-name>parm</wsdl-message-part-name>
+              <parameter-mode>IN</parameter-mode>
+          </wsdl-message-mapping>
+        </method-param-parts-mapping>
+        <wsdl-return-value-mapping>
+            <method-return-value>java.lang.String</method-return-value>
+            <wsdl-message xmlns:wsdlMsgNS="http://handlersec.org/wsdl">wsdlMsgNS:echoStringResponse</wsdl-message>
+            <wsdl-message-part-name>result</wsdl-message-part-name>
+        </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+    <service-endpoint-method-mapping>
+      <java-method-name>badEchoString</java-method-name>
+      <wsdl-operation>badEchoString</wsdl-operation>
+        <method-param-parts-mapping>
+          <param-position>0</param-position>
+          <param-type>java.lang.String</param-type>
+          <wsdl-message-mapping>
+              <wsdl-message xmlns:wsdlMsgNS="http://handlersec.org/wsdl">wsdlMsgNS:badEchoString</wsdl-message>
+              <wsdl-message-part-name>parm</wsdl-message-part-name>
+              <parameter-mode>IN</parameter-mode>
+          </wsdl-message-mapping>
+        </method-param-parts-mapping>
+        <wsdl-return-value-mapping>
+            <method-return-value>java.lang.String</method-return-value>
+            <wsdl-message xmlns:wsdlMsgNS="http://handlersec.org/wsdl">wsdlMsgNS:badEchoStringResponse</wsdl-message>
+            <wsdl-message-part-name>result</wsdl-message-part-name>
+        </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.webservices.handler.HandlerSec.TestAuth</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://handlersec.org/wsdl">portTypeNS:TestAuth</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://handlersec.org/wsdl">bindingNS:TestAuthBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>testingAuth</java-method-name>
+      <wsdl-operation>testingAuth</wsdl-operation>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.webservices.handler.HandlerSec.TestUnAuth</service-endpoint-interface>
+    <wsdl-port-type xmlns:portTypeNS="http://handlersec.org/wsdl">portTypeNS:TestUnAuth</wsdl-port-type>
+    <wsdl-binding xmlns:bindingNS="http://handlersec.org/wsdl">bindingNS:TestUnAuthBinding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>testingUnAuth</java-method-name>
+      <wsdl-operation>testingUnAuth</wsdl-operation>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

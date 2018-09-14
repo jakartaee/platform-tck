@@ -1,0 +1,55 @@
+<csiv2-log>
+  <assertion name="ac_ssl_sslr_upn_noid_sb_testid0">
+    <invocation>
+      <ejb-home>
+        <client>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="false"/>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</principal>
+            </transport-client-principals>
+            <server>
+              <invocation-principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</invocation-principal>
+            </server>
+            <reply-svc-context present="false"/>
+          </server-interceptor>
+          <reply>
+            <create-exception>
+              (expected result)
+            </create-exception>
+          </reply>
+        </client>
+      </ejb-home>
+          <server-interceptor>
+            <operation>create</operation>
+            <req-svc-context present="false"/>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</principal>
+            </transport-client-principals>
+            <reply-svc-context present="false"/>
+          </server-interceptor>
+      <ejb-remote>
+        <client>
+          <server-interceptor>
+            <operation>invoke</operation>
+            <req-svc-context present="false"/>
+            <ssl-used>true</ssl-used>
+            <transport-client-principals>
+              <principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</principal>
+            </transport-client-principals>
+            <server>
+              <invocation-principal>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</invocation-principal>
+            </server>
+            <reply-svc-context present="false"/>
+          </server-interceptor>
+          <reply>
+            <no-exception/>
+          </reply>
+        </client>
+      </ejb-remote>
+    </invocation>
+  </assertion>
+</csiv2-log>

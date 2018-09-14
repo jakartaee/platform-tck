@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="tx_stateless_covariant"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/common/covariant"/>
+  <property name="library.directory" value="lib"/>
+
+  <!-- in EAR lib directory to be accessed by all modules -->
+  <property name="common.referenced.jar.name" value="shared.jar"/>
+
+  <property name="common.referenced.classes" value="
+com/sun/ts/tests/ejb30/common/covariant/FuzzyCommonIF.class,
+com/sun/ts/tests/ejb30/common/covariant/FuzzyRemoteIF.class,
+com/sun/ts/tests/ejb30/common/covariant/FuzzyLocalIF.class,
+com/sun/ts/tests/ejb30/common/helper/Helper.class
+  "/>
+
+  <property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/common/covariant/FuzzyBeanBase.class,
+com/sun/ts/tests/ejb30/tx/session/stateless/cm/covariant/FuzzyBean.class
+"/>
+  
+  <property name="no.application.client" value="true"/>
+
+  <property name="war.classes" value="
+com/sun/ts/tests/servlet/common/util/Data.class,
+com/sun/ts/tests/servlet/common/servlets/HttpTCKServlet.class,
+com/sun/ts/tests/ejb30/common/covariant/TestServletBase.class,
+com/sun/ts/tests/ejb30/tx/session/stateless/cm/covariant/TestServlet.class
+"/>
+
+  <target name="package.ear">
+    <echo message="creating library jars"/>
+    <jar destfile="${dist.dir}/${pkg.dir}/${common.referenced.jar.name}">
+        <fileset dir="${class.dir}" includes="${common.referenced.classes}"/>
+    </jar>
+    <ts.ear archivename="${app.name}" 
+            deletecomponentarchives="${deletecomponentarchives}" 
+            includedefaultfiles="false">
+            <zipfileset dir="${dist.dir}/${pkg.dir}"
+              includes="${common.referenced.jar.name}" prefix="${library.directory}"/>
+            <fileset dir="${dist.dir}/${pkg.dir}" includes="*.jar, *.war"
+              excludes="${common.referenced.jar.name}"/>
+    </ts.ear>
+  </target>
+
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/war-import.xml"/>
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+</project>

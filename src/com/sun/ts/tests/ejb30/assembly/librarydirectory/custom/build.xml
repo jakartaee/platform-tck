@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_assembly_librarydirectory_custom"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/assembly/common"/>
+  <property name="app.common.2" value="com/sun/ts/tests/ejb30/misc/getresource/common"/>
+  <property name="library.directory.jar.name" value="shared.jar"/>
+  <property name="library.directory" value="1/2/3"/> 
+
+  <!-- relative to the referencing jar.  Its absolute form is /1/2/3/4 -->
+  <property name="relative.second.level.jar.dir" value="4"/> 
+  
+  <property name="second.level.jar.name" value="second-level-jar.jar"/> 
+  <property name="second.level.jar.resource.name" value="second-level-jar.txt"/>
+  <property name="second.level.jar.resource.content" value="${second.level.jar.resource.name}"/>
+
+  <property name="second.level.dir" value="second-level-dir"/> 
+  <property name="second.level.dir.resource.name" value="second-level-dir.txt"/>
+  <property name="second.level.dir.resource.content" value="${second.level.dir.resource.name}"/>
+  
+
+  <property name="hello.ejb.client.view.jar.name" value="hello-client-view.jar"/>
+  <property name="resource.name" value="foo.txt"/>
+  <property name="resource.content" value="${resource.name}"/>
+  
+  <property name="second.level.jar.classes" 
+  value="com/sun/ts/tests/ejb30/assembly/librarydirectory/custom/${second.level.resource.name}"/>
+
+  <property name="hello.ejb.client.view.classes" value="
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloCommonIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloLocalIF.class
+  "/>
+
+  <property name="library.directory.jar.classes" value="
+com/sun/ts/tests/ejb30/assembly/common/AssemblyCommonIF.class,
+com/sun/ts/tests/ejb30/assembly/common/Util.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyInterceptor.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyLocalIF.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class,
+com/sun/ts/tests/ejb30/misc/getresource/common/GetResourceTest.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class
+  "/>
+  
+  <property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/assembly/librarydirectory/custom/AssemblyBean.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyBeanBase.class
+"/>
+  
+  <property name="appclient.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/assembly/common/ClientBase.class,
+com/sun/ts/tests/ejb30/assembly/librarydirectory/custom/Client.class
+"/>
+
+  <target name="-precompile">
+    <echo message="Building dependency dir..."/>
+    <ant dir="${src.dir}/com/sun/ts/tests/ejb30/common/helloejbjar" target="build" inheritAll="false"/>
+  </target>
+
+  <!-- override pre.package target in import.xml -->
+  <target name="pre.package">
+      <echo file="${ts.home}/classes/${pkg.dir}/${resource.name}" append="false"
+            message="${resource.content}"/>
+      <echo file="${ts.home}/classes/${app.common}/${resource.name}" append="false"
+            message="${resource.content}"/>
+      <echo file="${ts.home}/classes/${resource.name}" append="false"
+            message="${resource.content}"/>
+
+      <echo file="${ts.home}/classes/${pkg.dir}/${second.level.jar.resource.name}"
+            append="false"
+            message="${second.level.jar.resource.content}"/>
+      <echo file="${ts.home}/classes/${pkg.dir}/${second.level.dir.resource.name}"
+            append="false"
+            message="${second.level.dir.resource.content}"/>
+  </target>
+  
+  <target name="package.ear">
+    <echo message="package.ear target in leaf-level build.xml"/>
+    <echo message="creating library jar"/>
+    <jar destfile="${dist.dir}/${pkg.dir}/${hello.ejb.client.view.jar.name}">
+        <fileset dir="${class.dir}" 
+        includes="${hello.ejb.client.view.classes}"/>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/${library.directory.jar.name}">
+        <fileset dir="${class.dir}" includes="${library.directory.jar.classes}"/>
+        <manifest>
+          <attribute name="Class-Path" 
+           value="${second.level.dir}/  ${relative.second.level.jar.dir}/${second.level.jar.name}"/>
+        </manifest>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/lib-${library.directory.jar.name}">
+        <fileset dir="${class.dir}" 
+        includes="${pkg.dir}/${resource.name}, ${app.common}/${resource.name}, ${resource.name}"/>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/${second.level.jar.name}">
+      <fileset dir="${class.dir}" includes="${pkg.dir}/${second.level.jar.resource.name}"/>
+    </jar>
+    
+    <ts.ear descriptor="application.xml" archivename="${app.name}" 
+            deletecomponentarchives="${deletecomponentarchives}" 
+            includedefaultfiles="false">
+      <zipfileset dir="${dist.dir}/${pkg.dir}" 
+                  includes="${library.directory.jar.name}, ${hello.ejb.client.view.jar.name}"
+                  prefix="${library.directory}"/>
+      <zipfileset dir="${dist.dir}/${pkg.dir}" 
+                  includes="lib-${library.directory.jar.name}"
+                  prefix="lib"/>
+      <fileset dir="${dist.dir}/${pkg.dir}" includes="${appclient.archive}"/>
+      <fileset dir="${dist.dir}/${pkg.dir}" includes="${ejb3.archive}"/>
+      <fileset dir="${dist.dir}/${pkg.dir}" includes="*.war"/>
+      <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${second.level.jar.name}"
+                  prefix="${library.directory}/${relative.second.level.jar.dir}"/>
+      <zipfileset dir="${class.dir}" includes="${pkg.dir}/${second.level.dir.resource.name}"
+                  prefix="${library.directory}/${second.level.dir}"/>
+    </ts.ear>
+  </target>
+            
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

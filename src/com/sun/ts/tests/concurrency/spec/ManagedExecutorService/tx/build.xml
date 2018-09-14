@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project
+    name="concurrency_spec_managedExecutorService_tx"
+    basedir="." default="usage" >
+
+    <import file="../../../../../../../../../bin/xml/ts.import.xml" />
+    
+    <property name="app.name"
+        value="${ant.project.name}" />
+
+    <target name="compile" >
+        <ts.javac includes="${pkg.dir}/**/*.java" />
+    </target>
+
+    <target name="package" >
+        <ts.war excludedfiles="${pkg.dir}/Client.class" archivename="${app.name}" >
+        </ts.war>
+        <ts.clientjar archivename="${app.name}"
+                    excludedfiles="${pkg.dir}/TransactionServlet*.class,${pkg.dir}/*Task.class"
+                    mainclass="com.sun.ts.tests.concurrency.spec.ManagedExecutorService.tx.Client">
+        </ts.clientjar>
+        <ts.ear archivename="${app.name}" />
+    </target>
+
+</project>

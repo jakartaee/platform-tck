@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsf_appconfigresources_startupbehavior"
+         basedir="."
+         default="usage">
+    
+    <!-- IMPORTS -->
+    <import file="../common/appconfig.common.xml"/>
+    
+    <property name="app.name" value="jsf_appconfigresources_startupbehavior"/>
+    <target name="package">
+        <mkdir dir="${dist.dir}/${pkg.dir}"/>
+
+        <jar destfile="${dist.dir}/${pkg.dir}/jsftck-resource.jar">
+            <zipfileset dir="."
+                        includes="colorBean.faces-config.xml,
+                                  faces-config.xml,
+                                  statBean.faces-config.xml"
+                        prefix="META-INF"/>                        
+            <zipfileset dir="${common.class.dir}/beans"
+                        includes="AnswerNoBean.class,
+                                  AnswerYesBean.class,
+                                  ColorBlueBean.class,
+                                  ColorRedBean.class,
+                                  StatBean.class"
+                        prefix="${tests.pkg.dir}${app.dir}/common/beans"/>
+        </jar>
+        
+        <ts.war archivename="${app.name}" descriptor="${app.name}_web.xml">
+            <zipfileset dir="${dist.dir}/${pkg.dir}"
+                        includes="jsftck-resource.jar"
+                        prefix="WEB-INF/lib"/>
+
+            <zipfileset dir="${ts.home}/weblib"
+                        includes="*.jar"
+                        prefix="WEB-INF/lib"/>
+
+            <zipfileset dir="."
+                        includes="testCase2*"
+                        prefix="META-INF/"/>
+
+            <fileset dir="${jsp.dir}/startupbehavior"
+                     includes="*.xhtml"/>
+        </ts.war>
+        <delete file="${dist.dir}/${pkg.dir}/jsftck-resource.jar"/>
+    </target>
+    
+</project>

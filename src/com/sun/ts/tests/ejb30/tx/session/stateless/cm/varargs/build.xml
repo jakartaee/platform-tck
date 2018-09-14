@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="tx_stateless_varargs"/>
+  <property name="no.application.client" value="true"/>
+
+  <property name="ear.lib.classes" value="
+  com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/VarargsLocalIF.class,
+  com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/VarargsCommonIF.class,
+  com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/VarargsRemoteIF.class
+"/>
+
+<property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/VarargsBean.class            
+"/>
+            
+  <property name="war.classes" value="
+com/sun/ts/tests/servlet/common/util/Data.class,
+com/sun/ts/tests/servlet/common/servlets/HttpTCKServlet.class,
+com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/TestServlet.class
+"/>
+
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/ear-lib-jar.xml"/>
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/war-import.xml"/>
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+</project>

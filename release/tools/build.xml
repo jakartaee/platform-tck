@@ -1,0 +1,911 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="create zip" basedir="." default="usage">
+    
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+    <!--<import file="${ts.home}/release/tools/common.xml"/>-->
+     
+    <ts.taskdef name="changeCase" 
+                classname="com.sun.ant.taskdefs.common.ChangeCase"/>
+    <ts.taskdef name="generateBOM" 
+                classname="com.sun.ant.taskdefs.common.GenerateBOM"/>
+    <ts.taskdef name="getportingclasses" 
+                classname="com.sun.ant.taskdefs.common.GetPortingClasses"/>
+        
+    
+    <property name="version.filename" value="version"/>
+    <property name="ts.build.comment" value=" "/>
+    
+    <target name="_create.version.file">
+        <tstamp>
+            <format property="time.stamp" pattern="EEE, d MMM yyyy HH:mm:ss" locale="en"/>
+        </tstamp>
+        <touch file="${deliverable.bundle.dir}/bin/${version.filename}"/>
+        <propertyfile file="${deliverable.bundle.dir}/bin/${version.filename}"
+                      comment="TCK Bundle Version Information">
+            <entry key="build.name"                  value="${zip.fullname}"/>
+            <entry key="build.date.time"             value="${time.stamp}"/>
+            <entry key="build.comment"               value="${ts.build.comment}"/>
+        </propertyfile>
+    </target>
+    
+    <target name="createbundledatestring">
+        <tstamp>
+            <format property="time.stamp.bundle.string" pattern="dd-MMM-yyyy" locale="en"/>
+        </tstamp>
+    </target>
+
+    
+    <target name="ts.version" >
+        <echo message="deliverable name=${deliverable.name.token}"/>
+    </target>
+    
+    <!-- target to generate porting package javadoc api.  -->
+    <target name="javadoc">
+        <property name="javadoc.dir" value="${ts.home}/internal/docs/api"/>
+        <delete failonerror="false" includeEmptyDirs="true">
+            <fileset dir="${javadoc.dir}"/>
+        </delete>
+        
+        <javadoc sourcepath="${ts.home}/com/sun/ts/lib/porting" destdir="${javadoc.dir}"
+                 classpath="${ts.classpath}"
+                 author="false" version="true" use="true" windowtitle="${deliverable.name} Porting API"
+                 failonerror="true">
+            <fileset dir="${ts.home}"
+                     includes="src/com/sun/ts/lib/**/porting/*Interface*.java"
+                     excludes="src/com/sun/ts/lib/porting/TSJAXRPCInterface.java,
+                     src/com/sun/ts/lib/porting/TSJMSObjects*.java"/>
+        </javadoc>
+    	<jar destfile="${ts.home}/internal/docs/${deliverable.name}-porting-package-javadoc.jar" basedir="${javadoc.dir}"/>
+    </target>
+    
+    <target name="check.for.cancel.out" depends="ts.version" >
+        <echo message="If this information is not correct, CTRL-C out of this build"/>
+        <!-- give user chance to exit out if something is wron -->
+        <sleep seconds="10"/>
+    </target>
+    <target name="usage">
+        <echo message="deliverables:"/>
+        <echo message=" caj           [overrides]"/>
+        <echo message=" connector     [overrides]"/>
+        <echo message=" jacc          [overrides]"/>
+        <echo message=" jbi           [overrides]"/>
+        <echo message=" jspservlet    [overrides]"/>
+        <echo message=" jsp           [overrides]"/>
+        <echo message=" jaspic        [overrides]"/>
+        <echo message=" jsf           [overrides]"/>
+        <echo message=" jstl          [overrides]"/>
+        <echo message=" el            [overrides]"/>
+        <echo message=" j2ee          [overrides]"/>
+        <echo message=" servlet       [overrides]"/>
+        <echo message=" jaxrs         [overrides]"/>
+        <echo message=" saaj          [overrides]"/>
+        <echo message=" jpa           [overrides]"/>
+        <echo message=" provisioning  [overrides]"/>
+        <echo message=" jaxm          [overrides]"/>
+        <echo message=" concurrency   [overrides]"/>
+        <echo message=" jaxrpc        [overrides]"/>
+        <echo message=" jaxws         [overrides]"/>
+        <echo message=" jsonb         [overrides]"/>
+        <echo message=" jsonp         [overrides]"/>
+        <echo message=" jaxr          [overrides]"/>
+        <echo message=" jms           [overrides]"/>
+        <echo message=" websocket     [overrides]"/>
+        <echo message=" smoke  	      [overrides]"/>
+        <echo message=" j2ee-appclient [overrides]"/>
+        <echo message=" j2ee-assembly  [overrides]"/>
+        <echo message=" j2ee-compat    [overrides]"/>
+        <echo message=" j2ee-interop  [overrides]"/>
+        <echo message=" j2ee-j2eetools [overrides]"/>
+        <echo message=" j2ee-javamail  [overrides]"/>
+        <echo message=" j2ee-jaxr     [overrides]"/>
+        <echo message=" j2ee-jdbc     [overrides]"/>
+        <echo message=" j2ee-jta      [overrides]"/>
+        <echo message=" j2ee-jstl     [overrides]"/>
+        <echo message=" j2ee-jms      [overrides]"/>
+        <echo message=" j2ee-ejb      [overrides]"/>
+        <echo message=" j2ee-samples  [overrides]"/>
+        <echo message=" j2ee-signaturetest [overrides]"/>
+        <echo message=" j2ee-web      [overrides]"/>
+        <echo message=" j2ee-xa       [overrides]"/>
+        <echo message=" j2ee-rmiiiop  [overrides]"/>
+        <echo message=" j2ee-jpa      [overrides]"/>
+        <echo message=" j2ee-security [overrides]"/>
+        <echo message=" j2ee-saaj     [overrides]"/>
+        <echo message=" j2ee-jaxrpc   [overrides]"/>
+        <echo message=" j2ee-jaxws    [overrides]"/>
+        <echo message=" j2ee-jaxrs    [overrides]"/>
+        <echo message=" j2ee-jsonb    [overrides]"/>
+        <echo message=" j2ee-jsonp    [overrides]"/>
+        <echo message=" j2ee-webservices [overrides]"/>
+        <echo message=" j2ee-websocket [overrides]"/>
+        <echo message=" j2ee-interop-security [overrides]"/>
+        <echo message=" j2ee-servlet [overrides]"/>
+        <echo message=" usage"/>
+        <echo message=" "/>
+        <echo message="available overrides:"/>
+        <echo message=" -Doverride=clean"/>
+        <echo message=" -Doverride=createbom"/>
+        <echo message=" -Doverride=createzipfile"/>
+        <echo message=" -Doverride=ts.version"/>
+        <echo message=" -Doverride=javadoc"/>
+        <echo message=" -Dts.build.name=[build name for version file]"/>
+        <echo message=" -Dts.build.comment=[free form comment for version file]"/>
+    </target>
+    
+    <target name="init" depends="createbundledatestring">
+        <tstamp/>
+        <property name="date.time" value="${DSTAMP}_${TSTAMP}"/>
+        <condition property="deliverable.type" value="">
+            <contains string="${deliverable.name}" substring="j2ee-" casesensitive="false"/>
+        </condition>
+        <condition property="deliverable.type" value="tck">
+            <not>
+                <contains string="${deliverable.name}" substring="j2ee-" casesensitive="false"/>
+            </not>
+        </condition>
+        <changeCase name="deliverable.name.lower" value="${deliverable.name}" />
+        <changeCase name="deliverable.name.upper" value="${deliverable.name}" toCase="upper"/>
+        <propertyregex property="deliverable.name.token" input="${deliverable.name.lower}" 
+                       regexp="(.*)j2ee(.*)"
+                       replace="\1javaee\2"
+                       defaultValue="${deliverable.name.lower}"/>
+        <changeCase name="deliverable.name.token.upper" value="${deliverable.name.token}" toCase="upper"/>
+        <property name="build.dir" value="../${deliverable.name.token.upper}_BUILD"/>
+        <property name="build.num" value="build_${time.stamp.bundle.string}"/>
+        <property name="bundle.dir" value="${build.dir}/${build.num}/bundle"/>
+        
+        <property name="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.name.token}${deliverable.type}"/>
+        <property name="zip.name" value="${deliverable.name.token}${deliverable.type}"/>
+        
+        <condition property ="isUnixPlatform">
+            <os family="unix"/>
+        </condition>
+    </target>
+    
+    <target name="setup" depends="init">
+        <antcall target="check.for.cancel.out"/>
+        <antcall target="backup.bundle.dir"/>
+        <delete dir="${bundle.dir}" includeEmptyDirs="true"/>
+        <mkdir dir="${bundle.dir}"/>
+        <mkdir dir="${deliverable.bundle.dir}"/>
+        <echo message="bundle.dir=[${bundle.dir}]"/>
+        <echo message="deliverable.bundle.dir=[${deliverable.bundle.dir}]"/>
+    </target>
+    
+    <target name="clean" depends="init">
+        <delete includeEmptyDirs="true">
+            <fileset dir="${build.dir}/${build.num}" includes="**/*" />
+        </delete>
+    </target>
+    
+    <target name="backup.bundle.dir" depends="check.bundle.dir" if="bundle.dir.exists">
+        <echo message="${bundle.dir} already exists!"/>
+        <echo message="Preserving original to: ${bundle.dir}_${date.time}"/>
+        
+        <move todir="${bundle.dir}_${date.time}">
+            <fileset dir="${bundle.dir}"/>
+        </move>
+    </target>
+    
+    <target name="check.bundle.dir" >
+        <available file="${bundle.dir}" type="dir" property="bundle.dir.exists"/>
+    </target>
+    
+    <target name="createbom" depends="init">
+        <delete >
+            <fileset dir="${bundle.dir}" includes="${deliverable.name}_BOM.lst" />
+        </delete>
+        <dirname file="${bundle.dir}/${zip.file}" property="full.path.to.zip"/>
+        <property name="bom.list" value="${full.path.to.zip}/${deliverable.name}_BOM.lst"/>
+        <generateBOM zipfile="${full.path.to.zip}/${zip.file}" outputfile="${bom.list}"/>
+    </target>
+    
+    <target name="createzipfile" depends="init, _create.version.file">
+        <delete file="${deliverable.bundle.dir}/../${zip.file}" quiet="true"/>
+        <echo message="bundle.dir=${bundle.dir}" />
+        <antcall target="-unix-zip"/>
+        <antcall target="-ant-zip"/>
+        <antcall target="-excludelist-ant-zip"/>      
+    </target>
+    
+    <target name="create.exclude.zip.file.only" depends="init">
+        <condition property="xml.file.to.call" value="${deliverable.name.lower}.xml">
+            <not>
+                <contains string="${deliverable.name.lower}" substring="j2ee-" casesensitive="false"/>
+            </not>
+        </condition>
+        <antfetch antfile="${xml.file.to.call}" target="get.deliverable.version.number" return="deliverable.version">
+            <property name="time.stamp.bundle.string" value="${time.stamp.bundle.string}"/>
+        </antfetch>
+        <property name="zip.fullname" value="${zip.name}-${deliverable.version}_${time.stamp.bundle.string}"/>
+        <property name="zip.file" value="${zip.fullname}.zip"/>
+        <property name="excludelist.zip.file" value="excludelist_${zip.fullname}.zip"/>
+        
+        <delete file="${ts.home}/release/${excludelist.zip.file}" quiet="true"/>
+        <zip zipfile="${ts.home}/release/${excludelist.zip.file}">
+            <zipfileset dir="${bin.dir}" 
+                    includes="ts.jtx"
+             prefix=""/>
+        </zip>      
+    </target>
+    
+    
+    <target name="-unix-zip" if="isUnixPlatform">
+      <chmod dir="${deliverable.bundle.dir}/bin/xml/other" perm="ugo+rwx" 
+           includes="unix.sh"/>
+    	  <exec executable="zip" dir="${bundle.dir}" failonerror="true">
+            <arg line="-rq"/>
+            <arg line="${zip.file} ${zip.name}"/>
+        </exec>
+        <exec executable="zip" dir="${bundle.dir}" failonerror="true">
+            <arg line="-T"/>
+            <arg line="${zip.file}"/>
+        </exec> 
+    </target>
+    
+    <target name="-ant-zip" unless="isUnixPlatform">
+        <zip zipfile="${bundle.dir}/${zip.file}" 
+             basedir="${bundle.dir}" includes="${zip.name}/"/>
+    </target>
+    
+    <target name="-excludelist-ant-zip">
+        <if>
+            <not>
+                <isset property="building.j2ee.subset.bundle"/>
+            </not>
+            <then>
+                <zip zipfile="${bundle.dir}/${excludelist.zip.file}">
+                    <zipfileset dir="${bundle.dir}/${zip.name}/bin" 
+                            includes="ts.jtx"
+                     prefix=""/>
+                </zip>
+            </then>
+        </if>     
+    </target>
+    
+    <!--<target name="ant.zip.fast" depends="init">
+        <ts.zip.deliverable/>
+    </target>-->
+    
+    <target name="check.for.j2ee.subset">
+        <condition property="xml.file.to.call" value="j2ee-tech-common.xml">
+            <contains string="${deliverable.name.lower}" substring="j2ee-" casesensitive="false"/>
+        </condition>
+        <condition property="xml.file.to.call" value="${deliverable.name.lower}.xml">
+            <not>
+                <contains string="${deliverable.name.lower}" substring="j2ee-" casesensitive="false"/>
+            </not>
+        </condition>
+        <condition property="building.j2ee.subset.bundle" value="true">
+            <contains string="${deliverable.name.lower}" substring="j2ee-" casesensitive="false"/>
+        </condition>
+        
+        <echo message="XML File to call is ${xml.file.to.call}"/>
+    </target>
+    
+    <target name="build" depends="setup, check.for.j2ee.subset">
+        <ant antfile="common.xml" target="build"/>
+        <antfetch antfile="${xml.file.to.call}" target="build" return="deliverable.version">
+            <property name="time.stamp.bundle.string" value="${time.stamp.bundle.string}"/>
+        </antfetch>
+        
+        <!-- Set this property to a default value to make it known that the version prop needs to be set -->
+        <!-- This property should be set in the deliverable specific bundling files and will be returned -->
+        <!-- by the previous antfetch call -->
+        <property name="deliverable.version"           value="unset_deliverable_version"/>
+
+        <property name="zip.fullname" value="${zip.name}-${deliverable.version}_${time.stamp.bundle.string}"/>
+        <property name="zip.file" value="${zip.fullname}.zip"/>
+        <property name="excludelist.zip.file" value="excludelist_${zip.fullname}.zip"/>
+        <antcall target="do.common.bundle.creation"/> 
+        
+        <if>
+            <not>
+                <os family="windows"/>
+            </not>
+            <then>
+                <symlink link="${ts.home}/release/${deliverable.name.token.upper}_BUILD/latest"
+                         resource="${bundle.dir}"
+                         overwrite="true"/>
+                <echo message="Created latest link for the bundle at ${ts.home}/release/${deliverable.name.token.upper}_BUILD/latest"/>
+            </then>
+        </if>
+    </target>
+    
+    <target name="do.common.bundle.creation" unless="skip.common.bundle.creation">
+        <!-- copy EETest, ServiceEETest, JCKServiceEETest src and classes -->
+        <copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/classes" includes="com/sun/ts/lib/harness/*EETest*.class"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src" includes="com/sun/ts/lib/harness/*EETest*.java"/>
+        </copy>
+        
+        <chmod file="${deliverable.bundle.dir}" perm="777"
+               includes="**/*"/>
+        <!--
+        <exec executable="chmod" dir="." >
+            <arg line="-R 777 ${deliverable.bundle.dir}"/>
+        </exec>
+        -->
+        
+        <antcall target="binary.finder"/>
+        <antcall target="createzipfile"/>
+        <if>
+            <not>
+                <isset property="skip.createbom"/>
+            </not>
+            <then>
+                <antcall target="createbom"/>
+            </then>
+        </if>
+    </target>
+    
+    <target name="has.override" if="override">
+        <property name="the.target" value="${override}"/>
+    </target>
+    <target name="no.override" unless="override">
+        <property name="the.target" value="build"/>
+    </target>
+    
+    <target name="caj" depends="has.override, no.override" >
+        <property name="deliverable.name" value="caj"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="connector" depends="has.override, no.override" >
+        <property name="deliverable.name" value="CONNECTOR"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="jacc" depends="has.override, no.override">
+        <property name="deliverable.name" value="JACC"/>
+        <property name="test.areas" value="jacc"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="jbi" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JBI"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="jspservlet" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JSPSERVLET"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="jsp" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JSP"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="el" depends="has.override, no.override" >
+        <property name="deliverable.name" value="EL"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="jaspic" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JASPIC"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="securityapi" depends="has.override, no.override" >
+        <property name="deliverable.name" value="SECURITYAPI"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="jstl" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JSTL"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="jsf" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JSF"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="jta" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JTA"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="servlet" depends="has.override, no.override" >
+        <property name="deliverable.name" value="SERVLET"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="jaxrs" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JAXRS"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="saaj" depends="has.override, no.override" >
+        <property name="deliverable.name" value="SAAJ"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="jpa" depends="has.override, no.override">
+        <property name="deliverable.name" value="JPA"/>
+        <property name="test.areas" value="jpa"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="provisioning" depends="has.override, no.override" >
+        <property name="deliverable.name" value="PROVISIONING"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="jaxm" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JAXM"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="jaxrpc" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JAXRPC"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="jaxws" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JAXWS"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="jsonb" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JSONB"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="jsonp" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JSONP"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="jaxr" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JAXR"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="jms" depends="has.override, no.override" >
+        <property name="deliverable.name" value="JMS"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="concurrency" depends="has.override, no.override" >
+        <property name="deliverable.name" value="CONCURRENCY"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="websocket" depends="has.override, no.override" >
+        <property name="deliverable.name" value="WEBSOCKET"/>
+        <antcall target="${the.target}"/>
+    </target>
+    <target name="j2ee" depends="has.override, no.override" >
+        <property name="deliverable.name" value="J2EE"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="cts-internal" depends="has.override, no.override" >
+        <echo message="Only creating cts-internal.zip bundle"/>
+        <property name="only.build.internal" value="true"/>
+        <property name="skip.binary.finder" value="true"/>
+        <property name="skip.common.bundle.creation" value="true"/>
+        <antcall target="j2ee"/>
+    </target>
+    
+    <target name="smoke" depends="has.override, no.override" >
+        <property name="skip.binary.finder" value="true"/>
+        <antcall target="j2ee-smoke"/>
+    </target>
+    
+    <target name="binary.finder" unless="skip.binary.finder" depends="init, get.finder.args">
+        <echo message="Running binary finder..."/>
+        <java failonerror="true" fork="true" classpath="${ts.home}/lib/javatest.jar:${ts.classpath}:${ant.home}/lib/ant.jar:${ts.home}/classes"
+              classname="com.sun.javatest.finder.BinaryTestWriter">
+            <sysproperty key="deliverable.class" value="${deliverable.class}" />
+            <sysproperty key="process.assertion" value="true"/>
+            <sysproperty key="show.retrieved.assertions" value="false"/>
+            <sysproperty key="report.missing.assertion.ids.tag" value="false"/>
+            <sysproperty key="assertion.dir" value="${ts.home}/internal/docs"/>
+            <sysproperty key="TS_HOME" value="${deliverable.bundle.dir}" />
+            <arg line="${finder.args} -end ${deliverable.bundle.dir}/src"/>
+            <jvmarg value="-Xmx1024m"/>
+            <jvmarg value="-Xms32m"/>
+        </java>
+    </target>
+    
+    <target name="get.finder.args">
+        <condition property="finder.args"
+                   value="-finder com.sun.javatest.finder.ChameleonTestFinder -f finder.properties">
+            <available file="${deliverable.bundle.dir}/src/finder.properties"
+                       type="file"/>
+        </condition>
+        <condition property="finder.args"
+                   value="-finder com.sun.javatest.finder.ChameleonTestFinder -f map.jtc">
+            <available file="${deliverable.bundle.dir}/src/map.jtc"
+                       type="file"/>
+        </condition>
+        <property name="finder.args" value="-finder com.sun.ts.lib.harness.TSTestFinder"/>
+    </target>
+    
+    
+    <!-- The targets listed below create bundles that contain specific subsets of the CTS test  -->
+    <!-- areas.  Users can modify the test.areas property if they wish to include multiple      -->
+    <!-- test areas.  See the j2ee-ejb target for an example that includes multiple test areas. -->
+
+    <target name="j2ee-jacc" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JACC"/>
+        <property name="test.areas" value="jacc, ejb30/common, jms/common, servlet/common/servlets, servlet/common/util, signaturetest, jaxws/common"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="j2ee-jaspic" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JASPIC"/>
+        <property name="test.areas" value="jaspic, signaturetest, jaxws/common"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="j2ee-appclient" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-APPCLIENT"/>
+        <property name="test.areas" value="appclient"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-assembly" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-ASSEMBLY"/>
+        <property name="test.areas" value="assembly"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-compat" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-COMPAT"/>
+        <property name="test.areas" value="compat12,compat13"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-connector" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-CONNECTOR"/>
+        <property name="test.areas" value="connector, signaturetest, xa"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-ejb" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-EJB"/>
+        <property name="test.areas" value="ejb,ejb30,compat12/ejb,compat13/ejb, 
+            appclient,
+            integration/session,
+            integration/entity,
+            integration/util,
+            assembly,
+            servlet/spec/deploy,jms/common"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-imq-integration" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-IMQ-INTEGRATION"/>
+        <property name="test.areas" value="ejb/ee/deploy/mdb,
+            ejb/ee/bb/localaccess/mdbqaccesstest,
+            ejb/ee/bb/localaccess/mdbtaccesstest,
+            ejb/ee/sec/stateful/mdb,
+            ejb/ee/timer,
+            jms,
+            common"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-interop" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-INTEROP"/>
+        <property name="test.areas" value="interop"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-j2eetools" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-TOOLS"/>
+        <property name="test.areas" value="j2eetools"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-javamail" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JAVAMAIL"/>
+        <property name="test.areas" value="javamail"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jaxm" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JAXM"/>
+        <property name="test.areas" value="jaxm"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jaxr" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JAXR"/>
+        <property name="test.areas" value="jaxr/common,jaxr/ee/javax_xml_registry_infomodel,jaxr/ee/javax_xml_registry/BulkResponse,jaxr/ee/javax_xml_registry/BusinessLifeCycleManager,jaxr/ee/javax_xml_registry/BusinessQueryManager,jaxr/ee/javax_xml_registry/DeclarativeQueryManager,jaxr/ee/javax_xml_registry/LifeCycleManager,jaxr/ee/javax_xml_registry/QueryManager,jaxr/api/javax_xml_registry_infomodel,jaxr/api/javax_xml_registry/BusinessLifeCycleManager,jaxr/api/javax_xml_registry/BusinessQueryManager,jaxr/api/javax_xml_registry/CapabilityProfile,jaxr/api/javax_xml_registry/Connection,jaxr/api/javax_xml_registry/ConnectionFactory,jaxr/api/javax_xml_registry/DeleteException,jaxr/api/javax_xml_registry/FindException,jaxr/api/javax_xml_registry/InvalidRequestException,jaxr/api/javax_xml_registry/JAXRException,jaxr/api/javax_xml_registry/LifeCycleManager,jaxr/api/javax_xml_registry/Query,jaxr/api/javax_xml_registry/QueryManager,jaxr/api/javax_xml_registry/RegistryException,jaxr/api/javax_xml_registry/RegistryService,jaxr/api/javax_xml_registry/SaveException,jaxr/api/javax_xml_registry/UnexpectedObjectException,jaxr/api/javax_xml_registry/UnsupportedCapabilityException"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jaxrpc" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JAXRPC"/>
+        <property name="test.areas" value="jaxrpc"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jaxws" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JAXWS"/>
+        <property name="test.areas" value="jaxws"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="j2ee-jaxrs" depends="has.override, no.override" >
+        <property name="deliverable.name" value="J2EE-JAXRS"/>
+        <property name="test.areas" value="jaxrs"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="j2ee-jsonb" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JSONB"/>
+        <property name="test.areas" value="jsonb"/>
+        <antcall target="${the.target}"/>
+    </target>
+
+    <target name="j2ee-jsonp" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JSONP"/>
+        <property name="test.areas" value="jsonp"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-webservices" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-WEBSERVICES"/>
+        <property name="test.areas" value="webservices, webservices12, webservices13, jaxrpc, jaxws/common, jaxws/wsi/constants"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jdbc" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JDBC"/>
+        <property name="test.areas" value="jdbc"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jms" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JMS"/>
+        <property name="test.areas" value="jms"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jsf" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JSF"/>
+        <property name="test.areas" value="jsf"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jstl" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JSTL"/>
+        <property name="test.areas" value="jstl"/>
+        <property name="web.files" value="web/jstl/**/*"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-web" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-WEB"/>
+        <property name="test.areas" value="servlet,jsp"/>
+        <property name="web.files" value="web/servlet/**/*,web/jsp/**/*"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jta" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JTA"/>
+        <property name="test.areas" value="jta"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-jpa" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-JPA"/>
+        <property name="test.areas" value="jpa/common,
+            jpa/core,
+            jpa/ee"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-provisioning" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-PROVISIONING"/>
+        <property name="test.areas" value="provisioning"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-rmiiiop" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-RMIIIOP"/>
+        <property name="test.areas" value="rmiiiop"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-saaj" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-SAAJ"/>
+        <property name="test.areas" value="saaj"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-websocket" depends="has.override, no.override" >
+        <property name="deliverable.name" value="J2EE-WEBSOCKET"/>
+        <property name="test.areas" value="websocket"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-samples" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-SAMPLES"/>
+        <property name="test.areas" value="samples"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-signaturetest" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-SIGNATURETEST"/>
+        <property name="test.areas" value="signaturetest"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-smoke" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-SMOKE"/>
+        <property name="skip.binary.finder" value="true"/>
+        <property name="test.areas" value="ejb/ee/tx/txbean,
+            ejb/ee/tx/session/stateful/cm/TxRN_Exceptions,
+            samples/jdbc/ee/testConn,
+            integration/entity/jspejbjdbc,
+            integration/entity/servletejbjdbc,
+            javamail/ee/multipart,
+            jta/ee/usertransaction/commit,
+            ejb/ee/sec/stateful/secpropagation,
+            ejb/ee/sec/stateful/common,
+        	ejb32/lite/timer/service/singleton,
+            connector/localTx/connection,
+            connector/util,
+            xa/ee/tsr,
+            jms/ee/mdb/mdb_sndToQueue,
+    	    jms/core20/appclient/jmscontextqueuetests,
+    	    jms/ee20/cditests/mdb,
+    	    jms/ee20/ra/activationconfig/queue/selectorauto,
+    	    jsonb/defaultmapping/basictypes,
+    	    jsonp/api/jsongeneratortests,
+            concurrency/api/ManagedScheduledExecutorService,
+            jsp/spec/core_syntax/actions/usebean,
+            jsp/api/javax_servlet/jsp/tagext/bodytagsupport,
+            servlet/api/javax_servlet_http/httpservletrequest,
+            servlet/api/javax_servlet/servletcontext,
+            servlet/api/javax_servlet/servletresponse,
+            servlet/api/common,
+            jsp/api/javax_el/elresolver,
+            jsp/spec/el/language,
+            jsp/spec/tagext/resource/taghandler,
+            jms/common,
+            jms/commonee,
+            jsonp/common,
+            concurrency/api/common,
+            jsp/common,
+            jta/ee/common,
+            servlet/common,
+            jacc/util,
+            jacc/toolsContracts,
+            common,
+            jaxrpc/ee/w2j/rpc/encoded/marshalltest,
+            jaxrpc/common,
+            jaxrs/api/client/clientresponsecontext,
+            jaxrs/common,
+            jaxrs/common/provider,
+            jaxrs/common/util,
+            webservices12/ejb/annotations/WSEjbSOAPHandlersTest,
+            webservices12/servlet/WSMTOMSBAnnotationsTest,
+            webservices12/servlet/HandlerTest,
+	    webservices12/wsdlImport/file/simple2,
+            webservices13/servlet/WSRespBindAndAddressingTestUsingAnnotations,
+            webservices13/servlet/WSAddressingFeaturesTestUsingDDs,
+            jaxws/ee/j2w/document/literal/marshalltest,
+            jaxws/common,
+            jaxws/wsa/common,
+            jaxws/wsi/constants,
+            jsf/common,
+            jsf/api/javax_faces/application/application,
+            jsf/spec/el/managedbean,
+            jstl/common,
+            jstl/spec/core/iteration/foreach,
+            jstl/spec/sql/query,
+            jpa/core/basic,
+            jpa/core/entitytest/persist/basic,
+            jpa/common,
+            ejb30/common/helper,
+            websocket/common,
+            websocket/ee/javax/websocket/server/serverendpoint,
+            websocket/ee/javax/websocket/session"/>
+        <property name="web.files" value="web/servlet/**/*,
+            web/jsp/**/*,
+            web/jstl/spec/core/iteration/foreach/**/*,
+            web/jstl/spec/sql/query/**/*,
+            web/empty/**/*,
+            com/sun/ts/tests/smoke.xml"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-xa" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-XA"/>
+        <property name="test.areas" value="xa"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-security" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-SECURITY"/>
+        <property name="test.areas" value="ejb/ee/sec,
+            integration/sec,
+            servlet/spec/security,
+            jsp/spec/security,
+            webservices/sec,
+            jacc,
+            jms/common,
+            ejb30/common,
+            ejb30/sec,
+            jaxrpc/common" />
+        <property name="web.files" value="web/jsp/sec/**/*"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-interop-security" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-INTEROP-SECURITY"/>
+        <property name="test.areas" value="interop/security, 
+            interop/csiv2,
+            interop/webservices/sec,
+            jms/common,
+            jaxrpc/common" />
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-servlet" depends="has.override, no.override" >
+        <property name="deliverable.name" value="J2EE-SERVLET"/>
+        <property name="test.areas" value="servlet"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+    <target name="j2ee-coverage" depends="has.override, no.override">
+        <var name="deliverable.name" value="J2EE-COVERAGE"/>
+        <property name="test.areas" value="appclient,
+            assembly,
+            compat12,
+            compat13,
+            connector,
+            ejb,
+            integration,
+            interop,
+            j2eetools,
+            jacc,
+            javamail,
+            jaxp,
+            jaxr,
+            jaxrpc,
+            jdbc,
+            jms,
+	    jsonb,
+	    jsonp,
+            jsf,
+            jsp,
+            jstl,
+            jta,
+            rmiiiop,          
+            servlet,
+            websocket,
+            samples,
+            signaturetest/signature-repository,
+            signaturetest/j2ee,
+            signaturetest/jsf,
+            signaturetest/jstl,
+            signaturetest/*,
+            webservices,
+            webservices12,
+            webservices13,
+            xa,
+            internal"/>
+        <antcall target="${the.target}"/>
+    </target>
+    
+</project>

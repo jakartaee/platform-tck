@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.6.5
+Created-By: 1.5.0_06-b05 (Sun Microsystems Inc.)
+main-class: com.sun.ts.tests.ejb30.assembly.metainf.appclientejb.Client
+cLass-paTh: 2/ 4common-1.0.1.jar  4client.jar   hello-client-view.jar
+
+

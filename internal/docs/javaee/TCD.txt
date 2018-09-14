@@ -1,0 +1,111 @@
+TCK Coverage Document for JSR-342 Java TM Platform, Enterprise Edition 7
+  (Java EE 7) Specification
+
+
+TCK Components
+--------------
+- User's Guide
+- Compatibility Rules
+- Configuration Instructions
+- Test Suite
+- API Tests 
+- Signature Tests
+- End-to-End Tests
+- Framework Code
+- JavaTest TM Harness
+
+
+Terminology of Metrics
+----------------------
+- Assertion: A specific statement of functionality or behavior derived from a
+  specification. A testable assertion is one that can be validated in an
+  implementation by testing.
+- Test: A binary application (or script) comprised of one or more Test Cases.
+- Test Case: A single set of test inputs, execution conditions, and expected
+  results developed to verify an implementation's conformance with a specific
+  assertion.
+- Specification Assertion Coverage: Ratio of all assertions tested by at least
+  one test case to the total number of testable assertions defined by the
+  specification.
+- API Coverage: Ratio of methods directly exercised by test cases to the total
+  number of methods defined by the specification.
+
+
+Coverage
+--------
+- Total testable assertions derived from Java EE 7 Specifications and Javadoc: 
+
+       15295 specification assertions
+     + 11311 API assertions          
+     -------------------------------
+       26606 testable assertions     
+
+- Total testable assertions tested
+
+       10149 specification assertions tested
+     +  9468 API assertions tested          
+     --------------------------------------
+       19617 testable assertions tested    
+
+  - 66.36% of testable specification assertions tested
+  - 83.71% of testable API assertions tested          
+  - 73.73% of all (specification and API) assertions tested
+
+
+- Assertions were identified through the use of CTS Tools and hand markup
+  (hand markup was required for the Java EE specifications, non Javadoc)
+
+- Number of tests in CTS 7: 49,591
+    - Note, this total may change before CTS 7 ships.
+
+- API Signature Coverage: 100% of all public and protected members are
+  validated by the signature tests included with the CTS 7.
+
+- All Java EE 7 implementations must also pass the following stand-alone TCKs:
+  - JSR 222 JAXB TCK [24,637]
+  - JSR 346 Web Beans (Context dependency injection for the Java EE platform) [1479]
+  - JSR 349 Bean Validation [758]
+  - JSR 330 Dependency Injection for Java [50]
+* Note, [Number of tests in TCK]
+
+
+Quality Assurance
+-----------------
+- CTS was run using representative configurations of the JavaEE Reference
+  Implementation on the following platforms, note all platforms use Java SE 7:
+   * Ubuntu 12.10
+   * Fedora 18
+   * openSUSE 12.2
+   * Solaris 11.1 Sparc
+   * Solaris 11.1 X86
+   * Solaris 10 Sparc
+   * MacOS 10.8
+   * Oracle Linux Server release 6.4
+   * Windows XP Professional
+   * Windows 2008
+
+- CTS was run with the following databases:
+   * Oracle 11.2
+   * MySQL 5.6
+   * Postgres 9.2
+   * DB2 10.1
+   * Microsoft SQL Server 2012
+   * Sybase ASE 15.7
+
+* Note, not all permutations of platforms and DBs were tested.
+
+- Code quality was demonstrated through the use of code reviews and inspections
+- User's Guide was constructed from the standard CTS User's Guide template
+- Documentation instructions were verified and tested
+
+
+Justification of Adequacy
+-------------------------
+The JavaEE CTS version 7 provides a comprehensive set of tests to ensure
+all implementations of the Java EE 7 specifications are compatible.  As with all
+TCKs it is impossible to provide tests for 100% assertion coverage.  Note, while
+the CTS may not have tests for all assertions in the Java EE 7 Platform, all
+implementations of the platform must be compatible with the specifications.
+
+Untested assertions are due to the effects of late specification changes, and
+the availability and cost of test development resources.

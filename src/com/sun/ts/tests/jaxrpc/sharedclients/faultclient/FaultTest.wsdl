@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="FaultTest" targetNamespace="http://faulttestservice.org/wsdl" xmlns:tns="http://faulttestservice.org/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://faulttestservice.org/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <schema targetNamespace="http://faulttestservice.org/types" xmlns:tns="http://faulttestservice.org/types" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <complexType name="DummyException">
+        <sequence>
+          <element name="dummyField1" type="string" nillable="true"/>
+          <element name="dummyField2" type="string" nillable="true"/>
+        </sequence>
+      </complexType>
+      <element name="DummyException" type="tns:DummyException"/></schema></types>
+  <message name="SoapFaultTest_alwaysThrowsException"/>
+  <message name="SoapFaultTest_alwaysThrowsExceptionResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="DummyException">
+    <part name="DummyException" element="ns2:DummyException"/></message>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoAttributes"/>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoAttributesResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoChildren"/>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoChildrenResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributes"/>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributesResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren"/>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedChildrenResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren"/>
+  <message name="SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildrenResponse">
+    <part name="result" type="xsd:string"/></message>
+  <message name="SoapFaultTest_alwaysThrowsServerException"/>
+  <message name="SoapFaultTest_alwaysThrowsServerExceptionResponse">
+    <part name="result" type="xsd:string"/></message>
+  <portType name="SoapFaultTest">
+    <operation name="alwaysThrowsException" >
+      <input message="tns:SoapFaultTest_alwaysThrowsException"/>
+      <output message="tns:SoapFaultTest_alwaysThrowsExceptionResponse"/>
+      <fault name="DummyException" message="tns:DummyException"/></operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailNoAttributes" >
+      <input message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoAttributes"/>
+      <output message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoAttributesResponse"/></operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailNoChildren" >
+      <input message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoChildren"/>
+      <output message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailNoChildrenResponse"/></operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributes" >
+      <input message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributes"/>
+      <output message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributesResponse"/></operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren" >
+      <input message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren"/>
+      <output message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailQualifiedChildrenResponse"/></operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren" >
+      <input message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren"/>
+      <output message="tns:SoapFaultTest_alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildrenResponse"/></operation>
+    <operation name="alwaysThrowsServerException" >
+      <input message="tns:SoapFaultTest_alwaysThrowsServerException"/>
+      <output message="tns:SoapFaultTest_alwaysThrowsServerExceptionResponse"/></operation></portType>
+  <binding name="SoapFaultTestBinding" type="tns:SoapFaultTest">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="alwaysThrowsException">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></output>
+      <fault name="DummyException">
+        <soap:fault name="DummyException" use="literal"/></fault>
+    </operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailNoAttributes">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailNoChildren">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributes">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></output>
+    </operation>
+    <operation name="alwaysThrowsServerException">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></input>
+      <output>
+        <soap:body use="literal" namespace="http://faulttestservice.org/wsdl"/></output>
+    </operation>
+  </binding>
+  <service name="FaultTest">
+    <port name="SoapFaultTestPort" binding="tns:SoapFaultTestBinding">
+      <soap:address location="http://localhost:8000/FaultService/ws4ee"/></port></service></definitions>

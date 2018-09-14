@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    name="MarshallTestService"
+    targetNamespace="http://marshalltestservice.org/MarshallTestService.wsdl"
+    xmlns:mts1="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"
+    xmlns:mts2="http://marshalltestservice.org/NewSchemaDefs.wsdl"
+    xmlns:mts3="http://marshalltestservice.org/CompoundTestDefs.wsdl"
+    xmlns:mts4="http://marshalltestservice.org/OneWayTestDefs.wsdl"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+  <import
+     namespace="http://marshalltestservice.org/MarshallTestServiceDefs.wsdl"
+     location="MarshallTestServiceDefs.wsdl"/>
+
+  <import
+     namespace="http://marshalltestservice.org/NewSchemaDefs.wsdl"
+     location="NewSchemaDefs.wsdl"/>
+
+  <import
+     namespace="http://marshalltestservice.org/CompoundTestDefs.wsdl"
+     location="CompoundTestDefs.wsdl"/>
+
+  <import
+     namespace="http://marshalltestservice.org/OneWayTestDefs.wsdl"
+     location="OneWayTestDefs.wsdl"/>
+
+  <types/>
+
+  <service name="MarshallTestService">
+    <port name="MarshallTestPort1" binding="mts1:MarshallTestSoapBinding">
+      <soap:address location="http://localhost:8000/WSIDLMarshallTest/ws4ee_1"/>
+    </port>
+    <port name="MarshallTestPort2" binding="mts2:NewSchemaTestSoapBinding">
+      <soap:address location="http://localhost:8000/WSIDLMarshallTest/ws4ee_2"/>
+    </port>
+    <port name="MarshallTestPort3" binding="mts3:CompoundTestBinding">
+      <soap:address location="http://localhost:8000/WSIDLMarshallTest/ws4ee_3"/>
+    </port>
+    <port name="MarshallTestPort4" binding="mts4:OneWayTestSoapBinding">
+      <soap:address location="http://localhost:8000/WSIDLMarshallTest/ws4ee_4"/>
+    </port>
+  </service>
+</definitions>

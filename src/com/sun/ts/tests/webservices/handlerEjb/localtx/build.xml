@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="handlerEjb_localtx" basedir="." default="usage">
+<import file="../../../../../../../../bin/xml/ts.import.xml"/>
+
+  <property name="app.name" value="LocalTxEjbHandlerTest"/>
+  <property name="client.app.name" value="LocalTxEjbHandlerTestClnt"/>
+  <property name="wsdl.file" value="HelloService.wsdl"/>
+  <property name="MetaData.file" value="HelloService.xml"/>
+  <property name="classes.1" value="com/sun/ts/tests/jaxrpc/common/HandlerBase.class,
+                                    com/sun/ts/tests/jaxrpc/common/HandlerTracker.class"/>
+  <property name="classes.2" value="com/sun/ts/tests/jaxrpc/common/JAXRPC_Util.class,
+                                    com/sun/ts/tests/jaxrpc/common/JAXRPC_Data.class"/>
+
+  <target name="compile">
+      <ts.javac includes="${pkg.dir}/**/*.java,
+                          com/sun/ts/tests/jaxrpc/common/**/*.java"/>
+  </target>
+
+  <target name="package" depends="compile">
+
+      <ts.ejbjar archivename="${app.name}" descriptor="${app.name}_ejb.xml">
+        <zipfileset dir= "." includes="webservices.xml" prefix="META-INF"/>
+        <zipfileset dir= "." includes="${wsdl.file}" prefix="META-INF/wsdl"/>
+        <fileset dir="." includes="${MetaData.file}"/>
+        <fileset dir="${class.dir}" includes="${classes.1}"/>
+        <fileset dir="${class.dir}" includes="${classes.2}"/>
+      </ts.ejbjar>
+
+      <ts.ear archivename="${app.name}" includedefaultfiles="false">
+         <fileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar"/>
+      </ts.ear>
+
+      <ts.clientjar archivename="${client.app.name}" descriptor="${client.app.name}_client.xml"
+                    mainclass="com.sun.ts.tests.webservices.handlerEjb.localtx.Client"
+                    excludedfiles="com/sun/ts/tests/webservices/handlerEjb/localtx/HelloBean.class,
+                                   com/sun/ts/tests/webservices/handlerEjb/localtx/HelloHome.class,
+                                   com/sun/ts/tests/webservices/handlerEjb/localtx/HelloImpl.class,
+                                   com/sun/ts/tests/webservices/handlerEjb/localtx/HelloRemote.class,
+                                   com/sun/ts/tests/webservices/handlerEjb/localtx/TxHandler.class">
+        <fileset dir="." includes="${MetaData.file}"/>
+        <zipfileset dir= "." includes="${wsdl.file}" prefix="META-INF/wsdl"/>
+        <fileset dir="${class.dir}" includes="${classes.2}"/>
+      </ts.clientjar>
+
+      <ts.ear archivename="${client.app.name}" includedefaultfiles="false">
+         <fileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar"/>
+      </ts.ear>
+
+  </target>
+
+</project>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_stateful_appexception_annotated"/>
+
+<property name="ear.lib.classes" value="
+com/sun/ts/tests/ejb30/common/appexception/UncheckedAppException.class,
+com/sun/ts/tests/ejb30/common/appexception/UncheckedRollbackAppException.class,
+com/sun/ts/tests/ejb30/common/appexception/AtCheckedAppException.class,
+com/sun/ts/tests/ejb30/common/appexception/AtCheckedRollbackAppException.class,
+com/sun/ts/tests/ejb30/common/appexception/AtUncheckedAppException.class,
+com/sun/ts/tests/ejb30/common/appexception/AtUncheckedRollbackAppException.class,
+com/sun/ts/tests/ejb30/common/appexception/CheckedAppException.class,
+com/sun/ts/tests/ejb30/common/appexception/CheckedRollbackAppException.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class
+"/>
+
+  <property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/bb/session/stateful/annotation/appexception/annotated/AppExceptionBean.class,
+com/sun/ts/tests/ejb30/bb/session/stateful/annotation/appexception/annotated/RollbackBean.class,
+com/sun/ts/tests/ejb30/common/appexception/AppExceptionBeanBase.class,
+com/sun/ts/tests/ejb30/common/appexception/RollbackBeanBase.class,
+com/sun/ts/tests/ejb30/common/appexception/AppExceptionLocalIF.class,
+com/sun/ts/tests/ejb30/common/appexception/AppExceptionIF.class,
+com/sun/ts/tests/ejb30/common/appexception/CommonIF.class,
+com/sun/ts/tests/ejb30/common/appexception/RollbackIF.class
+            "/>
+  
+  <property name="appclient.jar.classes" 
+            value="
+com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/bb/session/stateful/annotation/appexception/annotated/Client.class,
+com/sun/ts/tests/ejb30/common/appexception/ClientBase.class,
+com/sun/ts/tests/ejb30/common/appexception/AppExceptionIF.class,
+com/sun/ts/tests/ejb30/common/appexception/CommonIF.class,
+com/sun/ts/tests/ejb30/common/appexception/RollbackIF.class
+            "/>
+  
+  <import file="../../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/ear-lib-jar.xml"/>  
+  <import file="../../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

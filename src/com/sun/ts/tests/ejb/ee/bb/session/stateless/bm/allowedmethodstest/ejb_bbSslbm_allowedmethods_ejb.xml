@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+  <display-name>Ejb1</display-name>
+  <enterprise-beans>
+    <session>
+      <ejb-name>Helper</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.HelperHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.Helper</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.HelperEJB</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+    <session>
+      <ejb-name>ejb_ee_bb_session_stateless_bm_allowedmethodstest_TestBean</ejb-name>
+      <home>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.TestBeanHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.TestBean</remote>
+      <local-home>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.TestBeanLocalHome</local-home>
+      <local>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.TestBeanLocal</local>
+      <ejb-class>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.TestBeanEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+        <env-entry-name>table1</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>TSTABLE1</env-entry-value>
+      </env-entry>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Helper</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <home>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.HelperHome</home>
+        <remote>com.sun.ts.tests.ejb.ee.bb.session.stateless.bm.allowedmethodstest.Helper</remote>
+        <ejb-link>Helper</ejb-link>
+      </ejb-ref>
+      <security-role-ref>
+        <role-name>Administrator</role-name>
+        <role-link>Administrator</role-link>
+      </security-role-ref>
+      <security-identity>
+      	<use-caller-identity/>
+      </security-identity>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <security-role>
+      <role-name>Administrator</role-name>
+    </security-role>
+    <container-transaction>
+      <method>
+        <ejb-name>Helper</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>getData</method-name>
+      </method>
+      <trans-attribute>NotSupported</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>Helper</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>setData</method-name>
+        <method-params>
+          <method-param>java.util.Hashtable</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>NotSupported</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

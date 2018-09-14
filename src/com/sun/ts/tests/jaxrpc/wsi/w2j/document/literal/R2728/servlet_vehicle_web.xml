@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4">
+  <display-name>servlet_vehicle</display-name>
+  <servlet>
+    <servlet-name>Servlet_VehicleLogicalName</servlet-name>
+    <servlet-class>com.sun.ts.tests.common.vehicle.servlet.ServletVehicle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet_VehicleLogicalName</servlet-name>
+    <url-pattern>/servlet_vehicle</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>54</session-timeout>
+  </session-config>
+  <service-ref>
+    <service-ref-name>service/W2JDLR2728TestService</service-ref-name>
+    <service-interface>javax.xml.rpc.Service</service-interface>
+    <wsdl-file>WEB-INF/wsdl/W2JDLR2728TestService.wsdl</wsdl-file>
+    <jaxrpc-mapping-file>W2JDLR2728TestService.xml</jaxrpc-mapping-file>
+    <port-component-ref>
+      <service-endpoint-interface>com.sun.ts.tests.jaxrpc.wsi.w2j.document.literal.R2728.W2JDLR2728Test</service-endpoint-interface>
+    </port-component-ref>
+  </service-ref>
+</web-app>

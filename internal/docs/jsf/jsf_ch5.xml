@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- =============================== Chapter 5 ============================= --> 
+
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        It is an error to specify a managed bean class that does not 
+        exist, or that cannot be instantiated with a public, zero-args 
+        constructor.
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        It is an error to specify a &lt;property-name&gt; element for a 
+        property that does not exist, or does not have a public setter
+        method, on the specified managed bean class.
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        It is an error to specify a value element that cannot be 
+        converted to the type required by a managed property, or that, 
+        when evaluated, results in a value that cannot be converted to 
+        the type required by a managed property.
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        If the type of the property referenced by the 
+        &lt;managed-property&gt; element is a Java enum, the contents of 
+        the &lt;value&gt; element must be a String that yields a valid 
+        return from java.lang.Enum.valueOf(PROPERTY_CLASS, VALUE) where
+        PROPERTY_CLASS is the java.lang.Class for the property and VALUE 
+        is the contents of &lt;value&gt; element in the application 
+        configuration resource. If any exception is thrown from 
+        Enum.valueOf() it is an error.
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        It is an error for a managed bean created through The Managed 
+        Bean Creation Facility to have a property that points at an 
+        object stored in a scope with a (potentially) shorter life span. 
+        Specifically, this means, for an object created with the
+        specified &lt;managed-bean-scope&gt;, then &lt;value&gt; 
+        evaluations can only point at created objects with the specified
+        managed bean scope:
+        
+        ■ none -- none
+        ■ application -- none, application
+        ■ session -- none, application, session
+        ■ request -- none, application, session, request
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        Data accessed via an implicit object is also defined to be in a 
+        scope. The following implicit objects are considered to be in 
+        request scope:
+        
+        ■ cookie
+        ■ facesContext
+        ■ header
+        ■ headerValues
+        ■ param
+        ■ paramValues
+        ■ request
+        ■ requestScope
+        ■ view
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The only implicit objects in session scope are session and 
+        sessionScope.
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The following implicit objects are considered to be in 
+        application scope:
+        
+        ■ application
+        ■ applicationScope
+        ■ initParam
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        It is an error to configure cyclic references between managed 
+        beans.
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        Managed bean names must conform to the syntax of a Java language 
+        identifier.
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        &lt;null-value/&gt; -- An empty element indicating that this property
+        must be explicitly initialized to null. This element is not allowed if 
+        the underlying property is of a Java primitive type.
+    </description>
+    <location chapter="5" section="3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="false">
+    <id>__NUMBER__</id>
+    <description>
+        Each &lt;managed-property&gt; element contains the following elements 
+        used to configure the execution of the corresponding property setter 
+        call:
+    </description>
+    <location chapter="5" section="3"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                &lt;property-name&gt; -- The property name of the property to be
+                configured. 
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                &lt;map-entries&gt; -- A set of key/value pairs used to 
+                initialize the contents of a property of type java.util.Map.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                &lt;null-value/&gt; -- An empty element indicating that this 
+                property must be explicitly initialized to null. This element is 
+                not allowed if the underlying property is of a Java primitive
+                type.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                &lt;value&gt; -- A String value that will have any leading and 
+                trailing spaces stripped, and then be converted  prior to
+                setting it to this value.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__</id>
+            <description>
+                &lt;list-entries&gt; -- A set of values used to initialize the 
+                contents of a property of type array or java.util.List.          
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="false">
+    <id>__NUMBER__</id>
+    <description>
+        The initialization of bean properties from &lt;map-entries&gt; elements 
+        must adhere to the following algorithm:
+    </description>
+    <location chapter="5" section="3"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Call the property getter. If the getter returns null or doesn't 
+                exist, create a java.util.HashMap, otherwise
+                use the returned java.util.Map.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                Add all entries defined by nested &lt;map-entry&gt; elements in
+                the order they are listed, converting key values defined by 
+                nested &lt;key&gt; elements to the type defined by &lt;keyclass&gt;
+                and entry values defined by nested &lt;value&gt; elements to the 
+                type defined by &lt;value-class&gt;.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                If a value is given as a value expression, evaluate the 
+                reference and store the result, converting to &lt;value-class&gt; 
+                if necessary. If &lt;key-class&gt; and/or &lt;value-class&gt; 
+                are not defined, use java.lang.String. Add null for each
+                &lt;null-value&gt; element.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                If a new java.util.Map was created, set the property by calling 
+                the setter method, or log an error if there is no setter method.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The initialization of bean properties from &lt;list-entries&gt; elements
+        must adhere to the following algorithm:
+    </description>
+    <location chapter="5" section="3"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Call the property getter, If the getter returns null or doesn't
+                exist, create a java.util.ArrayList, otherwise use the returned 
+                Object (an array or a java.util.List).
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                add all elements defined by nested &lt;value&gt; elements in the
+                order they are listed, converting values defined by nested
+                &lt;value&gt; elements to the type defined by &lt;value-class&gt;.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                If a value is given as a value expression, evaluate the 
+                reference and store the result, converting to &lt;valueclass&gt;
+                if necessary. If a &lt;value-class&gt; is not defined, use the 
+                value as-is (i.e., as a java.lang.String). Add null for each 
+                &lt;null-value&gt; element.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                If an array was returned, create a java.util.ArrayList and copy 
+                all elements from the returned array to the new List, wrapping 
+                elements of a primitive type.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.5</id>
+            <description>
+                If a new java.util.List was created, and the property is of type
+                List, set the property by calling the setter method, or log an 
+                error if there is no setter method.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.6</id>
+            <description>
+                If a new java.util.List was created, and the property is a java 
+                array, convert the List into an array of the property type, and 
+                set it by calling the setter method, or log an error if there is
+                no setter method.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.7</id>
+            <description>
+                If a new java.util.List was created, convert the List
+                to an array of the proper type for the property and set the 
+                property by calling the setter method, or log an error if there 
+                is no setter method.
+            </description>
+            <location chapter="5" section="3"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        Here is a summary of the valid injection annotations one may use
+        in a managed bean.
+        
+        @Resource
+        @Resources
+        @EJB
+        @EJBs
+        @WebServiceRef
+        @WebServiceRefs
+        @PersistenceContext
+        @PersistenceContexts
+        @PersistenceUnit
+        @PersistenceUnits
+    </description>
+    <location chapter="5" section="4"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        JSF implementations running in a Java EE 5 compliant container must 
+        support attaching the @PostConstruct and @PreDestroy annotations to aid 
+        in awareness of the managedbean lifecycle.
+    </description>
+    <location chapter="5" section="4.1"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Methods on managed beans declared to be in request, session, or 
+                application scope, annotated with @PostConstruct, must be called
+                by the JSF implementation after resource injection is performed 
+                (if any) but before the bean is placed into scope.
+            </description>
+            <location chapter="5" section="4.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                If the method throws an unchecked exception, the JSF 
+                implementation must not put the managed-bean into service and 
+                further methods on that managed bean instance must not be 
+                called.
+            </description>
+            <location chapter="5" section="4.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                Methods on managed beans declared to be in request, session, or 
+                application scope, annotated with @PreDestroy, must be called by
+                the JSF implementation before the bean is removed from its scope
+                or before the scope itself is destroyed, whichever comes first.
+                This annotation must be supported in all cases where the above 
+                @PostConstruct annotation is supported.
+            </description>
+            <location chapter="5" section="4.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+                   status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                If the method throws an unchecked exception, the JSF 
+                implementation may log it, but the exception must not otherwise 
+                alter the execution.
+            </description>
+            <location chapter="5" section="4.1"/>
+        </assertion>
+    </sub-assertions>
+</assertion>

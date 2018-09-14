@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb_ee_tx_session_stateful_bm_TxN_GlobalSingle" basedir="." default="usage">
+<import file="../../../../../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <target name="build.common.app">
+      <ant dir="../../../../txbean" target="build"/>
+  </target>
+
+  <target name="package" depends="build.common.app">
+
+      <ts.ejbjar descriptor="ejb_txSsfBm_TxNSingle_ejb.xml" 
+                 archivename="ejb_txSsfBm_TxNSingle">
+        <fileset dir="${class.dir}"
+                 includes="com/sun/ts/tests/ejb/ee/tx/txbean/*.class"
+                 excludes="com/sun/ts/tests/ejb/ee/tx/txbean/TxBeanEJB.class"/>
+      </ts.ejbjar>
+
+      <ts.clientjar descriptor="ejb_txSsfBm_TxNSingle_client.xml" 
+                    archivename="ejb_txSsfBm_TxNSingle" 
+                    mainclass="com.sun.ts.tests.ejb.ee.tx.session.stateful.bm.TxN_GlobalSingle.Client"
+                    excludedfiles="com/sun/ts/tests/ejb/ee/tx/session/stateful/bm/TxN_GlobalSingle/TestBeanEJB.class"/>
+
+      <ts.ear archivename="ejb_txSsfBm_TxNSingle"/>
+
+  </target>
+
+</project>

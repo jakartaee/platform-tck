@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    version="3.1" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+    <enterprise-beans>
+        <session>
+            <ejb-name>DefaultUnitBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <local-bean />
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>1</timeout>
+                <unit>Minutes</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        <session>
+            <ejb-name>SecondUnitBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <local-bean />
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>60</timeout>
+                <unit>Seconds</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        
+        <!-- The following time units are uncommon -->
+        <session>
+            <ejb-name>DayUnitBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>1</timeout>
+                <unit>Days</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        <session>
+            <ejb-name>HourUnitBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>1</timeout>
+                <unit>Hours</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        <session>
+            <ejb-name>MillisecondUnitBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>5000</timeout>
+                <unit>Milliseconds</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        <session>
+            <ejb-name>MicrosecondUnitBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>5000000</timeout>
+                <unit>Microseconds</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        <session>
+            <ejb-name>NanosecondUnitBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>5000000000</timeout>
+                <unit>Nanoseconds</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        
+        <session>
+            <ejb-name>Minus1TimeoutBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>-1</timeout>
+                <unit>Days</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+        <session>
+            <ejb-name>ZeroTimeoutBean</ejb-name>
+            <business-local>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF</business-local>
+            <ejb-class>com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase</ejb-class>
+            <session-type>Stateful</session-type>
+            <stateful-timeout>
+                <timeout>0</timeout>
+                <unit>Nanoseconds</unit>
+            </stateful-timeout>
+            <concurrency-management-type>Container</concurrency-management-type>
+        </session>
+    </enterprise-beans>
+</ejb-jar>

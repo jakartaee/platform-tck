@@ -1,0 +1,49 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsf_applicationWrapper" basedir="." default="usage">
+
+	<!-- IMPORTS -->
+	<import file="../../../../common/common.xml" />
+
+	<property name="app.name" value="jsf_appl_applicationwrapper" />
+
+	<target name="package">
+		<ts.war archivename="${app.name}" descriptor="jsf_appl_applicationwrapper_web.xml">
+			<zipfileset dir="${class.dir}" includes="${jsf.common}/beans/TestBean*.class,
+				${jsf.common}/servlets/HttpTCKServlet.class,
+				${jsf.common}/resourcebundle/SimpleResourceBundle_de.class,
+				${jsf.common}/resourcebundle/SimpleResourceBundle_en.class,
+				${jsf.common}/statemanager/TCKStateManager.class,
+				${jsf.common}/resourcehandler/TCKResourceHandler.class,
+				${jsf.common}/statemanager/TCKStateManager.class,
+				${jsf.common}/listener/TCKActionListener.class,
+				${jsf.common}/listener/TCKELContextListener.class,
+				${jsf.common}/listener/TCKSystemEventListener.class,
+				${jsf.common}/behavior/TCKBehavior.class,
+				${jsf.common}/viewhandler/TCKViewHandler.class,
+				${jsf.common}/navigation/TCKNavigationHandler.class,
+				${jsf.common}/event/TCKSystemEvent.class,
+            	${jsf.common}/resolver/TCKELResolver.class,				
+				${jsf.common}/util/JSFTestUtil.class" prefix="WEB-INF/classes" />
+			<zipfileset dir="." includes="faces-config.xml" prefix="WEB-INF" />
+			<zipfileset dir="${ts.home}/weblib" includes="*.jar" prefix="WEB-INF/lib" />
+		</ts.war>
+	</target>
+
+</project>

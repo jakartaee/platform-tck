@@ -1,0 +1,2692 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="MarshallTest"
+		targetNamespace="http://MarshallTest.org/" 
+				xmlns="http://schemas.xmlsoap.org/wsdl/" 
+				xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+				xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+				xmlns:tns="http://MarshallTest.org/" 
+				xmlns:s="http://MarshallTest.org/xsd" 
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://MarshallTest.org/xsd">
+
+			<!-- ########################################## -->
+			<!-- These complex types are restricted by WSDL -->
+			<!-- ########################################## -->
+
+
+			<complexType name="ArrayOfstring">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfinteger">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:integer[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfint">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:int[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOflong">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:long[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfshort">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:short[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdecimal">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:decimal[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOffloat">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:float[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdouble">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:double[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfboolean">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:boolean[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfbyte">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="byte[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfQName">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="QName[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdateTime">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="dateTime[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencstring">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencboolean">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:boolean[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencfloat">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:float[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencdouble">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:double[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencdecimal">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:decimal[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencint">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:int[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencshort">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:short[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencbyte">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:byte[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfbase64Binary">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="base64Binary[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfhexBinary">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="hexBinary[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencbase64">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:base64[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<!-- ########################################## -->
+			<!-- These complex types are restricted by SOAP -->
+			<!-- ########################################## -->
+
+
+			<complexType name="ArrayOfstring1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="string1" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+
+			<complexType name="ArrayOfinteger1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="integer1" type="xsd:integer" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfint1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="int1" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOflong1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="long1" type="xsd:long" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfshort1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="short1" type="xsd:short" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdecimal1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="decimal1" type="xsd:decimal" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOffloat1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="float1" type="xsd:float" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdouble1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="double1" type="xsd:double" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfboolean1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="boolean1" type="xsd:boolean" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfbyte1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="byte1" type="xsd:byte" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfQName1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="QName1" type="xsd:QName" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfdateTime1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="dateTime1" type="xsd:dateTime" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencstring1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencstring1" type="soapenc:string" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencboolean1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencboolean" type="soapenc:boolean" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencfloat1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencfloat1" type="soapenc:float" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencdouble1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencdouble1" type="soapenc:double" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencdecimal1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencdecimal1" type="soapenc:decimal" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencint1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencint1" type="soapenc:int" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencshort1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencshort1" type="soapenc:short" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencbyte1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencbyte1" type="soapenc:byte" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfbase64Binary1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="base64Binary1" type="xsd:base64Binary" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfhexBinary1">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="hexBinary1" type="xsd:hexBinary" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="ArrayOfsoapencbase641">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<sequence>
+							<element name="soapencbase641" type="soapenc:base64" minOccurs="0" maxOccurs="unbounded"/>
+						</sequence>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<!-- ########################################## -->
+			<!-- Struct types				-->
+			<!-- ########################################## -->
+
+
+			<complexType name="ArrayOfAllStruct">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="s:AllStruct[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="AllStruct">
+				<all>
+         				<element name="varString" type="xsd:string"/>
+          			<element name="varInteger" type="xsd:integer"/>
+          			<element name="varInt" type="xsd:int"/>
+          			<element name="varLong" type="xsd:long"/>
+          			<element name="varShort" type="xsd:short"/>
+          			<element name="varDecimal" type="xsd:decimal"/>
+          			<element name="varFloat" type="xsd:float"/>
+          			<element name="varDouble" type="xsd:double"/>
+          			<element name="varBoolean" type="xsd:boolean"/>
+          			<element name="varByte" type="xsd:byte"/>
+          			<element name="varQName" type="xsd:QName"/>
+          			<element name="varDateTime" type="xsd:dateTime"/>
+          			<element name="varSoapString" type="soapenc:string"/>
+          			<element name="varSoapBoolean" type="soapenc:boolean"/>
+          			<element name="varSoapFloat" type="soapenc:float"/>
+          			<element name="varSoapDouble" type="soapenc:double"/>
+          			<element name="varSoapDecimal" type="soapenc:decimal"/>
+          			<element name="varSoapInt" type="soapenc:int"/>
+          			<element name="varSoapShort" type="soapenc:short"/>
+          			<element name="varSoapByte" type="soapenc:byte"/>
+          			<element name="varBase64Binary" type="xsd:base64Binary"/>
+          			<element name="varHexBinary" type="xsd:hexBinary"/>
+          			<element name="varSoapBase64" type="soapenc:base64"/>
+				</all>
+			</complexType>
+			<complexType name="ArrayOfAllStruct2">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="s:AllStruct2[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="AllStruct2">
+				<all>
+         				<element name="varString" type="xsd:string"/>
+          			<element name="varInteger" type="xsd:integer"/>
+          			<element name="varInt" type="xsd:int"/>
+          			<element name="varLong" type="xsd:long"/>
+          			<element name="varShort" type="xsd:short"/>
+          			<element name="varDecimal" type="xsd:decimal"/>
+          			<element name="varFloat" type="xsd:float"/>
+          			<element name="varDouble" type="xsd:double"/>
+          			<element name="varBoolean" type="xsd:boolean"/>
+          			<element name="varByte" type="xsd:byte"/>
+          			<element name="varQName" type="xsd:QName"/>
+          			<element name="varDateTime" type="xsd:dateTime"/>
+          			<element name="varSoapString" type="soapenc:string"/>
+          			<element name="varSoapBoolean" type="soapenc:boolean"/>
+          			<element name="varSoapFloat" type="soapenc:float"/>
+          			<element name="varSoapDouble" type="soapenc:double"/>
+          			<element name="varSoapDecimal" type="soapenc:decimal"/>
+          			<element name="varSoapInt" type="soapenc:int"/>
+          			<element name="varSoapShort" type="soapenc:short"/>
+          			<element name="varSoapByte" type="soapenc:byte"/>
+          			<element name="varBase64Binary" type="xsd:base64Binary"/>
+          			<element name="varHexBinary" type="xsd:hexBinary"/>
+          			<element name="varSoapBase64" type="soapenc:base64"/>
+					<element name="varAllStruct" type="s:AllStruct"/>
+				</all>
+			</complexType>
+
+			<complexType name="ArrayOfSequenceStruct">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="s:SequenceStruct[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="SequenceStruct">
+				<sequence>
+         				<element name="varString" type="xsd:string"/>
+          			<element name="varInteger" type="xsd:integer"/>
+          			<element name="varInt" type="xsd:int"/>
+          			<element name="varLong" type="xsd:long"/>
+          			<element name="varShort" type="xsd:short"/>
+          			<element name="varDecimal" type="xsd:decimal"/>
+          			<element name="varFloat" type="xsd:float"/>
+          			<element name="varDouble" type="xsd:double"/>
+          			<element name="varBoolean" type="xsd:boolean"/>
+          			<element name="varByte" type="xsd:byte"/>
+          			<element name="varQName" type="xsd:QName"/>
+          			<element name="varDateTime" type="xsd:dateTime"/>
+          			<element name="varSoapString" type="soapenc:string"/>
+          			<element name="varSoapBoolean" type="soapenc:boolean"/>
+          			<element name="varSoapFloat" type="soapenc:float"/>
+          			<element name="varSoapDouble" type="soapenc:double"/>
+          			<element name="varSoapDecimal" type="soapenc:decimal"/>
+          			<element name="varSoapInt" type="soapenc:int"/>
+          			<element name="varSoapShort" type="soapenc:short"/>
+          			<element name="varSoapByte" type="soapenc:byte"/>
+          			<element name="varBase64Binary" type="xsd:base64Binary"/>
+          			<element name="varHexBinary" type="xsd:hexBinary"/>
+          			<element name="varSoapBase64" type="soapenc:base64"/>
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfSequenceStruct2">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="s:SequenceStruct2[]"/>
+					</restriction>
+				</complexContent>
+			</complexType>
+			<complexType name="SequenceStruct2">
+				<sequence>
+         				<element name="varString" type="xsd:string"/>
+          			<element name="varInteger" type="xsd:integer"/>
+          			<element name="varInt" type="xsd:int"/>
+          			<element name="varLong" type="xsd:long"/>
+          			<element name="varShort" type="xsd:short"/>
+          			<element name="varDecimal" type="xsd:decimal"/>
+          			<element name="varFloat" type="xsd:float"/>
+          			<element name="varDouble" type="xsd:double"/>
+          			<element name="varBoolean" type="xsd:boolean"/>
+          			<element name="varByte" type="xsd:byte"/>
+          			<element name="varQName" type="xsd:QName"/>
+          			<element name="varDateTime" type="xsd:dateTime"/>
+          			<element name="varSoapString" type="soapenc:string"/>
+          			<element name="varSoapBoolean" type="soapenc:boolean"/>
+          			<element name="varSoapFloat" type="soapenc:float"/>
+          			<element name="varSoapDouble" type="soapenc:double"/>
+          			<element name="varSoapDecimal" type="soapenc:decimal"/>
+          			<element name="varSoapInt" type="soapenc:int"/>
+          			<element name="varSoapShort" type="soapenc:short"/>
+          			<element name="varSoapByte" type="soapenc:byte"/>
+          			<element name="varBase64Binary" type="xsd:base64Binary"/>
+          			<element name="varHexBinary" type="xsd:hexBinary"/>
+          			<element name="varSoapBase64" type="soapenc:base64"/>
+					<element name="varSequenceStruct" type="s:SequenceStruct"/>
+				</sequence>
+			</complexType>
+
+			<!-- ########################################## -->
+			<!-- Enumeration types                          -->
+			<!-- ########################################## -->
+			<element name="enumString" type="s:enumString"/>
+			<simpleType name="enumString">
+				<restriction base="xsd:string">
+					<enumeration value="String1" />
+					<enumeration value="String2" />
+				</restriction>
+			</simpleType>
+			<element name="enumInteger" type="s:enumInteger"/>
+			<simpleType name="enumInteger">
+				<restriction base="xsd:integer">
+					<enumeration value="3512359" />
+					<enumeration value="3512360" />
+				</restriction>
+			</simpleType>
+			<element name="enumInt" type="s:enumInt"/>
+			<simpleType name="enumInt">
+				<restriction base="xsd:int">
+					<enumeration value="-2147483648" />
+					<enumeration value="2147483647" />
+				</restriction>
+			</simpleType>
+			<element name="enumLong" type="s:enumLong"/>
+			<simpleType name="enumLong">
+				<restriction base="xsd:long">
+					<enumeration value="-9223372036854775808" />
+					<enumeration value="9223372036854775807" />
+				</restriction>
+			</simpleType>
+			<element name="enumShort" type="s:enumShort"/>
+			<simpleType name="enumShort">
+				<restriction base="xsd:short">
+					<enumeration value="-32768" />
+					<enumeration value="32767" />
+				</restriction>
+			</simpleType>
+			<element name="enumDecimal" type="s:enumDecimal"/>
+			<simpleType name="enumDecimal">
+				<restriction base="xsd:decimal">
+					<enumeration value="3512359.1456" />
+					<enumeration value="3512360.1456" />
+				</restriction>
+			</simpleType>
+			<element name="enumFloat" type="s:enumFloat"/>
+			<simpleType name="enumFloat">
+				<restriction base="xsd:float">
+					<enumeration value="-1.00000000" />
+					<enumeration value="3.00000000" />
+				</restriction>
+			</simpleType>
+			<element name="enumDouble" type="s:enumDouble"/>
+			<simpleType name="enumDouble">
+				<restriction base="xsd:double">
+					<enumeration value="-1.0000000000000" />
+					<enumeration value="3.0000000000000" />
+				</restriction>
+			</simpleType>
+			<element name="enumByte" type="s:enumByte"/>
+			<simpleType name="enumByte">
+				<restriction base="xsd:byte">
+					<enumeration value="-128" />
+					<enumeration value="127" />
+				</restriction>
+			</simpleType>
+
+			<!-- ############################################### -->
+			<!-- built-in simple types with nillable set to true -->
+			<!-- ############################################### -->
+			<complexType name="NilTrueStruct">
+			  <sequence>
+			    <element name="nilint" type="xsd:int" nillable="true"/>
+			    <element name="nillong" type="xsd:long" nillable="true"/>
+			    <element name="nilshort" type="xsd:short" nillable="true"/>
+			    <element name="nilfloat" type="xsd:float" nillable="true"/>
+			    <element name="nildouble" type="xsd:double" nillable="true"/>
+			    <element name="nilboolean" type="xsd:boolean" nillable="true"/>
+			    <element name="nilbyte" type="xsd:byte" nillable="true"/>
+			  </sequence>
+			</complexType>
+			<complexType name="NilFalseStruct">
+			  <sequence>
+			    <element name="nilint" type="xsd:int" nillable="false"/>
+			    <element name="nillong" type="xsd:long" nillable="false"/>
+			    <element name="nilshort" type="xsd:short" nillable="false"/>
+			    <element name="nilfloat" type="xsd:float" nillable="false"/>
+			    <element name="nildouble" type="xsd:double" nillable="false"/>
+			    <element name="nilboolean" type="xsd:boolean" nillable="false"/>
+			    <element name="nilbyte" type="xsd:byte" nillable="false"/>
+			  </sequence>
+			</complexType>
+		</schema>
+	</types>
+
+	<message name="echoStringRequest">
+		<part name="inputString" type="xsd:string"/>
+	</message>
+	<message name="echoStringResponse">
+		<part name="return" type="xsd:string"/>
+	</message>
+	<message name="echoIntegerRequest">
+		<part name="inputInteger" type="xsd:integer"/>
+	</message>
+	<message name="echoIntegerResponse">
+		<part name="return" type="xsd:integer"/>
+	</message>
+	<message name="echoIntRequest">
+		<part name="inputInt" type="xsd:int"/>
+	</message>
+	<message name="echoIntResponse">
+		<part name="return" type="xsd:int"/>
+	</message>
+	<message name="echoLongRequest">
+		<part name="inputLong" type="xsd:long"/>
+	</message>
+	<message name="echoLongResponse">
+		<part name="return" type="xsd:long"/>
+	</message>
+	<message name="echoShortRequest">
+		<part name="inputShort" type="xsd:short"/>
+	</message>
+	<message name="echoShortResponse">
+		<part name="return" type="xsd:short"/>
+	</message>
+	<message name="echoDecimalRequest">
+		<part name="inputDecimal" type="xsd:decimal"/>
+	</message>
+	<message name="echoDecimalResponse">
+		<part name="return" type="xsd:decimal"/>
+	</message>
+	<message name="echoFloatRequest">
+		<part name="inputFloat" type="xsd:float"/>
+	</message>
+	<message name="echoFloatResponse">
+		<part name="return" type="xsd:float"/>
+	</message>
+	<message name="echoDoubleRequest">
+		<part name="inputDouble" type="xsd:double"/>
+	</message>
+	<message name="echoDoubleResponse">
+		<part name="return" type="xsd:double"/>
+	</message>
+	<message name="echoBooleanRequest">
+		<part name="inputBoolean" type="xsd:boolean"/>
+	</message>
+	<message name="echoBooleanResponse">
+		<part name="return" type="xsd:boolean"/>
+	</message>
+	<message name="echoByteRequest">
+		<part name="inputByte" type="xsd:byte"/>
+	</message>
+	<message name="echoByteResponse">
+		<part name="return" type="xsd:byte"/>
+	</message>
+	<message name="echoQNameRequest">
+		<part name="inputQName" type="xsd:QName"/>
+	</message>
+	<message name="echoQNameResponse">
+		<part name="return" type="xsd:QName"/>
+	</message>
+	<message name="echoDateTimeRequest">
+		<part name="inputDateTime" type="xsd:dateTime"/>
+	</message>
+	<message name="echoDateTimeResponse">
+		<part name="return" type="xsd:dateTime"/>
+	</message>
+	<message name="echoSoapStringRequest">
+		<part name="inputSoapString" type="soapenc:string"/>
+	</message>
+	<message name="echoSoapStringResponse">
+		<part name="return" type="soapenc:string"/>
+	</message>
+	<message name="echoSoapBooleanRequest">
+		 <part name="inputSoapBoolean" type="soapenc:boolean"/>
+	</message>
+	<message name="echoSoapBooleanResponse">
+        	<part name="return" type="soapenc:boolean"/>
+	</message>
+	<message name="echoSoapFloatRequest">
+        	<part name="inputSoapFloat" type="soapenc:float"/>
+	</message>
+	<message name="echoSoapFloatResponse">
+        	<part name="return" type="soapenc:float"/>
+	</message>
+	<message name="echoSoapDoubleRequest">
+        	<part name="inputSoapDouble" type="soapenc:double"/>
+	</message>
+	<message name="echoSoapDoubleResponse">
+        	<part name="return" type="soapenc:double"/>
+	</message>
+	<message name="echoSoapDecimalRequest">
+        	<part name="inputSoapDecimal" type="soapenc:decimal"/>
+	</message>
+	<message name="echoSoapDecimalResponse">
+        	<part name="return" type="soapenc:decimal"/>
+	</message>
+	<message name="echoSoapIntRequest">
+        	<part name="inputSoapInt" type="soapenc:int"/>
+	</message>
+	<message name="echoSoapIntResponse">
+        	<part name="return" type="soapenc:int"/>
+	</message>
+	<message name="echoSoapShortRequest">
+        	<part name="inputSoapShort" type="soapenc:short"/>
+	</message>
+	<message name="echoSoapShortResponse">
+        	<part name="return" type="soapenc:short"/>
+	</message>
+	<message name="echoSoapByteRequest">
+        	<part name="inputSoapByte" type="soapenc:byte"/>
+	</message>
+	<message name="echoSoapByteResponse">
+        	<part name="return" type="soapenc:byte"/>
+	</message>
+	<message name="echoBase64BinaryRequest">
+		<part name="inputBase64Binary" type="xsd:base64Binary"/>
+	</message>
+	<message name="echoBase64BinaryResponse">
+		<part name="return" type="xsd:base64Binary"/>
+	</message>
+	<message name="echoHexBinaryRequest">
+		<part name="inputHexBinary" type="xsd:hexBinary"/>
+	</message>
+	<message name="echoHexBinaryResponse">
+		<part name="return" type="xsd:hexBinary"/>
+	</message>
+	<message name="echoSoapBase64Request">
+		<part name="inputSoapBase64" type="soapenc:base64"/>
+	</message>
+	<message name="echoSoapBase64Response">
+		<part name="return" type="soapenc:base64"/>
+	</message>
+	<!-- ############################################################## -->
+	<!-- These are used in conjuction with the complex types that are   -->
+        <!-- restricted by WSDL                                             -->
+	<!-- ############################################################## -->
+
+	<message name="echoStringArrayRequest">
+		<part name="inputStringArray" type="s:ArrayOfstring"/>
+	</message>
+	<message name="echoStringArrayResponse">
+		<part name="return" type="s:ArrayOfstring"/>
+	</message>
+	<message name="echoIntegerArrayRequest">
+		<part name="inputIntegerArray" type="s:ArrayOfinteger"/>
+	</message>
+	<message name="echoIntegerArrayResponse">
+		<part name="return" type="s:ArrayOfinteger"/>
+	</message>
+	<message name="echoIntArrayRequest">
+		<part name="inputIntArray" type="s:ArrayOfint"/>
+	</message>
+	<message name="echoIntArrayResponse">
+		<part name="return" type="s:ArrayOfint"/>
+	</message>
+	<message name="echoLongArrayRequest">
+		<part name="inputLongArray" type="s:ArrayOflong"/>
+	</message>
+	<message name="echoLongArrayResponse">
+		<part name="return" type="s:ArrayOflong"/>
+	</message>
+	<message name="echoShortArrayRequest">
+		<part name="inputShortArray" type="s:ArrayOfshort"/>
+	</message>
+	<message name="echoShortArrayResponse">
+		<part name="return" type="s:ArrayOfshort"/>
+	</message>
+	<message name="echoDecimalArrayRequest">
+		<part name="inputDecimalArray" type="s:ArrayOfdecimal"/>
+	</message>
+	<message name="echoDecimalArrayResponse">
+		<part name="return" type="s:ArrayOfdecimal"/>
+	</message>
+	<message name="echoFloatArrayRequest">
+		<part name="inputFloatArray" type="s:ArrayOffloat"/>
+	</message>
+	<message name="echoFloatArrayResponse">
+		<part name="return" type="s:ArrayOffloat"/>
+	</message>
+	<message name="echoDoubleArrayRequest">
+		<part name="inputDoubleArray" type="s:ArrayOfdouble"/>
+	</message>
+	<message name="echoDoubleArrayResponse">
+		<part name="return" type="s:ArrayOfdouble"/>
+	</message>
+	<message name="echoBooleanArrayRequest">
+		<part name="inputBooleanArray" type="s:ArrayOfboolean"/>
+	</message>
+	<message name="echoBooleanArrayResponse">
+		<part name="return" type="s:ArrayOfboolean"/>
+	</message>
+	<message name="echoByteArrayRequest">
+		<part name="inputByteArray" type="s:ArrayOfbyte"/>
+	</message>
+	<message name="echoByteArrayResponse">
+		<part name="return" type="s:ArrayOfbyte"/>
+	</message>
+	<message name="echoQNameArrayRequest">
+		<part name="inputQNameArray" type="s:ArrayOfQName"/>
+	</message>
+	<message name="echoQNameArrayResponse">
+		<part name="return" type="s:ArrayOfQName"/>
+	</message>
+	<message name="echoDateTimeArrayRequest">
+		<part name="inputDateTimeArray" type="s:ArrayOfdateTime"/>
+	</message>
+	<message name="echoDateTimeArrayResponse">
+		<part name="return" type="s:ArrayOfdateTime"/>
+	</message>
+	<message name="echoSoapStringArrayRequest">
+		<part name="inputSoapStringArray" type="s:ArrayOfsoapencstring"/>
+	</message>
+	<message name="echoSoapStringArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencstring"/>
+	</message>
+	<message name="echoSoapBooleanArrayRequest">
+		<part name="inputSoapBooleanArray" type="s:ArrayOfsoapencboolean"/>
+	</message>
+	<message name="echoSoapBooleanArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencboolean"/>
+	</message>
+	<message name="echoSoapFloatArrayRequest">
+		<part name="inputSoapFloatArray" type="s:ArrayOfsoapencfloat"/>
+	</message>
+	<message name="echoSoapFloatArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencfloat"/>
+	</message>
+	<message name="echoSoapDoubleArrayRequest">
+		<part name="inputSoapDoubleArray" type="s:ArrayOfsoapencdouble"/>
+	</message>
+	<message name="echoSoapDoubleArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencdouble"/>
+	</message>
+	<message name="echoSoapDecimalArrayRequest">
+		<part name="inputSoapDecimalArray" type="s:ArrayOfsoapencdecimal"/>
+	</message>
+	<message name="echoSoapDecimalArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencdecimal"/>
+	</message>
+	<message name="echoSoapIntArrayRequest">
+		<part name="inputSoapIntArray" type="s:ArrayOfsoapencint"/>
+	</message>
+	<message name="echoSoapIntArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencint"/>
+	</message>
+	<message name="echoSoapShortArrayRequest">
+		<part name="inputSoapShortArray" type="s:ArrayOfsoapencshort"/>
+	</message>
+	<message name="echoSoapShortArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencshort"/>
+	</message>
+	<message name="echoSoapByteArrayRequest">
+		<part name="inputSoapByteArray" type="s:ArrayOfsoapencbyte"/>
+	</message>
+	<message name="echoSoapByteArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencbyte"/>
+	</message>
+	<message name="echoBase64BinaryArrayRequest">
+        	<part name="inputBase64BinaryArray" type="s:ArrayOfbase64Binary"/>
+	</message>
+	<message name="echoBase64BinaryArrayResponse">
+        	<part name="return" type="s:ArrayOfbase64Binary"/>
+	</message>
+	<message name="echoHexBinaryArrayRequest">
+		<part name="inputHexBinaryArray" type="s:ArrayOfhexBinary"/>
+	</message>
+	<message name="echoHexBinaryArrayResponse">
+		<part name="return" type="s:ArrayOfhexBinary"/>
+	</message>
+	<message name="echoSoapBase64ArrayRequest">
+        	<part name="inputSoapBase64Array" type="s:ArrayOfsoapencbase64"/>
+	</message>
+	<message name="echoSoapBase64ArrayResponse">
+        	<part name="return" type="s:ArrayOfsoapencbase64"/>
+	</message>
+	<!-- ############################################################## -->
+	<!-- These are used in conjuction with the complex types that are   -->
+        <!-- restricted by SOAP                                             -->
+	<!-- ############################################################## -->
+
+	<message name="echoString1ArrayRequest">
+		<part name="inputString1Array" type="s:ArrayOfstring1"/>
+	</message>
+	<message name="echoString1ArrayResponse">
+		<part name="return" type="s:ArrayOfstring1"/>
+	</message>
+	<message name="echoInteger1ArrayRequest">
+		<part name="inputInteger1Array" type="s:ArrayOfinteger1"/>
+	</message>
+	<message name="echoInteger1ArrayResponse">
+		<part name="return" type="s:ArrayOfinteger1"/>
+	</message>
+	<message name="echoInt1ArrayRequest">
+		<part name="inputInt1Array" type="s:ArrayOfint1"/>
+	</message>
+	<message name="echoInt1ArrayResponse">
+		<part name="return" type="s:ArrayOfint1"/>
+	</message>
+	<message name="echoLong1ArrayRequest">
+		<part name="inputLong1Array" type="s:ArrayOflong1"/>
+	</message>
+	<message name="echoLong1ArrayResponse">
+		<part name="return" type="s:ArrayOflong1"/>
+	</message>
+	<message name="echoShort1ArrayRequest">
+		<part name="inputShort1Array" type="s:ArrayOfshort1"/>
+	</message>
+	<message name="echoShort1ArrayResponse">
+		<part name="return" type="s:ArrayOfshort1"/>
+	</message>
+	<message name="echoDecimal1ArrayRequest">
+		<part name="inputDecimal1Array" type="s:ArrayOfdecimal1"/>
+	</message>
+	<message name="echoDecimal1ArrayResponse">
+		<part name="return" type="s:ArrayOfdecimal1"/>
+	</message>
+	<message name="echoFloat1ArrayRequest">
+		<part name="inputFloat1Array" type="s:ArrayOffloat1"/>
+	</message>
+	<message name="echoFloat1ArrayResponse">
+		<part name="return" type="s:ArrayOffloat1"/>
+	</message>
+	<message name="echoDouble1ArrayRequest">
+		<part name="inputDouble1Array" type="s:ArrayOfdouble1"/>
+	</message>
+	<message name="echoDouble1ArrayResponse">
+		<part name="return" type="s:ArrayOfdouble1"/>
+	</message>
+	<message name="echoBoolean1ArrayRequest">
+		<part name="inputBoolean1Array" type="s:ArrayOfboolean1"/>
+	</message>
+	<message name="echoBoolean1ArrayResponse">
+		<part name="return" type="s:ArrayOfboolean1"/>
+	</message>
+	<message name="echoByte1ArrayRequest">
+		<part name="inputByte1Array" type="s:ArrayOfbyte1"/>
+	</message>
+	<message name="echoByte1ArrayResponse">
+		<part name="return" type="s:ArrayOfbyte1"/>
+	</message>
+	<message name="echoQName1ArrayRequest">
+		<part name="inputQName1Array" type="s:ArrayOfQName1"/>
+	</message>
+	<message name="echoQName1ArrayResponse">
+		<part name="return" type="s:ArrayOfQName1"/>
+	</message>
+	<message name="echoDateTime1ArrayRequest">
+		<part name="inputDateTime1Array" type="s:ArrayOfdateTime1"/>
+	</message>
+	<message name="echoDateTime1ArrayResponse">
+		<part name="return" type="s:ArrayOfdateTime1"/>
+	</message>
+	<message name="echoSoapString1ArrayRequest">
+		<part name="inputSoapString1Array" type="s:ArrayOfsoapencstring1"/>
+	</message>
+	<message name="echoSoapString1ArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencstring1"/>
+	</message>
+	<message name="echoSoapBoolean1ArrayRequest">
+		<part name="inputSoapBoolean1Array" type="s:ArrayOfsoapencboolean1"/>
+	</message>
+	<message name="echoSoapBoolean1ArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencboolean1"/>
+	</message>
+	<message name="echoSoapFloat1ArrayRequest">
+		<part name="inputSoapFloat1Array" type="s:ArrayOfsoapencfloat1"/>
+	</message>
+	<message name="echoSoapFloat1ArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencfloat1"/>
+	</message>
+	<message name="echoSoapDouble1ArrayRequest">
+		<part name="inputSoapDouble1Array" type="s:ArrayOfsoapencdouble1"/>
+	</message>
+	<message name="echoSoapDouble1ArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencdouble1"/>
+	</message>
+	<message name="echoSoapDecimal1ArrayRequest">
+		<part name="inputSoapDecimal1Array" type="s:ArrayOfsoapencdecimal1"/>
+	</message>
+	<message name="echoSoapDecimal1ArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencdecimal1"/>
+	</message>
+	<message name="echoSoapInt1ArrayRequest">
+		<part name="inputSoapInt1Array" type="s:ArrayOfsoapencint1"/>
+	</message>
+	<message name="echoSoapInt1ArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencint1"/>
+	</message>
+	<message name="echoSoapShort1ArrayRequest">
+		<part name="inputSoapShort1Array" type="s:ArrayOfsoapencshort1"/>
+	</message>
+	<message name="echoSoapShort1ArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencshort1"/>
+	</message>
+	<message name="echoSoapByte1ArrayRequest">
+		<part name="inputSoapByte1Array" type="s:ArrayOfsoapencbyte1"/>
+	</message>
+	<message name="echoSoapByte1ArrayResponse">
+		<part name="return" type="s:ArrayOfsoapencbyte1"/>
+	</message>
+	<message name="echoBase64Binary1ArrayRequest">
+        	<part name="inputBase64Binary1Array" type="s:ArrayOfbase64Binary1"/>
+	</message>
+	<message name="echoBase64Binary1ArrayResponse">
+        	<part name="return" type="s:ArrayOfbase64Binary1"/>
+	</message>
+	<message name="echoHexBinary1ArrayRequest">
+		<part name="inputHexBinary1Array" type="s:ArrayOfhexBinary1"/>
+	</message>
+	<message name="echoHexBinary1ArrayResponse">
+		<part name="return" type="s:ArrayOfhexBinary1"/>
+	</message>
+	<message name="echoSoapBase641ArrayRequest">
+        	<part name="inputSoapBase641Array" type="s:ArrayOfsoapencbase641"/>
+	</message>
+	<message name="echoSoapBase641ArrayResponse">
+        	<part name="return" type="s:ArrayOfsoapencbase641"/>
+	</message>
+	<message name="echoAllStructRequest">
+		<part name="inputAllStruct" type="s:AllStruct"/>
+	</message>
+	<message name="echoAllStructResponse">
+		<part name="return" type="s:AllStruct"/>
+	</message>
+	<message name="echoAllStructArrayRequest">
+		<part name="inputAllStructArray" type="s:ArrayOfAllStruct"/>
+	</message>
+	<message name="echoAllStructArrayResponse">
+		<part name="return" type="s:ArrayOfAllStruct"/>
+	</message>
+	<message name="echoAllStruct2Request">
+		<part name="inputAllStruct2" type="s:AllStruct2"/>
+	</message>
+	<message name="echoAllStruct2Response">
+		<part name="return" type="s:AllStruct2"/>
+	</message>
+	<message name="echoAllStruct2ArrayRequest">
+		<part name="inputAllStruct2Array" type="s:ArrayOfAllStruct2"/>
+	</message>
+	<message name="echoAllStruct2ArrayResponse">
+		<part name="return" type="s:ArrayOfAllStruct2"/>
+	</message>
+
+	<message name="echoSequenceStructRequest">
+		<part name="inputSequenceStruct" type="s:SequenceStruct"/>
+	</message>
+	<message name="echoSequenceStructResponse">
+		<part name="return" type="s:SequenceStruct"/>
+	</message>
+	<message name="echoSequenceStructArrayRequest">
+		<part name="inputSequenceStructArray" type="s:ArrayOfSequenceStruct"/>
+	</message>
+	<message name="echoSequenceStructArrayResponse">
+		<part name="return" type="s:ArrayOfSequenceStruct"/>
+	</message>
+	<message name="echoSequenceStruct2Request">
+		<part name="inputSequenceStruct2" type="s:SequenceStruct2"/>
+	</message>
+	<message name="echoSequenceStruct2Response">
+		<part name="return" type="s:SequenceStruct2"/>
+	</message>
+	<message name="echoSequenceStruct2ArrayRequest">
+		<part name="inputSequenceStruct2Array" type="s:ArrayOfSequenceStruct2"/>
+	</message>
+	<message name="echoSequenceStruct2ArrayResponse">
+		<part name="return" type="s:ArrayOfSequenceStruct2"/>
+	</message>
+
+	<message name="echoVoidRequest"/>
+	<message name="echoVoidResponse"/>
+
+	<!-- ############################################################### -->
+	<!-- These are used in conjuction with exception marshalling tests   -->
+	<!-- ############################################################### -->
+<!--
+     <message name="echoServiceExceptionRequest">
+          <part name="inputString" type="xsd:string"/>
+     </message>
+     <message name="echoServiceExceptionResponse"/>
+     <message name="ServiceExceptionFaultMessage">
+          <part name="inputString" type="xsd:string"/>
+     </message>
+-->
+     <message name="echoRemoteExceptionRequest">
+          <part name="inputString" type="xsd:string"/>
+     </message>
+     <message name="echoRemoteExceptionResponse"/>
+     <message name="echoSubClassRemoteExceptionRequest">
+          <part name="inputString" type="xsd:string"/>
+     </message>
+     <message name="echoSubClassRemoteExceptionResponse"/>
+	<!-- ############################################################### -->
+	<!-- These are used in conjuction with the enumeration tests         -->
+	<!-- ############################################################### -->
+     <message name="echoEnumStringRequest">
+          <part name="inputEnumString" type="s:enumString"/>
+     </message>
+     <message name="echoEnumStringResponse">
+          <part name="return" type="s:enumString"/>
+     </message>
+	<message name="echoEnumIntegerRequest" >
+		<part name="inputEnumInteger" type="s:enumInteger"/>
+	</message>
+	<message name="echoEnumIntegerResponse" >
+		<part name="return" type="s:enumInteger"/>
+	</message>
+	<message name="echoEnumIntRequest" >
+		<part name="inputEnumInt" type="s:enumInt"/>
+	</message>
+	<message name="echoEnumIntResponse" >
+		<part name="return" type="s:enumInt"/>
+	</message>
+	<message name="echoEnumLongRequest" >
+		<part name="inputEnumLong" type="s:enumLong"/>
+	</message>
+	<message name="echoEnumLongResponse" >
+		<part name="return" type="s:enumLong"/>
+	</message>
+	<message name="echoEnumShortRequest" >
+		<part name="inputEnumShort" type="s:enumShort"/>
+	</message>
+	<message name="echoEnumShortResponse" >
+		<part name="return" type="s:enumShort"/>
+	</message>
+	<message name="echoEnumDecimalRequest" >
+		<part name="inputEnumDecimal" type="s:enumDecimal"/>
+	</message>
+	<message name="echoEnumDecimalResponse" >
+		<part name="return" type="s:enumDecimal"/>
+	</message>
+	<message name="echoEnumFloatRequest" >
+		<part name="inputEnumFloat" type="s:enumFloat"/>
+	</message>
+	<message name="echoEnumFloatResponse" >
+		<part name="return" type="s:enumFloat"/>
+	</message>
+	<message name="echoEnumDoubleRequest" >
+		<part name="inputEnumDouble" type="s:enumDouble"/>
+	</message>
+	<message name="echoEnumDoubleResponse" >
+		<part name="return" type="s:enumDouble"/>
+	</message>
+	<message name="echoEnumByteRequest" >
+		<part name="inputEnumByte" type="s:enumByte"/>
+	</message>
+	<message name="echoEnumByteResponse" >
+		<part name="return" type="s:enumByte"/>
+	</message>
+
+	<!-- ############################################################### -->
+	<!-- These are used in conjuction with the Holder tests              -->
+	<!-- ############################################################### -->
+	<!-- IN parameter -->
+     <message name="inRequest">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+		<part name="varSoapString" type="soapenc:string"/>
+		<part name="varSoapBoolean" type="soapenc:boolean"/>
+		<part name="varSoapFloat" type="soapenc:float"/>
+		<part name="varSoapDouble" type="soapenc:double"/>
+		<part name="varSoapDecimal" type="soapenc:decimal"/>
+		<part name="varSoapInt" type="soapenc:int"/>
+		<part name="varSoapShort" type="soapenc:short"/>
+		<part name="varBase64Binary" type="xsd:base64Binary"/>
+		<part name="varHexBinary" type="xsd:hexBinary"/>
+		<part name="varSoapBase64" type="soapenc:base64"/>
+     </message>
+     <message name="inResponse"/>
+     <message name="in2Request">
+		<part name="varAllStruct2" type="s:AllStruct2"/>
+		<part name="varAllStruct2Array" type="s:ArrayOfAllStruct2"/>
+     </message>
+     <message name="in2Response"/>
+
+	<!-- OUT parameter -->
+     <message name="outRequest"/>
+     <message name="outResponse">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+		<part name="varSoapString" type="soapenc:string"/>
+		<part name="varSoapBoolean" type="soapenc:boolean"/>
+		<part name="varSoapFloat" type="soapenc:float"/>
+		<part name="varSoapDouble" type="soapenc:double"/>
+		<part name="varSoapDecimal" type="soapenc:decimal"/>
+		<part name="varSoapInt" type="soapenc:int"/>
+		<part name="varSoapShort" type="soapenc:short"/>
+		<part name="varBase64Binary" type="xsd:base64Binary"/>
+		<part name="varHexBinary" type="xsd:hexBinary"/>
+		<part name="varSoapBase64" type="soapenc:base64"/>
+     </message>
+     <message name="out2Request"/>
+     <message name="out2Response">
+		<part name="varAllStruct2" type="s:AllStruct2"/>
+		<part name="varAllStruct2Array" type="s:ArrayOfAllStruct2"/>
+     </message>
+
+	<!-- IN/OUT parameter -->
+     <message name="inoutRequest">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+		<part name="varSoapString" type="soapenc:string"/>
+		<part name="varSoapBoolean" type="soapenc:boolean"/>
+		<part name="varSoapFloat" type="soapenc:float"/>
+		<part name="varSoapDouble" type="soapenc:double"/>
+		<part name="varSoapDecimal" type="soapenc:decimal"/>
+		<part name="varSoapInt" type="soapenc:int"/>
+		<part name="varSoapShort" type="soapenc:short"/>
+		<part name="varBase64Binary" type="xsd:base64Binary"/>
+		<part name="varHexBinary" type="xsd:hexBinary"/>
+		<part name="varSoapBase64" type="soapenc:base64"/>
+     </message>
+     <message name="inoutResponse">
+		<part name="varString" type="xsd:string"/>
+		<part name="varInteger" type="xsd:integer"/>
+		<part name="varInt" type="xsd:int"/>
+		<part name="varLong" type="xsd:long"/>
+		<part name="varShort" type="xsd:short"/>
+		<part name="varDecimal" type="xsd:decimal"/>
+		<part name="varFloat" type="xsd:float"/>
+		<part name="varDouble" type="xsd:double"/>
+		<part name="varBoolean" type="xsd:boolean"/>
+		<part name="varByte" type="xsd:byte"/>
+		<part name="varQName" type="xsd:QName"/>
+		<part name="varDateTime" type="xsd:dateTime"/>
+		<part name="varSoapString" type="soapenc:string"/>
+		<part name="varSoapBoolean" type="soapenc:boolean"/>
+		<part name="varSoapFloat" type="soapenc:float"/>
+		<part name="varSoapDouble" type="soapenc:double"/>
+		<part name="varSoapDecimal" type="soapenc:decimal"/>
+		<part name="varSoapInt" type="soapenc:int"/>
+		<part name="varSoapShort" type="soapenc:short"/>
+		<part name="varBase64Binary" type="xsd:base64Binary"/>
+		<part name="varHexBinary" type="xsd:hexBinary"/>
+		<part name="varSoapBase64" type="soapenc:base64"/>
+     </message>
+     <message name="inout2Request">
+		<part name="varAllStruct2" type="s:AllStruct2"/>
+		<part name="varAllStruct2Array" type="s:ArrayOfAllStruct2"/>
+     </message>
+     <message name="inout2Response">
+		<part name="varAllStruct2" type="s:AllStruct2"/>
+		<part name="varAllStruct2Array" type="s:ArrayOfAllStruct2"/>
+     </message>
+
+	<!-- ################################################## -->
+	<!-- Used in conjunction with nillable true/false tests -->
+	<!-- ################################################## -->
+	<message name="echonilTrueRequest">
+		<part name="inputnilTrue" type="s:NilTrueStruct"/>
+	</message>
+	<message name="echonilTrueResponse">
+		<part name="return" type="s:NilTrueStruct"/>
+	</message>
+
+	<message name="echonilFalseRequest">
+		<part name="inputnilFalse" type="s:NilFalseStruct"/>
+	</message>
+	<message name="echonilFalseResponse">
+		<part name="return" type="s:NilFalseStruct"/>
+	</message>
+
+	<portType name="MarshallTest">
+		<operation name="echoString" parameterOrder="inputString">
+			<input message="tns:echoStringRequest"/>
+			<output message="tns:echoStringResponse"/>
+		</operation>
+		<operation name="echoInteger" parameterOrder="inputInteger">
+			<input message="tns:echoIntegerRequest"/>
+			<output message="tns:echoIntegerResponse"/>
+		</operation>
+		<operation name="echoInt" parameterOrder="inputInt">
+			<input message="tns:echoIntRequest"/>
+			<output message="tns:echoIntResponse"/>
+		</operation>
+		<operation name="echoLong" parameterOrder="inputLong">
+			<input message="tns:echoLongRequest"/>
+			<output message="tns:echoLongResponse"/>
+		</operation>
+		<operation name="echoShort" parameterOrder="inputShort">
+			<input message="tns:echoShortRequest"/>
+			<output message="tns:echoShortResponse"/>
+		</operation>
+		<operation name="echoDecimal" parameterOrder="inputDecimal">
+			<input message="tns:echoDecimalRequest"/>
+			<output message="tns:echoDecimalResponse"/>
+		</operation>
+		<operation name="echoFloat" parameterOrder="inputFloat">
+			<input message="tns:echoFloatRequest"/>
+			<output message="tns:echoFloatResponse"/>
+		</operation>
+		<operation name="echoDouble" parameterOrder="inputDouble">
+			<input message="tns:echoDoubleRequest"/>
+			<output message="tns:echoDoubleResponse"/>
+		</operation>
+		<operation name="echoBoolean" parameterOrder="inputBoolean">
+			<input message="tns:echoBooleanRequest"/>
+			<output message="tns:echoBooleanResponse"/>
+		</operation>
+		<operation name="echoByte" parameterOrder="inputByte">
+			<input message="tns:echoByteRequest"/>
+			<output message="tns:echoByteResponse"/>
+		</operation>
+		<operation name="echoQName" parameterOrder="inputQName">
+			<input message="tns:echoQNameRequest"/>
+			<output message="tns:echoQNameResponse"/>
+		</operation>
+		<operation name="echoDateTime" parameterOrder="inputDateTime">
+			<input message="tns:echoDateTimeRequest"/>
+			<output message="tns:echoDateTimeResponse"/>
+		</operation>
+		<operation name="echoSoapString" parameterOrder="inputSoapString">
+			<input message="tns:echoSoapStringRequest"/>
+			<output message="tns:echoSoapStringResponse"/>
+		</operation>
+		<operation name="echoSoapBoolean" parameterOrder="inputSoapBoolean">
+				<input message="tns:echoSoapBooleanRequest"/>
+				<output message="tns:echoSoapBooleanResponse"/>
+		</operation>
+		<operation name="echoSoapFloat" parameterOrder="inputSoapFloat">
+			<input message="tns:echoSoapFloatRequest"/>
+			<output message="tns:echoSoapFloatResponse"/>
+		</operation>
+		<operation name="echoSoapDouble" parameterOrder="inputSoapDouble">
+			<input message="tns:echoSoapDoubleRequest"/>
+			<output message="tns:echoSoapDoubleResponse"/>
+		</operation>
+		<operation name="echoSoapDecimal" parameterOrder="inputSoapDecimal">
+			<input message="tns:echoSoapDecimalRequest"/>
+			<output message="tns:echoSoapDecimalResponse"/>
+		</operation>
+		<operation name="echoSoapInt" parameterOrder="inputSoapInt">
+			<input message="tns:echoSoapIntRequest"/>
+			<output message="tns:echoSoapIntResponse"/>
+		</operation>
+		<operation name="echoSoapShort" parameterOrder="inputSoapShort">
+			<input message="tns:echoSoapShortRequest"/>
+			<output message="tns:echoSoapShortResponse"/>
+		</operation>
+		<operation name="echoSoapByte" parameterOrder="inputSoapByte">
+			<input message="tns:echoSoapByteRequest"/>
+			<output message="tns:echoSoapByteResponse"/>
+		</operation>
+		<operation name="echoBase64Binary" parameterOrder="inputBase64Binary">
+			<input message="tns:echoBase64BinaryRequest"/>
+			<output message="tns:echoBase64BinaryResponse"/>
+		</operation>
+		<operation name="echoHexBinary" parameterOrder="inputHexBinary">
+			<input message="tns:echoHexBinaryRequest"/>
+			<output message="tns:echoHexBinaryResponse"/>
+		</operation>
+		<operation name="echoSoapBase64" parameterOrder="inputSoapBase64">
+			<input message="tns:echoSoapBase64Request"/>
+			<output message="tns:echoSoapBase64Response"/>
+		</operation>
+     	<!-- ############################################################### -->
+     	<!-- These are used in conjuction with the complex types that are    -->
+        <!-- restricted by WSDL                                              -->
+     	<!-- ############################################################### -->
+		<operation name="echoStringArray" parameterOrder="inputStringArray">
+			<input message="tns:echoStringArrayRequest"/>
+			<output message="tns:echoStringArrayResponse"/>
+		</operation>
+		<operation name="echoIntegerArray" parameterOrder="inputIntegerArray">
+			<input message="tns:echoIntegerArrayRequest"/>
+			<output message="tns:echoIntegerArrayResponse"/>
+		</operation>
+		<operation name="echoIntArray" parameterOrder="inputIntArray">
+			<input message="tns:echoIntArrayRequest"/>
+			<output message="tns:echoIntArrayResponse"/>
+		</operation>
+		<operation name="echoLongArray" parameterOrder="inputLongArray">
+			<input message="tns:echoLongArrayRequest"/>
+			<output message="tns:echoLongArrayResponse"/>
+		</operation>
+		<operation name="echoShortArray" parameterOrder="inputShortArray">
+			<input message="tns:echoShortArrayRequest"/>
+			<output message="tns:echoShortArrayResponse"/>
+		</operation>
+		<operation name="echoDecimalArray" parameterOrder="inputDecimalArray">
+			<input message="tns:echoDecimalArrayRequest"/>
+			<output message="tns:echoDecimalArrayResponse"/>
+		</operation>
+		<operation name="echoFloatArray" parameterOrder="inputFloatArray">
+			<input message="tns:echoFloatArrayRequest"/>
+			<output message="tns:echoFloatArrayResponse"/>
+		</operation>
+		<operation name="echoDoubleArray" parameterOrder="inputDoubleArray">
+			<input message="tns:echoDoubleArrayRequest"/>
+			<output message="tns:echoDoubleArrayResponse"/>
+		</operation>
+		<operation name="echoBooleanArray" parameterOrder="inputBooleanArray">
+			<input message="tns:echoBooleanArrayRequest"/>
+			<output message="tns:echoBooleanArrayResponse"/>
+		</operation>
+		<operation name="echoByteArray" parameterOrder="inputByteArray">
+			<input message="tns:echoByteArrayRequest"/>
+			<output message="tns:echoByteArrayResponse"/>
+		</operation>
+		<operation name="echoQNameArray" parameterOrder="inputQNameArray">
+			<input message="tns:echoQNameArrayRequest"/>
+			<output message="tns:echoQNameArrayResponse"/>
+		</operation>
+		<operation name="echoDateTimeArray" parameterOrder="inputDateTimeArray">
+			<input message="tns:echoDateTimeArrayRequest"/>
+			<output message="tns:echoDateTimeArrayResponse"/>
+		</operation>
+		<operation name="echoSoapStringArray" parameterOrder="inputSoapStringArray">
+			<input message="tns:echoSoapStringArrayRequest"/>
+			<output message="tns:echoSoapStringArrayResponse"/>
+		</operation>
+		<operation name="echoSoapBooleanArray" parameterOrder="inputSoapBooleanArray">
+			<input message="tns:echoSoapBooleanArrayRequest"/>
+			<output message="tns:echoSoapBooleanArrayResponse"/>
+		</operation>
+		<operation name="echoSoapFloatArray" parameterOrder="inputSoapFloatArray">
+			<input message="tns:echoSoapFloatArrayRequest"/>
+			<output message="tns:echoSoapFloatArrayResponse"/>
+		</operation>
+		<operation name="echoSoapDoubleArray" parameterOrder="inputSoapDoubleArray">
+			<input message="tns:echoSoapDoubleArrayRequest"/>
+			<output message="tns:echoSoapDoubleArrayResponse"/>
+		</operation>
+		<operation name="echoSoapDecimalArray" parameterOrder="inputSoapDecimalArray">
+			<input message="tns:echoSoapDecimalArrayRequest"/>
+			<output message="tns:echoSoapDecimalArrayResponse"/>
+		</operation>
+		<operation name="echoSoapIntArray" parameterOrder="inputSoapIntArray">
+			<input message="tns:echoSoapIntArrayRequest"/>
+			<output message="tns:echoSoapIntArrayResponse"/>
+		</operation>
+		<operation name="echoSoapShortArray" parameterOrder="inputSoapShortArray">
+			<input message="tns:echoSoapShortArrayRequest"/>
+			<output message="tns:echoSoapShortArrayResponse"/>
+		</operation>
+		<operation name="echoSoapByteArray" parameterOrder="inputSoapByteArray">
+			<input message="tns:echoSoapByteArrayRequest"/>
+			<output message="tns:echoSoapByteArrayResponse"/>
+		</operation>
+		<operation name="echoBase64BinaryArray" parameterOrder="inputBase64BinaryArray">
+			<input message="tns:echoBase64BinaryArrayRequest"/>
+			<output message="tns:echoBase64BinaryArrayResponse"/>
+		</operation>
+		<operation name="echoHexBinaryArray" parameterOrder="inputHexBinaryArray">
+			<input message="tns:echoHexBinaryArrayRequest"/>
+			<output message="tns:echoHexBinaryArrayResponse"/>
+		</operation>
+		<operation name="echoSoapBase64Array" parameterOrder="inputSoapBase64Array">
+			<input message="tns:echoSoapBase64ArrayRequest"/>
+			<output message="tns:echoSoapBase64ArrayResponse"/>
+		</operation>
+     	<!-- ############################################################### -->
+     	<!-- These are used in conjuction with the complex types that are    -->
+        <!-- restricted by SOAP                                              -->
+     	<!-- ############################################################### -->
+		<operation name="echoString1Array" parameterOrder="inputString1Array">
+			<input message="tns:echoString1ArrayRequest"/>
+			<output message="tns:echoString1ArrayResponse"/>
+		</operation>
+		<operation name="echoInteger1Array" parameterOrder="inputInteger1Array">
+			<input message="tns:echoInteger1ArrayRequest"/>
+			<output message="tns:echoInteger1ArrayResponse"/>
+		</operation>
+		<operation name="echoInt1Array" parameterOrder="inputInt1Array">
+			<input message="tns:echoInt1ArrayRequest"/>
+			<output message="tns:echoInt1ArrayResponse"/>
+		</operation>
+		<operation name="echoLong1Array" parameterOrder="inputLong1Array">
+			<input message="tns:echoLong1ArrayRequest"/>
+			<output message="tns:echoLong1ArrayResponse"/>
+		</operation>
+		<operation name="echoShort1Array" parameterOrder="inputShort1Array">
+			<input message="tns:echoShort1ArrayRequest"/>
+			<output message="tns:echoShort1ArrayResponse"/>
+		</operation>
+		<operation name="echoDecimal1Array" parameterOrder="inputDecimal1Array">
+			<input message="tns:echoDecimal1ArrayRequest"/>
+			<output message="tns:echoDecimal1ArrayResponse"/>
+		</operation>
+		<operation name="echoFloat1Array" parameterOrder="inputFloat1Array">
+			<input message="tns:echoFloat1ArrayRequest"/>
+			<output message="tns:echoFloat1ArrayResponse"/>
+		</operation>
+		<operation name="echoDouble1Array" parameterOrder="inputDouble1Array">
+			<input message="tns:echoDouble1ArrayRequest"/>
+			<output message="tns:echoDouble1ArrayResponse"/>
+		</operation>
+		<operation name="echoBoolean1Array" parameterOrder="inputBoolean1Array">
+			<input message="tns:echoBoolean1ArrayRequest"/>
+			<output message="tns:echoBoolean1ArrayResponse"/>
+		</operation>
+		<operation name="echoByte1Array" parameterOrder="inputByte1Array">
+			<input message="tns:echoByte1ArrayRequest"/>
+			<output message="tns:echoByte1ArrayResponse"/>
+		</operation>
+		<operation name="echoQName1Array" parameterOrder="inputQName1Array">
+			<input message="tns:echoQName1ArrayRequest"/>
+			<output message="tns:echoQName1ArrayResponse"/>
+		</operation>
+		<operation name="echoDateTime1Array" parameterOrder="inputDateTime1Array">
+			<input message="tns:echoDateTime1ArrayRequest"/>
+			<output message="tns:echoDateTime1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapString1Array" parameterOrder="inputSoapString1Array">
+			<input message="tns:echoSoapString1ArrayRequest"/>
+			<output message="tns:echoSoapString1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapBoolean1Array" parameterOrder="inputSoapBoolean1Array">
+			<input message="tns:echoSoapBoolean1ArrayRequest"/>
+			<output message="tns:echoSoapBoolean1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapFloat1Array" parameterOrder="inputSoapFloat1Array">
+			<input message="tns:echoSoapFloat1ArrayRequest"/>
+			<output message="tns:echoSoapFloat1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapDouble1Array" parameterOrder="inputSoapDouble1Array">
+			<input message="tns:echoSoapDouble1ArrayRequest"/>
+			<output message="tns:echoSoapDouble1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapDecimal1Array" parameterOrder="inputSoapDecimal1Array">
+			<input message="tns:echoSoapDecimal1ArrayRequest"/>
+			<output message="tns:echoSoapDecimal1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapInt1Array" parameterOrder="inputSoapInt1Array">
+			<input message="tns:echoSoapInt1ArrayRequest"/>
+			<output message="tns:echoSoapInt1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapShort1Array" parameterOrder="inputSoapShort1Array">
+			<input message="tns:echoSoapShort1ArrayRequest"/>
+			<output message="tns:echoSoapShort1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapByte1Array" parameterOrder="inputSoapByte1Array">
+			<input message="tns:echoSoapByte1ArrayRequest"/>
+			<output message="tns:echoSoapByte1ArrayResponse"/>
+		</operation>
+		<operation name="echoBase64Binary1Array" parameterOrder="inputBase64Binary1Array">
+			<input message="tns:echoBase64Binary1ArrayRequest"/>
+			<output message="tns:echoBase64Binary1ArrayResponse"/>
+		</operation>
+		<operation name="echoHexBinary1Array" parameterOrder="inputHexBinary1Array">
+			<input message="tns:echoHexBinary1ArrayRequest"/>
+			<output message="tns:echoHexBinary1ArrayResponse"/>
+		</operation>
+		<operation name="echoSoapBase641Array" parameterOrder="inputSoapBase641Array">
+			<input message="tns:echoSoapBase641ArrayRequest"/>
+			<output message="tns:echoSoapBase641ArrayResponse"/>
+		</operation>
+     	<!-- ############################################################### -->
+		<operation name="echoAllStruct" parameterOrder="inputAllStruct">
+			<input message="tns:echoAllStructRequest"/>
+			<output message="tns:echoAllStructResponse"/>
+		</operation>
+		<operation name="echoAllStructArray" parameterOrder="inputAllStructArray">
+			<input message="tns:echoAllStructArrayRequest"/>
+			<output message="tns:echoAllStructArrayResponse"/>
+		</operation>
+		<operation name="echoAllStruct2" parameterOrder="inputAllStruct2">
+			<input message="tns:echoAllStruct2Request"/>
+			<output message="tns:echoAllStruct2Response"/>
+		</operation>
+		<operation name="echoAllStruct2Array" parameterOrder="inputAllStruct2Array">
+			<input message="tns:echoAllStruct2ArrayRequest"/>
+			<output message="tns:echoAllStruct2ArrayResponse"/>
+		</operation>
+		<operation name="echoSequenceStruct" parameterOrder="inputSequenceStruct">
+			<input message="tns:echoSequenceStructRequest"/>
+			<output message="tns:echoSequenceStructResponse"/>
+		</operation>
+		<operation name="echoSequenceStructArray" parameterOrder="inputSequenceStructArray">
+			<input message="tns:echoSequenceStructArrayRequest"/>
+			<output message="tns:echoSequenceStructArrayResponse"/>
+		</operation>
+		<operation name="echoSequenceStruct2" parameterOrder="inputSequenceStruct2">
+			<input message="tns:echoSequenceStruct2Request"/>
+			<output message="tns:echoSequenceStruct2Response"/>
+		</operation>
+		<operation name="echoSequenceStruct2Array" parameterOrder="inputSequenceStruct2Array">
+			<input message="tns:echoSequenceStruct2ArrayRequest"/>
+			<output message="tns:echoSequenceStruct2ArrayResponse"/>
+		</operation>
+		<operation name="echoVoid">
+			<input message="tns:echoVoidRequest"/>
+			<output message="tns:echoVoidResponse"/>
+		</operation>
+	<!-- ############################################################### -->
+	<!-- These are used in conjuction with exception marshalling tests   -->
+	<!-- ############################################################### -->
+<!--
+		<operation name="echoServiceException" parameterOrder="inputString">
+		    <input message="tns:echoServiceExceptionRequest"/>
+		    <output message="tns:echoServiceExceptionResponse"/>
+		    <fault name="ServiceExceptionFault" message="tns:ServiceExceptionFaultMessage"/>
+		</operation>
+-->
+		<operation name="echoRemoteException" parameterOrder="inputString">
+		    <input message="tns:echoRemoteExceptionRequest"/>
+		    <output message="tns:echoRemoteExceptionResponse"/>
+		</operation>
+		<operation name="echoSubClassRemoteException" parameterOrder="inputString">
+		    <input message="tns:echoSubClassRemoteExceptionRequest"/>
+		    <output message="tns:echoSubClassRemoteExceptionResponse"/>
+		</operation>
+	<!-- ############################################################### -->
+	<!-- These are used in conjuction with the enumeration tests         -->
+	<!-- ############################################################### -->
+		<operation name="echoEnumString" parameterOrder="inputEnumString">
+			<input message="tns:echoEnumStringRequest"/>
+			<output message="tns:echoEnumStringResponse"/>
+		</operation>
+		<operation name="echoEnumInteger" parameterOrder="inputEnumInteger">
+			<input message="tns:echoEnumIntegerRequest"/>
+			<output message="tns:echoEnumIntegerResponse"/>
+		</operation>
+		<operation name="echoEnumInt" parameterOrder="inputEnumInt">
+			<input message="tns:echoEnumIntRequest"/>
+			<output message="tns:echoEnumIntResponse"/>
+		</operation>
+		<operation name="echoEnumLong" parameterOrder="inputEnumLong">
+			<input message="tns:echoEnumLongRequest"/>
+			<output message="tns:echoEnumLongResponse"/>
+		</operation>
+		<operation name="echoEnumShort" parameterOrder="inputEnumShort">
+			<input message="tns:echoEnumShortRequest"/>
+			<output message="tns:echoEnumShortResponse"/>
+		</operation>
+		<operation name="echoEnumDecimal" parameterOrder="inputEnumDecimal">
+			<input message="tns:echoEnumDecimalRequest"/>
+			<output message="tns:echoEnumDecimalResponse"/>
+		</operation>
+		<operation name="echoEnumFloat" parameterOrder="inputEnumFloat">
+			<input message="tns:echoEnumFloatRequest"/>
+			<output message="tns:echoEnumFloatResponse"/>
+		</operation>
+		<operation name="echoEnumDouble" parameterOrder="inputEnumDouble">
+			<input message="tns:echoEnumDoubleRequest"/>
+			<output message="tns:echoEnumDoubleResponse"/>
+		</operation>
+		<operation name="echoEnumByte" parameterOrder="inputEnumByte">
+			<input message="tns:echoEnumByteRequest"/>
+			<output message="tns:echoEnumByteResponse"/>
+		</operation>
+
+		<!-- ####################################################### -->
+		<!-- These are used in conjuction with the Holder tests      -->
+		<!-- ####################################################### -->
+<!--
+		<operation name="echoIn" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime varSoapString varSoapBoolean varSoapFloat varSoapDouble varSoapDecimal varSoapInt varSoapShort varBase64Binary varHexBinary varSoapBase64">
+			<input message="tns:inRequest"/>
+			<output message="tns:inResponse"/>
+		</operation>
+		<operation name="echoIn2" parameterOrder="varAllStruct2 varAllStruct2Array">
+			<input message="tns:in2Request"/>
+			<output message="tns:in2Response"/>
+		</operation>
+		<operation name="echoOut" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime varSoapString varSoapBoolean varSoapFloat varSoapDouble varSoapDecimal varSoapInt varSoapShort varBase64Binary varHexBinary varSoapBase64">
+			<input message="tns:outRequest"/>
+			<output message="tns:outResponse"/>
+		</operation>
+		<operation name="echoOut2" parameterOrder="varAllStruct2 varAllStruct2Array">
+			<input message="tns:out2Request"/>
+			<output message="tns:out2Response"/>
+		</operation>
+		<operation name="echoInOut" parameterOrder="varString varInteger varInt varLong varShort varDecimal varFloat varDouble varBoolean varByte varQName varDateTime varSoapString varSoapBoolean varSoapFloat varSoapDouble varSoapDecimal varSoapInt varSoapShort varBase64Binary varHexBinary varSoapBase64">
+			<input message="tns:inoutRequest"/>
+			<output message="tns:inoutResponse"/>
+		</operation>
+		<operation name="echoInOut2" parameterOrder="varAllStruct2 varAllStruct2Array">
+			<input message="tns:inout2Request"/>
+			<output message="tns:inout2Response"/>
+		</operation>
+-->
+
+		<!-- ################################################## -->
+		<!-- Used in conjunction with nillable true/false tests -->
+		<!-- ################################################## -->
+		<operation name="echonilTrue" parameterOrder="inputnilTrue">
+			<input message="tns:echonilTrueRequest"/>
+			<output message="tns:echonilTrueResponse"/>
+		</operation>
+		<operation name="echonilFalse" parameterOrder="inputnilFalse">
+			<input message="tns:echonilFalseRequest"/>
+			<output message="tns:echonilFalseResponse"/>
+		</operation>
+	</portType>
+
+	<binding name="MarshallTestBinding" type="tns:MarshallTest">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="echoString">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInteger">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInt">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoLong">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoShort">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoDecimal">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoFloat">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoDouble">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoBoolean">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoByte">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoQName">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoDateTime">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapString">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapBoolean">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapFloat">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapDouble">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapDecimal">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapInt">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapShort">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapByte">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoBase64Binary">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoHexBinary">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapBase64">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+     	<!-- ############################################################################### -->
+     	<!-- These are used in conjuction with the complex types that are restricted by WSDL -->
+     	<!-- ############################################################################### -->
+		<operation name="echoStringArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoIntegerArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoIntArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoLongArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoShortArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoDecimalArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoFloatArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoDoubleArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoBooleanArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoByteArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation> 
+		<operation name="echoQNameArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation> 
+		<operation name="echoDateTimeArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapStringArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapBooleanArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapFloatArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapDoubleArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapDecimalArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapIntArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapShortArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapByteArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoBase64BinaryArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoHexBinaryArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapBase64Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+     	<!-- ############################################################################### -->
+     	<!-- These are used in conjuction with the complex types that are restricted by SOAP -->
+     	<!-- ############################################################################### -->
+		<operation name="echoString1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInteger1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInt1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoLong1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoShort1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoDecimal1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoFloat1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoDouble1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoBoolean1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoByte1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation> 
+		<operation name="echoQName1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation> 
+		<operation name="echoDateTime1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapString1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapBoolean1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapFloat1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapDouble1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapDecimal1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapInt1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapShort1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapByte1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoBase64Binary1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoHexBinary1Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSoapBase641Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+     	<!-- ############################################################################### -->
+		<operation name="echoAllStruct"> 
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoAllStructArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoAllStruct2"> 
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoAllStruct2Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSequenceStruct"> 
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSequenceStructArray">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSequenceStruct2"> 
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoSequenceStruct2Array">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoVoid">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<!-- ####################################################### -->
+		<!-- These are used in conjuction with exception marshalling -->
+                <!-- tests                                                   -->
+		<!-- ####################################################### -->
+<!--
+		<operation name="echoServiceException">
+		    <soap:operation soapAction=""/>
+                    <input>
+                        <soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                   </input>
+                   <output>
+                        <soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                   </output>
+		    <fault name="ServiceExceptionFault">
+			<soap:fault use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		    </fault>
+		</operation>
+-->
+		<operation name="echoRemoteException">
+                    <soap:operation soapAction=""/>
+                    <input>
+			<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                    </input>
+                    <output>
+			<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                    </output>
+		</operation>
+
+		<operation name="echoSubClassRemoteException">
+                    <soap:operation soapAction=""/>
+                    <input>
+			<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                    </input>
+                    <output>
+			<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                    </output>
+		</operation>
+
+		<!-- ####################################################### -->
+		<!-- These are used in conjuction with the enumeration tests -->
+		<!-- ####################################################### -->
+		<operation name="echoEnumString">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoEnumInteger">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoEnumInt">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoEnumLong">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoEnumShort">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoEnumDecimal">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoEnumFloat">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoEnumDouble">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoEnumByte">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<!-- ############################################################################### -->
+		<!-- These are used in conjuction with the Holder tests               		-->
+		<!-- ############################################################################### -->
+<!--
+		<operation name="echoIn">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<operation name="echoIn2">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoOut">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<operation name="echoOut2">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInOut">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echoInOut2">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+-->
+		<operation name="echonilTrue">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="echonilFalse">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="http://MarshallTest.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+	</binding>
+
+	<service name="MarshallTestService">
+        	<port name="MarshallTestPort" binding="tns:MarshallTestBinding">
+            	<soap:address location="http://localhost:8080/W2JREMarshallTest/jaxrpc/MarshallTest"/>
+        	</port>
+	</service>
+</definitions>

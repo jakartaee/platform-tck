@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE javadoc SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/javadoc_assertions.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<javadoc>
+  <next-available-id>413</next-available-id>
+  <previous-id>1</previous-id>
+  <technology>Connector</technology>
+  <id>Connector</id>
+  <name>J2EE Connector Architeture Spec</name>
+  <version>1.7</version>
+  <assertions>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>8</id>
+      <description>Get the exception linked to this ResourceException</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="getLinkedException" return-type="java.lang.Exception" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>16</id>
+      <description>Add a linked Exception to this ResourceException.</description>
+      <package>javax.resource</package>
+      <class-interface>ResourceException</class-interface>
+      <method name="setLinkedException" return-type="void">
+        <parameters>
+          <parameter>java.lang.Exception</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>81</id>
+      <description>Retrieves the warning chained to this ResourceWarning object.</description>
+      <package>javax.resource.cci</package>
+      <class-interface>ResourceWarning</class-interface>
+      <method name="getLinkedWarning" return-type="javax.resource.cci.ResourceWarning" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>87</id>
+      <description>Adds an ResourceWarning object to the end of the chain.</description>
+      <package>javax.resource.cci</package>
+      <class-interface>ResourceWarning</class-interface>
+      <method name="setLinkedWarning" return-type="void">
+        <parameters>
+          <parameter>javax.resource.cci.ResourceWarning</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>326</id>
+      <description>Tests if this GenericCredential instance refers to the same entity as the supplied object. The two credentials must be acquired over the same mechanisms and must refer to the same principal. Returns true if the two GenericCredentials refer to the same entity; false otherwise.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>GenericCredential</class-interface>
+      <method name="equals" return-type="boolean">
+        <parameters>
+          <parameter>java.lang.Object</parameter>
+        </parameters>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>327</id>
+      <description>Gets security data for a specific security mechanism represented by the GenericCredential. An example is authentication data required for establishing a secure association with an EIS instance on behalf of the associated resource principal. The getCredentialData method returns the credential representation as an array of bytes. Note that the connector architecture does not define any standard format for the returned credential data.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>GenericCredential</class-interface>
+      <method name="getCredentialData" return-type="byte[]" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>328</id>
+      <description>Failed operation due to security related error condition</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>GenericCredential</class-interface>
+      <method name="getCredentialData" return-type="byte[]">
+        <throw>javax.resource.spi.SecurityException</throw>
+      </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>329</id>
+      <description>Returns the mechanism type for the GenericCredential instance. The mechanism type definition for GenericCredential should be consistent with the Object Identifier (OID) based representation specified in the GSS specification. In the GenericCredential interface, the mechanism type is returned as a stringified representation of the OID specification.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>GenericCredential</class-interface>
+      <method name="getMechType" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>330</id>
+      <description>Returns the name of the resource principal associated with a GenericCredential instance.</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>GenericCredential</class-interface>
+      <method name="getName" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="deprecated" testable="true">
+      <id>331</id>
+      <description>Returns the hash code for this GenericCredential</description>
+      <package>javax.resource.spi.security</package>
+      <class-interface>GenericCredential</class-interface>
+      <method name="hashCode" return-type="int" />
+    </assertion>
+  </assertions>
+</javadoc>
+

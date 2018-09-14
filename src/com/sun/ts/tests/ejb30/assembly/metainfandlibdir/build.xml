@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="ejb3_assembly_metainfandlibdir"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/assembly/common"/>
+  <property name="library.directory" value="my-lib"/>
+  
+  <!-- ${library.directory}/${library.subdirectory}/*.jar must not be accessible -->
+  <property name="library.subdirectory.jar.name" value="sub-shared.jar"/>
+  <property name="library.subdirectory" value="lib"/> 
+
+  <property name="ejb.jar.manifest" value="ejb-jar.mf"/>
+  <property name="war.manifest" value="war.mf"/>
+  
+  <!-- in EAR lib directory to be accessed by all modules -->
+  <property name="common.referenced.jar.name" value="4common-1.0.1.jar"/>
+
+  <!-- referenced by war only in meta-inf/manifest.mf:Class-Path -->
+  <property name="war.referenced.jar.name" value="4war-1.0.1.jar"/>
+
+  <!-- referenced by both ejb-jar and war with meta-inf/manifest.mf:Class-Path -->
+  <property name="hello.ejb.client.view.jar.name" value="hello-client-view.jar"/>
+  
+  <property name="hello.ejb.client.view.classes" value="
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloCommonIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helloejbjar/HelloLocalIF.class
+  "/>
+
+  <property name="common.referenced.jar.classes" value="
+com/sun/ts/tests/ejb30/assembly/common/AssemblyCommonIF.class,
+com/sun/ts/tests/ejb30/assembly/common/Util.class,
+com/sun/ts/tests/ejb30/assembly/common/ConcurrentLookup*.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyLocalIF.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyRemoteIF.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class
+  "/>
+  
+  <property name="war.referenced.jar.classes" value="
+com/sun/ts/tests/servlet/common/servlets/HttpTCKServlet.class,
+com/sun/ts/tests/ejb30/assembly/metainfandlibdir/TestServletBase.class,
+com/sun/ts/tests/ejb30/assembly/metainfandlibdir/EJBInjectionFilterBase.class,
+com/sun/ts/tests/ejb30/assembly/metainfandlibdir/EJBInjectionFilter.class,
+com/sun/ts/tests/servlet/common/util/Data.class
+  "/>
+  
+  <property name="ejb.jar.classes" 
+            value="
+com/sun/ts/tests/ejb30/assembly/common/AssemblyBeanBase.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyInterceptor.class,
+com/sun/ts/tests/ejb30/assembly/common/AssemblyBean.class
+"/>
+  
+  <property name="no.application.client" value="true"/>
+
+  <property name="war.classes" value="
+com/sun/ts/tests/ejb30/assembly/metainfandlibdir/TestServlet.class
+"/>
+
+  <target name="-precompile">
+    <echo message="Building dependency dir..."/>
+    <ant dir="${src.dir}/com/sun/ts/tests/ejb30/common/helloejbjar" target="build" inheritAll="false"/>
+  </target>
+
+  <!-- override pre.package target in import.xml -->
+  <target name="pre.package">
+      <echo file="${ts.home}/classes/${pkg.dir}/foo.txt" append="false"
+            message="foo.txt"/>
+  </target>
+  
+  <target name="package.war">
+    <dirname property="web.xml.dir" file="${web.xml}"/>
+    <basename property="web.xml.base" file="${web.xml}"/>
+    <ts.war archivename="${app.name}" descriptor="${web.xml.base}" descriptordir="${web.xml.dir}"
+            includedefaultfiles="false" manifest="${war.manifest}">
+      <zipfileset dir="${class.dir}" includes="${war.classes}" prefix="WEB-INF/classes"/>
+    </ts.war>
+  </target>
+
+  <target name="package.ear">
+    <echo message="package.ear target in leaf-level build.xml"/>
+    <echo message="creating library jars"/>
+    <jar destfile="${dist.dir}/${pkg.dir}/${hello.ejb.client.view.jar.name}">
+        <fileset dir="${class.dir}" includes="${hello.ejb.client.view.classes}"/>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/${common.referenced.jar.name}">
+        <fileset dir="${class.dir}" includes="${common.referenced.jar.classes}"/>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/${war.referenced.jar.name}">
+        <fileset dir="${class.dir}" includes="${war.referenced.jar.classes}"/>
+    </jar>
+    <jar destfile="${dist.dir}/${pkg.dir}/${library.subdirectory.jar.name}">
+        <fileset dir="${class.dir}" includes="${pkg.dir}/foo.txt"/>
+    </jar>
+
+    <ts.ear descriptor="application.xml" archivename="${app.name}" 
+            deletecomponentarchives="${deletecomponentarchives}" 
+            includedefaultfiles="false">
+            <zipfileset dir="${dist.dir}/${pkg.dir}"
+              includes="${common.referenced.jar.name}" prefix="${library.directory}"/>
+            <zipfileset dir="${dist.dir}/${pkg.dir}" 
+                  includes="${library.subdirectory.jar.name}"
+                  prefix="${library.directory}/${library.subdirectory}"/>
+            <fileset dir="${dist.dir}/${pkg.dir}" includes="*.jar, *.war"
+              excludes="${common.referenced.jar.name}, ${library.subdirectory.jar.name}"/>
+    </ts.ear>
+  </target>
+
+  <import file="../../../../../../../../src/com/sun/ts/tests/ejb30/common/use-manifest-import.xml"/>
+  <import file="../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+
+</project>

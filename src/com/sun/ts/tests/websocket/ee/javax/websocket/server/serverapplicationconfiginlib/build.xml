@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project basedir="." default="usage" name="ee_javax_websocket_server_appconfig">
+	<property name="app.name" value="wsc_ee_server_appconfig_lib" />
+	<property name="web.war.classes" value="		
+		com/sun/ts/tests/websocket/ee/javax/websocket/server/serverapplicationconfig/*Server*.class,
+	    com/sun/ts/tests/websocket/common/stringbean/StringBean.class,
+    	com/sun/ts/tests/websocket/common/stringbean/StringBeanTextDecoder.class,
+		com/sun/ts/tests/websocket/common/util/IOUtil.class
+    		" />
+	<import file="../../../../../common/common.xml" />
+	<property name="client.jar.classes"
+				 value="com/sun/ts/tests/websocket/ee/javax/websocket/server/serverapplicationconfig/WSClient.class,
+              com/sun/ts/tests/websocket/common/client/WebSocketCommonClient,
+		      com/sun/ts/tests/websocket/ee/javax/websocket/server/serverapplicationconfiginlib/WSLibClient.class
+		"/>
+	
+	<property name="excludedfiles" value="com/sun/ts/tests/websocket/ee/javax/websocket/server/serverapplicationconfiginlib/*AppConfig*.class"/>
+	<target name="package.war" if="web.war.classes" >
+	    <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}_config.jar">
+	            <zipfileset dir="${ts.home}/classes" includes="${excludedfiles}"/>
+	    </jar>		
+        <mkdir dir="${ts.home}/dist/${pkg.dir}" />
+        <ts.war archivename="${app.name}" descriptor="web.xml" excludedfiles="${excludedfiles}">
+                <zipfileset dir="${ts.home}/classes" includes="${web.war.classes}" prefix="WEB-INF/classes" />
+                <zipfileset dir="${ts.home}/src/${pkg.dir}" prefix="WEB-INF" includes="${web.inf.files}"/>
+        	    <zipfileset dir="${ts.home}/dist/${pkg.dir}" includes="${app.name}_config.jar" prefix="WEB-INF/lib" />
+        </ts.war>
+		<delete file="${ts.home}/dist/${pkg.dir}/${app.name}_config.jar"/>
+	</target>	
+</project>

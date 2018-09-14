@@ -1,0 +1,86 @@
+/*
+ * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0, which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the
+ * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+ * version 2 with the GNU Classpath Exception, which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+ 
+package com.sun.ts.tests.jms.ee20.resourcedefs.annotations;
+
+import javax.jms.*;
+
+//-------------------------------------
+// JMS Destination Resource Definitions
+//-------------------------------------
+@JMSDestinationDefinitions(value = {
+  @JMSDestinationDefinition(
+	description="Define Queue JSPMyTestQueue",
+	interfaceName="javax.jms.Queue",
+	name="java:global/env/JSPMyTestQueue",
+    	destinationName="JSPMyTestQueue"
+   ),
+
+  @JMSDestinationDefinition(
+	description="Define Topic JSPMyTestTopic",
+	interfaceName="javax.jms.Topic",
+	name="java:app/env/JSPMyTestTopic",
+	destinationName="JSPMyTestTopic"
+   )
+
+})
+
+//-------------------------------------------
+// JMS ConnectionFactory Resource Definitions
+//-------------------------------------------
+@JMSConnectionFactoryDefinitions(value = {
+  @JMSConnectionFactoryDefinition(
+	description="Define ConnectionFactory JSPMyTestConnectionFactory",
+	interfaceName="javax.jms.ConnectionFactory",
+    	name="java:global/JSPMyTestConnectionFactory",
+	user = "@user@",
+	password = "@password@"
+   ),
+
+  @JMSConnectionFactoryDefinition(
+	description="Define QueueConnectionFactory JSPMyTestQueueConnectionFactory",
+	interfaceName="javax.jms.QueueConnectionFactory",
+    	name="java:app/JSPMyTestQueueConnectionFactory",
+	user = "@user@",
+	password = "@password@"
+   ),
+
+  @JMSConnectionFactoryDefinition(
+	description="Define TopicConnectionFactory JSPMyTestTopicConnectionFactory",
+	interfaceName="javax.jms.TopicConnectionFactory",
+    	name="java:module/JSPMyTestTopicConnectionFactory",
+	user = "@user@",
+	password = "@password@"
+   ),
+
+  @JMSConnectionFactoryDefinition(
+	description="Define Durable TopicConnectionFactory JSPMyTestDurableTopicConnectionFactory",
+	interfaceName="javax.jms.TopicConnectionFactory",
+    	name="java:comp/env/jms/JSPMyTestDurableTopicConnectionFactory",
+	user = "@user@",
+	password = "@password@",
+	clientId = "MyClientID",
+	properties = { "Property1=10", "Property2=20" },
+	transactional = false,
+	maxPoolSize = 30,
+	minPoolSize = 20
+   )
+})
+
+public class MyBean {
+    public MyBean() {
+    }
+}

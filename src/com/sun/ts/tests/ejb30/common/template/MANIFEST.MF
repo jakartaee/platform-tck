@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+tsharness-Implementation-Vendor-Id: com.sun
+tsharness-Specification-Version: 1.4
+Created-By: 1.4.2_04 (Sun Microsystems Inc.)
+cts-Extension-Name: cts
+cts-Implementation-Version: 1.4
+Extension-List: cts tsharness
+tsharness-Implementation-Version: 1.4
+cts-Implementation-Vendor-Id: com.sun
+tsharness-Extension-Name: tsharness
+cts-Specification-Version: 1.4
+

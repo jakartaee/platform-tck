@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="misc_getresource_appclient"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/misc/getresource/common"/>
+  
+  <property name="resource.name" value="cts-ejb3-test-5.1.1-beta.txt"/>
+  <property name="resource.content" value="${resource.name}"/>
+  <property name="resource.content.at.root" value="/"/>
+  <property name="ear.lib.resource.name" value="cts-ejb3-test-5.1.1-beta-ear-lib.txt"/>
+  <property name="ear.lib.resource.content" value="${ear.lib.resource.name}"/>
+  <property name="ear.lib.resource.content.at.root" value="/lib"/>
+  
+  <property name="ear.lib.classes" value="
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class,
+com/sun/ts/tests/ejb30/misc/getresource/common/GetResourceIF.class,
+com/sun/ts/tests/ejb30/misc/getresource/common/GetResourceTest.class,
+${ear.lib.resource.name},
+com/sun/ts/tests/ejb30/misc/getresource/appclient/${ear.lib.resource.name}
+  "/>
+  
+  <property name="appclient.jar.classes" 
+            value="
+com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/misc/getresource/common/GetResourceBeanBase.class,
+com/sun/ts/tests/ejb30/misc/getresource/appclient/Client.class,
+com/sun/ts/tests/ejb30/misc/getresource/appclient/GetResourceDelegate.class,
+${resource.name},
+com/sun/ts/tests/ejb30/misc/getresource/appclient/${resource.name}
+"/>
+  
+   <!-- override pre.package target in import.xml -->
+  <target name="pre.package">
+    <echo file="${ts.home}/classes/${pkg.dir}/${resource.name}" append="false"
+          message="${resource.content}"/>
+    <echo file="${ts.home}/classes/${resource.name}" append="false"
+          message="${resource.content.at.root}"/>
+    <echo file="${ts.home}/classes/${pkg.dir}/${ear.lib.resource.name}" append="false"
+          message="${ear.lib.resource.content}"/>
+    <echo file="${ts.home}/classes/${ear.lib.resource.name}" append="false"
+          message="${ear.lib.resource.content.at.root}"/>
+  </target>
+
+    <!-- override package.ejb.jar target to do nothing -->
+    <target name="package.ejb.jar">
+    </target>
+
+  <!-- override package.war target in import.xml -->
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/ear-lib-jar.xml"/>
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  
+</project>

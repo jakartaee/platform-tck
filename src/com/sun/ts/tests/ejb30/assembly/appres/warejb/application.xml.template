@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="6" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd">
+  <module>
+    <web>
+      <web-uri>ejb3_assembly_appres_warejb_web.war</web-uri>
+      <context-root>ejb3_assembly_appres_warejb_web</context-root>
+    </web>
+  </module>
+
+  <module>
+    <ejb>ejb3_assembly_appres_warejb_ejb.jar</ejb>
+  </module>
+
+  <env-entry>
+    <env-entry-name>java:app/env/myString</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>myString</env-entry-value>
+  </env-entry>
+  
+  <ejb-ref>
+    <ejb-ref-name>java:app/env/hello</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF</remote>
+    <mapped-name>java:global/ejb3_common_helloejbjar_standalone_component_ejb/HelloBean!com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF</mapped-name>
+    <lookup-name>java:global/ejb3_common_helloejbjar_standalone_component_ejb/HelloBean!com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF</lookup-name>
+  </ejb-ref>
+  
+  <ejb-ref>
+    <ejb-ref-name>java:app/env/AppResBean-remote</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF</remote>
+    <ejb-link>AppResBean</ejb-link>
+  </ejb-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>java:app/env/AppResBean-local</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <local>com.sun.ts.tests.ejb30.assembly.appres.common.AppResLocalIF</local>
+    <ejb-link>AppResBean</ejb-link>
+  </ejb-local-ref>
+  
+  <resource-ref>
+    <res-ref-name>java:app/env/db1</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+  </resource-ref>
+  
+  <resource-env-ref>
+    <resource-env-ref-name>java:app/env/validator</resource-env-ref-name>
+    <resource-env-ref-type>javax.validation.Validator</resource-env-ref-type>
+  </resource-env-ref>
+  
+  <resource-env-ref>
+    <resource-env-ref-name>java:app/env/validatorFactory</resource-env-ref-name>
+    <resource-env-ref-type>javax.validation.ValidatorFactory</resource-env-ref-type>
+  </resource-env-ref>
+  
+  <resource-env-ref>
+    <resource-env-ref-name>java:app/env/ut</resource-env-ref-name>
+    <resource-env-ref-type>javax.transaction.UserTransaction</resource-env-ref-type>
+  </resource-env-ref>
+  <resource-env-ref>
+    <resource-env-ref-name>java:app/env/sctx</resource-env-ref-name>
+    <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+  </resource-env-ref>
+  
+  <message-destination-ref>
+     <description>test destination</description>
+     <message-destination-ref-name>java:app/env/receiveQueue</message-destination-ref-name>
+     <message-destination-type>javax.jms.Queue</message-destination-type>
+     <message-destination-usage>Consumes</message-destination-usage>
+     <message-destination-link>MsgBeanOutQueue</message-destination-link>
+  </message-destination-ref>
+  
+  <persistence-context-ref>
+    <persistence-context-ref-name>java:app/env/entityManager</persistence-context-ref-name>
+  </persistence-context-ref>
+
+  <persistence-unit-ref>
+    <persistence-unit-ref-name>java:app/env/persistenceUnit</persistence-unit-ref-name>
+  </persistence-unit-ref>
+  
+  <message-destination>
+      <message-destination-name>MsgBeanOutQueue</message-destination-name>
+  </message-destination>
+  
+  <data-source>
+    <description>java:app/env/appds</description>
+    <name>java:app/env/appds</name>
+    <class-name>@className@</class-name>
+    <server-name>@serverName@</server-name>
+    <port-number>@portNumber@</port-number>
+    <database-name>@databaseName@</database-name>
+    <url>jdbc:xxxx://xxxx:1234</url>
+    <user>@user@</user>
+    <password>@password@</password>
+    @jdbc.datasource.props.xml@
+    <property>
+      <name>x</name>
+      <value>y</value>
+    </property>
+    <property>
+      <name>y</name>
+      <value>x</value>
+    </property>
+    <login-timeout>500</login-timeout>
+    <transactional>true</transactional>
+    <isolation-level>TRANSACTION_READ_COMMITTED</isolation-level>
+    <initial-pool-size>2</initial-pool-size>
+    <max-pool-size>5</max-pool-size>
+    <min-pool-size>1</min-pool-size>
+    <max-idle-time>500</max-idle-time>
+    <max-statements>100</max-statements>
+  </data-source>
+  
+  <data-source>
+    <name>java:global/env/ejb3_assembly_appres_warejb/globalds</name>
+    <class-name>@className@</class-name>
+    <server-name>@serverName@</server-name>
+    <port-number>@portNumber@</port-number>
+    <database-name>@databaseName@</database-name>
+    <url>jdbc:xxxx://xxxx:1234</url>
+    <user>@user@</user>
+    <password>@password@</password>
+    @jdbc.datasource.props.xml@
+    <property>
+      <name>x</name>
+      <value>y</value>
+    </property>
+    <property>
+      <name>y</name>
+      <value>x</value>
+    </property>
+    <login-timeout>500</login-timeout>
+    <transactional>true</transactional>
+    <isolation-level>TRANSACTION_READ_COMMITTED</isolation-level>
+    <initial-pool-size>2</initial-pool-size>
+    <max-pool-size>5</max-pool-size>
+    <min-pool-size>1</min-pool-size>
+    <max-idle-time>500</max-idle-time>
+    <max-statements>100</max-statements>
+  </data-source>
+</application>

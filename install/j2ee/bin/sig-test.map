@@ -1,0 +1,187 @@
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+###############################################################
+#
+# IMPORTANT:  this sig-test.map file for use with JDK 5 only!
+#             Using this file with JDK 6 will yeild errors.
+#
+# The signature test mapping file for the JavaEE TCK.  This file
+# should be formatted as a standard java properties file.  The
+# name is the package name and the value is the version of the
+# package that should be tested by the signature tests.
+#
+# The resultant signature file name has a name that complies
+# with the following format:
+# <package>.sig_<technology_version><JavaSE_version_these_work_with>
+# Given this format, the following example breaks down as follows:
+#    javax.xml.soap.sig_1.3_se5_se6:
+#      <package> = javax.xml.soap
+#      <technology_version> = 1.3  (for SAAJ) 
+#      <JavaSE_version_these_work_with> = JDK 5 and JDK 6
+#
+# For this release valid versions are:  "_se5", "_se6", or "_se5_se6"
+# This sig-test.map file is designed to be run using JDK 5 so any
+# signature file that ends with "_se5"  or "se5_se6" will be valid.
+# if a signature file contains only "_se6"  and no reference to "_se5" 
+# in the signature name, that that means that signature file MUST only
+# be referenced when using JDK 6.  
+#
+# For updates to this file when the JavaEE spec gets updated,
+# as a good rule of thumb, we pull out any packages that end
+# up as being included with the J2SE. So if any of the packages
+# listed below ends up being incorporated into J2SE in the future, 
+# that will be a hint that those packages can likely be removed 
+# from this sig-test.map file. 
+#
+# Packages and versions pulled from JavaEE 6.0 platform spec.
+# Along with their locations (jars they live in).
+#   EJB 3.0
+#   Servlet 3.0 
+#   JSP 2.1
+#   JMS 2.0
+#   JTA 1.1
+#   JavaMail 1.4
+#   JAF 1.1
+#   Connector 1.5
+#   Web Services 1.3 (JSR-109)
+#   JAX RPC 1.1
+#   JAX WS 2.2  (JSR-224)
+#   JAXB 2.0  (JSR-222)
+#   SAAJ 1.3
+#   JAXR 1.0   (JSR-093)
+#   JAX-RS 1.1   (JSR-311)
+#   JavaEE Mgmt 1.1  (JSR-77)
+#   JavaEE Deployment 1.2 (JSR-88)
+#   JACC 1.1  (JSR-115)
+#   JSTL 1.2   (JSR-52)
+#   WebSvc Metadata 2.0  (JSR-181)
+#   JSF 2.0   (JSR-252)
+#   Common Annotations 1.2  (JSR-250)
+#   StAX 1.0  (JSR-173)
+#   Java Persistence 1.0  (JSR-220)
+#
+#
+# Note: Recording the signatures of a package includes all
+#       child packages.  The signature test tool looks for
+#       the best signature file to use when playing back
+#       signatures.  Meaning if we have a javax.servlet
+#       signature file and a javax.servlet.jsp signature file,
+#       the signature test tool will use the javax.servlet.jsp
+#       signature file to verify the javax.servlet.jsp package
+#       signatures even though the javax.servlet signature
+#       file contains the javax.servlet.jsp package signatures.
+#       The signatures are in both files (since the API Check
+#       tool records child package signatures and there does
+#       not seem to be a way to turn this feature off) but the
+#       javax.servlet.jsp signature file can vary independent
+#       of the javax.servlet signature file.
+#
+# Command used to record the JavaEE signatures in reflective mode
+#
+# $ANT_HOME/ant -f record-build.xml \
+#   -Dsig.source=/sun/appserver8/lib/javaee.jar \
+#   -Dmap.file=/home/ryano/spider-new/bin/sig-test.map \
+#   -Drecorder.type=sigtest  \
+#   record.sig.batch
+#
+###############################################################
+
+###
+#  @(#)sig-test.map	1.16 04/04/06
+###
+
+# EJB 3.1 
+javax.ejb=3.1_se6
+javax.interceptor=1.1_se6
+
+# Servlet 3.0 
+javax.servlet=3.0_se6
+
+# JSP 2.3 
+javax.servlet.jsp=2.3_se6
+
+# EL TCK
+javax.el=2.2_se6
+
+# JSF (Faces) 
+javax.faces=2.0_se6
+
+# JSTL 1.2 
+javax.servlet.jsp.jstl=1.2_se6
+
+# JMS 2.0 
+javax.jms=2.0_se6
+
+# JTA 1.1 
+javax.transaction=1.1_se6
+
+# JavaMail 1.4 
+javax.mail=1.4_se6
+
+# Connector 1.6 
+javax.resource=1.6_se6
+
+# JAX-RPC 1.1 
+javax.xml.rpc=1.1_se6
+
+# SAAJ 1.3 
+javax.xml.soap=1.3_se6
+
+# JAXR 1.0 
+javax.xml.registry=1.0_se6
+
+# Java EE Management 1.1 
+javax.management.j2ee=1.1_se6
+
+# Java EE Deployment 1.2 
+javax.enterprise.deploy=1.2_se6
+
+# JACC 1.2 
+javax.security.jacc=1.2_se6
+
+# JAXB 
+javax.xml.bind=2.1_se6
+
+
+# JAX-WS 
+# (This is JSR-224)
+javax.xml.ws=2.2_se6
+
+# Web Services 1.3 packages (JSR-109)
+# These packages use the javax.xml.ws packages and will be covered
+# by the signature tests when the preceeding JAX-WS 2.2 package tests
+# are run so we won't need to enter them here again. ...but we do want
+# to note that this is why there are no entries for Web Services 1.3.
+
+# Persistence 2.0 
+javax.persistence=2.0_se6
+
+# CAJ (Common Annotations) 1.2 
+javax.annotation=1.2_se6
+
+# WSM (Web Svc Metadata) 2.0 
+# (This is JSR-181)
+javax.jws=2.0_se6
+
+# JASPIC (Java Authentication SPI for Containters - JSR-196)
+javax.security.auth.message=1.0_se6
+
+# JAX-RS 
+# (This is JSR-311)
+javax.ws.rs=1.1_se6
+
+

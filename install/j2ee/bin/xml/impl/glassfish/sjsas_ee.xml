@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="CTS Java EE RI configuration" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./common.xml" optional="true"/>
+    <import file="../../../../../../bin/xml/impl/glassfish/common.xml" optional="true"/>
+
+    <property name="admin.user"         value="${s1as.admin.user}"/>
+    <property name="admin.password"     value="${s1as.admin.passwd}" />
+    <property name="server.domain.name" value="${s1as.domain.name}"/>
+    <property name="server.host"        value="${s1as.admin.host}"/>
+    <property name="server.port"        value="${s1as.admin.port}"/>
+    <property name="server.orb.port"    value="${orb.port}"/>
+    <property name="cli.path" 	        value="${s1as.admin}"/>
+    <property name="imqbin.loc"	        value="${s1as.imqbin.loc}"/>
+    <property name="server.domain"   	value="${s1as.domain}"/>
+    <property name="server.domain.name"	value="${s1as.domain.name}"/>
+    <property name="server.instance"    value="${sjsas.nodeinstance.name}"/>
+    <property name="server.config.dir" 	value="config"/>
+    <property name="server.home"        value="${javaee.home}"/>
+    <property name="drive"              value="${s1as.applicationRoot}"/>
+    <property name="default.ext.dirs"   value="$$\{com.sun.aas.javaRoot\}/jre/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/config/$$\{com.sun.aas.configName\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.installRoot\}/lib/jdbcdrivers$$\{path.separator\}$$\{com.sun.aas.installRoot\}/javadb/lib/"/>
+
+    <!--
+       Used to signify that we update the system properties in the domain.xml
+       when configuring CTS against EE vs a direct update as is done for PE.
+       See s1as.xml for more details.
+    -->
+    <property name="use.create.system.properties"   value="true"/>
+
+    <!--
+       Properties used by the Timer Service on the remote instance.
+    -->
+    <property name="internalTimer.poolName" value="cts-internal-timer-pool"/>
+    <property name="internalTimer.jndiName" value="jdbc/InternalTimer"/>
+    <property name="embeddedTimer.url" value="jdbc:derby:${javaee.home}${file.separator}javadb${file.separator}databases${file.separator}cts;create=true"/>
+ 
+    <target name="usage">
+        <echo message="The following ant targets are available to configure SJSAS SE/PE for CTS:"/>
+        <echo message="ant -f sjsas_ee.xml target"/>
+        <echo message=""/>
+        <echo message="The primary tasks are:"/>
+        <echo message=""/>
+        <echo message="config.remoteInstance " />
+        <echo message="clean.remoteInstance " />
+   
+        <echo message=""/>
+        <echo message="Additional tasks are:"/>
+        <echo message=""/>
+        <echo message="config.remoteInstance2" />
+        <echo message="config.instance " />
+        <echo message="delete.remoteInstance " />
+        <echo message="start.remoteInstance " />
+        <echo message="stop.remoteInstance " />
+     </target>
+
+     <!-- Configure the OS specific properties based on the OS 
+         is being utilized.
+      -->
+     <target name="configPlatform" 
+           depends="checkPlatform, configUnix, configWindows"/>
+     
+     <!--
+         Create and configure the remote instance
+         for CTS testing
+     -->
+     <target name="config.remoteInstance" >
+           <antcall target="config.nodeInstance"/> 
+           <ant antfile="s1as.xml" dir="${common.bin.dir}/xml" target="${configTarget}"/>
+           <antcall target="config.timer" />
+           <antcall target="stop.remoteInstance"/> 
+           <antcall target="start.remoteInstance"/> 
+     </target>
+
+     <!--
+         Remove the configuration and the remote instance
+         used  for CTS testing
+     -->
+     <target name="clean.remoteInstance" >
+           <ant antfile="s1as.xml" dir="${common.bin.dir}/xml" target="${cleanTarget}"/>
+           <antcall target="delete.remoteInstance"/> 
+     </target>
+
+
+     <!--
+       config.nodeInstance configures all of the SJSAS settings required by
+       cts for testing a node.
+       
+       1. Start the DAS
+       2. create the node agent
+       3. create an instance on the node
+       4. Start the node agent (which starts the instance)
+     -->
+     <target name="config.nodeInstance" depends="configPlatform, filter.password.file">
+
+           <antcall target="restart.server"/> 
+
+           <antcall target="create-nodeagent">
+               <param name="nodeagent.name" value="${sjsas.nodeagent.name}"/>
+           </antcall>
+
+           <antcall target="create-node-instance">
+               <param name="nodeagent.name" value="${sjsas.nodeagent.name}"/>
+               <param name="node.instance.name" value="${sjsas.nodeinstance.name}"/>
+           </antcall>
+
+           <antcall target="start-nodeagent">
+               <param name="nodeagent.name" value="${sjsas.nodeagent.name}"/>
+           </antcall>
+     </target>
+     
+     <!--
+          Stop the remote instance and the node agent
+     -->
+     <target name="stop.remoteInstance" depends="configPlatform">
+           <antcall target="stop-instance">
+               <param name="instance.name" value="${sjsas.nodeinstance.name}"/>
+           </antcall>
+     </target>
+
+     <target name="stop.nodeAgent" depends="configPlatform">
+           <antcall target="stop-nodeagent">
+               <param name="nodeagent.name" value="${sjsas.nodeagent.name}"/>
+           </antcall>
+     </target>
+
+     <target name="start.nodeAgent" depends="configPlatform">
+           <antcall target="start-nodeagent">
+               <param name="nodeagent.name" value="${sjsas.nodeagent.name}"/>
+           </antcall>
+     </target>
+
+
+     <!--
+          Remove the remote instance and the node agent
+     -->
+     <target name="delete.remoteInstance" depends="configPlatform">
+
+           <antcall target="stop.remoteInstance"/>
+           <antcall target="stop.nodeAgent"/>
+           <antcall target="delete-instance">
+               <param name="instance.name" value="${sjsas.nodeinstance.name}"/>
+           </antcall>
+           <antcall target="delete-nodeagent">
+               <param name="nodeagent.name" value="${sjsas.nodeagent.name}"/>
+           </antcall>
+           <antcall target="delete-nodeagent-config">
+               <param name="nodeagent.name" value="${sjsas.nodeagent.name}"/>
+           </antcall>
+           <antcall target="stop-domain"/>
+     </target>
+
+     <!--
+         Start the remote instance
+     -->
+     <target name="start.remoteInstance" depends="configPlatform">
+           <antcall target="start-instance"> 
+              <param name="instance.name" value=" ${server.instance}"/>
+           </antcall>
+     </target>
+
+     <!--
+        Configure the remote instance for CTS
+     -->
+     <target name="config.instance" >
+           <ant antfile="build.xml" dir="${bin.dir}" target="config.vi"/>
+           <antcall target="config.timer" />
+     </target>
+
+     <!--
+        Remove the CTS configuration of the remote instance
+     -->
+     <target name="clean.instance" >
+           <ant antfile="build.xml" dir="${bin.dir}" target="clean.vi"/>
+           <antcall target="drop.timer.config" />
+     </target>
+     
+     <!--
+          Configure the Timer used by the remote instance by the following steps:
+          1. Create the Timer XA Connection pool
+          2. Create the Timer JNDI resource
+          3. Add the table used by the Timer service to Timer database.
+     -->
+     <target name="config.timer" depends="configPlatform" >
+        <echo message="****creating internal Timer pool"/>
+
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.XADataSource"/>
+          <param name="datasourceclassname" value="org.apache.derby.jdbc.EmbeddedXADataSource"/>
+          <param name="pool.properties" value="databaseName=${javaee.home}${file.separator}javadb${file.separator}databases${file.separator}cts"/>
+          <param name="poolName" value="${internalTimer.poolName}"/>
+         </antcall>
+
+        <echo message="****creating internal jndi resource for the Timer pool"/>
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="${internalTimer.poolName}"/>
+          <param name="jndiName" value="${internalTimer.jndiName}"/>
+        </antcall>
+
+        <echo message="****Adding the timer service to the remote instance"/>
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.ejb-container.ejb-timer-service.timer-datasource=${internalTimer.jndiName}"/>
+         </antcall>
+
+        <echo message="****Creating the table needed by the timer service"/>
+         <sql driver="${derbyEmbedded.driver}"
+             url="${embeddedTimer.url}"
+             userid="${derbyEmbedded.user}"
+             password="${derbyEmbedded.passwd}"
+             classpath="${derbyEmbedded.classes}"
+             delimiter=";"
+             autocommit="true"
+             onerror="continue" >
+             <transaction src="${javaee.home}/lib/install/databases/ejbtimer_derby.sql"/>
+        </sql>
+
+     </target>
+
+     <!--
+        Remove the Timer configuration from the server
+     -->
+     <target name="drop.timer.config" depends="configPlatform" >
+         <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="${internalTimer.jndiName}"/>
+         </antcall>
+
+        <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${internalTimer.poolName}"/>
+        </antcall>
+
+     </target>
+</project>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3" default="usage" basedir=".">
+  <property name="app.name" value="localaccess_webclient"/>
+  <property name="app.common" value="com/sun/ts/tests/ejb30/bb/localaccess/common"/>
+  <property name="no.application.client" value="true"/>
+  <property name="no.ear" value="true"/>
+  
+  <property name="war.classes" 
+            value="
+com/sun/ts/tests/servlet/common/servlets/HttpTCKServlet.class,
+com/sun/ts/tests/servlet/common/util/Data.class,
+com/sun/ts/tests/ejb30/bb/localaccess/webclient/TestServlet.class,
+com/sun/ts/tests/ejb30/bb/localaccess/webclient/TestServletSuper.class,
+com/sun/ts/tests/ejb30/bb/localaccess/webclient/StatelessTestBean.class,
+
+com/sun/ts/tests/ejb30/bb/localaccess/common/CommonIF.class,
+com/sun/ts/tests/ejb30/bb/localaccess/common/Constants.class,
+
+com/sun/ts/tests/ejb30/bb/localaccess/common/TestBeanIF.class,
+com/sun/ts/tests/ejb30/bb/localaccess/common/TestBeanBase.class,
+com/sun/ts/tests/ejb30/common/calc/CalculatorException.class,
+com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb30/common/helper/TestFailedException.class
+            "/>
+	    
+  <target name="package.ejb.jar"/>	    
+  
+  <!-- override package.war target in import.xml -->
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/war-import.xml"/>
+  <import file="../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>              
+
+</project>

@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<xsd:schema id="uddi" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:uddi-org:api" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uddi="urn:uddi-org:api">
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  
+  <xsd:complexType name="AccessPoint" mixed="true">
+    <xsd:attribute name="URLType" type="uddi:URLType" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="Address">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="addressLine" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="sortCode" type="xsd:string" use="optional" />
+    <xsd:attribute name="useType" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:element name="authToken" type="uddi:AuthToken" />
+  <xsd:complexType name="AuthToken">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="bindingDetail" type="uddi:BindingDetail" />
+  <xsd:complexType name="BindingDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="bindingTemplate" type="uddi:BindingTemplate" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="BindingTemplate">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:choice minOccurs="1" maxOccurs="1">
+        <xsd:element name="accessPoint" type="uddi:AccessPoint" />
+        <xsd:element name="hostingRedirector" type="uddi:HostingRedirector" />
+      </xsd:choice>
+      <xsd:element minOccurs="1" maxOccurs="1" name="tModelInstanceDetails" type="uddi:TModelInstanceDetails" />
+    </xsd:sequence>
+    <xsd:attribute name="serviceKey" type="xsd:string" use="optional" />
+    <xsd:attribute name="bindingKey" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="BindingTemplates">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="bindingTemplate" type="uddi:BindingTemplate" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="businessDetail" type="uddi:BusinessDetail" />
+  <xsd:complexType name="BusinessDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="businessEntity" type="uddi:BusinessEntity" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:element name="businessDetailExt" type="uddi:BusinessDetailExt" />
+  <xsd:complexType name="BusinessDetailExt">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="businessEntityExt" type="uddi:BusinessEntityExt" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="BusinessEntity">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="discoveryURLs" type="uddi:DiscoveryURLs" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="name" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="contacts" type="uddi:Contacts" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="businessServices" type="uddi:BusinessServices" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="identifierBag" type="uddi:IdentifierBag" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryBag" type="uddi:CategoryBag" />
+    </xsd:sequence>
+    <xsd:attribute name="businessKey" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="optional" />
+    <xsd:attribute name="authorizedName" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="BusinessEntityExt">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="businessEntity" type="uddi:BusinessEntity" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="BusinessInfo">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="name" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="serviceInfos" type="uddi:ServiceInfos" />
+    </xsd:sequence>
+    <xsd:attribute name="businessKey" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="BusinessInfos">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="businessInfo" type="uddi:BusinessInfo" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="businessList" type="uddi:BusinessList" />
+  <xsd:complexType name="BusinessList">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="businessInfos" type="uddi:BusinessInfos" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="BusinessService">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="name" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="bindingTemplates" type="uddi:BindingTemplates" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryBag" type="uddi:CategoryBag" />
+    </xsd:sequence>
+    <xsd:attribute name="serviceKey" type="xsd:string" use="required" />
+    <xsd:attribute name="businessKey" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="BusinessServices">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="businessService" type="uddi:BusinessService" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CategoryBag">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="keyedReference" type="uddi:KeyedReference" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="Contact">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="personName" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="phone" type="uddi:Phone" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="email" type="uddi:Email" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="address" type="uddi:Address" />
+    </xsd:sequence>
+    <xsd:attribute name="useType" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="Contacts">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="contact" type="uddi:Contact" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="delete_binding" type="uddi:DeleteBinding" />
+  <xsd:complexType name="DeleteBinding">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="bindingKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="delete_business" type="uddi:DeleteBusiness" />
+  <xsd:complexType name="DeleteBusiness">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="businessKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="delete_service" type="uddi:DeleteService" />
+  <xsd:complexType name="DeleteService">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="serviceKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="delete_tModel" type="uddi:DeleteTModel" />
+  <xsd:complexType name="DeleteTModel">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="tModelKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="Description" mixed="true">
+    <xsd:attribute ref="xml:lang" use="optional" />
+  </xsd:complexType>
+
+  <xsd:element name="discard_authToken" type="uddi:DiscardAuthToken" />
+  <xsd:complexType name="DiscardAuthToken">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="DiscoveryUrl" mixed="true">
+    <xsd:attribute name="useType" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="DiscoveryURLs">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="discoveryUrl" type="uddi:DiscoveryUrl" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="dispositionReport" type="uddi:DispositionReport" />
+  <xsd:complexType name="DispositionReport">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="result" type="uddi:Result" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="Email" mixed="true">
+    <xsd:attribute name="useType" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="ErrInfo" mixed="true">
+    <xsd:attribute name="errCode" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="find_binding" type="uddi:FindBinding" />
+  <xsd:complexType name="FindBinding">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="findQualifiers" type="uddi:FindQualifiers" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="tModelBag" type="uddi:TModelBag" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="maxRows" type="xsd:int" use="optional" />
+    <xsd:attribute name="serviceKey" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="find_business" type="uddi:FindBusiness" />
+  <xsd:complexType name="FindBusiness">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="findQualifiers" type="uddi:FindQualifiers" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="name" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="identifierBag" type="uddi:IdentifierBag" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryBag" type="uddi:CategoryBag" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="tModelBag" type="uddi:TModelBag" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="discoveryURLs" type="uddi:DiscoveryURLs" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="maxRows" type="xsd:int" use="optional" />
+  </xsd:complexType>
+
+  <xsd:element name="find_service" type="uddi:FindService" />
+  <xsd:complexType name="FindService">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="findQualifiers" type="uddi:FindQualifiers" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="name" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryBag" type="uddi:CategoryBag" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="tModelBag" type="uddi:TModelBag" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="maxRows" type="xsd:int" use="optional" />
+    <xsd:attribute name="businessKey" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="find_tModel" type="uddi:FindTModel" />
+  <xsd:complexType name="FindTModel">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="findQualifiers" type="uddi:FindQualifiers" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="name" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="identifierBag" type="uddi:IdentifierBag" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryBag" type="uddi:CategoryBag" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="maxRows" type="xsd:int" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="FindQualifiers">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="findQualifier" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="get_authToken" type="uddi:GetAuthToken" />
+  <xsd:complexType name="GetAuthToken">
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="userID" type="xsd:string" use="required" />
+    <xsd:attribute name="cred" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="get_bindingDetail" type="uddi:GetBindingDetail" />
+  <xsd:complexType name="GetBindingDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="bindingKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="get_businessDetail" type="uddi:GetBusinessDetail" />
+  <xsd:complexType name="GetBusinessDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="businessKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="get_businessDetailExt" type="uddi:GetBusinessDetailExt" />
+  <xsd:complexType name="GetBusinessDetailExt">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="businessKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="get_registeredInfo" type="uddi:GetRegisteredInfo" />
+  <xsd:complexType name="GetRegisteredInfo">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="get_serviceDetail" type="uddi:GetServiceDetail" />
+  <xsd:complexType name="GetServiceDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="serviceKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="get_tModelDetail" type="uddi:GetTModelDetail" />
+  <xsd:complexType name="GetTModelDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="tModelKey" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="HostingRedirector">
+    <xsd:attribute name="bindingKey" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="IdentifierBag">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="keyedReference" type="uddi:KeyedReference" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="InstanceDetails">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="overviewDoc" type="uddi:OverviewDoc" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="instanceParms" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="KeyedReference">
+    <xsd:attribute name="tModelKey" type="xsd:string" use="optional" />
+    <xsd:attribute name="keyName" type="xsd:string" use="required" />
+    <xsd:attribute name="keyValue" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:simpleType name="KeyType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="businessKey" />
+      <xsd:enumeration value="tModelKey" />
+      <xsd:enumeration value="serviceKey" />
+      <xsd:enumeration value="bindingKey" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="OverviewDoc">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="overviewURL" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="Phone" mixed="true">
+    <xsd:attribute name="useType" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:element name="registeredInfo" type="uddi:RegisteredInfo" />
+  <xsd:complexType name="RegisteredInfo">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="businessInfos" type="uddi:BusinessInfos" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="tModelInfos" type="uddi:TModelInfos" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="Result">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="errInfo" type="uddi:ErrInfo" />
+    </xsd:sequence>
+    <xsd:attribute name="keyType" type="uddi:KeyType" use="optional" />
+    <xsd:attribute name="errno" type="xsd:int" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="save_binding" type="uddi:SaveBinding" />
+  <xsd:complexType name="SaveBinding">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="bindingTemplate" type="uddi:BindingTemplate" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="save_business" type="uddi:SaveBusiness" />
+  <xsd:complexType name="SaveBusiness">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="businessEntity" type="uddi:BusinessEntity" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="uploadRegister" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="save_service" type="uddi:SaveService" />
+  <xsd:complexType name="SaveService">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="businessService" type="uddi:BusinessService" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="save_tModel" type="uddi:SaveTModel" />
+  <xsd:complexType name="SaveTModel">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="authInfo" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="tModel" type="uddi:TModel" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="uploadRegister" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="serviceDetail" type="uddi:ServiceDetail" />
+  <xsd:complexType name="ServiceDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="businessService" type="uddi:BusinessService" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="ServiceInfo">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="name" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="serviceKey" type="xsd:string" use="required" />
+    <xsd:attribute name="businessKey" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="ServiceInfos">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="serviceInfo" type="uddi:ServiceInfo" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="serviceList" type="uddi:ServiceList" />
+  <xsd:complexType name="ServiceList">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="serviceInfos" type="uddi:ServiceInfos" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="TModel">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="name" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="overviewDoc" type="uddi:OverviewDoc" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="identifierBag" type="uddi:IdentifierBag" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="categoryBag" type="uddi:CategoryBag" />
+    </xsd:sequence>
+    <xsd:attribute name="tModelKey" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="optional" />
+    <xsd:attribute name="authorizedName" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="TModelBag">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="tModelKey" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="tModelDetail" type="uddi:TModelDetail" />
+  <xsd:complexType name="TModelDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="tModel" type="uddi:TModel" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="TModelInfo">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="name" type="xsd:string" />
+    </xsd:sequence>
+    <xsd:attribute name="tModelKey" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="TModelInfos">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="tModelInfo" type="uddi:TModelInfo" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="TModelInstanceDetails">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="tModelInstanceInfo" type="uddi:TModelInstanceInfo" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="TModelInstanceInfo">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="description" type="uddi:Description" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="instanceDetails" type="uddi:InstanceDetails" />
+    </xsd:sequence>
+    <xsd:attribute name="tModelKey" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:element name="tModelList" type="uddi:TModelList" />
+  <xsd:complexType name="TModelList">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="tModelInfos" type="uddi:TModelInfos" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+    <xsd:attribute name="operator" type="xsd:string" use="required" />
+    <xsd:attribute name="truncated" type="uddi:Truncated" use="optional" />
+  </xsd:complexType>
+
+  <xsd:simpleType name="Truncated">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="true" />
+      <xsd:enumeration value="false" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="URLType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="mailto" />
+      <xsd:enumeration value="http" />
+      <xsd:enumeration value="https" />
+      <xsd:enumeration value="ftp" />
+      <xsd:enumeration value="fax" />
+      <xsd:enumeration value="phone" />
+      <xsd:enumeration value="other" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:element name="validate_categorization" type="uddi:ValidateCategorization" />
+  <xsd:complexType name="ValidateCategorization">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="tModelKey" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="keyValue" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="businessEntity" type="uddi:BusinessEntity" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="businessService" type="uddi:BusinessService" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="tModel" type="uddi:TModel" />
+    </xsd:sequence>
+    <xsd:attribute name="generic" type="xsd:string" use="required" />
+  </xsd:complexType>
+</xsd:schema>

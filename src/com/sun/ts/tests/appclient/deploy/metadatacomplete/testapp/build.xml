@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="appclient_deploy_metadatacomplete_testapp" basedir="." default="usage">
+
+<!-- IMPORTS -->
+<!--import file="../../../../../../../../../bin/xml/ts.import.xml"/-->
+<import file="../../../../../../../../com/sun/ts/tests/jaxws/common/xml/common.xml"/>  
+    <property name="service.names" value="HelloService" />
+    <property name="sei.names" value="Hello" />
+    <property name="port.name" value="Hello" />
+    <property name="wsdl.filename" value="HelloService.wsdl"/>
+    <property name="schema.filename" value="HelloService_schema1.xsd"/>
+    <property name="impl.class" value="com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp.HelloImpl"/>
+    
+    <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+    <property name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+    <property name="client.app.name" value="HelloClnt"/>
+    <property name="impl.classes" value="${pkg.dir}/HelloImpl.class"/>
+    <property name="always.generate" value="true"/>
+	
+	<target name="-precompile" depends="do.token.substitution.of.java.src.files">
+	  <echo message="datasource properties for java files: ${jdbc.datasource.props}" />
+	</target>
+	
+	<target name="do.token.substitution.of.java.src.files">
+	<echo message="datasource properties for java files: ${jdbc.datasource.props}" />
+    <copy failonerror="false" overwrite="true" 
+      file="files/TestBean.java.src"
+      tofile="TestBean.java">
+        <filterset>
+		  <filter token="raname" value="${jmsra.name}"/>
+        </filterset>
+    </copy>
+	<propertycopy name="_className_" from="${jdbc.db}.dataSource" />
+      <propertycopy name="_url_" from="${jdbc.db}.url" />
+      <propertycopy name="_user_" from="${jdbc.db}.user" />
+      <propertycopy name="_password_" from="${jdbc.db}.passwd" />
+    <copy failonerror="false" overwrite="true" 
+      file="files/TestAppClient.java.src"
+      tofile="TestAppClient.java">
+        <filterset>
+	  <filter token="dbclassname" value="${_className_}"/>
+	  <filter token="dburl" value="${_url_}"/>
+	  <filter token="dbuser" value="${_user_}"/>
+	  <filter token="dbpassword" value="${_password_}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+  </target>
+    <target name="build" depends="clean,-precompile,package"/>
+	<target name="package">
+	    <ts.javac includes="${pkg.dir}/HelloImpl.java"/>
+        <antcall target="do_java2wsdl_generate_server"/>
+		<ts.clean.classes/>
+        <antcall target="do_wsdl2java_generate_client"/>
+        <ts.javac/>
+		<ts.ejbjar archivename="testApp" excludedfiles="${pkg.dir}/HelloService.class, ${pkg.dir}/TestAppClient.class, ${pkg.dir}/TestBean.class">
+            <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}, ${schema.filename}"  prefix="META-INF/wsdl" />
+            <zipfileset dir="${class.dir}" includes="
+                        ${pkg.dir}/Hello.class,
+            ${pkg.dir}/HelloImpl.class,
+			${pkg.dir}/DataStore.class,
+			${pkg.dir}/DataStoreBean.class" />
+        </ts.ejbjar>
+        <ts.clientjar descriptor="application-client.xml" 
+                  archivename="testApp"
+                  mainclass="com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp.TestAppClient"
+				  excludedfiles="${pkg.dir}/HelloImpl.class,${pkg.dir}/DataStore.class,${pkg.dir}/DataStoreBean.class">
+				  <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}, ${schema.filename}"  prefix="META-INF/wsdl" />
+				  <zipfileset dir="${src.dir}/${pkg.dir}" includes="persistence.xml"  prefix="META-INF" />
+            <zipfileset dir="${class.dir}" includes="
+                        ${pkg.dir}/Hello.class,
+            ${pkg.dir}/HelloService.class" />				  
+        </ts.clientjar>
+        
+        <ts.ear archivename="testApp" descriptordir="." descriptor="application.xml" includedefaultfiles="false">
+            <fileset dir="${dist.dir}/${pkg.dir}" includes="testApp_client.jar"/>
+			<fileset dir="${dist.dir}/${pkg.dir}" includes="testApp_ejb.jar"/>
+        </ts.ear>
+    </target>
+
+</project>

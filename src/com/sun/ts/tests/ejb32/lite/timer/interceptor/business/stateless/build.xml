@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb3 timer" basedir="." default="usage">
+    <import file="../../../../../../ejb30/common/import.xml"/>
+    <property name="app.name" value="ejb32_lite_timer_interceptor_business_stateless"/>
+    <property name="app.common" value="com/sun/ts/tests/ejb30/timer/common"/>
+    <property name="app.common.2" value="com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common"/>
+
+    <target name="package">
+        <ts.vehicles name="${app.name}" buildleveloverride="2" classes="
+		com/sun/ts/tests/ejb30/timer/common/TimerInfo.class,
+		com/sun/ts/tests/ejb30/timer/common/TimerUtil.class,
+		com/sun/ts/tests/ejb30/timer/common/ClientBase.class,
+		com/sun/ts/tests/ejb30/timer/common/TimeoutStatusBean.class,
+		com/sun/ts/tests/ejb30/timer/common/TimerBeanBaseWithoutTimeOutMethod.class,
+		com/sun/ts/tests/ejb30/timer/common/TimerBeanBase.class,
+		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/BusinessTimerBeanBase.class,
+		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/ClientBase.class,
+		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/InterceptorBase.class,
+		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/Interceptor1.class,
+		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/Interceptor2.class,
+		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/Interceptor3.class
+	">
+        </ts.vehicles>
+    </target>
+</project>

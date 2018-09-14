@@ -1,0 +1,243 @@
+<?xml version="1.0" ?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+<!-- BEGIN tag library -->
+
+    <description>Utility tag library for JSTL TCK tests</description>
+    <display-name>JSTLTCK-Util</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>JSTLTCK-Util</short-name>
+    <uri>http://java.sun.com/jstltck/jstltck-util</uri>
+
+    <!-- START TestTag -->
+
+    <tag>
+        <description>A simple tag to write HTML 'headers' and 'footers'</description>
+        <display-name>TestTag</display-name>
+        <name>test</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.TestTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>testName</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+
+    <!-- END TestTag -->
+
+    <!-- START ExceptionCheckTag -->
+
+    <tag>
+        <description>ExceptionCheckTag allows the checking of an exception thrown by a nested tag</description>
+        <display-name>catch</display-name>
+        <name>catch</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.ExceptionCheckTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>exception</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>rootException</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>var</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>exceptionText</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>checkRootCause</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+
+    <!-- END ExceptionCheckTag -->
+
+    <!-- START TypeCheckTag -->
+
+    <tag>
+        <description>
+            Validates the specified type against the specified scoped variable.  
+        </description>
+        <display-name>isInstance</display-name>
+        <name>isInstance</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.TypeCheckTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>varName</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+
+    <!-- END TypeCheckTag -->
+    
+    <!-- START ThrowTag -->
+    
+    <tag>
+        <description>Simple tag whose only purpose is to throw a JspException</description>
+        <display-name>ThrowTag</display-name>
+        <name>throwit</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.ThrowTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    
+    <!-- END ThrowTag -->
+    
+    <!-- START ScopeCheckTag -->
+    
+    <tag>
+        <description>Simple tag to check the PageContext for an attribute in a specified scope</description>
+        <display-name>CheckVarTag</display-name>
+        <name>checkScope</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.ScopeCheckTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>varName</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>inScope</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>useConfig</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+    
+    <!-- END ScopeCheckTag -->
+    
+    <!-- START CheckRuntimeTag -->
+    
+    <tag>
+        <description>A simple tag to check the version of Java runtime</description>
+        <display-name>CheckRuntimeTag</display-name>
+        <name>checkRuntime</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.CheckRuntime</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>var</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    
+    <!-- END CheckRuntimeTag -->
+    
+    
+    <!-- START DisplayTypeTag -->
+    
+    <tag>
+        <description>Simple tag to display types for iteration tests when using multiple collection types</description>
+        <display-name>DisplayTypeTag</display-name>
+        <name>displayType</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.DisplayTypeTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>varName</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    
+    <!-- END DisplayTypeTag -->
+    
+    <!-- START GetLocalUrlTag -->
+    
+    <tag>
+        <description>Simple tag to generate an absolute URL for the server where the tag is running.</description>
+        <display-name>LocalAbsUrlTag</display-name>
+        <name>localAbsUrl</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.GetLocalUrlTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>var</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>path</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    
+    <!-- END GetLocalUrlTag -->
+    
+    <!-- START ConfigTag -->
+    
+    <tag>
+        <description>Simple tag to interact with JSTL core Config class</description>
+        <display-name>ConfigTag</display-name>
+        <name>config</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.ConfigTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>var</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>scope</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>configVar</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>op</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+    
+    <!-- END ConfigTag -->
+    <tag>
+        <description>
+            Testing c:forEach, c:forTokens, c:set with deferred expressions
+        </description>
+        <name>save</name>
+        <tag-class>com.sun.ts.tests.jstl.common.tags.SaveTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>attr</name>
+            <required>true</required>
+            <deferred-value>
+                <type>java.lang.String</type>
+            </deferred-value>
+        </attribute>
+    </tag>
+    
+</taglib>
+
+<!-- END tag library -->

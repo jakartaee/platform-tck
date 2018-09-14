@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb_ee_deploy_entity_bmp_enventry_scope" basedir="." default="usage">
+<import file="../../../../../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <target name="package">
+
+      <ts.ejbjar descriptor="ejb_depEbmp_enventry_scope_jar2_ejb.xml"
+                 archivename="ejb_depEbmp_enventry_scope_jar2">
+        <fileset dir="${class.dir}"
+                 includes="${ts.wrappers.classes.bmp.ejb},
+                           com/sun/ts/tests/assembly/util/shared/enventry/scope/TestCode.class"/>
+      </ts.ejbjar>
+
+      <ts.ejbjar descriptor="ejb_depEbmp_enventry_scope_jar1_ejb.xml"
+                 archivename="ejb_depEbmp_enventry_scope_jar1">
+        <fileset dir="${class.dir}"
+                 includes="${ts.wrappers.classes.bmp.ejb},
+                           com/sun/ts/tests/assembly/util/shared/enventry/scope/TestCode.class"/>
+      </ts.ejbjar>
+
+      <ts.ejbjar descriptor="ejb_depEbmp_enventry_scope_jar3_ejb.xml"
+                 archivename="ejb_depEbmp_enventry_scope_jar3">
+        <fileset dir="${class.dir}"
+                 includes="${ts.wrappers.classes.bmp.ejb},
+                           com/sun/ts/tests/assembly/util/shared/enventry/scope/TestCode.class"/>
+      </ts.ejbjar>
+
+      <ts.clientjar descriptor="ejb_depEbmp_enventry_scope_client.xml"
+                    archivename="ejb_depEbmp_enventry_scope"
+                    mainclass="com.sun.ts.tests.ejb.ee.deploy.entity.bmp.enventry.scope.Client"
+                    excludedfiles="com/sun/ts/tests/ejb/ee/deploy/entity/bmp/enventry/scope/BeanEJB.class">
+        <fileset dir="${class.dir}"
+                 includes="${ts.dao.classes.coffee.standard}"/>
+      </ts.clientjar>
+
+      <ts.ear archivename="ejb_depEbmp_enventry_scope"/>
+
+  </target>
+
+</project>

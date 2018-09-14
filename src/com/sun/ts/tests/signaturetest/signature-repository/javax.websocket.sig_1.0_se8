@@ -1,0 +1,512 @@
+#Signature file v4.1
+#Version 1.0_se8
+
+#
+# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+
+CLSS public abstract interface java.io.Closeable
+intf java.lang.AutoCloseable
+meth public abstract void close() throws java.io.IOException
+
+CLSS public abstract interface java.io.Serializable
+
+CLSS public abstract interface java.lang.AutoCloseable
+meth public abstract void close() throws java.lang.Exception
+
+CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
+meth public abstract int compareTo({java.lang.Comparable%0})
+
+CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
+cons protected <init>(java.lang.String,int)
+intf java.io.Serializable
+intf java.lang.Comparable<{java.lang.Enum%0}>
+meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected final void finalize()
+meth public final boolean equals(java.lang.Object)
+meth public final int compareTo({java.lang.Enum%0})
+meth public final int hashCode()
+meth public final int ordinal()
+meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
+meth public final java.lang.String name()
+meth public java.lang.String toString()
+meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
+supr java.lang.Object
+hfds name,ordinal
+
+CLSS public java.lang.Exception
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+supr java.lang.Throwable
+hfds serialVersionUID
+
+CLSS public java.lang.Object
+cons public <init>()
+meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected void finalize() throws java.lang.Throwable
+meth public boolean equals(java.lang.Object)
+meth public final java.lang.Class<?> getClass()
+meth public final void notify()
+meth public final void notifyAll()
+meth public final void wait() throws java.lang.InterruptedException
+meth public final void wait(long) throws java.lang.InterruptedException
+meth public final void wait(long,int) throws java.lang.InterruptedException
+meth public int hashCode()
+meth public java.lang.String toString()
+
+CLSS public java.lang.Throwable
+cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public <init>()
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+cons public <init>(java.lang.Throwable)
+intf java.io.Serializable
+meth public final java.lang.Throwable[] getSuppressed()
+meth public final void addSuppressed(java.lang.Throwable)
+meth public java.lang.StackTraceElement[] getStackTrace()
+meth public java.lang.String getLocalizedMessage()
+meth public java.lang.String getMessage()
+meth public java.lang.String toString()
+meth public java.lang.Throwable fillInStackTrace()
+meth public java.lang.Throwable getCause()
+meth public java.lang.Throwable initCause(java.lang.Throwable)
+meth public void printStackTrace()
+meth public void printStackTrace(java.io.PrintStream)
+meth public void printStackTrace(java.io.PrintWriter)
+meth public void setStackTrace(java.lang.StackTraceElement[])
+supr java.lang.Object
+hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
+hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
+
+CLSS public abstract interface java.lang.annotation.Annotation
+meth public abstract boolean equals(java.lang.Object)
+meth public abstract int hashCode()
+meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> annotationType()
+meth public abstract java.lang.String toString()
+
+CLSS public abstract interface !annotation java.lang.annotation.Documented
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation java.lang.annotation.Retention
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.RetentionPolicy value()
+
+CLSS public abstract interface !annotation java.lang.annotation.Target
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.annotation.ElementType[] value()
+
+CLSS public abstract interface !annotation javax.websocket.ClientEndpoint
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class<? extends javax.websocket.ClientEndpointConfig$Configurator> configurator()
+meth public abstract !hasdefault java.lang.Class<? extends javax.websocket.Decoder>[] decoders()
+meth public abstract !hasdefault java.lang.Class<? extends javax.websocket.Encoder>[] encoders()
+meth public abstract !hasdefault java.lang.String[] subprotocols()
+
+CLSS public abstract interface javax.websocket.ClientEndpointConfig
+innr public final static Builder
+innr public static Configurator
+intf javax.websocket.EndpointConfig
+meth public abstract java.util.List<java.lang.String> getPreferredSubprotocols()
+meth public abstract java.util.List<javax.websocket.Extension> getExtensions()
+meth public abstract javax.websocket.ClientEndpointConfig$Configurator getConfigurator()
+
+CLSS public final static javax.websocket.ClientEndpointConfig$Builder
+ outer javax.websocket.ClientEndpointConfig
+meth public javax.websocket.ClientEndpointConfig build()
+meth public javax.websocket.ClientEndpointConfig$Builder configurator(javax.websocket.ClientEndpointConfig$Configurator)
+meth public javax.websocket.ClientEndpointConfig$Builder decoders(java.util.List<java.lang.Class<? extends javax.websocket.Decoder>>)
+meth public javax.websocket.ClientEndpointConfig$Builder encoders(java.util.List<java.lang.Class<? extends javax.websocket.Encoder>>)
+meth public javax.websocket.ClientEndpointConfig$Builder extensions(java.util.List<javax.websocket.Extension>)
+meth public javax.websocket.ClientEndpointConfig$Builder preferredSubprotocols(java.util.List<java.lang.String>)
+meth public static javax.websocket.ClientEndpointConfig$Builder create()
+supr java.lang.Object
+hfds clientEndpointConfigurator,decoders,encoders,extensions,preferredSubprotocols
+
+CLSS public static javax.websocket.ClientEndpointConfig$Configurator
+ outer javax.websocket.ClientEndpointConfig
+cons public <init>()
+meth public void afterResponse(javax.websocket.HandshakeResponse)
+meth public void beforeRequest(java.util.Map<java.lang.String,java.util.List<java.lang.String>>)
+supr java.lang.Object
+
+CLSS public javax.websocket.CloseReason
+cons public <init>(javax.websocket.CloseReason$CloseCode,java.lang.String)
+innr public abstract interface static CloseCode
+innr public final static !enum CloseCodes
+meth public java.lang.String getReasonPhrase()
+meth public java.lang.String toString()
+meth public javax.websocket.CloseReason$CloseCode getCloseCode()
+supr java.lang.Object
+hfds closeCode,reasonPhrase
+
+CLSS public abstract interface static javax.websocket.CloseReason$CloseCode
+ outer javax.websocket.CloseReason
+meth public abstract int getCode()
+
+CLSS public final static !enum javax.websocket.CloseReason$CloseCodes
+ outer javax.websocket.CloseReason
+fld public final static javax.websocket.CloseReason$CloseCodes CANNOT_ACCEPT
+fld public final static javax.websocket.CloseReason$CloseCodes CLOSED_ABNORMALLY
+fld public final static javax.websocket.CloseReason$CloseCodes GOING_AWAY
+fld public final static javax.websocket.CloseReason$CloseCodes NORMAL_CLOSURE
+fld public final static javax.websocket.CloseReason$CloseCodes NOT_CONSISTENT
+fld public final static javax.websocket.CloseReason$CloseCodes NO_EXTENSION
+fld public final static javax.websocket.CloseReason$CloseCodes NO_STATUS_CODE
+fld public final static javax.websocket.CloseReason$CloseCodes PROTOCOL_ERROR
+fld public final static javax.websocket.CloseReason$CloseCodes RESERVED
+fld public final static javax.websocket.CloseReason$CloseCodes SERVICE_RESTART
+fld public final static javax.websocket.CloseReason$CloseCodes TLS_HANDSHAKE_FAILURE
+fld public final static javax.websocket.CloseReason$CloseCodes TOO_BIG
+fld public final static javax.websocket.CloseReason$CloseCodes TRY_AGAIN_LATER
+fld public final static javax.websocket.CloseReason$CloseCodes UNEXPECTED_CONDITION
+fld public final static javax.websocket.CloseReason$CloseCodes VIOLATED_POLICY
+intf javax.websocket.CloseReason$CloseCode
+meth public int getCode()
+meth public static javax.websocket.CloseReason$CloseCode getCloseCode(int)
+meth public static javax.websocket.CloseReason$CloseCodes valueOf(java.lang.String)
+meth public static javax.websocket.CloseReason$CloseCodes[] values()
+supr java.lang.Enum<javax.websocket.CloseReason$CloseCodes>
+hfds code
+
+CLSS public abstract javax.websocket.ContainerProvider
+cons public <init>()
+meth protected abstract javax.websocket.WebSocketContainer getContainer()
+meth public static javax.websocket.WebSocketContainer getWebSocketContainer()
+supr java.lang.Object
+
+CLSS public javax.websocket.DecodeException
+cons public <init>(java.lang.String,java.lang.String)
+cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public <init>(java.nio.ByteBuffer,java.lang.String)
+cons public <init>(java.nio.ByteBuffer,java.lang.String,java.lang.Throwable)
+meth public java.lang.String getText()
+meth public java.nio.ByteBuffer getBytes()
+supr java.lang.Exception
+hfds bb,encodedString,serialVersionUID
+
+CLSS public abstract interface javax.websocket.Decoder
+innr public abstract interface static Binary
+innr public abstract interface static BinaryStream
+innr public abstract interface static Text
+innr public abstract interface static TextStream
+meth public abstract void destroy()
+meth public abstract void init(javax.websocket.EndpointConfig)
+
+CLSS public abstract interface static javax.websocket.Decoder$Binary<%0 extends java.lang.Object>
+ outer javax.websocket.Decoder
+intf javax.websocket.Decoder
+meth public abstract boolean willDecode(java.nio.ByteBuffer)
+meth public abstract {javax.websocket.Decoder$Binary%0} decode(java.nio.ByteBuffer) throws javax.websocket.DecodeException
+
+CLSS public abstract interface static javax.websocket.Decoder$BinaryStream<%0 extends java.lang.Object>
+ outer javax.websocket.Decoder
+intf javax.websocket.Decoder
+meth public abstract {javax.websocket.Decoder$BinaryStream%0} decode(java.io.InputStream) throws java.io.IOException,javax.websocket.DecodeException
+
+CLSS public abstract interface static javax.websocket.Decoder$Text<%0 extends java.lang.Object>
+ outer javax.websocket.Decoder
+intf javax.websocket.Decoder
+meth public abstract boolean willDecode(java.lang.String)
+meth public abstract {javax.websocket.Decoder$Text%0} decode(java.lang.String) throws javax.websocket.DecodeException
+
+CLSS public abstract interface static javax.websocket.Decoder$TextStream<%0 extends java.lang.Object>
+ outer javax.websocket.Decoder
+intf javax.websocket.Decoder
+meth public abstract {javax.websocket.Decoder$TextStream%0} decode(java.io.Reader) throws java.io.IOException,javax.websocket.DecodeException
+
+CLSS public javax.websocket.DeploymentException
+cons public <init>(java.lang.String)
+cons public <init>(java.lang.String,java.lang.Throwable)
+supr java.lang.Exception
+
+CLSS public javax.websocket.EncodeException
+cons public <init>(java.lang.Object,java.lang.String)
+cons public <init>(java.lang.Object,java.lang.String,java.lang.Throwable)
+meth public java.lang.Object getObject()
+supr java.lang.Exception
+hfds object,serialVersionUID
+
+CLSS public abstract interface javax.websocket.Encoder
+innr public abstract interface static Binary
+innr public abstract interface static BinaryStream
+innr public abstract interface static Text
+innr public abstract interface static TextStream
+meth public abstract void destroy()
+meth public abstract void init(javax.websocket.EndpointConfig)
+
+CLSS public abstract interface static javax.websocket.Encoder$Binary<%0 extends java.lang.Object>
+ outer javax.websocket.Encoder
+intf javax.websocket.Encoder
+meth public abstract java.nio.ByteBuffer encode({javax.websocket.Encoder$Binary%0}) throws javax.websocket.EncodeException
+
+CLSS public abstract interface static javax.websocket.Encoder$BinaryStream<%0 extends java.lang.Object>
+ outer javax.websocket.Encoder
+intf javax.websocket.Encoder
+meth public abstract void encode({javax.websocket.Encoder$BinaryStream%0},java.io.OutputStream) throws java.io.IOException,javax.websocket.EncodeException
+
+CLSS public abstract interface static javax.websocket.Encoder$Text<%0 extends java.lang.Object>
+ outer javax.websocket.Encoder
+intf javax.websocket.Encoder
+meth public abstract java.lang.String encode({javax.websocket.Encoder$Text%0}) throws javax.websocket.EncodeException
+
+CLSS public abstract interface static javax.websocket.Encoder$TextStream<%0 extends java.lang.Object>
+ outer javax.websocket.Encoder
+intf javax.websocket.Encoder
+meth public abstract void encode({javax.websocket.Encoder$TextStream%0},java.io.Writer) throws java.io.IOException,javax.websocket.EncodeException
+
+CLSS public abstract javax.websocket.Endpoint
+cons public <init>()
+meth public abstract void onOpen(javax.websocket.Session,javax.websocket.EndpointConfig)
+meth public void onClose(javax.websocket.Session,javax.websocket.CloseReason)
+meth public void onError(javax.websocket.Session,java.lang.Throwable)
+supr java.lang.Object
+
+CLSS public abstract interface javax.websocket.EndpointConfig
+meth public abstract java.util.List<java.lang.Class<? extends javax.websocket.Decoder>> getDecoders()
+meth public abstract java.util.List<java.lang.Class<? extends javax.websocket.Encoder>> getEncoders()
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getUserProperties()
+
+CLSS public abstract interface javax.websocket.Extension
+innr public abstract interface static Parameter
+meth public abstract java.lang.String getName()
+meth public abstract java.util.List<javax.websocket.Extension$Parameter> getParameters()
+
+CLSS public abstract interface static javax.websocket.Extension$Parameter
+ outer javax.websocket.Extension
+meth public abstract java.lang.String getName()
+meth public abstract java.lang.String getValue()
+
+CLSS public abstract interface javax.websocket.HandshakeResponse
+fld public final static java.lang.String SEC_WEBSOCKET_ACCEPT = "Sec-WebSocket-Accept"
+meth public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> getHeaders()
+
+CLSS public abstract interface javax.websocket.MessageHandler
+innr public abstract interface static Partial
+innr public abstract interface static Whole
+
+CLSS public abstract interface static javax.websocket.MessageHandler$Partial<%0 extends java.lang.Object>
+ outer javax.websocket.MessageHandler
+intf javax.websocket.MessageHandler
+meth public abstract void onMessage({javax.websocket.MessageHandler$Partial%0},boolean)
+
+CLSS public abstract interface static javax.websocket.MessageHandler$Whole<%0 extends java.lang.Object>
+ outer javax.websocket.MessageHandler
+intf javax.websocket.MessageHandler
+meth public abstract void onMessage({javax.websocket.MessageHandler$Whole%0})
+
+CLSS public abstract interface !annotation javax.websocket.OnClose
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.websocket.OnError
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation javax.websocket.OnMessage
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault long maxMessageSize()
+
+CLSS public abstract interface !annotation javax.websocket.OnOpen
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+intf java.lang.annotation.Annotation
+
+CLSS public abstract interface javax.websocket.PongMessage
+meth public abstract java.nio.ByteBuffer getApplicationData()
+
+CLSS public abstract interface javax.websocket.RemoteEndpoint
+innr public abstract interface static Async
+innr public abstract interface static Basic
+meth public abstract boolean getBatchingAllowed()
+meth public abstract void flushBatch() throws java.io.IOException
+meth public abstract void sendPing(java.nio.ByteBuffer) throws java.io.IOException
+meth public abstract void sendPong(java.nio.ByteBuffer) throws java.io.IOException
+meth public abstract void setBatchingAllowed(boolean) throws java.io.IOException
+
+CLSS public abstract interface static javax.websocket.RemoteEndpoint$Async
+ outer javax.websocket.RemoteEndpoint
+intf javax.websocket.RemoteEndpoint
+meth public abstract java.util.concurrent.Future<java.lang.Void> sendBinary(java.nio.ByteBuffer)
+meth public abstract java.util.concurrent.Future<java.lang.Void> sendObject(java.lang.Object)
+meth public abstract java.util.concurrent.Future<java.lang.Void> sendText(java.lang.String)
+meth public abstract long getSendTimeout()
+meth public abstract void sendBinary(java.nio.ByteBuffer,javax.websocket.SendHandler)
+meth public abstract void sendObject(java.lang.Object,javax.websocket.SendHandler)
+meth public abstract void sendText(java.lang.String,javax.websocket.SendHandler)
+meth public abstract void setSendTimeout(long)
+
+CLSS public abstract interface static javax.websocket.RemoteEndpoint$Basic
+ outer javax.websocket.RemoteEndpoint
+intf javax.websocket.RemoteEndpoint
+meth public abstract java.io.OutputStream getSendStream() throws java.io.IOException
+meth public abstract java.io.Writer getSendWriter() throws java.io.IOException
+meth public abstract void sendBinary(java.nio.ByteBuffer) throws java.io.IOException
+meth public abstract void sendBinary(java.nio.ByteBuffer,boolean) throws java.io.IOException
+meth public abstract void sendObject(java.lang.Object) throws java.io.IOException,javax.websocket.EncodeException
+meth public abstract void sendText(java.lang.String) throws java.io.IOException
+meth public abstract void sendText(java.lang.String,boolean) throws java.io.IOException
+
+CLSS public abstract interface javax.websocket.SendHandler
+meth public abstract void onResult(javax.websocket.SendResult)
+
+CLSS public final javax.websocket.SendResult
+cons public <init>()
+cons public <init>(java.lang.Throwable)
+meth public boolean isOK()
+meth public java.lang.Throwable getException()
+supr java.lang.Object
+hfds exception,isOK
+
+CLSS public abstract interface javax.websocket.Session
+intf java.io.Closeable
+meth public abstract boolean isOpen()
+meth public abstract boolean isSecure()
+meth public abstract int getMaxBinaryMessageBufferSize()
+meth public abstract int getMaxTextMessageBufferSize()
+meth public abstract java.lang.String getId()
+meth public abstract java.lang.String getNegotiatedSubprotocol()
+meth public abstract java.lang.String getProtocolVersion()
+meth public abstract java.lang.String getQueryString()
+meth public abstract java.net.URI getRequestURI()
+meth public abstract java.security.Principal getUserPrincipal()
+meth public abstract java.util.List<javax.websocket.Extension> getNegotiatedExtensions()
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getUserProperties()
+meth public abstract java.util.Map<java.lang.String,java.lang.String> getPathParameters()
+meth public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> getRequestParameterMap()
+meth public abstract java.util.Set<javax.websocket.MessageHandler> getMessageHandlers()
+meth public abstract java.util.Set<javax.websocket.Session> getOpenSessions()
+meth public abstract javax.websocket.RemoteEndpoint$Async getAsyncRemote()
+meth public abstract javax.websocket.RemoteEndpoint$Basic getBasicRemote()
+meth public abstract javax.websocket.WebSocketContainer getContainer()
+meth public abstract long getMaxIdleTimeout()
+meth public abstract void addMessageHandler(javax.websocket.MessageHandler)
+meth public abstract void close() throws java.io.IOException
+meth public abstract void close(javax.websocket.CloseReason) throws java.io.IOException
+meth public abstract void removeMessageHandler(javax.websocket.MessageHandler)
+meth public abstract void setMaxBinaryMessageBufferSize(int)
+meth public abstract void setMaxIdleTimeout(long)
+meth public abstract void setMaxTextMessageBufferSize(int)
+
+CLSS public javax.websocket.SessionException
+cons public <init>(java.lang.String,java.lang.Throwable,javax.websocket.Session)
+meth public javax.websocket.Session getSession()
+supr java.lang.Exception
+hfds serialVersionUID,session
+
+CLSS public abstract interface javax.websocket.WebSocketContainer
+meth public abstract int getDefaultMaxBinaryMessageBufferSize()
+meth public abstract int getDefaultMaxTextMessageBufferSize()
+meth public abstract java.util.Set<javax.websocket.Extension> getInstalledExtensions()
+meth public abstract javax.websocket.Session connectToServer(java.lang.Class<? extends javax.websocket.Endpoint>,javax.websocket.ClientEndpointConfig,java.net.URI) throws java.io.IOException,javax.websocket.DeploymentException
+meth public abstract javax.websocket.Session connectToServer(java.lang.Class<?>,java.net.URI) throws java.io.IOException,javax.websocket.DeploymentException
+meth public abstract javax.websocket.Session connectToServer(java.lang.Object,java.net.URI) throws java.io.IOException,javax.websocket.DeploymentException
+meth public abstract javax.websocket.Session connectToServer(javax.websocket.Endpoint,javax.websocket.ClientEndpointConfig,java.net.URI) throws java.io.IOException,javax.websocket.DeploymentException
+meth public abstract long getDefaultAsyncSendTimeout()
+meth public abstract long getDefaultMaxSessionIdleTimeout()
+meth public abstract void setAsyncSendTimeout(long)
+meth public abstract void setDefaultMaxBinaryMessageBufferSize(int)
+meth public abstract void setDefaultMaxSessionIdleTimeout(long)
+meth public abstract void setDefaultMaxTextMessageBufferSize(int)
+
+CLSS public abstract interface javax.websocket.server.HandshakeRequest
+fld public final static java.lang.String SEC_WEBSOCKET_EXTENSIONS = "Sec-WebSocket-Extensions"
+fld public final static java.lang.String SEC_WEBSOCKET_KEY = "Sec-WebSocket-Key"
+fld public final static java.lang.String SEC_WEBSOCKET_PROTOCOL = "Sec-WebSocket-Protocol"
+fld public final static java.lang.String SEC_WEBSOCKET_VERSION = "Sec-WebSocket-Version"
+meth public abstract boolean isUserInRole(java.lang.String)
+meth public abstract java.lang.Object getHttpSession()
+meth public abstract java.lang.String getQueryString()
+meth public abstract java.net.URI getRequestURI()
+meth public abstract java.security.Principal getUserPrincipal()
+meth public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> getHeaders()
+meth public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> getParameterMap()
+
+CLSS public abstract interface !annotation javax.websocket.server.PathParam
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[PARAMETER])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.String value()
+
+CLSS public abstract interface javax.websocket.server.ServerApplicationConfig
+meth public abstract java.util.Set<java.lang.Class<?>> getAnnotatedEndpointClasses(java.util.Set<java.lang.Class<?>>)
+meth public abstract java.util.Set<javax.websocket.server.ServerEndpointConfig> getEndpointConfigs(java.util.Set<java.lang.Class<? extends javax.websocket.Endpoint>>)
+
+CLSS public abstract interface javax.websocket.server.ServerContainer
+intf javax.websocket.WebSocketContainer
+meth public abstract void addEndpoint(java.lang.Class<?>) throws javax.websocket.DeploymentException
+meth public abstract void addEndpoint(javax.websocket.server.ServerEndpointConfig) throws javax.websocket.DeploymentException
+
+CLSS public abstract interface !annotation javax.websocket.server.ServerEndpoint
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.Class<? extends javax.websocket.Decoder>[] decoders()
+meth public abstract !hasdefault java.lang.Class<? extends javax.websocket.Encoder>[] encoders()
+meth public abstract !hasdefault java.lang.Class<? extends javax.websocket.server.ServerEndpointConfig$Configurator> configurator()
+meth public abstract !hasdefault java.lang.String[] subprotocols()
+meth public abstract java.lang.String value()
+
+CLSS public abstract interface javax.websocket.server.ServerEndpointConfig
+innr public final static Builder
+innr public static Configurator
+intf javax.websocket.EndpointConfig
+meth public abstract java.lang.Class<?> getEndpointClass()
+meth public abstract java.lang.String getPath()
+meth public abstract java.util.List<java.lang.String> getSubprotocols()
+meth public abstract java.util.List<javax.websocket.Extension> getExtensions()
+meth public abstract javax.websocket.server.ServerEndpointConfig$Configurator getConfigurator()
+
+CLSS public final static javax.websocket.server.ServerEndpointConfig$Builder
+ outer javax.websocket.server.ServerEndpointConfig
+meth public javax.websocket.server.ServerEndpointConfig build()
+meth public javax.websocket.server.ServerEndpointConfig$Builder configurator(javax.websocket.server.ServerEndpointConfig$Configurator)
+meth public javax.websocket.server.ServerEndpointConfig$Builder decoders(java.util.List<java.lang.Class<? extends javax.websocket.Decoder>>)
+meth public javax.websocket.server.ServerEndpointConfig$Builder encoders(java.util.List<java.lang.Class<? extends javax.websocket.Encoder>>)
+meth public javax.websocket.server.ServerEndpointConfig$Builder extensions(java.util.List<javax.websocket.Extension>)
+meth public javax.websocket.server.ServerEndpointConfig$Builder subprotocols(java.util.List<java.lang.String>)
+meth public static javax.websocket.server.ServerEndpointConfig$Builder create(java.lang.Class<?>,java.lang.String)
+supr java.lang.Object
+hfds decoders,encoders,endpointClass,extensions,path,serverEndpointConfigurator,subprotocols
+
+CLSS public static javax.websocket.server.ServerEndpointConfig$Configurator
+ outer javax.websocket.server.ServerEndpointConfig
+cons public <init>()
+meth public <%0 extends java.lang.Object> {%%0} getEndpointInstance(java.lang.Class<{%%0}>) throws java.lang.InstantiationException
+meth public boolean checkOrigin(java.lang.String)
+meth public java.lang.String getNegotiatedSubprotocol(java.util.List<java.lang.String>,java.util.List<java.lang.String>)
+meth public java.util.List<javax.websocket.Extension> getNegotiatedExtensions(java.util.List<javax.websocket.Extension>,java.util.List<javax.websocket.Extension>)
+meth public void modifyHandshake(javax.websocket.server.ServerEndpointConfig,javax.websocket.server.HandshakeRequest,javax.websocket.HandshakeResponse)
+supr java.lang.Object
+hfds containerDefaultConfigurator
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2012 International Business Machines Corp.
+  
+  See the NOTICE file distributed with this work for additional information
+  regarding copyright ownership. Licensed under the Apache License, 
+  Version 2.0 (the "License"); you may not use this file except in compliance
+  with the License. You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!-- **********************************************************************************************************
+      NOTE:  The Java test has a simplified copy of this JSL for ease in understanding the complicated
+      transition logic.
+      
+      PLEASE KEEP THAT IN SYNCH WITH THIS JSL TO ENABLE SOMEONE TO UNDERSTAND WHAT WE'RE DOING HERE ! 
+     ********************************************************************************************************** -->
+<job id="overrideOnAttributeValuesUponRestartBatchlet" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+	<step id="step1">
+		<batchlet ref="overrideOnAttributeValuesUponRestartBatchlet">
+			<properties>
+				<property name="execution.number" value="#{jobParameters['execution.number']}"/>
+			</properties>
+		</batchlet>		
+		<stop on="#{jobParameters['step1.stop']}"/>             <!-- 1st run = ES.STEP1, after = ES.STOP -->
+		<next on="#{jobParameters['step1.next']}" to="step2"/>  <!-- 1st run = ES.XXX, after = ES.STEP1 -->		
+		<fail on="*" exit-status="FAILURE"/>  
+	</step>
+	<step id="step2">
+		<batchlet ref="overrideOnAttributeValuesUponRestartBatchlet">
+			<properties>
+				<property name="execution.number" value="#{jobParameters['execution.number']}"/>
+			</properties>
+		</batchlet>		
+		<fail on="#{jobParameters['step2.fail']}" exit-status="EXPECTED_FAILURE"/>  <!-- 2nd run = ES.STEP2, after = ES.FAIL -->
+		<next on="#{jobParameters['step2.next']}" to="step3"/>             <!-- 2nd run = ES.XXX, after = ES.STEP2 -->		
+		<fail on="*" exit-status="FAILURE"/>                <!-- Distinguish between first /fail element via @exit-status. --> 
+	</step>
+	<step id="step3">
+		<batchlet ref="overrideOnAttributeValuesUponRestartBatchlet">
+			<properties>
+				<property name="execution.number" value="#{jobParameters['execution.number']}"/>
+			</properties>
+		</batchlet>				
+		<end on="ES.STEP3"/>
+		<fail on="*" exit-status="FAILURE"/>
+	</step>
+</job>

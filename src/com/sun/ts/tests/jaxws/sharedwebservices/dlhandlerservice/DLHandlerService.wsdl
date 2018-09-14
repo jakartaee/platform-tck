@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+       name="DLHandlerService"
+       targetNamespace="http://dlhandlerservice.org/wsdl"
+       xmlns:types="http://dlhandlerservice.org/types"
+       xmlns="http://schemas.xmlsoap.org/wsdl/"
+       xmlns:tns="http://dlhandlerservice.org/wsdl"
+       xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+       xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+       xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dlhandlerservice.org/types" targetNamespace="http://dlhandlerservice.org/types">
+
+      <element name="MyAction" type="tns:MyActionType"/>
+      <element name="MyAction2" type="tns:MyActionType"/>
+      <element name="MyAction3" type="tns:MyActionType"/>
+      <complexType name="MyActionType">
+            <sequence>
+                <element name="action" type="xsd:string"/>
+                <element name="testType" type="xsd:string"/>
+                <element name="harnessloghost" type="xsd:string"/>
+                <element name="harnesslogport" type="xsd:string"/>
+                <element name="harnesslogtraceflag" type="xsd:string"/>
+            </sequence>
+      </complexType>
+      <element name="MyResult" type="tns:MyResultType"/>
+      <element name="MyResult3" type="tns:MyResultType"/>
+      <complexType name="MyResultType">
+            <sequence>
+                <element name="action" type="xsd:string"/>
+                <element name="testType" type="xsd:string"/>
+                <element name="errors" type="xsd:string"/>
+                <element name="harnessloghost" type="xsd:string"/>
+                <element name="harnesslogport" type="xsd:string"/>
+                <element name="harnesslogtraceflag" type="xsd:string"/>
+            </sequence>
+      </complexType>
+      <element name="MyResult2">
+        <complexType>
+            <sequence>
+                <element name="action" type="xsd:string"/>
+                <element name="testType" type="xsd:string"/>
+                <element name="result" type="string" minOccurs="0" maxOccurs="unbounded"/>
+                <element name="errors" type="xsd:string"/>
+                <element name="harnessloghost" type="xsd:string"/>
+                <element name="harnesslogport" type="xsd:string"/>
+                <element name="harnesslogtraceflag" type="xsd:string"/>
+            </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrackerDataAction">
+        <complexType>
+            <sequence>
+                <element name="action" type="xsd:string"/>
+                <element name="harnessloghost" type="xsd:string"/>
+                <element name="harnesslogport" type="xsd:string"/>
+                <element name="harnesslogtraceflag" type="xsd:string"/>
+            </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrackerDataResult">
+        <complexType>
+            <sequence>
+                 <element name="result" type="string" minOccurs="0" maxOccurs="unbounded"/>
+                 <element name="harnessloghost" type="xsd:string"/>
+                 <element name="harnesslogport" type="xsd:string"/>
+                 <element name="harnesslogtraceflag" type="xsd:string"/>
+            </sequence>
+        </complexType>
+      </element>
+
+      <element name="MyHeaderElement" type="tns:MyHeaderType"/>
+      <element name="MyHeaderResponseElement" type="tns:MyHeaderType"/>
+      <complexType name="MyHeaderType">
+            <sequence>
+                <element name="header" type="string"/>
+            </sequence>
+      </complexType>
+    </schema>
+  </types>
+  <message name="Hello" >
+    <part name="string" element="types:MyAction" />
+  </message>
+  <message name="HelloResponse">
+    <part name="result" element="types:MyResult" />
+  </message>
+  <message name="HelloHeader" >
+    <part name="string" element="types:MyAction3" />
+    <part name="myHeader" element="types:MyHeaderElement"/>
+  </message>
+  <message name="HelloHeaderResponse">
+    <part name="result" element="types:MyResult3" />
+    <part name="myHeader" element="types:MyHeaderElement"/>
+  </message>
+  <message name="HelloAttachment" >
+    <part name="string" element="types:MyAction2" />
+    <part name="attach1" type="xsd:string"/>
+  </message>
+  <message name="HelloAttachmentResponse">
+    <part name="result" element="types:MyResult2" />
+    <part name="attach1" type="xsd:string"/>
+  </message>
+  <message name="Hello2" >
+    <part name="action" element="types:MyAction" />
+  </message>
+  <message name="Hello2Response">
+    <part name="result" element="types:MyResult" />
+  </message>
+  <message name="Hello3" >
+    <part name="action" element="types:MyAction" />
+  </message>
+  <message name="Hello3Response">
+    <part name="result" element="types:MyResult" />
+  </message>
+  <message name="GetTrackerData" >
+    <part name="action" element="types:GetTrackerDataAction" />
+  </message>
+  <message name="GetTrackerDataResponse">
+    <part name="result" element="types:GetTrackerDataResult" />
+  </message>
+  <portType name="Hello">
+    <operation name="doHandlerTest1">
+      <input message="tns:Hello" />
+      <output message="tns:HelloResponse" />
+    </operation>
+    <operation name="doHandlerHeaderTest1">
+      <input message="tns:HelloHeader" />
+      <output message="tns:HelloHeaderResponse" />
+    </operation>
+    <operation name="doHandlerAttachmentTest">
+      <input message="tns:HelloAttachment" />
+      <output message="tns:HelloAttachmentResponse" />
+    </operation>
+  </portType>
+  <portType name="Hello2">
+    <operation name="doHandlerTest2">
+      <input message="tns:Hello2" />
+      <output message="tns:Hello2Response" />
+    </operation>
+  </portType>
+  <portType name="Hello3">
+    <operation name="doHandlerTest3">
+      <input message="tns:Hello3" />
+      <output message="tns:Hello3Response" />
+    </operation>
+  </portType>
+  <portType name="GetTrackerData">
+    <operation name="getTrackerData">
+      <input message="tns:GetTrackerData" />
+      <output message="tns:GetTrackerDataResponse" />
+    </operation>
+  </portType>
+  <binding name="HelloBinding" type="tns:Hello">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="doHandlerTest1">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="doHandlerHeaderTest1">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body parts="string" use="literal" />
+        <soap:header message="tns:HelloHeader" part="myHeader" use="literal"/>
+      </input>
+      <output>
+        <soap:body parts="result" use="literal"/>
+        <soap:header message="tns:HelloHeaderResponse" part="myHeader" use="literal"/>
+      </output>
+    </operation>
+    <operation name="doHandlerAttachmentTest">
+      <soap:operation soapAction="" />
+      <input>
+         <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="string" use="literal"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+         </mime:multipartRelated>
+      </input>
+      <output>
+         <mime:multipartRelated>
+            <mime:part>
+              <soap:body parts="result" use="literal"/>
+            </mime:part>
+            <mime:part>
+              <mime:content part="attach1" type="text/plain"/>
+            </mime:part>
+         </mime:multipartRelated>
+      </output>
+    </operation>
+  </binding>
+  <binding name="Hello2Binding" type="tns:Hello2">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="doHandlerTest2">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="Hello3Binding" type="tns:Hello3">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="doHandlerTest3">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="GetTrackerDataBinding" type="tns:GetTrackerData">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="getTrackerData">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="DLHandlerService">
+    <port name="HelloPort" binding="tns:HelloBinding">
+      <soap:address location="http://foo:9999/bar" />
+    </port>
+    <port name="Hello2Port" binding="tns:Hello2Binding">
+      <soap:address location="http://foo:9999/bar" />
+    </port>
+    <port name="Hello3Port" binding="tns:Hello3Binding">
+      <soap:address location="http://foo:9999/bar" />
+    </port>
+    <port name="GetTrackerDataPort" binding="tns:GetTrackerDataBinding">
+      <soap:address location="http://foo:9999/bar" />
+    </port>
+  </service>
+</definitions>
+

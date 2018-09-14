@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb_ee_bb_localaccess_ebaccesstest" basedir="." default="usage">
+<import file="../../../../../../../../../../bin/xml/ts.import.xml"/> 
+
+  <target name="package">
+
+      <ts.ejbjar descriptor="bb_localaccess_ebaccesstest_ejb.xml" archivename="bb_localaccess_ebaccesstest">
+        <fileset dir="${class.dir}"
+                 includes="com/sun/ts/tests/ejb/ee/bb/entity/util/DBSupport.class"/>
+      </ts.ejbjar>
+
+      <ts.clientjar descriptor="bb_localaccess_ebaccesstest_client.xml"
+                    archivename="bb_localaccess_ebaccesstest"
+                    mainclass="com.sun.ts.tests.ejb.ee.bb.localaccess.ebaccesstest.Client"
+                    excludedfiles="com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/AEJB.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/ALocal.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/ALocalHome.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/BEJB.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/BLocal.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/BLocalHome.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/CEJB.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/CLocal.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/CLocalHome.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/DEJB.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/DLocal.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/DLocalHome.class,
+ com/sun/ts/tests/ejb/ee/bb/localaccess/ebaccesstest/TestBeanEJB.class"/>
+
+      <ts.ear archivename="bb_localaccess_ebaccesstest"/>
+
+  </target>
+
+</project>

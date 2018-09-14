@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- =============================== Chapter 13 ============================ -->
+
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+       There must be a single JavaScript resource that exists with the resource
+       identifier jsf.js
+    </description>
+    <location chapter="13" section="1"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+       The jsf.js must exist under the resource library javax.faces, following
+       the conventions in Section 2.6 “Resource Handling”.
+    </description>
+    <location chapter="13" section="1"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+       If the OpenAjax library is available, libraries must register themselves
+       using OpenAjax.registerLibrary() at the time when the JavaScript files
+       are fetched and parsed by the browser’s JavaScript engine.
+    </description>
+    <location chapter="13" section="2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+      Any implementation that intends to use the JavaServer Faces 2.0 JavaScript
+      API must define a top level JavaScript object name jsf, whose type is a
+      JavaScript associative array. Within that top level JavaScript object,
+      found in the OpenAjax Hub, there must be a property named ajax..
+    </description>
+    <location chapter="13" section="2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+       All Ajax requests must be put into a client side request queue before
+       they are sent to the server to ensure Ajax requests are processed in the
+       order they are sent.
+    </description>
+    <location chapter="13" section="3.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+       After a request is sent, the Ajax request callback function must remove
+       the request from the queue (also known as dequeuing). If the request
+       completed successfully, it must be removed from the queue. If there was
+       an error, the client must be notified, but the request must still be
+       removed from the queue
+    </description>
+    <location chapter="13" section="3.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="false">
+    <id>__NUMBER__</id>
+    <description>
+       The Ajax request callback function is called when the Ajax
+       request/response interaction is complete. This function must perform the
+       following actions:
+    </description>
+    <location chapter="13" section="3.3.3"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                If the return status is &gt;= 200 and &lt; 300, send a “complete”
+                event following Section13.3.5.3 “Sending Events”.
+            </description>
+            <location chapter="13" section="3.3.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                If the return status is outside the range mentioned above, send
+                a “complete” event following Section13.3.5.3 “Sending Events”.
+            </description>
+            <location chapter="13" section="3.3.1"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="false">
+            <id>__NUMBER__.3</id>
+            <description>
+                Regardless of whether the request completed successfully or not:
+            </description>
+            <location chapter="13" section="3.3.1"/>
+            <sub-assertions>
+                <assertion required="true" impl-spec="false"
+                           defined-by="technology" status="active"
+                           testable="true">
+                    <id>__NUMBER__.3.1</id>
+                    <description>
+                        remove the completed requests (Ajax readystate 4) from
+                        the request queue (dequeue) - specifically the requests
+                        that have been on the queue the longest.
+                    </description>
+                    <location chapter="13" section="3.3.1"/>
+                </assertion>
+                <assertion required="true" impl-spec="false"
+                           defined-by="technology" status="active"
+                           testable="true">
+                    <id>__NUMBER__.3.1</id>
+                    <description>
+                        find the next oldest unprocessed (Ajax readystate 0)
+                        request on the queue, and send it. The implementation
+                        must ensure that the request that is sent does not enter
+                        the queue again.
+                    </description>
+                    <location chapter="13" section="3.3.1"/>
+                </assertion>
+            </sub-assertions>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The implementation of jsf.ajax.response must handle the response as
+        outlined in the JavaScript documentation for jsf.ajax.response. The
+        elements in the response must be processed in the
+        order they appear in the response.
+    </description>
+    <location chapter="13" section="3.4"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The implementation must ensure the JavaScript function that is
+        registered for an Ajax request must be called in accordance with the
+        events outlined in SectionTABLE14-3 “Events”.
+    </description>
+    <location chapter="13" section="3.5.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="false">
+    <id>__NUMBER__</id>
+    <description>
+        The implementation must send events to the runtime as follows:
+    </description>
+    <location chapter="13" section="3.5.3"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Construct a data payload for events using the properties
+                described in SectionTABLE14-4 “Event Data Payload”
+            </description>
+            <location chapter="13" section="3.5.3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                If an event handler function was registered with the “onevent”
+                attribute (Section13.3.5.1 “Monitoring Events For An Ajax
+                Request”) call it passing the data payload.
+            </description>
+            <location chapter="13" section="3.5.3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                If any event handling functions were registered with the
+                “addOnEvent” function (Section13.3.5.2 “Monitoring Events
+                For All Ajax Requests”) call them passing the data payload.
+            </description>
+            <location chapter="13" section="3.5.3"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The implementation must ensure the JavaScript function that is
+        registered for an Ajax request must be called in accordance when the
+        request status code from the server is as outlined in SectionTABLE14-5
+        “Errors”.
+    </description>
+    <location chapter="13" section="3.6.1"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The implementation must ensure the JavaScript function that is
+        registered must be called in accordance with the errors outlined in
+        SectionTABLE14-5 “Errors”.
+    </description>
+    <location chapter="13" section="3.6.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="false">
+    <id>__NUMBER__</id>
+    <description>
+        The implementation must signal errors to the runtime as follows:
+    </description>
+    <location chapter="13" section="3.6.3"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Construct a data payload for errors using the properties
+                described in SectionTABLE14-6 “Error Data Payload”.
+            </description>
+            <location chapter="13" section="3.6.3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                If an error handler function was registered with the “onerror”
+                attribute (Section13.3.6.1 “Handling Errors For An Ajax
+                Request”) call it passing the data payload.
+            </description>
+            <location chapter="13" section="3.6.3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                If any error handling functions were registered with the
+                “addOnError” function (Section13.3.6.2 “Handling Errors For All
+                Ajax Requests”) call them passing the data payload.
+            </description>
+            <location chapter="13" section="3.6.3"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.4</id>
+            <description>
+                If the project stage is “development” (see Section14.5
+                “Determining An Application’s Project Stage”) use JavaScript
+                “alert” to signal the error(s).
+            </description>
+            <location chapter="13" section="3.6.3"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="false">
+    <id>__NUMBER__</id>
+    <description>
+        JavaServer Faces Ajax frameworks must ensure exception information is
+        written to the response in the format:
+    </description>
+    <location chapter="13" section="3.7"/>
+    <sub-assertions>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.1</id>
+            <description>
+                Extract the “class” from the “Throwable” object and write that
+                as the contents of error-name in the response.
+            </description>
+            <location chapter="13" section="3.7"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.2</id>
+            <description>
+                Extract the “cause” from the “Throwable” object if it is
+                available and write that as the contents of error-message in the
+                response. If “cause” is not available, write the string returned
+                from “Throwable.getMessage()”.
+            </description>
+            <location chapter="13" section="3.7"/>
+        </assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+            <id>__NUMBER__.3</id>
+            <description>
+                Implementations must ensure that an ExceptionHandler suitable
+                for writing exceptions to the partial response is installed if
+                the current request required an Ajax response
+                (PartialViewContext.isAjaxRequest() returns true).
+            </description>
+            <location chapter="13" section="3.7"/>
+        </assertion>
+    </sub-assertions>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The UIViewRoot processDecodes, processValidators and processUpdates
+        methods must determine if the request is a partial request using the
+        FacesContext.isPartialRequest() method.
+    </description>
+    <location chapter="13" section="4.2"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+        The UIViewRoot getRendersChildren and encodeChildren methods must
+        determine if the request is an Ajax request using the
+        FacesContext.isAjaxRequest() method.
+    </description>
+    <location chapter="13" section="4.3"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+    Implementations must adhere to the response format as specified in the
+    JavaScript docs for jsf.ajax.response.
+    </description>
+    <location chapter="13" section="4.4"/>
+</assertion>
+<assertion required="true" impl-spec="false" defined-by="technology"
+           status="active" testable="true">
+    <id>__NUMBER__</id>
+    <description>
+    Implementations must adhere to the response format as specified in the
+    JavaScript docs for jsf.ajax.response.
+    </description>
+    <location chapter="13" section="4.4"/>
+</assertion>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<java-wsdl-mapping xmlns="http://java.sun.com/xml/ns/j2ee"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:wsdl="http://handlerservice1.org/wsdl"
+                   xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd"
+                   version="1.1">
+
+  <package-mapping>
+    <package-type>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow</package-type>
+    <namespaceURI>http://handlerservice1.org/wsdl</namespaceURI>
+  </package-mapping>
+
+  <service-interface-mapping>
+    <service-interface>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow.HandlerService1</service-interface>
+    <wsdl-service-name>wsdl:HandlerService1</wsdl-service-name>
+    <port-mapping>
+      <port-name>HelloPort</port-name>
+      <java-port-name>HelloPort</java-port-name>
+    </port-mapping>
+    <port-mapping>
+      <port-name>Hello2Port</port-name>
+      <java-port-name>Hello2Port</java-port-name>
+    </port-mapping>
+  </service-interface-mapping>
+
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow.Hello2</service-endpoint-interface>
+    <wsdl-port-type>wsdl:Hello2</wsdl-port-type>
+    <wsdl-binding>wsdl:Hello2Binding</wsdl-binding>
+    <service-endpoint-method-mapping>
+      <java-method-name>hello</java-method-name>
+      <wsdl-operation>hello</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message>wsdl:hello</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message>wsdl:helloResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+
+  <service-endpoint-interface-mapping>
+    <service-endpoint-interface>com.sun.ts.tests.webservices.handlerEjb.HandlerFlow.Hello</service-endpoint-interface>
+    <wsdl-port-type>wsdl:Hello</wsdl-port-type>
+    <wsdl-binding>wsdl:HelloBinding</wsdl-binding>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>hello</java-method-name>
+      <wsdl-operation>hello</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message>wsdl:hello</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message>wsdl:helloResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>hi</java-method-name>
+      <wsdl-operation>hi</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message>wsdl:hi</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message>wsdl:hiResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>howdy</java-method-name>
+      <wsdl-operation>howdy</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message>wsdl:howdy</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message>wsdl:howdyResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>wasInitCalled</java-method-name>
+      <wsdl-operation>wasInitCalled</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message>wsdl:wasInitCalledResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>enventry</java-method-name>
+      <wsdl-operation>enventry</wsdl-operation>
+      <method-param-parts-mapping>
+        <param-position>0</param-position>
+        <param-type>java.lang.String</param-type>
+        <wsdl-message-mapping>
+          <wsdl-message>wsdl:enventry</wsdl-message>
+          <wsdl-message-part-name>String_1</wsdl-message-part-name>
+          <parameter-mode>IN</parameter-mode>
+        </wsdl-message-mapping>
+      </method-param-parts-mapping>
+      <wsdl-return-value-mapping>
+        <method-return-value>java.lang.String</method-return-value>
+        <wsdl-message>wsdl:enventryResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>getServletContextTest</java-method-name>
+      <wsdl-operation>getServletContextTest</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message>wsdl:getServletContextTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>getUserPrincipalTest</java-method-name>
+      <wsdl-operation>getUserPrincipalTest</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message>wsdl:getUserPrincipalTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>wasDestroyCalled</java-method-name>
+      <wsdl-operation>wasDestroyCalled</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message>wsdl:wasDestroyCalledResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>getHttpSessionTest</java-method-name>
+      <wsdl-operation>getHttpSessionTest</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message>wsdl:getHttpSessionTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+
+    <service-endpoint-method-mapping>
+      <java-method-name>getMessageContextTest</java-method-name>
+      <wsdl-operation>getMessageContextTest</wsdl-operation>
+      <wsdl-return-value-mapping>
+        <method-return-value>boolean</method-return-value>
+        <wsdl-message>wsdl:getMessageContextTestResponse</wsdl-message>
+        <wsdl-message-part-name>result</wsdl-message-part-name>
+      </wsdl-return-value-mapping>
+    </service-endpoint-method-mapping>
+  </service-endpoint-interface-mapping>
+</java-wsdl-mapping>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="ejb32" default="usage" basedir=".">
+    <property name="app.name" value="ejb32_mdb_modernconnector"/>
+    <property name="client" value="com.sun.ts.tests.ejb32.mdb.modernconnector.Client"/>
+    <property name="pkg.dir" value="com/sun/ts/tests/ejb32/mdb/modernconnector"/>
+
+    <property name="ra.jar.classes"
+              value="
+com/sun/ts/tests/ejb32/mdb/modernconnector/connector/EventMonitor.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/connector/EventMonitorConfig.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/connector/NoUseListener.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/connector/EventMonitorAdapter.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/connector/EventMonitorAdapter$ActivatedEndpoint.class
+    "/>
+
+    <property name="ejb.jar.classes"
+              value="
+com/sun/ts/tests/ejb32/mdb/modernconnector/ejb/BatchEventMonitorBean.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/ejb/EventLoggerBean.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/ejb/EventLoggerRemote.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/ejb/LoggerInterceptor.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/ejb/OnlineEventMonitorBean.class
+    "/>
+
+    <property name="appclient.jar.classes"
+              value="
+com/sun/ts/lib/harness/EETest$Fault.class,
+com/sun/ts/lib/harness/EETest$SetupException.class,
+com/sun/ts/lib/harness/EETest.class,
+com/sun/ts/tests/ejb30/common/helper/TLogger.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/Client.class,
+com/sun/ts/tests/ejb32/mdb/modernconnector/ejb/EventLoggerRemote.class
+    "/>
+
+    <!-- ============================================================ -->
+    <!-- overriding target in import.xml to package the connector -->
+    <target name="pre.package">
+        <jar destfile="${dist.dir}/${pkg.dir}/${app.name}_ra.jar" includes="${ra.jar.classes}"
+             basedir="${class.dir}" update="false"/>
+        <jar destfile="${dist.dir}/${pkg.dir}/${app.name}_ra.rar" includes="${app.name}_ra.jar"
+             basedir="${dist.dir}/${pkg.dir}" update="false">
+            <metainf dir="connector/META-INF">
+                <include name="ra.xml"/>
+            </metainf>
+        </jar>
+    </target>
+
+    <!-- ============================================================ -->
+    <!-- overriding target in import.xml to customize the ear packaging -->
+    <target name="package.ear">
+        <ts.ear descriptor="application.xml" archivename="${app.name}"
+                excludedfiles="*standalone_component*ar"
+                deletecomponentarchives="${deletecomponentarchives}"
+                includedefaultfiles="false">
+            <fileset dir="${dist.dir}/${pkg.dir}" includes="${appclient.archive}"/>
+            <fileset dir="${dist.dir}/${pkg.dir}" includes="${ejb3.archive}"/>
+            <fileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ra.rar"/>
+        </ts.ear>
+    </target>
+
+    <import file="../../../ejb30/common/import.xml"/>
+
+</project>

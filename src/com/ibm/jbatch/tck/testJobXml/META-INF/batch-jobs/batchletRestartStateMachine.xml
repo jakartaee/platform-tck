@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2012 International Business Machines Corp.
+  
+  See the NOTICE file distributed with this work for additional information
+  regarding copyright ownership. Licensed under the Apache License, 
+  Version 2.0 (the "License"); you may not use this file except in compliance
+  with the License. You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!-- **********************************************************************************************************
+      NOTE:  The Java test has a simplified copy of this JSL for ease in understanding the complicated
+      transition logic.
+      
+      PLEASE KEEP THAT IN SYNCH WITH THIS JSL TO ENABLE SOMEONE TO UNDERSTAND WHAT WE'RE DOING HERE ! 
+     ********************************************************************************************************** -->
+<job id="batchletRestartStateMachine" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+	<step id="step1" allow-start-if-complete="true">
+		<batchlet ref="batchletRestartStateMachineImpl">
+			<properties>
+				<property name="execution.number" value="#{jobParameters['execution.number']}"/>
+			</properties>
+		</batchlet>		
+		<!-- Remember these aren't regular expressions, so '.' is just a regular character. -->
+		<stop on="STOP.1" exit-status="EXECUTION.1"/> 		
+		<stop on="STOP.2" exit-status="EXECUTION.2" restart="step2" />
+		<stop on="STOP.?" restart="step3" exit-status="EXECUTION.5"/>
+        <fail on="ILLEGAL.STATE"/>
+		<next on="*" to="step2"/>
+	</step>
+	<step id="step2">
+		<batchlet ref="batchletRestartStateMachineImpl">
+			<properties>
+				<property name="execution.number" value="#{jobParameters['execution.number']}"/>
+			</properties>
+		</batchlet>		
+		<next on="GO" to="step3"/>
+        <fail on="ILLEGAL.STATE"/>
+		<next on="*" to="step4"/> <!-- Shouldn't happen, here to test earlier exit status is persisted -->
+	</step>
+	<step id="step3" allow-start-if-complete="true">
+		<batchlet ref="batchletRestartStateMachineImpl">
+			<properties>
+				<property name="execution.number" value="#{jobParameters['execution.number']}"/>
+			</properties>
+		</batchlet>		
+		<stop on="STOP.3" exit-status="EXECUTION.3"/>
+		<stop on="STOP.4" exit-status="EXECUTION.4"/>
+        <fail on="ILLEGAL.STATE"/>
+		<next on="*" to="step4"/>		
+	</step>	
+	<step id="step4" >
+		<batchlet ref="batchletRestartStateMachineImpl">
+			<properties>
+				<property name="execution.number" value="#{jobParameters['execution.number']}"/>
+			</properties>
+		</batchlet>		
+        <fail on="ILLEGAL.STATE"/>
+		<end on="*" exit-status="EXECUTION.6"/>
+	</step>			
+</job>

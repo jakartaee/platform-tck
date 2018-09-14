@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!--
+ $Id$
+-->
+<!-- ************************************************************ -->
+<!-- This build file builds the signature test framework classes. -->
+<!-- Signature tests utilizing this framework should add a build  -->
+<!-- target to ensure the framework is built before their         -->
+<!-- signature test classes are built.  It would also be nice if  -->
+<!-- they added a dependency from their clean target to this      -->
+<!-- clean.framework target.  See the Java EE signature test as   -->
+<!-- an example.                                                     -->
+<!-- ************************************************************ -->
+<project name="signaturetest" basedir="." default="usage">
+    <import file="../../../../../../bin/xml/ts.import.xml"/> 
+  
+    <dirname property="signaturetest.basedir" file="${ant.file.signaturetest}"/>
+    <property name="fw.pkg.dir" value="com/sun/ts/tests/signaturetest"/>
+    <property name="sig.repository.dir"    
+              value="${ts.home}/src/${fw.pkg.dir}/signature-repository"/>
+  
+    <target name="compile">
+        <ts.javac includes="${fw.pkg.dir}/*.java">
+            <classpath>
+                <pathelement location="${ts.home}/lib/apiCheck.jar"/>
+                <pathelement location="${ts.home}/lib/javatest.jar"/>
+                <pathelement location="${ts.home}/lib/tsharness.jar"/>
+                <pathelement path="${class.dir}"/>
+            </classpath>
+        </ts.javac>
+    </target>
+
+    <target name="clean">
+        <ts.clean.classes>
+            <fileset dir="${class.dir}/${fw.pkg.dir}" includes="*"/>
+        </ts.clean.classes>
+    </target>
+    
+    <target name="usage">
+        <echo message="Available targets include:"/>
+        <echo message="  usage          : prints this message"/>
+        <echo message="  build: builds the signature test framework"/>
+        <echo message="  clean: removes the signature test framework classes"/>
+    </target>
+
+</project>

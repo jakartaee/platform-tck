@@ -1,0 +1,123 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jsf_resource_pkg_webapproot" basedir="." default="usage">
+    
+    <!-- IMPORTS -->
+    <import file="../../common/resource.common.xml"/>
+    
+    <property name="app.name" value="jsf_resource_webapproot_web"/>  
+
+    <target name="package">
+        <ts.war archivename="jsf_resource_webapproot"
+                descriptor="jsf_resource_webapproot_web.xml">
+            <zipfileset dir="${class.dir}"
+                        includes="${jsf.common}/servlets/HttpTCKServlet.class,
+                        ${jsf.common}/util/JSFTestUtil.class"
+                        prefix="WEB-INF/classes"/>
+            <zipfileset dir="${ts.home}/weblib" includes="*.jar"
+                        prefix="WEB-INF/lib"/>
+            
+            <!-- Used by reourceResPkgTest -->
+            <zipfileset dir="${common.images}"
+                        includes="duke-boxer.gif"
+                        prefix="resources"/>
+            
+            <!-- Used by reourceLibResPkgTest -->
+            <zipfileset dir="${common.images}"
+                        includes="duke-boxer-1.gif"
+                        prefix="resources/images"/>
+            
+            <!-- Used by reourceLibVerResPkgTest -->
+            <zipfileset dir="${common.images}/1_0"
+                        includes="gun.sm.gif"
+                        prefix="resources/lib/1_0"/>
+            <zipfileset dir="${common.images}/2_0"
+                        includes="gun.sm.gif"
+                        prefix="resources/lib/2_0"/> 
+            
+            <!-- Used by reourceResVerPkgTest -->
+            <zipfileset dir="${common.stylesheets}"
+                        includes="1_2_3.css"
+                        prefix="resources/time.css"/>
+            <zipfileset dir="${common.stylesheets}"
+                        includes="3_2_1.css"
+                        prefix="resources/time.css"/>
+            
+            <!-- Used by reourceLibVerResVerNegativePkgTest -->       
+            <zipfileset dir="${common.stylesheets}"
+                        includes="1_2_3.css"
+                        prefix="resources/styles/1_0/background.css"/>
+            
+            <!-- Used by reourceLeadingUSNegativePkgTest -->
+            <zipfileset dir="${common.stylesheets}"
+                        includes="_99.css"
+                        prefix="resources/styles/2_0/leading.css"/>
+            
+            <!-- Used by reourceNoUSNegetivePkgTest -->
+            <zipfileset dir="${common.stylesheets}"
+                        includes="99-100-101.css"
+                        prefix="resources/styles/2_0/noUnderscore.css"/>
+            
+            <!-- Used by reourceNoFileExtNegetivePkgTest -->
+            <zipfileset dir="${common.images}"
+                        includes="negative_test_image"
+                        prefix="resources/"/>
+            
+            <!-- Used by reourceClassPathNoFileExtVerNegetivePkgTest -->
+            <zipfileset dir="${common.stylesheets}"
+                        includes="1_1_1"
+                        prefix="resources/dougd.css"/>
+            
+            <!-- Used by reourceClassPathLibVerResNegativePkgTest -->
+            <zipfileset dir="${common.stylesheets}"
+                        includes="never-found.css"
+                        prefix="resources/styles/1_0"/>
+            
+            <!-- Used by reourceLibVerResVerPkgTest -->
+            <zipfileset dir="${common.stylesheets}"
+                        includes="1_2_3.css"
+                        prefix="resources/styles/1_0/forground.css"/>
+            <zipfileset dir="${common.stylesheets}"
+                        includes="3_2_1.css"
+                        prefix="resources/styles/2_0/foreground.css"/>
+            
+            <!-- Used by Locale Tests -->
+            <zipfileset dir="${common.locales}/de"
+                        includes="duke-de.gif"
+                        prefix="resources/de"/>
+            <zipfileset dir="${common.locales}/en"
+                        includes="duke-en.gif"
+                        prefix="resources/en/locLib"/>
+            <zipfileset dir="${common.locales}/fr"
+                        includes="10_01.gif"
+                        prefix="resources/fr/duke-fr.gif"/>
+            <zipfileset dir="${common.locales}"
+                        includes="faces-config.xml"
+                        prefix="WEB-INF"/>
+            <zipfileset dir="${common.locales}"
+                        includes="*.properties"
+                        prefix="WEB-INF/classes/com/sun/ts/tests/jsf/spec/resource/common"/>
+            
+            <zipfileset dir="${class.dir}" 
+                        includes="${tests.pkg.dir}/jsf/spec/resource/common/util/ResourceChecker.class"
+                        prefix="WEB-INF/classes"/>
+        </ts.war>       
+    </target>
+    
+</project>

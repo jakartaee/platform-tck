@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="warMirrorSEI" basedir="." default="usage">
+
+  <property name="app.name" value="WSWarMirrorSEI"/>
+  <property name="client.app.name" value="WSWarMirrorSEIClient"/>
+  <property name="client.class" value= "com.sun.ts.tests.webservices12.deploy.warMirrorSEI.Client" />
+
+  <property name="impl.class" value="${pkg.dir}/HelloWsWar.class" />
+  <property name="service.names" value="HelloWsService"/>
+  <property name="sei.names" value="HelloWs"/>
+  <property name="wsdl.filename" value="WarMirrorSEI.wsdl"/>
+
+  <import file="../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+  <property name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+
+  <target name="-precompile">
+    <antcall  target="do_wsdl2java_generate_server"/>
+  </target>
+
+  <target name="package" >
+      <ts.war archiveName="${app.name}" descriptor="web.xml">
+	<zipfileset dir="${class.dir}"
+	    includes="${pkg.dir}/*.class"
+	    excludes="${pkg.dir}/Client.class"
+	    prefix="WEB-INF/classes"/>
+	<zipfileset dir="${src.dir}/${pkg.dir}"
+	    includes="${wsdl.filename}"
+	    prefix="WEB-INF/wsdl"/>
+      </ts.war>
+
+      <ts.ear archivename="${app.name}" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war"/>
+      </ts.ear>
+
+      <ts.clientjar archivename="${client.app.name}" mainclass="${client.class}" excludedfiles="${impl.class}">
+	<zipfileset dir="${src.dir}/${pkg.dir}"
+	    includes="${wsdl.filename}"
+	    prefix="META-INF/wsdl"/>
+      </ts.clientjar>
+
+      <ts.ear archivename="${client.app.name}" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar"/>
+      </ts.ear>
+
+  </target>
+
+</project>

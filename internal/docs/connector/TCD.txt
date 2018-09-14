@@ -1,0 +1,110 @@
+TCK Coverage Document for JSR-322 Java TM EE Connector Architecture Specification version 1.7
+  (Java Connector 1.7) Specification
+
+
+TCK Components:
+---------------
+- User's Guide
+- Compatibility Rules
+- Configuration Instructions
+- Test Suite
+- API Tests 
+- Signature Tests
+- End-to-End Tests
+- Framework Code
+- JavaTest TM Harness
+
+
+Terminology of Metrics
+----------------------
+- Assertion: A specific statement of functionality or behavior derived from a
+  specification. A testable assertion is one that can be validated in an
+  implementation by testing.
+- Test: A binary application (or script) comprised of one or more Test Cases.
+- Test Case: A single set of test inputs, execution conditions, and expected
+  results developed to verify an implementation's conformance with a specific
+  assertion.
+- Specification Assertion Coverage: Ratio of all assertions tested by at least
+  one test case to the total number of testable assertions defined by the
+  specification.
+- API Coverage: Ratio of methods directly exercised by test cases to the total
+  number of methods defined by the specification.
+
+
+Coverage
+--------
+XXX - Add in estimated assertions so they can be updated and folded into the
+total assertion numbers listed below.  Check in then delete.
+********************************************************************************
+Assertion details.  These details will be removed from the final TCD but are
+checked into revision history so we can backtrack the numbers later, if we need to.
+
+Assertions found by the coverage tools (Mar 18th, 2013 coverage report):
+  spec total       : 289 - (107 untestable + 47 optional) = 135 
+  spec tested total: 103
+  api total        : 391
+  api tested total : 205 + (16 untagged assertions for late test entries)
+*******************************************************************************
+
+Total testable assertions       = 526   (135 + 391)
+Total tested assertions         = 324   (103 + 221)
+Percentage of assertions tested = 62%
+
+
+- Total testable assertions derived from Java EE Connector 1.7 Specifications and Javadoc: 
+       289 specification assertions
+     + 391 API assertions          
+     -------------------------------
+       526 testable assertions     
+
+- Total testable assertions tested
+        103 specification assertions tested
+     +  221 API assertions tested          
+     --------------------------------------
+       324 testable assertions tested    
+
+  - 76.29% of testable specification assertions tested
+  - 56.52% of testable API assertions tested (This figure is believed to be low)
+  - 61.59% of all (specification and API) assertions tested
+
+ 
+- Assertions were identified through the use of CTS Tools and hand markup
+  (hand markup was required for the Java EE specifications, non Javadoc)
+
+- Number of tests in Connector 1.7:  680
+
+- API Signature Coverage: 100% of all public and protected members are
+  validated by the signature tests included with the both CTS 7 and Connector 1.7 TCK.
+
+
+
+Quality Assurance
+-----------------
+- Connector 1.7, as a subset oc CTS7, was run using representative configurations of the JavaEE Reference
+  Implementation on the following platforms, note all platforms use Java SE 7:
+   * Ubuntu 12.10
+   * Fedora 18
+   * openSUSE 12.2
+   * Solaris 11.1 Sparc
+   * Solaris 11.1 X86
+   * Solaris 10 Sparc
+   * MacOS 10.8
+   * Oracle Linux Server release 6.3
+   * Windows XP Professional
+   * Windows 2008
+
+- Code quality was demonstrated through the use of code reviews and inspections
+- User's Guide was constructed from the standard CTS User's Guide template
+- Documentation instructions were verified and tested
+
+
+Justification of Adequacy
+-------------------------
+The JavaEE Connector Architecture version 1.7 provides a comprehensive set of tests to ensure
+all implementations of the JavaEE Connector Architectur 1.7 specifications are compatible.  As with all
+TCKs it is impossible to provide tests for 100% assertion coverage.  Note, while
+the CTS may not have tests for all assertions in the Java Connector Architectur 1.7 Platform, all
+implementations of the platform must be compatible with the specifications.
+
+Untested assertions are due to the effects of late specification changes, and
+the availability and cost of test development resources.

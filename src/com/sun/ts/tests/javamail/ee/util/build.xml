@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="populateMailBox" basedir="." default="usage">
+    <import file="../../../../../../../../bin/xml/ts.import.xml"/>
+    
+    <property name="utildir" value="com/sun/ts/tests/javamail/ee/util" />
+    <property name="mailboxFolder1" value="${src.dir}/${utildir}/mailboxes/test1" />
+    <property name="mailboxFolder2" value="${src.dir}/${utildir}/mailboxes/test2" />
+    <property name="mailboxFolder3" value="${src.dir}/${utildir}/mailboxes/test3" />
+
+    <property name="destinationURL" value="imap://${javamail.username}:${javamail.password}@${javamail.server}" />
+
+    <target name="compile">
+        <mkdir dir="${dist.dir}/${utildir}"/>
+        <mkdir dir="${dist.dir}/${utildir}/../common" />
+        <ts.javac srcdir="${src.dir}" fork="false" 
+                  includes="${pkg.dir}/*.java,
+                            ${pkg.dir}/../common/*.java"/>
+    </target>
+
+    <target name="clean" >
+        <delete failonerror="false" includeEmptyDirs="true">
+            <fileset dir="${class.dir}/${utildir}"/>
+            <fileset dir="${class.dir}/${utildir}/../common"/>
+        </delete>
+    </target>
+
+    <target name="populateMailbox" depends="compile" >
+        <java classname="com.sun.ts.tests.javamail.ee.util.fpopulate" >
+            <arg line="-s ${mailboxFolder1} -d ${destinationURL} -user ${javamail.username} -password ${javamail.password} -host ${javamail.server}  -port ${imap.port} -protocol ${javamail.protocol}" />
+            <classpath>
+                <pathelement path="${class.dir}${path.separator}${javaee.classes}"/>
+                <pathelement path="${ts.home}/lib/tsharness.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="" />
+        <java classname="com.sun.ts.tests.javamail.ee.util.fpopulate">
+            <arg line="-s ${mailboxFolder2} -d ${destinationURL} -user ${javamail.username} -password ${javamail.password} -host ${javamail.server} -port ${imap.port} -protocol ${javamail.protocol}" />
+            <classpath>
+                <pathelement path="${class.dir}${path.separator}${javaee.classes}"/>
+                <pathelement path="${ts.home}/lib/tsharness.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="" />
+        <java classname="com.sun.ts.tests.javamail.ee.util.fpopulate">
+            <arg line="-s ${mailboxFolder3} -d ${destinationURL} -user ${javamail.username} -password ${javamail.password} -host ${javamail.server} -port ${imap.port} -protocol ${javamail.protocol}" />
+            <classpath>
+                <pathelement path="${class.dir}${path.separator}${javaee.classes}"/>
+                <pathelement path="${ts.home}/lib/tsharness.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="clearMailbox" depends="compile" >
+        <java classname="com.sun.ts.tests.javamail.ee.util.fpopulate">
+            <arg line="-s ${mailboxFolder1}  -deleteFolder -d ${destinationURL} -c -user ${javamail.username} -password ${javamail.password} -host ${javamail.server} -port ${imap.port} -protocol ${javamail.protocol}" />
+            <classpath>
+                <pathelement path="${class.dir}${path.separator}${javaee.classes}"/>
+                <pathelement path="${ts.home}/lib/tsharness.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="" />
+        <java classname="com.sun.ts.tests.javamail.ee.util.fpopulate">
+            <arg line="-s ${mailboxFolder2}  -deleteFolder -d ${destinationURL} -c -user ${javamail.username} -password ${javamail.password} -host ${javamail.server} -port ${imap.port} -protocol ${javamail.protocol}" />
+            <classpath>
+                <pathelement path="${class.dir}${path.separator}${javaee.classes}"/>
+                <pathelement path="${ts.home}/lib/tsharness.jar"/>
+            </classpath>
+        </java>
+        
+        <echo message="" />
+        <java classname="com.sun.ts.tests.javamail.ee.util.fpopulate">
+            <arg line="-s ${mailboxFolder3}  -deleteFolder -d ${destinationURL} -c -user ${javamail.username} -password ${javamail.password} -host ${javamail.server} -port ${imap.port} -protocol ${javamail.protocol}" />
+            <classpath>
+                <pathelement path="${class.dir}${path.separator}${javaee.classes}"/>
+                <pathelement path="${ts.home}/lib/tsharness.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+</project>

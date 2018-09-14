@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<schema
+    targetNamespace="http://headertestservice.org/types4"
+    xmlns:tns="http://headertestservice.org/types4"
+    xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema">
+
+    <import namespace="http://schemas.xmlsoap.org/soap/envelope/"
+             schemaLocation="soap-env.xsd"/>
+
+    <element name="ProductOrderRequest" type="tns:ProductOrderRequest"/>
+    <complexType name="ProductOrderRequest">
+        <sequence>
+            <element name="item" type="tns:ProductOrderItem" maxOccurs="unbounded"/>
+            <element name="customerInfo" type="tns:CustomerInfo" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="ProductOrderItem">
+        <sequence>
+            <element name="productName" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="productCode" type="tns:ProductCode" minOccurs="1" maxOccurs="1"/>
+            <element name="quantity" type="int" minOccurs="1" maxOccurs="1"/>
+            <element name="price" type="decimal" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+    <element name="ProductOrderResponse" type="tns:ProductOrderResponse"/>
+    <complexType name="ProductOrderResponse">
+        <sequence>
+            <element name="item" type="tns:ProductOrderItem" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="CustomerInfo">
+        <sequence>
+            <element name="creditcard" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="name" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="street" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="city" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="state" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="zip" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="country" type="string" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="ProductCode">
+        <restriction base="integer">
+            <minInclusive value="1"/>
+            <maxInclusive value="99999"/>
+        </restriction>
+    </simpleType>
+
+    <element name="BadOrderFaultReason" type="tns:BadOrderFault"/>
+    <complexType name="BadOrderFault">
+        <sequence>
+            <element name="message" type="string"/>
+        </sequence>
+    </complexType>
+
+    <element name="ConfigHeaderRequest" type="tns:ConfigHeader"/>
+    <complexType name="ConfigHeader">
+        <sequence>
+            <annotation>
+                <documentation>
+            		This is the configuration header
+		</documentation>
+            </annotation>
+            <element name="message" type="string"/>
+            <element name="testName" type="string"/>
+        </sequence>
+        <attribute ref="env:mustUnderstand"/>
+    </complexType>
+
+    <element name="ConfigFaultReason" type="tns:ConfigFault"/>
+    <complexType name="ConfigFault">
+        <sequence>
+            <annotation>
+                <documentation>
+            		This is the configuration fault
+	 	</documentation>
+            </annotation>
+            <element name="message" type="string"/>
+        </sequence>
+        <attribute ref="env:mustUnderstand"/>
+    </complexType>
+</schema>

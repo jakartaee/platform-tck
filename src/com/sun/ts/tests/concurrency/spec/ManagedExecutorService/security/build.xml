@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="concurrency_spec_ManagedExecutorService_security" default="usage" basedir=".">
+  <import file="../../../../../../../../../bin/xml/ts.import.xml"/>
+
+  <property name="local.classes" value="com/sun/ts/tests/concurrency/spec/ManagedExecutorService/security/*.class"/>
+  <property name="api.common.classes" value="com/sun/ts/tests/concurrency/api/common/*.class"/>
+  <property name="harness.common.classes" value="com/sun/ts/lib/harness/EETest$Fault.class,
+                                                 com/sun/ts/lib/harness/EETest.class"/>
+
+  <target name="package">
+
+      <ts.ejbjar descriptor="SecurityTest_ejb.xml"
+                 archivename="SecurityTest">
+        <fileset dir="${class.dir}" 
+                 includes="${local.classes},${api.common.classes},${harness.common.classes}"/>
+      </ts.ejbjar>
+
+      <ts.war archivename="SecurityTest">
+        <zipfileset dir="${class.dir}" prefix="WEB-INF/classes"
+                    includes="${local.classes},${api.common.classes},${harness.common.classes}"/>
+      </ts.war>
+      
+      
+      <ts.ear archivename="SecurityTest"/>
+
+  </target>
+  
+
+</project>

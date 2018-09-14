@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="false" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+<display-name xml:lang="en">ejb30 sessioncontext</display-name>
+<enterprise-beans>
+<session>
+<display-name xml:lang="en">ejb30 sessioncontext</display-name>
+<ejb-name>SessionContextBean</ejb-name>
+<home>com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteHome</home>
+<remote>com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteIF</remote>
+<local-home>com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalHome</local-home>
+<local>com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalIF</local>
+<business-local>com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal2IF</business-local>
+<business-local>com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal1IF</business-local>
+<business-remote>com.sun.ts.tests.ejb30.common.sessioncontext.Three2IF</business-remote>
+<business-remote>com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF</business-remote>
+<ejb-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.SessionContextBean</ejb-class>
+<session-type>Stateful</session-type>
+<transaction-type>Bean</transaction-type>
+<resource-env-ref>
+<resource-env-ref-name>sessionContext</resource-env-ref-name>
+<resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+<injection-target>
+<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.SessionContextBean</injection-target-class>
+<injection-target-name>sessionContext</injection-target-name>
+</injection-target>
+</resource-env-ref>
+<security-identity>
+<use-caller-identity/>
+</security-identity>
+</session>
+<session>
+<display-name xml:lang="en">ejb30 sessioncontext</display-name>
+<ejb-name>AcceptBean</ejb-name>
+<business-local>com.sun.ts.tests.ejb30.common.sessioncontext.AcceptLocalIF</business-local>
+<business-remote>com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF</business-remote>
+<ejb-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.AcceptBean</ejb-class>
+<session-type>Stateful</session-type>
+<transaction-type>Bean</transaction-type>
+<resource-env-ref>
+<resource-env-ref-name>sessionContext</resource-env-ref-name>
+<resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+<injection-target>
+<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.AcceptBean</injection-target-class>
+<injection-target-name>sessionContext</injection-target-name>
+</injection-target>
+</resource-env-ref>
+<security-identity>
+<use-caller-identity/>
+</security-identity>
+</session>
+<session>
+<display-name>TestBean</display-name>
+<ejb-name>TestBean</ejb-name>
+<business-remote>com.sun.ts.tests.ejb30.common.sessioncontext.TestIF</business-remote>
+<ejb-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.TestBean</ejb-class>
+<session-type>Stateful</session-type>
+<transaction-type>Bean</transaction-type>
+<ejb-local-ref>
+<ejb-ref-name>local2</ejb-ref-name>
+<ejb-ref-type>Session</ejb-ref-type>
+<local>com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal2IF</local>
+<ejb-link>SessionContextBean</ejb-link>
+<injection-target>
+<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.TestBean</injection-target-class>
+<injection-target-name>local2</injection-target-name>
+</injection-target>
+</ejb-local-ref>
+<ejb-local-ref>
+<ejb-ref-name>local1</ejb-ref-name>
+<ejb-ref-type>Session</ejb-ref-type>
+<local>com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal1IF</local>
+<ejb-link>SessionContextBean</ejb-link>
+<injection-target>
+<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.TestBean</injection-target-class>
+<injection-target-name>local1</injection-target-name>
+</injection-target>
+</ejb-local-ref>
+<ejb-local-ref>
+<ejb-ref-name>acceptLocal</ejb-ref-name>
+<ejb-ref-type>Session</ejb-ref-type>
+<local>com.sun.ts.tests.ejb30.common.sessioncontext.AcceptLocalIF</local>
+<ejb-link>AcceptBean</ejb-link>
+<injection-target>
+<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.TestBean</injection-target-class>
+<injection-target-name>acceptLocal</injection-target-name>
+</injection-target>
+</ejb-local-ref>
+<resource-env-ref>
+<resource-env-ref-name>sessionContext</resource-env-ref-name>
+<resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+<injection-target>
+<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor.TestBean</injection-target-class>
+<injection-target-name>sessionContext</injection-target-name>
+</injection-target>
+</resource-env-ref>
+<security-identity>
+<use-caller-identity/>
+</security-identity>
+</session>
+</enterprise-beans>
+</ejb-jar>

@@ -1,0 +1,1076 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!--
+
+The following facts makes it hard to maintain and generalize:
+(1), locations for promoted and nightly bundles may change as the s1as project 
+     evolves.  For instance, promoted.bundle.dir contains ea, which may be some
+     other string once we reach fcs, or beta. 
+(2), bundle file name contains such string as ea, eval.
+(3), promoted.bundle.dir contains 'latest/bundles', while nightly.build.dir 
+     contains bundles/latest, which is confusing.
+(4), the top level directory name inside the archive contains version number,
+     for instance, sun-appserver7-eval.
+(5), ant directory-based tasks make clear distinction between a single file and
+     a fileset, even if it is a singleton containing only one file. Without
+     having the exact file name, it is impossible to use such tasks.  If we
+     write some custom tasks ...
+(6), how to access release.dir from windows? Mount it in a know location?
+(7), well, we can use pathconvert to convert a fileset to a file.
+
+-->
+<project name="install sjsas" basedir="." default="usage">
+  <!-- IMPORTS -->
+  <import file="../../ts.common.props.xml" optional="true"/>
+  <import file="../../../../bin/xml/ts.common.props.xml" optional="true"/>
+
+  <property file="${bin.dir}/ts.jte"/>
+  <property environment="env"/>
+  
+  <!-- s1as.home and javaee.home MUST be absolute path. On windows they MUST 
+  include drive letter, e.g., C:\Sun\AppServer7. s1as.home will be set to the
+  value of javaee.home only if s1as.home has not been set. -->
+  <property name="javaee.home" value="/sun/appserver9"/>
+  <property name="s1as.home" value="${javaee.home}"/>
+
+  <property name="s1as.admin.port" value="4848"/>
+  <property name="s1as.admin.user" value="admin"/>
+  <property name="s1as.admin.passwd" value="adminadmin"/>
+  <property name="sjsas.das.webServerPort" value="8080"/>
+  <property name="sjsas.das.securedWebServicePort" value="1044"/>
+
+  <property name="version" value="9.1.1"/>
+  <property name="filter.value" value="ee"/>
+  <property name="begin.done.tag" value="J2EE 1.4 SDK"/>
+  <property name="s1as.release.dir"
+            value="/net/invalid.domain.com/disk2/releng/weekly/${sjsas.platform}/${version}"/>
+  <property name="statefile.template" value="${common.bin.dir}/xml/impl/glassfish/templates/statefile.template.ee"/>
+  <property name="promoted.bundle.dir" value="${s1as.release.dir}/promoted/latest/latest/bundles"/>
+  <property name="nightly.bundle.dir" value="${s1as.release.dir}/nightly/bundles/latest"/>
+
+<!--
+  <echo message="promoted.bundle.dir=${promoted.bundle.dir}"/>
+  <echo message="nightly.bundle.dir=${nightly.bundle.dir}"/>
+-->
+	
+  <!-- it will be deleted during install. Make sure it is not used for any other purpose! -->
+  <!-- java.io.tmpdir is too long on windows and path exceeds 260 characters -->
+  <property name="copy.bundle.to" value="/tmp/s1as_install_stage"/>
+
+  <!-- <property name="rename.bundle.to" value="s1aspe_bundle.zip"/> -->
+  <!-- <property name="archive.top.dir" value="sun-appserver7-eval"/> -->
+  <property name="class.id.file" value="${java.io.tmpdir}/${user.name}_s1as_appserv_cid"/>
+  <property name="statefile" value="${java.io.tmpdir}/${user.name}_s1as_appserv_st"/>
+   
+  <target name="-init" depends="-check-os, -os-specific">
+    <fail message="JAVA_HOME not set" unless="env.JAVA_HOME"/>
+    <mkdir dir="${s1as.home}"/>
+    <if>
+      <equals arg1="${sjsas.platform}" arg2="SJSAS_EE"/>
+      <then>
+        <property name="platform.version" value="ee"/>
+      </then>
+      <else> 
+        <property name="platform.version" value=""/>
+      </else>
+    </if>
+    <echo message="platform version = ${platform.version}"/>
+  </target>
+
+  <target name="-check-os">
+    <condition property ="is.unix">
+      <os family="unix"/>
+    </condition>
+    <condition property="which.os" value="linux">
+      <equals arg1="${os.name}" arg2="Linux"/>
+    </condition>
+    <condition property="which.os" value="solaris-i586">
+     <and>
+      <equals arg1="${os.name}" arg2="SunOS"/>
+      <equals arg1="${os.arch}" arg2="x86"/>
+     </and>
+    </condition>
+    <condition property="which.os" value="solaris-${os.arch}">
+      <equals arg1="${os.name}" arg2="SunOS"/>
+    </condition>
+    <property name="which.os" value="windows"/>
+  </target>    
+
+  <target name="-os-specific" depends="-check-os, -unix-specific, -windows-specific">
+  </target>
+ 
+  <target name="-unix-specific" if="is.unix">
+    <property name="setup.arg.1" value=""/>
+    <property name="uninstall.arg.1" value=""/>
+    <property name="asadmin.exe" value="${s1as.home}/bin/asadmin"/>
+    <property name="asadmin.arg.1" value=""/>
+    <property name="os.type" value="unix"/>
+    <property name="unzip.command" value="unzip"/>
+  </target>
+
+  <target name="check.for.zip.path" unless="unzip.path">
+    <fail>Error, users must define the unzip.path property on Windows</fail>
+  </target>
+
+  <target name="-windows-specific" unless="is.unix">
+    <property name="setup.arg.1" value="/c setup.dos.exe"/>
+    <property name="uninstall.arg.1" value="/c uninstall"/>
+    <property name="asadmin.exe" value="cmd.exe"/>
+    <property name="asadmin.arg.1" value="/c asadmin"/>
+    <property name="os.type" value="windows"/>
+    <antcall target="check.for.zip.path"/>
+    <!-- may need to do a path convert on the ${unzip.path} for the exec to work -->
+    <!-- these targets are seldom if ever used on Windows                        -->
+    <property name="unzip.command" value="cmd.exe /c ${unzip.path}"/>
+  </target>
+
+  <target name="promoted" description="install the latest promoted bundle"
+    depends="-init">
+    <echo message="Statefile being used is ${statefile.template}"/>
+    <fileset id="promoted.zip.path.ref" dir="${promoted.bundle.dir}">
+      <include name="s*${platform.version}*${which.os}*"/>
+      <exclude name="*-app-*"/>
+      <exclude name="*dbg*"/>
+      <exclude name="*${filter.value}*"/>      
+      <or>
+      <filename name="*2003.bin"/>
+      <filename name="*2004.bin"/>
+      <filename name="*2005.bin"/>
+      <filename name="*2006.bin"/>
+      <filename name="*2007.bin"/>
+      <filename name="*2008.bin"/>
+      </or>
+    </fileset>
+    <pathconvert targetos="${os.type}" property="zip.file.path" refid="promoted.zip.path.ref"/>
+
+    <property name="download.summary" 
+      value="Downloaded from: '${zip.file.path}'"/>
+    <echo message="Downloaded from: '${zip.file.path}'"/>
+    <antcall target="-install-internal">
+      <param name="unzip.what" value="${zip.file.path}"/>
+    </antcall>
+  </target>
+
+  <target name="nightly" description="install the latest nightly bundle"
+    depends="-init">
+    <echo message="Statefile being used is ${statefile.template}"/>
+    <fileset id="nightly.zip.path.ref" dir="${nightly.bundle.dir}">
+      <include name="s*${platform.version}*${which.os}*"/>
+      <exclude name="*-app-*"/>
+      <exclude name="*dbg*"/>
+      <exclude name="*${filter.value}*"/>
+      <or>
+      <filename name="*2003.bin"/>
+      <filename name="*2004.bin"/>
+      <filename name="*2005.bin"/>
+      <filename name="*2006.bin"/>
+      <filename name="*2007.bin"/>
+      <filename name="*2008.bin"/>
+      </or>
+    </fileset>
+    <pathconvert targetos="${os.type}" property="zip.file.path" refid="nightly.zip.path.ref"/>
+    <property name="download.summary" 
+      value="Downloaded from: ${zip.file.path}"/>
+    <echo message="Downloaded from: '${zip.file.path}'"/>
+    <antcall target="-install-internal">
+      <param name="unzip.what" value="${zip.file.path}"/>
+    </antcall>
+  </target>
+
+  <target name="bundle" description="install any specified bundle"
+    depends="-init, -check-bundle">
+    <property name="download.summary" value="Downloaded from: ${bundle}"/>
+    <echo message="Downloaded from: '${bundle}'"/>
+    <antcall target="-install-internal">
+      <param name="unzip.what" value="${bundle}"/>
+    </antcall>
+  </target>
+
+  <target name="-check-bundle">
+    <fail message="Please set bundle property, e.g., -Dbundle=/files.../foo.zip"
+      unless="bundle"/>
+    <available file="${bundle}" property="valid.bundle.path"/>
+    <fail message="Does not exist:${bundle}" unless="valid.bundle.path"/>
+  </target>
+
+  <target name="-install-internal">
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${copy.bundle.to}"/>
+    </delete>
+    <mkdir dir="${copy.bundle.to}"/>
+    <copy file="${unzip.what}" tofile="${copy.bundle.to}/bundle.zip"/>
+    <exec executable="${unzip.command}" dir="${copy.bundle.to}">
+      <arg line="bundle.zip"/>
+    </exec>
+    <path id="copy.bundle.to.ref">
+      <pathelement location="${copy.bundle.to}"/>
+    </path>
+    <pathconvert targetos="${os.type}" property="s1as.installer.home" refid="copy.bundle.to.ref"/>
+    <antcall target="install.s1as8">
+    </antcall>
+  </target>
+
+  <target name="install.s1as8" depends="-init, -check-s1as-installer-home" 
+    description="Run setup either directly or after downloading and unzipping bundle. 
+    If invoked directly, must set -Ds1as.installer.home={parent-dir-of-setup-script}, unless
+    pwd is the s1as.installer.home">
+    <chmod perm="a+rx">
+      <fileset dir="${s1as.installer.home}" includes="setup*"/>
+    </chmod>
+    <echo message="Install to ${s1as.home}"/>
+    <antcall target="uninstall.s1as"/>
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${s1as.home}"/>
+    </delete>
+    
+    <antcall target="-exec-setup"/>
+    <property name="download.summary" value=""/>
+    <property name="install.summary.1" value="Installed  from: ${s1as.installer.home}"/>
+    <property name="install.summary.2" value="Installed    to: ${s1as.home}"/>
+    <antcall target="-post-install"/> 
+  </target>
+
+  <target name="install" depends="install.s1as8"/>
+
+  <target name="-check-s1as-installer-home" unless="s1as.installer.home">
+   <echo message="s1as.installer.home not set, try pwd ..."/>
+   <available file="${user.dir}/appserv.class" property="valid.s1as.installer.home"/>
+   <fail unless="valid.s1as.installer.home" message="${user.dir} not a valid installer home"/>
+   <echo message="OK, use ${user.dir} as s1as.installer.home"/>
+   <property name="s1as.installer.home" value="${user.dir}"/> 
+  </target>
+  
+  <target name="-exec-setup" depends="-create-statefile">
+    <condition property="setup.exe" value="${s1as.installer.home}/setup">
+      <os family="unix"/>
+    </condition>
+    <property name="setup.exe" value="cmd.exe"/>
+    <exec dir="${s1as.installer.home}" executable="${setup.exe}" output="/tmp/install_sjsas.log" resultproperty="return.code">
+      <arg line="${setup.arg.1}"/>
+      <arg value="-silent"/>
+      <arg value="${statefile}"/>
+    </exec>
+<!--    <echo message="Setup return code is ${return.code}"/> -->
+  </target>
+
+  <target name="-create-statefile" depends="-get-class-id">
+    <path id="s1as.home.ref">
+      <pathelement location="${s1as.home}"/>
+    </path>
+    <pathconvert targetos="${os.type}" property="s1as.home.converted"
+      refid="s1as.home.ref"/>
+    
+    <copy overwrite="true" tofile="${statefile}" file="${statefile.template}">
+      <filterset>
+        <filter token="s1as.home" value="${s1as.home.converted}"/>
+        <filter token="java.home" value="${env.JAVA_HOME}"/>
+        <filter token="begin.done.tag" value="${begin.done.tag}"/>
+        <filter token="class.id" value="${class.id}"/>
+        <filter token="s1as.admin.user" value="${s1as.admin.user}"/>
+        <filter token="s1as.admin.passwd" value="${s1as.admin.passwd}"/>
+        <filter token="s1as.admin.port" value="${s1as.admin.port}"/>
+        <filter token="sjsas.das.webServerPort" value="${sjsas.das.webServerPort}"/>
+        <filter token="sjsas.das.securedWebServicePort" value="${sjsas.das.securedWebServicePort}"/>
+      </filterset>
+    </copy>
+  </target>
+
+  <target name="-get-class-id">      
+     <java classname="appserv" fork="true" output="${class.id.file}" maxmemory="256m">
+        <arg value="-id"/> 
+        <classpath>
+          <pathelement location="${s1as.installer.home}"/>
+        </classpath>
+     </java>
+     <loadfile property="class.id" srcfile="${class.id.file}">
+       <filterchain>
+         <striplinebreaks/>
+       </filterchain>
+     </loadfile>
+     <echo message="class.id=`${class.id}`"/>
+  </target>
+
+  <target name="-post-install">
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${s1as.home}" includes="statefile*, temp_install/"/>
+    </delete>
+    <delete file="${class.id.file}" quiet="true"/>
+    <echo message="---------------------------------------------"/>
+    <echo message="${download.summary}"/>
+    <echo message="${install.summary.1}"/>
+    <echo message="${install.summary.2}"/>
+    <echo message="---------------------------------------------"/>
+    <echo message="If install failed, check ${s1as.home}/install.log for details."/>
+    <echo message="To upgrade/display license, 'asadmin install-license | display-license --local'"/>
+  </target>
+
+  <target name="-is-uninstall-needed" depends="-init">
+    <available file="${s1as.home}/lib/appserv-rt.jar" property="uninstall.needed"/>
+  </target>
+
+  <target name="uninstall.s1as" depends="-init, -is-uninstall-needed, -uninstall-internal" 
+    description="uninstall s1as, and if necessary first stop servers.">
+  </target>
+
+  <target name="-uninstall-internal" if="uninstall.needed" 
+    depends="-is-uninstall-needed, stop.s1as">
+    <condition property="uninstall.exe" value="${s1as.home}/uninstall">
+      <os family="unix"/>
+    </condition>
+    <property name="uninstall.exe" value="cmd.exe"/>
+    <chmod perm="a+rx" file="${s1as.home}/uninstall"/>
+    <exec dir="${s1as.home}" executable="${uninstall.exe}" failifexecutionfails="no"
+      timeout="900000" failonerror="false">  <!-- uninstall always returns 1, not sure why -->
+      <arg line="${uninstall.arg.1}"/>
+      <arg value="-silent"/>
+      <arg value="-javahome"/>
+      <arg value="${env.JAVA_HOME}"/>
+    </exec>
+  </target>
+
+  <target name="-is-stop-needed">
+    <!-- no such file on windows -->
+    <available property="stop.needed" file="${s1as.home}/bin" type="dir"/>
+  </target>
+  
+  <target name="stop.s1as" depends="-init, -is-stop-needed" if="stop.needed"
+    description="stop s1as, same as 'asadmin stop-domain' ">
+    <exec dir="${s1as.home}/bin" executable="${asadmin.exe}"
+      timeout="600000" failonerror="false" failifexecutionfails="false">
+      <arg line="${asadmin.arg.1}"/>
+      <arg value="stop-domain"/>
+    </exec>
+  </target>
+
+  <target name="usage">
+    <echo message="Type ant -projecthelp for a list of public targets"/>
+    <echo message=""/>
+    <echo message="If you already have a unzipped bundle s1as 8:"/>
+    <echo message="  ant install.s1as8 -Ds1as.installer.home={parent_dir_of_setup_file}, or"/>
+    <echo message="  cd {parent_dir_of_setup_file}; ant install.s1as8"/>
+    <echo message=""/>
+    <echo message="If you already have a unzipped bundle s1as 7:"/>
+    <echo message="  ant install.s1as7 -Ds1as.installer.home={parent_dir_of_setup_file}, or"/>
+    <echo message="  cd {parent_dir_of_setup_file}; ant install.s1as7"/>
+    <echo message=""/>
+    <echo message="If you need to download the latest promoted bundle and install:"/>
+    <echo message="  ant promoted "/>
+    <echo message="  by default looks for a bundle for your os in"/>
+    <echo message="  ${promoted.bundle.dir}/*${which.os}*"/>
+    <echo message=""/>
+    <echo message="If you need to download the latest nightly bundle and install:"/>
+    <echo message="  ant nightly "/>
+    <echo message="  by default looks for a bundle for your os in"/>
+    <echo message="  ${nightly.bundle.dir}/*${which.os}*"/>
+    <echo message=""/>
+    <echo message="If you need to download a specific bundle and install:"/>
+    <echo message="  ant bundle -Dbundle={path_to_the_bundle}"/>
+    <echo message="  if this bundle is frequently used, add a bundle property"/>
+    <echo message="  to this file instead of -D option"/>
+    <echo message=""/>
+    <echo message="If there already exists a s1as installation, will first uninstall it."/>
+    <echo message="If any s1as server is running, will first stop it before uninstalling."/>
+    <echo message="  ant stop.s1as  # Do we need a start.s1as ? "/>
+    <echo message=""/>
+    <echo message="Properties:"/>
+    <echo message="  If there exists build.properties in the same dir, all props are loaded,"/>
+    <echo message="  and take predence over any properties defined in this file.  Otherwise,"/>
+    <echo message="  predefined default values are used."/>
+  </target>
+
+
+
+  <!-- ************************************************************************* -->
+  <!-- The following properties and targets can be used to install GlassFish V3. -->
+  <!-- This includes the promoted as well as the nightly builds.                 -->
+  <!-- ************************************************************************* -->
+    <property name="v32.base.url"       value="http://download.java.net/glassfish/3.2"/>
+    <property name="v31.base.url"       value="http://download.java.net/glassfish/3.1"/>
+    <property name="v311.base.url"       value="http://download.java.net/glassfish/3.1.1"/>
+    <property name="v312.base.url"       value="http://download.java.net/glassfish/3.1.2"/>
+    <property name="v3.base.url"       value="http://download.java.net/glassfish/3.0.1"/>
+    <property name="v4.base.url"       value="http://download.java.net/glassfish/4.0"/>
+    <property name="v4.base.url.owan"  value="http://invalid.domain.com/java/re/glassfish/4.0"/>
+    <property name="v401.base.url"       value="http://download.java.net/glassfish/4.0.1"/>
+    <property name="v401.base.url.owan"  value="http://invalid.domain.com/java/re/glassfish/4.0.1"/>
+    <property name="v3.nightly.dir"    value="nightly"/>
+    <property name="v4.nightly.dir"    value="nightly"/>
+    <property name="nightly.link"      value="latest-glassfish.zip"/>
+    <property name="nightly.ri.link"      value="latest-ri.zip"/>
+    <property name="nightly.web.link"  value="latest-web.zip"/>
+    <property name="v3.promoted.dir"   value="promoted"/>
+    <property name="v4.promoted.dir"   value="promoted"/>
+    <property name="promoted.link"     value="latest-glassfish.zip"/>
+    <property name="promoted.ri.link"     value="latest-ri.zip"/>
+    <property name="promoted.web.link" value="latest-web.zip"/>
+    <property name="promoted.url"      value="${v3.base.url}/${v3.promoted.dir}/${promoted.link}"/>
+    <property name="nightly.url"       value="${v3.base.url}/${v3.nightly.dir}/${nightly.link}"/>
+    <property name="promoted.web.url"  value="${v3.base.url}/${v3.promoted.dir}/${promoted.web.link}"/>
+    <property name="nightly.web.url"   value="${v3.base.url}/${v3.nightly.dir}/${nightly.web.link}"/>
+    <property name="v31.promoted.url"      value="${v31.base.url}/${v3.promoted.dir}/${promoted.link}"/>
+    <property name="v31.nightly.url"       value="${v31.base.url}/${v3.nightly.dir}/${nightly.link}"/>
+    <property name="v31.promoted.web.url"  value="${v31.base.url}/${v3.promoted.dir}/${promoted.web.link}"/>
+    <property name="v31.nightly.web.url"   value="${v31.base.url}/${v3.nightly.dir}/${nightly.web.link}"/>
+    <property name="v311.promoted.url"      value="${v311.base.url}/${v3.promoted.dir}/${promoted.link}"/>
+    <property name="v311.nightly.url"       value="${v311.base.url}/${v3.nightly.dir}/${nightly.link}"/>
+    <property name="v311.promoted.web.url"  value="${v311.base.url}/${v3.promoted.dir}/${promoted.web.link}"/>
+    <property name="v311.nightly.web.url"   value="${v311.base.url}/${v3.nightly.dir}/${nightly.web.link}"/>
+    <property name="v312.promoted.url"      value="${v312.base.url}/${v3.promoted.dir}/${promoted.link}"/>
+    <property name="v312.nightly.url"       value="${v312.base.url}/${v3.nightly.dir}/${nightly.link}"/>
+    <property name="v312.promoted.web.url"  value="${v312.base.url}/${v3.promoted.dir}/${promoted.web.link}"/>
+    <property name="v312.nightly.web.url"   value="${v312.base.url}/${v3.nightly.dir}/${nightly.web.link}"/>
+    <property name="v32.promoted.url"      value="${v32.base.url}/${v3.promoted.dir}/${promoted.link}"/>
+    <property name="v32.nightly.url"       value="${v32.base.url}/${v3.nightly.dir}/${nightly.link}"/>
+    <property name="v32.promoted.web.url"  value="${v32.base.url}/${v3.promoted.dir}/${promoted.web.link}"/>
+    <property name="v32.nightly.web.url"   value="${v32.base.url}/${v3.nightly.dir}/${nightly.web.link}"/>
+    <property name="v4.promoted.url"      value="${v4.base.url}/${v4.promoted.dir}/${promoted.link}"/>
+    <property name="v4.nightly.url"       value="${v4.base.url}/${v4.nightly.dir}/${nightly.link}"/>
+    <property name="v4.promoted.url.owan" value="${v4.base.url.owan}/${v4.promoted.dir}/latest/${promoted.link}"/>
+    <property name="v4.nightly.url.owan"  value="${v4.base.url.owan}/${v4.nightly.dir}/latest/${nightly.link}"/>
+    <property name="v4.promoted.web.url"  value="${v4.base.url}/${v4.promoted.dir}/${promoted.web.link}"/>
+    <property name="v4.nightly.web.url"   value="${v4.base.url}/${v4.nightly.dir}/${nightly.web.link}"/>
+    <property name="v401.promoted.url"      value="${v401.base.url}/${v4.promoted.dir}/${promoted.link}"/>
+    <property name="v401.nightly.url"       value="${v401.base.url}/${v4.nightly.dir}/${nightly.link}"/>
+    <property name="v401.promoted.url.owan" value="${v401.base.url.owan}/${v4.promoted.dir}/latest/${promoted.link}"/>
+    <property name="v401.nightly.url.owan"  value="${v401.base.url.owan}/${v4.nightly.dir}/latest/${nightly.link}"/>
+    <property name="v401.promoted.web.url"  value="${v401.base.url}/${v4.promoted.dir}/${promoted.web.link}"/>
+    <property name="v401.nightly.web.url"   value="${v401.base.url}/${v4.nightly.dir}/${nightly.web.link}"/>
+    <property name="temp.dir"          value="${java.io.tmpdir}"/>
+    <property name="v3.filename"       value="v3.zip"/>
+    <property name="v4.filename"       value="v4.zip"/>
+    <property name="v3.install.dir"    value="${javaee.home.ri}"/>
+    <property name="v4.install.dir"    value="${javaee.home.ri}"/>
+    <property name="get.verbose"       value="true"/>
+    <property name="v3.hudson.url"
+              value="http://hudson.glassfish.org/job/gf-trunk-build-continuous/lastSuccessfulBuild/artifact/bundles"/>
+    <property name="v3.cont.url"     value="${v3.hudson.url}/glassfish.zip"/>
+    <property name="v3.cont.web.url" value="${v3.hudson.url}/web.zip"/>
+
+  <!--
+       Attempt to stop the domain, if it is running, using the stopserv script.  Note,
+       using asadmin stop-domain from within ant currently does not work.  It assumes the
+       domain lives in /var/appserver/domains and there does not seem to be a way to fix
+       this.  All attempts at using the domaindir option failed.  This may be a bug in
+       asamdin or an antism since asadmin stop-domain works fine on the command line.
+  -->
+  <presetdef name="stop.domain">
+    <if>
+      <os family="unix"/>
+    <then>
+      <exec dir="${v3.installed.dir}/bin" executable="${v3.installed.dir}/bin/stopserv">
+        <env key="PATH" path="${java.home}/bin:${env.PATH}"/>
+      </exec>
+      <sleep seconds="2"/>
+    </then>
+    <elseif>
+      <or>
+        <os family="windows"/>
+        <os family="dos"/>
+      </or>
+    <then>
+      <exec dir="${v3.installed.dir}/bin" executable="${v3.installed.dir}/bin/stopserv.bat">
+        <env key="PATH" path="${java.home}/bin:${env.PATH}"/>
+      </exec>
+    	<sleep seconds="2"/>
+    </then>
+    </elseif>
+    <else> <!-- should not happen -->
+      <echo>ERROR, Neither Windows nor Unix</echo>
+    </else>
+    </if>
+  </presetdef>
+
+
+  <macrodef name="install.v3">
+    <attribute name="bundle.url"/>
+  	<attribute name="is.v31" default="false"/>
+    <sequential>
+
+      <!-- 
+           Download the bundle from the appropriate URL, only if it is newer than the one
+           in ${java.io.tmpdir}.  Added a skip.v3.get property since users may want to keep using the
+           V3 bundle in their tmp directory even though a newer version may be available.
+           Usage example:
+             ant -f install_sjsas.xml -Dskip.v3.get=true install.v3.nightly
+      -->
+    	<if>
+    	  <not><isset property="skip.v3.get"/></not>
+      <then>
+        <get src="@{bundle.url}" dest="${temp.dir}/${v3.filename}"
+             usetimestamp="true" verbose="${get.verbose}"/>
+      </then>
+      </if>
+    	
+      <!--
+           Use a propregex here to peel off the glassfishv3/glassfish from the end
+           of the specified install.dir.  This is useful if the install.dir is pulled from
+           the ts.jte property javaee.home.ri.  Since javaee.home will end with
+           glassfishv3/glassfish.  This is the directory structure created when the
+           platform independent zip is unzipped. So if users use the javaee.home.ri property
+           to specify the install.dir they will want the glassfishv3/glassfish
+           stripped off the directory where the bundle is unzipped.  If the install.dir
+           does not end in glassfishv3/glassfish it will be left alone.  This will
+           happen when users pass the install.dir property during the ant invocation.
+           
+           Starting in version 3.1, the zip bundle contains a top level glassfish3 directory.
+           This is different from 3.0 and 3.0.1 which contained a glassfishv3 directory.  The
+           "v" has been removed.  So we account for this by setting a v3.install.path to
+           glassfish3 for version 3.1 else we set it to glassfishv3 for previous versions.
+           
+           Note, the ts.jte javaee.home.ri property must be set appropriately for the version being
+           installed for the install tasks to function properly.  For V 3.0 and 3.0.1 the install
+           path should end with glassfishv3/glassfish.  For version 3.1 the install path should
+           end with glassfish3/glassfish.  Users should also use the appropriate install targets.
+           Namely install.v31 to install version 3.1 and install.v3 targets to install the previous
+           versions 3.0 and 3.0.1.
+      -->
+      <if>
+    	<istrue value="@{is.v31}"/>
+      <then>
+        <property name="v3.install.path" value="glassfish3"/>
+        <echo>*** Installing GF Version 3.1/3.2 setting v3.install.path to glassfish3 ***</echo>
+      </then>
+      <else>
+        <echo>*** Installing GF V3.0.X setting v3.install.path to glassfishv3 ***</echo>
+      	<property name="v3.install.path" value="glassfishv3"/>
+      </else>
+      </if>
+      
+      <!-- Check the target being run matches the v3.install.dir property.  -->
+      <!-- By default the v3.install.dir value is set to javaee.home.ri.    -->
+      <!-- Users can bypass this check by setting the expert.mode prop to   -->
+      <!-- true using the -D option.  Ex. -Dexpert.mode=true                -->
+      <property name="expert.mode" value="false"/>
+      <if>
+        <not><istrue value="${expert.mode}"/></not>
+      <then>
+        <propertyregex property="v3.dir.matches"
+                       input="${v3.install.dir}"
+                       regexp="${v3.install.path}"
+                       select="true"
+                       defaultValue="false"/>
+         
+        <if>
+          <not><istrue value="${v3.dir.matches}"/></not>
+        <then>
+          <fail>ERROR
+          ${line.separator}
+          *****************************************************************
+           Error, the target being run does not match the v3.install.dir.
+           Please verify the javaee.home.ri setting in your ts.jte and make
+           sure you are running the appropriate install target.
+              v3.install.dir                   -> ${v3.install.dir}
+              running a v3.1 (or 3.2) install target is -> @{is.v31}
+            
+             * If you know what you are doing and want to skip this check,
+               pass -Dexpert.mode=true to the install target.
+          *****************************************************************
+          ${line.separator}
+          </fail>
+        </then>
+        </if>
+      </then>
+      <else>
+        <echo>*** Running in EXPERT MODE, checks disabled, strange errors could occur. ***</echo>
+      </else>
+      </if>
+      
+      <propertyregex property="v3.install.dir.norm"
+                     input="${v3.install.dir}"
+                     regexp="(.*)/${v3.install.path}/glassfish"
+                     select="\1"
+                     defaultValue="${v3.install.dir}"/>
+      <property name="v3.installed.dir"
+                value="${v3.install.dir.norm}/${v3.install.path}/glassfish"/>
+    	
+      <!--
+           If the install directory exists, attempt to stop the domain and remove
+           the exisitng directory.
+      -->
+      <if>
+        <available file="${v3.install.dir}" type="dir"/>
+      <then>
+        <echo>Found existing V3 install.  Stopping domain and removing:</echo>
+        <echo>   ${v3.install.dir.norm}/${v3.install.path}</echo>
+        <echo>** PATH passed to exec is "${java.home}/bin:${env.PATH}" **</echo>
+        <stop.domain/>
+      	<delete dir="${v3.install.dir.norm}/${v3.install.path}" includeemptydirs="true"/>
+      </then>
+      </if>
+
+      <unzip src="${temp.dir}/${v3.filename}" dest="${v3.install.dir.norm}"/>
+
+    	<!-- If this is a continuous hudson build the unzipped bundle will not contain        -->
+    	<!-- a glassfishv3 directory, instead the directory where the bundle is unzipped      -->
+    	<!-- will contain a glassfish and an mq directory.  In this bundle the javadb         -->
+    	<!-- directory is under glassfish so this needs to be moved as well.  To fix this     -->
+    	<!-- we create a glassfish(v)3 directory and move the glassfish and mq directories      -->
+    	<!-- into the new glassfish(v)3 directory.  We also move the glassfish/javadb directory -->
+    	<!-- under glassfishv3 as well.  This keeps the resulting directory structure of      -->
+    	<!-- all the install tasks uniform.                                                   -->
+    	<if>
+        <available file="${v3.install.dir.norm}/glassfish" type="dir"/>
+      <then>
+        <mkdir dir="${v3.install.dir.norm}/${v3.install.path}/javadb"/>
+        <move todir="${v3.install.dir.norm}/${v3.install.path}/javadb">
+          <fileset dir="${v3.install.dir.norm}/glassfish/javadb"/>
+        </move>
+        <mkdir dir="${v3.install.dir.norm}/${v3.install.path}/glassfish"/>
+        <move todir="${v3.install.dir.norm}/${v3.install.path}/glassfish">
+          <fileset dir="${v3.install.dir.norm}/glassfish"/>
+        </move>
+      </then>
+      </if>
+
+    	<!-- The web bundles do not have mq in them. -->
+    	<if>
+    	  <available file="${v3.install.dir.norm}/mq" type="dir"/>
+    	<then>
+        <mkdir dir="${v3.install.dir.norm}/${v3.install.path}/mq"/>
+        <move todir="${v3.install.dir.norm}/${v3.install.path}/mq">
+          <fileset dir="${v3.install.dir.norm}/mq"/>
+        </move>
+      </then>
+    	</if>
+      	
+      <!--
+           On Unices, set the execute bit on all scripts that may be used by our TCKs.
+      -->
+      <chmod dir="${v3.installed.dir}/bin"           perm="755" excludes="*.bat"/>
+      <chmod dir="${v3.installed.dir}/../javadb/bin" perm="755" excludes="*.bat"/>
+
+    	<!-- There is no mq directory in the web bundles. -->
+    	<if>
+    	  <available file="${v3.installed.dir}/../mq/bin" type="dir"/>
+    	<then>
+    	  <chmod dir="${v3.installed.dir}/../mq/bin" perm="755" excludes="*.bat"/>
+    	</then>
+    	</if>
+    	
+    	<!-- There is no top level bin directory in the Hudson continuous builds. -->
+    	<if> 
+    		<available file="${v3.installed.dir}/../bin" type="dir"/>
+    	<then>
+        <chmod dir="${v3.installed.dir}/../bin" perm="755" excludes="*.bat"/>
+      </then>
+    	</if>
+
+      <!-- Don't delete the downloaded bundle in ${java.io.tmpdir} since we use the timestamp -->
+      <!-- attribute when downloading the bundle.  This way users can reinstall V3 without    -->
+      <!-- redownloading the bundle.  The bundle will only be downloaded when there is a      -->
+      <!-- version available that is newer than the one in ${java.io.tmpdir}                  -->
+
+      <!-- Set the admin port in the domain.xml file using a sed like command.  Doing this -->
+      <!-- step here may keep us from having to use the silent install. This allows us to  -->
+      <!-- use the platform agnostic bundle as well cleaning up the overhead associated    -->
+      <!-- with using the silent install feature, such as managing state files and finding -->
+      <!-- platform specific binaries.                                                     -->
+      <property name="port.to.use" value="${ri.admin.port}"/>
+      <property name="port.to.find" value="4848"/>
+      <property name ="domain.file"
+                value="${v3.installed.dir}/domains/domain1/config/domain.xml"/>
+      <loadfile property="domain.file.contents" srcfile="${domain.file}"/>
+      <propertyregex property="port.not.found"
+                     input="${domain.file.contents}"
+                     regexp='port="${port.to.find}"'
+                     replace='port="${port.to.use}"'
+                     defaultvalue="true"/>
+      <if>
+        <istrue value="${port.not.found}"/>
+      <then>
+        <echo>Port ${port.to.find} not found, so admin port not reset in domain.xml.</echo>
+      </then>
+      <else>
+        <echo>Port ${port.to.find} found, reset to ${port.to.use}.</echo>
+        <echo>Backing up ${domain.file}.</echo>
+        <copy file="${domain.file}" tofile="${domain.file}.original" failonerror="false"/>
+        <echo message="${port.not.found}" file="${domain.file}"/>
+        <echo>${domain.file} written to disk.</echo>
+      </else>
+      </if>
+
+
+   </sequential>
+  </macrodef>
+
+	
+	
+  <!--
+       Attempt to stop the domain, if it is running, using the stopserv script.  Note,
+       using asadmin stop-domain from within ant currently does not work.  It assumes the
+       domain lives in /var/appserver/domains and there does not seem to be a way to fix
+       this.  All attempts at using the domaindir option failed.  This may be a bug in
+       asamdin or an antism since asadmin stop-domain works fine on the command line.
+  -->
+  <presetdef name="stop.v4.domain">
+    <if>
+      <os family="unix"/>
+    <then>
+      <exec dir="${v4.installed.dir}/bin" executable="${v4.installed.dir}/bin/stopserv">
+        <env key="PATH" path="${java.home}/bin:${env.PATH}"/>
+      </exec>
+      <sleep seconds="2"/>
+    </then>
+    <elseif>
+      <or>
+        <os family="windows"/>
+        <os family="dos"/>
+      </or>
+    <then>
+      <exec dir="${v4.installed.dir}/bin" executable="${v4.installed.dir}/bin/stopserv.bat">
+        <env key="PATH" path="${java.home}/bin:${env.PATH}"/>
+      </exec>
+        <sleep seconds="2"/>
+    </then>
+    </elseif>
+    <else> <!-- should not happen -->
+      <echo>ERROR, Neither Windows nor Unix</echo>
+    </else>
+    </if>
+  </presetdef>
+
+
+
+  <macrodef name="install.v4">
+    <attribute name="bundle.url"/>
+    <sequential>
+
+      <!-- 
+           Download the bundle from the appropriate URL, only if it is newer than the one
+           in ${java.io.tmpdir}.  Added a skip.v4.get property since users may want to keep using the
+           V4 bundle in their tmp directory even though a newer version may be available.
+           Usage example:
+             ant -f install_sjsas.xml -Dskip.v4.get=true install.v4.nightly
+      -->
+        <if>
+          <not><isset property="skip.v4.get"/></not>
+      <then>
+        <get src="@{bundle.url}" dest="${temp.dir}/${v4.filename}"
+             usetimestamp="true" verbose="${get.verbose}"/>
+      </then>
+      </if>
+        
+      <!--
+           Use a propregex here to peel off the glassfishv4/glassfish from the end
+           of the specified install.dir.  This is useful if the install.dir is pulled from
+           the ts.jte property javaee.home.ri.  Since javaee.home will end with
+           glassfish4/glassfish.  This is the directory structure created when the
+           platform independent zip is unzipped. So if users use the javaee.home.ri property
+           to specify the install.dir they will want the glassfishv4/glassfish
+           stripped off the directory where the bundle is unzipped.  If the install.dir
+           does not end in glassfishv4/glassfish it will be left alone.  This will
+           happen when users pass the install.dir property during the ant invocation.
+      -->
+      <!--
+           Change this prop name once the GF 4 bundle updates the base dir of the bundle.
+           The javaee.home.ri prop value in ts.jte should also be updated to glassfish4.
+       -->
+          <property name="v4.install.path" value="glassfish5"/>
+      
+        <propertyregex property="v4.install.dir.norm"
+                       input="${v4.install.dir}"
+                       regexp="(.*)/${v4.install.path}/glassfish"
+                       select="\1"
+                       defaultValue="${v4.install.dir}"/>
+        <property name="v4.installed.dir"
+                  value="${v4.install.dir.norm}/${v4.install.path}/glassfish"/>
+          
+        <!--
+             If the install directory exists, attempt to stop the domain and remove
+             the exisitng directory.
+        -->
+        <if>
+          <available file="${v4.install.dir}" type="dir"/>
+        <then>
+          <echo>Found existing V4 install.  Stopping domain and removing:</echo>
+          <echo>   ${v4.install.dir.norm}/${v4.install.path}</echo>
+          <echo>** PATH passed to exec is "${java.home}/bin:${env.PATH}" **</echo>
+          <stop.v4.domain/>
+          <delete dir="${v4.install.dir.norm}/${v4.install.path}" includeemptydirs="true"/>
+        </then>
+        </if>
+
+        <unzip src="${temp.dir}/${v4.filename}" dest="${v4.install.dir.norm}"/>
+
+          <!-- If this is a continuous hudson build the unzipped bundle will not contain        -->
+          <!-- a glassfishv4 directory, instead the directory where the bundle is unzipped      -->
+          <!-- will contain a glassfish and an mq directory.  In this bundle the javadb         -->
+          <!-- directory is under glassfish so this needs to be moved as well.  To fix this     -->
+          <!-- we create a glassfish4 directory and move the glassfish and mq directories      -->
+          <!-- into the new glassfish4 directory.  We also move the glassfish/javadb directory -->
+          <!-- under glassfish4 as well.  This keeps the resulting directory structure of      -->
+          <!-- all the install tasks uniform.                                                   -->
+          <if>
+          <available file="${v4.install.dir.norm}/glassfish" type="dir"/>
+        <then>
+          <mkdir dir="${v4.install.dir.norm}/${v4.install.path}/javadb"/>
+          <move todir="${v4.install.dir.norm}/${v4.install.path}/javadb">
+            <fileset dir="${v4.install.dir.norm}/glassfish/javadb"/>
+          </move>
+          <mkdir dir="${v4.install.dir.norm}/${v4.install.path}/glassfish"/>
+          <move todir="${v4.install.dir.norm}/${v4.install.path}/glassfish">
+            <fileset dir="${v4.install.dir.norm}/glassfish"/>
+          </move>
+        </then>
+        </if>
+
+          <!-- The web bundles do not have mq in them. -->
+          <if>
+            <available file="${v4.install.dir.norm}/mq" type="dir"/>
+          <then>
+          <mkdir dir="${v4.install.dir.norm}/${v4.install.path}/mq"/>
+          <move todir="${v4.install.dir.norm}/${v4.install.path}/mq">
+            <fileset dir="${v4.install.dir.norm}/mq"/>
+          </move>
+        </then>
+          </if>
+          
+        <!--
+             On Unices, set the execute bit on all scripts that may be used by our TCKs.
+        -->
+        <chmod dir="${v4.installed.dir}/bin"           perm="755" excludes="*.bat"/>
+        <chmod dir="${v4.installed.dir}/../javadb/bin" perm="755" excludes="*.bat"/>
+
+    <!-- There is no mq directory in the web bundles. -->
+          <if>
+            <available file="${v4.installed.dir}/../mq/bin" type="dir"/>
+          <then>
+            <chmod dir="${v4.installed.dir}/../mq/bin" perm="755" excludes="*.bat"/>
+          </then>
+          </if>
+          
+          <!-- There is no top level bin directory in the Hudson continuous builds. -->
+          <if> 
+              <available file="${v4.installed.dir}/../bin" type="dir"/>
+          <then>
+          <chmod dir="${v4.installed.dir}/../bin" perm="755" excludes="*.bat"/>
+        </then>
+          </if>
+
+        <!-- Don't delete the downloaded bundle in ${java.io.tmpdir} since we use the timestamp -->
+        <!-- attribute when downloading the bundle.  This way users can reinstall V4 without    -->
+        <!-- redownloading the bundle.  The bundle will only be downloaded when there is a      -->
+        <!-- version available that is newer than the one in ${java.io.tmpdir}                  -->
+
+        <!-- Set the admin port in the domain.xml file using a sed like command.  Doing this -->
+        <!-- step here may keep us from having to use the silent install. This allows us to  -->
+        <!-- use the platform agnostic bundle as well cleaning up the overhead associated    -->
+        <!-- with using the silent install feature, such as managing state files and finding -->
+        <!-- platform specific binaries.                                                     -->
+        <property name="port.to.use" value="${ri.admin.port}"/>
+        <property name="port.to.find" value="4848"/>
+        <property name ="domain.file"
+                  value="${v4.installed.dir}/domains/domain1/config/domain.xml"/>
+        <loadfile property="domain.file.contents" srcfile="${domain.file}"/>
+        <propertyregex property="port.not.found"
+                       input="${domain.file.contents}"
+                       regexp='port="${port.to.find}"'
+                       replace='port="${port.to.use}"'
+                       defaultvalue="true"/>
+        <if>
+          <istrue value="${port.not.found}"/>
+        <then>
+          <echo>Port ${port.to.find} not found, so admin port not reset in domain.xml.</echo>
+        </then>
+        <else>
+          <echo>Port ${port.to.find} found, reset to ${port.to.use}.</echo>
+          <echo>Backing up ${domain.file}.</echo>
+          <copy file="${domain.file}" tofile="${domain.file}.original" failonerror="false"/>
+          <echo message="${port.not.found}" file="${domain.file}"/>
+          <echo>${domain.file} written to disk.</echo>
+        </else>
+        </if>
+     </sequential>
+    </macrodef>
+	
+	
+	<!-- Installs the continuous integration build of V3 web (Hudson artifact) -->
+	<!-- Useful for people who need the latest build but don't want to         -->
+	<!-- wait for the next nightly to be available.                            -->
+  <target name="install.v3.cont.web">
+    <install.v3 bundle.url="${v3.cont.web.url}"/>
+  </target>
+
+	<!-- Installs the continuous integration build of V3 (Hudson artifact) -->
+	<target name="install.v3.cont">
+    <install.v3 bundle.url="${v3.cont.url}"/>
+  </target>
+
+ 	<target name="install.v3.promoted">
+    <install.v3 bundle.url="${promoted.url}"/>
+  </target>
+
+  <target name="install.v3.nightly">
+    <install.v3 bundle.url="${nightly.url}"/>
+  </target>
+
+  <target name="install.v3.web.promoted">
+    <install.v3 bundle.url="${promoted.web.url}"/>
+  </target>
+
+  <target name="install.v3.web.nightly">
+    <install.v3 bundle.url="${nightly.web.url}"/>
+  </target>
+
+  <target name="install.v31.promoted">
+    <install.v3 bundle.url="${v31.promoted.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v31.nightly">
+    <install.v3 bundle.url="${v31.nightly.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v31.web.promoted">
+    <install.v3 bundle.url="${v31.promoted.web.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v31.web.nightly">
+    <install.v3 bundle.url="${v31.nightly.web.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v311.promoted">
+    <install.v3 bundle.url="${v311.promoted.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v311.nightly">
+    <install.v3 bundle.url="${v311.nightly.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v311.web.promoted">
+    <install.v3 bundle.url="${v311.promoted.web.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v311.web.nightly">
+    <install.v3 bundle.url="${v311.nightly.web.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v312.promoted">
+    <install.v3 bundle.url="${v312.promoted.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v312.nightly">
+    <install.v3 bundle.url="${v312.nightly.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v312.web.promoted">
+    <install.v3 bundle.url="${v312.promoted.web.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v312.web.nightly">
+    <install.v3 bundle.url="${v312.nightly.web.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v32.promoted">
+    <install.v3 bundle.url="${v32.promoted.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v32.nightly">
+    <install.v3 bundle.url="${v32.nightly.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v32.web.promoted">
+    <install.v3 bundle.url="${v32.promoted.web.url}" is.v31="true"/>
+  </target>
+
+  <target name="install.v32.web.nightly">
+    <install.v3 bundle.url="${v32.nightly.web.url}" is.v31="true"/>
+  </target>
+	
+  <target name="install.v4.promoted">
+    <install.v4 bundle.url="${v4.promoted.url}"/>
+  </target>
+
+  <target name="install.v4.nightly">
+    <install.v4 bundle.url="${v4.nightly.url}"/>
+  </target>
+
+  <target name="install.v4.promoted.owan">
+    <install.v4 bundle.url="${v4.promoted.url.owan}"/>
+  </target>
+
+  <target name="install.v4.nightly.owan">
+    <install.v4 bundle.url="${v4.nightly.url.owan}"/>
+  </target>
+
+  <target name="install.v4.web.promoted">
+    <install.v4 bundle.url="${v4.promoted.web.url}"/>
+  </target>
+
+  <target name="install.v4.web.nightly">
+    <install.v4 bundle.url="${v4.nightly.web.url}"/>
+  </target>
+
+  <target name="install.v401.promoted">
+    <install.v4 bundle.url="${v401.promoted.url}"/>
+  </target>
+
+  <target name="install.v401.nightly">
+    <install.v4 bundle.url="${v401.nightly.url}"/>
+  </target>
+
+  <target name="install.v401.promoted.owan">
+    <install.v4 bundle.url="${v401.promoted.url.owan}"/>
+  </target>
+
+  <target name="install.v401.nightly.owan">
+    <install.v4 bundle.url="${v401.nightly.url.owan}"/>
+  </target>
+
+  <target name="install.v401.web.promoted">
+    <install.v4 bundle.url="${v401.promoted.web.url}"/>
+  </target>
+
+  <target name="install.v401.web.nightly">
+    <install.v4 bundle.url="${v401.nightly.web.url}"/>
+  </target>	
+	
+  <target name="remove.v3.bundle">
+    <delete file="${temp.dir}/${v3.filename}" quiet="true"/>
+  </target>
+
+  <target name="remove.v31.bundle">
+    <antcall target="remove.v3.bundle"/>
+  </target>
+
+  <target name="remove.v311.bundle">
+    <antcall target="remove.v3.bundle"/>
+  </target>
+
+  <target name="remove.v312.bundle">
+    <antcall target="remove.v3.bundle"/>
+  </target>
+	
+  <target name="remove.v32.bundle">
+    <antcall target="remove.v3.bundle"/>
+  </target>
+
+  <target name="remove.v4.bundle">
+    <delete file="${temp.dir}/${v4.filename}" quiet="true"/>
+  </target>
+
+  <target name="remove.v401.bundle">
+    <antcall target="remove.v4.bundle"/>
+  </target>
+
+  <target name="do.nothing">
+  	<echo>This job does nothing.  Used as a kludge for skipping the V3 install.</echo>
+  	<echo>This is just easier than changing the Hudson build job sequence.</echo>
+  </target>
+
+</project>

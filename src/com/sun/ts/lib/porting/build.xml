@@ -1,0 +1,68 @@
+<!--
+
+    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- Dumps the application data in DeploymentInfo into a well-formed xml file. It
+has not been validated against the dtd.  All runtime.xml files specified by
+${runtime.xml.files} and passed into DeploymentInfo main method as application
+args will be merged into a single DeploymentInfo object and hence into a single
+dump.txt file. 
+
+The dump.txt file must contain the same application data as the original input
+runtime.xml file.  The DeploymentInfo object from which the dump is derived
+will be fed to TSDeployment instance.
+
+The default target, test, tests sample.runtime.xml in current directory.
+To set your own runtime.xml file, modify the property value. Or invoke ant
+with "-Druntime.xml.files=<full path to runtime.xml files separated by space>".
+
+sample.runtime.xml is a well-formed, valid, and hypothetical runtime.xml file.
+It attempts to list all possible elements and attributes, which may be different
+than the runtime.xml files in real applications.
+-->
+
+<project name="deployment info" default="test" basedir=".">
+  <property name="runtime.xml.files" value="
+    ${ts.home}/src/com/sun/ts/lib/porting/sample.runtime.xml">
+  </property>
+
+  <target name="package" description="needed in all files named 'build.xml'. Does nothing here.">
+  </target>
+
+  <target name="test">
+    <java classname="com.sun.ts.lib.porting.DeploymentInfo" failonerror="yes" fork="yes" >
+        <classpath>
+            <pathelement path="${ts.classpath}:${local.classes}:${ts.home}/lib/parser.jar"/>
+        </classpath>    
+        <sysproperty key="TS_HOME" value="${ts.home}" />
+        <sysproperty key="cts.harness.debug" value="${env.HARNESS_DEBUG}"/>
+        <sysproperty key="java.security.policy" value="${bin.dir}/harness.policy" />
+        <sysproperty key="J2EE_HOME_RI" value="${j2ee.home.ri}" />
+        <sysproperty key="deliverable.class" value="${deliverable.class}" />
+        <sysproperty key="java.endorsed.dirs" value="${java.endorsed.dirs}" />
+        
+        <arg line="${runtime.xml.files}"/>
+    </java>
+  </target>
+
+  <target name="clean">
+    <echo message="Deleting dump*.txt in current dir..."/>
+    <delete failonerror="false">
+      <fileset dir="." includes="dump*.txt"/>
+    </delete>
+  </target>
+</project>

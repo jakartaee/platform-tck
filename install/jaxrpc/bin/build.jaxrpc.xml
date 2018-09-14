@@ -1,0 +1,312 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jaxrpc-util-build" xmlns:props="antlib:org.apache.ant.props">
+
+    <import file="xml/ts.top.import.xml" optional="true"/>
+    <import file="../../../bin/xml/ts.top.import.xml" optional="true"/>
+    <import file="build.xml" />
+
+    <property file="${basedir}/build.properties" />
+    <property file="${ts.home}/bin/build.properties" />
+    <property name="class.dir" value="${ts.home}/classes" />
+
+    <property file="jaxrpc.clients.dat" prefix="clients."/>
+    <propertyselector property="client.pkg.names" match="clients\.(.*)" select="\1"/>
+
+    <property file="jaxrpc.servers.dat" prefix="servers."/>
+    <propertyselector property="servers.pkg.names" match="servers\.(.*)" select="\1"/>
+
+    <property file="jaxrpc.client.server.dat" prefix="client_srv."/>
+    <propertyselector property="client.server.pkg.names" match="client_srv\.(.*)" select="\1"/>
+
+    <property file="jaxrpc.tool.features.dat" prefix="jaxrpc_tool_features."/>
+
+    <!-- Activate Props antlib -->
+    <propertyhelper>
+        <props:nested/>
+    </propertyhelper>
+
+    <target name="create_config_file" >
+        <echo>WSDL Name:${${prefix}.${wsdl.pkg}}</echo>
+        <echo>WSDL package name:${wsdl.pkg}</echo>
+        <echo>Config file path:${current.dir}/config.xml</echo>
+        <copy file="config.xml.template"
+              tofile="${current.dir}/config.xml"
+              filtering="yes" overwrite="no">
+            <filterset>
+                <filter token="WSDL_NAME" value="${${prefix}.${wsdl.pkg}}"/>
+                <filter token="WSDL_PACKAGE" value="${wsdl.pkg}"/>
+            </filterset>
+        </copy>
+    </target>
+
+    <target name="buildall" >
+        <property name="include.test.dir" value="jaxrpc"/>
+        <property name="exclude.test.dir" value="nodir"/>
+        <elementappend original="${include.test.dir}" prefix="com/sun/ts/tests" suffix="**/*.java" property="include.java.file"/>
+        <elementappend original="${exclude.test.dir}" prefix="com/sun/ts/tests" suffix="**/*.java" property="exclude.java.file"/>
+        <echo message="Compiling:${include.java.file}"/>
+        <echo message="Excluding:${exclude.java.file}"/>
+
+        <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests" todo="build" includes="${include.test.dir}" excludes="${exclude.test.dir}"/>
+        <antcall target="w2j_gen_clients" />
+        <antcall target="w2j_gen_servers" />
+        <antcall target="w2j_gen_client_servers" />
+        <antcall target="j2w_gen_client_server" />
+        <antcall target="j2w_gen_serveronly" />
+        <antcall target="j2w_gen_custom_serveronly" />
+        <!-- dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests" todo="package" includes="${include.test.dir}" excludes="${exclude.test.dir}"/ -->
+    </target>
+
+    <target name="w2j_gen_clients">
+        <for list="${client.pkg.names}" param="client.pkg.name">
+            <sequential>
+                <echo>@{client.pkg.name}</echo>
+                <antcall target="w2j_gen_single_client" >
+                    <param name="pkg.name" value="@{client.pkg.name}" />
+                </antcall>
+            </sequential>
+        </for>
+    </target> 
+
+    <target name="w2j_gen_servers">
+        <for list="${servers.pkg.names}" param="server.pkg.name">
+            <sequential>
+                <echo>@{server.pkg.name}</echo>
+                <antcall target="w2j_gen_single_server" >
+                    <param name="pkg.name" value="@{server.pkg.name}" />
+                </antcall>
+            </sequential>
+        </for>
+    </target>
+
+    <target name="w2j_gen_client_servers">
+        <for list="${client.server.pkg.names}" param="client.server.pkg.name">
+            <sequential>
+                <echo>@{client.server.pkg.name}</echo>
+                <antcall target="w2j_gen_single_client_server" >
+                    <param name="pkg.name" value="@{client.server.pkg.name}" />
+                </antcall>
+            </sequential>
+        </for>
+        <antcall target="w2j_gen_ee_sec_secbasic" />
+    </target>
+
+    <target name="w2j_gen_single_client">
+        <propertyregex property="client.pkg.dir"
+              input="${pkg.name}"
+              regexp="\."
+              replace="/"
+              casesensitive="false" />
+        <echo>pkg.dir=${client.pkg.dir}</echo>
+        <antcall target="create_config_file" >
+            <param name="wsdl.pkg" value="${pkg.name}" />
+            <param name="current.dir" value="${ts.home}/src/${client.pkg.dir}"/>
+            <param name="prefix" value="clients"/>
+        </antcall>
+        <antcall target="do_wsdl2java_generate_steps_clientonly">
+            <param name="pkg.dir" value="${client.pkg.dir}"/>
+            <param name="current.dir" value="${ts.home}/src/${client.pkg.dir}"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="jaxrpc.tool.features" value="${jaxrpc_tool_features.${pkg.name}}"/>
+        </antcall>
+    </target>
+
+   <target name="w2j_gen_single_server">
+        <propertyregex property="server.pkg.dir"
+              input="${pkg.name}"
+              regexp="\."
+              replace="/"
+              casesensitive="false" />
+        <echo>pkg.dir=${server.pkg.dir}</echo>
+        <antcall target="create_config_file" >
+            <param name="wsdl.pkg" value="${pkg.name}" />
+            <param name="current.dir" value="${ts.home}/src/${server.pkg.dir}"/>
+            <param name="prefix" value="servers"/>
+        </antcall>
+        <antcall target="do_wsdl2java_generate_steps_serveronly">
+            <param name="pkg.dir" value="${server.pkg.dir}"/>
+            <param name="current.dir" value="${ts.home}/src/${server.pkg.dir}"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="jaxrpc.tool.features" value="${jaxrpc_tool_features.${pkg.name}}"/>
+        </antcall>
+    </target>
+
+    <target name="w2j_gen_single_client_server">
+        <propertyregex property="client.server.pkg.dir"
+              input="${pkg.name}"
+              regexp="\."
+              replace="/"
+              casesensitive="false" />
+        <echo>pkg.dir=${client.server.pkg.dir}</echo>
+        <antcall target="create_config_file" >
+            <param name="wsdl.pkg" value="${pkg.name}" />
+            <param name="current.dir" value="${ts.home}/src/${client.server.pkg.dir}"/>
+            <param name="prefix" value="client_srv"/>
+        </antcall>
+        <antcall target="do_wsdl2java_generate_steps">
+            <param name="pkg.dir" value="${client.server.pkg.dir}"/>
+            <param name="current.dir" value="${ts.home}/src/${client.server.pkg.dir}"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="jaxrpc.tool.features" value="${jaxrpc_tool_features.${pkg.name}}"/>
+        </antcall>
+    </target>
+
+    <target name="w2j_gen_ee_sec_secbasic">
+        <property name="custom1.com.sun.ts.tests.jaxrpc.ee.sec.secbasic" 
+                  value="BasicAuthServiceTestService1" />
+        <property name="custom2.com.sun.ts.tests.jaxrpc.ee.sec.secbasic" 
+                  value="BasicAuthServiceTestService2" />
+        <property name="custom3.com.sun.ts.tests.jaxrpc.ee.sec.secbasic" 
+                  value="BasicAuthServiceTestService3" />
+        <property name="pkg.name" value="com.sun.ts.tests.jaxrpc.ee.sec.secbasic"/> 
+        <property name="pkg.dir" value="com/sun/ts/tests/jaxrpc/ee/sec/secbasic"/>
+        <antcall target="setup_target_dirs"/>
+        
+        <!-- generate config files -->
+        <antcall target="create_config_file" >
+            <param name="wsdl.pkg" value="${pkg.name}" />
+            <param name="current.dir" value="${ts.home}/src/${pkg.dir}/service1/"/>
+            <param name="prefix" value="custom1"/>
+        </antcall>
+        <antcall target="create_config_file" >
+            <param name="wsdl.pkg" value="${pkg.name}" />
+            <param name="current.dir" value="${ts.home}/src/${pkg.dir}/service2/"/>
+            <param name="prefix" value="custom2"/>
+        </antcall>
+        <antcall target="create_config_file" >
+            <param name="wsdl.pkg" value="${pkg.name}" />
+            <param name="current.dir" value="${ts.home}/src/${pkg.dir}/service3/"/>
+            <param name="prefix" value="custom3"/>
+        </antcall>
+    
+        <!-- generate WSDL files from java files-->
+        <antcall target="do_wsdl2java_generate_only">
+            <param name="pkg.dir" value="${pkg.dir}"/>
+            <param name="current.dir" value="${ts.home}/src/${pkg.dir}"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="BasicAuthServiceTestService1"/>
+            <param name="config.file" value="service1/config.xml"/>
+            <param name="port.name" value="HelloUnprotected"/>
+            <param name="url.alias" value="jaxrpc1"/>
+            <param name="jaxrpc.tool.features" value="-f:strict" />
+        </antcall>
+        <antcall target="do_wsdl2java_generate_only">
+            <param name="pkg.dir" value="${pkg.dir}"/>
+            <param name="current.dir" value="${ts.home}/src/${pkg.dir}"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="BasicAuthServiceTestService2"/>
+            <param name="config.file" value="service2/config.xml"/>
+            <param name="port.name" value="HelloProtected"/>
+            <param name="url.alias" value="jaxrpc2"/>
+            <param name="jaxrpc.tool.features" value="-f:strict" />
+        </antcall>
+        <antcall target="do_wsdl2java_generate_only">
+            <param name="pkg.dir" value="${pkg.dir}"/>
+            <param name="current.dir" value="${ts.home}/src/${pkg.dir}"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="BasicAuthServiceTestService3"/>
+            <param name="config.file" value="service3/config.xml"/>
+            <param name="port.name" value="HelloGuest"/>
+            <param name="url.alias" value="jaxrpc3"/>
+            <param name="jaxrpc.tool.features" value="-f:strict" />
+        </antcall>
+        <!-- compile the generated java files-->
+        <antcall target="build_generated_classes_jar"/>
+    </target>
+
+    <target name="j2w_gen_client_server">
+        <antcall target="do_java2wsdl_generate_steps">
+            <param name="pkg.dir" value="com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler"/>
+            <param name="current.dir" value="${ts.home}/src/com/sun/ts/tests/jaxrpc/api/javax_xml_rpc_handler/Handler"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="HandlerService"/>
+            <param name="port.name" value="Hello"/>
+            <param name="jaxrpc.tool.features" value="-f:strict" />
+        </antcall>
+        <antcall target="do_java2wsdl_generate_steps">
+            <param name="pkg.dir" value="com/sun/ts/tests/jaxrpc/ee/j2w/marshalltest"/>
+            <param name="current.dir" value="${ts.home}/src/com/sun/ts/tests/jaxrpc/ee/j2w/marshalltest"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="MarshallTestService"/>
+            <param name="port.name" value="MarshallTest"/>
+            <param name="jaxrpc.tool.features" value="-f:strict" />
+        </antcall>
+        <antcall target="do_java2wsdl_generate_steps">
+            <param name="pkg.dir" value="com/sun/ts/tests/jaxrpc/ee/j2w/multiinterfacetest"/>
+            <param name="current.dir" value="${ts.home}/src/com/sun/ts/tests/jaxrpc/ee/j2w/multiinterfacetest"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="MultiInterfaceTestService"/>
+            <param name="port.name" value="MultiInterfaceTest"/>
+            <param name="jaxrpc.tool.features" value="-f:strict" />
+        </antcall>
+        <antcall target="do_java2wsdl_generate_steps">
+            <param name="pkg.dir" value="com/sun/ts/tests/jaxrpc/ee/j2w/simpletest"/>
+            <param name="current.dir" value="${ts.home}/src/com/sun/ts/tests/jaxrpc/ee/j2w/simpletest"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="jaxrpc.tool.features" value="-f:useonewayoperations"/>
+            <param name="service.name" value="SimpleTestService"/>
+            <param name="port.name" value="Hello"/>
+        </antcall>
+    </target>
+
+    <target name="j2w_gen_serveronly">
+        <antcall target="do_java2wsdl_generate_steps_serveronly">
+            <param name="pkg.dir" value="com/sun/ts/tests/jaxrpc/sharedwebservices/faultservice"/>
+            <param name="current.dir" value="${ts.home}/src/com/sun/ts/tests/jaxrpc/sharedwebservices/faultservice"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="FaultTest"/>
+            <param name="port.name" value="SoapFaultTest"/>
+            <param name="jaxrpc.tool.features" value="-f:wsi,rpcliteral"/>
+            <param name="client.dir" value="com/sun/ts/tests/jaxrpc/sharedclients/faultclient"/>
+        </antcall>
+        <antcall target="do_java2wsdl_generate_steps_serveronly">
+            <param name="pkg.dir" value="com/sun/ts/tests/jaxrpc/sharedwebservices/simpleservice"/>
+            <param name="current.dir" value="${ts.home}/src/com/sun/ts/tests/jaxrpc/sharedwebservices/simpleservice"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="SimpleTest"/>
+            <param name="port.name" value="SimpleEndpoint"/>
+            <param name="jaxrpc.tool.features" value="-f:wsi,rpcliteral"/>
+            <param name="client.dir" value="com/sun/ts/tests/jaxrpc/sharedclients/simpleclient"/>
+        </antcall>
+    </target>
+
+    <target name="j2w_gen_custom_serveronly">
+        <antcall target="do_java2wsdl_generate_steps">
+            <param name="pkg.dir" value="com/sun/ts/tests/jaxrpc/ee/j2w/multiservicetest"/>
+            <param name="current.dir" value="${ts.home}/src/com/sun/ts/tests/jaxrpc/ee/j2w/multiservicetest"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="MultiServiceTestService1"/>
+            <param name="port.name" value="MultiServiceTest1"/>
+            <param name="url.alias" value="jaxrpc1"/>
+            <param name="config.file" value="service1/config.xml"/>
+            <param name="jaxrpc.tool.features" value="-f:strict" />
+        </antcall>
+        <antcall target="do_java2wsdl_generate_steps">
+            <param name="pkg.dir" value="com/sun/ts/tests/jaxrpc/ee/j2w/multiservicetest"/>
+            <param name="current.dir" value="${ts.home}/src/com/sun/ts/tests/jaxrpc/ee/j2w/multiservicetest"/>
+            <param name="class.dir" value="${class.dir}"/>
+            <param name="service.name" value="MultiServiceTestService2"/>
+            <param name="port.name" value="MultiServiceTest2"/>
+            <param name="url.alias" value="jaxrpc2"/>
+            <param name="config.file" value="service2/config.xml"/>
+            <param name="jaxrpc.tool.features" value="-f:strict" />
+        </antcall>
+    </target>
+</project>

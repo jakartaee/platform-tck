@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2011, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jpa_ee_pluggability_contracts_resource_local" basedir="." default="usage">
+
+    <import file="../../../../common/persistence-import.xml"/>
+
+    <property name="app.name" value="pluggability_contracts_resource_local"/>
+    <property name="common.pluggability.dir" value="com/sun/ts/tests/jpa/common/pluggability"/>
+    <property name="util.dir" value="${common.pluggability.dir}/util"/>
+    <property name="alt.provider.dir" value="${common.pluggability.dir}/altprovider"/>
+
+
+    <property name="par.classes"
+              value="${pkg.dir}/Order.class,
+                     ${pkg.dir}/Order2.class,
+                     ${pkg.dir}/Order3.class,
+                     ${pkg.dir}/Order4.class"/>
+
+    <target name="-precompile">
+        <ant dir="${src.dir}/${util.dir}" target="build"/>
+        <ant dir="${src.dir}/${alt.provider.dir}" target="build" />
+     </target>
+
+    <target name="package">
+
+        <ts.par descriptor="persistence.xml"
+                descriptordir="."
+                archivename="${app.name}">
+
+            <fileset dir="${class.dir}"
+                     includes="${par.classes}, ${util.dir}/*.class"/>
+            <zipfileset dir="." prefix="META-INF" includes="myMappingFile1.xml, myMappingFile2.xml"/>
+            <zipfileset dir="." prefix="META-INF" includes="orm.xml"/>
+
+        </ts.par>
+
+        <ts.vehicles name="${app.name}" singleear="true">
+             <!-- add the alternate provider later, see below -->
+             <servlet-elements>
+                 <zipfileset dir="${dist.dir}/${pkg.dir}"
+                             prefix="WEB-INF/lib"
+                             includes="${app.name}.jar"/>
+             </servlet-elements>
+             <ear-elements>
+                 <zipfileset dir="${dist.dir}/${pkg.dir}"
+                             includes="${app.name}.jar"
+                             prefix="lib"/>
+                 <zipfileset dir="${dist.dir}/${alt.provider.dir}"
+                             includes="jpa_alternate_provider.jar"
+                             prefix="lib"/>
+             </ear-elements>
+         </ts.vehicles>
+
+         <!-- add the alternate provider to the standalone web archive now so that there
+              are not two of it (one in the web archive and one in the ear archive) -->
+         <if>
+             <available file="${dist.dir}/${pkg.dir}/${app.name}_pmservlet_vehicle_web.war" />
+         <then>
+             <jar destfile="${dist.dir}/${pkg.dir}/${app.name}_pmservlet_vehicle_web.war" update="true">
+                 <zipfileset dir="${dist.dir}/${alt.provider.dir}"
+                             prefix="WEB-INF/lib"
+                             includes="jpa_alternate_provider.jar"/>
+             </jar>
+         </then>
+         <elseif>
+             <available file="${dist.dir}/${pkg.dir}/${app.name}_puservlet_vehicle_web.war" />
+         <then>
+             <jar destfile="${dist.dir}/${pkg.dir}/${app.name}_puservlet_vehicle_web.war" update="true">
+                 <zipfileset dir="${dist.dir}/${alt.provider.dir}"
+                             prefix="WEB-INF/lib"
+                             includes="jpa_alternate_provider.jar"/>
+             </jar>
+         </then>
+         </elseif>
+         </if>
+
+    </target>
+
+</project>
+      

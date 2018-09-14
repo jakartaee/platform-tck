@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<ejb-jar version="2.1"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+
+  <display-name>HLCTest_ejb</display-name>
+  <enterprise-beans>
+    <session>
+      <display-name>HLCEjb</display-name>
+      <ejb-name>HLCEjb</ejb-name>
+      <home>com.sun.ts.tests.webservices.handlerEjb.HandlerLifecycle.HelloHome</home>
+      <remote>com.sun.ts.tests.webservices.handlerEjb.HandlerLifecycle.HelloRemote</remote>
+      <service-endpoint>com.sun.ts.tests.webservices.handlerEjb.HandlerLifecycle.Hello</service-endpoint>
+      <ejb-class>com.sun.ts.tests.webservices.handlerEjb.HandlerLifecycle.HelloBean</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <description></description>
+        <use-caller-identity></use-caller-identity>
+      </security-identity>
+    </session>
+  </enterprise-beans>
+
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>hello</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>howdy</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>hi</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>enventry</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>wasInitCalled</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>wasDestroyCalled</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>getHttpSessionTest</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>getMessageContextTest</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>getServletContextTest</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>HLCEjb</ejb-name>
+        <method-name>getUserPrincipalTest</method-name>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>
