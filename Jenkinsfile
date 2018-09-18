@@ -28,7 +28,7 @@ def tcks = [
 
 env.label = "cts-ci-pod-${UUID.randomUUID().toString()}"
  
-def parallelCTSSuitesMap = suites.split(',').collectEntries {
+def parallelCTSSuitesMap = suites.collectEntries {
   ["${it}": generateCTSStage(it)]
 }
  
@@ -54,7 +54,7 @@ def generateCTSStage(job) {
   }
 }
  
-def parallelStandaloneTCKMap = tcks.split(',').collectEntries {
+def parallelStandaloneTCKMap = tcks.collectEntries {
   ["${it}": generateStandaloneTCKStage(it)]
 }
  
