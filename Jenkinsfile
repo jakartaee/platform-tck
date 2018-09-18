@@ -14,9 +14,21 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
+def suites = [
+  "samples",
+  "jaxr",
+  "javamail"
+]
+
+def tcks = [
+  "caj",
+  "concurrency",
+  "jaxr"
+]
+
 env.label = "cts-ci-pod-${UUID.randomUUID().toString()}"
  
-def parallelCTSSuitesMap = params.test_suites.split().collectEntries {
+def parallelCTSSuitesMap = suites.split().collectEntries {
   ["${it}": generateCTSStage(it)]
 }
  
@@ -42,7 +54,7 @@ def generateCTSStage(job) {
   }
 }
  
-def parallelStandaloneTCKMap = params.standalone_tcks.split().collectEntries {
+def parallelStandaloneTCKMap = tcks.split().collectEntries {
   ["${it}": generateStandaloneTCKStage(it)]
 }
  
@@ -93,8 +105,8 @@ spec:
     imagePullPolicy: Always
     resources:
       limits:
-        memory: "6Gi"
-        cpu: "1.25"
+        memory: "8Gi"
+        cpu: "2.0"
   - name: james-mail
     image: linagora/james-jpa-sample:3.0.1
     command:
@@ -107,7 +119,7 @@ spec:
     resources:
       limits:
         memory: "2Gi"
-        cpu: "0.5"
+        cpu: "1"
 """
     }
   }
