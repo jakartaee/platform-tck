@@ -99,8 +99,8 @@ spec:
     command:
     - /root/startup.sh
     ports:
-    - containerPort: 25
-    - containerPort: 143
+    - containerPort: 1025
+    - containerPort: 1143
     tty: true
     imagePullPolicy: Always
     resources:

@@ -175,6 +175,8 @@ sed -i "s/^mailHost=.*/mailHost=localhost/g" ts.jte
 sed -i "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte
 sed -i "s/^mailFrom=.*/mailFrom=user01@james.local/g" ts.jte
 sed -i "s/^javamail.password=.*/javamail.password=1234/g" ts.jte
+sed -i "smtp.port=.*/smtp.port=1025/g" ts.jte
+sed -i "imap.port=.*/imap.port=1143/g" ts.jte
 
 sed -i 's/^s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
 sed -i 's/^ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
@@ -233,7 +235,7 @@ ant init.javadb
 ### populateMailbox for javamail suite - Start ###
 ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
 cd  ${TS_HOME}/bin
-ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:1234@localhost" populateMailbox
+ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:1234@localhost:1143" populateMailbox
 ### populateMailbox for javamail suite - End ###
 
 ##### configRI.sh ends here #####
