@@ -94,6 +94,19 @@ spec:
       limits:
         memory: "8Gi"
         cpu: "2.0"
+  - name: james-mail
+    image: anajosep/cts-mailserver:0.1
+    command:
+    - /root/startup.sh
+    ports:
+    - containerPort: 25
+    - containerPort: 143
+    tty: true
+    imagePullPolicy: Always
+    resources:
+      limits:
+        memory: "2Gi"
+        cpu: "0.5"
 """
     }
   }

@@ -226,5 +226,9 @@
                                 excludes="${the.excludes}"/>
         </copy>
 
+        <copy todir="${deliverable.bundle.dir}/docker" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/docker" includes="*cts*.sh"/>
+        </copy>
+
 	</target>
 </project>
