@@ -14,21 +14,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-def suites = [
-  "samples",
-  "jaxr",
-  "javamail"
-]
-
-def tcks = [
-  "caj",
-  "concurrency",
-  "jaxr"
-]
-
 env.label = "cts-ci-pod-${UUID.randomUUID().toString()}"
  
-def parallelCTSSuitesMap = suites.collectEntries {
+def parallelCTSSuitesMap = params.test_suites.split().collectEntries {
   ["${it}": generateCTSStage(it)]
 }
  
@@ -42,7 +30,6 @@ def generateCTSStage(job) {
             sh """
               env
               unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${WORKSPACE}
-              unzip -o ${WORKSPACE}/cts-bundles/cts-internal.zip -d ${WORKSPACE}
               bash -x ${WORKSPACE}/javaeetck/docker/runcts.sh ${job}
             """
             archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
@@ -54,7 +41,7 @@ def generateCTSStage(job) {
   }
 }
  
-def parallelStandaloneTCKMap = tcks.collectEntries {
+def parallelStandaloneTCKMap = params.standalone_tcks.split().collectEntries {
   ["${it}": generateStandaloneTCKStage(it)]
 }
  
@@ -134,9 +121,6 @@ spec:
     string(name: 'JAVAEETCK_BUNDLE_URL', 
            defaultValue: '',
            description: 'Temporary parameter: URL required for downloading JAVAEETCK bundle' )
-    string(name: 'CTS_INTERNAL_BUNDLE_URL', 
-           defaultValue: '',
-           description: 'Temporary parameter: URL required for downloading CTS Internal bundle' )
   }
   environment {
     JAVA_HOME = "/opt/jdk1.8.0_171/"
