@@ -54,7 +54,8 @@ cp ts.save $TS_HOME/bin/ts.jte
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
-  export GF_BUNDLE_URL="http://download.oracle.com/glassfish/5.0.1/nightly/latest-glassfish.zip"
+  echo "[ERROR] GF_BUNDLE_URL not set"
+  exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 mkdir -p ${CTS_HOME}/ri
@@ -175,8 +176,8 @@ sed -i "s/^mailHost=.*/mailHost=localhost/g" ts.jte
 sed -i "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte
 sed -i "s/^mailFrom=.*/mailFrom=user01@james.local/g" ts.jte
 sed -i "s/^javamail.password=.*/javamail.password=1234/g" ts.jte
-sed -i "smtp.port=.*/smtp.port=1025/g" ts.jte
-sed -i "imap.port=.*/imap.port=1143/g" ts.jte
+sed -i "s/^smtp.port=.*/smtp.port=1025/g" ts.jte
+sed -i "s/^imap.port=.*/imap.port=1143/g" ts.jte
 
 sed -i 's/^s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
 sed -i 's/^ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte

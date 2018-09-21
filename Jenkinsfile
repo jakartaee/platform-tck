@@ -112,7 +112,7 @@ spec:
   }
   parameters {
     string(name: 'GF_BUNDLE_URL', 
-           defaultValue: 'http://download.oracle.com/glassfish/5.0.1/nightly/latest-glassfish.zip', 
+           defaultValue: '', 
            description: 'URL required for downloading GlassFish Full/Web profile bundle' )
     choice(name: 'PROFILE', choices: 'full\nweb', 
            description: 'Profile to be used for running CTS either web/full' )

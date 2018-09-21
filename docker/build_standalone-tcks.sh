@@ -22,7 +22,7 @@ if [ -z "${GF_HOME}" ]; then
   export GF_HOME=${WORKSPACE}
 fi
 
-# Replace dummy.domain.com to busgo1208.us.oracle.com where the Assertion DTDs and XSDs are located.
+# Replace dummy.domain.com to a hosting server where the Assertion DTDs and XSDs are located.
 echo "Files modified for removing dummy.domain.com"
 grep -rl dummy.domain.com . | cut -d: -f1 | xargs sed -i "s/dummy\.domain\.com/${SCHEMA_HOSTING_SERVER}/g"
 
@@ -155,7 +155,7 @@ for tck in ${TCK_LIST[@]}; do
   if [ "jaxrpc" == "$tck" ]
   then
     echo "Generating JAXRPC specific classes using wscompile"
-    cp /net/slc12bad.us.oracle.com/scratch/CTS/spider/trunk/spider/lib/ant-props.jar $ANT_HOME/lib
+    cp $BASEDIR/lib/ant-props.jar $ANT_HOME/lib
     sed -i "s#webserver\.home=.*#webserver.home=$GF_HOME/glassfish5/glassfish#g" $BASEDIR/install/$tck/bin/build.properties
     sed -i "s#jaxrpc\.tool=.*#jaxrpc.tool=$GF_HOME/glassfish5/glassfish/bin/wscompile#g" $BASEDIR/install/$tck/bin/build.properties
     cat $BASEDIR/install/$tck/bin/build.properties

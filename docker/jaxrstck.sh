@@ -25,16 +25,16 @@ cd $TCK_HOME
 if [ -f "${WORKSPACE}/standalone-bundles/jaxrstck-2.1_latest.zip" ]; then
   echo "Using stashed bundle created during build stage"
 else
-  echo "Download and install JAX-RS TCK Bundle ..."
-  ${WORKSPACE}/standalone-bundles
-  wget http://blr00akv.in.oracle.com/tck-builds/links/builds/tcks/javaee_cts/8.1/nightly/jaxrstck-2.1_Latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrstck-2.1_latest.zip
+  echo "[ERROR] TCK bundle not found"
+  exit 1
 fi
 unzip ${WORKSPACE}/standalone-bundles/jaxrstck-2.1_latest.zip -d ${TCK_HOME}
 
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
-  export GF_BUNDLE_URL="http://download.oracle.com/glassfish/5.0.1/nightly/latest-glassfish.zip"
+  echo "[ERROR] GF_BUNDLE_URL not set"
+  exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}

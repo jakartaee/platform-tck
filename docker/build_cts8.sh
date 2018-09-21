@@ -47,7 +47,7 @@ export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 cd $BUILD_WORKSPACE/javaeects-prod
 export BASEDIR=`pwd`
 
-# Replace dummy.domain.com to busgo1208.us.oracle.com where the Assertion DTDs and XSDs are located.
+# Replace dummy.domain.com to a hosting server  where the Assertion DTDs and XSDs are located.
 echo "Files modified for removing dummy.domain.com:"
 grep -rl dummy.domain.com . | cut -d: -f1 | xargs sed -i "s/dummy\.domain\.com/${SCHEMA_HOSTING_SERVER}/g"
 
