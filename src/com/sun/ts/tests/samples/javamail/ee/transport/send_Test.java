@@ -50,7 +50,7 @@ public class send_Test extends ServiceEETest implements Serializable {
   /*
    * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
    * javamail.password ; javamail.mailbox; javamail.root.path; mailuser1;
-   * transport_protocol;
+   * transport_protocol; smtp.port;
    */
   public void setup(String[] args, Properties props) throws Fault {
     try {
@@ -60,6 +60,7 @@ public class send_Test extends ServiceEETest implements Serializable {
       String user = TestUtil.getProperty("javamail.username");
       String password = TestUtil.getProperty("javamail.password");
       String mailbox = TestUtil.getProperty("javamail.mailbox");
+      String port = TestUtil.getProperty("smtp.port");
 
       // mail recipient
       mailTo = TestUtil.getProperty("mailuser1");
@@ -73,7 +74,7 @@ public class send_Test extends ServiceEETest implements Serializable {
 
       MailTestUtil mailTestUtil = new MailTestUtil();
 
-      session = mailTestUtil.createSession(host, user, password);
+      session = mailTestUtil.createSession(host, port, user, password);
 
     } catch (Exception e) {
       logErr("Exception : " + e.getMessage());

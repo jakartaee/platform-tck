@@ -615,6 +615,7 @@
             <arg line=" --mailhost ${mailHost}"/>
             <arg line=" --mailuser ${mailuser1}"/>
             <arg line=" --fromaddress ${mailFrom}"/>
+            <arg line=" --property mail.smtp.port=${smtp.port}"/>
             <arg line=" ${jndiName}"/>
         </exec>
      </target>
