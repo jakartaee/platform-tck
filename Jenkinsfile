@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-env.label = "cts-ci-pod-${UUID.randomUUID().toString()}"
+env.label = "jakartaee-tck-pod-${UUID.randomUUID().toString()}"
  
 def parallelCTSSuitesMap = params.test_suites.split().collectEntries {
   ["${it}": generateCTSStage(it)]
@@ -69,6 +69,7 @@ def generateStandaloneTCKStage(job) {
 pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
+    durabilityHint('PERFORMANCE_OPTIMIZED')
   }
   agent {
     kubernetes {
