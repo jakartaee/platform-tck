@@ -118,7 +118,7 @@ spec:
     choice(name: 'PROFILE', choices: 'full\nweb', 
            description: 'Profile to be used for running CTS either web/full' )
     choice(name: 'BUILD_TYPE', choices: 'CTS\nSTANDALONE-TCK', 
-           description: 'Profile to be used for running CTS either web/full' )
+           description: 'Run the full EE compliance testsuite or a standalone tck' )
     string(name: 'test_suites', defaultValue: 'compat12 compat13 concurrency connector ejb ejb30/bb ejb30/lite ejb30/assembly ejb30/timer ejb30/webservice ejb30/zombie ejb30/misc ejb30/sec ejb32 el integration interop j2eetools jacc jaspic javaee javamail jaxr jaxrpc jaxrs jaxws jdbc jms jpa_appmanaged jpa_appmanagedNoTx jpa_pmservlet jpa_puservlet jpa_stateful3 jpa_stateless3 jsf jsonb jsonp jsp jstl jta jws rmiiiop saaj samples securityapi servlet signaturetest/javaee webservices webservices12 webservices13 websocket xa',
            description: 'Space separated list of Test suites to run') 
     string(name: 'standalone_tcks', defaultValue: 'caj concurrency connector el jacc jaspic jaxr jaxrpc jaxrs jaxws jms jpa jsf jsp jsonb jsonp jstl jta saaj securityapi servlet websocket', 
@@ -126,7 +126,7 @@ spec:
     string(name: 'HTTP_PROXY', defaultValue: '', 
            description: 'Proxy for connecting to http URL')
     string(name: 'HTTPS_PROXY', defaultValue: '', 
-           description: 'Proxy for connecting to http URL')
+           description: 'Proxy for connecting to https URL')
     string(name: 'SCHEMA_HOSTING_SERVER', defaultValue: '', 
            description: 'Server Hosting the xsd and dtds required for building CTS/TCK bundles')
  
