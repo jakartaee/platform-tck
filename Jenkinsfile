@@ -29,8 +29,8 @@ def generateCTSStage(job) {
             unstash 'cts-bundles'
             sh """
               env
-              unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${WORKSPACE}
-              bash -x ${WORKSPACE}/javaeetck/docker/runcts.sh ${job}
+              unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${CTS_HOME}
+              bash -x ${CTS_HOME}/javaeetck/docker/runcts.sh ${job}
             """
             archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
@@ -140,7 +140,7 @@ spec:
     JAVA_HOME = "/opt/jdk1.8.0_171/"
     ANT_HOME = "/usr/share/ant"
     PATH = "${ANT_HOME}/bin:${JAVA_HOME}/bin:${PATH}"
-    CTS_HOME = "${WORKSPACE}"
+    CTS_HOME = "/root"
     http_proxy = "${params.HTTP_PROXY}" 
     https_proxy = "${params.HTTPS_PROXY}"
     ANT_OPTS = "-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http" 

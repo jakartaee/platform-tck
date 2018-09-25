@@ -34,6 +34,7 @@ fi
 if [ -z "${CTS_HOME}" ]; then
   export CTS_HOME="${WORKSPACE}"
 fi
+
 export TS_HOME=${CTS_HOME}/javaeetck/
 if [ -d ${TS_HOME}/tools/ant ]; then
   export ANT_HOME=${TS_HOME}/tools/ant
@@ -57,7 +58,7 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1
 fi
-wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
+wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish.zip
 mkdir -p ${CTS_HOME}/ri
 unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
 
@@ -283,9 +284,10 @@ ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPT
 
 export HOST=`hostname -f`
 TEST_SUITE=`echo "${test_suite}" | tr '/' '_'`
-echo "1 ${TEST_SUITE} ${HOST}" > ${WORKSPACE}/args.txt
+echo "1 ${TEST_SUITE} ${HOST}" > ${CTS_HOME}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
-${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${TS_HOME}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
+${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${TS_HOME}/docker/JTReportParser/JTReportParser.jar ${CTS_HOME}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
+rm -f ${CTS_HOME}/args.txt
 
 if [ -z ${vehicle} ];then
   RESULT_FILE_NAME=${TEST_SUITE}-results.tar.gz
