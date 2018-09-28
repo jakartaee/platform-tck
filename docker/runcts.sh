@@ -61,6 +61,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish.zip
 mkdir -p ${CTS_HOME}/ri
 unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
+chmod -R 777 ${CTS_HOME}/ri
 
 export ADMIN_PASSWORD_FILE="${CTS_HOME}/admin-password.txt"
 echo "AS_ADMIN_PASSWORD=adminadmin" > ${ADMIN_PASSWORD_FILE}
@@ -123,6 +124,7 @@ done
 
 mkdir -p ${CTS_HOME}/vi
 unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/vi
+chmod -R 777 ${CTS_HOME}/vi
 
 ${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
 ${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
@@ -218,6 +220,14 @@ if [ "servlet" == "${test_suite}" ]; then
   sed -i 's/s1as\.java\.endorsed\.dirs=.*/s1as.java.endorsed.dirs=\$\{endorsed.dirs\}\$\{pathsep\}\$\{ts.home\}\/endorsedlib/g' ts.jte
 fi
 
+if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
+  echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
+  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
+fi 
+
 echo "Contents of ts.jte"
 cat ${TS_HOME}/bin/ts.jte
 
@@ -294,4 +304,4 @@ if [ -z ${vehicle} ];then
 else
   RESULT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-results.tar.gz
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/ctsreport ${CTS_HOME}/ctswork ${WORKSPACE}/results/junitreports/
+tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/ctsreport ${CTS_HOME}/ctswork ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/logs/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config
