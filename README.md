@@ -1,4 +1,18 @@
-:warning: The source repository doesn't contain the third party libraries and test archives, waiting for the approval. Once we have all the required files in this repository, we will provide the instructions to build the CTS bundle from the workspace. Until then, we request you not to try building the CTS bundle from this repository. Thank you.
+:warning: The source repository doesn't contain the third party libraries and 
+test archives, waiting for the approval. Here is the current plan -
+1) Obtain the necessary approval from Eclipse IP team for the third party 
+archives and complete the source contribution process
+2) Create the CI/CD infrastructure to build TCK artifacts from the contributed 
+   source code
+   
+   (a) Build the Jakarta EE CTS   
+   (b) Build each of the stand-alone Jakarta component TCKs
+3) Create the CI/CD infrastructure to test Eclipse GlassFish against Eclipse 
+   Jakarta EE CTS. 
+   
+Once we have all the required files in this repository, we will provide the 
+instructions to build the CTS bundle from the workspace. Until then, we request 
+you not to try building the CTS bundle from this repository. Thank you.
 
 # CTS User Guide
 
