@@ -228,6 +228,12 @@ if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
 fi 
 
+VI_SERVER_POLICY_FILE=${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/server.policy
+echo 'grant {' >> ${VI_SERVER_POLICY_FILE}
+echo 'permission java.io.FilePermission "${com.sun.aas.instanceRoot}${/}generated${/}policy${/}-", "read,write,execute,delete";' >> ${VI_SERVER_POLICY_FILE}
+echo '};' >> ${VI_SERVER_POLICY_FILE}
+
+
 echo "Contents of ts.jte"
 cat ${TS_HOME}/bin/ts.jte
 
@@ -304,4 +310,4 @@ if [ -z ${vehicle} ];then
 else
   RESULT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-results.tar.gz
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/ctsreport ${CTS_HOME}/ctswork ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/logs/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config
+tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/ctsreport ${CTS_HOME}/ctswork ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/logs/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config
