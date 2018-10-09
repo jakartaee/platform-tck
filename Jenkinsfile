@@ -161,7 +161,6 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/build_cts8.sh
           """
-          archiveArtifacts artifacts: 'cts-bundles/*.zip'
           stash includes: 'cts-bundles/*.zip', name: 'cts-bundles'
         }
       }
@@ -194,7 +193,6 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks}
           """
-          archiveArtifacts artifacts: 'standalone-bundles/*.zip'
           stash includes: 'standalone-bundles/*.zip', name: 'standalone-bundles'
         }
       }
