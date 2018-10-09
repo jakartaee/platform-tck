@@ -80,7 +80,7 @@ for tck in ${TCK_LIST[@]}; do
     DOC_SPECIFIC_PROPS="-propertyfile $BASEDIR/install/jaxrpc/bin/build.properties -Dts.home=$BASEDIR -Ddeliverable.version=1.1 -Ddeliverable.class=com.sun.ts.lib.deliverable.jaxrpc.JAXRPCDeliverable"
   elif [ "jta" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djta.classes=$GF_HOME/glassfish5/glassfish/modules/javax.transaction-api.jar;$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar"
+    TCK_SPECIFIC_PROPS="-Djta.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.transaction-api.jar;$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar"
   elif [ "jsf" == "$tck" ]
   then
     TCK_SPECIFIC_PROPS="-Djsf.classes=$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar;$GF_HOME/glassfish5/glassfish/modules/javax.servlet.jsp.jstl-api.jar;$GF_HOME/glassfish5/glassfish/modules/javax.inject.jar;$GF_HOME/glassfish5/glassfish/modules/javax.faces.jar;$GF_HOME/glassfish5/glassfish/modules/javax.servlet.jsp-api.jar;$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar;$GF_HOME/glassfish5/glassfish/modules/javax.el.jar"

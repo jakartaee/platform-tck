@@ -273,7 +273,7 @@ alt.schema.dir=${ts.home}/lib/schemas
 # @ts.classpath         --  Classes used to build the Connector tests
 # @ts.lib.classpath     --  Classes used to build connector.jar 
 ###############################################################
-connector.classes.1=${ri.lib}/glassfish.jar${pathsep}${ri.lib}/javax.security.auth.message-api.jar${pathsep}${ri.lib}/web-core.jar${pathsep}${ri.lib}/webservices.security.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${ri.lib}/connectors-admin.jar${pathsep}${ri.lib}/connectors-inbound-runtime.jar${pathsep}${ri.lib}/orb-connector.jar${pathsep}${ri.lib}/javax.transaction-api.jar${pathsep}${ri.lib}/javax.servlet-api.jar${pathsep}${ri.lib}/javax.resource-api.jar${pathsep}${ri.lib}/javax.security.jacc-api.jar${pathsep}${ri.lib}/javax.ejb-api.jar
+connector.classes.1=${ri.lib}/glassfish.jar${pathsep}${ri.lib}/javax.security.auth.message-api.jar${pathsep}${ri.lib}/web-core.jar${pathsep}${ri.lib}/webservices.security.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${ri.lib}/connectors-admin.jar${pathsep}${ri.lib}/connectors-inbound-runtime.jar${pathsep}${ri.lib}/orb-connector.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/javax.servlet-api.jar${pathsep}${ri.lib}/javax.resource-api.jar${pathsep}${ri.lib}/javax.security.jacc-api.jar${pathsep}${ri.lib}/javax.ejb-api.jar
 
 connector.classes=${ts.home}/classes${pathsep}${connector.classes.1}
 
@@ -361,7 +361,7 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${ri.lib}/endorsed/javax.annotation-api.jar${pathsep}${ri.lib}/javax.resource-api.jar${pathsep}${ri.lib}/javax.transaction-api.jar${pathsep}${ri.lib}/javax.security.auth.message-api.jar${pathsep}${ri.lib}/javax.security.jacc-api.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/lib/jce.jar
+sigTestClasspath=${ri.lib}/endorsed/javax.annotation-api.jar${pathsep}${ri.lib}/javax.resource-api.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/javax.security.auth.message-api.jar${pathsep}${ri.lib}/javax.security.jacc-api.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/lib/jce.jar
 
 
 ########################################################################

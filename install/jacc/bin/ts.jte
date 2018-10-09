@@ -274,7 +274,7 @@ alt.schema.dir=${lib.dir}/schemas
 ri.lib=${jacc.home}/modules
 lib.dir=${ts.home}/lib
 
-jacc.classes=${ri.lib}/javax.security.jacc-api.jar:${ri.lib}/javax.security.auth.message-api.jar:${ri.lib}/common-util.jar:${ri.lib}/container-common.jar:${ri.lib}/endorsed/javax.annotation-api.jar:${ri.lib}/javax.resource-api.jar:${ri.lib}/jmxremote_optional-repackaged.jar:${ri.lib}/ldapbp-repackaged.jar:${ri.lib}/security.jar:${ri.lib}/web-core.jar:${ri.lib}/web-glue.jar:${ri.lib}/websecurity.jar:${ri.lib}/javax.servlet-api.jar:${ri.lib}/javax.ejb-api.jar:${ri.lib}/javax.persistence.jar:${ri.lib}/javax.transaction-api.jar:${ri.lib}/javax.jms-api.jar:${ri.lib}/javax.servlet.jsp-api.jar
+jacc.classes=${ri.lib}/javax.security.jacc-api.jar:${ri.lib}/javax.security.auth.message-api.jar:${ri.lib}/common-util.jar:${ri.lib}/container-common.jar:${ri.lib}/endorsed/javax.annotation-api.jar:${ri.lib}/javax.resource-api.jar:${ri.lib}/jmxremote_optional-repackaged.jar:${ri.lib}/ldapbp-repackaged.jar:${ri.lib}/security.jar:${ri.lib}/web-core.jar:${ri.lib}/web-glue.jar:${ri.lib}/websecurity.jar:${ri.lib}/javax.servlet-api.jar:${ri.lib}/javax.ejb-api.jar:${ri.lib}/javax.persistence.jar:${ri.lib}/jakarta.transaction-api.jar:${ri.lib}/javax.jms-api.jar:${ri.lib}/javax.servlet.jsp-api.jar
 
 ts.run.classpath=${ts.home}/classes:${database.classes}:${jacc.classes}
 
