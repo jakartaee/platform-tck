@@ -21,19 +21,41 @@ def parallelCTSSuitesMap = params.test_suites.split().collectEntries {
 }
  
 def generateCTSStage(job) {
-  return {
-    podTemplate(label: env.label) {
-      node(label) {
-        stage("${job}") {
-          container('cts-ci') {
-            unstash 'cts-bundles'
-            sh """
-              env
-              unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${CTS_HOME}
-              bash -x ${CTS_HOME}/javaeetck/docker/runcts.sh ${job}
-            """
-            archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
-            junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
+  if (${job} == 'jaxr') {
+    return {
+      podTemplate(label: env.label) {
+        node(label) {
+          stage("${job}") {
+            container('cts-jaxr') {
+              unstash 'cts-bundles'
+              sh """
+                env
+                unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${CTS_HOME}
+                bash -x ${CTS_HOME}/javaeetck/docker/runcts.sh ${job}
+              """
+              archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
+              junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
+            }
+          }
+        }
+      }
+    }
+  }
+  else {
+    return {
+      podTemplate(label: env.label) {
+        node(label) {
+          stage("${job}") {
+            container('cts-ci') {
+              unstash 'cts-bundles'
+              sh """
+                env
+                unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${CTS_HOME}
+                bash -x ${CTS_HOME}/javaeetck/docker/runcts.sh ${job}
+              """
+              archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
+              junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
+            }
           }
         }
       }
@@ -102,6 +124,18 @@ spec:
     ports:
     - containerPort: 1025
     - containerPort: 1143
+    tty: true
+    imagePullPolicy: Always
+    resources:
+      limits:
+        memory: "2Gi"
+        cpu: "0.5"
+  - name: cts-jaxr
+    image: anajosep/cts-jwsdp:0.1
+    command:
+    - /opt/jwsdp-1.3/bin/startup.sh
+    ports:
+    - containerPort: 8080
     tty: true
     imagePullPolicy: Always
     resources:
