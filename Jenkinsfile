@@ -19,43 +19,30 @@ env.label = "jakartaee-tck-pod-${UUID.randomUUID().toString()}"
 def parallelCTSSuitesMap = params.test_suites.split().collectEntries {
   ["${it}": generateCTSStage(it)]
 }
+
+def getContainerName(job) {
+  if (job == "jaxr") {
+    return "cts-jaxr"
+  } else {
+    return "cts-ci"
+  }
+}
  
 def generateCTSStage(job) {
-  if (${job} == 'jaxr') {
-    return {
-      podTemplate(label: env.label) {
-        node(label) {
-          stage("${job}") {
-            container('cts-jaxr') {
-              unstash 'cts-bundles'
-              sh """
-                env
-                unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${CTS_HOME}
-                bash -x ${CTS_HOME}/javaeetck/docker/runcts.sh ${job}
-              """
-              archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
-              junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
-            }
-          }
-        }
-      }
-    }
-  }
-  else {
-    return {
-      podTemplate(label: env.label) {
-        node(label) {
-          stage("${job}") {
-            container('cts-ci') {
-              unstash 'cts-bundles'
-              sh """
-                env
-                unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${CTS_HOME}
-                bash -x ${CTS_HOME}/javaeetck/docker/runcts.sh ${job}
-              """
-              archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
-              junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
-            }
+  container = getContainerName(job)
+  return {
+    podTemplate(label: env.label) {
+      node(label) {
+        stage("${job}") {
+          container("${container}") {
+            unstash 'cts-bundles'
+            sh """
+              env
+              unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${CTS_HOME}
+              bash -x ${CTS_HOME}/javaeetck/docker/runcts.sh ${job}
+            """
+            archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
+            junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
           }
         }
       }
