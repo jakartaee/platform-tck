@@ -19,17 +19,9 @@ env.label = "jakartaee-tck-pod-${UUID.randomUUID().toString()}"
 def parallelCTSSuitesMap = params.test_suites.split().collectEntries {
   ["${it}": generateCTSStage(it)]
 }
-
-def getContainerName(job) {
-  if (job == "jaxr") {
-    return "cts-jaxr"
-  } else {
-    return "cts-ci"
-  }
-}
  
 def generateCTSStage(job) {
-  container = getContainerName(job)
+  container = (job == "jaxr") ? 'cts-jaxr' : 'cts-ci'
   return {
     podTemplate(label: env.label) {
       node(label) {
@@ -120,7 +112,7 @@ spec:
   - name: cts-jaxr
     image: anajosep/cts-jwsdp:0.1
     command:
-    - /opt/jwsdp-1.3/bin/startup.sh
+    - cat
     ports:
     - containerPort: 8080
     tty: true
