@@ -6832,7 +6832,7 @@ public class Client extends Util {
       getEntityTransaction().begin();
       TestUtil.logTrace("Testing string expression:");
       p = getEntityManager()
-          .createQuery("Select p From Product p where (p.name like \"Java%\")")
+          .createQuery("Select p From Product p where (p.name like 'Java%')")
           .getResultList();
 
       String[] expectedPKs = new String[4];

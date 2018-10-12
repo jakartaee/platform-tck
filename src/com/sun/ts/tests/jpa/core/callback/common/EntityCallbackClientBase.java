@@ -54,7 +54,19 @@ public abstract class EntityCallbackClientBase extends PMClientBase {
     clearCache();
     TestUtil.logTrace("Executing find");
 
-    Object p2 = getEntityManager().find(b.getClass(), testName);
+    Object p2 = null;
+    try {
+      //Transaction is marked as rollback. TransactionManger is in an undefined state. SQLException is a possibility
+      p2 = getEntityManager().find(b.getClass(), testName);
+    } catch (RuntimeException e) {
+      Throwable cause = e;
+      while (cause != null && !SQLException.class.isInstance(cause)) {
+        cause = cause.getCause();
+      }
+      if (cause == null) {
+       throw new Fault(e);
+      }
+    }
     if (p2 == null) {
       reason = "EntityCallbackClientBase: Got expected result: entity with id "
           + testName + " was not found.";
