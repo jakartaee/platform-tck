@@ -21,12 +21,11 @@ def parallelCTSSuitesMap = params.test_suites.split().collectEntries {
 }
  
 def generateCTSStage(job) {
-  container = (job == "jaxr") ? 'cts-jaxr' : 'cts-ci'
   return {
     podTemplate(label: env.label) {
       node(label) {
         stage("${job}") {
-          container("${container}") {
+          container('cts-ci') {
             unstash 'cts-bundles'
             sh """
               env
@@ -103,18 +102,6 @@ spec:
     ports:
     - containerPort: 1025
     - containerPort: 1143
-    tty: true
-    imagePullPolicy: Always
-    resources:
-      limits:
-        memory: "2Gi"
-        cpu: "0.5"
-  - name: cts-jaxr
-    image: anajosep/cts-jwsdp:0.1
-    command:
-    - cat
-    ports:
-    - containerPort: 8080
     tty: true
     imagePullPolicy: Always
     resources:
