@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.callback.common;
 
+import java.sql.SQLException;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
