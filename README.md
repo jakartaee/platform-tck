@@ -14,6 +14,32 @@ Once we have all the required files in this repository, we will provide the
 instructions to build the CTS bundle from the workspace. Until then, we request 
 you not to try building the CTS bundle from this repository. Thank you.
 
+# Steps required to run CTS against Standalone RI changes
+
+1. Build the individual project and release it to Eclipse Maven repositories.
+
+2. Integrate the individual project to GlassFish.
+
+    Sample steps done for JTA:
+
+    ```git clone https://github.com/eclipse-ee4j/glassfish.git
+    git checkout -b EE4J_8
+    find . -name \pom.xml -exec sed -i "s/javax.transaction</jakarta.transaction</g" {} ;
+    find . -name \pom.xml -exec sed -i "s/javax.transaction-api</jakarta.transaction-api</g" {} ;
+    mvn clean install```
+
+3. Upload the glassfish bundle built in the previous step as attachment to the corresponding pull request.
+
+4. Request CTS team to run the CTS suites by tagging @anajosep and @bhatpmk
+
+5. Provide the names of the jars (under glassfish5/glassfish/modules) that were modified in this bundle.
+
+6. If known, specify the test areas that needs to be run, if not leave it empty.
+
+7. Wait for the confirmation and the results uploaded from the runs against the pull request.
+
+8. If the results are clean, commit the changes to the individual project and the changes required for integration to GlassFish.
+
 # CTS User Guide
 
 ## Introduction
