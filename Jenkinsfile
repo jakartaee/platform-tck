@@ -25,9 +25,6 @@ def generateCTSStage(job) {
     podTemplate(label: env.label) {
       node(label) {
         stage("${job}") {
-          options {
-            timeout(time: 18, unit: 'HOURS') 
-          }
           container('cts-ci') {
             unstash 'cts-bundles'
             sh """
@@ -172,7 +169,6 @@ spec:
           return params.BUILD_TYPE == 'CTS';
         }
       }
- 
       steps {
         script {
           parallel parallelCTSSuitesMap
