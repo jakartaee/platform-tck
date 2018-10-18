@@ -25,6 +25,9 @@ def generateCTSStage(job) {
     podTemplate(label: env.label) {
       node(label) {
         stage("${job}") {
+          options {
+            timeout(time: 18, unit: 'HOURS') 
+          }
           container('cts-ci') {
             unstash 'cts-bundles'
             sh """
@@ -137,9 +140,6 @@ spec:
            description: 'Temporary parameter: URL required for downloading JAVAEETCK bundle' )
   }
   environment {
-    JAVA_HOME = "/opt/jdk1.8.0_171/"
-    ANT_HOME = "/usr/share/ant"
-    PATH = "${ANT_HOME}/bin:${JAVA_HOME}/bin:${PATH}"
     CTS_HOME = "/root"
     http_proxy = "${params.HTTP_PROXY}" 
     https_proxy = "${params.HTTPS_PROXY}"
