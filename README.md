@@ -1,5 +1,5 @@
-:warning: The source repository doesn't contain the third party libraries and 
-test archives, waiting for the approval. Here is the current plan -
+:warning: The source repository doesn't contain all the third party libraries, 
+waiting for the approval. Here is the current plan -
 1) Obtain the necessary approval from Eclipse IP team for the third party 
 archives and complete the source contribution process
 2) Create the CI/CD infrastructure to build TCK artifacts from the contributed 
