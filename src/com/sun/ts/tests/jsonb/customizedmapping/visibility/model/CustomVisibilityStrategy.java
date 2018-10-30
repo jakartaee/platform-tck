@@ -27,7 +27,7 @@ import java.lang.reflect.Method;
 public class CustomVisibilityStrategy implements PropertyVisibilityStrategy {
   @Override
   public boolean isVisible(Field field) {
-    return true;
+    return false;
   }
 
   @Override

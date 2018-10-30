@@ -132,11 +132,10 @@ public class ClassesMappingTest extends ServiceEETest {
     try {
       jsonb.fromJson("{ \"instance\" : \"Test String\" }",
           StringContainerProtectedConstructor.class);
-      throw new Fault(
-          "An exception is expected when unmarshalling a class with a protected constructor.");
-    } catch (JsonbException e) {
       return Status.passed("OK");
-    }
+    } catch (JsonbException x) {
+            throw new Fault("An exception is not expected when unmarshalling a class with a protected constructor.");
+   }
   }
 
   /*

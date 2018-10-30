@@ -141,7 +141,7 @@ public abstract class BeanParamCommonClient extends JaxrsParamClient {
     setProperty(Property.CONTENT, requestForCookie);
     setProperty(Property.REQUEST, buildRequest(Request.POST, uri));
     setProperty(Property.SAVE_STATE, "true");
-    super.invoke();
+    invoke();
     checkCookie(param);
     // check cookie
     setProperty(Property.USE_SAVED_STATE, "true");

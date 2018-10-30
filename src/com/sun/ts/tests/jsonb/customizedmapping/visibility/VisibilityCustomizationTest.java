@@ -29,8 +29,8 @@ import javax.json.bind.JsonbConfig;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.jsonb.customizedmapping.visibility.model.CustomFieldVisibilityStrategy;
 import com.sun.ts.tests.jsonb.customizedmapping.visibility.model.CustomVisibilityAnnotatedContainer;
-import com.sun.ts.tests.jsonb.customizedmapping.visibility.model.CustomVisibilityStrategy;
 import com.sun.ts.tests.jsonb.customizedmapping.visibility.model.SimpleContainer;
 import com.sun.ts.tests.jsonb.customizedmapping.visibility.model.customized.PackageCustomizedContainer;
 
@@ -57,7 +57,7 @@ public class VisibilityCustomizationTest extends ServiceEETest {
   public void cleanup() throws Fault {
     logMsg("cleanup ok");
   }
-
+  
   /*
    * @testName: testCustomVisibilityConfig
    *
@@ -69,7 +69,7 @@ public class VisibilityCustomizationTest extends ServiceEETest {
    */
   public Status testCustomVisibilityConfig() throws Fault {
     Jsonb jsonb = JsonbBuilder.create(new JsonbConfig()
-        .withPropertyVisibilityStrategy(new CustomVisibilityStrategy()));
+        .withPropertyVisibilityStrategy(new CustomFieldVisibilityStrategy()));
 
     String jsonString = jsonb.toJson(new SimpleContainer() {
       {
@@ -85,8 +85,8 @@ public class VisibilityCustomizationTest extends ServiceEETest {
         "{ \"stringInstance\" : \"Test String\", \"floatInstance\" : 1.0, \"integerInstance\" : 1 }",
         SimpleContainer.class);
     if (unmarshalledObject.getStringInstance() != null
-        || unmarshalledObject.getIntegerInstance() != null
-        || unmarshalledObject.getFloatInstance() != 0) {
+        || unmarshalledObject.getIntegerInstance() != 1 
+        || unmarshalledObject.getFloatInstance() != 1.0f) {
       throw new Fault(
           "Failed to ignore fields during unmarshalling by applying custom visibility strategy using configuration.");
     }
@@ -119,7 +119,7 @@ public class VisibilityCustomizationTest extends ServiceEETest {
         CustomVisibilityAnnotatedContainer.class);
     if (unmarshalledObject.getStringInstance() != null
         || unmarshalledObject.getIntegerInstance() != null
-        || unmarshalledObject.getFloatInstance() != 0) {
+        || unmarshalledObject.getFloatInstance() != 0.0f) {
       throw new Fault(
           "Failed to ignore fields during unmarshalling by applying custom visibility strategy using JsonbVisibility annotation.");
     }
@@ -152,7 +152,7 @@ public class VisibilityCustomizationTest extends ServiceEETest {
         PackageCustomizedContainer.class);
     if (unmarshalledObject.getStringInstance() != null
         || unmarshalledObject.getIntegerInstance() != null
-        || unmarshalledObject.getFloatInstance() != 0) {
+        || unmarshalledObject.getFloatInstance() != 0.0f) {
       throw new Fault(
           "Failed to ignore fields during unmarshalling by applying custom visibility strategy using JsonbVisibility annotation on package.");
     }
