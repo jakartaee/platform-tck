@@ -25,12 +25,12 @@ def generateCTSStage(job) {
     podTemplate(label: env.label) {
       node(label) {
         stage("${job}") {
-          container('cts-ci') {
-            unstash 'cts-bundles'
+          container('jakartaeetck-ci') {
+            unstash 'jakartaeetck-bundles'
             sh """
               env
-              unzip -o ${WORKSPACE}/cts-bundles/javaeetck.zip -d ${CTS_HOME}
-              bash -x ${CTS_HOME}/javaeetck/docker/runcts.sh ${job}
+              unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
+              bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job}
             """
             archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
@@ -50,7 +50,7 @@ def generateStandaloneTCKStage(job) {
     podTemplate(label: env.label) {
       node(label) {
         stage("${job}") {
-          container('cts-ci') {
+          container('jakartaeetck-ci') {
             checkout scm
             unstash 'standalone-bundles'
             sh """
@@ -85,7 +85,7 @@ spec:
     hostnames:
     - "localhost.localdomain"
   containers:
-  - name: cts-ci
+  - name: jakartaeetck-ci
     image: anajosep/cts-base:0.1
     command:
     - cat
@@ -129,41 +129,33 @@ spec:
            description: 'Proxy for connecting to https URL')
     string(name: 'SCHEMA_HOSTING_SERVER', defaultValue: '', 
            description: 'Server Hosting the xsd and dtds required for building CTS/TCK bundles')
- 
-    booleanParam( name: 'buildCTSFlag', defaultValue: true, 
-           description: 'Temporary parameter: Flag to control if CTS has to be built or downloaded from server')
-    string(name: 'JAVAEETCK_BUNDLE_URL', 
-           defaultValue: '',
-           description: 'Temporary parameter: URL required for downloading JAVAEETCK bundle' )
   }
   environment {
     CTS_HOME = "/root"
-    http_proxy = "${params.HTTP_PROXY}" 
-    https_proxy = "${params.HTTPS_PROXY}"
     ANT_OPTS = "-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http" 
-    BUILD_CTS_FLAG="${params.buildCTSFlag}"
     MAIL_USER="user01@james.local"
     LANG="en_US.UTF-8"
   }
   stages {
-    stage('cts-build') {
+    stage('jakartaeetck-build') {
       when {
         expression {
           return params.BUILD_TYPE == 'CTS';
         }
       }
       steps {
-        container('cts-ci') {
+        container('jakartaeetck-ci') {
           sh """
             env
-            bash -x ${WORKSPACE}/docker/build_cts8.sh
+            bash -x ${WORKSPACE}/docker/build_jakartaeetck.sh
           """
-          stash includes: 'cts-bundles/*.zip', name: 'cts-bundles'
+          archiveArtifacts artifacts: 'jakartaeetck-bundles/*.zip'
+          stash includes: 'jakartaeetck-bundles/*.zip', name: 'jakartaeetck-bundles'
         }
       }
     }
  
-    stage('cts-run') {
+    stage('jakartaeetck-run') {
       when {
         expression {
           return params.BUILD_TYPE == 'CTS';
@@ -184,7 +176,7 @@ spec:
       }
  
       steps {
-        container('cts-ci') {
+        container('jakartaeetck-ci') {
           sh """
             env
             bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks}

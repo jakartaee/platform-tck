@@ -14,37 +14,15 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
-if [ "${BUILD_CTS_FLAG}" == "false" ]; then
-  echo "Not building CTS instead using the prebuilt bundle"
-  if [ -z "${JAVAEETCK_BUNDLE_URL}" ]; then
-    echo "[ERROR] Invalid Configuration. JAVAEETCK_BUNDLE_URL is not set and BUILD_CTS_FLAG is disabled."
-    exit 1
-  fi
-
-  if [ -z "${CTS_INTERNAL_BUNDLE_URL}" ]; then
-    echo "[WARNING] CTS_INTERNAL_BUNDLE_URL is not set and BUILD_CTS_FLAG is disabled. It would not be used."
-  fi
-
-  echo "Copy the latest CTS Bundle ..."
-  mkdir -p ${WORKSPACE}/cts-bundles
-  cd ${WORKSPACE}/cts-bundles
-  wget --progress=bar:force --no-cache ${JAVAEETCK_BUNDLE_URL} -O javaeetck.zip
-  if [ ! -z "${CTS_INTERNAL_BUNDLE_URL}" ]; then
-    wget --progress=bar:force --no-cache ${CTS_INTERNAL_BUNDLE_URL} -O cts-internal.zip
-  fi
-  chmod 777 *.zip
-  exit 0
-fi
-
 # Hudson log file location for archiving later.
 BUILD_WORKSPACE=$WORKSPACE
-LOGFILE=/build.cts8.log
+LOGFILE=$WORKSPACE/build.jakartaeetck.log
 
 export ANT_HOME=/usr/share/ant/
 export JAVA_HOME=/opt/jdk1.8.0_171
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
-cd $BUILD_WORKSPACE/javaeects-prod
+cd $BUILD_WORKSPACE/jakartaee-tck
 export BASEDIR=`pwd`
 
 # Replace dummy.domain.com to a hosting server  where the Assertion DTDs and XSDs are located.
@@ -61,11 +39,6 @@ export ANT_OPTS="-Djava.endorsed.dirs=${BASEDIR}/glassfish5/glassfish/modules/en
                  -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
                  -Djavax.xml.accessExternalDTD=file,http"
-
-echo "########## Trunk.Config.JTE ##########"
-sed -i "s#\[GF_INSTALL_DIR\]#$BASE_DIR#g" /cts-trunk-almgit.properties
-cp /cts-trunk-almgit.properties $BUILD_WORKSPACE
-ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=j2ee -Dts.jte.prop.file=$BUILD_WORKSPACE/cts-trunk-almgit.properties -Dbasedir=$BASEDIR/release/tools edit.jte
 
 echo ########## Remove hard-coded paths from install/j2ee/bin/ts.jte ##########"
 sed -e "s#^javaee.home=.*#javaee.home=$BASEDIR/glassfish5/glassfish#g" \
@@ -111,6 +84,6 @@ ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=j2ee -Dbasedir=$B
 echo "########## Trunk.CTS ##########"
 ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools j2ee
 
-mkdir -p ${WORKSPACE}/cts-bundles
-cd ${WORKSPACE}/cts-bundles
-cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/javaeetck*.zip ${WORKSPACE}/cts-bundles/javaeetck.zip
+mkdir -p ${WORKSPACE}/jakartaeetck-bundles
+cd ${WORKSPACE}/jakartaeetck-bundles
+cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/javaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip

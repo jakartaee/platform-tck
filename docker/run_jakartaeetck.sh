@@ -169,11 +169,13 @@ if [ ! -z "$KEYWORDS" ];then
 fi
 echo "CTS_ANT_OPTS:${CTS_ANT_OPTS}"
 
+export JT_REPORT_DIR=${CTS_HOME}/jakartaeetck-report
+export JT_WORK_DIR=${CTS_HOME}/jakartaeetck-work
+
 ### Update ts.jte for CTS run
 cd ${TS_HOME}/bin
-
-sed -i "s#^report.dir=.*#report.dir=${CTS_HOME}/ctsreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=${CTS_HOME}/ctswork#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=${JT_REPORT_DIR}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=${JT_WORK_DIR}#g" ts.jte
 
 sed -i "s/^mailHost=.*/mailHost=localhost/g" ts.jte
 sed -i "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte
@@ -237,12 +239,11 @@ echo '};' >> ${VI_SERVER_POLICY_FILE}
 echo "Contents of ts.jte"
 cat ${TS_HOME}/bin/ts.jte
 
-mkdir -p ${CTS_HOME}/ctsreport
-mkdir -p ${CTS_HOME}/ctswork
-export JT_REPORT_DIR=${CTS_HOME}/ctsreport
+mkdir -p ${JT_REPORT_DIR}
+mkdir -p ${JT_WORK_DIR}
 
 export JAVA_VERSION=`java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}'`
-echo $JAVA_VERSION > ${CTS_HOME}/ctsreport/.jdk_version
+echo $JAVA_VERSION > ${JT_REPORT_DIR}/.jdk_version
 
 cd  ${TS_HOME}/bin
 ant config.vi
@@ -310,4 +311,4 @@ if [ -z ${vehicle} ];then
 else
   RESULT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-results.tar.gz
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/ctsreport ${CTS_HOME}/ctswork ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/logs/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config
+tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/logs/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config
