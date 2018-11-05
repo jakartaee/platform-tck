@@ -22,12 +22,12 @@ export ANT_HOME=/usr/share/ant/
 export JAVA_HOME=/opt/jdk1.8.0_171
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
-cd $BUILD_WORKSPACE/jakartaee-tck
+cd $BUILD_WORKSPACE
 export BASEDIR=`pwd`
 
 # Replace dummy.domain.com to a hosting server  where the Assertion DTDs and XSDs are located.
 echo "Files modified for removing dummy.domain.com:"
-grep -rl dummy.domain.com . | cut -d: -f1 | xargs sed -i "s/dummy\.domain\.com/${SCHEMA_HOSTING_SERVER}/g"
+grep -rl dummy.domain.com . | cut -d: -f1 | xargs sed -i "s#dummy\.domain\.com#${SCHEMA_HOSTING_SERVER}#g"
 
 which ant
 ant -version

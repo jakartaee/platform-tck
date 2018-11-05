@@ -123,10 +123,6 @@ spec:
            description: 'Space separated list of Test suites to run') 
     string(name: 'standalone_tcks', defaultValue: 'caj concurrency connector el jacc jaspic jaxr jaxrpc jaxrs jaxws jms jpa jsf jsp jsonb jsonp jstl jta saaj securityapi servlet websocket', 
            description: 'Space separated list of standalone TCKs to build and run') 
-    string(name: 'HTTP_PROXY', defaultValue: '', 
-           description: 'Proxy for connecting to http URL')
-    string(name: 'HTTPS_PROXY', defaultValue: '', 
-           description: 'Proxy for connecting to https URL')
     string(name: 'SCHEMA_HOSTING_SERVER', defaultValue: '', 
            description: 'Server Hosting the xsd and dtds required for building CTS/TCK bundles')
   }
