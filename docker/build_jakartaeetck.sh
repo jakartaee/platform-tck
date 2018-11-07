@@ -63,7 +63,7 @@ echo "########## Trunk.Build ##########"
 ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -debug -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed build.all
+ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed build.all
 
 
 echo "########## Trunk.Build.Log.Scraper ##########"
