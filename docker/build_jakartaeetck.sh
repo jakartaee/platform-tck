@@ -16,7 +16,6 @@
 
 # Hudson log file location for archiving later.
 BUILD_WORKSPACE=$WORKSPACE
-LOGFILE=$WORKSPACE/build.jakartaeetck.log
 
 export ANT_HOME=/usr/share/ant/
 export JAVA_HOME=/opt/jdk1.8.0_171
@@ -35,7 +34,7 @@ ant -version
 which java
 java -version
 
-export ANT_OPTS="-Djava.endorsed.dirs=${BASEDIR}/glassfish5/glassfish/modules/endorsed \
+export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${BASEDIR}/glassfish5/glassfish/modules/endorsed \
                  -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
                  -Djavax.xml.accessExternalDTD=file,http"
@@ -64,11 +63,6 @@ ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASE
 
 # Full workspace build.
 ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed build.all
-
-
-echo "########## Trunk.Build.Log.Scraper ##########"
-# Checks for "BUILD FAILED" in log.
-ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=j2ee -Dhudson.build.log.copy.dest=$DESTDIR -Dhudson.build.log=$LOGFILE -Dproprietary.check.enabled=true -Dhudson.build.log.2=$LOGFILE -Dbasedir=$BASEDIR/release/tools -lib $BASEDIR/tools/ant-opt-libs scrape.cts.build.log
 
 
 echo "########## Trunk.Sanitize.JTE ##########"

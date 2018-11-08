@@ -90,6 +90,9 @@ spec:
     - cat
     tty: true
     imagePullPolicy: Always
+    env:
+      - name: JAVA_TOOL_OPTIONS
+        value: -Xmx2G
     resources:
       limits:
         memory: "8Gi"
@@ -103,6 +106,9 @@ spec:
     - containerPort: 1143
     tty: true
     imagePullPolicy: Always
+    env:
+      - name: JAVA_TOOL_OPTIONS
+        value: -Xmx1G
     resources:
       limits:
         memory: "2Gi"
@@ -176,6 +182,7 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks}
           """
+          archiveArtifacts artifacts: 'standalone-bundles/*.zip'
           stash includes: 'standalone-bundles/*.zip', name: 'standalone-bundles'
         }
       }
