@@ -67,7 +67,6 @@
                      com/sun/ts/tests/signaturetests/jaxr/**/*.java,
                      com/sun/ts/tests/signaturetests/jaxrpc/**/*.java,
                      com/sun/ts/tests/signaturetests/jaxws/**/*.java,
-                     com/sun/ts/tests/signaturetests/jbi/**/*.java,
                      com/sun/ts/tests/signaturetests/jms/**/*.java,
                      com/sun/ts/tests/signaturetests/jsf/**/*.java,
                      com/sun/ts/tests/signaturetests/jsp/**/*.java,

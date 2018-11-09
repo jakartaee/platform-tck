@@ -108,7 +108,7 @@
                                com/sun/ts/tests/jms/common/**/*.class,
                                com/sun/ts/tests/jaxws/common/**/*.class,
                                com/sun/ts/tests/ejb30/common/**/*.class"
-                     excludes="**/.svn/*, **/jbi/**/*, 
+                     excludes="**/.svn/*,
                                com/sun/ts/tests/signaturetest/*.txt,
                                com/sun/ts/lib/tests/**,
                                com/sun/ts/tests/signaturetest/README" />

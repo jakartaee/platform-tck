@@ -76,6 +76,8 @@ ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=j2ee -Dbasedir=$B
 
 
 echo "########## Trunk.CTS ##########"
+mkdir -p $BASEDIR/internal/docs/javaee/
+cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/javaee/
 ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools j2ee
 
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles

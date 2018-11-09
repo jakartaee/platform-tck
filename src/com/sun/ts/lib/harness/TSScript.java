@@ -284,7 +284,7 @@ public class TSScript extends com.sun.javatest.Script {
         }
 
         if (!sVehicle.equals("standalone") && !sVehicle.equals("ejbembed")
-            && !sVehicle.equals("customvehicle") && !sVehicle.equals("jbi")) {
+            && !sVehicle.equals("customvehicle")) {
           // only use the vehicle ear name in serviceeetest to create
           // unique JNDI names and context roots.
           // This is not used in the standalone TCK case
@@ -309,7 +309,7 @@ public class TSScript extends com.sun.javatest.Script {
 
       // if we are standalone (like JDBC ouside of J2EE, don't deploy)
       // just run!
-      if (!sVehicle.equals("standalone") && !sVehicle.equals("jbi")) {
+      if (!sVehicle.equals("standalone")) {
         // check the status of deployment
         // which happened in the observer class
         if (ss.getDeploymentStatus().equals("failed")) {

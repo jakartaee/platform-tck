@@ -86,7 +86,6 @@
         <echo message=" caj           [overrides]"/>
         <echo message=" connector     [overrides]"/>
         <echo message=" jacc          [overrides]"/>
-        <echo message=" jbi           [overrides]"/>
         <echo message=" jspservlet    [overrides]"/>
         <echo message=" jsp           [overrides]"/>
         <echo message=" jaspic        [overrides]"/>
@@ -379,11 +378,6 @@
     <target name="jacc" depends="has.override, no.override">
         <property name="deliverable.name" value="JACC"/>
         <property name="test.areas" value="jacc"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
-    <target name="jbi" depends="has.override, no.override" >
-        <property name="deliverable.name" value="JBI"/>
         <antcall target="${the.target}"/>
     </target>
     
