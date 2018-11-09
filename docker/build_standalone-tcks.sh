@@ -22,10 +22,6 @@ if [ -z "${GF_HOME}" ]; then
   export GF_HOME=${WORKSPACE}
 fi
 
-# Replace dummy.domain.com to a hosting server where the Assertion DTDs and XSDs are located.
-echo "Files modified for removing dummy.domain.com"
-grep -rl dummy.domain.com . | cut -d: -f1 | xargs sed -i "s#dummy\.domain\.com#${SCHEMA_HOSTING_SERVER}#g"
-
 which ant
 ant -version
 

@@ -1,6 +1,23 @@
 <!-- 
 Spec Assertion DTD file. This DTD is used to describe assertions taken from specs .
 -->
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
 <!-- Version 0.2 -->
 <!-- By Stephen DiMilla -->
 <!-- Last Modification: -->
@@ -159,8 +176,8 @@ An assertion also have attributes used for describing the actual state of the as
 Example Assertion:
 
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE spec SYSTEM "http://busgo1208.us.oracle.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
-<?xml-stylesheet type="text/xsl" href="http://busgo1208.us.oracle.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
 <spec>
 	<next-available-id>602</next-available-id>
 	<previous-id>599</previous-id>

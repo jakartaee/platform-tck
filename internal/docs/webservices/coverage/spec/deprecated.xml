@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE spec SYSTEM "http://invalid.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
     Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.

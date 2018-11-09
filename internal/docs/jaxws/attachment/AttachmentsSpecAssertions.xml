@@ -1,5 +1,5 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
-<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd"[
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd"[
 <!--
 
     Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
@@ -22,7 +22,7 @@
 <!ENTITY attach_ch4 SYSTEM "attach_ch4.xml">
 ]>
 
-<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
 <spec>
 	<next-available-id>10000</next-available-id>
 	<previous-id>9999</previous-id>

@@ -17,13 +17,13 @@
 
 -->
 
-<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd"[
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd"[
 <!ENTITY wsasoapbinding_ch4 SYSTEM "wsasoapbinding_ch4.xml">
 <!ENTITY wsasoapbinding_ch5 SYSTEM "wsasoapbinding_ch5.xml">
 <!ENTITY wsasoapbinding_ch6 SYSTEM "wsasoapbinding_ch6.xml">
 ]>
 
-<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
 <spec>
 	<next-available-id>20000</next-available-id>
 

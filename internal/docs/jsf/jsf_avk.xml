@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
     Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
@@ -18,7 +18,7 @@
 
 -->
 
-<?xml-stylesheet href='http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl'?>
+<?xml-stylesheet href='https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl'?>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id/>
 			<description>It is also legal to specify a different lifecycle identifier as a parameter to the getLifecycle() method, as long as this identifier is recognized and supported by the JSF implementation you are using. However, using a non-default lifecycle identifier will generally not be portable to any other JSF implementation.</description>
