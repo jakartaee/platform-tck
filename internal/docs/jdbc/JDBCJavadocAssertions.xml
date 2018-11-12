@@ -18,8 +18,8 @@
 -->
 
 <!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by sudipto ghosh (sun microsystems) -->
-<!DOCTYPE javadoc SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/javadoc_assertions.dtd">
-<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/javadoc_assertions.xsl"?>
+<!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/javadoc_assertions.xsl"?>
 <javadoc>
 	<next-available-id>1640</next-available-id>
 	<previous-id>1</previous-id>

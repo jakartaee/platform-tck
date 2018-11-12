@@ -1,0 +1,274 @@
+<!-- 
+Spec Assertion DTD file. This DTD is used to describe assertions taken from specs .
+-->
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+<!-- Version 0.2 -->
+<!-- By Stephen DiMilla -->
+<!-- Last Modification: -->
+<!--
+The spec element describes all the elements used to uniquely identify the specification where the assertions originated from.
+ -->
+<!ELEMENT spec (next-available-id, previous-id, technology, id, name, version, location-names, assertions?)>
+<!--
+The next-available-id element identifies the next id that should be used when creating new assertions.
+-->
+<!ELEMENT next-available-id (#PCDATA)>
+<!--
+The previous-id element identifies the previous id that was used when creating new assertions.
+-->
+<!ELEMENT previous-id (#PCDATA)>
+<!--
+The technology element contains the name of the technology that the assertions pertain to.
+-->
+<!ELEMENT technology (#PCDATA)>
+<!--
+The id element specifies the id of the specification or the unique id an assertion can have. The id must be unique in the document. 
+-->
+<!ELEMENT id (#PCDATA)>
+<!--
+The name element specifies the name of a spec, chapter or section
+-->
+<!ELEMENT name (#PCDATA)>
+<!--
+The version element describes the version the specification
+-->
+<!ELEMENT version (#PCDATA)>
+<!--
+The location-names element describes the names of the chapters and sections in the spec
+-->
+<!ELEMENT location-names (chapters)>
+
+<!ELEMENT chapters (chapter+)>
+<!--
+The chapter element describes the individual chapter id in the spec
+-->
+<!ELEMENT chapter (sections?)>
+<!ATTLIST chapter
+	id CDATA #REQUIRED
+	name CDATA #REQUIRED
+>
+
+<!ELEMENT sections (section+)>
+<!--
+The section element describes the individual section id in the spec
+-->
+<!ELEMENT section EMPTY>
+<!ATTLIST section
+	id CDATA #REQUIRED
+	name CDATA #REQUIRED
+>
+<!--
+The location element describes the chapter and section ids in the spec where the assertion came from. 
+-->
+<!ELEMENT location EMPTY>
+<!ATTLIST location
+	chapter CDATA #REQUIRED
+	section CDATA #REQUIRED
+>
+<!--
+The description element contains a full description of the assertion in detail.
+-->
+<!ELEMENT description (#PCDATA)>
+<!--
+The assertions element describes all the required elements used for expressing a specification assertion using XML.
+-->
+<!--
+The keywords element defines a set of keywords associated with an assertion.  Please note that
+there are two keywords that already have specific meaning.  Users must take great care not to use
+these reserved keywords for any purpose other than their intended purpose.  The two keywords
+that are reserved are "application-role" and "application-server-role".  The "application-role"
+keywork denotes that this assertion applies to an application or an application component.  This
+type of assertion is most likely verified by the application verification team.  The
+"application-server-role" keyword denotes that this assertion applies to an application server.
+This type of assertion is most likely verified by the CTS team.  Note that both these keywords
+can be specified within the same assertion.  At least one of these keywords will be present
+in every assertion.
+-->
+<!ELEMENT keywords (keyword+)>
+<!--
+The keyword element describes a keyword associated with the assertion. This tag will be used by a tool to easily find an assertion based on keywords.
+-->
+<!ELEMENT keyword (#PCDATA)>
+<!--
+The comment element is used to store any comments about the assertion.
+-->
+<!ELEMENT comment (#PCDATA)>
+<!--
+The depends element contains all the dependencies an assertion may have. To be realized, and assertion may need another assertion to
+be realize before. The depend element is used to describe that type of scenario. 
+-->
+<!ELEMENT depends (depend+)>
+<!--
+The depends' order attribute is used when an assertion must follow more that one assertions before being executed.
+
+Example:
+Assertion 3 must always occurs after assertion 1 and assertion 6
+
+<depends order="assertion 1, asssertion 6">
+    <depend> assertion 1 </depend>
+    <depend> assertion 6 </depend>
+</depends>    
+
+-->
+<!ATTLIST depends
+	order CDATA #IMPLIED
+>
+<!--
+The depend element describes the dependency an assertion can have with another assertion. 
+The element's value is always an assertion <id> value.
+-->
+<!ELEMENT depend (#PCDATA)>
+<!-- 
+The sub assertions element is used to expand an assertion that contains several elements that are each an assertion
+of their own.
+
+For example, see below
+-->
+<!ELEMENT sub-assertions (assertion+)>
+
+<!ELEMENT assertions (assertion+)>
+<!--
+The assertion element is an XML-view a specification assertion. 
+id: This element must be unique. 
+description: This is taken literally from the specification. 
+keywords:  can be used to associate a common name across multiple assertions.
+chapter: Identifies which chapter the assertion came from.
+section: Identifies which section the assertion came from.
+depends: Identifies other assertions that must be realized inorder for this assertion to be realized.
+sub-assertions: These are assertions that make up/ are a component of  the parent assertion. 
+
+An assertion also have attributes used for describing the actual state of the assertion:
+	required: Is the assertion a required element in the specification (true or false)
+	impl-spec: Is the assertion an implementation specific element (true or false)
+	defined-by: Is the assertion based on a technology requirement or is it a platform requirement
+	status  The current status of the assertion 
+	testable: Is the the assertion testable from a compatability standpoint.
+        priority: What is the priority of the assertion.
+	
+-->
+<!ELEMENT assertion (id, description, keywords?, location, comment?, depends?, sub-assertions?)>
+<!ATTLIST assertion
+	required (true | false) #REQUIRED
+	impl-spec (true | false) #REQUIRED
+	defined-by (technology | platform) #REQUIRED
+	status (active | deprecated | removed) #REQUIRED
+	testable (true | false) #REQUIRED
+        priority (low | medium | high) #IMPLIED
+>
+
+<!--
+Example Assertion:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
+<spec>
+	<next-available-id>602</next-available-id>
+	<previous-id>599</previous-id>
+	<technology>JAXRPC</technology>
+	<id>JAXRPC 1.0</id>
+	<name>Java API for XML-based RPC</name>
+	<version>0.7</version>
+	<location-names>
+	<chapters>
+		<chapter id="3" name="Requirements">
+			<sections>
+				<section id="R01" name="Protocol Bindings"/>
+				<section id="R02" name="Transport"/>
+				<section id="R03" name="Supported Type Systems"/>
+			</sections>
+		</chapter>
+		<chapter id="4" name="WSDL/XML to Java Mapping"/>
+			<sections>
+				<section id="1" name="XML Names"/>
+				<section id="2.1" name="Simple Types"/>
+				<section id="2.2" name="Array"/>
+			</sections>
+		<chapter id="14" name="Interoperability">
+			<sections>
+				<section id="1" name="Interoperability Scenario"/>
+				<section id="1" name="Interoperability Scenario"/>
+				<section id="3.1" name="SOAP based Interoperability"/>
+				<section id="3.2" name="SOAP Encoding and XML Schema Support"/>
+				<section id="3.3" name="Transport"/>
+				<section id="3.4" name="WSDL Requirements"/>
+				<section id="3.5" name="Processing of SOAP Headers"/>
+				<section id="3.6" name="Mapping of Remote Exceptions"/>
+				<section id="3.7" name="Security"/>
+				<section id="3.8" name="Transaction"/>
+			</sections>
+		</chapter>
+		<chapter id="15" name="Extensible Type Mapping">
+			<sections>
+				<section id="2" name="Type Mapping Framework"/>
+				<section id="3.1" name="TypeMappingRegistry"/>
+			</sections>
+		</chapter>
+		<chapter id="18" name="XML Schema Support"/>
+	</location-names>
+	<assertions>
+		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+			<id>441</id>
+			<description>The JAX-RPC specification requires the use of one of the following representations for remote call in a SOAP message</description>
+			<location chapter="14" section="3.2"/>
+			<sub-assertions>
+				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+					<id>441.1</id>
+					<description>Encoded representation using the SOAP 1.1 encoding</description>
+					<location chapter="14" section="3.2"/>
+					<sub-assertions>
+						<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+							<id>441.1.1</id>
+							<description>The rules and format of serialization for the XML data types are based on the SOAP 1.1 encoding [4].</description>
+							<location chapter="14" section="3.2"/>
+						</assertion>
+						<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+							<id>441.1.2</id>
+							<description>An interoperable JAX-RPC implementation is required to support the SOAP 1.1 encoding.</description>
+							<location chapter="14" section="3.2"/>
+						</assertion>
+						<assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
+							<id>441.1.3</id>
+							<description>Interoperability requirements for any other encodings are outside the scope of the JAX-RPC specification.</description>
+							<location chapter="14" section="3.2"/>
+						</assertion>
+					</sub-assertions>
+				</assertion>
+				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+					<id>441.2</id>
+					<description>Literal representation</description>
+					<location chapter="14" section="3.2"/>
+					<sub-assertions>
+						<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+							<id>441.2.1</id>
+							<description>Each message part in the SOAP body references a concrete schema definition using the element attribute.</description>
+							<location chapter="14" section="3.2"/>
+						</assertion>
+						<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
+							<id>441.2.2</id>
+							<description>Each message part in the SOAP body references a concrete schema definition using the type attribute.</description>
+							<location chapter="14" section="3.2"/>
+						</assertion>
+					</sub-assertions>
+				</assertion>
+			</sub-assertions>
+		</assertion>
+	</assertions>
+</spec>
+-->

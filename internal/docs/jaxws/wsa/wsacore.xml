@@ -17,12 +17,12 @@
 
 -->
 
-<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd"[
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd"[
 <!ENTITY wsacore_ch2 SYSTEM "wsacore_ch2.xml">
 <!ENTITY wsacore_ch3 SYSTEM "wsacore_ch3.xml">
 ]>
 
-<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
 <spec>
 	<next-available-id>4000</next-available-id>
 

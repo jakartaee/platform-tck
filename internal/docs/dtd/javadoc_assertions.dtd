@@ -1,0 +1,137 @@
+<!-- 
+Javadoc Assertion DTD file. This DTD is used to describe assertions taken from javadoc.
+-->
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!-- Version 0.2 -->
+<!-- By Stephen DiMilla -->
+<!-- Last Modification: -->
+<!ELEMENT javadoc (next-available-id, previous-id, technology, id, name, version, assertions?)>
+<!ELEMENT next-available-id (#PCDATA)>
+<!ELEMENT previous-id (#PCDATA)>
+<!ELEMENT technology (#PCDATA)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT version (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT assertions (assertion+)>
+<!ELEMENT assertion (modified?, id, description, keywords?, package, class-interface, (method | field), comment?, depends?)>
+<!ATTLIST assertion
+	required (true | false) #REQUIRED
+	impl-spec (true | false) #REQUIRED
+	status (active | deprecated | removed) #REQUIRED
+	testable (true | false) #REQUIRED
+        priority (low | medium | high) #IMPLIED
+>
+<!ELEMENT modified EMPTY>
+<!ELEMENT keywords (keyword+)>
+<!ELEMENT keyword (#PCDATA)>
+<!ELEMENT comment (#PCDATA)>
+<!ELEMENT package (#PCDATA)>
+<!ELEMENT class-interface (#PCDATA)>
+<!ELEMENT method (parameters?, throw?)>
+<!ATTLIST method
+	name CDATA #REQUIRED
+	return-type CDATA #REQUIRED
+>
+<!ELEMENT field EMPTY>
+<!ATTLIST field
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+>
+<!ELEMENT throw (#PCDATA)>
+<!ELEMENT depends (depend+)>
+<!ELEMENT depend (#PCDATA)>
+<!ELEMENT parameters (parameter+)>
+<!ELEMENT parameter (#PCDATA)>
+<!--
+
+
+
+Example Assertion:
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/javadoc_assertions.dtd"?>
+<javadoc>
+	<next-available-id>205</next-available-id>
+	<previous-id>100</previous-id>
+	<technology>JAXRPC</technology>
+	<id>JAX-RPC 1.0</id>
+	<name>Java API for XML-based RPC</name>
+	<version>0.7</version>
+	<assertions>
+		<assertion required="true" impl-spec="false" status="active" testable="true">
+			<id>7</id>
+			<description/>
+			<package>javax.xml.rpc</package>
+			<class-interface>ServiceFactory</class-interface>
+			<method-field>newInstance</method-field>
+			<type-returns>javax.xml.rpc.ServiceFactory</type-returns>
+			<throws>
+				<throw>javax.xml.rpc.ServiceException</throw>
+			</throws>
+		</assertion>
+		<assertion required="true" impl-spec="false" status="active" testable="true">
+			<id>8</id>
+			<description>
+                            Create a Service instance.
+                        </description>
+			<package>javax.xml.rpc</package>
+			<class-interface>ServiceFactory</class-interface>
+			<method-field>createService</method-field>
+			<type-returns>javax.xml.rpc.Service</type-returns>
+			<parameters>
+				<parameter>java.net.URL</parameter>
+				<parameter>javax.xml.rpc.namespace.QName</parameter>
+			</parameters>
+		</assertion>
+		<assertion required="true" impl-spec="false" status="active" testable="true">
+			<id>9</id>
+			<description>If any error in creation of the                      specified service</description>
+			<package>javax.xml.rpc</package>
+			<class-interface>ServiceFactory</class-interface>
+			<method-field>createService</method-field>
+			<type-returns>javax.xml.rpc.Service</type-returns>
+			<parameters>
+				<parameter>java.net.URL</parameter>
+				<parameter>javax.xml.rpc.namespace.QName</parameter>
+			</parameters>
+			<throws>
+				<throw>javax.xml.rpc.ServiceException</throw>
+			</throws>
+		</assertion>
+		<assertion required="true" impl-spec="false" status="active" testable="true">
+			<id>10</id>
+			<description>
+                            Create a Service instance.
+                        </description>
+			<package>javax.xml.rpc</package>
+			<class-interface>ServiceFactory</class-interface>
+			<method-field>createService</method-field>
+			<type-returns>javax.xml.rpc.Service</type-returns>
+			<parameters>
+				<parameter>javax.xml.rpc.namespace.QName</parameter>
+			</parameters>
+		</assertion>
+	</assertions>
+</javadoc>
+
+-->

@@ -24,10 +24,6 @@ export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 cd $BUILD_WORKSPACE
 export BASEDIR=`pwd`
 
-# Replace dummy.domain.com to a hosting server  where the Assertion DTDs and XSDs are located.
-echo "Files modified for removing dummy.domain.com:"
-grep -rl dummy.domain.com . | cut -d: -f1 | xargs sed -i "s#dummy\.domain\.com#${SCHEMA_HOSTING_SERVER}#g"
-
 which ant
 ant -version
 
@@ -76,6 +72,8 @@ ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=j2ee -Dbasedir=$B
 
 
 echo "########## Trunk.CTS ##########"
+mkdir -p $BASEDIR/internal/docs/javaee/
+cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/javaee/
 ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools j2ee
 
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles

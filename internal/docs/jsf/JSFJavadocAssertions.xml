@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<!DOCTYPE javadoc SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/javadoc_assertions.dtd">
+<!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
     Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
@@ -18,7 +18,7 @@
 
 -->
 
-<?xml-stylesheet type="text/xsl" href='http://dummy.domain.com/CTS/XMLassertions/xsl/javadoc_assertions-colors.xsl'?>
+<?xml-stylesheet type="text/xsl" href='https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/javadoc_assertions-colors.xsl'?>
 
 <javadoc>
 <next-available-id>2219</next-available-id>

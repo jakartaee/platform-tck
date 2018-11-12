@@ -120,7 +120,6 @@
                      com/sun/ts/tests/signaturetest/jaspic/**/*"
 
                      excludes="com/sun/ts/tests/signaturetest/*.txt,
-                         com/sun/ts/tests/common/vehicle/jbi/*,
                          com/sun/ts/tests/signaturetest/*.sh,
                          com/sun/ts/tests/signaturetest/README" />
             
@@ -183,7 +182,6 @@
                          com/sun/ts/tests/signaturetest/signature-repository/javax.security.auth*"
                      excludes="**/.svn/*,
                          com/sun/ts/tests/signaturetest/*Record*,
-                         com/sun/ts/tests/common/vehicle/jbi/*,
                          com/sun/ts/tests/signaturetest/*record*"/>
         </copy>
         

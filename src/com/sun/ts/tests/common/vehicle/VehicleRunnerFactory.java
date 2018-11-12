@@ -51,8 +51,6 @@ public final class VehicleRunnerFactory {
 
   private static VehicleRunnable appmanagedNoTxRunner;
 
-  private static VehicleRunnable jbiRunner;
-
   private static VehicleRunnable wsejbRunner;
 
   private static VehicleRunnable wsservletRunner;
@@ -83,19 +81,6 @@ public final class VehicleRunnerFactory {
       }
     }
     return ejbRunner;
-  }
-
-  private static VehicleRunnable getJBIRunner() {
-    if (jbiRunner == null) {
-      try {
-        Class c = Class
-            .forName("com.sun.ts.tests.common.vehicle.jbi.JBIVehicleRunner");
-        jbiRunner = (VehicleRunnable) c.newInstance();
-      } catch (Exception ex) {
-        ex.printStackTrace();
-      }
-    }
-    return jbiRunner;
   }
 
   private static VehicleRunnable getServletRunner() {
@@ -366,8 +351,6 @@ public final class VehicleRunnerFactory {
       return getAppManagedRunner();
     } else if (vtype.equalsIgnoreCase("appmanagedNoTx")) {
       return getAppManagedNoTxRunner();
-    } else if (vtype.equalsIgnoreCase("jbi")) {
-      return getJBIRunner();
     } else if (vtype.equalsIgnoreCase("wsejb")) {
       return getWSEJBRunner();
     } else if (vtype.equalsIgnoreCase("wsservlet")) {

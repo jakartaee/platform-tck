@@ -102,7 +102,6 @@
                      com/sun/ts/tests/signaturetest/securityapi/**/*"
 
                      excludes="com/sun/ts/tests/signaturetest/*.txt,
-                         com/sun/ts/tests/common/vehicle/jbi/*,
                          com/sun/ts/tests/signaturetest/*.sh,
                          com/sun/ts/tests/signaturetest/README" />
 		</copy>
@@ -142,7 +141,6 @@
                      com/sun/ts/tests/signaturetest/signature-repository/javax.security.enterprise*"
                   excludes="**/.svn/*,
                          com/sun/ts/tests/signaturetest/*Record*,
-                         com/sun/ts/tests/common/vehicle/jbi/*,
                          com/sun/ts/tests/signaturetest/*record*"/>
 		</copy>
 

@@ -17,7 +17,7 @@
 
 -->
 
-<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd" [
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd" [
     <!ENTITY jsf_ch2    SYSTEM "jsf_ch2.xml">
     <!ENTITY jsf_ch3    SYSTEM "jsf_ch3.xml">
     <!ENTITY jsf_ch4    SYSTEM "jsf_ch4.xml">
@@ -34,7 +34,7 @@
     <!ENTITY jsf_avk    SYSTEM "jsf_avk.xml">
     ]>
 
-<?xml-stylesheet href='http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl'?>
+<?xml-stylesheet href='https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl'?>
 
 <spec>
     <next-available-id/>

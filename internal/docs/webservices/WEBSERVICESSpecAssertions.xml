@@ -17,7 +17,7 @@
 
 -->
 
-<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd"[
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd"[
 <!ENTITY webservices SYSTEM "webservices.xml">
 <!ENTITY webservices_ch3 SYSTEM "webservices_ch3.xml">
 <!ENTITY webservices_ch4 SYSTEM "webservices_ch4.xml">
@@ -27,7 +27,7 @@
 <!ENTITY webservices_ch9 SYSTEM "webservices_ch9.xml">
 ]>
 
-<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
 <spec>
 	<next-available-id>1</next-available-id>
 	<previous-id>0</previous-id>

@@ -18,8 +18,8 @@
 -->
 
 <!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by sudipto ghosh (sun microsystems) -->
-<?xml-stylesheet type="text/xsl" href= "http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
-<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+<?xml-stylesheet type="text/xsl" href= "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <spec>
 	<next-available-id/>
 	<previous-id>1</previous-id>

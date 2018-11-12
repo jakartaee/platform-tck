@@ -17,7 +17,7 @@
 
 -->
 
-<?xml-stylesheet type="text/xsl" href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
 <spec>   
 	<next-available-id>282</next-available-id>   
 	<previous-id>189</previous-id>   

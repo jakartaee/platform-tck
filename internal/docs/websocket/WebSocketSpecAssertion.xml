@@ -18,8 +18,8 @@
 -->
 
 <?xml-stylesheet type="text/xsl"
-href="http://dummy.domain.com/CTS/XMLassertions/xsl/spec_assertions.xsl"?>
-<!DOCTYPE spec SYSTEM "http://dummy.domain.com/CTS/XMLassertions/dtd/spec_assertions.dtd">
+href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/xsl/spec_assertions.xsl"?>
+<!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 
 <!-- Generated on Thu Mar 28 10:34:38 EDT 2013 -->
 <spec>

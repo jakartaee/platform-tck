@@ -32,7 +32,6 @@
     <property name="deliverable.version"           value="8.0"/>
 
 	<property name="the.excludes" value="**/internal/**/*,
-	     **/jbi/**/*,
 	     **/jaxr/api/javax_xml_registry/Connection_asynch/**/*,
 	     **/jaxr/ee/javax_xml_registry/RegistryService/**/*,
 	     **/jaxm/**/*, **/jaxm1.0.1/**/*,

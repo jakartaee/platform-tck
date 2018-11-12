@@ -22,10 +22,6 @@ if [ -z "${GF_HOME}" ]; then
   export GF_HOME=${WORKSPACE}
 fi
 
-# Replace dummy.domain.com to a hosting server where the Assertion DTDs and XSDs are located.
-echo "Files modified for removing dummy.domain.com"
-grep -rl dummy.domain.com . | cut -d: -f1 | xargs sed -i "s#dummy\.domain\.com#${SCHEMA_HOSTING_SERVER}#g"
-
 which ant
 ant -version
 
@@ -164,6 +160,9 @@ for tck in ${TCK_LIST[@]}; do
     ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed build.all 
   fi
 
+
+  mkdir -p $BASEDIR/internal/docs/$tck
+  cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/$tck/
   ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/release/tools $DOC_SPECIFIC_PROPS -Dskip.createbom="true" -Dskip.build="true" $TCK_SPECIFIC_PROPS $tck 
   echo "########## Trunk.$tck Completed ##########"
 
