@@ -65,6 +65,7 @@ fi
 ################################################
 
 DOC_SPECIFIC_PROPS=" "
+JAXWS_SPECIFIC_PROPS=" "
 
 for tck in ${TCK_LIST[@]}; do
   if [ "jaxr" == "$tck" ]
@@ -146,7 +147,7 @@ for tck in ${TCK_LIST[@]}; do
   fi
 
   echo "########## Trunk.$tck Started##########"
-  ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $JAXWS_SPECIFIC_PROPS clean.all build.all.jars 
+  ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS clean.all build.all.jars 
 
   if [ "jaxrpc" == "$tck" ]
   then
@@ -157,7 +158,7 @@ for tck in ${TCK_LIST[@]}; do
     cat $BASEDIR/install/$tck/bin/build.properties
     ant -f $BASEDIR/install/$tck/bin/build.jaxrpc.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed buildall
   else 
-    ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed build.all 
+    ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed build.all 
   fi
 
 
