@@ -93,6 +93,7 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   fi
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish.zip
+rm -Rf ${CTS_HOME}/ri
 mkdir -p ${CTS_HOME}/ri
 unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
 chmod -R 777 ${CTS_HOME}/ri
