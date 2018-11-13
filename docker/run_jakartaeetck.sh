@@ -34,7 +34,11 @@ fi
 if [ -z "${CTS_HOME}" ]; then
   export CTS_HOME="${WORKSPACE}"
 fi
-export TS_HOME=${CTS_HOME}/javaeetck/
+
+if [ -z "$TS_HOME" ]; then
+  export TS_HOME=${CTS_HOME}/install/j2ee
+fi
+
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
 echo "ANT_HOME ${ANT_HOME}"
