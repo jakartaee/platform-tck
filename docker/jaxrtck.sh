@@ -20,17 +20,13 @@ echo "ANT_HOME in jaxrtck.sh $ANT_HOME"
 echo "PATH in jaxrtck.sh $PATH"
 echo "ANT_OPTS in jaxrtck.sh $ANT_OPTS"
 
-### JWSDP Setup
-export JWSDP_HOME=/opt
-
-cd $JWSDP_HOME/jwsdp-1.3/jwsdp-shared/bin
-sed -i "s#^JAVA_HOME=.*#JAVA_HOME=\"$JWSDP_HOME/jdk1.5.0_22\"#g" setenv.sh
-sed -i "s#^JWSDP_HOME=.*#JWSDP_HOME=\"$JWSDP_HOME/jwsdp-1.3\"#g" setenv.sh
-
-echo "Starting Java Web Services Developer Pack ..."
-cd $JWSDP_HOME/jwsdp-1.3/bin
-./startup.sh &
+### Registry server initialization starts here
+cd /opt/jwsdp-1.3/bin
+./startup.sh
+sleep 10
 echo "Java Web Services Developer Pack started ..."
+### Registry server initialization ends here
+
 
 cd $TCK_HOME
 if [ -f "${WORKSPACE}/standalone-bundles/jaxrtck-1.0_latest.zip" ];then
