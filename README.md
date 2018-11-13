@@ -1,19 +1,3 @@
-:warning: The source repository doesn't contain all the third party libraries, 
-waiting for the approval. Here is the current plan -
-1) Obtain the necessary approval from Eclipse IP team for the third party 
-archives and complete the source contribution process
-2) Create the CI/CD infrastructure to build TCK artifacts from the contributed 
-   source code
-   
-   (a) Build the Jakarta EE CTS   
-   (b) Build each of the stand-alone Jakarta component TCKs
-3) Create the CI/CD infrastructure to test Eclipse GlassFish against Eclipse 
-   Jakarta EE CTS. 
-   
-Once we have all the required files in this repository, we will provide the 
-instructions to build the CTS bundle from the workspace. Until then, we request 
-you not to try building the CTS bundle from this repository. Thank you.
-
 # Steps required to run CTS against Standalone RI changes
 
 1. Build the individual project and release it to Eclipse Maven repositories.
@@ -39,6 +23,10 @@ you not to try building the CTS bundle from this repository. Thank you.
 7. Wait for the confirmation and the results uploaded from the runs against the pull request.
 
 8. If the results are clean, commit the changes to the individual project and the changes required for integration to GlassFish.
+
+# Jakarta EE TCK Build and Run Instructions 
+Instructions for building and running JakartaEE TCK bundle from scratch is available in the following wiki page:
+[JakartaEE TCK - Build and Run Instructions](https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Instructions-for-building-and-running-JakartaEE-TCK-bundle)
 
 # CTS User Guide
 
@@ -82,10 +70,13 @@ other reference implementations will vary.
 All systems should meet the following recommended hardware requirements:
 
 * CPU running at 2.0 GHz or higher
+
 * 4 GB of RAM or more
+
 * 2 GB of swap space , if required
-* 6 GB of free disk space for writing data to log files, the Java EE 8
-    repository, and the database
+
+* 6 GB of free disk space for writing data to log files, the Java EE 8 repository, and the database
+
 * Network access to the Internet
 
 ### Software Requirements
@@ -94,24 +85,42 @@ You can run the Java EE 8 CTS software on platforms running the Solaris,
 Linux, Windows, and Mac OS software that meet the following software requirements:
 
 * Operating Systems:
-** Solaris 10 and newer
-** MAC OS X Mountain Lion (10.8.1+)
-** Windows XP SP3, Windows 2008 R2
-** Oracle Linux 6.4
-** Fedora 18
-** Ubuntu Linux 12.10
-** Suse Enterprise Linux 12.2
+
+  - Solaris 10 and newer
+
+  - MAC OS X Mountain Lion (10.8.1+)
+
+  - Windows XP SP3, Windows 2008 R2
+
+  - Oracle Linux 6.4
+
+  - Fedora 18
+
+  - Ubuntu Linux 12.10
+
+  - Suse Enterprise Linux 12.2
+
 * Java SE 8 SDK
+
 * Java EE 8 RI or Java EE 8 Web Profile RI
+
 * Mail server that supports the IMAP and SMTP protocols
+
 * One of the following databases:
-** Oracle
-** Sybase
-** DB2
-** Microsoft SQL Server
-** Postgres SQL
-** MySQL
-** Java DB
+
+  - Oracle
+
+  - Sybase
+
+  - DB2
+
+  - Microsoft SQL Server
+
+  - Postgres SQL
+
+  - MySQL
+
+  - Java DB
 
 ### Additional Java EE 8 CTS Requirements
 
@@ -120,7 +129,9 @@ all Java EE 8 and Java EE 8 Web Profile implementations must also pass the stand
 TCKs for the following technologies:
 
 * Contexts and Dependency Injection for Java 2.0 (JSR 365)
+
 * Dependency Injection for Java 1.0 (JSR 330)
+
 * Bean Validation 2.0 (JSR 380)
 
 ## Installation
@@ -130,6 +141,7 @@ Complete the following procedure to install the Java EE 8 CTS on a system
 running the Solaris, Linux, or Windows operating system.
 
 1. Copy or download the CTS 8 software.
+
 2. Change to the directory in which you want to install the Java EE 8 CTS
 software and use the unzip command to extract the bundle:
     ```
@@ -138,10 +150,13 @@ software and use the unzip command to extract the bundle:
     ```
 This creates the `javaeetck` directory. The `install_directory/javaeetck`
 directory will be `TS_HOME`.
+
 3. Set the `TS_HOME` environment variable to point to the `javaeetck` directory.
 
 ### Install Apache Ant
 1. Download the latest version of Apache Ant from the below link
+https://archive.apache.org/dist/ant/binaries/apache-ant-<version>-bin.zip
+
 2. Change to the directory in which you want to install Apache Ant and
 extract the bundle
     ```
@@ -153,6 +168,7 @@ or
     ```
 3. Set `ANT_HOME` environment variable to point to the apache-ant-<version>
 directory.
+
 4. Set `PATH` environment variable to use the installed ant.
 
 
@@ -162,8 +178,11 @@ directory.
 You can modify the following test suite components only:
 
 * Your implementation of the porting package
+
 * `ts.jte` environment file
+
 * The vendor-specific SQL files in `<TS_HOME>/sql`
+
 * Any files in `<TS_HOME>/bin` and `<TS_HOME>/bin/xml` (except for `ts.*` files)
 
 ### Configuring the Java EE 8 RI as the VI
@@ -182,30 +201,39 @@ Be sure to set the following properties:
     a. Set the `webServerHost` property to the name of the host on which your Web
 server is running that is configured with the RI.
 The default setting is `localhost`.
+
     b. Set the `webServerPort` property to the port number of the host on which the
 Web server is running and configured with the RI.
 The default setting is `8001`.
+
     c. Set the `wsgen.ant.classname` property to the Vendor's implementation class
 that mimics the RI Ant task that in turn calls the wsgen Java-to-WSDL tool.
 The default setting is `com.sun.tools.ws.ant.WsGen`.
+
     d. Set the `wsimport.ant.classname` property to the Vendor's implementation
 class that mimics the RI Ant task that in turn calls the `wsimport` WSDL-to-Java
 tool.
 The default setting is `com.sun.tools.ws.ant.WsImport`.
+
     e. Set the `porting.ts.url.class` property to your porting implementation class
 that is used for obtaining URLs.
-The default setting for the RI porting implementation is
-`com.sun.ts.lib.implementation.sun.common.SunRIURL`.
+The default setting for the RI porting implementation is `com.sun.ts.lib.implementation.sun.common.SunRIURL`.
+
     f. Set the database-related properties in the `<TS_HOME>/bin/ts.jte` file.
+
     g. Add the following JVM option to the `command.testExecuteAppClient`
 property to enable the Security Manager in the application client container:
 `-Djava.security.manager`
+
 Add this option to the list of other `-D` JVM options for this property.
 As mentioned previously, these settings can vary, but must match whatever you
 used when setting up the Java EE 8 RI server.
+
 2. Install the Java EE 8 RI and configure basic settings, as described in
+
 3. Start the Java EE 8 RI application server.
 Refer to the application server documentation for complete instructions.
+
 4. Enable the Security Manager.
 If you are using the Java EE 8 RI, execute the following command from the
 command line:
@@ -213,10 +241,12 @@ command line:
     asadmin create-jvm-options -Djava.security.manager
     ```
 5. Stop and restart your application server so it is running with the Security
-Manager
-enabled.
+Manager enabled.
+
 6. Change to the `<TS_HOME>/bin` directory.
+
 7. Start your backend database.
+
 If you are using Derby as your backend database, execute the start.javadb Ant
 target:
     ```
@@ -224,16 +254,19 @@ target:
     ```
 Otherwise, refer to your backend database administration documentation for
 information about starting your database server.
+
 8. Initialize your backend database.
 If you are using Derby as your backend database, execute the `init.derby` Ant
 target:
     ```
     ant -f xml/init.xml init.derby
     ```
+
 9. Run the configuration Ant target.
     ```
     ant config.vi
     ```
+
 10. Build the special web services clients.
 
 The special webservices tests under the `webservices12/specialcases` directory
@@ -252,29 +285,38 @@ To build the special webservices clients, the following command must be executed
 
 1. Set the `TS_HOME` environment variable to the directory in which Java EE 8 CTS was
 installed.
+
 2. Set the `JAVA_HOME` environment variable to the latest version of JDK 8
+
 3. Set the `ANT_HOME` environment variable to the latest version of Apache Ant installed.
+
 4. Set the `PATH` environment to use the latest binaries.
     ```
     export PATH=$ANT_HOME/bin:$JAVA_HOME/bin:$PATH
     ```
+
 5. Change to any subdirectory under <TS_HOME>/src/com/sun/ts/tests.
+
 6. Ensure that the ts.jte file contains information relevant to your setup.
+
 7. Execute the runclient Ant target to start the JavaTest:
     ```
     ant runclient
     ```
 This runs all tests in the current directory and any subdirectories.
+
 8. To run the Java EE 8 CTS signature tests, enter the following commands:
     ```
     cd <TS_HOME>/src/com/sun/ts/tests/signaturetest/javaee
     ant runclient
     ```
+
 9. To run a single test directory in the forward direction, enter the following commands:
     ```
     cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/javax_xml_ws/Dispatch
     ant -Dkeywords=forward runclient
     ```
+
 10. To run a subset of test directories in the reverse direction, enter the following
 commands:
     ```
