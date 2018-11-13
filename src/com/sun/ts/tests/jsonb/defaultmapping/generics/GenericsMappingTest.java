@@ -182,7 +182,7 @@ public class GenericsMappingTest extends ServiceEETest {
     }
 
     GenericContainer unmarshalledObject = jsonb.fromJson(
-        "{ \"instance\" : {\"value\":\"Test String\" }",
+        "{ \"instance\" : {\"value\":\"Test String\" } }",
         GenericContainer.class);
     if (!Map.class.isAssignableFrom(unmarshalledObject.getInstance().getClass())
         && !"Test String"

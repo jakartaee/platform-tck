@@ -14,15 +14,22 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
-# Hudson log file location for archiving later.
-BUILD_WORKSPACE=$WORKSPACE
+if [ -z "$ANT_HOME" ]; then
+  export ANT_HOME=/usr/share/ant/
+fi
 
-export ANT_HOME=/usr/share/ant/
-export JAVA_HOME=/opt/jdk1.8.0_171
+if [ -z "$JAVA_HOME" ]; then
+  export JAVA_HOME=/opt/jdk1.8.0_171
+fi
+
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
-cd $BUILD_WORKSPACE
+cd $WORKSPACE
 export BASEDIR=`pwd`
+
+if [ -z "$GF_HOME" ]; then
+  export GF_HOME=$BASEDIR
+fi
 
 which ant
 ant -version
@@ -30,14 +37,14 @@ ant -version
 which java
 java -version
 
-export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${BASEDIR}/glassfish5/glassfish/modules/endorsed \
+export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${GF_HOME}/glassfish5/glassfish/modules/endorsed \
                  -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
                  -Djavax.xml.accessExternalDTD=file,http"
 
 echo ########## Remove hard-coded paths from install/j2ee/bin/ts.jte ##########"
-sed -e "s#^javaee.home=.*#javaee.home=$BASEDIR/glassfish5/glassfish#g" \
-    -e "s#^javaee.home.ri=.*#javaee.home.ri=$BASEDIR/glassfish5/glassfish#g" \
+sed -e "s#^javaee.home=.*#javaee.home=$GF_HOME/glassfish5/glassfish#g" \
+    -e "s#^javaee.home.ri=.*#javaee.home.ri=$GF_HOME/glassfish5/glassfish#g" \
     -e "s#^report.dir=.*#report.dir=$BASEDIR/JTReport#g" \
     -e "s#^work.dir=.*#work.dir=$BASEDIR/JTWork#g" $BASEDIR/install/j2ee/bin/ts.jte > $BASEDIR/install/j2ee/bin/ts.jte.new
 mv $BASEDIR/install/j2ee/bin/ts.jte.new $BASEDIR/install/j2ee/bin/ts.jte
@@ -48,7 +55,7 @@ echo "########## Trunk.Install.V5 Config ##########"
 cd $BASEDIR
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -o latest-glassfish.zip
-ls -l $BASEDIR/glassfish5/glassfish/
+ls -l $GF_HOME/glassfish5/glassfish/
 
 echo "########## Trunk.Clean.Build.Libs ##########"
 ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin clean.all build.all.jars
@@ -58,7 +65,7 @@ echo "########## Trunk.Build ##########"
 ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed build.all
+ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin -Djava.endorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed build.all
 
 
 echo "########## Trunk.Sanitize.JTE ##########"

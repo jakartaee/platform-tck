@@ -34,11 +34,7 @@ fi
 if [ -z "${CTS_HOME}" ]; then
   export CTS_HOME="${WORKSPACE}"
 fi
-
 export TS_HOME=${CTS_HOME}/javaeetck/
-if [ -d ${TS_HOME}/tools/ant ]; then
-  export ANT_HOME=${TS_HOME}/tools/ant
-fi
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
 echo "ANT_HOME ${ANT_HOME}"
@@ -46,6 +42,39 @@ echo "CTS_HOME ${CTS_HOME}"
 echo "TS_HOME ${TS_HOME}"
 echo "PATH ${PATH}"
 echo "Test suite to run ${test_suite}"
+
+#Set default mailserver related env variables
+if [ -z "$MAIL_HOST" ]; then
+  export MAIL_HOST="localhost"
+fi
+if [ -z "$MAIL_USER" ]; then
+  export MAIL_USER="user01@james.local"
+fi
+if [ -z "$MAIL_FROM" ]; then
+  export MAIL_FROM="user01@james.local"
+fi
+if [ -z "$MAIL_PASSWORD" ]; then
+  export MAIL_PASSWORD="1234"
+fi
+if [ -z "$SMTP_PORT" ]; then
+  export SMTP_PORT="1025"
+fi
+if [ -z "$IMAP_PORT" ]; then
+  export IMAP_PORT="1143"
+fi
+##################################################
+
+# Set JWSDP install dir and UDDI Registry server url 
+# required for JAXR tests if not set.
+if [ -z "$UDDI_REGISTRY_URL" ]; then
+  export UDDI_REGISTRY_URL="http://localhost:8080/RegistryServer/"
+fi
+
+if [ -z "$JWSDP_HOME" ]; then
+  export  JWSDP_HOME="/opt/jwsdp-1.3"
+fi
+
+##################################################
 
 ##### installCTS.sh starts here #####
 cat ${TS_HOME}/bin/ts.jte | sed "s/-Doracle.jdbc.mapDateToTimestamp/-Doracle.jdbc.mapDateToTimestamp -Djava.security.manager/"  > ts.save
@@ -112,8 +141,8 @@ ${CTS_HOME}/ri/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${AD
 sleep 5
 echo "Killing any RI java processes that were not stopped gracefully"
 echo "Pending process to be killed:"
-ps -eaf | grep "/opt/jdk1.8.0_171/bin/java" | grep -v "grep" | grep -v "nohup" 
-for i in `ps -eaf | grep "/opt/jdk1.8.0_171/bin/java" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
+ps -eaf | grep "$JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" 
+for i in `ps -eaf | grep "$JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
 do
   echo "[killJava.sh] kill -9 $i"
   kill -9 $i
@@ -134,8 +163,8 @@ ${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${AD
 sleep 5
 echo "[killJava.sh] uname: LINUX"
 echo "Pending process to be killed:"
-ps -eaf | grep "/opt/jdk1.8.0_171/bin/java" | grep -v "grep" | grep -v "nohup" 
-for i in `ps -eaf | grep "/opt/jdk1.8.0_171/bin/java" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
+ps -eaf | grep "$JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" 
+for i in `ps -eaf | grep "$JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
 do
   echo "[killJava.sh] kill -9 $i"
   kill -9 $i
@@ -177,12 +206,12 @@ cd ${TS_HOME}/bin
 sed -i "s#^report.dir=.*#report.dir=${JT_REPORT_DIR}#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=${JT_WORK_DIR}#g" ts.jte
 
-sed -i "s/^mailHost=.*/mailHost=localhost/g" ts.jte
+sed -i "s/^mailHost=.*/mailHost=${MAIL_HOST}/g" ts.jte
 sed -i "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte
-sed -i "s/^mailFrom=.*/mailFrom=user01@james.local/g" ts.jte
-sed -i "s/^javamail.password=.*/javamail.password=1234/g" ts.jte
-sed -i "s/^smtp.port=.*/smtp.port=1025/g" ts.jte
-sed -i "s/^imap.port=.*/imap.port=1143/g" ts.jte
+sed -i "s/^mailFrom=.*/mailFrom=${MAIL_FROM}/g" ts.jte
+sed -i "s/^javamail.password=.*/javamail.password=${MAIL_PASSWORD}/g" ts.jte
+sed -i "s/^smtp.port=.*/smtp.port=${SMTP_PORT}/g" ts.jte
+sed -i "s/^imap.port=.*/imap.port=${IMAP_PORT}/g" ts.jte
 
 sed -i 's/^s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
 sed -i 's/^ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
@@ -199,8 +228,8 @@ sed -i 's/^orb.host.ri=.*/orb.host.ri=localhost/g' ts.jte
 sed -i 's/^ri.admin.port=.*/ri.admin.port=5858/g' ts.jte
 sed -i 's/^orb.port.ri=.*/orb.port.ri=3701/g' ts.jte
 
-sed -i "s#^registryURL=.*#registryURL=http://localhost:8080/RegistryServer/#g" ts.jte
-sed -i "s#^queryManagerURL=.*#queryManagerURL=http://localhost:8080/RegistryServer/#g" ts.jte
+sed -i "s#^registryURL=.*#registryURL=${UDDI_REGISTRY_URL}#g" ts.jte
+sed -i "s#^queryManagerURL=.*#queryManagerURL=${UDDI_REGISTRY_URL}#g" ts.jte
 sed -i 's/^jaxrUser=.*/jaxrUser=testuser/g' ts.jte
 sed -i 's/^jaxrPassword=.*/jaxrPassword=testuser/g' ts.jte
 sed -i 's/^jaxrUser2=.*/jaxrUser2=jaxr-sqe/g' ts.jte
@@ -208,10 +237,12 @@ sed -i 's/^jaxrPassword2=.*/jaxrPassword2=jaxrsqe/g' ts.jte
 
 sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
 sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
-PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
-PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-sed -i "s#^wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-sed -i "s#^ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
+if [ ! -z "$http_proxy" ]; then
+  PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
+  PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
+  sed -i "s#^wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
+  sed -i "s#^ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
+fi
 sed -i 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
 sed -i 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
 sed -i 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=180/g' ts.jte
@@ -254,7 +285,7 @@ ant init.javadb
 ### populateMailbox for javamail suite - Start ###
 ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
 cd  ${TS_HOME}/bin
-ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:1234@localhost:1143" populateMailbox
+ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}:${IMAP_PORT}" populateMailbox
 ### populateMailbox for javamail suite - End ###
 
 ##### configRI.sh ends here #####
@@ -277,10 +308,11 @@ ${CTS_HOME}/ri/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${AD
 
 ### Registry server initialization starts here
 if [ "jaxr" == ${test_suite} ];then
-  cd /opt/jwsdp-1.3/bin
-  ./startup.sh
-  sleep 10
-  echo "Java Web Services Developer Pack started ..."
+  if [ -f $JWSDP_HOME/bin/startup.sh ]; then
+    $JWSDP_HOME/bin/startup.sh
+    sleep 10
+    echo "Java Web Services Developer Pack started ..."
+  fi
 fi
 ### Registry server initialization ends here
 

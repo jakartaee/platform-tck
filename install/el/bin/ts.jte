@@ -66,7 +66,7 @@ variable.mapper=com.sun.el.lang.VariableMapperImpl
 #   /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
 #
 ########################################################
-sigTestClasspath=
+sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/rt.jar
 
 
 ########################################################

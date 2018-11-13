@@ -113,7 +113,7 @@ public class CollectionsMappingTest extends ServiceEETest {
 
     CollectionContainer unmarshalledObject = null;
     try {
-      unmarshalledObject = jsonb.fromJson("{ \"instance\" : [ \"Test 1\", \"Test 2\" ]", CollectionContainer.class);
+      unmarshalledObject = jsonb.fromJson("{ \"instance\" : [ \"Test 1\", \"Test 2\" ] }", CollectionContainer.class);
       if (!unmarshalledObject.getInstance().contains("Test 1") || !unmarshalledObject.getInstance().contains("Test 2")) {
         throw new Fault("Failed to marshal object with Collection attribute.");
       }
