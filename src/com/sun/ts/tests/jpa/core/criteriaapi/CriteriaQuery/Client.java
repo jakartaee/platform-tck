@@ -2264,7 +2264,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .sum(a.get(A_.getSingularAttribute("basicDouble", Double.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Double) {
         TestUtil.logTrace("Received expected double type");
@@ -2287,7 +2287,7 @@ public class Client extends Util {
       cquery.select(cbuilder.diff(
           a.get(A_.getSingularAttribute("basicDouble", Double.class)), 1d));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Double) {
         TestUtil.logTrace("Received expected double type");
@@ -2310,7 +2310,7 @@ public class Client extends Util {
       cquery.select(cbuilder.prod(
           a.get(A_.getSingularAttribute("basicDouble", Double.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Double) {
         TestUtil.logTrace("Received expected double type");
@@ -2333,7 +2333,7 @@ public class Client extends Util {
       cquery.select(cbuilder.quot(
           a.get(A_.getSingularAttribute("basicDouble", Double.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Double) {
         TestUtil.logTrace("Received expected double type");
@@ -2375,7 +2375,7 @@ public class Client extends Util {
       cquery.select(cbuilder.sum(
           a.get(A_.getSingularAttribute("basicBigFloat", Float.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Float) {
         TestUtil.logTrace("Received expected Float type");
@@ -2399,7 +2399,7 @@ public class Client extends Util {
       cquery.select(cbuilder.diff(
           a.get(A_.getSingularAttribute("basicBigFloat", Float.class)), 1f));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Float) {
         TestUtil.logTrace("Received expected Float type");
@@ -2423,7 +2423,7 @@ public class Client extends Util {
       cquery.select(cbuilder.prod(
           a.get(A_.getSingularAttribute("basicBigFloat", Float.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Float) {
         TestUtil.logTrace("Received expected Float type");
@@ -2447,7 +2447,7 @@ public class Client extends Util {
       cquery.select(cbuilder.quot(
           a.get(A_.getSingularAttribute("basicBigFloat", Float.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Float) {
         TestUtil.logTrace("Received expected Float type");
@@ -2471,7 +2471,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .sum(a.get(A_.getSingularAttribute("basicFloat", Float.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Float) {
         TestUtil.logTrace("Received expected float type");
@@ -2495,7 +2495,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .diff(a.get(A_.getSingularAttribute("basicFloat", Float.class)), 1f));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Float) {
         TestUtil.logTrace("Received expected float type");
@@ -2519,7 +2519,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .prod(a.get(A_.getSingularAttribute("basicFloat", Float.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Float) {
         TestUtil.logTrace("Received expected float type");
@@ -2543,7 +2543,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .quot(a.get(A_.getSingularAttribute("basicFloat", Float.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Float) {
         TestUtil.logTrace("Received expected Float type");
@@ -2586,7 +2586,7 @@ public class Client extends Util {
           a.get(A_.getSingularAttribute("basicBigDecimal", BigDecimal.class)),
           1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof BigDecimal) {
         TestUtil.logTrace("Received expected BigDecimal type");
@@ -2611,7 +2611,7 @@ public class Client extends Util {
           a.get(A_.getSingularAttribute("basicBigDecimal", BigDecimal.class)),
           new BigDecimal(1)));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof BigDecimal) {
         TestUtil.logTrace("Received expected BigDecimal type");
@@ -2636,7 +2636,7 @@ public class Client extends Util {
           a.get(A_.getSingularAttribute("basicBigDecimal", BigDecimal.class)),
           1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof BigDecimal) {
         TestUtil.logTrace("Received expected BigDecimal type");
@@ -2661,7 +2661,7 @@ public class Client extends Util {
           a.get(A_.getSingularAttribute("basicBigDecimal", BigDecimal.class)),
           1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
 
       if (p instanceof BigDecimal) {
@@ -2704,7 +2704,7 @@ public class Client extends Util {
           a.get(A_.getSingularAttribute("basicBigInteger", BigInteger.class)),
           1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof BigInteger) {
         TestUtil.logTrace("Received expected BigInteger type");
@@ -2729,7 +2729,7 @@ public class Client extends Util {
           a.get(A_.getSingularAttribute("basicBigInteger", BigInteger.class)),
           new BigInteger("1")));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof BigInteger) {
         TestUtil.logTrace("Received expected BigInteger type");
@@ -2754,7 +2754,7 @@ public class Client extends Util {
           a.get(A_.getSingularAttribute("basicBigInteger", BigInteger.class)),
           1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof BigInteger) {
         TestUtil.logTrace("Received expected BigInteger type");
@@ -2796,7 +2796,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .sum(a.get(A_.getSingularAttribute("basicBigLong", Long.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Long) {
         TestUtil.logTrace("Received expected Long type");
@@ -2820,7 +2820,7 @@ public class Client extends Util {
       cquery.select(cbuilder.diff(
           a.get(A_.getSingularAttribute("basicBigLong", Long.class)), 1L));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Long) {
         TestUtil.logTrace("Received expected Long type");
@@ -2844,7 +2844,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .prod(a.get(A_.getSingularAttribute("basicBigLong", Long.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Long) {
         TestUtil.logTrace("Received expected Long type");
@@ -2869,7 +2869,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .sum(a.get(A_.getSingularAttribute("basicLong", Long.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Long) {
         TestUtil.logTrace("Received expected long type");
@@ -2893,7 +2893,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .diff(a.get(A_.getSingularAttribute("basicLong", Long.class)), 1L));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Long) {
         TestUtil.logTrace("Received expected long type");
@@ -2917,7 +2917,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .prod(a.get(A_.getSingularAttribute("basicLong", Long.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Long) {
         TestUtil.logTrace("Received expected long type");
@@ -2960,7 +2960,7 @@ public class Client extends Util {
       cquery.select(cbuilder.sum(
           a.get(A_.getSingularAttribute("basicBigShort", Short.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Integer) {
         TestUtil.logTrace("Received expected Integer type");
@@ -2984,7 +2984,7 @@ public class Client extends Util {
       cquery.select(cbuilder.diff(
           a.get(A_.getSingularAttribute("basicBigShort", Short.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Integer) {
         TestUtil.logTrace("Received expected Integer type");
@@ -3008,7 +3008,7 @@ public class Client extends Util {
       cquery.select(cbuilder.prod(
           a.get(A_.getSingularAttribute("basicBigShort", Short.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Integer) {
         TestUtil.logTrace("Received expected Integer type");
@@ -3032,7 +3032,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .sum(a.get(A_.getSingularAttribute("basicShort", Short.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Integer) {
         TestUtil.logTrace("Received expected Integer type");
@@ -3056,7 +3056,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .diff(a.get(A_.getSingularAttribute("basicShort", Short.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Integer) {
         TestUtil.logTrace("Received expected Integer type");
@@ -3080,7 +3080,7 @@ public class Client extends Util {
       cquery.select(cbuilder
           .prod(a.get(A_.getSingularAttribute("basicShort", Short.class)), 1));
       cquery.where(cbuilder
-          .equal(a.get(A_.getSingularAttribute("id", String.class)), '9'));
+          .equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
       p = getEntityManager().createQuery(cquery).getSingleResult();
       if (p instanceof Integer) {
         TestUtil.logTrace("Received expected Integer type");

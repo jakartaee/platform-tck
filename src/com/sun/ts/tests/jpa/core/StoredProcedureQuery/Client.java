@@ -1990,7 +1990,7 @@ public class Client extends PMClientBase {
       spq1.registerStoredProcedureParameter(1, Date.class, ParameterMode.IN);
       spq1.registerStoredProcedureParameter(2, Integer.class,
           ParameterMode.OUT);
-      spq1.setParameter(1, getCalDate(), TemporalType.DATE);
+      spq1.setParameter(1, getCalDate().getTime(), TemporalType.DATE);
 
       Query q = spq1;
 
