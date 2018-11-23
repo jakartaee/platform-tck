@@ -1,0 +1,70 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCJSE00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the Java API for WebSocket TCK
+software. After installing the software according to the instructions in
+this chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration"] for instructions on configuring your test environment.
+
+[[GBFTS]][[TCJSE00041]][[installing-the-software]]
+
+3.1 Installing the Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the Java API for WebSocket TCK tests, you need to
+install and set up the following software components:
+
+* Java SE 7 or Java SE 8
+* Java API for WebSocket implementation under test
+* Servlet-compliant Web container or server that works with your
+implementation of the Java API for WebSocket specification
+* Java API for WebSocket TCK Version 1.0
+
+1.  Install the Java SE 7 or Java SE 8 software, if it is not already
+installed. +
+Download and install the Java SE 7 or Java SE 8 software from
+`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Refer to the installation instructions that accompany the software for
+additional information.
+2.  Install the implementation under test, if it is not already
+installed. +
+Download, install, and configure the Java API for WebSocket
+implementation that is under test. To familiarize yourself with the test
+suite and the JavaTest software before you begin testing with your own
+implementation, you can optionally do a trial run using the Java EE 7 RI
+or the Java EE 7 Web Profile RI.
+3.  Install the Java API for WebSocket TCK software.
+1.  Copy or download the Java API for WebSocket TCK software to your
+local system.
+2.  Change to the directory in which you want to install the Java API
+for WebSocket TCK software: +
+[source,oac_no_warn]
+----
+cd install_directory
+----
+3.  Use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+unzip websockettck-1.0_<date>.zip
+----
+where <date> indicates the month and year in which the TCK bundle was
+created. For example, the Java API for WebSocket TCK bundle name could
+be `websockettck-1.0_15-May-2013.zip` +
+When the bundle is unzipped, the `websockettck` directory is created.
+The install_directory`/``websockettck` directory is the test suite home,
+`<TS_HOME>`.
+
+

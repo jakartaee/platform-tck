@@ -1,0 +1,14 @@
+theme: jekyll-theme-architect
+
+title: [tck_jaxws_v2_3]
+description: [Oracle Java API for Web Services (JAX-WS) Technology Compatibility Kit User's Guide for Technology Licensees, Release 2.3]
+
+# sidebar links url
+links:
+  source: https://github.com/javaee/tck_jaxws_v2_3
+  download: https://github.com/javaee/tck_jaxws_v2_3/releases
+  #mailinglist: https://javaee.groups.io/g/tck_jaxws_v2_3
+  #javadocs:
+  docs: https://javaee.github.io/tck_jaxws_v2_3
+  #faq:
+

@@ -1,0 +1,85 @@
+type=page
+status=published
+title=Setup and Configuration
+next=using.html
+prev=install.html
+~~~~~~
+Setup and Configuration
+=======================
+
+[[TCUML00005]][[GBFVV]]
+
+
+[[setup-and-configuration]]
+4 Setup and Configuration
+-------------------------
+
+This chapter describes how to set up the Expression Language TCK and
+JavaTest harness software. Before proceeding with the instructions in
+this chapter, be sure to install all required software, as described in
+link:install.html#GBFTP[Chapter 3, "Installation"].
+
+After completing the instructions in this chapter, proceed to
+link:using.html#GBFWO[Chapter 5, "Executing Tests"] for instructions on
+running the Expression Language TCK.
+
+[[GBFVU]][[TCUML00042]][[configuring-your-environment-to-run-the-el-tck]]
+
+4.1 Configuring Your Environment to Run the EL TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes how to configure the EL TCK for your environment.
+After configuring your environment, continue with the instructions in
+link:using.html#GBFWO[Chapter 5, "Executing Tests"].
+
+
+[NOTE]
+=======================================================================
+
+In these instructions, variables in angle brackets need to be expanded
+for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
+Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+slashes (`/`) used in all of the examples need to be replaced with
+backslashes (`\`) for Windows. Finally, be sure to use the appropriate
+separator for your operating system when specifying multiple path
+entries (`;` on Windows, `:` on Solaris/Linux).
+
+=======================================================================
+
+
+1.  Set the following environment variables in your shell environment:
+1.  `JAVA_HOME` to the directory in which the JDK_Version appropriate
+for the reference implementation under test is installed
+2.  `TS_HOME` to the directory in which the EL TCK 3.0 software is
+installed
+3.  `PATH` to include the following directories: `JAVA_HOME/bin` and
+`<TS_HOME>/tools/ant/bin`
+4.  `ANT_HOME` should not be set in your environment. If it is set,
+unset it.
+2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
+properties:
+1.  `el.classes` to the Expression Language API and implementation
+classes that are under test +
+Note that the EL API and implementation JAR files can be but do not need
+to be inside a container. The `ts.jte` file includes examples that show
+how to set this property for JAR files in and not in a container.
+2.  `sigTestClasspath` to a list of JAR files and/or directories that
+contain your Java EE and Java SE classes. +
+This property must be set before you try to run the signature tests. The
+`ts.jte` file includes examples that show how to set this property for
+Java SE JAR files on Solaris/Linux and Apple OS X.
+3.  `report.dir` to the default directory in which JavaTest creates a
+test report for the most recent test run. +
+This property is a required property for the TCK Ant targets; it must be
+set. To disable reporting, set the `report.dir` property to `"none"`.
+4.  `work.dir` to the default directory in which JavaTest writes
+temporary files that are created during test execution. +
+This property is required for the TCK Ant targets.
+3.  Provide your own implementation of the porting package interface
+provided with the EL TCK. +
+The porting package interface, `TSURLInterface.java`, obtains URL
+strings for web resources in an implementation-specific manner. API
+documentation for the `TSURLInterface.java` porting package interface is
+available in the EL TCK documentation bundle.
+
+

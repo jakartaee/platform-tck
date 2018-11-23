@@ -1,0 +1,14 @@
+theme: jekyll-theme-architect
+
+title: [tck_jacc_v1_5]
+description: [Oracle Technology Compatibility Kit User's Guide for Java Authorization Contract for Containers 1.5 for Technology Licensees, Release 1.5]
+
+# sidebar links url
+links:
+  source: https://github.com/javaee/tck_jacc_v1_5
+  download: https://github.com/javaee/tck_jacc_v1_5/releases
+  #mailinglist: https://javaee.groups.io/g/tck_jacc_v1_5
+  #javadocs:
+  docs: https://javaee.github.io/tck_jacc_v1_5
+  #faq:
+

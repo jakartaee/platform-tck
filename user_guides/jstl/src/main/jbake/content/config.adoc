@@ -1,0 +1,287 @@
+type=page
+status=published
+title=Setup and Configuration
+next=using.html
+prev=install.html
+~~~~~~
+Setup and Configuration
+=======================
+
+[[TCJST00005]][[GBFVV]]
+
+
+[[setup-and-configuration]]
+4 Setup and Configuration
+-------------------------
+
+This chapter describes how to set up the Standard Tag Library for
+JavaServer Pages TCK and JavaTest harness software. Before proceeding
+with the instructions in this chapter, be sure to install all required
+software, as described in link:install.html#GBFTP[Chapter 3,
+"Installation."]
+
+After completing the instructions in this chapter, proceed to
+link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
+running the Standard Tag Library for JavaServer Pages TCK.
+
+This chapter includes the following topics:
+
+* link:#GBFVU[Configuring Your Environment to Run the JSTL TCK]
+* link:#BABDAHAH[Initializing Database and Packaging the War Files for
+Deployment]
+* link:#GCFQK[Preparing the WAR Files for Deployment]
+* link:#GCRVD[Custom Deployment Handlers]
+* link:#GCRWX[Deploying the JSTL TCK Tests]
+
+[[GBFVU]][[TCJST00043]][[configuring-your-environment-to-run-the-jstl-tck]]
+
+4.1 Configuring Your Environment to Run the JSTL TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes how to configure the JSTL TCK for your
+environment. After configuring your environment, continue with the
+instructions in link:using.html#GBFWO[Chapter 5, "Executing Tests."]
+
+
+[NOTE]
+=======================================================================
+
+In these instructions, variables in angle brackets need to be expanded
+for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
+Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+slashes (`/`) used in all of the examples need to be replaced with
+backslashes (`\`) for Windows. Finally, be sure to use the appropriate
+separator for your operating system when specifying multiple path
+entries (`;` on Windows, `:` on Solaris/Linux).
+
+=======================================================================
+
+
+1.  Set the following environment variables in your shell environment:
+1.  `JAVA_HOME` to the directory in which Java SE 6 or Java SE 7 is
+installed.
+2.  `JAVAEE_HOME` to the installation directory of the Web server to
+which the JSTL TCK 1.2 tests are to be deployed. +
+For example, to deploy the JSTL TCK tests to the Java EE 7 RI, you would
+set this variable to the directory in which the Java EE 7 RI was
+installed.
+3.  `TS_HOME` to the directory in which the JSTL TCK 1.2 software is
+installed
+4.  `PATH` to include the
+`<TS_HOME>/bin, <JAVAEE_HOME>/bin, and <TS_HOME>/tools/ant/bin`
+directories
+5.  `ANT_HOME` should not be set in your environment. If it is set,
+unset it.
+2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
+properties:
+1.  `webServerHost` to the name of the host on which your Web server is
+running.
+2.  `webServerPort` to the port number of the host on which the Web
+server is running.
+3.  `impl.vi` to the Vendor implementation.
+4.  `impl.vi.deploy.dir` to the Vendor implementation deployment
+directory. +
+The JSTL TCK includes the following handlers:
+* `none`: No deployment; default setting
+* `glassfish`: Deploy to the Java EE 7 server
+* `tomcat`: Deploy to the Tomcat server +
+See link:#GCRVD[Section 4.4, "Custom Deployment Handlers,"] for
+information about creating your own deployment handler and setting the
+`impl.vi.deploy.dir` property to use that handler.
+5.  `jsf.classes` to the Standard Tag Library for JavaServer Pages API
+and implementation classes that are under test
+6.  `jspservlet.classes` to the path to the Servlet and JSP API classes. +
+The `ts.jte` file includes examples that show how to set the classes
+properties for both GlassFish v2 and GlassFish v3 servers.
+7.  `report.dir` to the default directory in which JavaTest creates a
+test report for the most recent test run. +
+This property is a required property for the TCK Ant targets; it must be
+set. To disable reporting, set the `report.dir` property to `"none"`.
+8.  `work.dir` to the default directory in which JavaTest writes
+temporary files that are created during test execution. +
+This property is required for the TCK Ant targets.
+3.  Provide your own implementation of the porting package interface
+provided with the JSTL TCK. +
+The porting package interface, `TSURLInterface.java`, obtains URL
+strings for web resources in an implementation-specific manner. API
+documentation for the `TSURLInterface.java` porting package interface is
+available in the JSTL TCK documentation bundle.
+
+[[BABDAHAH]][[initializing-database-and-packaging-the-war-files-for-deployment]]
+
+4.2 Initializing Database and Packaging the War Files for Deployment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Ant target `init.<dbname>` configures the database for running the
+test. The target can be run from `<TS_HOME>/bin`.
+
+For example, change to the <TS_HOME>/bin directory
+
+<TS_HOME>/tools/ant/bin/ant init.javadb
+
+This adds the database users and run db statements that are necessary
+for the tests to run successfully.
+
+In addition to database configuration `init.<dbname>` builds all the
+test classes and packages the war files to `<TS_HOME>/dist/*` which is
+deployed later.
+
+[[GCFQK]][[TCJST00044]][[preparing-the-war-files-for-deployment]]
+
+4.3 Preparing the WAR Files for Deployment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Complete this step only if you intend to package a JSTL implementation
+in the WAR files, thereby overriding the default JSTL implementation for
+the application server under test. This procedure adds to and rebuilds
+the JSTL TCK WAR files.
+
+1.  Copy the JAR file or files required by the JSTL implementation that
+will replace the application server's default JSTL implementation to the
+`<TS_HOME>/weblib` directory. +
+This JAR file (or files) must contain all of the TLDs (located in the
+`META-INF` directory of the archive) for the tag libraries, as defined
+by the JSTL specification and any additional support JAR files upon
+which the JSTL implementation is dependent.
+2.  Change to the `<TS_HOME>/src/com/sun/ts/tests` directory and run
+`<TS_HOME>/tools/ant/bin/ant build` to package the web archives. +
+This adds the JAR file or files from the `<TS_HOME>/weblib` directory to
+each of the WAR files.
+
+[[GCRVD]][[TCJST00045]][[custom-deployment-handlers]]
+
+4.4 Custom Deployment Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deployment handlers are used to deploy and undeploy the WAR files that
+contain the tests to be run during the certification process. A
+deployment handler is an Ant build file that contains at least the
+required targets listed in link:#GJCBX[Table 4-1].
+
+[[sthref9]][[GJCBX]]
+
+Table 4-1 Required Deployment Handler Targets
+
+[width="100%",cols="26%,74%",options="header",]
+|=======================================================================
+|Required Ant Task |Description
+|`-deploy` |Deploys an archive or any archive from the current working
+directory and its children directories.
+
+|`-undeploy` |Undeploys a deployed archive or any deployed archive from
+the current working directory and its children directories.
+
+|`-deploy.all` |Deploys all archives.
+
+|`-undeploy.all` |Undeploys all deployed archives.
+|=======================================================================
+
+
+The Standard Tag Library for JavaServer Pages TCK provides three
+deployment handlers:
+
+* `<TS_HOME>/bin/xml/impl/none/deploy.xml`
+* `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+* `<TS_HOME>/bin/xml/impl/tomcat/deploy.xml`
+
+The `deploy.xml` files in each of these directories are used to control
+deployment to a specific container (no deployment, deployment to the
+GlassFish Web container, deployment to the Tomcat Web container) denoted
+by the name of the directory in which each `deploy.xml` file resides.
+The primary `build.xml` file in the `<TS_HOME>/bin` directory has a
+target to invoke any of the required targets (`-deploy`, `-undeploy`,
+`-deploy.all`, `-undeploy.all`).
+
+[[GJCEK]][[TCJST00071]][[to-create-a-custom-deployment-handler]]
+
+4.4.1 To Create a Custom Deployment Handler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To deploy tests to another JSTL 1.2 implementation, you must create a
+custom handler.
+
+1.  [[BABJHBJE]] +
+Create a new directory in the `<TS_HOME>/bin/impl` directory tree. +
+For example, create the `<TS_HOME>/bin/impl/`my_deployment_handler
+directory.
+2.  Copy the `deploy.xml` file from the `<TS_HOME>/bin/xml/impl/none`
+directory to the directory that you created.
+3.  Modify the required targets in the `deploy.xml` file. +
+This is what the `deploy.xml` file for the "none" deployment handler
+looks like. +
+[source,oac_no_warn]
+----
+<project name="No-op Deployment" default="deploy">
+
+  <!-- No-op deployment target -->
+  <target name="-deploy">
+      <echo message="No deploy target implemented for this deliverable"/>
+  </target>
+
+  <target name="-undeploy">
+      <echo message="No undeploy target implemented for this deliverable"/>
+  </target>
+
+  <target name="-deploy.all">
+      <echo message="No deploy target implemented for this deliverable"/>
+  </target>
+
+  <target name="-undeploy.all">
+      <echo message="No undeploy target implemented for this deliverable"/>
+  </target>
+
+</project>
+----
+Although this example just echoes messages, it does include the four
+required Ant targets (`-deploy`, `-undeploy`, `-deploy.all`,
+`-undeploy.all`) that your custom `deploy.xml` file must contain. With
+this as your starting point, look at the required targets in the
+`deploy.xml` files in the `tomcat` and `glassfish` directories for
+guidance as you create the same targets for the Web container in which
+you will run your implementation of Standard Tag Library for JavaServer
+Pages 1.2.
+4.  Set the `impl.vi.deploy.dir` property in the `ts.jte` file to the
+name of the directory, my_deployment_handler, that you created in step
+link:#BABJHBJE[1]. +
+The required Ant targets in your `deploy.xml` file can be called from
+anywhere in the `<TS_HOME>/src` directory. The `-deploy.all` and
+`-undeploy.all` targets can also be called from the `<TS_HOME>/bin`
+directory.
+
+[[GCRWX]][[TCJST00046]][[deploying-the-jstl-tck-tests]]
+
+4.5 Deploying the JSTL TCK Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To deploy the JSTL TCK tests to the Java EE 7 platform, perform the
+following steps.
+
+1.  Make sure that the Web server to which you will deploy the JSTL TCK
+tests is running.
+1.  Start the database.
+2.  Start the web server domain. +
+For example, we can use the `asadmin` to start/stop database and domain. +
+./asadmin start-database +
+./asadmin start-domain
+3.  In addition, with Java SE 8 security changes, it is necessary to set
+the following JVM properties on the domain in order to ensure all tests
+pass. +
+-Djavax.xml.accessExternalStylesheet=all +
+-Djavax.xml.accessExternalSchema=all +
+-Djavax.xml.accessExternalDTD=file,http +
+These properties need to exist and be set within the appserver domain if
+security manager is enabled. For example, we can use `asadmin` to
+set/unset jvm options followed by domain restart. +
+./asadmin create-jvm-options -Djavax.xml.accessExternalStylesheet=all +
+./asadmin create-jvm-options -Djavax.xml.accessExternalSchema=all +
+./asadmin create-jvm-options -Djavax.xml.accessExternalDTD=file,http +
+./asadmin restart-domain
+2.  Change to the `<TS_HOME>/bin` directory.
+3.  Execute the `<TS_HOME>/tools/ant/bin/ant deploy.all` command. +
+All of the WAR files containing the JSTL TCK tests have been deployed.
+Follow the instructions in link:using.html#GBFUZ[Section 5.1, "Using the
+GUI for TCK Test Execution,"] or link:using.html#GJCIW[Section 5.2,
+"Using the Command Line for TCK Test Execution,"] to run the tests you
+just deployed.
+
+

@@ -1,0 +1,59 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+include::attributes.conf[]
+Installation
+============
+
+[[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the {TechnologyFullName} TCK software.
+
+After installing the software according to the instructions in this
+chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration,"] for instructions on configuring your test environment.
+
+[[GBFUD]][[obtaining-the-reference-implementation]]
+
+3.1 Installing the Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the {TechnologyShortName} TCK tests, you must
+install and set up the following software components:
+
+include::req-software.inc[]
+* Java SE {SEversion}
+* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* Concurrency implementation under test
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
+
+
+
+.  Install the Java SE {SEversion} software, if it is not already installed. +
+Download and install the Java SE {SEversion} software from
+http://www.oracle.com/technetwork/java/javase/downloads/index.html.
+Refer to the installation instructions that accompany the software for
+additional information.
+.  Install the implementation under test, if it is not already installed.
+Download, install, and configure the Concurrency implementation that is under
+begin testing with your own implementation, you can optionally do a trial run
+test. To familiarize yourself with the test suite and the JavaTest software
+before you using the Java EE 8 RI.
+.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
+  a.  Copy or download the {TechnologyShortName} TCK software to your
+      local system. 
+  b.  Change to the directory in which you want to install the
+      {TechnologyShortName} TCK software:
+      `cd install_directory`
+  c.  Use the `unzip` command to extract the bundle: +
+      +unzip {TCKPackageName}+ +
+      This creates the `concurrencytck` directory. The `install_directory/concurrencytck`
+      is the test suite home,`<TS_HOME>`.

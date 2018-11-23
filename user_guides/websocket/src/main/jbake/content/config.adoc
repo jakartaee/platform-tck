@@ -1,0 +1,246 @@
+type=page
+status=published
+title=Setup and Configuration
+next=using.html
+prev=install.html
+~~~~~~
+Setup and Configuration
+=======================
+
+[[TCJSE00005]][[GBFVV]]
+
+
+[[setup-and-configuration]]
+4 Setup and Configuration
+-------------------------
+
+This chapter describes how to set up the Java API for WebSocket TCK and
+JavaTest harness software. Before proceeding with the instructions in
+this chapter, be sure to install all required software, as described in
+link:install.html#GBFTP[Chapter 3, "Installation"].
+
+After completing the instructions in this chapter, proceed to
+link:using.html#GBFWO[Chapter 5, "Executing Tests"] for instructions on
+running the Java API for WebSocket TCK.
+
+This chapter includes the following topics:
+
+* link:#GBFVU[Configuring Your Environment to Run the Java API for
+WebSocket TCK]
+* link:#GCRVD[Custom Deployment Handlers]
+* link:#GCRWX[Deploying the Java API for WebSocket TCK Tests]
+
+[[GBFVU]][[TCJSE00042]][[configuring-your-environment-to-run-the-java-api-for-websocket-tck]]
+
+4.1 Configuring Your Environment to Run the Java API for WebSocket TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes how to configure the Java API for WebSocket TCK
+for your environment. After configuring your environment, continue with
+the instructions in link:using.html#GBFWO[Chapter 5, "Executing Tests"].
+
+
+[NOTE]
+=======================================================================
+
+In these instructions, variables in angle brackets need to be expanded
+for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
+Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+slashes (`/`) used in all of the examples need to be replaced with
+backslashes (`\`) for Windows.
+
+=======================================================================
+
+
+1.  Set the following environment variables in your shell environment:
+1.  `JAVA_HOME` to the directory in which Java SE 7 or Java SE 8 has
+been installed.
+2.  `TS_HOME` to the directory in which the Java API for WebSocket TCK
+1.0 software is installed
+3.  `PATH` to include the following directories: `<JAVA_HOME>/bin` and
+`<TS_HOME>/tools/ant/bin`
+4.  `ANT_HOME` should not be set in your environment. If it is set,
+unset it.
+2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
+properties:
+1.  `webServerHost` to the name of the host on which your Java API for
+WebSocket 1.0 implementation is running.
+2.  `webServerPort` to the port number of the host on which Java API for
+WebSocket 1.0 implementation is running.
+3.  `web.home` to the location where your Java API for WebSocket 1.0
+implementation is installed.
+4.  `websocket.api` to point to the location of the JAR files and
+directories that contain the APIs for Java API for WebSocket 1.0 and
+Java Servlet. +
+The default setting for this property is: +
+[source,oac_no_warn]
+----
+websocket.api=${web.home}/modules/javax.websocket-api.jar \
+${pathsep}${web.home}/modules/javax.servlet-api.jar
+----
+5.  `websocket.classes` property to point to the JAR files and
+directories that contain the Java API for WebSocket 1.0 implementation
+classes. +
+The default setting for this property is: +
+[source,oac_no_warn]
+----
+websocket.classes=${web.home}/modules/tyrus-websocket-core.jar \
+${pathsep}${web.home}/modules/tyrus-client.jar \
+${pathsep}${web.home}/modules/tyrus-core.jar \
+${pathsep}${web.home}/modules/tyrus-container-grizzly.jar \
+${pathsep}${web.home}/modules/glassfish-grizzly-extra-all.jar \
+${pathsep}${web.home}/modules/nucleus-grizzly-all.jar \
+${pathsep}${web.home}/modules/tyrus-server.jar \
+${pathsep}${web.home}/modules/tyrus-container-servlet.jar \
+${pathsep}${web.home}/modules/tyrus-spi.jar
+----
+6.  `ws_wait` to the wait time, in seconds, for the socket to send or
+receive a message.
+7.  `report.dir` to the default directory in which JavaTest creates a
+test report for the most recent test run. +
+This property is a required property for the TCK Ant targets; it must be
+set. To disable reporting, set the `report.dir` property to `none`.
+8.  `work.dir` to the default directory in which JavaTest writes
+temporary files that are created during test execution. +
+This property is required for the TCK Ant targets.
+9.  `impl.vi` to the name of the Vendor implementation. +
+This property is used for identifying the deployment handler. +
+Set this property to `glassfish` for the Java EE 7 RI or the Java EE 7
+Web Profile RI.
+10. `impl.vi.deploy.dir` to the Vendor implementation deployment
+directory. +
+Set this property to `${web.home}/domains/domain1/autodeploy` for the
+Java EE 7 RI or the Java EE 7 Web Profile RI.
+3.  Add permissions from the file `<TS_HOME>/bin/server_policy.append`
+to the Java policy file or files on your Java EE 7 server. +
+In case of Java EE 7 RI, add permissions that are not already defined to
+the file $\{web.home}`/domains/domain1/config/server.policy`, where
+$\{web.home} is the location of your installation of the Java EE 7 RI.
+
+[[GCRVD]][[TCJSE00043]][[custom-deployment-handlers]]
+
+4.2 Custom Deployment Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deployment handlers are used to deploy and undeploy the WAR files that
+contain the tests to be run during the certification process. A
+deployment handler is an Ant build file that contains at least the
+required targets listed in link:#GJCBX[Table 4-1].
+
+[[sthref9]][[GJCBX]]
+
+Table 4-1 Required Deployment Handler Targets
+
+[width="100%",cols="27%,73%",options="header",]
+|=======================================================================
+|Required Ant Task |Description
+|`-deploy` |Deploys an archive or any archive from the current working
+directory and its children directories.
+
+|`-undeploy` |Undeploys a deployed archive or any deployed archive from
+the current working directory and its children directories.
+
+|`-deploy.all` |Deploys all archives.
+
+|`-undeploy.all` |Undeploys all deployed archives.
+|=======================================================================
+
+
+The Java API for WebSocket TCK provides these deployment handlers:
+
+* `<TS_HOME>/bin/xml/impl/none/deploy.xml`
+* `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+
+The `deploy.xml` files in each of these directories are used to control
+deployment to a specific container (no deployment, deployment to the
+GlassFish Web container, deployment to the Tomcat Web container) denoted
+by the name of the directory in which each `deploy.xml` file resides.
+The primary `build.xml` file in the `<TS_HOME>/bin` directory has a
+target to invoke any of the required targets (-deploy, -undeploy,
+-deploy.all, -undeploy.all).
+
+[[GJCEK]][[TCJSE00066]][[to-create-a-custom-deployment-handler]]
+
+4.2.1 To Create a Custom Deployment Handler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To deploy tests to another Java API for WebSocket 1.0 implementation,
+you must create a custom handler.
+
+1.  Create a new directory in the `<TS_HOME>/bin/impl` directory tree. +
+For example, create the `<TS_HOME>/bin/impl/`my_deployment_handler
+directory. Replace my_deployment_handler with the value of the `impl.vi`
+property.
+2.  Copy the `deploy.xml` file from the `<TS_HOME>/bin/xml/impl/none`
+directory to the directory that you created.
+3.  Modify the required targets in the `deploy.xml` file. +
+This is what the `deploy.xml` file for the "none" deployment handler
+looks like. +
+[source,oac_no_warn]
+----
+<project name="No-op Deployment" default="deploy">
+
+  <!-- No-op deployment target -->
+  <target name="-deploy">
+      <echo message="No deploy target implemented for this deliverable"/>
+  </target>
+
+  <target name="-undeploy">
+      <echo message="No undeploy target implemented for this deliverable"/>
+  </target>
+
+  <target name="-deploy.all">
+      <echo message="No deploy target implemented for this deliverable"/>
+  </target>
+
+  <target name="-undeploy.all">
+      <echo message="No undeploy target implemented for this deliverable"/>
+  </target>
+
+</project>
+----
+Although this example just echoes messages, it does include the four
+required Ant targets (`-deploy`, `-undeploy`, `-deploy.all`,
+`-undeploy.all`) that your custom `deploy.xml` file must contain. With
+this as your starting point, look at the required targets in the
+`deploy.xml` files in the `tomcat` and `glassfish` directories for
+guidance as you create the same targets for the Web container in which
+you will run your implementation of Java API for WebSocket. +
+The following Ant targets can be called from anywhere under the
+`<TS_HOME>/src` directory:
+* `deploy`
+* `undeploy`
+* `deploy.all`
+* `undeploy.all` +
+The `deploy.all` and `undeploy.all` targets can also be called from the
+`<TS_HOME>/bin` directory. +
+
+[NOTE]
+=======================================================================
+
+The targets in the `deploy.xml` file are never called directly. They are
+called indirectly by the targets listed above.
+
+=======================================================================
+
+
+[[GCRWX]][[TCJSE00044]][[deploying-the-java-api-for-websocket-tck-tests]]
+
+4.3 Deploying the Java API for WebSocket TCK Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To deploy the Java API for WebSocket TCK tests to the Web/Application
+server to which you will deploy the Java API for WebSocket TCK tests,
+perform the following steps.
+
+1.  Make sure that the Web/Application server to which you will deploy
+the Java API for WebSocket TCK tests is running.
+2.  Change to the `<TS_HOME>/bin` directory.
+3.  Execute the `ant deploy.all` command. +
+All of the WAR files containing the Java API for WebSocket TCK tests
+have been deployed. Follow the instructions in
+link:using.html#GBFUZ[Using the GUI for TCK Test Execution] or
+link:using.html#GJCIW[Using the Command Line for TCK Test Execution] to
+run the tests you just deployed.
+
+

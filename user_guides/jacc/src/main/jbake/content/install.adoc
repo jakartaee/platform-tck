@@ -1,0 +1,65 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCJAC00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the Java Authorization Contract for
+Containers TCK 1.5 (JACC TCK) software. After installing the software
+according to the instructions in this chapter, proceed to
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
+instructions on configuring your test environment.
+
+[[GBFUD]][[TCJAC00043]][[obtaining-the-jacc-1.5-reference-implementation]]
+
+3.1 Obtaining the JACC 1.5 Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[GBFTS]][[TCJAC00044]][[installing-the-software]]
+
+3.2 Installing the Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the JACC TCK tests, you must install and set up the
+following software components:
+
+* Java SE 7
+* JACC TCK version 1.5, which includes Apache Ant 1.7.0
+* The JACC implementation to be tested +
+If you are running against the JACC 1.5 Reference Implementation,
+install the Java EE 7 RI software; if not, install your JACC Vendor
+Implementation (VI).
+
+1.  Install the Java SE 7 software, if it is not already installed. +
+Download and install the Java SE 7 software from
+`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Refer to the installation instructions that accompany the software for
+additional information.
+2.  Install the JACC TCK 1.5 software.
+1.  Copy or download the JACC TCK software to your local system.
+2.  Use the `unzip` command to extract the bundle in the directory of
+your choice: +
+[source,oac_no_warn]
+----
+unzip jacctck-1.4_date.zip
+----
+This creates the `jacctck` directory. The install_directory`/``jacctck`
+directory is the test suite home, `<TS_HOME>`.
+3.  Install the JACC 1.5 Reference Implementation. +
+The Reference Implementation is used to validate your initial
+configuration and setup of the JACC TCK 1.5 tests, which are explained
+further in link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] 
+4.  Install the JACC Vendor Implementation (VI) to be tested. +
+Follow the installation instructions for the particular VI under test.
+
+

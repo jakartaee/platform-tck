@@ -1,0 +1,65 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCPER00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the Java Transaction API TCK 1.3
+software.
+
+After installing the software according to the instructions in this
+chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration"] for instructions on configuring your test environment.
+
+[[sthref8]][[obtaining-the-jta-1.3-reference-implementation-java-ee-8-reference-implementation]]
+
+3.1 Obtaining the JTA 1.3 Reference Implementation (Java EE 8 Reference Implementation)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+[[GBFTS]][[TCPER00041]][[installing-the-java-transaction-api-tck-software]]
+
+3.2 Installing the Java Transaction API TCK Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the Java Transaction API TCK tests, you need to
+install and set up the following software components:
+
+* JDK 8.0
+* JTA TCK version 1.3, which includes Apache Ant 1.9.7
+* The JTA implementation to be tested. If you are running against
+Oracle's JTA Reference Implementation, install Oracle's Java EE 8
+Reference Implementation; if not, install your JTA Vendor Implementation
+(VI).
+
+1.  Install the JDK 8.0 software, if it is
+not already installed. +
+Download and install the JDK 8.0 software from
+`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Refer to the installation instructions that accompany the software for
+additional information.
+2.  Install the JTA TCK 1.3 software.
+1.  Copy or download the JTA TCK software to your local system. +
+2.  Use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+unzip jtatck-1.3_date.zip
+----
+This creates the `jtatck` directory. The install-dir/jtatck directory is
+the test suite home, install-dir.
+3.  Install the JTA 1.3 Reference Implementation. +
+JTA 1.3 Reference Implementation is used to validate your initial
+configuration and setup of the JTA TCK 1.3 tests, which are explained
+further in link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
+4.  Install your JTA Vendor Implementation (VI) to be tested. +
+Follow the installation instructions for the particular VI under test.

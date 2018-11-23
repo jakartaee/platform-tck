@@ -1,0 +1,286 @@
+type=page
+status=published
+title=Executing Tests
+next=debug.html
+prev=config.html
+~~~~~~
+Executing Tests
+===============
+
+[[TCPER00006]][[GBFWO]]
+
+
+[[executing-tests]]
+5 Executing Tests
+-----------------
+
+The JTA TCK uses the JavaTest harness to execute the tests in the test
+suite. For detailed instructions that explain how to run and use
+JavaTest, see the JavaTest User's Guide and Reference in the
+documentation bundle.
+
+This chapter includes the following topics:
+
+* link:#GBFUZ[Starting JavaTest]
+* link:#CHDDIDGE[Running a Subset of the Tests]
+* link:#GJCIW[Running the JTA TCK against Oracle's JTA 1.3 Reference
+Implementation]
+* link:#CHDGCDGB[Running the JTA TCKAgainst a Vendor's Implementation]
+* link:#CHDEDDAE[Test Reports]
+
+
+[NOTE]
+=======================================================================
+
+The instructions in this chapter assume that you have installed and
+configured your test environment as described in
+link:install.html#GBFTP[Chapter 3, "Installation."] and
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration"]
+respectively.
+
+=======================================================================
+
+
+[[GBFUZ]][[TCPER00043]][[starting-javatest]]
+
+5.1 Starting JavaTest
+~~~~~~~~~~~~~~~~~~~~~
+
+There are two general ways to run the JTA TCK using the JavaTest harness
+software:
+
+* Through the JavaTest GUI
+* From the command line in your shell environment
+
+
+[NOTE]
+=======================================================================
+
+The `<TS_HOME>/tools/ant/bin/ant` command referenced in the following
+two procedures and elsewhere in this guide is a wrapper around the Ant
+build tool, which is included in the JTA TCK bundle. The `build.xml`
+file in `<TS_HOME>/bin` contains the various Ant targets for the JTA TCK
+test suite.
+
+=======================================================================
+
+
+To Start JavaTest in GUI Mode
+
+Change to the `<TS_HOME>/bin` directory and execute the
+`<TS_HOME>/tools/ant/bin/ant gui` target:
+
+`cd <TS_HOME>/bin`
+
+`<TS_HOME>/tools/ant/bin/ant gui`
+
+To Start JavaTest in Command-Line Mode
+
+Change to any subdirectory under <TS_HOME>/src/com/sun/ts/tests.
+
+Start JavaTest using the following command:
+
+`<TS_HOME>/tools/ant/bin/ant runclient`
+
+Example 5–1 JTA TCK Signature Tests
+
+To run the JTA TCK signature tests, enter the following commands:
+
+`cd <TS_HOME>/src/com/sun/ts/tests/signaturetest/jta`
+
+`<TS_HOME>/tools/ant/bin/ant runclient`
+
+Example 5–2 Single Test Directory
+
+To run a single test directory, enter the following commands:
+
+`cd <TS_HOME>/src/com/sun/ts/tests/jta/ee//usertransaction/getstatus`
+
+`<TS_HOME>/tools/ant/bin/ant runclient`
+
+Example 5–3 Subset of Test Directories
+
+To run a single test directory, enter the following commands:
+
+`cd <TS_HOME>/src/com/sun/ts/tests/jta/ee/usertransaction`
+
+`<TS_HOME>/tools/ant/bin/ant runclient`
+
+Example 5–4 Running Tests in Standalone Mode
+
+To run the tests in standalone mode, enter the following commands:
+
+`cd <TS_HOME>/bin`
+
+`<TS_HOME>/tools/ant/bin/ant -Dkeywords="standalone_vehicle" run.all.tests`
+
+
+[[CHDDIDGE]][[running-a-subset-of-the-tests]]
+
+5.2 Running a Subset of the Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To Run a Subset of Tests in GUI Mode:
+
+1.  Click Configure, Change Configuration, and then click Tests to Run
+from the JavaTest main menu. +
+The tabbed Configuration Editor dialog is displayed.
+2.  Click Specify from the option list on the left.
+3.  Select the tests you want to run from the displayed test tree, and
+then click Done. +
+You can select entire branches of the test tree, or use Ctrl+Click or
+Shift+Click to select multiple tests or ranges of tests, respectively.
+4.  Click Save File.
+5.  Click Run Tests and then click Start to run the tests you selected. +
+Alternatively, you can right-click the test you want from the test tree
+in the left pane of the JavaTest main window, and choose Execute These
+Tests from the popup menu.
+6.  Click Report and then click Create Report.
+7.  Specify the directory in which the JavaTest test harness will write
+the report, and then click OK. +
+A report is created, and you are asked whether you want to view it.
+8.  Click Yes to view the report.
+
+To Run a Subset of Tests in Command-Line Mode:
+
+1.  Change to the directory containing the tests you want to run. +
+For example, `<TS_HOME>/src/com/sun/ts/tests/jta/ee/usertransaction`.
+2.  Start the test run by executing the following command: +
+`<TS_HOME>/tools/ant/bin/ant runclient` +
+The tests in `<TS_HOME>/src/com/sun/ts/tests/jta/ee/usertransaction` and
+its +
+subdirectories are run.
+
+To Run a Subset of Tests in Batch Mode Based on Prior Result Status:
+
+You can run certain tests in batch mode based on the test's prior run
+status by specifying the `priorStatus` system property when invoking
+`<TS_HOME>/tools/ant/bin/ant.`
+
+Invoke `<TS_HOME>/tools/ant/bin/ant` with the `priorStatus` property.
+
+The accepted values for the `priorStatus` property are any combination
+of the following:
+
+* fail
+* pass
+* error
+* notRun
+
+For example, you could run all the JTA tests with a status of failed and
+error by invoking the following commands:
+
+`cd <TS_HOME>/src/com/sun/ts/tests/jta`
+
+`<TS_HOME>/tools/ant/bin/ant -DpriorStatus="fail,error" runclient`
+
+Note that multiple `priorStatus` values must be separated by commas.
+
+[[GJCIW]][[TCPER00044]][[running-the-jta-tck-against-oracles-jta-1.3-reference-implementation]]
+
+5.3 Running the JTA TCK against Oracle's JTA 1.3 Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This test scenario ensures that the configuration and deployment of all
+the JTA TCK tests running against Oracle's JTA 1.3 Reference
+Implementation are successful, and that the TCK is ready for
+compatibility testing against Oracle's JTA 1.3 Reference Implementation
+and your Vendor Implementation.
+
+To Run the JTA TCK Against the RI:
+
+1.  Verify that you have followed the configuration instructions in
+link:config.html#GBFWN[Configuring Your Environment to Run the JTATCK
+Against JTA 1.3 Reference Implementation].
+2.  Run the tests, as described in link:#GBFUZ[Chapter 5, "Starting
+JavaTest"].
+
+[[CHDGCDGB]][[running-the-jta-tckagainst-a-vendors-implementation]]
+
+5.4 Running the JTA TCKAgainst a Vendor's Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This test scenario is one of the compatibility test phases that all
+Vendors must pass.
+
+To Run the JTATCK Against a VI:
+
+1.  Verify that you have followed the configuration instructions in
+link:config.html#GJLIB[Configuring Your Environment to Run the JTATCK
+Against Your JTA 1.3 Implementation].
+2.  Run the tests, as described in link:#GBFUZ[Chapter 5, "Starting
+JavaTest"].
+
+[[CHDEDDAE]][[test-reports]]
+
+5.5 Test Reports
+~~~~~~~~~~~~~~~~
+
+A set of report files is created for every test run. These report files
+can be found in the report directory you specify. After a test run is
+completed, the JavaTest harness writes HTML reports for the test run.
+You can view these files in the JavaTest ReportBrowser when running in
+GUI mode, or in the web browser of your choice outside the JavaTest
+interface.
+
+To see all of the HTML report files, enter the URL of the `report.html`
+file. This file is the root file that links to all of the other HTML
+reports.
+
+The JavaTest harness also creates a `summary.txt` file in the report
+directory that you can open in any text editor. The `summary.txt` file
+contains a list of all tests that were run, their test results, and
+their status messages.
+
+[[sthref9]][[creating-test-reports]]
+
+5.5.1 Creating Test Reports
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To Create a Test Report in GUI Mode:
+
+1.  Click Report and then click Create Report from the JavaTest main
+menu. +
+You are prompted to specify a directory to use for your test reports.
+The default location is /tmp/JTreport.
+2.  Specify the directory you want to use for your reports, and then
+click OK. +
+Use the Filter drop-down list to specify whether you want to generate
+reports for the current configuration, all tests, or a custom set of
+tests. +
+You are asked whether you want to view report now.
+3.  Click Yes to display the new report in the JavaTest Report Browser.
+
+To Create a Test Report in Command-Line Mode:
+
+Specify where you want to create the test report.
+
+1.  To specify the report directory from the command line at runtime,
+use: +
+`<TS_HOME>/tools/ant/bin/ant -Dreport.dir="<report_dir>"` +
+Reports are written for the last test run to the directory you specify.
+The default location is `/tmp/JTreport.`
+2.  To specify the default report directory, set the report.dir property
+in `<TS_HOME>/bin/ts.jte`. +
+For example, `report.dir="/home/josephine/reports"`.
+3.  To disable reporting, set the `report.dir` property to `"none",`
+either on the command line or in ts.jte. +
+For example: `<TS_HOME>/tools/ant/bin/ant -Dreport.dir="none"`
+
+[[sthref10]][[viewing-an-existing-test-report]]
+
+5.5.2 Viewing an Existing Test Report
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To View an Existing Report in GUI Mode:
+
+1.  Click Report and then click Open Report from the JavaTest main menu. +
+You are prompted to specify a directory containing the report you want
+to open.
+2.  Select the report directory you want to open, and then click Open. +
+The selected report set is opened in the JavaTest Report Browser.
+
+To View an Existing Report in Command-Line Mode:
+
+Use the Web browser of your choice to view the `report.html` file in the
+report directory you specified from the command line or in `ts.jte`.

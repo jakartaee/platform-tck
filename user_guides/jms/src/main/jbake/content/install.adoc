@@ -1,0 +1,73 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCJMS00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+[[TCJMS117]]
+
+This chapter explains how to install the Java Message Service TCK 2.0
+software. After installing the software according to the instructions in
+this chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration"] for instructions on configuring your test environment.
+
+This chapter contains the following section:
+
+* link:#GBFTS[Section 3.1, "Installing the Software"]
+
+[[GBFTS]][[TCJMS00039]][[installing-the-software]]
+
+3.1 Installing the Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the Java Message Service TCK tests, you need to
+install and set up the following software components:
+
+* Java SE 7
+* Java Message Service 2.0 implementation under test
+* Java Message Service TCK Version 2.0
+
+1.  Install the Java SE 7 software, if it is not already installed. +
+Download and install the Java SE 7 software from
+`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Refer to the installation instructions that accompany the software for
+additional information.
+2.  Install the implementation under test, if it is not already
+installed. +
+Download, install, and configure the JMS implementation that is under
+test. To familiarize yourself with the Java Message Service TCK suite
+and the JavaTest software before you begin testing with your own
+implementation, you can optionally do a trial run using the JMS 2.0 RI
+or the Oracle Open Message Queue Version 5.0 product.
+3.  Install the Java Message Service TCK 2.0 software.
+1.  Copy or download the Java Message Service TCK software to your local
+system. 
+2.  Change to the directory in which you want to install the Java
+Message Service TCK software: +
+[source,oac_no_warn]
+----
+cd install_directory
+----
+3.  Use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+unzip jmstck-2.0_dd-Mmm-YYYY.zip
+----
+where dd indicates the day, Mmm indicates the month, and YYYY indicates
+the year in which the TCK bundle was created. For example, the JMS TCK
+bundle name could be `jmstck-2.0_15-May-2013.zip`. +
+When the bundle is unzipped, the `jmstck` directory is created. The
+install_directory`/``jmstck` directory is the test suite home,
+`<TS_HOME>`.
+
+

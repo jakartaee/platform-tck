@@ -1,0 +1,64 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCJSP00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the JavaServer Pages TCK 2.3
+software. After installing the software according to the instructions in
+this chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration,"] for instructions on configuring your test environment.
+
+[[GBFTS]][[TCJSP00041]][[installing-the-software]]
+
+3.1 Installing the Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the JavaServer Pages TCK tests, you need to install
+and set up the following software components:
+
+* Appropriate Java SE 7
+* JavaServer Pages 2.3 implementation under test
+* JavaServer Pages TCK Version 2.3
+
+1.  Install the <Java SE 7> appropriate for the reference implementation
+under test, if it is not already installed.
+2.  Install the implementation under test, if it is not already
+installed. +
+Download, install, and configure the JavaServer Faces configuration that
+is under test. To familiarize yourself with the JavaServer Pages TCK
+suite and the JavaTest software before you begin testing with your own
+implementation, you can optionally do a trial run using the Java EE 7 RI
+or the Java EE 7 Web Profile RI.
+3.  Install the JavaServer Pages TCK 2.3 software.
+1.  Copy or download the JavaServer Pages TCK software to your local
+system.
+2.  Change to the directory in which you want to install the JavaServer
+Pages TCK software: +
+[source,oac_no_warn]
+----
+cd install_directory
+----
+3.  Use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+unzip jsptck-2.1_date.zip
+----
+where date indicates the month and year in which the TCK bundle was
+created. For example, the JavaServer Pages TCK bundle name could be
+`jsptck-2.1_26-Mar-2013.zip` +
+When the bundle is unzipped, the `jsptck` directory is created. The
+install_directory`/``jsptck` directory is the test suite home,
+`<TS_HOME>`.
+
+

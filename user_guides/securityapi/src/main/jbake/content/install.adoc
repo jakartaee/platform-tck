@@ -1,0 +1,68 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCPER00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the Java EE Security API TCK 1.0
+software.
+
+After installing the software according to the instructions in this
+chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration,"] for instructions on configuring your test environment.
+
+[[GBFTS]][[TCPER00041]][[installing-the-java-ee-security-api-tck-software]]
+
+3.1 Installing the Java EE Security API TCK Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the Java EE Security API TCK tests, you need to
+install and set up the following software components:
+
+* Java SE 8
+* Java EE Security API 1.0 Vendor Implementation (VI)
+* Java EE Security API TCK Version 1.0
+
+1.  Install the Java SE 8 software, if it is not already installed. +
+Download and install the Java SE 8 software from
+`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Refer to the installation instructions that accompany the software for
+additional information.
+2.  Install the implementation under test, if it is not already
+installed. +
+Download, install, and configure the Java EE Security 1.0 configuration
+that is to be tested. To familiarize yourself with the Java EE Security
+API TCK suite and test environment before you begin testing with your
+own implementation, you can optionally do a trial run using the Java EE
+Security 1.0 RI.
+3.  Install the Java EE Security 1.0 TCK software.
+1.  Copy or download the Java EE Security software to your local system. 
+2.  Change to the directory in which you want to install the Java EE
+Security software: +
+[source,oac_no_warn]
+----
+cd install_directory
+----
+3.  Use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+unzip securityapitck-1.0-date.zip
+----
+where date indicates the month and year in which the TCK bundle was
+created. For example, the Java EE Security bundle name could be
+`securityapitck-1.0_17-Aug-2017.zip`. +
+When the bundle is unzipped, the `securityapitck` directory is created.
+The install_directory`/``securityapitck` directory is the test suite
+home, `<TS_HOME>`.
+
+

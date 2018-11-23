@@ -1,0 +1,332 @@
+type=page
+status=published
+title=Setup and Configuration
+next=using.html
+prev=install.html
+~~~~~~
+Setup and Configuration
+=======================
+
+[[TCCOA00005]][[GBFVV]]
+
+
+[[setup-and-configuration]]
+4 Setup and Configuration
+-------------------------
+
+This chapter describes how to set up the CAJ TCK and JavaTest harness
+software. Before proceeding with the instructions in this chapter, be
+sure to install all required software, as described in
+link:install.html#GBFTP[Chapter 3, "Installation."]
+
+After completing the instructions in this chapter, proceed to
+link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
+running the CAJ TCK.
+
+[[GBFWP]][[TCCOA00037]][[configuration-overview]]
+
+4.1 Configuration Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Setting up and configuring the CAJ TCK and JavaTest harness involves
+three general steps:
+
+* link:#GBFVU[Configuring Your Environment to Run the CAJ TCK]
+* link:#GBFUY[Using the JavaTest Harness Software]
+* link:#GBFWG[Using the JavaTest Harness Configuration GUI]
+
+
+[NOTE]
+=======================================================================
+
+The third general step, link:#GBFWG[Section 4.4, "Using the JavaTest
+Harness Configuration GUI,"] is not necessary if you plan on running the
+JavaTest harness in command-line mode. See link:#GBFUY[Section 4.3,
+"Using the JavaTest Harness Software,"] for more information about
+running tests in command-line mode.
+
+=======================================================================
+
+
+The remainder of this chapter explains these steps in detail.
+
+[[GBFVU]][[TCCOA00038]][[configuring-your-environment-to-run-the-caj-tck]]
+
+4.2 Configuring Your Environment to Run the CAJ TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes how to configure the CAJ TCK for your
+environment. After configuring your environment, continue with the
+instructions in link:#GBFUY[Section 4.3, "Using the JavaTest Harness
+Software."]
+
+
+[NOTE]
+=======================================================================
+
+In these instructions, variables in angle brackets need to be expanded
+for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
+Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+slashes (`/`) used in all of the examples need to be replaced with
+backslashes (`\`) for Windows. Finally, be sure to use the appropriate
+separator for your operating system when specifying multiple path
+entries (`;` on Windows, `:` on UNIX/Linux).
+
+=======================================================================
+
+
+1.  Set the following environment variables in your shell environment:
+1.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+2.  `TS_HOME` to the directory in which the CAJ TCK 1.3 software is
+installed
+3.  `PATH` to include the `JAVA_HOME/bin` and `<TS_HOME>/tools/ant/bin`
+directories
+2.  Edit your `<TS_HOME>/bin/ts.jte` file, setting the `local.classes`
+property to point to the CAJ RI classes/jars that contain the
+annotations being supported in Step link:#BABJHHAJ[4], below.
+3.  Edit your `<TS_HOME>/bin/ts.jte` file, setting the `endorsed.dirs`
+property to the location of the RI API jars for those technologies you
+wish to override that exist within the JDK.
+4.  [[BABJHHAJ]] +
+Depending on the annotations that are supported or unsupported in your
+CAJ implementation, the following `<TS_HOME>/bin/ts.jte` properties
+should be set to `true` or `false` respectively. +
+By default, all of these annotations are supported in the CAJ RI. +
+[source,oac_no_warn]
+----
+#javax.annotation.Generated
+ca.sig.generated=true
+
+#javax.annotation.ManagedBean
+ca.sig.managedbean=true
+
+#javax.annotation.PostConstruct
+ca.sig.postconstruct=true
+
+#javax.annotation.PreDestroy
+ca.sig.predestroy=true
+
+#javax.annotation.Priorityca.sig.priority=true
+
+#javax.annotation.Resource
+ca.sig.resource=true
+
+#javax.annotation.Resources
+ca.sig.resources=true
+
+#javax.annotation.security.DeclareRoles
+ca.sig.securitydeclareroles=true
+
+#javax.annotation.security.DenyAll
+ca.sig.securitydenyall=true
+
+#javax.annotation.security.PermitAll
+ca.sig.securitypermitall=true
+
+#javax.annotation.security.RolesAllowed
+ca.sig.securityrolesallowed=true
+
+#javax.annotation.security.RunAs
+ca.sig.securityrunas=true
+
+#javax.annotation.sql.DataSourceDefinition
+ca.sig.sqldatasourcedefinition=true
+
+#javax.annotation.sql.DataSourceDefinitions
+ca.sig.sqldatasourcedefinitions=true
+----
+5.  Run the JavaTest harness in GUI or command-line mode, as described
+in link:#GBFUY[Section 4.3, "Using the JavaTest Harness Software."]
+
+[[GBFUY]][[TCCOA00039]][[using-the-javatest-harness-software]]
+
+4.3 Using the JavaTest Harness Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are two general ways to run the CAJ TCK test suite using the
+JavaTest harness software:
+
+* Through the JavaTest GUI; if using this method, please continue on to
+link:#GBFWG[Section 4.4, "Using the JavaTest Harness Configuration
+GUI."]
+* In JavaTest batch mode, from the command line in your shell
+environment; if using this method, please proceed directly to
+link:using.html#GBFWO[Chapter 5, "Executing Tests."]
+
+[[GBFWG]][[TCCOA00040]][[using-the-javatest-harness-configuration-gui]]
+
+4.4 Using the JavaTest Harness Configuration GUI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use the JavaTest harness GUI to modify general test settings and
+to quickly get started with the default CAJ TCK test environment. This
+section covers the following topics:
+
+* link:#GBFVA[Configuration GUI Overview]
+* link:#GBFVD[Starting the Configuration GUI]
+* link:#GBFUW[Configuring the JavaTest Harness to Run the CAJ TCK Tests]
+* link:#GBFUU[Modifying the Default Test Configuration]
+
+
+[NOTE]
+=======================================================================
+
+It is only necessary to proceed with this section if you want to run the
+JavaTest harness in GUI mode. If you plan to run the JavaTest harness in
+command-line mode, skip the remainder of this chapter, and continue with
+link:using.html#GBFWO[Chapter 5, "Executing Tests."]
+
+=======================================================================
+
+
+[[GBFVA]][[TCCOA00068]][[configuration-gui-overview]]
+
+4.4.1 Configuration GUI Overview
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order for the JavaTest harness to execute the test suite, it requires
+information about how your computing environment is configured. The
+JavaTest harness requires two types of configuration information:
+
+* Test environment: This is data used by the tests. For example, the
+path to the Java runtime, how to start the product being tested, network
+resources, and other information required by the tests in order to run.
+This information does not change frequently and usually stays constant
+from test run to test run.
+* Test parameters: This is information used by the JavaTest harness to
+run the tests. Test parameters are values used by the JavaTest harness
+that determine which tests in the test suite are run, how the tests
+should be run, and where the test reports are stored. This information
+often changes from test run to test run.
+
+The first time you run the JavaTest harness software, you are asked to
+specify the test suite and work directory that you want to use. (These
+parameters can be changed later from within the JavaTest harness GUI.)
+
+Once the JavaTest harness GUI is displayed, whenever you choose Run
+Tests and then Start to begin a test run, the JavaTest harness
+determines whether all of the required configuration information has
+been supplied:
+
+* If the test environment and parameters have been completely
+configured, the test run starts immediately.
+* If any required configuration information is missing, the
+configuration editor displays a series of questions asking you the
+necessary information. This is called the configuration interview . When
+you have entered the configuration data, you are asked if you wish to
+proceed with running the test.
+
+[[GBFVD]][[TCCOA00069]][[starting-the-configuration-gui]]
+
+4.4.2 Starting the Configuration GUI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before you start the JavaTest harness software, you must have a valid
+test suite and Java SE 8 installed on your system.
+
+The CAJ TCK includes an Ant script that is used to execute the JavaTest
+harness from the `<TS_HOME>` directory. Using this Ant script to start
+the JavaTest harness is part of the procedure described in
+link:#GBFUW[Section 4.4.3, "Configuring the JavaTest Harness to Run the
+CAJ TCK Tests."]
+
+When you execute the JavaTest harness software for the first time, the
+JavaTest harness displays a Welcome dialog box that guides you through
+the initial startup configuration.
+
+* If it is able to open a test suite, the JavaTest harness displays a
+Welcome to JavaTest dialog box that guides you through the process of
+either opening an existing work directory or creating a new work
+directory as described in the JavaTest online help.
+* If the JavaTest harness is unable to open a test suite, it displays a
+Welcome to JavaTest dialog box that guides you through the process of
+opening both a test suite and a work directory as described in the
+JavaTest documentation.
+
+After you specify a work directory, you can use the Test Manager to
+configure and run tests as described in link:#GBFUW[Section 4.4.3,
+"Configuring the JavaTest Harness to Run the CAJ TCK Tests."]
+
+[[GBFUW]][[TCCOA00013]][[configuring-the-javatest-harness-to-run-the-caj-tck-tests]]
+
+4.4.3 Configuring the JavaTest Harness to Run the CAJ TCK Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You only need to complete all these steps the first time you start the
+JavaTest test harness. After you complete these steps, you can either
+run all of the tests by completing the steps in
+link:using.html#GBFUZ[Section 5.1, "Starting JavaTest,"] or run a subset
+of the tests by completing the steps in link:using.html#GBFWM[Section
+5.2, "Running a Subset of the Tests."]
+
+The answers you give to some of the configuration interview questions
+are specific to your site. For example, the name of the host on which
+the JavaTest harness is running. Other configuration parameters can be
+set however you wish. For example, where you want test report files to
+be stored.
+
+1.  Start the JavaTest test harness: +
+[source,oac_no_warn]
+----
+ant gui
+----
+The JavaTest Quick Start screen displays, and you are prompted to Start,
+Resume, or Browse the test suite.
+2.  Select Start a new test run, and then click Next. +
+You are prompted to create a new configuration or use a configuration
+template.
+3.  Select Create a new configuration, and then click Next. +
+You are prompted to select a test suite.
+4.  Accept the default suite (`<TS_HOME>/src`), and then click Next. +
+You are prompted to specify a work directory to use to store your test
+results.
+5.  Type a work directory name or use the Browse button to select a work
+directory, and then click Next. +
+You are prompted to start the configuration editor or start a test run.
+At this point, the CAJ TCK is configured to run the default test suite.
+6.  Deselect the Start the configuration editor option, select the Start
+test run option, and then click Finish. +
+The test run is started.
+
+[[GBFUU]][[TCCOA00071]][[modifying-the-default-test-configuration]]
+
+4.4.4 Modifying the Default Test Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The JavaTest GUI enables you to configure numerous test options. These
+options are divided into two general dialog box groups:
+
+* Group 1: Available from the JavaTest Configure/Change Configuration
+submenus, the following options are displayed in a tabbed dialog box:
+
+** Tests to Run
+
+** Exclude List
+
+** Keywords
+
+** Prior Status
+
+** Test Environment
+
+** Concurrency
+
+** Timeout Factor
+* Group 2: Available from the JavaTest Configure/Change
+Configuration/Other Values submenu, or by pressing Ctrl+E, the following
+options are displayed in a paged dialog box:
+
+** Environment Files
+
+** Test Environment
+
+** Specify Tests to Run
+
+** Specify an Exclude List
+
+Note that there is some overlap between the functions in these two
+dialog boxes; for those functions use the dialog that is most convenient
+for you. Please refer to the JavaTest Harness documentation or the
+online help for complete information about these various options.
+
+

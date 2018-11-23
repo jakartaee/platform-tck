@@ -1,0 +1,1810 @@
+type=page
+status=published
+title=CSIv2 Test Reference
+next=jaspic-files.html
+prev=commonappdeploy.html
+~~~~~~
+CSIv2 Test Reference
+====================
+
+[[GFAVU]][[b-csiv2-test-reference]]
+
+B CSIv2 Test Reference
+----------------------
+
+This appendix provides information about the following topics:
+
+* link:#GFAVI[Overview]
+* link:#BACGHCAI[CSIv2 Logging Servlet]
+* link:#GFKFB[Naming Conventions for CSIv2 Test Directories]
+* link:#GFKGM[CSIv2 Test Directory Structure]
+* link:#GFKGF[Naming Conventions for CSIv2 Test Names]
+* link:#GJJVO[Debugging CSIv2 Test Failures]
+* link:#GFKFC[Examining Test Logs]
+* link:#GFKHS[CSIv2 Log Elements]
+* link:#GFKKB[IORs and Associated CSIv2 Tests]
+
+[[GFAVI]][[b.1-overview]]
+
+B.1 Overview
+~~~~~~~~~~~~
+
+This section describes the deployment scenarios under which the CSIv2
+interoperability tests are executed. Each scenario uses two servers. The
+label "Licensee Java Platform, Enterprise Edition Server" refers to the
+server under test. The label "Java EE 8 RI Server" refers to the
+reference server against which compatibility will be verified.
+
+There are three primary deployment scenarios, each of which is described
+in greater detail in sections that follow:
+
+* link:#GFAUX[Application Client-to-EJB Scenarios]
+* link:#GFAZD[EJB-to-EJB Test Scenarios]
+* link:#GFKEF[Web Client-to-EJB Scenarios]
+
+Although these scenarios often involve more than one invocation, the
+invocation of primary interest is the final invocation, which is always
+between servers.
+
+A new logging mechanism was introduced with Java EE 8 CTS. Logging now
+occurs as follows:
+
+* From the VI, logging operations are done through a servlet request.
+* From the RI (in the Interceptor), logging operations skip the servlet
+request and write directly to the log file, since the interceptor
+resides on the same machine as the log files.
+* From RI (not interceptor), logging operations are done through a
+servlet request.
+
+The log files are created and sent back to the client-side tests, where
+they are validated as having the correct data in them. These log files
+are typically removed between test runs, but can be kept around for
+assisting with debugging and troubleshooting. Setting the ts.jte
+"traceflag" property to true will keep these files.
+
+
+[NOTE]
+=======================================================================
+
+The LoggingServlet must be have permission to write to the log file
+directory. If it does not have this permission, the logging will fail,
+which will cause all the CSIv2 tests to fail as well.
+
+=======================================================================
+
+
+When the server that is running the Java EE 8 RI is started, a set of
+logging interceptors are registered, allowing the test code to collect
+protocol-level information. Note that this interceptor is only installed
+on the server that is running the Java EE 8 RI. The Java EE 8 CTS does
+not require the Licensee Java Platform, Enterprise Edition Server to
+support CORBA Portable Interceptors.
+
+Each scenario is executed in both a "`forward`" and a "`reverse`"
+direction:
+
+* In the `forward` direction, the client component of the invocation of
+primary interest is on the Licensee Java Platform, Enterprise Edition
+Server, and the server component is on the server that is running the
+Java EE 8 RI. In this direction, information about the CSIv2 request
+message is collected and analyzed.
+* In the `reverse` direction, the client component of the invocation of
+primary interest is on the server that is running the Java EE 8 RI, and
+the server component is on the Java Platform, Enterprise Edition
+Licensee server. In this direction, information about the published IOR
+and the CSIv2 response message is collected and analyzed.
+
+link:#GFAUX[Application Client-to-EJB Scenarios], link:#GFAZD[EJB-to-EJB
+Test Scenarios], and link:#GFKEF[Web Client-to-EJB Scenarios] show the
+components that are present in both the `forward` and `reverse`
+directions.
+
+By understanding these deployment scenarios, you can have a deeper
+understanding of how the tests work, which will make it easier to
+determine why a particular test is not passing.
+
+[[GFAUX]][[b.1.1-application-client-to-ejb-scenarios]]
+
+B.1.1 Application Client-to-EJB Scenarios
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each application client-to-EJB scenario includes an application client
+and an EJB, as shown in link:#GFKGD[Figure B-1]. In the `forward`
+direction, the application client is deployed on the Licensee Java
+Platform, Enterprise Edition server and the EJB is deployed on the
+server that is running the Java EE 8 RI. In the `reverse` direction, the
+application client is deployed on the server that is running the Java EE
+8 RI, and the EJB is deployed on the Licensee Java Platform, Enterprise
+Edition Server. The Logging Interceptor (LI) is deployed on the server
+that is running the Java EE 8 RI.
+
+[[GFKGD]]
+
+.*Figure B-1 Application Client-to-EJB Test Scenario*
+image:img/client2ejb.gif[
+"Application Client-to-EJB Test Scenario"]
+
+
+[[GFAZD]][[b.1.2-ejb-to-ejb-test-scenarios]]
+
+B.1.2 EJB-to-EJB Test Scenarios
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each of the EJB-to-EJB scenarios includes an application client and two
+enterprise beans, as shown in link:#GFKEV[Figure B-2]. In the `forward`
+direction, the application client and EJB1 are deployed on the Licensee
+Java Platform, Enterprise Edition Server. EJB2 is deployed on the server
+that is running the Java EE 8 RI. In the `reverse` direction, the
+Application Client and EJB3 are deployed on the server that is running
+the Java EE 8 RI. EJB4 is deployed on the Licensee Java Platform,
+Enterprise Edition Server. The Logging Interceptor (LI) is deployed on
+the server that is running the Java EE 8 RI.
+
+[[GFKEV]]
+
+.*Figure B-2 EJB-to-EJB Test Scenario*
+image:img/ejb2ejb.gif[
+"EJB-to-EJB Test Scenario"]
+
+
+[[GFKEF]][[b.1.3-web-client-to-ejb-scenarios]]
+
+B.1.3 Web Client-to-EJB Scenarios
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each Web client-to-EJB scenarios includes an application client, a
+servlet, and an EJB, as shown in link:#GFKGE[Figure B-3]. In the forward
+direction, the application client and the Web client are deployed on the
+Licensee Java Platform, Enterprise Edition Server. The EJB is deployed
+on the server that is running the Java EE 8 RI. In the reverse
+direction, the application client and the Web client are deployed on the
+server that is running the Java EE 8 RI. The EJB is deployed on the
+Licensee Java Platform, Enterprise Edition Server.
+
+[[GFKGE]]
+
+.*Figure B-3 Web-to-EJB Test Scenario*
+image:img/web2ejb.gif[
+"Web-to-EJB Test Scenario"]
+
+
+[[BACGHCAI]][[b.2-csiv2-logging-servlet]]
+
+B.2 CSIv2 Logging Servlet
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Along with any EAR files for the directory under test, the Logging
+Servlet should get copied over to the Java EE 8 RI as part of the
+autodeployment process. The Logging Servlet is needed on the Java EE 8
+RI. After the Logging Servlet has been deployed, verify that it is
+working properly by accessing the following URL:
+
+[source,oac_no_warn]
+----
+http://localhost:8002/logger_servlet_web/LoggerServlet?log.file.location=USE_DEFAULT&ping=
+----
+
+where `localhost` is the Java EE 8 RI host represented as `ts.jte`
+values `orb.host.ri` and `remote.orb.host` and `8002` is the port
+represented as `ts.jte` values `webServerPort.2` and `remote.orb.port`.
+
+If you can not access the page at URL on your Java EE 8 RI, all CSIv2
+tests will fail. Ensure that you can access the URL. Accessing this page
+displays the following text:
+
+[source,oac_no_warn]
+----
+in LoggerServlet.ping()
+----
+
+Failure to access the page could be caused by one or more of the
+following:
+
+* One or more of the ts.jte properties (hostnames, ports, log dirs,
+etc.) have been set incorrectly
+* The logging servlet does not have the necessary permissions to write
+to the file system
+* The logging servlet does not have permissions to write to the file
+system log directory
+
+Several properties and JVM options that control logging need to be set
+in the `ts.jte` file:
+
+* `ri.log.file.location` to the location to which the Java EE 8 RI log
+files will be written and optionally stored if the
+`harness.log.traceflag` property is set to `true`. The setting for this
+property should not have to be changed.
+* `ri.jvm.options` to the following for the Java EE 8 RI:
+
+** `-Dremote.orb.port=${webServerPort.2}`
+
+** `-Dremote.orb.host=${orb.host.ri}`
+
+** `-Dri.log.file.location=${ri.log.file.location}`
+
+** `-Dcsiv2.save.log.file=${harness.log.traceflag}` +
+The settings for this property should not have to be changed.
+* `command.testExecuteAppClient` and `command.testExecuteAppClient2` to
+the following JVM properties:
+
+** `-Dri.log.file.location=${ri.log.file.location} \`
+
+** `-Dremote.orb.host=${orb.host.ri} \`
+
+** `-Dremote.orb.port=${webServerPort.2} \`
+* `s1as.jvm.options` to the following JVM options in your VI:
+
+** `-Dremote.orb.port=${webServerPort.2}`
+
+** `-Dremote.orb.host=${orb.host.ri}`
+
+** `-Dri.log.file.location=${ri.log.file.location}`
+
+[[GFKFB]][[b.3-naming-conventions-for-csiv2-test-directories]]
+
+B.3 Naming Conventions for CSIv2 Test Directories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The CSIv2 test directories are named according to the configuration that
+they represent. All tests are located in subdirectories of the
+`<TS_HOME>/src/com/sun/ts/tests/interop/csiv2` directory.
+
+The CSIv2 test directories use the following naming conventions:
+
+[source,oac_no_warn]
+----
+orig_prot_auth_assertion
+----
+
+where:
+
+* orig is the origin of the invocations:
+
+** `ac`: Application client
+
+** `ew`: EJB or Web client
+* prot is the transport protection for the invocation:
+
+** `ssln`: No SSL transport protection
+
+** `ssl`: SSL transport protection
+* auth is the authentication settings for the deployed beans:
+
+** `sslr_upn`: SSL authentication Required, No Username/Password
+authentication
+
+** `ssln_upr`: No SSL authentication, Username/Password authentication
+required
+
+** `ssln_upn`: Neither SSL authentication nor Username/Password
+authentication
+* assertion is the type of identity assertion:
+
+** `noid`: No identity assertion
+
+** `noid_a`: Negative test case for no identity assertion
+
+** `ccid`: Certificate chain assertion
+
+** `upid`: Username/Password assertion
+
+** `anonid`: Assertion of anonymous identity
+
+[[GFKGM]][[b.4-csiv2-test-directory-structure]]
+
+B.4 CSIv2 Test Directory Structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The directory structure for the CSIv2 tests begins at the
+`tests/interop/csiv2` directory. The `/common` subdirectory contains
+code that is common to all CSIv2 tests. The other subdirectories each
+indicate different deployment settings. Each subdirectory has a
+`/forward` and a `/reverse` subdirectory.
+
+Tests in the `/forward` subdirectory are run in the forward direction
+only (for example, the application client runs in the Licensee Java
+Platform, Enterprise Edition server, and a call is made to the Java EE 8
+RI server). Tests in the `/reverse` subdirectory are run in the reverse
+direction only (for example, the application client runs in the server
+that is running the Java EE 8 RI, and a call is made to the Licensee
+Java Platform, Enterprise Edition server); for example:
+
+[source,oac_no_warn]
+----
+/tests
+   /interop
+      /csiv2
+         /common
+         /ac_ssl_sslr_upn_noid
+            /forward
+            /reverse
+         /ac_ssl_ssln_upr_noid
+            /forward
+            /reverse
+            ...
+----
+
+[[GFKGF]][[b.5-naming-conventions-for-csiv2-test-names]]
+
+B.5 Naming Conventions for CSIv2 Test Names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The CSIv2 test names are structured as follows:
+
+[source,oac_no_warn]
+----
+dirname_client-component_server-component_testid[_direction ]
+----
+
+where:
+
+* dirname is the directory name of the test, under
+`/tests/interop/csiv2`; for example: +
+[source,oac_no_warn]
+----
+ew_ssl_ssln_upn_anonid
+----
+* client-component is the type of client component:
+
+** `sb`: session bean
+
+** `wb`: servlet
+* server-component is the type of server component:
+
+** `sb`: session bean
+* testid is the test ID; for example, `testid3`.
+* direction is the direction of the test. The direction is omitted if
+forward, or reverse if in the reverse direction. For these tests,
+forward means from licensee server to the Java EE 8 RI server, and
+reverse means from the Java EE 8 RI server to the licensee server. In
+other words, the application client runs in the licensee's container in
+the forward direction.
+
+Sample test application names for EJB-to-EJB tests include the
+following:
+
+* `ew_ssl_ssln_upn_anonid_sb_sb_testid3`
+
+[[GLSDH]][[b.6-security-elements-associated-with-csiv2-tests]]
+
+B.6 Security Elements Associated With CSIv2 Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section includes the following topics:
+
+* link:#GEXUI[The security-role-mapping Element]
+* link:#GEXUQ[The ior-security-config Element]
+
+[[GEXUI]][[b.6.1-the-security-role-mapping-element]]
+
+B.6.1 The security-role-mapping Element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The `security-role-mapping` element defines role-to-principal,
+role-to-group, and role-to-user-to-group mappings.
+
+* A role is a logical grouping of users that is defined by an
+application component provider or assembler.
+* A group is a set of users, classified by common traits, defined in the
+Java Platform, Enterprise Edition Application Server. +
+Note that a Java Platform, Enterprise Edition group is designated for
+the entire Java Platform, Enterprise Edition server, whereas a role is
+associated with a specific application in a Java Platform, Enterprise
+Edition server only.
+* A principal is an individual (or application program) identity that
+has been defined in the Java Platform, Enterprise Edition Application
+Server. Principals can be associated with a group.
+
+The `security-role-mapping` elements are defined in the following files:
+
+* applicationName`.ear.sun-application.xml`
+* applicationName`.jar.sun-ejb-jar.xml`
+* applicationName`.war.sun-web.xml`
+
+However, the definitions in the file
+applicationName`.ear.sun-application.xml` take precedence over the
+definitions in the other files.
+
+The examples that follow show how `role-name`, `principal-name`, and
+`group-names` are used for `security-role-mapping`.
+
+[[GEXWX]]
+
+Example B-1 role-name Administrator
+
+The following example shows how `role-name` Administrator is mapped to
+`principal-name` `javaee` and `principal-name` `javajoe`.
+
+[source,oac_no_warn]
+----
+<security-role-mapping>
+    <role-name>Administrator</role-name>
+    <principal-name>javaee</principal-name>
+    <principal-name>javajoe</principal-name>
+</security-role-mapping>
+----
+
+[[GEXUS]]
+
+Example B-2 role-name Manager
+
+The following example shows how `role-name` Manager is mapped to
+`principal-name` `javajoe` and `group-name` `MGR`.
+
+[source,oac_no_warn]
+----
+<security-role-mapping>
+    <role-name>Manager</role-name>
+    <principal-name>javajoe</principal-name>
+    <group-name>MGR</group-name>
+</security-role-mapping>
+----
+
+[[GEXUQ]][[b.6.2-the-ior-security-config-element]]
+
+B.6.2 The ior-security-config Element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The `ior-security-config` element, which describes the security
+configuration information for the IOR, consists of three components:
+
+* link:#GLRET[The transport-config Element]
+* link:#GLREQ[The as-context Element]
+* link:#GLRFE[The sas-context Element]
+
+For the Java Platform, Enterprise Edition Application Server, the
+`ior-security-config` element is defined in the
+applicationName`.jar.sun-ejb-jar.xml` file. The element looks like this:
+
+[source,oac_no_warn]
+----
+ <ior-security-config>
+   <transport-config>
+     <integrity>supported</integrity>
+     <confidentiality>supported</confidentiality>
+     <establish-trust-in-target>supported</establish-trust-in-target>
+     <establish-trust-in-client>supported</establish-trust-in-client>
+   </transport-config>
+   <as-context>
+     <auth-method>username_password</auth-method>
+     <realm>default</realm>
+     <required>false</required>
+   </as-context>
+   <sas-context>
+     <caller-propagation>supported</caller-propagation>
+   </sas-context>
+ </ior-security-config>
+----
+
+[[GLRET]][[b.6.2.1-the-transport-config-element]]
+
+B.6.2.1 The transport-config Element
+++++++++++++++++++++++++++++++++++++
+
+The `transport-config` element contains the following sub-elements:
+
+* `integrity`: The `integrity` field is used to indicate the integrity
+requirements that a target places on the client at the SSL level. +
+Valid values are:
+
+** `none`: Indicates that the target does not support integrity at the
+SSL level
+
+** `required`: Indicates that the target supports, but does not require,
+integrity at the SSL level
+
+** `supported`: Indicates that the target requires the client to
+establish a secure connection with integrity at the SSL level
+* `confidentiality`: The `confidentiality` field is used to indicate the
+confidentiality requirements that a target places on the client at the
+SSL level. +
+Valid values are:
+
+** `none`: Indicates that the target does not support confidentiality at
+the SSL level
+
+** `required`: Indicates that the target requires the client to
+establish a secure connection with confidentiality at the SSL level
+
+** `supported`: Indicates that the target supports, but does not
+require, confidentiality at the SSL level +
+An IOR must be generated as shown below. Although confidentiality is
+used as an example, the principles of IOR generation apply to all other
+fields related to security requirements at the SSL level, including
+`establish-trust-in-client`, `establish-trust-in-target`, and
+`integrity`.
+
+** If the value for a field is `none`:
+*** The bit that corresponds to the field in
+`transport_mech.target_requires` must be set to `0`.
+*** The bit that corresponds to the field in
+`transport_mech.target_supports` must be set to `0`.
+
+** If the value for a field is `supported`:
+*** The bit that corresponds to the field in
+`transport_mech.target_supports` must be set to `1`.
+*** The bit that corresponds to the field in
+`transport_mech.target_requires` must be set to `0`. +
+For example, if the value of the confidentiality field is true, the
+following setting is necessary: +
+[source,oac_no_warn]
+----
+transport_mech.target_supports = {Confidentiality}
+----
+
+** If the value for a field is `required`:
+*** The bit that corresponds to the field in
+`transport_mech.target_requires` must be set to `1`.
+*** The bit that corresponds to the field in
+`transport_mech.target_supports` must also be set to `1`.
+*** The bit that corresponds to the field must also be set in
+`CompoundSecMec.target_requires`. +
+For example, if the value of confidentiality is `required`, the
+following settings are necessary: +
+[source,oac_no_warn]
+----
+transport_mech.target_requires={Confidentiality}
+transport_mech.target_supports={Confidentiality}
+CompoundSecMec.target_requires={Confidentiality}
+----
+* `establish-trust-in-target`: The `establish-trust-in-target` field is
+used to indicate whether a target can authenticate itself to a client at
+the SSL level. +
+Valid values are:
+
+** `none`: Indicates that the target cannot authenticate itself to the
+client
+
+** `supported`: Indicates that the target can authenticate itself to a
+client
+* `establish-trust-in-client`: The `establish-trust-in-client` field is
+used to indicate the authentication requirements that a target places on
+the client at the SSL level. +
+Valid values are:
+
+** `none`: Indicates that the target does not support client
+authentication at the SSL level
+
+** `required`: Indicates the client must authenticate itself to the
+target at the SSL level
+
+** `supported`: Indicates that the target supports, but does not
+require, client authentication at the SSL level
+
+[[GLREQ]][[b.6.2.2-the-as-context-element]]
+
+B.6.2.2 The as-context Element
+++++++++++++++++++++++++++++++
+
+The `as-context` element (CSIv2 authentication service) describes the
+authentication mechanism that will be used to authenticate the client.
+If specified, it will be the username-password mechanism.`as-context`
+contains the following sub-elements:
+
+* `auth-method`: The `auth-method` field indicates the authentication
+mechanism that may be used to authenticate the client to the target at
+the client authentication layer. +
+Valid values are:
+
+** `none`: Indicates that the target does not support client
+authentication at the client authentication layer. The IOR must be
+generated as follows: +
+[source,oac_no_warn]
+----
+as_context_mech.target_supports = {}
+----
+If the value is `none`, the `realm` and `required` field values are
+irrelevant.
+
+** `username_password`: Indicates that the authentication mechanism is
+the `GSSUP` mechanism. This value is relevant and should only be used
+when `asRequired` is `true`. When set to `true`, the IOR must be
+generated as described in the `required` field summary.
+* `realm`: The `realm` field contains the name of the realm in which the
+user is to be authenticated. +
+Valid values are:
+
+** `none`
+
+** `default` +
+This field is relevant and should only be used when the `required` field
+is set to `true`, in which case the IOR must be generated as described
+in the `required` field summary.
+* `required`: The `required` field specifies whether or not a client is
+required to authenticate at the client authentication layer. +
+Valid values are:
+
+** `true`: Indicates that the client is required to authenticate at the
+client authentication layer. +
+If the value is `true`, an IOR must be generated as follows:
+*** The `as_context_mech` must contain a client authentication mechanism
+derived from the value of the `auth-method` field. If the value of the
+`auth-method` field is `username_password`, the client authentication
+mechanism must be set to `GSSUP_OID`; for example: +
+[source,oac_no_warn]
+----
+as_context_mech.client_authentication_mech = GSSUP_OID
+----
+*** The target name must match the value of the `realm` field: +
+[source,oac_no_warn]
+----
+as_context_mech.target_name = {realm}
+----
+
+** The `establish-trust-in-client` bit must be set in the following
+fields:
+*** `as_context_mech.target_supports={EstablishTrustInClient}`
+*** `as_context_mech.target_requires={EstablishTrustInClient}`
+*** `CompoundSecMec.target_requires={EstablishTrustInClient}`
+
+** `false`: Indicates that client authentication at the client
+authentication layer is not required. +
+The value of the `required` field can be `false`. However, in the CSIv2
+tests, whenever the required field is `false`, the `auth-method` field
+must always be set to `none`. In this case, the IOR must be generated as
+described in the `auth-method` field summary.
+
+[[GLRFE]][[b.6.2.3-the-sas-context-element]]
+
+B.6.2.3 The sas-context Element
++++++++++++++++++++++++++++++++
+
+The `sas-context` element describes caller propagation. The
+`caller-propagation` field indicates whether the target will accept
+propagated caller identities. Valid values are:
+
+* `none` +
+If the value of the `sas-context` element is `none`, the IOR must be
+generated as follows:
+
+** The bit that corresponds to the field in
+`sas_context_mech.target_supports` must be set to zero, as shown: +
+[source,oac_no_warn]
+----
+sas_context_mech.target_supports={}
+----
+
+** The value in the field `sas_context_mech.supported_naming_mechanisms`
+must be set to zero, as shown: +
+[source,oac_no_warn]
+----
+supported_naming_mechanisms={}
+----
+
+** The bit that corresponds to `ITTPrincipalName`, ITTDistinguishedName,
+`ITTX509CertChain`, and `ITTAnonymous` in the
+`sas_context_mech.supported_identity_types` field must be set to zero.
+* `supported` +
+If the value of the `sas-context` element is `supported`, the IOR must
+be generated as follows:
+
+** The bit that corresponds to the field in
+`sas_context_mech.target_supports` must be set as follows: +
+[source,oac_no_warn]
+----
+sas_context_mech.target_supports={IdentityAssertion}
+----
+
+** The `sas_context_mech.supported_naming_mechanisms` field must contain
+at least `GSSUPMechOID`, as follows: +
+[source,oac_no_warn]
+----
+supported_naming_mechanisms={GSSUPMechOID}
+----
+
+** The `ITTPrincipalName` bit must be set in the
+`sas_context_mech.supported_identity_types`, as shown: +
+[source,oac_no_warn]
+----
+sas_context_mech.supported_identity_types= \
+{ITTPrincipalName, ITTDistinguishedName, \
+ITTX509CertChain, ITTAnonymous}
+----
+
+[[GJJVO]][[b.7-debugging-csiv2-test-failures]]
+
+B.7 Debugging CSIv2 Test Failures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The CSIv2 test infrastructure provides two areas from which to obtain
+debugging output:
+
+* Java EE 8 CTS clients, beans, and servlets
+* Java EE 8 CTS CSIv2 interceptors
+
+The sections that follow explain how to enable/disable logging to help
+you debug CSIv2 test failures.
+
+[[GJJWV]][[b.7.1-debugging-cts-clients-beans-and-servlets]]
+
+B.7.1 Debugging CTS Clients, Beans, and Servlets
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The first area in which you can enable logging is Java EE 8 CTS clients,
+beans, and servlets. If you have done any debugging in other technology
+areas in the Java EE 8 CTS test suite, you are likely to be familiar
+with enabling and using logging to obtain additional information with
+which you can debug test problems. This kind of debugging output is
+enabled by setting the `harness.log.traceflag` property to "true" in the
+`<TS_HOME>/bin/ts.jte` file.
+
+[[GJJVS]][[b.7.2-debugging-cts-csiv2-interceptors]]
+
+B.7.2 Debugging CTS CSIv2 Interceptors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The second area in which you can enable logging is Java EE 8 CTS CSIv2
+interceptors, including Logging Interceptor Factory, Server Interceptor,
+and Client Interceptor. These three entities are configured during the
+CSIv2 test setup, which is described in link:config.html#GEXWW[CSIv2 Test
+Setup], by executing the `enable.csiv2` Ant task. During that
+configuration step, the following lines are added to the
+`<javaee.home.ri>/domains/domain1/config/logging.properties` file:
+
+[source,oac_no_warn]
+----
+com.sun.ts.tests.interop.csiv2.common.LoggingSecRequestInterceptorFactory.level=INFO
+com.sun.ts.tests.interop.csiv2.common.LoggingSecClientRequestInterceptor.level=INFO
+com.sun.ts.tests.interop.csiv2.common.LoggingSecServerRequestInterceptor.level=INFO
+----
+
+These properties control the logging levels of the CSIv2 interceptors.
+By default, "INFO" level logging is enabled, which yields only minimal
+output in the `server.log` file.
+
+[[GJJWI]][[b.7.2.1-to-increase-the-logging-level]]
+
+B.7.2.1 To Increase the Logging Level
++++++++++++++++++++++++++++++++++++++
+
+1.  Stop the Java EE 8 RI.
+2.  Edit the file
+`<javaee.home.ri>/domains/domain1/config/logging.properties` and set the
+logging level to "FINE" for the three CSIv2 interceptors.
+3.  Restart the Java EE 8 RI. +
+From this point on, an increased amount of logging output from the Java
+EE 8 CTS CSIv2 logging interceptors will be written to the `server.log`
+file.
+
+[[GJJWY]][[b.7.2.2-to-reset-the-logging-level]]
+
+B.7.2.2 To Reset the Logging Level
+++++++++++++++++++++++++++++++++++
+
+1.  Stop the Java EE 8 RI.
+2.  Edit the file
+`<javaee.home.ri>/domains/domain1/config/logging.properties` and set the
+logging level back to "INFO" for the three CSIv2 interceptors.
+3.  Restart the Java EE 8 RI. +
+
+[NOTE]
+=======================================================================
+
+Execution of the `disable.csiv2` Ant target, which is explained in
+link:config.html#GEXWW[CSIv2 Test Setup], will remove the three
+properities from the
+`<javaee.home.ri>/domains/domain1/config/logging.properties` file.
+
+=======================================================================
+
+
+[[sthref56]][[b.7.3-debugging-logging-servlet-problems]]
+
+B.7.3 Debugging Logging Servlet Problems
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the `harness.log.traceflag` property has been set to `true`, you
+should be able to view the log files. If you do not see any log file(s),
+you are likely missing a JVM property setting somewhere (for example, in
+the RI, in the VI, or in the application client). Another possible cause
+of the problem could be that your host and port properties
+(`remote.orb.host` and `remote.orb.port`)are not set correctly. You
+should also be able to deploy the Logging Servlet and access the ping
+that was described link:#BACGHCAI[Section B.2, "CSIv2 Logging
+Servlet."].
+
+If you see only a small part of the log file, you need to identify the
+missing log file entry and determine from where it did not get logged.
+In other words, you need to identify the component (VI, the RI, or the
+interceptor) in which logging failed to complete correctly. Once
+isolating this, you can check `server.log` files for clues, such as
+permissions not being set up correctly or a particular JVM option is
+missing or incorrectly set, etc.
+
+If you see a log file and the content looks to be correct but the test
+but is not passing the final validation (log files are run thru an XML
+validator on the client side), you can compare your log files to sample
+log files from successful runs. These reference log files can be see at
+`TS_HOME/src/com/sun/ts/tests/interop/csiv2/reference_logs`.
+
+[[GFKFC]][[b.8-examining-test-logs]]
+
+B.8 Examining Test Logs
+~~~~~~~~~~~~~~~~~~~~~~~
+
+[[GFKGL]][[b.8.1-to-examine-the-test-logs]]
+
+B.8.1 To Examine the Test Logs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.  The first thing you will notice is the direction in which the test
+is running: +
+[source,oac_no_warn]
+----
+LocalSessionBean (VI) ====> RemoteSessionBean (RI)
+----
+VI-to-RI indicates that the test is running in the forward direction;
+RI-to-VI indicates that the test is running in the reverse direction.
+2.  The test direction is followed by a trace that outlines the path of
+execution (for example, from a local session bean to a remote session
+bean). +
+[source,oac_no_warn]
+----
+INVOKING java:comp/env/ejb/LocalSession...
+   SVR: Initialize remote logging
+   SVR: CSIv2SessionBean.ejbCreateInvoke()
+   SVR: Initialize remote logging
+   SVR: CSIv2SessionBean.invoke()
+   SVR: Entering CSIv2TestLogicImpl.invoke()
+   SVR: INVOKING java:comp/env/ejb/RemoteSession...
+   SVR: Initialize remote logging
+   SVR: CSIv2SessionBean.ejbCreateInvoke()
+   SVR: Initialize remote logging
+   SVR: CSIv2SessionBean.invoke()
+   SVR: Entering CSIv2TestLogicImpl.invoke()
+   SVR: Exiting CSIv2TestLogicImpl.invoke()
+   SVR: Exiting CSIv2TestLogicImpl.invoke()
+----
+The CSIv2 tests maintain a log during the invocation. The log is in XML
+format, and is organized to match the flow of test execution. +
+By examining the contents of the log, you can trace the test execution
+and see what happened in the test. See link:#GFKHS[CSIv2 Log Elements]
+for a detailed description of the DTD elements that make up the CSIv2
+log.
+3.  Output validation results follow the log. +
+In the forward direction, the tests validate the request (see the
+EstablishContext message). In the reverse direction, the tests validate
+the IOR that the Licensee's Java EE 8 server publishes for the EJB and
+the response (see the `CompleteEstablishContext` message or the
+`ContextError` message). See link:#GFKKB[IORs and Associated CSIv2
+Tests] for a list of the IORs that the test validation code and the test
+strategy descriptions reference. +
+The test output shows you what it is being validated for each test, and
+indicates the exact section of the log that is being analyzed. See
+link:#GFKHL[Example B-3], below.
+4.  Next, the test output indicates what matched and what mismatched. +
+Lines that start with the plus sign (`+`) indicate matches. Lines that
+start with "`MISMATCH:`" indicate mismatches. Lines that start with
+neither are informational messages. +
+`MISMATCH` messages indicate what was expected. The log tells you what
+was received. See link:#GFKGA[Example B-4]. +
+The reverse direction tests validate that the IOR that is published by
+the Licensee Java Platform, Enterprise Edition Server matches the
+expected result. The CSIv2 log will represent the values collected for
+`target_supports`, `target_requires`, and other CSIv2 IOR structures as
+decimal integers. In accordance with the CSIv2 specification, these
+values represent a bit mask. To determine the meaning of the bits that
+have been set in the bit mask, see link:#GLREW[Bit Mask Values for CSIv2
+IOR Structures].
+
+[[GFKHL]]
+
+Example B-3 Sample Validation Log
+
+[source,oac_no_warn]
+----
+-------------------------------------------
+Validating EJBRemote IOR...
+   Validating the following IOR against IOR.4:
+-------------------------------------------
+<ior>
+   <port>44139</port>
+   <stateful>false</stateful>
+   <compound-sec-mech>
+     <target-requires>0</target-requires>
+     <ior-transport-mech>
+       <null-trans/>
+     </ior-transport-mech>
+     <ior-as-context>
+       <target-supports>0</target-supports>
+       <target-requires>0</target-requires>
+       <client-authentication-mech></client-authentication-mech>
+       <target-name></target-name>
+     </ior-as-context>
+     <ior-sas-context>
+       <target-supports>1024</target-supports>
+       <target-requires>0</target-requires>
+       <supported-naming-mechanism>0606678102010101</supported-naming-mechanism>
+       <supported-identity-types>15</supported-identity-types>
+     </ior-sas-context>
+   </compound-sec-mech>
+</ior>
+-------------------------------------------
+Testing CompoundSecMech 1 of 1...
+   Testing Naming Mechanisms 1 of 1...
+      + This naming mechanism matches IOR.4
+      + At least one naming mechanism matched IOR.4.
+      + This CompoundSecMech matches IOR.4
+      + At least one compound sec mech matched IOR.4.
+EJBRemote IOR Valid.
+----
+
+[[GFKGA]]
+
+Example B-4 Sample Mismatch Log
+
+[source,oac_no_warn]
+----
+-------------------------------------------
+Validating EJBHome IOR...
+   Validating the following IOR against IOR.3:
+   -------------------------------------------
+<ior>
+   <port>0</port>
+   <stateful>false</stateful>
+   <compound-sec-mech>
+     <target-requires>70</target-requires>
+     <ior-transport-mech>
+       <tls-trans>
+         <target-supports>38</target-supports>
+         <target-requires>6</target-requires>
+         <trans-addr>
+           <host-name>129.148.71.198</host-name>
+           <port>0</port>
+         </trans-addr>
+       </tls-trans>
+     </ior-transport-mech>
+     <ior-as-context>
+       <target-supports>64</target-supports>
+       <target-requires>64</target-requires>
+       <client-authentication-mech></client-authentication-mech>
+       <target-name></target-name>
+     </ior-as-context>
+     <ior-sas-context>
+       <target-supports>1024</target-supports>
+       <target-requires>0</target-requires>
+       <supported-identity-types>15</supported-identity-types>
+     </ior-sas-context>
+   </compound-sec-mech>
+</ior>
+-------------------------------------------
+Testing CompoundSecMech 1 of 1... 
+   MISMATCH: Mismatch on target requires.
+   Testing Transport Address 1 of 1...
+   MISMATCH: Mismatch on port.
+   MISMATCH: This transport address does not match IOR.3.
+   MISMATCH: None of the transport address matched IOR.3. 
+   MISMATCH: Mismatch on IOR Transport Mech
+   MISMATCH: Mismatch on AS Context
+   MISMATCH: None of the naming mechs matched IOR.3.
+   MISMATCH: Mismatch on SAS Context 
+   MISMATCH: This CompoundSecMech does not match IOR.3 
+   MISMATCH: None of the compound sec mechs matched IOR.3. 
+EJBHome IOR Invalid.
+The following test output contains both matches and mismatches.
+-------------------------------------------
+Skipping IOR validation.
+   Validating EJBHome and EJBRemote invocation request...
+   Validating EJBHome Invocation Request...
+   Validating the following invocation:
+-------------------------------------------
+<client>
+   <server-interceptor>
+     <operation>createInvoke</operation>
+     <req-svc-context present="true">
+       <establish-context>
+         <client-context-id>0</client-context-id>
+         <identity-token>
+           <anonymous/>
+         </identity-token>
+         <client-auth-token></client-auth-token>
+         <authz-token-count>0</authz-token-count>
+       </establish-context>
+     </req-svc-context>
+     <ssl-used>false</ssl-used>
+     <transport-client-principals>
+     </transport-client-principals>
+     <server>
+       <invocation-principal>guest</invocation-principal>
+     </server>
+     <reply-svc-context present="true">
+       <complete-establish-context>
+         <client-context-id>0</client-context-id>
+         <context-stateful>false</context-stateful>
+         <final-context-token></final-context-token>
+       </complete-establish-context>
+     </reply-svc-context>
+   </server-interceptor>
+</client>
+-------------------------------------------
++ Match: Transport client principals absent, as expected.
++ Match: SAS Client principal present.
+MISMATCH: Identity Token Type is invalid.  Expecting one of
+the following:
+   * ITTX509CertChain
+   * ITTDistinguishedName
+Found:
+   * ITTAnonymous
+MISMATCH: Mismatched SAS Identity Token Type.
+EJBHome Invocation Request Invalid.
+----
+
+[[GLREW]][[b.8.2-bit-mask-values-for-csiv2-ior-structures]]
+
+B.8.2 Bit Mask Values for CSIv2 IOR Structures
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+link:#GLRES[Table B-1] shows the bit mask values for the
+`target_supports` and `target_requires` elements of the IOR structures.
+
+These values and their meanings are shown on pages 16-38 and 16-69 of
+the CSIv2 specification, which can be found at the following location:
+
+`http://www.omg.org/csiv2-ftf/csiv2-061401.pdf`
+
+[[sthref57]][[GLRES]]
+
+Table B-1 Bit Mask Values for IOR Structures
+
+[width="100%",cols="25%,10%,33%,32%",options="header",]
+|=======================================================================
+|Association Option |Bit Mask Value |target_supports |target_requires
+|Integrity |2 |Target supports integrity protected messages |Target
+requires integrity protected messages
+
+|Confidentiality |4 |Target supports privacy protected messages |Target
+requires privacy protected messages
+
+|EstablishTrustInTarget |32 |Target can authenticate to a client |Not
+applicable. This bit should never be set, and should be ignored by CSS.
+
+|EstablishTrustInClient |64 |Target can authenticate a client |Target
+requires client authentication
+
+|IdentityAssertion |1024 a|
+Target accepts asserted caller identities based on trust in the
+authentication identity of the asserting entity. Target can evaluate
+trust based on trust rules of the target. If DelegationByClient is set,
+target can also evaluate trust when provided with a delegation token
+(that is, a proxy attribute contained in an authorization token).
+
+Note: A target policy that accepts only identity assertions based on
+forward trust cannot be communicated in an IOR (although it can be
+enforced).
+
+ |Not applicable. This bit should never be set, and should be ignored by
+CSS.
+
+|DelegationByClient |2048 a|
+When it occurs in conjunction with support for IdentityAssertion, this
+bit indicates that target can evaluate trust in an asserting entity
+based on a delegation token.
+
+Note: If an incoming request includes an identity token and a delegation
+token, the request shall be rejected if the delegation token does not
+endorse the asserting entity.
+
+ a|
+Target requires that CSS provide a delegation token that endorses the
+target as proxy for the client.
+
+Note: A target with DelegationByClient set in `target_requires` shall
+also have this bit set in `target_supports`. As noted elsewhere in this
+table, this has an impact on the target's identity assertion policy (if
+any).
+
+|=======================================================================
+
+
+[[GFKHS]][[b.9-csiv2-log-elements]]
+
+B.9 CSIv2 Log Elements
+~~~~~~~~~~~~~~~~~~~~~~
+
+The CSIv2 log is stored in an XML format. This section describes the
+CSIv2 log elements. By understanding what these elements mean, you can
+use the log contents that are output from each test as a debugging aid.
+The CSIv2 log can be found in the CTS test source code, in the following
+location:
+
+[source,oac_no_warn]
+----
+src/com/sun/ts/tests/interop/csiv2/common/parser/csiv2log.dtd
+----
+
+This section includes the following topics:
+
+* link:#GFKGW[Key Elements in the CSIv2 Log]
+* link:#GFKHC[Key Elements in the Server Interceptor Log]
+* link:#GFKHA[Key Elements in the Client Interceptor Log]
+* link:#GFKGT[Key Elements in an IOR Log]
+* link:#GFKHQ[Comprehensive List of All CSIv2 Log Elements]
+
+[[GFKGW]][[b.9.1-key-elements-in-the-csiv2-log]]
+
+B.9.1 Key Elements in the CSIv2 Log
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The key elements of a CSIv2 log include the `<ejb-home>` and
+`<ejb-remote>` elements. These elements, in turn, contain the log
+information for the EJB home and remote interfaces.
+
+[[GFKHO]]
+
+Example B-5 CSIv2 Log Elements
+
+[source,oac_no_warn]
+----
+<csiv2log>
+   <ejb-home>
+      <client>
+         <client_interceptor> | <server_interceptor> 
+         </client_interceptor> | </server_interceptor> 
+      </client>
+   </ejb-home>
+   <ejb-remote>
+      <client>
+         <client_interceptor> | <server_interceptor> 
+         </client_interceptor> | </server_interceptor> 
+      </client>
+   </ejb-remote>
+</csiv2log>
+----
+
+* The `<ejb-home>` element contains the `<client>` tag, which indicates
+that the test component is the client in an invocation and
+`<client_interceptor>` or `<server_interceptor>`, based on reverse or
+forward tests.
+* The `<ejb-remote>` element contains a similar set of elements as the
+`<ejb-home>` element.
+
+During forward testing (from VI to RI) using a simple scenario, such as
+an application client directly invoking an EJB, only the
+`<client_interceptor>` is logged. Conversely, during reverse testing
+(from RI to VI) using a simple scenario, the `<server_interceptor>` is
+logged.
+
+For a complex scenario, such as an application client invoking an EJB,
+which in turn invokes another EJB, both client and server interceptor
+elements are logged. Other complex scenarios could log multiple client
+and server interceptors.
+
+[[GFKHC]][[b.9.2-key-elements-in-the-server-interceptor-log]]
+
+B.9.2 Key Elements in the Server Interceptor Log
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The server interceptor element includes the `<req_svc_context>`,
+`<ssl_used>`, `<transport_client_principals>`, `<server>`, and
+`<reply_svc_context>` elements.
+
+[[GFKHT]]
+
+Example B-6 Server Interceptor Log Elements
+
+[source,oac_no_warn]
+----
+<server_interceptor>
+   <req_svc_context> ... </req_svc_context>
+   <ssl_used> true | false </ssl_used> 
+      <transport_client_principals> ... </transport_client_principals>
+      <server> ... </server>
+      <reply_svc_context> ... </reply_svc_context>
+</server_interceptor>
+----
+
+Service contexts provide a means of passing service-specific information
+as part of IIOP message headers.
+
+These elements contain the following information:
+
+* The `<req_svc_context>` element contains the service context
+information for the request.
+* The `<ssl_used>` element indicates whether the transport is protected
+with SSL or not.
+* The `<transport_client_principals>` element contains the principal
+used by the container for authentication at the SSL level.
+* The `<server>` element logs the invocation principal if the request
+reaches the other end.
+* The `<reply_svc_context>` element contains the service context
+information for the reply.
+
+[[GFKHA]][[b.9.3-key-elements-in-the-client-interceptor-log]]
+
+B.9.3 Key Elements in the Client Interceptor Log
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The client interceptor element includes the `<req_svc_context>`,
+`<ssl_used>`, `<ior>`, `<server>`, `<location_forward>`, and
+`<reply_svc_context>` elements.
+
+[[GFKHB]]
+
+Example B-7 Client Interceptor Log Elements
+
+[source,oac_no_warn]
+----
+<client_interceptor>
+     <req_svc_context> ... </req_svc_context>
+     <ssl_used> true | false </ssl_used>
+     <ior> ... </ior>
+     <server> ... </server>
+     <location_forward> ... </location_forward>
+     <reply_svc_context> ... </reply_svc_context>
+</client_interceptor>
+----
+
+Service contexts provide a means of passing service-specific information
+as part of IIOP message headers.
+
+The client interceptor elements contain the following information:
+
+* The `<req_svc_context>` element contains the service context
+information for the request.
+* The `<ssl_used>` element indicates whether the transport is protected
+with SSL or not.
+* The `<ior>` element contains the Interoperable Object Reference, which
+describes security policies of an EJB component.
+* The `<location_forward>` element is `true` if the Client Security
+Service (CSS) received a location forward in response to a request. If
+this is the case, the client will establish a confidential connection
+with the new address. +
+A `true` value also indicates that the log will contain another client
+interceptor element. The test validation mechanism will ignore client
+interceptor elements that end in a location forward.
+* The `<reply_svc_context>` element contains the service context
+information for the reply.
+
+[[GFKGT]][[b.9.4-key-elements-in-an-ior-log]]
+
+B.9.4 Key Elements in an IOR Log
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An IOR includes the `<port>` and `<stateful>` elements and the
+`<compound_sec_mech>` structure. The `<compound_sec_mech>` structure
+contains the `<target_requires>`, `<ior_transport_mech>`,
+`<ior_as_context>`, and `<ior_sas_context>` elements.
+
+[[GFKHD]]
+
+Example B-8 IOR Log Elements
+
+[source,oac_no_warn]
+----
+<ior>
+   <port> ... </port>
+   <stateful> true | false </stateful>
+   <compound_sec_mech>
+      <target_requires> ... </target_requires>
+      <ior_transport_mech> ... </ior_transport_mech>
+      <ior_as_context> ... </ior_as_context>
+      <ior_sas_context> ... </ior_sas_context>
+   <compound_sec_mech>
+</ior>
+----
+
+These elements contain the following information:
+
+* The `<port>` element can contain a zero or a nonzero number. +
+A nonzero port number indicates that the target supports unprotected
+IIOP invocations at the specified port number. +
+A zero port number indicates that the target supports protected IIOP
+invocations only.
+* The `<stateful>` element is `true` if the target supports the
+establishment of stateful or reusable contexts.
+* The `<compound_sec_mech>` structure describes support in the target
+for a compound security mechanism that may include security
+functionality that is realized in the transport layer and/or security
+functionality above the transport layer.
+* The `<target_requires>` element designates a required outcome that
+shall be satisfied by one or more supporting (but not requiring) layers.
+* The `<ior_transport_mech>` element describes the security
+functionality that is implemented in the transport layer.
+* The `<ior_as_context>` element describes the client authentication
+functionality that the target expects to be layered above the transport
+layer in the service context.
+* The `<ior_sas_context>` element describes the target's identity
+assertion support or support of authorization attributes that are
+delivered in the service context.
+
+[[GFKHQ]][[b.9.5-comprehensive-list-of-all-csiv2-log-elements]]
+
+B.9.5 Comprehensive List of All CSIv2 Log Elements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+link:#GFKGY[Table B-2] provides a comprehensive list of all CSIv2 log
+elements.
+
+[[sthref58]][[GFKGY]]
+
+Table B-2 CSIv2 Log Elements
+
+[width="100%",cols="50%,50%",options="header",]
+|=======================================================================
+|Element |Description
+|`<csiv2-log>` |Root XML node. Contains 1 or more `<assertion>`
+elements.
+
+|`<assertion>` |Contains information relevant to a single test
+assertion. Contains a `name` attribute and an `<invocation>` element.
+
+|`<invocation>` |Indicates an invocation was started from a client
+component to a server component. We analyze invocation information for
+both an EJB Home (`<ejb-home>`) and an EJB Remote (`<ejb-remote>`)
+invocation.
+
+|`<ejb-home>` / `<ejb-remote>` |Separates the EJB Home from the EJB
+Remote invocation information. Both elements contain a single `<client>`
+element.
+
+|`<client>` |Indicates that this component is a client in an invocation.
+Contains a `<reply>` element and either a `<client-interceptor>`,
+`<server-interceptor>`, or a `<server>` element. The invocation
+determines which interceptor is to be invoked based on the whether the
+invoking component is acting as a client or as a server. For example, if
+an EJB acts as a server to an invocation, then the server-interceptor
+will be invoked.
+
+|`<reply>` |Indicates a reply in an invocation. Can be either
+`<create-exception>`, or `<other-exception>`.
+
+|`<client-interceptor>` a|
+Indicates that the client interceptor was invoked. This will happen when
+the Java EE 8 Reference Implementation is a client of some invocation.
+The following information is collected by the client interceptor:
+
+1.  `<operation>`
+2.  `<req-svc-context>`
+3.  `<ssl-used>`
+4.  `<ior>`
+5.  Either `<server-interceptor>` or `<server>`
+6.  `<location-forward>`
+7.  `<reply-svc-context>`
+8.  Possibly another `<client-interceptor>` element
+
+|`<operation>` |The name of the operation just invoked.
+
+|`<req-svc-context>` |Request service context information. This will
+contain either an `<establish-context>` message, or an
+`<invalid-message>`.
+
+|`<establish-context>` a|
+Information collected from the CSIv2 `EstablishContext` message.
+Collects the following information:
+
+1.  `<client-context-id>`
+2.  `<identity-token>`, one of: `<absent>`, `<anonymous>`,
+`<principal-name>`, `<certificate-chain>`, `<distinguished-name>`,
+`<unknown-type>`
+3.  `<client-auth-token>` - Client authentication token
+4.  `<authz-token-count>` - Number of authorization tokens sent
+
+|`<invalid-message>` |Indicates that an invalid message (one that was
+not expected) was sent in either the request or the reply. A details
+attribute will indicate why the message was invalid, or the type of
+message that was received.
+
+|`<ssl-used>` |True if SSL will be or was used for this invocation.
+
+|`<ior>` a|
+IOR information. This is a description of the IOR that the server
+published for the EJB, from the client's perspective. Collects the
+following information:
+
+1.  `<port>`
+2.  `<stateful>`
+3.  `<compound-sec-mech>` +
+`<target-requires>` +
+`<ior-transport-mech>`
+
+Within the `<ior-transport-mech>`, one of the following is collected:
+
+1.  `<tls-trans>` +
+`<target-supports>` +
+`<target-requires>` +
+`<trans-addr>` +
+`<host-name>` +
+`<port>`
+2.  `<null-trans>`
+3.  `<other-trans>` +
+[source,oac_no_warn]
+----
+<ior-as-context>
+<target-supports>
+<target-requires>
+<client-authentication-mech>
+<target-name>
+<ior-sas-context>
+<target-supports>
+<target-requires>
+<supported-naming-mechanism>
+<supported-identity-types>
+----
+
+|`<location-forward>` |If `true`, this request ended in a location
+forward, in which case we will expect to see another client interception
+later down the road. The test validation will ignore all client
+interceptor elements that end in a location forward, in case target
+servers do load balancing, or something of the sort.
+
+|`<reply-svc-context>` |Reply service context information. This will
+contain either a `<complete-establish-context>`, a `<context-error>`, or
+an `<invalid-message>` element.
+
+|`<complete-establish-context>` a|
+Information collected from the CSIv2 `CompleteEstablishContext` message.
+Collects the following information:
+
+1.  `<client-context-id>`
+2.  `<context-stateful>`
+3.  `<final-context-token>`
+
+|`<context-error>` a|
+Information collected from the CSIv2 `ContextError` message. Collects
+the following information:
+
+1.  `<client-context-id>`
+2.  `<major-status>`
+3.  `<minor-status>`
+4.  `<error-token>`
+
+|`<server-interceptor>` a|
+Indicates that the server interceptor was invoked. This will happen when
+the Java EE 8 Reference Implementation is a server of some invocation.
+The following information is collected by the server interceptor:
+
+1.  `<operation>`
+2.  `<req-svc-context>`
+3.  `<ssl-used>`
+4.  `<transport-client-principals>`
+5.  `<server>`, if the request makes it to the server.
+6.  `<reply-svc-context>`
+
+|`<transport-client-principals>` |Collection of all transport client
+principals for this invocation, if it was an SSL invocation.
+
+|`<server>` a|
+Indicates that the server bean was invoked. This will happen on every
+successful invocation. The following information is collected on the
+server bean:
+
+1.  `<invocation-principal>`
+2.  `<invocation>`, if another invocation is made.
+
+|`<invocation-principal>` |The value of
+`EJBContext.getCallerPrincipal().getName()`.
+|=======================================================================
+
+
+[[GFKKB]][[b.10-iors-and-associated-csiv2-tests]]
+
+B.10 IORs and Associated CSIv2 Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+link:#GFKJY[Table B-3] provides additional information about the CSIv2
+tests:
+
+* The test ids that are associated with each IOR
+* The identity assertion type that is tested by each test
+* The name of the directory in which the tests reside
+
+[[sthref59]][[GFKJY]]
+
+Table B-3 IORs and Associated CSIv2 Tests
+
+[width="172%",cols="48%,6%,18%,28%",options="header",]
+|=====================================================
+|IOR |Test ID |Identity Assertion Type |Directory Name
+|0 |0 |NA |`ac_ssl_sslr_upn_noid`
+|1 a|
+2
+
+2a
+
+ a|
+NA
+
+NA
+
+ a|
+`ac_ssl_ssln_upr_noid`
+
+`ac_ssl_ssln_upr_noid_a`
+
+|3 a|
+3
+
+3a
+
+3b
+
+ a|
+`anonymous`
+
+`upid`
+
+`ccid`
+
+ a|
+`ew_ssl_ssln_upn_anonid`
+
+`ew_ssl_ssln_upn_upid`
+
+`ew_ssl_ssln_upn_ccid`
+
+|4 a|
+4
+
+4a
+
+6
+
+ a|
+`anonymous`
+
+`ccid`
+
+`upid`
+
+ a|
+`ew_ssln_ssln_upn_anonid`
+
+`ew_ssln_ssln_upn_ccid`
+
+`ew_ssln_ssln_upn_upid`
+
+|7 a|
+7
+
+7a
+
+8
+
+ a|
+`upid`
+
+`ccid`
+
+`anonymous`
+
+ a|
+`ew_ssl_sslr_upn_upid`
+
+`ew_ssl_sslr_upn_ccid`
+
+`ew_ssl_sslr_upn_anonid`
+
+|=====================================================
+
+
+The following sections provide the expected published Interoperable
+Object References (IORs) for the CSIv2 interoperability tests. If, at
+test time, an IOR does not match the expected result, the test output
+will refer to one of these IORs by number. The test strategy
+descriptions attached to each reverse-direction CSIv2 test also
+reference these IORs.
+
+These sections contain listings for the following IORs:
+
+* link:#GFKKN[IOR.0]
+* link:#GFKLB[IOR.1]
+* link:#GFKKR[IOR.3]
+* link:#GFKLX[IOR.4]
+* link:#GFKKJ[IOR.7]
+
+[[GFKKN]][[b.10.1-ior.0]]
+
+B.10.1 IOR.0
+^^^^^^^^^^^^
+
+[[GFKLH]]
+
+Example B-9 IOR.0
+
+[source,oac_no_warn]
+----
+port=0
+CompoundSecMechList {
+   stateful = FALSE;
+   mechanism_list = {
+       CompoundSecMec {
+           target_requires={Integrity, Confidentiality,
+               EstablishTrustInClient};
+           transport_mech = TAG_SSL_SEC_TRANS {
+               target_supports = {Integrity, Confidentiality,
+                   EstablishTrustInClient,
+                   EstablishTrustInTarget};
+               target_requires = {Integrity, Confidentiality,
+                   EstablishTrustInClient};
+               addresses = {
+                   TransportAddress = {
+                       host_name = x;
+                       port = y;
+                   };
+               };
+           };
+           as_context_mech = {
+               target_supports = {};
+               ...
+           };
+           sas_context_mech = {
+               target_supports = {};
+               ...
+           };
+       };
+   };
+};
+----
+
+[[GFKLB]][[b.10.2-ior.1]]
+
+B.10.2 IOR.1
+^^^^^^^^^^^^
+
+[[GFKLF]]
+
+Example B-10 IOR.1
+
+[source,oac_no_warn]
+----
+port=0
+CompoundSecMechList {
+    stateful = FALSE;
+    mechanism_list = {
+        CompoundSecMec {
+            target_requires = {Integrity, Confidentiality,
+                EstablishTrustInClient};
+            transport_mech = TAG_SSL_SEC_TRANS {
+                target_supports = {Integrity, Confidentiality,
+                   EstablishTrustInTarget};
+                target_requires = {Integrity, Confidentiality};
+               addresses = {
+                    TransportAddress {
+                        host_name = x;
+                        port = y;
+                    };
+                };
+            };
+            as_context_mech = {
+                target_supports = {EstablishTrustInClient};
+                target_requires = {EstablishTrustInClient};
+                client_authentication_mech = GSSUP_OID;
+                target_name = {GSSUP,"default"};
+                ...
+            };
+            sas_context_mech = {
+                target_supports = {};
+                ...
+            };
+        };
+    };
+ };
+----
+
+[[GFKKR]][[b.10.3-ior.3]]
+
+B.10.3 IOR.3
+^^^^^^^^^^^^
+
+[[GFKLI]]
+
+Example B-11 IOR.3
+
+[source,oac_no_warn]
+----
+port=0
+CompoundSecMechList {
+    stateful = FALSE;
+    mechanism_list = {
+       CompoundSecMec {
+           target_requires = {Integrity, Confidentiality};
+           transport_mech = TAG_SSL_SEC_TRANS {
+               target_supports = {Integrity, Confidentiality,
+                  EstablishTrustInTarget};
+               target_requires = {Integrity, 
+                  Confidentiality};
+               addresses = {
+                    TransportAddress {
+                        host_name = x;
+                        port = y;
+                    };
+                };
+           };
+           as_context_mech = {
+               target_supports = {};
+               ...
+           };
+           sas_context_mech = {
+               target_requires = {};
+               target_supports = {IdentityAssertion};
+               ...
+               supported_naming_mechanisms = {GSSUPMechOID};
+               supported_identity_types = {ITTPrincipalName};
+           };
+       };
+   };
+};
+----
+
+[[GFKLX]][[b.10.4-ior.4]]
+
+B.10.4 IOR.4
+^^^^^^^^^^^^
+
+[[GFKLL]]
+
+Example B-12 IOR.4
+
+[source,oac_no_warn]
+----
+port=<nonzero-port-number>
+CompoundSecMechList {
+   stateful = FALSE;
+   mechanism_list = {
+       CompoundSecMec {
+           target_requires = {};
+           transport_mech = TAG_NULL_TAG;
+           as_context_mech = {
+               target_supports = {};
+               ...
+           };
+           sas_context_mech = {
+               target_requires = {};
+               target_supports = {IdentityAssertion};
+               ...
+               supported_naming_mechanisms = {GSSUPMechOID};
+               supported_identity_types = {ITTPrincipalName};
+           };
+       };
+   };
+};
+----
+
+[[GFKKJ]][[b.10.5-ior.7]]
+
+B.10.5 IOR.7
+^^^^^^^^^^^^
+
+[[GFKLY]]
+
+Example B-13 IOR.7
+
+[source,oac_no_warn]
+----
+port=0
+CompoundSecMechList {
+   stateful = FALSE;
+   mechanism_list = {
+       CompoundSecMec {
+           target_requires = {Integrity, Confidentiality,
+               EstablishTrustInClient};
+           transport_mech = TAG_SSL_SEC_TRANS {
+               target_supports = {Integrity, Confidentiality,
+                   EstablishTrustInClient,
+                   EstablishTrustInTarget};
+                target_requires = {Integrity, Confidentiality,
+                   EstablishTrustInClient};
+                addresses = {
+                     TransportAddress {
+                         host_name = x;
+                         port = y;
+                     };
+                 };
+            };
+            as_context_mech = {
+                target_supports = {};
+                ...
+            };
+            sas_context_mech = {
+               target_requires = {};
+               target_supports = {IdentityAssertion};
+                ...
+                supported_naming_mechanisms = {GSSUPMechOID};
+                    supported_identity_types = {ITTPrincipalName};
+            };
+        };
+    };
+};
+----
+
+

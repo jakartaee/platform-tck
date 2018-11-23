@@ -1,0 +1,75 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCAUT00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the Java Authentication SPI for
+Containers TCK 1.1 (JASPIC TCK) software. After installing the software
+according to the instructions in this chapter, proceed to
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
+instructions on configuring your test environment.
+
+[[GBFUD]][[TCAUT00039]][[obtaining-the-jaspic-1.1-reference-implementation]]
+
+3.1 Obtaining the JASPIC 1.1 Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The JASPIC 1.1 RI is included as a part of the Java EE 7 server.
+
+[[GBFTS]][[TCAUT00040]][[installing-the-software]]
+
+3.2 Installing the Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the Java Authentication SPI for Containers TCK tests,
+you need to install and set up the following software components:
+
+* Java SE 7
+* Java Authentication SPI for Containers (JASPIC) 1.1 Vendor
+Implementation (VI)
+* Java Authentication SPI for Containers TCK Version 1.1
+
+1.  Install the Java SE 7 software, if it is not already installed. +
+Download and install the Java SE 7 software from
+`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Refer to the installation instructions that accompany the software for
+additional information.
+2.  Install the implementation under test, if it is not already
+installed. +
+Download, install, and configure the JASPIC 1.1 configuration that is to
+be tested. To familiarize yourself with theJava Authentication SPI for
+Containers TCK suite and the JavaTest software before you begin testing
+with your own implementation, you can optionally do a trial run using
+the Java EE 7 RI.
+3.  Install the JASPIC TCK 1.1 software.
+1.  Copy or download the JASPIC TCK software to your local system.
+2.  Change to the directory in which you want to install the JASPIC TCK
+software: +
+[source,oac_no_warn]
+----
+cd install_directory
+----
+3.  Use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+unzip jaspictck-1.1_date.zip
+----
+where date indicates the month and year in which the TCK bundle was
+created. For example, the JASPIC TCK bundle name could be
+`jaspictck-1.1_15-May-2013.zip` +
+When the bundle is unzipped, the `jaspictck` directory is created. The
+install_directory`/``jaspictck` directory is the test suite home,
+`<TS_HOME>`.
+
+
