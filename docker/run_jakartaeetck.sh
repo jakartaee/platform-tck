@@ -84,8 +84,13 @@ cp ts.save $TS_HOME/bin/ts.jte
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
-  echo "[ERROR] GF_BUNDLE_URL not set"
-  exit 1
+  if [ -z "$DEFAULT_GF_BUNDLE_URL" ]; then
+    echo "[ERROR] GF_BUNDLE_URL not set"
+    exit 1
+  else 
+    echo "Using default url for GF bundle: $DEFAULT_GF_BUNDLE_URL"
+    export GF_BUNDLE_URL=$DEFAULT_GF_BUNDLE_URL
+  fi
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish.zip
 mkdir -p ${CTS_HOME}/ri

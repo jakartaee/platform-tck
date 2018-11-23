@@ -53,6 +53,10 @@ cat $BASEDIR/install/j2ee/bin/ts.jte
 
 echo "########## Trunk.Install.V5 Config ##########"
 cd $BASEDIR
+if [ -z "$GF_BUNDLE_URL" ]; then
+  echo "Using default url for GF bundle: $DEFAULT_GF_BUNDLE_URL"
+  export GF_BUNDLE_URL=$DEFAULT_GF_BUNDLE_URL
+fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -o latest-glassfish.zip
 ls -l $GF_HOME/glassfish5/glassfish/
