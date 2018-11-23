@@ -38,7 +38,7 @@ def generateCTSStage(job) {
               unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
               bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job}
             """
-            archiveArtifacts artifacts: "*-results.tar.gz", allowEmptyArchive: true
+            archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
           }
         }
@@ -63,7 +63,7 @@ def generateStandaloneTCKStage(job) {
               env
               bash -x ${WORKSPACE}/docker/${job}tck.sh
             """
-            archiveArtifacts artifacts: "${job}tck-results.tar.gz"
+            archiveArtifacts artifacts: "${job}tck-results.tar.gz,*-junitreports.tar.gz",allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
           }
         }
@@ -203,6 +203,28 @@ spec:
         script {
           parallel parallelStandaloneTCKMap
         }
+      }
+    }
+
+    stage('jakartaeetck-publish-reports') {
+      when {
+        expression {
+          return params.BUILD_TYPE == 'CTS';
+        }
+      }
+      steps {
+        build job: 'jakartaeetck-publish-reports', quietPeriod: 3
+      }
+    }
+
+    stage('standalonetck-publish-reports') {
+      when {
+        expression {
+          return params.BUILD_TYPE == 'STANDALONE-TCK';
+        }
+      }
+      steps {
+        build job: 'standalonetck-publish-reports', quietPeriod: 3
       }
     }
   }

@@ -349,3 +349,10 @@ else
   RESULT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-results.tar.gz
 fi
 tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/logs/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config
+
+if [ -z ${vehicle} ];then
+  JUNIT_REPORT_FILE_NAME=${TEST_SUITE}-junitreports.tar.gz
+else
+  JUNIT_REPORT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-junitreports.tar.gz
+fi
+tar zcvf ${WORKSPACE}/${JUNIT_REPORT_FILE_NAME} ${WORKSPACE}/results/junitreports/
