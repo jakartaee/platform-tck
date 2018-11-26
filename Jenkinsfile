@@ -126,7 +126,10 @@ spec:
     string(name: 'GF_BUNDLE_URL', 
            defaultValue: '', 
            description: 'URL required for downloading GlassFish Full/Web profile bundle' )
-    choice(name: 'PROFILE', choices: 'full\nweb', 
+    string(name: 'TCK_BUNDLE_BASE_URL', 
+           defaultValue: '', 
+           description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )
+    choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
     choice(name: 'BUILD_TYPE', choices: 'CTS\nSTANDALONE-TCK', 
            description: 'Run the full EE compliance testsuite or a standalone tck' )
@@ -174,6 +177,17 @@ spec:
       }
     }
  
+    stage('jakartaeetck-publish-reports') {
+      when {
+        expression {
+          return params.BUILD_TYPE == 'CTS';
+        }
+      }
+      steps {
+        build job: 'jakartaeetck-publish-reports', quietPeriod: 3
+      }
+    }
+
     stage('standalone-tck-build') {
       when {
         expression {
@@ -203,17 +217,6 @@ spec:
         script {
           parallel parallelStandaloneTCKMap
         }
-      }
-    }
-
-    stage('jakartaeetck-publish-reports') {
-      when {
-        expression {
-          return params.BUILD_TYPE == 'CTS';
-        }
-      }
-      steps {
-        build job: 'jakartaeetck-publish-reports', quietPeriod: 3
       }
     }
 
