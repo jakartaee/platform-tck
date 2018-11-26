@@ -1,0 +1,212 @@
+type=page
+status=published
+title=Testing a Standalone JMS Resource Adapter
+prev=contextrootmappingrules.html
+~~~~~~
+Testing a Standalone JMS Resource Adapter
+=========================================
+
+[[CJGFHFIF]][[g-testing-a-standalone-jms-resource-adapter]]
+
+G Testing a Standalone JMS Resource Adapter
+-------------------------------------------
+
+This appendix explains how to set up and configure the Java EE 8 RI and
+Java EE 8 CTS so a standalone JMS resource adapter can be tested.
+
+This appendix covers the following topics:
+
+* link:#CJGGIEEJ[Setting Up Your Environment]
+* link:#CJGDJCEC[Configuring Java EE 8 CTS]
+* link:#CJGFCJBA[Configuring the Java EE 8 RI for the Standalone JMS
+Resource Adapter]
+* link:#CJGEBECH[Modifying the Runtime Deployment Descriptors for the
+JMS MDB and Resource Adapter Tests]
+* link:#CJGFHCBJ[Running the JMS Tests From the Command Line]
+* link:#CJGCJGIH[Restoring the Runtime Deployment Descriptors for the
+JMS MDB and Resource Adapter Tests]
+* link:#CJGCDGIG[Reconfiguring Java EE 8 RI for Java EE 8 CTS After
+Testing the Standalone JMS Resource Adapter]
+
+[[CJGGIEEJ]][[g.1-setting-up-your-environment]]
+
+G.1 Setting Up Your Environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the JMS CTS tests against a standalone JMS Resource
+Adapter using the Java EE 8 RI, you must install the following
+components:
+
+* Java SE 8 software
+* Java EE 8 RI software
+* Java EE 8 CTS software
+
+Complete the following steps to set up your environment:
+
+1.  Set the following environment variables in your shell environment:
+* JAVA_HOME to the directory where the Java SE 8 software has been
+installed
+* JAVAEE_HOME to the directory where the Java EE 8 RI software has been
+installed
+* TS_HOME to the directory where the Java EE 8 CTS software has been
+installed
+2.  Update your PATH environment variable to include the following
+directories: JAVA_HOME/bin, JAVAEE_HOME/bin, TS_HOME/bin, and
+ANT_HOME/bin.
+
+[[CJGDJCEC]][[g.2-configuring-java-ee-8-cts]]
+
+G.2 Configuring Java EE 8 CTS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The `ts.jte` file includes properties that must be set for testing a
+standalone JMS Resource Adapter using the Java EE 8 RI. The JMS Resource
+Adapter documentation in the `ts.jte` file should help you understand
+what you need to set in this step of the testing process.
+
+1.  Set the following properties in the `ts.jte` file:
+* javaee.home to the location where the Java EE 8 RI is installed
+* Use the default value or enter a new host name for the `orb.host`
+property
+* Use the default value or enter a new port number for the
+`orb.port`property
+* `test.sa.jmsra` to true
+* `jmsra.rarfile` to the location of the standalone JMS Resource Adapter
+RAR file
+* `jmsra.jarfile` to the location of the standalone JMS Resource Adapter
+JAR file
+* `jmsra.name` to the name of the JMS Resource Adapter under test
+2.  Add $\{jmsra.jarfile} to the beginning or at the end of the
+AppClient classpath: +
+APPCPATH=list of classes and jars followed by
+$\{pathsep}$\{jmsra.jarfile} \ +
+The `jmsra.jarfile`, which contains all the JMS Resource Adapter
+classes, needs to be added to the AppClient classpath in the `ts.jte`
+file. This JAR file will also be copied to the appropriate directory in
+your Java EE 8 environment when the `config.vi` Ant task, which is
+described in the next section, is invoked. For the Java EE 8 RI, the
+file is copied to the `JAVAEE_HOME/lib` directory.
+
+[[CJGFCJBA]][[g.3-configuring-the-java-ee-8-ri-for-the-standalone-jms-resource-adapter]]
+
+G.3 Configuring the Java EE 8 RI for the Standalone JMS Resource Adapter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Invoke the config.vi Ant task to configure the Java EE 8 RI for CTS 8
+and the standalone JMS Resource Adapter:
+
+1.  Change to the `TS_HOME/bin` directory.
+2.  Execute the `config.vi` Ant task. +
+The config.vi Ant task executes scripts, which configure your Java EE 8
+environment for CTS 8. One of the ant scripts that gets executed will
+configure and deploy the standalone JMS Resource Adapter, copy the JAR
+file containing the classes for the standalone JMS Resource Adapter to
+the J`AVAEE_HOME/lib` directory, create the JMS connector connect ion
+pools and resources, and create the necessary JMS administration
+objects. The following Ant scripts are called by the config.vi Ant task:
+* TS_HOME/bin/xml/impl/glassfish/jmsra.xml
+* TS_HOME/bin/xml/impl/glassfish/templates/create.jmsra.template +
+The script TS_HOME/bin/xml/impl/glassfish/jmsra.xml calls the template
+file `TS_HOME/bin/xml/impl/glassfish/templates/create.jmsra.template,`
+which handles the creation of the JMS connector connection pools, the
+JMS connector resources and the JMS administration objects. +
+These scripts are written for the standalone Generic JMS Resource
+Adapter (GenericJMSRA) for the Java EE 8 RI. If you are using a
+different Java EE 8 environment, you will need to rewrite these scripts
+for that environment. If you are using a different standalone JMS
+resource adapter, you will need to rewrite these scripts for that JMS
+resource adapter.
+
+[[CJGEBECH]][[g.4-modifying-the-runtime-deployment-descriptors-for-the-jms-mdb-and-resource-adapter-tests]]
+
+G.4 Modifying the Runtime Deployment Descriptors for the JMS MDB and Resource Adapter Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After the standalone JMS Resource Adapter has been configured and
+deployed and the required JMS connector connection pools, JMS connector
+resources, and JMS administration objects have been created, the
+glassfish-ejb-jar runtime deployment descriptor XML files must be
+modified for the JMS MDB and Resource Adapter tests. An Ant task handles
+the modifications.
+
+1.  Change to the `TS_HOME/bin` directory.
+2.  Execute the following Ant task: +
+`ant -f xml/impl/glassfish/jmsra.xml modify-jmsmdbejbxml` +
+This Ant target modifies the glassfish-ejb-jar runtime deployment
+descriptor XML files in the distribution directory of the JMS MDB and
+Resource Adapter test directories that exist under
+`TS_HOME/src/com/sun/ts/tests/jms/ee/mdb and TS_HOME/src/com/sun/ts/tests/jms/ee20/ra.` +
+The modified `glassfish-ejb-jar` runtime deployment descriptor XML files
+exist under the +
+`TS_HOME/src/com/sun/ts/tests/jms/commonee/xml/descriptors/genericra`
+directory. These files are copied into the correct distribution test
+directory under
+`TS_HOME/dist/com/sun/ts/tests/jms/ee/mdb and TS_HOME/dist/com/sun/ts/tests/jms/ee20/ra`. +
+The `<mdb-resource-adapter>` information for the standalone JMS Resource
+Adapter being tested is added to the `glassfish-ejb-jar runtime`
+deployment descriptor XML files. In the default case, the resource
+adapter being tested is the Generic JMS Resource Adapter
+(GenericJMSRA).If you are using a different Java EE 8 environment, your
+runtime deployment descriptor XML files will need to be vendor specific.
+In this case, you will need to modify the Ant script to handle your
+vendor-specific runtime deployment descriptor XML files.
+
+[[CJGFHCBJ]][[g.5-running-the-jms-tests-from-the-command-line]]
+
+G.5 Running the JMS Tests From the Command Line
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Run the JMS tests:
+
+1.  Change to the `TS_HOME/src/com/sun/ts/tests/jms` directory.
+2.  Invoke the `runclient` Ant target: +
+`ant runclient`
+
+[[CJGCJGIH]][[g.6-restoring-the-runtime-deployment-descriptors-for-the-jms-mdb-and-resource-adapter-tests]]
+
+G.6 Restoring the Runtime Deployment Descriptors for the JMS MDB and Resource Adapter Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After you run the JMS tests against your standalone JMS Resource
+Adapter, you need to restore the JMS MDB and Resource Adapter tests.
+Java EE 8 CTS provides an Ant task that handles the restoration. Invoke
+the following Ant task to restore the JMS MDB and Resource Adapter
+glassfish-ejb-jar runtime deployment descriptor XML files to their
+previous state:
+
+1.  Change to the `TS_HOME/bin` directory.
+2.  Invoke the following Ant target: +
+`ant -f xml/impl/glassfish/jmsra.xml restore-jmsmdbejbxml` +
+If you are using another Java EE 8 environment, these runtime deployment
+descriptor XML files will be vendor specific. In this case, you will
+need to modify the Ant script to handle the vendor-specific runtime
+deployment descriptor XML files appropriate for your environment.
+
+[[CJGCDGIG]][[g.7-reconfiguring-java-ee-8-ri-for-java-ee-8-cts-after-testing-the-standalone-jms-resource-adapter]]
+
+G.7 Reconfiguring Java EE 8 RI for Java EE 8 CTS After Testing the Standalone JMS Resource Adapter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After you finish testing the standalone JMS Resource Adapter, you need
+to reconfigure the Java EE 8 RI before you can continue testing with
+Java EE 8 CTS:
+
+1.  Change to the `TS_HOME/bin` directory.
+2.  Invoke the `clean.vi` Ant target: +
+`ant clean.vi`
+3.  Set the following properties in the `ts.jte` file:
+* javaee.home to the location where the Java EE 8 RI is installed
+* Use the default value for the `orb.host` property or enter a new host
+name
+* Use the default value for the `orb.port`property or enter a new port
+number
+* `test.sa.jmsra` to false
+* Unset the `jmsra.rarfile` property
+* Unset the `jmsra.jarfile` property
+* Reset the `jmsra.name` property to `jmsra` to refer to the JMS
+Resource Adapter for the Java EE 8 RI
+4.  From the TS_HOME/bin directory, invoke the config.vi Ant task to
+reconfigure the Java EE 8 RI for Java EE 8 CTS: +
+`ant config.vi`
+
+

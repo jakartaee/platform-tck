@@ -1,0 +1,179 @@
+type=page
+status=published
+title=Debugging Test Problems
+next=faq.html
+prev=using.html
+~~~~~~
+Debugging Test Problems
+=======================
+
+[[TCJAC00007]][[GBFUV]]
+
+
+[[debugging-test-problems]]
+6 Debugging Test Problems
+-------------------------
+
+There are a number of reasons that tests can fail to execute properly.
+This chapter provides some approaches for dealing with these failures.
+Please note that most of these suggestions are only relevant when
+running the test harness in GUI mode.
+
+[[GBFYP]][[TCJAC00055]][[overview]]
+
+6.1 Overview
+~~~~~~~~~~~~
+
+The goal of a test run is for all tests in the test suite that are not
+filtered out to have passing results. If the root test suite folder
+contains tests with errors or failing results, you must troubleshoot and
+correct the cause to satisfactorily complete the test run.
+
+* Errors: Tests with errors could not be executed by the JavaTest
+harness. These errors usually occur because the test environment is not
+properly configured.
+* Failures: Tests that fail were executed but had failing results.
+
+The Test Manager GUI provides you with a number of tools for effectively
+troubleshooting a test run. See the JavaTest User's Guide and JavaTest
+online help for detailed descriptions of the tools described in this
+chapter.
+
+[[GBFVF]][[TCJAC00056]][[test-tree]]
+
+6.2 Test Tree
+~~~~~~~~~~~~~
+
+Use the test tree in the JavaTest GUI to identify specific folders and
+tests that had errors or failing results. Color codes are used to
+indicate status as follows:
+
+* Green: Passed
+* Blue: Test Error
+* Red: Failed to pass test
+* White: Test not run
+* Gray: Test filtered out (not run)
+
+[[GBFWI]][[TCJAC00057]][[folder-information]]
+
+6.3 Folder Information
+~~~~~~~~~~~~~~~~~~~~~~
+
+Click a folder in the test tree in the JavaTest GUI to display its tabs.
+
+Choose the Error and the Failed tabs to view the lists of all tests in
+and under a folder that were not successfully run. You can double-click
+a test in the lists to view its test information.
+
+[[GBFVP]][[TCJAC00058]][[test-information]]
+
+6.4 Test Information
+~~~~~~~~~~~~~~~~~~~~
+
+To display information about a test in the JavaTest GUI, click its icon
+in the test tree or double-click its name in a folder status tab. The
+tab contains detailed information about the test run and, at the bottom
+of the window, a brief status message identifying the type of failure or
+error. This message may be sufficient for you to identify the cause of
+the error or failure.
+
+If you need more information to identify the cause of the error or
+failure, use the following tabs listed in order of importance:
+
+* Test Run Messages contains a Message list and a Message section that
+display the messages produced during the test run.
+* Test Run Details contains a two-column table of name/value pairs
+recorded when the test was run.
+* Configuration contains a two-column table of the test environment
+name/value pairs derived from the configuration data actually used to
+run the test.
+
+
+[NOTE]
+=======================================================================
+
+You can set `harness.log.traceflag=true` in `<TS_HOME>/bin/ts.jte` to
+get more debugging information. Additionally, if you are running the
+tests from the command line, you can get extra debug information by
+setting the environment variable HARNESS_DEBUG to true.
+
+=======================================================================
+
+
+[[GBFVZ]][[TCJAC00059]][[report-files]]
+
+6.5 Report Files
+~~~~~~~~~~~~~~~~
+
+Report files are another good source of troubleshooting information. You
+may view the individual test results of a batch run in the JavaTest
+Summary window, but there are also a wide range of HTML report files
+that you can view in the JavaTest ReportBrowser or in the external
+browser or your choice following a test run. See
+link:using.html#GBFVK[Section 5.5, "Test Reports,"] for more information.
+
+[[GBFYF]][[TCJAC00060]][[configuration-failures]]
+
+6.6 Configuration Failures
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Configuration failures are easily recognized because many tests fail the
+same way. When all your tests begin to fail, you may want to stop the
+run immediately and start viewing individual test output. However, in
+the case of full-scale launching problems where no tests are actually
+processed, report files are usually not created (though sometimes a
+small `harness.trace` file in the report directory is written).
+
+[[GLRHA]][[TCJAC00061]][[troubleshooting-tips]]
+
+6.7 Troubleshooting Tips
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section provides some tips for troubleshooting errors that may be
+encountered.
+
+* Verify that the Ant `config.vi` and `enable.jacc` configuration
+targets executed correctly.
+* If there are several failures during a test run, check the various
+output for hints about what caused the failures. A common problem is the
+absence of the JACC log file. This log file should be created in the
+directory defined by the `log.file.location` property in the `ts.jte`
+file. There should be a log file called `JACCLog.txt` in this directory.
+The `JACCLog.txt` consists of record entries containing permission
+infomation that will be used to verify the TCK tests for proper
+compliance. This log file typically gets populated with JACC-based
+security information when test archives are deployed. Then, during test
+execution, the `JACCLog.txt` file is read and used for validating that
+JACC behavior is correct.
+* Simultaneously deploying all JACC TCK test archives may cause false
+failures. If unexpected failures occur during a TCK run when all JACC
+archives were deployed, these failures could be caused by interference
+from tests and archives that are defined multiple times. If such
+situational failures do occur, undeploy all archives, remove the
+`JACCLog.txt` file, recycle your server (if necessary), and rerun only
+the tests in the directory that showed failures.
+* Check that the following JVM variables, which should have been set by
+invoking the `enable.jacc` Ant target, have been set in the application
+server :
+
+** `-Dlog.file.location` (this comes from the `ts.jte` property)
+
+** `-Djavax.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy`
+
+** `-Djavax.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl`
+
+** `-Dvendor.javax.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper`
+
+** `-Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl` +
+
+[NOTE]
+=======================================================================
+
+The values for the `-Dvendor.javax.security.jacc.policy.provider` and
+`-Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider` JVM
+variables will need to be set specific to the application server in use.
+
+=======================================================================
+
+
+

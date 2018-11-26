@@ -1,0 +1,14 @@
+theme: jekyll-theme-architect
+
+title: [tck_jca_v1_7]
+description: [Oracle Technology Compatibility Kit User's Guide for Java EE Connector Architecture 1.7 for Technology Licensees, Release 1.7]
+
+# sidebar links url
+links:
+  source: https://github.com/javaee/tck_jca_v1_7
+  download: https://github.com/javaee/tck_jca_v1_7/releases
+  #mailinglist: https://javaee.groups.io/g/tck_jca_v1_7
+  #javadocs:
+  docs: https://javaee.github.io/tck_jca_v1_7
+  #faq:
+

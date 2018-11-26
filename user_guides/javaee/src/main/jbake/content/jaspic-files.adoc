@@ -1,0 +1,170 @@
+type=page
+status=published
+title=JASPIC Technology Notes and Files
+next=database-config.html
+prev=csiv2logs.html
+~~~~~~
+JASPIC Technology Notes and Files
+=================================
+
+[[GLAEQ]][[c-jaspic-technology-notes-and-files]]
+
+C JASPIC Technology Notes and Files
+-----------------------------------
+
+The JASPIC technology tests are used to verify the compatibility of a
+licensee's implementation of the JASPIC 1.1 specification.
+
+This appendix provides information about the following topics:
+
+* link:#GLAFO[JASPIC 1.1 Technology Overview]
+* link:#GLAFE[JASPIC TSSV Files]
+
+You run the `ant enable.jaspic` command to configure the Java EE 8 RI to
+run the JASPIC tests. After running the JASPIC tests, you run the
+`ant disable.jaspic` command to restore the Java EE 8 RI to the state it
+was in before you configured it for running the JASPIC tests. This is
+required because JASPIC replaces some of the Java EE 8 RI's default
+system security components with CTS security components. If this change
+is not reverted after the tests have been run, the RI's system security
+could be left in a partially working state. The CTS security
+`AuthConfigFactory` and `AuthConfigProvider`(s) are designed for
+compatibility testing, not the functional completeness that one expects
+from the Java EE 8 RI.
+
+[[GLAFO]][[c.1-jaspic-1.1-technology-overview]]
+
+C.1 JASPIC 1.1 Technology Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The JASPIC 1.1 specification (JSR 196) defines a service provider
+interface (SPI) by which authentication providers implementing message
+authentication mechanisms can be integrated in client and server message
+processing runtimes (or containers).
+
+Java EE 8 CTS uses a Test Suite SPI Verifier (TSSV) to verify whether
+the vendor's message processing runtimes invoke the right SPI in the
+right order.
+
+TSSV includes test suite implementations of:
+
+* `AuthConfigFactory`
+* `AuthConfigProvider`
+* `AuthConfig(Client & Server)`
+* `AuthContext(client & Server)`
+* `AuthenticationModules(Client & Server)`
+
+TSSV gets loaded into vendor's message processing runtime using one of
+the following two ways as defined by the JSR 196 specification:
+
+* By defining a property in `JAVA_HOME/jre/lib/security/java.security`
+as follows:
+`authconfigprovider.factory=com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory`
+* By calling `registerConfigProvider()` method in vendor's
+`AuthConfigFactory` with the following values:
+
+** Test Suite Provider ClassName
+
+** Map of properties
+
+** Message Layer (such as `SOAP` or `HttpServlet`)
+
+** Application Context Identifier
+
+** A description of the provider
+
+
+[NOTE]
+=======================================================================
+
+For the Java EE 8 CTS, we register more than one provider in vendor's
+message processing runtime.
+
+=======================================================================
+
+
+In a typical test scenario (for each profile of Servlet or SOAP), an
+application is deployed into a vendor's runtime, and a client invokes
+the service. The message policies required for the secure invocations
+are built into TSSV implementations, and the runtime is analyzed to see
+whether it invokes the right SPIs at the right time.
+
+TSSV uses Java logging APIs to log the client and server invocation into
+a log file (`TSSVLog.txt`), this log file is used by the TCK tests to
+validate actual logged runtime information against expected results to
+ensure that the runtime is compliant. The `jaspic_util_web.war` file
+contains the JASPIC log file processor, which writes output to the
+`TSSVLog.txt` file. The `TSSVLog.txt` file is put into the location
+defined by the `log.file.location` property in the `ts.jte` file.
+
+[[GLAFE]][[c.2-jaspic-tssv-files]]
+
+C.2 JASPIC TSSV Files
+~~~~~~~~~~~~~~~~~~~~~
+
+The following sections describe the `tssv.jar`,
+`ProviderConfiguration.xml`, and `provider-configuration.dtd` files that
+are used by the JASPIC TCK tests.
+
+[[GLAGR]][[c.2.1-tssv.jar-file]]
+
+C.2.1 tssv.jar file
+^^^^^^^^^^^^^^^^^^^
+
+The `tssv.jar` file contains classes necessary for populating your
+implementation with a CTS AuthConfigFactory (ACF) as well as information
+used to register CTS providers. The tssv.jar file contains the class
+files for the Test Suite SPI Verifier. The `tssv.jar` file classes need
+to be loaded by your implementation's runtime during startup.
+
+[[GLADE]][[c.2.2-providerconfiguration.xml-file]]
+
+C.2.2 ProviderConfiguration.xml file
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The format of the `ProviderConfiguration.xml` file is a test
+suite-specific format.  The file was designed to contain test provider
+information the test suite uses to populate the ACF with a list of
+providers for testing. The file needs to be copied to the location
+specified in the ts.jte file by the `provider.configuration.file`
+property. An edit to the `ProviderConfiguration.xml` file may be
+required for your implementation. The current application context Ids
+are generic and should work as is, but there could be some scenarios in
+which the application Context Ids may need to be altered.
+
+The value of the `<app-context-id>` element in the
+`ProviderConfiguration.xml` file should reflect what your implementation
+will use for its internal representation of the application context
+identifier for a registered provider. Said differently, the test suite
+registers its providers with information from the
+`ProviderConfiguration.xml` file but every implementation is not
+guaranteed to use the application context identifier that is used in the
+call to register the configuration provider. This value of the
+`<app-context-id>` element corresponds to the `appContext` argument in
+the `AuthConfigFactory.registerConfigProvider()` API. The API
+documentation for this method indicates that the `appContext` argument
+may be used but is not guaranteed to be used.
+
+The default `ProviderConfiguration.xml` file should work without
+modification but you may need to alter the value of the
+`<app-context-id>` element as previously described to accommodate the
+implementation under test. You need to find the correct application
+context identifier for your implementation.
+
+You should enable two levels of logging output to get finer levels of
+debugging and tracing information than is turned on by default. This is
+done by setting the `traceflag` property in the `ts.jte` file and the
+HARNESS_DEBUG environment variable to "true".  If both of these are set,
+application context identifier information should appear in the debug
+output.
+
+[[GLAFZ]][[c.2.3-provider-configuration.dtd-file]]
+
+C.2.3 provider-configuration.dtd file
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The `provider-configuration.dtd` file is a DTD file that resides in the
+same directory as the `ProviderConfiguration.xml` file and describes the
+`ProviderConfiguration.xml` file. This file should not be edited.
+
+

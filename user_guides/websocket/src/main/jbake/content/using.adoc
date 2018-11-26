@@ -1,0 +1,329 @@
+type=page
+status=published
+title=Executing Tests
+next=debug.html
+prev=config.html
+~~~~~~
+Executing Tests
+===============
+
+[[TCJSE00006]][[GBFWO]]
+
+
+[[executing-tests]]
+5 Executing Tests
+-----------------
+
+The Java API for WebSocket TCK uses the JavaTest harness, which is
+bundled with it, to execute the tests in the test suite. The Java API
+for WebSocket TCK can either be run through the JavaTest GUI or from the
+command line in your shell environment.
+
+
+[NOTE]
+=======================================================================
+
+The instructions in this chapter assume that you have installed and
+configured your test environment as described in
+link:install.html#GBFTP[Chapter 3, "Installation,"] and
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"]
+respectively.
+
+=======================================================================
+
+
+This chapter includes the following topics:
+
+* link:#GBFUZ[Section 5.1, "Using the GUI for TCK Test Execution"]
+* link:#GJCIW[Section 5.2, "Using the Command Line for TCK Test
+Execution"]
+
+[[GBFUZ]][[TCJSE00045]][[using-the-gui-for-tck-test-execution]]
+
+5.1 Using the GUI for TCK Test Execution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The JavaTest documentation in the Java API for WebSocket TCK 1.0
+documentation bundle contains more detailed instructions on running and
+using JavaTest.
+
+
+[NOTE]
+=======================================================================
+
+It is only necessary to proceed with this section if you want to run the
+JavaTest harness in GUI mode. If you plan to run the TCK tests in
+command-line mode, skip the remainder of this chapter, and continue with
+link:#GJCIW[Section 5.2, "Using the Command Line for TCK Test
+Execution."]
+
+=======================================================================
+
+
+[[GBFWH]][[TCJSE00015]][[to-start-javatest-in-gui-mode]]
+
+5.1.1 To Start JavaTest in GUI Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.  Change to the `<TS_HOME>/bin` directory. +
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+----
+The `build.xml` file in the `<TS_HOME>/bin` directory contains the Ant
+targets for the Java API for WebSocket TCK test suite.
+2.  Execute the `ant gui` target. +
+[source,oac_no_warn]
+----
+ant gui
+----
+
+[[GBFVA]][[TCJSE00067]][[configuring-the-javatest-harness-in-gui-mode]]
+
+5.1.2 Configuring the JavaTest Harness in GUI Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order for the JavaTest harness to execute the test suite, it requires
+information about how your computing environment is configured. The
+JavaTest harness requires two types of configuration information:
+
+* Test environment: This is data used by the tests. For example, the
+path to the Java runtime, how to start the product being tested, network
+resources, and other information required by the tests in order to run.
+This information does not change frequently and usually stays constant
+from test run to test run.
+* Test parameters: This is information used by the JavaTest harness to
+run the tests. Test parameters are values used by the JavaTest harness
+that determine which tests in the test suite are run, how the tests
+should be run, and where the test reports are stored. This information
+often changes from test run to test run.
+
+The first time you run the JavaTest harness software, you are asked to
+specify the test suite and work directory that you want to use. (These
+parameters can be changed later from within the JavaTest harness GUI.)
+
+Once the JavaTest harness GUI is displayed, whenever you choose Run
+Tests and then Start to begin a test run, the JavaTest harness
+determines whether all of the required configuration information has
+been supplied:
+
+* If the test environment and parameters have been completely
+configured, the test run starts immediately.
+* If any required configuration information is missing, the
+configuration editor displays a series of questions asking you the
+necessary information. This is called the configuration interview . When
+you have entered the configuration data, you are asked if you wish to
+proceed with running the test.
+
+[[GBFUW]][[TCJSE00016]][[to-configure-and-run-the-java-api-for-websocket-tck-tests-in-gui-mode]]
+
+5.1.3 To Configure and Run the Java API for WebSocket TCK Tests in GUI
+Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You only need to complete all these steps the first time you start the
+JavaTest test harness. After you complete these steps, you can either
+run all of the tests by clicking Run Tests and then Start from the
+JavaTest main menu or run a subset of the tests by completing the steps
+in link:rules.html#CJADGBIH[Section 2.5, "Libraries for Java API for
+WebSocket Version 1.1."]
+
+The answers you give to some of the configuration interview questions,
+such as the name of the host on which the JavaTest harness is running,
+are specific to your site. Other configuration parameters, such as where
+you want test report files to be stored, can be set however you wish.
+
+1.  Start the JavaTest test harness. +
+The Welcome screen displays. +
+If the Welcome screen does not appear, select File and then click Open
+Quick Start Wizard.
+2.  Select Start a new test run, and then click Next. +
+You are prompted to create a new configuration or use a configuration
+template.
+3.  Select Create a new configuration, and then click Next. +
+You are prompted to select a test suite.
+4.  Accept the default suite (`<TS_HOME>/src`), and then click Next. +
+You are prompted to specify a work directory to use to store your test
+results.
+5.  Type a work directory name or use the Browse button to select a work
+directory, and then click Next. +
+You are prompted to start the configuration editor or start a test run.
+At this point, the Java API for WebSocket TCK is configured to run the
+default test suite.
+6.  Deselect the Start the configuration editor option, and then click
+Finish.
+7.  Click Run Tests, then click Start. +
+The JavaTest harness starts running the tests.
+8.  To reconfigure the JavaTest test harness, do one of the following:
+* Click Configuration, then click New Configuration.
+* Click Configuration, then click Change Configuration.
+9.  Click Report, and then click Create Report.
+10. Specify the directory in which the JavaTest test harness will write
+the report, and then click OK. +
+A report is created, and you are asked whether you want to view it.
+11. Click Yes to view the report.
+
+[[GBFUU]][[TCJSE00068]][[modifying-the-default-test-configuration-in-gui-mode]]
+
+5.1.4 Modifying the Default Test Configuration in GUI Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The JavaTest GUI enables you to configure numerous test options. These
+options are divided into two general dialog box groups:
+
+* Group 1: Available from the JavaTest Configure/Change Configuration
+submenus, the following options are displayed in a tabbed dialog box:
+
+** Tests to Run
+
+** Exclude List
+
+** Keywords
+
+** Prior Status
+
+** Environment
+
+** Concurrency
+
+** Timeout Factor
+* Group 2: Available from the JavaTest Configure/Change
+Configuration/Other Values submenu, or by pressing Ctrl+E, the following
+options are displayed in a paged dialog box:
+
+** Environment Files
+
+** Test Environment
+
+** Specify Tests to Run
+
+** Specify an Exclude List
+
+Note that there is some overlap between the functions in these two
+dialog boxes; for those functions use the dialog box that is most
+convenient for you. See the JavaTest Harness documentation or the online
+help for complete information about these various options.
+
+[[GBFVT]][[TCJSE00017]][[to-run-a-subset-of-tests-in-gui-mode]]
+
+5.1.5 To Run a Subset of Tests in GUI Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.  From the JavaTest main menu, click Configure, then click Change
+Configuration, and then click Tests to Run. +
+The tabbed Configuration Editor dialog box is displayed.
+2.  Click Specify from the option list on the left.
+3.  Select the tests you want to run from the displayed test tree, and
+then click Done. +
+You can select entire branches of the test tree, or use Ctrl+Click or
+Shift+Click to select multiple tests or ranges of tests, respectively,
+or select just a single test.
+4.  Click Save File.
+5.  Click Run Tests, and then click Start to run the tests you selected. +
+Alternatively, you can right-click the test you want from the test tree
+in the left section of the JavaTest main window, and choose Execute
+These Tests from the menu.
+6.  Click Report, and then click Create Report.
+7.  Specify the directory in which the JavaTest test harness will write
+the report, and then click OK. +
+A report is created, and you are asked whether you want to view it.
+8.  Click Yes to view the report.
+
+[[GJCIW]][[TCJSE00046]][[using-the-command-line-for-tck-test-execution]]
+
+5.2 Using the Command Line for TCK Test Execution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can perform TCK Test Execution using command line.
+
+[[GBFVW]][[TCJSE00018]][[to-run-all-tests]]
+
+5.2.1 To Run All Tests
+^^^^^^^^^^^^^^^^^^^^^^
+
+1.  Change to the `<TS_HOME>/bin` directory.
+2.  Execute the `ant run.all` target to start the JavaTest run. +
+This target will run all the tests in the TCK (that is, all tests under
+`<TS_HOME>/src/com/sun/ts/tests/websocket` and
+`<TS_HOME>/src/com/sun/ts/tests/signaturetest/websocket`.
+3.  An alternate way of running all TCK tests is to change to the
+`<TS_HOME>/src/com/sun/ts/tests/websocket` directory and execute the
+`ant runclient` target then change to the
+`<TS_HOME>/src/com/sun/ts/tests/signaturetest/websocket` directory and
+execute the same target.
+
+[[GJCMV]][[TCJSE00019]][[to-run-a-subset-a-directory-of-the-tck-tests]]
+
+5.2.2 To Run a Subset (a Directory) of the TCK Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.  Change to a directory under
+`<TS_HOME>/src/com/sun/ts/tests/websocket` or
+`<TS_HOME>/src/com/sun/ts/tests/signaturetest/websocket`.
+2.  Execute the `ant runclient` target to start the JavaTest run. +
+If you changed to a directory that has no subdirectories, the tests in
+that directory will be executed. If you changed to a directory that has
+subdirectories, all the tests in the parent directory and its
+subdirectories will be executed.
+
+[[GJCOP]][[TCJSE00020]][[to-run-an-individual-test]]
+
+5.2.3 To Run an Individual Test
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.  Change to the directory that contains the test you wish to run.
+2.  Execute the `ant runclient` command with the `-Dtest=`test-name
+argument to run just the selected test. +
+[source,oac_no_warn]
+----
+ant runclient -Dtest=test-name 
+----
+This runs only the test-name in the test directory to which you changed.
+You select the test name to run by looking at the `testName` tags in the
+`URLClient.java` file.
+
+[[GJCND]][[TCJSE00021]][[to-run-tests-that-failed-priorstatus]]
+
+5.2.4 To Run Tests that Failed (PriorStatus)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can run certain tests based on the test's prior run status by
+specifying the `priorStatus=`status-arguments property when invoking
+`ant runclient`.
+
+The following status-arguments can be used:
+
+* `pass`
+* `fail`
+* `error`
+* `notRun`
+
+1.  Invoke `ant runclient` with the `priorStatus` property. +
+Use commas to separate multiple arguments. +
+For example, to run all the tests that had a status of failed and error
+during a previous test run, you would invoke the following command: +
+[source,oac_no_warn]
+----
+ant runclient -DpriorStatus="fail,error" 
+----
+
+[[GJGPS]][[TCJSE00022]][[to-run-tests-without-reporting]]
+
+5.2.5 To Run Tests Without Reporting
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Whenever you run tests with Ant, reports are created in the location
+defined in the `report.dir` property. However, you have the option to
+turn reporting off altogether.
+
+1.  To disable reporting, set the `report.dir` property to `none`,
+either on the command line or in `ts.jte`. +
+For example: +
+[source,oac_no_warn]
+----
+ant runclient -Dreport.dir="none"
+----
+2.  Run the tests. +
+No report will be generated.
+
+

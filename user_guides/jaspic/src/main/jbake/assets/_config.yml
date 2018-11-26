@@ -1,0 +1,14 @@
+theme: jekyll-theme-architect
+
+title: [tck_jaspic_v1_1]
+description: [Oracle Technology Compatibility Kit User's Guide for Java Authentication SPI for Containers (JASPIC) 1.1 for Technology Licensees, Release 1.1]
+
+# sidebar links url
+links:
+  source: https://github.com/javaee/tck_jaspic_v1_1
+  download: https://github.com/javaee/tck_jaspic_v1_1/releases
+  #mailinglist: https://javaee.groups.io/g/tck_jaspic_v1_1
+  #javadocs:
+  docs: https://javaee.github.io/tck_jaspic_v1_1
+  #faq:
+

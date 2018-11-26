@@ -1,0 +1,121 @@
+type=page
+status=published
+title=Setup and Configuration
+next=using.html
+prev=install.html
+~~~~~~
+Setup and Configuration
+=======================
+
+[[TCPER00005]][[GBFVV]]
+
+
+[[setup-and-configuration]]
+4 Setup and Configuration
+-------------------------
+
+This chapter describes how to set up the Java EE SecurityAPI TCK and
+JavaTest harness software and how to configure. Before proceeding with
+the instructions in this chapter, be sure to install all required
+software as described in link:install.html#GBFTP[Chapter 3,
+"Installation."]
+
+After completing the instructions in this chapter, proceed to
+link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
+running the Java EE Security TCK.
+
+This section describes how to configure the Java EE Security TCK for
+your environment. After configuring your environment, continue with the
+instructions in link:using.html#GBFWO[Chapter 5, "Executing Tests."]
+
+
+[NOTE]
+=======================================================================
+
+In these instructions, variables in angle brackets need to be expanded
+for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
+Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+slashes (`/`) used in all of the examples need to be replaced with
+backslashes (`\`) for Windows. Finally, use the appropriate separator
+for your operating system when specifying multiple path entries (`;` on
+Windows, `:` on Solaris/Linux).
+
+=======================================================================
+
+
+This chapter includes the following topics:
+
+* link:#GBFWN[To Configure Your Environment for the Java EE Security API
+TCK]
+
+[[GBFWN]][[TCPER00012]][[to-configure-your-environment-for-the-java-ee-security-api-tck]]
+
+4.1 To Configure Your Environment for the Java EE Security API TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1.  Set the following environment variables in your shell environment:
+1.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+2.  `TS_HOME` to the directory in which the Java EE Security TCK 1.0
+software is installed
+3.  `PATH` to include the `<TS_HOME>/bin` , `JAVA_HOME/bin,` and
+`<TS_HOME>/tools/ant/bin` directories
+2.  Edit your `<TS_HOME>/bin/ts.jte` file and modify the following
+properties:
+1.  Set `securityapi.classes` to include all necessary JAR files that
+pertain to your implementation.
+2.  Set `web.home` to the location where the securityapi is implemented.
+For example, `web.home=<GLASSFISH_HOME_FOLDER`>.
+3.  Set `jdbc.lib.class.path` to the location where the JDBC drivers are
+installed.
+4.  Set `jdbc.db` to the name of the database under test. Valid values
+include: +
+[source,oac_no_warn]
+----
+derby
+mysql
+oracle
+----
+5.  Set `sigTestClasspath` to include any additional classes not
+specified with the `securityapi.classes` property.
+6.  Set `work.dir` to the default directory in which JavaTest writes
+temporary files that are created during test execution. The default
+location is <TS_HOME>/tmp/JTwork. +
+This property is required for the TCK Ant targets.
+7.  Set `report.dir` to the default directory in which JavaTest creates
+a test report for the most recent test run. The default location is
+<TS_HOME>/tmp/JTreport. +
+This property is a required property for the TCK Ant targets; it must be
+set. To disable reporting, set the `report.dir` property to `"none"`.
+8.  If you are testing against the default UnboundID LDAP server that is
+bundled with the TCK (recommended), make sure the following properties
+are set: +
+`ldap.server=unboundid` +
+`ldap.install.server=true` +
+`ldap.ldif.file=${ts.home}/bin/ldap.ldif` +
+If you are testing against a different LDAP server, then set the
+following property: +
+`ldap.install.server=false` +
+For a non-default LDAP, you must manually install the server on the
+local machine, and configure it to listen on port 11389. You will also
+need to load the test data by importing the file
+`<TS_HOME>/bin/ldap.ldif`.
+3.  [[BABGIFCH]] +
+Start the database under test.
+4.  Ensure that no process is using port 11389. If you are not using the
+default LDAP server, start the LDAP server under test.
+5.  Initialize the Vendor Implementation (server, database, and LDAP). +
+Change to the `<TS_HOME>/bin` directory and execute the following
+command. +
+[source,oac_no_warn]
+----
+ant config.vi
+ant init.ldap
+----
+6.  Deploy all the server packages for testing. To do so, execute the
+following command: +
+[source,oac_no_warn]
+----
+ant deploy.all
+----
+
+

@@ -1,0 +1,64 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCUML00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the Expression Language TCK 3.0
+software. After installing the software according to the instructions in
+this chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration"] for instructions on configuring your test environment.
+
+[[GBFTS]][[TCUML00041]][[installing-the-expression-language-software]]
+
+3.1 Installing the Expression Language Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the Expression Language TCK tests, you need to
+install and set up the following software components:
+
+* Appropriate JDK_Version
+* Expression Language 3.0 implementation under test
+* Expression Language TCK Version 3.0
+
+1.  Install the JDK_Version appropriate for the reference implementation
+under test, if it is not already installed.
+2.  Install the implementation under test, if it is not already
+installed. +
+Download, install, and configure the EL configuration that is under
+test. To familiarize yourself with the Expression Language TCK suite and
+the JavaTest software before you begin testing with your own
+implementation, you can optionally do a trial run using the Java EE 7 RI
+or the Java EE 7 Web Profile RI.
+3.  Install the Expression Language TCK 3.0 software.
+1.  Copy or download the Expression Language TCK software to your local
+system.
+2.  Change to the directory in which you want to install the Expression
+Language TCK software: +
+[source,oac_no_warn]
+----
+cd install_directory
+----
+3.  Use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+unzip eltck-3.0-date.zip
+----
+where date indicates the month and year in which the TCK bundle was
+created. For example, the Expression Language TCK bundle name could be
+`eltck-3.0_26-Mar-2013.zip` +
+When the bundle is unzipped, the `eltck` directory is created. The
+install_directory`/``eltck` directory is the test suite home,
+`<TS_HOME>`.
+
+

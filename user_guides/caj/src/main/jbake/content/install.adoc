@@ -1,0 +1,77 @@
+type=page
+status=published
+title=Installation
+next=config.html
+prev=rules.html
+~~~~~~
+Installation
+============
+
+[[TCCOA00004]][[GBFTP]]
+
+
+[[installation]]
+3 Installation
+--------------
+
+This chapter explains how to install the Common Annotations for the Java
+Platform 1.3 (CAJ) 1.3 software.
+
+After installing the software according to the instructions in this
+chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration,"] for instructions on configuring your test environment.
+
+[[GBFUD]][[TCCOA00035]][[obtaining-the-caj-1.3-reference-implementation]]
+
+3.1 Obtaining the CAJ 1.3 Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can obtain the CAJ Reference Implementation (RI), Version 1.3
+software from the Java Community Process
+(`http://jcp.org/en/home/index`) web site. The CAJ RI software is not
+necessary for running the CAJ TCK, but it can be useful as a test base
+for familiarizing yourself with the TCK before testing your own CAJ
+implementation.
+
+[[GBFTS]][[TCCOA00036]][[installing-the-caj-software]]
+
+3.2 Installing the CAJ Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run the CAJ TCK tests, you must install and set up the
+following software components:
+
+* Java SE 8 software
+* CAJ TCK, Version 1.3 software
+* An implementation of the CAJ 1.3 Specification
+
+1.  Install the Java SE 8 software, if it is not already installed. +
+Download and install the Java SE 8 software from the
+`http://www.oracle.com/technetwork/java/javase/downloads/index.html` Web
+site. Refer to the installation instructions that accompany the software
+for additional information.
+2.  Install the CAJ TCK 1.3 software.
+1.  Copy or download the CAJ TCK software to your local system.
+2.  Change to the directory in which you want to install the CAJ TCK
+software: +
+[source,oac_no_warn]
+----
+cd install_directory
+----
+3.  Use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+unzip cajtck-1.3_dd-Mmm-YYYY.zip
+----
+where dd indicates the day, Mmm indicates the month, and YYYY indicates
+the year in which the TCK bundle was created. +
+When the bundle is unzipped, the `cajtck` directory is created. The
+install_directory`/``cajtck` directory is the test suite home,
+`<TS_HOME>`.
+3.  Install the CAJ implementation to be tested. +
+Before testing your own CAJ implementation, it is recommended that you
+run the CAJ TCK against the CAJ RI to familiarize yourself with the CAJ
+TCK suite and JavaTest software. See link:#GBFUD[Section 3.1, "Obtaining
+the CAJ 1.3 Reference Implementation,"] for more information.
+
+

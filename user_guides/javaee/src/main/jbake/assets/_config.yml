@@ -1,0 +1,14 @@
+theme: jekyll-theme-architect
+
+title: [cts_javaee_v8_0]
+description: [Oracle Java Platform, Enterprise Edition 8 Compatibility Test Suite User's Guide for Technology Licensees, Release 8]
+
+# sidebar links url
+links:
+  source: https://github.com/javaee/cts_javaee_v8_0
+  download: https://github.com/javaee/cts_javaee_v8_0/releases
+  #mailinglist: https://javaee.groups.io/g/cts_javaee_v8_0
+  #javadocs:
+  docs: https://javaee.github.io/cts_javaee_v8_0
+  #faq:
+

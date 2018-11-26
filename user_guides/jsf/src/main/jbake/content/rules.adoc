@@ -1,0 +1,449 @@
+type=page
+status=published
+title=Procedure for Certification
+next=install.html
+prev=intro.html
+~~~~~~
+include::attributes.conf[]
+Procedure for Certification
+===========================
+
+[[GBFSN]]
+
+
+[[procedure-for-certification]]
+2 Procedure for Certification
+-----------------------------
+
+This chapter describes the compatibility testing procedure and
+compatibility requirements for {TechnologyFullName}.
+This chapter contains the following sections:
+
+* link:#CJAFFDGI[Certification Overview]
+* link:#CJAFGIGG[Compatibility Requirements]
+* link:#CJAIIBDJ[Test Appeals Process]
+* link:#CJAJECIE[Specifications for {TechnologyFullName}]
+* link:#CJABAHGI[Libraries for {TechnologyFullName}]
+
+[[CJAFFDGI]][[certification-overview]]
+
+2.1 Certification Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The certification process for {technologyShortName} {TechnologyVersion}
+consists of the following activities:
+
+* Install the appropriate version of the Technology Compatibility Kit
+(TCK) and execute it in accordance with the instructions in this User's
+Guide.
+* Ensure that you meet the requirements outlined in ”Compatibility
+Requirements,” below.
+
+* Certify to the Java Partner organization that you have finished
+testing and that you meet all of the compatibility requirements.
+
+[[CJAFGIGG]][[compatibility-requirements]]
+
+2.2 Compatibility Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The compatibility requirements for {TechnologyShortName}
+{TechnologyVersion} consist of meeting the requirements set forth by
+the rules and associated definitions contained in this section.
+
+[[sthref4]][[definitions]]
+
+2.2.1 Definitions
+^^^^^^^^^^^^^^^^^
+
+These definitions are for use only with these compatibility requirements
+and are not intended for any other purpose.
+
+[[sthref5]][[sthref6]]
+
+Table 2-1 Definitions 
+
+[width="100%",cols="25%,75%",options="header",]
+|=======================================================================
+|Term |Definition
+|API Definition Product |A Product for which the only Java class files
+contained in the product are those corresponding to the application
+programming interfaces defined by the Specifications, and which is
+intended only as a means for formally specifying the application
+programming interfaces defined by the Specifications.
+
+|Computational Resource a|
+A piece of hardware or software that may vary in quantity, existence, or
+version, which may be required to exist in a minimum quantity and/or at
+a specific or minimum revision level so as to satisfy the requirements
+of the Test Suite.
+
+Examples of computational resources that may vary in quantity are RAM
+and file descriptors.
+
+Examples of computational resources that may vary in existence (that is,
+may or may not exist) are graphics cards and device drivers.
+
+Examples of computational resources that may vary in version are
+operating systems and device drivers.
+
+|Configuration Descriptor |Any file whose format is well defined by a
+specification and which contains configuration information for a set of
+Java classes, archive, or other feature defined in the specification.
+
+|Conformance Tests |All tests in the Test Suite for an indicated
+Technology Under Test, as distributed by the Maintenance Lead, excluding
+those tests on the Exclude List for the Technology Under Test.
+
+|Documented |Made technically accessible and made known to users,
+typically by means such as marketing materials, product documentation,
+usage messages, or developer support programs.
+
+|Exclude List |The most current list of tests, distributed by the
+Maintenance Lead, that are not required to be passed to certify
+conformance. The Maintenance Lead may add to the Exclude List for that
+Test Suite as needed at any time, in which case the updated Exclude List
+supplants any previous Exclude Lists for that Test Suite.
+
+|Libraries a|
+The class libraries, as specified through the Java Community Process
+(JCP), for the Technology Under Test.
+
+The Libraries for {TechnologyFullName} are listed at the end of this chapter.
+
+|Location Resource a|
+A location of classes or native libraries that are components of the
+test tools or tests, such that these classes or libraries may be
+required to exist in a certain location in order to satisfy the
+requirements of the test suite.
+
+For example, classes may be required to exist in directories named in a
+CLASSPATH variable, or native libraries may be required to exist in
+directories named in a PATH variable.
+
+|Maintenance Lead |The Java Community Process member responsible for
+maintaining the Specification, reference implementation, and TCK for the
+Technology. Oracle is the Maintenance Lead for {TechnologyFullName}.
+
+|Operating Mode a|
+Any Documented option of a Product that can be changed by a user in
+order to modify the behavior of the Product.
+
+For example, an Operating Mode can be binary (enable/disable
+optimization), an enumeration (select from a list of protocols), or a
+range (set the maximum number of active threads).
+
+Note that an Operating Mode may be selected by a command line switch, an
+environment variable, a GUI user interface element, a configuration or
+control file, etc.
+
+|Product |A licensee product in which the Technology Under Test is
+implemented or incorporated, and that is subject to compatibility
+testing.
+
+|Product Configuration a|
+A specific setting or instantiation of an Operating Mode.
+
+For example, a Product supporting an Operating Mode that permits user
+selection of an external encryption package may have a Product
+Configuration that links the Product to that encryption package.
+
+|Rebuildable Tests |Tests that must be built using an
+implementation-specific mechanism. This mechanism must produce
+specification-defined artifacts. Rebuilding and running these tests
+against the Java EE 8 RI verifies that the mechanism generates
+compatible artifacts.
+
+|Resource |A Computational Resource, a Location Resource, or a Security
+Resource.
+
+|Rules |These definitions and rules in this Compatibility Requirements
+section of this User's Guide.
+
+|Security Resource a|
+A security privilege or policy necessary for the proper execution of the
+Test Suite.
+
+For example, the user executing the Test Suite will need the privilege
+to access the files and network resources necessary for use of the
+Product.
+
+|Specifications a|
+The documents produced through the Java Community Process that define a
+particular Version of a Technology.
+
+The Specifications for the Technology Under Test are referenced later in
+this chapter.
+
+|Technology |Specifications and a reference implementation produced
+through the Java Community Process.
+
+|Technology Under Test |Specifications and the reference implementation
+for {TechnologyFullName} Version {TechnologyVersion}.
+
+|Test Suite |The requirements, tests, and testing tools distributed by
+the Maintenance Lead as applicable to a given Version of the Technology.
+
+|Version |A release of the Technology, as produced through the Java
+Community Process.
+|=======================================================================
+
+
+[[sthref7]][[rules-for-products]]
+
+2.2.2 Rules for {TechnologyFullName} Products
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following rules apply for each version of an operating system,
+software component, and hardware platform Documented as supporting the
+Product:
+
+*{techID}1* The Product must be able to satisfy all applicable compatibility
+requirements, including passing all Conformance Tests, in every Product
+Configuration and in every combination of Product Configurations, except
+only as specifically exempted by these Rules.
+
+For example, if a Product provides distinct Operating Modes to optimize
+performance, then that Product must satisfy all applicable compatibility
+requirements for a Product in each Product Configuration, and
+combination of Product Configurations, of those Operating Modes.
+
+*{techID}1.1* If an Operating Mode controls a Resource necessary for the
+basic execution of the Test Suite, testing may always use a Product
+Configuration of that Operating Mode providing that Resource, even if
+other Product Configurations do not provide that Resource.
+Notwithstanding such exceptions, each Product must have at least one set
+of Product Configurations of such Operating Modes that is able to pass
+all the Conformance Tests.
+
+For example, a Product with an Operating Mode that controls a security
+policy (i.e., Security Resource) which has one or more Product
+Configurations that cause Conformance Tests to fail may be tested using
+a Product Configuration that allows all Conformance Tests to pass.
+
+*{techID}1.2* A Product Configuration of an Operating Mode that causes the
+Product to report only version, usage, or diagnostic information is
+exempted from these compatibility rules.
+
+*{techID}1.3* An API Definition Product is exempt from all functional
+testing requirements defined here, except the signature tests.
+
+*{techID}2* Some Conformance Tests may have properties that may be changed.
+Properties that can be changed are identified in the configuration
+interview. Properties that can be changed are identified in the JavaTest
+Environment (.jte) files in the Test Suite
+installation. Apart from changing such properties and other allowed
+modifications described in this User's Guide (if any), no source or
+binary code for a Conformance Test may be altered in any way without
+prior written permission. Any such allowed alterations to the
+Conformance Tests would be posted to the Java Licensee Engineering web
+site and apply to all licensees.
+
+*{techID}3* The testing tools supplied as part of the Test Suite or as
+updated by the Maintenance Lead must be used to certify compliance.
+
+*{techID}4* The Exclude List associated with the Test Suite cannot be
+modified.
+
+*{techID}5* The Maintenance Lead can define exceptions to these Rules. Such
+exceptions would be made available to and apply to all licensees.
+
+*{techID}6* All hardware and software component additions, deletions, and
+modifications to a Documented supporting hardware/software platform,
+that are not part of the Product but required for the Product to satisfy
+the compatibility requirements, must be Documented and available to
+users of the Product.
+
+For example, if a patch to a particular version of a supporting
+operating system is required for the Product to pass the Conformance
+Tests, that patch must be Documented and available to users of the
+Product.
+
+*{techID}7* The Product must contain the full set of public and protected
+classes and interfaces for all the Libraries. Those classes and
+interfaces must contain exactly the set of public and protected methods,
+constructors, and fields defined by the Specifications for those
+Libraries. No subsetting, supersetting, or modifications of the public
+and protected API of the Libraries are allowed except only as
+specifically exempted by these Rules.
+
+*{techID}7* If a Product includes Technologies in addition to the
+Technology Under Test, then it must contain the full set of combined
+public and protected classes and interfaces. The API of the Product
+must contain the union of the included Technologies. No further
+modifications to the APIs of the included Technologies are allowed.
+
+*{techID}8* Except for tests specifically required by this TCK to be rebuilt
+(if any), the binary Conformance Tests supplied as part of the Test
+Suite or as updated by the Maintenance Lead must be used to certify
+compliance.
+
+*{techID}9* The functional programmatic behavior of any binary class or
+interface must be that defined by the Specifications.
+
+include::rules.inc[]
+
+[[CJAIIBDJ]][[test-appeals-process]]
+
+2.3 Test Appeals Process
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Oracle has a well established process for managing challenges to its
+Java technology Test Suites and plans to continue using a similar
+process in the future. Oracle, as {TechnologyShortName} Maintenance Lead, will
+authorize representatives from the Java Partner Engineering group to be
+the point of contact for all test challenges. Typically this will be the
+engineer assigned to a company as part of its {TechnologyShortName} TCK support.
+
+If a test is determined to be invalid in function or if its basis in the
+specification is suspect, the test may be challenged by any licensee of
+the {TechnologyShortName} TCK. Each test validity issue must be covered
+by a separate test challenge. Test validity or invalidity will be
+determined based on its technical correctness such as:
+
+* Test has bugs (i.e., program logic errors).
+* Specification item covered by the test is ambiguous.
+* Test does not match the specification.
+* Test assumes unreasonable hardware and/or software requirements.
+* Test is biased to a particular implementation.
+
+Challenges based upon issues unrelated to technical correctness as
+defined by the specification will normally be rejected.
+
+Test challenges must be made in writing to Java Partner Engineering and
+include all relevant information as described in link:#CJAFGAEE[Example
+2-1, "Test Challenge Form"]. The process used to determine the validity
+or invalidity of a test (or related group of tests) is described in
+link:#CJAJEAEI[Section 2.3.1, "TCK Test Appeals Steps."]
+
+All tests found to be invalid will either be placed on the Exclude List
+for that version of the {TechnologyShortName} TCK or have an alternate
+test made available.
+
+* Tests that are placed on the Exclude List will be placed on the
+Exclude List within one business day after the determination of test
+validity. The new Exclude List will be made available to all
+{TechnologyShortName} TCK licensees on the Java Licensee Engineering website.
+* Oracle, as Maintenance Lead has the option of creating alternative
+tests to address any challenge. Alternative tests (and criteria for
+their use) will be made available on the Java Licensee Engineering
+website. +
+
+[NOTE]
+=======================================================================
+
+Passing an alternative test is deemed equivalent to passing the original
+test.
+
+=======================================================================
+
+
+[[CJAJEAEI]][[tck-test-appeals-steps]]
+
+2.3.1 TCK Test Appeals Steps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.  {TechnologyFullName} TCK licensee writes a test
+challenge to Java Licensee Engineering contesting the validity of one or
+a related set of {TechnologyShortName} tests. +
+A detailed justification for why each test should be invalidated must be
+included with the challenge as described in link:#CJAFGAEE[Example 2-1,
+"Test Challenge Form"].
+2.  Java Licensee Engineering evaluates the challenge. +
+If the appeal is incomplete or unclear, it is returned to the submitting
+licensee for correction. If all is in order, Java Licensee Engineering
+will check with the responsible test developers to review the purpose
+and validity of the test before writing a response as described in
+link:#CJAGGCIF[Example 2-2, "Test Challenge Response Form"]. Java
+Licensee Engineering will attempt to complete the response within 5
+business days. If the challenge is similar to a previously rejected test
+challenge (i.e., same test and justification), Java Licensee Engineering
+will send the previous response to the licensee.
+3.  The challenge and any supporting materials from test developers is
+sent to the specification engineers for evaluation. +
+A decision of test validity or invalidity is normally made within 15
+working days of receipt of the challenge. All decisions will be
+documented with an explanation of why test validity was maintained or
+rejected.
+4.  The licensee is informed of the decision and proceeds accordingly. +
+If the test challenge is approved and one or more tests are invalidated,
+Oracle places the tests on the Exclude List for that version of the
+{TechnologyFullName} TCK (effectively removing the test(s) from
+the Test Suite). All tests placed on the Exclude List will have a bug
+report written to document the decision and made available to all
+licensees through the bug reporting database. If the test is valid but
+difficult to pass due to hardware or operating system limitations,
+Oracle may choose to provide an alternate test to use in place of the
+original test (all alternate tests are made available to the licensee
+community).
+5.  If the test challenge is rejected, the licensee may choose to
+escalate the decision to the Executive Committee (EC), however, it is
+expected that the licensee would continue to work with Oracle to resolve
+the issue and only involve the EC as a last resort.
+
+[[sthref8]][[test-challenge-and-response-forms]]
+
+2.3.2 Test Challenge and Response Forms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+link:#CJAFGAEE[Example 2-1] shows the test challenge information you
+must provide to Java Licensee Engineering to initiate a challenge, and
+link:#CJAGGCIF[Example 2-2] shows the test challenge response format.
+
+[[CJAFGAEE]]
+
+Example 2-1 Test Challenge Form
+
+[source,oac_no_warn]
+----
+Test Challenger Name and Company:
+Specification Name(s) and Version(s):
+Test Suite Name and Version:
+Exclude List Version:
+Test Name:
+Complaint (argument for why test is invalid):
+.jtr file of the failing test:
+Console log of the JavaTest harness and device with all debugging flags turned on (if applicable):
+.jti or .jte file for the test run:
+Startup scripts for the JavaTest harness and agent (if applicable):
+----
+
+[[CJAGGCIF]]
+
+Example 2-2 Test Challenge Response Form
+
+[source,oac_no_warn]
+----
+Test Defender Name and Company:
+Test Defender Role in Defense (e.g., test developer, Maintenance Lead, etc.):
+Specification Name(s) and Version(s):
+Test Suite Name and Version:
+Test Name:
+Defense (argument for why test is valid):
+[Multiple challenges and corresponding responses may be listed here.]
+Implications of test invalidity (e.g., other affected tests and test framework code, creation or exposure of ambiguities in spec (due to unspecified requirements), invalidation of the reference implementation, creation of serious holes in test suite):
+Alternatives (e.g., are alternate test(s) appropriate?):
+----
+
+[[CJAJECIE]][[specifications-for-technology]]
+
+2.4 Specifications for {TechnologyFullName}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The {TechnologyFullName} specification is available on the
+JSR {JSR} Web site at {JSRURL} or on the Java
+Community Process (http://jcp.org/en/home/index) site.
+
+[[CJABAHGI]][[libraries-for-technology]]
+
+2.5 Libraries for {TechnologyFullName}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following is a list of the packages comprising the required class
+libraries for {TechnologyShortName} {TechnologyVersion}:
+
+include::packages.inc[]
+
+For the latest list of packages, also see:
+
+{JSRURL}

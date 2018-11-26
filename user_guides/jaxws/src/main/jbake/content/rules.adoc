@@ -1,0 +1,421 @@
+type=page
+status=published
+title=Procedure for Java API for XML Web Services 2.3 Certification
+next=install.html
+prev=intro.html
+~~~~~~
+Procedure for Java API for XML Web Services 2.3 Certification
+=============================================================
+
+[[TCJWS00005]][[GBFSN]]
+
+
+[[procedure-for-java-api-for-xml-web-services-2.3-certification]]
+2 Procedure for Java API for XML Web Services 2.3 Certification
+---------------------------------------------------------------
+
+This chapter describes the compatibility testing process and
+compatibility requirements for Java API for XML Web Services 2.3 (JSR
+224). This chapter contains the following sections:
+
+* link:#GBFTE[Certification Overview]
+* link:#GBFRK[Compatibility Requirements]
+* link:#GBFTQ[Reference Runtime for Java API for XML Web Services 2.3]
+* link:#GBFTL[Specifications for Java API for XML Web Services 2.3]
+* link:#GBFTV[Libraries for Java API for XML Web Services 2.3]
+
+[[GBFTE]][[TCJWS00050]][[certification-overview]]
+
+2.1 Certification Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The certification process for Java API for XML Web Services 2.3 consists
+of the following activities:
+
+* Install the appropriate version of the Technology Compatibility Kit
+(TCK) and execute it in accordance with the instructions in this User's
+Guide.
+* Ensure that you meet the requirements outlined in
+link:#GBFRK[Compatibility Requirements].
+* Certify to Java Licensee Engineering that you have finished testing
+and that you meet all the compatibility requirements.
+
+[[GBFRK]][[TCJWS00051]][[compatibility-requirements]]
+
+2.2 Compatibility Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The compatibility requirements for Java API for XML Web Services 2.3
+consist of meeting the requirements set forth by the rules and
+associated definitions contained in this section.
+
+[[GBFQX]][[TCJWS00098]][[definitions]]
+
+2.2.1 Definitions
+^^^^^^^^^^^^^^^^^
+
+These definitions are for use only with these compatibility requirements
+and are not intended for any other purpose.
+
+[[sthref4]][[GBFRB]]
+
+Table 2-1 Definitions
+
+[width="100%",cols="25%,75%",options="header",]
+|=======================================================================
+|Term |Definition
+|Computational Resource a|
+A piece of hardware or software that may vary in quantity, existence, or
+version, which may be required to exist in a minimum quantity and/or at
+a specific or minimum revision level so as to satisfy the requirements
+of the Test Suite.
+
+Examples of computational resources that may vary in quantity are RAM
+and file descriptors.
+
+Examples of computational resources that may vary in existence (that is,
+may or may not exist) are graphics cards and device drivers.
+
+Examples of computational resources that may vary in version are
+operating systems and device drivers.
+
+|Configuration Descriptor |Any file whose format is well defined by a
+specification and which contains configuration information for a set of
+Java classes, archive, or other feature defined in the specification.
+
+|Conformance Tests |All tests in the Test Suite for an indicated
+Technology Under Test, as distributed by the Maintenance Lead, excluding
+those tests on the Exclude List for the Technology Under Test.
+
+|Documented |Made technically accessible and made known to users,
+typically by means such as marketing materials, product documentation,
+usage messages, or developer support programs.
+
+|Exclude List |The most current list of tests, distributed by the
+Maintenance Lead, that are not required to be passed to certify
+conformance. The Maintenance Lead may add to the Exclude List for that
+Test Suite as needed at any time, in which case the updated Exclude List
+supplants any previous Exclude Lists for that Test Suite.
+
+|Java-to-WSDL Output |Output of a Java-to-WSDL Tool that is required for
+Web service deployment and invocation.
+
+|Java-to-WSDL Tool |A software development tool that implements or
+incorporates a function that generates Web service endpoint descriptions
+in WSDL and XML schema format from Source Code as specified by the
+JAX-WS Specification.
+
+|Libraries |The class libraries, as specified through the Java Community
+Process (JCP), for the Technology Under Test. The Libraries for Java API
+for XML Web Services 2.3 are listed at the end of this chapter.
+
+|Location Resource a|
+A location of classes or native libraries that are components of the
+test tools or tests, such that these classes or libraries may be
+required to exist in a certain location in order to satisfy the
+requirements of the test suite.
+
+For example, classes may be required to exist in directories named in a
+`CLASSPATH` variable, or native libraries may be required to exist in
+directories named in a `PATH` variable.
+
+|Maintenance Lead |The Java Community Process member responsible for
+maintaining the Specification, reference implementation, and TCK for the
+Technology. Oracle Corporation is the Maintenance Lead for Java API for
+XML Web Services 2.3.
+
+|Operating Mode a|
+Any Documented option of a Product that can be changed by a user in
+order to modify the behavior of the Product.
+
+For example, an Operating Mode can be binary (enable/disable
+optimization), an enumeration (select from a list of protocols), or a
+range (set the maximum number of active threads).
+
+|Product |A licensee product in which the Technology Under Test is
+implemented or incorporated, and that is subject to compatibility
+testing.
+
+|Product Configuration a|
+A specific setting or instantiation of an Operating Mode.
+
+For example, a Product supporting an Operating Mode that permits user
+selection of an external encryption package may have a Product
+Configuration that links the Product to that encryption package.
+
+|Rebuildable Tests |Tests that must be built using an implementation
+specific mechanism. This mechanism must produce specification defined
+artifacts. Rebuilding and running these tests against the Java EE 8 RI
+verifies that the mechanism generates compatible artifacts.
+
+|Resource |A Computational Resource, a Location Resource, or a Security
+Resource.
+
+|Rules |These definitions and rules in this Compatibility Requirements
+section of this User's Guide.
+
+|Security Resource a|
+A security privilege or policy necessary for the proper execution of the
+Test Suite.
+
+For example, the user executing the Test Suite will need the privilege
+to access the files and network resources necessary for use of the
+Product.
+
+|Specifications a|
+The documents produced through the Java Community Process that define a
+particular Version of a Technology.
+
+The Specifications for the Technology Under Test can be found later in
+this chapter.
+
+|Technology |Specifications and a reference implementation produced
+through the Java Community Process.
+
+|Technology Under Test |Specifications and the reference implementation
+for Java API for XML Web Services 2.3.
+
+|Test Suite |The requirements, tests, and testing tools distributed by
+the Maintenance Lead as applicable to a given Version of the Technology.
+
+|Version |A release of the Technology, as produced through the Java
+Community Process.
+
+|WSDL-to-Java Output |Output of a WSDL-to-Java tool that is required for
+Web service deployment and invocation.
+
+|WSDL-to-Java Tool |A software development tool that implements or
+incorporates a function that generates Web service interfaces for
+clients and endpoints from a WSDL description as specified by the JAX-WS
+Specification.
+|=======================================================================
+
+
+[[GBFSC]][[TCJWS00099]][[rules-for-java-api-for-xml-web-services-2.3-products]]
+
+2.2.2 Rules for Java API for XML Web Services 2.3 Products
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following rules apply for each version of an operating system,
+software component, and hardware platform Documented as supporting the
+Product:
+
+1.  The Product must be able to satisfy all applicable compatibility
+requirements, including passing all Conformance Tests, in every Product
+Configuration and in every combination of Product Configurations, except
+only as specifically exempted by these Rules. +
+For example, if a Product provides distinct Operating Modes to optimize
+performance, then that Product must satisfy all applicable compatibility
+requirements for a Product in each Product Configuration, and
+combination of Product Configurations, of those Operating Modes.
+1.  If an Operating Mode controls a Resource necessary for the basic
+execution of the Test Suite, testing may always use a Product
+Configuration of that Operating Mode providing that Resource, even if
+other Product Configurations do not provide that Resource.
+Notwithstanding such exceptions, each Product must have at least one set
+of Product Configurations of such Operating Modes that is able to pass
+all the Conformance Tests. +
+For example, a Product with an Operating Mode that controls a security
+policy (i.e., Security Resource) which has one or more Product
+Configurations that cause Conformance Tests to fail may be tested using
+a Product Configuration that allows all Conformance Tests to pass.
+2.  A Product Configuration of an Operating Mode that causes the Product
+to report only version, usage, or diagnostic information is exempted
+from these compatibility rules.
+2.  Some Conformance Tests may have properties that may be changed.
+Properties that can be changed are identified in the TCK configuration
+interview. Apart from changing such properties and other allowed
+modifications described in this User's Guide (if any), no source or
+binary code for a Conformance Test may be altered in any way without
+prior written permission. Any such allowed alterations to the
+Conformance Tests would be posted to the Java Licensee Engineering web
+site and apply to all licensees.
+3.  The testing tools supplied as part of the Test Suite or as updated
+by the Maintenance Lead must be used to certify compliance.
+4.  The Exclude List associated with the Test Suite cannot be modified.
+5.  The Maintenance Lead can define exceptions to these Rules. Such
+exceptions would be made available to and apply to all licensees.
+6.  All hardware and software component additions, deletions, and
+modifications to a Documented supporting hardware/software platform,
+that are not part of the Product but required for the Product to satisfy
+the compatibility requirements, must be Documented and available to
+users of the Product. +
+For example, if a patch to a particular version of a supporting
+operating system is required for the Product to pass the Conformance
+Tests, that patch must be Documented and available to users of the
+Product.
+7.  The Product must contain the full set of public and protected
+classes and interfaces for all the Libraries. Those classes and
+interfaces must contain exactly the set of public and protected methods,
+constructors, and fields defined by the Specifications for those
+Libraries. No subsetting, supersetting, or modifications of the public
+and protected API of the Libraries are allowed except only as
+specifically exempted by these Rules.
+8.  Except for tests specifically required by this TCK to be rebuilt (if
+any), the binary Conformance Tests supplied as part of the Test Suite or
+as updated by the Maintenance Lead must be used to certify compliance.
+9.  The functional programmatic behavior of any binary class or
+interface must be that defined by the Specifications.
+10. Source Code in WSDL-to-Java Output when compiled by a Reference
+Compiler must execute properly when run on a Reference Runtime.
+11. Source Code in WSDL-to-Java Output must be in source file format
+defined by the Java Language Specification (JLS).
+12. Java-to-WSDL Output must fully meet W3C requirements for the Web
+Services Description Language (WSDL) 1.1.
+13. A Java-to-WSDL Tool must not produce Java-to-WSDL Output from source
+code that does not conform to the Java Language Specification (JLS).
+
+[[GBFRX]][[TCJWS00100]][[java-api-for-xml-web-services-2.3-test-appeals-process]]
+
+2.2.3 Java API for XML Web Services 2.3 Test Appeals Process
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There is a well established process for managing challenges to the Java
+technology Test Suites. Oracle, as Java API for XML Web Services 2.3
+Maintenance Lead, will authorize representatives from the Java Partner
+organization to be the point of contact for all test challenges.
+Typically this will be the engineer assigned to a company as part of its
+Java API for XML Web Services TCK support.
+
+If a test is determined to be invalid in function or if its basis in the
+specification is suspect, the test may be challenged by any licensee of
+the Java API for XML Web Services TCK. Each test validity issue must be
+covered by a separate test challenge. Test validity or invalidity will
+be determined based on its technical correctness such as:
+
+* Test has bugs (i.e., program logic errors)
+* Specification item covered by the test is ambiguous
+* Test does not match the specification
+* Test assumes unreasonable hardware and/or software requirements
+* Test is biased to a particular implementation
+
+Challenges based upon issues unrelated to technical correctness as
+defined by the specification will normally be rejected.
+
+Test challenges must be made in writing to the Java Partner organization
+and include all relevant information as described in step
+link:#BABCAEEA[1] in link:#GBFSF[Java API for XML Web Services TCK Test
+Appeals Steps]. The process used to determine the validity or invalidity
+of a test (or related group of tests) is also described in that section.
+
+All tests found to be invalid will either be placed on the Exclude List
+for that version of the Java API for XML Web Services TCK or have an
+alternate test made available.
+
+* Tests that are placed on the Exclude List will be placed on the
+Exclude List after the determination of test validity. The new Exclude
+List will be made available to all Java API for XML Web Services TCK
+licensees on the Java API for XML Web Services TCK web site.
+* Oracle, as Maintenance Lead, has the option of creating alternative
+tests to address any challenge.
+
+
+[NOTE]
+=======================================================================
+
+Passing an alternative test is deemed equivalent to passing the original
+test.
+
+=======================================================================
+
+
+[[GBFSF]][[TCJWS00017]][[java-api-for-xml-web-services-tck-test-appeals-steps]]
+
+2.2.3.1 Java API for XML Web Services TCK Test Appeals Steps
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+1.  [[BABCAEEA]] +
+Java API for XML Web Services TCK licensee writes a test challenge to
+Java Licensee Engineering contesting the validity of one or a related
+set of Java API for XML Web Services 2.3 tests. +
+A challenge must be provided to Java Licensee Engineering and include
+the following information justifying why each test should be
+invalidated. +
+[source,oac_no_warn]
+----
+Date:
+Licensee:
+License Contact:
+TCK name and version:
+RI version:
+Java SE version:
+Exclude List version:
+Specification version & section:
+Problem Description:
+Tests Affected:
+Output (inline/attach .jtr file and traces):
+----
+2.  Java Licensee Engineering evaluates the challenge. +
+If the appeal is incomplete or unclear, it is returned to the submitting
+licensee for correction. If all is in order, Java Licensee Engineering
+will check with the responsible test developers to review the purpose
+and validity of the test before writing a response. Java Licensee
+Engineering will attempt to complete the response within 5 business
+days. If the challenge is similar to a previously rejected test
+challenge (i.e., same test and justification), Java Licensee Engineering
+will send the previous response to the licensee.
+3.  The challenge and any supporting materials from test developers is
+sent to the assigned Java Licensee engineer for evaluation. +
+A decision of test validity or invalidity is normally made within 15
+working days of receipt of the challenge. All decisions will be
+documented with an explanation of why test validity was maintained or
+rejected.
+4.  The licensee is informed of the decision and proceeds accordingly. +
+If the test challenge is approved and one or more tests are invalidated,
+the tests are placed on the Exclude List for that version of the Java
+API for XML Web Services TCK (effectively removing the test or tests
+from the Test Suite). All tests placed on the Exclude List will have a
+bug report written to document the decision and made available to all
+licensees through the bug reporting database. If the test is valid but
+difficult to pass due to hardware or operating system limitations, an
+alternate test may be provided to use in place of the original test (all
+alternate tests are made available to the licensee community).
+5.  If the test challenge is rejected, the licensee may choose to
+escalate the decision to the Executive Committee (EC), however, it is
+expected that the licensee would continue to work with Java Licensee
+Engineering to resolve the issue and only involve the EC as a last
+resort.
+
+[[GBFTQ]][[TCJWS00052]][[reference-runtime-for-java-api-for-xml-web-services-2.3]]
+
+2.3 Reference Runtime for Java API for XML Web Services 2.3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The designated Reference Implementation for compatibility testing of
+Java API for XML Web Services 2.3 is as follows:
+
+* Java SE8 for Oracle Linux 7.1, and Windows 10
+* Reference Implementation of JAX-WS Version 2.3.
+* Oracle Linux 7.1, Windows 10
+
+[[GBFTL]][[TCJWS00053]][[specifications-for-java-api-for-xml-web-services-2.3]]
+
+2.4 Specifications for Java API for XML Web Services 2.3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Java API for XML Web Services 2.3 specification is available on the
+JSR 224 Web site at `http://jcp.org/en/jsr/detail?id=224` or on the Java
+Community Process (`http://jcp.org/en/home/index`) site.
+
+[[GBFTV]][[TCJWS00054]][[libraries-for-java-api-for-xml-web-services-2.3]]
+
+2.5 Libraries for Java API for XML Web Services 2.3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following is a list of the packages comprising the required class
+libraries JAX-WS 2.3:
+
+* `javax.xml.ws`
+* `javax.xml.ws.handler`
+* `javax.xml.ws.handler.soap`
+* `javax.xml.ws.http`
+* `javax.xml.ws.soap`
+* `javax.xml.ws.spi`
+* `javax.xml.ws.spi.http`
+* `javax.xml.ws.wsaddressing`
+
+For the latest list of packages, also see:
+
+* `http://docs.oracle.com/javase/8/docs/api/`
+
+

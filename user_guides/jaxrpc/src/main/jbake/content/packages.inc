@@ -1,0 +1,15 @@
+** `javax.xml.rpc`
+
+** `javax.xml.rpc.encoding`
+
+** `javax.xml.rpc.handler`
+
+** `javax.xml.rpc.handler.soap`
+
+** `javax.xml.rpc.holders`
+
+** `javax.xml.rpc.namespace`
+
+** `javax.xml.rpc.server`
+
+** `javax.xml.rpc.soap`

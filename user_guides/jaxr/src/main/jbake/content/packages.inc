@@ -1,0 +1,3 @@
+** `javax.xml.registry`
+
+** `javax.xml.registry.infomodel`

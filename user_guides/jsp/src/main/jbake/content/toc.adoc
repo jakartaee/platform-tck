@@ -1,0 +1,167 @@
+type=page
+status=published
+title=Oracle Technology Compatibility Kit User's Guide for JavaServer Pages 2.3 for Technology Licensees, Release 2.3
+next=title.html
+~~~~~~
+Oracle Technology Compatibility Kit User's Guide for JavaServer Pages 2.3 for Technology Licensees, Release 2.3
+===============================================================================================================
+
+[[contents]]
+Contents
+--------
+
+[[title-and-copyright-information]]
+link:title.html[Title and Copyright Information]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[preface]]
+link:TCKpreface.html#GBFTI[Preface]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:TCKpreface.html#GBFUS[Who Should Use This Book]
+* link:TCKpreface.html#sthref2[Documentation Accessibility]
+* link:TCKpreface.html#GBFPO[Before You Read This Book]
+* link:TCKpreface.html#GBFWF[Typographic Conventions]
+* link:TCKpreface.html#FWBSD[Shell Prompts in Command Examples]
+
+[[introduction]]
+link:intro.html#GBFOW[1 Introduction]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:intro.html#GBFTK[1.1 Compatibility Testing]
+
+** link:intro.html#GBFQN[1.1.1 Why Compatibility Testing is Important]
+
+** link:intro.html#GBFPR[1.1.2 TCK Compatibility Rules]
+
+** link:intro.html#GBFPW[1.1.3 TCK Overview]
+
+** link:intro.html#GBFPB[1.1.4 Java Community Process (JCP) Program and
+Compatibility Testing]
+* link:intro.html#GBFQR[1.2 About the JavaServer Pages TCK 2.3]
+
+** link:intro.html#GBFQV[1.2.1 JavaServer Pages TCK Specifications and
+Requirements]
+
+** link:intro.html#GBFSQ[1.2.2 JSP TCK Components]
+
+** link:intro.html#GBFSA[1.2.3 JavaTest Harness]
+
+** link:intro.html#GBFRA[1.2.4 TCK Compatibility Test Suite]
+
+** link:intro.html#GBFSH[1.2.5 Exclude Lists]
+
+** link:intro.html#GBFRR[1.2.6 JSP TCK Configuration Overview]
+* link:intro.html#GBFQW[1.3 Getting Started With the JSP TCK]
+
+[[procedure-for-javaserver-pages-2.3-certification]]
+link:rules.html#GBFSN[2 Procedure for JavaServer Pages 2.3 Certification]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:rules.html#CJAHGCEA[2.1 Certification Overview]
+* link:rules.html#CJAGHFHC[2.2 Compatibility Requirements]
+
+** link:rules.html#sthref4[2.2.1 Definitions]
+
+** link:rules.html#CJABJHAG[2.2.2 Rules for JavaServer Pages Version 2.3
+Products]
+* link:rules.html#CJAIGAID[2.3 JavaServer Pages Version 2.3 Test Appeals
+Process]
+
+** link:rules.html#CJAJAECH[2.3.1 JavaServer Pages Version 2.3 TCK Test
+Appeals Steps]
+
+** link:rules.html#sthref7[2.3.2 Test Challenge and Response Forms]
+* link:rules.html#CJACHGEC[2.4 Specifications for JavaServer Pages
+Version 2.3]
+* link:rules.html#CJAHCCBA[2.5 Libraries for JavaServer Pages Version
+2.3]
+
+[[installation]]
+link:install.html#GBFTP[3 Installation]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:install.html#GBFTS[3.1 Installing the Software]
+
+[[setup-and-configuration]]
+link:config.html#GBFVV[4 Setup and Configuration]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:config.html#GBFVU[4.1 Configuring Your Environment to Run the JSP
+TCK]
+* link:config.html#GCFQK[4.2 Preparing the WAR Files for Deployment]
+* link:config.html#GCRVD[4.3 Custom Deployment Handlers]
+
+** link:config.html#GJCEK[4.3.1 To Create a Custom Deployment Handler]
+* link:config.html#GCRWX[4.4 Deploying the JSP TCK Tests]
+
+[[executing-tests]]
+link:using.html#GBFWO[5 Executing Tests]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:using.html#GBFUZ[5.1 Using the GUI for TCK Test Execution]
+
+** link:using.html#GJCKM[5.1.1 To Start JavaTest in GUI Mode]
+
+** link:using.html#GBFVA[5.1.2 Configuring the JavaTest Harness in GUI
+Mode]
+
+** link:using.html#GBFUW[5.1.3 To Configure the JavaTest Harness to Run
+the JSP TCK Tests]
+
+** link:using.html#GBFUU[5.1.4 Modifying the Default Test Configuration
+in GUI Mode]
+
+** link:using.html#GJCHY[5.1.5 To Run a Subset of the TCK Tests in GUI
+Mode]
+* link:using.html#GJCIW[5.2 Using the Command-Line for TCK Test
+Execution]
+
+** link:using.html#GBFVW[5.2.1 To Run All Tests]
+
+** link:using.html#GJCMV[5.2.2 To Run a Subset (a Directory) of the TCK
+Tests)]
+
+** link:using.html#GJCOP[5.2.3 To Run an Individual Test]
+
+** link:using.html#GJCND[5.2.4 To Run Tests that Failed (PriorStatus)]
+
+[[rebuilding-tests-and-debugging-test-problems]]
+link:debug.html#GBFUV[6 Rebuilding Tests and Debugging Test Problems]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:debug.html#GBFYP[6.1 Overview]
+* link:debug.html#GJCYT[6.2 Debugging Test Results with the JavaTest GUI]
+
+** link:debug.html#GJCZI[6.2.1 Using the Test Tree in the GUI]
+
+** link:debug.html#GJCYY[6.2.2 Displaying Folder Information in the GUI]
+
+** link:debug.html#GJCZZ[6.2.3 Displaying Test Information in the GUI]
+
+** link:debug.html#GJCIB[6.2.4 Creating and Viewing Test Reports in GUI
+Mode]
+*** link:debug.html#GBFVH[6.2.4.1 To Create a Test Report]
+*** link:debug.html#GBFVO[6.2.4.2 To View an Existing Report]
+* link:debug.html#GJCYI[6.3 Creating and Viewing Report and Log Files
+Using Ant]
+
+** link:debug.html#GJCXH[6.3.1 To Create a Test Report]
+
+** link:debug.html#GJDIZ[6.3.2 To View a Test Report]
+
+** link:debug.html#GJDHF[6.3.3 To Examine Log Files]
+* link:debug.html#GJDFX[6.4 Building Tests Using Ant]
+* link:debug.html#GJDHH[6.5 Deploying Tests Using Ant]
+* link:debug.html#GBFYF[6.6 Recognizing Configuration Failures]
+
+[[a-frequently-asked-questions]]
+link:faq.html#GBFYD[A Frequently Asked Questions]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:faq.html#GBFYQ[A.1 Where do I start to debug a test failure?]
+* link:faq.html#GBFYR[A.2 How do I restart a crashed test run?]
+* link:faq.html#GBFWU[A.3 What would cause tests be added to the exclude
+list?]
+
+
