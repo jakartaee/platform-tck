@@ -183,7 +183,7 @@ export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/glassfish5/glassfish/mo
 -Djavax.xml.accessExternalSchema=all \
 -Djavax.xml.accessExternalDTD=file,http"
 
-if [ "$PROFILE" == "web" ];then
+if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
   KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile"
 fi
 
@@ -347,6 +347,8 @@ if [ -z ${vehicle} ];then
   RESULT_FILE_NAME=${TEST_SUITE}-results.tar.gz
 else
   RESULT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-results.tar.gz
+  sed -i "s/testsuite id=\"1\" name=\"${TEST_SUITE}\"/testsuite id=\"1\" name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
+  mv ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml  ${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml
 fi
 tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/logs/ ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config
 

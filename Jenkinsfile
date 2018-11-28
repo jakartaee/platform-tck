@@ -184,7 +184,7 @@ spec:
         }
       }
       steps {
-        build job: 'jakartaeetck-publish-reports', quietPeriod: 3
+        build job: 'jakartaeetck-publish-reports', propagate: false, quietPeriod: 3, wait: false
       }
     }
 
@@ -227,7 +227,7 @@ spec:
         }
       }
       steps {
-        build job: 'standalonetck-publish-reports', quietPeriod: 3
+        build job: 'standalonetck-publish-reports', propagate: false, quietPeriod: 3, wait: false
       }
     }
   }
