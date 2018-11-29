@@ -41,7 +41,7 @@ import java.util.Date;
 @SqlResultSetMappings({
     @SqlResultSetMapping(name = "id-firstname-lastname", classes = {
         @ConstructorResult(targetClass = Employee.class, columns = {
-            @ColumnResult(name = "ID"), @ColumnResult(name = "FIRSTNAME"),
+            @ColumnResult(name = "ID", type=Integer.class), @ColumnResult(name = "FIRSTNAME"),
             @ColumnResult(name = "LASTNAME") }) }),
     @SqlResultSetMapping(name = "tobeoverridden2", entities = {
         @EntityResult(entityClass = com.sun.ts.tests.jpa.core.StoredProcedureQuery.Employee.class, fields = {
