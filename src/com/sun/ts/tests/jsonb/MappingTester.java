@@ -14,10 +14,6 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
-
 package com.sun.ts.tests.jsonb;
 
 import java.io.ByteArrayInputStream;
@@ -26,6 +22,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.function.BiPredicate;
 import java.util.regex.Pattern;
@@ -48,6 +46,17 @@ public class MappingTester<T> {
   private static final String JSON_PROPERTY = "\"instance\" : ";
 
   private static final String JSON_SUFFIX = " }";
+
+  // 53 means max bit value of number with sign bit included
+  private static final int MAX_BIT_SIZE = 53;
+
+  // -1022 is the lowest range of the exponent
+  // more https://en.wikipedia.org/wiki/Exponent_bias
+  private static final int MIN_RANGE = -1022;
+
+  // 1023 is the highest range of the exponent
+  // more https://en.wikipedia.org/wiki/Exponent_bias
+  private static final int MAX_RANGE = 1023;
 
   private final Jsonb jsonb = JsonbBuilder.create();
 
@@ -136,8 +145,25 @@ public class MappingTester<T> {
       return fixedRegExp;
     // value Float.MAX_VALUE can have E38 or E+38, depending on impl
     representation = representation.replace("E38", "E[\\+]?\\+38");
-    if (!Number.class.isInstance(testValue))
+    if (!Number.class.isInstance(testValue)) {
       representation = Pattern.quote(representation);
+      // quote numbers that do not fit into double decimal precision
+    } else {
+      if (Long.class.isInstance(testValue)) {
+        Long longTestValue = Long.class.cast(testValue);
+        if (!isIEEE754(BigDecimal.valueOf(longTestValue))) {
+          representation = quote(representation);
+        }
+      } else if (BigDecimal.class.isInstance(testValue)) {
+        if (!isIEEE754((BigDecimal)testValue)) {
+          representation = quote(representation);
+        }
+      } else if (BigInteger.class.isInstance(testValue)) {
+        if (!isIEEE754(new BigDecimal((BigInteger)testValue))) {
+          representation = quote(representation);
+        }
+      }
+    }
     return representation;
   }
 
@@ -418,5 +444,28 @@ public class MappingTester<T> {
   public MappingTester<T> setMarshallExpectedRegExp(String regExp) {
     this.fixedRegExp = regExp;
     return this;
+  }
+
+  /**
+   * Checks whether the value of {@link BigDecimal} matches format IEEE-754
+   *
+   * @param value
+   *            value which is going to be checked
+   * @return true if value matches format IEEE-754
+   */
+  private static boolean isIEEE754(BigDecimal value) {
+    // scale of the number
+    int scale = value.scale();
+    // bit value of number without scale
+    int valBits = value.unscaledValue().abs().bitLength();
+    // bit value of scaled number
+    int intBitsScaled = value.toBigInteger().bitLength();
+    // Number whose bit length is than 53 or is not in range is considered as non
+    // IEEE 754-2008 binary64 compliant
+    return valBits <= MAX_BIT_SIZE && intBitsScaled <= MAX_BIT_SIZE && MIN_RANGE <= scale && scale <= MAX_RANGE;
+  }
+
+  private String quote(String value) {
+    return new StringBuilder(value.length() + 2).append('"').append(value).append('"').toString();
   }
 }
