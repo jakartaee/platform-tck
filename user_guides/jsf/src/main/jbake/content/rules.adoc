@@ -235,9 +235,7 @@ Environment (.jte) files in the Test Suite
 installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
-prior written permission. Any such allowed alterations to the
-Conformance Tests would be posted to the Java Licensee Engineering web
-site and apply to all licensees.
+prior written permission.
 
 *{techID}3* The testing tools supplied as part of the Test Suite or as
 updated by the Maintenance Lead must be used to certify compliance.
@@ -323,11 +321,9 @@ test made available.
 * Tests that are placed on the Exclude List will be placed on the
 Exclude List within one business day after the determination of test
 validity. The new Exclude List will be made available to all
-{TechnologyShortName} TCK licensees on the Java Licensee Engineering website.
+{TechnologyShortName} TCK licensees.
 * Oracle, as Maintenance Lead has the option of creating alternative
-tests to address any challenge. Alternative tests (and criteria for
-their use) will be made available on the Java Licensee Engineering
-website. +
+tests to address any challenge. +
 
 [NOTE]
 =======================================================================

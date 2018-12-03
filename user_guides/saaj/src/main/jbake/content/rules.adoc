@@ -322,12 +322,9 @@ test made available.
 
 * Tests that are placed on the Exclude List will be placed on the
 Exclude List within one business day after the determination of test
-validity. The new Exclude List will be made available to all
-{TechnologyShortName} TCK licensees on the Java Licensee Engineering website.
+validity.
 * Oracle, as Maintenance Lead has the option of creating alternative
-tests to address any challenge. Alternative tests (and criteria for
-their use) will be made available on the Java Licensee Engineering
-website. +
+tests to address any challenge. +
 
 [NOTE]
 =======================================================================
