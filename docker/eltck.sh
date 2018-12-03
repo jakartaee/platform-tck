@@ -53,10 +53,6 @@ mkdir -p $TCK_HOME/eltckreport/eltck
 mkdir -p $TCK_HOME/eltckwork/eltck
 
 KEYWORDS=all
-#if [ "web" == "$PROFILE" ]; then
-#  KEYWORDS=javaee_web_profile
-#fi
-
 cd $TS_HOME/bin
 ant -Dkeywords=$KEYWORDS deploy.all
 ant -Dkeywords=$KEYWORDS run.all

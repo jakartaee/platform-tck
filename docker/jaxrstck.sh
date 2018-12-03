@@ -71,11 +71,6 @@ cd $TS_HOME/bin
 ant update.jaxrs.wars
 ant deploy.all
 
-# TODO : Fix web profile run
-#if [ $PROFILE == "web" ];then
-#  export ANT_OPTS="-Dkeywords=javaee_web_profile $ANT_OPTS"
-#fi
-
 cd $TS_HOME/src/com/sun/ts/tests/
 ant runclient
 echo "Test run complete"
