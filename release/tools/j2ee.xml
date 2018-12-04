@@ -226,7 +226,7 @@
         </copy>
 
         <copy todir="${deliverable.bundle.dir}/docker" includeEmptyDirs="no">
-            <fileset dir="${ts.home}/docker" includes="*jakartaeetck*.sh"/>
+            <fileset dir="${ts.home}/docker" includes="*jakartaeetck*.sh, adjust_classpath.sh"/>
         </copy>
 
         <copy todir="${deliverable.bundle.dir}/docker" includeEmptyDirs="no">

@@ -97,6 +97,10 @@ mkdir -p ${CTS_HOME}/ri
 unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
 chmod -R 777 ${CTS_HOME}/ri
 
+# Temporary hack to replace javax prefixed jar names to jakarta prefixed jar names
+# based on if those are available in the RI GlassFish Bundle.
+. ${CTS_HOME}/javaeetck/docker/adjust_classpath.sh
+
 export ADMIN_PASSWORD_FILE="${CTS_HOME}/admin-password.txt"
 echo "AS_ADMIN_PASSWORD=adminadmin" > ${ADMIN_PASSWORD_FILE}
 
