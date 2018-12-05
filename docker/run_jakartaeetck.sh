@@ -214,6 +214,7 @@ export JT_WORK_DIR=${CTS_HOME}/jakartaeetck-work
 cd ${TS_HOME}/bin
 sed -i "s#^report.dir=.*#report.dir=${JT_REPORT_DIR}#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=${JT_WORK_DIR}#g" ts.jte
+sed -i "s#^if.existing.work.report.dirs=.*#if.existing.work.report.dirs=overwrite#g" ts.jte
 
 sed -i "s/^mailHost=.*/mailHost=${MAIL_HOST}/g" ts.jte
 sed -i "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte
@@ -339,6 +340,15 @@ ant start.auto.deployment.server > /tmp/deploy.out 2>&1 &
  
 cd $TS_HOME/bin
 ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+
+# Check if there are any failures in the test. If so, re-run those tests.
+FAILED_COUNT=0
+FAILED_COUNT=`cat ${JT_REPORT_DIR}/${test_suite}/text/summary.txt | grep 'Failed.' | wc -l`
+if [[ $FAILED_COUNT -gt 0 ]]; then
+  echo "One or more tests failed. Failure count: $FAILED_COUNT"
+  echo "Re-running only the failed, error tests"
+  ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+fi
 
 export HOST=`hostname -f`
 TEST_SUITE=`echo "${test_suite}" | tr '/' '_'`
