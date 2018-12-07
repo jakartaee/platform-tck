@@ -38,6 +38,11 @@ echo "########## Trunk.Install.V5 Config ##########"
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -o latest-glassfish.zip
 
+if [ ! -z "$GF_VERSION_URL" ]; then
+  wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version
+  cat glassfish.version
+fi
+
 export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${BASEDIR}/glassfish5/glassfish/modules/endorsed \
 -Djavax.xml.accessExternalStylesheet=all \
 -Djavax.xml.accessExternalSchema=all \

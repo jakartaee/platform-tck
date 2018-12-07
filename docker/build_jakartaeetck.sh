@@ -68,6 +68,11 @@ wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -o latest-glassfish.zip
 ls -l $GF_HOME/glassfish5/glassfish/
 
+if [ ! -z "$GF_VERSION_URL" ]; then
+  wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version
+  cat glassfish.version
+fi
+
 echo "########## Trunk.Clean.Build.Libs ##########"
 ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin clean.all build.all.jars
 

@@ -214,7 +214,6 @@ export JT_WORK_DIR=${CTS_HOME}/jakartaeetck-work
 cd ${TS_HOME}/bin
 sed -i "s#^report.dir=.*#report.dir=${JT_REPORT_DIR}#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=${JT_WORK_DIR}#g" ts.jte
-sed -i "s#^if.existing.work.report.dirs=.*#if.existing.work.report.dirs=overwrite#g" ts.jte
 
 sed -i "s/^mailHost=.*/mailHost=${MAIL_HOST}/g" ts.jte
 sed -i "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte

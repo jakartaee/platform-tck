@@ -126,6 +126,9 @@ spec:
     string(name: 'GF_BUNDLE_URL', 
            defaultValue: '', 
            description: 'URL required for downloading GlassFish Full/Web profile bundle' )
+    string(name: 'GF_VERSION_URL', 
+           defaultValue: '', 
+           description: 'URL required for downloading GlassFish version details' )
     string(name: 'TCK_BUNDLE_BASE_URL', 
            defaultValue: '', 
            description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )
@@ -158,7 +161,7 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/build_jakartaeetck.sh
           """
-          archiveArtifacts artifacts: 'jakartaeetck-bundles/*.zip'
+          archiveArtifacts artifacts: "jakartaeetck-bundles/*.zip,glassfish.version", allowEmptyArchive: true
           stash includes: 'jakartaeetck-bundles/*.zip', name: 'jakartaeetck-bundles'
         }
       }
@@ -201,7 +204,7 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks}
           """
-          archiveArtifacts artifacts: 'standalone-bundles/*.zip'
+          archiveArtifacts artifacts: "standalone-bundles/*.zip,glassfish.version", allowEmptyArchive: true
           stash includes: 'standalone-bundles/*.zip', name: 'standalone-bundles'
         }
       }
