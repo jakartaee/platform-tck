@@ -68,14 +68,14 @@ jte.version=@JTE_VERSION@
 #     impl.vi=glassfish
 #     impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy
 #     impl.deploy.timeout.multiplier=30
-#     jspservlet.classes=${webServerHome}/modules/javax.servlet-api.jar${pathsep} \
+#     jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep} \
 #                        ${webServerHome}/modules/javax.servlet.jsp.jar${pathsep} \
-#						 ${webServerHome}/modules/javax.servlet.jsp-api.jar
+#						 ${webServerHome}/modules/jakarta.servlet.jsp-api.jar
 #
-#    el.classes=${webServerHome}/modules/javax.el.jar
+#    el.classes=${webServerHome}/modules/jakarta.el.jar
 #
 #    jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep}\
-#    			  ${webServerHome}/javax.servlet.jsp.jstl-api.jar
+#    			  ${webServerHome}/jakarta.servlet.jsp.jstl-api.jar
 #
 #
 #########################################################################
@@ -85,8 +85,8 @@ webServerHome=/ri/4.0/glassfish3/glassfish
 impl.vi=glassfish
 impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy
 impl.deploy.timeout.multiplier=30
-jspservlet.classes=${webServerHome}/modules/javax.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp-api.jar
-el.classes=${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/javax.el.jar
+jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar
+el.classes=${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/jakarta.el.jar
 jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar
 
 ########################################################################

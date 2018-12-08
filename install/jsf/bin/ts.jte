@@ -69,14 +69,14 @@ jte.version=@JTE_VERSION@
 #     impl.vi=glassfish
 #     impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy
 #     impl.deploy.timeout.multiplier=20
-#     jsf.classes=${webServerHome}/modules/javax.faces.jar${pathsep} \
+#     jsf.classes=${webServerHome}/modules/jakarta.faces.jar${pathsep} \
 #				  ${webServerHome}/modules/weld-osgi-bundle.jar
 #     jspservlet.classes=${webServerHome}/modules/javax.servlet.jsp.jar${pathsep} \
-#				${webServerHome}/modules/javax.servlet.jsp.jstl-api.jar${pathsep} \
+#				${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar${pathsep} \
 #				${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep} \
-#				${webServerHome}/modules/javax.servlet-api.jar${pathsep} \
+#				${webServerHome}/modules/jakarta.servlet-api.jar${pathsep} \
 #				${webServerHome}/modules/javax.el-api.jar${pathsep} \
-#				${webServerHome}/modules/javax.servlet.jsp-api.jar
+#				${webServerHome}/modules/jakarta.servlet.jsp-api.jar
 #
 #########################################################################
 webServerHost=localhost
@@ -85,8 +85,8 @@ webServerHome=/ri/glassfish3/glassfish
 impl.vi=glassfish
 impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy
 impl.deploy.timeout.multiplier=20
-jsf.classes=${webServerHome}/modules/javax.faces.jar${pathsep}${webServerHome}/modules/weld-osgi-bundle.jar
-jspservlet.classes=${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jstl-api.jar${pathsep}${webServerHome}/modules/javax.servlet-api.jar${pathsep}${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp-api.jar
+jsf.classes=${webServerHome}/modules/jakarta.faces.jar${pathsep}${webServerHome}/modules/weld-osgi-bundle.jar
+jspservlet.classes=${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar${pathsep}${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar
 
 ########################################################################
 # @javatest.timeout.factor This property specifies the scale factor used by

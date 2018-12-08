@@ -274,7 +274,7 @@ alt.schema.dir=${lib.dir}/schemas
 ri.lib=${jacc.home}/modules
 lib.dir=${ts.home}/lib
 
-jacc.classes=${ri.lib}/javax.security.jacc-api.jar:${ri.lib}/javax.security.auth.message-api.jar:${ri.lib}/common-util.jar:${ri.lib}/container-common.jar:${ri.lib}/endorsed/javax.annotation-api.jar:${ri.lib}/javax.resource-api.jar:${ri.lib}/jmxremote_optional-repackaged.jar:${ri.lib}/ldapbp-repackaged.jar:${ri.lib}/security.jar:${ri.lib}/web-core.jar:${ri.lib}/web-glue.jar:${ri.lib}/websecurity.jar:${ri.lib}/javax.servlet-api.jar:${ri.lib}/javax.ejb-api.jar:${ri.lib}/javax.persistence.jar:${ri.lib}/javax.transaction-api.jar:${ri.lib}/javax.jms-api.jar:${ri.lib}/javax.servlet.jsp-api.jar
+jacc.classes=${ri.lib}/jakarta.security.jacc-api.jar:${ri.lib}/jakarta.security.auth.message-api.jar:${ri.lib}/common-util.jar:${ri.lib}/container-common.jar:${ri.lib}/endorsed/jakarta.annotation-api.jar:${ri.lib}/jakarta.resource-api.jar:${ri.lib}/jmxremote_optional-repackaged.jar:${ri.lib}/ldapbp-repackaged.jar:${ri.lib}/security.jar:${ri.lib}/web-core.jar:${ri.lib}/web-glue.jar:${ri.lib}/websecurity.jar:${ri.lib}/jakarta.servlet-api.jar:${ri.lib}/jakarta.ejb-api.jar:${ri.lib}/javax.persistence.jar:${ri.lib}/jakarta.transaction-api.jar:${ri.lib}/javax.jms-api.jar:${ri.lib}/jakarta.servlet.jsp-api.jar
 
 ts.run.classpath=${ts.home}/classes:${database.classes}:${jacc.classes}
 
@@ -343,7 +343,7 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jacc.home}/modules/javax.security.jacc-api.jar:${jacc.home}/modules/javax.security.auth.message-api.jar:${JAVA_HOME}/lib/rt.jar
+sigTestClasspath=${jacc.home}/modules/jakarta.security.jacc-api.jar:${jacc.home}/modules/jakarta.security.auth.message-api.jar:${JAVA_HOME}/lib/rt.jar
 
 
 ########################################################################

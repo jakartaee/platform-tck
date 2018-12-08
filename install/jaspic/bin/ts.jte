@@ -267,7 +267,7 @@ jaspic.classes=${jaspic.home}/modules/war-util.jar:\
                ${jaspic.home}/modules/jaspic.provider.framework.jar:\
                ${jaspic.home}/modules/security.jar:\
                ${jaspic.home}/modules/security-ee.jar:\
-               ${jaspic.home}/modules/javax.security.auth.message-api.jar:\
+               ${jaspic.home}/modules/jakarta.security.auth.message-api.jar:\
                ${jaspic.home}/modules/kernel.jar:\
                ${jaspic.home}/modules/admin-cli.jar:\
                ${jaspic.home}/modules/annotation-framework.jar:\
@@ -281,14 +281,14 @@ jaspic.classes=${jaspic.home}/modules/war-util.jar:\
                ${jaspic.home}/modules/glassfish-naming.jar:\
                ${jaspic.home}/modules/internal-api.jar:\
                ${jaspic.home}/modules/security.jar:\
-               ${jaspic.home}/modules/javax.servlet-api.jar:\
+               ${jaspic.home}/modules/jakarta.servlet-api.jar:\
                ${jaspic.home}/modules/war-util.jar:\
-               ${jaspic.home}/modules/javax.mail.jar:\
-               ${jaspic.home}/modules/javax.enterprise.deploy-api.jar:\
+               ${jaspic.home}/modules/jakarta.mail.jar:\
+               ${jaspic.home}/modules/jakarta.enterprise.deploy-api.jar:\
                ${jaspic.home}/modules/webservices-osgi.jar:\
                ${jaspic.home}/modules/jaxb-osgi.jar:\
                ${jaspic.home}/modules/javax.jms-api.jar:\
-               ${jaspic.home}/modules/endorsed/javax.annotation-api.jar:\
+               ${jaspic.home}/modules/endorsed/jakarta.annotation-api.jar:\
                ${jaspic.home}/modules/endorsed/webservices-api-osgi.jar:\
                ${jaspic.home}/modules/deployment-client.jar
 
@@ -470,7 +470,7 @@ env.ts_win32.menu=true
 #                    (';' windows, ':' Unixes).
 #                    Note that on mac, classes.jar is used instead of rt.jar.
 #########################################################################
-sigTestClasspath=${jaspic.home}/modules/javax.security.auth.message-api.jar:${jaspic.home}/modules/security.jar:${JAVA_HOME}/lib/jce.jar:${JAVA_HOME}/lib/rt.jar:${JAVA_HOME}/../Classes/classes.jar
+sigTestClasspath=${jaspic.home}/modules/jakarta.security.auth.message-api.jar:${jaspic.home}/modules/security.jar:${JAVA_HOME}/lib/jce.jar:${JAVA_HOME}/lib/rt.jar:${JAVA_HOME}/../Classes/classes.jar
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
@@ -963,7 +963,7 @@ porting.ts.deploy.class.2=com.sun.ts.lib.implementation.sun.javaee.glassfish.Aut
 
 #classpath used by standard deployment server to deploy to the RI in a separate 
 #VM (DO NOT MODIFY)
-ts.standard.deployment.server.classpath=${ts.home}/lib/jaxb-api.jar:${ts.home}/lib/jaxb-impl.jar:${ts.home}/lib/jaxb-xjc.jar:${ts.home}/lib/tsharness.jar:${ts.home}/lib/jaspic.jar:${ts.home}/lib/sigtest.jar:${ts.run.classpath}:${ts.home}/lib/javatest.jar:${ts.home}/lib/jdom-1.1.3.jar:${ant.home}/lib/ant.jar:${ts.home}/lib/commons-codec-1.9.jar
+ts.standard.deployment.server.classpath=${ts.home}/lib/jakarta.xml.bind-api.jar:${ts.home}/lib/jaxb-impl.jar:${ts.home}/lib/jaxb-xjc.jar:${ts.home}/lib/tsharness.jar:${ts.home}/lib/jaspic.jar:${ts.home}/lib/sigtest.jar:${ts.run.classpath}:${ts.home}/lib/javatest.jar:${ts.home}/lib/jdom-1.1.3.jar:${ant.home}/lib/ant.jar:${ts.home}/lib/commons-codec-1.9.jar
 
 ###############################################################################
 # The following properties are aliases for the old J2EE properties.  These

@@ -99,7 +99,7 @@ glassfish.domain.name=domain1
 # @glassfish.ri.classes  --  Classpath setting for GlassFish RI and
 #                            Concurrency implementation classes.
 ######################################################################
-glassfish.ri.classes=${webcontainer.home}/modules/javax.enterprise.concurrent-api.jar${pathsep}${webcontainer.home}/modules/javax.servlet-api.jar${pathsep}${webcontainer.home}/modules/javax.ejb-api.jar${pathsep}${webcontainer.home}/modules/jta.jar${pathsep}${webcontainer.home}/modules/javax.enterprise.deploy-api.jar
+glassfish.ri.classes=${webcontainer.home}/modules/jakarta.enterprise.concurrent-api.jar${pathsep}${webcontainer.home}/modules/jakarta.servlet-api.jar${pathsep}${webcontainer.home}/modules/jakarta.ejb-api.jar${pathsep}${webcontainer.home}/modules/jta.jar${pathsep}${webcontainer.home}/modules/jakarta.enterprise.deploy-api.jar
 
 
 ####################################################################

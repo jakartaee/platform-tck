@@ -35,7 +35,7 @@
 #		el.classes=/el-impl.jar${pathsep}/el-api.jar 
 #
 #   Example:(Glassfish 4)
-#       el.classes=/ri/glassfish3/glassfish/modules/javax.el.jar
+#       el.classes=/ri/glassfish3/glassfish/modules/jakarta.el.jar
 #
 #
 ########################################################

@@ -141,7 +141,7 @@ ts.classpath=${local.classes}${pathsep}${ts.harness.classpath}
 
 ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/servlettck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/http.jar
 
-servlet.classes=${web.home}/modules/javax.servlet-api.jar${pathsep}${web.home}/modules/endorsed/javax.annotation-api.jar
+servlet.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/endorsed/jakarta.annotation-api.jar
 
 ########################################################################
 ## Common environment for both ts_unix and ts_win32

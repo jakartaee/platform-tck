@@ -102,19 +102,19 @@ jstl.db.password=cts1
 #
 #    jdbc.classes=${webServerHome}/../javadb/lib/derbyclient.jar
 #
-#    jspservlet.classes=${webServerHome}/modules/javax.servlet-api.jar${pathsep} \
+#    jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep} \
 #                        ${webServerHome}/modules/javax.servlet.jsp.jar${pathsep} \
-#						  ${webServerHome}/modules/javax.servlet.jsp-api.jar${pathsep} \
+#						  ${webServerHome}/modules/jakarta.servlet.jsp-api.jar${pathsep} \
 #						  ${webServerHome}/modules/javax.el-api.jar${pathsep} \
-#						  ${webServerHome}/modules/javax.el.jar
+#						  ${webServerHome}/modules/jakarta.el.jar
 #
-#    jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl-api.jar${pathsep}\
+#    jstl.classes=${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar${pathsep}\
 #    				${webServerHome}/modules/javax.servlet.jsp.jstl.jar
 #
 ########################################################
 jdbc.classes=${webServerHome}/../javadb/lib/derbyclient.jar
-jspservlet.classes=${webServerHome}/modules/javax.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp-api.jar${pathsep}${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/javax.el.jar
-jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jstl-api.jar
+jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar${pathsep}${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/jakarta.el.jar
+jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar
 
 
 ########################################################################

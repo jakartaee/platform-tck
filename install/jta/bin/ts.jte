@@ -49,7 +49,7 @@
 #     webServerPort=8001
 #     webServerHome=/sun/glassfish5/glassfish
 #     web.deployment.handler=glassfish.xml
-#     jta.classes=${webServerHome}/modules/javax.transaction.jar${pathsep}${webServerHome}/modules/javax.servlet-api.jar
+#     jta.classes=${webServerHome}/modules/javax.transaction.jar${pathsep}${webServerHome}/modules/jakarta.servlet-api.jar
 #     
 #########################################################################
 webServerHost=localhost
@@ -63,14 +63,14 @@ webServerHome=
 #                    for the JTA API jar.
 #
 ########################################################################
-jtaJarClasspath=${webServerHome}/modules/javax.transaction-api.jar
+jtaJarClasspath=${webServerHome}/modules/jakarta.transaction-api.jar
 
 jta.classes=${jtaJarClasspath}${pathsep}\
-            ${webServerHome}/modules/javax.interceptor-api.jar${pathsep}\
+            ${webServerHome}/modules/jakarta.interceptor-api.jar${pathsep}\
             ${webServerHome}/modules/jts.jar${pathsep}\
             ${webServerHome}/modules/weld-osgi-bundle.jar${pathsep}\
             ${webServerHome}/modules/glassfish-naming.jar${pathsep}\
-            ${webServerHome}/modules/javax.servlet-api.jar${pathsep}\
+            ${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}\
             ${webServerHome}/modules/bean-validator.jar${pathsep}\
             ${webServerHome}/modules/cdi-api.jar
 
