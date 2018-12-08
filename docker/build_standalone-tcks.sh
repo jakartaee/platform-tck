@@ -85,57 +85,57 @@ fi
 for tck in ${TCK_LIST[@]}; do
   if [ "jaxr" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djwsdp.home=$GF_HOME/glassfish5/glassfish/ -Dts.classpath=$GF_HOME/glassfish5/glassfish/modules/endorsed/jaxb-api.jar:$GF_HOME/glassfish5/glassfish/modules/endorsed/webservices-api-osgi.jar:$GF_HOME/glassfish5/glassfish/modules/javax.xml.registry-api.jar:$GF_HOME/glassfish5/glassfish/modules/webservices-osgi.jar:$GF_HOME/glassfish5/glassfish/modules/jaxb-osgi.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$BASEDIR/lib/javatest.jar:$BASEDIR/lib/tsharness.jar -Dall.test.dir=com/sun/ts/tests/jaxr,com/sun/ts/tests/signaturetest/jaxr -Dbuild.level=2"
+    TCK_SPECIFIC_PROPS="-Djwsdp.home=$GF_HOME/glassfish5/glassfish/ -Dts.classpath=$GF_HOME/glassfish5/glassfish/modules/endorsed/jakarta.xml.bind-api.jar:$GF_HOME/glassfish5/glassfish/modules/endorsed/webservices-api-osgi.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.xml.registry-api.jar:$GF_HOME/glassfish5/glassfish/modules/webservices-osgi.jar:$GF_HOME/glassfish5/glassfish/modules/jaxb-osgi.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$BASEDIR/lib/javatest.jar:$BASEDIR/lib/tsharness.jar -Dall.test.dir=com/sun/ts/tests/jaxr,com/sun/ts/tests/signaturetest/jaxr -Dbuild.level=2"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaxrpc" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dendorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed -Dall.test.dir=com/sun/ts/tests/jaxrpc,com/sun/ts/tests/signaturetest/jaxrpc -Dbuild.level=2 -Dlocal.classes=$GF_HOME/glassfish5/glassfish/modules/webservices-osgi.jar:$GF_HOME/glassfish5/glassfish/modules/javax.xml.rpc-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.mail.jar:$GF_HOME/glassfish5/glassfish/modules/jaxb-osgi.jar:$GF_HOME/modules/javax.ejb-api.jar"
+    TCK_SPECIFIC_PROPS="-Dendorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed -Dall.test.dir=com/sun/ts/tests/jaxrpc,com/sun/ts/tests/signaturetest/jaxrpc -Dbuild.level=2 -Dlocal.classes=$GF_HOME/glassfish5/glassfish/modules/webservices-osgi.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.xml.rpc-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.mail.jar:$GF_HOME/glassfish5/glassfish/modules/jaxb-osgi.jar:$GF_HOME/modules/jakarta.ejb-api.jar"
     DOC_SPECIFIC_PROPS="-propertyfile $BASEDIR/install/jaxrpc/bin/build.properties -Dts.home=$BASEDIR -Ddeliverable.version=1.1 -Ddeliverable.class=com.sun.ts.lib.deliverable.jaxrpc.JAXRPCDeliverable"
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jta" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djta.classes=$GF_HOME/glassfish5/glassfish/modules/javax.transaction-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar"
+    TCK_SPECIFIC_PROPS="-Djta.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.transaction-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jsf" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djsf.classes=$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet.jsp.jstl-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.inject.jar:$GF_HOME/glassfish5/glassfish/modules/javax.faces.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet.jsp-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.el.jar"
+    TCK_SPECIFIC_PROPS="-Djsf.classes=$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet.jsp.jstl-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.inject.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.faces.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet.jsp-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.el.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jsonp" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djsonp.classes=$GF_HOME/glassfish5/glassfish/modules/javax.json-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.json.bind-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.json.jar"
+    TCK_SPECIFIC_PROPS="-Djsonp.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.bind-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jsonb" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djsonb.classes=$GF_HOME/glassfish5/glassfish/modules/javax.json-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.json.bind-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.json.jar:$GF_HOME/glassfish5/glassfish/modules/javax.json.jar:$GF_HOME/glassfish5/glassfish/modules/javax.inject.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar"
+    TCK_SPECIFIC_PROPS="-Djsonb.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.bind-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.inject.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaxrs" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djaxrs.classes=$GF_HOME/glassfish5/glassfish/modules/javax.json-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.json.bind-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.json.jar:$GF_HOME/glassfish5/glassfish/modules/jsonp-jaxrs.jar:$GF_HOME/glassfish5/glassfish/modules/javax.ws.rs-api.jar:$GF_HOME/glassfish5/glassfish/modules/jsonp-jaxrs.jar:$GF_HOME/glassfish5/glassfish/modules/endorsed/javax.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.json.jar:$GF_HOME/glassfish5/glassfish/modules/javax.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.interceptor-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.inject.jar:$GF_HOME/glassfish5/glassfish/modules/validation-api.jar:$GF_HOME/glassfish5/glassfish/modules/bean-validator.jar"
+    TCK_SPECIFIC_PROPS="-Djaxrs.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.bind-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jsonp-jaxrs.jar:$GF_HOME/glassfish5/glassfish/modules/javax.ws.rs-api.jar:$GF_HOME/glassfish5/glassfish/modules/jsonp-jaxrs.jar:$GF_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.interceptor-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.inject.jar:$GF_HOME/glassfish5/glassfish/modules/validation-api.jar:$GF_HOME/glassfish5/glassfish/modules/bean-validator.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "websocket" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dwebsocket.classes=$GF_HOME/glassfish5/glassfish/modules/javax.websocket-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.inject.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar"
+    TCK_SPECIFIC_PROPS="-Dwebsocket.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.websocket-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.inject.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "securityapi" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dsecurityapi.classes=$GF_HOME/glassfish5/glassfish/modules/endorsed/javax.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.inject.jar:$GF_HOME/glassfish5/glassfish/modules/javax.security.enterprise-api.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.faces.jar:$GF_HOME/glassfish5/glassfish/modules/javax.security.auth.message-api.jar:$BASEDIR/glassfish5/glassfish/modules/javax.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.interceptor-api.jar"
+    TCK_SPECIFIC_PROPS="-Dsecurityapi.classes=$GF_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.inject.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.security.enterprise-api.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.faces.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.security.auth.message-api.jar:$BASEDIR/glassfish5/glassfish/modules/jakarta.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.interceptor-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "el" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Del.classes=$GF_HOME/glassfish5/glassfish/modules/javax.el.jar"
+    TCK_SPECIFIC_PROPS="-Del.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.el.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "concurrency" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dconcurrency.classes=$GF_HOME/glassfish5/glassfish/modules/javax.enterprise.concurrent-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/jta.jar:$GF_HOME/glassfish5/glassfish/modules/javax.enterprise.deploy-api.jar"
+    TCK_SPECIFIC_PROPS="-Dconcurrency.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.enterprise.concurrent-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/jta.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.enterprise.deploy-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "connector" == "$tck" ]
@@ -191,12 +191,12 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "saaj" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dlocal.classes=$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.ejb-api.jar -Dwebcontainer.home=$GF_HOME/glassfish5/glassfish -Dendorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed"
+    TCK_SPECIFIC_PROPS="-Dlocal.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.ejb-api.jar -Dwebcontainer.home=$GF_HOME/glassfish5/glassfish -Dendorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "servlet" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dservlet.classes=$GF_HOME/glassfish5/glassfish/modules/endorsed/javax.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar"
+    TCK_SPECIFIC_PROPS="-Dservlet.classes=$GF_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   else

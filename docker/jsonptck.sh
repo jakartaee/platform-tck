@@ -32,7 +32,7 @@ cd $TS_HOME/bin
 
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jsonptckreport/jsonptck/#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jsonptckwork/jsonptck#g" ts.jte
-sed -i "s#jsonp\.classes=.*#jsonp.classes=$TCK_HOME/glassfish5/glassfish/modules/javax.json-api.jar:$TCK_HOME/glassfish5/glassfish/modules/javax.json.jar#g" ts.jte
+sed -i "s#jsonp\.classes=.*#jsonp.classes=$TCK_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$TCK_HOME/glassfish5/glassfish/modules/jakarta.json.jar#g" ts.jte
 
 mkdir -p $TCK_HOME/jsonptckreport/jsonptck
 mkdir -p $TCK_HOME/jsonptckwork/jsonptck

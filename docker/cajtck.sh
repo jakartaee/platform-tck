@@ -47,7 +47,7 @@ cd $TS_HOME/bin
 
 sed -i "s#^build.level=.*#build.level=2#g" ts.jte
 sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed#g" ts.jte
-sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/javax.annotation-api.jar#g" ts.jte
+sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/cajtckreport/cajtck#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/cajtckwork/cajtck#g" ts.jte
 
