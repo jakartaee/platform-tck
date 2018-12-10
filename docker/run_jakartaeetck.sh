@@ -342,7 +342,8 @@ ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPT
 
 # Check if there are any failures in the test. If so, re-run those tests.
 FAILED_COUNT=0
-FAILED_COUNT=`cat ${JT_REPORT_DIR}/${test_suite}/text/summary.txt | grep 'Failed.' | wc -l`
+TEST_SUITE=`echo "${test_suite}" | tr '/' '_'`
+FAILED_COUNT=`cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Failed.' | wc -l`
 if [[ $FAILED_COUNT -gt 0 ]]; then
   echo "One or more tests failed. Failure count: $FAILED_COUNT"
   echo "Re-running only the failed, error tests"
@@ -350,7 +351,6 @@ if [[ $FAILED_COUNT -gt 0 ]]; then
 fi
 
 export HOST=`hostname -f`
-TEST_SUITE=`echo "${test_suite}" | tr '/' '_'`
 echo "1 ${TEST_SUITE} ${HOST}" > ${CTS_HOME}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${TS_HOME}/docker/JTReportParser/JTReportParser.jar ${CTS_HOME}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
