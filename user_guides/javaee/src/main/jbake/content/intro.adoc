@@ -136,9 +136,7 @@ harness.
 
 For documentation on the test harness used for running the Java EE 8 CTS
 test suite, see
-`https://wiki.openjdk.java.net/display/CodeTools/Documentation`. If you
-cannot access the documentation from the website, contact Java Partner
-Engineering for a pointer to the JavaTest documentation bundle.
+`https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
 
 [[sthref4]][[java-ee-8-technologies-tested-with-java-ee-8-cts]]
 
