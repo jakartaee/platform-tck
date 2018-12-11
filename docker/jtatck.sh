@@ -66,4 +66,4 @@ echo "1 jtatck ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
-tar zcvf ${WORKSPACE}/jtatck-results.tar.gz ${TCK_HOME}/jtatckreport ${TCK_HOME}/jtatckwork ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*
+tar zcvf ${WORKSPACE}/jtatck-results.tar.gz ${TCK_HOME}/jtatckreport ${TCK_HOME}/jtatckwork ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 ${TS_HOME}/bin/ts.*
