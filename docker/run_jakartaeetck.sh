@@ -97,10 +97,6 @@ mkdir -p ${CTS_HOME}/ri
 unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
 chmod -R 777 ${CTS_HOME}/ri
 
-# Temporary hack to replace javax prefixed jar names to jakarta prefixed jar names
-# based on if those are available in the RI GlassFish Bundle.
-. ${CTS_HOME}/javaeetck/docker/adjust_classpath.sh
-
 export ADMIN_PASSWORD_FILE="${CTS_HOME}/admin-password.txt"
 echo "AS_ADMIN_PASSWORD=adminadmin" > ${ADMIN_PASSWORD_FILE}
 
@@ -270,6 +266,15 @@ if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
 fi 
 
+if [ ! -z "${DATABASE}" ];then
+  if [ "JavaDB" == "${DATABASE}" ]; then
+    echo "Using the bundled JavaDB in GlassFish. No change in ts.jte required."
+  else
+    echo "Modifying DB related properties in ts.jte"
+    ${TS_HOME}/docker/process_db_config.sh ${DATABASE} ${TS_HOME}
+  fi
+fi
+
 VI_SERVER_POLICY_FILE=${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/server.policy
 echo 'grant {' >> ${VI_SERVER_POLICY_FILE}
 echo 'permission java.io.FilePermission "${com.sun.aas.instanceRoot}${/}generated${/}policy${/}-", "read,write,execute,delete";' >> ${VI_SERVER_POLICY_FILE}
@@ -348,6 +353,8 @@ if [[ $FAILED_COUNT -gt 0 ]]; then
   echo "One or more tests failed. Failure count: $FAILED_COUNT"
   echo "Re-running only the failed, error tests"
   ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+  # Generate combined report for both the runs.
+  ant -Dreport.for=com/sun/ts/tests/$test_suite -Dreport.dir=${JT_REPORT_DIR}/${TEST_SUITE} -Dwork.dir=${JT_WORK_DIR}/${TEST_SUITE} report
 fi
 
 export HOST=`hostname -f`

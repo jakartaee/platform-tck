@@ -226,11 +226,15 @@
         </copy>
 
         <copy todir="${deliverable.bundle.dir}/docker" includeEmptyDirs="no">
-            <fileset dir="${ts.home}/docker" includes="*jakartaeetck*.sh, adjust_classpath.sh"/>
+            <fileset dir="${ts.home}/docker" includes="*jakartaeetck*.sh, process_db_config.sh"/>
         </copy>
 
         <copy todir="${deliverable.bundle.dir}/docker" includeEmptyDirs="no">
             <fileset dir="${ts.home}/docker" includes="JTReportParser/"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/docker" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/docker" includes="conf/"/>
         </copy>
 
 	</target>
