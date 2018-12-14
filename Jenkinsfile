@@ -163,7 +163,7 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/build_jakartaeetck.sh
           """
-          archiveArtifacts artifacts: "jakartaeetck-bundles/*.zip,glassfish.version", allowEmptyArchive: true
+          archiveArtifacts artifacts: "jakartaeetck-bundles/*.zip,*.version", allowEmptyArchive: true
           stash includes: 'jakartaeetck-bundles/*.zip', name: 'jakartaeetck-bundles'
         }
       }
@@ -182,17 +182,6 @@ spec:
       }
     }
  
-    stage('jakartaeetck-publish-reports') {
-      when {
-        expression {
-          return params.BUILD_TYPE == 'CTS';
-        }
-      }
-      steps {
-        build job: 'jakartaeetck-publish-reports', propagate: false, quietPeriod: 3, wait: false
-      }
-    }
-
     stage('standalone-tck-build') {
       when {
         expression {
@@ -206,7 +195,7 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks}
           """
-          archiveArtifacts artifacts: "standalone-bundles/*.zip,glassfish.version", allowEmptyArchive: true
+          archiveArtifacts artifacts: "standalone-bundles/*.zip,*.version", allowEmptyArchive: true
           stash includes: 'standalone-bundles/*.zip', name: 'standalone-bundles'
         }
       }
@@ -222,17 +211,6 @@ spec:
         script {
           parallel parallelStandaloneTCKMap
         }
-      }
-    }
-
-    stage('standalonetck-publish-reports') {
-      when {
-        expression {
-          return params.BUILD_TYPE == 'STANDALONE-TCK';
-        }
-      }
-      steps {
-        build job: 'standalonetck-publish-reports', propagate: false, quietPeriod: 3, wait: false
       }
     }
   }

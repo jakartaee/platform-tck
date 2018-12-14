@@ -72,6 +72,14 @@ fi
 DOC_SPECIFIC_PROPS=""
 JAXWS_SPECIFIC_PROPS=""
 
+#Generate Version file
+GIT_HASH=`git rev-parse HEAD`
+GIT_BRANCH=`git branch | awk '{print $2}'`
+BUILD_DATE=`date`
+echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/version.info
+echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/version.info
+echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/version.info
+
 
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   mkdir -p ${WORKSPACE}/standalone-bundles/
@@ -233,5 +241,8 @@ for tck in ${TCK_LIST[@]}; do
     strippedEntry=`echo "$entry" | cut -d_ -f1`
     echo "copying ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry to ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip"
     cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip
+    cp ${WORKSPACE}/version.info ${WORKSPACE}/standalone-bundles/${strippedEntry}.version
   done
 done
+
+

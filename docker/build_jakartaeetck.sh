@@ -99,6 +99,18 @@ mkdir -p $BASEDIR/internal/docs/javaee/
 cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/javaee/
 ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools j2ee
 
+ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools smoke
+
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
-cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/javaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip
+cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/*.zip ${WORKSPACE}/jakartaeetck-bundles/
+
+#Generate Version file
+rm -f ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
+touch ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
+GIT_HASH=`git rev-parse HEAD`
+GIT_BRANCH=`git branch | awk '{print $2}'`
+BUILD_DATE=`date`
+echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
+echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
+echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
