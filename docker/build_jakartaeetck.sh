@@ -103,14 +103,16 @@ ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.vers
 
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
-cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/*.zip ${WORKSPACE}/jakartaeetck-bundles/
+cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/javaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/javeetck.zip
+cp ${WORKSPACE}/release/JAVAEE-SMOKE_BUILD/latest/javaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/javee-smoke.zip
+
 
 #Generate Version file
-rm -f ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
-touch ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
 GIT_HASH=`git rev-parse HEAD`
 GIT_BRANCH=`git branch | awk '{print $2}'`
 BUILD_DATE=`date`
-echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
-echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
-echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/jakartaeetck-bundles/javaeetck.version
+rm -f ${WORKSPACE}/javaeetck.version
+touch ${WORKSPACE}/javaeetck.version
+echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/javaeetck.version
+echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/javaeetck.version
+echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/javaeetck.version

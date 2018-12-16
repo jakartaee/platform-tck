@@ -241,7 +241,7 @@ for tck in ${TCK_LIST[@]}; do
     strippedEntry=`echo "$entry" | cut -d_ -f1`
     echo "copying ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry to ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip"
     cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip
-    cp ${WORKSPACE}/version.info ${WORKSPACE}/standalone-bundles/${strippedEntry}.version
+    cp ${WORKSPACE}/version.info ${WORKSPACE}/${strippedEntry}.version
   done
 done
 
