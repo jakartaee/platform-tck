@@ -321,7 +321,7 @@ ${CTS_HOME}/ri/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${AD
 ### restartRI.sh ends here #####
 
 ### Registry server initialization starts here
-if [ "jaxr" == ${test_suite} || "smoke" == ${test_suite} ];then
+if [[ "jaxr" == ${test_suite} || "smoke" == ${test_suite} ]]; then
   if [ -f $JWSDP_HOME/bin/startup.sh ]; then
     $JWSDP_HOME/bin/startup.sh
     sleep 10
@@ -330,7 +330,7 @@ if [ "jaxr" == ${test_suite} || "smoke" == ${test_suite} ];then
 fi
 ### Registry server initialization ends here
 
-if [ "securityapi" == ${test_suite} || "smoke" == ${test_suite} ]; then
+if [[ "securityapi" == ${test_suite} || "smoke" == ${test_suite} ]]; then
   cd $TS_HOME/bin;
   ant init.ldap
   echo "LDAP initilized for securityapi"
@@ -344,7 +344,8 @@ ant start.auto.deployment.server > /tmp/deploy.out 2>&1 &
 
 cd $TS_HOME/bin
 if [ "smoke" == ${test_suite} ]; then
-  ant -f xml/impl/glassfish/smoke.xml -Dreport.dir=${JT_REPORT_DIR}/smoke -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" smoke
+  ant -f xml/impl/glassfish/smoke.xml -Dreport.dir=${JT_REPORT_DIR}/smoke \
+      -Dbin.dir=$TS_HOME/bin -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" smoke
 else
   ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
 fi 
