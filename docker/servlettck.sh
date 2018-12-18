@@ -66,6 +66,17 @@ cd $TS_HOME/src/com/sun/ts/tests/servlet
 cat $TS_HOME/bin/server_policy.append>>$TCK_HOME/glassfish5/glassfish/domains/domain1/config/server.policy
 ant -Dutil.dir=$TS_HOME deploy.all
 ant -Djava.endorsed.dirs=$TS_HOME/endorsedlib -Dutil.dir=$TS_HOME runclient
+# Check if there are any failures in the test. If so, re-run those tests.
+FAILED_COUNT=0
+FAILED_COUNT=`cat $TCK_HOME/servlettckreport/servlettck/text/summary.txt | grep 'Failed.' | wc -l`
+if [[ $FAILED_COUNT -gt 0 ]]; then
+  echo "One or more tests failed. Failure count: $FAILED_COUNT"
+  echo "Re-running only the failed, error tests"
+  ant -Drun.client.args="-DpriorStatus=fail,error" -DbuildJwsJaxws=false runclient
+  # Generate combined report for both the runs.
+  ant -Dreport.for=com/sun/ts/tests/servlet -Dreport.dir=$TCK_HOME/servlettckreport/servlettck -Dwork.dir=$TCK_HOME/servlettckwork/servlettck report
+fi
+
 echo "Test run complete"
 
 TCK_NAME=servlettck
