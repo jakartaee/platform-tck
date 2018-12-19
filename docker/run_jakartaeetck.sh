@@ -352,10 +352,12 @@ fi
 
 # Check if there are any failures in the test. If so, re-run those tests.
 FAILED_COUNT=0
+ERROR_COUNT=0
 TEST_SUITE=`echo "${test_suite}" | tr '/' '_'`
 FAILED_COUNT=`cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Failed.' | wc -l`
-if [[ $FAILED_COUNT -gt 0 ]]; then
-  echo "One or more tests failed. Failure count: $FAILED_COUNT"
+ERROR_COUNT=`cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Error.' | wc -l`
+if [[ $FAILED_COUNT -gt 0 || $ERROR_COUNT -gt 0 ]]; then
+  echo "One or more tests failed. Failure count:$FAILED_COUNT/Error count:$ERROR_COUNT"
   echo "Re-running only the failed, error tests"
   ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
   # Generate combined report for both the runs.

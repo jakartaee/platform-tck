@@ -73,6 +73,19 @@ ant deploy.all
 
 cd $TS_HOME/src/com/sun/ts/tests/
 ant runclient
+# Check if there are any failures in the test. If so, re-run those tests.
+FAILED_COUNT=0
+ERROR_COUNT=0
+FAILED_COUNT=`cat $TCK_HOME/jaxrstckreport/jaxrstck/text/summary.txt | grep 'Failed.' | wc -l`
+ERROR_COUNT=`cat $TCK_HOME/jaxrstckreport/jaxrstck/text/summary.txt | grep 'Error.' | wc -l`
+if [[ $FAILED_COUNT -gt 0 || $ERROR_COUNT -gt 0 ]]; then
+  echo "One or more tests failed. Failure count:$FAILED_COUNT/Error count:$ERROR_COUNT"
+  echo "Re-running only the failed, error tests"
+  ant -Drun.client.args="-DpriorStatus=fail,error" -DbuildJwsJaxws=false runclient
+  # Generate combined report for both the runs.
+  ant -Dreport.for=com/sun/ts/tests/jaxrs -Dreport.dir=$TCK_HOME/jaxrstckreport/jaxrstck -Dwork.dir=$TCK_HOME/jaxrstckwork/jaxrstck report
+fi
+
 echo "Test run complete"
 
 TCK_NAME=jaxrstck
