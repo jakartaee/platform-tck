@@ -199,7 +199,15 @@ else
 fi
 
 if [ ! -z "$KEYWORDS" ];then
-  CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
+  if [ -z "$USER_KEYWORDS" ]; then
+      CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
+  else
+      CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}|${USER_KEYWORDS}\""
+  fi
+else
+  if [ ! -z "$USER_KEYWORDS" ]; then
+      CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${USER_KEYWORDS}\""
+  fi
 fi
 echo "CTS_ANT_OPTS:${CTS_ANT_OPTS}"
 

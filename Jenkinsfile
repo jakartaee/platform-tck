@@ -142,6 +142,9 @@ spec:
            description: 'Space separated list of Test suites to run') 
     string(name: 'standalone_tcks', defaultValue: 'caj concurrency connector el jacc jaspic jaxr jaxrpc jaxrs jaxws jms jpa jsf jsp jsonb jsonp jstl jta saaj securityapi servlet websocket', 
            description: 'Space separated list of standalone TCKs to build and run') 
+    string(name: 'USER_KEYWORDS',
+           defaultValue: '',
+           description: 'Specific keywords provided by the user to be used for the test run.' )
   }
   environment {
     CTS_HOME = "/root"

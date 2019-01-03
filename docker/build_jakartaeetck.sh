@@ -35,6 +35,10 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    echo "Skipping build and using pre-build binary javaeetck bundle: $TCK_BUNDLE_BASE_URL/javaeetck.zip"
    mkdir -p ${WORKSPACE}/jakartaeetck-bundles
    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/javaeetck.zip -O ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip
+   if [ ! -z "$GF_VERSION_URL" ]; then
+       wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version
+       cat glassfish.version
+   fi
    exit 0
 fi
 

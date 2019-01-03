@@ -168,7 +168,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jms" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djms.classes=$GF_HOME/glassfish5/glassfish/modules/javax.jms-api.jar"
+    TCK_SPECIFIC_PROPS="-Djms.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.jms-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jsp" == "$tck" ]
@@ -194,7 +194,7 @@ for tck in ${TCK_LIST[@]}; do
     DOC_SPECIFIC_PROPS=""
   elif [ "jpa" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djpa.classes=$GF_HOME/glassfish5/glassfish/modules/javax.persistence.jar"
+    TCK_SPECIFIC_PROPS="-Djpa.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.persistence.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "saaj" == "$tck" ]
