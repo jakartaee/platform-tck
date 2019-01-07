@@ -47,11 +47,11 @@ Note : The set of values accepted for TCK_NAME are given below and are case
 sensitive.
 
 1.  caj (Common Annotations for Java v.1.3, JSR 250)
-2.  concurrency (Concurrency Utilities for Java EE 1.0, JSR 236)
+2.  concurrency (Concurrency Utilities for Jakarta EE 1.0, JSR 236)
 3.  connector (Connector Architecture 1.7, JSR 322)
 4.  el (EL 3.0, JSR 341)
 5.  saaj (SAAJ 1.4, JSR 67)
-6.  securityapi (Java EE Security API 1.0, JSR 375)
+6.  securityapi (Jakarta EE Security API 1.0, JSR 375)
 7.  servlet (Servlet 4.0, JSR 369)
 8.  websocket (Web Sockets API 1.1, JSR 356)
 9.  jacc (JACC 1.5, JSR 115)

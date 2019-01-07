@@ -1,4 +1,4 @@
-The scripts in this folder can be used to build a docker image for Java EE CTS 
+The scripts in this folder can be used to build a docker image for Jakarta EE CTS 
 and run the tests in a docker container, using the base image centos:7.
 
 How to build the image ?
@@ -29,7 +29,7 @@ How to run the tests from CTS in a container ?
 You can run the docker image in multiple ways, by passing one or more arguments
 it accepts as environment variables. Here are sample docker run commands - 
 
-1. Run the image to download the Java EE CTS bundle from an internal location
+1. Run the image to download the Jakarta EE CTS bundle from an internal location
    docker run --env http_proxy=http://<host>:<port> 
     --env  https_proxy=https://<host>:<port>
     --env IP_MAILSERVER=172.17.0.2 --env test_suite=samples javaeects
