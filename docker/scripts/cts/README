@@ -1,0 +1,70 @@
+The scripts in this folder can be used to build a docker image for Jakarta EE CTS 
+and run the tests in a docker container, using the base image centos:7.
+
+How to build the image ?
+-------------------------
+Run build.sh from docker/scripts/cts to build the docker image will contain 
+JDK 8 (jdk-8u171) and Apache Ant 1.9.7. You can edit the build.sh to set the 
+URL to download the JDK8, the script expects you to supply a tar.gz file 
+accessible using http.
+
+By default, the image will contain the Java Web Services Developer Pack (JWSDP)
+1.3 and JDK 1.5 required to run JWSDP. You can provide the JWSDP
+bundle and JDK by supplying the values for JWSDP_BUNDLE and JDK_FOR_JWSDP in
+build.sh.
+
+Setup JavaMail Server
+-------------------------
+There are tests in tests/samples and tests/javamail which require a JavaMail
+Server. The docker scripts in the current form expect you to run the Apache 
+James image, in the same machine, with IMAP port 143 and SMTP port 25.
+
+For example, you can run the command 
+     docker run -p "45:25" -p "243:143" linagora/james-jpa-sample:3.0.1
+
+TODO : Provide the support to run the CTS with any given Mail Server	 
+
+How to run the tests from CTS in a container ?
+---------------------------------------------
+You can run the docker image in multiple ways, by passing one or more arguments
+it accepts as environment variables. Here are sample docker run commands - 
+
+1. Run the image to download the Jakarta EE CTS bundle from an internal location
+   docker run --env http_proxy=http://<host>:<port> 
+    --env  https_proxy=https://<host>:<port>
+    --env IP_MAILSERVER=172.17.0.2 --env test_suite=samples javaeects
+
+2. Run the test suite by supplying the CTS bundle as an environment variable 
+   from the command line 
+   docker run --env http_proxy=http://<host>:<port> 
+    --env  https_proxy=https://<host>:<port>
+    --env CTS_BUNDLE_URL=http://<host>/javaeetck_latest.zip
+    --env IP_MAILSERVER=172.17.0.2 --env test_suite=samples javaeects
+
+3. Run the test suite by supplying the CTS bundle as well as GlassFish bundle,
+ as environment variables from the command line 
+   docker run --env http_proxy=http://<host>:<port> 
+    --env  https_proxy=https://<host>:<port>
+    --env GLASSFISH_BUNDLE_URL=http://<host>/glassfish.zip
+    --env CTS_BUNDLE_URL=http://<host>/javaeetck_latest.zip
+    --env IP_MAILSERVER=172.17.0.2 --env test_suite=samples javaeects
+
+The value accepted for test_suite is the name of the directory or 
+sub directories under src/com/sun/ts/tests. You can supply comma separated 
+multiple test suites. For example,
+
+docker run --env http_proxy=http://<host>:<port> 
+  --env  https_proxy=https://<host>:<port> 
+  --env IP_MAILSERVER=172.17.0.2 
+  --env test_suite="samples el/api/javax_el/arrayelresolver" javaeects
+
+As specified in the docker command line options for run command, you can 
+include all the --env arguments as property-value in a .properties file 
+and supply that to docker run command using option --env-file.
+
+How to determine the IP of the container running Apache James ?
+-----------------------------------------------------------------
+- Run 'docker ps' and find the "Container ID" for the image 
+  "linagora/james-jpa-sample:3.0.1"
+- Run "docker inspect -f {{.NetworkSettings.IPAddress}} <container id>"
+

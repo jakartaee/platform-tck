@@ -1,0 +1,70 @@
+The scripts in this folder can be used to build a docker image for standalone
+TCKs and run any TCK in a docker container, using the base image centos:7.
+
+How to build the image ?
+-------------------------
+Run build.sh from docker/scripts/tcks to build the docker image will contain 
+JDK 8 (jdk-8u171) and Apache Ant 1.9.7. You can edit the build.sh to set the 
+URL to download the JDK8, the script expects you to supply a tar.gz file 
+accessible using http.
+
+By default, the image will contain the Java Web Services Developer Pack (JWSDP)
+1.3 and JDK 1.5 required to run JWSDP. This is required for JAX-R TCK. You can 
+provide the JWSDP bundle and JDK by supplying the values for JWSDP_BUNDLE and 
+JDK_FOR_JWSDP in build.sh.
+
+How to run the TCK in a container ?
+------------------------------------
+You can run the docker image in multiple ways, by passing one or more arguments
+it accepts as environment variables. Here are sample docker run commands - 
+
+1. Run the image to download the TCK bundle from an internal location
+   docker run --env http_proxy=http://<host>:<port>
+    --env  https_proxy=https://<host>:<port>
+    --env TCK_NAME=servlet tck
+
+2. Run the test suite by supplying the TCK bundle as an environment variable 
+   from the command line 
+   docker run --env http_proxy=http://<host>:<port>
+    --env  https_proxy=https://<host>:<port>
+    --env TCK_BUNDLE_URL=http://<host>/servlet.zip
+    --env TCK_NAME=servlet tck
+
+3. Run the test suite by supplying the TCK bundle as well as GlassFish bundle, 
+as environment variables from the command line 
+
+   docker run --env http_proxy=http://<host>:<port> 
+    --env  https_proxy=https://<host>:port>
+    --env GLASSFISH_BUNDLE_URL=http://<host>/glassfish.zip
+    --env TCK_BUNDLE_URL=http://<host>/servlet.zip
+    --env TCK_NAME=servlet tck
+
+As specified in the docker command line options for run command, you can 
+include all the --env arguments as property-value in a .properties file 
+and supply that to docker run command using option --env-file.
+
+Note : The set of values accepted for TCK_NAME are given below and are case
+sensitive.
+
+1.  caj (Common Annotations for Java v.1.3, JSR 250)
+2.  concurrency (Concurrency Utilities for Jakarta EE 1.0, JSR 236)
+3.  connector (Connector Architecture 1.7, JSR 322)
+4.  el (EL 3.0, JSR 341)
+5.  saaj (SAAJ 1.4, JSR 67)
+6.  securityapi (Jakarta EE Security API 1.0, JSR 375)
+7.  servlet (Servlet 4.0, JSR 369)
+8.  websocket (Web Sockets API 1.1, JSR 356)
+9.  jacc (JACC 1.5, JSR 115)
+10. jaspic (JASPIC 1.1, JSR 196)
+11. jaxr (JAXR 1.0, JSR 93)
+12. jaxrpc (JAX-RPC 1.1, JSR 101)
+13. jaxrs (JAX-RS 2.1, JSR 370)
+14. jaxws (JAX-WS 2.3, JSR 224)
+15. jms (JMS 2.0, JSR 343)
+16. jpa (JPA 2.2, JSR 338)
+17. jsf (JSF 2.3, JSR 372)
+18. jsonb (JSON-B 1.0, JSR 367)
+19. jsonp (JSON-P 1.1, JSR 353)
+20. jsp (JSP 2.3, JSR 340)
+21. jstl (JSTL 1.3, JSR 52)
+22. jta (JTA 1.2, JSR 907)
