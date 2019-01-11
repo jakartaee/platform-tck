@@ -217,7 +217,10 @@ for tck in ${TCK_LIST[@]}; do
   if [ "jaxrpc" == "$tck" ]
   then
     echo "Generating JAXRPC specific classes using wscompile"
-    cp $BASEDIR/lib/ant-props.jar $ANT_HOME/lib
+    # Copy additional ant library required for nested property handling in jaxrpc build
+    if [[ -f $BASEDIR/lib/ant-props.jar && ! -f $ANT_HOME/lib/ant-props.jar ]]; then
+      cp $BASEDIR/lib/ant-props.jar $ANT_HOME/lib
+    fi
     sed -i "s#webserver\.home=.*#webserver.home=$GF_HOME/glassfish5/glassfish#g" $BASEDIR/install/$tck/bin/build.properties
     sed -i "s#jaxrpc\.tool=.*#jaxrpc.tool=$GF_HOME/glassfish5/glassfish/bin/wscompile#g" $BASEDIR/install/$tck/bin/build.properties
     cat $BASEDIR/install/$tck/bin/build.properties

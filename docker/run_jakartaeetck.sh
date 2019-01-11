@@ -250,6 +250,12 @@ sed -i 's/^jaxrPassword2=.*/jaxrPassword2=jaxrsqe/g' ts.jte
 
 sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
 sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
+
+if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
+  sed -i "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeemgmt javaeedeploy jacc jaspic wsmd/g" ts.jte
+  sed -i "s/^optional.tech.packages.to.ignore=.*/optional.tech.packages.to.ignore=javax.xml.rpc.handler/g" ts.jte
+fi
+
 if [ ! -z "$http_proxy" ]; then
   PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
   PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
