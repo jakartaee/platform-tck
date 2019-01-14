@@ -160,6 +160,14 @@ mkdir -p ${CTS_HOME}/vi
 unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/vi
 chmod -R 777 ${CTS_HOME}/vi
 
+if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
+  echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
+  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
+fi 
+
 ${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
 ${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
 ${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} version
@@ -271,14 +279,6 @@ sed -i 's/^impl\.deploy\.timeout\.multiplier=240/impl\.deploy\.timeout\.multipli
 if [ "servlet" == "${test_suite}" ]; then
   sed -i 's/s1as\.java\.endorsed\.dirs=.*/s1as.java.endorsed.dirs=\$\{endorsed.dirs\}\$\{pathsep\}\$\{ts.home\}\/endorsedlib/g' ts.jte
 fi
-
-if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
-  echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
-  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
-fi 
 
 if [ ! -z "${DATABASE}" ];then
   if [ "JavaDB" == "${DATABASE}" ]; then

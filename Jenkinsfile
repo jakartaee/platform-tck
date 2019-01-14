@@ -89,6 +89,7 @@ spec:
   - ip: "127.0.0.1"
     hostnames:
     - "localhost.localdomain"
+    - "james.local"
   containers:
   - name: jakartaeetck-ci
     image: anajosep/cts-base:0.1
@@ -98,7 +99,7 @@ spec:
     imagePullPolicy: Always
     env:
       - name: JAVA_TOOL_OPTIONS
-        value: -Xmx2G
+        value: -Xmx4G
     resources:
       limits:
         memory: "8Gi"
@@ -114,7 +115,7 @@ spec:
     imagePullPolicy: Always
     env:
       - name: JAVA_TOOL_OPTIONS
-        value: -Xmx1G
+        value: -Xmx2G
     resources:
       limits:
         memory: "2Gi"
@@ -150,6 +151,7 @@ spec:
     CTS_HOME = "/root"
     ANT_OPTS = "-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http" 
     MAIL_USER="user01@james.local"
+    MAIL_HOST="localhost"
     LANG="en_US.UTF-8"
     DEFAULT_GF_BUNDLE_URL="https://repo1.maven.org/maven2/org/glassfish/main/distributions/glassfish/5.1.0-RC1/glassfish-5.1.0-RC1.zip"
   }
