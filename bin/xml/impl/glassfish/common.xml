@@ -936,6 +936,8 @@
             <java classname="org.apache.derby.drda.NetworkServerControl"
                   classpath="${use.derby.classpath}" fork="true" spawn="true">
               <sysproperty key="derby.system.home" value="${use.derby.system.home}"/>
+              <sysproperty key="java.security.manager" value=""/>
+              <sysproperty key="java.security.policy" value="${server.config.dir.path}/server.policy"/>
               <arg line="-h ${use.derby.server} -p ${use.derby.port} start"/>
             </java>
             <sleep seconds="${use.derby.startup.delay}"/>
