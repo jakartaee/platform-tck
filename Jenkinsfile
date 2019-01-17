@@ -75,6 +75,7 @@ def generateStandaloneTCKStage(job) {
 pipeline {
   options {
     durabilityHint('PERFORMANCE_OPTIMIZED')
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactDaysToKeepStr: '30'))
   }
   agent {
     kubernetes {
