@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 #
 # Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
@@ -192,7 +192,8 @@ export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/glassfish5/glassfish/mo
 -Djavax.xml.accessExternalDTD=file,http"
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
-  KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile"
+  #KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile"
+  KEYWORDS="javaee_web_profile"
 fi
 
 if [ -z "${vehicle}" ];then
@@ -207,17 +208,18 @@ else
 fi
 
 if [ ! -z "$KEYWORDS" ];then
-  if [ -z "$USER_KEYWORDS" ]; then
-      CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
-  else
-      CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}|${USER_KEYWORDS}\""
+  if [ ! -z "$USER_KEYWORDS" ]; then
+    KEYWORDS="${KEYWORDS}|${USER_KEYWORDS}"
   fi
 else
   if [ ! -z "$USER_KEYWORDS" ]; then
-      CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${USER_KEYWORDS}\""
+    KEYWORDS="${USER_KEYWORDS}"
   fi
 fi
+
+CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
 echo "CTS_ANT_OPTS:${CTS_ANT_OPTS}"
+echo "KEYWORDS:${KEYWORDS}"
 
 export JT_REPORT_DIR=${CTS_HOME}/jakartaeetck-report
 export JT_WORK_DIR=${CTS_HOME}/jakartaeetck-work
@@ -335,7 +337,7 @@ ${CTS_HOME}/ri/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${AD
 ### restartRI.sh ends here #####
 
 ### Registry server initialization starts here
-if [[ "jaxr" == ${test_suite} || "smoke" == ${test_suite} ]]; then
+if [[ "jaxr" == ${test_suite} ]]; then
   if [ -f $JWSDP_HOME/bin/startup.sh ]; then
     $JWSDP_HOME/bin/startup.sh
     sleep 10
@@ -344,7 +346,7 @@ if [[ "jaxr" == ${test_suite} || "smoke" == ${test_suite} ]]; then
 fi
 ### Registry server initialization ends here
 
-if [[ "securityapi" == ${test_suite} || "smoke" == ${test_suite} ]]; then
+if [[ "securityapi" == ${test_suite} ]]; then
   cd $TS_HOME/bin;
   ant init.ldap
   echo "LDAP initilized for securityapi"
@@ -357,12 +359,12 @@ ant start.auto.deployment.server > /tmp/deploy.out 2>&1 &
 ### ctsStartStandardDeploymentServer.sh ends here #####
 
 cd $TS_HOME/bin
-if [ "smoke" == ${test_suite} ]; then
-  ant -f xml/impl/glassfish/smoke.xml -Dreport.dir=${JT_REPORT_DIR}/smoke \
-      -Dbin.dir=$TS_HOME/bin -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" smoke
-else
+if [ -z "$KEYWORDS" ]; then
   ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
-fi 
+else
+  ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+fi
+
 
 # Check if there are any failures in the test. If so, re-run those tests.
 FAILED_COUNT=0
