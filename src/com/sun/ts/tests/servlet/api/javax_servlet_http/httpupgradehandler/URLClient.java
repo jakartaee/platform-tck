@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2019 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,9 +14,6 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
 package com.sun.ts.tests.servlet.api.javax_servlet_http.httpupgradehandler;
 
 import com.sun.javatest.Status;
@@ -128,30 +125,31 @@ public class URLClient extends AbstractUrlClient {
       // Consume the response from the server
       input = s.getInputStream();
       int len = -1;
-      byte b[] = new byte[1024];
+      byte b[] = new byte[1024];            
+      boolean receivedFirstMessage = false;
+      boolean receivedSecondMessage = false;
+      boolean receivedThirdMessage = false;
       StringBuilder sb = new StringBuilder();
-      int messages = 3;
       while ((len = input.read(b)) != -1) {
         String line = new String(b, 0, len);
         sb.append(line);
         TestUtil.logMsg("==============Read from server:" + CRLF + sb + CRLF);
-        if (passed1 = ServletTestUtil.compareString(EXPECTED_RESPONSE1,
-            sb.toString())) {
-          TestUtil
-              .logMsg("==============Received first expected response!" + CRLF);
-          messages--;
+        if (passed1 = ServletTestUtil.compareString(EXPECTED_RESPONSE1, sb.toString())) {
+          TestUtil.logMsg("==============Received first expected response!" + CRLF);
+          receivedFirstMessage = true;
         }
-        if (passed2 = ServletTestUtil.compareString(EXPECTED_RESPONSE2,
-            sb.toString())) {
+		if (passed2 = ServletTestUtil.compareString(EXPECTED_RESPONSE2, sb.toString())) {
           TestUtil.logMsg("==============Received second expected response!" + CRLF);
-          messages--;
+          receivedSecondMessage = true;
         }
-        if (passed3 = ServletTestUtil.compareString(EXPECTED_RESPONSE3,
-            sb.toString())) {
+        if (passed3 = ServletTestUtil.compareString(EXPECTED_RESPONSE3, sb.toString())) {
           TestUtil.logMsg("==============Received third expected response!" + CRLF);
-          messages--;
+          receivedThirdMessage = true;
         }
-        if (messages == 0) {
+        TestUtil.logMsg("receivedFirstMessage : " + receivedFirstMessage);
+        TestUtil.logMsg("receivedSecondMessage : " + receivedSecondMessage);
+        TestUtil.logMsg("receivedThirdMessage : " + receivedThirdMessage);
+		if (receivedFirstMessage &&  receivedSecondMessage && receivedThirdMessage) {
           break;
         }
       }
