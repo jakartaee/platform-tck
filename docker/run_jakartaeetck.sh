@@ -375,7 +375,11 @@ ERROR_COUNT=`cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Error.'
 if [[ $FAILED_COUNT -gt 0 || $ERROR_COUNT -gt 0 ]]; then
   echo "One or more tests failed. Failure count:$FAILED_COUNT/Error count:$ERROR_COUNT"
   echo "Re-running only the failed, error tests"
+if [ -z "$KEYWORDS" ]; then
   ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+else
+  ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+fi
   # Generate combined report for both the runs.
   ant -Dreport.for=com/sun/ts/tests/$test_suite -Dreport.dir=${JT_REPORT_DIR}/${TEST_SUITE} -Dwork.dir=${JT_WORK_DIR}/${TEST_SUITE} report
 fi
@@ -393,7 +397,7 @@ else
   sed -i "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
   mv ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml  ${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/
+tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${WORKSPACE}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/
 
 if [ -z ${vehicle} ];then
   JUNIT_REPORT_FILE_NAME=${TEST_SUITE}-junitreports.tar.gz

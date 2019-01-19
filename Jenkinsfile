@@ -36,7 +36,7 @@ def generateCTSStage(job) {
             sh """
               env
               unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
-              bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job}
+              bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_${job}.log
             """
             archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
@@ -61,7 +61,7 @@ def generateStandaloneTCKStage(job) {
             unstash 'standalone-bundles'
             sh """
               env
-              bash -x ${WORKSPACE}/docker/${job}tck.sh
+              bash -x ${WORKSPACE}/docker/${job}tck.sh | tee ${WORKSPACE}/${job}tck.log
             """
             archiveArtifacts artifacts: "${job}tck-results.tar.gz,*-junitreports.tar.gz",allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
@@ -167,7 +167,7 @@ spec:
         container('jakartaeetck-ci') {
           sh """
             env
-            bash -x ${WORKSPACE}/docker/build_jakartaeetck.sh
+            bash -x ${WORKSPACE}/docker/build_jakartaeetck.sh | tee ${WORKSPACE}/build_jakartaeetck.log
           """
           archiveArtifacts artifacts: "jakartaeetck-bundles/*.zip,*.version", allowEmptyArchive: true
           stash includes: 'jakartaeetck-bundles/*.zip', name: 'jakartaeetck-bundles'
@@ -199,7 +199,7 @@ spec:
         container('jakartaeetck-ci') {
           sh """
             env
-            bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks}
+            bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks} | tee ${WORKSPACE}/build_standalone-tcks.log
           """
           archiveArtifacts artifacts: "standalone-bundles/*.zip,*.version", allowEmptyArchive: true
           stash includes: 'standalone-bundles/*.zip', name: 'standalone-bundles'
