@@ -192,7 +192,6 @@ export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/glassfish5/glassfish/mo
 -Djavax.xml.accessExternalDTD=file,http"
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
-  #KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile"
   KEYWORDS="javaee_web_profile"
 fi
 
@@ -203,13 +202,13 @@ else
   if [ -z "${KEYWORDS}" ]; then
     KEYWORDS=${vehicle}
   else
-    KEYWORDS="${KEYWORDS}|${vehicle}"
+    KEYWORDS="(${KEYWORDS} & ${vehicle})"
   fi
 fi
 
 if [ ! -z "$KEYWORDS" ];then
   if [ ! -z "$USER_KEYWORDS" ]; then
-    KEYWORDS="${KEYWORDS}|${USER_KEYWORDS}"
+    KEYWORDS="${KEYWORDS}${USER_KEYWORDS}"
   fi
 else
   if [ ! -z "$USER_KEYWORDS" ]; then
@@ -220,7 +219,7 @@ fi
 CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
 echo "CTS_ANT_OPTS:${CTS_ANT_OPTS}"
 echo "KEYWORDS:${KEYWORDS}"
-
+		
 export JT_REPORT_DIR=${CTS_HOME}/jakartaeetck-report
 export JT_WORK_DIR=${CTS_HOME}/jakartaeetck-work
 

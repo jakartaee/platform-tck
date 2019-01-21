@@ -146,7 +146,7 @@ spec:
            description: 'Space separated list of standalone TCKs to build and run') 
     string(name: 'USER_KEYWORDS',
            defaultValue: '',
-           description: 'Specific keywords provided by the user to be used for the test run.' )
+           description: 'Optional keywords prefixed by joining operator - [&|] for filtering out the tests to run' )
   }
   environment {
     CTS_HOME = "/root"
