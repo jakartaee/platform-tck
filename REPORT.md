@@ -18,12 +18,9 @@
 cd $TS_HOME;
 ant -buildfile coverage-build.xml <target>
 ```
-
 `<target>` can be 'all', or any tcks in 
 [j2eetools-mgt, j2eetools-deploy,jta,jdbc,ejb,connector,jaspic,jsp,el,servlet,
 jms,jacc,javaee,jstl,jpa,jaxrpc,jaxrs,webservices,jsf,jsonp,jsonb,concurrency,
 websocket,rmiiiop,securityapi]
-
-
 3. If the run is successful, the coverage report would be available at the below location.
 `$TS_HOME/tmp/assertion-coverage`
