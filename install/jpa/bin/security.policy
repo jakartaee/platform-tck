@@ -1,0 +1,12 @@
+/* Required for src/com/sun/ts/tests/jpa/core/StoredProcedureQuery */
+grant {
+    permission org.apache.derby.security.SystemPermission "engine", "usederbyinternals";
+    permission java.io.FilePermission       "<<ALL FILES>>", "read,write";
+    permission java.security.AllPermission;
+};
+
+grant codeBase "file:${TS_HOME}/lib/-" {
+     permission java.lang.RuntimePermission "createClassLoader";
+     permission java.io.FilePermission       "<<ALL FILES>>", "read,write";
+     permission java.security.AllPermission;
+};

@@ -62,7 +62,9 @@ mkdir -p $TCK_HOME/jpatckreport/jpatck
 mkdir -p $TCK_HOME/jpatckwork/jpatck
 
 cd $TCK_HOME/glassfish5/glassfish/bin
-./asadmin start-database --dbport 1527
+./asadmin start-database --dbhome $TCK_HOME/glassfish5/glassfish/databases --dbport 1527 --jvmoptions '-Djava.security.manager -Djava.security.policy=$TS_HOME/bin/security.policy'
+
+
 
 cd $TS_HOME/bin
 ant -f initdb.xml
