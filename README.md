@@ -8,11 +8,13 @@
 
     Sample steps done for JTA:
 
-    ```git clone https://github.com/eclipse-ee4j/glassfish.git
+    ```
+    git clone https://github.com/eclipse-ee4j/glassfish.git
     git checkout -b EE4J_8
     find . -name \pom.xml -exec sed -i "s/javax.transaction</jakarta.transaction</g" {} ;
     find . -name \pom.xml -exec sed -i "s/javax.transaction-api</jakarta.transaction-api</g" {} ;
-    mvn clean install```
+    mvn clean install
+    ```
 
 3. Upload the glassfish bundle built in the previous step as attachment to the corresponding pull request.
 
@@ -27,8 +29,14 @@
 8. If the results are clean, commit the changes to the individual project and the changes required for integration to GlassFish.
 
 ## Jakarta EE TCK Build and Run Instructions 
-Instructions for building and running JakartaEE TCK bundle from scratch is available in the following wiki page:
-[JakartaEE TCK - Build and Run Instructions](https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Instructions-for-building-and-running-JakartaEE-TCK-bundle)
+Instructions for building and running JakartaEE TCK bundle from scratch is available on the following page:
+[JakartaEE TCK - Build and Run Instructions](BUILDING.html)
+
+## Steps to generate the coverage report
+Instructions for generating the coverage report are available here: [Steps to generate the coverage report](REPORT.html)
+
+## Project Specific JakartaEE TCK pipeline
+Details for the CI pipeline are available here: [JakartaEE TCK pipeline](PROJECT-RUN.html)
 
 ## CTS User Guide
 
