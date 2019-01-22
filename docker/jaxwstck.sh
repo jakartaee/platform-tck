@@ -88,10 +88,20 @@ cd $TCK_HOME/ri/glassfish5/glassfish/bin
 ./asadmin start-domain
 cd $TS_HOME/bin
 ant config.ri
-cd $TS_HOME/src/com/sun/ts/tests/jaxws
-ant -Dkeywords=all -Dbuild.vi=true clean build package
 
-ant -Dkeywords=forward -Dreport.dir=$TCK_HOME/jaxwstckreport -Dwork.dir=$TCK_HOME/jaxwstckwork deploy.all runclient 
+cd /vi/glassfish5/glassfish/bin
+./asadmin stop-domain
+./asadmin start-domain
+
+cd /ri/glassfish5/glassfish/bin
+./asadmin stop-domain
+./asadmin start-domain
+
+cd $TS_HOME/src/com/sun/ts/tests/jaxws
+ant -Dkeywords=all -Dbuild.vi=true build
+
+ant -Dkeywords=all deploy.all
+ant -Dkeywords=all -Dreport.dir=$TCK_HOME/jaxwstckreport -Dwork.dir=$TCK_HOME/jaxwstckwork runclient 
 cd $TS_HOME/src/com/sun/ts/tests/signaturetest
 ant -Dreport.dir=$TCK_HOME/jaxwstckreport/jaxwstck-sig -Dwork.dir=$TCK_HOME/jaxwstckwork/jaxwstck-sig runclient
 
