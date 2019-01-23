@@ -1,2 +1,10 @@
 remote_theme: jgallimore/jekyll-theme-jakarta-ee
 #theme: jekyll-theme-jakarta-ee
+
+title: [Jakarta EE TCK]
+description: [Source code and resources to build and run the Jakarta EE TCK suite]
+
+links:
+  source: https://github.com/eclipse-ee4j/jakartaee-tck
+  download: https://download.eclipse.org/ee4j/jakartaee-tck/8.0.1/nightly/javaeetck.zip
+  mailinglist: https://accounts.eclipse.org/mailing-list/jakartaee-tck-dev
