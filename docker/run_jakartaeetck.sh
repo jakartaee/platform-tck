@@ -265,12 +265,6 @@ if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
   sed -i "s/^optional.tech.packages.to.ignore=.*/optional.tech.packages.to.ignore=javax.xml.rpc.handler/g" ts.jte
 fi
 
-if [ ! -z "$http_proxy" ]; then
-  PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
-  PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-  sed -i "s#^wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-  sed -i "s#^ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-fi
 sed -i 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
 sed -i 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
 sed -i 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=180/g' ts.jte

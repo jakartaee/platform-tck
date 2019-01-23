@@ -42,9 +42,6 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 
-PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
-PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-
 cd $TS_HOME/bin
 sed -i 's#orb\.port=.*#orb.port=3700#g' ts.jte
 sed -i "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
@@ -52,8 +49,6 @@ sed -i 's#platform\.mode=.*#platform.mode=javaEE#g' ts.jte
 sed -i 's#^deliverable\.class=.*#deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable#g' ts.jte
 sed -i 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
 sed -i 's#wsimport\.ant\.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
-sed -i "s#wsimport\.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-sed -i "s#ri\.wsimport\.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
 sed -i 's#harness\.log\.traceflag=false.*#harness.log.traceflag=true#g' ts.jte
 sed -i "s#tools\.jar=.*#tools.jar=$JAVA_HOME/lib/tools.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaspictckreport/jaspictck#g" ts.jte

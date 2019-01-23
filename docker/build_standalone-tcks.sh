@@ -183,12 +183,6 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaxws" == "$tck" ]
   then
-     PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
-     PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-     WSIMPORT_JVMARG="-Djavax.xml.accessExternalSchema=all -Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT"
-    sed -i "s/wsimport.jvmargs=.*/wsimport.jvmargs=$WSIMPORT_JVMARG/g" $BASEDIR/install/jaxws/bin/ts.jte
-    sed -i "s/ri.wsimport.jvmargs=.*/ri.wsimport.jvmargs=$WSIMPORT_JVMARG/g" $BASEDIR/install/jaxws/bin/ts.jte
-    cat $BASEDIR/install/jaxws/bin/ts.jte | grep wsimport.jvmargs
     TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/glassfish5/glassfish -Dwebcontainer.home.ri=$BASEDIR/glassfish5/glassfish -Ddeliverable.version=2.3"
     JAXWS_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/glassfish5/glassfish -Dwebcontainer.home.ri=$BASEDIR/glassfish5/glassfish -Ddeliverable.version=2.3"
     DOC_SPECIFIC_PROPS=""
