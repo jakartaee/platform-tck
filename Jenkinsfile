@@ -36,7 +36,7 @@ def generateCTSStage(job) {
             sh """
               env
               unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
-              bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_${job}.log
+              bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_cts.log
             """
             archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
@@ -63,7 +63,7 @@ def generateStandaloneTCKStage(job) {
               env
               bash -x ${WORKSPACE}/docker/${job}tck.sh | tee ${WORKSPACE}/${job}tck.log
             """
-            archiveArtifacts artifacts: "${job}tck-results.tar.gz,*-junitreports.tar.gz",allowEmptyArchive: true
+            archiveArtifacts artifacts: "${job}tck-results.tar.gz,*-junitreports.tar.gz,${job}tck.log",allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
           }
         }
@@ -201,7 +201,7 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks} | tee ${WORKSPACE}/build_standalone-tcks.log
           """
-          archiveArtifacts artifacts: "standalone-bundles/*.zip,*.version", allowEmptyArchive: true
+          archiveArtifacts artifacts: "standalone-bundles/*.zip,*.version,*.log", allowEmptyArchive: true
           stash includes: 'standalone-bundles/*.zip', name: 'standalone-bundles'
         }
       }
