@@ -80,7 +80,7 @@ pipeline {
   agent {
     kubernetes {
       label "${env.label}"
-      defaultContainer 'jnlp'
+      defaultContainer 'jakartaeetck-ci'
       yaml """
 apiVersion: v1
 kind: Pod
