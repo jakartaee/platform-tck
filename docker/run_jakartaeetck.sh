@@ -305,10 +305,12 @@ ant -f xml/impl/glassfish/s1as.xml start.javadb
 ant init.javadb
 ##### configVI.sh ends here #####
 
-### populateMailbox for javamail suite - Start ###
-ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
-cd  ${TS_HOME}/bin
-ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}:${IMAP_PORT}" populateMailbox
+### populateMailbox for suites using mail server - Start ###
+if [[ $test_suite == "javamail" || $test_suite == "samples" || $test_suite == "servlet" ]]; then
+  ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
+  cd  ${TS_HOME}/bin
+  ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}:${IMAP_PORT}" populateMailbox
+fi
 ### populateMailbox for javamail suite - End ###
 
 ##### configRI.sh ends here #####

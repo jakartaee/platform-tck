@@ -25,21 +25,51 @@ def tcks = params.standalone_tcks != null ? params.standalone_tcks.split() : def
 def parallelCTSSuitesMap = cts_suites.collectEntries {
   ["${it}": generateCTSStage(it)]
 }
- 
+
 def generateCTSStage(job) {
-  return {
-    podTemplate(label: env.label) {
-      node(label) {
-        stage("${job}") {
-          container('jakartaeetck-ci') {
-            unstash 'jakartaeetck-bundles'
-            sh """
-              env
-              unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
-              bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_cts.log
-            """
-            archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
-            junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
+  if( job == "javamail" || job == "samples" || job == "servlet" ) {
+    return {
+      podTemplate(label: env.label) {
+        node(label) {
+          stage("${job}") {
+            container('james-mail') {
+             sh """
+               cd /root 
+               /root/startup.sh | tee $WORKSPACE/mailserver.log &
+               sleep 120
+               bash -x /root/create_users.sh
+               echo "Mail server setup complete"
+             """
+            }
+            container('jakartaeetck-ci') {
+              unstash 'jakartaeetck-bundles'
+              sh """
+                env
+                unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
+                bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_cts.log
+              """
+              archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
+              junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
+            }
+          }
+        }
+      }
+    }
+  } else {
+    return {
+      podTemplate(label: env.label) {
+        node(label) {
+          stage("${job}") {
+            container('jakartaeetck-ci') {
+              unstash 'jakartaeetck-bundles'
+              sh """
+                env
+                unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
+                bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_cts.log
+              """
+              archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
+              junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
+            }
           }
         }
       }
@@ -108,15 +138,12 @@ spec:
   - name: james-mail
     image: anajosep/cts-mailserver:0.1
     command:
-    - /root/startup.sh
+    - cat
     ports:
     - containerPort: 1025
     - containerPort: 1143
     tty: true
     imagePullPolicy: Always
-    env:
-      - name: JAVA_TOOL_OPTIONS
-        value: -Xmx2G
     resources:
       limits:
         memory: "2Gi"
