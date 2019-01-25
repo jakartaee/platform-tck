@@ -201,6 +201,23 @@ spec:
         }
       }
     }
+
+    stage('jakartaeetck-docbuild') {
+      when {
+        expression {
+          return params.BUILD_TYPE == 'CTS';
+        }
+      }
+      steps {
+        container('jakartaeetck-ci') {
+          sh """
+            env
+            bash -x ${WORKSPACE}/user_guides/build_tckugs.sh javaee
+          """
+          archiveArtifacts artifacts: "user_guides/userguides.zip", allowEmptyArchive: true
+        }
+      }
+    }
  
     stage('jakartaeetck-run') {
       when {
@@ -230,6 +247,24 @@ spec:
           """
           archiveArtifacts artifacts: "standalone-bundles/*.zip,*.version,*.log", allowEmptyArchive: true
           stash includes: 'standalone-bundles/*.zip', name: 'standalone-bundles'
+        }
+      }
+    }
+
+    stage('standalone-tck-docbuild') {
+      when {
+        expression {
+          return params.BUILD_TYPE == 'STANDALONE-TCK';
+         }
+      }
+
+      steps {
+        container('jakartaeetck-ci') {
+          sh """
+            env
+            bash -x ${WORKSPACE}/user_guides/build_tckugs.sh
+          """
+          archiveArtifacts artifacts: "user_guides/userguides.zip", allowEmptyArchive: true
         }
       }
     }
