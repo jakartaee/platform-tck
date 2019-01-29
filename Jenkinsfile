@@ -45,8 +45,9 @@ def generateCTSStage(job) {
               unstash 'jakartaeetck-bundles'
               sh """
                 env
-                unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
-                bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_cts.log
+                unzip -o ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip -d ${CTS_HOME}
+                bash -x ${CTS_HOME}/javaeetck/docker/fix_classpaths.sh ${job} | tee ${WORKSPACE}/fix_classpaths.log
+                bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_jakartaeetck.log
               """
               archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
               junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
@@ -64,7 +65,7 @@ def generateCTSStage(job) {
               unstash 'jakartaeetck-bundles'
               sh """
                 env
-                unzip -o ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip -d ${CTS_HOME}
+                unzip -o ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip -d ${CTS_HOME}
                 bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_cts.log
               """
               archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
@@ -161,6 +162,9 @@ spec:
     string(name: 'TCK_BUNDLE_BASE_URL', 
            defaultValue: '', 
            description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )
+    string(name: 'TCK_BUNDLE_FILE_NAME', 
+           defaultValue: 'jakartaeetck.zip', 
+           description: 'Name of bundle file to be appended to the base url' )
     choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
     choice(name: 'DATABASE', choices: 'JavaDB\nOracle\nMySQL', 

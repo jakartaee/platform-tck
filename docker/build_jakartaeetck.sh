@@ -32,9 +32,20 @@ if [ -z "$GF_HOME" ]; then
 fi
 
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
-   echo "Skipping build and using pre-build binary javaeetck bundle: $TCK_BUNDLE_BASE_URL/javaeetck.zip"
+   echo "Skipping build and using pre-build binary jakartaeetck bundle: $TCK_BUNDLE_BASE_URL/$TCK_BUNDLE_FILE_NAME"
    mkdir -p ${WORKSPACE}/jakartaeetck-bundles
-   wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/javaeetck.zip -O ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip
+   wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/$TCK_BUNDLE_FILE_NAME -O ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
+   # Check if the bundle is from Oracle Java EE CTS project. If so add scripts required for execution.
+   unzip -l jakartaeetck.zip | grep -q docker/run_jakartaeetck.sh;
+   if [ "$?" == "0" ]; then
+     echo "Bundle contains required scripts to run the tests"
+   else
+     mkdir docker
+     wget https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/EE4J_8/docker/build_jakartaeetck.sh -O docker/build_jakartaeetck.sh
+     wget https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/EE4J_8/docker/run_jakartaeetck.sh -O docker/run_jakartaeetck.sh
+     wget https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/EE4J_8/docker/fix_classpaths.sh -O docker/fix_classpaths.sh
+     zip -u jakartaeetck.zip docker/run_jakartaeetck.sh docker/build_jakartaeetck.sh
+   fi
    if [ ! -z "$GF_VERSION_URL" ]; then
        wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version
        cat glassfish.version
@@ -107,16 +118,16 @@ ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.vers
 
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
-cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/javaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/javaeetck.zip
-cp ${WORKSPACE}/release/JAVAEE-SMOKE_BUILD/latest/javaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/javaee-smoke.zip
+cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/javaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
+cp ${WORKSPACE}/release/JAVAEE-SMOKE_BUILD/latest/javaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaee-smoke.zip
 
 
 #Generate Version file
 GIT_HASH=`git rev-parse HEAD`
 GIT_BRANCH=`git branch | awk '{print $2}'`
 BUILD_DATE=`date`
-rm -f ${WORKSPACE}/javaeetck.version
-touch ${WORKSPACE}/javaeetck.version
-echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/javaeetck.version
-echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/javaeetck.version
-echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/javaeetck.version
+rm -f ${WORKSPACE}/jakartaeetck.version
+touch ${WORKSPACE}/jakartaeetck.version
+echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/jakartaeetck.version
+echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/jakartaeetck.version
+echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/jakartaeetck.version
