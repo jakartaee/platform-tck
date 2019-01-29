@@ -216,7 +216,10 @@ else
   fi
 fi
 
-CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
+if [ ! -z "${KEYWORDS}" ]; then
+  CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
+fi
+
 echo "CTS_ANT_OPTS:${CTS_ANT_OPTS}"
 echo "KEYWORDS:${KEYWORDS}"
 		
