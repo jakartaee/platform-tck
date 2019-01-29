@@ -289,21 +289,21 @@ ${smoke.log.contents}
 		</copy>
 
 		<copy todir="${target}" failonerror="false" flatten="true">
-			<fileset dir="../JAVAEE_BUILD/latest/javaeetck/lib"
+			<fileset dir="../JAKARTAEE_BUILD/latest/jakartaeetck/lib"
                  includes="tsharness.jar, cts.jar"/>
 		</copy>
 
 		<!-- Archive the nightly CTS build and the porting package -->
 		<copy todir="${nightly.archive}" failonerror="${fail.nightly.archive.copy}">
-			<fileset dir="../JAVAEE_BUILD/latest" includes="*.zip"/>
-			<fileset dir="../JAVAEE-SMOKE_BUILD/latest" includes="*.zip"/>
+			<fileset dir="../JAKARTAEE_BUILD/latest" includes="*.zip"/>
+			<fileset dir="../JAKARTAEE-SMOKE_BUILD/latest" includes="*.zip"/>
 		</copy>
 
 		<!-- Create symlinks for latest bundles -->
-		<symlink link="${target}/javaeetck_latest.zip" resource="javaeetck-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
+		<symlink link="${target}/jakartaeetck_latest.zip" resource="jakartaeetck-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
 		<symlink link="${target}/cts-internal_latest.zip" resource="cts-internal-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
 		<!-- symlink link="${target}/wls-cts-internal_latest.zip" resource="wls-cts-internal-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/ -->
-		<symlink link="${target}/javaee-smoke-8.0_latest.zip" resource="javaee-smoke-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
+		<symlink link="${target}/jakartaee-smoke-8.0_latest.zip" resource="jakartaee-smoke-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
 
 	</target>
 
@@ -311,17 +311,17 @@ ${smoke.log.contents}
 		<delete quiet="true">
 			<fileset dir="${target}"/>
 		</delete>
-		<symlink action="delete" link="${target}/javaeetck_latest.zip"/>
+		<symlink action="delete" link="${target}/jakartaeetck_latest.zip"/>
 		<symlink action="delete" link="${target}/cts-internal_latest.zip"/>
 		<!-- symlink action="delete" link="${target}/wls-cts-internal_latest.zip"/ -->
-		<symlink action="delete" link="${target}/javaee-smoke-8.0_latest.zip"/>
+		<symlink action="delete" link="${target}/jakartaee-smoke-8.0_latest.zip"/>
 	</target>
 
 
 	<target name="remove.bundles">
 		<echo> deleteing ${release.tools.current.dir}/..</echo>
 		<delete  quiet="true" includeemptydirs="true">
-			<fileset  dir="${release.tools.current.dir}/.." includes="JAVAEE*/**"/>
+			<fileset  dir="${release.tools.current.dir}/.." includes="JAKARTAEE*/**"/>
 		</delete>
 	</target>
 
