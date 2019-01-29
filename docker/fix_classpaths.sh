@@ -1,13 +1,4 @@
 #!/bin/bash -x
-
-if [[ ! -f ${WORKSPACE}/javaeetck/docker/run_jakartaeetck.sh ]]; then
-  mkdir ${WORKSPACE}/javaeetck/docker
-  chmod 777 ${WORKSPACE}/javaeetck/docker
-  cp ${WORKSPACE}/docker/*.sh ${WORKSPACE}/javaeetck/docker
-  chmod +x ${WORKSPACE}/javaeetck/docker/*.sh
-
-fi
-
 sed -i 's/javax.annotation.jar/jakarta.annotation-api.jar/g' ${WORKSPACE}/javaeetck/bin/ts.jte
 sed -i 's/jaxb-api.jar/jakarta.xml.bind-api.jar/g' ${WORKSPACE}/javaeetck/bin/ts.jte
 sed -i 's/javax.annotation-api.jar/jakarta.annotation-api.jar/g' ${WORKSPACE}/javaeetck/bin/ts.jte

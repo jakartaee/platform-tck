@@ -40,9 +40,12 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    if [ "$?" == "0" ]; then
      echo "Bundle contains required scripts to run the tests"
    else
-     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip docker/run_jakartaeetck.sh
-     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip docker/build_jakartaeetck.sh
-     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip docker/fix_classpaths.sh
+     mkdir javaeetck
+     cp -R docker javaeetck
+     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip javaeetck/docker/run_jakartaeetck.sh
+     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip javaeetck/docker/build_jakartaeetck.sh
+     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip javaeetck/docker/fix_classpaths.sh
+     rm -rf javaeetck
    fi
 
    if [ ! -z "$GF_VERSION_URL" ]; then
