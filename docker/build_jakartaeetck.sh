@@ -36,16 +36,15 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    mkdir -p ${WORKSPACE}/jakartaeetck-bundles
    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/$TCK_BUNDLE_FILE_NAME -O ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
    # Check if the bundle is from Oracle Java EE CTS project. If so add scripts required for execution.
-   unzip -l jakartaeetck.zip | grep -q docker/run_jakartaeetck.sh;
+   unzip -l ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip | grep -q docker/run_jakartaeetck.sh;
    if [ "$?" == "0" ]; then
      echo "Bundle contains required scripts to run the tests"
    else
-     mkdir docker
-     wget https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/EE4J_8/docker/build_jakartaeetck.sh -O docker/build_jakartaeetck.sh
-     wget https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/EE4J_8/docker/run_jakartaeetck.sh -O docker/run_jakartaeetck.sh
-     wget https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/EE4J_8/docker/fix_classpaths.sh -O docker/fix_classpaths.sh
-     zip -u jakartaeetck.zip docker/run_jakartaeetck.sh docker/build_jakartaeetck.sh
+     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip docker/run_jakartaeetck.sh
+     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip docker/build_jakartaeetck.sh
+     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip docker/fix_classpaths.sh
    fi
+
    if [ ! -z "$GF_VERSION_URL" ]; then
        wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version
        cat glassfish.version
