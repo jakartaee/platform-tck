@@ -16,7 +16,7 @@
 
 env.label = "jakartaee-tck-pod-${UUID.randomUUID().toString()}"
 
-default_suites=[ "compat12", "compat13", "concurrency", "connector", "ejb", "ejb30/bb", "ejb30/lite/appexception", "ejb30/lite/async", "ejb30/lite/basic", "ejb30/lite/ejbcontext", "ejb30/lite/enventry", "ejb30/lite/interceptor", "ejb30/lite/lookup", "ejb30/lite/naming", "ejb30/lite/nointerface", "", "ejb30/lite/packaging", "ejb30/lite/singleton", "ejb30/lite/stateful", "ejb30/lite/tx", "ejb30/lite/view", "ejb30/lite/xmloverride", "ejb30/assembly", "ejb30/timer", "ejb30/webservice", "ejb30/zombie", "ejb30/misc", "ejb30/sec", "ejb32", "el", "integration", "interop", "j2eetools", "jacc", "jaspic", "javaee", "javamail", "jaxr", "jaxrpc", "jaxrs", "jdbc_appclient", "jdbc_ejb", "jdbc_jsp", "jdbc_servlet", "jms_appclient", "jms_ejb", "jms_jsp", "jms_servlet", "jpa_appmanaged", "jpa_appmanagedNoTx", "jpa_pmservlet", "jpa_puservlet", "jpa_stateful3", "jpa_stateless3", "jsf", "jsonb", "jsonp", "jsp", "jstl", "jta", "jws", "rmiiiop", "samples", "securityapi", "servlet", "signaturetest/javaee", "webservices", "webservices12", "webservices13", "websocket", "xa"]
+default_suites=[ "samples", "signaturetest/javaee" ] 
 default_tcks=["caj", "concurrency", "connector", "el", "jacc", "jaspic", "jaxr", "jaxrpc", "jaxrs", "jaxws", "jms", "jpa", "jsf", "jsp", "jsonb", "jsonp", "jstl", "jta", "saaj", "securityapi", "servlet",  "websocket"]
 
 def cts_suites = params.test_suites != null ? params.test_suites.split() : default_suites
@@ -46,7 +46,7 @@ def generateCTSStage(job) {
               sh """
                 env
                 unzip -o ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip -d ${CTS_HOME}
-                bash -x ${CTS_HOME}/javaeetck/docker/fix_classpaths.sh ${job} | tee ${WORKSPACE}/fix_classpaths.log
+                bash -x ${CTS_HOME}/javaeetck/docker/fix_classpaths.sh | tee ${WORKSPACE}/fix_classpaths.log
                 bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_jakartaeetck.log
               """
               archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
@@ -66,6 +66,7 @@ def generateCTSStage(job) {
               sh """
                 env
                 unzip -o ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip -d ${CTS_HOME}
+                bash -x ${CTS_HOME}/javaeetck/docker/fix_classpaths.sh | tee ${WORKSPACE}/fix_classpaths.log
                 bash -x ${CTS_HOME}/javaeetck/docker/run_jakartaeetck.sh ${job} | tee ${WORKSPACE}/run_cts.log
               """
               archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
