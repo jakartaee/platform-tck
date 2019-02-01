@@ -14,9 +14,6 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
-# Hudson log file location for archiving later.
-LOGFILE=/log
-
 export BASEDIR=${WORKSPACE}
 if [ -z "${GF_HOME}" ]; then
   export GF_HOME=${WORKSPACE}
@@ -34,7 +31,6 @@ if [ "false" == "${buildStandaloneTCKFlag}" ]; then
 fi
 
 echo "########## Trunk.Install.V5 Config ##########"
-# Install GF 5.0 - not latest //TODO update with latest gf link
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -o latest-glassfish.zip
 
