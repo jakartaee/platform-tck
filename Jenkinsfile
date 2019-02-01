@@ -27,7 +27,7 @@ def parallelCTSSuitesMap = cts_suites.collectEntries {
 }
 
 def generateCTSStage(job) {
-  if( job == "javamail" || job == "samples" || job == "servlet" ) {
+  if( job == "javamail" || job == "samples" || job == "servlet" || job == "ejb" ) {
     return {
       podTemplate(label: env.label) {
         node(label) {
