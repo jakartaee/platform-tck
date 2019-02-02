@@ -36,7 +36,7 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    mkdir -p ${WORKSPACE}/jakartaeetck-bundles
    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/$TCK_BUNDLE_FILE_NAME -O ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
    # Check if the bundle is from Oracle Java EE CTS project. If so add scripts required for execution.
-   unzip -l ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip | grep -q docker/run_jakartaeetck.sh;
+   unzip -l ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip | grep -q javaeetck/docker/run_jakartaeetck.sh;
    if [ "$?" == "0" ]; then
      echo "Bundle contains required scripts to run the tests"
    else
@@ -45,6 +45,7 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
      zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip javaeetck/docker/run_jakartaeetck.sh
      zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip javaeetck/docker/build_jakartaeetck.sh
      zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip javaeetck/docker/fix_classpaths.sh
+     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip javaeetck/docker/JTReportParser/JTReportParser.jar
      rm -rf javaeetck
    fi
 
