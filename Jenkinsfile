@@ -186,7 +186,7 @@ spec:
     MAIL_USER="user01@james.local"
     MAIL_HOST="localhost"
     LANG="en_US.UTF-8"
-    DEFAULT_GF_BUNDLE_URL="https://repo1.maven.org/maven2/org/glassfish/main/distributions/glassfish/5.1.0-RC1/glassfish-5.1.0-RC1.zip"
+    DEFAULT_GF_BUNDLE_URL="https://repo1.maven.org/maven2/org/glassfish/main/distributions/glassfish/5.1.0/glassfish-5.1.0.zip"
   }
   stages {
     stage('jakartaeetck-build') {
