@@ -1,4 +1,7 @@
 # Project Specific JakartaEE TCK pipeline
+## Current CJE Jobs
+Details about the current CJE jobs is available on the [Jakarta EE TCK Wiki](https://github.com/eclipse-ee4j/jakartaee-tck/wiki).
+
 ## System Requirements.
 1. CJE instance specific for the project.
 2. BlueOcean plugin.
