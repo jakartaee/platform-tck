@@ -162,8 +162,8 @@ chmod -R 777 ${CTS_HOME}/vi
 
 if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
-  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
   sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
   sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
 fi 
