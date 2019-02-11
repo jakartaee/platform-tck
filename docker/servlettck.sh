@@ -41,7 +41,7 @@ unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 TS_HOME=$TCK_HOME/servlettck
 echo "TS_HOME $TS_HOME"
 
-export JAVA_OPTIONS="-Djava.endorsed.dirs=$TS_HOME/endorsedlib/"
+export JAVA_OPTIONS="${JAVA_OPTIONS} -Djava.endorsed.dirs=$TS_HOME/endorsedlib/"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
@@ -65,7 +65,7 @@ ant -Dutil.dir=$TS_HOME config.security
 cd $TS_HOME/src/com/sun/ts/tests/servlet
 cat $TS_HOME/bin/server_policy.append>>$TCK_HOME/glassfish5/glassfish/domains/domain1/config/server.policy
 ant -Dutil.dir=$TS_HOME deploy.all
-ant -Djava.endorsed.dirs=$TS_HOME/endorsedlib -Dutil.dir=$TS_HOME runclient
+ant -Dutil.dir=$TS_HOME runclient
 echo "Test run complete"
 
 TCK_NAME=servlettck
