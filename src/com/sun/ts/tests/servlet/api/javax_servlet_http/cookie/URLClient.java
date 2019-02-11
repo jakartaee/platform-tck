@@ -352,7 +352,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     // put expiry date into GMT
-    SimpleDateFormat sdf = new SimpleDateFormat();
+    SimpleDateFormat sdf = new SimpleDateFormat(TestServlet.CUSTOM_HEADER_DATE_FORMAT);
     sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
     String resultStringDate = sdf.format(expiryDate);
     try {
