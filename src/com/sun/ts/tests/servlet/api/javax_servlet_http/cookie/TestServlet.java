@@ -2,7 +2,8 @@
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 2001, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2001, 2019 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
