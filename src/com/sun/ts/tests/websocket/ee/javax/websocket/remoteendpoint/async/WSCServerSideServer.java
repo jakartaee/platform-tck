@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2019 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -182,7 +183,7 @@ public class WSCServerSideServer {
    * Again, since the asynchronous thread sends message in virtually no time,
    * one does not have any force to hold that send operation in its thread, to
    * check the send operation is really unblocking and asynchronous
-   * 
+   *
    * @param asyncRemote
    * @return
    */
@@ -250,32 +251,35 @@ public class WSCServerSideServer {
 
   protected static String sendObject(Async asyncRemote, Class<?> type) {
     try {
+      Future<Void> future = null;
       if (type == byte.class) {
         byte b = -100;
-        asyncRemote.sendObject(b);
+        future = asyncRemote.sendObject(b);
       } else if (type == short.class) {
         short s = -101;
-        asyncRemote.sendObject(s);
+        future = asyncRemote.sendObject(s);
       } else if (type == int.class) {
         int i = -102;
-        asyncRemote.sendObject(i);
+        future = asyncRemote.sendObject(i);
       } else if (type == long.class) {
         long l = -103L;
-        asyncRemote.sendObject(l);
+        future = asyncRemote.sendObject(l);
       } else if (type == float.class) {
         float f = -104f;
-        asyncRemote.sendObject(f);
+        future = asyncRemote.sendObject(f);
       } else if (type == double.class) {
         double d = -105d;
-        asyncRemote.sendObject(d);
+        future = asyncRemote.sendObject(d);
       } else if (type == boolean.class) {
         boolean b = false;
-        asyncRemote.sendObject(b);
+        future = asyncRemote.sendObject(b);
       } else if (type == char.class) {
         char c = 106;
-        asyncRemote.sendObject(c);
+        future = asyncRemote.sendObject(c);
       }
-      return RESPONSE[0];
+      @SuppressWarnings("null") // v being null is a bug so we want the NPE in this case
+      Void v = future.get();
+      return v == null ? RESPONSE[0] : RESPONSE[1];
     } catch (Exception e) {
       e.printStackTrace();
       return IOUtil.printStackTrace(e);
