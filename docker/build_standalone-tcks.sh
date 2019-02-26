@@ -80,8 +80,8 @@ echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/version.info
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   mkdir -p ${WORKSPACE}/standalone-bundles/
   for tck in ${TCK_LIST[@]}; do
-    echo "Skipping build and using pre-build binary TCK bundle: ${TCK_BUNDLE_BASE_URL}/${tck}tck.zip"
-    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/${tck}tck.zip -O ${WORKSPACE}/standalone-bundles/${tck}tck_latest.zip
+    echo "Skipping build and using pre-build binary TCK bundle: ${TCK_BUNDLE_BASE_URL}/${tck}tck"
+    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/*.zip -O ${WORKSPACE}/standalone-bundles/
   done
   exit 0
 fi
