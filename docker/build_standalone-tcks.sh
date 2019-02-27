@@ -81,7 +81,7 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   mkdir -p ${WORKSPACE}/standalone-bundles/
   for tck in ${TCK_LIST[@]}; do
     echo "Skipping build and using pre-build binary TCK bundle: ${TCK_BUNDLE_BASE_URL}/${tck}tck"
-    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/*.zip -O ${WORKSPACE}/standalone-bundles/
+    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL} -P ${WORKSPACE}/standalone-bundles/ -A "${tck}tck*_latest.zip"
   done
   exit 0
 fi
