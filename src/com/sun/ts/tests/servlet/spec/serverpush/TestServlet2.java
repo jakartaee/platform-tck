@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2019 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.PushBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
 
 public class TestServlet2 extends HttpServlet {
 
@@ -40,7 +42,11 @@ public class TestServlet2 extends HttpServlet {
     pw.println("JSESSIONID: " + pb.getSessionId());
     pw.println("The headers of PushBuilder: ");
     for (String name : pb.getHeaderNames()) {
-      pw.print(name);
+      /*
+       * Header names are case insensitive. Force to lower case to make client
+       * side test logic simpler.
+       */
+      pw.print(name.toLowerCase(Locale.ENGLISH));
       pw.print("=");
       pw.println(pb.getHeader(name));
     }
