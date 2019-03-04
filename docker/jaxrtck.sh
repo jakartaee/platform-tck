@@ -62,6 +62,11 @@ sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaxrtckreport/jaxrtck#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxrtckwork/jaxrtck#g" ts.jte
 
 sed -i "s#^jwsdp\.home=.*#jwsdp.home=$TCK_HOME/glassfish5/glassfish/#g" $TS_HOME/bin/build.properties
+if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
+  sed -i 's/javax.xml.registry-api.jar/jakarta.xml.registry-api.jar/g' $TS_HOME/bin/build.properties
+  sed -i 's/javax.xml.bind-api.jar/jakarta.xml.bind-api.jar/g' $TS_HOME/bin/build.properties
+fi
+
 echo "ts.home=$TS_HOME" >>$TS_HOME/bin/build.properties
 
 GF_HOME=$TCK_HOME/glassfish5/glassfish/

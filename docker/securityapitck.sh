@@ -55,6 +55,8 @@ sed -i "s#web\.home=.*#web.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/securityapitckreport/securityapitck#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/securityapitckwork/securityapitck#g" ts.jte
 
+sed -i 's#securityapi.classes=.*#securityapi.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.security.enterprise-api.jar${pathsep}${web.home}/modules/jakarta.security.auth.message-api.jar${pathsep}${web.home}/modules/endorsed/jakarta.annotation-api.jar${pathsep}${web.home}/modules/jakarta.inject.jar${pathsep}${web.home}/modules/cdi-api.jar${pathsep}${web.home}/modules/jakarta.faces.jar${pathsep}${web.home}/modules/jakarta.interceptor-api.jar${pathsep}${web.home}/modules/jakarta.ejb-api.jar${pathsep}/${ts.home}/lib/unboundid-ldapsdk.jar#g' ts.jte
+
 mkdir -p $TCK_HOME/securityapitckreport/securityapitck
 mkdir -p $TCK_HOME/securityapitckwork/securityapitck
 
