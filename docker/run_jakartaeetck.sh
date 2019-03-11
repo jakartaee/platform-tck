@@ -359,18 +359,25 @@ echo "ant start.auto.deployment.server > /tmp/deploy.out 2>&1 & "
 ant start.auto.deployment.server > /tmp/deploy.out 2>&1 &
 ### ctsStartStandardDeploymentServer.sh ends here #####
 
-cd $TS_HOME/bin
-if [[ "jbatch" == ${test_suite} ]];then
-  cd $TS_HOME/src/com/ibm/jbatch/tck
-  ant runclient -Dwork.dir=${JT_WORK_DIR}/jbatch -Dreport.dir=${JT_REPORT_DIR}/jbatch
-  cd $TS_HOME/bin
-elif [ -z "$KEYWORDS" ]; then
-  ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+cd $TS_HOME/bin;
+if [ -z "$KEYWORDS" ]; then
+  if [[ "jbatch" == ${test_suite} ]]; then
+    cd $TS_HOME/src/com/ibm/jbatch/tck;
+    ant runclient -Dwork.dir=${JT_WORK_DIR}/jbatch -Dreport.dir=${JT_REPORT_DIR}/jbatch;
+  else
+    ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+  fi
 else
-  ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+  if [[ "jbatch" == ${test_suite} ]]; then
+    cd $TS_HOME/src/com/ibm/jbatch/tck;
+    ant runclient -Dkeywords=\"${KEYWORDS}\" -Dwork.dir=${JT_WORK_DIR}/jbatch -Dreport.dir=${JT_REPORT_DIR}/jbatch;
+  else
+    ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+  fi
 fi
 
 
+cd $TS_HOME/bin;
 # Check if there are any failures in the test. If so, re-run those tests.
 FAILED_COUNT=0
 ERROR_COUNT=0
