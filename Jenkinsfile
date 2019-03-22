@@ -108,7 +108,6 @@ pipeline {
   options {
     durabilityHint('PERFORMANCE_OPTIMIZED')
     buildDiscarder(logRotator(numToKeepStr: '30', artifactDaysToKeepStr: '30'))
-    disableConcurrentBuilds()
   }
   agent {
     kubernetes {
