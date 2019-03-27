@@ -43,7 +43,7 @@
 					 excludes="**/workspace.xml"/>
 		</copy>
 		<copy todir="${deliverable.bundle.dir}/bin/certificates" includeEmptyDirs="no">
-			<fileset dir="${ts.home}/install/j2ee/bin/certificates"
+			<fileset dir="${ts.home}/install/jakartaee/bin/certificates"
 					 includes="**/*"/>
 		</copy>
 		<copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">

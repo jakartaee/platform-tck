@@ -67,14 +67,14 @@ export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${GF_HOME}/glassfish5/glassfish/mod
                  -Djavax.xml.accessExternalSchema=all \
                  -Djavax.xml.accessExternalDTD=file,http"
 
-echo ########## Remove hard-coded paths from install/j2ee/bin/ts.jte ##########"
+echo ########## Remove hard-coded paths from install/jakartaee/bin/ts.jte ##########"
 sed -e "s#^javaee.home=.*#javaee.home=$GF_HOME/glassfish5/glassfish#g" \
     -e "s#^javaee.home.ri=.*#javaee.home.ri=$GF_HOME/glassfish5/glassfish#g" \
     -e "s#^report.dir=.*#report.dir=$BASEDIR/JTReport#g" \
-    -e "s#^work.dir=.*#work.dir=$BASEDIR/JTWork#g" $BASEDIR/install/j2ee/bin/ts.jte > $BASEDIR/install/j2ee/bin/ts.jte.new
-mv $BASEDIR/install/j2ee/bin/ts.jte.new $BASEDIR/install/j2ee/bin/ts.jte
+    -e "s#^work.dir=.*#work.dir=$BASEDIR/JTWork#g" $BASEDIR/install/jakartaee/bin/ts.jte > $BASEDIR/install/jakartaee/bin/ts.jte.new
+mv $BASEDIR/install/jakartaee/bin/ts.jte.new $BASEDIR/install/jakartaee/bin/ts.jte
 echo "Contents of modified TS.JTE file"
-cat $BASEDIR/install/j2ee/bin/ts.jte
+cat $BASEDIR/install/jakartaee/bin/ts.jte
 
 echo "########## Trunk.Install.V5 Config ##########"
 cd $BASEDIR
@@ -92,14 +92,14 @@ if [ ! -z "$GF_VERSION_URL" ]; then
 fi
 
 echo "########## Trunk.Clean.Build.Libs ##########"
-ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/j2ee/bin clean.all build.all.jars
+ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin clean.all build.all.jars
 
 echo "########## Trunk.Build ##########"
 # Builds the CTS Deliverable
-ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/j2ee/bin  modify.jstl.db.resources
+ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/j2ee/bin -Djava.endorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed build.all
+ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed build.all
 
 
 echo "########## Trunk.Sanitize.JTE ##########"
@@ -113,16 +113,16 @@ ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=jakartaee -Dbased
 
 
 echo "########## Trunk.CTS ##########"
-mkdir -p $BASEDIR/internal/docs/javaee/
-cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/javaee/
+mkdir -p $BASEDIR/internal/docs/jakartaee/
+cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/jakartaee/
 ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools jakartaee
 
 ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools smoke
 
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
-cp ${WORKSPACE}/release/JAVAEE_BUILD/latest/javaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
-cp ${WORKSPACE}/release/JAVAEE-SMOKE_BUILD/latest/javaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaee-smoke.zip
+cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
+cp ${WORKSPACE}/release/JAKARTAEE-SMOKE_BUILD/latest/jakartaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaee-smoke.zip
 
 
 #Generate Version file

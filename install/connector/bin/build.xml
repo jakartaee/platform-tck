@@ -240,7 +240,7 @@
     <!-- ts specific jar (in this case connector.jar) will be created in ts.home/lib. -->
 
    <property name="lib.jar" value = "${ts.home}/lib/connector.jar"/>
-   <property name="install.lib.dir" value = "${ts.home}/install/j2ee/lib"/>
+   <property name="install.lib.dir" value = "${ts.home}/install/jakartaee/lib"/>
    
     <target name="tslib.clean" depends="init">
       <delete failonerror="false">

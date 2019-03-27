@@ -33,7 +33,7 @@
       <sequential>
 		<zip destfile="@{zip-name}">
 		    <zipfileset filemode="777"
-		                dir="${ts.home}/install/j2ee/bin/xml"
+		                dir="${ts.home}/install/jakartaee/bin/xml"
 		                includes="imq.xml, install*, templates/statefile*"
 		                prefix="bin/xml"/>
 		    <zipfileset filemode="777"
@@ -56,7 +56,7 @@
 	</target>
 
 	<target name="make.cts.internal.archive">
-		<copy file="${ts.home}/install/j2ee/bin/build.xml"
+		<copy file="${ts.home}/install/jakartaee/bin/build.xml"
           todir="${ts.home}/tmp"
           overwrite="true"/>
 		<antcall target="make.cts.internal.archive.ri"/>

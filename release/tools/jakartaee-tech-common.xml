@@ -38,12 +38,12 @@
 
 	<target name="copyinstall">
         <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
-           <fileset dir="${ts.home}/install/j2ee/bin"
+           <fileset dir="${ts.home}/install/jakartaee/bin"
                 includes="**/*"/>
         </copy>
         <antcall target="_filter.common.files"/>
         <copy todir="${deliverable.bundle.dir}/src">
-        <fileset dir="${ts.home}/install/j2ee/other"
+        <fileset dir="${ts.home}/install/jakartaee/other"
             includes="testsuite.jtt, vehicle.properties"/>
         </copy>
         <copy todir="${deliverable.bundle.dir}/sql" includeEmptyDirs="no">
@@ -81,7 +81,7 @@
         <antcall target="do.build"/>
 
         <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
-          <fileset dir="${ts.home}/internal/docs/javaee"
+          <fileset dir="${ts.home}/internal/docs/jakartaee"
                    includes="smoke-instructions-CTS7*, running_cts7*"/>
         </copy>
         <!-- the classes directory -->
