@@ -92,32 +92,32 @@ if [ ! -z "$GF_VERSION_URL" ]; then
 fi
 
 echo "########## Trunk.Clean.Build.Libs ##########"
-ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin clean.all build.all.jars
+ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/j2ee/bin clean.all build.all.jars
 
 echo "########## Trunk.Build ##########"
 # Builds the CTS Deliverable
-ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin  modify.jstl.db.resources
+ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/j2ee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/install/j2ee/bin -Djava.endorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed build.all
+ant -f $BASEDIR/install/j2ee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/j2ee/bin -Djava.endorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed build.all
 
 
 echo "########## Trunk.Sanitize.JTE ##########"
 # Sanitize the ts.jte file based on the values in release/tools/jte.props.sanitize
-ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/release/tools -Dts.jte.prop.file=$BASEDIR/release/tools/jte.props.sanitize
+ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/release/tools -Dts.jte.prop.file=$BASEDIR/release/tools/jte.props.sanitize
 
 
 echo "########## Trunk.Clean.Builds ##########"
 # Cleans all bundles under TS_HOME/release except tools.
-ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=j2ee -Dbasedir=$BASEDIR/release/tools remove.bundles
+ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/release/tools remove.bundles
 
 
 echo "########## Trunk.CTS ##########"
 mkdir -p $BASEDIR/internal/docs/javaee/
 cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/javaee/
-ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools j2ee
+ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools jakartaee
 
-ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=j2ee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools smoke
+ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools smoke
 
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
