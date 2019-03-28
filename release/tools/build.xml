@@ -92,7 +92,7 @@
         <echo message=" jsf           [overrides]"/>
         <echo message=" jstl          [overrides]"/>
         <echo message=" el            [overrides]"/>
-        <echo message=" jakartae      [overrides]"/>
+        <echo message=" jakartaee     [overrides]"/>
         <echo message=" servlet       [overrides]"/>
         <echo message=" jaxrs         [overrides]"/>
         <echo message=" saaj          [overrides]"/>
