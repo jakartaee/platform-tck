@@ -1,5 +1,6 @@
 #
-# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2019 Oracle and/or its affiliates and others.
+# All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -144,6 +145,14 @@ ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharne
 servlet.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/endorsed/jakarta.annotation-api.jar
 
 ########################################################################
+# @endorsedlib.dir - Location to be used for java.endorsed.dirs as some
+#                    tests require some addition classes in the
+#                    java.util.concurrent package that are not present
+#                    in Java 8 as they were added in Java 9.
+########################################################################
+endorsedlib.dir=${ts.home}/endorsedlib
+
+########################################################################
 ## Common environment for both ts_unix and ts_win32
 #
 # @command.testExecute - This command is used to execute any test 
@@ -161,6 +170,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
                     windir=${windir} \
                     SYSTEMROOT=${SYSTEMROOT} \
                     ${JAVA_HOME}/bin/java \
+                    -Djava.endorsed.dirs=${endorsedlib.dir} \
                     -Dbytecheck=true \
                     -Djava.protocol.handler.pkgs=javax.net.ssl \
                     -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
