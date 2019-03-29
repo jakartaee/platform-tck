@@ -34,7 +34,7 @@ fi
 if [ -z "${CTS_HOME}" ]; then
   export CTS_HOME="${WORKSPACE}"
 fi
-export TS_HOME=${CTS_HOME}/javaeetck/
+export TS_HOME=${CTS_HOME}/jakartaeetck/
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
 echo "ANT_HOME ${ANT_HOME}"
@@ -424,7 +424,7 @@ else
   sed -i "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
   mv ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml  ${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/
+tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/
 
 if [ -z ${vehicle} ];then
   JUNIT_REPORT_FILE_NAME=${TEST_SUITE}-junitreports.tar.gz
