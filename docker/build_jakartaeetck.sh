@@ -40,9 +40,11 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    if [ "$?" == "0" ]; then
      echo "Bundle contains required scripts to run the tests"
    else
+     #renaming folder javaeetck to jakartaeetck in the Oracle Bundle
      unzip -o ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip -d ${WORKSPACE}/jakartaeetck-bundles
      mv ${WORKSPACE}/jakartaeetck-bundles/javaeetck ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck
-     zip -r jakartaeetck.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck
+     rm -rf ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
+     zip -r ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck
      rm -rf ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck
      mkdir jakartaeetck
      cp -R docker jakartaeetck
