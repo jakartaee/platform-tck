@@ -26,12 +26,12 @@ echo "Test suite to run $test_suite"
 ##### installCTS.sh starts here #####
 echo "Download CTS Bundle ..."
 if [ -z "$CTS_BUNDLE_URL" ]; then
-  wget http://<host>/javaeetck_latest.zip
+  wget http://<host>/jakartaeetck_latest.zip
 else
   echo "Downloading the CTS bundle from $CTS_BUNDLE_URL"  
-  wget $CTS_BUNDLE_URL -O javaeetck_latest.zip
+  wget $CTS_BUNDLE_URL -O jakartaeetck_latest.zip
 fi
-unzip javaeetck_latest.zip
+unzip jakartaeetck_latest.zip
 
 echo "Copy the latest CTS Internal Bundle ..."
 wget http://<host>/cts-internal_latest.zip
