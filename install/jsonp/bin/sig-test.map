@@ -46,4 +46,4 @@
 # be referenced when using JDK 6.  
 #
 ###############################################################
-javax.json=1.0_se6
+javax.json=1.1_se8
