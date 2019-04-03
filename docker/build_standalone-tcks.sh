@@ -88,6 +88,7 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaspictck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaspictck-1.1_latest.zip 
   wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrpctck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrpctck-1.1_latest.zip 
   wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrstck-2.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrstck-2.1_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrtck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrtck-1.0_latest.zip
   wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxwstck-2.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxwstck-2.3_latest.zip 
   wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jmstck-2.0_latest.zip -O ${WORKSPACE}/standalone-bundles/jmstck-2.0_latest.zip 
   wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jpatck-2.2_latest.zip -O ${WORKSPACE}/standalone-bundles/jpatck-2.2_latest.zip 
