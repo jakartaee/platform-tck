@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,6 +27,12 @@ else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
+
+if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
+  KEYWORDS="jaspic_web_profile"
+fi
+
+
 unzip ${WORKSPACE}/standalone-bundles/jaspictck-1.1_latest.zip -d ${TCK_HOME}
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
