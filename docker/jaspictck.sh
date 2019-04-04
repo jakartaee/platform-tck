@@ -89,7 +89,11 @@ cd $TCK_HOME/glassfish5/bin
 ./asadmin start-domain
 
 cd $TS_HOME/src/com/sun/ts/tests/jaspic
-ant runclient
+if [ -z "$KEYWORDS" ]; then
+  ant runclient
+else
+  ant runclient -Dkeywords=\"${KEYWORDS}\" ;
+
 echo "Test run complete"
 
 TCK_NAME=jaspictck
