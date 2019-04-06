@@ -3189,7 +3189,7 @@ Parts of ts.jte:
 2.  Update ldap.install.server property as false since CTS script need
 not install LDAP server.
 3.  Import ldap.ldif file into Ldap server. You can get ldap.ldif from
-<TS_HOME>/install/j2ee/bin/ldap.ldif.
+<TS_HOME>/install/jakartaee/bin/ldap.ldif.
 
 =======================================================================
 

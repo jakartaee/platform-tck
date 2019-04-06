@@ -21,7 +21,7 @@ RUN ${CTS_HOME}/jwsdp-setup.sh
 
 ENV JAVA_HOME $CTS_HOME/jdk1.8.0_171
 ENV ANT_HOME $CTS_HOME/apache-ant-1.9.7
-ENV TS_HOME $CTS_HOME/javaeetck
+ENV TS_HOME $CTS_HOME/jakartaeetck
 ENV PATH $JAVA_HOME/bin:$ANT_HOME/bin:$TS_HOME/bin:$PATH
 
 WORKDIR ${CTS_HOME}

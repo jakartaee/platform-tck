@@ -33,7 +33,7 @@
 
         <target name="copyinstall">
          <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
-               <fileset dir="${ts.home}/install/j2ee/bin"
+               <fileset dir="${ts.home}/install/jakartaee/bin"
                     includes="**/*"
                     excludes="**/workspace.xml, xml/impl/glassfish/j2ee_ri.xml*, xml/impl/glassfish/j2ee_vi.xml*, xml/impl/glassfish/s1as.xml*"/>
          </copy>

@@ -1618,7 +1618,7 @@ AS_ADMIN_NEWPASSWORD=${admin.password}</echo>
 	  config.ri since all these issues are handled there.
 	  
 	  To invoke stand-alone (until it is added to config.ri):
-	    ant -f TS_HOME/install/j2ee/bin/xml/impl/glassfish/javaee_ri.xml \
+	    ant -f TS_HOME/install/jakartaee/bin/xml/impl/glassfish/javaee_ri.xml \
 	        enable.secure.admin
 	-->
 	<target name="enable.secure.admin" depends="filter.password.file, configPlatform">

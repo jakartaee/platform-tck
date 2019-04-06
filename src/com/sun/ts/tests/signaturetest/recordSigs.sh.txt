@@ -67,7 +67,7 @@ sigTestClasspath=${s1as_modules}/javax.json.jar${pathsep}${s1as_modules}/javax.b
 
 $ANT_HOME/bin/ant -find record-build.xml \
 -Dsig.source="${sigtest_classes}${pathsep}${sigTestClasspath}" \
--Dmap.file=${TS_HOME}/install/j2ee/bin/sig-test_se7.map  \
+-Dmap.file=${TS_HOME}/install/jakartaee/bin/sig-test_se7.map  \
 -Djava.endorsed.dirs=${AS_HOME}/modules/endorsed \
 -Drecorder.type=sigtest \
 record.sig.batch
