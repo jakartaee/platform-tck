@@ -93,6 +93,7 @@ if [ -z "$KEYWORDS" ]; then
   ant runclient
 else
   ant runclient -Dkeywords=\"${KEYWORDS}\" ;
+fi
 
 echo "Test run complete"
 
