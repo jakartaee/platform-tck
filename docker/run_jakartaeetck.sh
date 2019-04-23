@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -163,13 +163,13 @@ chmod -R 777 ${CTS_HOME}/vi
 
 if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
-  sed -i 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx512m/-Xmx6144m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx1024m/-Xmx6144m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
   sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
   sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
  
   # Change the memory setting in ts.jte as well.
-  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${TS_HOME}/bin/ts.jte
+  sed -i 's/-Xmx1024m/-Xmx6144m/g' ${TS_HOME}/bin/ts.jte
 fi 
 
 ${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
