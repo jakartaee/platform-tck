@@ -81,7 +81,7 @@ cd $TCK_HOME/glassfish5/glassfish/bin
 cd $TS_HOME/bin
 ant init.javadb
 ant deploy.all
-ant run.all
+ant -v -d run.all
 echo "Test run complete"
 
 TCK_NAME=jstltck
