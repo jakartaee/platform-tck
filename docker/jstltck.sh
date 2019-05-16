@@ -60,8 +60,8 @@ sed -i 's#jstl\.db\.driver=.*#jstl.db.driver=org.apache.derby.jdbc.ClientDriver#
 sed -i 's#jstl\.db\.user=.*#jstl.db.user=cts1#g' ts.jte
 sed -i 's#jstl\.db\.password=.*#jstl.db.password=cts1#g' ts.jte
 sed -i 's#sigTestClasspath=.*#sigTestClasspath=\$\{ts.home\}/classes:\$\{jstl.classes\}:\$\{jspservlet.classes\}:\$\{JAVA_HOME\}/lib/rt.jar#g' ts.jte
-sed -i 's#jspservlet.classes=.*#jspservlet.classes=\$\{webServerHome\}/modules/javax.servlet-api.jar:\$\{webServerHome\}/modules/javax.servlet.jsp.jar:\$\{webServerHome\}/modules/javax.servlet.jsp-api.jar:\$\{webServerHome\}/modules/javax.el.jar#g' ts.jte
-sed -i 's#jstl.classes=.*#jstl.classes=\$\{webServerHome\}/modules/javax.servlet.jsp.jstl.jar\$\{pathsep\}\$\{webServerHome\}/modules/javax.servlet.jsp.jstl-api.jar#g' ts.jte
+sed -i 's#jspservlet.classes=.*#jspservlet.classes=\$\{webServerHome\}/modules/jakarta.servlet-api.jar:\$\{webServerHome\}/modules/javax.servlet.jsp.jar:\$\{webServerHome\}/modules/jakarta.servlet.jsp-api.jar:\$\{webServerHome\}/modules/jakarta.el.jar#g' ts.jte
+sed -i 's#jstl.classes=.*#jstl.classes=\$\{webServerHome\}/modules/javax.servlet.jsp.jstl.jar\$\{pathsep\}\$\{webServerHome\}/modules/jakarta.servlet.jsp.jstl-api.jar#g' ts.jte
 
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jstltckreport/jstltck#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jstltckwork/jstltck#g" ts.jte
@@ -81,7 +81,7 @@ cd $TCK_HOME/glassfish5/glassfish/bin
 cd $TS_HOME/bin
 ant init.javadb
 ant deploy.all
-ant -v -d run.all
+ant run.all
 echo "Test run complete"
 
 TCK_NAME=jstltck
