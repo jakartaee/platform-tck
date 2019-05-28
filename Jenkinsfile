@@ -125,7 +125,7 @@ spec:
     - "james.local"
   containers:
   - name: jakartaeetck-ci
-    image: anajosep/cts-base:0.1
+    image: jakartaee/cts-base:0.1
     command:
     - cat
     tty: true
@@ -138,7 +138,7 @@ spec:
         memory: "10Gi"
         cpu: "2.0"
   - name: james-mail
-    image: anajosep/cts-mailserver:0.1
+    image: jakartaee/cts-mailserver:0.1
     command:
     - cat
     ports:
