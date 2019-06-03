@@ -93,9 +93,16 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   fi
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish.zip
+if [[ "interop" == ${test_suite} ]]; then
+  wget --progress=bar:force --no-cache $OLD_GF_BUNDLE_URL -O ${CTS_HOME}/glassfish-5.0.zip
+fi
 rm -Rf ${CTS_HOME}/ri
 mkdir -p ${CTS_HOME}/ri
-unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
+if [[ "interop" == ${test_suite} ]]; then
+  unzip ${CTS_HOME}/glassfish-5.0.zip -d ${CTS_HOME}/ri
+else
+  unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
+fi
 chmod -R 777 ${CTS_HOME}/ri
 
 export ADMIN_PASSWORD_FILE="${CTS_HOME}/admin-password.txt"
