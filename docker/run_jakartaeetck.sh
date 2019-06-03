@@ -92,6 +92,9 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
     export GF_BUNDLE_URL=$DEFAULT_GF_BUNDLE_URL
   fi
 fi
+if [ -z "${OLD_GF_BUNDLE_URL}" ]; then
+  export OLD_GF_BUNDLE_URL=$GF_BUNDLE_URL
+fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish.zip
 if [[ "interop" == ${test_suite} ]]; then
   wget --progress=bar:force --no-cache $OLD_GF_BUNDLE_URL -O ${CTS_HOME}/glassfish-5.0.zip
