@@ -26,6 +26,10 @@ Configuration,"] for instructions on configuring your test environment.
 3.1 Obtaining the Reference Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+You can obtain the {TechnologyShortName} Reference Implementation (RI)
+({TechnologyRI}) software from Java Licensee Engineering
+(https://javapartner.oracle.com).
+
 [[GBFTS]][[installing-the-software]]
 
 3.2 Installing the Software
@@ -41,7 +45,7 @@ include::req-software.inc[]
 include::tck-packages.inc[]
 * The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
 
-
+Follow these steps:
 
 .  Install the Java SE {SEversion} software, if it is not already installed. +
 Download and install the Java SE {SEversion} software from
@@ -50,7 +54,11 @@ Refer to the installation instructions that accompany the software for
 additional information.
 .  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
   a.  Copy or download the {TechnologyShortName} TCK software to your
-      local system. 
+      local system. +
+      You can obtain the {TechnologyShortName} TCK software from the
+      Java Licensee Engineering (https://javapartner.oracle.com) Web
+      site.  The {TechnologyShortName} TCK software is located in the
+      Web site's Download Center area.
   b.  Use the `unzip` command to extract the bundle in the directory of
       your choice: +
       +unzip {TCKPackageName}+ +
@@ -63,6 +71,8 @@ The Reference Implementation is used to validate your initial
 configuration and setup of the {TechnologyShortName} TCK
 {TechnologyVersion} tests, which are explained further in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
+The {TechnologyShortName} RI can be obtained from Java Licensee Engineering
+(https://javapartner.oracle.com).
 include::install-server-vi.inc[]
 .  Install the {TechnologyShortName} Vendor Implementation (VI) to be tested. +
 Follow the installation instructions for the particular VI under test.

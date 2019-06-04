@@ -37,7 +37,7 @@ consists of the following activities:
 (TCK) and execute it in accordance with the instructions in this User's
 Guide.
 * Ensure that you meet the requirements outlined in
-  link:#CJAFGIGG[Compatibility Requirements] below.
+link:#CJAFGIGG[Compatibility Requirements] below.
 
 * Certify to the Java Partner organization that you have finished
 testing and that you meet all of the compatibility requirements.
@@ -47,7 +47,7 @@ testing and that you meet all of the compatibility requirements.
 2.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for {TechnologyFullName}
+The compatibility requirements for {TechnologyShortName}
 {TechnologyVersion} consist of meeting the requirements set forth by
 the rules and associated definitions contained in this section.
 
@@ -86,6 +86,10 @@ may or may not exist) are graphics cards and device drivers.
 
 Examples of computational resources that may vary in version are
 operating systems and device drivers.
+
+|Configuration Descriptor |Any file whose format is well defined by a
+specification and which contains configuration information for a set of
+Java classes, archive, or other feature defined in the specification.
 
 |Conformance Tests |All tests in the Test Suite for an indicated
 Technology Under Test, as distributed by the Maintenance Lead, excluding
@@ -143,6 +147,12 @@ A specific setting or instantiation of an Operating Mode.
 For example, a Product supporting an Operating Mode that permits user
 selection of an external encryption package may have a Product
 Configuration that links the Product to that encryption package.
+
+|Rebuildable Tests |Tests that must be built using an
+implementation-specific mechanism. This mechanism must produce
+specification-defined artifacts. Rebuilding and running these tests
+against the Java EE 8 RI verifies that the mechanism generates
+compatible artifacts.
 
 |Resource |A Computational Resource, a Location Resource, or a Security
 Resource.
@@ -257,11 +267,16 @@ Libraries. No subsetting, supersetting, or modifications of the public
 and protected API of the Libraries are allowed except only as
 specifically exempted by these Rules.
 
-*{techID}7* If a Product includes Technologies in addition to the
+*{techID}7.1* If a Product includes Technologies in addition to the
 Technology Under Test, then it must contain the full set of combined
 public and protected classes and interfaces. The API of the Product
 must contain the union of the included Technologies. No further
 modifications to the APIs of the included Technologies are allowed.
+
+ifdef::subset-allowed[]
+*{techID}7.2* The Product may contain a subset of the classes and
+interfaces for the Libraries.
+endif::subset-allowed[]
 
 *{techID}8* Except for tests specifically required by this TCK to be rebuilt
 (if any), the binary Conformance Tests supplied as part of the Test
@@ -333,7 +348,7 @@ test.
 2.3.1 TCK Test Appeals Steps
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  {TechnologyShortName} TCK licensee writes a test
+1.  {TechnologyFullName} TCK licensee writes a test
 challenge to Java Licensee Engineering contesting the validity of one or
 a related set of {TechnologyShortName} tests. +
 A detailed justification for why each test should be invalidated must be

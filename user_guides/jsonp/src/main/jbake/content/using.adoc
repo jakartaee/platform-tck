@@ -4,27 +4,29 @@ title=Executing Tests
 next=debug.html
 prev=config.html
 ~~~~~~
+include::attributes.conf[]
 Executing Tests
 ===============
 
-[[TCCOA00006]][[GBFWO]]
+[[GBFWO]]
 
 
 [[executing-tests]]
 5 Executing Tests
 -----------------
 
-The JSON-P TCK uses the JavaTest harness to execute the tests in the
-test suite. For detailed instructions that explain how to run and use
-JavaTest, see the JavaTest User's Guide and Reference in the
-documentation bundle.
+The {TechnologyShortName} TCK uses the JavaTest harness to execute the
+tests in the test suite. For detailed instructions that explain how to
+run and use JavaTest, see the JavaTest User's Guide and Reference in
+the documentation bundle.
 
 This chapter includes the following topics:
 
-* link:#GBFUZ[Section 5.1, "Starting JavaTest"]
-* link:#BCGGIADH[Section 5.2, "Running All of the JSON-P TCK Tests"]
-* link:#GBFWM[Section 5.3, "Running a Subset of the Tests"]
-* link:#GBFVK[Section 5.5, "Test Reports"]
+* link:#GBFUZ[Starting JavaTest]
+* link:#GBFWM[Running a Subset of the Tests]
+* link:#GCLRR[Running the TCK Against the RI]
+* link:#GCLRZ[Running the TCK Against a Vendor's Implementation]
+* link:#GBFVK[Test Reports]
 
 
 [NOTE]
@@ -32,262 +34,124 @@ This chapter includes the following topics:
 
 The instructions in this chapter assume that you have installed and
 configured your test environment as described in
-link:install.html#GBFTP[Chapter 3, "Installation"] and
-link:config.html#GBFVV[Chapter 4, "Setup and Configuration"],
+link:install.html#GBFTP[Chapter 3, "Installation,"] and
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"],
 respectively.
 
 =======================================================================
 
+ifdef::rebuild[]
+As explained in link:rebuild.html#GCLIZ[Appendix B, "Packaging the
+Test Applications in Servlet-Compliant WAR
+Files With VI-Specific Information,"] the {TechnologyShortName} TCK
+introduces the concept of repackaging the TCK tests.
+endif::rebuild[]
 
-[[GBFUZ]][[TCCOA00041]][[starting-javatest]]
+
+[[GBFUZ]][[starting-javatest]]
 
 5.1 Starting JavaTest
 ~~~~~~~~~~~~~~~~~~~~~
 
-There are two general ways to run the JSON-P TCK using the JavaTest
-harness software:
+There are two general ways to run the {TechnologyShortName} TCK using
+the JavaTest harness software:
 
 * Through the JavaTest GUI
 * From the command line in your shell environment
 
-[[GBFWH]][[TCCOA00014]][[to-start-javatest-in-gui-mode]]
+
+[NOTE]
+=======================================================================
+
+The `<TS_HOME>/tools/ant/bin/ant` command referenced in the following
+two procedures and elsewhere in this guide is the Ant
+build tool, which is included in the {TechnologyShortName} TCK bundle.
+The `build.xml` file in `<TS_HOME>/bin` contains the various Ant
+targets for the {TechnologyShortName} TCK test suite.
+
+=======================================================================
+
+
+[[GBFWH]][[to-start-javatest-in-gui-mode]]
 
 5.1.1 To Start JavaTest in GUI Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Execute the following command:
+Execute the following commands:
 
 [source,oac_no_warn]
 ----
+cd <TS_HOME>/bin
 ant gui
 ----
 
-[[GBFVW]][[TCCOA00015]][[to-start-javatest-in-command-line-mode]]
+[[GBFVW]][[to-start-javatest-in-command-line-mode]]
 
 5.1.2 To Start JavaTest in Command-Line Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  Change to any subdirectory under `<TS_HOME>/src/com/sun/ts/tests`.
-2.  Execute the `runclient` target to start the JavaTest run: +
-[source,oac_no_warn]
-----
-ant runclient
-----
-For example, to run the JSON-P TCK signature tests, enter the following
-commands: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/signaturetest/jsonp
-ant runclient
-----
+include::using-examples.inc[]
 
-[[BCGGIADH]][[running-all-of-the-json-p-tck-tests]]
+[[GBFWM]][[running-a-subset-of-the-tests]]
 
-5.2 Running All of the JSON-P TCK Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Use the following modes to run the JSON-P TCK tests:
-
-* link:#BCGGCGEA[Section 5.2.1, "To Run All of the JSON-P TCK Tests in
-GUI Mode"]
-* link:#BCGEAAHD[Section 5.2.2, "To Run All of the JSON-P TCK Tests in
-Command-Line Mode"]
-
-[[BCGGCGEA]][[to-run-all-of-the-json-p-tck-tests-in-gui-mode]]
-
-5.2.1 To Run All of the JSON-P TCK Tests in GUI Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In GUI mode, the JSON-P TCK tests must be run as a 2-step process. The
-pluggability tests require a reconfiguration to plug in the
-`JsonProvider` class that is supplied with the test suite. This class is
-used by the tests to verify the SPI layer.
-
-Run all of the JSON-P TCK tests except the pluggability tests:
-
-1.  Change to the `<TS_HOME>/bin` directory and start the JavaTest test
-harness: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant gui
-----
-The Welcome screen displays.
-2.  Select Start a new test run, then select Next.
-3.  Enter the test suite (for example, `<TS_HOME>/src` ), then select
-Next.
-4.  Select Create a new configuration, then select Next.
-5.  Enter the work directory (for example, `/tmp/JTwork`), then select
-Next.
-6.  Select Configure, then select Start the configuration editor, then
-select Finish. +
-The Configuration Welcome screen displays.
-7.  Select Next. +
-You are prompted to specify one or more configuration files that contain
-information about your test environment. By default, this file is
-`<TS_HOME>/bin/ts.jte`.
-8.  Accept the default configuration file and select Next. +
-You are prompted to specify a test environment.
-9.  Select either ts_unix or ts_win32, then select Next. +
-Select ts_unix if you are running the tests in a Unix or Linux
-environment; select ts_win32 if you are running the tests in a Windows
-environment. +
-After making your selection and selecting Next, you are prompted to
-specify whether you want to run all or a subset of the test suite.
-10. Specify whether you want to run all or a subset of the tests, then
-select Next. +
-Select Yes to run a subset of the tests; select No to run all tests. +
-Since the pluggability tests must be run separately from the other
-tests, select Yes.
-11. Select the tests you want to run from the displayed test tree, then
-select Next. +
-You can select entire branches of the test tree, or use Ctrl+Click or
-Shift+Click to select multiple tests or ranges of tests, respectively.
-Select all tests except pluggability tests by unchecking the
-pluggability tests.
-12. Specify whether you want to use an exclude list, then select Next. +
-Select Yes to use an exclude list; select No to not use an exclude list. +
-If you select Yes, proceed to the next step. If you select No, skip to
-Step 15.
-13. Specify the exclude list you want to use, then select Next. +
-Select initial to use the default list; select custom to use a custom
-list. +
-If you select custom, proceed to the next step. If you select initial,
-skip to Step 14.
-14. Specify one or more exclude list files to use, then select Next.
-15. Select Done to accept and save your configuration settings. +
-You are prompted to specify the location in which you want to save your
-configuration settings.
-16. Specify the file in which you want to save your configuration
-settings, then select Save File. +
-You are returned to the JavaTest main window.
-17. If you want to run the test suite at this time using your current
-configuration settings, select Run Tests, then select Start from the
-main menu. +
-The tests in the `<TS_HOME>/src/com/sun/ts/tests/jsonp` and
-`<TS_HOME>/src/com/sun/ts/tests/signaturetest/jsonp` directory are
-executed. The pluggability tests, which require additional
-configuration, will not be run.
-
-Run the pluggability tests, which require a separate test run:
-
-1.  Exit the JavaTest GUI.
-2.  Change to the `<TS_HOME>/bin` directory and reconfigure environment
-to use the `JsonProvider` class that is supplied with the test suite and
-restart the JavaTest GUI: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant enable.alternate.jsonp.provider
-ant/bin/ant gui
-----
-3.  Select Configure, then select Edit Configuration.
-4.  Select Tests to Run.
-5.  Select the tests you want to run from the displayed test tree, then
-select Next. +
-Select the pluggability tests only by unchecking all of the other tests.
-6.  Select Done.
-7.  Select Run Tests, then select Start.
-8.  Exit the JavaTest GUI when finished.
-9.  Disable the alternate JSON provider that you enabled in Step 2,
-before you initiated the test run for the pluggability tests: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant disable.alternate.jsonp.provider
-----
-
-[[BCGEAAHD]][[to-run-all-of-the-json-p-tck-tests-in-command-line-mode]]
-
-5.2.2 To Run All of the JSON-P TCK Tests in Command-Line Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Change to the `<TS_HOME>/bin` directory.
-2.  Start the test run by executing the following command: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant run.all
-----
-This will execute all of the JSON-P TCK tests, including the
-pluggability tests.
-
-[[GBFWM]][[TCCOA00042]][[running-a-subset-of-the-tests]]
-
-5.3 Running a Subset of the Tests
+5.2 Running a Subset of the Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the following modes to run a subset of the tests:
 
-* link:#GBFVT[Section 5.3.1, "To Run a Subset of the Tests in GUI Mode"]
-* link:#GBFWK[Section 5.3.2, "To Run a Subset of Tests in Command-Line
-Mode"]
-* link:#BCGDDHAB[Section 5.3.3, "To Run an Individual Test in
-Command-Line Mode"]
-* link:#GBFVL[Section 5.3.4, "To Run a Subset of Tests in Batch Mode
+* link:#GBFVT[Section 5.2.1, "To Run a Subset of Tests in GUI Mode"]
+* link:#GBFWK[Section 5.2.2, "To Run a Subset of Tests in Command-Line Mode"]
+* link:#GBFVL[Section 5.2.3, "To Run a Subset of Tests in Batch Mode
 Based on Prior Result Status"]
 
-[[GBFVT]][[TCCOA00016]][[to-run-a-subset-of-the-tests-in-gui-mode]]
+[[GBFVT]][[to-run-a-subset-of-tests-in-gui-mode]]
 
-5.3.1 To Run a Subset of the Tests in GUI Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+5.2.1 To Run a Subset of Tests in GUI Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  From the JavaTest main menu, select Configure, then Edit
-Configuration. +
-The Configuration Editor dialog box is displayed.
-2.  Select Specify Tests to Run? from the option list on the left. +
-You are asked whether you want to run all or a subset of the test suite.
-3.  Select Yes, then Next to run a subset of tests.
-4.  Select the tests you want to run from the displayed test tree, then
-select Done. +
+1.  From the JavaTest main menu, click Configure, then click Change
+Configuration, and then click Tests to Run. +
+The tabbed Configuration Editor dialog box is displayed.
+2.  Click Specify from the option list on the left.
+3.  Select the tests you want to run from the displayed test tree, and
+then click Done. +
 You can select entire branches of the test tree, or use Ctrl+Click or
 Shift+Click to select multiple tests or ranges of tests, respectively,
 or select just a single test.
-5.  Save the file, then select Done. +
-You are returned to the JavaTest main window.
-6.  Select Run Tests, then select Start to run the tests you selected.
+4.  Click Save File.
+5.  Click Run Tests, and then click Start to run the tests you selected. +
+Alternatively, you can right-click the test you want from the test tree
+in the left section of the JavaTest main window, and choose Execute
+These Tests from the menu.
+6.  Click Report, and then click Create Report.
+7.  Specify the directory in which the JavaTest test harness will write
+the report, and then click OK. +
+A report is created, and you are asked whether you want to view it.
+8.  Click Yes to view the report.
 
-[[GBFWK]][[TCCOA00017]][[to-run-a-subset-of-tests-in-command-line-mode]]
+[[GBFWK]][[to-run-a-subset-of-tests-in-command-line-mode]]
 
-5.3.2 To Run a Subset of Tests in Command-Line Mode
+5.2.2 To Run a Subset of Tests in Command-Line Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  Change to the directory containing the tests you want to run. +
-For example, `<TS_HOME>/src/com/sun/ts/tests/jsonp/api/jsonarraytests`.
+1.  Change to the directory containing the tests you want to run.
 2.  Start the test run by executing the following command: +
-[source,oac_no_warn]
++
+[source]
 ----
 ant runclient
 ----
-The tests in the
-`<TS_HOME>/src/com/sun/ts/tests/jsonp/api/jsonarraytests` directory and
-its subdirectories are run.
++
+The tests in the directory and its subdirectories are run.
 
-[[BCGDDHAB]][[to-run-an-individual-test-in-command-line-mode]]
+[[GBFVL]][[to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status]]
 
-5.3.3 To Run an Individual Test in Command-Line Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Change to the directory containing the individual test you want to
-run. +
-For example, `<TS_HOME>/src/com/sun/ts/tests/jsonp/api/jsonarraytests`.
-2.  Run the test by executing the following command: +
-[source,oac_no_warn]
-----
-ant -Dtest.client=Client.java -Dtest=jsonArrayTest1 runclient
-----
-Just the client test `jsonArrayTest1` in the `jsonarraytests` directory
-will be run.
-
-[[GBFVL]][[TCCOA00018]][[to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status]]
-
-5.3.4 To Run a Subset of Tests in Batch Mode Based on Prior Result
-Status
+5.2.3 To Run a Subset of Tests in Batch Mode Based on Prior Result Status
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can run certain tests in batch mode based on the test's prior run
 status by specifying the `priorStatus` system property when invoking
-`ant`.
+`<TS_HOME>/tools/ant/bin/ant`.
 
 Invoke `ant` with the `priorStatus` property.
 
@@ -299,119 +163,54 @@ of the following:
 * `error`
 * `notRun`
 
-For example, you could run all the JSON-P tests with a status of failed
-and error by invoking the following commands:
+For example, you could run all the {TechnologyShortName} tests with a
+status of failed and error by invoking the following commands:
 
 [source,oac_no_warn]
 ----
-cd $TS_HOME/src/com/sun/ts/tests/jsonp
 ant -DpriorStatus="fail,error" runclient
 ----
 
 Note that multiple `priorStatus` values must be separated by commas.
 
-[[sthref9]][[running-the-pluggability-tests]]
+[[GCLRR]][[running-the-tck-against-the-ri]]
 
-5.4 Running the Pluggability Tests
+5.3 Running the TCK Against the RI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the following modes to run the pluggability tests:
+This test scenario is ensures that the configuration and deployment of
+all the prebuilt {TechnologyShortName} TCK tests against the Reference
+Implementation are successful, and that the TCK is ready for
+compatibility testing against the Vendor and Reference Implementations.
 
-* link:#BCGFHIDI[Section 5.4.1, "To Run the Pluggability Tests in GUI
-Mode"]
-* link:#BCGEGBGE[Section 5.4.2, "To Run the Pluggability Tests in
-Command-Line Mode"]
+1.  Verify that you have followed the configuration instructions in
+link:config.html#GBFVU[Section 4.1, "Configuring Your Environment to Run
+the TCK Against the Reference Implementation."]
+2.  If required, verify that you have completed the steps in
+link:config.html#GCLIW[Section 4.3.2, "Deploying the Prebuilt Archives."]
+3.  Run the tests, as described in link:#GBFUZ[Section 5.1, "Starting
+JavaTest,"] and, if desired, link:#GBFWM[Section 5.2, "Running a Subset
+of the Tests."]
 
-[[BCGFHIDI]][[to-run-the-pluggability-tests-in-gui-mode]]
+[[GCLRZ]][[running-the-tck-against-a-vendors-implementation]]
 
-5.4.1 To Run the Pluggability Tests in GUI Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+5.4 Running the TCK Against a Vendor's Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1.  If the JavaTest GUI is running, exit the GUI.
-2.  Change to the `<TS_HOME>/bin` directory and reconfigure environment
-to use the `JsonProvider` class that is supplied with the test suite and
-restart the JavaTest GUI: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant enable.alternate.jsonp.provider
-ant gui
-----
-3.  Select Configure, then select Edit Configuration.
-4.  Select Tests to Run.
-5.  Select the tests you want to run from the displayed test tree, then
-select Next. +
-Select the pluggability tests only by unchecking all of the other tests.
-6.  Select Done.
-7.  Select Run Tests, then select Start.
-8.  Exit the JavaTest GUI when finished.
-9.  Disable the alternate JSON provider that you enabled in Step 2,
-before you initiated the test run for the pluggability tests: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant disable.alternate.jsonp.provider
-----
+This test scenario is one of the compatibility test phases that all
+Vendors must pass.
 
-[[BCGEGBGE]][[to-run-the-pluggability-tests-in-command-line-mode]]
+1.  Verify that you have followed the configuration instructions in
+link:config.html#GCLHU[Section 4.2, "Configuring Your Environment to
+Repackage and Run the TCK Against the Vendor Implementation."]
+2.  If required, verify that you have completed the steps in
+link:config.html#GCLIL[Section 4.3.3, "Deploying the
+Test Applications Against the Vendor Implementation."]
+3.  Run the tests, as described in link:#GBFUZ[Section 5.1, "Starting
+JavaTest,"] and, if desired, link:#GBFWM[Section 5.2, "Running a Subset
+of the Tests."]
 
-5.4.2 To Run the Pluggability Tests in Command-Line Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-There are two ways to run the pluggability tests from the command line.
-It is highly recommended to use the first method, since it automatically
-calls the Ant targets to enable and disable the test provider. If you
-choose to use the second method, you will need to execute those Ant
-targets manually before and after you run the tests.
-
-The first method is by executing the `run.pluggability` target in Ant:
-
-1.  Execute the `run.pluggability` target using Ant: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant run.pluggability
-----
-The `run.pluggability` target calls Ant targets that enable the test
-provider, run the pluggability tests, then disable the test provider.
-
-The pluggability tests can also be run an alternate way, albeit one that
-requires more manual intervention:
-
-1.  Execute the `enable.alternate.jsonp.provider` target using Ant: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant enable.alternate.jsonp.provider
-----
-The `enable.alternate.jsonp.provider` target enables the alternate test
-provider.
-2.  Change to the `<TS_HOME/src/com/sun/ts/tests/jsonp/pluggability>`
-directory: +
-[source,oac_no_warn]
-----
-cd <TS_HOME/src/com/sun/ts/tests/jsonp/pluggability>
-----
-3.  Start the pluggability test run by executing the following command: +
-[source,oac_no_warn]
-----
-ant runclient
-----
-This will run just the pluggability tests under the
-<`TS_HOME/src/com/sun/ts/tests/jsonp/pluggability` directory, using a
-test-supplied `JsonProvider Class` for testing the SPI. All
-`JsonProvider` method calls will be invoked and verified by the tests to
-ensure SPI layer is working.
-4.  Execute the `disable.alternate.jsonp.provider` target using Ant: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant disable.alternate.jsonp.provider
-----
-The `disable.alternate.jsonp.provider` target disables the alternate
-test provider.
-
-[[GBFVK]][[TCCOA00043]][[test-reports]]
+[[GBFVK]][[test-reports]]
 
 5.5 Test Reports
 ~~~~~~~~~~~~~~~~
@@ -432,7 +231,7 @@ directory that you can open in any text editor. The `summary.txt` file
 contains a list of all tests that were run, their test results, and
 their status messages.
 
-[[GBFWD]][[TCCOA00072]][[creating-test-reports]]
+[[GBFWD]][[creating-test-reports]]
 
 5.5.1 Creating Test Reports
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -440,54 +239,57 @@ their status messages.
 Use the following modes to create test reports:
 
 * link:#GBFVH[Section 5.5.1.1, "To Create a Test Report in GUI Mode"]
-* link:#GBFVC[Section 5.5.1.2, "To Create a Test Report in Command-Line
-Mode"]
+* link:#GBFVC[Section 5.5.1.2, "To Create a Test Report in Command-Line Mode"]
 
-[[GBFVH]][[TCCOA00019]][[to-create-a-test-report-in-gui-mode]]
+[[GBFVH]][[to-create-a-test-report-in-gui-mode]]
 
 5.5.1.1 To Create a Test Report in GUI Mode
 +++++++++++++++++++++++++++++++++++++++++++
 
-1.  From the JavaTest main menu, select Report, then select Create
-Report. +
+1.  From the JavaTest main menu, click Report, then click Create Report. +
 You are prompted to specify a directory to use for your test reports.
-The default location is
-`<TS_HOME>/src/com/sun/ts/tests/signaturetests/jsonp`.
-2.  Specify the directory you want to use for your reports, then select
-OK. +
+2.  Specify the directory you want to use for your reports, and then
+click OK. +
 Use the Filter list to specify whether you want to generate reports for
 the current configuration, all tests, or a custom set of tests. +
-You are asked whether you want to view the report now.
-3.  Select Yes to display the new report in the JavaTest ReportBrowser.
+You are asked whether you want to view report now.
+3.  Click Yes to display the new report in the JavaTest ReportBrowser.
 
-[[GBFVC]][[TCCOA00020]][[to-create-a-test-report-in-command-line-mode]]
+[[GBFVC]][[to-create-a-test-report-in-command-line-mode]]
 
 5.5.1.2 To Create a Test Report in Command-Line Mode
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Specify where you want to create the test report.
-
-1.  To specify the report directory from the command line at runtime,
-use: +
-[source,oac_no_warn]
+1.  Specify where you want to create the test report.
+a.  To specify the report directory from the command line at runtime,
+use:
++
+[source]
 ----
 ant -Dreport.dir="report_dir"
 ----
++
 Reports are written for the last test run to the directory you specify.
-The default location is
-`<TS_HOME>/src/com/sun/ts/tests/signaturetests/jsonp`.
 2.  To specify the default report directory, set the `report.dir`
-property in `<TS_HOME>/bin/ts.jte`. +
-For example, `report.dir="/home/josephine/reports"`.
+property in +{jteFileName}+. +
+For example:
++
+[source]
+----
+report.dir="/home/josephine/reports"
+----
++
 3.  To disable reporting, set the `report.dir` property to `"none"`,
-either on the command line or in `ts.jte`. +
-For example: +
-[source,oac_no_warn]
+either on the command line or in +{jteFileName}+. +
+For example:
++
+[source]
 ----
 ant -Dreport.dir="none"
 ----
++
 
-[[GBFVB]][[TCCOA00073]][[viewing-an-existing-test-report]]
+[[GBFVB]][[viewing-an-existing-test-report]]
 
 5.5.2 Viewing an Existing Test Report
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -498,23 +300,24 @@ Use the following modes to view an existing test report:
 * link:#GBFWB[Section 5.5.2.2, "To View an Existing Report in
 Command-Line Mode"]
 
-[[GBFVO]][[TCCOA00021]][[to-view-an-existing-report-in-gui-mode]]
+[[GBFVO]][[to-view-an-existing-report-in-gui-mode]]
 
 5.5.2.1 To View an Existing Report in GUI Mode
 ++++++++++++++++++++++++++++++++++++++++++++++
 
-1.  From the JavaTest main menu, select Report, then select Open Report. +
+1.  From the JavaTest main menu, click Report, then click Open Report. +
 You are prompted to specify the directory containing the report you want
 to open.
-2.  Select the report directory you want to open, then select Open. +
+2.  Select the report directory you want to open, and then click Open. +
 The selected report set is opened in the JavaTest ReportBrowser.
 
-[[GBFWB]][[TCCOA00022]][[to-view-an-existing-report-in-command-line-mode]]
+[[GBFWB]][[to-view-an-existing-report-in-command-line-mode]]
 
 5.5.2.2 To View an Existing Report in Command-Line Mode
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Use the Web browser of your choice to view the `report.html` file in the
-report directory you specified from the command line or in `ts.jte`.
+report directory you specified from the command line or in +{jteFileName}+.
 
+include::using.inc[]
 

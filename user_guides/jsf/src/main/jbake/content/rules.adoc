@@ -36,8 +36,8 @@ consists of the following activities:
 * Install the appropriate version of the Technology Compatibility Kit
 (TCK) and execute it in accordance with the instructions in this User's
 Guide.
-* Ensure that you meet the requirements outlined in ”Compatibility
-Requirements,” below.
+* Ensure that you meet the requirements outlined in
+link:#CJAFGIGG[Compatibility Requirements] below.
 
 * Certify to the Java Partner organization that you have finished
 testing and that you meet all of the compatibility requirements.
@@ -235,7 +235,9 @@ Environment (.jte) files in the Test Suite
 installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
-prior written permission.
+prior written permission. Any such allowed alterations to the
+Conformance Tests would be posted to the Java Licensee Engineering web
+site and apply to all licensees.
 
 *{techID}3* The testing tools supplied as part of the Test Suite or as
 updated by the Maintenance Lead must be used to certify compliance.
@@ -265,11 +267,16 @@ Libraries. No subsetting, supersetting, or modifications of the public
 and protected API of the Libraries are allowed except only as
 specifically exempted by these Rules.
 
-*{techID}7* If a Product includes Technologies in addition to the
+*{techID}7.1* If a Product includes Technologies in addition to the
 Technology Under Test, then it must contain the full set of combined
 public and protected classes and interfaces. The API of the Product
 must contain the union of the included Technologies. No further
 modifications to the APIs of the included Technologies are allowed.
+
+ifdef::subset-allowed[]
+*{techID}7.2* The Product may contain a subset of the classes and
+interfaces for the Libraries.
+endif::subset-allowed[]
 
 *{techID}8* Except for tests specifically required by this TCK to be rebuilt
 (if any), the binary Conformance Tests supplied as part of the Test
@@ -321,9 +328,11 @@ test made available.
 * Tests that are placed on the Exclude List will be placed on the
 Exclude List within one business day after the determination of test
 validity. The new Exclude List will be made available to all
-{TechnologyShortName} TCK licensees.
+{TechnologyShortName} TCK licensees on the Java Licensee Engineering website.
 * Oracle, as Maintenance Lead has the option of creating alternative
-tests to address any challenge. +
+tests to address any challenge. Alternative tests (and criteria for
+their use) will be made available on the Java Licensee Engineering
+website. +
 
 [NOTE]
 =======================================================================

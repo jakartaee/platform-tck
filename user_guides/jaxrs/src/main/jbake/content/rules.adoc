@@ -1,45 +1,43 @@
 type=page
 status=published
-title=Procedure for Java API for RESTful Web Services Certification
+title=Procedure for Certification
 next=install.html
 prev=intro.html
 ~~~~~~
-Procedure for Java API for RESTful Web Services Certification
-=============================================================
+include::attributes.conf[]
+Procedure for Certification
+===========================
 
-[[TCJRS00003]][[GBFSN]]
+[[GBFSN]]
 
 
-[[procedure-for-java-api-for-restful-web-services-certification]]
-2 Procedure for Java API for RESTful Web Services Certification
----------------------------------------------------------------
+[[procedure-for-certification]]
+2 Procedure for Certification
+-----------------------------
 
 This chapter describes the compatibility testing procedure and
-compatibility requirements for Java API for RESTful Web Services 2.1.
+compatibility requirements for {TechnologyFullName}.
 This chapter contains the following sections:
 
 * link:#CJAFFDGI[Certification Overview]
 * link:#CJAFGIGG[Compatibility Requirements]
-* link:#CJAIIBDJ[Java API for RESTful Web Services Version 2.1 Test
-Appeals Process]
-* link:#CJAJECIE[Specifications for Java API for RESTful Web Services
-Version 2.1]
-* link:#CJABAHGI[Libraries for Java API for RESTful Web Services Version
-2.1]
+* link:#CJAIIBDJ[Test Appeals Process]
+* link:#CJAJECIE[Specifications for {TechnologyFullName}]
+* link:#CJABAHGI[Libraries for {TechnologyFullName}]
 
 [[CJAFFDGI]][[certification-overview]]
 
 2.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for JAX-RS 2.1 consists of the following
-activities:
+The certification process for {technologyShortName} {TechnologyVersion}
+consists of the following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
 (TCK) and execute it in accordance with the instructions in this User's
 Guide.
-* Ensure that you meet the requirements outlined in ”Compatibility
-Requirements,” below.
+* Ensure that you meet the requirements outlined in
+link:#CJAFGIGG[Compatibility Requirements] below.
 
 * Certify to the Java Partner organization that you have finished
 testing and that you meet all of the compatibility requirements.
@@ -49,9 +47,9 @@ testing and that you meet all of the compatibility requirements.
 2.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for JAX-RS 2.1 consist of meeting the
-requirements set forth by the rules and associated definitions contained
-in this section.
+The compatibility requirements for {TechnologyShortName}
+{TechnologyVersion} consist of meeting the requirements set forth by
+the rules and associated definitions contained in this section.
 
 [[sthref4]][[definitions]]
 
@@ -111,8 +109,7 @@ supplants any previous Exclude Lists for that Test Suite.
 The class libraries, as specified through the Java Community Process
 (JCP), for the Technology Under Test.
 
-The Libraries for Java API for RESTful Web Services Version 2.1 are
-listed at the end of this chapter.
+The Libraries for {TechnologyFullName} are listed at the end of this chapter.
 
 |Location Resource a|
 A location of classes or native libraries that are components of the
@@ -126,8 +123,7 @@ directories named in a PATH variable.
 
 |Maintenance Lead |The Java Community Process member responsible for
 maintaining the Specification, reference implementation, and TCK for the
-Technology. Oracle is the Maintenance Lead for Java API for RESTful Web
-Services Version 2.1.
+Technology. Oracle is the Maintenance Lead for {TechnologyFullName}.
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -183,7 +179,7 @@ this chapter.
 through the Java Community Process.
 
 |Technology Under Test |Specifications and the reference implementation
-for Java API for RESTful Web Services Version 2.1.
+for {TechnologyFullName} Version {TechnologyVersion}.
 
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
@@ -193,16 +189,16 @@ Community Process.
 |=======================================================================
 
 
-[[sthref7]][[rules-for-java-api-for-restful-web-services-version-2.1-products]]
+[[sthref7]][[rules-for-products]]
 
-2.2.2 Rules for Java API for RESTful Web Services Version 2.1 Products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.2 Rules for {TechnologyFullName} Products
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following rules apply for each version of an operating system,
 software component, and hardware platform Documented as supporting the
 Product:
 
-JAX-RS1 The Product must be able to satisfy all applicable compatibility
+*{techID}1* The Product must be able to satisfy all applicable compatibility
 requirements, including passing all Conformance Tests, in every Product
 Configuration and in every combination of Product Configurations, except
 only as specifically exempted by these Rules.
@@ -212,7 +208,7 @@ performance, then that Product must satisfy all applicable compatibility
 requirements for a Product in each Product Configuration, and
 combination of Product Configurations, of those Operating Modes.
 
-JAX-RS1.1 If an Operating Mode controls a Resource necessary for the
+*{techID}1.1* If an Operating Mode controls a Resource necessary for the
 basic execution of the Test Suite, testing may always use a Product
 Configuration of that Operating Mode providing that Resource, even if
 other Product Configurations do not provide that Resource.
@@ -225,34 +221,34 @@ policy (i.e., Security Resource) which has one or more Product
 Configurations that cause Conformance Tests to fail may be tested using
 a Product Configuration that allows all Conformance Tests to pass.
 
-JAX-RS1.2 A Product Configuration of an Operating Mode that causes the
+*{techID}1.2* A Product Configuration of an Operating Mode that causes the
 Product to report only version, usage, or diagnostic information is
 exempted from these compatibility rules.
 
-JAX-RS1.3 An API Definition Product is exempt from all functional
+*{techID}1.3* An API Definition Product is exempt from all functional
 testing requirements defined here, except the signature tests.
 
-JAX-RS2 Some Conformance Tests may have properties that may be changed.
+*{techID}2* Some Conformance Tests may have properties that may be changed.
 Properties that can be changed are identified in the configuration
 interview. Properties that can be changed are identified in the JavaTest
-Environment (.jte) files in the lib directory of the Test Suite
+Environment (.jte) files in the Test Suite
 installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
 prior written permission. Any such allowed alterations to the
-Conformance Tests would be posted to the [Java Licensee Engineering] web
+Conformance Tests would be posted to the Java Licensee Engineering web
 site and apply to all licensees.
 
-JAX-RS3 The testing tools supplied as part of the Test Suite or as
+*{techID}3* The testing tools supplied as part of the Test Suite or as
 updated by the Maintenance Lead must be used to certify compliance.
 
-JAX-RS4 The Exclude List associated with the Test Suite cannot be
+*{techID}4* The Exclude List associated with the Test Suite cannot be
 modified.
 
-JAX-RS5 The Maintenance Lead can define exceptions to these Rules. Such
+*{techID}5* The Maintenance Lead can define exceptions to these Rules. Such
 exceptions would be made available to and apply to all licensees.
 
-JAX-RS6 All hardware and software component additions, deletions, and
+*{techID}6* All hardware and software component additions, deletions, and
 modifications to a Documented supporting hardware/software platform,
 that are not part of the Product but required for the Product to satisfy
 the compatibility requirements, must be Documented and available to
@@ -263,7 +259,7 @@ operating system is required for the Product to pass the Conformance
 Tests, that patch must be Documented and available to users of the
 Product.
 
-JAX-RS7 The Product must contain the full set of public and protected
+*{techID}7* The Product must contain the full set of public and protected
 classes and interfaces for all the Libraries. Those classes and
 interfaces must contain exactly the set of public and protected methods,
 constructors, and fields defined by the Specifications for those
@@ -271,31 +267,44 @@ Libraries. No subsetting, supersetting, or modifications of the public
 and protected API of the Libraries are allowed except only as
 specifically exempted by these Rules.
 
-JAX-RS8 Except for tests specifically required by this TCK to be rebuilt
+*{techID}7.1* If a Product includes Technologies in addition to the
+Technology Under Test, then it must contain the full set of combined
+public and protected classes and interfaces. The API of the Product
+must contain the union of the included Technologies. No further
+modifications to the APIs of the included Technologies are allowed.
+
+ifdef::subset-allowed[]
+*{techID}7.2* The Product may contain a subset of the classes and
+interfaces for the Libraries.
+endif::subset-allowed[]
+
+*{techID}8* Except for tests specifically required by this TCK to be rebuilt
 (if any), the binary Conformance Tests supplied as part of the Test
 Suite or as updated by the Maintenance Lead must be used to certify
 compliance.
 
-JAX-RS9 The functional programmatic behavior of any binary class or
+*{techID}9* The functional programmatic behavior of any binary class or
 interface must be that defined by the Specifications.
 
-[[CJAIIBDJ]][[java-api-for-restful-web-services-version-2.1-test-appeals-process]]
+include::rules.inc[]
 
-2.3 Java API for RESTful Web Services Version 2.1 Test Appeals Process
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[CJAIIBDJ]][[test-appeals-process]]
+
+2.3 Test Appeals Process
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Oracle has a well established process for managing challenges to its
 Java technology Test Suites and plans to continue using a similar
-process in the future. Oracle, as JAX-RS Maintenance Lead, will
+process in the future. Oracle, as {TechnologyShortName} Maintenance Lead, will
 authorize representatives from the Java Partner Engineering group to be
 the point of contact for all test challenges. Typically this will be the
-engineer assigned to a company as part of its JAX-RS TCK support.
+engineer assigned to a company as part of its {TechnologyShortName} TCK support.
 
 If a test is determined to be invalid in function or if its basis in the
 specification is suspect, the test may be challenged by any licensee of
-the JAX-RS TCK. Each test validity issue must be covered by a separate
-test challenge. Test validity or invalidity will be determined based on
-its technical correctness such as:
+the {TechnologyShortName} TCK. Each test validity issue must be covered
+by a separate test challenge. Test validity or invalidity will be
+determined based on its technical correctness such as:
 
 * Test has bugs (i.e., program logic errors).
 * Specification item covered by the test is ambiguous.
@@ -310,18 +319,20 @@ Test challenges must be made in writing to Java Partner Engineering and
 include all relevant information as described in link:#CJAFGAEE[Example
 2-1, "Test Challenge Form"]. The process used to determine the validity
 or invalidity of a test (or related group of tests) is described in
-link:#CJAJEAEI[Section 2.3.1, "Java API for RESTful Web Services Version
-2.1 TCK Test Appeals Steps."]
+link:#CJAJEAEI[Section 2.3.1, "TCK Test Appeals Steps."]
 
 All tests found to be invalid will either be placed on the Exclude List
-for that version of the JAX-RS TCK or have an alternate test made
-available.
+for that version of the {TechnologyShortName} TCK or have an alternate
+test made available.
 
 * Tests that are placed on the Exclude List will be placed on the
 Exclude List within one business day after the determination of test
-validity.
+validity. The new Exclude List will be made available to all
+{TechnologyShortName} TCK licensees on the Java Licensee Engineering website.
 * Oracle, as Maintenance Lead has the option of creating alternative
-tests to address any challenge. +
+tests to address any challenge. Alternative tests (and criteria for
+their use) will be made available on the Java Licensee Engineering
+website. +
 
 [NOTE]
 =======================================================================
@@ -332,15 +343,14 @@ test.
 =======================================================================
 
 
-[[CJAJEAEI]][[java-api-for-restful-web-services-version-2.1-tck-test-appeals-steps]]
+[[CJAJEAEI]][[tck-test-appeals-steps]]
 
-2.3.1 Java API for RESTful Web Services Version 2.1 TCK Test Appeals
-Steps
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.3.1 TCK Test Appeals Steps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  Java API for RESTful Web Services TCK licensee writes a test
+1.  {TechnologyFullName} TCK licensee writes a test
 challenge to Java Licensee Engineering contesting the validity of one or
-a related set of Java API for RESTful Web Services tests. +
+a related set of {TechnologyShortName} tests. +
 A detailed justification for why each test should be invalidated must be
 included with the challenge as described in link:#CJAFGAEE[Example 2-1,
 "Test Challenge Form"].
@@ -362,8 +372,8 @@ documented with an explanation of why test validity was maintained or
 rejected.
 4.  The licensee is informed of the decision and proceeds accordingly. +
 If the test challenge is approved and one or more tests are invalidated,
-Oracle places the tests on the Exclude List for that version of the Java
-API for RESTful Web Services TCK (effectively removing the test(s) from
+Oracle places the tests on the Exclude List for that version of the
+{TechnologyFullName} TCK (effectively removing the test(s) from
 the Test Suite). All tests placed on the Exclude List will have a bug
 report written to document the decision and made available to all
 licensees through the bug reporting database. If the test is valid but
@@ -420,39 +430,25 @@ Implications of test invalidity (e.g., other affected tests and test framework c
 Alternatives (e.g., are alternate test(s) appropriate?):
 ----
 
-[[CJAJECIE]][[specifications-for-java-api-for-restful-web-services-version-2.1]]
+[[CJAJECIE]][[specifications-for-technology]]
 
-2.4 Specifications for Java API for RESTful Web Services Version 2.1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.4 Specifications for {TechnologyFullName}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Java API for RESTful Web Services specification is available on the
-JSR 370 Web site at `http://jcp.org/en/jsr/detail?id=370` or on the Java
-Community Process (`http://jcp.org/en/home/index`) site.
+The {TechnologyFullName} specification is available on the
+JSR {JSR} Web site at {JSRURL} or on the Java
+Community Process (http://jcp.org/en/home/index) site.
 
-[[CJABAHGI]][[libraries-for-java-api-for-restful-web-services-version-2.1]]
+[[CJABAHGI]][[libraries-for-technology]]
 
-2.5 Libraries for Java API for RESTful Web Services Version 2.1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.5 Libraries for {TechnologyFullName}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following is a list of the packages comprising the required class
-libraries JAX-RS 2.1:
+libraries for {TechnologyShortName} {TechnologyVersion}:
 
-javax.ws.rs
-
-javax.ws.rs.client
-
-javax.ws.rs.container
-
-javax.ws.rs.core
-
-javax.ws.rs.ext
-
-javax.ws.rs.sse
+include::packages.inc[]
 
 For the latest list of packages, also see:
 
-http://jcp.org/en/jsr/detail?id=370
-
-https://github.com/jax-rs
-
-
+{JSRURL}

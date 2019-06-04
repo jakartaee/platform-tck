@@ -4,62 +4,75 @@ title=Installation
 next=config.html
 prev=rules.html
 ~~~~~~
+include::attributes.conf[]
 Installation
 ============
 
-[[TCJAC00004]][[GBFTP]]
+[[GBFTP]]
 
 
 [[installation]]
 3 Installation
 --------------
 
-This chapter explains how to install the Java Authorization Contract for
-Containers TCK 1.5 (JACC TCK) software. After installing the software
-according to the instructions in this chapter, proceed to
-link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
-instructions on configuring your test environment.
+This chapter explains how to install the {TechnologyFullName} TCK software.
 
-[[GBFUD]][[TCJAC00043]][[obtaining-the-jacc-1.5-reference-implementation]]
+After installing the software according to the instructions in this
+chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration,"] for instructions on configuring your test environment.
 
-3.1 Obtaining the JACC 1.5 Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[GBFUD]][[obtaining-the-reference-implementation]]
 
-[[GBFTS]][[TCJAC00044]][[installing-the-software]]
+3.1 Obtaining the Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can obtain the {TechnologyShortName} Reference Implementation (RI)
+({TechnologyRI}) software from Java Licensee Engineering
+(https://javapartner.oracle.com).
+
+[[GBFTS]][[installing-the-software]]
 
 3.2 Installing the Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before you can run the JACC TCK tests, you must install and set up the
-following software components:
+Before you can run the {TechnologyShortName} TCK tests, you must
+install and set up the following software components:
 
-* Java SE 7
-* JACC TCK version 1.5, which includes Apache Ant 1.7.0
-* The JACC implementation to be tested +
-If you are running against the JACC 1.5 Reference Implementation,
-install the Java EE 7 RI software; if not, install your JACC Vendor
-Implementation (VI).
+include::req-software.inc[]
+* Java SE {SEversion}
+* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
+include::tck-packages.inc[]
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
 
-1.  Install the Java SE 7 software, if it is not already installed. +
-Download and install the Java SE 7 software from
-`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Follow these steps:
+
+.  Install the Java SE {SEversion} software, if it is not already installed. +
+Download and install the Java SE {SEversion} software from
+http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 Refer to the installation instructions that accompany the software for
 additional information.
-2.  Install the JACC TCK 1.5 software.
-1.  Copy or download the JACC TCK software to your local system.
-2.  Use the `unzip` command to extract the bundle in the directory of
-your choice: +
-[source,oac_no_warn]
-----
-unzip jacctck-1.4_date.zip
-----
-This creates the `jacctck` directory. The install_directory`/``jacctck`
-directory is the test suite home, `<TS_HOME>`.
-3.  Install the JACC 1.5 Reference Implementation. +
+.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
+  a.  Copy or download the {TechnologyShortName} TCK software to your
+      local system. +
+      You can obtain the {TechnologyShortName} TCK software from the
+      Java Licensee Engineering (https://javapartner.oracle.com) Web
+      site.  The {TechnologyShortName} TCK software is located in the
+      Web site's Download Center area.
+  b.  Use the `unzip` command to extract the bundle in the directory of
+      your choice: +
+      +unzip {TCKPackageName}+ +
+      This creates the TCK directory. The TCK is the test suite home,
+      `<TS_HOME>`.
+include::install-server.inc[]
+.  Install the {TechnologyShortName} {TechnologyVersion} Reference
+Implementation. +
 The Reference Implementation is used to validate your initial
-configuration and setup of the JACC TCK 1.5 tests, which are explained
-further in link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] 
-4.  Install the JACC Vendor Implementation (VI) to be tested. +
+configuration and setup of the {TechnologyShortName} TCK
+{TechnologyVersion} tests, which are explained further in
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
+The {TechnologyShortName} RI can be obtained from Java Licensee Engineering
+(https://javapartner.oracle.com).
+include::install-server-vi.inc[]
+.  Install the {TechnologyShortName} Vendor Implementation (VI) to be tested. +
 Follow the installation instructions for the particular VI under test.
-
-

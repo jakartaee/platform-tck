@@ -4,81 +4,75 @@ title=Installation
 next=config.html
 prev=rules.html
 ~~~~~~
+include::attributes.conf[]
 Installation
 ============
 
-[[TCCOA00004]][[GBFTP]]
+[[GBFTP]]
 
 
 [[installation]]
 3 Installation
 --------------
 
-This chapter explains how to install the Java API for JSON Processing
-TCK 1.1 (JSON-P TCK) software. After installing the software according
-to the instructions in this chapter, proceed to
-link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
-instructions on configuring your test environment.
+This chapter explains how to install the {TechnologyFullName} TCK software.
 
-This chapter contains the following sections:
+After installing the software according to the instructions in this
+chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration,"] for instructions on configuring your test environment.
 
-* link:#GBFUD[Section 3.1, "Obtaining the JSON-P 1.1 Reference
-Implementation"]
-* link:#GBFTS[Section 3.2, "Installing the JSON-P Software"]
+[[GBFUD]][[obtaining-the-reference-implementation]]
 
-[[GBFUD]][[TCCOA00035]][[obtaining-the-json-p-1.1-reference-implementation]]
+3.1 Obtaining the Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3.1 Obtaining the JSON-P 1.1 Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You can obtain the {TechnologyShortName} Reference Implementation (RI)
+({TechnologyRI}) software from Java Licensee Engineering
+(https://javapartner.oracle.com).
 
-You can obtain the JSON-P Reference Implementation (RI), Version 1.1
-software from the Java Community Process
-(`http://jcp.org/en/home/index`) web site. The JSON-P RI software is not
-necessary for running the JSON-P TCK, but it can be useful as a test
-base for familiarizing yourself with the TCK before testing your own
-JSON-P implementation.
+[[GBFTS]][[installing-the-software]]
 
-[[GBFTS]][[TCCOA00036]][[installing-the-json-p-software]]
+3.2 Installing the Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3.2 Installing the JSON-P Software
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Before you can run the {TechnologyShortName} TCK tests, you must
+install and set up the following software components:
 
-Before you can run the JSON-P TCK tests, you must install and set up the
-following software components:
+include::req-software.inc[]
+* Java SE {SEversion}
+* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
+include::tck-packages.inc[]
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
 
-* Java Standard Edition (Java SE), Version 1.8.0 software
-* JSON-P TCK, Version 1.1 software
-* An implementation of the JSON-P 1.1 Specification
+Follow these steps:
 
-1.  Install the Java SE 8 software, if it is not already installed. +
-Download and install the Java SE 8 software from the
-`http://www.oracle.com/technetwork/java/javase/downloads/index.html` Web
-site. Refer to the installation instructions that accompany the software
-for additional information.
-2.  Install the JSON-P TCK 1.1 software.
-1.  Copy or download the JSON-P TCK software to your local system.
-2.  Change to the directory in which you want to install the JSON-P TCK
-software: +
-[source,oac_no_warn]
-----
-cd install_directory
-----
-3.  Use the `unzip` command to extract the bundle: +
-[source,oac_no_warn]
-----
-unzip jsonptck-1.1_dd-Mmm-YYYY.zip
-----
-where dd indicates the day, Mmm indicates the month, and YYYY indicates
-the year in which the TCK bundle was created. For example, the JSON-P
-TCK bundle name could be `jsonptck-1.1_15-May-2017.zip`. +
-When the bundle is unzipped, the `jsonptck` directory is created. The
-install_directory`/``jsonptck` directory is the test suite home,
-`<TS_HOME>`.
-3.  Install the JSON-P implementation to be tested. +
-Before testing your own JSON-P implementation, it is recommended that
-you run the JSON-P TCK against the JSON-P RI to familiarize yourself
-with the JSON-P TCK suite and JavaTest software. See link:#GBFUD[Section
-3.1, "Obtaining the JSON-P 1.1 Reference Implementation,"] for more
-information.
-
-
+.  Install the Java SE {SEversion} software, if it is not already installed. +
+Download and install the Java SE {SEversion} software from
+http://www.oracle.com/technetwork/java/javase/downloads/index.html.
+Refer to the installation instructions that accompany the software for
+additional information.
+.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
+  a.  Copy or download the {TechnologyShortName} TCK software to your
+      local system. +
+      You can obtain the {TechnologyShortName} TCK software from the
+      Java Licensee Engineering (https://javapartner.oracle.com) Web
+      site.  The {TechnologyShortName} TCK software is located in the
+      Web site's Download Center area.
+  b.  Use the `unzip` command to extract the bundle in the directory of
+      your choice: +
+      +unzip {TCKPackageName}+ +
+      This creates the TCK directory. The TCK is the test suite home,
+      `<TS_HOME>`.
+include::install-server.inc[]
+.  Install the {TechnologyShortName} {TechnologyVersion} Reference
+Implementation. +
+The Reference Implementation is used to validate your initial
+configuration and setup of the {TechnologyShortName} TCK
+{TechnologyVersion} tests, which are explained further in
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
+The {TechnologyShortName} RI can be obtained from Java Licensee Engineering
+(https://javapartner.oracle.com).
+include::install-server-vi.inc[]
+.  Install the {TechnologyShortName} Vendor Implementation (VI) to be tested. +
+Follow the installation instructions for the particular VI under test.
