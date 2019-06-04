@@ -1,6 +1,7 @@
 type=page
 status=published
 title=Frequently Asked Questions
+next=rebuild.html
 prev=debug.html
 ~~~~~~
 include::attributes.conf[]

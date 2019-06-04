@@ -1,0 +1,11 @@
+** `javax.json.bind`
+
+** `javax.json.bind.adapter`
+
+** `javax.json.bind.annotation`
+
+** `javax.json.bind.config`
+
+** `javax.json.bind.serializer`
+
+** `javax.json.bind.spi`

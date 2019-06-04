@@ -1,60 +1,60 @@
 type=page
 status=published
-title=Rebuilding Tests and Debugging Test Problems
+title=Debugging Test Problems
 next=faq.html
 prev=using.html
 ~~~~~~
-Rebuilding Tests and Debugging Test Problems
-============================================
+include::attributes.conf[]
+Debugging Test Problems
+=======================
 
-[[TCJST00007]][[GBFUV]]
+[[GBFUV]]
 
 
-[[rebuilding-tests-and-debugging-test-problems]]
-6 Rebuilding Tests and Debugging Test Problems
-----------------------------------------------
+[[debugging-test-problems]]
+6 Debugging Test Problems
+-------------------------
 
 There are a number of reasons that tests can fail to execute properly.
-This chapter provides some approaches to help you deal with these
-failures.
+This chapter provides some approaches for dealing with these failures.
+Please note that most of these suggestions are only relevant when
+running the test harness in GUI mode.
 
+This chapter includes the following topics:
 
-[NOTE]
-=======================================================================
+* link:#GBFYP[Overview]
+* link:#GBFVF[Test Tree]
+* link:#GBFWI[Folder Information]
+* link:#GBFVP[Test Information]
+* link:#GBFVZ[Report Files]
+* link:#GBFYF[Configuration Failures]
 
-The instructions assume that you have installed and configured your test
-environment as described in link:install.html#GBFTP[Chapter 3,
-"Installation,"] and link:config.html#GBFVV[Chapter 4, "Setup and
-Configuration,"] respectively.
-
-=======================================================================
-
-
-[[GBFYP]][[TCJST00049]][[overview]]
+[[GBFYP]][[overview]]
 
 6.1 Overview
 ~~~~~~~~~~~~
 
 The goal of a test run is for all tests in the test suite that are not
-filtered out to have passing results. If a test run includes tests with
-errors or failing results, you must troubleshoot and correct the cause
-to satisfactorily complete the test run.
+filtered out to have passing results. If the root test suite folder
+contains tests with errors or failing results, you must troubleshoot and
+correct the cause to satisfactorily complete the test run.
 
-* Errors: Tests with errors could not be executed. These errors usually
-occur because the test environment is not properly configured.
+* Errors: Tests with errors could not be executed by the JavaTest
+harness. These errors usually occur because the test environment is not
+properly configured.
 * Failures: Tests that fail were executed but had failing results.
 
 The Test Manager GUI provides you with a number of tools for effectively
 troubleshooting a test run. See the JavaTest User's Guide and JavaTest
-online help for detailed descriptions of the GUI tools described in this
-chapter. Ant test execution tasks provide command-line users with
+online help for detailed descriptions of the tools described in this
+chapter.  Ant test execution tasks provide command-line users with
 immediate test execution feedback to the display. Available JTR report
 files and log files can also help command-line users troubleshoot test
 run problems.
 
 For every test run, the JavaTest harness creates a set of report files
 in the reports directory, which you specified by setting the
-`report.dir` property in the `ts.jte` file. The report files contain
+`report.dir` property in the +{jteFileName}+ file. The report files contain
 information about the test description, environment, messages,
 properties used by the test, status of the test, and test result. After
 a test run is completed, the JavaTest harness writes HTML reports for
@@ -70,46 +70,28 @@ contains a list of all tests that were run, their test results, and
 their status messages.
 
 The work directory, which you specified by setting the `work.dir`
-property in the `ts.jte` file, contains several files that were
+property in the +{jteFileName}+ file, contains several files that were
 deposited there during test execution: `harness.trace`, `log.txt`,
 `lastRun.txt`, and `testsuite`. Most of these files provide information
 about the harness and environment in which the tests were executed.
 
-
 [NOTE]
 =======================================================================
 
-You can set `harness.log.traceflag=true` in `<TS_HOME>/bin/ ts.jte` to
+You can set `harness.log.traceflag=true` in +{jteFileName}+ to
 get more debugging information.
 
 =======================================================================
 
+If a large number of tests failed, you should read
+link:#GBFYF[Configuration Failures] to see if a
+configuration issue is the cause of the failures.
 
-If a large number of tests failed, you should read link:#GBFYF[Section
-6.6, "Recognizing Configuration Failures,"] to see if a configuration
-issue is the cause of the failures. If the failures are more limited or
-more concentrated in one or two areas, you can use Ant to build, deploy,
-and run selected portions of the test suite to debug test problems.
 
-If, after examining the test results, you see errors in just a few
-areas, you may want to refer to link:#GJDFX[Section 6.4, "Building Tests
-Using Ant,"] and link:#GJDHH[Section 6.5, "Deploying Tests Using Ant,"]
-to see how to rebuild, deploy, and run selected portions of the TCK. Do
-not lose sight of the fact, though, that to prove compatibility, you
-must run the entire test suite.
+[[GBFVF]][[test-tree]]
 
-[[GJCYT]][[TCJST00050]][[debugging-test-results-with-the-javatest-gui]]
-
-6.2 Debugging Test Results with the JavaTest GUI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The following sections describe features of the JavaTest GUI that enable
-you to view and analyze the results of your test runs.
-
-[[GJCZI]][[TCJST00074]][[using-the-test-tree-in-the-gui]]
-
-6.2.1 Using the Test Tree in the GUI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+6.2 Test Tree
+~~~~~~~~~~~~~
 
 Use the test tree in the JavaTest GUI to identify specific folders and
 tests that had errors or failing results. Color codes are used to
@@ -121,10 +103,10 @@ indicate status as follows:
 * White: Test not run
 * Gray: Test filtered out (not run)
 
-[[GJCYY]][[TCJST00075]][[displaying-folder-information-in-the-gui]]
+[[GBFWI]][[folder-information]]
 
-6.2.2 Displaying Folder Information in the GUI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+6.3 Folder Information
+~~~~~~~~~~~~~~~~~~~~~~
 
 Click a folder in the test tree in the JavaTest GUI to display its tabs.
 
@@ -132,10 +114,10 @@ Choose the Error and the Failed tabs to view the lists of all tests in
 and under a folder that were not successfully run. You can double-click
 a test in the lists to view its test information.
 
-[[GJCZZ]][[TCJST00076]][[displaying-test-information-in-the-gui]]
+[[GBFVP]][[test-information]]
 
-6.2.3 Displaying Test Information in the GUI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+6.4 Test Information
+~~~~~~~~~~~~~~~~~~~~
 
 To display information about a test in the JavaTest GUI, click its icon
 in the test tree or double-click its name in a folder status tab. The
@@ -155,187 +137,32 @@ recorded when the test was run.
 name/value pairs derived from the configuration data actually used to
 run the test.
 
-[[GJCIB]][[TCJST00077]][[creating-and-viewing-test-reports-in-gui-mode]]
 
-6.2.4 Creating and Viewing Test Reports in GUI Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[NOTE]
+=======================================================================
 
-This section explains how to use the GUI to create and view report
-files.
+You can set `harness.log.traceflag=true` in +{jteFileName}+ to
+get more debugging information.
 
-[[GBFVH]][[TCJST00024]][[to-create-a-test-report]]
+=======================================================================
 
-6.2.4.1 To Create a Test Report
-+++++++++++++++++++++++++++++++
 
-1.  From the JavaTest main menu, click Report, and then click Create
-Report. +
-You are prompted to specify a directory to use for your test reports.
-The default location is `/tmp/JTreport` or whatever was specified by the
-`report.dir` property in the `ts.jte` file.
-2.  Specify the directory you want to use for your reports, and then
-click OK. +
-Use the Filter list to specify whether you want to generate reports for
-the current configuration, for all tests, or for a custom set of tests. +
-You are asked whether you want to view report now.
-3.  Click Yes to display the new report in the JavaTest ReportBrowser.
+[[GBFVZ]][[report-files]]
 
-[[GBFVO]][[TCJST00025]][[to-view-an-existing-report]]
+6.5 Report Files
+~~~~~~~~~~~~~~~~
 
-6.2.4.2 To View an Existing Report
-++++++++++++++++++++++++++++++++++
+Report files are another good source of troubleshooting information. You
+may view the individual test results of a batch run in the JavaTest
+Summary window, but there are also a wide range of HTML report files
+that you can view in the JavaTest ReportBrowser or in the external
+browser or your choice following a test run. See
+link:using.html#GBFVK[Section 5.5, "Test Reports,"] for more information.
 
-1.  From the JavaTest main menu, click Report, then click Open Report. +
-You are prompted to specify the directory containing the report you want
-to open.
-2.  Select the report directory you want to open, and then click Open. +
-The selected report set is opened in the JavaTest ReportBrowser.
+[[GBFYF]][[configuration-failures]]
 
-[[GJCYI]][[TCJST00051]][[creating-and-viewing-report-and-log-files-using-ant]]
-
-6.3 Creating and Viewing Report and Log Files Using Ant
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This section explains how to use Ant to create and view report files.
-
-[[GJCXH]][[TCJST00078]][[to-create-a-test-report-1]]
-
-6.3.1 To Create A Test Report
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Specify where you want to create the test report.
-
-1.  To specify the report directory from the command line at runtime,
-use: +
-[source,oac_no_warn]
-----
-ant -Dreport.dir="report_dir"
-----
-Reports for the next test run will be written to the directory you
-specify.
-2.  To disable reporting, set the `report.dir` property to `"none"` on
-the command line. +
-For example: +
-[source,oac_no_warn]
-----
-ant -Dreport.dir="none"
-----
-
-If you do not specify a directory or disable reporting, reports will be
-written to the location specified by the `report.dir` property in the
-`ts.jte` file.
-
-[[GJDIZ]][[TCJST00079]][[to-view-a-test-report]]
-
-6.3.2 To View a Test Report
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Change to the report directory you that you specified from the
-command line or set in the `ts.jte` file.
-2.  Start the Web browser of your choice from that directory. +
-The `report.html` file is displayed.
-
-[[GJDHF]][[TCJST00080]][[to-examine-log-files]]
-
-6.3.3 To Examine Log Files
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Change to the work directory you that you set in the `ts.jte` file.
-2.  Look in the `harness.trace`, `log.txt`, `lastRun.txt`, and
-`testsuite` files to see if configuration issues related to the test
-environment or the test harness were the cause of the test failures.
-
-[[GJDFX]][[TCJST00052]][[building-tests-using-ant]]
-
-6.4 Building Tests Using Ant
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If your test run resulted in failures that were localized in one area,
-it may be beneficial to build, deploy, and run that area instead of
-running the entire test suite.
-
-This section explains how to use Ant to build a single test directory or
-a subset of test directories, and shows how to list the classes
-directory and distribution directory of archives for the directory that
-was built.
-
-1.  To build a single test directory, change to a test directory that
-has no subdirectories and type: +
-[source,oac_no_warn]
-----
-ant clean build
-----
-This cleans and builds the tests in the test directory that you
-specified.
-2.  To list the classes directory for this test that was built, type: +
-[source,oac_no_warn]
-----
-ant lc
-----
-or +
-[source,oac_no_warn]
-----
-ant llc
-----
-3.  To list the distribution directory of archives for this test that
-was built, type: +
-[source,oac_no_warn]
-----
-ant ld
-----
-or +
-[source,oac_no_warn]
-----
-ant lld
-----
-4.  To build a subset of test directories, change to a test directory
-that has subdirectories and type: +
-[source,oac_no_warn]
-----
-ant clean build
-----
-This cleans and builds all the test directories under the specified test
-directory.
-
-[[GJDHH]][[TCJST00053]][[deploying-tests-using-ant]]
-
-6.5 Deploying Tests Using Ant
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If your test run resulted in failures that were localized in one area,
-it may be beneficial to build, deploy, and run that area instead of
-running the entire test suite. link:#GJDFX[Building Tests Using Ant]
-explained how to rebuild parts of the test suite; this section explains
-how to use Ant to deploy and run the parts that you rebuilt.
-
-This section explains how to use Ant to deploy a single test directory,
-a subset of test directories, and a single test.
-
-1.  Change to a directory under
-`<TS_HOME>/src/com/sun/ts/tests/`technology`/`technology-testdir. +
-To deploy a single test directory, change to a test directory that has
-no subdirectories. +
-To deploy a subset of test directories, change to a test directory that
-has subdirectories.
-2.  Type the following command: +
-[source,oac_no_warn]
-----
-ant deploy
-----
-If you changed to a directory that has no subdirectories, the test EAR,
-WAR, or JAR file built for the specified test directory will be
-deployed. +
-If you changed to a directory that has subdirectories, the EAR, WAR, or
-JAR files built for the parent directory and its subdirectories will be
-deployed.
-3.  Follow the instructions in link:using.html#GJCIW[Section 5.2, "Using
-the Command Line for TCK Test Execution,"] to run the tests in the
-deployed EAR, WAR, or JAR files.
-
-[[GBFYF]][[TCJST00054]][[recognizing-configuration-failures]]
-
-6.6 Recognizing Configuration Failures
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+6.6 Configuration Failures
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Configuration failures are easily recognized because many tests fail the
 same way. When all your tests begin to fail, you may want to stop the
@@ -344,4 +171,4 @@ the case of full-scale launching problems where no tests are actually
 processed, report files are usually not created (though sometimes a
 small `harness.trace` file in the report directory is written).
 
-
+include::debug-tips.inc[]

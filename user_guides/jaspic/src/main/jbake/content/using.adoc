@@ -4,26 +4,28 @@ title=Executing Tests
 next=debug.html
 prev=config.html
 ~~~~~~
+include::attributes.conf[]
 Executing Tests
 ===============
 
-[[TCAUT00006]][[GBFWO]]
+[[GBFWO]]
 
 
 [[executing-tests]]
 5 Executing Tests
 -----------------
 
-The JASPIC TCK uses the JavaTest harness to execute the tests in the
-test suite. For detailed instructions on running and using JavaTest, see
-the JavaTest documentation bundle.
+The {TechnologyShortName} TCK uses the JavaTest harness to execute the
+tests in the test suite. For detailed instructions that explain how to
+run and use JavaTest, see the JavaTest User's Guide and Reference in
+the documentation bundle.
 
 This chapter includes the following topics:
 
 * link:#GBFUZ[Starting JavaTest]
 * link:#GBFWM[Running a Subset of the Tests]
-* link:#GEQMG[Running Profile-Specific Tests]
-* link:#GBWKD[Building and Running the JASPIC TCK Tests Using Ant]
+* link:#GCLRR[Running the TCK Against the RI]
+* link:#GCLRZ[Running the TCK Against a Vendor's Implementation]
 * link:#GBFVK[Test Reports]
 
 
@@ -33,38 +35,49 @@ This chapter includes the following topics:
 The instructions in this chapter assume that you have installed and
 configured your test environment as described in
 link:install.html#GBFTP[Chapter 3, "Installation,"] and
-link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"]
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"],
 respectively.
 
 =======================================================================
 
+ifdef::rebuild[]
+As explained in link:rebuild.html#GCLIZ[Appendix B, "Packaging the
+Test Applications in Servlet-Compliant WAR
+Files With VI-Specific Information,"] the {TechnologyShortName} TCK
+introduces the concept of repackaging the TCK tests.
+endif::rebuild[]
 
-[[GBFUZ]][[TCAUT00045]][[starting-javatest]]
+
+[[GBFUZ]][[starting-javatest]]
 
 5.1 Starting JavaTest
 ~~~~~~~~~~~~~~~~~~~~~
 
-Using the JavaTest harness software, the JASPIC TCK tests can be run
-through the JavaTest GUI or from the command line in your shell
-environment.
+There are two general ways to run the {TechnologyShortName} TCK using
+the JavaTest harness software:
+
+* Through the JavaTest GUI
+* From the command line in your shell environment
 
 
 [NOTE]
 =======================================================================
 
-The `build.xml` file in `<TS_HOME>/bin` contains the various Ant targets
-for the JASPIC TCK test suite
+The `<TS_HOME>/tools/ant/bin/ant` command referenced in the following
+two procedures and elsewhere in this guide is the Ant
+build tool, which is included in the {TechnologyShortName} TCK bundle.
+The `build.xml` file in `<TS_HOME>/bin` contains the various Ant
+targets for the {TechnologyShortName} TCK test suite.
 
 =======================================================================
 
 
-[[GBFWH]][[TCAUT00015]][[to-start-javatest-in-gui-mode]]
+[[GBFWH]][[to-start-javatest-in-gui-mode]]
 
 5.1.1 To Start JavaTest in GUI Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Change to the `<TS_HOME>/bin` directory and execute the `ant gui`
-target:
+Execute the following commands:
 
 [source,oac_no_warn]
 ----
@@ -72,33 +85,26 @@ cd <TS_HOME>/bin
 ant gui
 ----
 
-[[GBFVW]][[TCAUT00016]][[to-start-javatest-in-command-line-mode]]
+[[GBFVW]][[to-start-javatest-in-command-line-mode]]
 
 5.1.2 To Start JavaTest in Command-Line Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  Change to a subdirectory `<TS_HOME>/src/com/sun/ts/tests/jaspic`.
-2.  To run the mandatory tests related to JASPIC, run following target: +
-`ant -Dkeywords="jaspic_servlet | jaspic_baseline" runclient`
-3.  To run other optional tests related to JASPIC, run following target: +
-`ant -Dkeywords="jaspic_soap_optional" clean build package runclient`
+include::using-examples.inc[]
 
-
-[NOTE]
-=======================================================================
-
-To run optional tests, `platform.mode` can be changed to
-javaEE/standalone in `ts.jte` based on the requirement.
-
-=======================================================================
-
-
-[[GBFWM]][[TCAUT00046]][[running-a-subset-of-the-tests]]
+[[GBFWM]][[running-a-subset-of-the-tests]]
 
 5.2 Running a Subset of the Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[[GBFVT]][[TCAUT00017]][[to-run-a-subset-of-tests-in-gui-mode]]
+Use the following modes to run a subset of the tests:
+
+* link:#GBFVT[Section 5.2.1, "To Run a Subset of Tests in GUI Mode"]
+* link:#GBFWK[Section 5.2.2, "To Run a Subset of Tests in Command-Line Mode"]
+* link:#GBFVL[Section 5.2.3, "To Run a Subset of Tests in Batch Mode
+Based on Prior Result Status"]
+
+[[GBFVT]][[to-run-a-subset-of-tests-in-gui-mode]]
 
 5.2.1 To Run a Subset of Tests in GUI Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -115,213 +121,96 @@ or select just a single test.
 4.  Click Save File.
 5.  Click Run Tests, and then click Start to run the tests you selected. +
 Alternatively, you can right-click the test you want from the test tree
-in the left pane of the JavaTest main window, and choose Execute These
-Tests from the popup menu.
+in the left section of the JavaTest main window, and choose Execute
+These Tests from the menu.
 6.  Click Report, and then click Create Report.
 7.  Specify the directory in which the JavaTest test harness will write
 the report, and then click OK. +
 A report is created, and you are asked whether you want to view it.
 8.  Click Yes to view the report.
 
-[[GBFWK]][[TCAUT00018]][[to-run-a-subset-of-tests-in-command-line-mode]]
+[[GBFWK]][[to-run-a-subset-of-tests-in-command-line-mode]]
 
 5.2.2 To Run a Subset of Tests in Command-Line Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  Change to the directory containing the tests you want to run. +
-For example: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/signaturetest/jaspic/spi/servlet
-----
+1.  Change to the directory containing the tests you want to run.
 2.  Start the test run by executing the following command: +
-[source,oac_no_warn]
++
+[source]
 ----
 ant runclient
 ----
-Tests in
-`<TS_HOME>/src/com/sun/ts/tests/signaturetest/jaspic/spi/servlet` and
-its subdirectories are run.
++
+The tests in the directory and its subdirectories are run.
 
-[[GBFVL]][[TCAUT00019]][[to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status]]
+[[GBFVL]][[to-run-a-subset-of-tests-in-batch-mode-based-on-prior-result-status]]
 
-5.2.3 To Run a Subset of Tests in Batch Mode Based on Prior Result
-Status
+5.2.3 To Run a Subset of Tests in Batch Mode Based on Prior Result Status
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can run certain tests in batch mode based on the test's prior run
 status by specifying the `priorStatus` system property when invoking
-`ant`.
+`<TS_HOME>/tools/ant/bin/ant`.
 
-1.  Invoke `ant` with the `priorStatus` property. +
+Invoke `ant` with the `priorStatus` property.
+
 The accepted values for the `priorStatus` property are any combination
 of the following:
+
 * `fail`
 * `pass`
 * `error`
-* `notRun` +
-For example, you could run the JASPIC signature test with a status of
-failed and error by invoking the following commands: +
+* `notRun`
+
+For example, you could run all the {TechnologyShortName} tests with a
+status of failed and error by invoking the following commands:
+
 [source,oac_no_warn]
 ----
-cd $TS_HOME/src/com/sun/ts/tests/signaturetest/jaspic/spi/servlet
 ant -DpriorStatus="fail,error" runclient
 ----
+
 Note that multiple `priorStatus` values must be separated by commas.
 
-[[GEQMG]][[TCAUT00047]][[running-profile-specific-tests]]
+[[GCLRR]][[running-the-tck-against-the-ri]]
 
-5.3 Running Profile-Specific Tests
+5.3 Running the TCK Against the RI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A JASPIC implementation can implement one or more of the profiles
-specified in the specification. To accommodate this, the JASPIC TCK
-tests use the JavaTest `keyword` feature, which enables vendors to run
-tests that are relevant to their implementation.
+This test scenario is ensures that the configuration and deployment of
+all the prebuilt {TechnologyShortName} TCK tests against the Reference
+Implementation are successful, and that the TCK is ready for
+compatibility testing against the Vendor and Reference Implementations.
 
-For example, a vendor who implements only a `servlet` profile can run
-all tests specific to the `servlet` profile.
+1.  Verify that you have followed the configuration instructions in
+link:config.html#GBFVU[Section 4.1, "Configuring Your Environment to Run
+the TCK Against the Reference Implementation."]
+2.  If required, verify that you have completed the steps in
+link:config.html#GCLIW[Section 4.3.2, "Deploying the Prebuilt Archives."]
+3.  Run the tests, as described in link:#GBFUZ[Section 5.1, "Starting
+JavaTest,"] and, if desired, link:#GBFWM[Section 5.2, "Running a Subset
+of the Tests."]
 
-[source,oac_no_warn]
-----
-ant -Dkeywords="jaspic_core | jaspic_servlet" runclient 
-----
+[[GCLRZ]][[running-the-tck-against-a-vendors-implementation]]
 
-As another example, for running tests relevant to a `soap` profile, you
-could use the following command:
+5.4 Running the TCK Against a Vendor's Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[source,oac_no_warn]
-----
-ant -Dkeywords="jaspic_core | jaspic_soap" runclient 
-----
+This test scenario is one of the compatibility test phases that all
+Vendors must pass.
 
-The keywords that can be used are:
+1.  Verify that you have followed the configuration instructions in
+link:config.html#GCLHU[Section 4.2, "Configuring Your Environment to
+Repackage and Run the TCK Against the Vendor Implementation."]
+2.  If required, verify that you have completed the steps in
+link:config.html#GCLIL[Section 4.3.3, "Deploying the
+Test Applications Against the Vendor Implementation."]
+3.  Run the tests, as described in link:#GBFUZ[Section 5.1, "Starting
+JavaTest,"] and, if desired, link:#GBFWM[Section 5.2, "Running a Subset
+of the Tests."]
 
-* `jaspic_core`
-* `jaspic_servlet`
-* `jaspic_soap`
-
-[[GBWKD]][[TCAUT00048]][[building-and-running-the-jaspic-tck-tests-using-ant]]
-
-5.4 Building and Running the JASPIC TCK Tests Using Ant
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You can use Ant to build and run the test suite.
-
-[[GBWKI]][[TCAUT00020]][[to-configure-your-build-environment]]
-
-5.4.1 To Configure Your Build Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Set the following environment variables in your shell environment to
-use the build infrastructure that comes with the TCK:
-1.  `TS_HOME` to the directory in which the JASPIC TCK software is
-installed.
-* C Shell +
-[source,oac_no_warn]
-----
-setenv TS_HOME /path_to_jaspictck
-----
-* Bourne Shell +
-[source,oac_no_warn]
-----
-TS_HOME=/path_to_jaspictck
-export TS_HOME
-----
-2.  `ANT_HOME` to the directory in which the ANT software is installed.
-* C Shell +
-[source,oac_no_warn]
-----
-setenv ANT_HOME ${TS_HOME}/tools/ant
-----
-* Bourne Shell +
-[source,oac_no_warn]
-----
-ANT_HOME=${TS_HOME}/tools/ant
-export ANT_HOME
-----
-3.  `TS_HOME/bin` to your `PATH` in your command shell.
-* C Shell +
-[source,oac_no_warn]
-----
-setenv PATH ${TS_HOME}/bin:${PATH}
-----
-* Bourne Shell +
-[source,oac_no_warn]
-----
-PATH=${TS_HOME}/bin:${ANT_HOME}/bin:${PATH}
-export PATH
-----
-4.  `JAVA_HOME` to the directory in which the Java SE 7 software is
-installed.
-* C Shell +
-[source,oac_no_warn]
-----
-setenv JAVA_HOME /path_to_jdk15
-----
-* Bourne Shell +
-[source,oac_no_warn]
-----
-JAVA_HOME=/path_to_jdk15
-export TS_HOME
-----
-2.  Change to the `<TS_HOME>/install/jaspic` directory and run ant to
-create and set up your `<TS_HOME>/bin` directory if it has not yet been
-set up.
-3.  Change to the `<TS_HOME>/bin` directory and edit the `ts.jte` file
-to set the required properties needed for using the Ant build
-environment.
-1.  `jaspic.home` to the directory in which you installed the JASPIC RI
-(typically the Java EE 7 RI directory)
-2.  `orb.host` to the name of the machine on which you are running the
-JASPIC TCK tests
-
-[[GBWJZ]][[TCAUT00022]][[to-run-the-tests]]
-
-5.4.2 To Run the Tests
-^^^^^^^^^^^^^^^^^^^^^^
-
-1.  To run a single test directory, type the following: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/jaspic/spi/servlet
-ant runclient
-----
-This runs all tests in the `spi/servlet` test directory.
-2.  To run a single test within a test directory, type: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/jaspic/spi/servlet
-ant runclient -Dtest=AuthConfigFactoryGetFactory 
-----
-This runs only the `AuthConfigFactoryGetFactory` test in the
-`spi/servlet` test directory. You select the test name to run by looking
-at the `testName` tags in the `Client.java` file.
-3.  To run a subset of test directories type: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/jaspic/spi/servlet
-ant runclient
-----
-This runs all the test directories under the `spi/servlet` directory.
-
-[[TCAUT122]][[sthref11]]
-
-
-[[to-run-the-signature-tests-using-ant]]
-5.4.3 To Run the Signature Tests Using Ant
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To run the signature tests using Ant:
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/signaturetest
-
-ant runclient
-----
-
-[[GBFVK]][[TCAUT00049]][[test-reports]]
+[[GBFVK]][[test-reports]]
 
 5.5 Test Reports
 ~~~~~~~~~~~~~~~~
@@ -330,7 +219,7 @@ A set of report files is created for every test run. These report files
 can be found in the report directory you specify. After a test run is
 completed, the JavaTest harness writes HTML reports for the test run.
 You can view these files in the JavaTest ReportBrowser when running in
-GUI mode, or in the Web browser of your choice outside the JavaTest
+GUI mode, or in the web browser of your choice outside the JavaTest
 interface.
 
 To see all of the HTML report files, enter the URL of the `report.html`
@@ -342,61 +231,76 @@ directory that you can open in any text editor. The `summary.txt` file
 contains a list of all tests that were run, their test results, and
 their status messages.
 
-[[GBFWD]][[TCAUT00088]][[creating-test-reports]]
+[[GBFWD]][[creating-test-reports]]
 
 5.5.1 Creating Test Reports
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-[[GBFVH]][[TCAUT00023]][[to-create-a-test-report-in-gui-mode]]
+Use the following modes to create test reports:
+
+* link:#GBFVH[Section 5.5.1.1, "To Create a Test Report in GUI Mode"]
+* link:#GBFVC[Section 5.5.1.2, "To Create a Test Report in Command-Line Mode"]
+
+[[GBFVH]][[to-create-a-test-report-in-gui-mode]]
 
 5.5.1.1 To Create a Test Report in GUI Mode
 +++++++++++++++++++++++++++++++++++++++++++
 
-1.  From the JavaTest main menu, click Report, and then click Create
-Report. +
+1.  From the JavaTest main menu, click Report, then click Create Report. +
 You are prompted to specify a directory to use for your test reports.
-The default location is
-`<TS_HOME>/src/com/sun/ts/tests/signaturetests/jaspic/spi/servlet`.
 2.  Specify the directory you want to use for your reports, and then
 click OK. +
 Use the Filter list to specify whether you want to generate reports for
-the current configuration, for all tests, or for a custom set of tests. +
+the current configuration, all tests, or a custom set of tests. +
 You are asked whether you want to view report now.
 3.  Click Yes to display the new report in the JavaTest ReportBrowser.
 
-[[GBFVC]][[TCAUT00024]][[to-create-a-test-report-in-command-line-mode]]
+[[GBFVC]][[to-create-a-test-report-in-command-line-mode]]
 
 5.5.1.2 To Create a Test Report in Command-Line Mode
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Specify where you want to create the test report.
-
-1.  To specify the report directory from the command line at runtime,
-use: +
-[source,oac_no_warn]
+1.  Specify where you want to create the test report.
+a.  To specify the report directory from the command line at runtime,
+use:
++
+[source]
 ----
 ant -Dreport.dir="report_dir"
 ----
++
 Reports are written for the last test run to the directory you specify.
-The default location is
-`<TS_HOME>/src/com/sun/ts/tests/signaturetests/jaspic/spi/servlet`.
 2.  To specify the default report directory, set the `report.dir`
-property in `<TS_HOME>/bin/ts.jte`. +
-For example, `report.dir="/home/josephine/reports"`.
+property in +{jteFileName}+. +
+For example:
++
+[source]
+----
+report.dir="/home/josephine/reports"
+----
++
 3.  To disable reporting, set the `report.dir` property to `"none"`,
-either on the command line or in `ts.jte`. +
-For example: +
-[source,oac_no_warn]
+either on the command line or in +{jteFileName}+. +
+For example:
++
+[source]
 ----
 ant -Dreport.dir="none"
 ----
++
 
-[[GBFVB]][[TCAUT00089]][[viewing-an-existing-test-report]]
+[[GBFVB]][[viewing-an-existing-test-report]]
 
 5.5.2 Viewing an Existing Test Report
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-[[GBFVO]][[TCAUT00025]][[to-view-an-existing-report-in-gui-mode]]
+Use the following modes to view an existing test report:
+
+* link:#GBFVO[Section 5.5.2.1, "To View an Existing Report in GUI Mode"]
+* link:#GBFWB[Section 5.5.2.2, "To View an Existing Report in
+Command-Line Mode"]
+
+[[GBFVO]][[to-view-an-existing-report-in-gui-mode]]
 
 5.5.2.1 To View an Existing Report in GUI Mode
 ++++++++++++++++++++++++++++++++++++++++++++++
@@ -407,12 +311,13 @@ to open.
 2.  Select the report directory you want to open, and then click Open. +
 The selected report set is opened in the JavaTest ReportBrowser.
 
-[[GBFWB]][[TCAUT00026]][[to-view-an-existing-report-in-command-line-mode]]
+[[GBFWB]][[to-view-an-existing-report-in-command-line-mode]]
 
 5.5.2.2 To View an Existing Report in Command-Line Mode
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Use the Web browser of your choice to view the `report.html` file in the
-report directory you specified from the command line or in `ts.jte`.
+report directory you specified from the command line or in +{jteFileName}+.
 
+include::using.inc[]
 

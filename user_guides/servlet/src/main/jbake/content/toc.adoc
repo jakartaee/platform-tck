@@ -112,18 +112,22 @@ and Run the TCK Against the Vendor Implementation]
 ** link:config.html#GCLIL[4.3.3 Deploying the Test
 Applications Against the Vendor Implementation]
 
-* link:config.html#GBFUY[4.4 Using the JavaTest Harness Software]
+* link:config.html#GHGDH[4.4 Custom Configuration Handlers]
 
-* link:config.html#GBFWG[4.5 Using the JavaTest Harness Configuration GUI]
+* link:config.html#GBFWG[4.5 Custom Deployment Handlers]
 
-** link:config.html#GBFVA[4.5.1 Configuration GUI Overview]
+* link:config.html#GBFUY[4.6 Using the JavaTest Harness Software]
 
-** link:config.html#GBFVD[4.5.2 Starting the Configuration GUI]
+* link:config.html#GBFWG[4.7 Using the JavaTest Harness Configuration GUI]
 
-** link:config.html#GBFVX[4.5.3 To Configure the JavaTest Harness to Run
+** link:config.html#GBFVA[4.7.1 Configuration GUI Overview]
+
+** link:config.html#GBFVD[4.7.2 Starting the Configuration GUI]
+
+** link:config.html#GBFVX[4.7.3 To Configure the JavaTest Harness to Run
 the TCK Tests]
 
-** link:config.html#GBFUU[4.5.4 Modifying the Default Test Configuration]
+** link:config.html#GBFUU[4.7.4 Modifying the Default Test Configuration]
 
 [[executing-tests]]
 link:using.html#GBFWO[5 Executing Tests]
@@ -185,15 +189,11 @@ link:faq.html#GBFYD[A Frequently Asked Questions]
 * link:faq.html#GBFYR[A.2 How do I restart a crashed test run?]
 * link:faq.html#GBFWU[A.3 What would cause tests be added to the exclude list?]
 
-[[b-packaging-the-test-applications-in-servlet-compliant-war-files-with-vi-specific-information]]
-link:rebuild.html#GCLIZ[B Packaging the TCK Test Applications in Servlet-Compliant WAR Files With VI-Specific Information]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ifdef::rebuild[]
+[[appendix-b]]
+link:rebuild.html#GCLIZ[Appendix B]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:rebuild.html#GCLIO[B.1 Overview]
-
-* link:rebuild.html#GCLLW[B.2 Creating the TCK VI-Specific
-Servlet–Compliant WAR Files]
-
-** link:rebuild.html#GCLMA[B.2.1 To Create a VI-Specific Deployment Descriptor]
+endif::rebuild[]
 
 

@@ -4,68 +4,75 @@ title=Installation
 next=config.html
 prev=rules.html
 ~~~~~~
+include::attributes.conf[]
 Installation
 ============
 
-[[TCJST00004]][[GBFTP]]
+[[GBFTP]]
 
 
 [[installation]]
 3 Installation
 --------------
 
-This chapter explains how to install the Standard Tag Library for
-JavaServer Pages TCK (JSTL) 1.2 software. After installing the software
-according to the instructions in this chapter, proceed to
-link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
-instructions on configuring your test environment.
+This chapter explains how to install the {TechnologyFullName} TCK software.
 
-[[GBFTS]][[TCJST00042]][[installing-the-software]]
+After installing the software according to the instructions in this
+chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration,"] for instructions on configuring your test environment.
 
-3.1 Installing the Software
+[[GBFUD]][[obtaining-the-reference-implementation]]
+
+3.1 Obtaining the Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can obtain the {TechnologyShortName} Reference Implementation (RI)
+({TechnologyRI}) software from Java Licensee Engineering
+(https://javapartner.oracle.com).
+
+[[GBFTS]][[installing-the-software]]
+
+3.2 Installing the Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before you can run the Standard Tag Library for JavaServer Pages TCK
-tests, you need to install and set up the following software components:
+Before you can run the {TechnologyShortName} TCK tests, you must
+install and set up the following software components:
 
-* Java SE 6 or Java SE 7
-* Standard Tag Library for JavaServer Pages 1.2 implementation under
-test
-* Standard Tag Library for JavaServer Pages TCK Version 1.2
+include::req-software.inc[]
+* Java SE {SEversion}
+* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
+include::tck-packages.inc[]
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
 
-1.  Install the Java SE 6 or Java SE 7 software, if it is not already
-installed. +
-Download and install the Java SE 6 or Java SE 7 software from
-`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Follow these steps:
+
+.  Install the Java SE {SEversion} software, if it is not already installed. +
+Download and install the Java SE {SEversion} software from
+http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 Refer to the installation instructions that accompany the software for
 additional information.
-2.  Install the implementation under test, if it is not already
-installed. +
-Download, install, and configure the JSTL configuration that is under
-test. To familiarize yourself with the Standard Tag Library for
-JavaServer Pages TCK suite and the JavaTest software before you begin
-testing with your own implementation, you can optionally do a trial run
-using the Java EE 7 RI or the Java EE 7 Web Profile RI.
-3.  Install the Standard Tag Library for JavaServer Pages TCK 1.2
-software.
-1.  Copy or download the Standard Tag Library for JavaServer Pages TCK
-software to your local system.
-2.  Change to the directory in which you want to install the Standard
-Tag Library for JavaServer Pages TCK software: +
-[source,oac_no_warn]
-----
-cd install_directory
-----
-3.  Use the `unzip` command to extract the bundle: +
-[source,oac_no_warn]
-----
-unzip jstltck-1.2_date.zip
-----
-where date indicates the month and year in which the TCK bundle was
-created. For example, the Standard Tag Library for JavaServer Pages TCK
-bundle name could be `jstltck-1.2_26-Mar-2013.zip` +
-When the bundle is unzipped, the `jstltck` directory is created. The
-install_directory`/jstltck` directory is the test suite home,
-`<TS_HOME>`.
-
-
+.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
+  a.  Copy or download the {TechnologyShortName} TCK software to your
+      local system. +
+      You can obtain the {TechnologyShortName} TCK software from the
+      Java Licensee Engineering (https://javapartner.oracle.com) Web
+      site.  The {TechnologyShortName} TCK software is located in the
+      Web site's Download Center area.
+  b.  Use the `unzip` command to extract the bundle in the directory of
+      your choice: +
+      +unzip {TCKPackageName}+ +
+      This creates the TCK directory. The TCK is the test suite home,
+      `<TS_HOME>`.
+include::install-server.inc[]
+.  Install the {TechnologyShortName} {TechnologyVersion} Reference
+Implementation. +
+The Reference Implementation is used to validate your initial
+configuration and setup of the {TechnologyShortName} TCK
+{TechnologyVersion} tests, which are explained further in
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
+The {TechnologyShortName} RI can be obtained from Java Licensee Engineering
+(https://javapartner.oracle.com).
+include::install-server-vi.inc[]
+.  Install the {TechnologyShortName} Vendor Implementation (VI) to be tested. +
+Follow the installation instructions for the particular VI under test.

@@ -1,0 +1,15 @@
+** `javax.xml.ws`
+
+** `javax.xml.ws.handler`
+
+** `javax.xml.ws.handler.soap`
+
+** `javax.xml.ws.http`
+
+** `javax.xml.ws.soap`
+
+** `javax.xml.ws.spi`
+
+** `javax.xml.ws.spi.http`
+
+** `javax.xml.ws.wsaddressing`
