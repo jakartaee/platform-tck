@@ -273,7 +273,7 @@ spec:
             env
             bash -x ${WORKSPACE}/user_guides/build_tckugs.sh
           """
-          archiveArtifacts artifacts: "user_guides/userguides.zip", allowEmptyArchive: true
+          archiveArtifacts artifacts: "user_guides/userguides_alltcks.zip", allowEmptyArchive: true
         }
       }
     }
