@@ -255,6 +255,9 @@ for tck in ${TCK_LIST[@]}; do
   for entry in `ls *.zip`; do
     date=`echo "$entry" | cut -d_ -f2`
     strippedEntry=`echo "$entry" | cut -d_ -f1`
+    if [ "$strippedEntry" == "excludelist" ]; then
+        strippedEntry=${strippedEntry}_`echo "$entry" | cut -d_ -f2`
+    fi
     echo "copying ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry to ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip"
     cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip
     cp ${WORKSPACE}/version.info ${WORKSPACE}/${strippedEntry}.version
