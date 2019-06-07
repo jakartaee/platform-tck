@@ -132,6 +132,9 @@ spec:
     string(name: 'GF_VERSION_URL', 
            defaultValue: '', 
            description: 'URL required for downloading GlassFish version details' )
+	string(name: 'OLD_GF_BUNDLE_URL', 
+           defaultValue: '', 
+           description: 'URL required for downloading Old GlassFish Full/Web profile bundle' )
     string(name: 'TCK_BUNDLE_BASE_URL', 
            defaultValue: '', 
            description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )
