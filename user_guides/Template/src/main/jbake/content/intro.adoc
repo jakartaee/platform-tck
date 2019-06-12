@@ -123,7 +123,7 @@ Process (http://jcp.org/en/home/index).
 
 [[GBFQR]][[about-the-tck]]
 
-1.2 About the TCK 
+1.2 About the TCK
 ~~~~~~~~~~~~~~~~~
 
 The {TechnologyShortName} TCK {TechnologyVersion} is designed as a
