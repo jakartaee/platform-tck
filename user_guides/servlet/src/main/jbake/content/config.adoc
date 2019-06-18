@@ -41,7 +41,7 @@ include::config.inc[]
 [[GHGDH]][[custom-configuration-handlers]]
 
 4.4 Custom Configuration Handlers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Configuration handlers are used to configure and unconfigure a
 {TechnologyShortName} {TechnologyVersion} implementation during the
@@ -86,7 +86,7 @@ has a target to invoke any of the required targets (-deploy, -undeploy,
 [[GBFVA]][[create-custom-deployment-handler]]
 
 4.5.1 To Create a Custom Deployment Handler
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To deploy tests to another {TechnologyShortName} implementation, you
 must create a custom handler.
