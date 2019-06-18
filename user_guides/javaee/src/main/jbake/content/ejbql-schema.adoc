@@ -36,8 +36,7 @@ information about the persistence schema relationships.
 [[GFKUU]]
 
 .*Figure E-1 Persistence Schema Relationships*
-image:img/ejbschema.gif[
-"Persistence Schema Relationships"]
+image:img/ejbschema.png["Persistence Schema Relationships"]
 
 
 [width="100%",cols="34%,33%,33%",]

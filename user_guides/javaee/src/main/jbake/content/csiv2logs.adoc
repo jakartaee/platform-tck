@@ -121,8 +121,7 @@ that is running the Java EE 8 RI.
 [[GFKGD]]
 
 .*Figure B-1 Application Client-to-EJB Test Scenario*
-image:img/client2ejb.gif[
-"Application Client-to-EJB Test Scenario"]
+image:img/client2ejb.png["Application Client-to-EJB Test Scenario"]
 
 
 [[GFAZD]][[b.1.2-ejb-to-ejb-test-scenarios]]
@@ -143,8 +142,7 @@ the server that is running the Java EE 8 RI.
 [[GFKEV]]
 
 .*Figure B-2 EJB-to-EJB Test Scenario*
-image:img/ejb2ejb.gif[
-"EJB-to-EJB Test Scenario"]
+image:img/ejb2ejb.png["EJB-to-EJB Test Scenario"]
 
 
 [[GFKEF]][[b.1.3-web-client-to-ejb-scenarios]]
@@ -164,8 +162,7 @@ Licensee Java Platform, Enterprise Edition Server.
 [[GFKGE]]
 
 .*Figure B-3 Web-to-EJB Test Scenario*
-image:img/web2ejb.gif[
-"Web-to-EJB Test Scenario"]
+image:img/web2ejb.png["Web-to-EJB Test Scenario"]
 
 
 [[BACGHCAI]][[b.2-csiv2-logging-servlet]]
