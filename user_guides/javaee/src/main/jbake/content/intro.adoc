@@ -243,8 +243,7 @@ results.
 [[GEUZU]]
 
 .*Figure 1-1 Typical Java Platform, Enterprise Edition Workflow*
-image:img/overviewa.gif[
-"Typical Java Platform, Enterprise Edition Workflow"]
+image:img/overviewa.png["Typical Java Platform, Enterprise Edition Workflow"]
 
 
 link:#GEUZU[Figure 1-1] shows how most licensees will use the test
