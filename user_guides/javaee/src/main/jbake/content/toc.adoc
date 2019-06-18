@@ -1,517 +1,255 @@
 type=page
 status=published
-title=Oracle Java Platform, Enterprise Edition 8 Compatibility Test Suite User's Guide for Technology Licensees, Release 8
+title=Jakarta EE Platform, Enterprise Edition 8 Compatibility Test Suite User's Guide, Release 8 for Jakarta EE
 next=title.html
 ~~~~~~
-Oracle Java Platform, Enterprise Edition 8 Compatibility Test Suite User's Guide for Technology Licensees, Release 8
-====================================================================================================================
+Jakarta EE Platform, Enterprise Edition 8 Compatibility Test Suite User's Guide, Release 8 for Jakarta EE
+=========================================================================================================
 
 [[contents]]
 Contents
 --------
 
-[[title-and-copyright-information]]
-link:title.html[Title and Copyright Information]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* link:title.html#[Eclipse Foundation™]
 
-[[preface]]
 link:TCKpreface.html#GBFTI[Preface]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:TCKpreface.html#GBFUS[Who Should Use This Book]
-* link:TCKpreface.html#sthref2[Documentation Accessibility]
-* link:TCKpreface.html#GJFXS[Before You Read This Book]
-* link:TCKpreface.html#GBFWF[Typographic Conventions]
-* link:TCKpreface.html#FWBSD[Shell Prompts in Command Examples]
+** link:TCKpreface.html#GBFUS[Who Should Use This Book]
+** link:TCKpreface.html#GJFXS[Before You Read This Book]
+** link:TCKpreface.html#GBFWF[Typographic Conventions]
+** link:TCKpreface.html#FWBSD[Shell Prompts in Command Examples]
 
-[[introduction]]
 link:intro.html#GBFOW[1 Introduction]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:intro.html#GBFTK[1.1 Compatibility Testing]
-
-** link:intro.html#GBFQN[1.1.1 Why Compatibility Testing is Important]
-
-** link:intro.html#GBFPR[1.1.2 Compatibility Rules]
-
-** link:intro.html#GBFPW[1.1.3 CTS Overview]
-
-** link:intro.html#GBFPB[1.1.4 Java Community Process (JCP) Program and
-Compatibility Testing]
-* link:intro.html#GEUYK[1.2 About Java EE 8 CTS]
-
-** link:intro.html#sthref4[1.2.1 Java EE 8 Technologies Tested with Java
-EE 8 CTS]
-
-** link:intro.html#BHCGFHDI[1.2.2 Java EE 8 Web Profile Technologies
-Tested With Java EE 8 CTS]
-
-** link:intro.html#GEUZS[1.2.3 CTS Tests]
-
-** link:intro.html#GEUYR[1.2.4 JavaTest Harness]
-
-** link:intro.html#GEUYQ[1.2.5 Exclude Lists]
-
-** link:intro.html#GEUZN[1.2.6 Apache Ant]
-* link:intro.html#GEVAD[1.3 Hardware Requirements]
-* link:intro.html#GEVBB[1.4 Software Requirements]
-* link:intro.html#GEVCL[1.5 Additional Java EE 8 CTS Requirements]
-* link:intro.html#GBFQW[1.6 Getting Started With the Java EE 8 CTS Test
-Suite]
+** link:intro.html#GBFTK[1.1 Compatibility Testing]
+*** link:intro.html#GBFQN[1.1.1 Why Compatibility Testing is Important]
+*** link:intro.html#GBFPR[1.1.2 Compatibility Rules]
+*** link:intro.html#GBFPW[1.1.3 CTS Overview]
+*** link:intro.html#GBFPB[1.1.4 Java Community Process (JCP) Program and Compatibility Testing]
+** link:intro.html#GEUYK[1.2 About Java EE 8 CTS]
+*** link:intro.html#sthref4[1.2.1 Java EE 8 Technologies Tested with Java EE 8 CTS]
+*** link:intro.html#BHCGFHDI[1.2.2 Java EE 8 Web Profile Technologies Tested With Java EE 8 CTS]
+*** link:intro.html#GEUZS[1.2.3 CTS Tests]
+*** link:intro.html#GEUYR[1.2.4 JavaTest Harness]
+*** link:intro.html#GEUYQ[1.2.5 Exclude Lists]
+*** link:intro.html#GEUZN[1.2.6 Apache Ant]
+** link:intro.html#GEVAD[1.3 Hardware Requirements]
+** link:intro.html#GEVBB[1.4 Software Requirements]
+** link:intro.html#GEVCL[1.5 Additional Java EE 8 CTS Requirements]
+** link:intro.html#GBFQW[1.6 Getting Started With the Java EE 8 CTS Test Suite]
 
 [[procedure-for-java-platform-enterprise-edition-8-certification]]
 link:rules.html#GBFSN[2 Procedure for Java Platform, Enterprise Edition 8 Certification]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:rules.html#CJACEHEF[2.1 Certification Overview]
-* link:rules.html#CJAJFCJI[2.2 Compatibility Requirements]
-
-** link:rules.html#sthref6[2.2.1 Definitions]
-
-** link:rules.html#CJAFEGEH[2.2.2 Rules for Java Platform, Enterprise
-Edition Version 8 Products]
-* link:rules.html#CJACBJIB[2.3 Java Platform, Enterprise Edition Version
-8 Test Appeals Process]
-
-** link:rules.html#CJAICHHD[2.3.1 Java Platform, Enterprise Edition
-Version 8 TCK Test Appeals Steps]
-
-** link:rules.html#sthref9[2.3.2 Test Challenge and Response Forms]
-* link:rules.html#CJAHFAJE[2.4 Specifications for Java Platform,
-Enterprise Edition Version 8]
-* link:rules.html#CJAHIGAB[2.5 Libraries for Java Platform, Enterprise
-Edition Version 8]
+** link:rules.html#CJACEHEF[2.1 Certification Overview]
+** link:rules.html#CJAJFCJI[2.2 Compatibility Requirements]
+*** link:rules.html#definitions[2.2.1 Definitions]
+*** link:rules.html#CJAFEGEH[2.2.2 Rules for Java Platform, Enterprise Edition Version 8 Products]
+** link:rules.html#CJACBJIB[2.3 Java Platform, Enterprise Edition Version 8 Test Appeals Process]
+*** link:rules.html#CJAICHHD[2.3.1 Java Platform, Enterprise Edition Version 8 TCK Test Appeals Steps]
+*** link:rules.html#sthref9[2.3.2 Test Challenge and Response Forms]
+** link:rules.html#CJAHFAJE[2.4 Specifications for Java Platform, Enterprise Edition Version 8]
+** link:rules.html#CJAHIGAB[2.5 Libraries for Java Platform, Enterprise Edition Version 8]
 
 [[procedure-for-java-platform-enterprise-edition-8-web-profile-certification]]
 link:rules-wp.html#GJJPZ[3 Procedure for Java Platform, Enterprise Edition 8 Web Profile Certification]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:rules-wp.html#CEGEJDGE[3.1 Certification Overview]
-* link:rules-wp.html#CEGFGHIC[3.2 Compatibility Requirements]
+** link:rules-wp.html#CEGEJDGE[3.1 Certification Overview]
+** link:rules-wp.html#CEGFGHIC[3.2 Compatibility Requirements]
+*** link:rules-wp.html#definitions[3.2.1 Definitions]
+*** link:rules-wp.html#CEGCFBHB[3.2.2 Rules for Java Platform, Enterprise Edition Version 8 Products]
+** link:rules-wp.html#CEGHFFED[3.3 Java Platform, Enterprise Edition Version 8 Test Appeals Process]
+*** link:rules-wp.html#CEGCHJGH[3.3.1 Java Platform, Enterprise Edition Version 8 TCK Test Appeals Steps]
+*** link:rules-wp.html#sthref13[3.3.2 Test Challenge and Response Forms]
+** link:rules-wp.html#CEGEHIBD[3.4 Specifications for Java Platform, Enterprise Edition Version 8]
+** link:rules-wp.html#CEGFDIEG[3.5 Libraries for Java Platform, Enterprise Edition Version 8]
 
-** link:rules-wp.html#sthref10[3.2.1 Definitions]
-
-** link:rules-wp.html#CEGCFBHB[3.2.2 Rules for Java Platform, Enterprise
-Edition Version 8 Products]
-* link:rules-wp.html#CEGHFFED[3.3 Java Platform, Enterprise Edition
-Version 8 Test Appeals Process]
-
-** link:rules-wp.html#CEGCHJGH[3.3.1 Java Platform, Enterprise Edition
-Version 8 TCK Test Appeals Steps]
-
-** link:rules-wp.html#sthref13[3.3.2 Test Challenge and Response Forms]
-* link:rules-wp.html#CEGEHIBD[3.4 Specifications for Java Platform,
-Enterprise Edition Version 8]
-* link:rules-wp.html#CEGFDIEG[3.5 Libraries for Java Platform, Enterprise
-Edition Version 8]
-
-[[installation]]
 link:install.html#GBFTP[4 Installation]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:install.html#GEVGN[4.1 Installing the Java EE 8 Reference
-Implementation]
-* link:install.html#GEVHP[4.2 Installing the Java EE 8 CTS]
-* link:install.html#GEVGZ[4.3 Verifying Your Installation (Optional)]
+** link:install.html#GEVGN[4.1 Installing the Java EE 8 Reference Implementation]
+** link:install.html#GEVHP[4.2 Installing the Java EE 8 CTS]
+** link:install.html#GEVGZ[4.3 Verifying Your Installation (Optional)]
 
 [[setup-and-configuration]]
 link:config.html#GBFVV[5 Setup and Configuration]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:config.html#GEWTL[5.1 Allowed Modifications]
-* link:config.html#GEWTP[5.2 Configuring the Test Environment]
-* link:config.html#GEWTQ[5.3 Configuring a Java EE 8 Server]
-
-** link:config.html#GEWSQ[5.3.1 Java Platform, Enterprise Edition Server
-Configuration Scenarios]
-
-** link:config.html#GEWUI[5.3.2 Configuring the Java EE 8 RI as the VI]
-
-** link:config.html#GEWWA[5.3.3 Configuring Your Application Server as
-the VI]
-
-** link:config.html#GEXMH[5.3.4 Configuring a Java Platform, Enterprise
-Edition RI and VI for Interop/Rebuildable Tests]
-* link:config.html#GEXPP[5.4 Modifying Environment Settings for Specific
-Technology Tests]
-
-** link:config.html#GEXQT[5.4.1 Test Harness Setup]
-
-** link:config.html#GEXOS[5.4.2 Windows-Specific Properties]
-
-** link:config.html#GEXPE[5.4.3 Test Execution Command Setup]
-
-** link:config.html#GEXPB[5.4.4 Servlet Test Setup]
-
-** link:config.html#CBDDGJFC[5.4.5 WebSocket Test Setup]
-
-** link:config.html#GEXON[5.4.6 JDBC Test Setup]
-
-** link:config.html#GEXQQ[5.4.7 Standalone RMI/IIOP Server Test Setup]
-
-** link:config.html#GEXOT[5.4.8 JavaMail Test Setup]
-
-** link:config.html#GJKPO[5.4.9 JAX-RS Test Setup]
-*** link:config.html#GJYCL[5.4.9.1 To Configure Your Environment to Run
-the JAX-RS Tests Against the Java EE 8 RI]
-*** link:config.html#GJYBC[5.4.9.2 To Package WAR files for Deployment on
-the Java EE 8 RI]
-*** link:config.html#GJYBR[5.4.9.3 To Configure Your Environment to Run
-the JAX-RS Tests Against a Vendor Implementation]
-*** link:config.html#GJYDD[5.4.9.4 To Repackage WAR files for Deployment
-on the Vendor Implementation]
-
-** link:config.html#GEXOF[5.4.10 Connector Test Setup]
-*** link:config.html#GJVGT[5.4.10.1 Extension Libraries]
-*** link:config.html#GJVGO[5.4.10.2 Connector Resource Adapters and
-Classloading]
-*** link:config.html#GJVHD[5.4.10.3 Use Case Problem Scenario]
-*** link:config.html#GJVHK[5.4.10.4 Required Porting Package]
-*** link:config.html#GJVHH[5.4.10.5 Creating Security Mappings for the
-Connector RAR Files]
-*** link:config.html#GJVGX[5.4.10.6 Creating Required Server-Side JVM
-Options]
-
-** link:config.html#GEXPV[5.4.11 XA Test Setup]
-
-** link:config.html#GKKOJ[5.4.12 EJB 3.2 Test Setup]
-*** link:config.html#GJYBW[5.4.12.1 To Configure the Test Environment to
-Run the EJB 3.2 DataSource Tests]
-*** link:config.html#GJYCF[5.4.12.2 To Configure the Test Environment to
-Run the EJB 3.2 Stateful Timeout Tests]
-
-** link:config.html#GEXOX[5.4.13 EJB Timer Test Setup]
-
-** link:config.html#GEXQB[5.4.14 Entity Bean Container-Managed
-Persistence Test Setup for EJB V1.1]
-
-** link:config.html#GEXOL[5.4.15 Java Persistence API Test Setup]
-*** link:config.html#GJKPA[5.4.15.1 To Configure the Test Environment to
-Run the JPA Pluggability Tests]
-*** link:config.html#sthref19[5.4.15.2 Enabling Second Level Caching
-Support]
-*** link:config.html#GEXOW[5.4.15.3 Persistence Test Vehicles]
-*** link:config.html#GEXPY[5.4.15.4 GeneratedValue Annotation]
-
-** link:config.html#GEXPT[5.4.16 JMS Test Setup]
-*** link:config.html#sthref20[5.4.16.1 To Configure a Slow Running
-System]
-*** link:config.html#sthref21[5.4.16.2 To Test Your JMS Resource Adapter]
-*** link:config.html#sthref22[5.4.16.3 To Create JMS Administered
-Objects]
-
-** link:config.html#GEXQR[5.4.17 Transaction Interoperability Testing]
-
-** link:config.html#GKWVB[5.4.18 JASPIC Test Setup]
-
-** link:config.html#GEXWW[5.4.19 CSIv2 Test Setup]
-*** link:config.html#GEXVO[5.4.19.1 To Configure the Vendor's Java EE 8
-Server]
-*** link:config.html#GEXVB[5.4.19.2 To Configure the Java EE 8 RI Server]
-*** link:config.html#GLREL[5.4.19.3 Generating IORs Based on Runtime XML
-Information]
-
-** link:config.html#GEYBI[5.4.20 JACC Test Setup]
-
-** link:config.html#sthref24[5.4.21 Java Batch Test Setup]
-
-** link:config.html#GEYAM[5.4.22 WSDL: Webservice Test and Runtime Notes]
-*** link:config.html#GEYAJ[5.4.22.1 WSDL ts.jte Properties]
-*** link:config.html#GEYCO[5.4.22.2 Webservice Endpoint WSDL Elements]
-*** link:config.html#GEYLF[5.4.22.3 Webservice Client WSDL Elements]
-
-** link:config.html#CEGCHDEA[5.4.23 Security API Test Setup]
-
-** link:config.html#GEYNX[5.4.24 Signature Test Setup]
-*** link:config.html#GEYPN[5.4.24.1 sigTestClasspath Property]
-*** link:config.html#GEYOS[5.4.24.2 Additional Signature Test
-Information]
-
-** link:config.html#GJLGQ[5.4.25 Backend Database Setup]
-*** link:config.html#GJLIB[5.4.25.1 Setup Considerations for MySQL]
-*** link:config.html#GJLHU[5.4.25.2 Setup Considerations for MS SQL
-Server]
-
-** link:config.html#GEXQP[5.4.26 Deployment Test Setup]
-
-** link:config.html#GEXPU[5.4.27 JAXR Test Setup]
-*** link:config.html#GEXPG[5.4.27.1 Example JAXR ts.jte Property
-Settings]
-*** link:config.html#GEXPI[5.4.27.2 JAXR ts.jte Properties]
-* link:config.html#GEYPB[5.5 Using the JavaTest Harness Configuration
-GUI]
-
-** link:config.html#GEYNM[5.5.1 Basic Configuration Overview]
-
-** link:config.html#GEYOD[5.5.2 The Configuration Interview]
+** link:config.html#GEWTL[5.1 Allowed Modifications]
+** link:config.html#GEWTP[5.2 Configuring the Test Environment]
+** link:config.html#GEWTQ[5.3 Configuring a Java EE 8 Server]
+*** link:config.html#GEWSQ[5.3.1 Java Platform, Enterprise Edition Server Configuration Scenarios]
+*** link:config.html#GEWUI[5.3.2 Configuring the Java EE 8 RI as the VI]
+*** link:config.html#GEWWA[5.3.3 Configuring Your Application Server as the VI]
+** link:config.html#GEXPP[5.4 Modifying Environment Settings for Specific Technology Tests]
+*** link:config.html#GEXQT[5.4.1 Test Harness Setup]
+*** link:config.html#GEXOS[5.4.2 Windows-Specific Properties]
+*** link:config.html#GEXPE[5.4.3 Test Execution Command Setup]
+*** link:config.html#GEXPB[5.4.4 Servlet Test Setup]
+*** link:config.html#CBDDGJFC[5.4.5 WebSocket Test Setup]
+*** link:config.html#GEXON[5.4.6 JDBC Test Setup]
+*** link:config.html#GEXQQ[5.4.7 Standalone RMI/IIOP Server Test Setup]
+*** link:config.html#GEXOT[5.4.8 JavaMail Test Setup]
+*** link:config.html#GJKPO[5.4.9 JAX-RS Test Setup]
+*** link:config.html#GEXOF[5.4.10 Connector Test Setup]
+*** link:config.html#GEXPV[5.4.11 XA Test Setup]
+*** link:config.html#GKKOJ[5.4.12 EJB 3.2 Test Setup]
+*** link:config.html#GEXOX[5.4.13 EJB Timer Test Setup]
+*** link:config.html#GEXQB[5.4.14 Entity Bean Container-Managed Persistence Test Setup for EJB V1.1]
+*** link:config.html#GEXOL[5.4.15 Java Persistence API Test Setup]
+*** link:config.html#GEXPT[5.4.16 JMS Test Setup]
+*** link:config.html#GEXQR[5.4.17 Transaction Interoperability Testing]
+*** link:config.html#GKWVB[5.4.18 JASPIC Test Setup]
+*** link:config.html#GEXWW[5.4.19 CSIv2 Test Setup]
+*** link:config.html#GEYBI[5.4.20 JACC Test Setup]
+*** link:config.html#sthref24[5.4.21 Java Batch Test Setup]
+*** link:config.html#GEYAM[5.4.22 WSDL: Webservice Test and Runtime Notes]
+*** link:config.html#CEGCHDEA[5.4.23 Security API Test Setup]
+*** link:config.html#GEYNX[5.4.24 Signature Test Setup]
+*** link:config.html#GJLGQ[5.4.25 Backend Database Setup]
+*** link:config.html#GEXQP[5.4.26 Deployment Test Setup]
+*** link:config.html#GEXPU[5.4.27 JAXR Test Setup]
+** link:config.html#GEYPB[5.5 Using the JavaTest Harness Configuration GUI]
+*** link:config.html#GEYNM[5.5.1 Basic Configuration Overview]
+*** link:config.html#GEYOD[5.5.2 The Configuration Interview]
 
 [[setup-and-configuration-for-testing-with-the-java-ee-8-web-profile]]
 link:webprofileconfig.html#GJRHB[6 Setup and Configuration for Testing with the Java EE 8 Web Profile]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:webprofileconfig.html#GLSEL[6.1 Configuring the Java EE 8 Web
-Profile Test Environment]
-
-** link:webprofileconfig.html#GJWED[6.1.1 To Run Tests Against a Java EE
-8 Web Profile Implementation]
+** link:webprofileconfig.html#GLSEL[6.1 Configuring the Java EE 8 Web Profile Test Environment]
+*** link:webprofileconfig.html#GJWED[6.1.1 To Run Tests Against a Java EE 8 Web Profile Implementation]
 
 [[executing-tests]]
 link:using.html#GBFWO[7 Executing Tests]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:using.html#GFADX[7.1 Java EE 8 CTS Operating Assumptions]
-* link:using.html#GBFUZ[7.2 Starting JavaTest]
-
-** link:using.html#GBFWH[7.2.1 To Start JavaTest in GUI Mode]
-
-** link:using.html#GFAEF[7.2.2 To Start JavaTest in Command-Line Mode]
-* link:using.html#GFACS[7.3 Validating Your Test Configuration]
-
-** link:using.html#GFADI[7.3.1 To Validate Your Configuration in GUI
-Mode]
-
-** link:using.html#GFACO[7.3.2 To Validate Your Configuration in
-Command-Line Mode]
-* link:using.html#GBFWM[7.4 Running a Subset of the Tests]
-
-** link:using.html#GBFVT[7.4.1 To Run a Subset of Tests in GUI Mode]
-
-** link:using.html#GBFWK[7.4.2 To Run a Subset of Tests in Command-Line
-Mode]
-
-** link:using.html#GBFVL[7.4.3 To Run a Subset of Tests in Batch Mode
-Based on Prior Result Status]
-* link:using.html#sthref25[7.5 Using Keywords to Test Required and
-Optional Technologies]
-
-** link:using.html#BCGBAHFF[7.5.1 Setting the javaee.level Property]
-
-** link:using.html#BCGHGJIC[7.5.2 Using Keywords to Create Groups and
-Subsets of Tests]
-*** link:using.html#sthref26[7.5.2.1 To Use Keywords to Run Required
-Technologies]
-*** link:using.html#sthref33[7.5.2.2 To Use Keywords to Run Optional
-Technologies With the Full Profile]
-*** link:using.html#GKKFN[7.5.2.3 To Use Keywords to Run Optional Subsets
-of Tests With the Web Profile]
-*** link:using.html#sthref40[7.5.2.4 To Use Keywords to Run Optional
-Subsets for EJB Lite]
-*** link:using.html#sthref43[7.5.2.5 To Use Keywords to Run Tests in
-Selected Vehicles]
-*** link:using.html#sthref46[7.5.2.6 To Use Keywords to Run Tests in
-Forward and Reverse Directions]
-* link:using.html#sthref49[7.6 Running Interop or JWS/JAX-WS Reverse
-Tests]
-* link:using.html#sthref50[7.7 Rebuilding Test Directories]
-* link:using.html#GBFVK[7.8 Test Reports]
-
-** link:using.html#GBFWD[7.8.1 Creating Test Reports]
-*** link:using.html#GBFVH[7.8.1.1 To Create a Test Report in GUI Mode]
-*** link:using.html#GBFVC[7.8.1.2 To Create a Test Report in Command-Line
-Mode]
-
-** link:using.html#GBFVB[7.8.2 Viewing an Existing Test Report]
-*** link:using.html#GBFVO[7.8.2.1 To View an Existing Report in the
-JavaTest Report Browser]
-*** link:using.html#GBFWB[7.8.2.2 To View an Existing Report in a Web
-Browser]
+** link:using.html#GFADX[7.1 Java EE 8 CTS Operating Assumptions]
+** link:using.html#GBFUZ[7.2 Starting JavaTest]
+*** link:using.html#GBFWH[7.2.1 To Start JavaTest in GUI Mode]
+*** link:using.html#GFAEF[7.2.2 To Start JavaTest in Command-Line Mode]
+** link:using.html#GFACS[7.3 Validating Your Test Configuration]
+*** link:using.html#GFADI[7.3.1 To Validate Your Configuration in GUI Mode]
+*** link:using.html#GFACO[7.3.2 To Validate Your Configuration in Command-Line Mode]
+** link:using.html#GBFWM[7.4 Running a Subset of the Tests]
+*** link:using.html#GBFVT[7.4.1 To Run a Subset of Tests in GUI Mode]
+*** link:using.html#GBFWK[7.4.2 To Run a Subset of Tests in Command-Line Mode]
+** link:using.html#sthref25[7.5 Using Keywords to Test Required and Optional Technologies]
+*** link:using.html#BCGBAHFF[7.5.1 Setting the javaee.level Property]
+*** link:using.html#BCGHGJIC[7.5.2 Using Keywords to Create Groups and Subsets of Tests]
+** link:using.html#sthref50[7.7 Rebuilding Test Directories]
+** link:using.html#GBFVK[7.8 Test Reports]
+*** link:using.html#GBFWD[7.8.1 Creating Test Reports]
+*** link:using.html#GBFVB[7.8.2 Viewing an Existing Test Report]
 
 [[debugging-test-problems]]
 link:debug.html#GBFUV[8 Debugging Test Problems]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:debug.html#GBFYP[8.1 Overview]
-* link:debug.html#GBFVF[8.2 Test Tree]
-* link:debug.html#GBFWI[8.3 Folder Information]
-* link:debug.html#GBFVP[8.4 Test Information]
-* link:debug.html#GBFVZ[8.5 Report Files]
-* link:debug.html#GBFYF[8.6 Configuration Failures]
+** link:debug.html#GBFYP[8.1 Overview]
+** link:debug.html#GBFVF[8.2 Test Tree]
+** link:debug.html#GBFWI[8.3 Folder Information]
+** link:debug.html#GBFVP[8.4 Test Information]
+** link:debug.html#GBFVZ[8.5 Report Files]
+** link:debug.html#GBFYF[8.6 Configuration Failures]
 
-[[troubleshooting]]
 link:troubleshooting.html#GFAHF[9 Troubleshooting]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:troubleshooting.html#GFAUR[9.1 Common CTS Problems and
-Resolutions]
-* link:troubleshooting.html#GFAGN[9.2 Support]
+** link:troubleshooting.html#GFAUR[9.1 Common CTS Problems and Resolutions]
+** link:troubleshooting.html#GFAGN[9.2 Support]
 
 [[building-and-debugging-tests]]
 link:building.html#GFAON[10 Building and Debugging Tests]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:building.html#GFATJ[10.1 Configuring Your Build Environment]
-* link:building.html#GFAPW[10.2 Building the Tests]
-* link:building.html#GFARS[10.3 Running the Tests]
-
-** link:building.html#GFAOW[10.3.1 To Run a Single Test Directory]
-
-** link:building.html#GFARF[10.3.2 To Run a Single Test Within a Test
-Directory]
-* link:building.html#GFATN[10.4 Listing the Contents of dist/classes
-Directories]
-* link:building.html#GFATK[10.5 Debugging Service Tests]
-
-** link:building.html#GFASE[10.5.1 Examples]
-
-** link:building.html#GFARW[10.5.2 Obtaining Additional Debugging
-Information]
+** link:building.html#GFATJ[10.1 Configuring Your Build Environment]
+** link:building.html#GFAPW[10.2 Building the Tests]
+** link:building.html#GFARS[10.3 Running the Tests]
+*** link:building.html#GFAOW[10.3.1 To Run a Single Test Directory]
+*** link:building.html#GFARF[10.3.2 To Run a Single Test Within a Test Directory]
+** link:building.html#GFATN[10.4 Listing the Contents of dist/classes Directories]
+* link:building.html#[<TS_HOME>/classes/com/sun/ts/tests/samples/ejb/ee/simpleHello]
+** link:building.html#GFATK[10.5 Debugging Service Tests]
+*** link:building.html#GFASE[10.5.1 Examples]
+*** link:building.html#GFARW[10.5.2 Obtaining Additional Debugging Information]
 
 [[implementing-the-porting-package]]
 link:portingpackage.html#GFATG[11 Implementing the Porting Package]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:portingpackage.html#GFASD[11.1 Overview]
-* link:portingpackage.html#GFAUG[11.2 Porting Package APIs]
-
-** link:portingpackage.html#GFASM[11.2.1 TSDeploymentInterface2]
-
-** link:portingpackage.html#GKLJO[11.2.2 Ant-Based Deployment Interface]
-*** link:portingpackage.html#GKLJF[11.2.2.1 Creating Your Own Ant-based
-Deployment Implementation]
-
-** link:portingpackage.html#GFASI[11.2.3 TSJMSAdminInterface]
-
-** link:portingpackage.html#GFATH[11.2.4 TSLoginContextInterface]
-
-** link:portingpackage.html#GFATO[11.2.5 TSURLInterface]
-
-** link:portingpackage.html#GFASJ[11.2.6 TSHttpsURLConnectionInterface]
-
-** link:portingpackage.html#GFAUI[11.2.7 TSJAXRPCInterface]
-
-[[a-common-applications-deployment]]
-link:commonappdeploy.html#GFAVR[A Common Applications Deployment]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[[b-csiv2-test-reference]]
-link:csiv2logs.html#GFAVU[B CSIv2 Test Reference]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* link:csiv2logs.html#GFAVI[B.1 Overview]
-
-** link:csiv2logs.html#GFAUX[B.1.1 Application Client-to-EJB Scenarios]
-
-** link:csiv2logs.html#GFAZD[B.1.2 EJB-to-EJB Test Scenarios]
-
-** link:csiv2logs.html#GFKEF[B.1.3 Web Client-to-EJB Scenarios]
-* link:csiv2logs.html#BACGHCAI[B.2 CSIv2 Logging Servlet]
-* link:csiv2logs.html#GFKFB[B.3 Naming Conventions for CSIv2 Test
-Directories]
-* link:csiv2logs.html#GFKGM[B.4 CSIv2 Test Directory Structure]
-* link:csiv2logs.html#GFKGF[B.5 Naming Conventions for CSIv2 Test Names]
-* link:csiv2logs.html#GLSDH[B.6 Security Elements Associated With CSIv2
-Tests]
-
-** link:csiv2logs.html#GEXUI[B.6.1 The security-role-mapping Element]
-
-** link:csiv2logs.html#GEXUQ[B.6.2 The ior-security-config Element]
-*** link:csiv2logs.html#GLRET[B.6.2.1 The transport-config Element]
-*** link:csiv2logs.html#GLREQ[B.6.2.2 The as-context Element]
-*** link:csiv2logs.html#GLRFE[B.6.2.3 The sas-context Element]
-* link:csiv2logs.html#GJJVO[B.7 Debugging CSIv2 Test Failures]
-
-** link:csiv2logs.html#GJJWV[B.7.1 Debugging CTS Clients, Beans, and
-Servlets]
-
-** link:csiv2logs.html#GJJVS[B.7.2 Debugging CTS CSIv2 Interceptors]
-*** link:csiv2logs.html#GJJWI[B.7.2.1 To Increase the Logging Level]
-*** link:csiv2logs.html#GJJWY[B.7.2.2 To Reset the Logging Level]
-
-** link:csiv2logs.html#sthref56[B.7.3 Debugging Logging Servlet Problems]
-* link:csiv2logs.html#GFKFC[B.8 Examining Test Logs]
-
-** link:csiv2logs.html#GFKGL[B.8.1 To Examine the Test Logs]
-
-** link:csiv2logs.html#GLREW[B.8.2 Bit Mask Values for CSIv2 IOR
-Structures]
-* link:csiv2logs.html#GFKHS[B.9 CSIv2 Log Elements]
-
-** link:csiv2logs.html#GFKGW[B.9.1 Key Elements in the CSIv2 Log]
-
-** link:csiv2logs.html#GFKHC[B.9.2 Key Elements in the Server Interceptor
-Log]
-
-** link:csiv2logs.html#GFKHA[B.9.3 Key Elements in the Client Interceptor
-Log]
-
-** link:csiv2logs.html#GFKGT[B.9.4 Key Elements in an IOR Log]
-
-** link:csiv2logs.html#GFKHQ[B.9.5 Comprehensive List of All CSIv2 Log
-Elements]
-* link:csiv2logs.html#GFKKB[B.10 IORs and Associated CSIv2 Tests]
-
-** link:csiv2logs.html#GFKKN[B.10.1 IOR.0]
-
-** link:csiv2logs.html#GFKLB[B.10.2 IOR.1]
-
-** link:csiv2logs.html#GFKKR[B.10.3 IOR.3]
-
-** link:csiv2logs.html#GFKLX[B.10.4 IOR.4]
-
-** link:csiv2logs.html#GFKKJ[B.10.5 IOR.7]
-
-[[c-jaspic-technology-notes-and-files]]
-link:jaspic-files.html#GLAEQ[C JASPIC Technology Notes and Files]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* link:jaspic-files.html#GLAFO[C.1 JASPIC 1.1 Technology Overview]
-* link:jaspic-files.html#GLAFE[C.2 JASPIC TSSV Files]
-
-** link:jaspic-files.html#GLAGR[C.2.1 tssv.jar file]
-
-** link:jaspic-files.html#GLADE[C.2.2 ProviderConfiguration.xml file]
-
-** link:jaspic-files.html#GLAFZ[C.2.3 provider-configuration.dtd file]
-
-[[d-configuring-your-backend-database]]
-link:database-config.html#GFAVUb[D Configuring Your Backend Database]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* link:database-config.html#GFKNA[D.1 Overview]
-* link:database-config.html#GFKNR[D.2 The init.<database> Ant Target]
-* link:database-config.html#GFKMW[D.3 Database Properties in ts.jte]
-* link:database-config.html#GFKOC[D.4 Database DDL and DML Files]
-* link:database-config.html#GFKND[D.5 CMP Table Creation]
-
-[[e-ejbql-schema]]
-link:ejbql-schema.html#GFAVUc[E EJBQL Schema]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* link:ejbql-schema.html#GFKSI[E.1 Persistence Schema Relationships]
-* link:ejbql-schema.html#GFKQT[E.2 SQL Statements for CMP 1.1 Finders]
-
-** link:ejbql-schema.html#GFKSD[E.2.1
-ejb/ee/bb/entity/cmp/clientviewtest,
-interop/ejb/entity/cmp/clientviewtest]
-
-** link:ejbql-schema.html#GFKQU[E.2.2 ejb/ee/bb/entity/cmp/complexpktest]
-
-** link:ejbql-schema.html#GFKSB[E.2.3 ejb/ee/tx/txECMPbean]
-
-[[f-context-root-mapping-rules-for-web-services-tests]]
-link:contextrootmappingrules.html#GJJWH[F Context Root Mapping Rules for Web Services Tests]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* link:contextrootmappingrules.html#GJJWR[F.1 Servlet-Based Web Service
-Endpoint Context Root Mapping]
-* link:contextrootmappingrules.html#GJJWG[F.2 EJB-Based Web Service
-Endpoint Context Root Mapping]
-
-[[g-testing-a-standalone-jms-resource-adapter]]
-link:jms-resource-adaptr.html#CJGFHFIF[G Testing a Standalone JMS Resource Adapter]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* link:jms-resource-adaptr.html#CJGGIEEJ[G.1 Setting Up Your Environment]
-* link:jms-resource-adaptr.html#CJGDJCEC[G.2 Configuring Java EE 8 CTS]
-* link:jms-resource-adaptr.html#CJGFCJBA[G.3 Configuring the Java EE 8 RI
-for the Standalone JMS Resource Adapter]
-* link:jms-resource-adaptr.html#CJGEBECH[G.4 Modifying the Runtime
-Deployment Descriptors for the JMS MDB and Resource Adapter Tests]
-* link:jms-resource-adaptr.html#CJGFHCBJ[G.5 Running the JMS Tests From
-the Command Line]
-* link:jms-resource-adaptr.html#CJGCJGIH[G.6 Restoring the Runtime
-Deployment Descriptors for the JMS MDB and Resource Adapter Tests]
-* link:jms-resource-adaptr.html#CJGCDGIG[G.7 Reconfiguring Java EE 8 RI
-for Java EE 8 CTS After Testing the Standalone JMS Resource Adapter]
-
-
+** link:portingpackage.html#GFASD[11.1 Overview]
+** link:portingpackage.html#GFAUG[11.2 Porting Package APIs]
+*** link:portingpackage.html#GFASM[11.2.1 TSDeploymentInterface2]
+*** link:portingpackage.html#GKLJO[11.2.2 Ant-Based Deployment Interface]
+*** link:portingpackage.html#GFASI[11.2.3 TSJMSAdminInterface]
+*** link:portingpackage.html#GFATH[11.2.4 TSLoginContextInterface]
+*** link:portingpackage.html#GFATO[11.2.5 TSURLInterface]
+*** link:portingpackage.html#GFASJ[11.2.6 TSHttpsURLConnectionInterface]
+*** link:portingpackage.html#GFAUI[11.2.7 TSJAXRPCInterface]
+* link:commonappdeploy.html#GFAVR[A Common Applications Deployment]
+* link:csiv2logs.html#GFAVU[B CSIv2 Test Reference]
+** link:csiv2logs.html#GFAVI[B.1 Overview]
+*** link:csiv2logs.html#GFAUX[B.1.1 Application Client-to-EJB Scenarios]
+*** link:csiv2logs.html#GFAZD[B.1.2 EJB-to-EJB Test Scenarios]
+*** link:csiv2logs.html#GFKEF[B.1.3 Web Client-to-EJB Scenarios]
+** link:csiv2logs.html#BACGHCAI[B.2 CSIv2 Logging Servlet]
+** link:csiv2logs.html#GFKFB[B.3 Naming Conventions for CSIv2 Test Directories]
+** link:csiv2logs.html#GFKGM[B.4 CSIv2 Test Directory Structure]
+** link:csiv2logs.html#GFKGF[B.5 Naming Conventions for CSIv2 Test Names]
+** link:csiv2logs.html#GLSDH[B.6 Security Elements Associated With CSIv2 Tests]
+*** link:csiv2logs.html#GEXUI[B.6.1 The security-role-mapping Element]
+*** link:csiv2logs.html#GEXUQ[B.6.2 The ior-security-config Element]
+** link:csiv2logs.html#GJJVO[B.7 Debugging CSIv2 Test Failures]
+*** link:csiv2logs.html#GJJWV[B.7.1 Debugging CTS Clients, Beans, and Servlets]
+*** link:csiv2logs.html#GJJVS[B.7.2 Debugging CTS CSIv2 Interceptors]
+*** link:csiv2logs.html#sthref56[B.7.3 Debugging Logging Servlet Problems]
+** link:csiv2logs.html#GFKFC[B.8 Examining Test Logs]
+*** link:csiv2logs.html#GFKGL[B.8.1 To Examine the Test Logs]
+* link:csiv2logs.html#GFKHL[   Validating the following IOR against IOR.4:]
+* link:csiv2logs.html#GFKGA[   Validating the following invocation:]
+*** link:csiv2logs.html#GLREW[B.8.2 Bit Mask Values for CSIv2 IOR Structures]
+** link:csiv2logs.html#GFKHS[B.9 CSIv2 Log Elements]
+*** link:csiv2logs.html#GFKGW[B.9.1 Key Elements in the CSIv2 Log]
+*** link:csiv2logs.html#GFKHC[B.9.2 Key Elements in the Server Interceptor Log]
+*** link:csiv2logs.html#GFKHA[B.9.3 Key Elements in the Client Interceptor Log]
+*** link:csiv2logs.html#GFKGT[B.9.4 Key Elements in an IOR Log]
+*** link:csiv2logs.html#GFKHQ[B.9.5 Comprehensive List of All CSIv2 Log Elements]
+** link:csiv2logs.html#GFKKB[B.10 IORs and Associated CSIv2 Tests]
+*** link:csiv2logs.html#GFKKN[B.10.1 IOR.0]
+*** link:csiv2logs.html#GFKLB[B.10.2 IOR.1]
+*** link:csiv2logs.html#GFKKR[B.10.3 IOR.3]
+*** link:csiv2logs.html#GFKLX[B.10.4 IOR.4]
+*** link:csiv2logs.html#GFKKJ[B.10.5 IOR.7]
+* link:jaspic-files.html#GLAEQ[C JASPIC Technology Notes and Files]
+** link:jaspic-files.html#GLAFO[C.1 JASPIC 1.1 Technology Overview]
+** link:jaspic-files.html#GLAFE[C.2 JASPIC TSSV Files]
+*** link:jaspic-files.html#GLAGR[C.2.1 tssv.jar file]
+*** link:jaspic-files.html#GLADE[C.2.2 ProviderConfiguration.xml file]
+*** link:jaspic-files.html#GLAFZ[C.2.3 provider-configuration.dtd file]
+* link:database-config.html#GFAVUb[D Configuring Your Backend Database]
+** link:database-config.html#GFKNA[D.1 Overview]
+** link:database-config.html#GFKNR[D.2 The init.<database> Ant Target]
+** link:database-config.html#GFKMW[D.3 Database Properties in ts.jte]
+** link:database-config.html#GFKOC[D.4 Database DDL and DML Files]
+** link:database-config.html#GFKND[D.5 CMP Table Creation]
+* link:ejbql-schema.html#GFAVUc[E EJBQL Schema]
+** link:ejbql-schema.html#GFKSI[E.1 Persistence Schema Relationships]
+** link:ejbql-schema.html#GFKQT[E.2 SQL Statements for CMP 1.1 Finders]
+*** link:ejbql-schema.html#GFKQU[E.2.2 ejb/ee/bb/entity/cmp/complexpktest]
+*** link:ejbql-schema.html#GFKSB[E.2.3 ejb/ee/tx/txECMPbean]
+* link:contextrootmappingrules.html#GJJWH[F Context Root Mapping Rules for Web Services Tests]
+** link:contextrootmappingrules.html#GJJWR[F.1 Servlet-Based Web Service Endpoint Context Root Mapping]
+** link:contextrootmappingrules.html#GJJWG[F.2 EJB-Based Web Service Endpoint Context Root Mapping]
+* link:jms-resource-adaptr.html#CJGFHFIF[G Testing a Standalone JMS Resource Adapter]
+** link:jms-resource-adaptr.html#CJGGIEEJ[G.1 Setting Up Your Environment]
+** link:jms-resource-adaptr.html#CJGDJCEC[G.2 Configuring Java EE 8 CTS]
+** link:jms-resource-adaptr.html#CJGFCJBA[G.3 Configuring the Java EE 8 RI for the Standalone JMS Resource Adapter]
+** link:jms-resource-adaptr.html#CJGEBECH[G.4 Modifying the Runtime Deployment Descriptors for the JMS MDB and Resource Adapter Tests]
+** link:jms-resource-adaptr.html#CJGFHCBJ[G.5 Running the JMS Tests From the Command Line]
+** link:jms-resource-adaptr.html#CJGCJGIH[G.6 Restoring the Runtime Deployment Descriptors for the JMS MDB and Resource Adapter Tests]
+** link:jms-resource-adaptr.html#CJGCDGIG[G.7 Reconfiguring Java EE 8 RI for Java EE 8 CTS After Testing the Standalone JMS Resource Adapter]

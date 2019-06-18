@@ -272,9 +272,7 @@ header h1 { padding-top: 14px; font-size: 2em; font-weight: 200; line-height: 1.
 
 header h2 { font-size: 1.2em; margin-top: 0; margin-bottom: 0; font-weight: 200; line-height: .8; color: #ec7D11; letter-spacing: 0; }
 
-/*
-header a.button { background: transparent url(../images/logo.png) 0 0 no-repeat; padding-left: 32px; }
-*/
+//header a.button { background: transparent url(../images/logo.png) 0 0 no-repeat; padding-left: 32px; }
 
 header a:hover { text-decoration: none; }
 

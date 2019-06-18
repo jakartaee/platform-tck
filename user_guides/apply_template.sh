@@ -2,27 +2,31 @@
 #
 # apply_template
 #
-export TEMPLATE=$PWD/Template/src/main/jbake/content
-SPECS=`ls -d [a-z]*/. | grep -v javaee`
+export TEMPLATE=$PWD/Template/src/main/jbake
+SPECS=${SPECS:-`ls -d [a-z]*/. | grep -v javaee`}
 
-for i in $( (cd $TEMPLATE; ls *.adoc) )
+update() {
+	cmp "$1" "$2" > /dev/null || cp "$1" "$2"
+}
+
+for i in $( (cd $TEMPLATE/content; ls *.adoc) )
 do
 	echo "=== $i ==="
 	for j in $SPECS
 	do
 		echo $j:
-		cp  $TEMPLATE/$i $j/src/main/jbake/content/$i
+		update  $TEMPLATE/content/$i $j/src/main/jbake/content/$i
 	done
 done
 
-for i in $(cd $TEMPLATE; ls *.inc)
+for i in $( (cd $TEMPLATE/content; ls *.inc) )
 do
 	echo "=== $i ==="
 	for j in $SPECS
 	do
 		echo $j:
 		[ -f $j/src/main/jbake/content/$i ] || \
-		cp  $TEMPLATE/$i $j/src/main/jbake/content/$i
+		cp  $TEMPLATE/content/$i $j/src/main/jbake/content/$i
 	done
 done
 
@@ -32,7 +36,7 @@ do
 	for j in $SPECS
 	do
 		echo $j:
-		cp  $TEMPLATE/$i $j/src/main/jbake/content/$i
+		update  $TEMPLATE/content/$i $j/src/main/jbake/content/$i
 	done
 done
 
@@ -43,7 +47,7 @@ do
 	echo $j:
 	cd $j/src/main/jbake/content
 	(
-	echo "ed - $TEMPLATE/attributes.conf <<'EOF'"
+	echo "ed - $TEMPLATE/content/attributes.conf <<'EOF'"
 	grep '^:' attributes.conf | \
 	  sed -e 's;:\([a-zA-Z]*\):*\(.*\);g/:\1:/s,.*,:\1:\2,;'
 	echo 'g/:JavaTestVersion:/s/.*/:JavaTestVersion: 5.0/'
@@ -54,4 +58,14 @@ do
 	mv attributes.conf attributes.conf-
 	sh /tmp/ed1
 	)
+done
+
+for i in $(cd $TEMPLATE; ls templates/*.ftl assets/css/*.css assets/img/*.png)
+do
+	echo "=== $i ==="
+	for j in $SPECS
+	do
+		echo $j:
+		update  $TEMPLATE/$i $j/src/main/jbake/$i
+	done
 done
