@@ -125,7 +125,7 @@ object store for JMS administered objects. For more information, see the
 `TSJMSObjectsInterface`, an interface that defines a porting layer for
 looking up the JMS administered objects. Vendors must either implement
 this porting package for their specific implementation or use the
-ptovided porting package and JNDI file system provider.
+provided porting package and JNDI file system provider.
 
 =======================================================================
 --
@@ -134,7 +134,7 @@ ptovided porting package and JNDI file system provider.
 4.  Add the following administered objects:
 +
 --
-[width="50%",cols="100%,",options="header",]
+[width="80%",cols="50%,50%",options="header",]
 |====================================================================
 |Name |Type
 |`MY_QUEUE` |`javax.jms.Queue`
@@ -328,7 +328,7 @@ This directory must match the `jndi.fs.dir`. property setting in the
 5.  Create the following JMS administered objects:
 +
 --
-[width="50%",cols=",100%",options="header",]
+[width="80%",cols="50%,50%",options="header",]
 |====================================================================
 |Name |Type
 |`MY_QUEUE` |`javax.jms.Queue`
