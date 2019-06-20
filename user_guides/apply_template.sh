@@ -69,3 +69,14 @@ do
 		update  $TEMPLATE/$i $j/src/main/jbake/$i
 	done
 done
+
+for i in $(cd $TEMPLATE/../../theme; ls *)
+do
+	echo "=== $i ==="
+	for j in $SPECS
+	do
+		echo $j:
+		[ -d $j/src/theme ] || mkdir $j/src/theme
+		update  $TEMPLATE/../../theme/$i $j/src/theme/$i
+	done
+done
