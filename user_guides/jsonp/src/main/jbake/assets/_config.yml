@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jsonp_v1_1]
 description: [Oracle Technology Compatibility Kit User's Guide for Java API for JSON Processing 1.1 for Technology Licensees, Release 1.1]

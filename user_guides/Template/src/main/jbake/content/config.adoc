@@ -24,18 +24,6 @@ After completing the instructions in this chapter, proceed to
 link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
 running the {TechnologyShortName} TCK.
 
-This chapter includes the following topics:
-
-* link:#GBFVU[Configuring Your Environment to Run the
-TCK Against the Reference Implementation]
-* link:#GCLHU[Configuring Your Environment to Repackage and Run the
-TCK Against the Vendor Implementation]
-* link:#GHGDH[Custom Configuration Handlers]
-* link:#GBFWG[Custom Deployment Handlers]
-* link:#GHGDG[Publishing the Test Applications]
-* link:#GBFUY[Using the JavaTest Harness Software]
-* link:#GBFWG[Using the JavaTest Harness Configuration GUI]
-
 include::config.inc[]
 
 [[GHGDH]][[custom-configuration-handlers]]

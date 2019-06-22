@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jpa_v2_2]
 description: [Oracle Java Persistence API Technology Compatibility Kit User's Guide for Technology Licensees, Release 2.2]

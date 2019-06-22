@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jaxws_v2_3]
 description: [Oracle Java API for Web Services (JAX-WS) Technology Compatibility Kit User's Guide for Technology Licensees, Release 2.3]

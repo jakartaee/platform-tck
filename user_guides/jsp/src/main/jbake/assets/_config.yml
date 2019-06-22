@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jsp_v2_3]
 description: [Oracle Technology Compatibility Kit User's Guide for JavaServer Pages 2.3 for Technology Licensees, Release 2.3]
