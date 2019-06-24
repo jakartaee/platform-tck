@@ -50,6 +50,11 @@ cd ${TS_HOME}/bin
 sed -i "s#^webServerHome=.*#webServerHome=${TCK_HOME}/glassfish5/glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=${TCK_HOME}/jtatckreport/jtatck#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=${TCK_HOME}/jtatckwork/jtatck#g" ts.jte
+if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
+  sed -i 's/javax.transaction-api.jar/jakarta.transaction-api.jar/g' ts.jte
+  sed -i 's/javax.interceptor-api.jar/jakarta.interceptor-api.jar/g' ts.jte
+  sed -i 's/javax.servlet-api.jar/jakarta.servlet-api.jar/g' ts.jte
+fi
 
 mkdir -p ${TCK_HOME}/jtatckreport/jtatck
 mkdir -p ${TCK_HOME}/jtatckwork/jtatck

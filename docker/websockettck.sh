@@ -53,6 +53,9 @@ sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/websockettckreport/websockettck/#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/websockettckwork/websockettck/#g" ts.jte
 
+if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
+  sed -i 's#websocket.api=.*#websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/cdi-api.jar#g' ts.jte
+fi
 mkdir -p $TCK_HOME/websockettckreport/websockettck
 mkdir -p $TCK_HOME/websockettckwork/websockettck
 

@@ -43,6 +43,7 @@ if [ -z "$1" ]; then
    cd $USERGUIDEDIR/$j;mvn
    cp -r $USERGUIDEDIR/$j/target/staging $USERGUIDEDIR/tmp/userguides/$j
  done
+ bundlename="userguides_alltcks.zip"
 else
  for i in "$@"
  do
@@ -50,8 +51,9 @@ else
    cd $USERGUIDEDIR/$i;mvn
    cp -r $USERGUIDEDIR/$i/target/staging $USERGUIDEDIR/tmp/userguides/$i
  done
+ bundlename="userguides.zip"
 fi
 
 cd $USERGUIDEDIR/tmp
 chmod -R 777 userguides
-zip -r $USERGUIDEDIR/userguides.zip userguides/
+zip -r $USERGUIDEDIR/$bundlename userguides/

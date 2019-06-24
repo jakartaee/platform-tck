@@ -149,7 +149,7 @@ public class URLClient extends AbstractUrlClient {
         TestUtil.logMsg("receivedFirstMessage : " + receivedFirstMessage);
         TestUtil.logMsg("receivedSecondMessage : " + receivedSecondMessage);
         TestUtil.logMsg("receivedThirdMessage : " + receivedThirdMessage);
-		if (receivedFirstMessage &&  receivedSecondMessage && receivedThirdMessage) {
+        if (receivedFirstMessage &&  receivedSecondMessage && receivedThirdMessage) {
           break;
         }
       }

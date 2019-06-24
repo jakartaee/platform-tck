@@ -48,6 +48,9 @@ cd $TS_HOME/bin
 sed -i "s#^el\.classes=.*#el.classes=$TS_HOME/lib/javatest.jar:$TCK_HOME/glassfish5/glassfish/modules/jakarta.el.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/eltckreport/eltck#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/eltckwork/eltck#g" ts.jte
+if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
+  sed -i 's#sigTestClasspath=.*#sigTestClasspath=\$\{el.classes\}\$\{pathsep\}\$\{JAVA_HOME\}/lib/rt.jar#g' ts.jte
+fi
 
 mkdir -p $TCK_HOME/eltckreport/eltck
 mkdir -p $TCK_HOME/eltckwork/eltck

@@ -60,6 +60,21 @@ public class JSTLClient extends SigTest {
 
   /***** Boilerplate Code *****/
 
+ /*
+  *   @class.setup_props: ts_home, The base path of this TCK;
+  *                       sigTestClasspath;
+  */
+
+ /*
+  * @testName:         signatureTest
+  * @assertion:        A Provisioning platform must implement the required
+  *                    classes and APIs specified in the Provisioning
+  *                    Specification.
+  * @test_Strategy:    Using reflection, gather the implementation specific
+  *                    classes and APIs.  Compare these results with the
+  *                    expected (required) classes and APIs.
+  *
+  */
   /**
    * Entry point for different-VM execution. It should delegate to method
    * run(String[], PrintWriter, PrintWriter), and this method should not contain

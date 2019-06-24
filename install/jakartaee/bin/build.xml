@@ -717,7 +717,7 @@
 			<arg line="-dburl ${derby.url}"/>
 			<arg line="-username ${derby.user}"/>
 			<arg line="-password ${derby.passwd}"/>
-			<arg line="-out ${ts.home}/install/j2ee/sql/CtsSchema" />
+			<arg line="-out ${ts.home}/install/jakartaee/sql/CtsSchema" />
 		</exec>
 	</target>
 
@@ -833,7 +833,7 @@
 	<property name="jaspic.tssv.jar.name" value = "tssv.jar"/>
 	<property name="jaspic.tssv.jar" value = "${ts.home}/lib/${jaspic.tssv.jar.name}"/>
 	<property name="dbprocedures.jar" value = "${ts.home}/lib/dbprocedures.jar"/>
-	<property name="install.lib.dir" value = "${ts.home}/install/j2ee/lib"/>
+	<property name="install.lib.dir" value = "${ts.home}/install/jakartaee/lib"/>
 
 
 	<target name="tslib.clean" depends="translatepath">

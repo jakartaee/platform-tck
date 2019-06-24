@@ -14,9 +14,6 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
-# Hudson log file location for archiving later.
-LOGFILE=/log
-
 export BASEDIR=${WORKSPACE}
 if [ -z "${GF_HOME}" ]; then
   export GF_HOME=${WORKSPACE}
@@ -34,7 +31,6 @@ if [ "false" == "${buildStandaloneTCKFlag}" ]; then
 fi
 
 echo "########## Trunk.Install.V5 Config ##########"
-# Install GF 5.0 - not latest //TODO update with latest gf link
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -o latest-glassfish.zip
 
@@ -83,10 +79,33 @@ echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/version.info
 
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   mkdir -p ${WORKSPACE}/standalone-bundles/
-  for tck in ${TCK_LIST[@]}; do
-    echo "Skipping build and using pre-build binary TCK bundle: ${TCK_BUNDLE_BASE_URL}/${tck}tck.zip"
-    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/${tck}tck.zip -O ${WORKSPACE}/standalone-bundles/${tck}tck_latest.zip
-  done
+  #temporary fix for immediate testing of tcks. Can improve.
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/cajtck-1.3_latest.zip -O ${WORKSPACE}/standalone-bundles/cajtck-1.3_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/concurrencytck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/concurrencytck-1.0_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/connectortck-1.7_latest.zip -O ${WORKSPACE}/standalone-bundles/connectortck-1.7_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/eltck-3.0_latest.zip -O ${WORKSPACE}/standalone-bundles/eltck-3.0_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jacctck-1.5_latest.zip -O ${WORKSPACE}/standalone-bundles/jacctck-1.5_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaspictck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaspictck-1.1_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrpctck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrpctck-1.1_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrstck-2.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrstck-2.1_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrtck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrtck-1.0_latest.zip
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxwstck-2.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxwstck-2.3_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jmstck-2.0_latest.zip -O ${WORKSPACE}/standalone-bundles/jmstck-2.0_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jpatck-2.2_latest.zip -O ${WORKSPACE}/standalone-bundles/jpatck-2.2_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jsftck-2.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jsftck-2.3_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jsonbtck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/jsonbtck-1.0_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jsonptck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jsonptck-1.1_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jsptck-2.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jsptck-2.3_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jstltck-1.2_latest.zip -O ${WORKSPACE}/standalone-bundles/jstltck-1.2_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jtatck-1.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jtatck-1.3_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/saajtck-1.4_latest.zip -O ${WORKSPACE}/standalone-bundles/saajtck-1.4_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/securityapitck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/securityapitck-1.0_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/servlettck-4.0_latest.zip -O ${WORKSPACE}/standalone-bundles/servlettck-4.0_latest.zip 
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/websockettck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/websockettck-1.1_latest.zip 
+  #for tck in ${TCK_LIST[@]}; do
+  #  echo "Skipping build and using pre-build binary TCK bundle: ${TCK_BUNDLE_BASE_URL}/${tck}tck"
+  #  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL} -P ${WORKSPACE}/standalone-bundles/ -A "${tck}tck*_latest.zip"
+  #done
   exit 0
 fi
 
@@ -133,7 +152,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "securityapi" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dsecurityapi.classes=$GF_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.inject.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.security.enterprise-api.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.faces.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.security.auth.message-api.jar:$BASEDIR/glassfish5/glassfish/modules/jakarta.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.interceptor-api.jar"
+    TCK_SPECIFIC_PROPS="-Dsecurityapi.classes=$GF_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.inject.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.security.enterprise-api.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.faces.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.security.auth.message-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.interceptor-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "el" == "$tck" ]
@@ -153,7 +172,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jacc" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djacc.home=$GF_HOME/glassfish5/glassfish/"
+    TCK_SPECIFIC_PROPS="-Djacc.home=$GF_HOME/glassfish5/glassfish/ -Djacc.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.jms-api.jar:$GF_HOME/glassfish5/glassfish/modules/security.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.security.jacc-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.persistence.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.interceptor-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.mail.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.transaction-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet.jsp-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaspic" == "$tck" ]
@@ -183,12 +202,6 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaxws" == "$tck" ]
   then
-     PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
-     PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-     WSIMPORT_JVMARG="-Djavax.xml.accessExternalSchema=all -Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT"
-    sed -i "s/wsimport.jvmargs=.*/wsimport.jvmargs=$WSIMPORT_JVMARG/g" $BASEDIR/install/jaxws/bin/ts.jte
-    sed -i "s/ri.wsimport.jvmargs=.*/ri.wsimport.jvmargs=$WSIMPORT_JVMARG/g" $BASEDIR/install/jaxws/bin/ts.jte
-    cat $BASEDIR/install/jaxws/bin/ts.jte | grep wsimport.jvmargs
     TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/glassfish5/glassfish -Dwebcontainer.home.ri=$BASEDIR/glassfish5/glassfish -Ddeliverable.version=2.3"
     JAXWS_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/glassfish5/glassfish -Dwebcontainer.home.ri=$BASEDIR/glassfish5/glassfish -Ddeliverable.version=2.3"
     DOC_SPECIFIC_PROPS=""
@@ -242,6 +255,9 @@ for tck in ${TCK_LIST[@]}; do
   for entry in `ls *.zip`; do
     date=`echo "$entry" | cut -d_ -f2`
     strippedEntry=`echo "$entry" | cut -d_ -f1`
+    if [ "$strippedEntry" == "excludelist" ]; then
+        strippedEntry=${strippedEntry}_`echo "$entry" | cut -d_ -f2`
+    fi
     echo "copying ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry to ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip"
     cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip
     cp ${WORKSPACE}/version.info ${WORKSPACE}/${strippedEntry}.version
