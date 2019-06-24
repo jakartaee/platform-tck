@@ -71,7 +71,7 @@
             <fileset dir="${ts.home}" includes="NOTICE" />
         </copy>
 
-        <copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+        <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
     </target>
 

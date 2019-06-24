@@ -175,6 +175,8 @@ spec:
            description: 'Name of bundle file to be appended to the base url' )
     choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
+    choice(name: 'LICENSE', choices: 'PUBLIC\nECLIPSE',
+           description: 'License version to be used to build the TCK bundle(s) either Eclipse or Public(default)' )
     choice(name: 'DATABASE', choices: 'JavaDB\nOracle\nMySQL', 
            description: 'Database to be used for running CTS. Currently only JavaDB is supported.' )
     choice(name: 'BUILD_TYPE', choices: 'CTS\nSTANDALONE-TCK', 
