@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jaxrs_v2_1]
 description: [Oracle Technology Compatibility Kit User's Guide for Java API for RESTful Web Services (JAX-RS) 2.1 for Technology Licensees, Release 2.1]

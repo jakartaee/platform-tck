@@ -21,15 +21,14 @@ After installing the software according to the instructions in this
 chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
 Configuration,"] for instructions on configuring your test environment.
 
-This chapter includes the following topics:
-
-* link:#GBFUD[Obtaining the Reference Implementation]
-* link:#GBFTS[Installing the Software]
-
 [[GBFUD]][[obtaining-the-reference-implementation]]
 
 3.1 Obtaining the Reference Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can obtain the {TechnologyShortName} Reference Implementation (RI)
+({TechnologyRI}) software from Java Licensee Engineering
+(https://javapartner.oracle.com).
 
 [[GBFTS]][[installing-the-software]]
 
@@ -39,41 +38,41 @@ This chapter includes the following topics:
 Before you can run the {TechnologyShortName} TCK tests, you must
 install and set up the following software components:
 
-* Java EE 8 RI or, at a minimum, a Web server with a Servlet container
+include::req-software.inc[]
 * Java SE {SEversion}
 * {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]
 * The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
 
-Complete the following steps to install the required software: +
+Follow these steps:
 
-1.  Install the Java SE {SEversion} software, if it is not already installed. +
+.  Install the Java SE {SEversion} software, if it is not already installed. +
 Download and install the Java SE {SEversion} software from
 http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 Refer to the installation instructions that accompany the software for
 additional information.
-2.  Install the Java Web Services Developer Pack (JWSDP), Version 1.3 software.
-Download and install the Java Web Services Developers Pack 1.3 from the Project
-Web site (http://java.sun.com/webservices/downloads/
-webservicespack.html). Refer to the documentation included with the Java
-Web Services Developers Pack for specific installation instructions.
-3.  Install the JAX-RPC implementation to be tested, if applicable.
-Note that an implementation of JAX-RPC is included with the JWSDP.
-4.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
+.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
   a.  Copy or download the {TechnologyShortName} TCK software to your
-      local system.
-  b.  Change to the directory in which you want to install the JAX-RPC TCK
-      software:
-      `cd <install_directory>`
+      local system. +
+      You can obtain the {TechnologyShortName} TCK software from the
+      Java Licensee Engineering (https://javapartner.oracle.com) Web
+      site.  The {TechnologyShortName} TCK software is located in the
+      Web site's Download Center area.
   b.  Use the `unzip` command to extract the bundle in the directory of
       your choice: +
       +unzip {TCKPackageName}+ +
       This creates the TCK directory. The TCK is the test suite home,
       `<TS_HOME>`.
-5.  Install the {TechnologyShortName} {TechnologyVersion} Reference
+include::install-server.inc[]
+.  Install the {TechnologyShortName} {TechnologyVersion} Reference
 Implementation. +
 The Reference Implementation is used to validate your initial
 configuration and setup of the {TechnologyShortName} TCK
 {TechnologyVersion} tests, which are explained further in
-link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
+The {TechnologyShortName} RI can be obtained from Java Licensee Engineering
+(https://javapartner.oracle.com).
+include::install-server-vi.inc[]
+.  Install the {TechnologyShortName} Vendor Implementation (VI) to be tested. +
+Follow the installation instructions for the particular VI under test.

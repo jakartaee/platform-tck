@@ -4,497 +4,166 @@ title=Setup and Configuration
 next=using.html
 prev=install.html
 ~~~~~~
+include::attributes.conf[]
 Setup and Configuration
 =======================
 
-[[TCJRS00005]][[GBFVV]]
+[[GBFVV]]
 
 
 [[setup-and-configuration]]
 4 Setup and Configuration
 -------------------------
 
-This chapter describes how to set up the JAX-RS TCK and JavaTest harness
-software. Before proceeding with the instructions in this chapter, be
-sure to install all required software, as described in
+This chapter describes how to set up the {TechnologyShortName} TCK and
+JavaTest harness software. Before proceeding with the instructions in
+this chapter, be sure to install all required software, as described in
 link:install.html#GBFTP[Chapter 3, "Installation."]
 
 After completing the instructions in this chapter, proceed to
 link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
-running the JAX-RS TCK.
+running the {TechnologyShortName} TCK.
 
-This chapter includes the following topics:
+include::config.inc[]
 
-* link:#GBFVU[Configuring Your Environment to Run the JAX-RS TCK Against
-the Reference Implementation]
-* link:#GCLHU[Configuring Your Environment to Repackage and Run the
-JAX-RS TCK Against the Vendor Implementation]
-* link:#GHGDG[Publishing the JAX-RS TCK Test Applications]
-* link:#GBFUY[Using the JavaTest Harness Software]
-* link:#GBFWG[Using the JavaTest Harness Configuration GUI]
+[[GHGDH]][[custom-configuration-handlers]]
 
-[[GBFVU]][[TCJRS00049]][[configuring-your-environment-to-run-the-jax-rs-tck-against-the-reference-implementation]]
+4.4 Custom Configuration Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4.1 Configuring Your Environment to Run the JAX-RS TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration handlers are used to configure and unconfigure a
+{TechnologyShortName} {TechnologyVersion} implementation during the
+certification process.  These are similar to deployment handlers but
+used for configuration.  A configuration handler is an Ant build file
+that contains at least the required targets listed below:
+  * `config.vi` - to configure the vendor implementation
+  * `clean.vi` - to unconfigure the vendor implementation
 
-After configuring your environment as described in this section,
-continue with the instructions in link:#GBFUY[Section 4.4, "Using the
-JavaTest Harness Software."]
+These targets are called from the `<TS_HOME>/bin/build.xml` file and
+call down into the implementation-specific configuration handlers.
 
+To provide your own configuration handler, create a config.vi.xml file
+with the necessary configuration steps for your implementation and place
+the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
+
+For more information, see `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
+the configuration file for the Java EE 8 RI.
+
+[[GBFWG]][[custom-deployment-handlers]]
+
+4.5 Custom Deployment Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deployment handlers are used to deploy and undeploy the WAR files that
+contain the tests to be run during the certification process. A deployment
+handler is an Ant build file that contains at least the required targets
+listed in the table below.
+
+The {TechnologyShortName} TCK provides these deployment handlers:
+* `<TS_HOME>/bin/xml/impl/none/deploy.xml`
+* `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+
+The `deploy.xml` files in each of these directories are used to control
+deployment to a specific container (no deployment, deployment to
+the GlassFish Web container, deployment to the Tomcat Web container)
+denoted by the name of the directory in which each `deploy.xml` file
+resides. The primary `build.xml` file in the `<TS_HOME>/bin` directory
+has a target to invoke any of the required targets (-deploy, -undeploy,
+-deploy.all, -undeploy.all).
+
+[[GBFVA]][[create-custom-deployment-handler]]
+
+4.5.1 To Create a Custom Deployment Handler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To deploy tests to another {TechnologyShortName} implementation, you
+must create a custom handler.
+1. Create a new directory in the <TS_HOME>/bin/impl directory tree.
+  For example, create the <TS_HOME>/bin/impl/my_deployment_handler directory.
+  Replace my_deployment_handler with the value of the impl.vi
+  property that you set in Step 5 of the configuration procedure
+  described in Section 4.2, "Configuring Your Environment to Repackage
+  and Run the TCK Against the Vendor Implementation".
+
+2.  Copy the deploy.xml file from the <TS_HOME>/bin/xml/impl/none
+  directory to the directory that you created.
+
+3.  Modify the required targets in the deploy.xml file.  This is what
+    the deploy.xml file for the "none" deployment handler looks like.
+
++
+[source,oac_no_warn]
+----
+<project name="No-op Deployment" default="deploy">
+    <!-- No-op deployment target -->
+    <target name="-deploy">
+        <echo message="No deploy target implemented for this deliverable"/>
+    </target>
+    <target name="-undeploy">
+        <echo message="No undeploy target implemented for this deliverable"/>
+    </target>
+    <target name="-deploy.all">
+        <echo message="No deploy target implemented for this deliverable"/>
+    </target>
+    <target name="-undeploy.all">
+        <echo message="No undeploy target implemented for this deliverable"/>
+    </target>
+</project>
+----
++
+Although this example just echoes messages, it does include the four
+required Ant targets (-deploy, -undeploy, -deploy.all, -undeploy.all)
+that your custom deploy.xml file must contain. With this as your
+starting point, look at the required targets in the deploy.xml files
+in the tomcat and glassfish directories for guidance as you create
+the same targets for the Web container in which you will run your
+implementation of {TechnologyShortName}.
+
+The following Ant targets can be called from anywhere under the
+<TS_HOME>/src directory:
+
+* `deploy`
+* `undeploy`
+* `deploy.all`
+* `undeploy.all`
+
+The deploy.all and undeploy.all targets can also be called from the
+<TS_HOME>/bin directory.
 
 [NOTE]
 =======================================================================
-
-In these instructions, variables in angle brackets need to be expanded
-for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
-slashes (`/`) used in all of the examples need to be replaced with
-backslashes (`\`) for Windows. Finally, be sure to use the appropriate
-separator for your operating system when specifying multiple path
-entries (`;` on Windows, `:` on UNIX/Linux).
-
-On Windows, you must escape any backslashes with an extra backslash in
-path separators used in any of the following properties, or use forward
-slashes as a path separator instead.
-
+The targets in the deploy.xml file are never called directly.
+They are called indirectly by the targets listed above.
 =======================================================================
 
+[[GBFUY]][[using-the-javatest-harness-software]]
 
-1.  Set the following environment variables in your shell environment:
-1.  `JAVA_HOME` to the directory in which Java SE 8 is installed
-2.  `TS_HOME` to the directory in which the JAX-RS TCK 2.1 software is
-installed
-3.  `JAXRS_HOME` to the directory in which the JAX-RS 2.1 RI has been
-installed
-4.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-`JAXRS_HOME/bin`, and `<TS_HOME>/tools/ant/bin`
-2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
-environment variables:
-1.  Set the `webServerHost` property to the name of the host on which
-Java EE 8 RI is running. +
-The default setting is `localhost`.
-2.  Set the `webServerPort` property to the port number of the host on
-which Java EE 8 RI is running. +
-The default setting is `8080`.
-3.  Set the `web.home` property to the installation directory of Java EE
-8 RI.
-4.  Set the `jaxrs.classes` property to point to the classes or JAR file
-for the JSR 370 API. +
-The default setting for this property is
-`${web.home}/modules/javax.ws.rs-api.jar`.
-5.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
-point to the Jersey RI. +
-The default setting for the `jaxrs_impl_lib` property is
-`${web.home}/modules/jersey-container-servlet-core.jar`. +
-The default setting for the `jaxrs_impl.`classes property is as follows
-(all on one line): +
-[source,oac_no_warn]
-----
-${web.home}/modules/jersey-client.jar:
-${web.home}/modules/jersey-common.jar:
-${web.home}/modules/jersey-server.jar:
-${web.home}/modules/jersey-container-servlet.jar:
-${web.home}/modules/jersey-container-servlet-core.jar:
-${web.home}/modules/jersey-media-jaxb.jar:
-${web.home}/modules/jersey-media-sse.jar:
-${web.home}/modules/jersey-hk2.jar:
-${web.home}/modules/osgi-resource-locator.jar:
-${web.home}/modules/javax.inject.jar:
-${web.home}/modules/guava.jar:
-${web.home}/modules/hk2-api.jar:
-${web.home}/modules/hk2-locator.jar:
-${web.home}/modules/hk2-utils.jar:
-${web.home}/modules/cglib.jar:
-${web.home}/modules/asm-all-repackaged.jar:
-${web.home}/modules/bean-validator.jar:
-${web.home}/modules/endorsed/javax.annotation-api.jar
-----
-6.  Set the `servlet_adaptor` property to point to the Servlet adaptor
-class for the JAX-RS implementation. +
-The default setting for this property is
-`org/glassfish/jersey/servlet/ServletContainer.class`.
-7.  Set the `impl.vi` property to the name of the Java EE 8 RI . +
-The relevant porting files are located under the
-`$TS_HOME/bin/xml/impl/glassfish/` directory. +
-The default setting for this property is `glassfish`.
-8.  Set the `jaxrs_impl_name` property to the name of the JAX-RS RI. +
-A file bearing this name has been created under
-`<TS_HOME>/bin/xml/impl/glassfish/jersey.xml` with packaging
-instructions. +
-The default setting for this property is `jersey`.
-9.  Set the `impl.vi.deploy.dir` property to point to the `autodeploy`
-directory of the Java EE 8 RI . +
-The default setting for this property is
-`${web.home}/domains/domain1/autodeploy`.
-10. Verify that the `tools.jar` property is set to the location of the
-`tools.jar` file that is distributed with Java SE 8.
-11. Set the `porting.ts.url.class.1` property to your porting
-implementation class that is used for obtaining URLs. +
-The default setting for this property is
-`com.sun.ts.lib.implementation.sun.common.SunRIURL`.
-12. Optionally, to use your own implementation of HttpsURLConnection,
-set the `porting.ts.HttpsURLConnection.class.1` property to your
-implementation of HttpsURLConnection. +
-The default setting for this property is
-`com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection`.
-13. Set up users and passwords for your JAX-RS server. +
-[width="100%",cols="34%,33%,33%",options="header",]
-|==============================
-|User |Password |Groups
-|`javajoe` |`javajoe` |`guest`
-|`j2ee` |`j2ee` |`staff`, `mgr`
-|==============================
-
-Also make sure the principal to role-mappings that are specified in the
-runtime XML files are properly mapped in your environment. These
-mappings may vary for each application.
-3.  Provide your own implementation of the porting package interface
-provided with the JAX-RS TCK. +
-The porting package interface, `TSURLInterface.java`, obtains URL
-strings for web resources in an implementation-specific manner. API
-documentation for the `TSURLInterface.java` porting package interface is
-available in the JAX-RS TCK documentation bundle.
-4.  If the JAX-RS TCK test applications are published on a Servlet
-2.5-compliant Web container to certify the VI, the `servlet_adaptor`
-property needs to be set in the `ts.jte` file, and VI-specific WAR files
-containing the Servlet information need to be created for publishing. +
-The VI-specific WAR files should never override any existing files that
-come with the TCK. Refer to link:rebuild.html#GCLIZ[Appendix B,
-"Packaging the JAX-RS TCK Test Applications in Servlet-Compliant WAR
-Files With VI-Specific Information,"] for more information.
-5.  When creating VI-specific WAR files, deploying JAX-RS test
-applications, or running the JAX-RS TCK, it is recommended that you
-create a porting file named `$jaxrs_impl_name` under
-`$TS_HOME/bin/xml/${impl_vi}`. +
-Use the `jersey.xml` file as a reference.
-6.  Run the `ant config.vi` target to configure the Vendor
-Implementation that is defined in the `impl.vi` property. +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant config.vi
-----
-This target performs the following tasks:
-* Stops the application server running the JAX-RS 2.1 RI
-* Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
-into the application server's external library folder
-* Starts the application server
-* Creates users and the appropriate roles
-* Enables HTTP trace requests
-
-[[GCLHU]][[TCJRS00050]][[configuring-your-environment-to-repackage-and-run-the-jax-rs-tck-against-the-vendor-implementation]]
-
-4.2 Configuring Your Environment to Repackage and Run the JAX-RS TCK Against the Vendor Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-After configuring your environment as described in this section,
-continue with the instructions in link:#GBFUY[Section 4.4, "Using the
-JavaTest Harness Software."]
-
-
-[NOTE]
-=======================================================================
-
-In these instructions, variables in angle brackets need to be expanded
-for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
-slashes (`/`) used in all of the examples need to be replaced with
-backslashes (`\`) for Windows. Finally, be sure to use the appropriate
-separator for your operating system when specifying multiple path
-entries (`;` on Windows, `:` on UNIX/Linux).
-
-On Windows, you must escape any backslashes with an extra backslash in
-path separators used in any of the following properties, or use forward
-slashes as a path separator instead.
-
-=======================================================================
-
-
-[[sthref9]]
-
-Before You Begin
-
-Decide against which JAX-RS implementation the tests will be run and
-determine to which Servlet–compliant Web server the JAX-RS TCK
-applications will be published.
-
-Package the JAX-RS test applications for that JAX-RS implementation and
-Servlet–compliant Web server.
-
-See link:rebuild.html#GCLIZ[Appendix B, "Packaging the JAX-RS TCK Test
-Applications in Servlet-Compliant WAR Files With VI-Specific
-Information,"] for information about repackaging the JAX-RS test
-application.
-
-1.  Set the following environment variables in your shell environment:
-1.  `JAVA_HOME` to the directory in which Java SE 8 is installed
-2.  `TS_HOME` to the directory in which the JAX-RS TCK 2.1 software is
-installed
-3.  `JAXRS_HOME` to the directory in which the JAX-RS 2.1 VI has been
-installed
-4.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-`JAXRS_HOME/bin`, and `<TS_HOME>/tools/ant/bin`
-2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
-environment variables:
-1.  Set the `webServerHost` property to the name of the host on which
-your Web server is running that is configured with the Vendor
-Implementation. +
-The default setting is `localhost`.
-2.  Set the `webServerPort` property to the port number of the host on
-which the Web server is running that is configured with the Vendor
-JAX-RS 2.1 Vendor Implementation. +
-The default setting is `8080`.
-3.  Set the `web.home` property to the installation directory of the Web
-server.
-4.  Set the `jaxrs.classes` property to point to the classes or JAR file
-for the JSR 370 API. +
-The default setting for this property is
-`${web.home}/modules/javax.ws.rs-api.jar`.
-5.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
-point to the Jersey RI. +
-The default setting for the `jaxrs_impl_lib` property is
-`${web.home}/modules/jersey-container-servlet-core.jar` . +
-The default setting for the `jaxrs_impl.`classes property is as follows
-(all on one line): +
-[source,oac_no_warn]
-----
-${web.home}/modules/jersey-client.jar:
-${web.home}/modules/jersey-common.jar:
-${web.home}/modules/jersey-server.jar:
-${web.home}/modules/jersey-container-servlet.jar:
-${web.home}/modules/jersey-container-servlet-core.jar:
-${web.home}/modules/jersey-media-jaxb.jar:
-${web.home}/modules/jersey-media-sse.jar:
-${web.home}/modules/jersey-hk2.jar
-${web.home}/modules/osgi-resource-locator.jar:
-${web.home}/modules/javax.inject.jar:
-${web.home}/modules/guava.jar:
-${web.home}/modules/hk2-api.jar:
-${web.home}/modules/hk2-locator.jar:
-${web.home}/modules/hk2-utils.jar:
-${web.home}/modules/cglib.jar:
-${web.home}/modules/asm-all-repackaged.jar:
-${web.home}/modules/bean-validator.jar:
-${web.home}/modules/endorsed/javax.annotation-api.jar
-----
-6.  Set the `servlet_adaptor` property to point to the Servlet adaptor
-class for the JAX-RS implementation. +
-The default setting for this property is
-`org/glassfish/jersey/servlet/ServletContainer.class`.
-7.  Set the `impl.vi` property to the name of the Web server. +
-The relevant porting files are located under the
-`$TS_HOME/bin/xml/impl/${impl.vi}/` directory. +
-The default setting for this property is `glassfish`.
-8.  Set the `jaxrs_impl_name` property to the name of the JAX-RS
-implementation to be tested. +
-The name of the property must be unique. A file bearing this name will
-be created under
-`$TS_HOME/bin/xml/impl/${impl.vi}/${jaxrs_impl_name}.xml` with packaging
-and/or deployment instructions. +
-The default setting for this property is `jersey`.
-9.  Set the `impl.vi.deploy.dir` property to point to the `autodeploy`
-directory for the Web server. +
-The default setting for this property is
-`${web.home}/domains/domain1/autodpeloy`.
-10. Verify that the `tools.jar` property is set to the location of the
-`tools.jar` file that is distributed with Java SE 8.
-11. Optionally, to use your own implementation of HttpsURLConnection,
-set the `porting.ts.HttpsURLConnection.class.1` property to your
-implementation of HttpsURLConnection. +
-The default setting for this property is
-`com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection`.
-3.  Provide your own implementation of the porting package interface
-provided with the JAX-RS TCK. +
-The porting package interface, `TSURLInterface.java`, obtains URL
-strings for web resources in an implementation-specific manner. API
-documentation for the `TSURLInterface.java` porting package interface is
-available in the JAX-RS TCK documentation bundle.
-4.  If the JAX-RS TCK test applications are published on a Servlet
-3.0-compliant Web container to certify the VI, the `servlet_adaptor`
-property needs to be set in the `ts.jte` file, and VI-specific WAR files
-containing the Servlet information need to be created for publishing. +
-The VI-specific WAR files should never override any existing files that
-come with the TCK. Refer to link:rebuild.html#GCLIZ[Appendix B,
-"Packaging the JAX-RS TCK Test Applications in Servlet-Compliant WAR
-Files With VI-Specific Information,"] for more information.
-5.  When creating VI-specific application server settings, it is
-recommended that you create a configuring file named `config.vi.xml`
-under `$TS_HOME/bin/xml/${impl_vi}`. +
-Use the `$TS_HOME/bin/xml/glassfish/config.vi.xml` file as a reference.
-
-[[GHGDG]][[TCJRS00051]][[publishing-the-jax-rs-tck-test-applications]]
-
-4.3 Publishing the JAX-RS TCK Test Applications
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The JAX-RS TCK provides an automatic way of deploying both the prebuilt
-and Vendor-built archives to the configured web container or containers
-by using deployment handlers.
-
-The handler file (`<TS_HOME>/bin/xml/impl/glassfish/jersey.xml` is
-written to be used with Jersey and Java EE 8 RI . If the Vendor chooses
-not to use Java EE 8 RI to run with their implementation but still
-chooses to publish to a Servlet-compliant Web container, then a
-VI-specific JAX-RS TCK tests Web archive needs to be created. This
-archive contains the VI-specific servlet class, and the Vendor should
-create their own version handler file to provide this functionality. It
-is recommended that the handler file be named `${jaxrs_impl_name}` and
-be located in `$TS_HOME/bin/xml/${impl.vi}/${jaxrs_impl_name}`. Refer to
-link:rebuild.html#GCLIZ[Appendix B, "Packaging the JAX-RS TCK Test
-Applications in Servlet-Compliant WAR Files With VI-Specific
-Information,"] for more information.
-
-This section describes the various commands used for deploying the
-classes or WAR files to the configured web container.
-
-* link:#GCLJG[Generic Deployment Command Scenarios]
-* link:#GCLIW[Deploying the JAX-RS TCK Prebuilt Archives]
-* link:#GCLIL[Deploying the JAX-RS TCK Test Applications Against the
-Vendor Implementation]
-
-[[GCLJG]][[TCJRS00083]][[generic-deployment-command-scenarios]]
-
-4.3.1 Generic Deployment Command Scenarios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can deploy all JAX-RS WAR files to Java EE 8 RI or the Web server
-chosen by a Vendor, deploy just a single test directory, or deploy of
-subset of test directories.
-
-[[GCLJK]][[TCJRS00018]][[to-deploy-all-the-war-files-from-the-ts_homedist-to-a-web-server]]
-
-4.3.1.1 To Deploy all the WAR Files From the <TS_HOME>/dist to a Web Server
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Type the following command:
-
-[source,oac_no_warn]
-----
-ant deploy.all
-----
-
-[[GCLII]][[TCJRS00019]][[to-deploy-a-single-test-directory]]
-
-4.3.1.2 To Deploy a Single Test Directory
-+++++++++++++++++++++++++++++++++++++++++
-
-Type the following commands:
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxrs/api/rs/get
-ant deploy
-----
-
-[[GCLJC]][[TCJRS00020]][[to-deploy-a-subset-of-test-directories]]
-
-4.3.1.3 To Deploy a Subset of Test Directories
-++++++++++++++++++++++++++++++++++++++++++++++
-
-Type the following commands:
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxrs/api 
-ant deploy
-----
-
-[[GCLIW]][[TCJRS00084]][[deploying-the-jax-rs-tck-prebuilt-archives]]
-
-4.3.2 Deploying the JAX-RS TCK Prebuilt Archives
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This section explains issues regarding the deployment of the JAX-RS TCK
-prebuilt archives. Before conducting any deployment, ensure that your
-environment has been configured by following the instructions in either
-link:#GBFVU[Section 4.1, "Configuring Your Environment to Run the JAX-RS
-TCK Against the Reference Implementation,"] or link:#GCLHU[Section 4.2,
-"Configuring Your Environment to Repackage and Run the JAX-RS TCK
-Against the Vendor Implementation."]
-
-The `<TS_HOME>/dist` directory contains all WAR files for the JAX-RS TCK
-tests that have been compiled and packaged using the Reference
-Implementation for deployment on a Servlet-compliant Web container, Java
-EE 8 RI, using the standard Web Archive (WAR) format.
-
-These WAR files contain only Jersey, a Java EE 8 RI -specfic servlet
-adaptor, and are tailored to run against the Reference Implementation.
-These WAR files allow you to deploy (without any additional setup or
-modification) against the Reference Implementation to test the various
-features and functionality of this implementation.
-
-To deploy the JAX-RS TCK tests, use either the `deploy` or `deploy.all`
-batch command as described in link:#GCLJG[Section 4.3.1, "Generic
-Deployment Command Scenarios."]
-
-[[GCLIL]][[TCJRS00085]][[deploying-the-jax-rs-tck-test-applications-against-the-vendor-implementation]]
-
-4.3.3 Deploying the JAX-RS TCK Test Applications Against the Vendor
-Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This section describes how to deploy the JAX-RS TCK test applications
-against the Vendor Implementation and vendor's choice of Web server.
-Before conducting the deployment, ensure that you have followed the
-instructions in link:#GCLHU[Section 4.2, "Configuring Your Environment
-to Repackage and Run the JAX-RS TCK Against the Vendor Implementation."]
-Vendors can deploy JAX-RS TCK tests in either Java class or WAR format.
-All test resource classes are located under `$TS_HOME/classes`. All test
-resources packaged in WAR files are located under `$TS_HOME/dist`.
-
-If a vendor chooses to deploy WAR files on a Servlet–compliant Web
-container other than Java EE 8 RI , it is necessary to build test WAR
-files that contain the VI's servlet class and servlet class property in
-the `web.xml` deployment descriptor, as specified in the JAX-RS
-specification. The JAX-RS TCK comes with a `web.xml.template` file for
-each test, which contains all information except the servlet class. The
-JAX-RS TCK also comes with a tool to replace the RI or VI's servlet
-adaptor class name in the `web.xml.template`. Refer to
-link:rebuild.html#GCLIZ[Appendix B, "Packaging the JAX-RS TCK Test
-Applications in Servlet-Compliant WAR Files With VI-Specific
-Information,"] for more information about repackaging the JAX-RS TCK
-tests.
-
-To deploy a resource class in class file format, a vendor must create a
-handler file that supports deploy options as described in
-link:#GCLJG[Section 4.3.1, "Generic Deployment Command Scenarios."] All
-tests with resource classes have a `${resource.classes}` property set in
-each test's individual `build.xml` file; this value contains all
-resource classes in the test.
-
-To deploy the tests, the vendor should perform a deployment using either
-the `deploy` or `deploy.all` batch command, as described in
-link:#GCLJG[Section 4.3.1, "Generic Deployment Command Scenarios."]
-
-[[GBFUY]][[TCJRS00052]][[using-the-javatest-harness-software]]
-
-4.4 Using the JavaTest Harness Software
+4.6 Using the JavaTest Harness Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are two general ways to run the JAX-RS TCK test suite using the
-JavaTest harness software:
+There are two general ways to run the {TechnologyShortName} TCK test
+suite using the JavaTest harness software:
 
 * Through the JavaTest GUI; if using this method, please continue on to
-link:#GBFWG[Section 4.5, "Using the JavaTest Harness Configuration
+link:#GBFWG[Section 4.7, "Using the JavaTest Harness Configuration
 GUI."]
 * In JavaTest batch mode, from the command line in your shell
 environment; if using this method, please proceed directly to
 link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 
-[[GBFWG]][[TCJRS00053]][[using-the-javatest-harness-configuration-gui]]
+[[GBFWG]][[using-the-javatest-harness-configuration-gui]]
 
-4.5 Using the JavaTest Harness Configuration GUI
+4.7 Using the JavaTest Harness Configuration GUI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use the JavaTest harness GUI to modify general test settings and
-to quickly get started with the default JAX-RS TCK test environment.
-This section covers the following topics:
+to quickly get started with the default {TechnologyShortName} TCK test
+environment.  This section covers the following topics:
 
 * link:#GBFVA[Configuration GUI Overview]
 * link:#GBFVD[Starting the Configuration GUI]
-* link:#GBFVX[To Configure the JavaTest Harness to Run the JAX-RS TCK
-Tests]
+* link:#GBFVX[To Configure the JavaTest Harness to Run the
+{TechnologyShortName} TCK Tests]
 * link:#GBFUU[Modifying the Default Test Configuration]
 
 
@@ -509,9 +178,9 @@ link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 =======================================================================
 
 
-[[GBFVA]][[TCJRS00086]][[configuration-gui-overview]]
+[[GBFVA]][[configuration-gui-overview]]
 
-4.5.1 Configuration GUI Overview
+4.7.1 Configuration GUI Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order for the JavaTest harness to execute the test suite, it requires
@@ -545,19 +214,19 @@ necessary information. This is called the configuration interview. When
 you have entered the configuration data, you are asked if you wish to
 proceed with running the test.
 
-[[GBFVD]][[TCJRS00087]][[starting-the-configuration-gui]]
+[[GBFVD]][[starting-the-configuration-gui]]
 
-4.5.2 Starting the Configuration GUI
+4.7.2 Starting the Configuration GUI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before you start the JavaTest harness software, you must have a valid
-test suite and Java SE 8 installed on your system.
+test suite and Java SE {SEversion} installed on your system.
 
-The JAX-RS TCK includes an Ant script that is used to execute the
+The {TechnologyShortName} TCK includes an Ant script that is used to execute the
 JavaTest harness from the `<TS_HOME>` directory. Using this Ant script
 to start the JavaTest harness is part of the procedure described in
-link:#GBFVX[Section 4.5.3, "To Configure the JavaTest Harness to Run the
-JAX-RS TCK Tests."]
+link:#GBFVX[Section 4.7.3, "To Configure the JavaTest Harness to Run the
+TCK Tests."]
 
 When you execute the JavaTest harness software for the first time, the
 JavaTest harness displays a Welcome dialog box that guides you through
@@ -573,13 +242,13 @@ opening both a test suite and a work directory as described in the
 JavaTest documentation.
 
 After you specify a work directory, you can use the Test Manager to
-configure and run tests as described in link:#GBFVX[Section 4.5.3, "To
-Configure the JavaTest Harness to Run the JAX-RS TCK Tests."]
+configure and run tests as described in link:#GBFVX[Section 4.7.3, "To
+Configure the JavaTest Harness to Run the TCK Tests."]
 
-[[GBFVX]][[TCJRS00088]][[to-configure-the-javatest-harness-to-run-the-jax-rs-tck-tests]]
+[[GBFVX]][[to-configure-the-javatest-harness-to-run-the-tck-tests]]
 
-4.5.3 To Configure the JavaTest Harness to Run the JAX-RS TCK Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.7.3 To Configure the JavaTest Harness to Run the TCK Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The answers you give to some of the configuration interview questions
 are specific to your site. For example, the name of the host on which
@@ -590,17 +259,14 @@ be stored.
 Note that you only need to complete all these steps the first time you
 start the JavaTest test harness. After you complete these steps, you can
 either run all of the tests by completing the steps in
-link:using.html#GBFUZ[Section 5.2, "Starting JavaTest,"] or run a subset
+link:using.html#GBFUZ[Section 5.1, "Starting JavaTest,"] or run a subset
 of the tests by completing the steps in link:using.html#GBFWM[Section
-5.3, "Running a Subset of the Tests."]
+5.2, "Running a Subset of the Tests."]
 
 1.  Change to the `<TS_HOME>/bin` directory and start the JavaTest test
 harness: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant gui
-----
+`cd <TS_HOME>/bin` +
+`ant gui`
 2.  From the File menu, click Open Quick Start Wizard. +
 The Welcome screen displays.
 3.  Select Start a new test run, and then click Next. +
@@ -614,8 +280,8 @@ results.
 6.  Type a work directory name or use the Browse button to select a work
 directory, and then click Next. +
 You are prompted to start the configuration editor or start a test run.
-At this point, the JAX-RS TCK is configured to run the default test
-suite.
+At this point, the {TechnologyShortName} TCK is configured to run the
+default test suite.
 7.  Deselect the Start the configuration editor option, and then click
 Finish.
 8.  Click Run Tests, then click Start. +
@@ -629,9 +295,9 @@ the report, and then click OK. +
 A report is created, and you are asked whether you want to view it.
 12. Click Yes to view the report.
 
-[[GBFUU]][[TCJRS00089]][[modifying-the-default-test-configuration]]
+[[GBFUU]][[modifying-the-default-test-configuration]]
 
-4.5.4 Modifying the Default Test Configuration
+4.7.4 Modifying the Default Test Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The JavaTest GUI enables you to configure numerous test options. These

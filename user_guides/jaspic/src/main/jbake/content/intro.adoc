@@ -2,25 +2,33 @@ type=page
 status=published
 title=Introduction
 next=rules.html
-prev=TCKpreface.html
+prev=preface.html
 ~~~~~~
+include::attributes.conf[]
 Introduction
 ============
 
-[[TCAUT00002]][[GBFOW]]
+[[GBFOW]]
 
 
 [[introduction]]
 1 Introduction
 --------------
 
-This chapter provides an overview of the principles that apply generally
-to all Technology Compatibility Kits (TCKs) and describes the Java
-Authentication SPI for Containers (JASPIC) 1.1 TCK. It also includes a
-high level listing of what is needed to get up and running with the
-JASPIC TCK.
+This chapter provides an overview of the principles that apply
+generally to all Technology Compatibility Kits (TCKs) and describes the
+{TechnologyFullName} TCK ({TechnologyShortName} TCK
+{TechnologyVersion}) (JSR {JSR}). It also includes a high level listing
+of what is needed to get up and running with the {TechnologyShortName}
+TCK.
 
-[[GBFTK]][[TCAUT00031]][[compatibility-testing]]
+This chapter includes the following topics:
+
+* link:#GBFTK[Compatibility Testing]
+* link:#GBFQR[About the TCK]
+* link:#GBFQW[Getting Started With the TCK]
+
+[[GBFTK]][[compatibility-testing]]
 
 1.1 Compatibility Testing
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -39,7 +47,7 @@ specification and reference implementation for that feature.
 Compatibility testing is not primarily concerned with robustness,
 performance, or ease of use.
 
-[[GBFQN]][[TCAUT00066]][[why-compatibility-testing-is-important]]
+[[GBFQN]][[why-compatibility-testing-is-important]]
 
 1.1.1 Why Compatibility Testing is Important
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -47,9 +55,9 @@ performance, or ease of use.
 Java platform compatibility is important to different groups involved
 with Java technologies for different reasons:
 
-* Compatibility testing is the means by which one ensures that the Java
-platform does not become fragmented as it is ported to different
-operating systems and hardware environments.
+* Compatibility testing ensures that the Java platform does not become
+fragmented as it is ported to different operating systems and hardware
+environments.
 * Compatibility testing benefits developers working in the Java
 programming language, allowing them to write applications once and then
 to deploy them across heterogeneous computing environments without
@@ -59,7 +67,7 @@ from disparate sources and deploy them with confidence.
 * Conformance testing benefits Java platform implementors by ensuring a
 level playing field for all Java platform ports.
 
-[[GBFPR]][[TCAUT00067]][[tck-compatibility-rules]]
+[[GBFPR]][[tck-compatibility-rules]]
 
 1.1.2 TCK Compatibility Rules
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -67,22 +75,21 @@ level playing field for all Java platform ports.
 Compatibility criteria for all technology implementations are embodied
 in the TCK Compatibility Rules that apply to a specified technology.
 Each TCK tests for adherence to these Rules as described in
-link:rules.html#GBFSN[Chapter 2, "Procedure for Java Authentication SPI
-for Containers (JASPIC) 1.1 Certification."]
+link:rules.html#GBFSN[Chapter 2, "Procedure for Certification."]
 
-[[GBFPW]][[TCAUT00068]][[tck-overview]]
+[[GBFPW]][[tck-overview]]
 
 1.1.3 TCK Overview
 ^^^^^^^^^^^^^^^^^^
 
 A TCK is a set of tools and tests used to verify that a licensee's
-implementation of a technology conforms to the applicable specification.
-All tests in the TCK are based on the written specifications for the
-Java platform. A TCK tests compatibility of a licensee's implementation
-of a technology to the applicable specification of the technology.
-Compatibility testing is a means of ensuring correctness, completeness,
-and consistency across all implementations developed by technology
-licensees.
+implementation of a Java EE technology conforms to the applicable
+specification. All tests in the TCK are based on the written
+specifications for the Java platform. A TCK tests compatibility of a
+licensee's implementation of the technology to the applicable
+specification of the technology. Compatibility testing is a means of
+ensuring correctness, completeness, and consistency across all
+implementations developed by technology licensees.
 
 The set of tests included with each TCK is called the test suite. Most
 tests in a TCK's test suite are self-checking, but some tests may
@@ -95,7 +102,7 @@ The definition of required tests will change over time. Before your
 final certification test pass, be sure to download the latest Exclude
 List for the TCK you are using.
 
-[[GBFPB]][[TCAUT00069]][[java-community-process-jcp-program-and-compatibility-testing]]
+[[GBFPB]][[java-community-process-jcp-program-and-compatibility-testing]]
 
 1.1.4 Java Community Process (JCP) Program and Compatibility Testing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -112,324 +119,92 @@ release under the direction of the responsible Expert Group:
 * Technology Compatibility Kit (TCK)
 
 For further information about the JCP program, go to Java Community
-Process (`http://jcp.org/en/home/index`).
+Process (http://jcp.org/en/home/index).
 
-[[GBFQR]][[TCAUT00032]][[about-the-jaspic-tck-1.1]]
+[[GBFQR]][[about-the-tck]]
 
-1.2 About the JASPIC TCK 1.1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.2 About the TCK
+~~~~~~~~~~~~~~~~~
 
-The JASPIC TCK 1.1 is designed as a portable, configurable, automated
-test suite for verifying the compatibility of a licensee's
-implementation of the JASPIC 1.1 Specification.
+The {TechnologyShortName} TCK {TechnologyVersion} is designed as a
+portable, configurable, automated test suite for verifying the
+compatibility of a licensee's implementation of the
+{TechnologyShortName} {TechnologyVersion} Specification.
 
-[[GEQNJ]][[TCAUT00070]][[jaspic-technology-overview]]
+[[GBFQV]][[tck-specifications-and-requirements]]
 
-1.2.1 JASPIC Technology Overview
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The JASPIC 1.1 Specification (JSR 196) defines a service provider
-interface (SPI) by which authentication providers implementing message
-authentication mechanisms can be integrated in client and server message
-processing runtimes or containers.
-
-The JASPIC TCK uses a Test Suite SPI Verifier (TSSV) to verify whether
-the vendor's message processing runtimes invoke the correct SPI in the
-proper order.
-
-TSSV includes test suite implementations of:
-
-* `AuthConfigFactory`
-* `AuthConfigProvider`
-* `AuthConfigClient`, `AuthConfigServer`
-* `AuthContextClient`, `AuthContextServer`
-* `AuthenticationModulesClient`, `AuthenticationModules Server`
-
-TSSV gets loaded into vendor's message processing runtime using one of
-the following ways, as defined by the JASPIC 1.1 Specification:
-
-* By defining a property in `JAVA_HOME/jre/lib/security/java.security`
-as follows:
-`authconfigprovider.factory=com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory`
-* By calling the `registerConfigProvider()` method in a vendor's
-`AuthConfigFactory` with the following values:
-
-** Test Suite Provider ClassName
-
-** Map of properties
-
-** Message Layer (such as `SOAP` or `HttpServlet`)
-
-** Application Context Identifier
-
-** A description of the provider
-
-
-[NOTE]
-=======================================================================
-
-For the JASPIC TCK, more than one provider is registered in the vendor's
-message processing runtime.
-
-=======================================================================
-
-
-In a typical test scenario (for each profile of Servlet or SOAP), an
-application is deployed into a vendor's runtime, and a client invokes
-the service. The message policies required for the secure invocations
-are built into TSSV implementations, and the runtime is analyzed to see
-whether it invokes the correct SPIs at the proper time.
-
-TSSV uses Java logging APIs to log the client and server invocation into
-a log file (`TSSVLog.txt`), this log file is used by the TCK tests to
-validate actual logged runtime information against expected results to
-ensure that the runtime is compliant. The `jaspic_util_web.war` file
-contains the JASPIC log file processor, which writes output to the
-`TSSVLog.txt` file. The `TSSVLog.txt` file is put into the location
-defined by the `log.file.location` property in the `ts.jte` file.
-
-[[GKXQP]][[TCAUT00071]][[jaspic-tssv-files]]
-
-1.2.2 JASPIC TSSV Files
-^^^^^^^^^^^^^^^^^^^^^^^
-
-The following sections describe the `tssv.jar`,
-`ProviderConfiguration.xml`, and `provider-configuration.xsd` files that
-are used by the JASPIC TCK tests.
-
-[[GKXUX]][[TCAUT00059]][[tssv.jar-file]]
-
-1.2.2.1 tssv.jar file
-+++++++++++++++++++++
-
-The `tssv.jar` file contains classes necessary for populating a vendor
-implementation with a CTS AuthConfigFactory (ACF) as well as information
-used to register CTS providers. The `tssv.jar` file contains the class
-files for the Test Suite SPI Verifier. The `tssv.jar` file classes need
-to be loaded by the vendor implementation runtime during startup.
-
-[[GKXSG]][[TCAUT00060]][[providerconfiguration.xml-file]]
-
-1.2.2.2 ProviderConfiguration.xml file
-++++++++++++++++++++++++++++++++++++++
-
-The format is a test suite-specific format.  The file was designed to
-contain test provider information the test suite uses to populate the
-ACF with a list of providers for testing. The file needs to be copied to
-the location specified in the `ts.jte` file by the
-`provider.configuration.file` property. An edit to the
-`ProviderConfiguration.xml` file may be required for the vendor
-implementation. The current application context Ids are generic and
-should work as is, but there could be some scenarios in which the
-application Context Ids may need to be modified.
-
-The value of the `<app-context-id>` element in the
-`ProviderConfiguration.xml` file should reflect what the vendor
-implementation will use for its internal representation of the
-application context identifier for a registered provider. Said
-differently, the test suite registers its providers with information
-from the `ProviderConfiguration.xml` file but every implementation is
-not guaranteed to use the application context identifier that is used in
-the call to register the configuration provider. This value of the
-`<app-context-id>` element corresponds to the `appContext` argument in
-the `AuthConfigFactory.registerConfigProvider()` API. The API
-documentation for this method indicates that the `appContext` argument
-may be used but is not guaranteed to be used.
-
-The default `ProviderConfiguration.xml` file should work without
-modification, but a vendor may need to alter the value of the
-`<app-context-id>` element as previously described to accommodate the
-implementation under test. Vendors need to find the correct application
-context identifier for their implementation.
-
-Vendors should enable two levels of logging output to get finer levels
-of debugging and tracing information than is turned on by default. This
-is done by setting the `traceflag` property in the `ts.jte` file to
-"true" and setting the HARNESS_DEBUG environment variable to "true". If
-both of these are set, the debug output should contain application
-context identifier information.
-
-[[GKXQN]][[TCAUT00061]][[provider-configuration.xsd-file]]
-
-1.2.2.3 provider-configuration.xsd file
-+++++++++++++++++++++++++++++++++++++++
-
-The `provider-configuration.xsd` file is a schema file that resides in
-the same directory as the `ProviderConfiguration.xml` file and describes
-the `ProviderConfiguration.xml` file. This file should not be edited.
-
-[[TCAUT103]][[sthref4]]
-
-
-[[baseline-compatibility-requirements]]
-1.2.3 Baseline Compatibility Requirements
+1.2.1 TCK Specifications and Requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To obtain Baseline compliance, a vendor must meet the Baseline
-Compatibility requirements.
-
-[[GKXRJ]][[TCAUT00072]][[servlet-profile-tests]]
-
-1.2.4 Servlet Profile Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To obtain Servlet Profile compliance, a vendor must meet the Baseline
-Compatibility requirements as well as the Servlet Profile requirements.
-
-[[GEQME]][[TCAUT00073]][[soap-profile-tests]]
-
-1.2.5 SOAP Profile Tests
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Since various SOAP implementations are possible in a vendor's message
-processing runtime, the JASPIC TCK considers the following SOAP
-implementations:
-
-* SOAP implementation in a Java EE environment
-* SOAP implementation in standalone container (non-Java EE)
-* Non-container based SOAP implementation
-
-For SOAP profile tests, the client invocations of webservice have been
-abstracted into two different types:
-
-* Invocations of Service in a Java EE environment (for example, using
-JAXWS annotations `@WebServiceRef` for looking up the service and
-`@WebService` for service definition).
-* Invocations of Service in a standalone (i.e. non-Java EE) environment
-(this includes standalone container and non-container based
-implementation). +
-The following are used to get the service reference:
-
-** WSDL
-
-** Service `QName` (for example, `QNAME(NAMESPACEURI, SERVICENAME)`)
-
-** Service Class (such as `HelloService.class`)
-
-** PORT `QName` (for example, `QName(NAMESPACEURI, PORT_NAME)`)
-
-** Service Endpoint Interface class (for example, `Hello.class`)
-
-The deployment abstraction for handling various SOAP implementations are
-handled in the following ways:
-
-* A JSR 88–compliant deployment is used for Java EE-based
-implementations. This is differentiated by using a different deliverable
-class,
-`deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJavaEEDeliverable`,
-which is configurable in the `ts.jte` file. Vendors need to write their
-own `Deliverable` class that can be used to deploy in their environment.
-* For standalone implementations (this includes container and
-non-container based implementations), a different deliverable class is
-used,
-`deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicDeliverable`.
-Along with this deliverable class an Ant file,
-`TS_HOME/bin/xml/deploy.xml`, is used to deploy in GlassFish Server.
-Vendors are expected to implement the `deploy` and `undeploy` targets in
-`deploy.xml` to suite their environment. +
-
-[NOTE]
-=======================================================================
-
-Two deliverable implementations are provided with the GlassFish server.
-One implementation, for non-Java EE servers, turns off auto deployment
-and leaves the deployment up to the licensee by way of an Ant target.
-
-=======================================================================
-
-* Along with the deliverable class, a configurable property in the
-`ts.jte` file, `platform.mode`, is used to distinguish the different
-SOAP implementations.
-
-** `platform.mode=javaEE` (for Java EE based implementation)
-
-** `platform.mode=standalone` +
-
-[NOTE]
-=======================================================================
-
-A deployable EAR , WAR, or JAR file is created, based on the value
-specified by the `platform.mode` property in the `ts.jte` file.
-
-=======================================================================
-
-* For non-container based standalone SOAP implementations, vendors are
-expected to deploy the service and make it available for client
-invocations. For this purpose, a no-op for `deploy` and `undeploy`
-targets can be implemented in the `deploy.xml` file.
-
-The JASPIC TCK uses Web Services (JSR 181) metadata-based annotations to
-define web service applications. Although JSR 181 support is not
-required in a vendor's SOAP implementation, using web services metadata
-simplifies the definition of web services and the linking between
-various artifacts of web services (the WSDL, `ServiceEndpoint`, and
-implementation and their associations). Using other forms of web
-services implementation will lead to separate binding files, web
-services description files (`webservices.xml`) which are different for
-different SOAP implementations, such as a Java EE-based SOAP
-implementation, standalone implementation, and so on.
-
-Since vendors are already expected to generate web service artifacts
-using `wsgen` and `wsimport` tools, writing an annotation processor to
-support JSR 181–based annotations is just a step further towards making
-a better SOAP implementation. Also having annotated web services helps
-vendors generate different artifacts that suit their SOAP
-implementation.
-
-
-[NOTE]
-===================================================================
-
-For Java EE-based SOAP implementations, JSR 181 support is required.
-
-===================================================================
-
-
-[[GBFQV]][[TCAUT00074]][[jaspic-tck-specifications-and-requirements]]
-
-1.2.6 JASPIC TCK Specifications and Requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section lists the applicable requirements and specifications.
 
-* Specification Requirements: Software requirements for a JASPIC
-implementation are described in detail in the JASPIC 1.1 Specification,
-which can be found at `http://jcp.org/en/jsr/detail?id=196`.
-* JASPIC Version: The JASPIC TCK 1.1 is based on the JASPIC 1.1
+* Specification Requirements: Software requirements for a
+{TechnologyShortName} implementation are described in detail in the
+{TechnologyShortName} {TechnologyVersion} Specification.  Links to the
+{TechnologyShortName} specification and other product information can
+be found at {JSRURL}.
+* {TechnologyShortName} Version: The {TechnologyShortName} TCK
+{TechnologyVersion} is based on the {TechnologyShortName}
+Specification, Version {TechnologyVersion}.
+* Reference Implementation: The {TechnologyShortName}
+{TechnologyVersion} Reference Implementation ({TechnologyRI}) is
+available from Java Licensee Engineering
+(https://javapartner.oracle.com). See the RI documentation page at
+{TechnologyRIURL} for more information.
+
+See the {TechnologyShortName} TCK Release Notes for more specific
+information about Java SE version requirements, supported platforms,
+restrictions, and so on.
+
+[[GBFSQ]][[tck-components]]
+
+1.2.2 TCK Components
+^^^^^^^^^^^^^^^^^^^^
+
+The {TechnologyShortName} TCK {TechnologyVersion} includes the
+following components:
+
+* JavaTest harness version {JavaTestVersion} and related documentation. See the
+`ReleaseNotes-jtharness.html` file and the
+link:https://wiki.openjdk.java.net/display/CodeTools/JT+Harness[JT Harness web site]
+for additional information.
+* {TechnologyShortName} TCK signature tests; check that all public APIs
+are supported and/or defined as specified in the {TechnologyShortName}
+Version {TechnologyVersion} implementation under test.
+* If applicable, an exclude list, which provides a list of tests that your
+implementation is not required to pass.
+ifndef::no-api-tests[]
+* API tests for all of the {TechnologyShortName} API in all related packages:
+include::packages.inc[]
+endif::no-api-tests[]
+ifdef::end-to-end-tests[]
+* End-to-end tests that demonstrate compliance with the {TechnologyFullName}
 Specification.
+endif::end-to-end-tests[]
 
-[[GBFSQ]][[TCAUT00075]][[jaspic-tck-components]]
+The {TechnologyShortName} TCK tests run on the following platforms:
 
-1.2.7 JASPIC TCK Components
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* Windows 10
+* Oracle Linux 7.1
 
-The JASPIC TCK 1.1 includes the following components:
+[[GBFSA]][[javatest-harness]]
 
-* JavaTest harness version 4.4.1 and related documentation.
-* JASPIC TCK signature tests check that all public APIs are supported
-and/or defined as specified in the JASPIC Version 1.1 implementation
-under test.
-* End-to-end tests that demonstrate compliance with the JASPIC 1.1
-Specification.
-
-[[GBFSA]][[TCAUT00076]][[javatest-harness]]
-
-1.2.8 JavaTest Harness
+1.2.3 JavaTest Harness
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The JavaTest harness version 4.4.1 is a set of tools designed to run and
-manage test suites on different Java platforms. The JavaTest harness can
-be described as both a Java application and a set of compatibility
-testing tools. It can run tests on different kinds of Java platforms and
-it allows the results to be browsed online within the JavaTest GUI, or
-offline in the HTML reports that the JavaTest harness generates.
+The JavaTest harness version {JavaTestVersion} is a set of tools
+designed to run and manage test suites on different Java platforms. The
+JavaTest harness can be described as both a Java application and a set
+of compatibility testing tools. It can run tests on different kinds of
+Java platforms and it allows the results to be browsed online within
+the JavaTest GUI, or offline in the HTML reports that the JavaTest
+harness generates.
 
 The JavaTest harness includes the applications and tools that are used
 for test execution and test suite management. It supports the following
 features:
 
-* Sequencing of tests, allowing them to be loaded and executed
-automatically
+* Sequencing of tests, allowing them to be loaded and executed automatically
 * Graphic user interface (GUI) for ease of use
 * Automated reporting capability to minimize manual errors
 * Failure analysis
@@ -438,16 +213,18 @@ automatically
 
 To run tests using the JavaTest harness, you specify which tests in the
 test suite to run, how to run them, and where to put the results as
-described in link:using.html#GBFWO[Chapter 5, "Executing Tests."]
+described in link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration."]
 
-[[GBFRA]][[TCAUT00077]][[tck-compatibility-test-suite]]
+[[GBFRA]][[tck-compatibility-test-suite]]
 
-1.2.9 TCK Compatibility Test Suite
+1.2.4 TCK Compatibility Test Suite
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The test suite is the collection of tests used by the JavaTest harness
 to test a particular technology implementation. In this case, it is the
-collection of tests used by the JASPIC TCK 1.1 to test a JASPIC 1.1
+collection of tests used by the {TechnologyShortName} TCK
+{TechnologyVersion} to test a {TechnologyShortName} {TechnologyVersion}
 implementation. The tests are designed to verify that a licensee's
 runtime implementation of the technology complies with the appropriate
 specification. The individual tests correspond to assertions of the
@@ -460,10 +237,10 @@ located under the directories that have been selected. While scanning,
 the JavaTest harness selects the appropriate tests according to any
 matches with the filters you are using and queues them up for execution.
 
-[[GBFSH]][[TCAUT00078]][[exclude-lists]]
+[[GBFSH]][[exclude-lists]]
 
-1.2.10 Exclude Lists
-^^^^^^^^^^^^^^^^^^^^
+1.2.5 Exclude Lists
+^^^^^^^^^^^^^^^^^^^
 
 Each version of a TCK includes an Exclude List contained in a `.jtx`
 file. This is a list of test file URLs that identify tests which do not
@@ -472,15 +249,17 @@ tests are run, the JavaTest harness automatically excludes any test on
 the Exclude List from being executed.
 
 A licensee is not required to pass or run any test on the Exclude List.
-The Exclude List file, `<TS_HOME>/bin/ts.jtx`, is included in the JASPIC
-TCK.
+The Exclude List file, +{jtxFileName}+, is included in the
+{TechnologyShortName} TCK.
 
 
 [NOTE]
 =======================================================================
 
+From time to time, updates to the Exclude List are made available on the
+Java Licensee Engineering (https://javapartner.oracle.com) Web site.
 You should always make sure you are using an up-to-date copy of the
-Exclude List before running the JASPIC TCK to verify your
+Exclude List before running the {TechnologyShortName} TCK to verify your
 implementation.
 
 =======================================================================
@@ -496,13 +275,12 @@ has been discovered.
 * The test fails due to a bug in the tools (such as the JavaTest
 harness, for example).
 
-In addition, all tests are run against the JSR 196 reference
-implementations. Any tests that fail when run on a reference Java
-platform are put on the Exclude List. Any test that is not
-specification-based, or for which the specification is vague, may be
-excluded. Any test that is found to be implementation dependent (based
-on a particular thread scheduling model, based on a particular file
-system behavior, and so on) may be excluded.
+In addition, all tests are run against the reference implementations.
+Any tests that fail when run on a reference Java platform are put on the
+Exclude List. Any test that is not specification-based, or for which the
+specification is vague, may be excluded. Any test that is found to be
+implementation dependent (based on a particular thread scheduling model,
+based on a particular file system behavior, and so on) may be excluded.
 
 
 [NOTE]
@@ -510,51 +288,50 @@ system behavior, and so on) may be excluded.
 
 Licensees are not permitted to alter or modify Exclude Lists. Changes to
 an Exclude List can only be made by using the procedure described in
-link:rules.html#CJAFFBHF[Section 2.3.1, "Java Authentication SPI for
-Containers Version 1.1 TCK Test Appeals Steps."]
+link:rules.html#CJAJEAEI[Section 2.3.1, "TCK Test Appeals Steps."]
 
 =======================================================================
 
 
-[[GBFRR]][[TCAUT00079]][[jaspic-tck-configuration-overview]]
+[[GBFRR]][[tck-configuration]]
 
-1.2.11 JASPIC TCK Configuration Overview
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.6 TCK Configuration
+^^^^^^^^^^^^^^^^^^^^^^^
 
 You need to set several variables in your test environment, modify
-properties in the `<TS_HOME>/bin/ts.jte` file, and then use the JavaTest
-harness to configure and run the JASPIC tests, as described in
+properties in the +{jteFileName}+ file, and then use the JavaTest
+harness to configure and run the {TechnologyShortName} tests, as described in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
 
-[[GBFQW]][[TCAUT00033]][[getting-started-with-the-jaspic-tck]]
+include::intro.inc[]
 
-1.3 Getting Started With the JASPIC TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[GBFQW]][[getting-started-with-the-tck]]
 
-This section provides a general overview of what needs to be done to
-install, set up, test, and use the JASPIC TCK. These steps are explained
-in more detail in subsequent chapters of this guide.
+1.3 Getting Started With the TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section provides an general overview of what needs to be done to
+install, set up, test, and use the {TechnologyShortName} TCK. These
+steps are explained in more detail in subsequent chapters of this
+guide.
 
 1.  Make sure that the following software has been correctly installed
 on the system hosting the JavaTest harness:
-* Java SE 7
-* JASPIC TCK version 1.1
-* An implementation of the JASPIC 1.1 specification (for example, Java
-EE 7-based or standalone) +
+include::req-software.inc[]
+* Java SE {SEversion}
+* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
+include::tck-packages.inc[]
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI) +
 See the documentation for each of these software applications for
 installation instructions. See link:install.html#GBFTP[Chapter 3,
-"Installation,"] for instructions on installing the JASPIC TCK.
-2.  Set up the JASPIC TCK software. +
+"Installation,"] for instructions on installing the {TechnologyShortName} TCK.
+2.  Set up the {TechnologyShortName} TCK software. +
 See link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
 details about the following steps.
-1.  Set up your shell environment.
-2.  Modify the required properties in the `<TS_HOME>/bin/ts.jte` file.
-3.  Configure and start the Java EE 7 server or an implementation of the
-JASPIC 1.1 specification.
-4.  Deploy the JASPIC TCK test componentss.
-5.  Configure the JavaTest harness.
-3.  Test the JASPIC 1.1 implementation. +
-Test the JASPIC implementation installation by running the test suite.
-See link:using.html#GBFWO[Chapter 5, "Executing Tests."]
-
-
+  a.  Set up your shell environment.
+  b.  Modify the required properties in the +{jteFileName}+ file.
+  c.  Configure the JavaTest harness.
+3.  Test the {TechnologyShortName} {TechnologyVersion} implementation. +
+Test the {TechnologyShortName} implementation installation by running
+the test suite.  See link:using.html#GBFWO[Chapter 5, "Executing Tests."]

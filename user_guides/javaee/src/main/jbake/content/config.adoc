@@ -144,8 +144,7 @@ There are three general scenarios for configuring Java EE 8 servers for
 Java EE 8 CTS testing:
 
 * Configure the Java EE 8 RI as the server under test +
-image:img/serverpath-ri.gif[
-"RI as Server Under Test"]
+image:img/serverpath-ri.png["RI as Server Under Test"]
 
 Use the Java EE 8 RI as the Java EE 8 VI; you may want to do this as a
 sanity check to make sure you are comfortable with using the Java EE 8
@@ -154,16 +153,14 @@ before proceeding with tests against your Java EE 8 VI. See
 link:#GEWUI[Section 5.3.2, "Configuring the Java EE 8 RI as the VI,"]
 for instructions.
 * Configure your Java EE 8 VI as Server Under Test +
-image:img/serverpath-vi.gif[
-"VI as Server Under Test"]
+image:img/serverpath-vi.png["VI as Server Under Test"]
 
 This is the primary goal of using the Java EE 8 CTS; you will eventually
 need to configure the Java EE 8 implementation you want to certify. See
 link:#GEWWA[Section 5.3.3, "Configuring Your Application Server as the
 VI,"] for instructions.
 * Configure two Java EE 8 servers for the purpose of interop testing +
-image:img/serverpath-interop.gif[
-"Two Servers for Interop Testing"]
+image:img/serverpath-interop.png["Two Servers for Interop Testing"]
 
 Rebuildable tests and Interop tests require that you configure two Java
 EE 8 servers on one or two machines. One server will be your Java EE 8

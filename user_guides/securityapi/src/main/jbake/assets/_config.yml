@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_security_v1_0]
 description: [Oracle Java EE Security API 1.0 Technology Compatibility Kit User's Guide for Technology Licensees, Release 1.0]

@@ -2,26 +2,33 @@ type=page
 status=published
 title=Introduction
 next=rules.html
-prev=TCKpreface.html
+prev=preface.html
 ~~~~~~
+include::attributes.conf[]
 Introduction
 ============
 
-[[TCPER00002]][[GBFOW]]
+[[GBFOW]]
 
 
 [[introduction]]
 1 Introduction
 --------------
 
-This chapter provides an overview of the principles that apply generally
-to all Technology Compatibility Kits (TCKs) and describes the Java
-Persistence API TCK (JPA TCK 2.2) (JSR 338).
+This chapter provides an overview of the principles that apply
+generally to all Technology Compatibility Kits (TCKs) and describes the
+{TechnologyFullName} TCK ({TechnologyShortName} TCK
+{TechnologyVersion}) (JSR {JSR}). It also includes a high level listing
+of what is needed to get up and running with the {TechnologyShortName}
+TCK.
 
-The chapter also includes a high level listing of what is needed to get
-up and running with the JPA TCK.
+This chapter includes the following topics:
 
-[[GBFTK]][[TCPER00032]][[compatibility-testing]]
+* link:#GBFTK[Compatibility Testing]
+* link:#GBFQR[About the TCK]
+* link:#GBFQW[Getting Started With the TCK]
+
+[[GBFTK]][[compatibility-testing]]
 
 1.1 Compatibility Testing
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +47,7 @@ specification and reference implementation for that feature.
 Compatibility testing is not primarily concerned with robustness,
 performance, or ease of use.
 
-[[GBFQN]][[TCPER00054]][[why-compatibility-testing-is-important]]
+[[GBFQN]][[why-compatibility-testing-is-important]]
 
 1.1.1 Why Compatibility Testing is Important
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -57,10 +64,10 @@ to deploy them across heterogeneous computing environments without
 porting.
 * Compatibility testing allows application users to obtain applications
 from disparate sources and deploy them with confidence.
-* Conformance testing benefits Java platform implementers by ensuring a
+* Conformance testing benefits Java platform implementors by ensuring a
 level playing field for all Java platform ports.
 
-[[GBFPR]][[TCPER00055]][[tck-compatibility-rules]]
+[[GBFPR]][[tck-compatibility-rules]]
 
 1.1.2 TCK Compatibility Rules
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -68,22 +75,21 @@ level playing field for all Java platform ports.
 Compatibility criteria for all technology implementations are embodied
 in the TCK Compatibility Rules that apply to a specified technology.
 Each TCK tests for adherence to these Rules as described in
-link:rules.html#GBFSN[Chapter 2, "Procedure for Java Persistence API 2.2
-Certification."]
+link:rules.html#GBFSN[Chapter 2, "Procedure for Certification."]
 
-[[GBFPW]][[TCPER00056]][[tck-overview]]
+[[GBFPW]][[tck-overview]]
 
 1.1.3 TCK Overview
 ^^^^^^^^^^^^^^^^^^
 
 A TCK is a set of tools and tests used to verify that a licensee's
-implementation of a technology conforms to the applicable specification.
-All tests in the TCK are based on the written specifications for the
-Java platform. A TCK tests compatibility of a licensee's implementation
-of a technology to the applicable specification of the technology.
-Compatibility testing is a means of ensuring correctness, completeness,
-and consistency across all implementations developed by licensees of a
-technology.
+implementation of a Java EE technology conforms to the applicable
+specification. All tests in the TCK are based on the written
+specifications for the Java platform. A TCK tests compatibility of a
+licensee's implementation of the technology to the applicable
+specification of the technology. Compatibility testing is a means of
+ensuring correctness, completeness, and consistency across all
+implementations developed by technology licensees.
 
 The set of tests included with each TCK is called the test suite. Most
 tests in a TCK's test suite are self-checking, but some tests may
@@ -96,7 +102,7 @@ The definition of required tests will change over time. Before your
 final certification test pass, be sure to download the latest Exclude
 List for the TCK you are using.
 
-[[GBFPB]][[TCPER00057]][[java-community-process-jcp-program-and-compatibility-testing]]
+[[GBFPB]][[java-community-process-jcp-program-and-compatibility-testing]]
 
 1.1.4 Java Community Process (JCP) Program and Compatibility Testing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -113,79 +119,92 @@ release under the direction of the responsible Expert Group:
 * Technology Compatibility Kit (TCK)
 
 For further information about the JCP program, go to Java Community
-Process (`http://jcp.org/en/home/index`).
+Process (http://jcp.org/en/home/index).
 
-[[GBFQR]][[TCPER00033]][[about-the-java-persistence-api-tck-2.2]]
+[[GBFQR]][[about-the-tck]]
 
-1.2 About the Java Persistence API TCK 2.2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.2 About the TCK
+~~~~~~~~~~~~~~~~~
 
-The JPA TCK 2.2 is designed as a portable, configurable, automated test
-suite for verifying the compatibility of a licensee's implementation of
-the JPA 2.2 Specification.
+The {TechnologyShortName} TCK {TechnologyVersion} is designed as a
+portable, configurable, automated test suite for verifying the
+compatibility of a licensee's implementation of the
+{TechnologyShortName} {TechnologyVersion} Specification.
 
-[[GBFQV]][[TCPER00058]][[java-persistence-api-tck-specifications-and-requirements]]
+[[GBFQV]][[tck-specifications-and-requirements]]
 
-1.2.1 Java Persistence API TCK Specifications and Requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.1 TCK Specifications and Requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section lists the applicable requirements and specifications.
 
-* Specification Requirements: Software requirements for a JPA
-implementation are described in detail in the Java Persistence API 2.2
-Specification. Links to the JPA specification and other product
-information can be found at `http://jcp.org/en/jsr/detail?id=338`.
-* JPA Version: The JPA TCK 2.2 is based on the JPA Specification,
-Version 2.2.
-* Reference Implementation:
+* Specification Requirements: Software requirements for a
+{TechnologyShortName} implementation are described in detail in the
+{TechnologyShortName} {TechnologyVersion} Specification.  Links to the
+{TechnologyShortName} specification and other product information can
+be found at {JSRURL}.
+* {TechnologyShortName} Version: The {TechnologyShortName} TCK
+{TechnologyVersion} is based on the {TechnologyShortName}
+Specification, Version {TechnologyVersion}.
+* Reference Implementation: The {TechnologyShortName}
+{TechnologyVersion} Reference Implementation ({TechnologyRI}) is
+available from Java Licensee Engineering
+(https://javapartner.oracle.com). See the RI documentation page at
+{TechnologyRIURL} for more information.
 
-[[GBFSQ]][[TCPER00059]][[java-persistence-api-tck-components]]
+See the {TechnologyShortName} TCK Release Notes for more specific
+information about Java SE version requirements, supported platforms,
+restrictions, and so on.
 
-1.2.2 Java Persistence API TCK Components
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[GBFSQ]][[tck-components]]
 
-The JPA TCK 2.2 includes the following components:
+1.2.2 TCK Components
+^^^^^^^^^^^^^^^^^^^^
 
-* JavaTest harness version 4.4.1 of the JavaTest harness
-* JPA TCK signature tests check that all public APIs are supported
-and/or defined as specified in the JPA Version 2.2 implementation under
-test.
-* API tests for all of the packages comprising the required class
-libraries for Java Persistence API 2.2.
-* End-to-end tests that demonstrate compliance with the Java Persistence
-API 2.2 specification.
-* Pluggability tests verify that the implementation under test can use
-third-party persistence providers instead of the one provided by the
-implementation.
+The {TechnologyShortName} TCK {TechnologyVersion} includes the
+following components:
 
-The JPA TCK tests have been tested with the following:
+* JavaTest harness version {JavaTestVersion} and related documentation. See the
+`ReleaseNotes-jtharness.html` file and the
+link:https://wiki.openjdk.java.net/display/CodeTools/JT+Harness[JT Harness web site]
+for additional information.
+* {TechnologyShortName} TCK signature tests; check that all public APIs
+are supported and/or defined as specified in the {TechnologyShortName}
+Version {TechnologyVersion} implementation under test.
+* If applicable, an exclude list, which provides a list of tests that your
+implementation is not required to pass.
+ifndef::no-api-tests[]
+* API tests for all of the {TechnologyShortName} API in all related packages:
+include::packages.inc[]
+endif::no-api-tests[]
+ifdef::end-to-end-tests[]
+* End-to-end tests that demonstrate compliance with the {TechnologyFullName}
+Specification.
+endif::end-to-end-tests[]
 
-* JPA 2.2 Reference Implementation
-* Java SE 7
-
-The JPA TCK tests run on the following platforms:
+The {TechnologyShortName} TCK tests run on the following platforms:
 
 * Windows 10
 * Oracle Linux 7.1
 
-[[GBFSA]][[TCPER00060]][[javatest-harness]]
+[[GBFSA]][[javatest-harness]]
 
 1.2.3 JavaTest Harness
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The JavaTest harness is a tool bundled with the TCK that runs and
-manages test suites on different Java platforms. The JavaTest harness
-can be described as both a Java application and a set of compatibility
-testing tools. It can run tests on different kinds of Java platforms and
-it allows the results to be browsed online within the JavaTest GUI, or
-offline in the HTML reports that the JavaTest harness generates.
+The JavaTest harness version {JavaTestVersion} is a set of tools
+designed to run and manage test suites on different Java platforms. The
+JavaTest harness can be described as both a Java application and a set
+of compatibility testing tools. It can run tests on different kinds of
+Java platforms and it allows the results to be browsed online within
+the JavaTest GUI, or offline in the HTML reports that the JavaTest
+harness generates.
 
 The JavaTest harness includes the applications and tools that are used
 for test execution and test suite management. It supports the following
 features:
 
-* Sequencing of tests, allowing them to be loaded and executed
-automatically
+* Sequencing of tests, allowing them to be loaded and executed automatically
 * Graphic user interface (GUI) for ease of use
 * Automated reporting capability to minimize manual errors
 * Failure analysis
@@ -197,14 +216,15 @@ test suite to run, how to run them, and where to put the results as
 described in link:config.html#GBFVV[Chapter 4, "Setup and
 Configuration."]
 
-[[GBFRA]][[TCPER00061]][[tck-compatibility-test-suite]]
+[[GBFRA]][[tck-compatibility-test-suite]]
 
 1.2.4 TCK Compatibility Test Suite
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The test suite is the collection of tests used by the JavaTest harness
 to test a particular technology implementation. In this case, it is the
-collection of tests used by the JPA TCK 2.2 to test a JPA 2.2
+collection of tests used by the {TechnologyShortName} TCK
+{TechnologyVersion} to test a {TechnologyShortName} {TechnologyVersion}
 implementation. The tests are designed to verify that a licensee's
 runtime implementation of the technology complies with the appropriate
 specification. The individual tests correspond to assertions of the
@@ -217,7 +237,7 @@ located under the directories that have been selected. While scanning,
 the JavaTest harness selects the appropriate tests according to any
 matches with the filters you are using and queues them up for execution.
 
-[[GBFSH]][[TCPER00062]][[exclude-lists]]
+[[GBFSH]][[exclude-lists]]
 
 1.2.5 Exclude Lists
 ^^^^^^^^^^^^^^^^^^^
@@ -229,15 +249,18 @@ tests are run, the JavaTest harness automatically excludes any test on
 the Exclude List from being executed.
 
 A licensee is not required to pass or run any test on the Exclude List.
-The Exclude List file, `<TS_HOME>/bin/ts.jtx`, is included in the JPA
-TCK.
+The Exclude List file, +{jtxFileName}+, is included in the
+{TechnologyShortName} TCK.
 
 
 [NOTE]
 =======================================================================
 
+From time to time, updates to the Exclude List are made available on the
+Java Licensee Engineering (https://javapartner.oracle.com) Web site.
 You should always make sure you are using an up-to-date copy of the
-Exclude List before running the JPA TCK to verify your implementation.
+Exclude List before running the {TechnologyShortName} TCK to verify your
+implementation.
 
 =======================================================================
 
@@ -252,13 +275,12 @@ has been discovered.
 * The test fails due to a bug in the tools (such as the JavaTest
 harness, for example).
 
-In addition, all tests are run against the technology's reference
-implementation. Any tests that fail when run on a reference Java
-platform are put on the Exclude List. Any test that is not
-specification-based, or for which the specification is vague, may be
-excluded. Any test that is found to be implementation dependent (based
-on a particular thread scheduling model, based on a particular file
-system behavior, and so on) may be excluded.
+In addition, all tests are run against the reference implementations.
+Any tests that fail when run on a reference Java platform are put on the
+Exclude List. Any test that is not specification-based, or for which the
+specification is vague, may be excluded. Any test that is found to be
+implementation dependent (based on a particular thread scheduling model,
+based on a particular file system behavior, and so on) may be excluded.
 
 
 [NOTE]
@@ -266,66 +288,50 @@ system behavior, and so on) may be excluded.
 
 Licensees are not permitted to alter or modify Exclude Lists. Changes to
 an Exclude List can only be made by using the procedure described in
-link:rules.html#BABHAFDG[Section 2.3, "Java Persistence API Version 2.2
-Test Appeals Process."]
+link:rules.html#CJAJEAEI[Section 2.3.1, "TCK Test Appeals Steps."]
 
 =======================================================================
 
 
-[[GBFRR]][[TCPER00063]][[jpa-tck-configuration]]
+[[GBFRR]][[tck-configuration]]
 
-1.2.6 JPA TCK Configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.6 TCK Configuration
+^^^^^^^^^^^^^^^^^^^^^^^
 
 You need to set several variables in your test environment, modify
-properties in the `<TS_HOME>/bin/ts.jte` file, and then use the JavaTest
-harness to configure and run the JPA tests, as described in
+properties in the +{jteFileName}+ file, and then use the JavaTest
+harness to configure and run the {TechnologyShortName} tests, as described in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
 
-[[GBFQW]][[TCPER00034]][[getting-started-with-the-jpa-tck]]
+include::intro.inc[]
 
-1.3 Getting Started With the JPA TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[GBFQW]][[getting-started-with-the-tck]]
 
-This section provides a general overview of what needs to be done to
-install, set up, test, and use the JPA TCK. These steps are explained in
-more detail in subsequent chapters of this guide.
+1.3 Getting Started With the TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section provides an general overview of what needs to be done to
+install, set up, test, and use the {TechnologyShortName} TCK. These
+steps are explained in more detail in subsequent chapters of this
+guide.
 
 1.  Make sure that the following software has been correctly installed
-on the system hosting the JPA TCK:
-* Java SE 7
-* An implementation of the Java Persistence API 2.2 specification
-* Java Persistence API TCK Version 2.2 +
+on the system hosting the JavaTest harness:
+include::req-software.inc[]
+* Java SE {SEversion}
+* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
+include::tck-packages.inc[]
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI) +
 See the documentation for each of these software applications for
 installation instructions. See link:install.html#GBFTP[Chapter 3,
-"Installation,"] for instructions on installing the JPA TCK.
-2.  Set up the JPA TCK software. +
+"Installation,"] for instructions on installing the {TechnologyShortName} TCK.
+2.  Set up the {TechnologyShortName} TCK software. +
 See link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
 details about the following steps.
-1.  Set up your shell environment.
-2.  Modify the required properties in the `<TS_HOME>/bin/ts.jte` file.
-3.  Configure the JavaTest harness, if you are planning to run the TCK
-tests through the JavaTest GUI.
-3.  Test the JPA 2.2 implementation. +
-Test the JPA implementation installation by running the test suite. See
-link:using.html#GBFWO[Chapter 5, "Executing Tests."] +
-
-[NOTE]
-=======================================================================
-
-In the JPA 2.0 TCK, the tests were located in the
-`src/com/sun/ts/tests/ejb30/persistence` directory. In the JPA 2.1 and
-JPA 2.2 TCK, the tests have been reorganized and are now in a new
-location: `src/com/sun/ts/tests/jpa`.
-
-In the JPA 2.0 TCK, the pluggability tests required special setup in
-order to be run. This is no longer the case; the JPA 2.1 and JPA 2.2 TCK
-now executes the pluggability tests along with all the other JPA TCK
-tests without any special setup. The pluggability tests have also been
-rewritten to use a stubbed-out JPA implementation, which is located in
-the `src/com/sun/ts/jpa/common/pluggibility/altprovider` directory.
-
-=======================================================================
-
-
-
+  a.  Set up your shell environment.
+  b.  Modify the required properties in the +{jteFileName}+ file.
+  c.  Configure the JavaTest harness.
+3.  Test the {TechnologyShortName} {TechnologyVersion} implementation. +
+Test the {TechnologyShortName} implementation installation by running
+the test suite.  See link:using.html#GBFWO[Chapter 5, "Executing Tests."]

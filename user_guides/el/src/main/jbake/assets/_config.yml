@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_uml_v3_0]
 description: [Oracle Technology Compatibility Kit User's Guide for Expression Language 3.0 for Technology Licensees, Release 3.0]

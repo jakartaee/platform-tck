@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [cts_javaee_v8_0]
 description: [Oracle Java Platform, Enterprise Edition 8 Compatibility Test Suite User's Guide for Technology Licensees, Release 8]

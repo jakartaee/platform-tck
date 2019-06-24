@@ -123,7 +123,7 @@ Process (http://jcp.org/en/home/index).
 
 [[GBFQR]][[about-the-tck]]
 
-1.2 About the TCK 
+1.2 About the TCK
 ~~~~~~~~~~~~~~~~~
 
 The {TechnologyShortName} TCK {TechnologyVersion} is designed as a
@@ -146,8 +146,15 @@ be found at {JSRURL}.
 * {TechnologyShortName} Version: The {TechnologyShortName} TCK
 {TechnologyVersion} is based on the {TechnologyShortName}
 Specification, Version {TechnologyVersion}.
-* Reference Implementation: See the RI documentation page at
+* Reference Implementation: The {TechnologyShortName}
+{TechnologyVersion} Reference Implementation ({TechnologyRI}) is
+available from Java Licensee Engineering
+(https://javapartner.oracle.com). See the RI documentation page at
 {TechnologyRIURL} for more information.
+
+See the {TechnologyShortName} TCK Release Notes for more specific
+information about Java SE version requirements, supported platforms,
+restrictions, and so on.
 
 [[GBFSQ]][[tck-components]]
 
@@ -164,10 +171,16 @@ for additional information.
 * {TechnologyShortName} TCK signature tests; check that all public APIs
 are supported and/or defined as specified in the {TechnologyShortName}
 Version {TechnologyVersion} implementation under test.
+* If applicable, an exclude list, which provides a list of tests that your
+implementation is not required to pass.
+ifndef::no-api-tests[]
 * API tests for all of the {TechnologyShortName} API in all related packages:
 include::packages.inc[]
+endif::no-api-tests[]
+ifdef::end-to-end-tests[]
 * End-to-end tests that demonstrate compliance with the {TechnologyFullName}
 Specification.
+endif::end-to-end-tests[]
 
 The {TechnologyShortName} TCK tests run on the following platforms:
 
@@ -243,6 +256,8 @@ The Exclude List file, +{jtxFileName}+, is included in the
 [NOTE]
 =======================================================================
 
+From time to time, updates to the Exclude List are made available on the
+Java Licensee Engineering (https://javapartner.oracle.com) Web site.
 You should always make sure you are using an up-to-date copy of the
 Exclude List before running the {TechnologyShortName} TCK to verify your
 implementation.
@@ -287,6 +302,8 @@ You need to set several variables in your test environment, modify
 properties in the +{jteFileName}+ file, and then use the JavaTest
 harness to configure and run the {TechnologyShortName} tests, as described in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
+
+include::intro.inc[]
 
 [[GBFQW]][[getting-started-with-the-tck]]
 

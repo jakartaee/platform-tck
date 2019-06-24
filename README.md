@@ -1,3 +1,10 @@
+# JakartaEE TCK Jenkins Jobs
+The Jenkins jobs required for certifying Eclipse GlassFish nightly builds using the latest Jakarta EE TCK bundles are hosted in the Eclipse CloudBees Infrastructure and are available under
+https://jenkins.eclipse.org/jakartaee-tck/
+
+For information regarding the various JakartaEE TCK related jobs, Please refer to the wiki page below
+https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Jakarta-EE-TCK-Jenkins-jobs
+
 # Steps required to run CTS against Standalone RI changes
 
 1. Build the individual project and release it to Eclipse Maven repositories.

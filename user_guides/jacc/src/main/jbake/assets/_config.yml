@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jacc_v1_5]
 description: [Oracle Technology Compatibility Kit User's Guide for Java Authorization Contract for Containers 1.5 for Technology Licensees, Release 1.5]

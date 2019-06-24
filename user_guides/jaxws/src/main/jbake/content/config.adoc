@@ -4,714 +4,166 @@ title=Setup and Configuration
 next=using.html
 prev=install.html
 ~~~~~~
+include::attributes.conf[]
 Setup and Configuration
 =======================
 
-[[TCJWS00007]][[GBFVV]]
+[[GBFVV]]
 
 
 [[setup-and-configuration]]
 4 Setup and Configuration
 -------------------------
 
-This chapter describes how to set up the JAX-WS TCK and JavaTest harness
-software. Before proceeding with the instructions in this chapter, be
-sure to install all required software, as described in
-link:install.html#GBFTP[Chapter 3, "Installation"].
-
-
-[NOTE]
-=======================================================================
-
-The JAX-WS TCK 2.3 contains two configuration values in
-`<TS_HOME>/bin/ts.jte` that correspond to the two implementations used
-during test execution. These two properties are `jaxws.home` and
-`jaxws.home.ri`.
-
-The `jaxws.home` property should point to the implementation under test.
-In most cases, this will be your implementation of JAX-WS. However, it
-is recommended that you initially set this to the location of the JAX-WS
-RI to familiarize yourself with the JAX-WS TCK suite and JavaTest
-software, as well as ensure that your environment is correctly
-configured.
-
-The `jaxws.home.ri` property must always be set to the location of the
-Reference Implementation. The installation to which `jaxws.home.ri`
-points to is used when running reverse tests. These tests can only be
-run after you have successfully rebuilt the tests using your
-implementation of the JAX-WS 2.3 toolset. Please see
-link:rebuild.html#GCLIZ[Appendix B, "Rebuilding the JAX-WS TCK Using the
-Vendor's Toolset"] for more information on rebuilding tests.
-
-=======================================================================
-
+This chapter describes how to set up the {TechnologyShortName} TCK and
+JavaTest harness software. Before proceeding with the instructions in
+this chapter, be sure to install all required software, as described in
+link:install.html#GBFTP[Chapter 3, "Installation."]
 
 After completing the instructions in this chapter, proceed to
-link:using.html#GBFWO[Chapter 5, "Executing Tests"] for instructions on
-running the JAX-WS TCK.
+link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
+running the {TechnologyShortName} TCK.
 
-This chapter includes the following topics:
+include::config.inc[]
 
-* link:#GBFVU[Configuring Your Environment to Run the JAX-WS TCK Against
-the JAX-WS Reference Implementation]
-* link:#GCLHU[Configuring Your Environment to Run the JAX-WS TCK Against
-the Vendor Implementation]
-* link:#GCLHF[Configuring Your Environment to Rebuild and Run the JAX-WS
-TCK Against the JAX-WS RI]
-* link:#GCLIK[Configuring Your Environment to Simultaneously Run the
-JAX-WS TCK Against the VI and the JAX-WS RI]
-* link:#GCFOI[Configuring and Starting Your Application Server or
-Servers]
-* link:#GCLIN[Deploying the JAX-WS TCK Tests]
-* link:#GBFUY[Using the JavaTest Harness Software]
-* link:#GBFWG[Using the JavaTest Harness Configuration GUI]
+[[GHGDH]][[custom-configuration-handlers]]
 
-[[GBFVU]][[TCJWS00057]][[configuring-your-environment-to-run-the-jax-ws-tck-against-the-jax-ws-reference-implementation]]
+4.4 Custom Configuration Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4.1 Configuring Your Environment to Run the JAX-WS TCK Against the JAX-WS Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration handlers are used to configure and unconfigure a
+{TechnologyShortName} {TechnologyVersion} implementation during the
+certification process.  These are similar to deployment handlers but
+used for configuration.  A configuration handler is an Ant build file
+that contains at least the required targets listed below:
+  * `config.vi` - to configure the vendor implementation
+  * `clean.vi` - to unconfigure the vendor implementation
 
-After configuring your environment as described in this section,
-continue with the instructions in link:#GBFUY[Using the JavaTest Harness
-Software].
+These targets are called from the `<TS_HOME>/bin/build.xml` file and
+call down into the implementation-specific configuration handlers.
 
+To provide your own configuration handler, create a config.vi.xml file
+with the necessary configuration steps for your implementation and place
+the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
+
+For more information, see `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
+the configuration file for the Java EE 8 RI.
+
+[[GBFWG]][[custom-deployment-handlers]]
+
+4.5 Custom Deployment Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deployment handlers are used to deploy and undeploy the WAR files that
+contain the tests to be run during the certification process. A deployment
+handler is an Ant build file that contains at least the required targets
+listed in the table below.
+
+The {TechnologyShortName} TCK provides these deployment handlers:
+* `<TS_HOME>/bin/xml/impl/none/deploy.xml`
+* `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+
+The `deploy.xml` files in each of these directories are used to control
+deployment to a specific container (no deployment, deployment to
+the GlassFish Web container, deployment to the Tomcat Web container)
+denoted by the name of the directory in which each `deploy.xml` file
+resides. The primary `build.xml` file in the `<TS_HOME>/bin` directory
+has a target to invoke any of the required targets (-deploy, -undeploy,
+-deploy.all, -undeploy.all).
+
+[[GBFVA]][[create-custom-deployment-handler]]
+
+4.5.1 To Create a Custom Deployment Handler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To deploy tests to another {TechnologyShortName} implementation, you
+must create a custom handler.
+1. Create a new directory in the <TS_HOME>/bin/impl directory tree.
+  For example, create the <TS_HOME>/bin/impl/my_deployment_handler directory.
+  Replace my_deployment_handler with the value of the impl.vi
+  property that you set in Step 5 of the configuration procedure
+  described in Section 4.2, "Configuring Your Environment to Repackage
+  and Run the TCK Against the Vendor Implementation".
+
+2.  Copy the deploy.xml file from the <TS_HOME>/bin/xml/impl/none
+  directory to the directory that you created.
+
+3.  Modify the required targets in the deploy.xml file.  This is what
+    the deploy.xml file for the "none" deployment handler looks like.
+
++
+[source,oac_no_warn]
+----
+<project name="No-op Deployment" default="deploy">
+    <!-- No-op deployment target -->
+    <target name="-deploy">
+        <echo message="No deploy target implemented for this deliverable"/>
+    </target>
+    <target name="-undeploy">
+        <echo message="No undeploy target implemented for this deliverable"/>
+    </target>
+    <target name="-deploy.all">
+        <echo message="No deploy target implemented for this deliverable"/>
+    </target>
+    <target name="-undeploy.all">
+        <echo message="No undeploy target implemented for this deliverable"/>
+    </target>
+</project>
+----
++
+Although this example just echoes messages, it does include the four
+required Ant targets (-deploy, -undeploy, -deploy.all, -undeploy.all)
+that your custom deploy.xml file must contain. With this as your
+starting point, look at the required targets in the deploy.xml files
+in the tomcat and glassfish directories for guidance as you create
+the same targets for the Web container in which you will run your
+implementation of {TechnologyShortName}.
+
+The following Ant targets can be called from anywhere under the
+<TS_HOME>/src directory:
+
+* `deploy`
+* `undeploy`
+* `deploy.all`
+* `undeploy.all`
+
+The deploy.all and undeploy.all targets can also be called from the
+<TS_HOME>/bin directory.
 
 [NOTE]
 =======================================================================
-
-In these instructions, variables in angle brackets need to be expanded
-for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows XP/Vista. In addition, the
-forward slashes (`/`) used in all of the examples need to be replaced
-with backslashes (`\`) for Windows XP/Vista. Finally, be sure to use the
-appropriate separator for your operating system when specifying multiple
-path entries (`;` on Windows, `:` on UNIX/Linux).
-
-On Windows, you must escape any backslashes with an extra backslash in
-path separators used in any of the following properties, or use forward
-slashes as a path separator instead. For example, if the Java EE 8 RI
-installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
-`C:/JavaEE8`.
-
+The targets in the deploy.xml file are never called directly.
+They are called indirectly by the targets listed above.
 =======================================================================
 
+[[GBFUY]][[using-the-javatest-harness-software]]
 
-1.  Set the following environment variables in your shell environment:
-1.  `JAVA_HOME` to the directory in which Java SE is installed
-2.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
-installed
-3.  `ANT_HOME` should not be set in your environment. If it is set,
-unset it.
-2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
-environment variables:
-1.  Set the `webServerHost` property to the hostname where the web
-server is running that is configured with the JAX-WS RI. +
-The default setting is `localhost`.
-2.  Set the `webServerPort` property to the port number where the web
-server is running that is configured with the JAX-WS RI. +
-The default setting is `8000`.
-3.  Set the `jaxws.home` property to the location where the JAX-WS RI is
-installed. +
-The default setting is `${webcontainer.home}`. The value of this
-property must match the value of the `webcontainer.home` property that
-is set in step link:#BABBJEDF[g].
-4.  Set the `jaxws.classes` property to point to the JAX-WS RI
-classes/jars. +
-Note that this property is already set and should not require any
-changes.
-5.  Verify that the `tools.jar` property is set to the location of the
-`tools.jar` file that is distributed with Java SE.
-6.  Set the
-`impl.vi, impl.vi.deploy.dir, impl.vi.host, and impl.vi.port` properties
-to the supported web container, deploy directory, host and port for the
-JAX-WS RI. +
-The supported web container for the JAX-WS RI is the Java EE 8 RI. So
-the default settings for these properties are as follows: +
-[source,oac_no_warn]
-----
-impl.vi.deploy.dir=${webcontainer.home}/domains/domain1/autodeploy
-impl.vi=glassfish.xml
-impl.vi.host=${webServerHost}
-impl.vi.port=${webServerPort}
-----
-7.  [[BABBJEDF]] +
-Set the `webcontainer.home` property to the location where the web
-server is installed for the JAX-WS RI. This will be where the Java EE 8
-RI is installed.
-8.  Set the `porting.ts.url.class.1` property to the porting
-implementation class that is used for obtaining URLs. +
-The default setting for the JAX-WS RI porting implementation is: +
-[source,oac_no_warn]
-----
-com.sun.ts.lib.implementation.sun.common.SunRIURL
-----
-9.  Set the `user` and `password` properties to the user name and
-password used for the basic authentication tests. +
-The default setting is `j2ee` for both.
-10. Set the `authuser` and `authpassword` properties to the user name
-and password used for the basic authentication tests. +
-The default setting for both is `javajoe`.
-11. Set the `http.server.supports.endpoint.publish` property based on
-whether Endpoint Publish APIs are supported on the container.
-12. If using Java SE 8 or above, verify that the property
-`endorsed.dirs` is set to the location of the VI API jars for those
-technologies you wish to override. Java SE 8 contains an implementation
-of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-property must be set so that JAX-WS 2.3 will be used during the building
-of tests and during test execution.
-3.  Edit the catalog file
-`<TS_HOME>/src/com/sun/ts/tests/jaxws/common/xml/catalog /META-INF/jax-ws-catalog.xml`,
-replacing the host and port settings of `systemId` with the value of
-your host and port setting where the WSDL is published.
-
-[[GCLHU]][[TCJWS00058]][[configuring-your-environment-to-run-the-jax-ws-tck-against-the-vendor-implementation]]
-
-4.2 Configuring Your Environment to Run the JAX-WS TCK Against the Vendor Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-After configuring your environment as described in this section,
-continue with the instructions in link:#GBFUY[Using the JavaTest Harness
-Software].
-
-
-[NOTE]
-=======================================================================
-
-* In these instructions, variables in angle brackets need to be expanded
-for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows XP/Vista. In addition, the
-forward slashes (`/`) used in all of the examples need to be replaced
-with backslashes (`\`) for Windows XP/Vista. Finally, be sure to use the
-appropriate separator for your operating system when specifying multiple
-path entries (`;` on Windows, `:` on UNIX/Linux).
-* On Windows, you must escape any backslashes with an extra backslash in
-path separators used in any of the following properties, or use forward
-slashes as a path separator instead. For example, if the Java EE 8 RI
-installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
-`C:/JavaEE8`.
-
-=======================================================================
-
-
-1.  Set the following environment variables in your shell environment:
-1.  `JAVA_HOME` to the directory in which Java SE is installed
-2.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
-installed
-3.  `ANT_HOME` should not be set in your environment. If it is set,
-unset it.
-2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
-environment variables:
-1.  Set the `webServerHost` property to the hostname where the web
-server that is configured with the Vendor Implementation is running. +
-The default setting is `localhost`.
-2.  Set the `webServerPort` property to the port number where the web
-server that is configured with the Vendor Implementation is running. +
-The default setting is `8080`.
-3.  Set the `jaxws.home` property to the location where the Vendor
-Implementation is installed. +
-The default setting is `${webcontainer.home}`. The value of this
-property must match the value of the `webcontainer.home` property that
-is set in step link:#BABDJAHI[g].
-4.  Set the `jaxws.classes` property to point to the Vendor
-Implementation classes/JAR files. +
-As an example, the `ts.jte` file contains the property
-`jaxws.classes.ri`, which contains the classes/jar files that the Java
-EE 8 RI uses. The `jaxws.classes.ri` settings for the Java EE 8 RI web
-container are as follows: +
-[source,oac_no_warn]
-----
-jaxws.home.ri=${webcontainer.home.ri}
-jaxws.lib.ri=${jaxws.home.ri}/modules
-endorsed.dirs.ri=${jaxws.home.ri}/modules/endorsed
-
-jaxws.classes.ri=${endorsed.dirs.ri}/webservices-api-osgi.jar:
-${endorsed.dirs.ri}/jaxb-api-osgi.jar:
-${jaxws.lib.ri}/webservices-osgi.jar:
-${jaxws.lib.ri}/jaxb-osgi.jar:
-${jaxws.lib.ri}/gmbal.jar:
-${jaxws.lib.ri}/management-api.jar:
-${jaxws.lib.ri}/mimepull.jar
-----
-The `jaxws.classes.ri` settings if using the Apache Tomcat web container
-with the Standalone JAX-WS 2.3 RI would be as follows: +
-[source,oac_no_warn]
-----
-jaxws.home.ri=${webcontainer.home.ri}
-jaxws.lib.ri=${jaxws.home.ri}/shared/lib
-endorsed.dirs.ri=${jaxws.home.ri}/common/endorsed
-jaxws.classes.ri=${endorsed.dirs.ri}/jaxws-api.jar:
-${endorsed.dirs.ri}/jaxb-api.jar:
-${jaxws.lib.ri}/FastInfoset.jar:${jaxws.lib.ri}/gmbal-api-only.jar:${jaxws.lib.ri}/ha-api.jar:${jaxws.lib.ri}/javax.annotation-api.jar:${jaxws.lib.ri}/javax.xml.soap-api.jar:${jaxws.lib.ri}/jaxb-core.jar:${jaxws.lib.ri}/jaxb-impl.jar:${jaxws.lib.ri}/jaxb-jxc.jar:${jaxws.lib.ri}/jaxb-xjc.jar:${jaxws.lib.ri}/jaxws-rt.jar:${jaxws.lib.ri}/jaxwstck.jar:${jaxws.lib.ri}/jaxws-tools.jar:${jaxws.lib.ri}/jsr181-api.jar:${jaxws.lib.ri}/mail.jar:${jaxws.lib.ri}/management-api.jar:${jaxws.lib.ri}/mimepull.jar:${jaxws.lib.ri}/policy.jar:${jaxws.lib.ri}/resolver.jar:${jaxws.lib.ri}/saaj-impl.jar:${jaxws.lib.ri}/sdo-eclipselink-plugin.jar:${jaxws.lib.ri}/stax2-api.jar:${jaxws.lib.ri}/stax-ex.jar:${jaxws.lib.ri}/streambuffer.jar:${jaxws.lib.ri}/woodstox-core-asl.jar:
-----
-5.  Verify that the `tools.jar` property is set to the location of the
-`tools.jar` file that is distributed with Java SE.
-6.  Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
-`impl.vi.port` properties to the supported web container, deploy
-directory, host and port for the Vendor Implementation. +
-As an example, the `ts.jte` file contains the settings for the Java EE 8
-RI, which are as follows: +
-[source,oac_no_warn]
-----
-webcontainer.home.ri=/sun/javaee6
-impl.ri.deploy.dir=${webcontainer.home.ri}/domains/domain1/autodeploy
-impl.ri=glassfish.xml
-impl.ri.host=${webServerHost.2}
-impl.ri.port=${webServerPort.2}
-----
-The RI settings using the Apache Tomcat web container with the
-Standalone JAX-WS 2.3 RI would be as follows: +
-[source,oac_no_warn]
-----
-webcontainer.home.ri=/tomcat
-impl.ri=tomcat
-impl.ri.deploy.dir=${webcontainer.home.ri}/webapps
-impl.ri.host=${webServerHost.2}
-impl.ri.port=${webServerPort.2}
-----
-7.  [[BABDJAHI]] +
-Set the `webcontainer.home` property to the location where the web
-container for the Vendor Implementation is installed.
-8.  Set the `porting.ts.url.class.1` property to the porting
-implementation class that is used for obtaining URLs. +
-The default setting for the JAX-WS RI porting implementation is: +
-[source,oac_no_warn]
-----
-com.sun.ts.lib.implementation.sun.common.SunRIURL
-----
-9.  Set the `user` and `password` properties to the user name and
-password used for the basic authentication tests. +
-The default setting for both is `j2ee`.
-10. Set the `authuser` and `authpassword` properties to the user name
-and password used for the basic authentication tests. +
-The default setting for both is `javajoe`.
-11. Set the `http.server.supports.endpoint.publish` property based on
-whether Endpoint Publish APIs are supported on the container.
-12. If using Java SE 8 or above, verify that the property
-`endorsed.dirs` is set to the location of the RI API jars for those
-technologies you wish to override. Java SE 8 contains an implementation
-of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-property must be set so that JAX-WS 2.3 will be used during the building
-of tests and during test execution.
-3.  Edit the catalog file
-`<TS_HOME>/src/com/sun/ts/tests/jaxws/common/xml/catalog /META-INF/jax-ws-catalog.xml`,
-replacing the host and port settings of `systemId` with the value of
-your host and port setting where the WSDL is published.
-4.  Provide your own implementation of the porting package interface
-provided with the JAX-WS TCK. +
-The porting package interface, `TSURLInterface.java`, obtains URL
-strings for web resources in an implementation-specific manner. API
-documentation for the `TSURLInterface.java` porting package interface is
-available in the JAX-WS TCK documentation bundle. +
-The `<TS_HOME>/bin/jaxws-url-props.dat` file contains the webservice
-endpoint and WSDL URLs that the TCK tests use when running against the
-JAX-WS RI. In the porting package that the TCK uses, the URLs are
-returned as is since this is the form that the JAX-WS RI expects. You
-may need an alternate form of these URLs in order to run the TCK tests
-in your environment. However, you MUST NOT modify the
-`jaxws-url-props.dat` file, but instead make any necessary changes in
-your own porting implementation class to transform the URLs
-appropriately for your environment.
-
-[[GCLHF]][[TCJWS00059]][[configuring-your-environment-to-rebuild-and-run-the-jax-ws-tck-against-the-jax-ws-ri]]
-
-4.3 Configuring Your Environment to Rebuild and Run the JAX-WS TCK Against the JAX-WS RI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This section describes the steps needed to configure the JAX-WS TCK so
-that the tests can be rebuilt (using the Vendor Implementation toolset),
-and then deployed and run against the JAX-WS Reference Implementation.
-
-If you are not ready to proceed with this portion of the testing
-process, skip this section for now and proceed to
-link:#GCFOI[Configuring and Starting Your Application Server or
-Servers]. After configuring your environment, continue with the
-instructions in link:#GBFUY[Using the JavaTest Harness Software].
-
-
-[NOTE]
-=======================================================================
-
-In these instructions, variables in angle brackets need to be expanded
-for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows XP/Vista. In addition, the
-forward slashes (`/`) used in all of the examples need to be replaced
-with backslashes (`\`) for Windows XP/Vista. Finally, be sure to use the
-appropriate separator for your operating system when specifying multiple
-path entries (`;` on Windows, `:` on UNIX/Linux).
-
-On Windows, you must escape any backslashes with an extra backslash in
-path separators used in any of the following properties, or use forward
-slashes as a path separator instead. For example, if the Java EE 8 RI
-installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
-`C:/JavaEE8`.
-
-=======================================================================
-
-
-1.  Set the following environment variables in your shell environment:
-1.  `JAVA_HOME` to the directory in which Java SE is installed
-2.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
-installed
-3.  `ANT_HOME` should not be set in your environment. If it is set,
-unset it.
-2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
-environment variables:
-1.  Set the `webServerHost` property to the hostname where the web
-server for the Vendor Implementation is running. +
-The default setting is `localhost`.
-2.  Set the `webServerPort` property to the port number where the web
-server for the Vendor Implementation is running. +
-The default setting is`8080`
-3.  Set the `webServerHost.2` property to the hostname where the web
-server for the JAX-WS RI is running.
-4.  Set the `webServerPort.2` property to the port number where the web
-server for the JAX-WS RI is running.
-5.  Set the `jaxws.home` property to the location where the Vendor
-Implementation is installed. +
-The default setting is `${webcontainer.home}`. The value of this
-property must match the value of the `webcontainer.home` property that
-is set in step link:#BABEGFEB[m].
-6.  Set the `jaxws.classes` property to point to the Vendor
-Implementation classes/JAR files.
-7.  Set the `jaxws.home.ri` property to the location where the JAX-WS RI
-is installed. +
-The default setting is `${webcontainer.home.ri}`. The value of this
-property must match the value of the `webcontainer.home.ri` property
-that is set in step link:#BABCAAFJ[n].
-8.  The `jaxws.classes.ri` property is already configured to point to
-the JAX-WS RI classes/JAR files. +
-No changes are necessary for this property.
-9.  Set the `wsgen.ant.classname` property to the Vendor Implementation
-class that mimics the JAX-WS RI Ant task, which in turn calls the
-`wsgen` Java-to-WSDL tool.
-10. Set the `wsimport.ant.classname` property to the Vendor
-Implementation class that mimics the JAX-WS RI Ant task, which in turn
-calls the `wsimport` WSDL-to-Java tool.
-11. Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
-`impl.vi.port` properties to the supported web container, deploy
-directory, host and port used for the Vendor Implementation.
-12. Set the `impl.ri`, `impl.ri.deploy.dir`, `impl.ri.host`, and
-`impl.ri.port` properties to the supported web container, deploy
-directory, host and port used for the JAX-WS Reference Implementation. +
-The supported web container for standalone web applications is the Java
-EE 8 RI. The default settings for these properties are as follows: +
-[source,oac_no_warn]
-----
-impl.ri.deploy.dir=${webcontainer.home.ri}/domains/domain1/autodeploy
-impl.ri=glassfish.xml
-impl.ri.host=${webServerHost.2}
-impl.ri.port=${webServerPort.2}
-----
-13. [[BABEGFEB]] +
-Set the `webcontainer.home` property to the location where the web
-container for the Vendor Implementation is installed.
-14. [[BABCAAFJ]] +
-Set the `webcontainer.home.ri` property to the location where the web
-container for the JAX-WS Reference Implementation is installed.
-15. Set the `porting.ts.url.class.1` property to your porting
-implementation class that is used for obtaining URLs. +
-The default setting points to the JAX-WS RI porting implementation which
-is: +
-[source,oac_no_warn]
-----
-com.sun.ts.lib.implementation.sun.common.SunRIURL
-----
-16. Set the `porting.ts.url.class.2` property to the JAX-WS RI porting
-implementation class that is used for obtaining URLs. +
-No changes are necessary for this property.
-17. Set the `user` and `password` properties to the user name and
-password used for the basic authentication tests. +
-The default setting for both is `j2ee`.
-18. Set the `authuser` and `authpassword` properties to the user name
-and password used for the basic authentication tests. +
-The default setting for both is `javajoe`.
-19. Set the `http.server.supports.endpoint.publish` property based on
-whether Endpoint Publish APIs are supported on the container.
-20. If using Java SE 8 or above, verify that the property
-`endorsed.dirs` is set to the location of the VI API jars for those
-technologies you wish to override. Java SE 8 contains an implementation
-of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-property must be set so that JAX-WS 2.3 will be used during the building
-of tests and during test execution.
-21. If using Java SE 8 or above, verify that the property
-`endorsed.dirs.ri` is set to the location of the RI API jars for those
-technologies you wish to override. Java SE 8 contains an implementation
-of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-property must be set so that JAX-WS 2.3 will be used during the building
-of tests and during test execution.
-3.  Edit the catalog file
-`<TS_HOME>/src/com/sun/ts/tests/jaxws/common/xml/catalog /META-INF/jax-ws-catalog.xml`,
-replacing the host and port settings of `systemId` with the value of
-your host and port setting where the WSDL is published.
-
-[[GCLIK]][[TCJWS00060]][[configuring-your-environment-to-simultaneously-run-the-jax-ws-tck-against-the-vi-and-the-jax-ws-ri]]
-
-4.4 Configuring Your Environment to Simultaneously Run the JAX-WS TCK Against the VI and the JAX-WS RI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This section describes the steps needed to configure the JAX-WS TCK so
-that all tests can be run; forward tests against the Vendor
-Implementation and reverse tests against the JAX-WS Reference
-Implementation.
-
-Since the JAX-WS TCK needs to be tested against both the JAX-WS
-Reference Implementation and the Vendor Implementation, two separate Web
-servers need to be configured. Two individual Web servers are required,
-and the same steps, below, must be performed to configure each Web
-server.
-
-If you are not going to perform this kind of testing at this time, skip
-this section and proceed to link:#GCFOI[Configuring and Starting Your
-Application Server or Servers], otherwise perform the steps described in
-the following sections:
-
-* link:#GCLHU[Configuring Your Environment to Run the JAX-WS TCK Against
-the Vendor Implementation]
-* link:#GCLHF[Configuring Your Environment to Rebuild and Run the JAX-WS
-TCK Against the JAX-WS RI]
-
-[[GCFOI]][[TCJWS00061]][[configuring-and-starting-your-application-server-or-servers]]
-
-4.5 Configuring and Starting Your Application Server or Servers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Complete the following two procedures to configure your application
-server environments for the RI and VI.
-
-[[GCFOC]][[TCJWS00022]][[to-configure-the-vendor-implementation-as-your-vi-environment]]
-
-4.5.1 To Configure the Vendor Implementation as your VI Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Set the following environment variables in your shell environment:
-1.  `JAVA_HOME` to the directory in which Java SE is installed
-2.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
-installed
-3.  `ANT_HOME` should not be set in your environment. If it is set,
-unset it.
-2.  Ensure that the `ts.jte` settings for Vendor specific properties
-have been configured.
-3.  Run the `ant config.vi` target to configure for the Vendor
-Implementation. +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-<TS_HOME>/tools/ant/bin/ant config.vi
-----
-
-[[GCFFB]][[TCJWS00023]][[to-configure-the-jax-ws-reference-implementation-as-your-ri-environment]]
-
-4.5.2 To Configure the JAX-WS Reference Implementation as your RI
-Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1.  Set the following environment variables in your shell environment:
-1.  `JAVA_HOME` to the directory in which Java SE is installed
-2.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
-installed
-3.  `ANT_HOME` should not be set in your environment. If it is set,
-unset it.
-2.  Ensure that the `ts.jte` settings for RI specific properties have
-been configured.
-3.  Run the `ant config.ri` target to configure for RI implementation. +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-<TS_HOME>/tools/ant/bin/ant config.ri
-----
-
-[[GCLIN]][[TCJWS00062]][[deploying-the-jax-ws-tck-tests]]
-
-4.6 Deploying the JAX-WS TCK Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The JAX-WS TCK provides an automatic way of deploying both the prebuilt
-and Vendor-built archives to the configured web container or container
-by using deployment handlers.
-
-The handler file (`<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`) is
-written to be used with the Java EE 8 RI. If the Vendor chooses not to
-use Java EE 8 RI with their implementation, or chooses to rebuild the
-JAX-WS TCK tests using some other method than the infrastructure
-provided, they should create their own version handler file to provide
-this functionality.
-
-This section describes the various commands used for deploying the WAR
-files to the configured web container.
-
-* link:#GCLJG[Generic Deployment Command Scenarios]
-* link:#GCLIW[Deploying the JAX-WS TCK Prebuilt Archives]
-* link:#GCLIL[Deploying the Rebuilt JAX-WS TCK Tests Against the JAX-WS
-Reference Implementation]
-
-[[GCLJG]][[TCJWS00101]][[generic-deployment-command-scenarios]]
-
-4.6.1 Generic Deployment Command Scenarios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The `keywords` system property enables you to deploy a subset of the
-tests that would normally be deployed in batch mode by means of
-`<TS_HOME>/tools/ant/bin/ant deploy`. To specify it, add the option
-`-Dkeywords=`value to the `ant` command, where value is either
-`forward`, `reverse`, or `all`. The supported values control the
-directions in which the rebuildable tests are deployed.
-
-* Setting this property to `all` (the default) deploys both the prebuilt
-and Vendor build tests.
-* Setting the property to `forward` deploys the prebuilt tests in the
-forward direction only.
-* Setting the property to `reverse` deploys the Vendor rebuilt tests in
-the reverse direction only.
-
-[[GCLJK]][[TCJWS00024]][[to-deploy-all-the-war-files-from-the-ts_homedist-directory-to-both-web-servers]]
-
-4.6.1.1 To Deploy all the WAR Files From the `<TS_HOME>/dist` Directory to Both Web Servers
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Enter the following command:
-
-[source,oac_no_warn]
-----
-<TS_HOME>/tools/ant/bin/ant deploy.all
-----
-
-or
-
-[source,oac_no_warn]
-----
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=all deploy.all
-----
-
-[[GCLII]][[TCJWS00025]][[to-deploy-a-single-test-directory-in-the-forward-direction]]
-
-4.6.1.2 To Deploy a Single Test Directory in the Forward Direction
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Enter the following commands:
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/javax_xml_ws/Dispatch 
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=forward deploy
-----
-
-[[GCLJC]][[TCJWS00026]][[to-deploy-a-subset-of-test-directories-in-the-reverse-direction]]
-
-4.6.1.3 To Deploy a Subset of Test Directories in the Reverse Direction
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Enter the following commands:
-
-[source,oac_no_warn]
-----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api 
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=reverse deploy
-----
-
-
-[NOTE]
-=======================================================================
-
-The `-Dkeywords` option is supported by the `deploy`, `undeploy`,
-`deploy.all`, and `undeploy.all` commands.
-
-=======================================================================
-
-
-[[GCLIW]][[TCJWS00102]][[deploying-the-jax-ws-tck-prebuilt-archives]]
-
-4.6.2 Deploying the JAX-WS TCK Prebuilt Archives
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This section explains issues regarding the deployment of the JAX-WS TCK
-prebuilt archives. Before conducting any deployment, ensure that your
-environment has been configured by following the instructions in either
-the link:#GBFVU[Configuring Your Environment to Run the JAX-WS TCK
-Against the JAX-WS Reference Implementation] or the
-link:#GCLHU[Configuring Your Environment to Run the JAX-WS TCK Against
-the Vendor Implementation] sections.
-
-The `<TS_HOME>/dist` directory contains all the WAR files for the JAX-WS
-TCK web service endpoint tests that have been compiled and generated
-using the JAX-WS Reference Implementation and packaged for deployment on
-a Servlet-compliant web container using the standard Web Archive (WAR)
-format.
-
-These WAR files contain only portable artifacts for all the TCK web
-service endpoint tests, and are tailored to run against the JAX-WS
-Reference Implementation via the `web.xml` file in addition to a runtime
-file, `sun-jaxws.xml`. These WAR files allow you to deploy (without any
-additional setup or modification) against the JAX-WS Reference
-Implementation to test the various features and functionality of this
-implementation.
-
-A Vendor is required to deploy the prebuilt WAR files as is on their
-JAX-WS implementation without any changes to the WAR archives with the
-exception of replacing and/or removing only the `web.xml` and the
-`sun-jaxws.xml` files.
-
-To deploy the tests, the Vendor should perform a deployment using either
-the `deploy` or `deployall` batch command as described in
-link:#GCLJG[Generic Deployment Command Scenarios], and specify the
-`-Dkeywords=forward` option.
-
-[[GCLIL]][[TCJWS00103]][[deploying-the-rebuilt-jax-ws-tck-tests-against-the-jax-ws-reference-implementation]]
-
-4.6.3 Deploying the Rebuilt JAX-WS TCK Tests Against the JAX-WS
-Reference Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This section describes how to deploy the Vendor rebuilt JAX-WS TCK tests
-against the Vendor Implementation. Before conducting the deployment,
-ensure that you have followed the instructions in
-link:#GBFVU[Configuring Your Environment to Run the JAX-WS TCK Against
-the JAX-WS Reference Implementation].
-
-This deployment scenario assumes that the Vendor has rebuilt all the
-JAX-WS TCK tests using the existing infrastructure, and that the WAR
-files exist alongside the prebuilt war files in the `<TS_HOME>/dist`
-directory. The rebuilt WAR files will be prepended with the text
-`vi_built_`.
-
-If the Vendor chooses some other method of rebuilding the tests, they
-may still be able to use this deployment method as long as the WAR files
-are built correctly and are prepended with the text `vi_built_`. Refer
-to the link:rebuild.html#GCLIZ[Appendix B, "Rebuilding the JAX-WS TCK
-Using the Vendor's Toolset"] to learn about rebuilding the JAX-WS TCK
-tests.
-
-To deploy the tests, the Vendor should perform a deployment using either
-the `deploy` or `deployall` batch command, as described in
-link:#GCLJG[Generic Deployment Command Scenarios], and specify the
-`-Dkeywords=reverse` option
-
-[[GBFUY]][[TCJWS00063]][[using-the-javatest-harness-software]]
-
-4.7 Using the JavaTest Harness Software
+4.6 Using the JavaTest Harness Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are two general ways to run the JAX-WS TCK test suite using the
-JavaTest harness software:
+There are two general ways to run the {TechnologyShortName} TCK test
+suite using the JavaTest harness software:
 
 * Through the JavaTest GUI; if using this method, please continue on to
-link:#GBFWG[Using the JavaTest Harness Configuration GUI].
+link:#GBFWG[Section 4.7, "Using the JavaTest Harness Configuration
+GUI."]
 * In JavaTest batch mode, from the command line in your shell
 environment; if using this method, please proceed directly to
-link:using.html#GBFWO[Chapter 5, "Executing Tests"].
+link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 
-[[GBFWG]][[TCJWS00064]][[using-the-javatest-harness-configuration-gui]]
+[[GBFWG]][[using-the-javatest-harness-configuration-gui]]
 
-4.8 Using the JavaTest Harness Configuration GUI
+4.7 Using the JavaTest Harness Configuration GUI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use the JavaTest harness GUI to modify general test settings and
-to quickly get started with the default JAX-WS TCK test environment.
-This section covers the following topics:
+to quickly get started with the default {TechnologyShortName} TCK test
+environment.  This section covers the following topics:
 
 * link:#GBFVA[Configuration GUI Overview]
 * link:#GBFVD[Starting the Configuration GUI]
-* link:#GBFVX[Configuring the JavaTest Harness to Run the JAX-WS TCK
-Tests]
+* link:#GBFVX[To Configure the JavaTest Harness to Run the
+{TechnologyShortName} TCK Tests]
 * link:#GBFUU[Modifying the Default Test Configuration]
 
 
@@ -721,14 +173,14 @@ Tests]
 It is only necessary to proceed with this section if you want to run the
 JavaTest harness in GUI mode. If you plan to run the JavaTest harness in
 command-line mode, skip the remainder of this chapter, and continue with
-link:using.html#GBFWO[Chapter 5, "Executing Tests"].
+link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 
 =======================================================================
 
 
-[[GBFVA]][[TCJWS00104]][[configuration-gui-overview]]
+[[GBFVA]][[configuration-gui-overview]]
 
-4.8.1 Configuration GUI Overview
+4.7.1 Configuration GUI Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order for the JavaTest harness to execute the test suite, it requires
@@ -750,31 +202,31 @@ The first time you run the JavaTest harness software, you are asked to
 specify the test suite and work directory that you want to use. (These
 parameters can be changed later from within the JavaTest harness GUI.)
 
-Once the JavaTest harness GUI is displayed, whenever you choose Run
-Tests, then Start to begin a test run, the JavaTest harness determines
+Once the JavaTest harness GUI is displayed, whenever you choose Start,
+then Run Tests to begin a test run, the JavaTest harness determines
 whether all of the required configuration information has been supplied:
 
 * If the test environment and parameters have been completely
 configured, the test run starts immediately.
 * If any required configuration information is missing, the
 configuration editor displays a series of questions asking you the
-necessary information. This is called the configuration interview . When
+necessary information. This is called the configuration interview. When
 you have entered the configuration data, you are asked if you wish to
 proceed with running the test.
 
-[[GBFVD]][[TCJWS00105]][[starting-the-configuration-gui]]
+[[GBFVD]][[starting-the-configuration-gui]]
 
-4.8.2 Starting the Configuration GUI
+4.7.2 Starting the Configuration GUI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before you start the JavaTest harness software, you must have a valid
-test suite and Java SE installed on your system.
+test suite and Java SE {SEversion} installed on your system.
 
-The JAX-WS TCK includes an Ant script that is used to execute the
+The {TechnologyShortName} TCK includes an Ant script that is used to execute the
 JavaTest harness from the `<TS_HOME>` directory. Using this Ant script
 to start the JavaTest harness is part of the procedure described in
-link:#GBFVX[Configuring the JavaTest Harness to Run the JAX-WS TCK
-Tests].
+link:#GBFVX[Section 4.7.3, "To Configure the JavaTest Harness to Run the
+TCK Tests."]
 
 When you execute the JavaTest harness software for the first time, the
 JavaTest harness displays a Welcome dialog box that guides you through
@@ -790,13 +242,13 @@ opening both a test suite and a work directory as described in the
 JavaTest documentation.
 
 After you specify a work directory, you can use the Test Manager to
-configure and run tests as described in link:#GBFVX[Configuring the
-JavaTest Harness to Run the JAX-WS TCK Tests].
+configure and run tests as described in link:#GBFVX[Section 4.7.3, "To
+Configure the JavaTest Harness to Run the TCK Tests."]
 
-[[GBFVX]][[TCJWS00106]][[configuring-the-javatest-harness-to-run-the-jax-ws-tck-tests]]
+[[GBFVX]][[to-configure-the-javatest-harness-to-run-the-tck-tests]]
 
-4.8.3 Configuring the JavaTest Harness to Run the JAX-WS TCK Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.7.3 To Configure the JavaTest Harness to Run the TCK Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The answers you give to some of the configuration interview questions
 are specific to your site. For example, the name of the host on which
@@ -807,20 +259,17 @@ be stored.
 Note that you only need to complete all these steps the first time you
 start the JavaTest test harness. After you complete these steps, you can
 either run all of the tests by completing the steps in
-link:using.html#GBFUZ[Starting JavaTest] or run a subset of the tests by
-completing the steps in link:using.html#GBFWM[Running a Subset of the
-Tests].
+link:using.html#GBFUZ[Section 5.1, "Starting JavaTest,"] or run a subset
+of the tests by completing the steps in link:using.html#GBFWM[Section
+5.2, "Running a Subset of the Tests."]
 
 1.  Change to the `<TS_HOME>/bin` directory and start the JavaTest test
 harness: +
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-<TS_HOME>/tools/ant/bin/ant gui
-----
-2.  Click File, then click Open Quick Start Wizard. +
+`cd <TS_HOME>/bin` +
+`ant gui`
+2.  From the File menu, click Open Quick Start Wizard. +
 The Welcome screen displays.
-3.  Click Start a new test run, and then click Next. +
+3.  Select Start a new test run, and then click Next. +
 You are prompted to create a new configuration or use a configuration
 template.
 4.  Select Create a new configuration, and then click Next. +
@@ -831,24 +280,24 @@ results.
 6.  Type a work directory name or use the Browse button to select a work
 directory, and then click Next. +
 You are prompted to start the configuration editor or start a test run.
-At this point, the JAX-WS TCK is configured to run the default test
-suite.
-7.  Uncheck the Start the configuration editor option, and then click
+At this point, the {TechnologyShortName} TCK is configured to run the
+default test suite.
+7.  Deselect the Start the configuration editor option, and then click
 Finish.
 8.  Click Run Tests, then click Start. +
 The JavaTest harness starts running the tests.
 9.  To reconfigure the JavaTest test harness, do one of the following:
 * Click Configuration, then click New Configuration.
 * Click Configuration, then click Change Configuration.
-10. Click Report, then click Create Report.
+10. Click Report, and then click Create Report.
 11. Specify the directory in which the JavaTest test harness will write
 the report, and then click OK. +
 A report is created, and you are asked whether you want to view it.
 12. Click Yes to view the report.
 
-[[GBFUU]][[TCJWS00107]][[modifying-the-default-test-configuration]]
+[[GBFUU]][[modifying-the-default-test-configuration]]
 
-4.8.4 Modifying the Default Test Configuration
+4.7.4 Modifying the Default Test Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The JavaTest GUI enables you to configure numerous test options. These

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2017, 2019 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,15 +19,29 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.5</version>
+    </parent>
     <groupId>org.glassfish</groupId>
-    <artifactId>tck_jsp_v2_3</artifactId>
+    <artifactId>tck_jsp</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2.3.0-SNAPSHOT</version>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide for JavaServer Pages 2.3 for Jakarta EE, Release 2.3</name>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
         <maven.site.skip>true</maven.site.skip>
+        <asciidoctor.maven.plugin.version>1.5.7.1</asciidoctor.maven.plugin.version>
+        <!-- XXX - jbake needs an older version than this -->
+        <asciidoctorj.version>1.6.2</asciidoctorj.version>
+        <asciidoctorj.pdf.version>1.5.0-alpha.16</asciidoctorj.pdf.version>
+        <jruby.version>9.2.6.0</jruby.version>
+        <!-- status: DRAFT, BETA, etc., or blank for final -->
+        <status>DRAFT</status>
+        <doc.pdf>JSP-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
@@ -62,11 +76,39 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.glassfish.doc</groupId>
+                <artifactId>glassfish-doc-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-toc</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>toc</goal>
+                        </goals>
+                        <configuration>
+                            <chapterPatterns>
+                                [0-9]+\s.*,Preface.*,Part\s.*
+                            </chapterPatterns>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-book</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>book</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.blazebit</groupId>
                 <artifactId>jbake-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
                     <outputDirectory>${site.output.dir}</outputDirectory>
+                    <properties>
+                        <status>${status}</status>
+                    </properties>
                 </configuration>
                 <executions>
                     <execution>
@@ -91,6 +133,62 @@
                 </dependencies>
             </plugin>
             <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>${asciidoctor.maven.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jruby</groupId>
+                        <artifactId>jruby-complete</artifactId>
+                        <version>${jruby.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj</artifactId>
+                        <version>${asciidoctorj.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-pdf</artifactId>
+                        <version>${asciidoctorj.pdf.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceDirectory>${project.build.directory}/book</sourceDirectory>
+                    <sourceDocumentName>book.adoc</sourceDocumentName>
+                    <!-- XXX - below depends on running jbake first -->
+                    <imagesDir>${project.build.directory}/staging/</imagesDir>
+                    <backend>pdf</backend>
+                    <outputFile>${doc.pdf}</outputFile>
+                    <attributes>
+                        <pdf-stylesdir>${project.basedir}/src/theme</pdf-stylesdir>
+                        <pdf-style>jakartaee</pdf-style>
+                        <doctype>book</doctype>
+                        <status>${status}</status>
+                        <compat-mode />
+                        <data-uri />
+                        <icons>font</icons>
+                        <pagenums />
+                        <toc />
+                        <icons>font</icons>
+                        <sectanchors>true</sectanchors>
+                        <idprefix />
+                        <idseparator>-</idseparator>
+                        <docinfo1>true</docinfo1>
+                        <embedAssets>true</embedAssets>
+                    </attributes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-pdf-doc</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                                <goal>process-asciidoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-scm-publish-plugin</artifactId>
                 <version>1.1</version>
@@ -113,6 +211,11 @@
 
 	<pluginManagement>
 	    <plugins>
+                <plugin>
+                    <groupId>org.glassfish.doc</groupId>
+                    <artifactId>glassfish-doc-maven-plugin</artifactId>
+                    <version>1.3</version>
+                </plugin>
 		<plugin>
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-assembly-plugin</artifactId>

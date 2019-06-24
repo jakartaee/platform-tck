@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jca_v1_7]
 description: [Oracle Technology Compatibility Kit User's Guide for Java EE Connector Architecture 1.7 for Technology Licensees, Release 1.7]

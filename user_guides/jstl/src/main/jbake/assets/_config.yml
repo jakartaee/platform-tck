@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jstl_v1_2]
 description: [Oracle Technology Compatibility Kit User's Guide for A Standard Tag Library for JavaServer Pages (JSTL) 1.2 for Technology Licensees, Release 1.2]
