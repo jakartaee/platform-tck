@@ -153,6 +153,7 @@
 		<copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting" includeEmptyDirs="no">
 			<fileset dir="${ts.home}/src/com/sun/ts/lib/porting" includes="TSURLInterface.java, TSURL.java" />
 		</copy>
+		<antcall target="mvn"/>
         <antcall target="create.doc.bundle" />
 		<!-- copy the commons HttpClient and dependent as well as TCK specific JAR files -->
 		<copy todir="${deliverable.bundle.dir}/lib">
@@ -164,6 +165,15 @@
 		</delete>
 
 	</target>
+	<target name="mvn">
+         <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+         <copy toDir="${deliverable.bundle.dir}/docs/">
+         <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                generated-docs/*.pdf"/>
+         </copy>
+	</target>
+
 	<target name="create.doc.bundle">
               <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
               <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">

@@ -150,5 +150,16 @@
         
         <!-- the com/sun/ts/lib/implementation/sun/common file -->
         <copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/common/SunRIURL.java" todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/common"/>
+	<antcall target="mvn"/>
+
     </target>
+    <target name="mvn">
+        <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+        <copy toDir="${deliverable.bundle.dir}/docs/">
+        <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                generated-docs/*.pdf"/>
+        </copy>
+   </target>
+
 </project>

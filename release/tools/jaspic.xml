@@ -211,6 +211,8 @@
                      includes="**/**"/>
         </copy>
 
+        <antcall target="mvn"/>
+
         <!--antcall target="javadoc"/-->
         <antcall target="create.doc.bundle"/>
         
@@ -220,7 +222,14 @@
                      includes="*jaxb*,apiCheck.jar"/>
         </delete>
     </target>
-
+    <target name="mvn">
+        <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+        <copy toDir="${deliverable.bundle.dir}/docs/">
+        <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                generated-docs/*.pdf"/>
+        </copy>
+    </target>
     <target name="create.doc.bundle">
               <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
               <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">

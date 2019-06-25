@@ -143,8 +143,19 @@
 		<antcall target="copyinstall"/>
 		<antcall target="make.cts.internal.archive"/>
         <antcall target="build.j2eetck"/>
+        <antcall target="mvn"/>
     </target>
-      
+     
+    <target name="mvn">
+     <mkdir dir="${deliverable.bundle.dir}/docs"/>
+     <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+     <copy toDir="${deliverable.bundle.dir}/docs/">
+        <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                 generated-docs/*.pdf"/>
+    </copy>
+   </target>
+ 
     <target name="build.j2eetck" unless="only.build.internal">
 		<!-- the classes directory -->
 		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">

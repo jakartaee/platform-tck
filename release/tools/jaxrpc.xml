@@ -108,6 +108,15 @@ com/sun/ts/lib/deliverable/jaxrpc/*,
 com/sun/ts/lib/implementation/javaee/**/*"
 			excludes="**/*log"/>
 		</copy>
+		<antcall target="mvn"/>
 
 	</target>
+	<target name="mvn">
+         <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+         <copy toDir="${deliverable.bundle.dir}/docs/">
+         <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                generated-docs/*.pdf"/>
+         </copy>
+        </target>
 </project>

@@ -193,7 +193,16 @@
         <copy todir="${deliverable.bundle.dir}/docs">
             <fileset dir="${ts.home}/install/${deliverable.dir}/docs"
                      includes="**/**"/>
-        </copy>        
+        </copy>
+        <antcall target="mvn"/>        
+    </target>
+    <target name="mvn">
+        <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+        <copy toDir="${deliverable.bundle.dir}/docs/">
+        <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                generated-docs/*.pdf"/>
+        </copy>
     </target>
 
 </project>
