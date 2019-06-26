@@ -24,11 +24,13 @@ cd $TCK_HOME
 
 if [ -f "${WORKSPACE}/standalone-bundles/websockettck-1.1_latest.zip" ];then
   echo "Using stashed bundle created during the build phase"
+elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-websockettck-1.1_latest.zip" ];then
+  echo "Using stashed eclipse bundle created during the build phase"
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
-unzip ${WORKSPACE}/standalone-bundles/websockettck-1.1_latest.zip -d ${TCK_HOME}
+unzip ${WORKSPACE}/standalone-bundles/*websockettck-1.1_latest.zip -d ${TCK_HOME}
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then

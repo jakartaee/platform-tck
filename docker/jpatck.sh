@@ -23,11 +23,13 @@ echo "ANT_OPTS in jpatck.sh $ANT_OPTS"
 cd $TCK_HOME
 if [ -f "${WORKSPACE}/standalone-bundles/jpatck-2.2_latest.zip" ];then
   echo "Using stashed bundle created during the build phase"
+elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-jpatck-2.2_latest.zip" ];then
+  echo "Using stashed eclipse bundle created during the build phase"
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
-unzip ${WORKSPACE}/standalone-bundles/jpatck-2.2_latest.zip -d ${TCK_HOME}
+unzip ${WORKSPACE}/standalone-bundles/*jpatck-2.2_latest.zip -d ${TCK_HOME}
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
