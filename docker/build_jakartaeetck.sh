@@ -123,8 +123,8 @@ ant -f $BASEDIR/release/tools/build-utils.xml -Ddeliverabledir=jakartaee -Dbased
 echo "########## Trunk.CTS ##########"
 mkdir -p $BASEDIR/internal/docs/jakartaee/
 cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/jakartaee/
-if [[ "$LICENSE" == "ECLIPSE" || "$LICENSE" == "eclipse" ]]; then
-  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools -DuseEclipselicensefile="true" jakartaee
+if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
+  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools -DuseEFTLicensefile="true" jakartaee
 else
   ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=8.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools jakartaee
 fi
@@ -134,7 +134,7 @@ ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
 
-if [[ "$LICENSE" == "ECLIPSE" || "$LICENSE" == "eclipse" ]]; then
+if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
   cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/eclipse-jakartaeetck.zip
 else
   cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip

@@ -174,7 +174,7 @@
         <property name="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.name.token}${deliverable.type}"/>
         <property name="zip.name" value="${deliverable.name.token}${deliverable.type}"/>
          <if>
-            <isset property="useEclipselicensefile"/>
+            <isset property="useEFTLicensefile"/>
          <then>
             <property name="licensefile" value="LICENSE_EFTL.md"/>
          </then>

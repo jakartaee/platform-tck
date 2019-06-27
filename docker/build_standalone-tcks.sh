@@ -245,8 +245,8 @@ for tck in ${TCK_LIST[@]}; do
 
   mkdir -p $BASEDIR/internal/docs/$tck
   cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/$tck/
-  if [[ "$LICENSE" == "ECLIPSE" || "$LICENSE" == "eclipse" ]]; then
-    ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/release/tools $DOC_SPECIFIC_PROPS -Dskip.createbom="true" -Dskip.build="true" $TCK_SPECIFIC_PROPS -DuseEclipselicensefile="true" $tck
+  if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
+    ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/release/tools $DOC_SPECIFIC_PROPS -Dskip.createbom="true" -Dskip.build="true" $TCK_SPECIFIC_PROPS -DuseEFTLicensefile="true" $tck
   else
     ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/release/tools $DOC_SPECIFIC_PROPS -Dskip.createbom="true" -Dskip.build="true" $TCK_SPECIFIC_PROPS $tck
   fi 
@@ -263,7 +263,7 @@ for tck in ${TCK_LIST[@]}; do
         strippedEntry=${strippedEntry}_`echo "$entry" | cut -d_ -f2`
     fi
     echo "copying ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry to ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip"
-    if [[ "$LICENSE" == "ECLIPSE" || "$LICENSE" == "eclipse" ]]; then
+    if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
       cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/eclipse-${strippedEntry}_latest.zip
     else
       cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip
