@@ -45,7 +45,7 @@ def generateCTSStage(job) {
               unstash 'jakartaeetck-bundles'
               sh """
                 env
-                unzip -o ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip -d ${CTS_HOME}
+                unzip -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck.zip -d ${CTS_HOME}
                 bash -x ${CTS_HOME}/jakartaeetck/docker/fix_classpaths.sh 2>&1 | tee ${CTS_HOME}/fix_classpaths.log
                 bash -x ${CTS_HOME}/jakartaeetck/docker/run_jakartaeetck.sh ${job} 2>&1 | tee ${CTS_HOME}/run_jakartaeetck.log
               """
@@ -65,7 +65,7 @@ def generateCTSStage(job) {
               unstash 'jakartaeetck-bundles'
               sh """
                 env
-                unzip -o ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip -d ${CTS_HOME}
+                unzip -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck.zip -d ${CTS_HOME}
                 bash -x ${CTS_HOME}/jakartaeetck/docker/fix_classpaths.sh 2>&1 | tee ${CTS_HOME}/fix_classpaths.log
                 bash -x ${CTS_HOME}/jakartaeetck/docker/run_jakartaeetck.sh ${job} 2>&1 | tee ${CTS_HOME}/run_cts.log
               """
@@ -175,6 +175,8 @@ spec:
            description: 'Name of bundle file to be appended to the base url' )
     choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
+    choice(name: 'LICENSE', choices: 'EPL\nEFTL',
+           description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
     choice(name: 'DATABASE', choices: 'JavaDB\nOracle\nMySQL', 
            description: 'Database to be used for running CTS. Currently only JavaDB is supported.' )
     choice(name: 'BUILD_TYPE', choices: 'CTS\nSTANDALONE-TCK', 

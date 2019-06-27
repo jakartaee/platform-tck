@@ -24,11 +24,14 @@ cd $TCK_HOME
 
 if [ -f "${WORKSPACE}/standalone-bundles/concurrencytck-1.0_latest.zip" ];then
   echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/concurrencytck-1.0_latest.zip -d ${TCK_HOME}
+elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-concurrencytck-1.0_latest.zip" ];then
+  echo "Using stashed eclipse bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/eclipse-concurrencytck-1.0_latest.zip -d ${TCK_HOME}
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
-unzip ${WORKSPACE}/standalone-bundles/concurrencytck-1.0_latest.zip -d ${TCK_HOME}
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then

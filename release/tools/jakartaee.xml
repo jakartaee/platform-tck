@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -103,7 +103,7 @@
         <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
             <fileset dir="${ts.home}" includes="NOTICE" />
         </copy>
-	<copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+	<copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
         </copy>
 	</target>
 
@@ -143,8 +143,19 @@
 		<antcall target="copyinstall"/>
 		<antcall target="make.cts.internal.archive"/>
         <antcall target="build.j2eetck"/>
+        <antcall target="mvn"/>
     </target>
-      
+     
+    <target name="mvn">
+     <mkdir dir="${deliverable.bundle.dir}/docs"/>
+     <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+     <copy toDir="${deliverable.bundle.dir}/docs/">
+        <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                 generated-docs/*.pdf"/>
+    </copy>
+   </target>
+ 
     <target name="build.j2eetck" unless="only.build.internal">
 		<!-- the classes directory -->
 		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">

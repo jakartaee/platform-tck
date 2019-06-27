@@ -27,11 +27,14 @@ ls -l ${WORKSPACE}/bundles/*.zip
 ls -l ${WORKSPACE}/*.zip
 if [ -f "${WORKSPACE}/standalone-bundles/jtatck-1.3_latest.zip" ];then
   echo "Using stashed bundle created as part of the build process"
+  unzip ${WORKSPACE}/standalone-bundles/jtatck-1.3_latest.zip -d ${TCK_HOME}
+elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-jtatck-1.3_latest.zip" ];then
+  echo "Using stashed eclipse bundle created as part of the build process"
+  unzip ${WORKSPACE}/standalone-bundles/eclipse-jtatck-1.3_latest.zip -d ${TCK_HOME}
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
-unzip ${WORKSPACE}/standalone-bundles/jtatck-1.3_latest.zip -d ${TCK_HOME}
 
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."

@@ -71,7 +71,7 @@
             <fileset dir="${ts.home}" includes="NOTICE" />
         </copy>
 
-        <copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+        <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
     </target>
 
@@ -209,10 +209,19 @@
             <fileset dir="${ts.home}/install/${deliverable.dir}/docs"
                      includes="**/**"/>
         </copy>
-
+	<antcall target="mvn"/>
         <!--antcall target="javadoc"/-->
         <antcall target="create.doc.bundle"/>
         
+    </target>
+
+    <target name="mvn">
+        <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+        <copy toDir="${deliverable.bundle.dir}/docs/">
+        <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                generated-docs/*.pdf"/>
+        </copy>
     </target>
 
     <target name="create.doc.bundle">

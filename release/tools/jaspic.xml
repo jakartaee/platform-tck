@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -70,7 +70,7 @@
         <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
               <fileset dir="${ts.home}" includes="NOTICE" />
         </copy>
-	<copy todir="${deliverable.bundle.dir}" file="${ts.home}/install/${deliverable.name.lower}/LICENSE.md">
+	<copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	</copy>
     </target>
 
@@ -211,6 +211,8 @@
                      includes="**/**"/>
         </copy>
 
+        <antcall target="mvn"/>
+
         <!--antcall target="javadoc"/-->
         <antcall target="create.doc.bundle"/>
         
@@ -220,7 +222,14 @@
                      includes="*jaxb*,apiCheck.jar"/>
         </delete>
     </target>
-
+    <target name="mvn">
+        <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+        <copy toDir="${deliverable.bundle.dir}/docs/">
+        <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
+                 includes="staging/*.html,
+                generated-docs/*.pdf"/>
+        </copy>
+    </target>
     <target name="create.doc.bundle">
               <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
               <zip zipfile="${deliverable.bundle.dir}/../${deliverable.name}tck-doc-${deliverable.version}_${time.stamp.bundle.string}.zip">
