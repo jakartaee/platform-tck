@@ -12,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation (CI)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.6, "Using the
@@ -43,25 +43,25 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
+  {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Java EE 8 RI is running. +
+  Jakarta EE 8 CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Java EE 8 RI is running. +
+  which Jakarta EE 8 CI is running. +
   The default setting is `8080`.
-  c.  Set the `web.home` property to the installation directory of Java EE
-  8 RI.
+  c.  Set the `web.home` property to the installation directory of Jakarta EE
+  8 CI.
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
   for the JSR 370 API. +
   The default setting for this property is
   `${web.home}/modules/javax.ws.rs-api.jar`.
   e.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
-  point to the Jersey RI. +
+  point to the Jersey CI. +
   The default setting for the `jaxrs_impl_lib` property is
   `${web.home}/modules/jersey-container-servlet-core.jar`. +
   The default setting for the `jaxrs_impl.`classes property is as follows
@@ -93,18 +93,18 @@ ${web.home}/modules/endorsed/javax.annotation-api.jar
   class for the {TechnologyShortName} implementation. +
   The default setting for this property is
   `org/glassfish/jersey/servlet/ServletContainer.class`.
-  g.  Set the `impl.vi` property to the name of the Java EE 8 RI . +
+  g.  Set the `impl.vi` property to the name of the Jakarta EE 8 CI . +
   The relevant porting files are located under the
   `$TS_HOME/bin/xml/impl/glassfish/` directory. +
   The default setting for this property is `glassfish`.
   h.  Set the `jaxrs_impl_name` property to the name of the
-  {TechnologyShortName} RI. +
+  {TechnologyShortName} CI. +
   A file bearing this name has been created under
   `<TS_HOME>/bin/xml/impl/glassfish/jersey.xml` with packaging
   instructions. +
   The default setting for this property is `jersey`.
   i.  Set the `impl.vi.deploy.dir` property to point to the `autodeploy`
-  directory of the Java EE 8 RI . +
+  directory of the Jakarta EE 8 CI . +
   The default setting for this property is
   `${web.home}/domains/domain1/autodeploy`.
   j. Verify that the `tools.jar` property is set to the location of the
@@ -161,7 +161,7 @@ ant config.vi
 ----
 +
 This target performs the following tasks:
-* Stops the application server running the {TechnologyShortName} {TechnologyVersion} RI
+* Stops the application server running the {TechnologyShortName} {TechnologyVersion} CI
 * Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
 into the application server's external library folder
 * Starts the application server
@@ -238,7 +238,7 @@ environment variables:
   The default setting for this property is
   `${web.home}/modules/javax.ws.rs-api.jar`.
   e.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
-  point to the Jersey RI. +
+  point to the Jersey CI. +
   The default setting for the `jaxrs_impl_lib` property is
   `${web.home}/modules/jersey-container-servlet-core.jar` . +
   The default setting for the `jaxrs_impl.`classes property is as follows
@@ -322,8 +322,8 @@ both the prebuilt and Vendor-built archives to the configured web
 container or containers by using deployment handlers.
 
 The handler file (`<TS_HOME>/bin/xml/impl/glassfish/jersey.xml` is
-written to be used with Jersey and Java EE 8 RI . If the Vendor chooses
-not to use Java EE 8 RI to run with their implementation but still
+written to be used with Jersey and Jakarta EE 8 CI . If the Vendor chooses
+not to use Jakarta EE 8 CI to run with their implementation but still
 chooses to publish to a Servlet-compliant Web container, then a
 VI-specific {TechnologyShortName} TCK tests Web archive needs to be created.
 This archive contains the VI-specific servlet class, and the Vendor should
@@ -346,7 +346,7 @@ classes or WAR files to the configured web container.
 4.3.1 Generic Deployment Command Scenarios
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can deploy all {TechnologyShortName} WAR files to Java EE 8 RI or
+You can deploy all {TechnologyShortName} WAR files to Jakarta EE 8 CI or
 the Web server chosen by a Vendor, deploy just a single test directory,
 or deploy of subset of test directories.
 
@@ -397,21 +397,21 @@ This section explains issues regarding the deployment of the
 {TechnologyShortName} TCK prebuilt archives. Before conducting any
 deployment, ensure that your environment has been configured by
 following the instructions in either link:#GBFVU[Section 4.1,
-"Configuring Your Environment to Run the TCK Against the Reference
+"Configuring Your Environment to Run the TCK Against the Compatible
 Implementation,"] or link:#GCLHU[Section 4.2, "Configuring Your
 Environment to Repackage and Run the TCK Against the Vendor
 Implementation."]
 
 The `<TS_HOME>/dist` directory contains all WAR files for the
 {TechnologyShortName} TCK tests that have been compiled and packaged
-using the Reference Implementation for deployment on a
-Servlet-compliant Web container, Java EE 8 RI, using the standard Web
+using the Compatible Implementation for deployment on a
+Servlet-compliant Web container, Jakarta EE 8 CI, using the standard Web
 Archive (WAR) format.
 
-These WAR files contain only Jersey, a Java EE 8 RI -specfic servlet
-adaptor, and are tailored to run against the Reference Implementation.
+These WAR files contain only Jersey, a Jakarta EE 8 CI -specfic servlet
+adaptor, and are tailored to run against the Compatible Implementation.
 These WAR files allow you to deploy (without any additional setup or
-modification) against the Reference Implementation to test the various
+modification) against the Compatible Implementation to test the various
 features and functionality of this implementation.
 
 To deploy the {TechnologyShortName} TCK tests, use either the `deploy`
@@ -434,13 +434,13 @@ under `$TS_HOME/classes`. All test resources packaged in WAR files are
 located under `$TS_HOME/dist`.
 
 If a vendor chooses to deploy WAR files on a Servlet–compliant Web
-container other than Java EE 8 RI , it is necessary to build test WAR
+container other than Jakarta EE 8 CI , it is necessary to build test WAR
 files that contain the VI's servlet class and servlet class property in
 the `web.xml` deployment descriptor, as specified in the {TechnologyShortName}
 specification. The {TechnologyShortName} TCK comes with a
 `web.xml.template` file for each test, which contains all information
 except the servlet class. The {TechnologyShortName} TCK also comes with
-a tool to replace the RI or VI's servlet adaptor class name in the
+a tool to replace the CI or VI's servlet adaptor class name in the
 `web.xml.template`. Refer to link:rebuild.html#GCLIZ[Appendix B,
 "Packaging the Test Applications in Servlet-Compliant WAR Files With
 VI-Specific Information,"] for more information about repackaging the

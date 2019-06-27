@@ -20,9 +20,9 @@ Compatibility Kit (TCK) that is used to test the {TechnologyFullName}
 ({TechnologyShortName} {TechnologyVersion}) (JSR {JSR}) technology.
 
 The {TechnologyShortName} TCK is a portable, configurable automated
-test suite for verifying the compatibility of a licensee's
+test suite for verifying the compatibility of a vendor's
 implementation of the {TechnologyShortName} {TechnologyVersion}
-Specification (hereafter referred to as the licensee implementation).
+Specification (hereafter referred to as the vendor implementation or VI).
 The {TechnologyShortName} TCK uses the JavaTest harness version
 {JavaTestVersion} to run the test suite
 
@@ -37,11 +37,18 @@ the authors of this guide.
 
 =======================================================================
 
+[WARNING]
+====
+TODO
 
-Refer to the Java Licensee Engineering
-(https://javapartner.oracle.com) Web site for answers to frequently
-asked questions and send questions you may have to your Java
-Licensee Engineering contact.
+* The following paragraph needs to be rewritten
+
+====
+
+Refer to the Eclipse EE4J Github Organization
+(https://github.com/eclipse-ee4j) Web site for answers to frequently
+asked questions. You may e-mail questions or comments to the 
+specification development e-mail list.
 
 [[TCJRS00034]][[GBFUS]]
 
@@ -50,19 +57,10 @@ Licensee Engineering contact.
 Who Should Use This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This guide is for licensees of the {TechnologyShortName}
+This guide is for vendors that implement the {TechnologyShortName}
 {TechnologyVersion} technology to assist them in running the test suite
 that verifies compatibility of their implementation of the
 {TechnologyShortName} {TechnologyVersion} Specification.
-
-[[sthref2]][[documentation-accessibility]]
-
-Documentation Accessibility
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-For information about Oracle's commitment to accessibility, visit the
-Oracle Accessibility Program website at
-http://www.oracle.com/pls/topic/lookup?ctx=acc&id=docacc.
 
 
 [[TCJRS00035]][[GBFPO]]
@@ -71,6 +69,14 @@ http://www.oracle.com/pls/topic/lookup?ctx=acc&id=docacc.
 [[before-you-read-this-book]]
 Before You Read This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[WARNING]
+====
+TODO
+
+* Fix reference to JSRURL -- everywhere
+
+====
 
 You should be familiar with the {TechnologyShortName}
 {TechnologyVersion} Specification, which can be found at {JSRURL}.

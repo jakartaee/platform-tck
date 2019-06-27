@@ -51,7 +51,7 @@ as follows:
 [NOTE]
 =======================================================================
 
-For the JASPIC TCK, more than one provider is registered in the vendor's
+For the Eclipse JASPIC TCK, more than one provider is registered in the vendor's
 message processing runtime.
 
 =======================================================================
@@ -141,6 +141,12 @@ The `provider-configuration.xsd` file is a schema file that resides in
 the same directory as the `ProviderConfiguration.xml` file and describes
 the `ProviderConfiguration.xml` file. This file should not be edited.
 
+[WARNING]
+====
+The following link reference is broken
+
+====
+
 thref4]]
 
 
@@ -168,17 +174,17 @@ Since various SOAP implementations are possible in a vendor's message
 processing runtime, the JASPIC TCK considers the following SOAP
 implementations:
 
-* SOAP implementation in a Java EE environment
-* SOAP implementation in standalone container (non-Java EE)
+* SOAP implementation in a Jakarta EE environment
+* SOAP implementation in standalone container (non-Jakarta EE)
 * Non-container based SOAP implementation
 
 For SOAP profile tests, the client invocations of webservice have been
 abstracted into two different types:
 
-* Invocations of Service in a Java EE environment (for example, using
-JAXWS annotations `@WebServiceRef` for looking up the service and
+* Invocations of Service in a Jakarta EE environment (for example, using
+Eclipse JAXWS annotations `@WebServiceRef` for looking up the service and
 `@WebService` for service definition).
-* Invocations of Service in a standalone (i.e. non-Java EE) environment
+* Invocations of Service in a standalone (i.e. non-Jakarta EE) environment
 (this includes standalone container and non-container based
 implementation). +
 The following are used to get the service reference:
@@ -196,7 +202,13 @@ The following are used to get the service reference:
 The deployment abstraction for handling various SOAP implementations are
 handled in the following ways:
 
-* A JSR 88–compliant deployment is used for Java EE-based
+[WARNING]
+====
+Update the direct links to JSR pages below
+
+====
+
+* A JSR 88–compliant deployment is used for Jakarta EE-based
 implementations. This is differentiated by using a different deliverable
 class,
 `deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJavaEEDeliverable`,
@@ -207,15 +219,15 @@ non-container based implementations), a different deliverable class is
 used,
 `deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicDeliverable`.
 Along with this deliverable class an Ant file,
-`TS_HOME/bin/xml/deploy.xml`, is used to deploy in GlassFish Server.
+`TS_HOME/bin/xml/deploy.xml`, is used to deploy in Eclipse GlassFish Server.
 Vendors are expected to implement the `deploy` and `undeploy` targets in
 `deploy.xml` to suite their environment. +
 
 [NOTE]
 =======================================================================
 
-Two deliverable implementations are provided with the GlassFish server.
-One implementation, for non-Java EE servers, turns off auto deployment
+Two deliverable implementations are provided with the Eclipse GlassFish server.
+One implementation, for non-Jakarta EE servers, turns off auto deployment
 and leaves the deployment up to the licensee by way of an Ant target.
 
 =======================================================================
@@ -224,7 +236,13 @@ and leaves the deployment up to the licensee by way of an Ant target.
 `ts.jte` file, `platform.mode`, is used to distinguish the different
 SOAP implementations.
 
-** `platform.mode=javaEE` (for Java EE based implementation)
+[WARNING]
+====
+Change the following mode string?
+
+====
+
+** `platform.mode=javaEE` (for Jakarta EE based implementation)
 
 ** `platform.mode=standalone` +
 
@@ -249,7 +267,7 @@ various artifacts of web services (the WSDL, `ServiceEndpoint`, and
 implementation and their associations). Using other forms of web
 services implementation will lead to separate binding files, web
 services description files (`webservices.xml`) which are different for
-different SOAP implementations, such as a Java EE-based SOAP
+different SOAP implementations, such as a Jakarta EE-based SOAP
 implementation, standalone implementation, and so on.
 
 Since vendors are already expected to generate web service artifacts
@@ -263,7 +281,7 @@ implementation.
 [NOTE]
 ===================================================================
 
-For Java EE-based SOAP implementations, JSR 181 support is required.
+For Jakarta EE-based SOAP implementations, JSR 181 support is required.
 
 ===================================================================
 
