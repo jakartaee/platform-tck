@@ -201,10 +201,11 @@ The {TechnologyShortName} TCK tests run on the following platforms:
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The JavaTest harness version {JavaTestVersion} is a set of tools
-designed to run and manage test suites on different Java and Jakarta EE platforms. The
-JavaTest harness can be described as both a Jakarta (or Java) application and a set
+designed to run and manage test suites on different Java platforms.
+To JavaTest, Jakarta EE can be considered another platform.
+The JavaTest harness can be described as both a Java application and a set
 of compatibility testing tools. It can run tests on different kinds of
-Jakarta (or Java) platforms and it allows the results to be browsed online within
+Java platforms and it allows the results to be browsed online within
 the JavaTest GUI, or offline in the HTML reports that the JavaTest
 harness generates.
 
@@ -251,10 +252,11 @@ matches with the filters you are using and queues them up for execution.
 ^^^^^^^^^^^^^^^^^^^
 
 Each version of a TCK includes an Exclude List contained in a `.jtx`
-file. This is a list of test file URLs that identify tests which do not
-have to be run for the specific version of the TCK being used. Whenever
-tests are run, the JavaTest harness automatically excludes any test on
-the Exclude List from being executed.
+file. 
+This is a list of test file URLs that identify tests which do not
+have to be run for the specific version of the TCK being used. 
+Whenever tests are run, the JavaTest harness automatically excludes
+any test on the Exclude List from being executed.
 
 A vendor's compatible implementation is not required to pass or run any test on the Exclude List.
 The Exclude List file, +{jtxFileName}+, is included in the
@@ -264,8 +266,10 @@ The Exclude List file, +{jtxFileName}+, is included in the
 [NOTE]
 =======================================================================
 
-From time to time, updates to the Exclude List are made available on the
-Eclipse EE4J Github Organization (https://github.com/eclipse-ee4j) Web site.
+From time to time, updates to the Exclude List are made available.
+The exclude list is included in the Jakarta EE TCK ZIP archive.
+Each time an update is approved and released, the version number 
+will be incremented.
 You should always make sure you are using an up-to-date copy of the
 Exclude List before running the {TechnologyShortName} TCK to verify your
 implementation.
@@ -314,6 +318,15 @@ link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
 include::intro.inc[]
 
 [[GBFQW]][[getting-started-with-the-tck]]
+
+[WARNING]
+====
+The following only describes setting up the Eclipse GlassFish
+compatible implementation.
+This must be rewritten to describe the general setup, followed by
+specifics for setting up one or more compatible implementations.
+
+====
 
 1.3 Getting Started With the TCK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

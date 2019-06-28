@@ -175,12 +175,12 @@ Note that multiple `priorStatus` values must be separated by commas.
 
 [[GCLRR]][[running-the-tck-against-the-ri]]
 
-5.3 Running the TCK Against the CI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+5.3 Running the TCK Against another CI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This test scenario is ensures that the configuration and deployment of
-all the prebuilt {TechnologyShortName} TCK tests against the Compatible
-Implementation are successful, and that the TCK is ready for
+Some test scenarios are designed to ensure that the configuration and deployment of
+all the prebuilt {TechnologyShortName} TCK tests against one Compatible
+Implementation are successful operating with other compatible implementations, and that the TCK is ready for
 compatibility testing against the Vendor and Compatible Implementations.
 
 1.  Verify that you have followed the configuration instructions in

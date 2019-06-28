@@ -26,9 +26,10 @@ Configuration,"] for instructions on configuring your test environment.
 3.1 Obtaining the Compatible Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can obtain the {TechnologyShortName} Compatible Implementation (CI)
-({TechnologyRI}) software from the Eclipse EE4J GitHub Organization
-(https://github.com/eclipse-ee4j).
+Each compatible implementation will provide instructions for obtaining
+their product.
+Eclipse GlassFish is a compatible implementation which may be obtained
+from https://www.eclipse.org/downloads/download.php?file=/glassfish/glassfish-5.1.0.zip
 
 [[GBFTS]][[installing-the-software]]
 
