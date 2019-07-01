@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
-This text was originally from the JAX-RS TCK.  Most references
+This text was originally from the Eclipse JAX-RS TCK.  Most references
 to JAX-RS have been parameterized to serve as a simple starting
 point for customization.  There are still many details that will
 need to be changed or removed.
@@ -23,7 +23,7 @@ published in a Java SE environment are located under
 `$TS_HOME/classes`.
 
 The {TechnologyShortName} TCK comes with prebuilt test WAR files for
-deployment on Java EE 8 RI , which provides a Servlet–compliant Web
+deployment on Jakarta EE 8 CI , which provides a Servlet–compliant Web
 container. The WAR files are {TechnologyRI}-specific, with {TechnologyRI}'s servlet
 class and {TechnologyRI}'s servlet defined in the `web.xml` deployment
 descriptor. To run the TCK tests against the VI in a Servlet–compliant
@@ -49,9 +49,9 @@ B.1 Overview
 ~~~~~~~~~~~~
 
 The set of prebuilt archives and classes that ship with the
-{TechnologyShortName} TCK were built using the Reference
-Implementation, and must be deployed on Java EE 8 RI and run against
-the {TechnologyRI} RI.
+{TechnologyShortName} TCK were built using the Compatible
+Implementation, and must be deployed on Jakarta EE 8 CI and run against
+the {TechnologyRI} CI.
 
 The prebuilt {TechnologyRI}-specific Servlet–compliant WAR files are located
 under $TS_HOME`/dist`, and have `jersey` as part of their name; for
@@ -147,7 +147,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 ----
 
 The {TechnologyShortName} TCK provides a tool,
-`${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for the Java EE 8 RI
+`${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for the Jakarta EE 8 CI
 that you can use as a model to help you create your own VI-specific Web
 test application.
 

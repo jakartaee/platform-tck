@@ -1,6 +1,6 @@
 type=page
 status=published
-title=Technology Compatibility Kit User's Guide for Technology Licensees
+title=Technology Compatibility Kit User's Guide for Technology Implementors
 next=preface.html
 prev=toc.html
 ~~~~~~
@@ -35,3 +35,7 @@ SPDX-License-Identifier: EPL-2.0
 
 Oracle and Java are registered trademarks of Oracle and/or its
 affiliates. Other names may be trademarks of their respective owners.
+
+References in this document to {LegacyAcronym} refer to the {TechnologyFullName} unless otherwise noted.
+
+References in this document to JAXRS refer to the Jakarta RESTful Web Services unless otherwise noted.

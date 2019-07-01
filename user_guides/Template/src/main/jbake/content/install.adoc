@@ -23,12 +23,13 @@ Configuration,"] for instructions on configuring your test environment.
 
 [[GBFUD]][[obtaining-the-reference-implementation]]
 
-3.1 Obtaining the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1 Obtaining the Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can obtain the {TechnologyShortName} Reference Implementation (RI)
-({TechnologyRI}) software from Java Licensee Engineering
-(https://javapartner.oracle.com).
+Each compatible implementation will provide instructions for obtaining
+their product.
+Eclipse GlassFish is a compatible implementation which may be obtained
+from https://www.eclipse.org/downloads/download.php?file=/glassfish/glassfish-5.1.0.zip
 
 [[GBFTS]][[installing-the-software]]
 
@@ -40,7 +41,7 @@ install and set up the following software components:
 
 include::req-software.inc[]
 * Java SE {SEversion}
-* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* {TechnologyShortName} {TechnologyVersion} CI, which is {TechnologyRI}
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]
 * The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
@@ -56,23 +57,22 @@ additional information.
   a.  Copy or download the {TechnologyShortName} TCK software to your
       local system. +
       You can obtain the {TechnologyShortName} TCK software from the
-      Java Licensee Engineering (https://javapartner.oracle.com) Web
+      Eclipse EE4J GitHub Organization (https://github.com/eclipse-ee4j) project
       site.  The {TechnologyShortName} TCK software is located in the
-      Web site's Download Center area.
+      project site's Download area.
   b.  Use the `unzip` command to extract the bundle in the directory of
       your choice: +
       +unzip {TCKPackageName}+ +
       This creates the TCK directory. The TCK is the test suite home,
       `<TS_HOME>`.
 include::install-server.inc[]
-.  Install the {TechnologyShortName} {TechnologyVersion} Reference
+.  Install the {TechnologyShortName} {TechnologyVersion} Compatible
 Implementation. +
-The Reference Implementation is used to validate your initial
+The Compatible Implementation is used to validate your initial
 configuration and setup of the {TechnologyShortName} TCK
 {TechnologyVersion} tests, which are explained further in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
-The {TechnologyShortName} RI can be obtained from Java Licensee Engineering
-(https://javapartner.oracle.com).
+The {TechnologyShortName} CI can be obtained from Eclipse EE4J GitHub Organization (https://github.com/eclipse-ee4j) project site.
 include::install-server-vi.inc[]
-.  Install the {TechnologyShortName} Vendor Implementation (VI) to be tested. +
+.  Install the {TechnologyShortName} VI to be tested. +
 Follow the installation instructions for the particular VI under test.

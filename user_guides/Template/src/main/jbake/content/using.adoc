@@ -24,7 +24,7 @@ This chapter includes the following topics:
 
 * link:#GBFUZ[Starting JavaTest]
 * link:#GBFWM[Running a Subset of the Tests]
-* link:#GCLRR[Running the TCK Against the RI]
+* link:#GCLRR[Running the TCK Against the CI]
 * link:#GCLRZ[Running the TCK Against a Vendor's Implementation]
 * link:#GBFVK[Test Reports]
 
@@ -175,17 +175,17 @@ Note that multiple `priorStatus` values must be separated by commas.
 
 [[GCLRR]][[running-the-tck-against-the-ri]]
 
-5.3 Running the TCK Against the RI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+5.3 Running the TCK Against another CI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This test scenario is ensures that the configuration and deployment of
-all the prebuilt {TechnologyShortName} TCK tests against the Reference
-Implementation are successful, and that the TCK is ready for
-compatibility testing against the Vendor and Reference Implementations.
+Some test scenarios are designed to ensure that the configuration and deployment of
+all the prebuilt {TechnologyShortName} TCK tests against one Compatible
+Implementation are successful operating with other compatible implementations, and that the TCK is ready for
+compatibility testing against the Vendor and Compatible Implementations.
 
 1.  Verify that you have followed the configuration instructions in
 link:config.html#GBFVU[Section 4.1, "Configuring Your Environment to Run
-the TCK Against the Reference Implementation."]
+the TCK Against the Compatible Implementation."]
 2.  If required, verify that you have completed the steps in
 link:config.html#GCLIW[Section 4.3.2, "Deploying the Prebuilt Archives."]
 3.  Run the tests, as described in link:#GBFUZ[Section 5.1, "Starting
