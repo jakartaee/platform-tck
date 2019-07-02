@@ -143,6 +143,10 @@ for tck in ${TCK_LIST[@]}; do
   elif [ "jaxrs" == "$tck" ]
   then
     TCK_SPECIFIC_PROPS="-Djaxrs.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.bind-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jsonp-jaxrs.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.ws.rs-api.jar:$GF_HOME/glassfish5/glassfish/modules/jsonp-jaxrs.jar:$GF_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.json.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.ejb-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.interceptor-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/cdi-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.inject.jar:$GF_HOME/glassfish5/glassfish/modules/validation-api.jar:$GF_HOME/glassfish5/glassfish/modules/bean-validator.jar"
+    sed -i "s#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=$GF_HOME/glassfish5/glassfish/domains/domain1/autodeploy#g" $BASEDIR/install/$tck/bin/ts.jte
+    sed -i "s#impl\.vi=.*#impl.vi=glassfish#g" $BASEDIR/install/$tck/bin/ts.jte
+    sed -i "s#jaxrs_impl_lib=.*#jaxrs_impl_lib=$GF_HOME/glassfish5/glassfish/modules/jersey-container-servlet-core.jar#g" $BASEDIR/install/$tck/bin/ts.jte
+    sed -i "s#jaxrs_impl_name=.*#jaxrs_impl_name=jersey#g" $BASEDIR/install/$tck/bin/ts.jte
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "websocket" == "$tck" ]
@@ -242,6 +246,9 @@ for tck in ${TCK_LIST[@]}; do
     ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/glassfish5/glassfish/modules/endorsed build.all 
   fi
 
+  if [ "jaxrs" == "$tck" ]; then
+    ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS update.jaxrs.wars
+  fi
 
   mkdir -p $BASEDIR/internal/docs/$tck
   cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/$tck/
