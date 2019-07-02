@@ -31,11 +31,14 @@ echo "Java Web Services Developer Pack started ..."
 cd $TCK_HOME
 if [ -f "${WORKSPACE}/standalone-bundles/jaxrtck-1.0_latest.zip" ];then
   echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/jaxrtck-1.0_latest.zip -d ${TCK_HOME}
+elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-jaxrtck-1.0_latest.zip" ];then
+  echo "Using stashed eclipse bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/eclipse-jaxrtck-1.0_latest.zip -d ${TCK_HOME}
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
-unzip ${WORKSPACE}/standalone-bundles/jaxrtck-1.0_latest.zip -d ${TCK_HOME}
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
@@ -62,6 +65,11 @@ sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaxrtckreport/jaxrtck#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxrtckwork/jaxrtck#g" ts.jte
 
 sed -i "s#^jwsdp\.home=.*#jwsdp.home=$TCK_HOME/glassfish5/glassfish/#g" $TS_HOME/bin/build.properties
+if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
+  sed -i 's/javax.xml.registry-api.jar/jakarta.xml.registry-api.jar/g' $TS_HOME/bin/build.properties
+  sed -i 's/javax.xml.bind-api.jar/jakarta.xml.bind-api.jar/g' $TS_HOME/bin/build.properties
+fi
+
 echo "ts.home=$TS_HOME" >>$TS_HOME/bin/build.properties
 
 GF_HOME=$TCK_HOME/glassfish5/glassfish/

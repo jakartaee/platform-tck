@@ -1,5 +1,5 @@
 # JakartaEE TCK Jenkins Jobs
-The Jenkins jobs required for certifying Eclipse GlassFish nightly builds using the latest Jakarta EE TCK bundles are hosted in the Eclipse CloudBees Infrastructure and is available in the link below
+The Jenkins jobs required for certifying Eclipse GlassFish nightly builds using the latest Jakarta EE TCK bundles are hosted in the Eclipse CloudBees Infrastructure and are available under
 https://jenkins.eclipse.org/jakartaee-tck/
 
 For information regarding the various JakartaEE TCK related jobs, Please refer to the wiki page below
@@ -153,12 +153,12 @@ running the Solaris, Linux, or Windows operating system.
 software and use the unzip command to extract the bundle:
     ```
     cd install_directory
-    unzip javaeetck-nnn.zip
+    unzip jakartaeetck-nnn.zip
     ```
-This creates the `javaeetck` directory. The `install_directory/javaeetck`
+This creates the `jakartaeetck` directory. The `install_directory/jakartaeetck`
 directory will be `TS_HOME`.
 
-3. Set the `TS_HOME` environment variable to point to the `javaeetck` directory.
+3. Set the `TS_HOME` environment variable to point to the `jakartaeetck` directory.
 
 ### Install Apache Ant
 1. Download the latest version of Apache Ant from the below link

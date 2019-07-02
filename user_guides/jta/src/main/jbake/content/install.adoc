@@ -4,62 +4,75 @@ title=Installation
 next=config.html
 prev=rules.html
 ~~~~~~
+include::attributes.conf[]
 Installation
 ============
 
-[[TCPER00004]][[GBFTP]]
+[[GBFTP]]
 
 
 [[installation]]
 3 Installation
 --------------
 
-This chapter explains how to install the Java Transaction API TCK 1.3
-software.
+This chapter explains how to install the {TechnologyFullName} TCK software.
 
 After installing the software according to the instructions in this
 chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
-Configuration"] for instructions on configuring your test environment.
+Configuration,"] for instructions on configuring your test environment.
 
-[[sthref8]][[obtaining-the-jta-1.3-reference-implementation-java-ee-8-reference-implementation]]
+[[GBFUD]][[obtaining-the-reference-implementation]]
 
-3.1 Obtaining the JTA 1.3 Reference Implementation (Java EE 8 Reference Implementation)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1 Obtaining the Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+You can obtain the {TechnologyShortName} Reference Implementation (RI)
+({TechnologyRI}) software from Java Licensee Engineering
+(https://javapartner.oracle.com).
 
-[[GBFTS]][[TCPER00041]][[installing-the-java-transaction-api-tck-software]]
+[[GBFTS]][[installing-the-software]]
 
-3.2 Installing the Java Transaction API TCK Software
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.2 Installing the Software
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before you can run the Java Transaction API TCK tests, you need to
+Before you can run the {TechnologyShortName} TCK tests, you must
 install and set up the following software components:
 
-* JDK 8.0
-* JTA TCK version 1.3, which includes Apache Ant 1.9.7
-* The JTA implementation to be tested. If you are running against
-Oracle's JTA Reference Implementation, install Oracle's Java EE 8
-Reference Implementation; if not, install your JTA Vendor Implementation
-(VI).
+include::req-software.inc[]
+* Java SE {SEversion}
+* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
+include::tck-packages.inc[]
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
 
-1.  Install the JDK 8.0 software, if it is
-not already installed. +
-Download and install the JDK 8.0 software from
-`http://www.oracle.com/technetwork/java/javase/downloads/index.html`.
+Follow these steps:
+
+.  Install the Java SE {SEversion} software, if it is not already installed. +
+Download and install the Java SE {SEversion} software from
+http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 Refer to the installation instructions that accompany the software for
 additional information.
-2.  Install the JTA TCK 1.3 software.
-1.  Copy or download the JTA TCK software to your local system. +
-2.  Use the `unzip` command to extract the bundle: +
-[source,oac_no_warn]
-----
-unzip jtatck-1.3_date.zip
-----
-This creates the `jtatck` directory. The install-dir/jtatck directory is
-the test suite home, install-dir.
-3.  Install the JTA 1.3 Reference Implementation. +
-JTA 1.3 Reference Implementation is used to validate your initial
-configuration and setup of the JTA TCK 1.3 tests, which are explained
-further in link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
-4.  Install your JTA Vendor Implementation (VI) to be tested. +
+.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
+  a.  Copy or download the {TechnologyShortName} TCK software to your
+      local system. +
+      You can obtain the {TechnologyShortName} TCK software from the
+      Java Licensee Engineering (https://javapartner.oracle.com) Web
+      site.  The {TechnologyShortName} TCK software is located in the
+      Web site's Download Center area.
+  b.  Use the `unzip` command to extract the bundle in the directory of
+      your choice: +
+      +unzip {TCKPackageName}+ +
+      This creates the TCK directory. The TCK is the test suite home,
+      `<TS_HOME>`.
+include::install-server.inc[]
+.  Install the {TechnologyShortName} {TechnologyVersion} Reference
+Implementation. +
+The Reference Implementation is used to validate your initial
+configuration and setup of the {TechnologyShortName} TCK
+{TechnologyVersion} tests, which are explained further in
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
+The {TechnologyShortName} RI can be obtained from Java Licensee Engineering
+(https://javapartner.oracle.com).
+include::install-server-vi.inc[]
+.  Install the {TechnologyShortName} Vendor Implementation (VI) to be tested. +
 Follow the installation instructions for the particular VI under test.

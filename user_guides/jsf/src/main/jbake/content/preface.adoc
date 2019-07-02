@@ -15,21 +15,6 @@ Preface
 Preface
 -------
 
-[NOTE]
-========================================================================
-
-The Technology Compatability Kit (TCK) documentation is part of the Java Enterprise 
-Edition contribution to the Eclipse Foundation and is not intended for 
-use in relation to Java Enterprise Edition or Java Licensee 
-requirements. The documentation is in the process of being revised to 
-reflect the new Jakarta EE branding. 
-Additional changes will be made as requirements and procedures evolve 
-for Jakarta EE. Where applicable, references to Java EE or Java 
-Enterprise Edition should be considered references to Jakarta EE. 
-
-Please see the Title page for additional license information.
-========================================================================
-
 This guide describes how to install, configure, and run the Technology
 Compatibility Kit (TCK) that is used to test the {TechnologyFullName}
 ({TechnologyShortName} {TechnologyVersion}) (JSR {JSR}) technology.
@@ -52,6 +37,12 @@ the authors of this guide.
 
 =======================================================================
 
+
+Refer to the Java Licensee Engineering
+(https://javapartner.oracle.com) Web site for answers to frequently
+asked questions and send questions you may have to your Java
+Licensee Engineering contact.
+
 [[TCJRS00034]][[GBFUS]]
 
 
@@ -59,10 +50,19 @@ the authors of this guide.
 Who Should Use This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This guide is for developers of the {TechnologyShortName}
+This guide is for licensees of the {TechnologyShortName}
 {TechnologyVersion} technology to assist them in running the test suite
 that verifies compatibility of their implementation of the
 {TechnologyShortName} {TechnologyVersion} Specification.
+
+[[sthref2]][[documentation-accessibility]]
+
+Documentation Accessibility
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For information about Oracle's commitment to accessibility, visit the
+Oracle Accessibility Program website at
+http://www.oracle.com/pls/topic/lookup?ctx=acc&id=docacc.
 
 
 [[TCJRS00035]][[GBFPO]]
@@ -76,8 +76,9 @@ You should be familiar with the {TechnologyShortName}
 {TechnologyVersion} Specification, which can be found at {JSRURL}.
 
 Before running the tests in the {TechnologyShortName} TCK, you should
-familiarize yourself with the JavaTest documentation that is included
-in the {TechnologyShortName} TCK documentation bundle.
+familiarize yourself with the JavaTest documentation which can be
+accessed at the
+link:https://wiki.openjdk.java.net/display/CodeTools/JT+Harness[JT Harness web site].
 
 [[TCJRS00036]][[GBFWF]]
 

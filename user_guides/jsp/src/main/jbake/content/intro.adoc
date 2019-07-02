@@ -2,24 +2,33 @@ type=page
 status=published
 title=Introduction
 next=rules.html
-prev=TCKpreface.html
+prev=preface.html
 ~~~~~~
+include::attributes.conf[]
 Introduction
 ============
 
-[[TCJSP00002]][[GBFOW]]
+[[GBFOW]]
 
 
 [[introduction]]
 1 Introduction
 --------------
 
-This chapter provides an overview of the principles that apply to any
-Technology Compatibility Kit (TCK) and describes the JavaServer Pages
-TCK. It also includes a high level description of what you need to do to
-begin using the JSP TCK.
+This chapter provides an overview of the principles that apply
+generally to all Technology Compatibility Kits (TCKs) and describes the
+{TechnologyFullName} TCK ({TechnologyShortName} TCK
+{TechnologyVersion}) (JSR {JSR}). It also includes a high level listing
+of what is needed to get up and running with the {TechnologyShortName}
+TCK.
 
-[[GBFTK]][[TCJSP00034]][[compatibility-testing]]
+This chapter includes the following topics:
+
+* link:#GBFTK[Compatibility Testing]
+* link:#GBFQR[About the TCK]
+* link:#GBFQW[Getting Started With the TCK]
+
+[[GBFTK]][[compatibility-testing]]
 
 1.1 Compatibility Testing
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,7 +47,7 @@ specification and reference implementation for that feature.
 Compatibility testing is not primarily concerned with robustness,
 performance, or ease of use.
 
-[[GBFQN]][[TCJSP00057]][[why-compatibility-testing-is-important]]
+[[GBFQN]][[why-compatibility-testing-is-important]]
 
 1.1.1 Why Compatibility Testing is Important
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -58,7 +67,7 @@ from disparate sources and deploy them with confidence.
 * Conformance testing benefits Java platform implementors by ensuring a
 level playing field for all Java platform ports.
 
-[[GBFPR]][[TCJSP00058]][[tck-compatibility-rules]]
+[[GBFPR]][[tck-compatibility-rules]]
 
 1.1.2 TCK Compatibility Rules
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -66,16 +75,15 @@ level playing field for all Java platform ports.
 Compatibility criteria for all technology implementations are embodied
 in the TCK Compatibility Rules that apply to a specified technology.
 Each TCK tests for adherence to these Rules as described in
-link:rules.html#GBFSN[Chapter 2, "Procedure for JavaServer Pages 2.3
-Certification."]
+link:rules.html#GBFSN[Chapter 2, "Procedure for Certification."]
 
-[[GBFPW]][[TCJSP00059]][[tck-overview]]
+[[GBFPW]][[tck-overview]]
 
 1.1.3 TCK Overview
 ^^^^^^^^^^^^^^^^^^
 
 A TCK is a set of tools and tests used to verify that a licensee's
-implementation of the technology conforms to the applicable
+implementation of a Java EE technology conforms to the applicable
 specification. All tests in the TCK are based on the written
 specifications for the Java platform. A TCK tests compatibility of a
 licensee's implementation of the technology to the applicable
@@ -94,95 +102,109 @@ The definition of required tests will change over time. Before your
 final certification test pass, be sure to download the latest Exclude
 List for the TCK you are using.
 
-[[GBFPB]][[TCJSP00060]][[java-community-process-jcp-program-and-compatibility-testing]]
+[[GBFPB]][[java-community-process-jcp-program-and-compatibility-testing]]
 
 1.1.4 Java Community Process (JCP) Program and Compatibility Testing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Java Community Process (JCP) program is the formalization of the
-open process used since 1995 to develop and revise Java technology
-specifications in cooperation with the international Java community. The
-JCP program specifies that the following three major components must be
-included as deliverables in a final Java technology release under the
-direction of the responsible Expert Group:
+open process that has been used since 1995 to develop and revise Java
+technology specifications in cooperation with the international Java
+community. The JCP program specifies that the following three major
+components must be included as deliverables in a final Java technology
+release under the direction of the responsible Expert Group:
 
 * Technology Specification
 * Reference Implementation
 * Technology Compatibility Kit (TCK)
 
 For further information about the JCP program, go to Java Community
-Process (`http://jcp.org`).
+Process (http://jcp.org/en/home/index).
 
-[[GBFQR]][[TCJSP00035]][[about-the-javaserver-pages-tck-2.3]]
+[[GBFQR]][[about-the-tck]]
 
-1.2 About the JavaServer Pages TCK 2.3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.2 About the TCK
+~~~~~~~~~~~~~~~~~
 
-The JavaServer Pages TCK 2.3 is a portable, configurable, automated test
-suite for verifying the compatibility of a licensee's implementation of
-the JSP 2.3 Specification.
+The {TechnologyShortName} TCK {TechnologyVersion} is designed as a
+portable, configurable, automated test suite for verifying the
+compatibility of a licensee's implementation of the
+{TechnologyShortName} {TechnologyVersion} Specification.
 
-[[GBFQV]][[TCJSP00061]][[javaserver-pages-tck-specifications-and-requirements]]
+[[GBFQV]][[tck-specifications-and-requirements]]
 
-1.2.1 JavaServer Pages TCK Specifications and Requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.1 TCK Specifications and Requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following requirements and specifications apply to the JavaServer
-Pages TCK 2.3:
+This section lists the applicable requirements and specifications.
 
-* Specification Requirements: Software requirements for a JSP
-implementation are described in detail in the JSP 2.3 Specification.
-Links to the JSP specification and other product information can be
-found at `http://jcp.org/en/jsr/detail?id=245`.
-* JSP Version: The JSP TCK 2.3 is based on the JSP Specification,
-Version 2.3.
-* Reference Implementation: The Reference Implementation (RI) for JSP
-can be used with
-any web container that meets the minimum requirements for a container as
-defined in the JSP 2.3 Specification. The JSP 2.3 APIs have also been
-integrated into the Java EE 7 RI and the Java EE 7 Web Profile RI
-bundles, both of which are available from Java Licensee Engineering. +
-See the JavaServer Pages TCK 2.3 Release Notes for more specific
-information about JDK version requirements, supported platforms,
+* Specification Requirements: Software requirements for a
+{TechnologyShortName} implementation are described in detail in the
+{TechnologyShortName} {TechnologyVersion} Specification.  Links to the
+{TechnologyShortName} specification and other product information can
+be found at {JSRURL}.
+* {TechnologyShortName} Version: The {TechnologyShortName} TCK
+{TechnologyVersion} is based on the {TechnologyShortName}
+Specification, Version {TechnologyVersion}.
+* Reference Implementation: The {TechnologyShortName}
+{TechnologyVersion} Reference Implementation ({TechnologyRI}) is
+available from Java Licensee Engineering
+(https://javapartner.oracle.com). See the RI documentation page at
+{TechnologyRIURL} for more information.
+
+See the {TechnologyShortName} TCK Release Notes for more specific
+information about Java SE version requirements, supported platforms,
 restrictions, and so on.
 
-[[GBFSQ]][[TCJSP00062]][[jsp-tck-components]]
+[[GBFSQ]][[tck-components]]
 
-1.2.2 JSP TCK Components
-^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.2 TCK Components
+^^^^^^^^^^^^^^^^^^^^
 
-The JSP TCK 2.3 includes the following components:
+The {TechnologyShortName} TCK {TechnologyVersion} includes the
+following components:
 
-* JavaTest harness version 4.4.1 and related documentation.
-* JSP TCK signature tests check that all public APIs are supported
-and/or defined as specified in the JSP Version 2.3 implementation under
-test.
-* API tests for all of the packages comprising the required class
-libraries for JavaServer Pages 2.3. +
-See link:rules.html#CJAHCCBA[Section 2.5, "Libraries for JavaServer Pages
-Version 2.3,"] for a complete list of the class libraries in these
-packages.
-* End-to-end tests that demonstrate compliance with the JavaServer Pages
-2.3 specification.
+* JavaTest harness version {JavaTestVersion} and related documentation. See the
+`ReleaseNotes-jtharness.html` file and the
+link:https://wiki.openjdk.java.net/display/CodeTools/JT+Harness[JT Harness web site]
+for additional information.
+* {TechnologyShortName} TCK signature tests; check that all public APIs
+are supported and/or defined as specified in the {TechnologyShortName}
+Version {TechnologyVersion} implementation under test.
+* If applicable, an exclude list, which provides a list of tests that your
+implementation is not required to pass.
+ifndef::no-api-tests[]
+* API tests for all of the {TechnologyShortName} API in all related packages:
+include::packages.inc[]
+endif::no-api-tests[]
+ifdef::end-to-end-tests[]
+* End-to-end tests that demonstrate compliance with the {TechnologyFullName}
+Specification.
+endif::end-to-end-tests[]
 
-[[GBFSA]][[TCJSP00063]][[javatest-harness]]
+The {TechnologyShortName} TCK tests run on the following platforms:
+
+* Windows 10
+* Oracle Linux 7.1
+
+[[GBFSA]][[javatest-harness]]
 
 1.2.3 JavaTest Harness
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The JavaTest harness version 4.4.1 is a set of tools designed to run and
-manage test suites on different Java platforms. The JavaTest harness can
-be described as both a Java application and a set of compatibility
-testing tools. It can run tests on different kinds of Java platforms and
-it allows the results to be browsed online within the JavaTest GUI, or
-offline in the HTML reports that the JavaTest harness generates.
+The JavaTest harness version {JavaTestVersion} is a set of tools
+designed to run and manage test suites on different Java platforms. The
+JavaTest harness can be described as both a Java application and a set
+of compatibility testing tools. It can run tests on different kinds of
+Java platforms and it allows the results to be browsed online within
+the JavaTest GUI, or offline in the HTML reports that the JavaTest
+harness generates.
 
 The JavaTest harness includes the applications and tools that are used
 for test execution and test suite management. It supports the following
 features:
 
-* Sequencing of tests, allowing them to be loaded and executed
-automatically
+* Sequencing of tests, allowing them to be loaded and executed automatically
 * Graphic user interface (GUI) for ease of use
 * Automated reporting capability to minimize manual errors
 * Failure analysis
@@ -191,16 +213,18 @@ automatically
 
 To run tests using the JavaTest harness, you specify which tests in the
 test suite to run, how to run them, and where to put the results as
-described in Chapter 4.
+described in link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration."]
 
-[[GBFRA]][[TCJSP00064]][[tck-compatibility-test-suite]]
+[[GBFRA]][[tck-compatibility-test-suite]]
 
 1.2.4 TCK Compatibility Test Suite
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The test suite is the collection of tests used by the JavaTest harness
 to test a particular technology implementation. In this case, it is the
-collection of tests used by the JSP TCK 2.3 to test a JSP 2.3
+collection of tests used by the {TechnologyShortName} TCK
+{TechnologyVersion} to test a {TechnologyShortName} {TechnologyVersion}
 implementation. The tests are designed to verify that a licensee's
 runtime implementation of the technology complies with the appropriate
 specification. The individual tests correspond to assertions of the
@@ -213,7 +237,7 @@ located under the directories that have been selected. While scanning,
 the JavaTest harness selects the appropriate tests according to any
 matches with the filters you are using and queues them up for execution.
 
-[[GBFSH]][[TCJSP00065]][[exclude-lists]]
+[[GBFSH]][[exclude-lists]]
 
 1.2.5 Exclude Lists
 ^^^^^^^^^^^^^^^^^^^
@@ -224,28 +248,32 @@ have to be run for the specific version of the TCK being used. Whenever
 tests are run, the JavaTest harness automatically excludes any test on
 the Exclude List from being executed.
 
-A licensee is not required to pass, or even run, any test on the Exclude
-List. The Exclude List file, `<TS_HOME>/bin/ts.jtx`, is included in the
-JSP TCK.
+A licensee is not required to pass or run any test on the Exclude List.
+The Exclude List file, +{jtxFileName}+, is included in the
+{TechnologyShortName} TCK.
 
 
 [NOTE]
 =======================================================================
 
+From time to time, updates to the Exclude List are made available on the
+Java Licensee Engineering (https://javapartner.oracle.com) Web site.
 You should always make sure you are using an up-to-date copy of the
-Exclude List before running the JSP TCK to verify your implementation.
+Exclude List before running the {TechnologyShortName} TCK to verify your
+implementation.
 
 =======================================================================
 
 
 A test might be in the Exclude List for reasons such as:
 
-* An error in an underlying implementation API does not allow the test
-to execute properly.
-* The specification upon which the test was based has an error.
-* The test itself has an error.
-* The test fails due to a bug in the tools, such as the JavaTest
-harness, for example.
+* An error in an underlying implementation API has been discovered which
+does not allow the test to execute properly.
+* An error in the specification that was used as the basis of the test
+has been discovered.
+* An error in the test itself has been discovered.
+* The test fails due to a bug in the tools (such as the JavaTest
+harness, for example).
 
 In addition, all tests are run against the reference implementations.
 Any tests that fail when run on a reference Java platform are put on the
@@ -260,49 +288,50 @@ based on a particular file system behavior, and so on) may be excluded.
 
 Licensees are not permitted to alter or modify Exclude Lists. Changes to
 an Exclude List can only be made by using the procedure described in
-link:rules.html#CJAIGAID[Section 2.3, "JavaServer Pages Version 2.3 Test
-Appeals Process."]
+link:rules.html#CJAJEAEI[Section 2.3.1, "TCK Test Appeals Steps."]
 
 =======================================================================
 
 
-[[GBFRR]][[TCJSP00066]][[jsp-tck-configuration-overview]]
+[[GBFRR]][[tck-configuration]]
 
-1.2.6 JSP TCK Configuration Overview
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.6 TCK Configuration
+^^^^^^^^^^^^^^^^^^^^^^^
 
 You need to set several variables in your test environment, modify
-properties in the `<TS_HOME>/bin/ts.jte` file, and then use the JavaTest
-harness to configure and run the JSP tests, as described in
+properties in the +{jteFileName}+ file, and then use the JavaTest
+harness to configure and run the {TechnologyShortName} tests, as described in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
 
-[[GBFQW]][[TCJSP00036]][[getting-started-with-the-jsp-tck]]
+include::intro.inc[]
 
-1.3 Getting Started With the JSP TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[GBFQW]][[getting-started-with-the-tck]]
+
+1.3 Getting Started With the TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section provides an general overview of what needs to be done to
-install, set up, test, and use the JSP TCK. These steps are explained in
-more detail in subsequent chapters of this guide.
+install, set up, test, and use the {TechnologyShortName} TCK. These
+steps are explained in more detail in subsequent chapters of this
+guide.
 
 1.  Make sure that the following software has been correctly installed
 on the system hosting the JavaTest harness:
-* Appropriate Java SE 7
-* Implementation of the JavaServer Pages 2.3 specification
-* JavaServer Pages TCK Version 2.3 +
+include::req-software.inc[]
+* Java SE {SEversion}
+* {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
+* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
+include::tck-packages.inc[]
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI) +
 See the documentation for each of these software applications for
 installation instructions. See link:install.html#GBFTP[Chapter 3,
-"Installation,"] for instructions on installing the JSP TCK.
-2.  Set up the JSP TCK software. +
+"Installation,"] for instructions on installing the {TechnologyShortName} TCK.
+2.  Set up the {TechnologyShortName} TCK software. +
 See link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
 details about the following steps.
-1.  Set up your shell environment.
-2.  Modify the required properties in the `<TS_HOME>/bin/ts.jte` file.
-3.  Configure the JavaTest harness.
-4.  Prepare any relevant WAR files for deployment, if necessary.
-5.  Configure and start the Web container.
-3.  Test the JSP 2.3 implementation. +
-Test the JSP implementation installation by running the test suite. See
-link:using.html#GBFWO[Chapter 5, "Executing Tests."]
-
-
+  a.  Set up your shell environment.
+  b.  Modify the required properties in the +{jteFileName}+ file.
+  c.  Configure the JavaTest harness.
+3.  Test the {TechnologyShortName} {TechnologyVersion} implementation. +
+Test the {TechnologyShortName} implementation installation by running
+the test suite.  See link:using.html#GBFWO[Chapter 5, "Executing Tests."]

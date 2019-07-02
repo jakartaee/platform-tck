@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [tck_jsonb_v1_0]
 description: [Oracle Technology Compatibility Kit User's Guide for Java API for JSON Binding 1.0 for Technology Licensees, Release 1.0]

@@ -26,11 +26,14 @@ cd $TCK_HOME
 
 if [ -f "${WORKSPACE}/standalone-bundles/jaxwstck-2.3_latest.zip" ];then
   echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/jaxwstck-2.3_latest.zip -d ${TCK_HOME}
+elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-jaxwstck-2.3_latest.zip" ];then
+  echo "Using stashed eclipse bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/eclipse-jaxwstck-2.3_latest.zip -d ${TCK_HOME}
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
-unzip ${WORKSPACE}/standalone-bundles/jaxwstck-2.3_latest.zip -d ${TCK_HOME}
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
@@ -47,17 +50,12 @@ chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 mkdir $TCK_HOME/ri
 
-PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
-PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-
 sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
 sed -i "s#webcontainer\.home\.ri=.*#webcontainer.home.ri=$TCK_HOME/ri/glassfish5/glassfish#g" ts.jte
 sed -i 's#webServerHost\.2=.*#webServerHost.2=localhost#g' ts.jte
 sed -i 's#webServerPort\.2=.*#webServerPort.2=9080#g' ts.jte
 sed -i 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
 sed -i 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
-sed -i "s#wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-sed -i "s#ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
 sed -i "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaxwstckreport/jaxwstck#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxwstckwork/jaxwstck#g" ts.jte
@@ -67,6 +65,8 @@ mkdir -p $TCK_HOME/jaxwstckwork/jaxwstck
 
 export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
 
+cd $TCK_HOME/vi/glassfish5/glassfish/bin
+./asadmin start-domain
 cd $TS_HOME/bin
 ant config.vi
 
@@ -83,15 +83,25 @@ sed -i 's/4848/5858/g' $RI_DOMAIN_CONFIG_FILE
 sed -i 's/8080/9080/g' $RI_DOMAIN_CONFIG_FILE
 sed -i 's/8181/9181/g' $RI_DOMAIN_CONFIG_FILE
 
-cd $TS_HOME/bin
 cd $TCK_HOME/ri/glassfish5/glassfish/bin
 ./asadmin start-domain
 cd $TS_HOME/bin
 ant config.ri
-cd $TS_HOME/src/com/sun/ts/tests/jaxws
-ant -Dkeywords=all -Dbuild.vi=true clean build package
 
-ant -Dkeywords=forward -Dreport.dir=$TCK_HOME/jaxwstckreport -Dwork.dir=$TCK_HOME/jaxwstckwork deploy.all runclient 
+cd $TCK_HOME/vi/glassfish5/glassfish/bin
+./asadmin stop-domain
+./asadmin start-domain
+
+cd $TCK_HOME/ri/glassfish5/glassfish/bin
+./asadmin stop-domain
+./asadmin start-domain
+
+cd $TS_HOME/src/com/sun/ts/tests/jaxws
+ant -Dkeywords=all -Dbuild.vi=true build
+ant -Dkeywords=all deploy.all
+ant -Dkeywords=all runclient 
+
+#run sigtest
 cd $TS_HOME/src/com/sun/ts/tests/signaturetest
 ant -Dreport.dir=$TCK_HOME/jaxwstckreport/jaxwstck-sig -Dwork.dir=$TCK_HOME/jaxwstckwork/jaxwstck-sig runclient
 
@@ -103,4 +113,4 @@ echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${WORKSPACE}/*.log ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*

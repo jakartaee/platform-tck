@@ -1,191 +1,106 @@
 type=page
 status=published
-title=Oracle Technology Compatibility Kit User's Guide for Java Authentication SPI for Containers (JASPIC) 1.1 for Technology Licensees, Release 1.1
+title=Technology Compatibility Kit User's Guide for Technology Licensees
 next=title.html
 ~~~~~~
-Oracle Technology Compatibility Kit User's Guide for Java Authentication SPI for Containers (JASPIC) 1.1 for Technology Licensees, Release 1.1
-==============================================================================================================================================
+include::attributes.conf[]
+Technology Compatibility Kit User's Guide for Technology Licensees
+==================================================================
 
 [[contents]]
 Contents
 --------
 
-[[title-and-copyright-information]]
-link:title.html[Title and Copyright Information]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* link:title.html#eclipse-foundation[Eclipse Foundation]
 
-[[preface]]
-link:TCKpreface.html#GBFTI[Preface]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+link:preface.html#GBFTI[Preface]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:TCKpreface.html#GBFUS[Who Should Use This Book]
-* link:TCKpreface.html#sthref2[Documentation Accessibility]
-* link:TCKpreface.html#GBFPO[Before You Read This Book]
-* link:TCKpreface.html#GBFWF[Typographic Conventions]
-* link:TCKpreface.html#FWBSD[Shell Prompts in Command Examples]
+** link:preface.html#GBFUS[Who Should Use This Book]
+** link:preface.html#sthref2[Documentation Accessibility]
+** link:preface.html#GBFPO[Before You Read This Book]
+** link:preface.html#GBFWF[Typographic Conventions]
+** link:preface.html#FWBSD[Shell Prompts in Command Examples]
 
-[[introduction]]
 link:intro.html#GBFOW[1 Introduction]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:intro.html#GBFTK[1.1 Compatibility Testing]
+** link:intro.html#GBFTK[1.1 Compatibility Testing]
+*** link:intro.html#GBFQN[1.1.1 Why Compatibility Testing is Important]
+*** link:intro.html#GBFPR[1.1.2 TCK Compatibility Rules]
+*** link:intro.html#GBFPW[1.1.3 TCK Overview]
+*** link:intro.html#GBFPB[1.1.4 Java Community Process (JCP) Program and Compatibility Testing]
+** link:intro.html#GBFQR[1.2 About the TCK]
+*** link:intro.html#GBFQV[1.2.1 TCK Specifications and Requirements]
+*** link:intro.html#GBFSQ[1.2.2 TCK Components]
+*** link:intro.html#GBFSA[1.2.3 JavaTest Harness]
+*** link:intro.html#GBFRA[1.2.4 TCK Compatibility Test Suite]
+*** link:intro.html#GBFSH[1.2.5 Exclude Lists]
+*** link:intro.html#GBFRR[1.2.6 TCK Configuration]
+** link:intro.html#GBFQW[1.3 Getting Started With the TCK]
 
-** link:intro.html#GBFQN[1.1.1 Why Compatibility Testing is Important]
+[[procedure-for-certification]]
+link:rules.html#GBFSN[2 Procedure for Certification]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-** link:intro.html#GBFPR[1.1.2 TCK Compatibility Rules]
+** link:rules.html#CJAFFDGI[2.1 Certification Overview]
+** link:rules.html#CJAFGIGG[2.2 Compatibility Requirements]
+*** link:rules.html#definitions[2.2.1 Definitions]
+*** link:rules.html#sthref7[2.2.2 Rules for {TechnologyFullName} Products]
+** link:rules.html#CJAIIBDJ[2.3 Test Appeals Process]
+*** link:rules.html#CJAJEAEI[2.3.1 TCK Test Appeals Steps]
+*** link:rules.html#sthref8[2.3.2 Test Challenge and Response Forms]
+** link:rules.html#CJAJECIE[2.4 Specifications for {TechnologyFullName}]
+** link:rules.html#CJABAHGI[2.5 Libraries for {TechnologyFullName}]
 
-** link:intro.html#GBFPW[1.1.3 TCK Overview]
-
-** link:intro.html#GBFPB[1.1.4 Java Community Process (JCP) Program and
-Compatibility Testing]
-* link:intro.html#GBFQR[1.2 About the JASPIC TCK 1.1]
-
-** link:intro.html#GEQNJ[1.2.1 JASPIC Technology Overview]
-
-** link:intro.html#GKXQP[1.2.2 JASPIC TSSV Files]
-*** link:intro.html#GKXUX[1.2.2.1 tssv.jar file]
-*** link:intro.html#GKXSG[1.2.2.2 ProviderConfiguration.xml file]
-*** link:intro.html#GKXQN[1.2.2.3 provider-configuration.xsd file]
-
-** link:intro.html#sthref4[1.2.3 Baseline Compatibility Requirements]
-
-** link:intro.html#GKXRJ[1.2.4 Servlet Profile Tests]
-
-** link:intro.html#GEQME[1.2.5 SOAP Profile Tests]
-
-** link:intro.html#GBFQV[1.2.6 JASPIC TCK Specifications and
-Requirements]
-
-** link:intro.html#GBFSQ[1.2.7 JASPIC TCK Components]
-
-** link:intro.html#GBFSA[1.2.8 JavaTest Harness]
-
-** link:intro.html#GBFRA[1.2.9 TCK Compatibility Test Suite]
-
-** link:intro.html#GBFSH[1.2.10 Exclude Lists]
-
-** link:intro.html#GBFRR[1.2.11 JASPIC TCK Configuration Overview]
-* link:intro.html#GBFQW[1.3 Getting Started With the JASPIC TCK]
-
-[[procedure-for-java-authentication-spi-for-containers-jaspic-1.1-certification]]
-link:rules.html#GBFSN[2 Procedure for Java Authentication SPI for Containers (JASPIC) 1.1 Certification]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* link:rules.html#CJADHGCI[2.1 Certification Overview]
-* link:rules.html#CJACFGJC[2.2 Compatibility Requirements]
-
-** link:rules.html#sthref5[2.2.1 Definitions]
-
-** link:rules.html#sthref8[2.2.2 Rules for Java Authentication SPI for
-Containers Version 1.1 Products]
-* link:rules.html#CJAFIHIE[2.3 Java Authentication SPI for Containers
-Version 1.1 Test Appeals Process]
-
-** link:rules.html#CJAFFBHF[2.3.1 Java Authentication SPI for Containers
-Version 1.1 TCK Test Appeals Steps]
-
-** link:rules.html#sthref9[2.3.2 Test Challenge and Response Forms]
-* link:rules.html#CJAEDEGF[2.4 Specification for Java Authentication SPI
-for Containers Version 1.1]
-* link:rules.html#CJAEHEGB[2.5 Libraries for Java Authentication SPI for
-Containers Version 1.1]
-
-[[installation]]
 link:install.html#GBFTP[3 Installation]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:install.html#GBFUD[3.1 Obtaining the JASPIC 1.1 Reference
-Implementation]
-* link:install.html#GBFTS[3.2 Installing the Software]
+** link:install.html#GBFUD[3.1 Obtaining the Reference Implementation]
+** link:install.html#GBFTS[3.2 Installing the Software]
 
 [[setup-and-configuration]]
 link:config.html#GBFVV[4 Setup and Configuration]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:config.html#GBFVU[4.1 Configuring Your Environment to Run the
-JASPIC TCK]
-
-** link:config.html#GCRWX[4.1.1 Deploying the JASPIC TCK Tests]
-
-** link:config.html#GBFWN[4.1.2 To Configure Your Environment for the
-JASPIC TCK]
-* link:config.html#CBDBIAGD[4.2 Creating and Using a Custom Vehicle]
-
-** link:config.html#CBDCAIEE[4.2.1 To Create a Custom Vehicle]
-
-** link:config.html#sthref10[4.2.2 To Replace the Default Vehicle With a
-Custom Vehicle]
-* link:config.html#GBWKV[4.3 Starting the Java EE 7 Server]
-* link:config.html#GBFUY[4.4 Using the JavaTest Harness Software]
-* link:config.html#GBFWG[4.5 Using the JavaTest Harness Configuration
-GUI]
-
-** link:config.html#GBFVA[4.5.1 Configuration GUI Overview]
-
-** link:config.html#GBFVD[4.5.2 Starting the Configuration GUI]
-
-** link:config.html#GBFVX[4.5.3 To Configure the JavaTest Harness to Run
-the JASPIC TCK Tests]
-
-** link:config.html#GBFUU[4.5.4 Modifying the Default Test Configuration]
+** link:config.html#GHGDH[4.4 Custom Configuration Handlers]
+** link:config.html#GBFWG[4.5 Custom Deployment Handlers]
+*** link:config.html#GBFVA[4.5.1 To Create a Custom Deployment Handler]
+** link:config.html#GBFUY[4.6 Using the JavaTest Harness Software]
+** link:config.html#GBFWG[4.7 Using the JavaTest Harness Configuration GUI]
+*** link:config.html#GBFVA[4.7.1 Configuration GUI Overview]
+*** link:config.html#GBFVD[4.7.2 Starting the Configuration GUI]
+*** link:config.html#GBFVX[4.7.3 To Configure the JavaTest Harness to Run the TCK Tests]
+*** link:config.html#GBFUU[4.7.4 Modifying the Default Test Configuration]
 
 [[executing-tests]]
 link:using.html#GBFWO[5 Executing Tests]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:using.html#GBFUZ[5.1 Starting JavaTest]
-
-** link:using.html#GBFWH[5.1.1 To Start JavaTest in GUI Mode]
-
-** link:using.html#GBFVW[5.1.2 To Start JavaTest in Command-Line Mode]
-* link:using.html#GBFWM[5.2 Running a Subset of the Tests]
-
-** link:using.html#GBFVT[5.2.1 To Run a Subset of Tests in GUI Mode]
-
-** link:using.html#GBFWK[5.2.2 To Run a Subset of Tests in Command-Line
-Mode]
-
-** link:using.html#GBFVL[5.2.3 To Run a Subset of Tests in Batch Mode
-Based on Prior Result Status]
-* link:using.html#GEQMG[5.3 Running Profile-Specific Tests]
-* link:using.html#GBWKD[5.4 Building and Running the JASPIC TCK Tests
-Using Ant]
-
-** link:using.html#GBWKI[5.4.1 To Configure Your Build Environment]
-
-** link:using.html#GBWJZ[5.4.2 To Run the Tests]
-
-** link:using.html#sthref11[5.4.3 To Run the Signature Tests Using Ant]
-* link:using.html#GBFVK[5.5 Test Reports]
-
-** link:using.html#GBFWD[5.5.1 Creating Test Reports]
-*** link:using.html#GBFVH[5.5.1.1 To Create a Test Report in GUI Mode]
-*** link:using.html#GBFVC[5.5.1.2 To Create a Test Report in Command-Line
-Mode]
-
-** link:using.html#GBFVB[5.5.2 Viewing an Existing Test Report]
-*** link:using.html#GBFVO[5.5.2.1 To View an Existing Report in GUI Mode]
-*** link:using.html#GBFWB[5.5.2.2 To View an Existing Report in
-Command-Line Mode]
+** link:using.html#GBFUZ[5.1 Starting JavaTest]
+*** link:using.html#GBFWH[5.1.1 To Start JavaTest in GUI Mode]
+*** link:using.html#GBFVW[5.1.2 To Start JavaTest in Command-Line Mode]
+** link:using.html#GBFWM[5.2 Running a Subset of the Tests]
+*** link:using.html#GBFVT[5.2.1 To Run a Subset of Tests in GUI Mode]
+*** link:using.html#GBFWK[5.2.2 To Run a Subset of Tests in Command-Line Mode]
+*** link:using.html#GBFVL[5.2.3 To Run a Subset of Tests in Batch Mode Based on Prior Result Status]
+** link:using.html#GCLRR[5.3 Running the TCK Against the RI]
+** link:using.html#GCLRZ[5.4 Running the TCK Against a Vendor's Implementation]
+** link:using.html#GBFVK[5.5 Test Reports]
+*** link:using.html#GBFWD[5.5.1 Creating Test Reports]
+*** link:using.html#GBFVB[5.5.2 Viewing an Existing Test Report]
 
 [[debugging-test-problems]]
 link:debug.html#GBFUV[6 Debugging Test Problems]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:debug.html#GBFYP[6.1 Overview]
-* link:debug.html#GBFVF[6.2 Test Tree]
-* link:debug.html#GBFWI[6.3 Folder Information]
-* link:debug.html#GBFVP[6.4 Test Information]
-* link:debug.html#GBFVZ[6.5 Report Files]
-* link:debug.html#GBFYF[6.6 Configuration Failures]
-
-[[a-frequently-asked-questions]]
-link:faq.html#GBFYD[A Frequently Asked Questions]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* link:faq.html#GBFYQ[A.1 Where do I start to debug a test failure?]
-* link:faq.html#GBFYR[A.2 How do I restart a crashed test run?]
-* link:faq.html#GBFWU[A.3 What would cause tests be added to the exclude
-list?]
-
-
+** link:debug.html#GBFYP[6.1 Overview]
+** link:debug.html#GBFVF[6.2 Test Tree]
+** link:debug.html#GBFWI[6.3 Folder Information]
+** link:debug.html#GBFVP[6.4 Test Information]
+** link:debug.html#GBFVZ[6.5 Report Files]
+** link:debug.html#GBFYF[6.6 Configuration Failures]
+* link:faq.html#GBFYD[A Frequently Asked Questions]
+** link:faq.html#GBFYQ[A.1 Where do I start to debug a test failure?]
+** link:faq.html#GBFYR[A.2 How do I restart a crashed test run?]
+** link:faq.html#GBFWU[A.3 What would cause tests be added to the exclude list?]

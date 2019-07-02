@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,7 +34,7 @@ fi
 if [ -z "${CTS_HOME}" ]; then
   export CTS_HOME="${WORKSPACE}"
 fi
-export TS_HOME=${CTS_HOME}/javaeetck/
+export TS_HOME=${CTS_HOME}/jakartaeetck/
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
 echo "ANT_HOME ${ANT_HOME}"
@@ -173,10 +173,13 @@ chmod -R 777 ${CTS_HOME}/vi
 
 if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
-  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
   sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
   sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
+ 
+  # Change the memory setting in ts.jte as well.
+  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${TS_HOME}/bin/ts.jte
 fi 
 
 ${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
@@ -203,8 +206,7 @@ export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/glassfish5/glassfish/mo
 -Djavax.xml.accessExternalDTD=file,http"
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
-  #KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile"
-  KEYWORDS="javaee_web_profile"
+  KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile|connector_web_profile"
 fi
 
 if [ -z "${vehicle}" ];then
@@ -214,13 +216,13 @@ else
   if [ -z "${KEYWORDS}" ]; then
     KEYWORDS=${vehicle}
   else
-    KEYWORDS="${KEYWORDS}|${vehicle}"
+    KEYWORDS="(${KEYWORDS} & ${vehicle})"
   fi
 fi
 
 if [ ! -z "$KEYWORDS" ];then
   if [ ! -z "$USER_KEYWORDS" ]; then
-    KEYWORDS="${KEYWORDS}|${USER_KEYWORDS}"
+    KEYWORDS="${KEYWORDS}${USER_KEYWORDS}"
   fi
 else
   if [ ! -z "$USER_KEYWORDS" ]; then
@@ -228,10 +230,13 @@ else
   fi
 fi
 
-CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
+if [ ! -z "${KEYWORDS}" ]; then
+  CTS_ANT_OPTS="${CTS_ANT_OPTS} -Dkeywords=\"${KEYWORDS}\""
+fi
+
 echo "CTS_ANT_OPTS:${CTS_ANT_OPTS}"
 echo "KEYWORDS:${KEYWORDS}"
-
+		
 export JT_REPORT_DIR=${CTS_HOME}/jakartaeetck-report
 export JT_WORK_DIR=${CTS_HOME}/jakartaeetck-work
 
@@ -277,12 +282,6 @@ if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
   sed -i "s/^optional.tech.packages.to.ignore=.*/optional.tech.packages.to.ignore=javax.xml.rpc.handler/g" ts.jte
 fi
 
-if [ ! -z "$http_proxy" ]; then
-  PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
-  PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-  sed -i "s#^wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-  sed -i "s#^ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-fi
 sed -i 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
 sed -i 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
 sed -i 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=180/g' ts.jte
@@ -323,10 +322,12 @@ ant -f xml/impl/glassfish/s1as.xml start.javadb
 ant init.javadb
 ##### configVI.sh ends here #####
 
-### populateMailbox for javamail suite - Start ###
-ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
-cd  ${TS_HOME}/bin
-ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}:${IMAP_PORT}" populateMailbox
+### populateMailbox for suites using mail server - Start ###
+if [[ $test_suite == "javamail" || $test_suite == "samples" || $test_suite == "servlet" ]]; then
+  ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
+  cd  ${TS_HOME}/bin
+  ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}:${IMAP_PORT}" populateMailbox
+fi
 ### populateMailbox for javamail suite - End ###
 
 ##### configRI.sh ends here #####
@@ -369,14 +370,25 @@ echo "ant start.auto.deployment.server > /tmp/deploy.out 2>&1 & "
 ant start.auto.deployment.server > /tmp/deploy.out 2>&1 &
 ### ctsStartStandardDeploymentServer.sh ends here #####
 
-cd $TS_HOME/bin
+cd $TS_HOME/bin;
 if [ -z "$KEYWORDS" ]; then
-  ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+  if [[ "jbatch" == ${test_suite} ]]; then
+    cd $TS_HOME/src/com/ibm/jbatch/tck;
+    ant runclient -Dwork.dir=${JT_WORK_DIR}/jbatch -Dreport.dir=${JT_REPORT_DIR}/jbatch;
+  else
+    ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+  fi
 else
-  ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+  if [[ "jbatch" == ${test_suite} ]]; then
+    cd $TS_HOME/src/com/ibm/jbatch/tck;
+    ant runclient -Dkeywords=\"${KEYWORDS}\" -Dwork.dir=${JT_WORK_DIR}/jbatch -Dreport.dir=${JT_REPORT_DIR}/jbatch;
+  else
+    ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
+  fi
 fi
 
 
+cd $TS_HOME/bin;
 # Check if there are any failures in the test. If so, re-run those tests.
 FAILED_COUNT=0
 ERROR_COUNT=0
@@ -386,9 +398,28 @@ ERROR_COUNT=`cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Error.'
 if [[ $FAILED_COUNT -gt 0 || $ERROR_COUNT -gt 0 ]]; then
   echo "One or more tests failed. Failure count:$FAILED_COUNT/Error count:$ERROR_COUNT"
   echo "Re-running only the failed, error tests"
-  ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+if [ -z "$KEYWORDS" ]; then
+  if [[ "jbatch" == ${test_suite} ]]; then
+    cd $TS_HOME/src/com/ibm/jbatch/tck;
+    ant runclient -DpriorStatus=fail -Dwork.dir=${JT_WORK_DIR}/jbatch -Dreport.dir=${JT_REPORT_DIR}/jbatch
+  else
+    ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+  fi
+else
+  if [[ "jbatch" == ${test_suite} ]]; then
+    cd $TS_HOME/src/com/ibm/jbatch/tck;
+    ant runclient -DpriorStatus=fail -Dkeywords=\"${KEYWORDS}\" -Dwork.dir=${JT_WORK_DIR}/jbatch -Dreport.dir=${JT_REPORT_DIR}/jbatch;
+  else
+    ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+  fi
+fi
   # Generate combined report for both the runs.
+if [[ "jbatch" == ${test_suite} ]]; then
+  ant -Dreport.for=com/ibm/jbatch/tck -Dwork.dir=${JT_WORK_DIR}/jbatch -Dreport.dir=${JT_REPORT_DIR}/jbatch report
+else  
   ant -Dreport.for=com/sun/ts/tests/$test_suite -Dreport.dir=${JT_REPORT_DIR}/${TEST_SUITE} -Dwork.dir=${JT_WORK_DIR}/${TEST_SUITE} report
+fi
+
 fi
 
 export HOST=`hostname -f`
@@ -404,7 +435,7 @@ else
   sed -i "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
   mv ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml  ${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/javaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/
+tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/
 
 if [ -z ${vehicle} ];then
   JUNIT_REPORT_FILE_NAME=${TEST_SUITE}-junitreports.tar.gz

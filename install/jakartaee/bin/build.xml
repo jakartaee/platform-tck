@@ -1,0 +1,1111 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="TS top level" default="usage">
+
+	<!-- IMPORTS -->
+	<import file="xml/ts.top.import.xml" optional="true"/>
+	<import file="../../../bin/xml/ts.top.import.xml" optional="true"/>
+
+	<property name="all.test.dir" value="
+                  com/sun/ts/tests/jaxp,
+                  com/sun/ts/tests/jacc,
+                  com/sun/ts/tests/jaspic,
+                  com/sun/ts/tests/compat12,
+                  com/sun/ts/tests/compat13,
+                  com/sun/ts/tests/signaturetest/javaee,
+                  com/sun/ts/tests/integration,
+                  com/sun/ts/tests/el,
+                  com/sun/ts/tests/ejb,
+                  com/sun/ts/tests/ejb30,
+                  com/sun/ts/tests/ejb32,
+                  com/sun/ts/tests/jpa,
+                  com/sun/ts/tests/jdbc,
+                  com/sun/ts/tests/connector,
+                  com/sun/ts/tests/xa,
+                  com/sun/ts/tests/jaxrs,
+                  com/sun/ts/tests/servlet,
+                  com/sun/ts/tests/javaee,
+                  com/sun/ts/tests/jsf,
+                  com/sun/ts/tests/jsp,
+                  com/sun/ts/tests/jstl,
+                  com/sun/ts/tests/appclient,
+                  com/sun/ts/tests/javamail,
+                  com/sun/ts/tests/rmiiiop,
+                  com/sun/ts/tests/assembly,
+                  com/sun/ts/tests/jta,
+                  com/sun/ts/tests/samples,
+                  com/sun/ts/tests/j2eetools/mgmt,
+                  com/sun/ts/tests/j2eetools/deploy,
+                  com/sun/ts/tests/jaxr,
+                  com/sun/ts/tests/jms,
+                  com/sun/ts/tests/jsonp,
+                  com/sun/ts/tests/jsonb,
+                  com/sun/ts/tests/jaxrpc,
+                  com/sun/ts/tests/jaxws/common,
+                  com/sun/ts/tests/jaxws/wsi/constants,
+                  com/sun/ts/tests/webservices,
+                  com/sun/ts/tests/webservices12,
+                  com/sun/ts/tests/webservices13,
+                  com/sun/ts/tests/websocket,
+                  com/sun/ts/tests/concurrency,
+                  com/sun/ts/tests/interop,
+                  com/sun/ts/tests/securityapi,
+                  com/ibm/jbatch/tck/tests"/>
+
+	<!--
+          These jaspic dirs involve tests that are not required for Java EE 6.
+          They are not bundled as part of the shipped TCK.  But the JASPIC
+          standalone TCK comes out of this workspace so these dirs need to exist
+          within the workspace.  Since we do not want these dirs building for EE6,
+          we are going to keep them listed in the temp.test.exclude.dirs as a 
+          developer convenience for folks who work and build within the full
+          cts development workspace.
+
+      -->
+	<property name="temp.test.exclude.dirs" 
+ 	      value="
+             com/sun/ts/tests/jaspic/spi/authstatus,
+             com/sun/ts/tests/jaspic/spi/soap"
+        />
+
+	<target name="generate.coverage.numbers">
+		<ant antfile="coverage-build.xml" dir="${bin.dir}" target="all" />
+	</target>
+
+	<target name="build.all.smoke" depends="build.all.jars">
+		<ant antfile="smoke.xml" dir="${ts.home}/src/com/sun/ts/tests" target="build" />
+	</target>
+
+	<target name="build.coverage.tests">
+		<if>
+			<available file="${ts.home}/install" type="dir"/>
+			<then>
+				<mkdir dir="${ts.home}/weblib"/>
+				<ts.javac includes="com/sun/ts/tests/internal/**,
+                                com/sun/ts/tests/jsf/**,
+                                com/sun/ts/tests/jstl/**"/>
+			</then>
+			<else>
+				<echo message="build.coverage.tests skipped."/>
+				<echo message="Operation not allowed in a released bundle."/>
+			</else>
+		</if>
+	</target>
+
+	<target name="build.all.tests" >
+
+
+		<echo message="Temporarily Excluded Test Directories:${temp.test.exclude.dirs}"/>
+
+		<elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>
+
+		<!-- Uncomment if temp.test.exclude.dirs is set to a non-empty value.
+
+      Note, this elementappend must be commented out when the exclude list is empty
+      else the build.all.tests target fails (nightly build fails).  If the exlcude
+      list is non-empty you would think this code needs to be uncommented, at least
+      that is what I thought.  It turns out when the excldue list is non-empty this
+      code can be commented out or uncommented and it does not affect the exclude
+      list, meaning it works either way.  I left this code here as a reminder in case
+      we see weird build isues in the future instead of deleting it but deleting may
+      be the way to go just not completely sure yet.
+      
+        <elementappend original="${temp.test.exclude.dirs}" 
+                       suffix="**/*.java" 
+                       property="temp.test.exclude.java.files"/>
+-->
+
+		<property name="rmiiiop.stub.dir" 
+                  value="org/omg/stub/com/sun/ts/tests/rmiiiop" />
+		<elementappend original="${rmiiiop.stub.dir}" suffix="**/*.java" property="rmiiiop.stub.java.file"/>
+
+		<echo message="Test Dirs:${all.test.dir}"/>
+
+		<ts.javac includes="${rmiiiop.stub.java.file}" failonerror="false"/>
+
+		<dosubdirs srcdir="${ts.home}/src" includes="${all.test.dir}" todo="build"
+                   excludes="com/sun/ts/tests/jpa/se, com/sun/ts/tests/jpa/jpa22/se,
+                             ${temp.test.exclude.dirs}"/>
+	</target>
+
+	<target name="translatepath">
+		<translatepath propname="javaee.home.ri"/>
+		<translatepath propname="javaee.home"/>
+		<translatepath propname="s1as.java.endorsed.dirs"/>
+		<translatepath propname="ri.java.endorsed.dirs"/>
+	</target>
+
+	<target name="javatest.batch" depends="init, set.keywords, prepare.work.report.dirs, check.selected.test, no.selected.test,
+    check.java.options, no.java.options, translatepath">
+
+		<!-- create the needed sun-acc.xml for the RI appclient -->
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="config.cts"/>
+
+		<ts.javatest.batch/>
+	</target>
+
+	<target name="runclient" depends="init, set.keywords, prepare.work.report.dirs, check.selected.test, no.selected.test,
+    check.java.options, no.java.options, translatepath">
+
+		<!-- create the needed sun-acc.xml for the RI appclient -->
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="config.cts"/>
+		<ts.javatest.batch/>
+	</target>
+
+	<target name="gui" depends="init, check.java.options, no.java.options, translatepath">
+
+		<!-- create the needed sun-acc.xml for the RI appclient -->
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="config.cts"/>
+		<javatest.gui/>
+	</target>
+
+	<target name="start.rmiiiop.server">
+		<java classname="com.sun.ts.tests.rmiiiop.ee.standalone.RMIIIOPServer" fork="yes" failonerror="yes" 
+              classpath="${ts.run.classpath}:${class.dir}">
+			<sysproperty key="java.security.policy"
+                         value="${bin.dir}/java.policy"/>
+			<arg line="-v"/>
+			<arg line="-p ${rmiiiop.http.server.port}"/>
+		</java>
+	</target>
+
+	<target name="start.rmiiiop.server.no.spawn">
+		<java classname="com.sun.ts.tests.rmiiiop.ee.standalone.RMIIIOPServer" failonerror="yes" 
+              classpath="${ts.run.classpath}:${class.dir}">
+			<sysproperty key="java.security.policy"
+                         value="${bin.dir}/java.policy"/>
+			<arg line="-v"/>
+			<arg line="-p ${rmiiiop.http.server.port}"/>
+		</java>
+	</target>
+
+	<target name="start.standard.deployment.server" depends="init">
+		<java classname="com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14Server" 
+              fork="yes"
+              classpath="${ts.standard.deployment.server.classpath}">
+			<sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host.ri}"/>
+			<sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port.ri}"/>
+			<sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
+			<sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
+			<sysproperty key="deliverable.class" value="${deliverable.class}" />
+			<sysproperty key="java.compiler" value="NONE"/>
+			<sysproperty key="TS_HOME" value="${ts.home}" />
+			<sysproperty key="ts.home" value="${ts.home}" />
+			<sysproperty key="pathsep" value="${pathsep}" />
+			<sysproperty key="J2EE_HOME" value="${javaee.home}" />
+			<sysproperty key="JAVA_HOME" value="${java.home}"  />
+			<sysproperty key="java.security.policy" value="${bin.dir}/harness.policy" />
+			<sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
+			<sysproperty key="windir" value="${env.windir}" />
+			<sysproperty key="SYSTEMROOT" value="${env.SystemRoot}" />
+			<sysproperty key="javatest.security.allowPropertiesAccess" value="true" />
+			<sysproperty key="java.endorsed.dirs" value="${ri.java.endorsed.dirs}" />
+			<sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
+			<sysproperty key="com.sun.aas.installRoot" value="${javaee.home.ri}"/>
+		</java>
+	</target>
+
+	<target name="start.auto.deployment.server" depends="init">
+		<java classname="com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeploymentServer"
+              fork="yes"
+              classpath="${ts.standard.deployment.server.classpath}">
+			<sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host.ri}"/>
+			<sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port.ri}"/>
+			<sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
+			<sysproperty key="deliverable.class" value="${deliverable.class}" />
+			<sysproperty key="java.compiler" value="NONE"/>
+			<sysproperty key="TS_HOME" value="${ts.home}" />
+			<sysproperty key="ts.home" value="${ts.home}" />
+			<sysproperty key="pathsep" value="${pathsep}" />
+			<sysproperty key="J2EE_HOME" value="${javaee.home}" />
+			<sysproperty key="JAVA_HOME" value="${java.home}"  />
+			<sysproperty key="java.security.policy" value="${bin.dir}/harness.policy" />
+			<sysproperty key="windir" value="${env.windir}" />
+			<sysproperty key="SYSTEMROOT" value="${env.SystemRoot}" />
+			<sysproperty key="javatest.security.allowPropertiesAccess" value="true" />
+			<sysproperty key="java.endorsed.dirs" value="${ri.java.endorsed.dirs}" />
+			<sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
+			<sysproperty key="com.sun.aas.installRoot" value="${javaee.home.ri}"/>
+		</java>
+	</target>
+
+	<!-- Set the archives to deploy based on the javaee.level setting-->
+	<target name="setup.archive.set">
+
+		<if>
+			<contains string="${javaee.level}" substring="web"/>
+			<then>
+				<fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+					<include name="**/*.war"/>
+					<exclude name="**/*ejbembed*"/>
+					<exclude name="**/vi_built*.war"/>
+					<exclude name="**/ts_dep*/**"/>
+				</fileset>
+
+				<fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+					<include name="**/vi_built*.war"/>
+					<exclude name="**/*ejbembed*"/>
+					<exclude name="**/ts_dep*/**"/>
+				</fileset>
+
+				<fileset dir="${dist.dir}" id="deploy.all.vi.archive.set">
+					<include name="**/*.war"/>
+					<exclude name="**/*ejbembed*"/>
+					<exclude name="**/vi_built*.war"/>
+					<exclude name="**/ts_dep*/**"/>
+				</fileset>
+				<fileset dir="${dist.dir}" id="deploy.all.ri.archive.set">
+					<include name="**/vi_built*.war"/>
+					<exclude name="**/*ejbembed*"/>
+					<exclude name="**/ts_dep*/**"/>
+				</fileset>
+			</then>
+			<elseif>
+				<contains string="${javaee.level}" substring="component"/>
+				<then>
+					<fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+						<include name="**/*ar"/>
+						<exclude name="**/*ejbembed*"/>
+						<exclude name="**/vi_built*.*ar"/>
+						<exclude name="**/*.ear"/>
+						<exclude name="**/ts_dep*/**"/>
+					</fileset>
+					<fileset dir="${dist.dir}" id="deploy.all.vi.archive.set">
+						<include name="**/*ar"/>
+						<exclude name="**/*ejbembed*"/>
+						<exclude name="**/vi_built*.*ar"/>
+						<exclude name="**/*.ear"/>
+						<exclude name="**/ts_dep*/**"/>
+					</fileset>
+					<fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+						<include name="**/vi_built*.*ar"/>
+						<exclude name="**/*ejbembed*"/>
+						<exclude name="**/vi_built*.ear"/>
+						<exclude name="**/ts_dep*/**"/>
+					</fileset>
+					<fileset dir="${dist.dir}" id="deploy.all.ri.archive.set">
+						<include name="**/vi_built*.*ar"/>
+						<exclude name="**/*ejbembed*"/>
+						<exclude name="**/vi_built*.ear"/>
+						<exclude name="**/ts_dep*/**"/>
+					</fileset>
+				</then>
+			</elseif>
+			<else>
+				<!--
+            If ears exist, then deploy ears.  Else deploy component archives.  
+        -->
+				<for param="archive">
+					<fileset dir="${dist.dir}/${pkg.dir}">
+						<include name="**/*.ear"/>
+						<include name="**/*_component*.*ar"/>
+						<exclude name="**/*ejbembed*"/>
+						<exclude name="**/ts_dep*/**"/>
+					</fileset>
+					<sequential>
+						<echo message="Ear files exist under this test dir"/>
+						<var name="ears.exist" value="true"/>
+					</sequential>
+				</for>
+
+				<if>
+					<equals arg1="${ears.exist}" arg2="true"/>
+					<then>
+						<fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+							<include name="**/*.ear"/>
+							<include name="**/*_component*.*ar"/>
+							<exclude name="**/*ejbembed*"/>
+							<exclude name="**/vi_built*.*ar"/>
+							<exclude name="**/*j2ee2.*ar"/>
+							<exclude name="**/ts_dep*/**"/>
+						</fileset>
+						<fileset dir="${dist.dir}" id="deploy.all.vi.archive.set">
+							<include name="**/*.ear"/>
+							<include name="**/*_component*.*ar"/>
+							<exclude name="**/*ejbembed*"/>
+							<exclude name="**/vi_built*.*ar"/>
+							<exclude name="**/*j2ee2.*ar"/>
+							<exclude name="**/ts_dep*/**"/>
+						</fileset>
+						<fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+							<include name="**/vi_built*.ear"/>
+							<include name="**/vi_built*_component*.*ar"/>
+							<include name="**/*j2ee2.ear"/>
+							<include name="**/*_component*j2ee2.*ar"/>
+							<exclude name="**/*ejbembed*"/>
+							<exclude name="**/ts_dep*/**"/>
+						</fileset>
+						<fileset dir="${dist.dir}" id="deploy.all.ri.archive.set">
+							<include name="**/vi_built*.ear"/>
+							<include name="**/vi_built*_component*.*ar"/>
+							<include name="**/*j2ee2.ear"/>
+							<include name="**/*_component*j2ee2.*ar"/>
+							<exclude name="**/*ejbembed*"/>
+							<exclude name="**/ts_dep*/**"/>
+						</fileset>
+					</then>
+					<else>
+						<fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
+							<include name="**/*.*ar"/>
+							<exclude name="**/*ejbembed*"/>
+							<exclude name="**/*.ear"/>
+							<exclude name="**/vi_built*.*ar"/>
+							<exclude name="**/*j2ee2.*ar"/>
+							<exclude name="**/ts_dep*/**"/>
+						</fileset>
+						<fileset dir="${dist.dir}" id="deploy.all.vi.archive.set">
+							<include name="**/*.*ar"/>
+							<exclude name="**/*ejbembed*"/>
+							<exclude name="**/*.ear"/>
+							<exclude name="**/vi_built*.*ar"/>
+							<exclude name="**/*j2ee2.*ar"/>
+							<exclude name="**/ts_dep*/**"/>
+						</fileset>
+						<fileset dir="${dist.dir}/${pkg.dir}" id="deploy.ri.archive.set">
+							<include name="**/vi_built*.*ar"/>
+							<include name="**/*j2ee2.*ar"/>
+							<exclude name="**/*ejbembed*"/>
+							<exclude name="**/*.ear"/>
+							<exclude name="**/ts_dep*/**"/>
+						</fileset>
+						<fileset dir="${dist.dir}" id="deploy.ri.all.archive.set">
+							<include name="**/vi_built*.*ar"/>
+							<include name="**/*j2ee2.*ar"/>
+							<exclude name="**/*ejbembed*"/>
+							<exclude name="**/*.ear"/>
+							<exclude name="**/ts_dep*/**"/>
+						</fileset>
+					</else>
+				</if>
+				<var name="ears.exist" value="false"/>
+			</else>
+		</if>
+	</target>
+
+	<target name="deploy.all" depends="setup.archive.set"
+            description="Deploy all archives.">
+		<fail message="The deploy.all target is not supported in CTS"/>
+	</target>
+
+	<target name="run.all"
+            description="">
+		<fail message="The run.all target is not supported in CTS"/>
+	</target>
+
+	<!--  Target for predeploying and undeploying certain web services and then building the 
+          clients that require them.  The services must be deployed prior to
+          building the clients since the Clients require the wsdl which is 
+          made available after deployment.  After building the clients, the services are undeployed.
+          The services are located in directories which are declared as common apps in the 
+          CTSDeliverable.getCommonApps method.  Upon running the tests,
+          the services are deployed again.-->
+	<target name="build.special.webservices.clients">
+
+		<ant antfile="special.build.xml" dir="${ts.home}/src/com/sun/ts/tests/webservices12/specialcases/clients" 
+              target="build.specialcases.clients"/>
+
+	</target>
+
+	<!-- Target to build jms rebuildable tests with modified ts.jte props -->
+	<target name="build.jms.rebuildable.tests">
+		<ant antfile="build.xml" dir="${ts.home}/src/com/sun/ts/tests/jms/ee20/resourcedefs" target="build"/>
+	</target>
+
+	<!--  Targets for configuring the Java EE RI and the Java EE Vendor implementation -->
+	<macrodef name="update.jstl.wars">
+		<sequential>
+			<property name="jstl.sql.wars"
+                      value="${ts.home}/dist/com/sun/ts/tests/jstl/compat/onedotzero/jstl_1_0_compat_web.war,
+                      ${ts.home}/dist/com/sun/ts/tests/jstl/spec/sql/param/jstl_sql_param_web.war,
+                      ${ts.home}/dist/com/sun/ts/tests/jstl/spec/sql/query/jstl_sql_query_web.war,
+                      ${ts.home}/dist/com/sun/ts/tests/jstl/spec/sql/result/jstl_sql_result_web.war,
+                      ${ts.home}/dist/com/sun/ts/tests/jstl/spec/sql/setdatasource/jstl_sql_setdatasource_web.war,
+                      ${ts.home}/dist/com/sun/ts/tests/jstl/spec/sql/transaction/jstl_sql_transaction_web.war,
+            ${ts.home}/dist/com/sun/ts/tests/jstl/spec/sql/update/jstl_sql_update_web.war"/>
+
+			<for list="${jstl.sql.wars}" param="war.file" trim="true">
+				<sequential>
+					<if>
+						<available file="@{war.file}"/>
+						<then>
+							<jar update="true"
+                                 destfile="@{war.file}">
+								<zipfileset dir="${bin.dir}"
+                                            includes="tssql.stmt"
+                                            fullpath="WEB-INF/jstl-sql.properties"/>
+							</jar>
+							<chmod file="@{war.file}" perm="777" />
+						</then>
+					</if>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
+	<target name="config.ri">
+		<record name="config_ri.log" action="start"/>
+		<antcall target="copy.dml.file" >
+			<param name="dml.file" value="${db.dml.file.ri}"/>
+			<param name="target.dml.file" value="tssql.stmt.ri"/>
+		</antcall>
+
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="config.ri"/>
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="restart.server"/>
+
+		<!-- If one user installs the RI and a different user installs the VI the   -->
+		<!-- config directories need to have their permissions loosened so at       -->
+		<!-- runtime, the appclient container may access the cacerts.jks file in    -->
+		<!-- both the RI and VI.  It also allows one user to config both the RI     -->
+		<!-- and VI.                                                                -->
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="ri.perms"/>
+		<ant antfile="javaee_ri.xml" target="start.javadb" dir="${bin.dir}/xml/impl/${impl.ri}"/>
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.javadb.ri"/>
+		<record name="config_ri.log" action="stop"/>
+	</target>
+
+	<target name="config.interop">
+		<ts.echo>${ant.project.name} config.interop called</ts.echo>
+		<!-- This target setup interop configurations    -->
+
+		<!-- Step 1: Config VI - Vendor Implementation   -->
+		<antcall target="config.vi"/>
+
+		<!-- Step 2: Config RI - Reference Implementation -->
+		<antcall target="config.ri"/>
+
+		<!-- Step 3: Enable CSIv2  -->
+		<antcall target="enable.csiv2"/>
+
+		<!-- Step 4: Add interop certs -->
+		<antcall target="add.interop.certs"/>
+
+	</target>
+
+	<target name="restart.vi" >
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="restart.vi"/>
+	</target>
+
+	<target name="clean.ri">
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="clean.ri"/>
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="restart.server"/>
+	</target>
+
+	<target name="restart.ri">
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="restart.server"/>
+	</target>
+
+	<target name="config.vi">
+		<record name="config_vi.log" action="start"/>
+		<antcall target="modify.jstl.db.resources"/>
+
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="build.porting.impl.jar"/>
+        <property name="porting.impl.jar.already.built" value="true"/>
+
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="config.vi"/>
+
+		<!-- If one user installs the RI and a different user installs the VI the   -->
+		<!-- config directories need to have their permissions loosened so at       -->
+		<!-- runtime, the appclient container may access the cacerts.jks file in    -->
+		<!-- both the RI and VI.  It also allows one user to config both the RI     -->
+		<!-- and VI.                                                                -->
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="vi.perms"/>
+		<record name="config_vi.log" action="stop"/>
+	</target>
+
+	<target name="clean.vi">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="clean.vi"/>
+	</target>
+
+	<!-- Disable JMS -->
+	<target name="disable.jms">
+		<ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="disable.jms"/>
+	</target>
+
+	<!-- Enable JMS -->
+	<target name="enable.jms">
+		<ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="enable.jms" />
+	</target>
+
+	<target name="populateMailbox">
+		<ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="populateMailbox" />
+	</target>
+
+	<target name="clearMailbox">
+		<ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="clearMailbox" />
+	</target>
+
+
+
+	<!-- http.doc.root.value possibilities.
+        Remote - Unices
+          ${javaee.home}/nodeagents/${sjsas.nodeagent.name}/${sjsas.nodeinstance.name}/docroot
+        DAS - Unix
+          ${s1as.domain}/docroot
+        Remote - Windows 
+          ${s1as.applicationRoot}/${sjsas.node.agent.dir.name}/${sjsas.nodeagent.name}/${sjsas.nodeinstance.name}/docroot
+        DAS - Windows
+          ${s1as.domain}/docroot
+      -->
+	<target name="set.prop">
+		<condition property="http.doc.root.value" value="${s1as.applicationRoot}/${sjsas.node.agent.dir.name}/${sjsas.nodeagent.name}/${sjsas.nodeinstance.name}/docroot">
+			<and>
+				<os family="windows"/>
+				<equals arg1="${sjsas.env.type}" arg2="remote"/>
+			</and>
+		</condition>
+		<condition property="http.doc.root.value"
+                   value="${javaee.home}/nodeagents/${sjsas.nodeagent.name}/${sjsas.nodeinstance.name}/docroot">
+			<equals arg1="${sjsas.env.type}" arg2="remote"/>
+		</condition>
+		<property name="http.doc.root.value" value="${http.doc.root}"/>
+		<echo message="http.doc.root.value = ${http.doc.root.value}"/>
+	</target>
+
+	<!--
+        Copy the correct dml file to $TS_HOME/bin
+    -->
+	<target name="copy.dml.file">
+		<copy file="${ts.home}/sql/${dml.file}" 
+              tofile="${bin.dir}/${target.dml.file}" overwrite="yes"/>
+		<dirname property="db.part" file="${dml.file}"/>
+		<basename property="db.type" file="${db.part}"/>
+		<concat append="true" destfile="${bin.dir}/${target.dml.file}">
+			<fileset dir="${ts.home}/sql/${db.type}"
+                     includes="${db.type}.dml.jstl.sql"/>
+		</concat>
+	</target>
+
+
+	<!--
+       Targets for configuring the databases as needed by CTS.
+    -->
+
+	<target name="init.db2">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.db2"/>
+	</target>
+
+	<target name="init.db2DD">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.db2DD"/>
+	</target>
+
+	<target name="init.db2Sun">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.db2Sun"/>
+	</target>
+
+	<target name="init.cloudscape">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.derby"/>
+	</target>
+
+	<target name="init.javadb">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.derby"/>
+	</target>
+
+	<target name="init.javadbEmbedded">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.derbyEmbedded"/>
+	</target>
+
+	<target name="init.derbyEmbedded">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.derbyEmbedded"/>
+	</target>
+
+	<target name="init.derby">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.derby"/>
+	</target>
+
+	<target name="init.mssqlserver">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.mssqlserver"/>
+	</target>
+
+	<target name="init.mysql">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.mysql"/>
+	</target>
+
+	<target name="init.mssqlserverDD">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.mssqlserverDD"/>
+	</target>
+
+	<target name="init.mssqlserverSun">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.mssqlserverSun"/>
+	</target>
+
+
+	<target name="init.mssqlserverInet">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.mssqlserverInet"/>
+	</target>
+
+	<target name="init.oracle">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.oracle"/>
+	</target>
+
+	<target name="init.oracleDD">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.oracleDD"/>
+	</target>
+
+	<target name="init.oracleSun">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.oracleSun"/>
+	</target>
+
+	<target name="init.oracleOCI">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.oracleOCI"/>
+	</target>
+
+	<target name="init.oracleInet">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.oracleInet"/>
+	</target>
+
+	<target name="init.pointbase">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.pointbase"/>
+	</target>
+
+	<target name="init.postgresql">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.postgresql"/>
+	</target>
+
+	<target name="init.sybase">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.sybase"/>
+	</target>
+
+	<target name="init.sybaseInet">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.sybaseInet"/>
+	</target>
+
+	<target name="init.sybaseDD">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.sybaseDD"/>
+	</target>
+
+	<target name="init.sybaseSun">
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.sybaseSun"/>
+	</target>
+
+	<target name="modify.jdbc.resources">
+		<antcall target="copy.dml.file" >
+			<param name="dml.file" value="${db.dml.file}"/>
+			<param name="target.dml.file" value="tssql.stmt"/>
+		</antcall>
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="modify.jdbc.resources"/>
+	</target>
+
+	<target name="modify.jstl.db.resources">
+		<antcall target="copy.dml.file" >
+			<param name="dml.file" value="${db.dml.file}"/>
+			<param name="target.dml.file" value="tssql.stmt"/>
+		</antcall>
+		<update.jstl.wars/>
+	</target>
+
+	<!-- Capture schema data for CMP tests used by CTS. -->
+	<target name="capture.db.schema">
+		<exec executable="${javaee.home.ri}/bin/capture-schema" >
+			<env key="CLASSPATH" value="${derby.classes}"/>
+			<arg line="-driver ${derby.driver}"/>
+			<arg line="-dburl ${derby.url}"/>
+			<arg line="-username ${derby.user}"/>
+			<arg line="-password ${derby.passwd}"/>
+			<arg line="-out ${ts.home}/install/jakartaee/sql/CtsSchema" />
+		</exec>
+	</target>
+
+	<!-- Rebuilds the EJB 3.0 Data Source Definition tests using the currently 
+         configured database settings from the ts.jte file-->
+	<target name="configure.datasource.tests">
+		<if>
+			<contains string="${javaee.level}" substring="full"/>
+			<then>
+				<dosubdirs srcdir="${ts.home}/src"
+                   includes="com/sun/ts/tests/ejb30/lite/packaging/war/datasource,
+                             com/sun/ts/tests/ejb30/misc/datasource,
+                             com/sun/ts/tests/ejb30/assembly/appres"
+                   todo="build"/>
+			</then>
+			<else>
+				<dosubdirs srcdir="${ts.home}/src"
+                   includes="com/sun/ts/tests/ejb30/lite/packaging/war/datasource"
+                   todo="build"/>
+			</else>
+		</if>
+	</target>
+
+
+	<!-- Enable the use of jacc for the app server under test -->
+	<target name="enable.jacc">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="enable.jacc"/>
+	</target>
+
+	<!-- Disable the use of jacc for the app server under test -->
+	<target name="disable.jacc">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="disable.jacc"/>
+	</target>
+
+	<!-- Enable the wss providers for the app server under test (jaspic tests) -->
+	<target name="enable.wss.providers">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="enable.wss.providers"/>
+	</target>
+
+	<!-- Disable the wss providers for the app server under test (jaspic tests) -->
+	<target name="disable.wss.providers">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="disable.wss.providers"/>
+	</target>
+
+
+	<!-- Enable the use of csiv2 for the Java EE RI -->
+	<target name="enable.csiv2">
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="enable.csiv2"/>
+	</target>
+
+	<!-- Disable the use of csiv2 for the Java EE RI -->
+	<target name="disable.csiv2">
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="disable.csiv2"/>
+	</target>
+
+	<!-- Disable the TX interoperability on the Java EE RI -->
+	<target name="disable.ri.tx.interop">
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="disable.tx.interop"/>
+	</target>
+
+	<!-- Enable the TX interoperability on the Java EE RI -->
+	<target name="enable.ri.tx.interop">
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="enable.tx.interop"/>
+	</target>
+
+	<!-- Disable the TX interoperability on the appserver under test -->
+	<target name="disable.vi.tx.interop">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="disable.tx.interop"/>
+	</target>
+
+	<!-- Enable the TX interoperability on the app server under test -->
+	<target name="enable.vi.tx.interop">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="enable.tx.interop"/>
+	</target>
+
+	<!--  Add the certificates needed for interop to the RI and SJSAS -->
+	<target name="add.interop.certs"  >
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="add.interop.certs"/>
+	</target>
+
+	<!--
+       Target which configures SJSAS, starts Derby and configures the
+       database as needed for CTS.
+    -->
+
+	<target name="setup.all.rars.and.pools">
+		<ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish"
+             target="setup.all.rars.and.pools"/>
+	</target>
+
+	<target name="config.vi.javadb" depends="config.vi">
+		<record name="config_vi.log" action="start" append="yes"/>
+		<ant antfile="javaee_vi.xml" target="start.javadb" dir="${bin.dir}/xml/impl/${impl.vi}"/>
+		<antcall target="init.javadb"/>
+		<record name="config_vi.log" action="stop"/>
+	</target>
+
+	<target name="create.jpa.vm.options" >
+		<ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="create.jpa.vm.options"/>
+	</target>
+
+	<target name="delete.jpa.vm.options" >
+		<ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="delete.jpa.vm.options"/>
+	</target>
+	<!-- Tasks for managing ts specific jar.  These automatically call 
+  the pkg target in the src/com/sun/ts/lib/build.xml file  -->
+	<!-- ts specific jar (in this case cts.jar) will be created in ts.home/lib. -->
+
+	<property name="provider.dir" value = "com/sun/ts/tests/jacc/provider"/>
+	<property name="provider.jar.name" value = "tsprovider.jar"/>
+	<property name="provider.jar" value = "${ts.home}/lib/${provider.jar.name}"/>
+	<property name="jaspic.tssv.dir" value = "com/sun/ts/tests/jaspic/tssv"/>
+	<property name="jaspic.tssv.jar.name" value = "tssv.jar"/>
+	<property name="jaspic.tssv.jar" value = "${ts.home}/lib/${jaspic.tssv.jar.name}"/>
+	<property name="dbprocedures.jar" value = "${ts.home}/lib/dbprocedures.jar"/>
+	<property name="install.lib.dir" value = "${ts.home}/install/jakartaee/lib"/>
+
+
+	<target name="tslib.clean" depends="translatepath">
+		<delete failonerror="false">
+			<fileset dir="${class.dir}">
+				<include name="${lib.pkg.dir}/deliverable/cts/**"/>
+				<include name="${lib.pkg.dir}/implementation/sun/javaee/**"/>
+				<include name="${lib.pkg.dir}/implementation/sun/common/**"/>
+				<include name ="${lib.pkg.dir}/implementation/sun/jersey/**"/>
+				<include name="${lib.pkg.dir}/tests/security/**"/>
+				<include name="${lib.pkg.dir}/tests/jdbc/**"/>
+				<include name="${lib.pkg.dir}/tests/jpa/storedprocedures/**"/>
+				<include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
+				<include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
+				<include name="${provider.dir}/"/>
+
+			</fileset>
+		</delete>
+		<delete failonerror="false" file="${lib.dir}/${tslib.name}.jar"/>
+		<delete failonerror="false" file="${dbprocedures.jar}"/>
+		<delete file = "${provider.jar}"/>
+	</target>
+
+	<target name="tslib.compile" depends="tslib.clean, bind.dtds">
+		<ts.javac includes="${lib.pkg.dir}/deliverable/cts/**,
+                            ${lib.pkg.dir}/porting/**/*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/**,
+                            ${lib.pkg.dir}/implementation/sun/common/**,
+                            ${lib.pkg.dir}/implementation/sun/jersey/**,
+                            ${lib.pkg.dir}/tests/jdbc/CS_Procs.java,
+                            ${lib.pkg.dir}/tests/security/**/*.java,
+                            ${lib.pkg.dir}/tests/jpa/storedprocedures/**,
+                            ${lib.pkg.dir}/porting/TSDeploymentInterface2*.java,
+                            ${lib.pkg.dir}/porting/TSDeployment2*.java,
+                            ${provider.dir}/**"
+                  excludes="${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment1*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/SunRIPorting*.java,
+                            ${lib.pkg.dir}/implementation/sun/javaee/SunRIDeploymentSeparateVM*.java,
+                            ${lib.pkg.dir}/porting/TSJMS*.java">
+			<classpath>
+				<pathelement path="${ts.lib.classpath}" />
+			</classpath>
+		</ts.javac>
+		<rmic classname="com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14Server" base="${class.dir}"/>
+		<rmic classname="com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeploymentServer" base="${class.dir}"/>
+	</target>
+
+	<target name="jaspic.lib.clean" depends="translatepath">
+		<delete failonerror="false">
+			<fileset dir="${class.dir}">
+				<include name="com/sun/ts/tests/jaspic"/>
+
+			</fileset>
+		</delete>
+		<delete failonerror="false" file="${jaspic.tssv.jar}"/>
+	</target>
+
+
+	<target name="jaspic.lib.compile" depends="jaspic.lib.clean, bind.dtds">
+		<ts.javac includes="${jaspic.tssv.dir}/config/**/*.java,
+                            ${jaspic.tssv.dir}/module/**/*.java,
+                            ${jaspic.tssv.dir}/util/**/*.java">
+			<classpath>
+				<pathelement path="${ts.lib.classpath}" />
+			</classpath>
+		</ts.javac>
+	</target>
+
+
+	<target name="tslib" depends="tslib.compile">
+		<tstamp/>
+		<delete failonerror="true" file="${lib.dir}/${tslib.name}.jar"/>
+		<ts.lib.jar>
+			<include name="${lib.pkg.dir}/deliverable/cts/**"/>
+			<include name="${lib.pkg.dir}/implementation/sun/javaee/**"/>
+			<include name="${lib.pkg.dir}/implementation/sun/common/**"/>
+			<include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
+			<include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
+			<include name="${lib.pkg.dir}/tests/security/**"/>
+		</ts.lib.jar>
+
+		<delete failonerror="true" file="${dbprocedures.jar}"/>
+		<jar jarfile="${dbprocedures.jar}" 
+         basedir="${class.dir}">
+			<include name="${lib.pkg.dir}/tests/jdbc/**"/>
+			<include name="${lib.pkg.dir}/tests/jpa/storedprocedures/**"/>
+		</jar>
+
+		<antcall target="build.tsprovider.jar"/>
+		<antcall target="build.jaspic.jars"/>
+
+		<ant dir="${ts.home}/src/com/sun/ts/tests/interop/csiv2/common" target="build.jar"/>
+
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="build.porting.impl.jar"/>
+
+	</target>
+
+	<!-- build porting impl jar for the impl under test -->
+	<target name="build.porting.impl.jar" description="Builds the porting impl classes for the impl under test">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="build.porting.impl.jar"/>
+	</target>
+
+	<!-- build jaspic jars -->
+	<target name="build.jaspic.jars">
+		<antcall target="build.tssv.jar"/>
+	</target>
+
+
+	<!-- build jacc tsprovider jar -->
+	<target name="build.tsprovider.jar">
+		<delete failonerror="true" file="${provider.jar}"/>
+		<jar jarfile = "${provider.jar}" basedir = "${class.dir}">
+			<include name= 
+		     "${provider.dir}/TSPolicyConfigurationFactoryImpl.class"/>
+			<include name= 
+		      "${provider.dir}/TSPolicyConfigurationImpl.class"/>
+			<include name="${provider.dir}/TSLogger.class"/>
+			<include name="${provider.dir}/TSLogRecord.class"/>
+			<include name="${provider.dir}/TSXMLFormatter.class"/>
+			<include name="${provider.dir}/TSPolicy.class"/>
+			<manifest>
+				<attribute name="Extension-Name"         value="tsprovider"/>
+				<attribute name="Specification-Title"    value="TS Provider"/>
+				<attribute name="Specification-Version"  value="1.5"/>
+				<attribute name="Implementation-Version" value="1.5"/>
+				<attribute name="Specification-Vendor"   value="Sun Microsystems"/>
+			</manifest>
+		</jar>
+	</target>
+
+
+	<!-- build jaspics tssv.jar -->
+	<target name="build.tssv.jar">
+		<!-- build the JASPIC (JSR-196) provider jar file -->
+		<delete failonerror="true" file="${jaspic.tssv.jar}"/>
+		<antcall target="jaspic.lib.compile"/>
+		<jar jarfile="${jaspic.tssv.jar}"
+             basedir="${class.dir}">
+			<include name="${jaspic.tssv.dir}/config/**"/>
+			<include name="${jaspic.tssv.dir}/module/**"/>
+			<include name="${jaspic.tssv.dir}/util/**"/>
+			<manifest>
+				<attribute name="Extension-Name"         value="TSSV"/>
+				<attribute name="Specification-Title"    value="TestSuite SPI Verifier"/>
+				<attribute name="Specification-Version"  value="1.1"/>
+				<attribute name="Implementation-Version" value="1.1"/>
+				<attribute name="Specification-Vendor"   value="Sun Microsystems"/>
+			</manifest>
+		</jar>
+
+		<antcall target="update.tssv.jar"/>
+	</target>
+
+
+
+	<!-- used to add the "ProviderConfiguration.xml" to the tssv.jar file -->
+	<target name="update.tssv.jar">
+		<jar destfile="${jaspic.tssv.jar}" basedir="${src.dir}" update="true"
+               includes="${jaspic.tssv.dir}/config/*.txt"/>
+	</target>
+
+	<!-- convenience method to support configuration of jaspic -->
+	<target name="enable.jaspic">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="config.jaspic"/>
+	</target>
+
+
+	<!-- convenience method to support un-configuration of jaspic -->
+	<target name="disable.jaspic">
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="unconfig.jaspic"/>
+	</target>
+
+	<!-- To update JAX-RS war with implementation specific servlet info before deployment -->
+	<target name="update.jaxrs.wars" description="Update JAX-RS wars with implementation specific servlet information">
+		<ant antfile="${jaxrs_impl_name}.xml"
+             dir="${ts.home}/bin/xml/impl/${impl.vi}"
+             target="pre.deploy"/>
+	</target>
+	
+	<!--To Update the test classes with the changed configuration values in ts.jte for meta-data complete tests in appclient-->
+	<target name="update.metadata.token.values" description="Update The app client meta-data test classes with new property values specified in ts.jte">
+		<ant antfile="build.xml"
+             dir="${ts.home}/src/com/sun/ts/tests/appclient/deploy/metadatacomplete/testapp"
+             target="build"/>
+	</target>
+
+	<!-- To configure two glassfish instances for running csiv2 tests in localhost -->
+	<target name="config.2glassfish.instances" >
+		<record name="config_csiv2.log" action="start"/>
+		<antcall target="check.2glassfish.instances" />
+		<antcall target="config.vi" />
+		<!-- Stop VI so that there is no port conflict while configuring RI -->
+		<ant antfile="s1as.xml" dir="${bin.dir}/xml/impl/glassfish" target="stop-domain"/>
+
+		<antcall target="config.ri" />
+		<!-- commented until glassfish bug 6961090 is fixed -->
+		<!--  <antcall target="modify.ri.ports" />  -->
+
+		<!-- Start VI appserver -->
+		<ant antfile="s1as.xml" dir="${bin.dir}/xml/impl/glassfish" target="start.appserver"/>
+
+		<antcall target="start.javadb.asadmin" />
+		<antcall target="init.javadb" />
+		<antcall target="start.javadb.ri.asadmin" />
+		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.javadb.ri"/>
+		<antcall target="enable.csiv2" />
+		<antcall target="add.interop.certs" />
+		<antcall target="restart.ri" />
+		<record name="config_csiv2.log" action="stop"/>
+	</target>
+
+	<target name="check.2glassfish.instances" >
+		<condition property="found.vi">
+			<available file="${javaee.home}" type="dir"/>
+		</condition>
+		<condition property="found.ri">
+			<available file="${javaee.home.ri}" type="dir"/>
+		</condition>
+		<condition property="found.two.instances">
+			<and>
+				<isset property="found.vi" />
+				<isset property="found.ri" />
+			</and>
+		</condition>
+
+		<fail message="Make sure you have two instances of glassfish and set the values for javaee.home and javaee.home.ri in ts.jte"
+              unless="found.two.instances"/>
+
+		<echo message="Found two Glassfish instances" />
+	</target>
+
+	<target name="modify.ri.ports" >
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="modify.ri.ports"/>
+	</target>
+
+	<target name="start.javadb.asadmin" >
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="start.javadb.asadmin"/>
+	</target>
+
+	<target name="stop.javadb.asadmin" >
+		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="stop.javadb.asadmin"/>
+	</target>
+
+	<target name="start.javadb.ri.asadmin" >
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="start.javadb.ri.asadmin"/>
+	</target>
+
+	<target name="stop.javadb.ri.asadmin" >
+		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="stop.javadb.ri.asadmin"/>
+	</target>
+
+	 <target name="init.ldap">
+	   <if>
+              <equals arg1="${ldap.server}" arg2="unboundid" />
+              <then>
+                  <ant antfile="initldap.xml" dir="${bin.dir}/xml" target="init.unboundid"/>
+              </then>
+           </if>
+         </target>
+
+	<target name="enable.security.manager">
+		 <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="enable.security.manager" />
+	 	 <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="restart.server" />       
+	</target>
+	<target name="disable.security.manager">
+		 <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="disable.security.manager" />
+	 	 <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/${impl.vi}" target="restart.server" />       
+        </target>
+
+
+</project>
+
+
+

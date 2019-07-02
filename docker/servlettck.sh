@@ -23,12 +23,15 @@ echo "ANT_OPTS in servlettck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if [ -f "${WORKSPACE}/standalone-bundles/servlettck-4.0_latest.zip" ];then
-  echo "Using stashed bundle created during the build phase" 
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/servlettck-4.0_latest.zip -d ${TCK_HOME}
+elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-servlettck-4.0_latest.zip" ];then
+  echo "Using stashed eclipse bundle created during the build phase"  
+  unzip ${WORKSPACE}/standalone-bundles/eclipse-servlettck-4.0_latest.zip -d ${TCK_HOME}
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
-unzip ${WORKSPACE}/standalone-bundles/servlettck-4.0_latest.zip -d ${TCK_HOME}
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
@@ -41,7 +44,7 @@ unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 TS_HOME=$TCK_HOME/servlettck
 echo "TS_HOME $TS_HOME"
 
-export JAVA_OPTIONS="-Djava.endorsed.dirs=$TS_HOME/endorsedlib/"
+export JAVA_OPTIONS="${JAVA_OPTIONS} -Djava.endorsed.dirs=$TS_HOME/endorsedlib/"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
@@ -65,7 +68,7 @@ ant -Dutil.dir=$TS_HOME config.security
 cd $TS_HOME/src/com/sun/ts/tests/servlet
 cat $TS_HOME/bin/server_policy.append>>$TCK_HOME/glassfish5/glassfish/domains/domain1/config/server.policy
 ant -Dutil.dir=$TS_HOME deploy.all
-ant -Djava.endorsed.dirs=$TS_HOME/endorsedlib -Dutil.dir=$TS_HOME runclient
+ant -Dutil.dir=$TS_HOME runclient
 echo "Test run complete"
 
 TCK_NAME=servlettck

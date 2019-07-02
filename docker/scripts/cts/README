@@ -38,7 +38,7 @@ it accepts as environment variables. Here are sample docker run commands -
    from the command line 
    docker run --env http_proxy=http://<host>:<port> 
     --env  https_proxy=https://<host>:<port>
-    --env CTS_BUNDLE_URL=http://<host>/javaeetck_latest.zip
+    --env CTS_BUNDLE_URL=http://<host>/jakartaeetck_latest.zip
     --env IP_MAILSERVER=172.17.0.2 --env test_suite=samples javaeects
 
 3. Run the test suite by supplying the CTS bundle as well as GlassFish bundle,
@@ -46,7 +46,7 @@ it accepts as environment variables. Here are sample docker run commands -
    docker run --env http_proxy=http://<host>:<port> 
     --env  https_proxy=https://<host>:<port>
     --env GLASSFISH_BUNDLE_URL=http://<host>/glassfish.zip
-    --env CTS_BUNDLE_URL=http://<host>/javaeetck_latest.zip
+    --env CTS_BUNDLE_URL=http://<host>/jakartaeetck_latest.zip
     --env IP_MAILSERVER=172.17.0.2 --env test_suite=samples javaeects
 
 The value accepted for test_suite is the name of the directory or 

@@ -24,58 +24,136 @@ After completing the instructions in this chapter, proceed to
 link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
 running the {TechnologyShortName} TCK.
 
-This chapter includes the following topics:
-
-* link:#GBFVU[Configuring Your Environment to Run the
-TCK Against the Reference Implementation]
-* link:#GCLHU[Configuring Your Environment to Repackage and Run the
-TCK Against the Vendor Implementation]
-* link:#GBFUY[Using the JavaTest Harness Software]
-* link:#GBFWG[Using the JavaTest Harness Configuration GUI]
-* link:#GHGDG[The Configuration Interview]
-* link:#GCLJG[Special Set-Up Instructions]
-
 include::config.inc[]
+
+[[GHGDH]][[custom-configuration-handlers]]
+
+4.4 Custom Configuration Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Configuration handlers are used to configure and unconfigure a
+{TechnologyShortName} {TechnologyVersion} implementation during the
+certification process.  These are similar to deployment handlers but
+used for configuration.  A configuration handler is an Ant build file
+that contains at least the required targets listed below:
+  * `config.vi` - to configure the vendor implementation
+  * `clean.vi` - to unconfigure the vendor implementation
+
+These targets are called from the `<TS_HOME>/bin/build.xml` file and
+call down into the implementation-specific configuration handlers.
+
+To provide your own configuration handler, create a config.vi.xml file
+with the necessary configuration steps for your implementation and place
+the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
+
+For more information, see `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
+the configuration file for the Java EE 8 RI.
+
+[[GBFWG]][[custom-deployment-handlers]]
+
+4.5 Custom Deployment Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deployment handlers are used to deploy and undeploy the WAR files that
+contain the tests to be run during the certification process. A deployment
+handler is an Ant build file that contains at least the required targets
+listed in the table below.
+
+The {TechnologyShortName} TCK provides these deployment handlers:
+* `<TS_HOME>/bin/xml/impl/none/deploy.xml`
+* `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+
+The `deploy.xml` files in each of these directories are used to control
+deployment to a specific container (no deployment, deployment to
+the GlassFish Web container, deployment to the Tomcat Web container)
+denoted by the name of the directory in which each `deploy.xml` file
+resides. The primary `build.xml` file in the `<TS_HOME>/bin` directory
+has a target to invoke any of the required targets (-deploy, -undeploy,
+-deploy.all, -undeploy.all).
+
+[[GBFVA]][[create-custom-deployment-handler]]
+
+4.5.1 To Create a Custom Deployment Handler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To deploy tests to another {TechnologyShortName} implementation, you
+must create a custom handler.
+1. Create a new directory in the <TS_HOME>/bin/impl directory tree.
+  For example, create the <TS_HOME>/bin/impl/my_deployment_handler directory.
+  Replace my_deployment_handler with the value of the impl.vi
+  property that you set in Step 5 of the configuration procedure
+  described in Section 4.2, "Configuring Your Environment to Repackage
+  and Run the TCK Against the Vendor Implementation".
+
+2.  Copy the deploy.xml file from the <TS_HOME>/bin/xml/impl/none
+  directory to the directory that you created.
+
+3.  Modify the required targets in the deploy.xml file.  This is what
+    the deploy.xml file for the "none" deployment handler looks like.
+
++
+[source,oac_no_warn]
+----
+<project name="No-op Deployment" default="deploy">
+    <!-- No-op deployment target -->
+    <target name="-deploy">
+        <echo message="No deploy target implemented for this deliverable"/>
+    </target>
+    <target name="-undeploy">
+        <echo message="No undeploy target implemented for this deliverable"/>
+    </target>
+    <target name="-deploy.all">
+        <echo message="No deploy target implemented for this deliverable"/>
+    </target>
+    <target name="-undeploy.all">
+        <echo message="No undeploy target implemented for this deliverable"/>
+    </target>
+</project>
+----
++
+Although this example just echoes messages, it does include the four
+required Ant targets (-deploy, -undeploy, -deploy.all, -undeploy.all)
+that your custom deploy.xml file must contain. With this as your
+starting point, look at the required targets in the deploy.xml files
+in the tomcat and glassfish directories for guidance as you create
+the same targets for the Web container in which you will run your
+implementation of {TechnologyShortName}.
+
+The following Ant targets can be called from anywhere under the
+<TS_HOME>/src directory:
+
+* `deploy`
+* `undeploy`
+* `deploy.all`
+* `undeploy.all`
+
+The deploy.all and undeploy.all targets can also be called from the
+<TS_HOME>/bin directory.
+
+[NOTE]
+=======================================================================
+The targets in the deploy.xml file are never called directly.
+They are called indirectly by the targets listed above.
+=======================================================================
 
 [[GBFUY]][[using-the-javatest-harness-software]]
 
-4.3 Using the JavaTest Harness Software
+4.6 Using the JavaTest Harness Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are two general ways to run the {TechnologyShortName} TCK test
 suite using the JavaTest harness software:
 
 * Through the JavaTest GUI; if using this method, please continue on to
-link:#GBFWG[Section 4.4, "Using the JavaTest Harness Configuration
+link:#GBFWG[Section 4.7, "Using the JavaTest Harness Configuration
 GUI."]
 * In JavaTest batch mode, from the command line in your shell
 environment; if using this method, please proceed directly to
 link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 
-Before you start the JavaTest harness software, you must have a valid test suite and
-J2SE SDK 1.4.1 installed on your system. +
-The {TechnologyShortName} TCK includes an Ant script that is used to execute the JavaTest
-harness from the `<TS_HOME>` directory. Using this Ant script to start the JavaTest
-harness is part of the procedure described in Section “The Configuration
-Interview." +
-When you execute the JavaTest harness software for the first time, the JavaTest
-harness displays a Welcome dialog box that guides you through the initial startup
-configuration. +
-
-* If it is able to open a test suite, the JavaTest harness displays a Welcome to
-JavaTest dialog box that guides you through the process of either opening an
-existing work directory or creating a new work directory as described in the
-JavaTest online help.
-* If the JavaTest harness is unable to open a test suite, it displays a Welcome to
-JavaTest dialog box that guides you through the process of opening both a test
-suite and a work directory as described in the JavaTest documentation.
-After you specify a work directory, you can use the Test Manager to configure and
-run tests as described in Section “The Configuration Interview.”
-
-
 [[GBFWG]][[using-the-javatest-harness-configuration-gui]]
 
-4.4 Using the JavaTest Harness Configuration GUI
+4.7 Using the JavaTest Harness Configuration GUI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use the JavaTest harness GUI to modify general test settings and
@@ -102,7 +180,7 @@ link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 
 [[GBFVA]][[configuration-gui-overview]]
 
-4.4.1 Configuration GUI Overview
+4.7.1 Configuration GUI Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order for the JavaTest harness to execute the test suite, it requires
@@ -138,7 +216,7 @@ proceed with running the test.
 
 [[GBFVD]][[starting-the-configuration-gui]]
 
-4.4.2 Starting the Configuration GUI
+4.7.2 Starting the Configuration GUI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before you start the JavaTest harness software, you must have a valid
@@ -147,7 +225,7 @@ test suite and Java SE {SEversion} installed on your system.
 The {TechnologyShortName} TCK includes an Ant script that is used to execute the
 JavaTest harness from the `<TS_HOME>` directory. Using this Ant script
 to start the JavaTest harness is part of the procedure described in
-link:#GBFVX[Section 4.4.3, "To Configure the JavaTest Harness to Run the
+link:#GBFVX[Section 4.7.3, "To Configure the JavaTest Harness to Run the
 TCK Tests."]
 
 When you execute the JavaTest harness software for the first time, the
@@ -164,12 +242,12 @@ opening both a test suite and a work directory as described in the
 JavaTest documentation.
 
 After you specify a work directory, you can use the Test Manager to
-configure and run tests as described in link:#GBFVX[Section 4.4.3, "To
+configure and run tests as described in link:#GBFVX[Section 4.7.3, "To
 Configure the JavaTest Harness to Run the TCK Tests."]
 
 [[GBFVX]][[to-configure-the-javatest-harness-to-run-the-tck-tests]]
 
-4.4.3 To Configure the JavaTest Harness to Run the TCK Tests
+4.7.3 To Configure the JavaTest Harness to Run the TCK Tests
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The answers you give to some of the configuration interview questions
@@ -219,7 +297,7 @@ A report is created, and you are asked whether you want to view it.
 
 [[GBFUU]][[modifying-the-default-test-configuration]]
 
-4.4.4 Modifying the Default Test Configuration
+4.7.4 Modifying the Default Test Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The JavaTest GUI enables you to configure numerous test options. These
@@ -258,240 +336,4 @@ dialog boxes; for those functions use the dialog box that is most
 convenient for you. Please refer to the JavaTest Harness documentation
 or the online help for complete information about these various options.
 
-[[GHGDG]][[the-configuration-interview]]
 
-4.5 The Configuration Interview
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The answers you give to some of the configuration interview questions are specific
-to your site. For example, the name of the host on which the JavaTest harness is
-running. Other configuration parameters can be set however you wish. For
-example, where you want test report files to be stored.
-
-To configure the JavaTest harness to run the JAX-RPC TCK tests, complete the
-following steps. Note that you only need to complete these steps the first time you
-start the JavaTest harness. After you complete these steps, you can either run all of
-the tests by completing the steps in link:using.html#GBFUZ[Section, "Starting JavaTest,"]
-or run a subset of the tests by completing the steps in
-link:using.html#GBFWM[Section, "Running a Subset of the Tests,"]
-
-1.  Change to the <TS_HOME>/bin directory and start the JavaTest test harness: +
-`cd <TS_HOME>/bin`
-`tsant gui`
-The Welcome screen displays.
-2.  Click `File->Create Work Directory` to create a new work directory.
-If you already have a working directory you want to use, click `File->Open Work
-Directory` instead.
-At this point, the JavaTest harness is preconfigured the JAX-RPC TCK.
-3.  If you want to run the test suite at this time using your current configuration
-settings, click `Run Tests->Start` from the main menu.
-The tests in the `<TS_HOME>/src/com/sun/ts/tests/jaxrpc` directory are
-executed.
-If you do not want to run the test suite at this time, continue with the steps below
-to modify your test configuration.
-4.  Click `Configure->Edit Configuration` from the main menu.
-The Configuration Welcome screen displays.
-5.  Click `Next` (right arrow).
-You are prompted to specify one or more configuration files that contain
-information about your test environment. By default, this file is `<TS_HOME>/bin/
-ts.jte`.
-6.  Accept the default configuration file and click `Next`.
-You are prompted to specify a test environment.
-7.  Select either `ts_unix` or `ts_win32`, and then click `Next`.
-Choose `ts_unix` if you are running the tests in a Unix or Linux environment;
-choose `ts_win32` if you are running the tests under Windows.
-After making your selection and clicking `Next`, you are prompted to specify
-whether you want to run all or a subset of the test suite.
-8.  Specify whether you want to run all or a subset of the tests, and then click `Next`.
-Select `Yes` to run a subset of the tests; select `No` to run all tests.
-If you select `Yes`, proceed to the next step. If you select `No`, skip to link:#ABCD10[Step 10].
-9.  Select the tests you want to run from the displayed test tree, and then click `Next`.
-You can select entire branches of the test tree, or use `Ctrl+Click` or `Shift+Click` to
-select multiple tests or ranges of tests, respectively.
-[[ABCD10]] 10. Specify whether you want to use an exclude list, and then click `Next`.
-Select `Yes` to use an exclude list; select `No` to not use an exclude list.
-If you select Yes, proceed to the next step. If you select No, skip to link:#ABCE13[Step 13].
-11. Specify the exclude list you want to use, and then click `Next`.
-Select initial to use the default list; select custom to use a custom list.
-If you select custom, proceed to the next step. If you select initial, skip to
-link:#ABCE13[Step 13].
-12. Specify one or more exclude list files to use, and then click `Next`.
-[[ABCE13]] 13. Click Done to accept and save your configuration settings.
-You are prompted to specify the location in which you want to save your
-configuration settings.
-14. Specify the file in which you want to save your configuration settings, and then
-click `Save File`.
-You are returned to the JavaTest main window.
-15. If you want to run the test suite at this time using your current configuration
-settings, click `Run Tests->Start` from the main menu.
-The tests in the `<TS_HOME>/src/com/sun/ts/tests/jaxrpc` directory are
-executed.
-
-[[GCLJG]][[special-set-up-instructions]]
-
-4.6 Special Set-Up Instructions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[[GCLJK]][[running-the-jaxrpc-on-vendor-implementation]]
-
-4.6.1 Running the {TechnologyShortName} on a Vendor's Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The {TechnologyShortName} {TechnologyVersion} specification does not specify any normative model for packaging
-and deployment of service endpoints on a servlet container-based {TechnologyShortName}
-runtime system. A {TechnologyShortName} {TechnologyVersion} implementation is allowed
-to have a vendorspecific deployment and packaging model for servlet-based service endpoints.
-For this reason, the {TechnologyShortName} TCK provides two distribution directories, /dist and
-/dist-vi, for the web service endpoint tests.
-
-The /dist directory contains all the WAR files for the {TechnologyShortName} TCK service
-endpoint tests that have been compiled and packaged for deployment on a Servlet
-2.3-compliant web container using the standard Web Archive (WAR) format. These
-WAR files are tailored for use with the Sun Microsystems {TechnologyShortName} {TechnologyVersion}
-Reference Implementation. The web.xml file contains the deployment information that the
-web container needs to link {TechnologyShortName} service endpoints to its associated servlet
-class. One generic servlet class, com.sun.xml.rpc.server.http.JAXRPCServlet , is
-used for all {TechnologyShortName} service endpoints. These WAR files enable you to run,
-without any additional setup or modification, the {TechnologyShortName} TCK tests and to test
-the various features and functionality of the Sun Microsystems {TechnologyShortName} {TechnologyVersion}
-Reference Implementation.
-
-The /dist-vi directory contains generic JAR files for all the TCK service endpoint
-tests that you must use to package and deploy on your {TechnologyShortName} {TechnologyVersion}
-implementation in a vendor-specific way. For each of these web applications, you
-must use your deployment tool to perform the appropriate Java-to-WSDL or
-WSDL-to-Java mapping, based on whether the service endpoint is defined by a
-Java Service Endpoint Interface or a WSDL service document. Next, you must
-package all the generated artifacts needed along with the service implementation
-classes for the service endpoints and deploy them on your container-based
-implementation.
-
-The following README files and TABLE show test breakdown and provide
-information that should help you with this process
-
-* README.JAVA-TO-WSDL
-* README.WSDL-TO-JAVA
-* Test Breakdown and Mapping Requirements
-
-These README files contain the manual instructions that you need to perform to
-implementation. The files also specify the mapping (Java-to-WSDL or WSDL-to-
-  deploy and package the service endpoint tests on your {TechnologyShortName} {TechnologyVersion}
-Java) that each test must perform. +
-For a brief example of how the Sun Microsystems {TechnologyShortName} {TechnologyVersion} Reference
-Implementation does this, look at the J2WMT.war web application in the the /dist
-directory. This test marshalls/unmarshalls all the {TechnologyShortName}-supported Java data
-types as outlined in the {TechnologyShortName} {TechnologyVersion} Specification using the Java-to-WSDL
-mapping. The web.xml file that is packaged in this web application is as follows:
-----
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://
-java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-<display-name>J2WMarshallTestApp</display-name>
-<listener>
-<listenerclass>
-com.sun.ts.tests.jaxrpc.common.JAXRPCContextListener</
-listener-class>
-</listener>
-<servlet>
-<servlet-name>XmlServletName</servlet-name>
-<servlet-class>com.sun.ts.tests.jaxrpc.common.JAXRPCServlet</
-servlet-class>
-<load-on-startup>0</load-on-startup>
-</servlet>
-<servlet-mapping>
-<servlet-name>XmlServletName</servlet-name>
-<url-pattern>/jaxrpc/*</url-pattern>
-</servlet-mapping>
-<session-config>
-<session-timeout>54</session-timeout>
-</session-config>
-</web-app>
-----
-As you can see, the {TechnologyShortName} service endpoint is linked to a generic servlet in the
-{TechnologyShortName} RI (com.sun.xml.rpc.server.http.JAXRPCServlet). This servlet is
-abstracted out in {TechnologyShortName} TCK under common servlet
-(com.sun.ts.tests.jaxrpc.common.JAXRPCServlet) which simply extends it. This
-common servlet is used for processing, handling and dispatching to all JAX-RPC
-service endpoints.
-The {TechnologyShortName} TCK Service Endpoint WAR files use a consistent naming convention
-for accessing all Service Endpoint URLs and WSDL URLs: as follows.
-
-* For Service Endpoint URLs, the URL mapping follows this convention:
-http://webServerHost:webServerPort/ContextRoot/URLAlias/PortName +
-The URL Alias used in all JAX-RPC TCK tests is jaxrpc.
-* For WSDL URL locations, the URL mapping follows this convention:
-http://webServerHost:webServerPort/ContextRoot/URLAlias?WSDL
-
-The example that follows is one of the JAX-RPC TCK tests that shows this
-mapping.
-
-The following implementation-specific runtime configuration file, jaxrpc-riruntime.
-xml , is supplied as a web archive initialization file to this servlet. This
-runtime configuration file is automatically generated by the wsdeploy deployment
-tool, which gives information on all service endpoints containing their interface,
-implementation and tie classes, their service, port and WSDL document and their
-URL pattern for accessing the endpoint.
-----
-<?xml version="1.0" encoding="UTF-8"?>
-<endpoints xmlns=’http://java.sun.com/xml/ns/jax-rpc/ri/runtime’
-version=’1.0’>
-<endpoint
-name=’MarshallTest’
-interface=’com.sun.ts.tests.jaxrpc.ee.j2w.marshalltest.Marshall
-Test’
-implementation=’com.sun.ts.tests.jaxrpc.ee.j2w.marshalltest.Mar
-shallTestImpl’
-tie=’com.sun.ts.tests.jaxrpc.ee.j2w.marshalltest.MarshallTest_T
-ie’
-wsdl=’/WEB-INF/MarshallTestService.wsdl’
-service=’{http://marshalltestservice.org/
-wsdl}MarshallTestService’
-port=’{http://marshalltestservice.org/wsdl}MarshallTestPort’
-urlpattern=’/jaxrpc/MarshallTest’/>
-</endpoints>
-----
-The RPC service endpoint has one port defined in its runtime configuration file.
-The test client code accesses this {TechnologyShortName} service endpoint and port at the
-following URL location: +
-http://webServerHost:webServerPort/J2WMT/jaxrpc/MarshallTest
-
-where MarshallTest is the service port to access.
-
-The above RPC service endpoint WSDL file describing this service is also
-published. The test client code accesses this WSDL file based on the above
-configuration via the following URL location: +
-http://webServerHost:webServerPort/J2WMT/jaxrpc/MarshallTest?WSDL
-
-
-[[GCLII]][[to-deploy-a-single-test-directory]]
-
-4.6.2 Instructions for Interoperability Test Scenarios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To test for interoperability between your implementation and the Sun
-Microsystems {TechnologyShortName} Reference Implementation, Sun recommends the following
-two test scenarios:
-
-* J2WMT
-* W2JMarshallTest
-
-Complete the following steps to test interoperability between {TechnologyShortName}
-implementations in both directions:
-
-1.  Deploy and run the J2WMT and W2JMarshallTest TCK tests on your own {TechnologyShortName}
- {TechnologyVersion} implementation and perform the appropriate mappings (WSDL-to-Java)
-and (Java-to-WSDL)
-2.  Deploy the {TechnologyShortName} RI WAR files (J2WMT.war) and (W2JMarshallTest.war)
-on a remote host system using the {TechnologyShortName} {TechnologyVersion}
-Reference Implementation.
-3.  On your local host system that is running your own {TechnologyShortName} implementation,
-edit the ts.jte file to change the Web server host and port to point to this
-remote system running the {TechnologyShortName} RI with the J2WMT.war and
-W2JMarshallTest.war WAR files deployed.
-4.  Run the client code for these tests against the remote system to test the
-marshalling/unmarshalling of data from your {TechnologyShortName} implementaton to the
-Sun Microsystems {TechnologyShortName} RI implementation system and back.
-5.  Perform the same procedure going in the opposite direction, running the client
-on the Sun Microsystems {TechnologyShortName} RI and accessing the Service Endpoint
-deployed on your {TechnologyShortName} implementation.

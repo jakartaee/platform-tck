@@ -4,135 +4,166 @@ title=Setup and Configuration
 next=using.html
 prev=install.html
 ~~~~~~
+include::attributes.conf[]
 Setup and Configuration
 =======================
 
-[[TCCOA00005]][[GBFVV]]
+[[GBFVV]]
 
 
 [[setup-and-configuration]]
 4 Setup and Configuration
 -------------------------
 
-This chapter describes how to set up the JSON-P TCK and JavaTest harness
-software.
-
-Before proceeding with the instructions in this chapter, be sure to
-install all required software, as described in
-link:install.html#GBFTP[Chapter 3, "Installation"].
+This chapter describes how to set up the {TechnologyShortName} TCK and
+JavaTest harness software. Before proceeding with the instructions in
+this chapter, be sure to install all required software, as described in
+link:install.html#GBFTP[Chapter 3, "Installation."]
 
 After completing the instructions in this chapter, proceed to
-link:using.html#GBFWO[Chapter 5, "Executing Tests"] for instructions on
-running the JSON-P TCK.
+link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
+running the {TechnologyShortName} TCK.
 
-[[GBFWP]][[TCCOA00037]][[configuration-overview]]
+include::config.inc[]
 
-4.1 Configuration Overview
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[GHGDH]][[custom-configuration-handlers]]
 
-Setting up and configuring the JSON-P TCK and JavaTest harness involves
-three general steps:
+4.4 Custom Configuration Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* link:#GBFVU[Section 4.2, "Configuring Your Environment to Run the
-JSON-P TCK"]
-* link:#GBFUY[Section 4.3, "Using the JavaTest Harness Software"]
-* link:#GBFWG[Section 4.4, "Using the JavaTest Harness Configuration
-GUI"]
+Configuration handlers are used to configure and unconfigure a
+{TechnologyShortName} {TechnologyVersion} implementation during the
+certification process.  These are similar to deployment handlers but
+used for configuration.  A configuration handler is an Ant build file
+that contains at least the required targets listed below:
+  * `config.vi` - to configure the vendor implementation
+  * `clean.vi` - to unconfigure the vendor implementation
 
+These targets are called from the `<TS_HOME>/bin/build.xml` file and
+call down into the implementation-specific configuration handlers.
+
+To provide your own configuration handler, create a config.vi.xml file
+with the necessary configuration steps for your implementation and place
+the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
+
+For more information, see `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
+the configuration file for the Java EE 8 RI.
+
+[[GBFWG]][[custom-deployment-handlers]]
+
+4.5 Custom Deployment Handlers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deployment handlers are used to deploy and undeploy the WAR files that
+contain the tests to be run during the certification process. A deployment
+handler is an Ant build file that contains at least the required targets
+listed in the table below.
+
+The {TechnologyShortName} TCK provides these deployment handlers:
+* `<TS_HOME>/bin/xml/impl/none/deploy.xml`
+* `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+
+The `deploy.xml` files in each of these directories are used to control
+deployment to a specific container (no deployment, deployment to
+the GlassFish Web container, deployment to the Tomcat Web container)
+denoted by the name of the directory in which each `deploy.xml` file
+resides. The primary `build.xml` file in the `<TS_HOME>/bin` directory
+has a target to invoke any of the required targets (-deploy, -undeploy,
+-deploy.all, -undeploy.all).
+
+[[GBFVA]][[create-custom-deployment-handler]]
+
+4.5.1 To Create a Custom Deployment Handler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To deploy tests to another {TechnologyShortName} implementation, you
+must create a custom handler.
+1. Create a new directory in the <TS_HOME>/bin/impl directory tree.
+  For example, create the <TS_HOME>/bin/impl/my_deployment_handler directory.
+  Replace my_deployment_handler with the value of the impl.vi
+  property that you set in Step 5 of the configuration procedure
+  described in Section 4.2, "Configuring Your Environment to Repackage
+  and Run the TCK Against the Vendor Implementation".
+
+2.  Copy the deploy.xml file from the <TS_HOME>/bin/xml/impl/none
+  directory to the directory that you created.
+
+3.  Modify the required targets in the deploy.xml file.  This is what
+    the deploy.xml file for the "none" deployment handler looks like.
+
++
+[source,oac_no_warn]
+----
+<project name="No-op Deployment" default="deploy">
+    <!-- No-op deployment target -->
+    <target name="-deploy">
+        <echo message="No deploy target implemented for this deliverable"/>
+    </target>
+    <target name="-undeploy">
+        <echo message="No undeploy target implemented for this deliverable"/>
+    </target>
+    <target name="-deploy.all">
+        <echo message="No deploy target implemented for this deliverable"/>
+    </target>
+    <target name="-undeploy.all">
+        <echo message="No undeploy target implemented for this deliverable"/>
+    </target>
+</project>
+----
++
+Although this example just echoes messages, it does include the four
+required Ant targets (-deploy, -undeploy, -deploy.all, -undeploy.all)
+that your custom deploy.xml file must contain. With this as your
+starting point, look at the required targets in the deploy.xml files
+in the tomcat and glassfish directories for guidance as you create
+the same targets for the Web container in which you will run your
+implementation of {TechnologyShortName}.
+
+The following Ant targets can be called from anywhere under the
+<TS_HOME>/src directory:
+
+* `deploy`
+* `undeploy`
+* `deploy.all`
+* `undeploy.all`
+
+The deploy.all and undeploy.all targets can also be called from the
+<TS_HOME>/bin directory.
 
 [NOTE]
 =======================================================================
-
-The third general step, link:#GBFWG[Section 4.4, "Using the JavaTest
-Harness Configuration GUI"], is not necessary if you plan on running the
-JavaTest harness in command-line mode. See link:using.html#GBFWM[Section
-5.3, "Running a Subset of the Tests"], for more information about
-running tests in command-line mode.
-
+The targets in the deploy.xml file are never called directly.
+They are called indirectly by the targets listed above.
 =======================================================================
 
+[[GBFUY]][[using-the-javatest-harness-software]]
 
-The remainder of this chapter explains these steps in detail.
-
-[[GBFVU]][[TCCOA00038]][[configuring-your-environment-to-run-the-json-p-tck]]
-
-4.2 Configuring Your Environment to Run the JSON-P TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This section describes how to configure the JSON-P TCK for your
-environment. After configuring your environment, continue with the
-instructions in link:#GBFUY[Section 4.3, "Using the JavaTest Harness
-Software"].
-
-
-[NOTE]
-=======================================================================
-
-In these instructions, variables in angle brackets need to be expanded
-for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
-slashes (`/`) used in all of the examples need to be replaced with
-backslashes (`\`) for Windows. Finally, be sure to use the appropriate
-separator for your operating system when specifying multiple path
-entries (`;` on Windows, `:` on UNIX/Linux).
-
-=======================================================================
-
-
-1.  Set the following environment variables in your shell environment:
-1.  `JAVA_HOME` to the directory in which Java SE 8 is installed
-2.  `TS_HOME` to the directory in which the JSON-P TCK 1.1 software is
-installed
-3.  `PATH` to include the following directories: `JAVA_HOME/bin` and
-`<TS_HOME>/tools/ant/bin`
-2.  Edit the `<TS_HOME>/bin/ts.jte` file, making sure that the following
-properties are set:
-* `jsonp.classes` to the JAR file(s) that contain your JSON-P 1.1
-implementation classes +
-For example, if you were using the Oracle JSON-P 1.1 RI, you would set
-this property to jsonp.classes=javax.json-1.1.0.jar.
-* `jsonp.resources` should not be modified +
-This property points to JSON resource data files that are used by the
-JSON-P TCK 1.1.
-* `jsonp.alt.provider.classes` should not be modified +
-This property is set automatically when running the JSON-P TCK
-pluggability tests to test the SPI provider interface when using the
-top-level command line `runclient` or `run.pluggability` Ant targets.
-The property is included as part of the `ts.run.classpath` property and
-is placed before `jsonp.classes` in the classpath so the JSON-P TCK can
-pick up the TCK-supplied provider when set, not the provider supplied
-with the JSON-P 1.1 implementation under test. This property should only
-be set when running the pluggability tests. All other tests use the
-provider supplied with the JSON-P 1.1 implementation under test.
-
-[[GBFUY]][[TCCOA00039]][[using-the-javatest-harness-software]]
-
-4.3 Using the JavaTest Harness Software
+4.6 Using the JavaTest Harness Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are two general ways to run the JSON-P TCK test suite using the
-JavaTest harness software:
+There are two general ways to run the {TechnologyShortName} TCK test
+suite using the JavaTest harness software:
 
 * Through the JavaTest GUI; if using this method, please continue on to
-link:#GBFWG[Section 4.4, "Using the JavaTest Harness Configuration
-GUI"].
+link:#GBFWG[Section 4.7, "Using the JavaTest Harness Configuration
+GUI."]
 * In JavaTest batch mode, from the command line in your shell
 environment; if using this method, please proceed directly to
-link:using.html#GBFWO[Chapter 5, "Executing Tests"].
+link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 
-[[GBFWG]][[TCCOA00040]][[using-the-javatest-harness-configuration-gui]]
+[[GBFWG]][[using-the-javatest-harness-configuration-gui]]
 
-4.4 Using the JavaTest Harness Configuration GUI
+4.7 Using the JavaTest Harness Configuration GUI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use the JavaTest harness GUI to modify general test settings and
-to quickly get started with the default JSON-P TCK test environment.
-This section covers the following topics:
+to quickly get started with the default {TechnologyShortName} TCK test
+environment.  This section covers the following topics:
 
 * link:#GBFVA[Configuration GUI Overview]
 * link:#GBFVD[Starting the Configuration GUI]
-* link:#GBFUW[Configuring the JavaTest Harness to Run the JSON-P TCK
-Tests]
+* link:#GBFVX[To Configure the JavaTest Harness to Run the
+{TechnologyShortName} TCK Tests]
 * link:#GBFUU[Modifying the Default Test Configuration]
 
 
@@ -142,14 +173,14 @@ Tests]
 It is only necessary to proceed with this section if you want to run the
 JavaTest harness in GUI mode. If you plan to run the JavaTest harness in
 command-line mode, skip the remainder of this chapter, and continue with
-link:using.html#GBFWO[Chapter 5, "Executing Tests"].
+link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 
 =======================================================================
 
 
-[[GBFVA]][[TCCOA00068]][[configuration-gui-overview]]
+[[GBFVA]][[configuration-gui-overview]]
 
-4.4.1 Configuration GUI Overview
+4.7.1 Configuration GUI Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order for the JavaTest harness to execute the test suite, it requires
@@ -171,10 +202,9 @@ The first time you run the JavaTest harness software, you are asked to
 specify the test suite and work directory that you want to use. (These
 parameters can be changed later from within the JavaTest harness GUI.)
 
-Once the JavaTest harness GUI is displayed, whenever you choose Run
-Tests and then Start to begin a test run, the JavaTest harness
-determines whether all of the required configuration information has
-been supplied:
+Once the JavaTest harness GUI is displayed, whenever you choose Start,
+then Run Tests to begin a test run, the JavaTest harness determines
+whether all of the required configuration information has been supplied:
 
 * If the test environment and parameters have been completely
 configured, the test run starts immediately.
@@ -184,19 +214,19 @@ necessary information. This is called the configuration interview. When
 you have entered the configuration data, you are asked if you wish to
 proceed with running the test.
 
-[[GBFVD]][[TCCOA00069]][[starting-the-configuration-gui]]
+[[GBFVD]][[starting-the-configuration-gui]]
 
-4.4.2 Starting the Configuration GUI
+4.7.2 Starting the Configuration GUI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before you start the JavaTest harness software, you must have a valid
-test suite and Java SE 8 installed on your system.
+test suite and Java SE {SEversion} installed on your system.
 
-The JSON-P TCK includes an Ant script that is used to execute the
+The {TechnologyShortName} TCK includes an Ant script that is used to execute the
 JavaTest harness from the `<TS_HOME>` directory. Using this Ant script
 to start the JavaTest harness is part of the procedure described in
-link:#GBFUW[Configuring the JavaTest Harness to Run the JSON-P TCK
-Tests].
+link:#GBFVX[Section 4.7.3, "To Configure the JavaTest Harness to Run the
+TCK Tests."]
 
 When you execute the JavaTest harness software for the first time, the
 JavaTest harness displays a Welcome dialog box that guides you through
@@ -212,20 +242,13 @@ opening both a test suite and a work directory as described in the
 JavaTest documentation.
 
 After you specify a work directory, you can use the Test Manager to
-configure and run tests as described in link:#GBFUW[Configuring the
-JavaTest Harness to Run the JSON-P TCK Tests].
+configure and run tests as described in link:#GBFVX[Section 4.7.3, "To
+Configure the JavaTest Harness to Run the TCK Tests."]
 
-[[GBFUW]][[TCCOA00013]][[configuring-the-javatest-harness-to-run-the-json-p-tck-tests]]
+[[GBFVX]][[to-configure-the-javatest-harness-to-run-the-tck-tests]]
 
-4.4.3 Configuring the JavaTest Harness to Run the JSON-P TCK Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You only need to complete all these steps the first time you start the
-JavaTest test harness. After you complete these steps, you can either
-run all of the tests by completing the steps in
-link:using.html#GBFUZ[Starting JavaTest] or run a subset of the tests by
-completing the steps in link:using.html#GBFWM[Running a Subset of the
-Tests].
+4.7.3 To Configure the JavaTest Harness to Run the TCK Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The answers you give to some of the configuration interview questions
 are specific to your site. For example, the name of the host on which
@@ -233,33 +256,48 @@ the JavaTest harness is running. Other configuration parameters can be
 set however you wish. For example, where you want test report files to
 be stored.
 
-1.  Start the JavaTest test harness: +
-[source,oac_no_warn]
-----
-ant gui
-----
-The JavaTest Quick Start screen displays, and you are prompted to Start,
-Resume, or Browse the test suite.
-2.  Select Start a new test run, and then click Next. +
+Note that you only need to complete all these steps the first time you
+start the JavaTest test harness. After you complete these steps, you can
+either run all of the tests by completing the steps in
+link:using.html#GBFUZ[Section 5.1, "Starting JavaTest,"] or run a subset
+of the tests by completing the steps in link:using.html#GBFWM[Section
+5.2, "Running a Subset of the Tests."]
+
+1.  Change to the `<TS_HOME>/bin` directory and start the JavaTest test
+harness: +
+`cd <TS_HOME>/bin` +
+`ant gui`
+2.  From the File menu, click Open Quick Start Wizard. +
+The Welcome screen displays.
+3.  Select Start a new test run, and then click Next. +
 You are prompted to create a new configuration or use a configuration
 template.
-3.  Select Create a new configuration, and then click Next. +
+4.  Select Create a new configuration, and then click Next. +
 You are prompted to select a test suite.
-4.  Accept the default suite (`<TS_HOME>/src`), and then click Next. +
+5.  Accept the default suite (`<TS_HOME>/src`), and then click Next. +
 You are prompted to specify a work directory to use to store your test
 results.
-5.  Type a work directory name or use the Browse button to select a work
+6.  Type a work directory name or use the Browse button to select a work
 directory, and then click Next. +
 You are prompted to start the configuration editor or start a test run.
-At this point, the JSON-P TCK is configured to run the default test
-suite.
-6.  Deselect the Start the configuration editor option, select the Start
-test run option, and then click Finish. +
-The test run is started.
+At this point, the {TechnologyShortName} TCK is configured to run the
+default test suite.
+7.  Deselect the Start the configuration editor option, and then click
+Finish.
+8.  Click Run Tests, then click Start. +
+The JavaTest harness starts running the tests.
+9.  To reconfigure the JavaTest test harness, do one of the following:
+* Click Configuration, then click New Configuration.
+* Click Configuration, then click Change Configuration.
+10. Click Report, and then click Create Report.
+11. Specify the directory in which the JavaTest test harness will write
+the report, and then click OK. +
+A report is created, and you are asked whether you want to view it.
+12. Click Yes to view the report.
 
-[[GBFUU]][[TCCOA00071]][[modifying-the-default-test-configuration]]
+[[GBFUU]][[modifying-the-default-test-configuration]]
 
-4.4.4 Modifying the Default Test Configuration
+4.7.4 Modifying the Default Test Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The JavaTest GUI enables you to configure numerous test options. These
@@ -294,8 +332,8 @@ options are displayed in a paged dialog box:
 ** Specify an Exclude List
 
 Note that there is some overlap between the functions in these two
-dialog boxes; for those functions use the dialog that is most convenient
-for you. Please refer to the JavaTest Harness documentation or the
-online help for complete information about these various options.
+dialog boxes; for those functions use the dialog box that is most
+convenient for you. Please refer to the JavaTest Harness documentation
+or the online help for complete information about these various options.
 
 

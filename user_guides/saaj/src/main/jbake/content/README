@@ -1,7 +1,7 @@
 The file attributes.conf defines several attributes (variables) that
 need to be customized for each technology.
 
-Most of the *.adoc files should not need to be modified.
+The *.adoc files should not be modified.
 
 The following "include" files should be customized as necessary
 for the specific technology:
@@ -16,8 +16,7 @@ for the specific technology:
 	Detailed instructions for configuring the TCK, included in
 	Chapter 4.  Unfortunately, these are sections 4.1 - 4.3,
 	so even if the TCK doesn't require 3 sections you need to
-	make up something, or else renumber the subsequent sections
-	and fix all the references (ugh).
+	make up something, or else change the sections to "N/A".
 
 - packages.inc
 
@@ -34,10 +33,24 @@ for the specific technology:
 - install-server.inc
 
 	Steps to install the Java EE RI, if needed.
+	For standalone technologies, no server may be required,
+	and this file can be empty.
+	This is used in install.adoc in section 3.2.
 
 - install-server-vi.inc
 
 	Steps to install a Vendor's web server, if needed.
+	For standalone technologies, no web server may be required,
+	and this file can be empty.
+	This is used in install.adoc in section 3.2.
+
+- using-examples.inc
+
+	Command line examples showing how to run the TCK.
+
+- using.inc
+
+	Optional additional instructions for running the TCK.
 
 - debug-tips.inc
 
@@ -45,12 +58,11 @@ for the specific technology:
 	If this isn't needed, it can be an empty file, but toc.adoc
 	will need to be fixed.
 
-- rebuild.adoc
+- rebuild.inc
 
 	Special instructions for rebuilding the war files used by some TCKs.
-	If needed, customize it appropriately and make sure the "next"
-	pointer in faq.adoc points to it.  Otherwise, remove the "next"
-	pointer in faq.adoc and update toc.adoc.
+	If needed, customize it appropriately and define the "rebuild"
+	attribute in attributes.conf.
 
 
 Note that this template is NOT sufficient for the Java EE platform

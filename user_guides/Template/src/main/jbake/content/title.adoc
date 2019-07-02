@@ -1,0 +1,41 @@
+type=page
+status=published
+title=Technology Compatibility Kit User's Guide for Technology Implementors
+next=preface.html
+prev=toc.html
+~~~~~~
+include::attributes.conf[]
+Technology Compatibility Kit User's Guide for {TechnologyFullName}, Release {TechnologyVersion} for Jakarta EE
+==============================================================================================================
+
+[[eclipse-foundation]]
+Eclipse Foundation
+------------------
+
+Technology Compatibility Kit User's Guide for {TechnologyFullName}
+
+Release {TechnologyVersion} for Jakarta EE
+
+September 2019
+
+[[sthref1]]
+
+'''''
+
+Technology Compatibility Kit User's Guide for {TechnologyFullName},
+Release {TechnologyVersion} for Jakarta EE
+
+Copyright © 2017, 2019 Oracle and/or its affiliates. All rights reserved.
+
+This program and the accompanying materials are made available under
+the terms of the Eclipse Public License v. 2.0, which is available at
+http://www.eclipse.org/legal/epl-2.0.
+
+SPDX-License-Identifier: EPL-2.0
+
+Oracle and Java are registered trademarks of Oracle and/or its
+affiliates. Other names may be trademarks of their respective owners.
+
+References in this document to {LegacyAcronym} refer to the {TechnologyFullName} unless otherwise noted.
+
+References in this document to JAXRS refer to the Jakarta RESTful Web Services unless otherwise noted.

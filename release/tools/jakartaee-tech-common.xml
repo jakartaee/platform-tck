@@ -1,0 +1,129 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="J2EE Technology Common File" basedir="." default="build">
+
+    <!-- IMPORTS -->
+    <import file="../../bin/xml/ts.common.props.xml"/>
+    
+    <!--    <property name="test.areas" value="samples"/> -->
+
+    <property name="deliverable.version"           value="8.0"/>
+
+    <target name="init">
+        <mkdir dir="${deliverable.bundle.dir}/bin"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <mkdir dir="${deliverable.bundle.dir}/classes"/>
+        <mkdir dir="${deliverable.bundle.dir}/dist"/>
+        <mkdir dir="${deliverable.bundle.dir}/bin/xml/other"/>
+        <mkdir dir="${deliverable.bundle.dir}/docs"/>
+        <mkdir dir="${deliverable.bundle.dir}/lib"/>
+        <mkdir dir="${deliverable.bundle.dir}/src"/>
+    </target>
+
+	<target name="copyinstall">
+        <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
+           <fileset dir="${ts.home}/install/jakartaee/bin"
+                includes="**/*"/>
+        </copy>
+        <antcall target="_filter.common.files"/>
+        <copy todir="${deliverable.bundle.dir}/src">
+        <fileset dir="${ts.home}/install/jakartaee/other"
+            includes="testsuite.jtt, vehicle.properties"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/sql" includeEmptyDirs="no">
+           <fileset dir="${ts.home}/sql"
+                    includes="**/*"/>
+        </copy>
+	</target>
+        
+    <target name="_filter.common.files">
+        <copy file="${common.bin.dir}/xml/impl/glassfish/connector.xml" todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <copy file="${common.bin.dir}/xml/impl/glassfish/install_sjsas.xml" todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <copy file="${common.bin.dir}/xml/impl/glassfish/s1as.xml" todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <copy file="${common.bin.dir}/xml/impl/glassfish/common.xml" todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
+        <copy todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish/templates">
+            <fileset dir="${common.bin.dir}/xml/impl/glassfish/templates"
+                     includes="**/*"/>
+        </copy>
+        <copy todir="${deliverable.bundle.dir}/bin/xml/other" overwrite="true">
+        <fileset dir="${common.bin.dir}/xml/other" includes="*"/>
+        </copy>
+    </target>
+
+    <target name="do.build" unless="skip.build">
+        <ant dir="${bin.dir}" target="build.all.tests">
+            <property name="all.test.dir" value="${all.files2}"/>
+        </ant>
+    </target>
+
+	<target name="build" depends="init">
+        <echo message="$$$$$$$$$$$$$  web.files is ${web.files}"/>
+        <antcall target="copyinstall"/>
+        <elementappend original="${test.areas}" prefix="com/sun/ts/tests" property="all.files2"/>
+        <elementappend original="${test.areas}" prefix="com/sun/ts/tests" suffix="**/*" property="all.files"/>
+        <echo message="all.files = ${all.files}"/>
+        <antcall target="do.build"/>
+
+        <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+          <fileset dir="${ts.home}/internal/docs/jakartaee"
+                   includes="smoke-instructions-CTS7*, running_cts7*"/>
+        </copy>
+        <!-- the classes directory -->
+        <copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
+        <fileset dir="${ts.home}/classes"
+            includes="${all.files}, com/sun/ts/tests/common/**/*.class,
+                  javasoft/**/*.class, org/**/*.class,
+                  w2jdlnoncustomization/**/*.class,
+                  w2jrlnoncustomization/**/*.class"
+            excludes="com/sun/ts/tests/jpa/se/**/*,
+	              com/sun/ts/tests/jaxws/se/**"/>
+        </copy>
+
+        <!-- the ear files in the dist directory -->
+        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+        <fileset dir="${ts.home}/dist"
+            includes="${all.files}, com/sun/ts/tests/common/"
+            excludes="**/*.runtime.xml,
+                     com/sun/ts/tests/jpa/se/**/*,
+                     com/sun/ts/tests/jaxws/se/**"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/lib">
+          <fileset dir="${ts.home}/lib"
+                   includes="dtds/, schemas/, *.jar"
+                   excludes="recordApiCheck.jar"/>
+        </copy>
+
+        <copy todir="${deliverable.bundle.dir}/sql">
+          <fileset dir="${ts.home}/sql"
+                   includes="**/*"/>
+        </copy>
+
+        <!-- the specific deliverable source directories -->
+        <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+            <fileset dir="${ts.home}/src"
+                includes="${all.files}, com/sun/ts/tests/common/**/*, ${lib.pkg.dir}/deliverable/**, ${web.files}"
+                excludes="docs/**/*,
+                          **/*.runtime.xml,
+                          com/sun/ts/tests/jpa/se/**/*,
+                          com/sun/ts/tests/jaxws/se/**"/>
+        </copy>
+        
+	</target>
+</project>

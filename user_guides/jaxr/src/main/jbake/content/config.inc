@@ -10,12 +10,14 @@ at the top of config.adoc will need to be changed as well as well
 as toc.adoc.
 ///////////////////////////////////////////////////////////////////////
 
-[[GBFVU]][[modifying-the-ts-env-and-ts-env-bat-files]]
+[[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Modifying the ts_env and ts_env.bat Files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Edit your ts_env or ts_env.bat file and set the following environment variables:
+After configuring your environment as described in this section,
+continue with the instructions in link:#GBFUY[Section 4.4, "Using the
+JavaTest Harness Software."]
 
 
 [NOTE]
@@ -35,19 +37,22 @@ slashes as a path separator instead.
 
 =======================================================================
 
+
+Edit your ts_env or ts_env.bat file and set the following environment variables:
+
 1.  Set the following environment variables in your shell environment:
     a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
 2.  `LOCAL_CLASSES` variable point to your {TechnologyShortName}
-    {TechnologyVersion} implementation's classes/jars and to the {TechnologyShortName} TCK
-    classes/jars (harness.jar, javatest.jar). +
+    {TechnologyVersion} implementation's classes/jars and to the
+    {TechnologyShortName} TCK classes/jars (harness.jar, javatest.jar).  +
     `TS_HOME` to the directory in which the {TechnologyShortName} TCK
     {TechnologyVersion} software is installed. +
-    Note that if you are using the Sun Microsystems JAXR RI, Version 1.0_01,
-    the manner in which you set your classpath is dependent upon the location from
+    Note that if you are using the JAXR RI, Version 1.0_01, the manner
+    in which you set your classpath is dependent upon the location from
     which you downloaded the JAXR RI software. +
-    For example, if you are running Solaris 8 and you downloaded the Sun Microsystems
-    JAXR RI, Version 1.0_01 from the Java Software or Partner Engineering web sites, you
-    could set the following classpath: +
+    For example, if you are running Solaris 8 and you downloaded the
+    JAXR RI, Version 1.0_01 from the Java Software or Partner
+    Engineering web sites, you could set the following classpath: +
 
     ----
     LOCAL_CLASSES=${JAXR_HOME}/lib/commons-logging.jar:
@@ -65,9 +70,9 @@ slashes as a path separator instead.
     ${TS_HOME}/lib/javatest.jar:${TS_HOME}/lib/harness.jar
     ----
 
-    Or, if you are running on Windows 2000/XP and you downloaded the Sun Microsystems
-    JAXR RI, Version 1.0_01 from the Java Software or Partner Engineering web sites, you
-    could set the following classpath:
+    Or, if you are running on Windows 2000/XP and you downloaded the
+    JAXR RI, Version 1.0_01 from the Java Software or Partner
+    Engineering web sites, you could set the following classpath:
 
     ----
     set LOCAL_CLASSES=%JAXR_HOME%\lib\commons-logging.jar;
@@ -85,9 +90,9 @@ slashes as a path separator instead.
     %TS_HOME%\lib\javatest.jar;%TS_HOME%\lib\harness.jar
     ----
 
-    If you are running on Solaris 8 and you are using the Sun Microsystems JAXR RI,
-    Version 1.0_01 from the Java Web Services Developer Pack,, you would set the following
-    classpath:
+    If you are running on Solaris 8 and you are using the JAXR RI,
+    Version 1.0_01 from the Java Web Services Developer Pack, you would
+    set the following classpath:
 
     ----
     set LOCAL_CLASSES=${JAXR_HOME}/common/lib/soap.jar;
@@ -114,9 +119,9 @@ slashes as a path separator instead.
     ${TS_HOME}/lib/javatest.jar;${TS_HOME}/lib/harness.jar
     ----
 
-    If you are running on Windows 2000/XP and you are using the Sun Microsystems JAXR
-    RI, Version 1.0_01 from the Java Web Services Developer Pack, you would set the
-    following classpath:
+    If you are running on Windows 2000/XP and you are using the JAXR
+    RI, Version 1.0_01 from the Java Web Services Developer Pack, you
+    would set the following classpath:
 
     ----
     set LOCAL_CLASSES=%JAXR_HOME%\common\lib\soap.jar;
@@ -143,10 +148,6 @@ slashes as a path separator instead.
     %TS_HOME%\lib\javatest.jar;%TS_HOME%\lib\harness.jar
     ----
 
-[[GCLHU]][[modifying-the-ts-jte-file]]
-
-4.2 Modifying the ts.jte File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Edit your `ts.jte` file and modify the following environment settings:
 
@@ -167,8 +168,8 @@ Edit your `ts.jte` file and modify the following environment settings:
 12. Set the `jaxrPassword2` property to a second password for the registry.
 13. Set the `providerCapability` property to correspond to the capability level of your
     JAXR Provider. The default setting is level 0.
-    The following example shows the properties that were set for use with the Java Web
-    Services Developer Pack Registry Server 1.0.
+    The following example shows the properties that were set for use
+    with the Java Web Services Developer Pack Registry Server 1.0.
 
     `registryURL = http://hostname:8080/registry-server/`
     `RegistryServerServlet`
@@ -195,8 +196,8 @@ Edit your `ts.jte` file and modify the following environment settings:
     Developer Pack documentation for information about adding new users to the
     registry.
     ===========================================================================
-    If you are using the Microsoft UDDI V2 registry, specify the following urls in the
-    ts.jte file.
+    If you are using the Microsoft UDDI V2 registry, specify the
+    following urls in the ts.jte file.
 
     `registryUrl = https://uddi.rte.microsoft.com/publish`
     `queryManagerUrl = http://uddi.rte.microsoft.com/inquire`
@@ -208,7 +209,7 @@ Edit your `ts.jte` file and modify the following environment settings:
 14. You can specify proxy settings as properties in the `ts.jte` file or on the
     command line. The following example adds proxy settings to provide access to
     the registry through a firewall and adds debug logging level on the command
-    line for the Sun Microsystems JAXR RI, Version 1.0_01 on UNIX.
+    line for the JAXR RI, Version 1.0_01 on UNIX.
 
     `env.ts-unix.command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \`
     `CLASSPATH=${TS_HOME}/lib/harness.jar:${TS_HOME}/lib/javatest.jar:\`
@@ -226,4 +227,10 @@ Edit your `ts.jte` file and modify the following environment settings:
     `$testExecuteClass \`
     `$testExecuteArgs`
 
-[[sthref9]]
+
+[[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
+
+4.2 Configuring Your Environment to Repackage and Run the TCK Against the Vendor Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Update the configuration as described above.

@@ -4,10 +4,11 @@ title=Frequently Asked Questions
 next=rebuild.html
 prev=debug.html
 ~~~~~~
+include::attributes.conf[]
 Frequently Asked Questions
 ==========================
 
-[[TCJRS00008]][[GBFYD]]
+[[GBFYD]]
 
 
 [[a-frequently-asked-questions]]
@@ -20,7 +21,7 @@ This appendix contains the following questions.
 * link:#GBFYR[How do I restart a crashed test run?]
 * link:#GBFWU[What would cause tests be added to the exclude list?]
 
-[[GBFYQ]][[TCJRS00066]][[a.1-where-do-i-start-to-debug-a-test-failure]]
+[[GBFYQ]][[a.1-where-do-i-start-to-debug-a-test-failure]]
 
 A.1 Where do I start to debug a test failure?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,7 +31,7 @@ Results Summary, by selecting the red Failed tab or the blue Error tab.
 See link:debug.html#GBFUV[Chapter 6, "Debugging Test Problems,"] for more
 information.
 
-[[GBFYR]][[TCJRS00067]][[a.2-how-do-i-restart-a-crashed-test-run]]
+[[GBFYR]][[a.2-how-do-i-restart-a-crashed-test-run]]
 
 A.2 How do I restart a crashed test run?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,12 +46,12 @@ you rerun. As long as you do not change the value of the GUI work
 directory, you can continue testing and then later compile a complete
 report to include results from all such partial runs.
 
-[[GBFWU]][[TCJRS00068]][[a.3-what-would-cause-tests-be-added-to-the-exclude-list]]
+[[GBFWU]][[a.3-what-would-cause-tests-be-added-to-the-exclude-list]]
 
 A.3 What would cause tests be added to the exclude list?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The JavaTest exclude file (`*.jtx`) contains all tests that are not
+The JavaTest exclude file (+{jtxFileName}+) contains all tests that are not
 required to be run. The following is a list of reasons for a test to be
 included in the Exclude List:
 
@@ -59,5 +60,3 @@ execute properly has been discovered.
 * An error in the specification that was used as the basis of the test
 has been discovered.
 * An error in the test has been discovered.
-
-

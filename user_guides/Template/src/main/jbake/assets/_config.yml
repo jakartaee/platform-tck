@@ -1,0 +1,14 @@
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
+
+title: [tck_wombat_v1_0]
+description: [Oracle Technology Compatibility Kit User's Guide for Wombat for Technology Licensees, Release 1.0]
+
+# sidebar links url
+links:
+  source: https://github.com/javaee/tck_wombat_v1_0
+  download: https://github.com/javaee/tck_wombat_v1_0/releases
+  #mailinglist: https://javaee.groups.io/g/tck_wombat_v1_0
+  #javadocs:
+  docs: https://javaee.github.io/tck_wombat_v1_0
+  #faq:
+

@@ -161,63 +161,175 @@ slashes as a path separator instead.
 =======================================================================
 
 
-[[sthref9]]
+[[GCLJK]][[running-the-jaxrpc-tck-on-vendor-implementation]]
 
-Before You Begin
-~~~~~~~~~~~~~~~~~
+4.2.1 Running the {TechnologyShortName} TCK on a Vendor's Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Decide against which {TechnologyShortName} implementation the tests
-will be run and determine to which Servlet–compliant Web server the
-{TechnologyShortName} TCK applications will be published.
+The {TechnologyShortName} {TechnologyVersion} specification does not
+specify any normative model for packaging and deployment of service
+endpoints on a servlet container-based {TechnologyShortName} runtime
+system. A {TechnologyShortName} {TechnologyVersion} implementation is
+allowed to have a vendorspecific deployment and packaging model for
+servlet-based service endpoints.  For this reason, the
+{TechnologyShortName} TCK provides two distribution directories, /dist
+and /dist-vi, for the web service endpoint tests.
 
-Package the {TechnologyShortName} test applications for that
-{TechnologyShortName} implementation and Servlet–compliant Web
-server.
+The /dist directory contains all the WAR files for the
+{TechnologyShortName} TCK service endpoint tests that have been
+compiled and packaged for deployment on a Servlet-compliant web
+container using the standard Web Archive (WAR) format. These WAR files
+are tailored for use with the {TechnologyShortName} {TechnologyVersion}
+Reference Implementation. The web.xml file contains the deployment
+information that the web container needs to link {TechnologyShortName}
+service endpoints to its associated servlet class. One generic servlet
+class, com.sun.xml.rpc.server.http.JAXRPCServlet , is used for all
+{TechnologyShortName} service endpoints. These WAR files enable you to
+run, without any additional setup or modification, the
+{TechnologyShortName} TCK tests and to test the various features and
+functionality of the {TechnologyShortName} {TechnologyVersion}
+Reference Implementation.
 
-See link:rebuild.html#GCLIZ[Appendix B, "Packaging the Test
-Applications in Servlet-Compliant WAR Files With VI-Specific
-Information,"] for information about repackaging the
-{TechnologyShortName} test application.
+The /dist-vi directory contains generic JAR files for all the TCK
+service endpoint tests that you must use to package and deploy on your
+{TechnologyShortName} {TechnologyVersion} implementation in a
+vendor-specific way. For each of these web applications, you must use
+your deployment tool to perform the appropriate Java-to-WSDL or
+WSDL-to-Java mapping, based on whether the service endpoint is defined
+by a Java Service Endpoint Interface or a WSDL service document. Next,
+you must package all the generated artifacts needed along with the
+service implementation classes for the service endpoints and deploy
+them on your container-based implementation.
 
-Deploying the {TechnologyShortName} TCK Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1.  Change to the `<TS_HOME>/dist` directory.
-2.  For the Java Web Services Developers Pack, copy all of the WAR files to the
-`<JWSDP_HOME>/webapps` directory: +
-    `cp *.war <JWSDP_HOME>/webapps`
+The following README files and TABLE show test breakdown and provide
+information that should help you with this process
 
-Complete the following two procedures to configure your Web server environment
-for Java Web Services Developers Pack.
+* README.JAVA-TO-WSDL
+* README.WSDL-TO-JAVA
+* Test Breakdown and Mapping Requirements
 
-Configuring the Java Web Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
-  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
-  {TechnologyVersion} software is installed
-  c.  `JWSDP_HOME` to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
-  d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
-2.  Edit your `<JWSDP_HOME>/conf/tomcat-users.xml` file and add the following
-  users:
-  `<user name="j2ee" password="j2ee"`
-  `roles="Administrator,Employee"/>`
-  `<user name="javajoe" password="javajoe"`
-  `roles="Manager,Employee"/>`
-3.  Configure the Web server for use with SSL and HTTPS. +
-Some tests in TCK do secure testing using SSL over HTTPS. See the `README.SSLHTTPS-
-SETUP` file for configuration and setup instructions.
-4. Copy the `<TS_HOME>/lib/tsharness.jar` file to the `<JWSDP_HOME>/common/
-lib` directory.
+These README files contain the manual instructions that you need to
+perform to implementation. The files also specify the mapping
+(Java-to-WSDL or WSDL-to- deploy and package the service endpoint tests
+on your {TechnologyShortName} {TechnologyVersion} Java) that each test
+must perform. + For a brief example of how the {TechnologyShortName}
+{TechnologyVersion} Reference Implementation does this, look at the
+J2WMT.war web application in the the /dist directory.  This test
+marshalls/unmarshalls all the {TechnologyShortName}-supported Java data
+types as outlined in the {TechnologyShortName} {TechnologyVersion}
+Specification using the Java-to-WSDL mapping. The web.xml file that is
+packaged in this web application is as follows:
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://
+java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<display-name>J2WMarshallTestApp</display-name>
+<listener>
+<listenerclass>
+com.sun.ts.tests.jaxrpc.common.JAXRPCContextListener</
+listener-class>
+</listener>
+<servlet>
+<servlet-name>XmlServletName</servlet-name>
+<servlet-class>com.sun.ts.tests.jaxrpc.common.JAXRPCServlet</
+servlet-class>
+<load-on-startup>0</load-on-startup>
+</servlet>
+<servlet-mapping>
+<servlet-name>XmlServletName</servlet-name>
+<url-pattern>/jaxrpc/*</url-pattern>
+</servlet-mapping>
+<session-config>
+<session-timeout>54</session-timeout>
+</session-config>
+</web-app>
+----
+As you can see, the {TechnologyShortName} service endpoint is linked to
+a generic servlet in the {TechnologyShortName} RI
+(com.sun.xml.rpc.server.http.JAXRPCServlet). This servlet is abstracted
+out in {TechnologyShortName} TCK under common servlet
+(com.sun.ts.tests.jaxrpc.common.JAXRPCServlet) which simply extends it.
+This common servlet is used for processing, handling and dispatching to
+all JAX-RPC service endpoints.  The {TechnologyShortName} TCK Service
+Endpoint WAR files use a consistent naming convention for accessing all
+Service Endpoint URLs and WSDL URLs: as follows.
 
-Starting the Java Web Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Execute the `<JWSDP_HOME>/bin/startup.sh` script or the `<JWSDP_HOME>/
-bin/startup.bat` batch file. +
-Wait for the web server to come up. Look at the file `<JWSDP_HOME>/logs/
-launcher.server.log` and wait until the messages stop printing to the file.
-After a series of startup and initialization messages, You will see the following
-message when the web server has completed its startup: +
-`[INFO] Http11Protocol - -Starting Coyote HTTP/1.1 on port 8080`
-`[INFO] Catalina - -Server startup in 126511 ms`
+* For Service Endpoint URLs, the URL mapping follows this convention:
+http://webServerHost:webServerPort/ContextRoot/URLAlias/PortName +
+The URL Alias used in all JAX-RPC TCK tests is jaxrpc.
+* For WSDL URL locations, the URL mapping follows this convention:
+http://webServerHost:webServerPort/ContextRoot/URLAlias?WSDL
+
+The example that follows is one of the JAX-RPC TCK tests that shows this
+mapping.
+
+The following implementation-specific runtime configuration file,
+jaxrpc-riruntime.  xml , is supplied as a web archive initialization
+file to this servlet. This runtime configuration file is automatically
+generated by the wsdeploy deployment tool, which gives information on
+all service endpoints containing their interface, implementation and
+tie classes, their service, port and WSDL document and their URL
+pattern for accessing the endpoint.
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns=’http://java.sun.com/xml/ns/jax-rpc/ri/runtime’ version=’1.0’>
+<endpoint
+  name=’MarshallTest’
+  interface=’com.sun.ts.tests.jaxrpc.ee.j2w.marshalltest.Marshall Test’
+  implementation=’com.sun.ts.tests.jaxrpc.ee.j2w.marshalltest.MarshallTestImpl’
+  tie=’com.sun.ts.tests.jaxrpc.ee.j2w.marshalltest.MarshallTest_Tie’
+  wsdl=’/WEB-INF/MarshallTestService.wsdl’
+  service=’{http://marshalltestservice.org/wsdl}MarshallTestService’
+  port=’{http://marshalltestservice.org/wsdl}MarshallTestPort’
+  urlpattern=’/jaxrpc/MarshallTest’/>
+</endpoints>
+----
+The RPC service endpoint has one port defined in its runtime
+configuration file.  The test client code accesses this
+{TechnologyShortName} service endpoint and port at the following URL
+location: +
+http://webServerHost:webServerPort/J2WMT/jaxrpc/MarshallTest
+
+where MarshallTest is the service port to access.
+
+The above RPC service endpoint WSDL file describing this service is also
+published. The test client code accesses this WSDL file based on the above
+configuration via the following URL location: +
+http://webServerHost:webServerPort/J2WMT/jaxrpc/MarshallTest?WSDL
+
+
+[[GCLII]][[to-deploy-a-single-test-directory]]
+
+4.2.2 Instructions for Interoperability Test Scenarios
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To test for interoperability between your implementation and the
+{TechnologyShortName} Reference Implementation, we recommend the
+following two test scenarios:
+
+* J2WMT
+* W2JMarshallTest
+
+Complete the following steps to test interoperability between
+{TechnologyShortName} implementations in both directions:
+
+1.  Deploy and run the J2WMT and W2JMarshallTest TCK tests on your own
+{TechnologyShortName} {TechnologyVersion} implementation and perform
+the appropriate mappings (WSDL-to-Java) and (Java-to-WSDL)
+2.  Deploy the {TechnologyShortName} RI WAR files (J2WMT.war) and
+(W2JMarshallTest.war) on a remote host system using the
+{TechnologyShortName} {TechnologyVersion} Reference Implementation.
+3.  On your local host system that is running your own
+{TechnologyShortName} implementation, edit the ts.jte file to change
+the Web server host and port to point to this remote system running the
+{TechnologyShortName} RI with the J2WMT.war and W2JMarshallTest.war WAR
+files deployed.
+4.  Run the client code for these tests against the remote system to
+test the marshalling/unmarshalling of data from your
+{TechnologyShortName} implementaton to the {TechnologyShortName} RI
+implementation system and back.
+5.  Perform the same procedure going in the opposite direction, running
+the client on the {TechnologyShortName} RI and accessing the Service
+Endpoint deployed on your {TechnologyShortName} implementation.

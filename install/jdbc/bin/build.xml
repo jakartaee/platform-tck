@@ -307,9 +307,9 @@
   <!-- Tasks for managing ts specific jar.  These automatically call 
   the pkg target in the src/com/sun/ts/lib/build.xml file  -->
   <!-- ts specific jar (in this case cts.jar) will be created in ts.home/lib 
-  and must be copied to ts.home/install/j2ee/lib.  
+  and must be copied to ts.home/install/jakartaee/lib.  
   If you are builing it in the workspace, then you must sccs edit ts.home/
-  install/j2ee/lib/cts.jar prior to using this target.  -->
+  install/jakartaee/lib/cts.jar prior to using this target.  -->
 
 	<target name="does.bin.workspace.file.exist" >
 		<available file="${bin.dir}/workspace.xml" type="file" property="bin.workspace.file.exists"/>

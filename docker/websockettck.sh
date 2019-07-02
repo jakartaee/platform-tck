@@ -24,11 +24,14 @@ cd $TCK_HOME
 
 if [ -f "${WORKSPACE}/standalone-bundles/websockettck-1.1_latest.zip" ];then
   echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/websockettck-1.1_latest.zip -d ${TCK_HOME}
+elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-websockettck-1.1_latest.zip" ];then
+  echo "Using stashed eclipse bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/eclipse-websockettck-1.1_latest.zip -d ${TCK_HOME}
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
-unzip ${WORKSPACE}/standalone-bundles/websockettck-1.1_latest.zip -d ${TCK_HOME}
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
@@ -53,6 +56,9 @@ sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/websockettckreport/websockettck/#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/websockettckwork/websockettck/#g" ts.jte
 
+if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
+  sed -i 's#websocket.api=.*#websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/cdi-api.jar#g' ts.jte
+fi
 mkdir -p $TCK_HOME/websockettckreport/websockettck
 mkdir -p $TCK_HOME/websockettckwork/websockettck
 

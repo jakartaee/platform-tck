@@ -26,28 +26,9 @@ Configuration,"] for instructions on configuring your test environment.
 3.1 Obtaining the Reference Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-You can obtain the UDDI V2 registry software from the Java™ Web Services Developer
-Pack available at the following url:
-http://java.sun.com/webservices/webservicespack.html
-
-Designated Reference Implementation for compatibility testing of {TechnologyShortName},
- Version {TechnologyVersion} is as follows:
-
- *  Sun Microsystems Reference Implementation of JAXR, Version 1.0_01
- *  Java Web Services Developer Pack (WSDP) Registry Server, Version 1.0
- *  JAF, Version 1.0.1
- *  JNDI, Version Provider 1.2
- *  JAAS, Version 1.0
- *  JSSE, Version 1.0.3
- *  JavaMail, Version 1.2
- *  SAAJ (JAXM), Version 1.1
- *  Jakarta Commons Package, Version 1.0
- *  Castor, Version 0.9.3.9
- *  Xalan, Version 2.3.1
- *  Xerces, Version 2.0.1
- *  JAXP, Version 1.2
- *  J2SE, Version 1.3.1_02
+You can obtain the {TechnologyShortName} Reference Implementation (RI)
+({TechnologyRI}) software from Java Licensee Engineering
+(https://javapartner.oracle.com).
 
 [[GBFTS]][[installing-the-software]]
 
@@ -57,74 +38,41 @@ Designated Reference Implementation for compatibility testing of {TechnologyShor
 Before you can run the {TechnologyShortName} TCK tests, you must
 install and set up the following software components:
 
-* Java EE 8 RI or, at a minimum, a Web server with a Servlet container
+include::req-software.inc[]
 * Java SE {SEversion}
 * {TechnologyShortName} {TechnologyVersion} RI, which is {TechnologyRI}
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]
 * The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
 
-Complete the following steps to install the required software:
+Follow these steps:
 
-1.  Install the Java SE {SEversion} software, if it is not already installed. +
+.  Install the Java SE {SEversion} software, if it is not already installed. +
 Download and install the Java SE {SEversion} software from
 http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 Refer to the installation instructions that accompany the software for
 additional information.
-2.  Install or get access to a UDDI V2-compliant registry. +
-To use the UDDI registry that comes with the Web Services Developer Pack, download the
-Web Services Developer Pack software from the Java Software web site and install. This
-installs the UDDI V2 registry. The username and password for the default account are
-“testuser” and “testuser.” See the installation instructions that accompany the software for
-16 JAXR 1.0 Technology Compatibility Kit User’s Guide • June 2002
-additional information about installing the software. You will also need to create a second
-account. See the “Adding New Users to the Registry” section in the Java Web Services
-Tutorial for information about creating this account. +
-To use a UDDI V2 registry from IBM or Microsoft, you need to go to their sites and register.
-When you register, you will get your own username and password. +
-To get a username to use with the IBM registry, go to http://www.ibm.com/
-services/uddi and click on the beta v2 register button. Scroll down and you will see a
-place to get a username and password. +
-To get a username for the Microsoft UDDI registry, go to http://
-uddi.rte.microsoft.com and click register. You need to use Internet Explorer V5.0 or
-higher as your browser for this procedure. +
-When you modify the ts.jte file, as described in Section 4.2 “Modifying the ts.jte
-File,”you need to specify the publish and query urls for the registry that you will be using.
-
-3.  Install your implementation of JAXR 1.0. +
-Optionally, you can download the Sun Microsystems JAXR RI, Version 1.0_01 from one of
-the following: the Web Services Developer Pack or the JAX Pack, from the Java Software
-web site, or the Java Partner Engineering web site and install. +
-See the installation instructions that accompany the software for additional information.
-
-4.  Install the Java SE {SEversion} software, if it is not already installed. +
-Download and install the Java SE {SEversion} software from
-http://www.oracle.com/technetwork/java/javase/downloads/index.html.
-Refer to the installation instructions that accompany the software for
-additional information.
-5.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
+.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
   a.  Copy or download the {TechnologyShortName} TCK software to your
       local system. +
+      You can obtain the {TechnologyShortName} TCK software from the
+      Java Licensee Engineering (https://javapartner.oracle.com) Web
+      site.  The {TechnologyShortName} TCK software is located in the
+      Web site's Download Center area.
   b.  Use the `unzip` command to extract the bundle in the directory of
       your choice: +
       +unzip {TCKPackageName}+ +
       This creates the TCK directory. The TCK is the test suite home,
       `<TS_HOME>`.
-  c.  Set the following environment variables in your shell environment: +
-      `TS_HOME` to the directory where the JAXR TCK software has been installed
-      `JAXR_HOME` to the directory where your implementation of the JAXR software
-       has been installed
-  d.   Set up the JAXR TCK software: +
-       Change to the `<TS_HOME>/install` directory.
-       Run the `jaxrsetup.sh` script or the `jaxrsetup.bat` batch file.
-6.  Install the Java EE 8 RI software (the servlet Web container used
-for running the {TechnologyShortName} TCK with the
-{TechnologyShortName} {TechnologyVersion} RI), if it is not already
-installed. +
-Download and install the Servlet Web container with the
-{TechnologyShortName} {TechnologyVersion} RI used for running the
-{TechnologyShortName} TCK {TechnologyVersion}, represented by the Java
-EE 8 RI.
-This software can be obtained from the Java Licensee Engineering Web
-site. Refer to any installation instructions that accompany the software
-for additional information.
+include::install-server.inc[]
+.  Install the {TechnologyShortName} {TechnologyVersion} Reference
+Implementation. +
+The Reference Implementation is used to validate your initial
+configuration and setup of the {TechnologyShortName} TCK
+{TechnologyVersion} tests, which are explained further in
+link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
+The {TechnologyShortName} RI can be obtained from Java Licensee Engineering
+(https://javapartner.oracle.com).
+include::install-server-vi.inc[]
+.  Install the {TechnologyShortName} Vendor Implementation (VI) to be tested. +
+Follow the installation instructions for the particular VI under test.

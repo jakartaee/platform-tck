@@ -146,13 +146,15 @@ be found at {JSRURL}.
 * {TechnologyShortName} Version: The {TechnologyShortName} TCK
 {TechnologyVersion} is based on the {TechnologyShortName}
 Specification, Version {TechnologyVersion}.
-* Reference Implementation: See the RI documentation page at
-{TechnologyRIURL} for more information. The {TechnologyShortName} {TechnologyVersion}
-APIs have also been integrated into the Java EE 7 RI bundle, which is available
-from Java Licensee Engineering.
+* Reference Implementation: The {TechnologyShortName}
+{TechnologyVersion} Reference Implementation ({TechnologyRI}) is
+available from Java Licensee Engineering
+(https://javapartner.oracle.com). See the RI documentation page at
+{TechnologyRIURL} for more information.
 
-See the Concurrency TCK Release Notes for more specific information about Java SE
-version requirements, supported platforms, restrictions, and so on.
+See the {TechnologyShortName} TCK Release Notes for more specific
+information about Java SE version requirements, supported platforms,
+restrictions, and so on.
 
 [[GBFSQ]][[tck-components]]
 
@@ -169,12 +171,16 @@ for additional information.
 * {TechnologyShortName} TCK signature tests; check that all public APIs
 are supported and/or defined as specified in the {TechnologyShortName}
 Version {TechnologyVersion} implementation under test.
-* API tests for all of the {TechnologyShortName} API in all related packages:
-include::packages.inc[]
-* End-to-end tests that demonstrate compliance with the {TechnologyFullName}
-Specification.
 * If applicable, an exclude list, which provides a list of tests that your
 implementation is not required to pass.
+ifndef::no-api-tests[]
+* API tests for all of the {TechnologyShortName} API in all related packages:
+include::packages.inc[]
+endif::no-api-tests[]
+ifdef::end-to-end-tests[]
+* End-to-end tests that demonstrate compliance with the {TechnologyFullName}
+Specification.
+endif::end-to-end-tests[]
 
 The {TechnologyShortName} TCK tests run on the following platforms:
 
@@ -207,7 +213,8 @@ features:
 
 To run tests using the JavaTest harness, you specify which tests in the
 test suite to run, how to run them, and where to put the results as
-described in link:using.html#GBFWO[Chapter 5, "Executing Tests."]
+described in link:config.html#GBFVV[Chapter 4, "Setup and
+Configuration."]
 
 [[GBFRA]][[tck-compatibility-test-suite]]
 
@@ -249,6 +256,8 @@ The Exclude List file, +{jtxFileName}+, is included in the
 [NOTE]
 =======================================================================
 
+From time to time, updates to the Exclude List are made available on the
+Java Licensee Engineering (https://javapartner.oracle.com) Web site.
 You should always make sure you are using an up-to-date copy of the
 Exclude List before running the {TechnologyShortName} TCK to verify your
 implementation.
@@ -294,6 +303,8 @@ properties in the +{jteFileName}+ file, and then use the JavaTest
 harness to configure and run the {TechnologyShortName} tests, as described in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
 
+include::intro.inc[]
+
 [[GBFQW]][[getting-started-with-the-tck]]
 
 1.3 Getting Started With the TCK
@@ -320,9 +331,7 @@ See link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
 details about the following steps.
   a.  Set up your shell environment.
   b.  Modify the required properties in the +{jteFileName}+ file.
-  c.  Configure and start the Web container.
-  d.  Configure the JavaTest harness.
-  e.  Deploy the {TechnologyShortName} TCK tests.
+  c.  Configure the JavaTest harness.
 3.  Test the {TechnologyShortName} {TechnologyVersion} implementation. +
 Test the {TechnologyShortName} implementation installation by running
 the test suite.  See link:using.html#GBFWO[Chapter 5, "Executing Tests."]
