@@ -161,6 +161,9 @@
 		</copy>
 		<antcall target="mvn"/>
 		<antcall target="create.doc.bundle"/>
+        <!--
+		  <antcall target="create.doc.bundle"/>
+        -->
 	</target>
 	<target name="mvn">
          <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>

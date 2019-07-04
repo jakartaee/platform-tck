@@ -114,8 +114,10 @@
                      includes="dtds, schemas, apiCheck.jar,recordApiCheck.jar,*jax*,
                      sigtestdev.jar, saxpath.jar"/>
         </delete>
-	<antcall target="mvn"/>
-        <antcall target="create.doc.bundle"/>
+        <antcall target="mvn"/>
+        <!--
+		  <antcall target="create.doc.bundle"/>
+        -->
     </target>
         <target name="mvn">
          <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
