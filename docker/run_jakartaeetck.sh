@@ -76,10 +76,41 @@ fi
 
 ##################################################
 
+
+
+printf  "
+******************************************************
+* Shutting down running Glassfish instances          *
+******************************************************
+
+"
+
+
+
+echo "[killJava.sh] uname: LINUX"
+echo "Pending process to be killed:"
+ps -eaf | grep "com.sun.enterprise.admin.cli.AdminMain" | grep -v "grep" | grep -v "nohup" 
+for i in `ps -eaf | grep "com.sun.enterprise.admin.cli.AdminMain" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
+do
+  echo "[killJava.sh] kill $i"
+  kill $i
+done
+
+
 ##### installCTS.sh starts here #####
 cat ${TS_HOME}/bin/ts.jte | sed "s/-Doracle.jdbc.mapDateToTimestamp/-Doracle.jdbc.mapDateToTimestamp -Djava.security.manager/"  > ts.save
 cp ts.save $TS_HOME/bin/ts.jte
 ##### installCTS.sh ends here #####
+
+
+
+printf  "
+******************************************************
+* Installing CI/RI (Glassfish 5.1)                   *
+******************************************************
+
+"
+
 
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
@@ -165,16 +196,50 @@ do
 done
 ##### installRI.sh ends here #####
 
-##### installGlassFish.sh starts here #####
 
+
+
+printf  "
+******************************************************
+* Installing VI (Glassfish)                          *
+******************************************************
+
+"
+
+
+##### installVI.sh starts here #####
+
+if [ -z "${GF_VI_BUNDLE_URL}" ]; then
+    echo "Using GF_BUNDLE_URL for GF VI bundle: $GF_BUNDLE_URL"
+    export GF_VI_BUNDLE_URL=$GF_BUNDLE_URL
+fi
+
+if [ -z "${GF_VI_BUNDLE_URL}" ]; then
+    echo "Using GF_BUNDLE_URL for GF VI bundle: $GF_BUNDLE_URL"
+    export GF_VI_BUNDLE_URL=$GF_BUNDLE_URL
+fi
+
+if [ -z "${GF_VI_TOPLEVEL_DIR}" ]; then
+    echo "Using glassfish5 for GF_VI_TOPLEVEL_DIR"
+    export GF_VI_TOPLEVEL_DIR=glassfish5
+fi
+
+wget --progress=bar:force --no-cache $GF_VI_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish-vi.zip
+
+rm -Rf ${CTS_HOME}/vi
 mkdir -p ${CTS_HOME}/vi
-unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/vi
+unzip ${CTS_HOME}/latest-glassfish-vi.zip -d ${CTS_HOME}/vi
 chmod -R 777 ${CTS_HOME}/vi
+
+if [ ! -d "${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR" ]; then
+  echo "VI toplevel directory ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR does not exists or is not a directory"
+  exit 1
+fi
 
 if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
-  sed -i 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
+  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
   sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
   sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
  
@@ -182,11 +247,12 @@ if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   sed -i 's/-Xmx1024m/-Xmx4096m/g' ${TS_HOME}/bin/ts.jte
 fi 
 
-${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
-${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
-${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} version
-${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Djava.security.manager
-${CTS_HOME}/vi/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
+${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
+${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
+${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} version
+${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Djava.security.manager
+${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
+
 sleep 5
 echo "[killJava.sh] uname: LINUX"
 echo "Pending process to be killed:"
@@ -196,11 +262,11 @@ do
   echo "[killJava.sh] kill -9 $i"
   kill -9 $i
 done
-##### installGlassFish.sh ends here #####
+##### installVI.sh ends here #####
 
 ##### configVI.sh starts here #####
 
-export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/glassfish5/glassfish/modules/endorsed \
+export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/modules/endorsed \
 -Djavax.xml.accessExternalStylesheet=all \
 -Djavax.xml.accessExternalSchema=all \
 -Djavax.xml.accessExternalDTD=file,http"
@@ -258,7 +324,7 @@ sed -i 's/^ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
 sed -i 's/^jdbc.maxpoolsize=.*/jdbc.maxpoolsize=30/g' ts.jte
 sed -i 's/^jdbc.steadypoolsize=.*/jdbc.steadypoolsize=5/g' ts.jte
 
-sed -i "s#^javaee.home=.*#javaee.home=${CTS_HOME}/vi/glassfish5/glassfish#g" ts.jte
+sed -i "s#^javaee.home=.*#javaee.home=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i 's/^orb.host=.*/orb.host=localhost/g' ts.jte
 
 sed -i "s#^javaee.home.ri=.*#javaee.home.ri=${CTS_HOME}/ri/glassfish5/glassfish#g" ts.jte
@@ -301,7 +367,7 @@ if [ ! -z "${DATABASE}" ];then
   fi
 fi
 
-VI_SERVER_POLICY_FILE=${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/config/server.policy
+VI_SERVER_POLICY_FILE=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/server.policy
 echo 'grant {' >> ${VI_SERVER_POLICY_FILE}
 echo 'permission java.io.FilePermission "${com.sun.aas.instanceRoot}${/}generated${/}policy${/}-", "read,write,execute,delete";' >> ${VI_SERVER_POLICY_FILE}
 echo '};' >> ${VI_SERVER_POLICY_FILE}
@@ -435,7 +501,7 @@ else
   sed -i "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
   mv ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml  ${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/glassfish5/glassfish/domains/domain1/
+tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/
 
 if [ -z ${vehicle} ];then
   JUNIT_REPORT_FILE_NAME=${TEST_SUITE}-junitreports.tar.gz
