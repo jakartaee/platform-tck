@@ -8,12 +8,9 @@ echo "ANT_OPTS in jsonbtck.sh $ANT_OPTS"
 
 cd $TCK_HOME
 
-if [ -f "${WORKSPACE}/standalone-bundles/jsonbtck-1.0_latest.zip" ];then
+if ls ${WORKSPACE}/standalone-bundles/*jsonbtck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/jsonbtck-1.0_latest.zip -d ${TCK_HOME}
-elif [ -f "${WORKSPACE}/standalone-bundles/eclipse-jsonbtck-1.0_latest.zip" ];then
-  echo "Using stashed eclipse bundle created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/eclipse-jsonbtck-1.0_latest.zip -d ${TCK_HOME}
+  unzip ${WORKSPACE}/standalone-bundles/*jsonbtck*.zip -d ${TCK_HOME}
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
