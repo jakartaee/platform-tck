@@ -154,7 +154,9 @@
 			<fileset dir="${ts.home}/src/com/sun/ts/lib/porting" includes="TSURLInterface.java, TSURL.java" />
 		</copy>
 		<antcall target="mvn"/>
-        <antcall target="create.doc.bundle" />
+        <!--
+            <antcall target="create.doc.bundle" />
+        -->
 		<!-- copy the commons HttpClient and dependent as well as TCK specific JAR files -->
 		<copy todir="${deliverable.bundle.dir}/lib">
 			<fileset dir="${ts.home}/lib" includes="commons-*.jar,jstltck*.jar" />

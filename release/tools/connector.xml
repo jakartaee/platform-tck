@@ -211,8 +211,9 @@
         </copy>
 	<antcall target="mvn"/>
         <!--antcall target="javadoc"/-->
-        <antcall target="create.doc.bundle"/>
-        
+        <!--
+		  <antcall target="create.doc.bundle"/>
+        -->        
     </target>
 
     <target name="mvn">

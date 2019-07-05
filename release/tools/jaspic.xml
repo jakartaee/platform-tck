@@ -214,8 +214,9 @@
         <antcall target="mvn"/>
 
         <!--antcall target="javadoc"/-->
-        <antcall target="create.doc.bundle"/>
-        
+        <!--
+		  <antcall target="create.doc.bundle"/>
+        -->
         <!-- delete JAR files that are not relevant for jaspic -->
         <delete quiet="true">
             <fileset dir="${deliverable.bundle.dir}/lib"

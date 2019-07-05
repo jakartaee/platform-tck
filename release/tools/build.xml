@@ -233,7 +233,9 @@
         <echo message="bundle.dir=${bundle.dir}" />
         <antcall target="-unix-zip"/>
         <antcall target="-ant-zip"/>
-        <antcall target="-excludelist-ant-zip"/>      
+	<!--
+        	<antcall target="-excludelist-ant-zip"/>  
+	-->    
     </target>
     
     <target name="create.exclude.zip.file.only" depends="init">
