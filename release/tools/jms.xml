@@ -160,7 +160,6 @@
                    com/sun/ts/tests/signaturetest/jms/*record*"/>
 		</copy>
 		<antcall target="mvn"/>
-		<antcall target="create.doc.bundle"/>
         <!--
 		  <antcall target="create.doc.bundle"/>
         -->
