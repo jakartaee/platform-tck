@@ -23,6 +23,7 @@
     <!-- import file="./tck-internal-default.xml"/ -->
     
     <property name="deliverable.version"           value="2.0"/>
+    <property name="deliverable.tck.version"           value="2.0.0"/>
 
 	<target name="init">
 		<mkdir dir="${deliverable.bundle.dir}/bin"/>

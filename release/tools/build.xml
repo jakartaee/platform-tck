@@ -315,16 +315,16 @@
     
     <target name="build" depends="setup, check.for.jakartaee.subset">
         <ant antfile="common.xml" target="build"/>
-        <antfetch antfile="${xml.file.to.call}" target="build" return="deliverable.version">
+        <antfetch antfile="${xml.file.to.call}" target="build" return="deliverable.tck.version">
             <property name="time.stamp.bundle.string" value="${time.stamp.bundle.string}"/>
         </antfetch>
         
         <!-- Set this property to a default value to make it known that the version prop needs to be set -->
         <!-- This property should be set in the deliverable specific bundling files and will be returned -->
         <!-- by the previous antfetch call -->
-        <property name="deliverable.version"           value="unset_deliverable_version"/>
+        <property name="deliverable.tck.version"           value="unset_deliverable_tck_version"/>
 
-        <property name="zip.fullname" value="${zip.name}-${deliverable.version}_${time.stamp.bundle.string}"/>
+        <property name="zip.fullname" value="${zip.name}-${deliverable.tck.version}_${time.stamp.bundle.string}"/>
         <property name="zip.file" value="${zip.fullname}.zip"/>
         <property name="excludelist.zip.file" value="excludelist_${zip.fullname}.zip"/>
         <antcall target="do.common.bundle.creation"/> 

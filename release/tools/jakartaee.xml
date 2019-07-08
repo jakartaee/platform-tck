@@ -30,6 +30,7 @@
     <property name="sjsas.internal.compat"         value="NULL"/>
     <property name="cts.internal.comment"          value=""/>
     <property name="deliverable.version"           value="8.0"/>
+    <property name="deliverable.tck.version"           value="8.0.0"/>
 
 	<property name="the.excludes" value="**/internal/**/*,
 	     **/jaxr/api/javax_xml_registry/Connection_asynch/**/*,
