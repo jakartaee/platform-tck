@@ -12,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.4, "Using the
@@ -52,7 +52,7 @@ environment variables:
   to be inside a container. The `ts.jte` file includes examples that show
   how to set this property for JAR files in and not in a container.
   b.  `sigTestClasspath` to a list of JAR files and/or directories that
-  contain your Java EE and Java SE classes. +
+  contain your Jakarta EE and Java SE classes. +
   This property must be set before you try to run the signature tests. The
   `ts.jte` file includes examples that show how to set this property for
   Java SE JAR files on Solaris/Linux and Apple OS X.

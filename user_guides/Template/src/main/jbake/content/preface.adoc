@@ -41,14 +41,22 @@ the authors of this guide.
 ====
 TODO
 
-* The following paragraph needs to be rewritten
+* The following paragraph needs to be reviewed
 
 ====
 
-Refer to the Eclipse EE4J Github Organization
-(https://github.com/eclipse-ee4j) Web site for answers to frequently
-asked questions. You may e-mail questions or comments to the 
-specification development e-mail list.
+Jakarta EE is a community sponsored and community run program. 
+Organizations contribute, along side individual contributors who use, evolve 
+and assist others.
+Commercial support is not available through the Eclipse Foundation resources.
+Please refer to the Eclipse EE4J project site
+(https://projects.eclipse.org/projects/ee4j).
+There, you will find additional details as well as a list of all the associated sub-projects 
+(Implementations and APIs), that make up Jakarta EE and define these specifications. 
+If you have questions about this Specification you may
+send inquiries to {SpecificationInquiryList}. 
+If you have questions about this TCK, you may send inquiries to 
+{TCKInquiryList}.
 
 [[TCJRS00034]][[GBFUS]]
 
@@ -79,7 +87,8 @@ TODO
 ====
 
 You should be familiar with the {TechnologyShortName}
-{TechnologyVersion} Specification, which can be found at {JSRURL}.
+{TechnologyVersion}, version {TechnologyVersion} Specification, 
+which can be found at {JSRURL}.
 
 Before running the tests in the {TechnologyShortName} TCK, you should
 familiarize yourself with the JavaTest documentation which can be

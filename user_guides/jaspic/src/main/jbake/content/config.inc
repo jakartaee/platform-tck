@@ -39,19 +39,19 @@ slashes as a path separator instead.
 
 [[GBFWN]][[TCAUT00012]][[to-configure-your-environment-for-the-jaspic-tck]]
 
-4.1.2 To Configure Your Environment for the JASPIC TCK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.2 To Configure Your Environment for the Jakarta Authentication TCK
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section describes how to configure your environment to run the
-JASPIC TCK tests.
+{TechnologyShortName} TCK tests.
 
-Deploy the JASPIC TCK tests in the manner that your implementation
+Deploy the {TechnologyShortName} TCK tests in the manner that your implementation
 requires, based on the type of profile.
 
-If your implementation is Java EE-based, set the `platform.mode`
+If your implementation is Jakart EE based, set the `platform.mode`
 property in the `ts.jte` file to `javaEE`.
 
-If your implementation is not Java EE-based, set the `platform.mode`
+If your implementation is not Jakarta EE based, set the `platform.mode`
 property in the `ts.jte` file to `standalone`.
 
 
@@ -70,20 +70,20 @@ environment variables:
   b.  Set the `jaspic.home` property to the root directory of
   implementation under test.
   c.  Set the `orb.host` property to the name of the machine on which you
-  are running the JASPIC TCK tests.
+  are running the {TechnologyShortName} TCK tests.
   d.  Set the `orb.port` property to the port number of the machine on
-  which you are running the JASPIC TCK tests.
+  which you are running the {TechnologyShortName} TCK tests.
   e.  Set the `sigTestClasspath` property to point to the implementation
   classes that are to be validated for signature compliance. This
   classpath must also include any other classes that are referenced,
   implemented, or extended by your implementation .
   f.  Set the `servlet.is.jsr115.compatible` property based on whether or
-  not you are running the Servlet profile in a JSR 115–compatible
+  not you are running the Servlet profile in a Jakarta Authorization 1.5 compatible
   container.
   g.  Set the `soap.is.jsr115.compatible` property based on whether or not
-  you are running the SOAP profile in a JSR 115–compatible container.
+  you are running the SOAP profile in a Jakarta Authorization 1.5 compatible container.
   h.  Set the `log.file.location` property to the location where your
-  implementation's log files and the JASPIC log file will be written.
+  implementation's log files and the {TechnologyShortName} log file will be written.
   i.  Set the `logical.hostname.servlet` property to the logical host that
   will process Servlet requests. +
   Servlet requests may be directed to a logical host using various
@@ -99,10 +99,10 @@ environment variables:
   context identifier in the SOAP profile.
   k. Set the `vendor.authconfig.factory` property to specify your
   `AuthConfigFactory` class. +
-  This property setting will be used by the JASPIC tests to register the
+  This property setting will be used by the {TechnologyShortName} tests to register the
   test suite's provider in your `AuthConfigFactory`.
 3.  Run `ant config.vi`. +
-This task configures the implementation under test to run the JASPIC TCK
+This task configures the implementation under test to run the {TechnologyShortName} TCK
 tests by doing the following:
   a.  Copies `jaspic.jar` and `tsharness.jar` to the lib extension
   directory (for example, `/glassfish/domains/domain1/lib/ext`)
@@ -148,13 +148,13 @@ suite's `SPI Verifier(TSSV)` to your implementation. Specifically,
 `ant enable.jaspic` performs the following operations:
   a.  Sets the `jvm` option `-Dlog.file.location` in your implementation. +
   This is the location of the log file where the Test Suite SPI Verifier
-  (TSSV) creates log messages, which will be used by the JASPIC TCK tests,
+  (TSSV) creates log messages, which will be used by the {TechnologyShortName} TCK tests,
   to identify the test status.
   b.  Sets the `jvm` option `-Dprovider.configuration.file` in your
   implementation. +
   This option is used to identify the provider configuration file that
   will be used by `TSAuthConfigFactory` to load the providers required by
-  the JASPIC TCK tests.
+  the {TechnologyShortName} TCK tests.
   c.  Sets the `jvm` option
   `-Dschema.file.location=${schema.file.location}` in your implementation. +
   This option is used to identify the location of the schema file that is
@@ -164,11 +164,11 @@ suite's `SPI Verifier(TSSV)` to your implementation. Specifically,
   This can be done in one of the following ways:
   * Copy `<TS_HOME>/bin/ts.java.security` to the location in your
   implementation where the security configuration files reside. For
-  example, the GlassFish Server security configuration files are in the
+  example, the Eclipse GlassFish Server security configuration files are in the
   `<JAVAEE_HOME>glassfish/domains/domain1/config` directory. After the
   file has been copied, use the `-Djava.security.properties` JVM option to
   direct your implementation to use this security property file.  For
-  example, to direct GlassFish Server to use the `ts.java.security` file,
+  example, to direct Eclipse GlassFish Server to use the `ts.java.security` file,
   you would use this JVM option:
 +
 [source,oac_no_warn]
@@ -234,7 +234,7 @@ slashes as a path separator instead.
 
 =======================================================================
 
-With the JASPIC TCK, vendors can specify the level of JASPIC support
+With the {TechnologyShortName} TCK, vendors can specify the level of {TechnologyShortName} support
 with which they comply. For example, a vendor may be compliant with the
 Servlet Profile, the SOAP Profile, or another (possibly unknown)
 profile. If a vendor chooses not to pursue compliance with any profile,
@@ -256,13 +256,13 @@ to replace the default vehicle with a custom vehicle.
 4.2.1 To Create a Custom Vehicle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A custom vehicle must be created and used when JASPIC profile tests are
-run in an environment that does not contain a Web server. If your JASPIC
+A custom vehicle must be created and used when {TechnologyShortName} profile tests are
+run in an environment that does not contain a Web server. If your {TechnologyShortName}
 profile implementation includes a Web server, you do not need to
 implement your own custom vehicle.
 
 The custom vehicle exists, in stubbed out form, and must be implemented
-in a way that provides a wrapper in which JASPIC tests can execute. The
+in a way that provides a wrapper in which {TechnologyShortName} tests can execute. The
 default `jaspicservlet` vehicle is an example of a vehicle that wraps
 and executes tests in a Servlet container. The `jaspicservlet` vehicle
 source can be used a reference to help you implement your own custom
@@ -293,11 +293,11 @@ This allows the test harness to identify tests to be run in your
 4.2.2 To Replace the Default Vehicle With a Custom Vehicle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If your JASPIC server does not have web support, you will need to create
+If your {TechnologyShortName} server does not have web support, you will need to create
 your own vehicle. A vehicle is a wrapper that supports running tests in
 different server-side containers, such as servlet, JSP, and so on. The
-JASPIC TCK provides a default vehicle, `jaspicservlet`, which supports
-running the TCK tests in a JASPIC runtime that has a Servlet container.
+{TechnologyShortName} TCK provides a default vehicle, `jaspicservlet`, which supports
+running the TCK tests in a {TechnologyShortName} runtime that has a Servlet container.
 To support running tests in an environment other than a Servlet
 container, you need to implement your own vehicle, effectively replacing
 the default vehicle, `jaspicservlet`.

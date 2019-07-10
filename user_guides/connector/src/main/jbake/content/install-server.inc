@@ -1,4 +1,5 @@
-.  Install the Java EE 8 RI software, if it is not already installed. +
-This software can be obtained from the Java Licensee Engineering Web
-site. Refer to any installation instructions that accompany the software
+.  Install the Jakarta EE 8 CI software, if it is not already installed. +
+Refer to any installation instructions that accompany the software
 for additional information.
+One CI is {TechnologyRI}. 
+You may obtain a copy of this CI by downloading it from {TechnologyRIURL}.

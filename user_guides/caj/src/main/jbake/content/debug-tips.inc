@@ -12,4 +12,4 @@ need to be changed or removed.
 6.7 Troubleshooting Tips
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-None for the CAJ TCK.
+None for the Jakarta Annotations TCK.

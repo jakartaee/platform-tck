@@ -56,7 +56,7 @@ link:rules.html#GBFSN[2 Procedure for Certification]
 link:install.html#GBFTP[3 Installation]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-** link:install.html#GBFUD[3.1 Obtaining the Compatible Implementation]
+** link:install.html#GBFUD[3.1 Obtaining a Compatible Implementation]
 ** link:install.html#GBFTS[3.2 Installing the Software]
 
 [[setup-and-configuration]]

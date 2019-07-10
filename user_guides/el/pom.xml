@@ -28,7 +28,7 @@
     <artifactId>tck_el</artifactId>
     <packaging>pom</packaging>
     <version>3.0.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Expression Language 3.0 for Jakarta EE, Release 3.0</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Expression Language for Jakarta EE, Release 3.0</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,7 +41,7 @@
         <jruby.version>9.2.6.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
-        <doc.pdf>EL-TCK-Users-Guide.pdf</doc.pdf>
+        <doc.pdf>Expression-Language-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 

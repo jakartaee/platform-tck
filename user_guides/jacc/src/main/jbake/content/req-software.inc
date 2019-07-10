@@ -8,4 +8,4 @@ below line can be removed.
 This is used in intro.adoc in section 1.3 and install.adoc in section 3.2.
 ///////////////////////////////////////////////////////////////////////
 
-* Java EE 8 RI, which is the Reference Implementation for JACC
+* A CI of Jakarta EE 8 platform. {TechnologyRI}, is one CI for {TechnologyShortName}
