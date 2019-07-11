@@ -22,6 +22,8 @@
 	<import file="../../bin/xml/ts.common.props.xml" />
 
 	<property name="deliverable.version" value="1.2" />
+        <property name="deliverable.tck.version" value="1.2.0" />
+
 
 	<target name="init">
 		<mkdir dir="${deliverable.bundle.dir}/bin" />
@@ -154,7 +156,9 @@
 			<fileset dir="${ts.home}/src/com/sun/ts/lib/porting" includes="TSURLInterface.java, TSURL.java" />
 		</copy>
 		<antcall target="mvn"/>
-        <antcall target="create.doc.bundle" />
+        <!--
+            <antcall target="create.doc.bundle" />
+        -->
 		<!-- copy the commons HttpClient and dependent as well as TCK specific JAR files -->
 		<copy todir="${deliverable.bundle.dir}/lib">
 			<fileset dir="${ts.home}/lib" includes="commons-*.jar,jstltck*.jar" />

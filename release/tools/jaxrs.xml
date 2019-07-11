@@ -19,6 +19,8 @@
 <project name="JAXRS" basedir="." default="build">
     
     <property name="deliverable.version"  value="2.1"/>
+    <property name="deliverable.tck.version"  value="2.1.0"/>
+
     <property name="platform.folder" value="com/sun/ts/tests/jaxrs/platform/**"/>
     <property name="platform21.folder" value="com/sun/ts/tests/jaxrs/jaxrs21/platform/**"/>
     <property name="servlet3.folder" value="com/sun/ts/tests/jaxrs/servlet3/**"/>
@@ -214,7 +216,9 @@
                      includes="*jaxb*"/>
         </delete>
         <antcall target="mvn"/>
-        <antcall target="create.doc.bundle"/>
+        <!--
+            <antcall target="create.doc.bundle"/>
+        -->
     </target>
     <target name="mvn">
         <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>

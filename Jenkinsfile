@@ -173,6 +173,9 @@ spec:
     string(name: 'TCK_BUNDLE_FILE_NAME', 
            defaultValue: 'jakartaeetck.zip', 
            description: 'Name of bundle file to be appended to the base url' )
+    string(name: 'STANDALONE_TCK_BUNDLES_FILE_NAME_LIST',
+           defaultValue: '',
+           description: 'List of standalone TCK bundle file names to be appended to the base url' )
     choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',

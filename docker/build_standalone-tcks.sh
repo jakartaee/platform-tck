@@ -76,32 +76,15 @@ echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/version.info
 echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/version.info
 echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/version.info
 
-
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   mkdir -p ${WORKSPACE}/standalone-bundles/
-  #temporary fix for immediate testing of tcks. Can improve.
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/cajtck-1.3_latest.zip -O ${WORKSPACE}/standalone-bundles/cajtck-1.3_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/concurrencytck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/concurrencytck-1.0_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/connectortck-1.7_latest.zip -O ${WORKSPACE}/standalone-bundles/connectortck-1.7_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/eltck-3.0_latest.zip -O ${WORKSPACE}/standalone-bundles/eltck-3.0_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jacctck-1.5_latest.zip -O ${WORKSPACE}/standalone-bundles/jacctck-1.5_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaspictck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaspictck-1.1_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrpctck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrpctck-1.1_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrstck-2.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrstck-2.1_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxrtck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxrtck-1.0_latest.zip
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jaxwstck-2.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jaxwstck-2.3_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jmstck-2.0_latest.zip -O ${WORKSPACE}/standalone-bundles/jmstck-2.0_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jpatck-2.2_latest.zip -O ${WORKSPACE}/standalone-bundles/jpatck-2.2_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jsftck-2.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jsftck-2.3_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jsonbtck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/jsonbtck-1.0_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jsonptck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/jsonptck-1.1_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jsptck-2.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jsptck-2.3_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jstltck-1.2_latest.zip -O ${WORKSPACE}/standalone-bundles/jstltck-1.2_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/jtatck-1.3_latest.zip -O ${WORKSPACE}/standalone-bundles/jtatck-1.3_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/saajtck-1.4_latest.zip -O ${WORKSPACE}/standalone-bundles/saajtck-1.4_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/securityapitck-1.0_latest.zip -O ${WORKSPACE}/standalone-bundles/securityapitck-1.0_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/servlettck-4.0_latest.zip -O ${WORKSPACE}/standalone-bundles/servlettck-4.0_latest.zip 
-  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/websockettck-1.1_latest.zip -O ${WORKSPACE}/standalone-bundles/websockettck-1.1_latest.zip 
+  IFS=' ' # space is set as delimiter
+  read -ra FILESLIST <<< "$STANDALONE_TCK_BUNDLES_FILE_NAME_LIST" 
+  for i in "${FILESLIST[@]}"; do
+    filename="$(echo -e "${i}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+    echo "Skipping build and using pre-build binary TCK bundle: ${TCK_BUNDLE_BASE_URL}/${filename}"
+    wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/$filename -O ${WORKSPACE}/standalone-bundles/$filename
+  done
   #for tck in ${TCK_LIST[@]}; do
   #  echo "Skipping build and using pre-build binary TCK bundle: ${TCK_BUNDLE_BASE_URL}/${tck}tck"
   #  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL} -P ${WORKSPACE}/standalone-bundles/ -A "${tck}tck*_latest.zip"
@@ -271,9 +254,11 @@ for tck in ${TCK_LIST[@]}; do
     fi
     echo "copying ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry to ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip"
     if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
-      cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/eclipse-${strippedEntry}_latest.zip
+      echo "copying ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry to ${WORKSPACE}/standalone-bundles/eclipse-${strippedEntry}.zip"
+      cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/eclipse-${strippedEntry}.zip
     else
-      cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/${strippedEntry}_latest.zip
+      echo "copying ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry to ${WORKSPACE}/standalone-bundles/${strippedEntry}.zip"
+      cp ${WORKSPACE}/release/${UPPER_TCK}_BUILD/latest/$entry ${WORKSPACE}/standalone-bundles/${strippedEntry}.zip
     fi
     cp ${WORKSPACE}/version.info ${WORKSPACE}/${strippedEntry}.version
   done

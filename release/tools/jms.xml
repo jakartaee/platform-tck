@@ -23,6 +23,7 @@
     <!-- import file="./tck-internal-default.xml"/ -->
     
     <property name="deliverable.version"           value="2.0"/>
+    <property name="deliverable.tck.version"           value="2.0.0"/>
 
 	<target name="init">
 		<mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -160,7 +161,9 @@
                    com/sun/ts/tests/signaturetest/jms/*record*"/>
 		</copy>
 		<antcall target="mvn"/>
-		<antcall target="create.doc.bundle"/>
+        <!--
+		  <antcall target="create.doc.bundle"/>
+        -->
 	</target>
 	<target name="mvn">
          <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>

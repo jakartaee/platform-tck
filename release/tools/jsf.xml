@@ -22,6 +22,8 @@
     <import file="../../bin/xml/ts.common.props.xml"/>
 			
     <property name="deliverable.version" value="2.3"/>
+    <property name="deliverable.tck.version" value="2.3.0"/>
+
 	
     <target name="init">
         <mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -203,7 +205,9 @@
         <copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/common/SunRIURL.java"
               todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/common"/>
         <antcall target="mvn"/>
-    	<antcall target="create.doc.bundle"/>
+        <!--
+    	   <antcall target="create.doc.bundle"/>
+        -->
     </target>
     <target name="create.doc.bundle">
           <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>

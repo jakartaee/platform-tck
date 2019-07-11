@@ -22,6 +22,7 @@
     <import file="../../bin/xml/ts.common.props.xml"/>
     
     <property name="deliverable.version" value="1.7"/>
+    <property name="deliverable.tck.version" value="1.7.0"/>
 
     <ts.taskdef name="getportingclasses" 
                 classname="com.sun.ant.taskdefs.common.GetPortingClasses"/>
@@ -211,8 +212,9 @@
         </copy>
 	<antcall target="mvn"/>
         <!--antcall target="javadoc"/-->
-        <antcall target="create.doc.bundle"/>
-        
+        <!--
+		  <antcall target="create.doc.bundle"/>
+        -->        
     </target>
 
     <target name="mvn">

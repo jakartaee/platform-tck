@@ -25,6 +25,7 @@
                 classname="com.sun.ant.taskdefs.common.GetPortingClasses"/>
 
     <property name="deliverable.version" value="1.1"/>
+    <property name="deliverable.tck.version" value="1.1.0"/>
     
     <target name="init">
         <mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -214,8 +215,9 @@
         <antcall target="mvn"/>
 
         <!--antcall target="javadoc"/-->
-        <antcall target="create.doc.bundle"/>
-        
+        <!--
+		  <antcall target="create.doc.bundle"/>
+        -->
         <!-- delete JAR files that are not relevant for jaspic -->
         <delete quiet="true">
             <fileset dir="${deliverable.bundle.dir}/lib"
