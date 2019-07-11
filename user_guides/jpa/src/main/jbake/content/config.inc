@@ -155,7 +155,7 @@ Adapt the instructions above as appropriate for your implementation.
 
 === 4.3.1 Setup Considerations for MySQL
 
-The Java Persistence API (JPA) tests require delimited identifiers for
+The {TechnologyFullName} tests require delimited identifiers for
 the native query tests. If you are using delimited identifiers on MySQL,
 modify the `sql-mode` setting in the `my.cnf` file to set the
 ANSI_QUOTES option. After setting this option, reboot the MySQL server.

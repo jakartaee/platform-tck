@@ -15,18 +15,6 @@ Procedure for Certification
 2 Procedure for Certification
 -----------------------------
 
-[WARNING]
-====
-TODO
-
-* In this section:
-* Replaced Maintenance Lead with "Jakarta EE Specification Committee." Must be confirmed 
-* Maintenance Lead seems to refer to the organization that "owns" the Spec. I assigned this to the Specification Committee. The definition refers to the Specification Process as well as the specification project team.
-* Java Partner Engineering is replaced with Eclipse Jakarta EE Specification Project 
-website (see {techID}2. Must be confirmed
-
-====
-
 This chapter describes the compatibility testing procedure and
 compatibility requirements for {TechnologyFullName}.
 This chapter contains the following sections:
@@ -53,9 +41,9 @@ link:#CJAFGIGG[Compatibility Requirements] below.
 
 [WARNING]
 ====
-TODO
+Template TODO
 
-* Rewrite the following point
+* This may need more details
 
 ====
 
@@ -85,7 +73,7 @@ Table 2-1 Definitions 
 
 [WARNING]
 ====
-TODO
+Template TODO
 
 * Review the following definitions in this table and revise as needed
 
@@ -230,7 +218,7 @@ Process (EFSP), as refined by the Jakarta EE Specification Process (JESP).
 
 [WARNING]
 ====
-TODO
+Template TODO
 
 * The following rules need to be carefully examined and may need revision.
 
@@ -277,7 +265,7 @@ installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
 prior written permission. Any such allowed alterations to the
-Conformance Tests would be posted to the Eclipse Jakarta EE Specification Project 
+Conformance Tests will be provided via the Eclipse Jakarta EE Specification Project 
 website and apply to all vendor compatible implementations.
 
 *{techID}3* The testing tools supplied as part of the Test Suite or as
@@ -287,7 +275,7 @@ updated by the Maintenance Lead must be used to certify compliance.
 modified.
 
 *{techID}5* The Maintenance Lead can define exceptions to these Rules. Such
-exceptions would be made available to and apply to all vendor implementations.
+exceptions would be made available as above, and will apply to all vendor implementations.
 
 *{techID}6* All hardware and software component additions, deletions, and
 modifications to a Documented supporting hardware/software platform,
@@ -415,13 +403,13 @@ https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Dev
 
 [WARNING]
 ====
-TODO
+Template TODO
 
-* The following must be updated to the new Jakarta EE TCK process and web-site definitions
+* The following may need further updates to include the new Jakarta EE TCK process and web-site definitions
 
 ====
 The {TechnologyFullName} specification is available from the specification
-project web-site. This site can be found from the Jakarta EE, EE4J Project page,
+project web-site. This site can be found from the https://projects.eclipse.org/projects/ee4j[Eclipse, EE4J Project page] for ,
 then selecting the sub-project for {TechnologyFullName}.
 
 [[CJABAHGI]][[libraries-for-technology]]

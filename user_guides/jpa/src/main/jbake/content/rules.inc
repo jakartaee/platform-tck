@@ -15,5 +15,5 @@ the functional programmatic behavior of the Runtime in the
 absence of that comment.
 
 *{techID}13* An error must be reported when processing a configuration
-descriptor that includes a Java Persistence QL expression that does not
+descriptor that includes a {TechnologyFullName} QL expression that does not
 conform to the Specifications.

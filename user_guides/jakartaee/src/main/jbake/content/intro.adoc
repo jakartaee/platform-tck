@@ -17,8 +17,8 @@ Introduction
 
 This chapter provides an overview of the principles that apply
 generally to all Technology Compatibility Kits (TCKs) and describes the
-{TechnologyFullName} TCK ({TechnologyShortName} TCK
-{TechnologyVersion}) (JSR {JSR}). It also includes a high level listing
+{TechnologyFullName} TCK ({TechnologyShortName} {TechnologyVersion} TCK). 
+It also includes a high level listing
 of what is needed to get up and running with the {TechnologyShortName}
 TCK.
 
@@ -99,8 +99,8 @@ must pass. The definition of required tests may change from platform to
 platform.
 
 The definition of required tests will change over time. Before your
-final certification test pass, be sure to download the latest Exclude
-List for the TCK you are using.
+final certification test pass, be sure to download the latest version
+of this TCK.
 
 [[GBFPB]][[java-community-process-jcp-program-and-compatibility-testing]]
 
@@ -109,9 +109,10 @@ List for the TCK you are using.
 
 [WARNING]
 ====
-TODO
+Template TODO
 
-* The following needs to be rewritten to fit the JESP and describe the Eclipse Jakarta EE process
+* The following needs to be reviewed and possibly further refined to provide details consistent with
+the JESP and describe the Eclipse Jakarta EE process
 
 ====
 
@@ -127,7 +128,7 @@ release under the direction of the responsible Expert Group:
 * Technology Compatibility Kit (TCK)
 
 For further information about the JESP program, go to Jakarta EE Specification
-Process community page TBD (https://jakarta.ee).
+Process community page https://jakarta.ee/specifications.
 
 [[GBFQR]][[about-the-tck]]
 
@@ -151,13 +152,13 @@ This section lists the applicable requirements and specifications.
 {TechnologyShortName} {TechnologyVersion} Specification.  Links to the
 {TechnologyShortName} specification and other product information can
 be found at {JSRURL}.
-* {TechnologyShortName} Version: The {TechnologyShortName} TCK
-{TechnologyVersion} is based on the {TechnologyShortName}
+* {TechnologyShortName} Version: The {TechnologyShortName} {TechnologyVersion} TCK
+is based on the {TechnologyShortName}
 Specification, Version {TechnologyVersion}.
-* Compatible Implementation: The {TechnologyShortName}
-{TechnologyVersion} Compatible Implementation ({TechnologyRI}) is
-available from the Eclipse EE4J Github Organization
-(https://github.com/eclipse-ee4j). See the CI documentation page at
+* Compatible Implementation: One {TechnologyShortName}
+{TechnologyVersion} Compatible Implementation, {TechnologyRI} is
+available from the Eclipse EE4J project
+(https://projects.eclipse.org/projects/ee4j). See the CI documentation page at
 {TechnologyRIURL} for more information.
 
 See the {TechnologyShortName} TCK Release Notes for more specific
@@ -322,8 +323,7 @@ include::intro.inc[]
 [NOTE]
 ====
 Jakarta EE intends to support multiple compatible implementations. 
-More work is needed to describe how to incorporate.
-These instructions explain how to get started with {TechnologyRI}.
+These instructions explain how to get started with the {TechnologyRI} CI.
 As more CIs become available, these instructions will be extended.
 
 ====
@@ -340,7 +340,7 @@ guide.
 on the system hosting the JavaTest harness:
 include::req-software.inc[]
 * Java SE {SEversion}
-* A CI for {TechnologyShortName} {TechnologyVersion}, one example is {TechnologyRI}.
+* A CI for {TechnologyShortName} {TechnologyVersion}. One example is {TechnologyRI}.
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]
 * The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI) +
