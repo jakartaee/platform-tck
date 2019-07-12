@@ -15,6 +15,18 @@ Procedure for Certification
 2 Procedure for Certification
 -----------------------------
 
+[WARNING]
+====
+TODO
+
+* In this section:
+* Replaced Maintenance Lead with "Jakarta EE Specification Committee." Must be confirmed 
+* Maintenance Lead seems to refer to the organization that "owns" the Spec. I assigned this to the Specification Committee. The definition refers to the Specification Process as well as the specification project team.
+* Java Partner Engineering is replaced with Eclipse Jakarta EE Specification Project 
+website (see {techID}2. Must be confirmed
+
+====
+
 This chapter describes the compatibility testing procedure and
 compatibility requirements for {TechnologyFullName}.
 This chapter contains the following sections:
@@ -39,7 +51,15 @@ Guide.
 * Ensure that you meet the requirements outlined in
 link:#CJAFGIGG[Compatibility Requirements] below.
 
-* Certify to the Java Partner organization that you have finished
+[WARNING]
+====
+TODO
+
+* Rewrite the following point
+
+====
+
+* Certify to the Eclipse TCK organization that you have finished
 testing and that you meet all of the compatibility requirements.
 
 [[CJAFGIGG]][[compatibility-requirements]]
@@ -63,6 +83,13 @@ and are not intended for any other purpose.
 
 Table 2-1 Definitions 
 
+[WARNING]
+====
+TODO
+
+* Review the following definitions in this table and revise as needed
+
+====
 [width="100%",cols="25%,75%",options="header",]
 |=======================================================================
 |Term |Definition
@@ -92,22 +119,23 @@ specification and which contains configuration information for a set of
 Java classes, archive, or other feature defined in the specification.
 
 |Conformance Tests |All tests in the Test Suite for an indicated
-Technology Under Test, as distributed by the Maintenance Lead, excluding
-those tests on the Exclude List for the Technology Under Test.
+Technology Under Test, as released and distributed by the 
+Jakarta EE Specification Committee, excluding those tests on the 
+published Exclude List for the Technology Under Test.
 
 |Documented |Made technically accessible and made known to users,
 typically by means such as marketing materials, product documentation,
 usage messages, or developer support programs.
 
-|Exclude List |The most current list of tests, distributed by the
-Maintenance Lead, that are not required to be passed to certify
-conformance. The Maintenance Lead may add to the Exclude List for that
-Test Suite as needed at any time, in which case the updated Exclude List
+|Exclude List |The most current list of tests, released and distributed by the
+Jakarta EE Specification Committee, that are not required to be passed to certify
+conformance. The Jakarta EE Specification Committee may add to the Exclude List for that
+Test Suite as needed at any time, in which case the updated TCK version
 supplants any previous Exclude Lists for that Test Suite.
 
 |Libraries a|
-The class libraries, as specified through the Java Community Process
-(JCP), for the Technology Under Test.
+The class libraries, as specified through the Eclipse Foundation, Specification 
+Process (EFSP), as refined by the Jakarta EE Specification Process (JESP), for the Technology Under Test.
 
 The Libraries for {TechnologyFullName} are listed at the end of this chapter.
 
@@ -121,9 +149,13 @@ For example, classes may be required to exist in directories named in a
 CLASSPATH variable, or native libraries may be required to exist in
 directories named in a PATH variable.
 
-|Maintenance Lead |The Java Community Process member responsible for
-maintaining the Specification, reference implementation, and TCK for the
-Technology. Oracle is the Maintenance Lead for {TechnologyFullName}.
+|Maintenance Lead |The Jakarta EE Specification Committee is responsible for
+maintaining the Specification, and TCK for the Technology. 
+The Specification Project Team will propose revisions and updates to the Jakarta EE 
+Specification Committee which will approve and release new versions of the 
+specification and TCK. 
+Eclipse Jakarta EE Specification Committee is Maintenance Lead for 
+{TechnologyFullName}.
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -137,7 +169,7 @@ Note that an Operating Mode may be selected by a command line switch, an
 environment variable, a GUI user interface element, a configuration or
 control file, etc.
 
-|Product |A licensee product in which the Technology Under Test is
+|Product |A vendor's product in which the Technology Under Test is
 implemented or incorporated, and that is subject to compatibility
 testing.
 
@@ -151,7 +183,7 @@ Configuration that links the Product to that encryption package.
 |Rebuildable Tests |Tests that must be built using an
 implementation-specific mechanism. This mechanism must produce
 specification-defined artifacts. Rebuilding and running these tests
-against the Java EE 8 RI verifies that the mechanism generates
+against a known Jakarta EE 8 CI verifies that the mechanism generates
 compatible artifacts.
 
 |Resource |A Computational Resource, a Location Resource, or a Security
@@ -169,23 +201,25 @@ to access the files and network resources necessary for use of the
 Product.
 
 |Specifications a|
-The documents produced through the Java Community Process that define a
-particular Version of a Technology.
+The documents produced through the Eclipse Foundation, Specification 
+Process (EFSP), as refined by the Jakarta EE Specification Process (JESP)
+that define a particular Version of a Technology.
 
 The Specifications for the Technology Under Test are referenced later in
 this chapter.
 
 |Technology |Specifications and a reference implementation produced
-through the Java Community Process.
+through the Eclipse Foundation, Specification 
+Process (EFSP), as refined by the Jakarta EE Specification Process (JESP).
 
-|Technology Under Test |Specifications and the reference implementation
+|Technology Under Test |Specifications and a compatible implementation
 for {TechnologyFullName} Version {TechnologyVersion}.
 
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
 
-|Version |A release of the Technology, as produced through the Java
-Community Process.
+|Version |A release of the Technology, as produced through the Eclipse Foundation, Specification 
+Process (EFSP), as refined by the Jakarta EE Specification Process (JESP).
 |=======================================================================
 
 
@@ -194,6 +228,13 @@ Community Process.
 2.2.2 Rules for {TechnologyFullName} Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+[WARNING]
+====
+TODO
+
+* The following rules need to be carefully examined and may need revision.
+
+====
 The following rules apply for each version of an operating system,
 software component, and hardware platform Documented as supporting the
 Product:
@@ -236,8 +277,8 @@ installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
 prior written permission. Any such allowed alterations to the
-Conformance Tests would be posted to the Java Licensee Engineering web
-site and apply to all licensees.
+Conformance Tests would be posted to the Eclipse Jakarta EE Specification Project 
+website and apply to all vendor compatible implementations.
 
 *{techID}3* The testing tools supplied as part of the Test Suite or as
 updated by the Maintenance Lead must be used to certify compliance.
@@ -246,7 +287,7 @@ updated by the Maintenance Lead must be used to certify compliance.
 modified.
 
 *{techID}5* The Maintenance Lead can define exceptions to these Rules. Such
-exceptions would be made available to and apply to all licensees.
+exceptions would be made available to and apply to all vendor implementations.
 
 *{techID}6* All hardware and software component additions, deletions, and
 modifications to a Documented supporting hardware/software platform,
@@ -293,151 +334,95 @@ include::rules.inc[]
 2.3 Test Appeals Process
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Oracle has a well established process for managing challenges to its
-Java technology Test Suites and plans to continue using a similar
-process in the future. Oracle, as {TechnologyShortName} Maintenance Lead, will
-authorize representatives from the Java Partner Engineering group to be
-the point of contact for all test challenges. Typically this will be the
-engineer assigned to a company as part of its {TechnologyShortName} TCK support.
+Jakarta has a well established process for managing challenges to its
+TCKs. Any implementor may submit a challenge to one or more tests in the
+{TechnologyShortName} TCK as it relates to their implementation.  Implementor
+means the entity as a whole in charge of producing the final certified release.
+*Challenges filed should represent the consensus of that entity*.
 
-If a test is determined to be invalid in function or if its basis in the
-specification is suspect, the test may be challenged by any licensee of
-the {TechnologyShortName} TCK. Each test validity issue must be covered
-by a separate test challenge. Test validity or invalidity will be
-determined based on its technical correctness such as:
+2.3.1 Valid Challenges
+^^^^^^^^^^^^^^^^^^^^^^
+Any test case (e.g., test class, @Test method), test case configuration (e.g., deployment descriptor), test beans, annotations, and other resources considered part of the TCK may be challenged.
 
-* Test has bugs (i.e., program logic errors).
-* Specification item covered by the test is ambiguous.
-* Test does not match the specification.
-* Test assumes unreasonable hardware and/or software requirements.
-* Test is biased to a particular implementation.
+The following scenarios are considered in scope for test challenges:
 
-Challenges based upon issues unrelated to technical correctness as
-defined by the specification will normally be rejected.
+* Claims that a test assertion conflicts with the specification.
+* Claims that a test asserts requirements over and above that of the specification.
+* Claims that an assertion of the specification is not sufficiently implementable.
+* Claims that a test is not portable or depends on a particular implementation.
 
-Test challenges must be made in writing to Java Partner Engineering and
-include all relevant information as described in link:#CJAFGAEE[Example
-2-1, "Test Challenge Form"]. The process used to determine the validity
-or invalidity of a test (or related group of tests) is described in
-link:#CJAJEAEI[Section 2.3.1, "TCK Test Appeals Steps."]
+2.3.2 Invalid Challenges
+^^^^^^^^^^^^^^^^^^^^^^^^
+The following scenarios are considered out of scope for test challenges and will be immediately closed if filed:
 
-All tests found to be invalid will either be placed on the Exclude List
-for that version of the {TechnologyShortName} TCK or have an alternate
-test made available.
+* Challenging an implementation’s claim of passing a test.  Certification is an honor system and these issues must be raised directly with the implementation.
+* Challenging the usefulness of a specification requirement.  The challenge process cannot be used to bypass the specification process and raise in question the need or relevance of a specification requirement.
+* Claims the TCK is inadequate or missing assertions required by the specification.  See the Improvement section, which is outside the scope of test challenges.
+* Challenges that do not represent a consensus of the implementing community will be closed until such time that the community does agree or agreement cannot be made.  The test challenge process is not the place for implementations to initiate their own internal discussions.
+* Challenges to tests that are already excluded for any reason.
+* Challenges that an excluded test should not have been excluded and should be re-added should be opened as a new enhancement request
 
-* Tests that are placed on the Exclude List will be placed on the
-Exclude List within one business day after the determination of test
-validity. The new Exclude List will be made available to all
-{TechnologyShortName} TCK licensees on the Java Licensee Engineering website.
-* Oracle, as Maintenance Lead has the option of creating alternative
-tests to address any challenge. Alternative tests (and criteria for
-their use) will be made available on the Java Licensee Engineering
-website. +
+Test challenges must be made in writing via the {TechnologyShortName} specification project issue tracker
+as described in link:#CJAJEAEI[Section 2.3.3, "TCK Test Appeals Steps."]
 
-[NOTE]
-=======================================================================
-
-Passing an alternative test is deemed equivalent to passing the original
-test.
-
-=======================================================================
+All tests found to be invalid will be placed on the Exclude List
+for that version of the {TechnologyShortName} TCK.
 
 
 [[CJAJEAEI]][[tck-test-appeals-steps]]
 
-2.3.1 TCK Test Appeals Steps
+2.3.3 TCK Test Appeals Steps
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  {TechnologyFullName} TCK licensee writes a test
-challenge to Java Licensee Engineering contesting the validity of one or
-a related set of {TechnologyShortName} tests. +
-A detailed justification for why each test should be invalidated must be
-included with the challenge as described in link:#CJAFGAEE[Example 2-1,
-"Test Challenge Form"].
-2.  Java Licensee Engineering evaluates the challenge. +
-If the appeal is incomplete or unclear, it is returned to the submitting
-licensee for correction. If all is in order, Java Licensee Engineering
-will check with the responsible test developers to review the purpose
-and validity of the test before writing a response as described in
-link:#CJAGGCIF[Example 2-2, "Test Challenge Response Form"]. Java
-Licensee Engineering will attempt to complete the response within 5
-business days. If the challenge is similar to a previously rejected test
-challenge (i.e., same test and justification), Java Licensee Engineering
-will send the previous response to the licensee.
-3.  The challenge and any supporting materials from test developers is
-sent to the specification engineers for evaluation. +
-A decision of test validity or invalidity is normally made within 15
-working days of receipt of the challenge. All decisions will be
-documented with an explanation of why test validity was maintained or
-rejected.
-4.  The licensee is informed of the decision and proceeds accordingly. +
-If the test challenge is approved and one or more tests are invalidated,
-Oracle places the tests on the Exclude List for that version of the
-{TechnologyFullName} TCK (effectively removing the test(s) from
-the Test Suite). All tests placed on the Exclude List will have a bug
-report written to document the decision and made available to all
-licensees through the bug reporting database. If the test is valid but
-difficult to pass due to hardware or operating system limitations,
-Oracle may choose to provide an alternate test to use in place of the
-original test (all alternate tests are made available to the licensee
-community).
-5.  If the test challenge is rejected, the licensee may choose to
-escalate the decision to the Executive Committee (EC), however, it is
-expected that the licensee would continue to work with Oracle to resolve
-the issue and only involve the EC as a last resort.
+1. Challenges should be filed via the {TechnologyFullName} specification project’s issue tracker using the label `challenge` and include the following information:
+* The relevant specification version and section number(s)
+* The coordinates of the challenged test(s)
+* The exact TCK and exclude list versions
+* The implementation being tested, including name and company
+* The full test name
+* A full description of why the test is invalid and what the correct behavior is believed to be
+* Any supporting material; debug logs, test output, test logs, run scripts, etc.
 
-[[sthref8]][[test-challenge-and-response-forms]]
 
-2.3.2 Test Challenge and Response Forms
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-link:#CJAFGAEE[Example 2-1] shows the test challenge information you
-must provide to Java Licensee Engineering to initiate a challenge, and
-link:#CJAGGCIF[Example 2-2] shows the test challenge response format.
+2. Specification project evaluates the challenge. +
+Challenges can be resolved by a specification project lead, or a project challenge triage team, after a consensus of the specification project committers is reached or attempts to gain consensus fails.
+Specification projects may exercise lazy consensus, voting or any practice that follows the principles of Eclipse Foundation Development Process.
+The expected timeframe for a response is two weeks or less.
+If consensus cannot be reached by the specification project for a prolonged period of time, the default recommendation is to exclude the tests and address the dispute in a future revision of the specification.
 
-[[CJAFGAEE]]
+3.  Accepted Challenges. +
+A consensus that a test produces invalid results will result in the exclusion of that test from certification requirements, and an immediate update and release of an official distribution of the TCK including the new exclude list. The associated `challenge` issue must be closed with an `accepted` label to indicate it has been resolved.
 
-Example 2-1 Test Challenge Form
+4.  Rejected Challenges and Remedy. +
+When a`challenge` issue is rejected, it must be closed with a label of `invalid` to indicate it has been rejected.
+There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
+If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
+A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec.committee@eclipse.org).
+The committee will evaluate the matter purely in terms of due process.
+If the appeal is accepted, the original TCK challenge issue will be reopened and a label of `appealed-challenge` added, along with a discussion of the appeal decision, and the `challenge-appeal` issue with be closed.
+If the appeal is rejected, the `challenge-appeal` issue should closed with a label of `invalid`.
 
-[source,oac_no_warn]
-----
-Test Challenger Name and Company:
-Specification Name(s) and Version(s):
-Test Suite Name and Version:
-Exclude List Version:
-Test Name:
-Complaint (argument for why test is invalid):
-.jtr file of the failing test:
-Console log of the JavaTest harness and device with all debugging flags turned on (if applicable):
-.jti or .jte file for the test run:
-Startup scripts for the JavaTest harness and agent (if applicable):
-----
+5. Escalation Appeal. +
+If there is a concern that a TCK process issue has not been resolved satisfactorily, the
+https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
 
-[[CJAGGCIF]]
-
-Example 2-2 Test Challenge Response Form
-
-[source,oac_no_warn]
-----
-Test Defender Name and Company:
-Test Defender Role in Defense (e.g., test developer, Maintenance Lead, etc.):
-Specification Name(s) and Version(s):
-Test Suite Name and Version:
-Test Name:
-Defense (argument for why test is valid):
-[Multiple challenges and corresponding responses may be listed here.]
-Implications of test invalidity (e.g., other affected tests and test framework code, creation or exposure of ambiguities in spec (due to unspecified requirements), invalidation of the reference implementation, creation of serious holes in test suite):
-Alternatives (e.g., are alternate test(s) appropriate?):
-----
 
 [[CJAJECIE]][[specifications-for-technology]]
 
 2.4 Specifications for {TechnologyFullName}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The {TechnologyFullName} specification is available on the
-JSR {JSR} Web site at {JSRURL} or on the Java
-Community Process (http://jcp.org/en/home/index) site.
+[WARNING]
+====
+TODO
+
+* The following must be updated to the new Jakarta EE TCK process and web-site definitions
+
+====
+The {TechnologyFullName} specification is available from the specification
+project web-site. This site can be found from the Jakarta EE, EE4J Project page,
+then selecting the sub-project for {TechnologyFullName}.
 
 [[CJABAHGI]][[libraries-for-technology]]
 

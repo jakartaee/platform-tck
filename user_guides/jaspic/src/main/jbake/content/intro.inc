@@ -7,15 +7,15 @@ JASPIC TCK.
 
 [[GEQNJ]][[jaspic-technology-overview]]
 
-1.2.7 JASPIC Technology Overview
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.7 {TechnologyShortName} Technology Overview
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The JASPIC 1.1 Specification (JSR 196) defines a service provider
+The {TechnologyShortName} {TechnologyVersion} Specification defines a service provider
 interface (SPI) by which authentication providers implementing message
 authentication mechanisms can be integrated in client and server message
 processing runtimes or containers.
 
-The JASPIC TCK uses a Test Suite SPI Verifier (TSSV) to verify whether
+The {TechnologyShortName} TCK uses a Test Suite SPI Verifier (TSSV) to verify whether
 the vendor's message processing runtimes invoke the correct SPI in the
 proper order.
 
@@ -28,7 +28,7 @@ TSSV includes test suite implementations of:
 * `AuthenticationModulesClient`, `AuthenticationModules Server`
 
 TSSV gets loaded into vendor's message processing runtime using one of
-the following ways, as defined by the JASPIC 1.1 Specification:
+the following ways, as defined by the {TechnologyShortName} 1.1 Specification:
 
 * By defining a property in `JAVA_HOME/jre/lib/security/java.security`
 as follows:
@@ -50,7 +50,7 @@ as follows:
 [NOTE]
 =======================================================================
 
-For the JASPIC TCK, more than one provider is registered in the vendor's
+For the {TechnologyShortName} TCK, more than one provider is registered in the vendor's
 message processing runtime.
 
 =======================================================================
@@ -66,18 +66,18 @@ TSSV uses Java logging APIs to log the client and server invocation into
 a log file (`TSSVLog.txt`), this log file is used by the TCK tests to
 validate actual logged runtime information against expected results to
 ensure that the runtime is compliant. The `jaspic_util_web.war` file
-contains the JASPIC log file processor, which writes output to the
+contains the {TechnologyShortName} log file processor, which writes output to the
 `TSSVLog.txt` file. The `TSSVLog.txt` file is put into the location
 defined by the `log.file.location` property in the `ts.jte` file.
 
 [[GKXQP]][[jaspic-tssv-files]]
 
-1.2.8 JASPIC TSSV Files
-^^^^^^^^^^^^^^^^^^^^^^^
+1.2.8 {TechnologyShortName} TSSV Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following sections describe the `tssv.jar`,
 `ProviderConfiguration.xml`, and `provider-configuration.xsd` files that
-are used by the JASPIC TCK tests.
+are used by the {TechnologyShortName} TCK tests.
 
 [[GKXUX]][[tssv.jar-file]]
 
@@ -164,20 +164,20 @@ Compatibility requirements as well as the Servlet Profile requirements.
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Since various SOAP implementations are possible in a vendor's message
-processing runtime, the JASPIC TCK considers the following SOAP
+processing runtime, the {TechnologyShortName} TCK considers the following SOAP
 implementations:
 
-* SOAP implementation in a Java EE environment
-* SOAP implementation in standalone container (non-Java EE)
+* SOAP implementation in a Jakarta EE environment
+* SOAP implementation in standalone container (Java SE only)
 * Non-container based SOAP implementation
 
 For SOAP profile tests, the client invocations of webservice have been
 abstracted into two different types:
 
-* Invocations of Service in a Java EE environment (for example, using
+* Invocations of Service in a Jakarta EE environment (for example, using
 JAXWS annotations `@WebServiceRef` for looking up the service and
 `@WebService` for service definition).
-* Invocations of Service in a standalone (i.e. non-Java EE) environment
+* Invocations of Service in a standalone (i.e. Java SE only) environment
 (this includes standalone container and non-container based
 implementation). +
 The following are used to get the service reference:
@@ -195,7 +195,7 @@ The following are used to get the service reference:
 The deployment abstraction for handling various SOAP implementations are
 handled in the following ways:
 
-* A JSR 88–compliant deployment is used for Java EE-based
+* A Jakarta Deployment version 1.2 deployment is used for Jakarta EE based
 implementations. This is differentiated by using a different deliverable
 class,
 `deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJavaEEDeliverable`,
@@ -214,7 +214,7 @@ Vendors are expected to implement the `deploy` and `undeploy` targets in
 =======================================================================
 
 Two deliverable implementations are provided with the GlassFish server.
-One implementation, for non-Java EE servers, turns off auto deployment
+One implementation, for Java SE only servers, turns off auto deployment
 and leaves the deployment up to the licensee by way of an Ant target.
 
 =======================================================================
@@ -223,7 +223,7 @@ and leaves the deployment up to the licensee by way of an Ant target.
 `ts.jte` file, `platform.mode`, is used to distinguish the different
 SOAP implementations.
 
-** `platform.mode=javaEE` (for Java EE based implementation)
+** `platform.mode=javaEE` (for Jakarta EE based implementations)
 
 ** `platform.mode=standalone` +
 
@@ -240,20 +240,20 @@ expected to deploy the service and make it available for client
 invocations. For this purpose, a no-op for `deploy` and `undeploy`
 targets can be implemented in the `deploy.xml` file.
 
-The JASPIC TCK uses Web Services (JSR 181) metadata-based annotations to
-define web service applications. Although JSR 181 support is not
+The {TechnologyShortName} TCK uses Jakarta Web Services Metadata, 2.1 metadata based annotations to
+define web service applications. Although  Jakarta Web Services Metadata, 2.1 support is not
 required in a vendor's SOAP implementation, using web services metadata
 simplifies the definition of web services and the linking between
 various artifacts of web services (the WSDL, `ServiceEndpoint`, and
 implementation and their associations). Using other forms of web
 services implementation will lead to separate binding files, web
 services description files (`webservices.xml`) which are different for
-different SOAP implementations, such as a Java EE-based SOAP
+different SOAP implementations, such as a Jakarta EE based SOAP
 implementation, standalone implementation, and so on.
 
 Since vendors are already expected to generate web service artifacts
 using `wsgen` and `wsimport` tools, writing an annotation processor to
-support JSR 181–based annotations is just a step further towards making
+support Jakarta Web Services Metadata, 2.1 based annotations is just a step further towards making
 a better SOAP implementation. Also having annotated web services helps
 vendors generate different artifacts that suit their SOAP
 implementation.
@@ -262,7 +262,8 @@ implementation.
 [NOTE]
 ===================================================================
 
-For Java EE-based SOAP implementations, JSR 181 support is required.
+For Jakarta EE based SOAP implementations, Jakarta Web Services Metadata, 2.1
+support is required.
 
 ===================================================================
 

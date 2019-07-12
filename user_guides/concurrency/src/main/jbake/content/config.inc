@@ -12,7 +12,7 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-tck-with-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK With the Reference Implementation
+4.1 Configuring Your Environment to Run the TCK With a Compatible Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
@@ -47,24 +47,24 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Java EE 8 RI is running. +
+  Jakarta EE 8 CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Java EE 8 RI is running. +
+  which Jakarta EE 8 CI is running. +
   The default setting is `8080`.
-  c.  Set the `concurrency.classes` property to point to the {TechnologyRI} RI
+  c.  Set the `concurrency.classes` property to point to the {TechnologyRI} CI
   classes/JAR files.
 
-  If you are using the Java EE 8 RI, set this property to the following:.
+  If you are using the Jakarta EE 8 CI, {TechnologyRI}, set this property to the following:.
   `concurrency.classes=${glassfish.ri.classes}`
 
-  d.  Set the `webcontainer.home` property to the installation directory of Java EE
-  8 RI.
+  d.  Set the `webcontainer.home` property to the installation directory of Jakarta EE
+  8 CI.
 
   e. Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and `impl.vi.port`
   properties to the supported web container, deploy directory, host and port for
-  the Concurrency RI.
-  The supported web container for the Concurrency RI is the Java EE 7 RI. The
+  the Concurrency CI.
+  The supported web container for the Concurrency CI is the Jakarta EE 8 CI. The
   default settings for these properties are as follows:
 
   `impl.vi.deploy.dir=${webcontainer.home}/domains/domain1/autodeploy`
@@ -87,7 +87,7 @@ ant config.vi
 ----
 +
 This target performs the following tasks:
-* Stops the application server running the {TechnologyShortName} {TechnologyVersion} RI
+* Stops the application server running the {TechnologyShortName} {TechnologyVersion} CI
 * Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
 into the application server's external library folder
 * Starts the application server
@@ -193,7 +193,7 @@ documentation for the `TSURLInterface.java` porting package interface is
 available in the {TechnologyShortName} TCK documentation bundle.
 4.  Edit your `<TS_HOME>/bin/ts.jte` file and set the porting.ts.url.class.1
 property to point to your porting implementation class used for obtaining URLs.
-The default setting for the RI porting implementation is
+The default setting for the CI porting implementation is
 `com.sun.ts.lib.implementation.sun.common.SunRIURL.`
 5.  Execute the `config.vi` command to configure your implementation for the
 Concurrency TCK:
@@ -203,8 +203,8 @@ Concurrency TCK:
   This target invokes the
   `<TS_HOME>/bin/xml/impl/<your-implementation>/config.vi.xml` script,
   which configures the Concurrency 1.0 implementation server under test (the
-  server that was designated by the `impl.vi` setting in the `ts.jte` file). For the
-  Java EE 7 RI with the `impl.vi` property set to `glassfish`, this target copies
+  server that was designated by the `impl.vi` setting in the `ts.jte` file). If you are using the
+  Jakarta EE 8 CI, {TechnologyRI} with the `impl.vi` property set to `glassfish`, this target copies
   required TCK JAR files to the server and then starts the server.
 
   You can configure your implementation server manually or automatically. If
@@ -247,4 +247,4 @@ necessary configuration steps for your implementation and place the file under t
 `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
 
 For more information, see `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`, the
-configuration file for Java EE 8 RI.
+configuration file for a Jakarta EE 8 CI, {TechnologyRI}.

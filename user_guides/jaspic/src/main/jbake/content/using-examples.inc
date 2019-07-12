@@ -52,8 +52,8 @@ ant -Dkeywords="jaspic_soap_optional" clean build package runclient
 ----
 
 
-A JASPIC implementation can implement one or more of the profiles
-specified in the specification. To accommodate this, the JASPIC TCK
+A {TechnologyShortName} implementation can implement one or more of the profiles
+specified in the specification. To accommodate this, the {TechnologyShortName} TCK
 tests use the JavaTest `keyword` feature, which enables vendors to run
 tests that are relevant to their implementation.
 

@@ -1,21 +1,24 @@
 type=page
 status=published
 title=Debugging Test Problems
-next=troubleshooting.html
+next=faq.html
 prev=using.html
 ~~~~~~
+include::attributes.conf[]
 Debugging Test Problems
 =======================
 
-[[GBFUV]][[debugging-test-problems]]
+[[GBFUV]]
 
-8 Debugging Test Problems
+
+[[debugging-test-problems]]
+6 Debugging Test Problems
 -------------------------
 
 There are a number of reasons that tests can fail to execute properly.
 This chapter provides some approaches for dealing with these failures.
-Note that most of these suggestions are only relevant when running the
-test harness in GUI mode. This is a dummy change and will be reverted.
+Please note that most of these suggestions are only relevant when
+running the test harness in GUI mode.
 
 This chapter includes the following topics:
 
@@ -28,7 +31,7 @@ This chapter includes the following topics:
 
 [[GBFYP]][[overview]]
 
-8.1 Overview
+6.1 Overview
 ~~~~~~~~~~~~
 
 The goal of a test run is for all tests in the test suite that are not
@@ -44,11 +47,50 @@ properly configured.
 The Test Manager GUI provides you with a number of tools for effectively
 troubleshooting a test run. See the JavaTest User's Guide and JavaTest
 online help for detailed descriptions of the tools described in this
-chapter.
+chapter.  Ant test execution tasks provide command-line users with
+immediate test execution feedback to the display. Available JTR report
+files and log files can also help command-line users troubleshoot test
+run problems.
+
+For every test run, the JavaTest harness creates a set of report files
+in the reports directory, which you specified by setting the
+`report.dir` property in the +{jteFileName}+ file. The report files contain
+information about the test description, environment, messages,
+properties used by the test, status of the test, and test result. After
+a test run is completed, the JavaTest harness writes HTML reports for
+the test run. You can view these files in the JavaTest ReportBrowser
+when running in GUI mode, or in the Web browser of your choice outside
+the JavaTest interface. To see all of the HTML report files, enter the
+URL of the `report.html` file. This file is the root file that links to
+all of the other HTML reports.
+
+The JavaTest harness also creates a `summary.txt` file in the report
+directory that you can open in any text editor. The `summary.txt` file
+contains a list of all tests that were run, their test results, and
+their status messages.
+
+The work directory, which you specified by setting the `work.dir`
+property in the +{jteFileName}+ file, contains several files that were
+deposited there during test execution: `harness.trace`, `log.txt`,
+`lastRun.txt`, and `testsuite`. Most of these files provide information
+about the harness and environment in which the tests were executed.
+
+[NOTE]
+=======================================================================
+
+You can set `harness.log.traceflag=true` in +{jteFileName}+ to
+get more debugging information.
+
+=======================================================================
+
+If a large number of tests failed, you should read
+link:#GBFYF[Configuration Failures] to see if a
+configuration issue is the cause of the failures.
+
 
 [[GBFVF]][[test-tree]]
 
-8.2 Test Tree
+6.2 Test Tree
 ~~~~~~~~~~~~~
 
 Use the test tree in the JavaTest GUI to identify specific folders and
@@ -63,7 +105,7 @@ indicate status as follows:
 
 [[GBFWI]][[folder-information]]
 
-8.3 Folder Information
+6.3 Folder Information
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Click a folder in the test tree in the JavaTest GUI to display its tabs.
@@ -74,7 +116,7 @@ a test in the lists to view its test information.
 
 [[GBFVP]][[test-information]]
 
-8.4 Test Information
+6.4 Test Information
 ~~~~~~~~~~~~~~~~~~~~
 
 To display information about a test in the JavaTest GUI, click its icon
@@ -99,17 +141,15 @@ run the test.
 [NOTE]
 =======================================================================
 
-You can set `harness.log.traceflag=true` in `<TS_HOME>/bin/ts.jte` to
-get more debugging information. In a terminal window, you can also set
-an environment variable `HARNESS_DEBUG=true` to display more debugging
-information.
+You can set `harness.log.traceflag=true` in +{jteFileName}+ to
+get more debugging information.
 
 =======================================================================
 
 
 [[GBFVZ]][[report-files]]
 
-8.5 Report Files
+6.5 Report Files
 ~~~~~~~~~~~~~~~~
 
 Report files are another good source of troubleshooting information. You
@@ -117,11 +157,11 @@ may view the individual test results of a batch run in the JavaTest
 Summary window, but there are also a wide range of HTML report files
 that you can view in the JavaTest ReportBrowser or in the external
 browser or your choice following a test run. See
-link:using.html#GBFVK[Test Reports] for more information.
+link:using.html#GBFVK[Section 5.5, "Test Reports,"] for more information.
 
 [[GBFYF]][[configuration-failures]]
 
-8.6 Configuration Failures
+6.6 Configuration Failures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Configuration failures are easily recognized because many tests fail the
@@ -131,24 +171,4 @@ the case of full-scale launching problems where no tests are actually
 processed, report files are usually not created (though sometimes a
 small `harness.trace` file in the report directory is written).
 
-When aborting a test run, consider the following:
-
-* If you abort a test run when running the JavaTest harness in GUI mode,
-the GUI tools automatically cleans up your environment for the next test
-run. This cleanup includes undeploying any components or applications
-that may deployed or registered with the Application Server.
-* If you abort a test run in command-line mode (by pressing Ctrl+C),
-your environment might not be left in a clean state, causing potential
-failures in subsequent test runs. In such cases, you may need to perform
-the following procedure to restore your environment to a clean state.
-
-To restore your environment after aborting a test run in command-line
-mode, perform these steps.
-
-1.  Log in to the Application Server with the `asadmin` command.
-2.  List all registered components with the `asadmin list-components`
-command.
-3.  Undeploy any listed components related to your test run with the
-`asadmin undeploy` listed_component command.
-
-
+include::debug-tips.inc[]

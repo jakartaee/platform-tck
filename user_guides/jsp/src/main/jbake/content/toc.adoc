@@ -1,11 +1,11 @@
 type=page
 status=published
-title=Technology Compatibility Kit User's Guide for Technology Licensees
+title=Technology Compatibility Kit User's Guide for Technology Implementors
 next=title.html
 ~~~~~~
 include::attributes.conf[]
-Technology Compatibility Kit User's Guide for Technology Licensees
-==================================================================
+Technology Compatibility Kit User's Guide for Technology Implementors
+=====================================================================
 
 [[contents]]
 Contents
@@ -17,7 +17,6 @@ link:preface.html#GBFTI[Preface]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ** link:preface.html#GBFUS[Who Should Use This Book]
-** link:preface.html#sthref2[Documentation Accessibility]
 ** link:preface.html#GBFPO[Before You Read This Book]
 ** link:preface.html#GBFWF[Typographic Conventions]
 ** link:preface.html#FWBSD[Shell Prompts in Command Examples]
@@ -29,7 +28,7 @@ link:intro.html#GBFOW[1 Introduction]
 *** link:intro.html#GBFQN[1.1.1 Why Compatibility Testing is Important]
 *** link:intro.html#GBFPR[1.1.2 TCK Compatibility Rules]
 *** link:intro.html#GBFPW[1.1.3 TCK Overview]
-*** link:intro.html#GBFPB[1.1.4 Java Community Process (JCP) Program and Compatibility Testing]
+*** link:intro.html#GBFPB[1.1.4 Jakarta EE Specification Process (JESP) Program and Compatibility Testing]
 ** link:intro.html#GBFQR[1.2 About the TCK]
 *** link:intro.html#GBFQV[1.2.1 TCK Specifications and Requirements]
 *** link:intro.html#GBFSQ[1.2.2 TCK Components]
@@ -48,15 +47,16 @@ link:rules.html#GBFSN[2 Procedure for Certification]
 *** link:rules.html#definitions[2.2.1 Definitions]
 *** link:rules.html#sthref7[2.2.2 Rules for {TechnologyFullName} Products]
 ** link:rules.html#CJAIIBDJ[2.3 Test Appeals Process]
-*** link:rules.html#CJAJEAEI[2.3.1 TCK Test Appeals Steps]
-*** link:rules.html#sthref8[2.3.2 Test Challenge and Response Forms]
+*** link:rules.html#[2.3.1 Valid Challenges]
+*** link:rules.html#[2.3.2 Invalid Challenges]
+*** link:rules.html#CJAJEAEI[2.3.3 TCK Test Appeals Steps]
 ** link:rules.html#CJAJECIE[2.4 Specifications for {TechnologyFullName}]
 ** link:rules.html#CJABAHGI[2.5 Libraries for {TechnologyFullName}]
 
 link:install.html#GBFTP[3 Installation]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-** link:install.html#GBFUD[3.1 Obtaining the Reference Implementation]
+** link:install.html#GBFUD[3.1 Obtaining a Compatible Implementation]
 ** link:install.html#GBFTS[3.2 Installing the Software]
 
 [[setup-and-configuration]]
@@ -84,7 +84,7 @@ link:using.html#GBFWO[5 Executing Tests]
 *** link:using.html#GBFVT[5.2.1 To Run a Subset of Tests in GUI Mode]
 *** link:using.html#GBFWK[5.2.2 To Run a Subset of Tests in Command-Line Mode]
 *** link:using.html#GBFVL[5.2.3 To Run a Subset of Tests in Batch Mode Based on Prior Result Status]
-** link:using.html#GCLRR[5.3 Running the TCK Against the RI]
+** link:using.html#GCLRR[5.3 Running the TCK Against another CI]
 ** link:using.html#GCLRZ[5.4 Running the TCK Against a Vendor's Implementation]
 ** link:using.html#GBFVK[5.5 Test Reports]
 *** link:using.html#GBFWD[5.5.1 Creating Test Reports]

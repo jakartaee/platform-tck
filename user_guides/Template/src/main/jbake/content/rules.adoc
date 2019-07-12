@@ -20,9 +20,10 @@ Procedure for Certification
 TODO
 
 * In this section:
-* Replaced Maintenance Lead with "component project team." This probably needs to be revisited 
-* Maintenance Lead seems to refer to the organization that "owns" the Spec. How should this be updates
-* Java Partner Engineering is replaced with EE4J GitHub Organization but that is probably incorrect
+* Replaced Maintenance Lead with "Jakarta EE Specification Committee." Must be confirmed 
+* Maintenance Lead seems to refer to the organization that "owns" the Spec. I assigned this to the Specification Committee. The definition refers to the Specification Process as well as the specification project team.
+* Java Partner Engineering is replaced with Eclipse Jakarta EE Specification Project 
+website (see {techID}2. Must be confirmed
 
 ====
 
@@ -119,22 +120,22 @@ Java classes, archive, or other feature defined in the specification.
 
 |Conformance Tests |All tests in the Test Suite for an indicated
 Technology Under Test, as released and distributed by the 
-component project team, excluding those tests on the Exclude List 
-for the Technology Under Test.
+Jakarta EE Specification Committee, excluding those tests on the 
+published Exclude List for the Technology Under Test.
 
 |Documented |Made technically accessible and made known to users,
 typically by means such as marketing materials, product documentation,
 usage messages, or developer support programs.
 
 |Exclude List |The most current list of tests, released and distributed by the
-component project team, that are not required to be passed to certify
-conformance. The component project team may add to the Exclude List for that
-Test Suite as needed at any time, in which case the updated Exclude List
+Jakarta EE Specification Committee, that are not required to be passed to certify
+conformance. The Jakarta EE Specification Committee may add to the Exclude List for that
+Test Suite as needed at any time, in which case the updated TCK version
 supplants any previous Exclude Lists for that Test Suite.
 
 |Libraries a|
-The class libraries, as specified through the Jakarta EE Specification 
-Process (JESP), for the Technology Under Test.
+The class libraries, as specified through the Eclipse Foundation, Specification 
+Process (EFSP), as refined by the Jakarta EE Specification Process (JESP), for the Technology Under Test.
 
 The Libraries for {TechnologyFullName} are listed at the end of this chapter.
 
@@ -148,9 +149,13 @@ For example, classes may be required to exist in directories named in a
 CLASSPATH variable, or native libraries may be required to exist in
 directories named in a PATH variable.
 
-|Maintenance Lead |The Jakarta EE Project Team responsible for
-maintaining the Specification, reference implementation, and TCK for the
-Technology. Eclipse Jakarta EE Specification Committer Team is Maintenance Lead for {TechnologyFullName}.
+|Maintenance Lead |The Jakarta EE Specification Committee is responsible for
+maintaining the Specification, and TCK for the Technology. 
+The Specification Project Team will propose revisions and updates to the Jakarta EE 
+Specification Committee which will approve and release new versions of the 
+specification and TCK. 
+Eclipse Jakarta EE Specification Committee is Maintenance Lead for 
+{TechnologyFullName}.
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -178,7 +183,7 @@ Configuration that links the Product to that encryption package.
 |Rebuildable Tests |Tests that must be built using an
 implementation-specific mechanism. This mechanism must produce
 specification-defined artifacts. Rebuilding and running these tests
-against the Jakarta EE 8 CI verifies that the mechanism generates
+against a known Jakarta EE 8 CI verifies that the mechanism generates
 compatible artifacts.
 
 |Resource |A Computational Resource, a Location Resource, or a Security
@@ -196,14 +201,16 @@ to access the files and network resources necessary for use of the
 Product.
 
 |Specifications a|
-The documents produced through the Jakarta EE Specification Process (JESP)
+The documents produced through the Eclipse Foundation, Specification 
+Process (EFSP), as refined by the Jakarta EE Specification Process (JESP)
 that define a particular Version of a Technology.
 
 The Specifications for the Technology Under Test are referenced later in
 this chapter.
 
 |Technology |Specifications and a reference implementation produced
-through the Jakarta EE Specification Process (JESP).
+through the Eclipse Foundation, Specification 
+Process (EFSP), as refined by the Jakarta EE Specification Process (JESP).
 
 |Technology Under Test |Specifications and a compatible implementation
 for {TechnologyFullName} Version {TechnologyVersion}.
@@ -211,8 +218,8 @@ for {TechnologyFullName} Version {TechnologyVersion}.
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
 
-|Version |A release of the Technology, as produced through the Jakarta
-EE Specification Process (JESP).
+|Version |A release of the Technology, as produced through the Eclipse Foundation, Specification 
+Process (EFSP), as refined by the Jakarta EE Specification Process (JESP).
 |=======================================================================
 
 
@@ -270,8 +277,8 @@ installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
 prior written permission. Any such allowed alterations to the
-Conformance Tests would be posted to the Eclipse EE4J GitHub Organization web
-site and apply to all vendor compatible implementations.
+Conformance Tests would be posted to the Eclipse Jakarta EE Specification Project 
+website and apply to all vendor compatible implementations.
 
 *{techID}3* The testing tools supplied as part of the Test Suite or as
 updated by the Maintenance Lead must be used to certify compliance.
@@ -413,9 +420,9 @@ TODO
 * The following must be updated to the new Jakarta EE TCK process and web-site definitions
 
 ====
-The {TechnologyFullName} specification is available on the
-JSR {JSR} Web site at {JSRURL} or on the Java
-Community Process (http://jcp.org/en/home/index) site.
+The {TechnologyFullName} specification is available from the specification
+project web-site. This site can be found from the Jakarta EE, EE4J Project page,
+then selecting the sub-project for {TechnologyFullName}.
 
 [[CJABAHGI]][[libraries-for-technology]]
 

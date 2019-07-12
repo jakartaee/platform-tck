@@ -12,7 +12,7 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
+4.1 Configuring Your Environment to Run the TCK Against a Compatible Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
@@ -47,16 +47,16 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `local.classes`
-  property to point to the CAJ RI classes/jars that contain the
+  property to point to a Jakarta Annotations CI classes/jars that contain the
   annotations being supported in Step link:#BABJHHAJ[c], below.
   b.  Set the `endorsed.dirs`
-  property to the location of the RI API jars for those technologies you
+  property to the location of the CI API jars for those technologies you
   wish to override that exist within the JDK.
   c.  [[BABJHHAJ]] +
   Depending on the annotations that are supported or unsupported in your
-  CAJ implementation, the following properties
+  Jakarta Annotations implementation, the following properties
   should be set to `true` or `false` respectively. +
-  By default, all of these annotations are supported in the CAJ RI. +
+  By default, all of these annotations are supported in the Jakarta Annotations CI. +
 [source,oac_no_warn]
 ----
 #javax.annotation.Generated
@@ -108,11 +108,11 @@ in link:#GBFUY[Section 4.4, "Using the JavaTest Harness Software."]
 4.2 Configuring Your Environment to Repackage and Run the TCK Against the Vendor Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is not required for the CAJ TCK.
+This is not required for the Jakarta Annotations TCK.
 
 [[GHGDG]][[publishing-the-test-applications]]
 
 4.3 Publishing the Test Applications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is not required for the CAJ TCK.
+This is not required for the Jakarta Annotations TCK.

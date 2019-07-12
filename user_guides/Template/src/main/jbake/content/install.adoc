@@ -23,13 +23,13 @@ Configuration,"] for instructions on configuring your test environment.
 
 [[GBFUD]][[obtaining-the-reference-implementation]]
 
-3.1 Obtaining the Compatible Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1 Obtaining a Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Each compatible implementation will provide instructions for obtaining
-their product.
+Each compatible implementation (CI) will provide instructions for obtaining
+their implementation.
 Eclipse GlassFish is a compatible implementation which may be obtained
-from https://www.eclipse.org/downloads/download.php?file=/glassfish/glassfish-5.1.0.zip
+from https://projects.eclipse.org/projects/ee4j.glassfish/downloads
 
 [[GBFTS]][[installing-the-software]]
 
@@ -41,7 +41,7 @@ install and set up the following software components:
 
 include::req-software.inc[]
 * Java SE {SEversion}
-* {TechnologyShortName} {TechnologyVersion} CI, which is {TechnologyRI}
+* A CI for {TechnologyShortName} {TechnologyVersion}, one example is {TechnologyRI}
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]
 * The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)

@@ -46,14 +46,14 @@ slashes as a path separator instead.
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
-  a.  Set the `jacc.home` property to the installation directory of Java EE
-  8 RI.
+  a.  Set the `jacc.home` property to the installation directory of Jakarta EE
+  8 CI.
   b.  Set the `jacc.host` property to the host name of the system where your
-  JACC runtime implementation is installed.
+  {TechnologyShortName} runtime implementation is installed.
   c.  Set the `jacc.classes` property to point to the classes or JAR file
-  that contains the JACC classes.
+  that contains the {TechnologyShortName} classes.
   d. Set the `sigTestClasspath` property to point to the classes or JAR file
-  for the runtime implementation of the JSR 115 API and any additional required
+  for the runtime implementation of the {TechnologyShortName} {TechnologyVersion} API and any additional required
   signature classes.
 3.  Copy the `tsharness.jar` and `jacctck.jar` files to the server’s extension
 directory, change to the `<TS_HOME>/bin` directory and execute the following
@@ -102,12 +102,12 @@ slashes as a path separator instead.
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
-  a.  Set the `jacc.home` property to the installation directory of Java EE
-  8 RI.
+  a.  Set the `jacc.home` property to the installation directory of Jakarta EE
+  8 CI.
   b.  Set the `jacc.host` property to the host name of the system where your
-  JACC runtime implementation is installed.
+  {TechnologyShortName} runtime implementation is installed.
   c.  Set the `jacc.classes` property to point to the classes or JAR file
-  that contains the JACC classes.
+  that contains the {TechnologyShortName} classes.
   d. Set the `sigTestClasspath` property to point to the classes or JAR file
   for the runtime implementation of the JSR 115 API and any additional required
   signature classes.
@@ -138,46 +138,46 @@ The `config.vi` Ant task performs several actions, including:
 Note that the `log.file.location` comes from the property of the same
 name in the `ts.jte` file.
 +
-* Deploys the JACC Provider (from `<TS_HOME>/lib/tsprovider.jar`) to
-your server's library directory (for example,
+* Deploys the {TechnologyShortName} Provider (from `<TS_HOME>/lib/tsprovider.jar`) to
+your server's library directory (for example using {TechnologyRI},
 `glassfish5/glassfish/lib`) where it can be picked up and loaded by the
 server
 * Enables the Security manager with the `-Djava.security.manager` JVM
 option
 * Creates users required by the TCK tests on the server under test
-* Deploys `tsharness.jar` and `jacctck.jar` files to your JACC server's
+* Deploys `tsharness.jar` and `jacctck.jar` files to your {TechnologyShortName} server's
 `/lib` directory +
-4.  Enable the TCK JACC provider: +
+4.  Enable the TCK {TechnologyShortName} provider: +
 [source,oac_no_warn]
 ----
 ant enable.jacc
 ----
-After running the JACC TCK tests, disable the JACC provider by running
+After running the {TechnologyShortName} TCK tests, disable the {TechnologyShortName} provider by running
 the disable.jacc Ant task: +
 [source,oac_no_warn]
 ----
 ant disable.jacc
 ----
-5.  Change to the appropriate JACC TCK test subdirectory
+5.  Change to the appropriate {TechnologyShortName} TCK test subdirectory
 (`<TS_HOME>/src/com/sun/ts/tests/jacc/web` or
 <TS_HOME>/src/com/sun/ts/tests/jacc/ejb) for the tests that you plan to
 run and execute the `ant deploy` command to deploy the desired tests. +
-To deploy the JACC EJB tests: +
+To deploy the {TechnologyShortName} EJB tests: +
 [source,oac_no_warn]
 ----
 cd ${TS_HOME}/src/com/sun/ts/tests/jacc/ejb
 ant deploy
 ----
-Or, to deploy the JACC Web tests: +
+Or, to deploy the {TechnologyShortName} Web tests: +
 [source,oac_no_warn]
 ----
 cd ${TS_HOME}/src/com/sun/ts/tests/jacc/web
 ant deploy
 ----
-Repeat this deployment step for each JACC test directory after you run
+Repeat this deployment step for each {TechnologyShortName} test directory after you run
 the tests in the current directory, as described in
 link:using.html#GBFWO[Chapter 5, "Executing Tests."] +
-JACC tests translate security configurations into corresponding JACC
+{TechnologyShortName} tests translate security configurations into corresponding {TechnologyShortName}
 permissions. If multiple test directories are deployed simultaneously,
 the result can be permissions that are stricter than what is expected,
 which can lead to test failures. To avoid this potential problem, deploy

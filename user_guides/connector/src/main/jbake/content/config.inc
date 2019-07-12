@@ -12,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against a Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.6, "Using the
@@ -43,16 +43,16 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
+  {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Java EE 8 RI is running. +
+  Jakarta EE 8 CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Java EE 8 RI is running. +
+  which Jakarta EE 8 CI is running. +
   The default setting is `8080`.
   c.  `connector.home` to the location where your {TechnologyShortName} runtime
   implementation is installed.
@@ -63,11 +63,11 @@ environment variables:
   f.  `connector.classes` to the {TechnologyShortName} classes or JAR
   files that contain the {TechnologyShortName} classes.
   g.  `sigTestClasspath` to the to the classes or JAR file (or files) for
-  the runtime implementation of the JSR 322 API and any additional
+  the runtime implementation of the {TechnologyShortName} API and any additional
   required signature or {TechnologyShortName} API classes.
   h.  `impl.vi` to the directory where vendor-specific targets can best be
-  stored and isolated. The default directory, `glassfish`, is where
-  details about the installation and configuration of the GlassFish
+  stored and isolated. The default directory if you are using {TechnologyRI}, `glassfish`, is where
+  details about the installation and configuration of the {TechnologyRI}
   enterprise server can be found.
   i.  `report.dir` to the default directory in which JavaTest creates a
   test report for the most recent test run. +
@@ -86,7 +86,7 @@ documentation bundle in the `docs/api` directory.
 4.  Execute the `config.vi` Ant task. +
 This target performs the following tasks:
 * Stops the application server running the {TechnologyShortName}
-{TechnologyVersion} RI
+{TechnologyVersion} CI
 * Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
 into the application server's external library folder
 * Starts the application server
@@ -230,9 +230,9 @@ RAR2) reference `whitebox.jar` as an installed library and the
 application server can use a single classloader to load this common
 dependency, there will be no type-related issues.
 
-In the TCK's RI, `domain-dir/lib/applibs` is used as the Installed
+In the the {TechnologyRI} CI, `domain-dir/lib/applibs` is used as the Installed
 Library directory and is the location to which the `whitebox.jar` file
-gets copied.
+gets copied. Refer to specific instructions for other CIs.
 
 [[GJOSS]][[required-porting-package]]
 
@@ -247,13 +247,13 @@ with every RAR file. Each RAR file now contains a reference to the
 It is necessary to identify the `whitebox.jar` to the connector server
 as an installed library. The mechanism used to identify the
 `whitebox.jar` file to the connector server as an Installed Library must
-allow the Installed Libraries to have dependencies on Java EE APIs. In
-other words, because the `whitebox.jar` file depends on Java EE APIs,
+allow the Installed Libraries to have dependencies on Jakarta EE APIs. In
+other words, because the `whitebox.jar` file depends on Jakarta EE APIs,
 one cannot simply put the `whitebox.jar` file into a `java.ext.dir`
 directory , which gets loaded by the VM extension classloader, because
 that mechanism does not allow the `whitebox.jar` file to support its
-dependencies on the Java EE APIs. For this reason, the Installed Library
-must support access to the Java EE APIs.
+dependencies on the Jakarta EE APIs. For this reason, the Installed Library
+must support access to the Jakarta EE APIs.
 
 See section EE.8.2.2 in the Java EE 7 platform specification for
 information about the reference implementation's support for Installed
@@ -305,13 +305,13 @@ the application server's `domains/domain1/lib/applibs` directory, a
 location where it can be loaded by the server and can be accessed by all
 the RAR files.
 
-To deploy the JCA TCK tests to the Java EE 7 platform, perform the
+To deploy the {TechnologyShortName} TCK tests to the Jakarta EE 8 platform, perform the
 following steps.
 
 [[GCRWU]][[to-configure-and-deploy-the-jca-tck-tests-on-the-java-ee-7-web-profile-ri]]
 
-4.3.2 To Configure and Deploy the JCA TCK Tests on the Java EE 7 Web Profile RI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.3.2 To Configure and Deploy the JCA TCK Tests on the Jakarta EE 8 Web Profile CI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `config.vi` Ant task performs several configuration procedures on
 your connector server. This target deploys some of the required Resource
@@ -325,7 +325,7 @@ target `setup.all.rars.and.pools` for more information.
 1.  Make sure that the server to which you will deploy the JCA TCK tests
 is running.
 2.  Change to the `<TS_HOME>/bin` directory and execute the Ant task to
-configure the RI.
+configure the CI.
 +
 --
 [source,oac_no_warn]
@@ -357,7 +357,7 @@ just deployed.
 
 Vendors need to configure their application or connector servers to run
 the TCK tests. This configuration needs to support the same features
-that are currently performed against the RI through the execution of the
+that are currently performed against all CIs through the execution of the
 `config.vi` and `setup.all.rars.and.pools` Ant targets.
 
 This section describes how to configure the Vendor Implementation (VI)
@@ -377,10 +377,10 @@ following:
 
 See the Ant target `create.security.eis.mappings` in the
 `<TS_HOME>/bin/xml/impl/glassfish/connector.xml` to see how this is done
-with the RI. This task maps Resource Adapter user information to
+with the {TechnologyRI} CI. This task maps Resource Adapter user information to
 existing user information in the connector runtime.
 
-For the RI, these mappings add a line to the `domain.xml` file, similar
+For the {TechnologyRI} CI, these mappings add a line to the `domain.xml` file, similar
 to the one shown below, and should include 6 of these mappings:
 
 [source,oac_no_warn]
@@ -416,7 +416,7 @@ deployed to the connector runtime. The RAR files need to know some of
 the property settings used in the `ts.jte` file; this is the means used
 to specify some of the user properties.
 
-To see some of required JVM options for the RI, examine the
+To see some of required JVM options for the {TechnologyRI} CI, examine the
 `ri.jvm.options` property in the `ts.jte` file. The following subset of
 JVM option specified in the `ri.jvm.options` property must be set in the
 connector runtime:
@@ -467,7 +467,7 @@ This section describes how deploy the RAR files to the VI before running
 the JCA TCK tests.
 
 The deployment requirements for VI are similar to the requirements for
-the RI in that the required Resource Adapter (RAR) files must be
+the CI in that the required Resource Adapter (RAR) files must be
 deployed before any TCK tests can be run. Before you attempt to deploy
 the RAR files, ensure your connector server has been properly
 configured. For additional information about deploying the RAR files and

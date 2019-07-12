@@ -319,12 +319,12 @@ include::intro.inc[]
 
 [[GBFQW]][[getting-started-with-the-tck]]
 
-[WARNING]
+[NOTE]
 ====
-The following only describes setting up the Eclipse GlassFish
-compatible implementation.
-This must be rewritten to describe the general setup, followed by
-specifics for setting up one or more compatible implementations.
+Jakarta EE intends to support multiple compatible implementations. 
+More work is needed to describe how to incorporate.
+These instructions explain how to get started with {TechnologyRI}.
+As more CIs become available, these instructions will be extended.
 
 ====
 
@@ -340,7 +340,7 @@ guide.
 on the system hosting the JavaTest harness:
 include::req-software.inc[]
 * Java SE {SEversion}
-* {TechnologyShortName} {TechnologyVersion} CI, which is {TechnologyRI}
+* A CI for {TechnologyShortName} {TechnologyVersion}, one example is {TechnologyRI}.
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]
 * The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI) +
