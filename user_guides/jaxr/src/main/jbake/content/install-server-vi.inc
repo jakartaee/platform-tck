@@ -1,9 +1,9 @@
-.  Install or get access to a UDDI V2-compliant registry. +
+* Install or get access to a UDDI V2-compliant registry. +
 To use a UDDI V2 registry from IBM or Microsoft, you need to go to
 their sites and register.  When you register, you will get your own
 username and password. +
 To get a username to use with the IBM registry, go to
-http://www.ibm.com/ services/uddi and click on the beta v2 register
+http://www.ibm.com/services/uddi and click on the beta v2 register
 button. Scroll down and you will see a place to get a username and
 password. +
 To get a username for the Microsoft UDDI registry, go to http://

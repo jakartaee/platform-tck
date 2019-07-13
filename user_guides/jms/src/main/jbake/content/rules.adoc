@@ -409,7 +409,7 @@ Template TODO
 
 ====
 The {TechnologyFullName} specification is available from the specification
-project web-site. This site can be found from the https://projects.eclipse.org/projects/ee4j[Eclipse, EE4J Project page] for ,
+project web-site. This site can be found from the https://projects.eclipse.org/projects/ee4j[Eclipse, EE4J Project page],
 then selecting the sub-project for {TechnologyFullName}.
 
 [[CJABAHGI]][[libraries-for-technology]]

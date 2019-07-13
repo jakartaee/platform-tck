@@ -12,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.6, "Using the
@@ -39,24 +39,24 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
+  {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
-  a.  `webServerHost` to the name of the host on which your Java API for
-  WebSocket 1.0 implementation is running.
-  b.  `webServerPort` to the port number of the host on which Java API for
-  WebSocket 1.0 implementation is running.
-  c.  `web.home` to the location where your Java API for WebSocket 1.0
+  a.  `webServerHost` to the name of the host on which your {TechnologyFullName} 
+  {TechnologyVersion} implementation is running.
+  b.  `webServerPort` to the port number of the host on which {TechnologyFullName} 
+  {TechnologyVersion} implementation is running.
+  c.  `web.home` to the location where your {TechnologyFullName} {TechnologyVersion}
   implementation is installed.
   d.  `websocket.api` to point to the location of the JAR files and
-  directories that contain the APIs for Java API for WebSocket 1.0 and
-  Java Servlet. +
+  directories that contain the APIs for {TechnologyFullName} {TechnologyVersion} and
+  Jakarta Servlet. +
   The default setting for this property is:
 +
 --
@@ -68,7 +68,7 @@ ${pathsep}${web.home}/modules/javax.servlet-api.jar
 --
 +
   e.  `websocket.classes` property to point to the JAR files and
-  directories that contain the Java API for WebSocket 1.0 implementation
+  directories that contain the {TechnologyFullName} {TechnologyVersion} implementation
   classes. +
   The default setting for this property is:
 +
@@ -98,18 +98,17 @@ ${pathsep}${web.home}/modules/tyrus-spi.jar
   This property is required for the TCK Ant targets.
   i.  `impl.vi` to the name of the Vendor implementation. +
   This property is used for identifying the deployment handler. +
-  Set this property to `glassfish` for the Java EE 8 RI or the Java EE 8
-  Web Profile RI.
+  Set this property to `glassfish` for the Jakarta EE 8 CI (Eclipse GlassFish 5.1) full-, or web-profile CI.
   j. `impl.vi.deploy.dir` to the Vendor implementation deployment
   directory. +
   Set this property to `${web.home}/domains/domain1/autodeploy` for the
-  Java EE 8 RI or the Java EE 8 Web Profile RI.
+  Jakarta EE 8 CI (Eclipse GlassFish 5.1) full-, or web-profile CI.
 +
 3.  Add permissions from the file `<TS_HOME>/bin/server_policy.append`
 to the Java policy file or files on your Java EE 8 server. +
-In case of Java EE 8 RI, add permissions that are not already defined to
+In case of Jakarta EE 8 CI (Eclipse GlassFish 5.1), add permissions that are not already defined to
 the file $\{web.home}`/domains/domain1/config/server.policy`, where
-$\{web.home} is the location of your installation of the Java EE 8 RI.
+$\{web.home} is the location of your installation of the Jakarta EE 8 CI (Eclipse GlassFish 5.1).
 
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
@@ -144,7 +143,7 @@ slashes as a path separator instead.
 
 [[sthref9]]
 
-Before You Begin
+==== Before You Begin
 
 Decide against which {TechnologyShortName} implementation the tests
 will be run and determine to which Servlet–compliant Web server the
@@ -161,10 +160,10 @@ server to which you will deploy the Java API for WebSocket TCK tests,
 perform the following steps.
 
 1.  Make sure that the Web/Application server to which you will deploy
-the Java API for WebSocket TCK tests is running.
+the {TechnologyFullName} {TechnologyVersion} TCK tests is running.
 2.  Change to the `<TS_HOME>/bin` directory.
 3.  Execute the `ant deploy.all` command. +
-All of the WAR files containing the Java API for WebSocket TCK tests
+All of the WAR files containing the {TechnologyFullName} {TechnologyVersion} TCK tests
 have been deployed. Follow the instructions in
 link:using.html#GBFUZ[Using the GUI for TCK Test Execution] or
 link:using.html#GJCIW[Using the Command Line for TCK Test Execution] to

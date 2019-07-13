@@ -28,8 +28,8 @@ Configuration,"] for instructions on configuring your test environment.
 
 Each compatible implementation (CI) will provide instructions for obtaining
 their implementation.
-Eclipse GlassFish is a compatible implementation which may be obtained
-from https://projects.eclipse.org/projects/ee4j.glassfish/downloads
+{TechnologyRI} is a compatible implementation which may be obtained
+from {TechnologyRIURL}
 
 [[GBFTS]][[installing-the-software]]
 
@@ -57,8 +57,8 @@ additional information.
   a.  Copy or download the {TechnologyShortName} TCK software to your
       local system. +
       You can obtain the {TechnologyShortName} TCK software from the
-      Eclipse EE4J GitHub Organization (https://github.com/eclipse-ee4j) project
-      site.  The {TechnologyShortName} TCK software is located in the
+      Eclipse EE4J specification project
+      site {JSRURL}.  The {TechnologyShortName} TCK software is located in the
       project site's Download area.
   b.  Use the `unzip` command to extract the bundle in the directory of
       your choice: +
@@ -68,11 +68,11 @@ additional information.
 include::install-server.inc[]
 .  Install the {TechnologyShortName} {TechnologyVersion} Compatible
 Implementation. +
-The Compatible Implementation is used to validate your initial
+A Compatible Implementation is used to validate your initial
 configuration and setup of the {TechnologyShortName} TCK
 {TechnologyVersion} tests, which are explained further in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
-The {TechnologyShortName} CI can be obtained from Eclipse EE4J GitHub Organization (https://github.com/eclipse-ee4j) project site.
+A CI for {TechnologyShortName} may be obtained from Eclipse EE4J Project site for {TechnologyRI}, at {TechnologyRIURL}.
 include::install-server-vi.inc[]
 .  Install the {TechnologyShortName} VI to be tested. +
 Follow the installation instructions for the particular VI under test.

@@ -268,7 +268,7 @@ The Exclude List file, +{jtxFileName}+, is included in the
 =======================================================================
 
 From time to time, updates to the Exclude List are made available.
-The exclude list is included in the Jakarta EE TCK ZIP archive.
+The exclude list is included in the Jakarta TCK ZIP archive.
 Each time an update is approved and released, the version number 
 will be incremented.
 You should always make sure you are using an up-to-date copy of the
@@ -322,9 +322,10 @@ include::intro.inc[]
 
 [NOTE]
 ====
-Jakarta EE intends to support multiple compatible implementations. 
+The Jakarta EE Specification Process support multiple compatible implementations. 
 These instructions explain how to get started with the {TechnologyRI} CI.
-As more CIs become available, these instructions will be extended.
+If you are using another compatible implementation, refer to material provided
+by that implementation for specific instructions and procedures.
 
 ====
 

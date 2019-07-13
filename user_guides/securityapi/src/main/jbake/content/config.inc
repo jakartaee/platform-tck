@@ -12,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.6, "Using the
@@ -39,7 +39,7 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
@@ -49,7 +49,7 @@ environment variables:
   a.  Set `securityapi.classes` to include all necessary JAR files that
   pertain to your implementation.
   b.  Set `web.home` to the location where the securityapi is implemented.
-  For example, `web.home=<GLASSFISH_HOME_FOLDER`>.
+  For example, If you are using Eclipse GlassFish 5.1 as your CI, set `web.home=<GLASSFISH_HOME_FOLDER`>.
   c.  Set `jdbc.lib.class.path` to the location where the JDBC drivers are
   installed.
   d.  Set `jdbc.db` to the name of the database under test. Valid values
@@ -145,7 +145,7 @@ slashes as a path separator instead.
 
 [[sthref9]]
 
-Before You Begin
+==== Before You Begin
 
 Decide against which {TechnologyShortName} implementation the tests
 will be run and determine to which Servlet–compliant Web server the

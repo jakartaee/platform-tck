@@ -15,6 +15,14 @@ as toc.adoc.
 4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+[NOTE]
+====
+Web Services Developer Pack is EOL and referenced for example purposed only.
+Settings below are to be used as illustrations only.
+See current release notes for supported operating environments.
+
+====
+
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.4, "Using the
 JavaTest Harness Software."]
@@ -47,106 +55,104 @@ Edit your ts_env or ts_env.bat file and set the following environment variables:
     {TechnologyShortName} TCK classes/jars (harness.jar, javatest.jar).  +
     `TS_HOME` to the directory in which the {TechnologyShortName} TCK
     {TechnologyVersion} software is installed. +
-    Note that if you are using the JAXR RI, Version 1.0_01, the manner
+    Note that if you are using the {TechnologyShortName} CI, Version {TechnologyVersion}_01, the manner
     in which you set your classpath is dependent upon the location from
-    which you downloaded the JAXR RI software. +
+    which you downloaded the {TechnologyShortName} CI software. +
     For example, if you are running Solaris 8 and you downloaded the
-    JAXR RI, Version 1.0_01 from the Java Software or Partner
-    Engineering web sites, you could set the following classpath: +
+    {TechnologyShortName} CI, Version {TechnologyVersion}_01 from {JSRURL}, you could set the following classpath: +
 
-    ----
-    LOCAL_CLASSES=${JAXR_HOME}/lib/commons-logging.jar:
-    ${JAXR_HOME}/lib/mail.jar:${JAXR_HOME}/lib/activation.jar:
-    ${JAXR_HOME}/lib/xercesImpl.jar:${JAXR_HOME}/lib/xalan.jar:
-    ${JAXR_HOME}/lib/dom.jar:${JAXR_HOME}/lib/dom4j.jar:
-    ${JAXR_HOME}/lib/saaj-ri.jar:${JAXR_HOME}/lib/saaj-api.jar:
-    ${JAXR_HOME}/lib/jaxr-ri.jar:${JAXR_HOME}/lib/jaxr-api.jar:
-    ${JAXR_HOME}/lib/jaxp-api.jar:${JAXR_HOME}/lib/sax.jar:
-    ${JAXR_HOME}/lib/jnet.jar:${JAXR_HOME}/lib/jcert.jar:
-    ${JAXR_HOME}/lib/jaas.jar:${JAXR_HOME}/lib/jsse.jar:
-    ${JAXR_HOME}/lib/castor-0.9.3.9-xml.jar:
-    ${JAXR_HOME}/lib/soap.jar:${JAXR_HOME}/lib/fscontext.jar:
-    ${JAXR_HOME}/lib/providerutil.jar:
-    ${TS_HOME}/lib/javatest.jar:${TS_HOME}/lib/harness.jar
-    ----
+----
+LOCAL_CLASSES=${JAXR_HOME}/lib/commons-logging.jar:
+${JAXR_HOME}/lib/mail.jar:${JAXR_HOME}/lib/activation.jar:
+${JAXR_HOME}/lib/xercesImpl.jar:${JAXR_HOME}/lib/xalan.jar:
+${JAXR_HOME}/lib/dom.jar:${JAXR_HOME}/lib/dom4j.jar:
+${JAXR_HOME}/lib/saaj-ri.jar:${JAXR_HOME}/lib/saaj-api.jar:
+${JAXR_HOME}/lib/jaxr-ri.jar:${JAXR_HOME}/lib/jaxr-api.jar:
+${JAXR_HOME}/lib/jaxp-api.jar:${JAXR_HOME}/lib/sax.jar:
+${JAXR_HOME}/lib/jnet.jar:${JAXR_HOME}/lib/jcert.jar:
+${JAXR_HOME}/lib/jaas.jar:${JAXR_HOME}/lib/jsse.jar:
+${JAXR_HOME}/lib/castor-0.9.3.9-xml.jar:
+${JAXR_HOME}/lib/soap.jar:${JAXR_HOME}/lib/fscontext.jar:
+${JAXR_HOME}/lib/providerutil.jar:
+${TS_HOME}/lib/javatest.jar:${TS_HOME}/lib/harness.jar
+----
 
-    Or, if you are running on Windows 2000/XP and you downloaded the
-    JAXR RI, Version 1.0_01 from the Java Software or Partner
-    Engineering web sites, you could set the following classpath:
+Or, if you are running on Windows and you downloaded the
+{TechnologyShortName} CI, Version {TechnologyVersion}_01 from the {JSRURL} from {JSRURL}, you could set the following classpath:
 
-    ----
-    set LOCAL_CLASSES=%JAXR_HOME%\lib\commons-logging.jar;
-    %JAXR_HOME%\lib\mail.jar;%JAXR_HOME%\lib\activation.jar;
-    %JAXR_HOME%\lib\xercesimpl.jar;%JAXR_HOME%\lib\xalan.jar;
-    %JAXR_HOME%\lib\dom.jar;%JAXR_HOME%\lib\dom4j.jar;
-    %JAXR_HOME%\lib\saaj-ri.jar;%JAXR_HOME%\lib\saaj-api.jar;
-    %JAXR_HOME%\lib\jaxr-ri.jar;%JAXR_HOME%\lib\jaxr-api.jar;
-    %JAXR_HOME%\lib\jaxp-api.jar;%JAXR_HOME%\lib\sax.jar;
-    %JAXR_HOME%\lib\jnet.jar;%JAXR_HOME%\lib\jcert.jar;
-    %JAXR_HOME%\lib\jaas.jar;%JAXR_HOME%\lib\jsse.jar;
-    %JAXR_HOME%\lib\castor-0.9.3.9-xml.jar;
-    %JAXR_HOME%\lib\soap.jar;%JAXR_HOME%\lib\fscontext.jar;
-    %JAXR_HOME%\lib\providerutil.jar;
-    %TS_HOME%\lib\javatest.jar;%TS_HOME%\lib\harness.jar
-    ----
+----
+set LOCAL_CLASSES=%JAXR_HOME%\lib\commons-logging.jar;
+%JAXR_HOME%\lib\mail.jar;%JAXR_HOME%\lib\activation.jar;
+%JAXR_HOME%\lib\xercesimpl.jar;%JAXR_HOME%\lib\xalan.jar;
+%JAXR_HOME%\lib\dom.jar;%JAXR_HOME%\lib\dom4j.jar;
+%JAXR_HOME%\lib\saaj-ri.jar;%JAXR_HOME%\lib\saaj-api.jar;
+%JAXR_HOME%\lib\jaxr-ri.jar;%JAXR_HOME%\lib\jaxr-api.jar;
+%JAXR_HOME%\lib\jaxp-api.jar;%JAXR_HOME%\lib\sax.jar;
+%JAXR_HOME%\lib\jnet.jar;%JAXR_HOME%\lib\jcert.jar;
+%JAXR_HOME%\lib\jaas.jar;%JAXR_HOME%\lib\jsse.jar;
+%JAXR_HOME%\lib\castor-0.9.3.9-xml.jar;
+%JAXR_HOME%\lib\soap.jar;%JAXR_HOME%\lib\fscontext.jar;
+%JAXR_HOME%\lib\providerutil.jar;
+%TS_HOME%\lib\javatest.jar;%TS_HOME%\lib\harness.jar
+----
 
-    If you are running on Solaris 8 and you are using the JAXR RI,
-    Version 1.0_01 from the Java Web Services Developer Pack, you would
-    set the following classpath:
+If you are running on Solaris 8 and you are using the {TechnologyShortName} CI, 
+Version {TechnologyVersion}_01 from the {JSRURL} from the Java Web Services Developer Pack, you would
+set the following classpath:
 
-    ----
-    set LOCAL_CLASSES=${JAXR_HOME}/common/lib/soap.jar;
-    ${JAXR_HOME}/common/endorsed/xercesImpl.jar;
-    ${JAXR_HOME}/common/lib/jaxr-api.jar;
-    ${JAXR_HOME}/common/lib/mail.jar;
-    ${JAXR_HOME}/common/lib/activation.jar;
-    ${JAXR_HOME}/common/lib/castor-0.9.3.9-xml.jar;
-    ${JAXR_HOME}/common/endorsed/xalan.jar;
-    ${JAXR_HOME}/common/lib/jsse.jar;
-    ${JAXR_HOME}/common/lib/jcert.jar;
-    ${JAXR_HOME}/common/lib/jnet.jar;
-    ${JAXR_HOME}/common/lib/jaas.jar;
-    ${JAXR_HOME}/common/lib/jaxr-ri.jar;
-    ${JAXR_HOME}/common/lib/saaj-api.jar;
-    ${JAXR_HOME}/common/lib/saaj-ri.jar;
-    ${JAXR_HOME}/common/lib/jaxp-api.jar;
-    ${JAXR_HOME}/common/endorsed/dom.jar;
-    ${JAXR_HOME}/common/endorsed/sax.jar;
-    ${JAXR_HOME}/common/lib/commons-logging.jar;
-    ${JAXR_HOME}/common/lib/dom4j.jar;
-    ${JAXR_HOME}/common/lib/fscontext.jar;
-    ${JAXR_HOME}/common/lib/providerutil.jar
-    ${TS_HOME}/lib/javatest.jar;${TS_HOME}/lib/harness.jar
-    ----
+----
+set LOCAL_CLASSES=${JAXR_HOME}/common/lib/soap.jar;
+${JAXR_HOME}/common/endorsed/xercesImpl.jar;
+${JAXR_HOME}/common/lib/jaxr-api.jar;
+${JAXR_HOME}/common/lib/mail.jar;
+${JAXR_HOME}/common/lib/activation.jar;
+${JAXR_HOME}/common/lib/castor-0.9.3.9-xml.jar;
+${JAXR_HOME}/common/endorsed/xalan.jar;
+${JAXR_HOME}/common/lib/jsse.jar;
+${JAXR_HOME}/common/lib/jcert.jar;
+${JAXR_HOME}/common/lib/jnet.jar;
+${JAXR_HOME}/common/lib/jaas.jar;
+${JAXR_HOME}/common/lib/jaxr-ri.jar;
+${JAXR_HOME}/common/lib/saaj-api.jar;
+${JAXR_HOME}/common/lib/saaj-ri.jar;
+${JAXR_HOME}/common/lib/jaxp-api.jar;
+${JAXR_HOME}/common/endorsed/dom.jar;
+${JAXR_HOME}/common/endorsed/sax.jar;
+${JAXR_HOME}/common/lib/commons-logging.jar;
+${JAXR_HOME}/common/lib/dom4j.jar;
+${JAXR_HOME}/common/lib/fscontext.jar;
+${JAXR_HOME}/common/lib/providerutil.jar
+${TS_HOME}/lib/javatest.jar;${TS_HOME}/lib/harness.jar
+----
 
-    If you are running on Windows 2000/XP and you are using the JAXR
-    RI, Version 1.0_01 from the Java Web Services Developer Pack, you
-    would set the following classpath:
+If you are running on Windows 2000/XP and you are using the {TechnologyShortName} 
+CI, Version {TechnologyVersion}_01 from the {JSRURL} from the Java Web Services 
+Developer Pack, you would set the following classpath:
 
-    ----
-    set LOCAL_CLASSES=%JAXR_HOME%\common\lib\soap.jar;
-    %JAXR_HOME%\common\endorsed\xercesImpl.jar;
-    %JAXR_HOME%\common\lib\jaxr-api.jar;
-    %JAXR_HOME%\common\lib\mail.jar;
-    %JAXR_HOME%\common\lib\activation.jar;
-    %JAXR_HOME%\common\lib\castor-0.9.3.9-xml.jar;
-    %JAXR_HOME%\common\endorsed\xalan.jar;
-    %JAXR_HOME%\common\lib\jsse.jar;
-    %JAXR_HOME%\common\lib\jcert.jar;
-    %JAXR_HOME%\common\lib\jnet.jar;
-    %JAXR_HOME%\common\lib\jaas.jar;
-    %JAXR_HOME%\common\lib\jaxr-ri.jar;
-    %JAXR_HOME%\common\lib\saaj-api.jar;
-    %JAXR_HOME%\common\lib\saaj-ri.jar;
-    %JAXR_HOME%\common\lib\jaxp-api.jar;
-    %JAXR_HOME%\common\endorsed\dom.jar;
-    %JAXR_HOME%\common\endorsed\sax.jar;
-    %JAXR_HOME%\common\lib\commons-logging.jar;
-    %JAXR_HOME%\common\lib\dom4j.jar;
-    %JAXR_HOME%\common\lib\fscontext.jar;
-    %JAXR_HOME%\common\lib\providerutil.jar
-    %TS_HOME%\lib\javatest.jar;%TS_HOME%\lib\harness.jar
-    ----
+----
+set LOCAL_CLASSES=%JAXR_HOME%\common\lib\soap.jar;
+%JAXR_HOME%\common\endorsed\xercesImpl.jar;
+%JAXR_HOME%\common\lib\jaxr-api.jar;
+%JAXR_HOME%\common\lib\mail.jar;
+%JAXR_HOME%\common\lib\activation.jar;
+%JAXR_HOME%\common\lib\castor-0.9.3.9-xml.jar;
+%JAXR_HOME%\common\endorsed\xalan.jar;
+%JAXR_HOME%\common\lib\jsse.jar;
+%JAXR_HOME%\common\lib\jcert.jar;
+%JAXR_HOME%\common\lib\jnet.jar;
+%JAXR_HOME%\common\lib\jaas.jar;
+%JAXR_HOME%\common\lib\jaxr-ri.jar;
+%JAXR_HOME%\common\lib\saaj-api.jar;
+%JAXR_HOME%\common\lib\saaj-ri.jar;
+%JAXR_HOME%\common\lib\jaxp-api.jar;
+%JAXR_HOME%\common\endorsed\dom.jar;
+%JAXR_HOME%\common\endorsed\sax.jar;
+%JAXR_HOME%\common\lib\commons-logging.jar;
+%JAXR_HOME%\common\lib\dom4j.jar;
+%JAXR_HOME%\common\lib\fscontext.jar;
+%JAXR_HOME%\common\lib\providerutil.jar
+%TS_HOME%\lib\javatest.jar;%TS_HOME%\lib\harness.jar
+----
 
 
 Edit your `ts.jte` file and modify the following environment settings:
@@ -171,62 +177,68 @@ Edit your `ts.jte` file and modify the following environment settings:
     The following example shows the properties that were set for use
     with the Java Web Services Developer Pack Registry Server 1.0.
 
-    `registryURL = http://hostname:8080/registry-server/`
-    `RegistryServerServlet`
-    `queryManagerURL = http://hostname:8080/registry-server/`
-    `RegistryServerServlet`
-    `jaxrUser=testuser`
-    `jaxrPassword=testuser`
-    `jaxrUser2=testuser2`
-    `jaxrPassword2=testuser2`
-    `httpProxyHost=myproxy.mycompany.com`
-    `httpProxyPort=8080`
-    `httpsProxyHost=myproxy.mycompany.com`
-    `httpsProxyPort=8080`
-    `proxyUserName=“”`
-    `proxyPassword=“”`
-    `providerCapability=0`
+----
+registryURL = http://hostname:8080/registry-server/
+RegistryServerServlet
+queryManagerURL = http://hostname:8080/registry-server/
+RegistryServerServlet
+jaxrUser=testuser
+jaxrPassword=testuser
+jaxrUser2=testuser2
+jaxrPassword2=testuser2
+httpProxyHost=myproxy.mycompany.com
+httpProxyPort=8080
+httpsProxyHost=myproxy.mycompany.com
+httpsProxyPort=8080
+proxyUserName=“”
+proxyPassword=“”
+providerCapability=0
+----
 
-    [NOTE]
-    ===========================================================================
-    The hostname must be fully qualified. You can specify localhost for a local
-    registry. The default username and password for the Java WSDP registry is
-    testuser. After the Java Web Services Developer Pack was installed, a second
-    account was created for testuser2/testuser2. See the Java Web Services
-    Developer Pack documentation for information about adding new users to the
-    registry.
-    ===========================================================================
-    If you are using the Microsoft UDDI V2 registry, specify the
-    following urls in the ts.jte file.
+[NOTE]
+===========================================================================
+The hostname must be fully qualified. You can specify localhost for a local
+registry. The default username and password for the Java WSDP registry is
+testuser. After the Java Web Services Developer Pack was installed, a second
+account was created for testuser2/testuser2. See the Java Web Services
+Developer Pack documentation for information about adding new users to the
+registry.
 
-    `registryUrl = https://uddi.rte.microsoft.com/publish`
-    `queryManagerUrl = http://uddi.rte.microsoft.com/inquire`
-    `registryURL = https://www-3.ibm.com/services/uddi/v2beta`
-    `/protect/publishapi`
-    `queryManagerURL = http://www-3.ibm.com/services/uddi/v2beta`
-    `/inquiryapi`
+===========================================================================
+
+
+If you are using the Microsoft UDDI V2 registry, specify the
+following urls in the ts.jte file.
+
+----
+registryUrl = https://uddi.rte.microsoft.com/publish
+queryManagerUrl = http://uddi.rte.microsoft.com/inquire
+registryURL = https://www-3.ibm.com/services/uddi/v2beta/protect/publishapi
+queryManagerURL = http://www-3.ibm.com/services/uddi/v2beta/inquiryapi
+----
 
 14. You can specify proxy settings as properties in the `ts.jte` file or on the
     command line. The following example adds proxy settings to provide access to
     the registry through a firewall and adds debug logging level on the command
-    line for the JAXR RI, Version 1.0_01 on UNIX.
+    line for the {TechnologyShortName} CI, Version {TechnologyVersion}_01 on UNIX.
 
-    `env.ts-unix.command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \`
-    `CLASSPATH=${TS_HOME}/lib/harness.jar:${TS_HOME}/lib/javatest.jar:\`
-    `${TS_HOME}/classes:${JAVA_HOME}/jre/lib/rt.jar:${LOCAL_CLASSES} \`
-    `DISPLAY=:0.0 \`
-    `HOME=${user.home} \`
-    `${JAVA_HOME}/bin/java \`
-    `-Dorg.apache.commons.logging.simplelog.log.com.sun.xml.registry=debug \`
-    `-Dhttp.proxySet="true" \`
-    `-Dhttp.proxyHost=myproxy.mycompany.com \`
-    `-Dhttp.proxyPort=8080 \`
-    `-Dhttps.proxyHost=myproxy.mycompany.com \`
-    `-Dhttps.proxyPort=8080 \`
-    `${JAVA_OPTIONS} \`
-    `$testExecuteClass \`
-    `$testExecuteArgs`
-
+----
+env.ts-unix.command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
+CLASSPATH=${TS_HOME}/lib/harness.jar:${TS_HOME}/lib/javatest.jar:\
+${TS_HOME}/classes:${JAVA_HOME}/jre/lib/rt.jar:${LOCAL_CLASSES} \
+DISPLAY=:0.0 \
+HOME=${user.home} \
+${JAVA_HOME}/bin/java \
+-Dorg.apache.commons.logging.simplelog.log.com.sun.xml.registry=debug \`
+-Dhttp.proxySet="true" \
+-Dhttp.proxyHost=myproxy.mycompany.com \
+-Dhttp.proxyPort=8080 \
+-Dhttps.proxyHost=myproxy.mycompany.com \
+-Dhttps.proxyPort=8080 \
+${JAVA_OPTIONS} \
+$testExecuteClass \
+$testExecuteArgs
+----
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
 

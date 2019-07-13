@@ -9,3 +9,5 @@ Add additional lines as needed for acronyms found in your TCK user guide.
 ///////////////////////////////////////////////////////////////////////
 
 References in this document to {LegacyAcronym} refer to the {TechnologyFullName} unless otherwise noted.
+
+References in this document to JSTL refer to the Jakarta Standard Tag Library unless otherwise noted.

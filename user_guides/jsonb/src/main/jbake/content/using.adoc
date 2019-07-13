@@ -109,25 +109,25 @@ Based on Prior Result Status"]
 5.2.1 To Run a Subset of Tests in GUI Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  From the JavaTest main menu, click Configure, then click Change
-Configuration, and then click Tests to Run. +
+1.  From the JavaTest main menu, click *Configure*, then click *Change
+Configuration*, and then click *Tests to Run*. +
 The tabbed Configuration Editor dialog box is displayed.
-2.  Click Specify from the option list on the left.
+2.  Click *Specify* from the option list on the left.
 3.  Select the tests you want to run from the displayed test tree, and
-then click Done. +
-You can select entire branches of the test tree, or use Ctrl+Click or
-Shift+Click to select multiple tests or ranges of tests, respectively,
+then click *Done*. +
+You can select entire branches of the test tree, or use `Ctrl+Click` or
+`Shift+Click` to select multiple tests or ranges of tests, respectively,
 or select just a single test.
-4.  Click Save File.
-5.  Click Run Tests, and then click Start to run the tests you selected. +
-Alternatively, you can right-click the test you want from the test tree
-in the left section of the JavaTest main window, and choose Execute
-These Tests from the menu.
-6.  Click Report, and then click Create Report.
+4.  Click *Save File*.
+5.  Click *Run Tests*, and then click *Start* to run the tests you selected. +
+Alternatively, you can `right-click` the test you want from the test tree
+in the left section of the JavaTest main window, and choose *Execute
+These Tests* from the menu.
+6.  Click *Report*, and then click *Create Report*.
 7.  Specify the directory in which the JavaTest test harness will write
-the report, and then click OK. +
+the report, and then click *OK* +
 A report is created, and you are asked whether you want to view it.
-8.  Click Yes to view the report.
+8.  Click *Yes* to view the report.
 
 [[GBFWK]][[to-run-a-subset-of-tests-in-command-line-mode]]
 
@@ -246,14 +246,14 @@ Use the following modes to create test reports:
 5.5.1.1 To Create a Test Report in GUI Mode
 +++++++++++++++++++++++++++++++++++++++++++
 
-1.  From the JavaTest main menu, click Report, then click Create Report. +
+1.  From the JavaTest main menu, click *Report*, then click *Create Report*. +
 You are prompted to specify a directory to use for your test reports.
 2.  Specify the directory you want to use for your reports, and then
-click OK. +
+click *OK*. +
 Use the Filter list to specify whether you want to generate reports for
 the current configuration, all tests, or a custom set of tests. +
 You are asked whether you want to view report now.
-3.  Click Yes to display the new report in the JavaTest ReportBrowser.
+3.  Click *Yes* to display the new report in the JavaTest ReportBrowser.
 
 [[GBFVC]][[to-create-a-test-report-in-command-line-mode]]
 
@@ -305,10 +305,10 @@ Command-Line Mode"]
 5.5.2.1 To View an Existing Report in GUI Mode
 ++++++++++++++++++++++++++++++++++++++++++++++
 
-1.  From the JavaTest main menu, click Report, then click Open Report. +
+1.  From the JavaTest main menu, click *Report*, then click *Open Report*. +
 You are prompted to specify the directory containing the report you want
 to open.
-2.  Select the report directory you want to open, and then click Open. +
+2.  Select the report directory you want to open, and then click *Open*. +
 The selected report set is opened in the JavaTest ReportBrowser.
 
 [[GBFWB]][[to-view-an-existing-report-in-command-line-mode]]

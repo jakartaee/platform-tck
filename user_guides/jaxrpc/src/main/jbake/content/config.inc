@@ -43,7 +43,7 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `JWSDP_HOME` to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
+  {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/build.properties` file and set the following
@@ -58,13 +58,13 @@ environment variables:
   running.
   d.  Set the `j2ee.home.ri` property to the directory in which the J2SE software
   is installed, for reference to the packager tool used by the build infrastructure.
-  You only need to set this property if you want to build the JAX-RPC TCK software.
+  You only need to set this property if you want to build the {TechnologyShortName} TCK software.
   e.  Set the `jaxrpc.home` property to the path for Java Web Services Developers
-  Pack, which contains the JAX-RPC mapping tool, is installed. +
+  Pack, which contains the {TechnologyShortName} mapping tool (formerly JAX-RPC), is installed. +
   f.  Set the `jaxrpc.tool` property to the path where the {TechnologyShortName}
   {TechnologyVersion} `JavaToWSDL` and `WSDLToJava` mapping tool exists. +
   By default this is `<JWSDP_HOME>/jaxrpc/bin/wscompile.sh`.
-  g.  Set the local_classes property to point to the {TechnologyShortName} RI
+  g.  Set the local_classes property to point to the {TechnologyShortName} CI
   classes/jars and the TCK classes/jars (tsharness.jar, javatest.jar, jaxrpctck.jar).
   For the Java Web Services Developers Pack (JWSDP 1.3) your `local_classes`
   property setting is:
@@ -94,6 +94,7 @@ tsharness.jar:
 ${env.TS_HOME}/lib/jaxrpctck.jar:${env.JWSDP_HOME}/common/
 lib/servlet-api.jar
 ----
+
 3.  Provide your own implementation of the porting package interface
 provided with the {TechnologyShortName} TCK. +
   * The porting package interface, `TSURLInterface.java`, obtains URL
@@ -105,12 +106,12 @@ provided with the {TechnologyShortName} TCK. +
   API documentation for the `TSURLInterface.java` porting package interface is
   available in the {TechnologyShortName} TCK documentation bundle.
 4.  Edit your `<TS_HOME>/bin/ts.jte` file and modify the following
-environment settings:
+environment settings (These settings would work for Eclipse GlassGish 5.1 CI):
   a.  Set the `webServerHost` property to the name of the host on which
-  Java EE 8 RI is running. +
+  Jakarta EE 8 CI is running.  +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Java EE 8 RI is running. +
+  which Jakarta EE 8 CI is running. +
   The default setting is `8080`.
   c.  Set the `secureWebServerPort` property to the secure SSL HTTP/1.1 port
   number of the host on which the web server is running.+
@@ -123,13 +124,13 @@ environment settings:
   The default setting is `javajoe` for both.
   f.  Set the `porting.ts.url.class.1` property to your porting implementation
   class that is used for obtaining URLs. +
-  The default setting for the Sun RI porting implementation is: +
+  The default setting for the Eclipse EE4J CI porting implementation is: +
   `com.sun.ts.lib.implementation.sun.common.SunRIURL`.
   g.  Set the porting.ts.jaxrpc.class.1 property to your porting
   implementation class that is used for obtaining service implementation
   classes, port information, and URLs for service endpoints and WSDL
   locations.+
-  The default setting for the Sun RI porting implementation is: +
+  The default setting for the Eclipse EE4J CI porting implementation is: +
   `com.sun.ts.lib.implementation.sun.jaxrpc.SunRIJAXRPC`
 
 
@@ -247,7 +248,7 @@ servlet-class>
 </web-app>
 ----
 As you can see, the {TechnologyShortName} service endpoint is linked to
-a generic servlet in the {TechnologyShortName} RI
+a generic servlet in the {TechnologyShortName} CI
 (com.sun.xml.rpc.server.http.JAXRPCServlet). This servlet is abstracted
 out in {TechnologyShortName} TCK under common servlet
 (com.sun.ts.tests.jaxrpc.common.JAXRPCServlet) which simply extends it.
@@ -318,18 +319,18 @@ Complete the following steps to test interoperability between
 1.  Deploy and run the J2WMT and W2JMarshallTest TCK tests on your own
 {TechnologyShortName} {TechnologyVersion} implementation and perform
 the appropriate mappings (WSDL-to-Java) and (Java-to-WSDL)
-2.  Deploy the {TechnologyShortName} RI WAR files (J2WMT.war) and
+2.  Deploy the {TechnologyShortName} CI WAR files (J2WMT.war) and
 (W2JMarshallTest.war) on a remote host system using the
 {TechnologyShortName} {TechnologyVersion} Reference Implementation.
 3.  On your local host system that is running your own
 {TechnologyShortName} implementation, edit the ts.jte file to change
 the Web server host and port to point to this remote system running the
-{TechnologyShortName} RI with the J2WMT.war and W2JMarshallTest.war WAR
+{TechnologyShortName} CI with the J2WMT.war and W2JMarshallTest.war WAR
 files deployed.
 4.  Run the client code for these tests against the remote system to
 test the marshalling/unmarshalling of data from your
-{TechnologyShortName} implementaton to the {TechnologyShortName} RI
+{TechnologyShortName} implementaton to the {TechnologyShortName} CI
 implementation system and back.
 5.  Perform the same procedure going in the opposite direction, running
-the client on the {TechnologyShortName} RI and accessing the Service
+the client on the {TechnologyShortName} CI and accessing the Service
 Endpoint deployed on your {TechnologyShortName} implementation.

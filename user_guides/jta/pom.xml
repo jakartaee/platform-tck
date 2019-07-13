@@ -28,7 +28,7 @@
     <artifactId>tck_jta</artifactId>
     <packaging>pom</packaging>
     <version>1.2.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Java Transaction API (JTA) 1.2 for Jakarta EE, Release 1.2</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Transactions for Jakarta EE, Release 1.2</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,7 +41,7 @@
         <jruby.version>9.2.6.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
-        <doc.pdf>JTA-TCK-Users-Guide.pdf</doc.pdf>
+        <doc.pdf>Jakarta-Transactions-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
