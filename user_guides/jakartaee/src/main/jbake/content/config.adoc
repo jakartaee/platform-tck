@@ -1,204 +1,3503 @@
 type=page
 status=published
 title=Setup and Configuration
-next=using.html
+next=webprofileconfig.html
 prev=install.html
 ~~~~~~
-include::attributes.conf[]
 Setup and Configuration
 =======================
 
-[[GBFVV]]
+[[GBFVV]][[setup-and-configuration]]
 
-
-
-[[setup-and-configuration]]
-4 Setup and Configuration
+5 Setup and Configuration
 -------------------------
 
+This chapter describes how to set up the Java EE 8 CTS test suite and
+configure it to work with your test environment. It is recommended that
+you first set up the testing environment using the Java EE 8 RI and then
+with your Java EE 8 server.
+
+This chapter includes the following topics:
+
+* link:#GEWTL[Allowed Modifications]
+* link:#GEWTP[Configuring the Test Environment]
+* link:#GEWTQ[Configuring a Java EE 8 Server]
+* link:#GEXPP[Modifying Environment Settings for Specific Technology
+Tests]
+* link:#GEYPB[Using the JavaTest Harness Configuration GUI]
+
+[[GEWTL]][[allowed-modifications]]
+
+5.1 Allowed Modifications
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can modify the following test suite components only:
+
+* Your implementation of the porting package
+* `ts.jte` environment file
+* The vendor-specific SQL files in `<TS_HOME>/sql`
+* Any files in `<TS_HOME>/bin` and `<TS_HOME>/bin/xml` (except for
+`ts.*` files)
+
+[[GEWTP]][[configuring-the-test-environment]]
+
+5.2 Configuring the Test Environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The instructions in this section and in link:#GEWWA[Section 5.3.3,
+"Configuring Your Application Server as the VI,"] step you through the
+configuration process for the Solaris, Microsoft Windows, and Linux
+platforms.
+
+All CTS test configuration procedures are based on running the Ant
+scripts against a set of build targets. The primary location of any
+configuration settings you are likely to make is the
+`<TS_HOME>/bin/ts.jte` environment file. You may also want to modify the
+`javaee_vi.xml` and `initdb.xml` Ant configuration files and the
+vendor-specific SQL files. These two files contain predefined Ant
+targets that are implemented such that they automatically configure the
+Java EE 8 RI and its associated database in order to pass the CTS. A
+licensee may choose to implement these targets to work with their server
+environment to perform the steps described in link:#GEWWA[Section 5.3.3,
+"Configuring Your Application Server as the VI."]
+
 
 [NOTE]
-====
-The Jakarta EE Specification process provides for any number of compatible implementations.
-As additional implementations become available, refer to project or product documentation from
-those vendors for specific TCK setup and operational guidance.
+=======================================================================
 
-====
+Ant targets are available at all levels of the CTS source tree that
+allow you to execute a wide variety of test scenarios and
+configurations.
 
-This chapter describes how to set up the {TechnologyShortName} TCK and
-JavaTest harness software. Before proceeding with the instructions in
-this chapter, be sure to install all required software, as described in
-link:install.html#GBFTP[Chapter 3, "Installation."]
+=======================================================================
 
-After completing the instructions in this chapter, proceed to
-link:using.html#GBFWO[Chapter 5, "Executing Tests,"] for instructions on
-running the {TechnologyShortName} TCK.
 
-include::config.inc[]
+[[sthref15]]
 
-[[GHGDH]][[custom-configuration-handlers]]
+Before You Begin
 
-4.4 Custom Configuration Handlers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In these instructions, variables in angle brackets need to be expanded
+for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
+Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+slashes (`/`) used in all of the examples need to be replaced with
+backslashes (`\`) for Windows.
 
-Configuration handlers are used to configure and unconfigure a
-{TechnologyShortName} {TechnologyVersion} implementation during the
-certification process.  These are similar to deployment handlers but
-used for configuration.  A configuration handler is an Ant build file
-that contains at least the required targets listed below:
+1.  Identify the software pieces and assemble them into the Java EE 8
+platform to be tested for certification.
+2.  Implement the porting package APIs. +
+Some functionality in the Java EE 8 platform is not completely specified
+by an API. To handle this situation, the Java EE 8 CTS test suite
+defines a set of interfaces in the `com.sun.cts.porting` package, which
+serve to abstract any implementation-specific code. You must create your
+own implementations of the porting package interfaces to work with your
+particular Java EE 8 server environment. See
+link:portingpackage.html#GFAUG[Section 11.2, "Porting Package APIs,"] for
+additional information about the porting APIs. API documentation for the
+porting package interfaces is available in the `<TS_HOME>/docs/api`
+directory.
+3.  Set up the Java Platform, Enterprise Edition Reference
+Implementation (RI) server. +
+See link:#GEWUI[Section 5.3.2, "Configuring the Java EE 8 RI as the
+VI,"] for a list of the modifications that must be made to run CTS
+against the Java EE 8 RI.
+4.  Set up the vendor's Java EE 8 server implementation (VI). +
+See link:#GEWWA[Section 5.3.3, "Configuring Your Application Server as
+the VI,"] for a list of the modifications that must be made to run CTS
+against the vendor's Java EE 8 server.
+5.  Validate your configuration. +
+Run the sample tests provided. If the tests pass, your basic
+configuration is valid. See link:using.html#GFACS[Section 7.3,
+"Validating Your Test Configuration,"] for information about using
+JavaTest to run the sample tests.
+6.  Run the CTS tests. +
+See link:using.html#GBFWO[Chapter 7, "Executing Tests,"] for information
+about Starting JavaTest and running tests.
 
-  * `config.vi` - to configure the vendor implementation
-  * `clean.vi` - to unconfigure the vendor implementation
+[[GEWTQ]][[configuring-a-java-ee-8-server]]
 
-These targets are called from the `<TS_HOME>/bin/build.xml` file and
-call down into the implementation-specific configuration handlers.
+5.3 Configuring a Java EE 8 Server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To provide your own configuration handler, create a config.vi.xml file
-with the necessary configuration steps for your implementation and place
-the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
+This section describes how to configure the Java EE 8 server under test.
+You can run the CTS tests against the Java EE 8 RI or your own Java
+Platform, Enterprise Edition server. When performing interoperability
+(interop) tests or web service-based tests, you will be running two Java
+EE 8 servers, one of which must be the Java EE 8 RI using the bundled
+Java DB database.
 
-For more information, you may wish to view `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
-the configuration file for Eclipse EE4J Jakarta EE 8 Compatible Implementation, Eclipse GlassFish.
+For the purposes of this section, it is useful to clarify three terms as
+they are used here:
 
-[[GBFWG]][[custom-deployment-handlers]]
+* Reference Implementation (RI): Java EE 8 RI
+* Vendor Implemention (VI): Java EE 8 implementation from a vendor other
+than Oracle; typically, the goal of running the CTS is to certify a Java
+EE 8 VI; in some cases, for purposes of familiarizing yourself with CTS,
+you may choose to run the Java EE 8 RI as the VI
+* Bundled Derby: Derby database bundled with the Java EE 8 RI
 
-4.5 Custom Deployment Handlers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[GEWSQ]][[java-platform-enterprise-edition-server-configuration-scenarios]]
 
-Deployment handlers are used to deploy and undeploy the WAR files that
-contain the tests to be run during the certification process. A deployment
-handler is an Ant build file that contains at least the required targets
-listed in the table below.
+5.3.1 Java Platform, Enterprise Edition Server Configuration Scenarios
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The {TechnologyShortName} TCK provides these deployment handlers:
+There are three general scenarios for configuring Java EE 8 servers for
+Java EE 8 CTS testing:
 
-* `<TS_HOME>/bin/xml/impl/none/deploy.xml`
-* `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+* Configure the Java EE 8 RI as the server under test +
+image:img/serverpath-ri.png["RI as Server Under Test"]
 
-The `deploy.xml` files in each of these directories are used to control
-deployment to a specific container (no deployment, deployment to
-the Eclipse GlassFish Web container, deployment to the Tomcat Web container)
-denoted by the name of the directory in which each `deploy.xml` file
-resides. The primary `build.xml` file in the `<TS_HOME>/bin` directory
-has a target to invoke any of the required targets (`-deploy`, `-undeploy`,
-`-deploy.all`, `-undeploy.all`).
+Use the Java EE 8 RI as the Java EE 8 VI; you may want to do this as a
+sanity check to make sure you are comfortable with using the Java EE 8
+CTS against a known standard RI with certified sample applications
+before proceeding with tests against your Java EE 8 VI. See
+link:#GEWUI[Section 5.3.2, "Configuring the Java EE 8 RI as the VI,"]
+for instructions.
+* Configure your Java EE 8 VI as Server Under Test +
+image:img/serverpath-vi.png["VI as Server Under Test"]
 
-[[GBFVA]][[create-custom-deployment-handler]]
+This is the primary goal of using the Java EE 8 CTS; you will eventually
+need to configure the Java EE 8 implementation you want to certify. See
+link:#GEWWA[Section 5.3.3, "Configuring Your Application Server as the
+VI,"] for instructions.
+* Configure two Java EE 8 servers for the purpose of interop testing +
+image:img/serverpath-interop.png["Two Servers for Interop Testing"]
 
-4.5.1 To Create a Custom Deployment Handler
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Rebuildable tests and Interop tests require that you configure two Java
+EE 8 servers on one or two machines. One server will be your Java EE 8
+VI running a database of your choice with JDBC 4.1-compliant drivers.
+The second server must be the Java EE 8 RI using the bundled Java DB
+database. See link:#GEXMH[Section 5.3.4, "Configuring a Java Platform,
+Enterprise Edition RI and VI for Interop/Rebuildable Tests,"] for
+instructions.
 
-To deploy tests to another {TechnologyShortName} implementation, you
-must create a custom handler.
+In terms of the Java EE 8 CTS, all CTS configuration settings are made
+in the `<TS_HOME>/bin/ts.jte` file. When configuring a Java EE 8 server,
+the important thing is to make sure that the settings you use for your
+server match those in the `ts.jte` file.
 
-1. Create a new directory in the `<TS_HOME>/bin/impl` directory tree.
-  For example, create the `<TS_HOME>/bin/impl/my_deployment_handler` directory.
-  Replace my_deployment_handler with the value of the impl.vi
-  property that you set in Step 5 of the configuration procedure
-  described in Section 4.2, "Configuring Your Environment to Repackage
-  and Run the TCK Against the Vendor Implementation".
+These configuration scenarios are described in the following sections.
 
-2.  Copy the deploy.xml file from the `<TS_HOME>/bin/xml/impl/none`
-  directory to the directory that you created.
+[[GEWUI]][[configuring-the-java-ee-8-ri-as-the-vi]]
 
-3.  Modify the required targets in the `deploy.xml` file.  This is what
-    the `deploy.xml` file for the "none" deployment handler looks like.
+5.3.2 Configuring the Java EE 8 RI as the VI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+
+To configure the Java EE 8 RI as the server under test (that is, to use
+the Java EE 8 RI as the VI) follow the steps listed below. In this
+scenario, the goal is simply to test the Java EE 8 RI against the CTS
+for the purposes of familiarizing yourself with CTS test procedures. You
+may also want to refer to the Quick Start guides included with the Java
+EE 8 CTS for similar instructions.
+
+1.  Set server properties in your `<TS_HOME>/bin/ts.jte` file to suit
+your test environment. +
+Be sure to set the following properties:
+1.  Set the `webServerHost` property to the name of the host on which
+your Web server is running that is configured with the RI. +
+The default setting is `localhost`.
+2.  Set the `webServerPort` property to the port number of the host on
+which the Web server is running and configured with the RI. +
+The default setting is `8001`.
+3.  Set the `wsgen.ant.classname` property to the Vendor's
+implementation class that mimics the RI Ant task that in turn calls the
+`wsgen` Java-to-WSDL tool. +
+The default setting is `com.sun.tools.ws.ant.WsGen`.
+4.  Set the `wsimport.ant.classname` property to the Vendor's
+implementation class that mimics the RI Ant task that in turn calls the
+`wsimport` WSDL-to-Java tool. +
+The default setting is `com.sun.tools.ws.ant.WsImport`.
+5.  Set the `porting.ts.url.class` property to your porting
+implementation class that is used for obtaining URLs. +
+The default setting for the RI porting implementation is
+`com.sun.ts.lib.implementation.sun.common.SunRIURL`.
+6.  Set the database-related properties in the `<TS_HOME>/bin/ts.jte`
+file. +
+link:database-config.html#GFKMW[Section D.3, "Database Properties in
+ts.jte,"] lists the names and descriptions for the database properties
+you need to set.
+7.  Add the following JVM option to the `command.testExecuteAppClient`
+property to enable the Security Manager in the application client
+container: +
 [source,oac_no_warn]
 ----
-<project name="No-op Deployment" default="deploy">
-    <!-- No-op deployment target -->
-    <target name="-deploy">
-        <echo message="No deploy target implemented for this deliverable"/>
-    </target>
-    <target name="-undeploy">
-        <echo message="No undeploy target implemented for this deliverable"/>
-    </target>
-    <target name="-deploy.all">
-        <echo message="No deploy target implemented for this deliverable"/>
-    </target>
-    <target name="-undeploy.all">
-        <echo message="No undeploy target implemented for this deliverable"/>
-    </target>
-</project>
+-Djava.security.manager
 ----
-+
-Although this example just echoes messages, it does include the four
-required Ant targets (`-deploy`, `-undeploy`, `-deploy.all`, `-undeploy.all`)
-that your custom `deploy.xml` file must contain. With this as your
-starting point, look at the required targets in the `deploy.xml` files
-in the Tomcat and Eclipse Glassfish directories for guidance as you create
-the same targets for the Web container in which you will run your
-implementation of {TechnologyShortName}.
-
-The following Ant targets can be called from anywhere under the
-`<TS_HOME>/src` directory:
-
-* `deploy`
-* `undeploy`
-* `deploy.all`
-* `undeploy.all`
-
-The `deploy.all` and `undeploy.all` targets can also be called from the
-`<TS_HOME>/bin` directory.
+Add this option to the list of other -D JVM options for this property. +
+As mentioned previously, these settings can vary, but must match
+whatever you used when setting up the Java EE 8 RI server.
+2.  Install the Java EE 8 RI and configure basic settings, as described
+in link:install.html#GBFTP[Chapter 4, "Installation."]
+3.  Start the Java EE 8 RI application server. +
+Refer to the application server documentation for complete instructions.
+4.  Enable the Security Manager. +
+If you are using the Java EE 8 RI, execute the following command from
+the command line: +
+[source,oac_no_warn]
+----
+asadmin create-jvm-options -Djava.security.manager
+----
+5.  Stop and restart your application server so it is running with the
+Security Manager enabled.
+6.  Change to the `<TS_HOME>/bin` directory.
+7.  Start your backend database. +
+If you are using Derby as your backend database, execute the
+`start.javadb` Ant target: +
+[source,oac_no_warn]
+----
+ant -f xml/impl/glassfish/s1as.xml start.javadb
+----
+Otherwise, refer to your backend database administration documentation
+for information about starting your database server.
+8.  Initialize your backend database. +
+If you are using Derby as your backend database, execute the
+`init.derby` Ant target: +
+[source,oac_no_warn]
+----
+ant -f xml/init.xml init.derby
+----
+If you are not using Derby as your backend database, refer to
+link:database-config.html#GFAVUb[Appendix D, "Configuring Your Backend
+Database."] +
 
 [NOTE]
 =======================================================================
-The targets in the `deploy.xml` file are never called directly.
-They are called indirectly by the targets listed above.
+
+If you are using MySQL or MS SQL Server as your backend database, see
+link:#GJLGQ[Section 5.4.25, "Backend Database Setup,"] for additional
+database setup instructions.
+
 =======================================================================
 
-[[GBFUY]][[using-the-javatest-harness-software]]
+9.  Run the configuration Ant target. +
+[source,oac_no_warn]
+----
+ant config.vi
+----
+::
 
-4.6 Using the JavaTest Harness Software
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[NOTE]
+=======================================================================
 
-There are two general ways to run the {TechnologyShortName} TCK test
-suite using the JavaTest harness software:
+By default, the `config.vi` Ant task configures the entire application
+server. Sometimes you may not want or need to configure everything, such
+as connector RAR files. If you are not performing connector-related
+tests, you can avoid the deployment and configuration of RAR files by
+using the Ant option `-Dskip.config.connector=true`. This will reduce
+configuration times, the deployment of unneeded RAR files, and the
+creation of unnecessary resources on the server under test. For example,
+the following command will do this.
 
-* Through the JavaTest GUI; if using this method, please continue on to
-link:#GBFWG[Section 4.7, "Using the JavaTest Harness Configuration
-GUI."]
-* In JavaTest batch mode, from the command line in your shell
-environment; if using this method, please proceed directly to
-link:using.html#GBFWO[Chapter 5, "Executing Tests."]
+[source,oac_no_warn]
+----
+ant -Dskip.config.connector=true config.vi
+----
 
-[[GBFWG]][[using-the-javatest-harness-configuration-gui]]
+=======================================================================
 
-4.7 Using the JavaTest Harness Configuration GUI
+10. Build the special web services clients. +
+The special webservices tests under the `webservices12/specialcases`
+directory have prebuilt endpoints, but the clients are not prebuilt. The
+clients will be built after the endpoints are first predeployed to the
+application server under test. +
+During the build, the clients import the WSDLs (by means of the Java EE
+`wsimport` and `wsgen` tools) from the predeployed webservices
+endpoints. This process verifies that importing a WSDL from a
+predeployed webservice endpoint works properly. +
+To build the special webservices clients, the following command must be
+executed: +
+[source,oac_no_warn]
+----
+ant build.special.webservices.clients 
+----
+This predeploys all the special webservices endpoints, builds all the
+special webservices clients, and then undeploys the special webservices
+endpoints. See link:portingpackage.html#GKLJO[Section 11.2.2, "Ant-Based
+Deployment Interface,"] for more information about the Ant-based
+deployment interface, including guidelines for creating your own
+Ant-based deployment implementation.
+11. Continue on to link:using.html#GBFWO[Chapter 7, "Executing Tests,"]
+for instructions on running tests.
+
+[[GEWWA]][[configuring-your-application-server-as-the-vi]]
+
+5.3.3 Configuring Your Application Server as the VI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To use a Java EE 8 server other than the Java EE 8 RI, follow the steps
+below.
+
+1.  Set server properties in your `<TS_HOME>/bin/ts.jte` file to suit
+your test environment. +
+Be sure to set the following properties:
+1.  Set the `webServerHost` property to the name of the host on which
+your Web server is running that is configured with the RI. +
+The default setting is `localhost`.
+2.  Set the `webServerPort` property to the port number of the host on
+which the Web server is running and configured with the RI. +
+The default setting is `8001`.
+3.  Set the `wsgen.ant.classname` property to the Vendor's
+implementation class that mimics the RI Ant task that in turn calls the
+`wsgen` Java-to-WSDL tool. +
+The default setting is `com.sun.tools.ws.ant.WsGen`.
+4.  Set the `wsimport.ant.classname` property to the Vendor's
+implementation class that mimics the RI Ant task that in turn calls the
+`wsimport` WSDL-to-Java tool. +
+The default setting is `com.sun.tools.ws.ant.WsImport`.
+5.  Set the `porting.ts.url.class` property to your porting
+implementation class that is used for obtaining URLs.
+6.  Set the database-related properties in the `<TS_HOME>/bin/ts.jte`
+file. +
+link:database-config.html#GFKMW[Section D.3, "Database Properties in
+ts.jte,"] lists the names and descriptions for the database properties
+you need to set.
+7.  Add the following JVM option to the `command.testExecuteAppClient`
+property to enable the Security Manager in the application client
+container: +
+[source,oac_no_warn]
+----
+-Djava.security.manager
+----
+Add this option to the list of other -D JVM options for this property. +
+These settings can vary, but must match whatever you used when setting
+up your Java Platform, Enterprise Edition server.
+2.  Install the Java Platform, Enterprise Edition VI and configure basic
+settings. +
+If you want to configure your Java Platform, Enterprise Edition server
+using Ant configuration target similar to the target for the Java EE 8
+RI, as described in link:install.html#GBFTP[Chapter 4, "Installation,"]
+you will need to modify the `<TS_HOME>/bin/xml/javaee_vi.xml` file to
+implement the defined Ant targets for your application server. Then run: +
+[source,oac_no_warn]
+----
+ant config.vi
+----
+The Ant configuration targets you implement, if any, may vary. Whichever
+configuration method you choose, make sure that all configuration steps
+in this procedure are completed as shown.
+3.  Enable the Security Manager and then stop and restart your
+application server so it is running with the Security Manager enabled.
+4.  Provide alternate endpoint and WSDL URLs, if necessary. +
+The `<TS_HOME>/bin` directory contains the following `.dat` files:
+* `jaxrpc-url-props.dat`
+* `jaxws-url-props.dat`
+* `jws-url-props.dat`
+* `webservices12-url-props.dat` +
+These files contain the webservice endpoint and WSDL URLs that the CTS
+tests use when running against the RI. In the porting package used by
+the CTS, the URLs are returned as is since this is the form that the RI
+expects. You may need an alternate form of these URLs to run the CTS
+tests in your environment. However, you MUST NOT modify the existing
+`.dat` files, but instead make any necessary changes in your own porting
+implementation class to transform the URLs appropriately for your
+environment.
+5.  Install and configure a database for the server under test.
+6.  Start your database.
+7.  Initialize your database for CTS tests.
+1.  If you choose to not implement the `javaee_vi.xml` targets, execute
+the following command to specify the appropriate DML file: +
+(Java DB Example) +
+[source,oac_no_warn]
+----
+ant -Dtarget.dml.file=tssql.stmt \
+-Ddml.file=javadb/javadb.dml.sql copy.dml.file
+----
+2.  Execute the following command to initialize your particular
+database: +
+[source,oac_no_warn]
+----
+ant -f <TS_HOME>/bin/xml/initdb.xml init.Database
+----
+For example, to initialize a Java DB database: +
+[source,oac_no_warn]
+----
+ant -f <TS_HOME>/bin/xml/initdb.xml init.javadb
+----
+Refer to link:database-config.html#GFAVUb[Appendix D, "Configuring Your
+Backend Database,"] for detailed database configuration and
+initialization instructions and a list of database-specific
+initialization targets.
+8.  Start your Java EE 8 server.
+9.  [[BABDADHA]] +
+Set up required users and passwords.
+1.  Set up database users and passwords that are used for JDBC
+connections. +
+The Java EE 8 CTS requires several user names, passwords, and
+user-to-role mappings. These need to match those set in your `ts.jte`
+file. By default, `user1`, `user2`, `user3, password1`, `password2`, and
+`password3` are set to `cts1`.
+2.  [[BABBHFAI]] +
+Set up users and passwords for your Java Platform, Enterprise Edition
+server. +
+For the purpose of running the CTS test suite, these should be set as
+follows: +
+[width="100%",cols="33%,33%,34%",options="header",]
+|=========================================
+|User |Password |Groups
+|`j2ee_vi` |`j2ee_vi` |`staff`
+|`javajoe` |`javajoe` |`guest`
+|`j2ee` |`j2ee` |`staff`, `mgr`, `asadmin`
+|`j2ee_ri` |`j2ee_ri` |`staff`
+|=========================================
+
+Note that adding the `asadmin` group is only necessary when running
+against the Java EE 8 RI application server. It is required in this case
+because the management EJB (MEjb) in the Java EE 8 server is protected
+with the `asadmin` group. Other appservers may or may not choose to
+protect their MEjb. If necessary for your appserver implementation, you
+should also add the group name with which your MEjb is protected. +
+Also make sure the principal to role-mappings that are specified in the
+runtime XML files (see link:csiv2logs.html#GEXUI[Section B.6.1, "The
+security-role-mapping Element"]) are properly mapped in your
+environment. Note that the principal-to-role mappings may vary for each
+application.
+10. Make sure that the appropriate JDBC 4.1-compliant database driver
+class, any associated database driver native libraries, and the correct
+database driver URL are available.
+11. Configure your Java Platform, Enterprise Edition server to use the
+appropriate JDBC logical name (`jdbc/DB1`) when accessing your database
+server.
+12. Configure your Java EE 8 server to use the appropriate logical name
+(`jdbc/DBTimer`) when accessing your EJB timer.
+13. Provide access to a JNDI lookup service.
+14. Provide access to a Web server.
+15. Provide access to a JavaMail server that supports the SMTP protocol.
+16. Execute the `add.interop.certs` Ant target. +
+
+[NOTE]
+=======================================================================
+
+This step installs server side certificates for interoperability
+testing; that is, it installs the RI's server certificate to VI and VI's
+server certificate into the RI. This step is necessary for mutual
+authentication tests in which both the server and client authenticate to
+each other.
+
+=======================================================================
+
+17. [[BABEGCJH]] +
+Install the client-side certificate in the `trustStore` on the Java EE 8
+server. See link:#GEXWW[CSIv2 Test Setup] for more information. +
+Certificates are located `<TS_HOME>/bin/certificates`. Use the
+certificate that suits your environment.
+1.  `cts_cert`: For importing the CTS client certificate into a
+`truststore`
+2.  `clientcert.jks`: Used by the Java SE 8 runtime to identify the CTS
+client's identity
+3.  `clientcert.p12`: Contains CTS client certificate in `pkcs12` format
+18. Append the file `<TS_HOME>/bin/server_policy.append` to the Java
+policy file or files on your Java EE 8 server. +
+This file contains the grant statements used by the test harness,
+signature tests, and API tests.
+19. Append the file `<TS_HOME>/bin/client_policy.append` to the
+application client's Java policy file, which is referenced in the
+`TestExecuteAppClient` section of the `ts.jte` file.
+20. Make the appropriate transaction interoperability setting on the
+Java EE 8 server and the server that is running the Java EE 8 RI. +
+See link:#GEXWW[Section 5.4.19, "CSIv2 Test Setup."]
+21. If necessary, refer to the sections later in this chapter for
+additional configuration information you may require for your particular
+test goals. +
+For example, see link:#GEXWW[Section 5.4.19, "CSIv2 Test Setup,"] for
+configuration settings required for CSIv2 tests.
+22. Restart your Java EE 8 server.
+23. Build the special Web services clients. +
+This step may be bypassed at this time if you are not going to
+immediately run the tests under
+`<TS_HOME>/src/com/sun/ts/tests/webservices12`. However, you must return
+to this configuration section and complete it inorder to run these
+tests. +
+The special Web services tests under the `webservices12/specialcases`
+directory have prebuilt endpoints, but the clients are not prebuilt. The
+clients will be built after the endpoints are first predeployed to the
+application server under test. +
+During the build the clients import the WSDLs (by means of the Java EE
+`wsimport` and `wsgen` tools) from the predeployed Web services
+endpoints. This process verifies that importing a WSDL from a
+predeployed Web service endpoint works properly.
+1.  Install the Java EE 8 RI.
+2.  Set the following properties in your `<TS_HOME>/bin/ts.jte` file. +
+The current values should be saved since they will be needed later in
+this step.
+* Set the `javaee.home.ri` property to the location where the Java EE 8
+RI is installed.
+* Set the `wsgen.ant.classname` property to the Java EE 8 application
+server Ant task that in turn calls the `wsimport` Java-to-WSDL tool. It
+must be set to: +
+[source,oac_no_warn]
+----
+com.sun.tools.ws.ant.WsGen
+----
+* Set the `wsgen.classpath` property to: +
+[source,oac_no_warn]
+----
+${javaee.classes.ri}:${tools.jar}
+----
+* Set the `wsimport.ant.classname` property to the Java EE 8 application
+server Ant task that in turn calls the `wsimport` WSDL-to-Java tool. +
+It must be set to `com.sun.tools.ws.ant.WsImport`
+* Set the `wsimport.classpath` property to the following value: +
+[source,oac_no_warn]
+----
+${javaee.classes.ri}:${tools.jar}
+----
+3.  Build the special Web services clients by executing the following
+command: +
+[source,oac_no_warn]
+----
+ant build.special.webservices.clients 
+----
+This predeploys all the special Web services endpoints, builds all the
+special webservices clients, and then undeploys the special webservices
+endpoints. See link:portingpackage.html#GKLJO[Section 11.2.2, "Ant-Based
+Deployment Interface,"] for more information about the Ant-based
+deployment interface, including guidelines for creating your own
+Ant-based deployment implementation.
+4.  Once this command completes successfully, the following `ts.jte`
+properties must be set back to their previous values:
+* `wsgen.ant.classname`
+* `wsgen.classpath`
+* `wsimport.ant.classname`
+* `wsimport.classpath`
+5.  The following `webservices12-url-props.dat` properties must be set
+back to their original values:
+* `specialcases.defaultserviceref.wsdlloc`
+* `specialcases.nameattrserviceref.wsdlloc`
+* `specialcases.providerserviceref.wsdlloc`
+24. Continue on to link:using.html#GBFWO[Chapter 7, "Executing Tests"].
+
+[[GEXMH]][[configuring-a-java-platform-enterprise-edition-ri-and-vi-for-interoprebuildable-tests]]
+
+5.3.4 Configuring a Java Platform, Enterprise Edition RI and VI for
+Interop/Rebuildable Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the following procedure to configure the Java EE 8 CTS for
+interoperability and rebuildable testing. Note that you must complete
+all of the setup instructions in this section and all of the steps in
+link:#GEXWW[Section 5.4.19, "CSIv2 Test Setup,"] before you run the
+CSIv2 tests.
+
+1.  Install and configure basic settings for the Java EE 8 VI and the
+Java EE 8 RI. +
+These procedures are described earlier in this section. You can run the
+Java EE 8 servers on separate machines or on the same machine. If
+running both servers on the same machine, be careful to avoid
+conflicting properties (for example, port settings).
+2.  Make sure that the following properties have been set in the
+`ts.jte` file:
+* `create.cmp.tables=true`
+* `javaee.home=`Java EE 8 VI installation directory (JAVAEE_HOME)
+* `javaee.home.ri=`Java EE 8 RI installation directory
+* `mailuser1=`valid email address
+* `mailHost=`valid SMTP server
+* `orb.host=`host where the Java EE 8 VI naming server is running
+* `orb.port=`port where the Java EE 8 VI naming service is running
+* `orb.host.ri=`host where the Java EE 8 RI naming service is running
+* `orb.port.ri=`port where the Java EE 8 RI naming service is running
+* `webServerHost=`host where the Java EE 8 VI Web server is running
+* `webServerPort=`port where the Java EE 8 VI Web server is running
+* `webServerHost.2=`host where the Java EE 8 RI Web server is running
+* `webServerPort.2=`port where the Java EE 8 RI Web server is running
+* `securedWebServicePort=`port where the Java EE 8 secure web service is
+running
+* `securedWebServicePort.2=`port where the Java EE 8 RI secure web
+service is running
+* `porting.ts.deploy2.class.1=`vendor-provided deployment porting class
+* `porting.ts.login.class.1=`vendor-provided login porting class
+* `porting.ts.jms.class.1=`vendor-provided JMS porting class
+* `porting.ts.tsHttpsURLConnection.class.1=`vendor-provided
+HttpsURLConnection-class
+* `ri.log.file.location`=location to which RI log files will be written
+and optionally stored, if the `harness.log.trace` flag is set to `true` +
+
+[NOTE]
+=======================================================================
+
+The `create.interop.tables.only=true` property does not exist in the
+`ts.jte` file by default but can be added if needed for creating interop
+tables.
+
+For the Java EE 8 RI, you must set `create.cmp.tables=true` when you set
+`create.interop.tables.only=true`.
+
+=======================================================================
+
+
+[NOTE]
+=======================================================================
+
+As a general rule, `ts.jte` properties ending with the suffix ".ri" are
+RI server properties that rarely need to be changed. Properties ending
+with the suffix ".vi" are VI server properties that are more likely to
+require modifying.
+
+=======================================================================
+
+3.  Configure both Java EE 8 servers. +
+Change to the `<TS_HOME>/bin` directory and run the following Ant
+targets: +
+[source,oac_no_warn]
+----
+ant config.ri
+ant config.vi
+----
+If you have not implemented the `config.vi` Ant target for your Java EE
+8 server, perform the steps shown in link:#GEWWA[Section 5.3.3,
+"Configuring Your Application Server as the VI."]
+4.  Configure rebuildable tests, if applicable at this time. +
+Java EE 8 CTS Rebuildable Tests are located under
+`<TS_HOME>/src/com/sun/ts/tests/jaxws` and
+`<TS_HOME>/src/com/sun/ts/tests/jws`. Run this and then continue on to
+link:using.html#GBFWO[Chapter 7, "Executing Tests,"] for instructions on
+executing tests. If you would like to run tests under
+`<TS_HOME>/src/com/sun/ts/tests/interop`, continue to the next step.
+5.  Add `<JAVAEE_HOME>/glassfish/modules/ejb-container.jar` to your
+application server's `CLASSPATH`. +
+This JAR file is part of the EJB interoperability architecture. It
+contains implementations of the required system value classes.
+6.  Initialize the databases using the appropriate Ant targets.
+1.  Log in to the machine running the RI database and execute the
+following commands: +
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant init.javadb
+----
+2.  Change the `create.interop.tables.only` to false in the
+`<TS_HOME>/bin/ts.jte` file.
+3.  Log into the machine running the VI database and execute the
+following command: +
+[source,oac_no_warn]
+----
+ant init.database
+----
+Refer to link:database-config.html#GFAVUb[Appendix D, "Configuring Your
+Backend Database,"] for detailed database configuration and
+initialization instructions and a list of database-specific
+initialization targets.
+7.  Start the standalone deployment server in a separate shell on the
+same host as the CTS harness. +
+The default deployment porting implementation goes through a standalone
+deployment server with a dedicated classpath. To start this standalone
+server, change to the `<TS_HOME>/bin` directory and execute the
+`start.auto.deployment.server` Ant task. +
+The standalone server is basically an RMI server used to copy archives
+to the RI server's `autodeploy` directory. A separate VM is necessary to
+avoid classloading conflicts that could occur when the VI server is also
+a version of RI server.
+8.  If necessary, refer to the sections later in this chapter for
+additional configuration information you may require for your particular
+test goals. +
+For example, see link:#GEXWW[Section 5.4.19, "CSIv2 Test Setup,"] for
+configuration settings required for CSIv2 tests.
+9.  Continue on to link:using.html#GBFWO[Chapter 7, "Executing Tests,"]
+for instructions on running tests.
+
+[[GEXPP]][[modifying-environment-settings-for-specific-technology-tests]]
+
+5.4 Modifying Environment Settings for Specific Technology Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before you can run any of the technology-specific Java EE 8 CTS tests,
+you must supply certain information that JavaTest needs to run the tests
+in your particular environment. This information exists in the
+`<TS_HOME>/bin/ts.jte` environment file. This file contains sets of
+name/value pairs that are used by the tests. You need to assign a valid
+value for your environment for all of the properties listed in the
+sections that follow.
+
+
+[NOTE]
+=======================================================================
+
+This section only discusses a small subset of the properties you can
+modify. Refer to the `ts.jte` file for information about the many other
+properties you may want to modify for your particular test environment.
+
+=======================================================================
+
+
+This section includes the following topics:
+
+* link:#GEXQT[Test Harness Setup]
+* link:#GEXOS[Windows-Specific Properties]
+* link:#GEXPE[Test Execution Command Setup]
+* link:#GEXPB[Servlet Test Setup]
+* link:#CBDDGJFC[WebSocket Test Setup]
+* link:#GEXON[JDBC Test Setup]
+* link:#GEXQQ[Standalone RMI/IIOP Server Test Setup]
+* link:#GEXOT[JavaMail Test Setup]
+* link:#GEXPU[JAXR Test Setup]
+* link:#GJKPO[JAX-RS Test Setup]
+* link:#GEXQP[Deployment Test Setup]
+* link:#GEXOF[Connector Test Setup]
+* link:#GEXPV[XA Test Setup]
+* link:#GKKOJ[EJB 3.2 Test Setup]
+* link:#GEXOX[EJB Timer Test Setup]
+* link:#GEXQB[Entity Bean Container-Managed Persistence Test Setup for
+EJB V1.1]
+* link:#GEXOL[Java Persistence API Test Setup]
+* link:#GEXPT[JMS Test Setup]
+* link:#GKWVB[JASPIC Test Setup]
+* link:#GEXWW[CSIv2 Test Setup]
+* link:#GEYBI[JACC Test Setup]
+* link:#GEYAM[WSDL: Webservice Test and Runtime Notes]
+* link:#CEGCHDEA[Security API Test Setup]
+* link:#GEYNX[Signature Test Setup]
+* link:#GJLGQ[Backend Database Setup]
+
+[[GEXQT]][[test-harness-setup]]
+
+5.4.1 Test Harness Setup
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Verify that the following properties, which are used by the test
+harness, have been set in the `<TS_HOME>/bin/ts.jte` file:
+
+[source,oac_no_warn]
+----
+harness.temp.directory=<TS_HOME>/tmp
+harness.log.port=2000
+harness.log.traceflag=[true | false]
+deployment_host.1=<hostname>
+deployment_host.2=<hostname>
+porting.ts.deploy2.class.1=<vendor-deployment-class>
+porting.ts.login.class.1=<vendor-login-class>
+porting.ts.url.class.1=<vendor-url-class>
+porting.ts.jms.class.1=<vendor-jms-class>
+porting.ts.tsHttpsURLConnection.class.1=<vendor-HttpsURLConnection-class>
+----
+
+* The `harness.temp.directory` property specifies a temporary directory
+that the harness creates and to which the CTS harness and tests write
+temporary files. The default setting should not need to be changed.
+* The `harness.log.port` property specifies the port that server
+components of the tests use to send logging output back to JavaTest. If
+the default port is not available on the machine running JavaTest, you
+must edit this property and set it to an available port. The default
+setting is `2000`.
+* The `harness.log.traceflag` property is used to turn on or turn off
+verbose debugging output for the tests. The value of the property is set
+to `false` by default. Set the property to `true` to turn debugging on.
+* The `deployment_host.1` and `deployment_host.2` properties specify the
+systems where the vendor's Java Platform, Enterprise Edition server and
+the Java Platform, Enterprise Edition RI server are running. By default,
+JavaTest will use the `orb.host` and `orb.host.ri` systems, which are
+set in the `ts.jte` file.
+* The porting class `.1` and `.2` property sets specify the class names
+of porting class implementations. By default, both property sets point
+to the Java Platform, Enterprise Edition RI-specific classes. To run the
+interoperability tests, do not modify the `.2` set. These properties
+should always point to the Java Platform, Enterprise Edition RI classes.
+Modify the `.1` set to point to implementations that work in your
+specific Java Platform, Enterprise Edition environment. See
+link:#GEXMH[Configuring a Java Platform, Enterprise Edition RI and VI
+for Interop/Rebuildable Tests] for additional information about setting
+these properties.
+* The `-Dcts.tmp` option for the `testExecute` and
+`testExecuteAppClient` commands in the `ts.jte` file have been set. This
+Java option tells the test suite the location to which the test suite
+will write temporary files.
+
+[[GEXOS]][[windows-specific-properties]]
+
+5.4.2 Windows-Specific Properties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When configuring the Java EE 8 CTS for the Windows environment, set the
+following properties in `<TS_HOME>/bin/ts.jte`:
+
+* `pathsep` to semicolon (pathsep=`;`)
+* `s1as.applicationRoot` to the drive on which you have installed CTS
+(for example, `s1as.applicationRoot=C:`) +
+When installing in the Windows environment, the Java Platform,
+Enterprise Edition RI, JDK, and CTS should all be installed on the same
+drive. If you must install these components on different drives, also
+change the `ri.applicationRoot` property in addition to the `pathsep`
+and `s1as.applicationRoot` properties; for example: +
+[source,oac_no_warn]
+----
+ri.applicationRoot=C:
+----
+
+
+[NOTE]
+=======================================================================
+
+When configuring the RI and CTS for the Windows environment, never
+specify drive letters in any path properties in `ts.jte`.
+
+=======================================================================
+
+
+[[GEXPE]][[test-execution-command-setup]]
+
+5.4.3 Test Execution Command Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The test execution command properties are used by the test harness. By
+default, the `ts.jte` file defines a single command line for each of the
+commands that is used for both UNIX and Windows environments.
+
+* `command.testExecute`
+* `command.testExecuteAppClient`
+* `command.testExecuteAppClient2`
+
+If these commands do not meet your needs, you can define separate
+entries for the UNIX and Windows environments. Edit either the `ts_unix`
+or `ts_win32` test execution properties in the `ts.jte` file. For UNIX,
+these properties are:
+
+* `env.ts_unix.command.testExecute`
+* `env.ts_unix.command.testExecuteAppClient`
+* `env.ts_unix.command.testExecuteAppClient2`
+
+For Windows, these properties are:
+
+* `env.ts_win32.command.testExecute`
+* `env.ts_win32.command.testExecuteAppClient`
+* `env.ts_win32.command.testExecuteAppClient2`
+
+The `testExecute` property specifies the Java command that is used to
+execute individual tests from a standalone URL client. Tests in which
+the client directly invokes a web component (servlet or JSP), use this
+command line since there is no application client container involved.
+
+
+[NOTE]
+=======================================================================
+
+The default settings are specific to the Java Platform, Enterprise
+Edition RI. If you are not using the Java Platform, Enterprise Edition
+RI, adjust these properties accordingly.
+
+=======================================================================
+
+
+[[GEXPB]][[servlet-test-setup]]
+
+5.4.4 Servlet Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Make sure that the following servlet properties have been set in the
+`ts.jte` file:
+
+[source,oac_no_warn]
+----
+ServletClientThreads=[2X size of default servlet instance pool] 
+servlet_waittime=[number_of_milliseconds]
+servlet_async_wait=[number_of_seconds]
+logical.hostname.servlet=server
+s1as.java.endorsed.dirs=${endorsed.dirs}${pathsep}${ts.home}/endorsedlib
+----
+
+The `ServletClientThreads` property configures the number of threads
+used by the client for the `SingleThreadModel` servlet test. If your
+container implementation supports pooling of `SingleThreadModel`
+servlets, set the value of the `ServletClientThreads` property to twice
+the value of the default servlet instance pool size. If your container
+implementation only maintains a single instance of a
+`ServletClientThreads` servlet, use the default value of `2`.
+
+The `servlet_waittime` property specifies the amount of time, in
+milliseconds, to wait between the time when the `HttpSession` is set to
+expire on the server and when the `HttpSession` actually expires on the
+client. This time is configurable to allow the servlet container enough
+time to completely invalidate the `HttpSession`. The default value is 10
+milliseconds.
+
+The test `serverpush` in servlet 4.0, uses `httpclient`, a new library
+in JDK9 which is backported to JDK8. There is a restriction on using
+`httpclient` in JDK8 as the `httpclient` depends on
+java.util.concurrent.flow which is a new class in JDK9. To run the test
+on JDK8, use Java Endorsed Standards Override Mechanism and append the
+`flow.jar` into bootstrap classpath. This is done by appending the
+`<TS_HOME>/endorsedlib` directory to `s1as.java.endorsed.dirs` property
+in `ts.jte`.
+
+The `servlet_async_wait` property sets the duration of time in seconds
+to wait between sending asynchronous messages. This property is used in
+place to test non-interrupted IO, where two messages are sent in two
+different batches and the receiving end will be read in a different read
+cycle. This property sets the time to wait in seconds on the sending
+side. The default is 4 seconds.
+
+The `logical.hostname.servlet` property identifies the configuration
+name of the logical host on which the `ServletContext` is deployed. This
+used to identify the name of a logical host that processes Java EE 8
+requests. Java EE 8 requests may be directed to a logical host using
+various physical or virtual host names or addresses, and a message
+processing runtime may be composed of multiple logical hosts. The
+`logical.hostname.servlet` property is required to properly identify the
+Java EE 8 profile's `AppContextId` hostname. This property is used by
+the Java EE 8 security tests as well as by the
+`ServletContext.getVirtualServerName()` method. If a
+`logical.hostname.servlet` does not exist, set this property to the
+default hostname (for example, `webServerHost`). The default is
+"server".
+
+[[CBDDGJFC]][[websocket-test-setup]]
+
+5.4.5 WebSocket Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Make sure that the following WebSocket property has been set in the
+`ts.jte` file:
+
+[source,oac_no_warn]
+----
+ws_wait=[number_of_seconds]
+----
+
+The `ws_wait` property configures the wait time, in seconds, for the
+socket to send or receive a message. A multiple of 5 of this time is
+also used to test socket timeouts.
+
+The WebSocket tests also use the following properties: `webServerHost`
+and `webServerPort`. See link:#GEWUI[Section 5.3.2, "Configuring the
+Java EE 8 RI as the VI,"] for more information about setting these
+properties.
+
+
+[NOTE]
+=======================================================================
+
+The SSL related tests under
+/ts/javaeetck/src/com/sun/ts/tests/websocket/platform/javax/websocket/server/handshakerequest/authenticatedssl/
+use self signed certificate bundled with the CTS bundle. These
+certificates are generated with localhost as the hostname and would work
+only when orb.host value is set to localhost in ts.jte. If the server's
+hostname is used instead of the localhost, the tests in this suite might
+fail with the below exception - javax.websocket.DeploymentException: SSL
+handshake has failed.
+
+=======================================================================
+
+
+[[GEXON]][[jdbc-test-setup]]
+
+5.4.6 JDBC Test Setup
+^^^^^^^^^^^^^^^^^^^^^
+
+The JDBC tests require you to set the timezone by modifying the `tz`
+property in the `ts.jte` file. On Solaris systems, you can check the
+timezone setting by looking in the file `/etc/default/init`. Valid
+values for the `tz` property are in the directory
+`/usr/share/lib/zoneinfo`. The default setting is `US/Eastern`. This
+setting is in `/usr/share/lib/zoneinfo/US`.
+
+
+[NOTE]
+=======================================================================
+
+The `tz` property is only used for Solaris configurations; it does not
+apply to Windows XP/2000.
+
+=======================================================================
+
+
+[[GEXQQ]][[standalone-rmiiiop-server-test-setup]]
+
+5.4.7 Standalone RMI/IIOP Server Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The standalone RMI/IIOP server testing verifies that Java Platform,
+Enterprise Edition application components can access and communicate
+with an external RMI/IIOP server application.
+
+The `start.rmiiiop.server` Ant target uses the `ts.classpath` property
+setting from the `ts.jte` file when starting the standalone RMI/IIOP
+server application. The standalone RMI/IIOP server application must
+start up using the ORB that comes with the Java Platform, Enterprise
+Edition RI.
+
+Make sure that `ts.classpath` property contains the Java Platform,
+Enterprise Edition RI JAR files and classes and that the following
+properties have been set in the `ts.jte` file:
+
+[source,oac_no_warn]
+----
+rmi.http.server.host=[hostname]
+rmi.http.server.port=[port-number]
+----
+
+The `rmi.http.server.host` and `rmi.http.server.port` properties must be
+set to the host and port where the standalone RMI/IIOP http server is
+running. The default values for these properties are `localhost` and
+`10000`, respectively.
+
+To start the standalone RMI/IIOP server, execute the following command:
+
+[source,oac_no_warn]
+----
+ant start.rmiiiop.server
+----
+
+[[GEXOT]][[javamail-test-setup]]
+
+5.4.8 JavaMail Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Complete the following tasks before you run the JavaMail tests:
+
+1.  Set the following properties in the `ts.jte` file: +
+[source,oac_no_warn]
+----
+mailuser1=[user@domain]
+mailFrom=[user@domain]
+mailHost=mailserver
+javamail.password=password
+----
+* Set the `mailuser1` property to a valid mail address. Mail messages
+generated by the JavaMail tests are sent to the specified address. This
+user must be created in the IMAP server.
+* Set the `mailFrom` property to a mail address from which mail messages
+that the JavaMail tests generate will be sent.
+* Set the `mailHost` property to the address of a valid mail server
+where the mail will be sent.
+* Set the `javamail.password` property to the password for `mailuser1`.
+2.  Populate your IMAP server with sample messages. +
+Change to the `<TS_HOME>/bin` directory and execute the Ant target
+`populateMailbox` to create the sample messages in your IMAP server. +
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant populateMailbox
+----
+
+[[GJKPO]][[jax-rs-test-setup]]
+
+5.4.9 JAX-RS Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This section explains how to set up the test environment to run the
+JAX-RS tests using the Java EE 8 Reference Implementation and/or a
+Vendor Implementation. This setup also includes steps for
+packaging/repackaging and publishing the packaged/repackaged WAR files
+as well.
+
+[[GJYCL]][[to-configure-your-environment-to-run-the-jax-rs-tests-against-the-java-ee-8-ri]]
+
+5.4.9.1 To Configure Your Environment to Run the JAX-RS Tests Against the Java EE 8 RI
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Edit your `<TS_HOME>/bin/ts.jte` file and set the following environment
+variables:
+
+1.  Set the `jaxrs_impl_lib` property to point to the JAX-RS RI. +
+The default setting for this property is
+`${javaee.home}/modules/jersey-container-servlet-core.jar` .
+2.  Set the `servlet_adaptor` property to point to the Servlet adaptor
+class for the JAX-RS implementation. +
+The default setting for this property is
+`org/glassfish/jersey/servlet/ServletContainer.class`, the servlet
+adaptor supplied in Jersey.
+3.  Set the `jaxrs_impl_name` property to the name of the JAX-RS RI. +
+The default setting for this property is `jersey`. +
+An Ant script, jersey.xml, in the `<TS_HOME>/bin/xml/impl/glassfish`
+directory contains packaging instructions.
+
+[[GJYBC]][[to-package-war-files-for-deployment-on-the-java-ee-8-ri]]
+
+5.4.9.2 To Package WAR files for Deployment on the Java EE 8 RI
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The Java EE 8 CTS test suite does not come with prebuilt test WAR files
+for deployment on Java EE 8 RI. The test suite includes a command to
+generate the test WAR files that will be deployed on the Java EE 8 RI.
+The WAR files are Jersey-specific, with Jersey's servlet class and
+Jersey's servlet defined in the `web.xml` deployment descriptor.
+
+To package the JAX-RS WAR files for deployment on the Java EE 8 RI,
+complete the following steps:
+
+1.  Change to the `<TS_HOME>/bin` directory.
+2.  Execute the `update.jaxrs.wars` Ant target. +
+In a test WAR files that has the `servlet_adaptor` property defined,
+this target replaces the `servlet_adaptor` value of the servlet class
+name property in the `web.xml` file of the WAR files to be deployed on
+the Java EE 8 RI.
+
+[[GJYBR]][[to-configure-your-environment-to-run-the-jax-rs-tests-against-a-vendor-implementation]]
+
+5.4.9.3 To Configure Your Environment to Run the JAX-RS Tests Against a Vendor Implementation
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Complete the following steps to configure your test environment to run
+the JAX-RS tests against your vendor implementation. Before you can run
+the tests, you need to repackage the WAR files that contain the JAX-RS
+tests and the VI-specific Servlet class that will be deployed on the
+vendor's Java EE 8-compliant application server.
+
+Edit your `<TS_HOME>/bin/ts.jte` file and set the following properties:
+
+1.  Set the `jaxrs_impl_lib` property to point to the JAR file that
+contains the vendor's JAX-RS Servlet adaptor implementation. +
+The default setting for this property is
+`${javaee.home}/modules/jersey-container-servlet-core.jar` .
+2.  Set the `servlet_adaptor` property to point to the Servlet adaptor
+class for the vendor's JAX-RS implementation. +
+The class must be located in the JAR file defined by the
+`jaxrs_impl_lib` property. By default, this property is set to
+`org/glassfish/jersey/servlet/ServletContainer.class`, the servlet
+adaptor supplied in Jersey.
+3.  Set the `jaxrs_impl_name` property to the name of the JAX-RS vendor
+implementation to be tested. +
+The name of the property must be unique. An Ant file bearing this name,
+<jaxrs_impl_name>.xml, should be created under
+`<TS_HOME>/bin/xml/impl/${impl.vi}` with packaging and/or deployment
+instructions as described in link:#GJYDD[Section 5.4.9.4, "To Repackage
+WAR files for Deployment on the Vendor Implementation."] +
+The default setting for this property is `jersey`.
+
+[[GJYDD]][[to-repackage-war-files-for-deployment-on-the-vendor-implementation]]
+
+5.4.9.4 To Repackage WAR files for Deployment on the Vendor Implementation
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+To run the JAX-RS tests against a vendor's implementation in a Java EE
+8-compliant application server, the tests need to be repackaged to
+include the VI-specific servlet, and the VI-specific servlet must be
+defined in the deployment descriptor.
+
+A vendor must create VI-specific Java EE 8-compliant WAR files so the
+VI-specific Servlet class will be included instead of the Java EE 8
+RI-specific Servlet class.
+
+All resource and application class files are already compiled. The
+Vendor needs to package these files. Java EE 8 CTS makes this task
+easier by including template WAR files that contain all of the necessary
+files except for the VI-specific servlet adaptor class. The Java EE 8
+CTS also provides a tool to help with the repackaging task.
+
+Each test that has a JAX-RS resource class to publish comes with a
+template deployment descriptor file. For example, the file
+`<TS_HOME>/src/com/sun/ts/tests/jaxrs/ee/rs/get/web.xml.template`
+contains the following elements:
+
+[source,oac_no_warn]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <servlet>
+        <servlet-name>CTSJAX-RSGET</servlet-name>
+        <servlet-class>servlet_adaptor</servlet-class> 
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CTSJAX-RSGET</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+</web-app>
+----
+
+In this example, the `<servlet-class>` element has a value of
+`servlet_adaptor`, which is a placeholder for the
+implementation-specific Servlet class. A Jersey-specific deployment
+descriptor also comes with the Java EE 8, and has the values for the
+`com.sun.jersey.spi.container.servlet.ServletContainer`:
+
+[source,oac_no_warn]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+   <servlet>
+        <servlet-name>CTSJAX-RSGET</servlet-name>
+        <servlet-class>
+        org.glassfish.jersey.servlet.ServletContainer 
+        </servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CTSJAX-RSGET</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+        </session-config>
+</web-app>
+----
+
+The Java EE 8 CTS test suite provides a tool,
+`${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for the Java EE 8 RI
+that you can use as a model to help you create your own VI-specific Web
+test application.
+
+The following steps explain how to create a VI-specific deployment
+descriptor.
+
+1.  Create a VI handler file. +
+Create a VI-specific handler file
+`<TS_HOME>/bin/xml/impl/${impl.vi}/${jaxrs_impl_name}.xml` if one does
+not already exist. +
+Ensure that the `jaxrs_impl_name` property is set in the `ts.jte` file
+and that its name is unique, to prevent another file with the same name
+from being overwritten.
+2.  Set the `servlet_adaptor` property in the `ts.jte` file. +
+This property will be used to set the value of the `<servlet-class>`
+element in the deployment descriptor.
+3.  Create VI Ant tasks. +
+Create a `update.jaxrs.wars` target in the VI handler file. Reference
+this `update.jaxrs.wars` target in the `jersey.xml` file. +
+This target will create a `web.xml.${jaxrs_impl_name}` for each test
+that has a deployment descriptor template. The
+`web.xml.${jaxrs_impl_name)` will contain the VI-specific Servlet class
+name. It will also create the test WAR files will be created under the
+`<TS_HOME>/dist` directory. For example: +
+[source,oac_no_warn]
+----
+cd $TS_HOME/dist/com/sun/ts/tests/jaxrs/ee/rs/get/
+ls jaxrs_rs_get_web.war.jersey 
+jaxrs_rs_get_web.war.${jaxrs_impl_name}
+----
+4.  Change to the `<TS_HOME>/bin` directory and execute the
+`update.jaxrs.wars` Ant target. +
+This creates a `web.xml.${jaxrs_impl_name}` file for each test based on
+the VI's servlet class name and repackages the tests.
+
+[[GEXOF]][[connector-test-setup]]
+
+5.4.10 Connector Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Connector tests verify that a Java EE 8 server correctly implements
+the Connector V1.7 specification. The Connector compatibility tests
+ensure that your Java EE 8 server still supports the Connector V1.0
+functionality.
+
+The `config.vi` target is run to configure the Java EE 8 server for
+running Connector tests. The `config.vi` target calls the
+`config.connecto`r target, which is defined in
+`TS_HOME/bin/xml/impl/glassfish/s1as.xml`, to deploy the RAR files
+listed in link:#GJVGT[Section 5.4.10.1, "Extension Libraries."] and
+create the required connection resources and connection pools used for
+the Connector tests. The `config.vi` target also performs several other
+tasks, such as creating required users and security mappings, setting
+appropriate JVM options, etc. that also are needed to run the Connector
+tests.
+
+[[GJVGT]][[extension-libraries]]
+
+5.4.10.1 Extension Libraries
+++++++++++++++++++++++++++++
+
+The following Connector files are deployed as part of the `config.vi`
+Ant target:
+
+* `whitebox-mixedmode.rar`
+* `whitebox-tx-param.rar`
+* `whitebox-multianno.rar`
+* `whitebox-tx.rar`
+* `whitebox-anno_no_md.rar`
+* `whitebox-notx-param.rar`
+* `whitebox-xa-param.rar`
+* `whitebox-mdcomplete.rar`
+* `whitebox-notx.rar`
+* `whitebox-xa.rar`
+* `old-dd-whitebox-notx-param.rar`
+* `old-dd-whitebox-xa-param.rar`
+* `old-dd-whitebox-tx.rar`
+* `old-dd-whitebox-notx.rar`
+* `old-dd-whitebox-xa.rar`
+* `old-dd-whitebox-tx-param.rar`
+
+
+[NOTE]
+=======================================================================
+
+RAR files with an `old` prefix are used to test the support of RAs that
+are bundled with an older version of the `ra.xml` files.
+
+=======================================================================
+
+
+The manifest file in each RAR file includes a reference to the whitebox
+extension library. The `whitebox.jar` file is a Shared Library that must
+be deployed as a separate entity that all the Connector RAR files
+access. This extension library is needed to address classloading issues.
+
+The RAR files that are used withJava EE 8 CTS test suite differ from
+those that were used in earlier test suites. Java EE 8 CTS no longer
+bundles the same common classes into every RAR file. Duplicate common
+classes have been removed and now exist in the `whitebox.jar` file, an
+Installed Library that is deployed and is made available before any
+other RAR files are deployed.
+
+This was done to address the following compatibility issues:
+
+* Portable use of Installed Libraries for specifying a resource
+adapter's shared libraries +
+See section EE.8.2.2 of the Java EE 8 platform specification and section
+20.2.0.1 in the JCA 1.7 specification, which explicitly state that the
+resource adapter server may employ the library mechanisms in Java EE 8.
+* Support application-based standalone connector accessibility +
+Section 20.2.0.4 of the JCA 1.7 Specification uses the classloading
+requirements that are listed in section 20.3 in the specification.
+
+[[GJVGO]][[connector-resource-adapters-and-classloading]]
+
+5.4.10.2 Connector Resource Adapters and Classloading
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Java EE 8 CTS has scenarios in which multiple standalone RAR files that
+use the same shared library (for example, `whitebox.jar`) are referenced
+from an application component.
+
+Each standalone RAR file gets loaded in its own classloader. Since the
+application component refers to more than one standalone RAR file, all
+of the referenced standalone RAR files need to be made available in the
+classpath of the application component. In versions of the TCK prior to
+Java EE 5, since each standalone RAR file contained a copy of the
+`whitebox.jar` file, every time there was a reference to a class in the
+`whitebox.jar` file from a standalone RAR, the reference was resolved by
+using the private version of `whitebox.jar` (the `whitebox.jar` file was
+bundled in each standalone RAR file). This approach can lead to class
+type inconsistency issues.
+
+[[GJVHD]][[use-case-problem-scenario]]
+
+5.4.10.3 Use Case Problem Scenario
+++++++++++++++++++++++++++++++++++
+
+Assume that RAR1 and RAR2 are standalone RAR files that are referred to
+by an application, where:
+
+* RAR1's classloader has access to RAR1's classes and its copy of
+`whitebox.jar`. (RAR1's classloader contains RAR1's classes and
+`whitebox.jar`)
+* RAR2's classloader has access to RAR2's classes and its copy of
+`whitebox.jar`. (RAR2's classloader contains RAR2's classes and
+`whitebox.jar`)
+
+When the application refers to both of these RAR files, a classloader
+that encompasses both of these classloaders (thereby creating a
+classloader search order) is provided to the application. The
+classloader search order could have the following sequence: ([RAR1's
+Classloader: RAR1's classes and whitebox.jar], [RAR2's Classloader:
+RAR2's classes and whitebox.jar]).
+
+In this scenario, when an application loads a class (for example, class
+`Foo`) in `whitebox.jar`, the application gets class `Foo` from RAR1's
+classloader because that is first in the classloader search order.
+However, when this is cast to a class (for example, `Foo` or a subclass
+of `Foo` or even a class that references `Foo`) that is obtained from
+RAR2's classloader (a sequence that is typically realized in a
+`ConnectionFactory` lookup), this would result in a class-cast
+exception.
+
+The portable way of solving the issues raised by this use case problem
+scenario is to use installed libraries, as described in section EE.8.2.2
+in the Java EE 8 platform specification. If both RAR files (RAR1 and
+RAR2) reference `whitebox.jar` as an installed library and the
+application server can use a single classloader to load this common
+dependency, there will be no type-related issues.
+
+In the RI, `domain-dir/lib/applibs` is used as the Installed Library
+directory and is the location to which the `whitebox.jar` file gets
+copied.
+
+[[GJVHK]][[required-porting-package]]
+
+5.4.10.4 Required Porting Package
++++++++++++++++++++++++++++++++++
+
+The Java EE 8 CTS test suite treats the `whitebox.jar` dependency as an
+Installed Library dependency instead of bundling the dependency (or
+dependencies) with every RAR file. Each RAR file now contains a
+reference to the `whitebox.jar` file through its Manifest files
+Extension-List attribute.
+
+It is necessary to identify the `whitebox.jar` to the connector server
+as an installed library. The mechanism used to identify the
+`whitebox.jar` file to the connector server as an Installed Library must
+allow the Installed Libraries to have dependencies on Java EE APIs. In
+other words, because the `whitebox.jar` file depends on Java EE APIs,
+one cannot simply put the `whitebox.jar` file into a `java.ext.dir`
+directory , which gets loaded by the VM extension classloader, because
+that mechanism does not allow the `whitebox.jar` file to support its
+dependencies on the Java EE APIs. For this reason, the Installed Library
+must support access to the Java EE APIs.
+
+See section EE.8.2.2 in the Java EE 8 platform specification for
+information about the reference implementation's support for Installed
+libraries. However, note that this section does not recommend a
+mechanism that a deployer can use to provide Installed Libraries in a
+portable manner.
+
+[[GJVHH]][[creating-security-mappings-for-the-connector-rar-files]]
+
+5.4.10.5 Creating Security Mappings for the Connector RAR Files
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The Ant target `create.security.eis.mappings` in the
+`<TS_HOME>/bin/xml/impl/glassfish/connector.xml` file maps Resource
+Adapter user information to existing user information in the RI.
+
+For the RI, these mappings add a line to the `domain.xml` file, similar
+to the one shown below, and should include 6 of these mappings:
+
+[source,oac_no_warn]
+----
+<jvm-options>-Dwhitebox-tx-map=cts1=j2ee</jvm-options>
+<jvm-options>-Dwhitebox-tx-param-map=cts1=j2ee</jvm-options>
+<jvm-options>-Dwhitebox-notx-map=cts1=j2ee</jvm-options>
+<jvm-options>-Dwhitebox-notx-param-map=cts1=j2ee</jvm-options>
+<jvm-options>-Dwhitebox-xa-map=cts1=j2ee</jvm-options>
+<jvm-options>-Dwhitebox-xa-param-map=cts1=j2ee</jvm-options>
+----
+
+If the `rauser1` property has been set to `cts1` and the `user` property
+has been set to `j2ee` in the `ts.jte` file, the following mappings
+would be required in the connector runtime:
+
+* For RA `whitebox-tx`, map `cts1` to `j2ee`
+* For RA `whitebox-tx-param`, map `cts1` to `j2ee`
+* For RA `whitebox-notx`, map `cts1` to `j2ee`
+* For RA `whitebox-notx-param`, map `cts1` to `j2ee`
+* For RA `whitebox-xa`, map `cts1` to `j2ee`
+* For RA `whitebox-xa-param`, map `cts1` to `j2ee`
+
+[[GJVGX]][[creating-required-server-side-jvm-options]]
+
+5.4.10.6 Creating Required Server-Side JVM Options
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Create the required JVM options that enable user information to be set
+and/or passed from the `ts.jte` file to the server. The RAR files use
+some of the property settings in the `ts.jte` file.
+
+To see some of the required JVM options for the server under test, see
+the `s1as.jvm.options` property in the `ts.jte` file. The connector
+tests require that the following subset of JVM options be set in the
+server under test:
+
+[source,oac_no_warn]
+----
+-Dj2eelogin.name=j2ee
+-Dj2eelogin.password=j2ee
+-Deislogin.name=cts1
+-Deislogin.password=cts1
+----
+
+[[GEXPV]][[xa-test-setup]]
+
+5.4.11 XA Test Setup
+^^^^^^^^^^^^^^^^^^^^
+
+The XA Test setup requires that the `ejb_Tsr.ear` file be deployed as
+part of the `config.vi` Ant target. The `ejb_Tsr.ear` file contains an
+embedded RAR file, which requires the creation of a connection-pool and
+a connector resource.
+
+For more details about the deployment of `ejb_Tsr.ear` and its
+corresponding connection pool and connector resource values, see the
+`setup.tsr.embedded.rar` Ant target in the
+`<TS_HOME>/bin/xml/impl/glassfish/s1as.xml` file.
+
+The XA tests reference some `JDBCWhitebox` name bindings that are
+created as part of the `config.vi` target but those name bindings are
+not tied to any JDBC RAR files. Instead, the following XA-specific
+connection pool ids are referenced by the XA tests:
+
+* `eis/JDBCwhitebox-xa`
+* `eis/JDBCwhitebox-tx`
+* `eis/JDBCwhitebox-notx`
+
+For more details on these JDBC resources, examine the
+`add.jdbc.resources` target in the same file to see the required JDBC
+resources that are created. Both targets are called as part of the
+`config.vi` target.
+
+Complete the following steps (create JDBC connection pools and JDBC
+resource elements, deploy the RAR files) to set up your environment to
+run the XA tests:
+
+1.  Create a JDBC connection pool with the following attributes:
+* Set the resource type to `javax.sql.XADataSource`
+* Set the datasourceclassname to
+`org.apache.derby.jdbc.EmbeddedXADataSource`
+* Set the property to
+`DatabaseName=<Derby- location>:user=cts1:password=cts1`
+* Set the connection pool name to `cts-derby-XA-pool` +
+For example, you could use the `asadmin` command line utility in the
+Java EE 8 RI to create this connection pool: +
+[source,oac_no_warn]
+----
+asadmin create-jdbc-connection-pool --restype javax.sql.XADataSource \
+--datasourceclassname org.apache.derby.jdbc.EmbeddedXADataSource  \
+--property 'DatabaseName=/tmp/DerbyDB:user=cts1:password=cts1' \
+cts-derby-XA-pool
+----
+See the `add.jdbc.pools` Ant target in the `s1as.xml` file for
+additional information.
+2.  Create three JDBC connection pool elements (more specifically, the
+JDBC connection pool elements) with the following JNDI names:
+* For the first connection pool element, set the connection pool id to
+`cts-derby-XA-pool` and the JNDI name to `eis/JDBCwhitebox-xa`
+* For the second connection pool element, set the connection pool id to
+`cts-derby-XA-pool` and the JNDI name to `eis/JDBCwhitebox-tx`
+* For the third connection pool element, set the connection pool id to
+`cts-derby-XA-pool` and the JNDI name to `eis/JDBCwhitebox-notx` +
+For example, you could use the `asadmin` command line utility in the
+Java EE 8 RI to create the three connection pool elements: +
+[source,oac_no_warn]
+----
+asadmin  asadmin  create-jdbc-resource --connectionpoolid cts-derby-XA-pool \
+ eis/JDBCwhitebox-xa
+asadmin  create-jdbc-resource --connectionpoolid cts-derby-XA-pool \
+ eis/JDBCwhitebox-tx
+asadmin  create-jdbc-resource --connectionpoolid cts-derby-XA-pool \
+ eis/JDBCwhitebox-notx
+----
+If two or more JDBC resource elements point to the same connection pool
+element, they use the same pool connection at runtime. Java EE 8 CTS
+does reuse the same connection pool ID for testing the Java EE 8 RI.
+3.  Make sure that the following EIS and RAR files have been deployed
+into your environment before you run the XA tests:
+* For the EIS resource adapter, deploy the following RAR files. Most of
+these files are standalone RAR files, but there is also an embedded RAR
+file that is contained in the `ejb_Tsr.ear` file. With the RI, these RAR
+files are deployed as part of the config.vi Ant task. The following RAR
+files are defined in the `ts.jte` file. +
+[source,oac_no_warn]
+----
+whitebox-tx=java:comp/env/eis/whitebox-tx
+whitebox-notx=java:comp/env/eis/whitebox-notx
+whitebox-xa=java:comp/env/eis/whitebox-xa
+whitebox-tx-param=java:comp/env/eis/whitebox-tx-param
+whitebox-notx-param=java:comp/env/eis/whitebox-notx-param
+whitebox-xa-param=java:comp/env/eis/whitebox-xa-param
+whitebox-embed-xa=
+"__SYSTEM/resource/ejb_Tsr#whitebox-xa#com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory"
+----
+* The embedded RAR files are located in the
+`<TS_HOME>/src/com/sun/ts/tests/xa/ee/tsr` directory.
+* The EIS RAR files are located in the following directory:
+`<TS_HOME>/src/com/sun/ts/tests/common/connector/whitebox` +
+RAR files in the `<TS_HOME>/src/com/sun/ts/tests/common/connector`
+directory must be built before any dependent tests can pass. Deployment
+can either be done ahead of time or at runtime, as long as connection
+pools and resources are established prior to test execution. +
+The XA tests make use of existing connector RAR files, which typically
+get deployed when the `config.vi` Ant task is run. Note that there are
+currently no `JDBCwhitebox` source files and no `JDNCwhitebox` RAR
+files.
+
+[[GKKOJ]][[ejb-3.2-test-setup]]
+
+5.4.12 EJB 3.2 Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This section explains special configuration that needs to be completed
+before running the EJB 3.2 DataSource and Stateful Timeout tests.
+
+The EJB 3.2 DataSource tests do not test XA capability and XA support in
+a database product is typically not required for these tests. However,
+some Java EE products could be implemented in such a way that XA must be
+supported by the database. For example, when processing the
+@DataSourceDefinition annotation or `<data-source>` descriptor elements
+in tests, a Java EE product infers the datasource type from the
+interface implemented by the driver class. When the driver class
+implements multiple interfaces, such as `javax.sql.DataSource`,
+`javax.sql.ConnectionPoolDataSource`, or `javax.sql.XADataSource`, the
+vendor must choose which datasource type to use. If
+`javax.sql.XADataSource` is chosen, the target datasource system must be
+configured to support XA. Consult the documentation for your database
+system and JDBC driver for information that explains how to enable XA
+support.
+
+[[GJYBW]][[to-configure-the-test-environment-to-run-the-ejb-3.2-datasource-tests]]
+
+5.4.12.1 To Configure the Test Environment to Run the EJB 3.2 DataSource Tests
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The EJB 3.2 DataSource tests under the following `tests/ejb30`
+directories require you to run the Ant task in Step link:#BABBGJAF[2].
+
+* `com/sun/ts/tests/ejb30/lite/packaging/war/datasource`
+* `com/sun/ts/tests/ejb30/misc/datasource`
+* `com/sun/ts/tests/ejb30/assembly/appres`
+
+If your database vendor requires you to set any vendor-specific or less
+common DataSource properties, complete step link:#BABDIIGI[1] and then
+complete step link:#BABBGJAF[2], as explained below.
+
+1.  [[BABDIIGI]] +
+Set any vendor-specific or less common datasource properties with the
+`jdbc.datasource.props` property in the `ts.jte` file. +
+The value of the property is a comma-separated array of name-value
+pairs, in which each property pair uses a `"name=value"` format,
+including the surrounding double quotes. +
+The value of the property must not contain any extra spaces. +
+For example: +
+[source,oac_no_warn]
+----
+jdbc.datasource.props="driverType=thin","name2=vale2"
+----
+2.  [[BABBGJAF]] +
+Run the `configure.datasource.tests` Ant target to rebuild the EJB 3.2
+DataSource Definition tests using the new database settings specified in
+the `ts.jte` file. +
+This step must be completed for Java EE 8 and Java EE 8 Web Profile
+testing.
+
+[[GJYCF]][[to-configure-the-test-environment-to-run-the-ejb-3.2-stateful-timeout-tests]]
+
+5.4.12.2 To Configure the Test Environment to Run the EJB 3.2 Stateful Timeout Tests
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The EJB 3.2 Stateful Timeout Tests in the following test directories
+require special setup:
+
+* `com/sun/ts/tests/ejb30/lite/stateful/timeout`
+* `com/sun/ts/tests/ejb30/bb/session/stateful/timeout`
+
+1.  Set the `javatest.timeout.factor` property in the `ts.jte` file to a
+value such that the JavaTest harness does not time out before the test
+completes. +
+A value of 2.0 or greater should be sufficient.
+2.  Set the `test.ejb.stateful.timeout.wait.seconds` property, which
+specifies the minimum amount of time, in seconds, that the test client
+waits before verifying the status of the target stateful bean, to a
+value that is appropriate for your server. +
+The value of this property must be an integer number. The default value
+is 480 seconds. This value can be set to a smaller number (for example,
+240 seconds) to speed up testing, depending on the stateful timeout
+implementation strategy in the target server.
+
+[[GEXOX]][[ejb-timer-test-setup]]
+
+5.4.13 EJB Timer Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the following properties in the `ts.jte` file to configure the EJB
+timer tests:
+
+[source,oac_no_warn]
+----
+ejb_timeout=[interval_in_milliseconds]
+ejb_wait=[interval_in_milliseconds]
+----
+
+* The `ejb_timeout` property sets the duration of single-event and
+interval timers. The default setting and recommended minimum value is
+`30000` milliseconds.
+* The `ejb_wait` property sets the period for the test client to wait
+for results from the `ejbTimeout()` method. The default setting and
+recommended minimum value is `60000` milliseconds.
+
+Java EE 8 CTS does not have a property that you can set to configure the
+date for date timers.
+
+The timer tests use the specific `jndi-name` jdbc`/DBTimer` for the
+datasource used for container-managed persistence to support the use of
+an XA datasource in the Java EE 8 timer implementation. For example:
+
+[source,oac_no_warn]
+----
+<jdbc-resource enabled="true" jndi-name="jdbc/DBTimer" 
+               object-type="user" pool-name="cts-javadb-XA-pool" />
+----
+
+The test directories that use this datasource are:
+
+[source,oac_no_warn]
+----
+ejb/ee/timer
+ejb/ee/bb/entity/bmp/allowedmethostest
+ejb/ee/bb/entity/cmp20/allowedmethodstest
+----
+
+When testing against the Java Platform, Enterprise Edition RI, you must
+first start Java DB and initialize it in addition to any other database
+you may be using, as explained in link:#GEWUI[Configuring the Java EE 8
+RI as the VI].
+
+[[GEXQB]][[entity-bean-container-managed-persistence-test-setup-for-ejb-v1.1]]
+
+5.4.14 Entity Bean Container-Managed Persistence Test Setup for EJB V1.1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Your Java Platform, Enterprise Edition implementation should map the
+following instance variables to a backend datastore. These are needed to
+run the CTS entity bean container-managed persistence (cmp1.1) tests.
+
+The Java Platform, Enterprise Edition RI creates the table used by
+container-managed persistence by appending `"Table"` to the bean name.
+For example, if your bean name is `TestEJB`, the table that will be
+created will be `TestEJBTable`.
+
+The container-managed fields for most `cmp` tests must have the
+following names and the following Java types:
+
+[width="100%",cols="50%,50%",options="header",]
+|======================
+|Column Name |Java Type
+|`key_id` |Integer
+|`brand_name` |String
+|`price` |Float
+|======================
+
+
+These instance variable names correspond to the following database
+schema:
+
+[source,oac_no_warn]
+----
+KEY_ID (INTEGER NOT NULL)
+BRAND_NAME (VARCHAR(32))
+PRICE (FLOAT)
+PRIMARY KEY (KEY_ID)
+----
+
+These instance variables are used in the transactional entity test bean
+for the transactional test cases (`tx`) and in the database support
+utility class for the bean behavior test cases (`bb`). These instance
+variables, used in the enterprise bean tests, must be accessible at
+deployment time.
+
+The Java Platform, Enterprise Edition RI provides the container-managed
+persistence implementation-specific features as part of its runtime XML
+file. Your Java Platform, Enterprise Edition platform implementation
+needs to map the container-managed fields to the appropriate backend
+datastore. The manner in which you do this is implementation-specific.
+The `DeploymentInfo` class provides all of the runtime XML information
+as an object that is passed to the `TSDeploymentInterface2`
+implementation.
+
+For a list of SQL statements used in CMP 1.1 finders, refer to
+link:ejbql-schema.html#GFKQT[SQL Statements for CMP 1.1 Finders].
+
+[[GEXOL]][[java-persistence-api-test-setup]]
+
+5.4.15 Java Persistence API Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Java Persistence API tests exercise the requirements as defined in
+the Java Persistence API Specification. This specification defines a
+persistence context to be a set of managed entity instances, in which
+for any persistent identity there is a unique entity instance. Within
+the persistence context, the entity instances and their life cycles are
+managed by the entity manager.
+
+Within a Java Platform, Enterprise Edition environment, support for both
+container-managed and application-managed entity managers is required.
+Application-managed entity managers can be JTA or resource-local. Refer
+to Chapter 8 of the Java Persistence API Specification
+(`http://jcp.org/en/jsr/detail?id=338`) for additional information
+regarding entity managers.
+
+[[GJKPA]][[to-configure-the-test-environment-to-run-the-jpa-pluggability-tests]]
+
+5.4.15.1 To Configure the Test Environment to Run the JPA Pluggability Tests
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The JPA Pluggability tests under the
+`src/com/sun/ts/tests/jpa/ee/pluggability` directory ensure that a
+third-party persistence provider is pluggable, in nature.
+
+After Java EE 7 CTS, the pluggability tests were rewritten to use a
+stubbed-out JPA 2.1 implementation, which is located in the
+`src/com/sun/ts/jpa/common/pluggibility/altprovider` directory.
+
+In Java EE 7 CTS, the Persistence API pluggability tests required
+special setup to run. This is no longer the case, since Java EE 8 CTS
+now enables the pluggability tests to be executed automatically along
+with all the other Persistence tests. The Persistence tests have a new
+directory structure. In Java EE 7 CTS, the tests were in the
+`src/com/sun/ts/tests/ejb30/persistence` directory. The tests are now in
+the `src/com/sun/ts/tests/jpa` directory.
+
+[[sthref19]][[enabling-second-level-caching-support]]
+
+5.4.15.2 Enabling Second Level Caching Support
+++++++++++++++++++++++++++++++++++++++++++++++
+
+Java Persistence supports the use of a second-level cache by the
+persistence provider. The `ts.jte` file provides a property that
+controls the CTS test suite's use of the second-level cache.
+
+The `persistence.second.level.caching.supported` property is used to
+determine if the persistence provider supports the use of a second-level
+cache. The default value is true. If your persistence provider does not
+support second level caching, set the value to false.
+
+[[GEXOW]][[persistence-test-vehicles]]
+
+5.4.15.3 Persistence Test Vehicles
+++++++++++++++++++++++++++++++++++
+
+The persistence tests are run in a variety of "vehicles" from which the
+entity manager is obtained and the transaction type is defined for use.
+There are six vehicles used for these tests:
+
+* `stateless3`: Bean-managed stateless session bean using JNDI to lookup
+a JTA `EntityManager`; uses `UserTransaction` methods for transaction
+demarcation
+* `stateful3`: Container-managed stateful session bean using
+`@PersistenceContext` annotation to inject JTA `EntityManager;` uses
+container-managed transaction demarcation with a transaction attribute
+(required)
+* `appmanaged`: Container-managed stateful session bean using
+`@PersistenceUnit` annotation to inject an `EntityManagerFactory`; the
+`EntityManagerFactory` API is used to create an Application-Managed JTA
+`EntityManager`, and uses the container to demarcate transactions
+* `appmanagedNoTx`: Container-managed stateful session bean using
+`@PersistenceUnit` annotation to inject an `EntityManagerFactory`; the
+`EntityManagerFactory` API is used to create an Application-Managed
+Resource Local `EntityManager`, and uses the `EntityTransaction` APIs to
+control transactions
+* `pmservlet`: Servlet that uses the `@PersistenceContext` annotation at
+the class level and then uses JNDI lookup to obtain the `EntityManager`;
+alternative to declaring the persistence context dependency via a
+`persistence-context-ref` in `web.xml` and uses `UserTransaction`
+methods for transaction demarcation
+* `puservlet`: Servlet that injects an `EntityManagerFactory` using the
+`@PersistenceUnit` annotation to create a to Resource Local
+`EntityManager`, and uses `EntityTransaction` APIs for transaction
+demarcation
+
+
+[NOTE]
+=======================================================================
+
+For vehicles using a `RESOURCE_LOCAL` transaction type, be sure to
+configure a non-transactional resource with the logical name
+`jdbc/DB_no_tx`. Refer to the `ts.jte` file for information about the
+`jdbc.db` property.
+
+=======================================================================
+
+
+[[GEXPY]][[generatedvalue-annotation]]
+
+5.4.15.4 GeneratedValue Annotation
+++++++++++++++++++++++++++++++++++
+
+The Java Persistence API Specification also defines the requirements for
+the `GeneratedValue` annotation. The default for this annnotation is
+`GenerationType.AUTO`. Per the specification, `AUTO` indicates that the
+persistence provider should pick an appropriate strategy for the
+particular database. The `AUTO` generation strategy may expect a
+database resource to exist, or it may attempt to create one.
+
+The `db.supports.sequence` property is used to determine if a database
+supports the use of SEQUENCE. If it does not, this property should be
+set to false so the test is not run. The default value is true.
+
+If the database under test is not one of the databases defined and
+supported by CTS, the user will need to create an entry similar to the
+one listed in link:#GEXOO[Example 5-1].
+
+[[GEXOO]]
+
+Example 5-1 GeneratedValue Annotation Test Table
+
+[source,oac_no_warn]
+----
+DROP TABLE SEQUENCE;
+CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(10), SEQ_COUNT INT, CONSTRAINT SEQUENCE_PK /
+PRIMARY KEY (SEQ_NAME) );
+INSERT into SEQUENCE(SEQ_NAME, SEQ_COUNT) values ('SEQ_GEN', 0) ;
+----
+
+You should add your own table to your chosen database DDL file provided
+prior to running these tests. The Data Model used to test the Java
+Persistence Query Language can be found in
+link:ejbql-schema.html#GFAVUc[Appendix E, "EJBQL Schema."]
+
+The `persistence.xml` file, which defines a persistence unit, contains
+the `unitName` `CTS-EM` for JTA entity managers. This corresponds to
+`jta-data-source`, `jdbc/DB1`, and to `CTS-EM-NOTX` for `RESOURCE_LOCAL`
+entity managers, which correspond to a `non-jta-data-source`
+`jdbc/DB_no_tx`.
+
+[[GEXPT]][[jms-test-setup]]
+
+5.4.16 JMS Test Setup
+^^^^^^^^^^^^^^^^^^^^^
+
+This section explains how to set up and configure the Java EE 8 CTS test
+suite before running the JMS tests.
+
+
+[NOTE]
+=======================================================================
+
+The client-specified values for `JMSDeliveryMode`, `JMSExpiration`, and
+`JMSPriority` must not be overridden when running the CTS JMS tests.
+
+=======================================================================
+
+
+[[sthref20]][[to-configure-a-slow-running-system]]
+
+5.4.16.1 To Configure a Slow Running System
++++++++++++++++++++++++++++++++++++++++++++
+
+Make sure that the following property has been set in the `ts.jte` file:
+
+[source,oac_no_warn]
+----
+jms_timeout=10000
+----
+
+This property specifies the length of time, in milliseconds, that a
+synchronous receive operation will wait for a message. The default value
+of the property should be sufficient for most environments. If, however,
+your system is running slowly and you are not receiving the messages
+that you should be, you need to increase the value of this parameter.
+
+[[sthref21]][[to-test-your-jms-resource-adapter]]
+
+5.4.16.2 To Test Your JMS Resource Adapter
+++++++++++++++++++++++++++++++++++++++++++
+
+If your implementation supports JMS as a Resource Adapter, you must set
+the name of the `jmsra.name` property in the `ts.jte` file to the name
+of your JMS Resource Adapter. The default value for the property is the
+name of the JMS Resource Adapter in the Java EE 8 RI.
+
+If you modify the `jmsra.name` property, you must rebuild the JMS tests
+that use this property. You rebuild the tests by doing the following:
+
+1.  Change to the `TS_HOME/bin` directory.
+2.  Invoke the following Ant task: +
+[source,oac_no_warn]
+----
+ant rebuild.jms.rebuildable.tests
+----
+This rebuilds the tests under
+`TS_HOME/src/com/sun/ts/tests/jms/ee20/resourcedefs`.
+
+[[sthref22]][[to-create-jms-administered-objects]]
+
+5.4.16.3 To Create JMS Administered Objects
++++++++++++++++++++++++++++++++++++++++++++
+
+If you do not have an API to create JMS Administered objects, and you
+cannot create an Ant target equivalent to `config.vi`, you can use the
+list that follows and manually create the objects. If you decide to
+create these objects manually, you need to provide a dummy
+implementation of the JMS porting interface, `TSJMSAdminInterface`.
+
+The list of objects you need to manually create includes the following
+factories, queues, and topics.
+
+* Factories: +
+[source,oac_no_warn]
+----
+jms/TopicConnectionFactory
+jms/DURABLE_SUB_CONNECTION_FACTORY, clientId=cts
+jms/MDBTACCESSTEST_FACTORY, clientId=cts1
+jms/DURABLE_BMT_CONNECTION_FACTORY, clientId=cts2
+jms/DURABLE_CMT_CONNECTION_FACTORY, clientId=cts3
+jms/DURABLE_BMT_XCONNECTION_FACTORY, clientId=cts4
+jms/DURABLE_CMT_XCONNECTION_FACTORY, clientId=cts5
+jms/DURABLE_CMT_TXNS_XCONNECTION_FACTORY, clientId=cts6
+jms/QueueConnectionFactory
+jms/ConnectionFactory
+----
+* Queues: +
+[source,oac_no_warn]
+----
+MDB_QUEUE
+MDB_QUEUE_REPLY
+MY_QUEUE
+MY_QUEUE2
+Q2
+QUEUE_BMT
+ejb_ee_bb_localaccess_mdbqaccesstest_MDB_QUEUE
+ejb_ee_deploy_mdb_ejblink_casesensT_ReplyQueue
+ejb_ee_deploy_mdb_ejblink_casesens_ReplyQueue
+ejb_ee_deploy_mdb_ejblink_casesens_TestBean
+ejb_ee_deploy_mdb_ejblink_scopeT_ReplyQueue
+ejb_ee_deploy_mdb_ejblink_scope_ReplyQueue
+ejb_ee_deploy_mdb_ejblink_scope_TestBean
+ejb_ee_deploy_mdb_ejblink_singleT_ReplyQueue
+ejb_ee_deploy_mdb_ejblink_single_ReplyQueue
+ejb_ee_deploy_mdb_ejblink_single_TestBean
+ejb_ee_deploy_mdb_ejblink_single_TestBeanBMT
+ejb_ee_deploy_mdb_ejbref_casesensT_ReplyQueue
+ejb_ee_deploy_mdb_ejbref_casesens_ReplyQueue
+ejb_ee_deploy_mdb_ejbref_casesens_TestBean
+ejb_ee_deploy_mdb_ejbref_scopeT_ReplyQueue
+ejb_ee_deploy_mdb_ejbref_scope_Cyrano
+ejb_ee_deploy_mdb_ejbref_scope_ReplyQueue
+ejb_ee_deploy_mdb_ejbref_scope_Romeo
+ejb_ee_deploy_mdb_ejbref_scope_Tristan
+ejb_ee_deploy_mdb_ejbref_singleT_ReplyQueue
+ejb_ee_deploy_mdb_ejbref_single_ReplyQueue
+ejb_ee_deploy_mdb_ejbref_single_TestBean
+ejb_ee_deploy_mdb_ejbref_single_TestBeanBMT
+ejb_ee_deploy_mdb_enventry_casesensT_ReplyQueue
+ejb_ee_deploy_mdb_enventry_casesens_CaseBean
+ejb_ee_deploy_mdb_enventry_casesens_CaseBeanBMT
+ejb_ee_deploy_mdb_enventry_casesens_ReplyQueue
+ejb_ee_deploy_mdb_enventry_scopeT_ReplyQueue
+ejb_ee_deploy_mdb_enventry_scope_Bean1_MultiJar
+ejb_ee_deploy_mdb_enventry_scope_Bean1_SameJar
+ejb_ee_deploy_mdb_enventry_scope_Bean2_MultiJar
+ejb_ee_deploy_mdb_enventry_scope_Bean2_SameJar
+ejb_ee_deploy_mdb_enventry_scope_ReplyQueue
+ejb_ee_deploy_mdb_enventry_singleT_ReplyQueue
+ejb_ee_deploy_mdb_enventry_single_AllBean
+ejb_ee_deploy_mdb_enventry_single_AllBeanBMT
+ejb_ee_deploy_mdb_enventry_single_BooleanBean
+ejb_ee_deploy_mdb_enventry_single_ByteBean
+ejb_ee_deploy_mdb_enventry_single_DoubleBean
+ejb_ee_deploy_mdb_enventry_single_FloatBean
+ejb_ee_deploy_mdb_enventry_single_IntegerBean
+ejb_ee_deploy_mdb_enventry_single_LongBean
+ejb_ee_deploy_mdb_enventry_single_ReplyQueue
+ejb_ee_deploy_mdb_enventry_single_ShortBean
+ejb_ee_deploy_mdb_enventry_single_StringBean
+ejb_ee_deploy_mdb_resref_singleT_ReplyQueue
+ejb_ee_deploy_mdb_resref_single_ReplyQueue
+ejb_ee_deploy_mdb_resref_single_TestBean
+ejb_ee_sec_stateful_mdb_MDB_QUEUE
+ejb_sec_mdb_MDB_QUEUE_BMT
+ejb_sec_mdb_MDB_QUEUE_CMT
+jms_ee_mdb_mdb_exceptQ_MDB_QUEUETXNS_CMT
+jms_ee_mdb_mdb_exceptQ_MDB_QUEUE_BMT
+jms_ee_mdb_mdb_exceptQ_MDB_QUEUE_CMT
+jms_ee_mdb_mdb_exceptT_MDB_QUEUETXNS_CMT
+jms_ee_mdb_mdb_exceptT_MDB_QUEUE_BMT
+jms_ee_mdb_mdb_exceptT_MDB_QUEUE_CMT
+jms_ee_mdb_mdb_msgHdrQ_MDB_QUEUE
+jms_ee_mdb_mdb_msgPropsQ_MDB_QUEUE
+jms_ee_mdb_mdb_msgTypesQ1_MDB_QUEUE
+jms_ee_mdb_mdb_msgTypesQ2_MDB_QUEUE
+jms_ee_mdb_mdb_msgTypesQ3_MDB_QUEUE
+jms_ee_mdb_mdb_rec_MDB_QUEUE
+jms_ee_mdb_sndQ_MDB_QUEUE
+jms_ee_mdb_sndToQueue_MDB_QUEUE
+jms_ee_mdb_mdb_synchrec_MDB_QUEUE
+jms_ee_mdb_xa_MDB_QUEUE_BMT
+jms_ee_mdb_xa_MDB_QUEUE_CMT
+testQ0
+testQ1
+testQ2
+testQueue2
+fooQ
+----
+* Topics: +
+[source,oac_no_warn]
+----
+MY_TOPIC
+MY_TOPIC2
+TOPIC_BMT
+ejb_ee_bb_localaccess_mdbtaccesstest_MDB_TOPIC
+ejb_ee_deploy_mdb_ejblink_casesensT_TestBean
+ejb_ee_deploy_mdb_ejblink_scopeT_TestBean
+ejb_ee_deploy_mdb_ejblink_singleT_TestBean
+ejb_ee_deploy_mdb_ejblink_singleT_TestBeanBMT
+ejb_ee_deploy_mdb_ejbref_casesensT_TestBean
+ejb_ee_deploy_mdb_ejbref_scopeT_Cyrano
+ejb_ee_deploy_mdb_ejbref_scopeT_Romeo
+ejb_ee_deploy_mdb_ejbref_scopeT_Tristan
+ejb_ee_deploy_mdb_ejbref_singleT_TestBean
+ejb_ee_deploy_mdb_ejbref_singleT_TestBeanBMT
+ejb_ee_deploy_mdb_enventry_casesensT_CaseBean
+ejb_ee_deploy_mdb_enventry_casesensT_CaseBeanBMT
+ejb_ee_deploy_mdb_enventry_scopeT_Bean1_MultiJar
+ejb_ee_deploy_mdb_enventry_scopeT_Bean1_SameJar
+ejb_ee_deploy_mdb_enventry_scopeT_Bean2_MultiJar
+ejb_ee_deploy_mdb_enventry_scopeT_Bean2_SameJar
+ejb_ee_deploy_mdb_enventry_singleT_AllBean
+ejb_ee_deploy_mdb_enventry_singleT_AllBeanBMT
+ejb_ee_deploy_mdb_enventry_singleT_BooleanBean
+ejb_ee_deploy_mdb_enventry_singleT_ByteBean
+ejb_ee_deploy_mdb_enventry_singleT_DoubleBean
+ejb_ee_deploy_mdb_enventry_singleT_FloatBean
+ejb_ee_deploy_mdb_enventry_singleT_IntegerBean
+ejb_ee_deploy_mdb_enventry_singleT_LongBean
+ejb_ee_deploy_mdb_enventry_singleT_ShortBean
+ejb_ee_deploy_mdb_enventry_singleT_StringBean
+ejb_ee_deploy_mdb_resref_singleT_TestBean
+jms_ee_mdb_mdb_exceptT_MDB_DURABLETXNS_CMT
+jms_ee_mdb_mdb_exceptT_MDB_DURABLE_BMT
+jms_ee_mdb_mdb_exceptT_MDB_DURABLE_CMT
+jms_ee_mdb_mdb_msgHdrT_MDB_TOPIC
+jms_ee_mdb_mdb_msgPropsT_MDB_TOPIC
+jms_ee_mdb_mdb_msgTypesT1_MDB_TOPIC
+jms_ee_mdb_mdb_msgTypesT2_MDB_TOPIC
+jms_ee_mdb_mdb_msgTypesT3_MDB_TOPIC
+jms_ee_mdb_mdb_rec_MDB_TOPIC
+jms_ee_mdb_mdb_sndToTopic_MDB_TOPIC
+jms_ee_mdb_mdb_sndToTopic_MDB_TOPIC_REPLY
+jms_ee_mdb_xa_MDB_DURABLE_BMT
+jms_ee_mdb_xa_MDB_DURABLE_CMT
+testT0
+testT1
+testT2
+----
+
+
+[NOTE]
+=======================================================================
+
+Implementations of `TSJMSAdminInterface` are called inside the JavaTest
+VM. The `com.sun.ts.lib.deliverable.cts.CTSPropertyManager` class, which
+is available to these implementations, provides access to any property
+in the `ts.jte` file.
+
+=======================================================================
+
+
+[[GEXQR]][[transaction-interoperability-testing]]
+
+5.4.17 Transaction Interoperability Testing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Using two Java Platform, Enterprise Edition server implementations, you
+can test up to four transaction interoperability configurations.
+However, note that you only need to test and pass configurations that
+your Java Platform, Enterprise Edition server supports.
+link:#GEXOC[Table 5-1] shows these configurations.
+
+[[sthref23]][[GEXOC]]
+
+Table 5-1 Transaction Interoperability Testing Configurations
+
+[width="100%",cols="34%,33%,33%",options="header",]
+|=======================================================================
+|Configuration |Transaction Interoperability Setting for a Java
+Platform, Enterprise Edition Vendor Implementation |Transaction
+Interoperability Setting for the Java Platform, Enterprise Edition RI
+|1 |ON |OFF
+
+|2 |ON |ON
+
+|3 |OFF |OFF
+
+|4 |OFF |ON
+|=======================================================================
+
+
+Modify the interoperability settings for transaction interoperability
+according to what you need to test:
+
+* If your implementation supports transaction interoperability, you must
+test configurations #1 and #2.
+* If your implementation does not support transaction interoperability,
+you must test configurations #3 and #4.
+
+The `ts.jte` file has the following transaction interoperability
+properties:
+
+[source,oac_no_warn]
+----
+EJBServer1TxInteropEnabled=[false | true]
+EJBServer2TxInteropEnabled=[false | true]
+----
+
+To run the required test configurations described in link:#GEXOC[Table
+5-1], use the following commands to change the Java Platform, Enterprise
+Edition SDK settings as necessary.
+
+* To set the Java Platform, Enterprise Edition RI Transaction
+Interoperability setting to `False`: +
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant disable.ri.tx.interop
+----
+* To set the Java Platform, Enterprise Edition RI Transaction
+Interoperability setting to `True`: +
+[source,oac_no_warn]
+----
+ant enable.ri.tx.interop
+----
+
+The default Java Platform, Enterprise Edition RI Transaction
+Interoperability setting is `True`.
+
+[[GKWVB]][[jaspic-test-setup]]
+
+5.4.18 JASPIC Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Java Authentication Service Provider Interface for Containers (JASPIC)
+1.1 tests are security tests. The JASPIC Servlet profile is the only
+required profile for Java EE 8 CTS. There are other optional profile
+tests, such as SOAP, but you are not required to run these for
+certification.
+
+The test suite includes the following Ant targets that configure the
+test environment for the JASPIC tests
+
+* `config_vi` target in `<TS_HOME>/bin/build.xml`
+* `enable.jaspic`, also in `<TS_HOME>/bin/build.xml`
+
+Both targets call `<TS_HOME>/bin/xml/impl/glassfish/javaee_vi.xml`,
+which then makes calls into `<TS_HOME>/bin/xml/impl/glassfish/s1as.xml`.
+You may want to examine these targets to see what is done in greater
+detail.
+
+Complete the following steps before you run the JASPIC tests:
+
+1.  Configure the JASPIC-required properties in the `ts.jte` file:
+1.  Set the `provider.configuration.file` property to the location of
+your implementation's instance `lib` directory, where it can be loaded
+when your implementation runtime is started. +
+This file typically coexists with the `tssv.jar` file and the
+`provider-configuration.dtd` file.
+2.  Set the `vendor.authconfig.factory` property to specify your
+`AuthConfigFactory` class. +
+This property setting will be used by the JASPIC tests to register the
+test suite's provider in your `AuthConfigFactory`.
+3.  Set the `logical.hostname.servlet` property to the logical host that
+will process Servlet requests. +
+Servlet requests may be directed to a logical host using various
+physical or virtual host names or addresses. A message processing
+runtime may be composed of multiple logical hosts. This setting is
+required to properly identify the Servlet profile's application context
+identifier hostname. If the logical host that will process Servlet
+requests does not exist, you can set this to the default hostname of
+your implementation's Web server.
+4.  Set the `servlet.is.jsr115.compatible` property based on whether or
+not you are running the Servlet profile in a JSR 115-compatible
+container.
+2.  Ensure that the `config.vi` Ant task has been run before running the
+`enable.jaspic` Ant task. +
+These Ant tasks perform the following JASPIC-required steps:
+* Set up users and passwords for your implementation. +
+See Step link:#BABDADHA[9]link:#BABBHFAI[b] in link:#GEWWA[Configuring
+Your Application Server as the VI] for more information.
+* Install the client-side certificate in the `trustStore` in your
+implementation. +
+See Step link:#BABEGCJH[17] in link:#GEWWA[Configuring Your Application
+Server as the VI] for more information.
+* Append the file `<TS_HOME>/bin/server_policy.append` to the Java
+policy file or files on your implementation. +
+See Step 17 in link:#GEWWA[Configuring Your Application Server as the
+VI]link:#GEWWA[Configuring Your Application Server as the VI] for more
+information.
+* Appends the file `<TS_HOME>/bin/client_policy.append` to the
+application client's Java policy file, which is referenced in the
+`TestExecuteAppClient` section of the `ts.jte` file. +
+See Step 18 in link:#GEWWA[Configuring Your Application Server as the
+VI]link:#GEWWA[Configuring Your Application Server as the VI] for more
+information.
+* Copies the `<TS_HOME>/lib/tssv.jar` file to your implementation
+instance library directory. +
+The `tssv.jar` file includes the class files necessary to load
+`TSAuthConfigFactory` and related classes.
+* Copies the TSSV configuration files (`ProviderConfiguration.xml`,
+`configuration.dtd`) to your implementation instance library directory. +
+The `provider-configuration.dtd` file is a DTD file that resides in the
+same directory as the `ProviderConfiguration.xml` file and describes the
+`ProviderConfiguration.xml` file. This file should not be edited.
+* Copies `<TS_HOME>/bin/ts.java.security` to
+`<JAVAEE_HOME>/domains/domain1/config/ts.java.security`, where
+`<JAVAEE_HOME>` is the location of your Java EE 8 RI installation.
+* Sets the following JVM options:
+
+** `-Djava.security.properties=<JAVAEE_HOME>/domains/domain1/config/ts.java.security`
+
+** `-Dlog.file.location=${log.file.location}`
+
+** `-Dprovider.configuration.file=${provider.configuration.file}`
+3.  Deploy the JASPIC log file processor,
+`<TS_HOME>/dist/com/sun/ts/tests/jaspic/util/jaspic_util_web.war`, to
+the implementation under test. +
+
+[NOTE]
+=======================================================================
+
+It may be necessary to restart your implementation after completing this
+step.
+
+=======================================================================
+
+4.  Run the tests for the profiles with which you are trying to certify.
+5.  After running the JASPIC tests, change back to the `<TS_HOME>/bin`
+directory and execute the following command: +
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant disable.jaspic
+----
+This Ant task undoes the changes that were made to your implementation
+by the `enable.jaspic` target. If these changes are not reversed, your
+implementation may be left in an uncertain state.
+
+[[GEXWW]][[csiv2-test-setup]]
+
+5.4.19 CSIv2 Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Common Secure Interoperability Version 2 (CSIv2) is security-related
+interoperability testing. You must complete all of the setup
+instructions in link:#GEXMH[Configuring a Java Platform, Enterprise
+Edition RI and VI for Interop/Rebuildable Tests] and the steps provided
+in this section before you run the CSIv2 tests.
+
+This following sections describe how to set up two Java Platform,
+Enterprise Edition servers, one running the vendor's Java Platform,
+Enterprise Edition server and the other running the Java Platform,
+Enterprise Edition RI. Be sure to complete the steps in
+link:#GEWTQ[Section 5.3, "Configuring a Java EE 8 Server,"] before
+proceeding with the instructions below.
+
+Reference information on the CSIv2 tests, security elements, and
+analyzing test logs can be found in link:csiv2logs.html#GFAVU[Appendix B,
+"CSIv2 Test Reference."]
+
+[[GEXVO]][[to-configure-the-vendors-java-ee-8-server]]
+
+5.4.19.1 To Configure the Vendor's Java EE 8 Server
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Generate the required IORs, based on the values of the fields that are
+described in link:#GLREL[Section 5.4.19.3, "Generating IORs Based on
+Runtime XML Information."]
+
+link:csiv2logs.html#GFKKB[Section B.10, "IORs and Associated CSIv2
+Tests,"] provides additional information about IOR definitions.
+
+To configure the vendor's Java EE 8 server, you need to perform steps
+similar to those in the `config.vi` task. You do not need to install the
+Connector RAR files for the CSIv2/interop tests, so you could run the
+following command to configure the vendor's Java EE 8 server:
+
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant -Dskip.config.connector=true config.vi
+----
+
+[[GEXVB]][[to-configure-the-java-ee-8-ri-server]]
+
+5.4.19.2 To Configure the Java EE 8 RI Server
++++++++++++++++++++++++++++++++++++++++++++++
+
+1.  Run the CSIv2 Ant target. +
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant enable.csiv2
+----
+2.  Run the CSIv2 tests. +
+See link:using.html#GBFWO[Chapter 7, "Executing Tests,"] for instructions
+on executing tests. After the test run concludes, you need to analyze
+the results. See link:csiv2logs.html#GFAVU[Appendix B, "CSIv2 Test
+Reference,"] for information about analyzing the test logs.
+3.  Disable CSIv2. +
+[source,oac_no_warn]
+----
+ant disable.csiv2
+----
+
+[[GLREL]][[generating-iors-based-on-runtime-xml-information]]
+
+5.4.19.3 Generating IORs Based on Runtime XML Information
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The `DeploymentInfo` class contains public accessor methods that
+correspond to XML elements within the `<ior-security-config>` element in
+the EJB jar runtime XML that is packaged with the test beans. Java
+Platform, Enterprise Edition vendor implementations are required to
+generate IORs that are based on the values pulled from this XML document
+as described in this section. Failure to do so will result in test
+failures.
+
+The fields are divided into three categories:
+
+* Fields that deal with client authentication at the client
+authentication layer of the CSIv2 protocol:
+
+** `asAuthMethod`
+
+** `asRequired`
+
+** `asRealmName`
+* Fields that deal with the secure transport layer (SSL):
+
+** `transportIntegrity`
+
+** `transportConfidentiality`
+
+** `EstablishTrustInTarget`
+
+** `EstablishTrustInClient`
+* Fields that deal with caller propagation:
+
+** `sasCallerPropagation`
+
+The values of these fields must be used to construct the
+`CompoundSecMec` structure within an IOR. The construction of the IORs
+is briefly described in this class. link:csiv2logs.html#GFKKB[IORs and
+Associated CSIv2 Tests] lists all the IORS that are expected to be
+generated. For more detailed information about IORS, refer to the CSIv2
+specification.
+
+Not all possible combinations of fields are used by CSIv2 tests. For
+example, the following fields are used to indicate that client
+authentication is required at the client authentication layer of the
+CSIv2 protocol:
+
+[source,oac_no_warn]
+----
+asAuthMethod = "username_password"
+asRealmName  = "default"
+asRequired   = "true"
+----
+
+The following fields are used to indicate that client authentication is
+not required at the client authentication layer of the CSIv2 protocol:
+
+[source,oac_no_warn]
+----
+asAuthMethod = "username_password"
+asRealmName  = "default"
+asRequired   = "false"
+----
+
+The Java example listed below demonstrates how users can extract the
+required information from the `DeploymentInfo` object:
+
+[source,oac_no_warn]
+----
+DeploymentInfo info;
+List ejbs = info.getEnterpriseBeans().getEjb();
+foreach ejb in ejbs {
+    ejb.getIorSecurityConfig().getAsContext().getAuthMethod().getContent();
+    ejb.getIorSecurityConfig().getAsContext().getRequired().getContent();
+    ejb.getIorSecurityConfig().getAsContext().getRealm().getContent();
+    ejb.getIorSecurityConfig().getTransportConfig().getIntegrity().getContent();
+    ejb.getIorSecurityConfig().getTransportConfig().getConfidentiality().getContent();
+    ejb.getIorSecurityConfig().getTransportConfig().getEstablishTrustInClient().getContent();
+    ejb.getIorSecurityConfig().getTransportConfig().getEstablishTrustInTarget().getContent();
+} // end loop
+----
+
+For more information about the `<security-role-mapping>` and
+`<ior-security-config>` elements, see link:csiv2logs.html#GLSDH[Security
+Elements Associated With CSIv2 Tests].
+
+[[GEYBI]][[jacc-test-setup]]
+
+5.4.20 JACC Test Setup
+^^^^^^^^^^^^^^^^^^^^^^
+
+To comply with Java EE 8 requirements, JACC must be supported in both
+the Web and EJB environments. The tests for each environment are divided
+into two directories:
+
+* `src/com/sun/ts/tests/jacc/web`
+* `src/com/sun/ts/tests/jacc/ejb`
+
+When deploying the archives that contain JACC tests, don't deploy all
+the JACC test archives at the same time. While this may work, there have
+been times when it has caused problems. The recommended course of action
+is to deploy the test archive for the directory under test. Once done,
+remove that archive and move onto another directory.
+
+The JACC-CTS provider acts as a delegating security provider sitting
+between the appserver and vendor provider. The Java Platform, Enterprise
+Edition appserver comes with a default security provider that is defined
+by two system properties; for the purposes of this discussion, these are
+referred to as `A=DefaultProviderFactory` and `B=DefaultPolicyModule`.
+
+CTS moves the values from A and B to two new variables:
+`C=DefaultProviderFactory` and `D=DefaultPolicyModule`, replacing the
+CTS provider classes to the variables `A` and `B` (`A=TSProviderFactory`
+and `B=TSPolicyModule`). This modification allows the server to call the
+CTS provider for all its functions, and the CTS provider in turn uses
+these new variables to invoke the real provider.
+
+The property names `A`, `B`, `C`, and `D` are used for convenience here.
+The real property names are as follows:
+
+* `A=javax.security.jacc.PolicyConfigurationFactory.provider`
+* `B=javax.security.jacc.policy.provider`
+* `C=vendor.javax.security.jacc.PolicyConfigurationFactory.provider`
+* `D=vendor.javax.security.jacc.policy.provider`
+
+To configure the JACC provider for the Java Platform, Enterprise Edition
+RI, execute the JACC Ant target from:
+
+[source,oac_no_warn]
+----
+<TS_HOME>/bin
+----
+
+This command does the following:
+
+* Switches the system properties.
+* Adds `tsprovider.jar` to Java Platform, Enterprise Edition application
+server's classpath.
+* Adds `log.file.location` system property to the Java Platform,
+Enterprise Edition application server's system properties. This is used
+for generating log files, which is used for verifying JSR 115 contracts.
+
+
+[NOTE]
+=======================================================================
+
+When running JACC tests against the Java EE 8 RI, if you need to restart
+the RI, be sure to first remove all JACC log files (`jacc_log.*`) from
+the `JAVAEE_HOME/domains/domain1/logs` directory before running the JACC
+tests again.
+
+=======================================================================
+
+
+[[sthref24]][[java-batch-test-setup]]
+
+5.4.21 Java Batch Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Java Batch tests, which are located under the
+`<TS_HOME>/src/com/ibm/jbatch/tck` directory, don't require extra setup
+for most implementations. However, there may be a few cases where some
+customization is needed.
+
+If you are using an injection technology other than CDI, complete the
+following steps before running the Java Batch tests:
+
+1.  Remove the `<TS_HOME>/src/com/ibm/jbatch/tck/testJobXml/beans.xml`
+and `<TS_HOME>/src/com/ibm/jbatch/tck/tests/ee/beans.xml` files.
+2.  Change to the `<TS_HOME>/src/com/ibm/jbatch/tck` directory.
+3.  Execute the `ant build` command to rebuild the archives.
+
+If you are using a different implementation of the porting interface
+`<<TS_HOME>/src/com/ibm/jbatch/tck/testJobXml/META-INF/services/com.ibm.jbatch.tck.spi.JobExecutionWaiterFactory`,
+complete the following steps before running the Java Batch tests:
+
+1.  Change the entry in
+`<TS_HOME>/src/com/ibm/jbatch/tck/testJobXml/META-INF/services/com.ibm.jbatch.tck.spi.JobExecutionWaiterFactory`
+to specify the new porting implementation class.
+2.  Change to the `<TS_HOME>/src/com/ibm/jbatch/tck` directory.
+3.  Execute the `ant build` command to rebuild the archives.
+
+For information about the Java Batch tests themselves, see the
+Technology Compatibility Kit Reference Guide for JSR-352: Batch
+Applications for the Java Platform at the following location:
+
+https://github.com/WASdev/standards.jsr352.tck
+
+[[GEYAM]][[wsdl-webservice-test-and-runtime-notes]]
+
+5.4.22 WSDL: Webservice Test and Runtime Notes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In addition to the WSDL elements described later in this section, the
+Java Platform, Enterprise Edition RI webservice runtime DTDs contain two
+new optional elements for publishing and lookup of final WSDLs for a
+deployed webservice endpoint. These new tags are
+`<wsdl-publish-location>` and `<wsdl-override>`, and are used by the CTS
+to automate all CTS webservices tests, regardless of the host or port
+used to run the tests.
+
+These WSDL tags are also used when performing file URL publishing, as
+required by JSR109. JSR109 states that http URL and file URL publishing
+must be supported on a Java Platform, Enterprise Edition platform. In
+addition, the `<wsdl-override>` is used as a mechanism for satisfying
+the partial WSDL requirement in the JSR109 specification. This mechanism
+enables the specification of the location of the final full published
+WSDL of a deployed webservice endpoint within the client EAR when only a
+partial WSDL is packaged, which enables client access to the full WSDL
+and correct SOAP address to communicate with the webservice.
+
+The `<wsdl-publish-location>` tag tells the Java Platform, Enterprise
+Edition RI where to publish the final WSDL for the deployed webservice
+endpoint. As stated above, the final WSDL can be published to a file URL
+or http URL, although the tag is really only necessary for file URL
+publishing, and is ignored if http URL publishing is specified (http is
+the default publishing used by the Java Platform, Enterprise Edition
+RI). This tag is included in all CTS tests for consistency and to aid as
+a mechanism in automation.
+
+By default, the Java Platform, Enterprise Edition RI publishes the final
+WSDL during deployment to a http URL following a standard URL naming
+scheme. See below for details about the Java Platform, Enterprise
+Edition RI runtime. This default can be overriden to explicitly do file
+URL publishing.
+
+The `<wsdl-override>` tag tells the client application EAR where to
+lookup the final published WSDL for the deployed webservice endpoint.
+This will be either a `file` URL or an `http` URL to match what is
+specified in the `<wsdl-publish-location>` tag.
+
+[[GEYAJ]][[wsdl-ts.jte-properties]]
+
+5.4.22.1 WSDL ts.jte Properties
++++++++++++++++++++++++++++++++
+
+For file URL publishing, the CTS defines two properties in the `ts.jte`
+file, named `wsdlRepository1` and `wsdlRepository2`, which specify the
+file system directory location to use for publishing final WSDLs that
+use file URL publishing.
+
+The `wsdlRepository1` is used for the Vendor Java Platform, Enterprise
+Edition Implementation. The `wsdlRepository2` is used for the RI Java
+Platform, Enterprise Edition Implementation, and is only used for CTS
+webservices interoperability testing. These directories get created by
+the CTS harness at runtime. The default settings in the `ts.jte` file
+will create these directories under:
+
+[source,oac_no_warn]
+----
+wsdlRepository1=<TS_HOME>/tmp/wsdlRepository1
+wsdlRepository2=<TS_HOME>/tmp/wsdlRepository2
+----
+
+For file URL publishing, the WSDL tag settings could be as follows:
+
+[source,oac_no_warn]
+----
+$TS_HOME/src/com/sun/ts/tests/webservices/wsdlImport/file/Simple1
+Webservice Endpoint
+<wsdl-publish-location>
+file:wsdlRepository1/Simple1File
+</wsdl-publish-location>
+
+Webservice Client Application
+<wsdl-override>
+file:wsdlRepository1/Simple1File/Simple1FileSvc.wsdl
+</wsdl-override>
+----
+
+In this case, the CTS harness substitutes `wsdlRepository1` with the
+setting in the `<TS_HOME>/bin/ts.jte` file.
+
+For `http` URL publishing, the tag settings might be:
+
+[source,oac_no_warn]
+----
+$TS_HOME/src/com/sun/ts/tests/webservices/wsdlImport/http/Simple1
+Webservice Endpoint
+<wsdl-publish-location>
+http://webServerHost.1:webServerPort.1/Simple1Http/ws4ee?WSDL
+</wsdl-publish-location>
+
+Webservice Client Application
+<wsdl-override>
+http://webServerHost.1:webServerPort.1/Simple1Http/ws4ee?WSDL
+</wsdl-override>
+----
+
+In this case, the CTS harness substitutes the
+webServerHost.1:webServerPort.1 with the settings in the
+`<TS_HOME>/bin/ts.jte` file.
+
+
+[NOTE]
+=======================================================================
+
+In the case of interop webservices tests, the CTS harness substitutes
+the `webServerHost.2:webServerPort.2` with the settings in the `ts.jte`
+file. This host and port defines the RI Java Platform, Enterprise
+Edition implementation used as the interop test machine. See
+`tests/interop/webservices` for these tests.
+
+=======================================================================
+
+
+[[GEYCO]][[webservice-endpoint-wsdl-elements]]
+
+5.4.22.2 Webservice Endpoint WSDL Elements
+++++++++++++++++++++++++++++++++++++++++++
+
+The following are the webservice endpoint WSDL elements:
+
+[[GEYMW]][[setting-endpoint-address]]
+
+5.4.22.2.1 Setting Endpoint Address
+
+[source,oac_no_warn]
+----
+element : endpoint-address-uri
+----
+
+The endpoint address URI is used to compose the endpoint address URL
+through which the endpoint can be accessed. It is required for EJB
+endpoints and optional for servlet endpoints.
+
+The `endpoint-address-uri` can have an optional leading forward slash
+(`/`). It must be a fixed pattern (no asterisk (`*`) wildcards).
+
+* EJB Example: +
+For EJB endpoints, the URI is relative to root of the web server; for
+example, if the web server is listening at `http://localhost:8000`, an
+endpoint address URI of `google/GoogleSearch` would result in an
+endpoint address of: +
+[source,oac_no_warn]
+----
+http://localhost:8000/google/GoogleSearch
+----
+Note that the first portion of the URI (`google`) should not conflict
+with the context root of any deployed web application. +
+[source,oac_no_warn]
+----
+<enterprise-beans>
+    <module-name>ejb.jar</module-name>
+    <ejb>
+      <ejb-name>GoogleEjb</ejb-name>
+      <webservice-endpoint>
+        <port-component-name>GoogleSearchPort</port-component-name>
+        <endpoint-address-uri>google/GoogleSearch</endpoint-address-uri>
+      </webservice-endpoint>
+    </ejb>
+</enterprise-beans>
+----
+* Servlet Example: +
+For servlet endpoints, the `endpoint-address-uri` is only needed if the
+servlet does not have a servlet-mapping `url-pattern` in its `web.xml`.
+Its value is relative to the context root of the servlet's web
+application. +
+[source,oac_no_warn]
+----
+<web>
+    <module-name>web.war</module-name>
+    <context-root>GoogleServletContext</context-root>
+    <servlet>
+        <servlet-name>MyGoogleServlet</servlet-name>
+        <webservice-endpoint>
+           <port-component-name>GoogleSearchPort</port-component-name>
+           <endpoint-address-uri>/GoogleSearch</endpoint-address-uri>
+         </webservice-endpoint>
+    </servlet>
+</web>
+----
+In this case, the target endpoint address would be: +
+[source,oac_no_warn]
+----
+http://localhost:8000/GoogleServletContext/GoogleSearch
+----
+
+[[GEYLR]][[ejb-endpoint-security]]
+
+5.4.22.2.2 EJB Endpoint Security
+
+[source,oac_no_warn]
+----
+element : login-config
+----
+
+This only applies to EJB endpoints and is optional. It is used to
+specify how authentication is performed for EJB endpoint invocations. It
+consists of a single subelement named `auth-method`. `auth-method` is
+set to `BASIC` or `CLIENT_CERT`. The equivalent security for servlet
+endpoints is set through the standard web-application security elements.
+For example:
+
+[source,oac_no_warn]
+----
+<ejb>
+      <ejb-name>GoogleEjb</ejb-name>
+      <webservice-endpoint>
+        <port-component-name>GoogleSearchPort</port-component-name>
+        <endpoint-address-uri>google/GoogleSearch</endpoint-address-uri>
+
+        <login-config>
+           <auth-method>BASIC</auth-method>
+        </login-config>
+      </webservice-endpoint>
+</ejb>
+----
+
+[[GEYNB]][[transport-guarantee]]
+
+5.4.22.2.3 Transport Guarantee
+
+[source,oac_no_warn]
+----
+element : transport-guarantee
+----
+
+This is an optional setting on `webservice-endpoint`. The allowable
+values are `NONE`, `INTEGRAL`, and `CONFIDENTIAL`. If not specified, the
+behavior is equivalent to `NONE`. The meaning of each option is the same
+as is defined in the Security chapter of the Servlet Specification
+(`http://jcp.org/en/jsr/detail?id=369`). This setting will determine the
+scheme and port used to generate the final endpoint address for a web
+service endpoint. For `NONE`, the scheme will be `HTTP` and port will be
+the default HTTP port. For `INTEGRAL/CONFIDENTIAL`, the scheme will be
+`HTTPS` and the port will be the default HTTPS port.
+
+[[GEYMY]][[publishing-final-wsdl-during-deployment]]
+
+5.4.22.2.4 Publishing Final WSDL During Deployment
+
+* URL publishing: no extra information required. +
+The final WSDL document for each webservice endpoint is always published
+to a URL having the following syntax:
+
+** EJB endpoints: +
+[source,oac_no_warn]
+----
+<scheme>://<hostname>:<port>/<endpoint_address_uri>?WSDL
+----
+
+** Servlet endpoints: +
+[source,oac_no_warn]
+----
+<scheme>://<hostname>:<port>/<context-root><url-pattern>?WSDL
+----
+or +
+[source,oac_no_warn]
+----
+<scheme>://<hostname>:<port>/<context-root><endpoint_address_uri>?WSDL
+----
+Note that the final WSDL document returned from this URL will contain
+port entries for all ports within the same service.
+* File publishing: +
+[source,oac_no_warn]
+----
+element : wsdl-publish-location
+----
+To have a copy of the final WSDL written to a file, set this element to
+a file URL; for example: +
+[source,oac_no_warn]
+----
+<enterprise-beans>
+    <module-name>ejb.jar</module-name>
+    <webservice-description>
+        <webservice-description-name>GoogleSearchService
+        </webservice-description-name>
+        <wsdl-publish-location>file:/home/user1/GoogleSearch_final.wsdl
+        </wsdl-publish-location>
+    </webservice-description>
+</enterprise-beans>
+----
+
+[[GEYLF]][[webservice-client-wsdl-elements]]
+
+5.4.22.3 Webservice Client WSDL Elements
+++++++++++++++++++++++++++++++++++++++++
+
+In the CTS for file publishing, the directory in which to publish the
+file WSDL is specified in the `<wsdl-publish-location>` tag for the
+webservice, and the full path of the WSDL file is specified in the
+`<wsdl-override>` tag in the client; for example:
+
+[source,oac_no_warn]
+----
+<wsdl-publish-location>file:/files/wsdls/FileNested1</wsdl-publish-location>
+<wsdl-override>file:/files/wsdls/FileNested1/nestedimportwsdl.wsdl</wsdl-override>
+----
+
+The Java Platform, Enterprise Edition implementation defines the
+behavior this way because, for `wsdl-publish-location`, the App Server
+is potentially publishing many documents, not just one. This is because
+the main WSDL could have dependencies on relative imports. There is no
+requirement that the initial WSDL be located at the top of the
+hierarchy, even though that is commonly the case.
+
+For example, in an ejb-jar with a Main.wsdl that imports a relative WSDL
+at `../../Relative.wsdl`, the packaging would look like:
+
+[source,oac_no_warn]
+----
+META-INF/wsdl/a/b/Main.wsdl
+META-INF/wsdl/Relative.wsdl
+----
+
+The `wsdl-publish-location` tells the CTS where to locate the topmost
+part of the WSDL content hierarchy. So, given a `wsdl-publish-location`
+of `/home/foo/wsdlpublishdir`, this location would look like:
+
+[source,oac_no_warn]
+----
+/home/foo/wsdlpublishdir/Relative.wsdl
+/home/foo/wsdlpublishdir/a/b/Main.wsdl
+----
+
+The `wsdl-override` property still always points to a specific WSDL
+document, which in this case would be
+`/home/foo/wsdlpublishdir/a/b/Main.wsdl`.
+
+[[GEYLV]][[resolving-container-managed-ports]]
+
+5.4.22.3.1 Resolving Container-Managed Ports
+
+[source,oac_no_warn]
+----
+element : wsdl-port
+----
+
+Used to resolve the port to which a `service-ref` Service Endpoint
+Interface is mapped. Only required for each `port-component-ref` in the
+`service-ref` that does not have a `port-component-link`. For example:
+
+[source,oac_no_warn]
+----
+<service-ref>
+      <service-ref-name>service/GoogleSearchProxy</service-ref-name>
+      <port-info>
+        <service-endpoint-interface>googleclient.GoogleSearchPort
+        </service-endpoint-interface>
+        <wsdl-port>
+           <namespaceURI>urn:GoogleSearch</namespaceURI>
+           <localpart>GoogleSearchPort</localpart>
+        </wsdl-port>
+   </port-info>
+</service-ref>
+----
+
+[[GEYMN]][[setting-stub-properties]]
+
+5.4.22.3.2 Setting Stub Properties
+
+[source,oac_no_warn]
+----
+element : stub-property
+----
+
+These are used to have the container set any of the properties defined
+in `javax.xml.rpc.Stub` on the stub/dynamic proxy object returned to the
+application from the Service instance. The property name must match the
+*value* of the `javax.xml.rpc.Stub` property constants. The stub
+properties are set per Port within the `service-ref`. Examples are shown
+below.
+
+* Setting endpoint address: +
+[source,oac_no_warn]
+----
+<service-ref>
+    <service-ref-name>service/GoogleSearchProxy</service-ref-name>
+    <port-info>
+        <service-endpoint-interface>googleclient.GoogleSearchPort
+        </service-endpoint-interface>
+        <wsdl-port>
+            <namespaceURI>urn:GoogleSearch</namespaceURI>
+            <localpart>GoogleSearchPort</localpart>
+        </wsdl-port>
+        <stub-property>
+            <name>javax.xml.rpc.service.endpoint.address</name>
+            <value>http://localhost:8000/google/GoogleSearch</value>
+        </stub-property>
+    </port-info>
+</service-ref>
+----
+* Setting Basic Auth properties: +
+[source,oac_no_warn]
+----
+<service-ref>
+    <service-ref-name>service/GoogleSearchProxy</service-ref-name>
+    <port-info>
+        <service-endpoint-interface>googleclient.GoogleSearchPort
+        </service-endpoint-interface>
+        <wsdl-port>
+            <namespaceURI>urn:GoogleSearch</namespaceURI>
+            <localpart>GoogleSearchPort</localpart>
+        </wsdl-port>
+        <stub-property>
+            <name>javax.xml.rpc.security.auth.username</name>
+            <value>javaee</value>
+        </stub-property>
+        <stub-property>
+            <name>javax.xml.rpc.security.auth.password</name>
+            <value>javaee</value>
+        </stub-property>
+    </port-info>
+</service-ref>
+----
+* Setting Logging property (Implementation-specific): +
+Name: `com.sun.enterprise.webservice.client.transport.log` +
+Value: a `file` URL +
+This is useful for debugging. When set, all soap/http requests and
+responses made through the associated stub will be logged to a file. +
+[source,oac_no_warn]
+----
+<module-name>appclient.jar</module-name>
+<service-ref>
+    <service-ref-name>service/GoogleSearch</service-ref-name>
+    <port-info>
+        <service-endpoint-interface>google.GoogleSearchPort
+        </service-endpoint-interface>
+        <wsdl-port>
+            <namespaceURI>urn:GoogleSearch</namespaceURI>
+            <localpart>GoogleSearchPort</localpart>
+        </wsdl-port>
+        <stub-property>
+            <name>com.sun.enterprise.webservice.client.transport.log</name>
+            <value>file:/tmp/jaxrpc.log</value>
+        </stub-property>
+    </port-info>
+</service-ref>
+----
+
+[[GEYMB]][[setting-call-properties]]
+
+5.4.22.3.3 Setting Call Properties
+
+[source,oac_no_warn]
+----
+element : call-property
+----
+
+Call properties are set on `service-ref` for `Call` objects returned
+from `javax.xml.rpc.Service.createCall()`. This is the only kind of
+`Call` object that is not tied to a port.
+
+[source,oac_no_warn]
+----
+<service-ref>
+      <service-ref-name>service/GoogleSearch</service-ref-name>
+      <call-property>
+        <name>javax.xml.rpc.security.auth.username</name>
+        <value>javaee</value>
+      </call-property>
+      <call-property>
+        <name>javax.xml.rpc.security.auth.password</name>
+        <value>javaee</value>
+      </call-property>
+</service-ref>
+----
+
+Call properties are set within `port-info` for all other
+`javax.xml.rpc.Service` methods that return `Call` objects.
+
+[source,oac_no_warn]
+----
+<module-name>appclient.jar</module-name>
+      <service-ref>
+         <service-ref-name>service/GoogleSearch</service-ref-name>
+         <port-info>
+           <wsdl-port>
+              <namespaceURI>urn:GoogleSearch</namespaceURI>
+              <localpart>GoogleSearchPort</localpart>
+           </wsdl-port>
+           <call-property>
+             <name>javax.xml.rpc.security.auth.username</name>
+             <value>javaee</value>
+           </call-property>
+           <call-property>
+             <name>javax.xml.rpc.security.auth.password</name>
+             <value>javaee</value>
+           </call-property>
+         </port-info>
+      </service-ref>
+----
+
+The allowable properties are defined in the javadoc for
+`javax.xml.rpc.Call`.
+
+[[GEYOG]][[overriding-wsdl]]
+
+5.4.22.3.4 Overriding WSDL
+
+[source,oac_no_warn]
+----
+element : wsdl-override
+----
+
+The `wsdl-override` element forces the deployment process to use a
+different WSDL than the one associated with a `service-ref` in the
+standard deployment module. This element is optional if the
+`service-ref` WSDL is full WSDL, and is required if partial WSDL. In all
+cases, it must point to a valid URL of a full WSDL document. Some
+examples are shown below.
+
+* To use the final WSDL generated upon deployment of the EJB endpoint
+shown above: +
+[source,oac_no_warn]
+----
+<service-ref>
+      <service-ref-name>service/GoogleSearch</service-ref-name>
+      <wsdl-override>http://localhost:8000/google/GoogleSearch?WSDL
+      </wsdl-override>
+</service-ref>
+----
+* An alternate way to do the same thing by means of a file URL that
+matches a webservice's `wsdl-publish-location` could be: +
+[source,oac_no_warn]
+----
+<service-ref>
+      <service-ref-name>service/GoogleSearch</service-ref-name>
+      <wsdl-override>file:/home/user1/GoogleSearch_final.wsdl
+      </wsdl-override>
+</service-ref>
+----
+
+[[CEGCHDEA]][[security-api-test-setup]]
+
+5.4.23 Security API Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Complete the following steps before you run the Security API tests:
+
+1.  Set the following properties in the ts.jte file: +
+
+[NOTE]
+=======================================================================
+
+An LDAP server is required in Security API testing. You could either use
+an already existing external LDAP server or use CTS script to install an
+internal LDAP server.
+
+=======================================================================
+
+Choose one of these two options to make an LDAP server ready for
+testing:
+1.  Use internal LDAP server - Unbounded (Recommended, and would be
+installed by default.) +
+
+[NOTE]
+=======================================================================
+
+1.  Ensure the ldap.server property is unbounded.
+2.  Ensure the path of ldap.ldif.file is correct.
+3.  Ensure the port 11389 is not occupied. Kill any related process
+using port 11389.
+
+=======================================================================
+
+
+[NOTE]
+=========================================
+
+Parts of ts.jte:
+
+* ldap.server=unboundid
+* ldap.install.server=true
+* ldap.ldif.file=$\{ts.home}/bin/ldap.ldif
+
+=========================================
+
+2.  Use external LDAP server. +
+
+[NOTE]
+=======================================================================
+
+1.  Ensure the port of LDAP server is 11389.
+2.  Update ldap.install.server property as false since CTS script need
+not install LDAP server.
+3.  Import ldap.ldif file into Ldap server. You can get ldap.ldif from
+<TS_HOME>/install/jakartaee/bin/ldap.ldif.
+
+=======================================================================
+
+
+[NOTE]
+=========================================
+
+Part of ts.jte - ldap.install.server=false
+
+=========================================
+
+2.  Configure the VI environment using these commands to run the
+Security API test (including Derby, internal Ldap server which are
+required by JSR375):
+1.  cd <TS_HOME>/bin
+2.  ant config.vi
+3.  Start your database.
+4.  ant init.ldap +
+
+[NOTE]
+=======================================================================
+
+If you use the external LDAP server, do not run the command ant
+init.ldap.
+
+=======================================================================
+
+
+[[GEYNX]][[signature-test-setup]]
+
+5.4.24 Signature Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The signature test setup includes the following:
+
+[[GEYPN]][[sigtestclasspath-property]]
+
+5.4.24.1 sigTestClasspath Property
+++++++++++++++++++++++++++++++++++
+
+Set the `sigTestClasspath` property in the `<TS_HOME>/bin/ts.jte` file
+to include a `CLASSPATH` containing the following:
+
+[source,oac_no_warn]
+----
+sigTestClasspath=jar_to_test:jars_used_by_yours 
+----
+
+where:
+
+* jar_to_test: The JAR file you are validating when running the
+signature tests; when running against the Java Platform, Enterprise
+Edition RI, set to javaee.jar
+* jars_used_by_yours: The JAR file or files that are used or referenced
+by your JAR file; must include any classes that might be extended or
+implemented by the classes in your jar_to_test; include `rt.jar` when
+running against the Java Platform, Enterprise Edition RI
+
+[[GEYOS]][[additional-signature-test-information]]
+
+5.4.24.2 Additional Signature Test Information
+++++++++++++++++++++++++++++++++++++++++++++++
+
+The Java EE 8 CTS signature tests perform verifications in two different
+modes: static and reflection. The test results list which signature
+tests pass or fail, and the mode (static or reflection) for that test.
+As a troubleshooting aid when failures occur, consider the following:
+
+* All static mode tests fail: +
+The likely cause is that the `sigTestClasspath` needs modification. When
+running on Windows, be sure to use semicolons (`;`) for `CLASSPATH`
+separators.
+* For all other signature test failures: +
+Check the report output from the test to determine which tests failed
+and why.
+
+
+[NOTE]
+=======================================================================
+
+Refer to link:debug.html#GBFUV[Chapter 8, "Debugging Test Problems"] for
+additional debugging information.
+
+=======================================================================
+
+
+[[GJLGQ]][[backend-database-setup]]
+
+5.4.25 Backend Database Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following sections address special backend database setup
+considerations:
+
+* link:#GJLIB[Setup Considerations for MySQL]
+* link:#GJLHU[Setup Considerations for MS SQL Server]
+
+[[GJLIB]][[setup-considerations-for-mysql]]
+
+5.4.25.1 Setup Considerations for MySQL
++++++++++++++++++++++++++++++++++++++++
+
+The Java Persistence API (JPA) tests require delimited identifiers for
+the native query tests. If you are using delimited identifiers on MySQL,
+modify the `sql-mode` setting in the `my.cnf` file to set the
+ANSI_QUOTES option. After setting this option, reboot the MySQL server.
+Set the option as shown in this example:
+
+[source,oac_no_warn]
+----
+sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ANSI_QUOTES"
+----
+
+[[GJLHU]][[setup-considerations-for-ms-sql-server]]
+
+5.4.25.2 Setup Considerations for MS SQL Server
++++++++++++++++++++++++++++++++++++++++++++++++
+
+If your database already exists and if you use a case-sensitive
+collation on MS SQL Server, execute the following command to modify the
+database and avert errors caused by case-sensitive collation:
+
+[source,oac_no_warn]
+----
+ALTER DATABASE ctsdb
+COLLATE Latin1_General_CS_AS ;
+----
+
+[[GEXQP]][[deployment-test-setup]]
+
+5.4.26 Deployment Test Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ensure that the following properties in the `ts.jte` file have been set:
+
+* `deployManagerJarFile.1` property to a JAR file that contains manifest
+entries according to the Java Platform, Enterprise Edition Deploy API
+1.0 Specification
+* `deployManageruri.1` property to a URI to connect to
+* `deployManageruname.1` and `deployManagerpasswd.1` properties to the
+user name and password that are used when connecting to a deployment
+manager, if needed
+
+
+[NOTE]
+=======================================================================
+
+You need to generate your own deployment plan for each module type,
+using the deployment tool that comes with your Java Platform, Enterprise
+Edition server.
+
+=======================================================================
+
+
+[[GEXPU]][[jaxr-test-setup]]
+
+5.4.27 JAXR Test Setup
+^^^^^^^^^^^^^^^^^^^^^^
+
+You will need a Registry to run the JAXR tests. The Java Web Services
+Developers Pack 1.3 contains an implementation of a UDDI version 2
+business registry. You can find the Java Web Services Developers Pack at
+`http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-jwsdp-419428.html`.
+Refer to the installation instructions that accompany the webservices
+software for additional information.
+
+The JAXR test suite assumes you are using an internal registry (inside a
+firewall). If you want to use a public registry outside a firewall, you
+will need to make some updates to the `ts.jte` file in the
+`testExecuteAppClient` section to set up proxy information.
+
+[[GEXPG]][[example-jaxr-ts.jte-property-settings]]
+
+5.4.27.1 Example JAXR ts.jte Property Settings
+++++++++++++++++++++++++++++++++++++++++++++++
+
+[source,oac_no_warn]
+----
+http.proxyHost=myProxy.myCompany.com
+http.proxyPort=8080
+https.proxyHost=myProxy.myCompany.com
+https.proxyPort=8080
+command.testExecuteAppClient= \
+com.sun.ts.lib.harness.ExecTSTestCmd DISPLAY=${ts.display} HOME="${user.home}" \
+LD_LIBRARY_PATH=${javaee.home}/lib \
+windir=${windir} \
+SYSTEMROOT=${SYSTEMROOT} \
+PATH="${javaee.home}/nativelib" \
+TZ=${tz} \
+${JAVA_HOME}/bin/java \
+-Dorg.omg.CORBA.ORBInitialHost=${orb.host} \
+-Djava.security.policy=${javaee.home}/lib/appclient/client.policy \
+-Dcts.tmp=$harness.temp.directory \
+-Dorg.omg.CORBA.ORBInitialPort=${orb.port} \
+-Djava.security.auth.login.config=${javaee.home}/lib/appclient/appclientlogin.conf \
+-Djava.protocol.handler.pkgs=javax.net.ssl \
+-Dcom.sun.enterprise.home=${javaee.home} \
+-Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
+-Djavax.net.ssl.keyStorePassword=changeit \
+-Dcom.sun.aas.installRoot=${javaee.home} \
+-Dcom.sun.aas.imqLib=${javaee.home}/imq/lib \
+-Djava.util.logging.manager=com.sun.enterprise.server.logging.ACCLogManager \
+-Djavax.net.ssl.trustStore=${s1as.domain}/config/cacerts.jks \
+-Djava.endorsed.dirs=${s1as.java.endorsed.dirs} \
+-Dstartup.login=false \
+-Dhttp.proxyHost=${http.proxyHost} \
+-Dhttp.proxyPort=${http.proxyPort} \
+-Dhttps.proxyHost=${https.proxyHost} \
+-Dhttps.proxyPort=${https.proxyPort} \
+-Ddeliverable.class=${deliverable.class} -classpath ${ts.run.classpath} \
+com.sun.enterprise.appclient.Main $testExecuteArgs -configxml ${s1as.domain}/config/sun-acc.xml
+----
+
+The above settings cover the appclient portion of the testing. You will
+also need to update the proxy information for the server. For the RI,
+you will need to add this to the `jvm-options` in the `domain.xml` file.
+You can also use the CTS `config.vi` script to update `domain.xml`
+instead of directly editing it. To use the `config.vi` script, add the
+proxy to `s1as.jvm.options` in the `ts.jte` file:
+
+[source,oac_no_warn]
+----
+s1as.jvm.options=-Dhttp.proxyHost=${http.proxyHost}:
+-Dhttp.proxyPort=${http.proxyPort}:
+-Dhttps.proxyHost=${https.proxyHost}:
+-Dhttps.proxyPort=${https.proxyPort}
+----
+
+Note that this is only needed for JAXR when using an external registry.
+You should not add proxy info when running the rest of the CTS test
+suite.
+
+[[GEXPI]][[jaxr-ts.jte-properties]]
+
+5.4.27.2 JAXR ts.jte Properties
++++++++++++++++++++++++++++++++
+
+For JAXR testing, make sure the following properties have been set in
+the `<TS_HOME>/bin/ts.jte` file:
+
+* `authenticationMethod`: Authentication method for the JAXR provider;
+UDDI_GET_AUTHTOKEN is the AuthToken protocol defined by [UDDI_API2]
+* `registryURL`: Standard connection property for publishing. for the
+RegistryServer, the UDDI Registry that comes with the Java Web Services
+Developers Pack: `registryURL = http://localhost:8080/RegistryServer/`
+* `queryManagerURL`: Standard connection property for querying. for the
+RegistryServer, the UDDI Registry that comes with the Java Web Services
+Developers Pack:
+`queryManagerURL = http://localhost:8080/RegistryServer/`
+* `jaxrPassword`: Used for setting connection credentials; this must be
+set up in the UDDI registry
+* `jaxrUser`: Used for setting connection credentials; this must be set
+up in the UDDI registry
+* `jaxrUser2`, `jaxrPassword2`: Second account for Association tests +
+For the `RegistryServer` you can use the predefined username and
+passwords. These would be set as follows:
+
+** `jaxrUser=testuser`
+
+** `jaxrPassword=testuser`
+
+** `jaxrUser2=jaxr-sqe`
+
+** `jaxrPassword2=jaxrsqe` +
+If using digital certificates set to `= ""` instead.
+* `jaxrSecurityCredentialType`: Tells CTS whether to use
+username/password or digital certificates for JAXR credentials:
+
+** `0`: Username/password
+
+** `1`: Digital certificates
+* `jaxrAlias`: Identifies the entry in the keystore for this user.
+* `jaxrAlias2`: Identifies the entry in the keystore for the second user
+* `jaxrAliasPassword`: Identifies the password in the keystore for this
+user.
+* `jaxrAlias2Password`: Identifies the password in the keystore for the
+second user
+* `jaxrWebContext`: Context root for jaxr html tests pages
+* `jaxrConnectionFactoryLookup`: Preferred way for a client to lookup a
+JAXR ConnectionFactory is to use JNDI; an alternate method is to use the
+`newInstance` static method on the `ConnectionFactory`
+
+** `0` = use JNDI lookup
+
+** `1` = use `newInstance` method.
+* `jaxrJNDIResource`: JAXR `ConnectionFactoryReference` if JNDI lookup
+is being used; for example `java:comp/env/eis/JAXR`; if not using JNDI
+lookup set to `""`.
+* `providerCapabilityLevel`: Provider must set this to the supported
+capability level `0` or `1`
+
+[[GEYPB]][[using-the-javatest-harness-configuration-gui]]
+
+5.5 Using the JavaTest Harness Configuration GUI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use the JavaTest harness GUI to modify general test settings and
-to quickly get started with the default {TechnologyShortName} TCK test
-environment.  This section covers the following topics:
+to quickly get started with the default CTS test environment. After
+familiarizing yourself with these basic configuration settings, you will
+probably want to continue with the instructions in link:#GEXPP[Modifying
+Environment Settings for Specific Technology Tests].
 
-* link:#GBFVA[Configuration GUI Overview]
-* link:#GBFVD[Starting the Configuration GUI]
-* link:#GBFVX[To Configure the JavaTest Harness to Run the
-{TechnologyShortName} TCK Tests]
-* link:#GBFUU[Modifying the Default Test Configuration]
+[[GEYNM]][[basic-configuration-overview]]
 
-
-[NOTE]
-=======================================================================
-
-It is only necessary to proceed with this section if you want to run the
-JavaTest harness in GUI mode. If you plan to run the JavaTest harness in
-command-line mode, skip the remainder of this chapter, and continue with
-link:using.html#GBFWO[Chapter 5, "Executing Tests."]
-
-=======================================================================
-
-
-[[GBFVA]][[configuration-gui-overview]]
-
-4.7.1 Configuration GUI Overview
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+5.5.1 Basic Configuration Overview
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order for the JavaTest harness to execute the test suite, it requires
-information about how your computing environment is configured. The
-JavaTest harness requires two types of configuration information:
+information about how your computing environment is configured.
+
+The JavaTest harness requires two types of configuration information:
 
 * Test environment: This is data used by the tests. For example, the
 path to the Java runtime, how to start the product being tested, network
@@ -210,36 +3509,6 @@ run the tests. Test parameters are values used by the JavaTest harness
 that determine which tests in the test suite are run, how the tests
 should be run, and where the test reports are stored. This information
 often changes from test run to test run.
-
-The first time you run the JavaTest harness software, you are asked to
-specify the test suite and work directory that you want to use. (These
-parameters can be changed later from within the JavaTest harness GUI.)
-
-Once the JavaTest harness GUI is displayed, whenever you choose Start,
-then Run Tests to begin a test run, the JavaTest harness determines
-whether all of the required configuration information has been supplied:
-
-* If the test environment and parameters have been completely
-configured, the test run starts immediately.
-* If any required configuration information is missing, the
-configuration editor displays a series of questions asking you the
-necessary information. This is called the configuration interview. When
-you have entered the configuration data, you are asked if you wish to
-proceed with running the test.
-
-[[GBFVD]][[starting-the-configuration-gui]]
-
-4.7.2 Starting the Configuration GUI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Before you start the JavaTest harness software, you must have a valid
-test suite and Java SE {SEversion} installed on your system.
-
-The {TechnologyShortName} TCK includes an Ant script that is used to execute the
-JavaTest harness from the `<TS_HOME>` directory. Using this Ant script
-to start the JavaTest harness is part of the procedure described in
-link:#GBFVX[Section 4.7.3, "To Configure the JavaTest Harness to Run the
-TCK Tests."]
 
 When you execute the JavaTest harness software for the first time, the
 JavaTest harness displays a Welcome dialog box that guides you through
@@ -254,99 +3523,93 @@ Welcome to JavaTest dialog box that guides you through the process of
 opening both a test suite and a work directory as described in the
 JavaTest documentation.
 
-After you specify a work directory, you can use the Test Manager to
-configure and run tests as described in link:#GBFVX[Section 4.7.3, "To
-Configure the JavaTest Harness to Run the TCK Tests."]
+Once the JavaTest harness GUI is displayed, whenever you choose Run
+Tests and then Start to begin a test run, the JavaTest harness
+determines whether all of the required configuration information has
+been supplied:
 
-[[GBFVX]][[to-configure-the-javatest-harness-to-run-the-tck-tests]]
+* If the test environment and parameters have been completely
+configured, the test run starts immediately.
+* If any required configuration information is missing, the
+configuration editor displays a series of questions asking you the
+necessary information. This is called the configuration interview. When
+you have entered the configuration data, you are asked if you wish to
+proceed with running the test.
 
-4.7.3 To Configure the JavaTest Harness to Run the TCK Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[GEYOD]][[the-configuration-interview]]
 
-The answers you give to some of the configuration interview questions
-are specific to your site. For example, the name of the host on which
-the JavaTest harness is running. Other configuration parameters can be
-set however you wish. For example, where you want test report files to
-be stored.
+5.5.2 The Configuration Interview
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Note that you only need to complete all these steps the first time you
-start the JavaTest test harness. After you complete these steps, you can
-either run all of the tests by completing the steps in
-link:using.html#GBFUZ[Section 5.1, "Starting JavaTest,"] or run a subset
-of the tests by completing the steps in link:using.html#GBFWM[Section
-5.2, "Running a Subset of the Tests."]
+To configure the JavaTest harness to run the Java EE 8 CTS tests,
+complete the following steps. Note that you only need to complete these
+steps the first time you start the JavaTest harness. After you complete
+these steps, you can either run all or a subset of the tests, as
+described in link:using.html#GBFWO[Chapter 7, "Executing Tests"].
 
 1.  Change to the `<TS_HOME>/bin` directory and start the JavaTest test
 harness: +
-`cd <TS_HOME>/bin` +
-`ant gui`
-2.  From the File menu, click *Open Quick Start Wizard*. +
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant gui
+----
 The Welcome screen displays.
-3.  Select *Start a new test run*, and then click *Next*. +
-You are prompted to create a new configuration or use a configuration
-template.
-4.  Select *Create a new configuration*, and then click *Next*. +
-You are prompted to select a test suite.
-5.  Accept the default suite (`<TS_HOME>/src`), and then click *Next*. +
-You are prompted to specify a work directory to use to store your test
-results.
-6.  Type a work directory name or use the *Browse* button to select a work
-directory, and then click *Next*. +
-You are prompted to start the configuration editor or start a test run.
-At this point, the {TechnologyShortName} TCK is configured to run the
-default test suite.
-7.  Deselect the *Start the configuration editor* option, and then click
-*Finish*.
-8.  Click *Run Tests*, then click *Start*. +
-The JavaTest harness starts running the tests.
-9.  To reconfigure the JavaTest test harness, do one of the following:
-* Click *Configuration*, then click *New Configuration*.
-* Click *Configuration*, then click *Change Configuration*.
-10. Click *Report*, and then click *Create Report*.
-11. Specify the directory in which the JavaTest test harness will write
-the report, and then click *OK*. +
-A report is created, and you are asked whether you want to view it.
-12. Click *Yes* to view the report.
-
-[[GBFUU]][[modifying-the-default-test-configuration]]
-
-4.7.4 Modifying the Default Test Configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The JavaTest GUI enables you to configure numerous test options. These
-options are divided into two general dialog box groups:
-
-* Group 1: Available from the JavaTest *Configure/Change Configuration*
-submenus, the following options are displayed in a tabbed dialog box:
-
-** *Tests to Run*
-
-** *Exclude List*
-
-** *Keywords*
-
-** *Prior Status*
-
-** *Test Environment*
-
-** *Concurrency*
-
-** *Timeout Factor*
-* Group 2: Available from the JavaTest *Configure/Change
-Configuration/Other Values* submenu, or by pressing `Ctrl+E`, the following
-options are displayed in a paged dialog box:
-
-** *Environment Files*
-
-** *Test Environment*
-
-** *Specify Tests to Run*
-
-** *Specify an Exclude List*
-
-Note that there is some overlap between the functions in these two
-dialog boxes; for those functions use the dialog box that is most
-convenient for you. Please refer to the JavaTest Harness documentation
-or the online help for complete information about these various options.
+2.  Click File, then click Create Work Directory to create a new work
+directory. +
+If you already have a working directory you want to use, click File,
+then click Open Work Directory instead. +
+At this point, the JavaTest harness is preconfigured to run the basic
+CTS tests.
+3.  If you want to run the test suite at this time using your current
+configuration settings, select Run Tests from the main menu, then select
+Start. +
+The default tests are executed with the default configuration settings. +
+If you do not want to run the test suite at this time, continue with the
+steps below to modify your test configuration.
+4.  Select Configure from the main menu, then select Edit Configuration. +
+The Configuration Welcome screen displays.
+5.  Click Next (right arrow). +
+You are prompted to specify one or more configuration files that contain
+information about your test environment. By default, this file is
+`<TS_HOME>/bin/ts.jte`.
+6.  Accept the default configuration file and click Next. +
+You are prompted to specify a test environment.
+7.  Select either `ts_unix` or `ts_win32`, and then click Next. +
+Choose `ts_unix` if you are running the tests in a Unix or Linux
+environment; choose `ts_win32` if you are running the tests under
+Windows. +
+After making your selection and clicking Next, you are prompted to
+specify whether you want to run all or a subset of the test suite.
+8.  Specify whether you want to run all or a subset of the tests, and
+then click Next. +
+Select Yes to run a subset of the tests; select No to run all tests. +
+If you select Yes, proceed to the next step. If you select No, skip to
+Step 10.
+9.  Select the tests you want to run from the displayed test tree, and
+then click Next. +
+You can select entire branches of the test tree, or use Ctrl+Click or
+Shift+Click to select multiple tests or ranges of tests, respectively.
+10. Specify whether you want to use an exclude list, and then click
+Next. +
+Select Yes to use an exclude list; select No to not use an exclude list. +
+If you select Yes, proceed to the next step. If you select No, skip to
+Step 13.
+11. Specify the exclude list you want to use, and then click Next. +
+Select `initial` to use the default list; select `custom` to use a
+custom list. +
+If you select `custom`, proceed to the next step. If you select
+`initial`, skip to Step 13.
+12. Specify the custom exclude list file to use, and then click Next.
+13. Click Done to accept and save your configuration settings. +
+You are prompted to specify the location in which you want to save your
+configuration settings.
+14. Specify the file in which you want to save your configuration
+settings, and then click Save File. +
+You are returned to the JavaTest main window.
+15. If you want to run the test suite at this time using your current
+configuration settings, select Run Tests from the main menu, then select
+Start. +
+The default tests are executed with the settings you specified.
 
 

@@ -2,31 +2,28 @@ type=page
 status=published
 title=Introduction
 next=rules.html
-prev=preface.html
+prev=TCKpreface.html
 ~~~~~~
-include::attributes.conf[]
 Introduction
 ============
 
-[[GBFOW]]
+[[GBFOW]][[introduction]]
 
-
-[[introduction]]
 1 Introduction
 --------------
 
-This chapter provides an overview of the principles that apply
-generally to all Technology Compatibility Kits (TCKs) and describes the
-{TechnologyFullName} TCK ({TechnologyShortName} {TechnologyVersion} TCK). 
-It also includes a high level listing
-of what is needed to get up and running with the {TechnologyShortName}
-TCK.
+This document provides instructions for installing, configuring, and
+running the Java Platform, Enterprise Edition 8 Compatibility Test Suite
+(Java EE 8 CTS).
 
 This chapter includes the following topics:
 
 * link:#GBFTK[Compatibility Testing]
-* link:#GBFQR[About the TCK]
-* link:#GBFQW[Getting Started With the TCK]
+* link:#GEUYK[About Java EE 8 CTS]
+* link:#GEVAD[Hardware Requirements]
+* link:#GEVBB[Software Requirements]
+* link:#GEVCL[Additional Java EE 8 CTS Requirements]
+* link:#GBFQW[Getting Started With the Java EE 8 CTS Test Suite]
 
 [[GBFTK]][[compatibility-testing]]
 
@@ -43,178 +40,268 @@ other implementations, such as those features that:
 * Mask or abstract hardware or operating system behavior
 
 Compatibility test development for a given feature relies on a complete
-specification and compatible implementation (CI) for that feature.
+specification and reference implementation for that feature.
 Compatibility testing is not primarily concerned with robustness,
-performance, nor ease of use.
+performance, or ease of use.
 
 [[GBFQN]][[why-compatibility-testing-is-important]]
 
 1.1.1 Why Compatibility Testing is Important
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jakarta platform compatibility is important to different groups involved
-with Jakarta technologies for different reasons:
+Java platform compatibility is important to different groups involved
+with Java technologies for different reasons:
 
-* Compatibility testing ensures that the Jakarta platform does not become
+* Compatibility testing ensures that the Java platform does not become
 fragmented as it is ported to different operating systems and hardware
 environments.
-* Compatibility testing benefits developers working in the Jakarta
+* Compatibility testing benefits developers working in the Java
 programming language, allowing them to write applications once and then
 to deploy them across heterogeneous computing environments without
 porting.
 * Compatibility testing allows application users to obtain applications
 from disparate sources and deploy them with confidence.
-* Conformance testing benefits Jakarta platform implementors by ensuring a
-level playing field for all Jakarta platform ports.
+* Conformance testing benefits Java platform implementors by ensuring a
+level playing field for all Java platform ports.
 
-[[GBFPR]][[tck-compatibility-rules]]
+[[GBFPR]][[compatibility-rules]]
 
-1.1.2 TCK Compatibility Rules
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.1.2 Compatibility Rules
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Compatibility criteria for all technology implementations are embodied
-in the TCK Compatibility Rules that apply to a specified technology.
-Each TCK tests for adherence to these Rules as described in
-link:rules.html#GBFSN[Chapter 2, "Procedure for Certification."]
+in the Compatibility Rules that apply to a specified technology. The
+Java EE 8 CTS tests for adherence to these Rules as described in
+link:rules.html#GBFSN[Chapter 2, "Procedure for Java Platform, Enterprise
+Edition 8 Certification,"] for Java EE 8 and
+link:rules-wp.html#GJJPZ[Chapter 3, "Procedure for Java Platform,
+Enterprise Edition 8 Web Profile Certification,"] for Java EE 8 Web
+Profile.
 
-[[GBFPW]][[tck-overview]]
+[[GBFPW]][[cts-overview]]
 
-1.1.3 TCK Overview
+1.1.3 CTS Overview
 ^^^^^^^^^^^^^^^^^^
 
-A TCK is a set of tools and tests used to verify that a vendor's compatible
-implementation of a Jakarta EE technology conforms to the applicable
-specification. All tests in the TCK are based on the written
-specifications for the Jakarta EE platform. A TCK tests compatibility of a
-vendor's compatible implementation of the technology to the applicable
+A Java EE 8 CTS is a set of tools and tests used to verify that a
+licensee's implementation of Java EE 8 technology conforms to the
+applicable specification. All tests in the CTS are based on the written
+specifications for the Java platform. The CTS tests compatibility of a
+licensee's implementation of a technology to the applicable
 specification of the technology. Compatibility testing is a means of
 ensuring correctness, completeness, and consistency across all
 implementations developed by technology licensees.
 
-The set of tests included with each TCK is called the test suite. Most
-tests in a TCK's test suite are self-checking, but some tests may
-require tester interaction. Most tests return either a Pass or Fail
+The set of tests included with the Java EE 8 CTS is called the test
+suite. All tests in the CTS test suite are self-checking, but some tests
+may require tester interaction. Most tests return either a Pass or Fail
 status. For a given platform to be certified, all of the required tests
 must pass. The definition of required tests may change from platform to
 platform.
 
 The definition of required tests will change over time. Before your
-final certification test pass, be sure to download the latest version
-of this TCK.
+final certification test pass, be sure to download the latest Exclude
+List for the Java EE 8 CTS. The definition of required tests will change
+over time. See link:#GEUYQ[Section 1.2.5, "Exclude Lists,"] for more
+information.
 
 [[GBFPB]][[java-community-process-jcp-program-and-compatibility-testing]]
 
-1.1.4 Jakarta EE Specification Process (JESP) Program and Compatibility Testing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.1.4 Java Community Process (JCP) Program and Compatibility Testing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-[WARNING]
-====
-Template TODO
-
-* The following needs to be reviewed and possibly further refined to provide details consistent with
-the JESP and describe the Eclipse Jakarta EE process
-
-====
-
-The Jakarta EE Specification Process (JESP) program is the formalization of the
-open process that has been used since 2019 to develop and revise Jakarta EE
-technology specifications in cooperation with the international Jakarta EE
-community. The JESP program specifies that the following three major
-components must be included as deliverables in a final Jakarta EE technology
+The Java Community Process (JCP) program is the formalization of the
+open process that has been used since 1995 to develop and revise Java
+technology specifications in cooperation with the international Java
+community. The JCP program specifies that the following three major
+components must be included as deliverables in a final Java technology
 release under the direction of the responsible Expert Group:
 
 * Technology Specification
-* Compatible Implementation (CI)
+* Reference Implementation
 * Technology Compatibility Kit (TCK)
 
-For further information about the JESP program, go to Jakarta EE Specification
-Process community page https://jakarta.ee/specifications.
+For further information about the JCP program, go to Java Community
+Process (`http://jcp.org/en/home/index`).
 
-[[GBFQR]][[about-the-tck]]
+[[GEUYK]][[about-java-ee-8-cts]]
 
-1.2 About the TCK
-~~~~~~~~~~~~~~~~~
+1.2 About Java EE 8 CTS
+~~~~~~~~~~~~~~~~~~~~~~~
 
-The {TechnologyShortName} TCK {TechnologyVersion} is designed as a
-portable, configurable, automated test suite for verifying the
-compatibility of a vendor's implementation of the
-{TechnologyShortName} {TechnologyVersion} Specification.
+Java EE 8 CTS is a portable, configurable, automated test suite for
+verifying the compliance of a licensee's implementation of the Java EE 8
+technologies. Java EE 8 CTS includes version 4.4.1 of the JavaTest
+harness.
 
-[[GBFQV]][[tck-specifications-and-requirements]]
+For documentation on the test harness used for running the Java EE 8 CTS
+test suite, see
+`https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
 
-1.2.1 TCK Specifications and Requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[sthref4]][[java-ee-8-technologies-tested-with-java-ee-8-cts]]
 
-This section lists the applicable requirements and specifications.
+1.2.1 Java EE 8 Technologies Tested with Java EE 8 CTS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Specification Requirements: Software requirements for a
-{TechnologyShortName} implementation are described in detail in the
-{TechnologyShortName} {TechnologyVersion} Specification.  Links to the
-{TechnologyShortName} specification and other product information can
-be found at {JSRURL}.
-* {TechnologyShortName} Version: The {TechnologyShortName} {TechnologyVersion} TCK
-is based on the {TechnologyShortName}
-Specification, Version {TechnologyVersion}.
-* Compatible Implementation: One {TechnologyShortName}
-{TechnologyVersion} Compatible Implementation, {TechnologyRI} is
-available from the Eclipse EE4J project
-(https://projects.eclipse.org/projects/ee4j). See the CI documentation page at
-{TechnologyRIURL} for more information.
+The Java EE 8 CTS test suite includes compatibility tests for the
+following required and optional Java EE 8 technologies:
 
-See the {TechnologyShortName} TCK Release Notes for more specific
-information about Java SE version requirements, supported platforms,
-restrictions, and so on.
+* Enterprise JavaBeans (EJB) 3.2 +
 
-[[GBFSQ]][[tck-components]]
+[NOTE]
+=======================================================================
 
-1.2.2 TCK Components
-^^^^^^^^^^^^^^^^^^^^
+Support for the following features has been made optional in the Java EE
+8 release:
 
-The {TechnologyShortName} TCK {TechnologyVersion} includes the
-following components:
+** EJB 2.1 and earlier Entity Bean Component Contract for
+Container-Managed Persistence and Bean-Managed Persistence
+** Client View of an EJB 2.1 and earlier Entity Bean
+** EJB QL: Query Language for Container-Managed Persistence Query
+Methods
+** JAX-RPC Based Web Service Endpoints
+** JAX-RPC Web Service Client View
 
-* JavaTest harness version {JavaTestVersion} and related documentation. See the
-`ReleaseNotes-jtharness.html` file and the
-link:https://wiki.openjdk.java.net/display/CodeTools/JT+Harness[JT Harness web site]
-for additional information.
-* {TechnologyShortName} TCK signature tests; check that all public APIs
-are supported and/or defined as specified in the {TechnologyShortName}
-Version {TechnologyVersion} implementation under test.
-* If applicable, an exclude list, which provides a list of tests that your
-implementation is not required to pass.
-ifndef::no-api-tests[]
-* API tests for all of the {TechnologyShortName} API in all related packages:
-include::packages.inc[]
-endif::no-api-tests[]
-ifdef::end-to-end-tests[]
-* End-to-end tests that demonstrate compliance with the {TechnologyFullName}
-Specification.
-endif::end-to-end-tests[]
+=======================================================================
 
-The {TechnologyShortName} TCK tests run on the following platforms:
+* Java Servlet 4.0
+* JavaServer Pages (JSP) 2.3
+* Expression Language (EL) 3.0
+* Java Message Service (JMS) 2.0
+* Java Transaction API (JTA) 1.2
+* JavaMail 1.6
+* Java EE Connector Architecture 1.7
+* Web Services for Java EE 1.4
+* Java API for XML-Based RPC (JAX-RPC) 1.1 (optional)
+* Java API for RESTful Web Services (JAX-RS) 2.1
+* Java API for WebSocket (WebSocket) 1.1
+* Java API for JSON Processing (JSON-P) 1.1
+* Java API for JSON Binding (JSON-B) 1.0
+* Concurrency Utilities 1.0
+* Batch 1.0
+* Java API for XML Registries (JAXR) 1.0 (optional)
+* Java EE Management 1.1
+* Java EE Deployment 1.2 (optional)
+* Java Authorization Contract for Containers (JACC) 1.5
+* Java Authentication Service Provider Interface for Containers (JASPIC)
+1.1
+* Standard Tag Library for JavaServer Pages (JSTL) 1.2
+* JavaServer Faces 2.3
+* Java Security API 1.0
+* Common Annotations for the Java Platform 1.3
+* Java Persistence API (JPA) 2.2
+* Bean Validation 2.0
+* Managed Beans 1.0
+* Interceptors 1.2
+* Contexts and Dependency Injection for Java EE Platform 2.0
+* Dependency Injection for Java1.0
 
-* Microsoft Windows 10
-* Oracle Linux 7.1
+[[BHCGFHDI]][[java-ee-8-web-profile-technologies-tested-with-java-ee-8-cts]]
 
-[[GBFSA]][[javatest-harness]]
+1.2.2 Java EE 8 Web Profile Technologies Tested With Java EE 8 CTS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.2.3 JavaTest Harness
+The Java EE 8 CTS test suite can also be used to test compatibility for
+the following required Java EE 8 Web Profile technologies:
+
+* Java Servlet 4.0
+* JavaServer Pages (JSP) 2.3
+* Expression Language (EL) 3.0
+* Standard Tag Library for JavaServer Pages (JSTL) 1.2
+* JavaServer Faces 2.3
+* Java API for RESTful Web Services (JAX-RS) 2.1
+* Java API for WebSocket (WebSocket) 1.1
+* Java API for JSON Processing (JSON-P) 1.1
+* Java API for JSON Binding (JSON-B) 1.0
+* Common Annotations for the Java Platform (JSR 250) 1.3
+* Enterprise JavaBeans (EJB) 3.2 Lite
+* Java Transaction API (JTA) 1.2
+* Java Persistence (JPA) 2.2
+* Bean Validation 2.0
+* Managed Beans 1.0
+* Interceptors 1.2
+* Contexts and Dependency Injection for Java EE Platform 2.0
+* Dependency Injection for Java 1.0
+* Java EE Security API 1.0
+* Java Authentication Service Provider Interface for Containers (JASPIC)
+1.1 Servlet Container Profile
+* Debugging Support for Other Languages (JSR-45) 1.0
+
+[[GEUZS]][[cts-tests]]
+
+1.2.3 CTS Tests
+^^^^^^^^^^^^^^^
+
+The Java EE 8 CTS contains API tests and enterprise edition tests, which
+are tests that start in the Java EE 8 platform and use the underlying
+enterprise service or services as specified. For example, a JDBC
+enterprise edition test connects to a database, uses SQL commands and
+the JDBC 4.2 API to populate the database tables with data, queries the
+database, and compares the returned results against the expected
+results.
+
+[[GEUZU]]
+
+.*Figure 1-1 Typical Java Platform, Enterprise Edition Workflow*
+image:img/overviewa.png["Typical Java Platform, Enterprise Edition Workflow"]
+
+
+link:#GEUZU[Figure 1-1] shows how most licensees will use the test
+suite. They will set up and run the test suite with the Java Platform,
+Enterprise Edition 8 Reference Implementation (Java EE 8 RI) first to
+become familiar with the testing process. Then they will set up and run
+the test suite with their own Java EE 8 implementation. When they pass
+all of the tests, they will apply for and be granted certification.
+
+* Before you do anything with the test suite, read the rules in
+link:rules.html#GBFSN[Chapter 2, "Procedure for Java Platform, Enterprise
+Edition 8 Certification,"] or link:rules-wp.html#GJJPZ[Chapter 3,
+"Procedure for Java Platform, Enterprise Edition 8 Web Profile
+Certification."] These chapters explain the certification process and
+provides a definitive list of certification rules for Java EE 8 and Java
+EE 8 Web Profile implementations.
+* Next, take a look at the test assertions in the Assertion List, which
+you can find in the Java EE 8 CTS documentation bundle. The assertions
+explain what each test is testing. When you run the tests with the
+JavaTest GUI, the assertion being tested as part of the test description
+of the currently selected test is displayed.
+* Third, install and configure the Java EE 8 CTS software and the Java
+EE 8 RI or Java EE 8 Web Profile RI and run the tests as described in
+this guide. This will familiarize you with the testing process.
+* Finally, set up and run the test suite with your own Java EE 8 or Java
+EE 8 Web Profile implementation.
+
+
+[NOTE]
+=======================================================================
+
+In the instructions in this document, variables in angle brackets need
+to be expanded for each platform. For example, `<TS_HOME>` becomes
+`$TS_HOME` on Solaris/Linux and `%TS_HOME%` on Windows. In addition, the
+forward slashes (`/`) used in all of the examples need to be replaced
+with backslashes (`\`) for Windows.
+
+=======================================================================
+
+
+[[GEUYR]][[javatest-harness]]
+
+1.2.4 JavaTest Harness
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The JavaTest harness version {JavaTestVersion} is a set of tools
-designed to run and manage test suites on different Java platforms.
-To JavaTest, Jakarta EE can be considered another platform.
-The JavaTest harness can be described as both a Java application and a set
-of compatibility testing tools. It can run tests on different kinds of
-Java platforms and it allows the results to be browsed online within
-the JavaTest GUI, or offline in the HTML reports that the JavaTest
-harness generates.
+The JavaTest harness version 4.4.1 is a set of tools designed to run and
+manage test suites on different Java platforms. The JavaTest harness can
+be described as both a Java application and a set of compatibility
+testing tools. It can run tests on different kinds of Java platforms and
+it allows the results to be browsed online within the JavaTest GUI, or
+offline in the HTML reports that the JavaTest harness generates.
 
 The JavaTest harness includes the applications and tools that are used
 for test execution and test suite management. It supports the following
 features:
 
-* Sequencing of tests, allowing them to be loaded and executed automatically
+* Sequencing of tests, allowing them to be loaded and executed
+automatically
 * Graphic user interface (GUI) for ease of use
 * Automated reporting capability to minimize manual errors
 * Failure analysis
@@ -223,56 +310,36 @@ features:
 
 To run tests using the JavaTest harness, you specify which tests in the
 test suite to run, how to run them, and where to put the results as
-described in link:config.html#GBFVV[Chapter 4, "Setup and
-Configuration."]
+described in link:using.html#GBFWO[Chapter 7, "Executing Tests."]
 
-[[GBFRA]][[tck-compatibility-test-suite]]
+The tests that make up the CTS are precompiled and indexed within the
+CTS test directory structure. When a test run is started, the JavaTest
+harness scans through the set of tests that are located under the
+directories that have been selected. While scanning, the JavaTest
+harness selects the appropriate tests according to any matches with the
+filters you are using and queues them up for execution.
 
-1.2.4 TCK Compatibility Test Suite
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The test suite is the collection of tests used by the JavaTest harness
-to test a particular technology implementation. In this case, it is the
-collection of tests used by the {TechnologyShortName} TCK
-{TechnologyVersion} to test a {TechnologyShortName} {TechnologyVersion}
-implementation. The tests are designed to verify that a vendor's
-runtime implementation of the technology complies with the appropriate
-specification. The individual tests correspond to assertions of the
-specification.
-
-The tests that make up the TCK compatibility test suite are precompiled
-and indexed within the TCK test directory structure. When a test run is
-started, the JavaTest harness scans through the set of tests that are
-located under the directories that have been selected. While scanning,
-the JavaTest harness selects the appropriate tests according to any
-matches with the filters you are using and queues them up for execution.
-
-[[GBFSH]][[exclude-lists]]
+[[GEUYQ]][[exclude-lists]]
 
 1.2.5 Exclude Lists
 ^^^^^^^^^^^^^^^^^^^
 
-Each version of a TCK includes an Exclude List contained in a `.jtx`
-file. 
-This is a list of test file URLs that identify tests which do not
-have to be run for the specific version of the TCK being used. 
-Whenever tests are run, the JavaTest harness automatically excludes
-any test on the Exclude List from being executed.
+The Java EE 8 CTS includes an Exclude List contained in a `.jtx` file.
+This is a list of test file URLs that identify tests which do not have
+to be run for the specific version of the CTS being used. Whenever tests
+are run, the JavaTest harness automatically excludes any test on the
+Exclude List from being executed.
 
-A vendor's compatible implementation is not required to pass or run any test on the Exclude List.
-The Exclude List file, +{jtxFileName}+, is included in the
-{TechnologyShortName} TCK.
+A licensee is not required to pass or run any test on the Exclude List.
+The Exclude List file, `<TS_HOME>/bin/ts.jtx`, is included in the Java
+EE 8 CTS.
 
 
 [NOTE]
 =======================================================================
 
-From time to time, updates to the Exclude List are made available.
-The exclude list is included in the Jakarta TCK ZIP archive.
-Each time an update is approved and released, the version number 
-will be incremented.
-You should always make sure you are using an up-to-date copy of the
-Exclude List before running the {TechnologyShortName} TCK to verify your
+Always make sure you are using an up-to-date copy of the Exclude List
+before running the Java EE 8 CTS test suite to verify your
 implementation.
 
 =======================================================================
@@ -288,8 +355,8 @@ has been discovered.
 * The test fails due to a bug in the tools (such as the JavaTest
 harness, for example).
 
-In addition, all tests are run against the compatible implementations.
-Any tests that fail when run on a compatible Jakarta platform are put on the
+In addition, all tests are run against the reference implementations.
+Any tests that fail when run on a reference Java platform are put on the
 Exclude List. Any test that is not specification-based, or for which the
 specification is vague, may be excluded. Any test that is found to be
 implementation dependent (based on a particular thread scheduling model,
@@ -299,61 +366,164 @@ based on a particular file system behavior, and so on) may be excluded.
 [NOTE]
 =======================================================================
 
-Vendors are not permitted to alter or modify Exclude Lists. Changes to
+Licensees are not permitted to alter or modify Exclude Lists. Changes to
 an Exclude List can only be made by using the procedure described in
-link:rules.html#CJAJEAEI[Section 2.3.1, "TCK Test Appeals Steps."]
+link:rules.html#CJAICHHD[Section 2.3.1, "Java Platform, Enterprise
+Edition Version 8 TCK Test Appeals Steps,"] and
+link:rules-wp.html#CEGCHJGH[Section 3.3.1, "Java Platform, Enterprise
+Edition Version 8 TCK Test Appeals Steps."]
 
 =======================================================================
 
 
-[[GBFRR]][[tck-configuration]]
+[[GEUZN]][[apache-ant]]
 
-1.2.6 TCK Configuration
-^^^^^^^^^^^^^^^^^^^^^^^
+1.2.6 Apache Ant
+^^^^^^^^^^^^^^^^
 
-You need to set several variables in your test environment, modify
-properties in the +{jteFileName}+ file, and then use the JavaTest
-harness to configure and run the {TechnologyShortName} tests, as described in
-link:config.html#GBFVV[Chapter 4, "Setup and Configuration."]
+The Java EE 8 RI, Java EE 8 Web Profile RI, and Java EE 8 CTS require
+implementations of Apache Ant 1.9.7 from the Apache Ant Project
+(`http://ant.apache.org/`). Apache Ant is a free, open-source,
+Java-based build tool, similar in some ways to the make tool, but more
+flexible, cross-platform compatible, and centered around XML-based
+configuration files.
 
-include::intro.inc[]
+Ant is invoked in the Java EE 8 RI, Java EE 8 Web Profile RI, and Java
+EE 8 CTS in conjunction with various XML files containing Ant targets.
+These Ant targets provide a convenient way to automate various
+configuration tasks for Java EE 8 CTS. For example, the initial
+configuration of the Java EE 8 RI or Java EE 8 Web Profile RI for CTS is
+done by means of the `config.vi` Ant target.
 
-[[GBFQW]][[getting-started-with-the-tck]]
+The Ant configuration targets are there for your convenience. When
+configuring your Java EE 8 or Java EE 8 Web Profile implementation for
+the Java EE 8 CTS, you can either set up your environment to use the Ant
+tools, or you can perform some or all of your configuration procedures
+manually. Java EE 8 CTS includes the Ant Contrib package, and the tasks
+included with Ant Contrib are used within the CTS build files. See
+`http://ant-contrib.sourceforge.net/` for more information about Ant
+Contrib.
 
-[NOTE]
-====
-The Jakarta EE Specification Process support multiple compatible implementations. 
-These instructions explain how to get started with the {TechnologyRI} CI.
-If you are using another compatible implementation, refer to material provided
-by that implementation for specific instructions and procedures.
+This User's Guide does not provide in-depth instruction on Ant internals
+or how to configure Ant targets for your particular Java EE 8 or Java EE
+8 Web Profile implementation. For complete information about Ant, refer
+to the extensive documentation on the Apache Ant Project site. The
+Apache Ant Manual is available at
+`http://ant.apache.org/manual/index.html`.
 
-====
+Apache Ant is protected under the Apache Software, License 2.0, which is
+is available on the Apache Ant Project license page at 
+`http://ant.apache.org/license.html`.
 
-1.3 Getting Started With the TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Installing Apache Ant*
+* Download the Apache Ant 1.9.7 binary bundle from the Apache Ant 
+  Project.
+* Change to the directory in which you want to install Apache Ant and
+  extract the bundle
+* Set the `ANT_HOME` environment variable to point to the 
+  `apache-ant-<version>` directory
+* Add `<ANT_HOME>/bin` directory to the environment variable `PATH`
 
-This section provides an general overview of what needs to be done to
-install, set up, test, and use the {TechnologyShortName} TCK. These
-steps are explained in more detail in subsequent chapters of this
-guide.
+[[GEVAD]][[hardware-requirements]]
 
-1.  Make sure that the following software has been correctly installed
-on the system hosting the JavaTest harness:
-include::req-software.inc[]
-* Java SE {SEversion}
-* A CI for {TechnologyShortName} {TechnologyVersion}. One example is {TechnologyRI}.
-* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
-include::tck-packages.inc[]
-* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI) +
-See the documentation for each of these software applications for
-installation instructions. See link:install.html#GBFTP[Chapter 3,
-"Installation,"] for instructions on installing the {TechnologyShortName} TCK.
-2.  Set up the {TechnologyShortName} TCK software. +
-See link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
-details about the following steps.
-  a.  Set up your shell environment.
-  b.  Modify the required properties in the +{jteFileName}+ file.
-  c.  Configure the JavaTest harness.
-3.  Test the {TechnologyShortName} {TechnologyVersion} implementation. +
-Test the {TechnologyShortName} implementation installation by running
-the test suite.  See link:using.html#GBFWO[Chapter 5, "Executing Tests."]
+1.3 Hardware Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following section lists the hardware requirements for the Java EE 8
+CTS software, using the Java EE 8 RI or Java EE 8 Web Profile RI.
+Hardware requirements for other reference implementations will vary.
+
+All systems should meet the following recommended hardware requirements:
+
+* CPU running at 2.0 GHz or higher
+* 4 GB of RAM or more
+* 2 GB of swap space , if required
+* 6 GB of free disk space for writing data to log files, the Java EE 8
+repository, and the database
+* Network access to the Internet
+
+[[GEVBB]][[software-requirements]]
+
+1.4 Software Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can run the Java EE 8 CTS software on platforms running the Solaris,
+Linux, Windows, and Mac OS software that meet the following software
+requirements:
+
+* Operating Systems:
+
+** Solaris 10 and newer
+
+** MAC OS X Mountain Lion (10.8.1+)
+
+** Windows XP SP3, Windows 2008 R2
+
+** Oracle Linux 6.4
+
+** Fedora 18
+
+** Ubuntu Linux 12.10
+
+** Suse Enterprise Linux 12.2
+* Java SE 8 SDK
+* Java EE 8 RI or Java EE 8 Web Profile RI
+* Mail server that supports the IMAP and SMTP protocols
+* One of the following databases:
+
+** Oracle
+
+** Sybase
+
+** DB2
+
+** Microsoft SQL Server
+
+** Postgres SQL
+
+** MySQL
+
+** Java DB
+
+[[GEVCL]][[additional-java-ee-8-cts-requirements]]
+
+1.5 Additional Java EE 8 CTS Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In addition to the instructions and requirements described in this
+document, all Java EE 8 and Java EE 8 Web Profile implementations must
+also pass the standalone TCKs for the following technologies:
+
+* Contexts and Dependency Injection for Java 2.0 (JSR 365)
+* Dependency Injection for Java 1.0 (JSR 330)
+* Bean Validation 2.0 (JSR 380)
+
+For more information about the Contexts and Dependency Injection for
+Java EE (CDI) technology, see the specification at
+`http://jcp.org/en/jsr/detail?id=365`.
+
+For more information about the Dependency Injection for Java technology,
+see the specification at `http://jcp.org/en/jsr/detail?id=330`.
+
+For more information about the Bean Validation technology, see the
+specification at `http://jcp.org/en/jsr/detail?id=380`.
+
+[[GBFQW]][[getting-started-with-the-java-ee-8-cts-test-suite]]
+
+1.6 Getting Started With the Java EE 8 CTS Test Suite
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Installing, configuring, and using the Java EE 8 CTS involves the
+following general steps:
+
+1.  Download, install, and configure the Java EE 8 RI or Java EE 8 Web
+Profile RI.
+2.  Download and install the Java EE 8 CTS package.
+3.  Configure your database to work with your RI.
+4.  Configure CTS to work with your database and RI.
+5.  Run the CTS tests.
+
+The remainder of this guide explains these steps in detail. If you just
+want to get started quickly with the Java EE 8 CTS using the most basic
+test configuration, refer to link:install.html#GBFTP[Chapter 4,
+"Installation."]
