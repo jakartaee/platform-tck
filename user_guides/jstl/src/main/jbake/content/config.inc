@@ -12,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.6, "Using the
@@ -43,32 +43,32 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
+  {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Java EE 8 RI is running. +
+  CI (for example, {TechnologyRI}), is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Java EE 8 RI is running. +
+  whichCI (for example {TechnologyRI}) is running. +
   The default setting is `8080`.
   c.  `impl.vi` to the Vendor implementation.
   d.  `impl.vi.deploy.dir` to the Vendor implementation deployment
   directory. +
-  The JSTL TCK includes the following handlers:
+  The {TechnologyShortName} TCK includes the following handlers:
   * `none`: No deployment; default setting
-  * `glassfish`: Deploy to the Java EE 8 server
-  * `tomcat`: Deploy to the Tomcat server +
+  * `glassfish`: Deploy to the {TechnologyRI} server
+  * `tomcat`: Deploy to the a Tomcat server +
   See link:#GCRVD[Section 4.4, "Custom Deployment Handlers,"] for
   information about creating your own deployment handler and setting the
   `impl.vi.deploy.dir` property to use that handler.
-  e.  `jsf.classes` to the Standard Tag Library for JavaServer Pages API
+  e.  `jsf.classes` to the Standard Tag Library for Jakarta Server Pages API
   and implementation classes that are under test
-  f.  `jspservlet.classes` to the path to the Servlet and JSP API classes. +
+  f.  `jspservlet.classes` to the path to the Servlet and Jakarta Server Pages API classes. +
   The `ts.jte` file includes examples that show how to set the classes
-  properties for both GlassFish v2 and GlassFish v3 servers.
+  properties for {TechnologyRI} servers.
   g.  `report.dir` to the default directory in which JavaTest creates a
   test report for the most recent test run. +
   This property is a required property for the TCK Ant targets; it must be
@@ -90,9 +90,9 @@ available in the {TechnologyShortName} TCK documentation bundle.
 The Ant target `init.<dbname>` configures the database for running the
 test. The target can be run from `<TS_HOME>/bin`.
 
-For example, change to the <TS_HOME>/bin directory
+For example, change to the `<TS_HOME>/bin` directory, then enter
 
-<TS_HOME>/tools/ant/bin/ant init.javadb
+`<TS_HOME>/tools/ant/bin/ant init.javadb`
 
 This adds the database users and run db statements that are necessary
 for the tests to run successfully.
@@ -104,18 +104,18 @@ deployed later.
 4.1.2 Preparing the WAR Files for Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Complete this step only if you intend to package a JSTL implementation
-in the WAR files, thereby overriding the default JSTL implementation for
+Complete this step only if you intend to package a {TechnologyShortName} implementation
+in the WAR files, thereby overriding the default {TechnologyShortName} implementation for
 the application server under test. This procedure adds to and rebuilds
-the JSTL TCK WAR files.
+the {TechnologyShortName} TCK WAR files.
 
-1.  Copy the JAR file or files required by the JSTL implementation that
-will replace the application server's default JSTL implementation to the
+1.  Copy the JAR file or files required by the {TechnologyShortName} implementation that
+will replace the application server's default {TechnologyShortName} implementation to the
 `<TS_HOME>/weblib` directory. +
 This JAR file (or files) must contain all of the TLDs (located in the
 `META-INF` directory of the archive) for the tag libraries, as defined
-by the JSTL specification and any additional support JAR files upon
-which the JSTL implementation is dependent.
+by the {TechnologyShortName} specification and any additional support JAR files upon
+which the {TechnologyShortName} implementation is dependent.
 2.  Change to the `<TS_HOME>/src/com/sun/ts/tests` directory and run
 `<TS_HOME>/tools/ant/bin/ant build` to package the web archives. +
 This adds the JAR file or files from the `<TS_HOME>/weblib` directory to
@@ -152,7 +152,7 @@ slashes as a path separator instead.
 
 [[sthref9]]
 
-Before You Begin
+==== Before You Begin
 
 Decide against which {TechnologyShortName} implementation the tests
 will be run and determine to which Servlet–compliant Web server the
@@ -163,36 +163,36 @@ Adapt the instructions above for the vendor implementation.
 
 [[GCRWX]][[deploying-the-jstl-tck-tests]]
 
-4.3 Deploying the JSTL TCK Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.3 Deploying the {TechnologyShortName} TCK Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To deploy the JSTL TCK tests to the Java EE 7 platform, perform the
+To deploy the {TechnologyShortName} TCK tests to the Jakarta EE 8 platform, perform the
 following steps.
 
-1.  Make sure that the Web server to which you will deploy the JSTL TCK
+1.  Make sure that the Web server to which you will deploy the {TechnologyShortName} TCK
 tests is running.
   a.  Start the database.
   b.  Start the web server domain. +
-  For example, we can use the `asadmin` to start/stop database and domain. +
-  ./asadmin start-database +
-  ./asadmin start-domain
+  For example, with {TechnologyRI} we can use the `asadmin` to start/stop database and domain. +
+  `./asadmin start-database` +
+  `./asadmin start-domain`
   c.  In addition, with Java SE 8 security changes, it is necessary to set
   the following JVM properties on the domain in order to ensure all tests
   pass. +
-  -Djavax.xml.accessExternalStylesheet=all +
-  -Djavax.xml.accessExternalSchema=all +
-  -Djavax.xml.accessExternalDTD=file,http +
+  `-Djavax.xml.accessExternalStylesheet=all` +
+  `-Djavax.xml.accessExternalSchema=all` +
+  `-Djavax.xml.accessExternalDTD=file,http` +
   These properties need to exist and be set within the appserver domain if
   security manager is enabled. For example, we can use `asadmin` to
   set/unset jvm options followed by domain restart. +
-  ./asadmin create-jvm-options -Djavax.xml.accessExternalStylesheet=all +
-  ./asadmin create-jvm-options -Djavax.xml.accessExternalSchema=all +
-  ./asadmin create-jvm-options -Djavax.xml.accessExternalDTD=file,http +
-  ./asadmin restart-domain
+  `./asadmin create-jvm-options -Djavax.xml.accessExternalStylesheet=all` +
+  `./asadmin create-jvm-options -Djavax.xml.accessExternalSchema=all` +
+  `./asadmin create-jvm-options -Djavax.xml.accessExternalDTD=file,http` +
+  `./asadmin restart-domain`
 +
 2.  Change to the `<TS_HOME>/bin` directory.
 3.  Execute the `<TS_HOME>/tools/ant/bin/ant deploy.all` command. +
-All of the WAR files containing the JSTL TCK tests have been deployed.
+All of the WAR files containing the {TechnologyShortName} TCK tests have been deployed.
 Follow the instructions in link:using.html#GBFUZ[Section 5.1, "Using the
 GUI for TCK Test Execution,"] or link:using.html#GJCIW[Section 5.2,
 "Using the Command Line for TCK Test Execution,"] to run the tests you

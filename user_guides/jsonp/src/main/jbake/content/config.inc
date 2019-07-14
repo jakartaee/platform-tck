@@ -43,28 +43,28 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
+  {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
-  a. `jsonp.classes` to the JAR file(s) that contain your JSON-P 1.1
+  a. `jsonp.classes` to the JAR file(s) that contain your {TechnologyShortName} {TechnologyVersion} 
   implementation classes +
-  For example, if you were using the Oracle JSON-P 1.1 RI, you would set
-  this property to jsonp.classes=javax.json-1.1.0.jar.
+  For example, if you were using the {TechnologyFullName} {TechnologyVersion} CI, you would set
+  this property to jsonp.classes=javax.json-{TechnologyVersion}.0.jar.
   b. `jsonp.resources` should not be modified +
   This property points to JSON resource data files that are used by the
-  JSON-P TCK 1.1.
+  {TechnologyShortName} {TechnologyVersion} TCK.
   c. `jsonp.alt.provider.classes` should not be modified +
-  This property is set automatically when running the JSON-P TCK
+  This property is set automatically when running the {TechnologyShortName} TCK
   pluggability tests to test the SPI provider interface when using the
   top-level command line `runclient` or `run.pluggability` Ant targets.
   The property is included as part of the `ts.run.classpath` property and
-  is placed before `jsonp.classes` in the classpath so the JSON-P TCK can
+  is placed before `jsonp.classes` in the classpath so the {TechnologyShortName} TCK can
   pick up the TCK-supplied provider when set, not the provider supplied
-  with the JSON-P 1.1 implementation under test. This property should only
+  with the {TechnologyShortName} 1.1 implementation under test. This property should only
   be set when running the pluggability tests. All other tests use the
-  provider supplied with the JSON-P 1.1 implementation under test.
+  provider supplied with the {TechnologyShortName} 1.1 implementation under test.
 
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
@@ -100,26 +100,26 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
+  {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
-  a. `jsonp.classes` to the JAR file(s) that contain your JSON-P 1.1
+  a. `jsonp.classes` to the JAR file(s) that contain your {TechnologyShortName} {TechnologyVersion}
   implementation classes
   b. `jsonp.resources` should not be modified +
   This property points to JSON resource data files that are used by the
-  JSON-P TCK 1.1.
+  {TechnologyShortName} {TechnologyVersion} TCK.
   c. `jsonp.alt.provider.classes` should not be modified +
-  This property is set automatically when running the JSON-P TCK
+  This property is set automatically when running the {TechnologyShortName} TCK
   pluggability tests to test the SPI provider interface when using the
   top-level command line `runclient` or `run.pluggability` Ant targets.
   The property is included as part of the `ts.run.classpath` property and
-  is placed before `jsonp.classes` in the classpath so the JSON-P TCK can
+  is placed before `jsonp.classes` in the classpath so the {TechnologyShortName} TCK can
   pick up the TCK-supplied provider when set, not the provider supplied
-  with the JSON-P 1.1 implementation under test. This property should only
+  with the {TechnologyShortName} {TechnologyVersion} implementation under test. This property should only
   be set when running the pluggability tests. All other tests use the
-  provider supplied with the JSON-P 1.1 implementation under test.
+  provider supplied with the {TechnologyShortName} {TechnologyVersion} implementation under test.
 
 
 

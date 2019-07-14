@@ -2,77 +2,129 @@ type=page
 status=published
 title=Installation
 next=config.html
-prev=rules.html
+prev=rules-wp.html
 ~~~~~~
-include::attributes.conf[]
 Installation
 ============
 
-[[GBFTP]]
+[[GBFTP]][[installation]]
 
-
-[[installation]]
-3 Installation
+4 Installation
 --------------
 
-This chapter explains how to install the {TechnologyFullName} TCK software.
+This chapter explains how to install the Java EE 8 CTS software and
+perform a sample test run to verify your installation and familiarize
+yourself with the CTS.
 
 After installing the software according to the instructions in this
-chapter, proceed to link:config.html#GBFVV[Chapter 4, "Setup and
+chapter, proceed to link:config.html#GBFVV[Chapter 5, "Setup and
 Configuration,"] for instructions on configuring your test environment.
 
-[[GBFUD]][[obtaining-the-reference-implementation]]
+This chapter covers the following topics:
 
-3.1 Obtaining a Compatible Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* link:#GEVGN[Installing the Java EE 8 Reference Implementation]
+* link:#GEVHP[Installing the Java EE 8 CTS]
+* link:#GEVGZ[Verifying Your Installation (Optional)]
 
-Each compatible implementation (CI) will provide instructions for obtaining
-their implementation.
-Eclipse GlassFish is a compatible implementation which may be obtained
-from https://projects.eclipse.org/projects/ee4j.glassfish/downloads
+[[GEVGN]][[installing-the-java-ee-8-reference-implementation]]
 
-[[GBFTS]][[installing-the-software]]
+4.1 Installing the Java EE 8 Reference Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3.2 Installing the Software
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[sthref14]]
 
-Before you can run the {TechnologyShortName} TCK tests, you must
-install and set up the following software components:
+Before You Begin
 
-include::req-software.inc[]
-* Java SE {SEversion}
-* A CI for {TechnologyShortName} {TechnologyVersion}, one example is {TechnologyRI}
-* {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
-include::tck-packages.inc[]
-* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
+If the Java EE 8 Reference Implementation (RI) is already installed, it
+is recommended that you shut it down and start with a new, clean RI
+installation.
 
-Follow these steps:
+1.  Install the Java SE 8 JDK bundle, if it is not already installed. +
+Refer to the JDK installation instructions for details. The JDK bundle
+can be downloaded from
+`http://www.oracle.com/technetwork/java/javase/downloads/index.html`
+2.  Create or change to the directory in which you will install the Java
+EE 8 RI.
+3.  Copy or download the Java EE 8 RI.
+4.  Unzip the Java EE 8 RI bundle.
+5.  Set the following environment variables:
+* `JAVAEE_HOME` to the RI directory you just created
+* `JAVA_HOME` to the JDK you want to use
+6.  Start the Java EE 8 RI by executing the following command: +
+[source,oac_no_warn]
+----
+<JAVAEE_HOME>/bin/asadmin start-domain
+----
 
-.  Install the Java SE {SEversion} software, if it is not already installed. +
-Download and install the Java SE {SEversion} software from
-http://www.oracle.com/technetwork/java/javase/downloads/index.html.
-Refer to the installation instructions that accompany the software for
-additional information.
-.  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
-  a.  Copy or download the {TechnologyShortName} TCK software to your
-      local system. +
-      You can obtain the {TechnologyShortName} TCK software from the
-      Eclipse EE4J GitHub Organization (https://github.com/eclipse-ee4j) project
-      site.  The {TechnologyShortName} TCK software is located in the
-      project site's Download area.
-  b.  Use the `unzip` command to extract the bundle in the directory of
-      your choice: +
-      +unzip {TCKPackageName}+ +
-      This creates the TCK directory. The TCK is the test suite home,
-      `<TS_HOME>`.
-include::install-server.inc[]
-.  Install the {TechnologyShortName} {TechnologyVersion} Compatible
-Implementation. +
-The Compatible Implementation is used to validate your initial
-configuration and setup of the {TechnologyShortName} TCK
-{TechnologyVersion} tests, which are explained further in
-link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
-The {TechnologyShortName} CI can be obtained from Eclipse EE4J GitHub Organization (https://github.com/eclipse-ee4j) project site.
-include::install-server-vi.inc[]
-.  Install the {TechnologyShortName} VI to be tested. +
-Follow the installation instructions for the particular VI under test.
+[[GEVHP]][[installing-the-java-ee-8-cts]]
+
+4.2 Installing the Java EE 8 CTS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Complete the following procedure to install the Java EE 8 CTS on a
+system running the Solaris, Linux, or Windows operating system.
+
+
+[NOTE]
+=======================================================================
+
+When installing in the Windows environment, the Java EE 8 RI, Java SE 8
+JDK, and CTS should be installed on the same drive. If you must install
+these components on different drives, be sure to change the
+`ri.applicationRoot` and `s1as.applicationRoot` properties as needed in
+the `<TS_HOME>/bin/ts.jte` CTS configuration file. See
+link:config.html#GEXOS[Section 5.4.2, "Windows-Specific Properties,"] for
+more information.
+
+=======================================================================
+
+
+1.  Copy or download the CTS 8 software.
+2.  Change to the directory in which you want to install the Java EE 8
+CTS software and use the `unzip` command to extract the bundle: +
+[source,oac_no_warn]
+----
+cd install_directory
+unzip javaeetck-nnn.zip
+----
+This creates the `javaeetck` directory. The
+install_directory`/javaeetck` directory will be `TS_HOME`.
+3.  Set the `TS_HOME` environment variable to point to the `javaeetck`
+directory.
+
+After you complete the installation, follow the directions in
+link:config.html#GBFVV[Chapter 5, "Setup and Configuration,"] to set up
+and configure the Java EE 8 CTS test suite.
+
+[[GEVGZ]][[verifying-your-installation-optional]]
+
+4.3 Verifying Your Installation (Optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This procedure is optional. After installing the Java EE 8 RI and Java
+EE 8 CTS, you may want to verify your installation by running the CTS
+samples against the Java EE 8 RI. See link:config.html#GBFVV[Chapter 5,
+"Setup and Configuration,"] for complete configuration instructions.
+
+1.  Set the following properties in your `<TS_HOME>/bin/ts.jte` file: +
+[source,oac_no_warn]
+----
+javaee.home=<JAVAEE_HOME>
+javaee.home.ri=<JAVAEE_HOME>
+mailHost=<mail-server-host> // the name of an accessible SMTP server
+mailuser1=firstname.lastname@xyz.com // a valid email address
+javamail.password=password // password for mailuser1
+orb.host=localhost // the name of the machine running the Java EE 8 RI
+orb.host.ri=localhost // the name of the machine running the Java EE 8 RI
+----
+2.  Use these commands to run the Java EE 8 CTS sample tests: +
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant start.javadb.asadmin
+ant config.vi
+cd <TS_HOME>/src/com/sun/ts/tests/samples
+ant runclient
+----
+
+

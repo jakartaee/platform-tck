@@ -17,7 +17,7 @@ Preface
 
 This guide describes how to install, configure, and run the Technology
 Compatibility Kit (TCK) that is used to test the {TechnologyFullName}
-({TechnologyShortName} {TechnologyVersion}) (JSR {JSR}) technology.
+({TechnologyShortName} {TechnologyVersion}) technology.
 
 The {TechnologyShortName} TCK is a portable, configurable automated
 test suite for verifying the compatibility of a vendor's
@@ -39,7 +39,7 @@ the authors of this guide.
 
 [WARNING]
 ====
-TODO
+Template TODO
 
 * The following paragraph needs to be reviewed
 
@@ -77,14 +77,6 @@ that verifies compatibility of their implementation of the
 [[before-you-read-this-book]]
 Before You Read This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[WARNING]
-====
-TODO
-
-* Fix reference to JSRURL -- everywhere
-
-====
 
 You should be familiar with the {TechnologyShortName}
 {TechnologyVersion}, version {TechnologyVersion} Specification, 

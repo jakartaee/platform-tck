@@ -14,6 +14,13 @@ need to be changed or removed.
 B Packaging the Test Applications in Servlet-Compliant WAR Files With VI-Specific Information
 ---------------------------------------------------------------------------------------------
 
+[Note]
+====
+If you are using a compatible implementation, other than {TechnologyRI}, please consult documentation
+which may contain additional details specific for that implementation.
+
+====
+
 The {TechnologyShortName} {TechnologyVersion} specification specifies
 how {TechnologyShortName} applications are to be published in a Java SE
 environment, JAX-WS endpoint, or Servlet–compliant Web container.
@@ -23,7 +30,7 @@ published in a Java SE environment are located under
 `$TS_HOME/classes`.
 
 The {TechnologyShortName} TCK comes with prebuilt test WAR files for
-deployment on Java EE 8 RI , which provides a Servlet–compliant Web
+deployment on JAkarta EE 8 CI, Eclipse GlassFish 5.1, which provides a Servlet–compliant Web
 container. The WAR files are {TechnologyRI}-specific, with {TechnologyRI}'s servlet
 class and {TechnologyRI}'s servlet defined in the `web.xml` deployment
 descriptor. To run the TCK tests against the VI in a Servlet–compliant
@@ -49,9 +56,9 @@ B.1 Overview
 ~~~~~~~~~~~~
 
 The set of prebuilt archives and classes that ship with the
-{TechnologyShortName} TCK were built using the Reference
-Implementation, and must be deployed on Java EE 8 RI and run against
-the {TechnologyRI} RI.
+{TechnologyShortName} TCK were built using the Eclipse GlassFish 5.1, Compatible
+Implementation, and must be deployed on a Jakarta EE 8 CI and run against
+the {TechnologyRI} CI.
 
 The prebuilt {TechnologyRI}-specific Servlet–compliant WAR files are located
 under $TS_HOME`/dist`, and have `jersey` as part of their name; for
@@ -62,7 +69,7 @@ example:
 $TS_HOME/dist/com/sun/ts/tests/jaxrs/ee/rs/get/jaxrs_rs_get_web.war.jersey
 ----
 
-The names are made unique by including `jersey` to minimize the chances
+The names are made unique by including keyword `jersey` to minimize the chances
 that the files will be overwritten or modified.
 
 The Vendor must create VI-specific Servlet–compliant WAR files if the
@@ -147,7 +154,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 ----
 
 The {TechnologyShortName} TCK provides a tool,
-`${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for the Java EE 8 RI
+`${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for use with the Jakarta EE 8 CI, Eclipse GlassFish 5.1
 that you can use as a model to help you create your own VI-specific Web
 test application.
 

@@ -28,7 +28,7 @@
     <artifactId>tck_jaxrs</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Java API for RESTful Web Services (JAX-RS) 2.1 for Jakarta EE, Release 2.1</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta RESTful Web Services for Jakarta EE, Release 2.1</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,7 +41,7 @@
         <jruby.version>9.2.6.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
-        <doc.pdf>JAX-RS-TCK-Users-Guide.pdf</doc.pdf>
+        <doc.pdf>Jakarta-RESTful-Web-Services-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 

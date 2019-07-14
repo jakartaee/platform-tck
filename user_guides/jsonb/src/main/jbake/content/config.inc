@@ -48,8 +48,8 @@ slashes as a path separator instead.
 environment variables:
   a.  Set the `jsonb.classes` property to the jar file(s) that contain
   the {TechnologyShortName} implementation. +
-  For example, if you were using the Oracle JSON-B 1.0 RI, you would set
-  this property to `jsonb.classes=javax.json.bind-1.0.jar`.
+  For example, if you were using the {TechnologyFullName} {TechnologyVersion} RI, you would set
+  this property to `jsonb.classes=javax.json.bind-{TechnologyVersion}.jar`.
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
 

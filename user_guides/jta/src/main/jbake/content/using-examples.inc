@@ -15,7 +15,7 @@ ant runclient
 
 [[GCMCU]]
 
-Example 5-1 {TechnologyShortName} TCK Signature Tests
+==== Example 5-1 {TechnologyShortName} TCK Signature Tests
 
 To run the {TechnologyShortName} TCK signature tests, enter the
 following commands:
@@ -29,7 +29,7 @@ ant runclient
 [[GCMBV]]
 
 
-Example 5-2 Single Test Directory
+==== Example 5-2 Single Test Directory
 
 To run a single test directory, enter the following commands:
 
@@ -42,7 +42,7 @@ ant runclient
 [[GCMCA]]
 
 
-Example 5-3 Subset of Test Directories
+==== Example 5-3 Subset of Test Directories
 
 To run a subset of test directories, enter the following commands:
 
@@ -53,7 +53,7 @@ ant runclient
 ----
 
 
-Example 5-4 Running Tests in Standalone Mode
+==== Example 5-4 Running Tests in Standalone Mode
 
 To run the tests in standalone mode, enter the following commands:
 

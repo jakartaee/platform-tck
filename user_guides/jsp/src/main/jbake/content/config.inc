@@ -43,39 +43,39 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
-  {TechnologyVersion} RI has been installed
+  {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Java EE 8 RI is running. +
+  Jakarta EE 8 CI (for example {TechnologyRI}) is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Java EE 8 RI is running. +
+  which your Jakarta EE 8 CI is running. +
   The default setting is `8080`.
-  c.  Set the `webServerHome` property to the installation directory of Java EE
-  8 RI.
+  c.  Set the `webServerHome` property to the installation directory of Jakarta EE
+  8 CI.
   d.  `web.deployment.handler` to an Ant file that contains at least a
   single target named `deploy`. +
   When `ant deploy` is invoked, this target will be invoked to handle the
   deployment of the web applications to the target server. To use a custom
   handler, copy the handler to the `<TS_HOME>/bin/deploy` directory and
   provide only the filename as the property value. +
-  The JSP TCK includes the following handlers:
+  The {TechnologyShortName} TCK includes the following handlers:
+
   * `noop`: No deployment; default setting
-  * `glassfish`: Deploy to the Java EE 8 server
+  * `glassfish`: Deploy to the Jakarta EE 8 CI server {TechnologyRI}
   * `jwsdp`: Deploy to a server running the Java Web Services Developers
   Pack or to a Tomcat server +
   See link:#GCRVD[Section 4.5, "Custom Deployment Handlers,"] for
   information about creating your own deployment handler and setting the
   `web.deployment.handler` property to use that handler.
-  e.  `jspservlet.classes` to the path to the Servlet and JSP API classes
+  e.  `jspservlet.classes` to the path to the Servlet and {TechnologyShortName} API classes
   that are used for building. +
   The `ts.jte` file includes examples that show how to set the classes
-  properties for GlassFish 4 servers.
-  f.  `jstl.classes` to the path to the JavaServer Pages Standard Tag
-  Library (JSTL) JAR files.
+  properties for {TechnologyRI} servers.
+  f.  `jstl.classes` to the path to the Jakarta Standard Tag Library JAR files.
   g.  `report.dir` to the default directory in which JavaTest creates a
   test report for the most recent test run. +
   This property is a required property for the TCK Ant targets; it must be
@@ -85,20 +85,20 @@ environment variables:
   This property is required for the TCK Ant targets.
   i.  When the signature tests are run, the `sigTestClasspath` property
   must be set to a list of JAR files and directories which contain the
-  Java EE and Java SE classes. +
+  Jakarta EE and Java SE classes. +
   Paths must be separated by the appropriate path separator ("`;`" on
   Windows, "`:`" on Solaris/Linux).
   j. `porting.ts.url.class.1` to the class names of your porting class
   implementations. +
-  By default, the property settings point to the JSP TCK RI-specific
+  By default, the property settings point to the {TechnologyShortName} TCK CI-specific
   classes.
 +
 3.  Provide your own implementation of the porting package interface
-provided with the JSP TCK. +
+provided with the {TechnologyShortName} TCK. +
 The porting package interface, `TSURLInterface.java`, obtains URL
 strings for web resources in an implementation-specific manner. API
 documentation for the `TSURLInterface.java` porting package interface is
-available in the JSP TCK documentation bundle.
+available in the {TechnologyShortName} TCK documentation bundle.
 
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
@@ -131,7 +131,8 @@ slashes as a path separator instead.
 
 [[sthref9]]
 
-Before You Begin
+4.2.1 Before You Begin
+^^^^^^^^^^^^^^^^^^^^^^
 
 Decide against which {TechnologyShortName} implementation the tests
 will be run and determine to which Servlet–compliant Web server the
@@ -145,18 +146,18 @@ Adapt the instructions above for the vendor implementation.
 4.3 Preparing the WAR Files for Deployment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Complete this step only if you intend to package a JSP implementation in
-the WAR files, thereby overriding the default JSP implementation for the
+Complete this step only if you intend to package a {TechnologyShortName} implementation in
+the WAR files, thereby overriding the default {TechnologyShortName} implementation for the
 application server under test. This procedure adds to and rebuilds the
-JSP TCK WAR files.
+{TechnologyShortName} TCK WAR files.
 
-1.  Copy one or more of the JAR files required by the JSP implementation
-that will replace the application server's default JSP implementation to
+1.  Copy one or more of the JAR files required by the {TechnologyShortName} implementation
+that will replace the application server's default {TechnologyShortName} implementation to
 the `<TS_HOME>/weblib` directory. +
 This JAR file (or files) must contain all of the TLDs (located in the
 `META-INF` directory of the archive) for the tag libraries, as defined
-by the JSP specification and any additional support JAR files upon which
-the JSP implementation is dependent.
+by the {TechnologyShortName} specification and any additional support JAR files upon which
+the {TechnologyShortName} implementation is dependent.
 2.  Change to the `<TS_HOME>/src/com/sun/ts/tests` directory and run
 `ant build` to package the web archives. +
 This adds one or more JAR files from the `<TS_HOME>/weblib` directory to
