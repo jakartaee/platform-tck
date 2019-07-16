@@ -13,7 +13,7 @@ D Configuring Your Backend Database
 -----------------------------------
 
 This appendix explains how to configure a backend database to use with a
-Java Platform, Enterprise Edition server being tested against the Java
+Jakarta Platform, Enterprise Edition server being tested against the Jakarta
 EE 8 CTS.
 
 The topics included in this appendix are as follows:
@@ -29,18 +29,18 @@ The topics included in this appendix are as follows:
 D.1 Overview
 ~~~~~~~~~~~~
 
-All Java Platform, Enterprise Edition servers tested against the Java EE
+All Jakarta Platform, Enterprise Edition servers tested against the Jakarta EE
 8 CTS must be configured with a database and JDBC 4.1-compliant drivers.
-Note that the Java Platform, Enterprise Edition RI includes the Java DB
+Note that the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 5.1 includes the Apache Derby
 database.
 
-To perform interoperability testing, you need to configure two Java
+To perform interoperability testing, you need to configure two Jakarta
 Platform, Enterprise Edition servers and two databases, one of which
-must be the Java Platform, Enterprise Edition RI with the bundled Java
-DB database. See link:config.html#GEWSQ[Java Platform, Enterprise Edition
+must be the Jakarta Platform, Enterprise Edition RI with the bundled Apache Derby
+database. See link:config.html#GEWSQ[Jakarta Platform, Enterprise Edition
 Server Configuration Scenarios] for more information.
 
-For the purposes of Java EE 8 CTS testing, all database configuration
+For the purposes of Jakarta EE 8 CTS testing, all database configuration
 properties required by the CTS are made in the `<TS_HOME>/bin/ts.jte`
 file. The CTS `init.<`database> Ant target uses the properties you set
 in `ts.jte` to generate one or more SQL statement files that are in turn
@@ -50,15 +50,15 @@ required by the CTS.
 The database configuration process comprises four general steps:
 
 1.  Set database-related properties in the `<TS_HOME>/bin/ts.jte` file.
-2.  Configure your Java Platform, Enterprise Edition server
+2.  Configure your Jakarta Platform, Enterprise Edition server
 implementation for your database and for CTS.
 3.  Start your database.
 4.  Run the `init.`<database> Ant target to initialize your database for
 CTS.
 
-The procedure for configuring your Java Platform, Enterprise Edition
+The procedure for configuring your Jakarta Platform, Enterprise Edition
 server for your database is described in
-link:config.html#GEWTQ[Configuring a Java EE 8 Server]. The final step,
+link:config.html#GEWTQ[Configuring a Jakarta EE 8 Server]. The final step,
 initializing your database for CTS by running `init.<`database> target,
 is explained more in the next section.
 
@@ -67,19 +67,19 @@ is explained more in the next section.
 D.2 The init.<database> Ant Target
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before your Java Platform, Enterprise Edition server database can be
-tested against the Java EE 8 CTS, the database must be initialized for
+Before your Jakarta Platform, Enterprise Edition server database can be
+tested against the Jakarta EE 8 CTS, the database must be initialized for
 CTS by means of the Ant `init.<`database> target. For example, the
-`init.javadb` Ant task is used to initialize the Java DB database for
+`init.javadb` Ant task is used to initialize the Apache Derby database for
 CTS.
 
 This Ant target references database properties in `ts.jte` file and
 database-specific DDL and DML files to generate SQL statement files that
-are read by the Java EE 8 CTS when you start the test suite. The DDL and
+are read by the Jakarta EE 8 CTS when you start the test suite. The DDL and
 DML files are described later in this appendix, in link:#GFKOC[Database
 DDL and DML Files].
 
-The Java EE 8 CTS includes the following database-specific Ant targets:
+The Jakarta EE 8 CTS includes the following database-specific Ant targets:
 
 * `init.cloudscape`
 * `init.db2`
@@ -109,9 +109,9 @@ you need to set for CTS testing.
 
 Note that some properties take the form property`.ri`. In all cases,
 properties with an `.ri` suffix are used for interoperability testing
-only. In such cases, the property value applies to the Java Platform,
+only. In such cases, the property value applies to the Jakarta Platform,
 Enterprise Edition VI server (the server you want to test) and the
-property`.ri` value applies to the Java Platform, Enterprise Edition RI
+property`.ri` value applies to the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 5.1
 server. For example:
 
 [source,oac_no_warn]
@@ -125,7 +125,7 @@ that is, when you are performing interoperability tests.
 
 [[sthref60]][[GFKMJ]]
 
-Table D-1 ts.jte Database Properties
+===== Table D-1 ts.jte Database Properties
 
 [width="100%",cols="35%,65%",options="header",]
 |=======================================================================
@@ -176,7 +176,7 @@ point to the location of the JDBC drivers.
 |`jdbc.poolName` |Configures the connection pool that will be used in
 the CTS test run; for example, `jdbc.poolName=${javadb.poolName}`. Set
 this property when running against the RI if using a database other than
-Java DB.
+Apache Derby.
 
 |`password1` |Password for the JDBC/DB1 resource; for example,
 `password1=${javadb.passwd}`.
@@ -203,7 +203,7 @@ Java DB.
 D.4 Database DDL and DML Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For each supported database type, the Java EE 8 CTS includes a set of
+For each supported database type, the Jakarta EE 8 CTS includes a set of
 DDL and DML files in subdirectories off the `<TS_HOME>/sql` directory.
 The `config.vi` and `config.ri` targets use two `ts.jte` properties,
 `db.dml.file` and `db.dml.file.ri` (interop only), to determine the
@@ -215,7 +215,7 @@ configuring and populating database tables as required by the CTS tests,
 and for defining any required primary or foreign key constraints and
 database-specific conmand line terminators.
 
-In addition to the database-specific DML files, the Java EE 8 CTS
+In addition to the database-specific DML files, the Jakarta EE 8 CTS
 includes database-specific DDL files, also in subdirectories off
 `<TS_HOME>/sql`. These DDL files are used by the `init.`database target
 to create and drop database tables and procedures required by the CTS.

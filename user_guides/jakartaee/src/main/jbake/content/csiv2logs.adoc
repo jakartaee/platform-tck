@@ -31,29 +31,29 @@ B.1 Overview
 
 This section describes the deployment scenarios under which the CSIv2
 interoperability tests are executed. Each scenario uses two servers. The
-label "Licensee Java Platform, Enterprise Edition Server" refers to the
-server under test. The label "Java EE 8 RI Server" refers to the
+label "Implementer Jakarta Platform, Enterprise Edition Server" refers to the
+server under test. The label "Jakarta EE 8 CI Server" refers to the
 reference server against which compatibility will be verified.
 
 There are three primary deployment scenarios, each of which is described
 in greater detail in sections that follow:
 
-* link:#GFAUX[Application Client-to-EJB Scenarios]
-* link:#GFAZD[EJB-to-EJB Test Scenarios]
-* link:#GFKEF[Web Client-to-EJB Scenarios]
+* link:#GFAUX[Application Client-to-Jakarta Enterprise Beans Scenarios]
+* link:#GFAZD[Jakarta Enterprise Bean-to-Jakarta Enterprise Bean Test Scenarios]
+* link:#GFKEF[Web Client-to-Jakarta Enterprise Bean Scenarios]
 
 Although these scenarios often involve more than one invocation, the
 invocation of primary interest is the final invocation, which is always
 between servers.
 
-A new logging mechanism was introduced with Java EE 8 CTS. Logging now
+A new logging mechanism was introduced with Jakarta EE 8 CTS. Logging now
 occurs as follows:
 
 * From the VI, logging operations are done through a servlet request.
-* From the RI (in the Interceptor), logging operations skip the servlet
+* From the CI (in the Interceptor), logging operations skip the servlet
 request and write directly to the log file, since the interceptor
 resides on the same machine as the log files.
-* From RI (not interceptor), logging operations are done through a
+* From CI (not interceptor), logging operations are done through a
 servlet request.
 
 The log files are created and sent back to the client-side tests, where
@@ -73,29 +73,30 @@ which will cause all the CSIv2 tests to fail as well.
 =======================================================================
 
 
-When the server that is running the Java EE 8 RI is started, a set of
+When the server that is running the Jakarta EE 8 CI is started, a set of
 logging interceptors are registered, allowing the test code to collect
 protocol-level information. Note that this interceptor is only installed
-on the server that is running the Java EE 8 RI. The Java EE 8 CTS does
-not require the Licensee Java Platform, Enterprise Edition Server to
+on the server that is running the Jakarta EE 8 CI. The Jakarta EE 8 CTS does
+not require the Implementer Jakarta Platform, Enterprise Edition Server to
 support CORBA Portable Interceptors.
 
 Each scenario is executed in both a "`forward`" and a "`reverse`"
 direction:
 
 * In the `forward` direction, the client component of the invocation of
-primary interest is on the Licensee Java Platform, Enterprise Edition
+primary interest is on the Implementer Jakarta Platform, Enterprise Edition
 Server, and the server component is on the server that is running the
-Java EE 8 RI. In this direction, information about the CSIv2 request
+Jakarta EE 8 CI. In this direction, information about the CSIv2 request
 message is collected and analyzed.
+
 * In the `reverse` direction, the client component of the invocation of
-primary interest is on the server that is running the Java EE 8 RI, and
-the server component is on the Java Platform, Enterprise Edition
-Licensee server. In this direction, information about the published IOR
+primary interest is on the server that is running the Jakarta EE 8 CI, and
+the server component is on the Jakarta Platform, Enterprise Edition
+Implementer server. In this direction, information about the published IOR
 and the CSIv2 response message is collected and analyzed.
 
-link:#GFAUX[Application Client-to-EJB Scenarios], link:#GFAZD[EJB-to-EJB
-Test Scenarios], and link:#GFKEF[Web Client-to-EJB Scenarios] show the
+link:#GFAUX[Application Client-to-Jakarta Enterprise Beans Scenarios], link:#GFAZD[Jakarta Enterprise Beans-to-Jakarta Enterprise Beans
+Test Scenarios], and link:#GFKEF[Web Client-to-Jakarta Enterprise Beans Scenarios] show the
 components that are present in both the `forward` and `reverse`
 directions.
 
@@ -105,65 +106,71 @@ determine why a particular test is not passing.
 
 [[GFAUX]][[b.1.1-application-client-to-ejb-scenarios]]
 
-B.1.1 Application Client-to-EJB Scenarios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+B.1.1 Application Client-to-Jakarta Enterprise Beans Scenarios
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each application client-to-EJB scenario includes an application client
-and an EJB, as shown in link:#GFKGD[Figure B-1]. In the `forward`
-direction, the application client is deployed on the Licensee Java
-Platform, Enterprise Edition server and the EJB is deployed on the
-server that is running the Java EE 8 RI. In the `reverse` direction, the
-application client is deployed on the server that is running the Java EE
-8 RI, and the EJB is deployed on the Licensee Java Platform, Enterprise
+Each application client-to-Jakarta Enterprise Beans scenario includes an application client
+and an Jakarta Enterprise Beans, as shown in link:#GFKGD[Figure B-1]. In the `forward`
+direction, the application client is deployed on the Implementer Jakarta
+Platform, Enterprise Edition server and the Jakarta Enterprise Beans is deployed on the
+server that is running the Jakarta EE 8 CI. In the `reverse` direction, the
+application client is deployed on the server that is running the Jakarta EE
+8 CI, and the Jakarta Enterprise Beans is deployed on the Implementer Jakarta Platform, Enterprise
 Edition Server. The Logging Interceptor (LI) is deployed on the server
-that is running the Java EE 8 RI.
+that is running the Jakarta EE 8 CI.
 
 [[GFKGD]]
 
-.*Figure B-1 Application Client-to-EJB Test Scenario*
+===== *Figure B-1 Application Client-to-Jakarta Enterprise Beans Test Scenario*
 image:img/client2ejb.png["Application Client-to-EJB Test Scenario"]
 
+Note: EJB and Java EE, in the figure above are references to Jakarta Enterprise Beans and Jakarta EE. RI
+is replaced with CI (Compatible Implementation).  
 
-[[GFAZD]][[b.1.2-ejb-to-ejb-test-scenarios]]
+[[GFAZD]][[b.1.2-jakarta-enterprise-beans-to-jakarta-enterprise-beans-test-scenarios]]
 
-B.1.2 EJB-to-EJB Test Scenarios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+B.1.2 Jakarta Enterprise Beans-to-Jakarta Enterprise Beans Test Scenarios
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each of the EJB-to-EJB scenarios includes an application client and two
+Each of the Jakarta Enterprise Beans-to-Jakarta Enterprise Beans scenarios includes an application client and two
 enterprise beans, as shown in link:#GFKEV[Figure B-2]. In the `forward`
-direction, the application client and EJB1 are deployed on the Licensee
-Java Platform, Enterprise Edition Server. EJB2 is deployed on the server
-that is running the Java EE 8 RI. In the `reverse` direction, the
-Application Client and EJB3 are deployed on the server that is running
-the Java EE 8 RI. EJB4 is deployed on the Licensee Java Platform,
+direction, the application client and Jakarta Enterprise Bean 1 are deployed on the Implementer
+Jakarta Platform, Enterprise Edition Server. Jakarta Enterprise Bean 2 is deployed on the server
+that is running the Jakarta EE 8 CI. In the `reverse` direction, the
+Application Client and Jakarta Enterprise Bean 3 are deployed on the server that is running
+the Jakarta EE 8 CI. Jakarta Enterprise Bean 4 is deployed on the Implementer Jakarta Platform,
 Enterprise Edition Server. The Logging Interceptor (LI) is deployed on
-the server that is running the Java EE 8 RI.
+the server that is running the Jakarta EE 8 CI.
 
 [[GFKEV]]
 
-.*Figure B-2 EJB-to-EJB Test Scenario*
+===== *Figure B-2 Jakarta Enterprise Beans-to-Jakarta Enterprise Beans Test Scenario*
 image:img/ejb2ejb.png["EJB-to-EJB Test Scenario"]
 
+Note: EJB and Java EE, in the figure above are references to Jakarta Enterprise Beans and Jakarta EE. RI
+is replaced with CI (Compatible Implementation). 
 
 [[GFKEF]][[b.1.3-web-client-to-ejb-scenarios]]
 
-B.1.3 Web Client-to-EJB Scenarios
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+B.1.3 Web Client-to-Jakarta Enterprise Beans Scenarios
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each Web client-to-EJB scenarios includes an application client, a
-servlet, and an EJB, as shown in link:#GFKGE[Figure B-3]. In the forward
+Each Web client-to-Jakarta Enterprise Beans scenarios includes an application client, a
+servlet, and a Jakarta Enterprise Beans, as shown in link:#GFKGE[Figure B-3]. In the forward
 direction, the application client and the Web client are deployed on the
-Licensee Java Platform, Enterprise Edition Server. The EJB is deployed
-on the server that is running the Java EE 8 RI. In the reverse
+Implementer Jakarta Platform, Enterprise Edition Server. The Jakarta Enterprise Beans is deployed
+on the server that is running the Jakarta EE 8 CI. In the reverse
 direction, the application client and the Web client are deployed on the
-server that is running the Java EE 8 RI. The EJB is deployed on the
-Licensee Java Platform, Enterprise Edition Server.
+server that is running the Jakarta EE 8 CI. The Jakarta Enterprise Beans is deployed on the
+Implementer Jakarta Platform, Enterprise Edition Server.
 
 [[GFKGE]]
 
-.*Figure B-3 Web-to-EJB Test Scenario*
+===== *Figure B-3 Web-to-Jakarta Enterprise Beans Test Scenario*
 image:img/web2ejb.png["Web-to-EJB Test Scenario"]
 
+Note: EJB and Java EE, in the figure above are references to Jakarta Enterprise Beans and Jakarta EE. RI
+is replaced with CI (Compatible Implementation). 
 
 [[BACGHCAI]][[b.2-csiv2-logging-servlet]]
 
@@ -171,9 +178,9 @@ B.2 CSIv2 Logging Servlet
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Along with any EAR files for the directory under test, the Logging
-Servlet should get copied over to the Java EE 8 RI as part of the
-autodeployment process. The Logging Servlet is needed on the Java EE 8
-RI. After the Logging Servlet has been deployed, verify that it is
+Servlet should get copied over to the Jakarta EE 8 CI as part of the
+autodeployment process. The Logging Servlet is needed on the Jakarta EE 8
+CI. After the Logging Servlet has been deployed, verify that it is
 working properly by accessing the following URL:
 
 [source,oac_no_warn]
@@ -181,11 +188,11 @@ working properly by accessing the following URL:
 http://localhost:8002/logger_servlet_web/LoggerServlet?log.file.location=USE_DEFAULT&ping=
 ----
 
-where `localhost` is the Java EE 8 RI host represented as `ts.jte`
+where `localhost` is the Jakarta EE 8 CI host represented as `ts.jte`
 values `orb.host.ri` and `remote.orb.host` and `8002` is the port
 represented as `ts.jte` values `webServerPort.2` and `remote.orb.port`.
 
-If you can not access the page at URL on your Java EE 8 RI, all CSIv2
+If you can not access the page at URL on your Jakarta EE 8 CI, all CSIv2
 tests will fail. Ensure that you can access the URL. Accessing this page
 displays the following text:
 
@@ -199,19 +206,22 @@ following:
 
 * One or more of the ts.jte properties (hostnames, ports, log dirs,
 etc.) have been set incorrectly
+
 * The logging servlet does not have the necessary permissions to write
 to the file system
+
 * The logging servlet does not have permissions to write to the file
 system log directory
 
 Several properties and JVM options that control logging need to be set
 in the `ts.jte` file:
 
-* `ri.log.file.location` to the location to which the Java EE 8 RI log
+* `ri.log.file.location` to the location to which the Jakarta EE 8 CI log
 files will be written and optionally stored if the
 `harness.log.traceflag` property is set to `true`. The setting for this
 property should not have to be changed.
-* `ri.jvm.options` to the following for the Java EE 8 RI:
+
+* `ri.jvm.options` to the following for the Jakarta EE 8 CI:
 
 ** `-Dremote.orb.port=${webServerPort.2}`
 
@@ -221,6 +231,7 @@ property should not have to be changed.
 
 ** `-Dcsiv2.save.log.file=${harness.log.traceflag}` +
 The settings for this property should not have to be changed.
+
 * `command.testExecuteAppClient` and `command.testExecuteAppClient2` to
 the following JVM properties:
 
@@ -229,6 +240,7 @@ the following JVM properties:
 ** `-Dremote.orb.host=${orb.host.ri} \`
 
 ** `-Dremote.orb.port=${webServerPort.2} \`
+
 * `s1as.jvm.options` to the following JVM options in your VI:
 
 ** `-Dremote.orb.port=${webServerPort.2}`
@@ -259,12 +271,14 @@ where:
 
 ** `ac`: Application client
 
-** `ew`: EJB or Web client
+** `ew`: Jakarta Enterprise Beans or Web client
+
 * prot is the transport protection for the invocation:
 
 ** `ssln`: No SSL transport protection
 
 ** `ssl`: SSL transport protection
+
 * auth is the authentication settings for the deployed beans:
 
 ** `sslr_upn`: SSL authentication Required, No Username/Password
@@ -275,6 +289,7 @@ required
 
 ** `ssln_upn`: Neither SSL authentication nor Username/Password
 authentication
+
 * assertion is the type of identity assertion:
 
 ** `noid`: No identity assertion
@@ -299,12 +314,13 @@ indicate different deployment settings. Each subdirectory has a
 `/forward` and a `/reverse` subdirectory.
 
 Tests in the `/forward` subdirectory are run in the forward direction
-only (for example, the application client runs in the Licensee Java
-Platform, Enterprise Edition server, and a call is made to the Java EE 8
-RI server). Tests in the `/reverse` subdirectory are run in the reverse
+only (for example, the application client runs in the Implementer Jakarta
+Platform, Enterprise Edition server, and a call is made to the Jakarta EE 8
+CI server). Tests in the `/reverse` subdirectory are run in the reverse
 direction only (for example, the application client runs in the server
-that is running the Java EE 8 RI, and a call is made to the Licensee
-Java Platform, Enterprise Edition server); for example:
+that is running the Jakarta EE 8 CI, and a call is made to the Implementer
+Jakarta Platform, Enterprise Edition server). The directory structure might
+look like the following: 
 
 [source,oac_no_warn]
 ----
@@ -336,28 +352,33 @@ dirname_client-component_server-component_testid[_direction ]
 where:
 
 * dirname is the directory name of the test, under
-`/tests/interop/csiv2`; for example: +
+`/tests/interop/csiv2`; for example: 
++
 [source,oac_no_warn]
 ----
 ew_ssl_ssln_upn_anonid
 ----
++
 * client-component is the type of client component:
 
 ** `sb`: session bean
 
 ** `wb`: servlet
+
 * server-component is the type of server component:
 
 ** `sb`: session bean
+
 * testid is the test ID; for example, `testid3`.
+
 * direction is the direction of the test. The direction is omitted if
 forward, or reverse if in the reverse direction. For these tests,
-forward means from licensee server to the Java EE 8 RI server, and
-reverse means from the Java EE 8 RI server to the licensee server. In
+forward means from licensee server to the Jakarta EE 8 CI server, and
+reverse means from the Jakarta EE 8 CI server to the licensee server. In
 other words, the application client runs in the licensee's container in
 the forward direction.
 
-Sample test application names for EJB-to-EJB tests include the
+Sample test application names for Jakarta Enterprise Beans-to-Jakarta Enterprise Beans tests include the
 following:
 
 * `ew_ssl_ssln_upn_anonid_sb_sb_testid3`
@@ -382,14 +403,16 @@ role-to-group, and role-to-user-to-group mappings.
 
 * A role is a logical grouping of users that is defined by an
 application component provider or assembler.
+
 * A group is a set of users, classified by common traits, defined in the
-Java Platform, Enterprise Edition Application Server. +
-Note that a Java Platform, Enterprise Edition group is designated for
-the entire Java Platform, Enterprise Edition server, whereas a role is
-associated with a specific application in a Java Platform, Enterprise
+Jakarta Platform, Enterprise Edition Application Server. +
+Note that a Jakarta Platform, Enterprise Edition group is designated for
+the entire Jakarta Platform, Enterprise Edition server, whereas a role is
+associated with a specific application in a Jakarta Platform, Enterprise
 Edition server only.
+
 * A principal is an individual (or application program) identity that
-has been defined in the Java Platform, Enterprise Edition Application
+has been defined in the Jakarta Platform, Enterprise Edition Application
 Server. Principals can be associated with a group.
 
 The `security-role-mapping` elements are defined in the following files:
@@ -399,7 +422,7 @@ The `security-role-mapping` elements are defined in the following files:
 * applicationName`.war.sun-web.xml`
 
 However, the definitions in the file
-applicationName`.ear.sun-application.xml` take precedence over the
+applicationName``.ear.sun-application.xml`` take precedence over the
 definitions in the other files.
 
 The examples that follow show how `role-name`, `principal-name`, and
@@ -407,7 +430,7 @@ The examples that follow show how `role-name`, `principal-name`, and
 
 [[GEXWX]]
 
-Example B-1 role-name Administrator
+===== Example B-1 role-name Administrator
 
 The following example shows how `role-name` Administrator is mapped to
 `principal-name` `javaee` and `principal-name` `javajoe`.
@@ -423,7 +446,7 @@ The following example shows how `role-name` Administrator is mapped to
 
 [[GEXUS]]
 
-Example B-2 role-name Manager
+===== Example B-2 role-name Manager
 
 The following example shows how `role-name` Manager is mapped to
 `principal-name` `javajoe` and `group-name` `MGR`.
@@ -449,7 +472,7 @@ configuration information for the IOR, consists of three components:
 * link:#GLREQ[The as-context Element]
 * link:#GLRFE[The sas-context Element]
 
-For the Java Platform, Enterprise Edition Application Server, the
+For the Jakarta Platform, Enterprise Edition Application Server, the
 `ior-security-config` element is defined in the
 applicationName`.jar.sun-ejb-jar.xml` file. The element looks like this:
 
@@ -492,6 +515,7 @@ integrity at the SSL level
 
 ** `supported`: Indicates that the target requires the client to
 establish a secure connection with integrity at the SSL level
+
 * `confidentiality`: The `confidentiality` field is used to indicate the
 confidentiality requirements that a target places on the client at the
 SSL level. +
@@ -512,38 +536,48 @@ fields related to security requirements at the SSL level, including
 `integrity`.
 
 ** If the value for a field is `none`:
+
 *** The bit that corresponds to the field in
 `transport_mech.target_requires` must be set to `0`.
+
 *** The bit that corresponds to the field in
 `transport_mech.target_supports` must be set to `0`.
 
 ** If the value for a field is `supported`:
+
 *** The bit that corresponds to the field in
 `transport_mech.target_supports` must be set to `1`.
+
 *** The bit that corresponds to the field in
 `transport_mech.target_requires` must be set to `0`. +
 For example, if the value of the confidentiality field is true, the
-following setting is necessary: +
+following setting is necessary: 
++
 [source,oac_no_warn]
 ----
 transport_mech.target_supports = {Confidentiality}
 ----
-
++
 ** If the value for a field is `required`:
+
 *** The bit that corresponds to the field in
 `transport_mech.target_requires` must be set to `1`.
+
 *** The bit that corresponds to the field in
 `transport_mech.target_supports` must also be set to `1`.
+
 *** The bit that corresponds to the field must also be set in
 `CompoundSecMec.target_requires`. +
 For example, if the value of confidentiality is `required`, the
-following settings are necessary: +
+following settings are necessary: 
++
 [source,oac_no_warn]
 ----
 transport_mech.target_requires={Confidentiality}
 transport_mech.target_supports={Confidentiality}
 CompoundSecMec.target_requires={Confidentiality}
 ----
++
 * `establish-trust-in-target`: The `establish-trust-in-target` field is
 used to indicate whether a target can authenticate itself to a client at
 the SSL level. +
@@ -554,6 +588,7 @@ client
 
 ** `supported`: Indicates that the target can authenticate itself to a
 client
+
 * `establish-trust-in-client`: The `establish-trust-in-client` field is
 used to indicate the authentication requirements that a target places on
 the client at the SSL level. +
@@ -585,11 +620,13 @@ Valid values are:
 
 ** `none`: Indicates that the target does not support client
 authentication at the client authentication layer. The IOR must be
-generated as follows: +
+generated as follows: 
++
 [source,oac_no_warn]
 ----
 as_context_mech.target_supports = {}
 ----
++
 If the value is `none`, the `realm` and `required` field values are
 irrelevant.
 
@@ -597,16 +634,17 @@ irrelevant.
 the `GSSUP` mechanism. This value is relevant and should only be used
 when `asRequired` is `true`. When set to `true`, the IOR must be
 generated as described in the `required` field summary.
+
 * `realm`: The `realm` field contains the name of the realm in which the
 user is to be authenticated. +
 Valid values are:
 
 ** `none`
 
-** `default` +
-This field is relevant and should only be used when the `required` field
+** `default`: This field is relevant and should only be used when the `required` field
 is set to `true`, in which case the IOR must be generated as described
 in the `required` field summary.
+
 * `required`: The `required` field specifies whether or not a client is
 required to authenticate at the client authentication layer. +
 Valid values are:
@@ -614,24 +652,31 @@ Valid values are:
 ** `true`: Indicates that the client is required to authenticate at the
 client authentication layer. +
 If the value is `true`, an IOR must be generated as follows:
+
 *** The `as_context_mech` must contain a client authentication mechanism
 derived from the value of the `auth-method` field. If the value of the
 `auth-method` field is `username_password`, the client authentication
-mechanism must be set to `GSSUP_OID`; for example: +
+mechanism must be set to `GSSUP_OID`; for example: 
++
 [source,oac_no_warn]
 ----
 as_context_mech.client_authentication_mech = GSSUP_OID
 ----
-*** The target name must match the value of the `realm` field: +
++
+*** The target name must match the value of the `realm` field: 
++
 [source,oac_no_warn]
 ----
 as_context_mech.target_name = {realm}
 ----
-
++
 ** The `establish-trust-in-client` bit must be set in the following
 fields:
+
 *** `as_context_mech.target_supports={EstablishTrustInClient}`
+
 *** `as_context_mech.target_requires={EstablishTrustInClient}`
+
 *** `CompoundSecMec.target_requires={EstablishTrustInClient}`
 
 ** `false`: Indicates that client authentication at the client
@@ -650,47 +695,51 @@ The `sas-context` element describes caller propagation. The
 `caller-propagation` field indicates whether the target will accept
 propagated caller identities. Valid values are:
 
-* `none` +
-If the value of the `sas-context` element is `none`, the IOR must be
+* `none`: If the value of the `sas-context` element is `none`, the IOR must be
 generated as follows:
 
 ** The bit that corresponds to the field in
-`sas_context_mech.target_supports` must be set to zero, as shown: +
+`sas_context_mech.target_supports` must be set to zero, as shown: 
++
 [source,oac_no_warn]
 ----
 sas_context_mech.target_supports={}
 ----
-
++
 ** The value in the field `sas_context_mech.supported_naming_mechanisms`
-must be set to zero, as shown: +
+must be set to zero, as shown: 
++
 [source,oac_no_warn]
 ----
 supported_naming_mechanisms={}
 ----
-
-** The bit that corresponds to `ITTPrincipalName`, ITTDistinguishedName,
++
+** The bit that corresponds to `ITTPrincipalName`, `ITTDistinguishedName`,
 `ITTX509CertChain`, and `ITTAnonymous` in the
 `sas_context_mech.supported_identity_types` field must be set to zero.
-* `supported` +
-If the value of the `sas-context` element is `supported`, the IOR must
+
+* `supported`: If the value of the `sas-context` element is `supported`, the IOR must
 be generated as follows:
 
 ** The bit that corresponds to the field in
-`sas_context_mech.target_supports` must be set as follows: +
+`sas_context_mech.target_supports` must be set as follows: 
++
 [source,oac_no_warn]
 ----
 sas_context_mech.target_supports={IdentityAssertion}
 ----
-
++
 ** The `sas_context_mech.supported_naming_mechanisms` field must contain
-at least `GSSUPMechOID`, as follows: +
+at least `GSSUPMechOID`, as follows: 
++
 [source,oac_no_warn]
 ----
 supported_naming_mechanisms={GSSUPMechOID}
 ----
-
++
 ** The `ITTPrincipalName` bit must be set in the
-`sas_context_mech.supported_identity_types`, as shown: +
+`sas_context_mech.supported_identity_types`, as shown: 
++
 [source,oac_no_warn]
 ----
 sas_context_mech.supported_identity_types= \
@@ -706,8 +755,8 @@ B.7 Debugging CSIv2 Test Failures
 The CSIv2 test infrastructure provides two areas from which to obtain
 debugging output:
 
-* Java EE 8 CTS clients, beans, and servlets
-* Java EE 8 CTS CSIv2 interceptors
+* Jakarta EE 8 CTS clients, beans, and servlets
+* Jakarta EE 8 CTS CSIv2 interceptors
 
 The sections that follow explain how to enable/disable logging to help
 you debug CSIv2 test failures.
@@ -717,9 +766,9 @@ you debug CSIv2 test failures.
 B.7.1 Debugging CTS Clients, Beans, and Servlets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The first area in which you can enable logging is Java EE 8 CTS clients,
+The first area in which you can enable logging is Jakarta EE 8 CTS clients,
 beans, and servlets. If you have done any debugging in other technology
-areas in the Java EE 8 CTS test suite, you are likely to be familiar
+areas in the Jakarta EE 8 CTS test suite, you are likely to be familiar
 with enabling and using logging to obtain additional information with
 which you can debug test problems. This kind of debugging output is
 enabled by setting the `harness.log.traceflag` property to "true" in the
@@ -730,7 +779,7 @@ enabled by setting the `harness.log.traceflag` property to "true" in the
 B.7.2 Debugging CTS CSIv2 Interceptors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The second area in which you can enable logging is Java EE 8 CTS CSIv2
+The second area in which you can enable logging is Jakarta EE 8 CTS CSIv2
 interceptors, including Logging Interceptor Factory, Server Interceptor,
 and Client Interceptor. These three entities are configured during the
 CSIv2 test setup, which is described in link:config.html#GEXWW[CSIv2 Test
@@ -754,11 +803,12 @@ output in the `server.log` file.
 B.7.2.1 To Increase the Logging Level
 +++++++++++++++++++++++++++++++++++++
 
-1.  Stop the Java EE 8 RI.
-2.  Edit the file
+.  Stop the Jakarta EE 8 CI.
+.  Edit the file
 `<javaee.home.ri>/domains/domain1/config/logging.properties` and set the
 logging level to "FINE" for the three CSIv2 interceptors.
-3.  Restart the Java EE 8 RI. +
+.  Restart the Jakarta EE 8 CI. 
+
 From this point on, an increased amount of logging output from the Java
 EE 8 CTS CSIv2 logging interceptors will be written to the `server.log`
 file.
@@ -768,12 +818,12 @@ file.
 B.7.2.2 To Reset the Logging Level
 ++++++++++++++++++++++++++++++++++
 
-1.  Stop the Java EE 8 RI.
-2.  Edit the file
+.  Stop the Jakarta EE 8 CI.
+.  Edit the file
 `<javaee.home.ri>/domains/domain1/config/logging.properties` and set the
 logging level back to "INFO" for the three CSIv2 interceptors.
-3.  Restart the Java EE 8 RI. +
-
+.  Restart the Jakarta EE 8 CI. 
++
 [NOTE]
 =======================================================================
 
@@ -793,7 +843,7 @@ B.7.3 Debugging Logging Servlet Problems
 If the `harness.log.traceflag` property has been set to `true`, you
 should be able to view the log files. If you do not see any log file(s),
 you are likely missing a JVM property setting somewhere (for example, in
-the RI, in the VI, or in the application client). Another possible cause
+the CI, in the VI, or in the application client). Another possible cause
 of the problem could be that your host and port properties
 (`remote.orb.host` and `remote.orb.port`)are not set correctly. You
 should also be able to deploy the Logging Servlet and access the ping
@@ -802,7 +852,7 @@ Servlet."].
 
 If you see only a small part of the log file, you need to identify the
 missing log file entry and determine from where it did not get logged.
-In other words, you need to identify the component (VI, the RI, or the
+In other words, you need to identify the component (VI, the CI, or the
 interceptor) in which logging failed to complete correctly. Once
 isolating this, you can check `server.log` files for clues, such as
 permissions not being set up correctly or a particular JVM option is
@@ -824,17 +874,21 @@ B.8 Examining Test Logs
 B.8.1 To Examine the Test Logs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  The first thing you will notice is the direction in which the test
-is running: +
+.  The first thing you will notice is the direction in which the test
+is running: 
++
 [source,oac_no_warn]
 ----
-LocalSessionBean (VI) ====> RemoteSessionBean (RI)
+LocalSessionBean (VI) ====> RemoteSessionBean (CI)
 ----
-VI-to-RI indicates that the test is running in the forward direction;
-RI-to-VI indicates that the test is running in the reverse direction.
-2.  The test direction is followed by a trace that outlines the path of
++
+VI-to-CI indicates that the test is running in the forward direction;
+CI-to-VI indicates that the test is running in the reverse direction.
+
+.  The test direction is followed by a trace that outlines the path of
 execution (for example, from a local session bean to a remote session
-bean). +
+bean). 
++
 [source,oac_no_warn]
 ----
 INVOKING java:comp/env/ejb/LocalSession...
@@ -852,16 +906,18 @@ INVOKING java:comp/env/ejb/LocalSession...
    SVR: Exiting CSIv2TestLogicImpl.invoke()
    SVR: Exiting CSIv2TestLogicImpl.invoke()
 ----
++
 The CSIv2 tests maintain a log during the invocation. The log is in XML
 format, and is organized to match the flow of test execution. +
 By examining the contents of the log, you can trace the test execution
 and see what happened in the test. See link:#GFKHS[CSIv2 Log Elements]
 for a detailed description of the DTD elements that make up the CSIv2
 log.
-3.  Output validation results follow the log. +
+
+.  Output validation results follow the log. +
 In the forward direction, the tests validate the request (see the
 EstablishContext message). In the reverse direction, the tests validate
-the IOR that the Licensee's Java EE 8 server publishes for the EJB and
+the IOR that the Implementer's Jakarta EE 8 server publishes for the Jakarta Enterprise Beans and
 the response (see the `CompleteEstablishContext` message or the
 `ContextError` message). See link:#GFKKB[IORs and Associated CSIv2
 Tests] for a list of the IORs that the test validation code and the test
@@ -869,14 +925,15 @@ strategy descriptions reference. +
 The test output shows you what it is being validated for each test, and
 indicates the exact section of the log that is being analyzed. See
 link:#GFKHL[Example B-3], below.
-4.  Next, the test output indicates what matched and what mismatched. +
+
+.  Next, the test output indicates what matched and what mismatched. +
 Lines that start with the plus sign (`+`) indicate matches. Lines that
 start with "`MISMATCH:`" indicate mismatches. Lines that start with
 neither are informational messages. +
 `MISMATCH` messages indicate what was expected. The log tells you what
 was received. See link:#GFKGA[Example B-4]. +
 The reverse direction tests validate that the IOR that is published by
-the Licensee Java Platform, Enterprise Edition Server matches the
+the Implementer Jakarta Platform, Enterprise Edition Server matches the
 expected result. The CSIv2 log will represent the values collected for
 `target_supports`, `target_requires`, and other CSIv2 IOR structures as
 decimal integers. In accordance with the CSIv2 specification, these
@@ -886,14 +943,17 @@ IOR Structures].
 
 [[GFKHL]]
 
-Example B-3 Sample Validation Log
+===== Example B-3 Sample Validation Log
+
+In the following, _EJB_ refers to Jakarta Enterprise Beans
 
 [source,oac_no_warn]
 ----
--------------------------------------------
+
+--------------------------------------------
 Validating EJBRemote IOR...
    Validating the following IOR against IOR.4:
--------------------------------------------
+--------------------------------------------
 <ior>
    <port>44139</port>
    <stateful>false</stateful>
@@ -928,14 +988,15 @@ EJBRemote IOR Valid.
 
 [[GFKGA]]
 
-Example B-4 Sample Mismatch Log
+===== Example B-4 Sample Mismatch Log
 
 [source,oac_no_warn]
 ----
+
 -------------------------------------------
 Validating EJBHome IOR...
    Validating the following IOR against IOR.3:
-   -------------------------------------------
+-------------------------------------------
 <ior>
    <port>0</port>
    <stateful>false</stateful>
@@ -984,7 +1045,7 @@ Skipping IOR validation.
    Validating EJBHome and EJBRemote invocation request...
    Validating EJBHome Invocation Request...
    Validating the following invocation:
--------------------------------------------
+---------------------------------------
 <client>
    <server-interceptor>
      <operation>createInvoke</operation>
@@ -1024,6 +1085,7 @@ Found:
    * ITTAnonymous
 MISMATCH: Mismatched SAS Identity Token Type.
 EJBHome Invocation Request Invalid.
+
 ----
 
 [[GLREW]][[b.8.2-bit-mask-values-for-csiv2-ior-structures]]
@@ -1041,7 +1103,7 @@ the CSIv2 specification, which can be found at the following location:
 
 [[sthref57]][[GLRES]]
 
-Table B-1 Bit Mask Values for IOR Structures
+===== Table B-1 Bit Mask Values for IOR Structures
 
 [width="100%",cols="25%,10%,33%,32%",options="header",]
 |=======================================================================
@@ -1124,11 +1186,11 @@ B.9.1 Key Elements in the CSIv2 Log
 
 The key elements of a CSIv2 log include the `<ejb-home>` and
 `<ejb-remote>` elements. These elements, in turn, contain the log
-information for the EJB home and remote interfaces.
+information for the Jakarta Enterprise Beans (EJB) home and remote interfaces.
 
 [[GFKHO]]
 
-Example B-5 CSIv2 Log Elements
+===== Example B-5 CSIv2 Log Elements
 
 [source,oac_no_warn]
 ----
@@ -1152,17 +1214,18 @@ Example B-5 CSIv2 Log Elements
 that the test component is the client in an invocation and
 `<client_interceptor>` or `<server_interceptor>`, based on reverse or
 forward tests.
+
 * The `<ejb-remote>` element contains a similar set of elements as the
 `<ejb-home>` element.
 
-During forward testing (from VI to RI) using a simple scenario, such as
-an application client directly invoking an EJB, only the
+During forward testing (from VI to CI) using a simple scenario, such as
+an application client directly invoking an Jakarta Enterprise Beans, only the
 `<client_interceptor>` is logged. Conversely, during reverse testing
-(from RI to VI) using a simple scenario, the `<server_interceptor>` is
+(from CI to VI) using a simple scenario, the `<server_interceptor>` is
 logged.
 
-For a complex scenario, such as an application client invoking an EJB,
-which in turn invokes another EJB, both client and server interceptor
+For a complex scenario, such as an application client invoking an Jakarta Enterprise Beans,
+which in turn invokes another Jakarta Enterprise Beans, both client and server interceptor
 elements are logged. Other complex scenarios could log multiple client
 and server interceptors.
 
@@ -1177,7 +1240,7 @@ The server interceptor element includes the `<req_svc_context>`,
 
 [[GFKHT]]
 
-Example B-6 Server Interceptor Log Elements
+===== Example B-6 Server Interceptor Log Elements
 
 [source,oac_no_warn]
 ----
@@ -1217,7 +1280,7 @@ The client interceptor element includes the `<req_svc_context>`,
 
 [[GFKHB]]
 
-Example B-7 Client Interceptor Log Elements
+===== Example B-7 Client Interceptor Log Elements
 
 [source,oac_no_warn]
 ----
@@ -1238,10 +1301,13 @@ The client interceptor elements contain the following information:
 
 * The `<req_svc_context>` element contains the service context
 information for the request.
+
 * The `<ssl_used>` element indicates whether the transport is protected
 with SSL or not.
+
 * The `<ior>` element contains the Interoperable Object Reference, which
-describes security policies of an EJB component.
+describes security policies of an Jakarta Enterprise Beans component.
+
 * The `<location_forward>` element is `true` if the Client Security
 Service (CSS) received a location forward in response to a request. If
 this is the case, the client will establish a confidential connection
@@ -1249,6 +1315,7 @@ with the new address. +
 A `true` value also indicates that the log will contain another client
 interceptor element. The test validation mechanism will ignore client
 interceptor elements that end in a location forward.
+
 * The `<reply_svc_context>` element contains the service context
 information for the reply.
 
@@ -1264,7 +1331,7 @@ contains the `<target_requires>`, `<ior_transport_mech>`,
 
 [[GFKHD]]
 
-Example B-8 IOR Log Elements
+===== Example B-8 IOR Log Elements
 
 [source,oac_no_warn]
 ----
@@ -1287,20 +1354,26 @@ A nonzero port number indicates that the target supports unprotected
 IIOP invocations at the specified port number. +
 A zero port number indicates that the target supports protected IIOP
 invocations only.
+
 * The `<stateful>` element is `true` if the target supports the
 establishment of stateful or reusable contexts.
+
 * The `<compound_sec_mech>` structure describes support in the target
 for a compound security mechanism that may include security
 functionality that is realized in the transport layer and/or security
 functionality above the transport layer.
+
 * The `<target_requires>` element designates a required outcome that
 shall be satisfied by one or more supporting (but not requiring) layers.
+
 * The `<ior_transport_mech>` element describes the security
 functionality that is implemented in the transport layer.
+
 * The `<ior_as_context>` element describes the client authentication
 functionality that the target expects to be layered above the transport
 layer in the service context.
-* The `<ior_sas_context>` element describes the target's identity
+*
+ The `<ior_sas_context>` element describes the target's identity
 assertion support or support of authorization attributes that are
 delivered in the service context.
 
@@ -1314,9 +1387,9 @@ elements.
 
 [[sthref58]][[GFKGY]]
 
-Table B-2 CSIv2 Log Elements
+===== Table B-2 CSIv2 Log Elements
 
-[width="100%",cols="50%,50%",options="header",]
+[width="100%",cols="30%,70%",options="header",]
 |=======================================================================
 |Element |Description
 |`<csiv2-log>` |Root XML node. Contains 1 or more `<assertion>`
@@ -1327,10 +1400,10 @@ assertion. Contains a `name` attribute and an `<invocation>` element.
 
 |`<invocation>` |Indicates an invocation was started from a client
 component to a server component. We analyze invocation information for
-both an EJB Home (`<ejb-home>`) and an EJB Remote (`<ejb-remote>`)
+both an Jakarta Enterprise Beans Home (`<ejb-home>`) and an Jakarta Enterprise Beans Remote (`<ejb-remote>`)
 invocation.
 
-|`<ejb-home>` / `<ejb-remote>` |Separates the EJB Home from the EJB
+|`<ejb-home>` / `<ejb-remote>` |Separates the Jakarta Enterprise Beans Home from the Jakarta Enterprise Beans
 Remote invocation information. Both elements contain a single `<client>`
 element.
 
@@ -1339,7 +1412,7 @@ Contains a `<reply>` element and either a `<client-interceptor>`,
 `<server-interceptor>`, or a `<server>` element. The invocation
 determines which interceptor is to be invoked based on the whether the
 invoking component is acting as a client or as a server. For example, if
-an EJB acts as a server to an invocation, then the server-interceptor
+an Jakarta Enterprise Beans acts as a server to an invocation, then the server-interceptor
 will be invoked.
 
 |`<reply>` |Indicates a reply in an invocation. Can be either
@@ -1347,17 +1420,17 @@ will be invoked.
 
 |`<client-interceptor>` a|
 Indicates that the client interceptor was invoked. This will happen when
-the Java EE 8 Reference Implementation is a client of some invocation.
+the Jakarta EE 8 Compatible Implementation is a client of some invocation.
 The following information is collected by the client interceptor:
 
-1.  `<operation>`
-2.  `<req-svc-context>`
-3.  `<ssl-used>`
-4.  `<ior>`
-5.  Either `<server-interceptor>` or `<server>`
-6.  `<location-forward>`
-7.  `<reply-svc-context>`
-8.  Possibly another `<client-interceptor>` element
+.  `<operation>`
+.  `<req-svc-context>`
+.  `<ssl-used>`
+.  `<ior>`
+.  Either `<server-interceptor>` or `<server>`
+.  `<location-forward>`
+.  `<reply-svc-context>`
+.  Possibly another `<client-interceptor>` element
 
 |`<operation>` |The name of the operation just invoked.
 
@@ -1369,12 +1442,12 @@ contain either an `<establish-context>` message, or an
 Information collected from the CSIv2 `EstablishContext` message.
 Collects the following information:
 
-1.  `<client-context-id>`
-2.  `<identity-token>`, one of: `<absent>`, `<anonymous>`,
+.  `<client-context-id>`
+.  `<identity-token>`, one of: `<absent>`, `<anonymous>`,
 `<principal-name>`, `<certificate-chain>`, `<distinguished-name>`,
 `<unknown-type>`
-3.  `<client-auth-token>` - Client authentication token
-4.  `<authz-token-count>` - Number of authorization tokens sent
+.  `<client-auth-token>` - Client authentication token
+.  `<authz-token-count>` - Number of authorization tokens sent
 
 |`<invalid-message>` |Indicates that an invalid message (one that was
 not expected) was sent in either the request or the reply. A details
@@ -1385,25 +1458,26 @@ message that was received.
 
 |`<ior>` a|
 IOR information. This is a description of the IOR that the server
-published for the EJB, from the client's perspective. Collects the
+published for the Jakarta Enterprise Beans, from the client's perspective. Collects the
 following information:
 
-1.  `<port>`
-2.  `<stateful>`
-3.  `<compound-sec-mech>` +
+.  `<port>`
+.  `<stateful>`
+.  `<compound-sec-mech>` +
 `<target-requires>` +
 `<ior-transport-mech>`
 
 Within the `<ior-transport-mech>`, one of the following is collected:
 
-1.  `<tls-trans>` +
+.  `<tls-trans>` +
 `<target-supports>` +
 `<target-requires>` +
 `<trans-addr>` +
 `<host-name>` +
 `<port>`
-2.  `<null-trans>`
-3.  `<other-trans>` +
+.  `<null-trans>`
+.  `<other-trans>` 
++
 [source,oac_no_warn]
 ----
 <ior-as-context>
@@ -1417,7 +1491,7 @@ Within the `<ior-transport-mech>`, one of the following is collected:
 <supported-naming-mechanism>
 <supported-identity-types>
 ----
-
++
 |`<location-forward>` |If `true`, this request ended in a location
 forward, in which case we will expect to see another client interception
 later down the road. The test validation will ignore all client
@@ -1432,30 +1506,30 @@ an `<invalid-message>` element.
 Information collected from the CSIv2 `CompleteEstablishContext` message.
 Collects the following information:
 
-1.  `<client-context-id>`
-2.  `<context-stateful>`
-3.  `<final-context-token>`
+.  `<client-context-id>`
+.  `<context-stateful>`
+.  `<final-context-token>`
 
 |`<context-error>` a|
 Information collected from the CSIv2 `ContextError` message. Collects
 the following information:
 
-1.  `<client-context-id>`
-2.  `<major-status>`
-3.  `<minor-status>`
-4.  `<error-token>`
+.  `<client-context-id>`
+.  `<major-status>`
+.  `<minor-status>`
+.  `<error-token>`
 
 |`<server-interceptor>` a|
 Indicates that the server interceptor was invoked. This will happen when
-the Java EE 8 Reference Implementation is a server of some invocation.
+the Jakarta EE 8 Compatible Implementation is a server of some invocation.
 The following information is collected by the server interceptor:
 
-1.  `<operation>`
-2.  `<req-svc-context>`
-3.  `<ssl-used>`
-4.  `<transport-client-principals>`
-5.  `<server>`, if the request makes it to the server.
-6.  `<reply-svc-context>`
+.  `<operation>`
+.  `<req-svc-context>`
+.  `<ssl-used>`
+.  `<transport-client-principals>`
+.  `<server>`, if the request makes it to the server.
+.  `<reply-svc-context>`
 
 |`<transport-client-principals>` |Collection of all transport client
 principals for this invocation, if it was an SSL invocation.
@@ -1465,8 +1539,8 @@ Indicates that the server bean was invoked. This will happen on every
 successful invocation. The following information is collected on the
 server bean:
 
-1.  `<invocation-principal>`
-2.  `<invocation>`, if another invocation is made.
+.  `<invocation-principal>`
+.  `<invocation>`, if another invocation is made.
 
 |`<invocation-principal>` |The value of
 `EJBContext.getCallerPrincipal().getName()`.
@@ -1487,9 +1561,9 @@ tests:
 
 [[sthref59]][[GFKJY]]
 
-Table B-3 IORs and Associated CSIv2 Tests
+===== Table B-3 IORs and Associated CSIv2 Tests
 
-[width="172%",cols="48%,6%,18%,28%",options="header",]
+[width="80%",cols="15%,6%,18%,61%",options="header",]
 |=====================================================
 |IOR |Test ID |Identity Assertion Type |Directory Name
 |0 |0 |NA |`ac_ssl_sslr_upn_noid`
@@ -1596,7 +1670,7 @@ B.10.1 IOR.0
 
 [[GFKLH]]
 
-Example B-9 IOR.0
+===== Example B-9 IOR.0
 
 [source,oac_no_warn]
 ----
@@ -1640,7 +1714,7 @@ B.10.2 IOR.1
 
 [[GFKLF]]
 
-Example B-10 IOR.1
+===== Example B-10 IOR.1
 
 [source,oac_no_warn]
 ----
@@ -1685,7 +1759,7 @@ B.10.3 IOR.3
 
 [[GFKLI]]
 
-Example B-11 IOR.3
+===== Example B-11 IOR.3
 
 [source,oac_no_warn]
 ----
@@ -1730,7 +1804,7 @@ B.10.4 IOR.4
 
 [[GFKLL]]
 
-Example B-12 IOR.4
+===== Example B-12 IOR.4
 
 [source,oac_no_warn]
 ----
@@ -1764,7 +1838,7 @@ B.10.5 IOR.7
 
 [[GFKLY]]
 
-Example B-13 IOR.7
+===== Example B-13 IOR.7
 
 [source,oac_no_warn]
 ----

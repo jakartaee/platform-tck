@@ -12,18 +12,18 @@ Implementing the Porting Package
 11 Implementing the Porting Package
 -----------------------------------
 
-Some functionality in the Java Platform, Enterprise Edition platform is
-not completely specified by an API. To handle this situation, the Java
+Some functionality in the Jakarta Platform, Enterprise Edition platform is
+not completely specified by an API. To handle this situation, the Jakarta
 EE 8 CTS test suite defines a set of interfaces in the
 `com.sun.cts.porting` package, which serve to abstract any
 implementation-specific code. The CTS also provides implementations of
-these interfaces to work with the Java Platform, Enterprise Edition RI.
+these interfaces to work with the Jakarta Platform, Enterprise Edition CI.
 
 You must create your own implementations of the porting package
-interfaces to work with your particular Java Platform, Enterprise
+interfaces to work with your particular Jakarta Platform, Enterprise
 Edition server environment. You also need to create a deployment plan
 for each deployable component (EAR, EJB JAR, WAR, and RAR files) in the
-test suite as defined by the Java Platform, Enterprise Edition platform
+test suite as defined by the Jakarta Platform, Enterprise Edition platform
 and JSR-88. There is a new `getDeploymentPlan()` method on the
 `TSDeploymentInterface2` interface, which returns an input stream to
 your deployment plan.
@@ -45,7 +45,7 @@ security-role-mapping Element].
 11.1 Overview
 ~~~~~~~~~~~~~
 
-The Java Platform, Enterprise Edition RI uses a set of
+The Jakarta Platform, Enterprise Edition CI uses a set of
 module-name-with-extension`.sun-`standard-deployment-desc-component-prefix`.xml`
 files that are associated with each deployable component. A CTS
 `DeploymentInfo` object parses the contents of several runtime XML
@@ -115,7 +115,7 @@ file
 ** In the `CLASSPATH` variable of the `command.testExecute` and
 `command.testExecuteAppClient` properties in the `ts.jte` file
 
-** In the classpath of your Java Platform, Enterprise Edition server
+** In the classpath of your Jakarta Platform, Enterprise Edition server
 
 Note that because the JavaTest VM calls certain classes in the CTS
 porting package directly, porting class implementations are not
@@ -126,9 +126,9 @@ permitted to exit the VM (for example, by using the `System.exit` call).
 11.2 Porting Package APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following sections describe the API in the Java EE 8 CTS porting
-package. The implementation classes used with the Java Platform,
-Enterprise Edition RI are located in the
+The following sections describe the API in the Jakarta EE 8 CTS porting
+package. The implementation classes used with the Jakarta Platform,
+Enterprise Edition CI are located in the
 `<TS_HOME>/src/com/sun/ts/lib/implementation/sun/javaee` directory. You
 are encouraged to examine these implementations before you create your
 own.
@@ -150,13 +150,13 @@ this section are:
 11.2.1 TSDeploymentInterface2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Java EE 8 CTS test suite provides a new version of the Deployment
+The Jakarta EE 8 CTS test suite provides a new version of the Deployment
 porting interface. With the introduction of a standard deployment API in
-the J2EE 1.4 platform (via JSR-88), many of the porting methods in the
+the legacy J2EE 1.4 platform (via Jakarta Deployment Specification (Originally JSR-88)), many of the porting methods in the
 original interface `TSDeploymentInterface` no longer require
-implementation-specific functionality. The Java EE 8 CTS test suite
+implementation-specific functionality. The Jakarta EE 8 CTS test suite
 provides an implementation of the interface `TSDeploymentInterface`,
-which uses only the standard Deployment APIs defined by the Java
+which uses only the standard Deployment APIs defined by the Jakarta
 Platform, Enterprise Edition platform. The following properties are
 still in the `ts.jte` file to reflect this and should not be changed:
 
@@ -172,7 +172,7 @@ to be set in the `ts.jte` file:
 * `deployManagerpasswd.1=bar`
 
 These properties are necessary in order to get an instance of and
-interact with the `DeploymentManager` for your Java Platform, Enterprise
+interact with the `DeploymentManager` for your Jakarta Platform, Enterprise
 Edition implementation.
 
 The `deployManagerJarFile` property must point to the JAR file that
@@ -196,22 +196,22 @@ porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.JavaEE.SunRIDeploym
 The `TSDeployment2` class acts as a `Factory` object for creating
 concrete implementations of `TSDeploymentInterface2`. The concrete
 implementations are specified by the `porting.ts.deploy2.class.1` and
-`porting.ts.deploy2.class.2` properties in the `ts.jte` file. Each Java
+`porting.ts.deploy2.class.2` properties in the `ts.jte` file. Each Jakarta
 Platform, Enterprise Edition implementation must provide an
 implementation of the interface `TSDeploymentInterface2` to support the
 automatic deployment and undeployment of test applications by the
 JavaTest test harness. Providing this functionality enables the entire
-test suite to be run without having to manually deploy/undeploy the Java
+test suite to be run without having to manually deploy/undeploy the Jakarta
 Platform, Enterprise Edition test applications prior to running the
 tests. The implementation provided with this release uses the semantics
-of the Java Platform, Enterprise Edition RI.
+of the Jakarta Platform, Enterprise Edition CI.
 
 [[GKLJO]][[ant-based-deployment-interface]]
 
 11.2.2 Ant-Based Deployment Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to the Java-based deployment porting interfaces, Java EE 8
+In addition to the Java-based deployment porting interfaces, Jakarta EE 8
 CTS introduces an Ant-based porting interface as well. The Java-based
 interface is still used for deployment/undeployment during test runs.
 The Ant-based interface is used when you want to only deploy/undeploy
@@ -234,14 +234,14 @@ an Ant-based deployment implementation.
 11.2.2.1 Creating Your Own Ant-based Deployment Implementation
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-The Ant-based deployment implementation for the Java EE 8 RI is under
+The Ant-based deployment implementation for the Jakarta EE 8 CI is under
 `${ts.home}/bin/xml/impl/glassfish` directory. To create your own
 implementation, create a `deploy.xml` file under the
 `${ts.home}/bin/xml/impl/<vendor-name>` directory. Within the file,
 create and implement the -deploy and -undeploy targets.
 
 See `${ts.home}/bin/xml/impl/glassfish/deploy.xml` to see how these
-targets are implemented for the Java EE 8 RI .
+targets are implemented for the Jakarta EE 8 CI .
 
 
 [NOTE]
@@ -249,7 +249,7 @@ targets are implemented for the Java EE 8 RI .
 
 There is also a Java-based implementation of TSDeploymentInterface
 (`com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeployment`).
-This implementation, which leverages the Java EE 8 RI implementation of
+This implementation, which leverages the Jakarta EE 8 CI implementation of
 the Ant-based deployment interface, calls the Ant targets
 programmatically.
 
@@ -261,9 +261,9 @@ programmatically.
 11.2.3 TSJMSAdminInterface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-JMS-administered objects are implementation-specific. For this reason,
+Jakarta Messaging-administered objects are implementation-specific. For this reason,
 the creation of connection factories and destination objects have been
-set up as part of the porting package. Each Java Platform, Enterprise
+set up as part of the porting package. Each Jakarta Platform, Enterprise
 Edition implementation must provide an implementation of the
 `TSJMSAdminInterface` to support their own connection factory,
 topic/queue creation/deletion semantics.
@@ -273,18 +273,18 @@ implementations of `TSJMSAdminInterface`. The concrete implementations
 are specified by the `porting.ts.jms.class.1` and
 `porting.ts.jms.class.2` properties in the `ts.jte` file.
 
-If you wish to create the JMS-administered objects prior to executing
+If you wish to create the Jakarta Messaging-administered objects prior to executing
 any tests, you may use the default implementation of
 `TSJMSAdminInterface`, `SunRIJMSAdmin.java`, which provides a null
-implementation. In the case of the Java Platform, Enterprise Edition RI,
-the JMS administered objects are created during the execution of the
+implementation. In the case of the Jakarta Platform, Enterprise Edition CI Eclipse GlassFish 5.1,
+the Jakarta Messaging administered objects are created during the execution of the
 `config.vi` Ant target.
 
-There are two types of JMS-administered objects:
+There are two types of Jakarta Messaging-administered objects:
 
-* A `ConnectionFactory`, which a client uses to create a connection with
+. A `ConnectionFactory`, which a client uses to create a connection with
 a JMS provider
-* A `Destination`, which a client uses to specify the destination of
+. A `Destination`, which a client uses to specify the destination of
 messages it sends and the source of messages it receives
 
 [[GFATH]][[tslogincontextinterface]]
@@ -296,8 +296,8 @@ The `TSLoginContext` class acts as a `Factory` object for creating
 concrete implementations of `TSLoginContextInterface`. The concrete
 implementations are specified by the `porting.ts.login.class.1` property
 in the `ts.jte` file. This class is used to enable a program to login as
-a specific user, using the semantics of the Java Platform, Enterprise
-Edition RI. The certificate necessary for certificate-based login is
+a specific user, using the semantics of the Jakarta Platform, Enterprise
+Edition CI. The certificate necessary for certificate-based login is
 retrieved. The keystore file and keystore password from the properties
 that are specified in the `ts.jte` file are used.
 
@@ -309,12 +309,12 @@ that are specified in the `ts.jte` file are used.
 The `TSURL` class acts as a `Factory` object for creating concrete
 implementations of `TSURLInterface`. The concrete implementations are
 specified by the `porting.ts.url.class.1` property in the `ts.jte` file.
-Each Java Platform, Enterprise Edition implementation must provide an
+Each Jakarta Platform, Enterprise Edition implementation must provide an
 implementation of the `TSURLInterface` to support obtaining URL strings
 that are used to access a selected Web component. This implementation
-can be replaced if a Java Platform, Enterprise Edition server
+can be replaced if a Jakarta Platform, Enterprise Edition server
 implementation requires URLs to be created in a different manner. In
-most Java Platform, Enterprise Edition environments, the default
+most Jakarta Platform, Enterprise Edition environments, the default
 implementation of this class can be used.
 
 [[GFASJ]][[tshttpsurlconnectioninterface]]
@@ -354,7 +354,7 @@ specified by the `porting.ts.jaxrpc.class.1` and `.2` properties in the
 You must provide an implementation of `TSJAXRPCInterface` to support the
 class `TSJAXRPC`. This class is used to provide as name/value pairs the
 URL value of the deployed webservice endpoints for those sets of tests
-which use DII, direct HTTP, or direct SAAJ to communicate to the
-endpoints.
+which use DII, direct HTTP, or direct SAAJ 1.4 to communicate to the
+endpoints. SOAP with Attachments API for Java (SAAJ) is included in Java SE 8.
 
 

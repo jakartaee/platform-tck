@@ -89,8 +89,10 @@ failure, use the following tabs listed in order of importance:
 
 * Test Run Messages contains a Message list and a Message section that
 display the messages produced during the test run.
+
 * Test Run Details contains a two-column table of name/value pairs
 recorded when the test was run.
+
 * Configuration contains a two-column table of the test environment
 name/value pairs derived from the configuration data actually used to
 run the test.
@@ -137,6 +139,7 @@ When aborting a test run, consider the following:
 the GUI tools automatically cleans up your environment for the next test
 run. This cleanup includes undeploying any components or applications
 that may deployed or registered with the Application Server.
+
 * If you abort a test run in command-line mode (by pressing Ctrl+C),
 your environment might not be left in a clean state, causing potential
 failures in subsequent test runs. In such cases, you may need to perform
@@ -145,10 +148,10 @@ the following procedure to restore your environment to a clean state.
 To restore your environment after aborting a test run in command-line
 mode, perform these steps.
 
-1.  Log in to the Application Server with the `asadmin` command.
-2.  List all registered components with the `asadmin list-components`
+.  Log in to the Eclipse GlassFish 5.1 Application Server with the `asadmin` command.
+.  List all registered components with the `asadmin list-components`
 command.
-3.  Undeploy any listed components related to your test run with the
+.  Undeploy any listed components related to your test run with the
 `asadmin undeploy` listed_component command.
 
 

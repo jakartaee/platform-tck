@@ -13,13 +13,13 @@ F Context Root Mapping Rules for Web Services Tests
 ---------------------------------------------------
 
 The context root mapping rules that are described in this appendix apply
-to all of the web services test areas, including `jaxrpc`, `jaxws`,
-`jws`, `webservices`, `webservices12`, and `webservices13`.
+to all of the web services test areas, including Jakarta XML RPC (`jaxrpc`), Jakarta XML Web Services (`jaxws`),
+Jakarta Web Services Metadata (`jws`), `webservices`, `webservices12`, and `webservices13`.
 
 This appendix covers the following topics:
 
 * link:#GJJWR[Servlet-Based Web Service Endpoint Context Root Mapping]
-* link:#GJJWG[EJB-Based Web Service Endpoint Context Root Mapping]
+* link:#GJJWG[Jakarta Enterprise Bean-Based Web Service Endpoint Context Root Mapping]
 
 [[GJJWR]][[f.1-servlet-based-web-service-endpoint-context-root-mapping]]
 
@@ -28,24 +28,26 @@ F.1 Servlet-Based Web Service Endpoint Context Root Mapping
 
 This section describes the context root mapping for servlet-based web
 services endpoints and clients. Since most of the application runtime
-and Web runtime deployment descriptor files have been removed in Java EE
-8, the context root mapping for web archives in the Java EE 8 RI becomes
+and Web runtime deployment descriptor files have been removed in Jakarta EE
+8, the context root mapping for web archives in a Jakarta EE 8 CI becomes
 the base name of the Web archive file without the file extension. For
 example, the context root for the archive `web-client.war` defaults to
 `web-client`.
 
 This covers the mapping for all servlet-based web services endpoints and
-clients under theJava EE 8 CTS test trees [jaxrpc, jaxws, jws,
+clients under the Jakarta EE 8 CTS test trees [Jakarta XML RPC (`jaxrpc`), 
+Jakarta XML Web Services (`jaxws`),
+Jakarta Web Services Metadata (`jws`),
 webservices, webservices12, webservices13].
 
-For example, for the `jaxws` test directory, the context root mapping is
+For example, for the Jakarta XML Web Services (`jaxws`) test directory, the context root mapping is
 as shown in the following table.
 
 [[sthref62]][[GLRDO]]
 
-Table F-1 Context Root Mapping for jaxws Test Directory
+===== Table F-1 Context Root Mapping for Jakarta XML Web Services (`jaxws`) Test Directory
 
-[width="100%",cols="50%,50%",options="header",]
+[width="80%",cols="50%,50%",options="header",]
 |=======================================================================
 |Endpoint |Context Root Mapping
 |`WSW2JDLHttpTest_web.war` |`WSW2JDLHttpTest_web`
@@ -78,12 +80,12 @@ The directory listing is as follows:
 [echo] WSW2JDLHttpTest_wsservlet_vehicle_web.war.sun-web.xml
 ----
 
-Similarly, for the `jaxrpc` test directory, the context root mapping is
+Similarly, for the Jakarta XML RPC (`jaxrpc`) test directory, the context root mapping is
 as shown in the following table.
 
 [[sthref63]][[GLRDI]]
 
-Table F-2 Context Root Mapping for jaxrpc Test Directory
+===== Table F-2 Context Root Mapping for Jakarta XML RPC (`jaxrpc`) Test Directory
 
 [width="100%",cols="50%,50%",options="header",]
 |=======================================================================
@@ -127,18 +129,18 @@ The directory listing is as follows:
 For Web archives, the context root mapping becomes the base name of the
 Web archive file minus the extension.
 
-[[GJJWG]][[f.2-ejb-based-web-service-endpoint-context-root-mapping]]
+[[GJJWG]][[f.2-jakarta-enterprise-bean-based-web-service-endpoint-context-root-mapping]]
 
-F.2 EJB-Based Web Service Endpoint Context Root Mapping
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F.2 Jakarta Enterprise Bean-Based Web Service Endpoint Context Root Mapping
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes the context root mapping for EJB-based web
-services endpoints and clients. The context root mapping for EJB-based
+This section describes the context root mapping for Jakarta Enterprise Bean-based web
+services endpoints and clients. The context root mapping for Jakarta Enterprise Bean-based
 web services and clients is based on the following mapping rules that
-are used for the Java EE 8 RI.
+are used for the Jakarta EE 8 CI.
 
 The following algorithm describes the context root mapping rules that
-are used by the Java EE 8 Reference Implementation.
+are used by the Jakarta EE 8 Compatible Implementation.
 
 [source,oac_no_warn]
 ----
@@ -198,25 +200,25 @@ Table F-3 Context Root Mappings
 
 [source,oac_no_warn]
 ----
---------------            -------------------------------------
-Test Directory            Context Root = <endpoint-address-uri>
---------------            -------------------------------------
-WSEjbMultipleClientInjectionTest1    "WSEjbMultipleClientInjectionTest1/ejb"
-WSEjbMultipleClientInjectionTest2    "WSEjbMultipleClientInjectionTest2/ejb"
+--------------                      -------------------------------------
+Test Directory                      Context Root = <endpoint-address-uri>
+--------------                      -------------------------------------
+WSEjbMultipleClientInjectionTest1   "WSEjbMultipleClientInjectionTest1/ejb"
+WSEjbMultipleClientInjectionTest2   "WSEjbMultipleClientInjectionTest2/ejb"
 WSEjbNoWebServiceRefInClientTest    "WSEjbNoWebServiceRefInClientTest/ejb"
 WSEjbNoWebServiceRefInClientTest    "WSEjbNoWebServiceRefInClientTest/ejb"
-WSEjbPortFieldInjectionTest        "WSEjbPortFieldInjectionTest/ejb"
-WSEjbPortMethodInjectionTest    "WSEjbPortMethodInjectionTest/ejb"
-WSEjbSOAPHandlersTest        "WSEjbSOAPHandlersTest/ejb"
-WSEjbSOAPHandlersTest2        "WSEjbSOAPHandlersTest2"/ejb"
-WSEjbWebServiceProviderTest        "WSEjbWebServiceProviderTest/ejb"
-WSEjbWebServiceRefTest2        "WSEjbWebServiceRefTest2/ejb"
-WSEjbAsyncTest            "WSEjbAsyncTest/ejb"
+WSEjbPortFieldInjectionTest         "WSEjbPortFieldInjectionTest/ejb"
+WSEjbPortMethodInjectionTest        "WSEjbPortMethodInjectionTest/ejb"
+WSEjbSOAPHandlersTest               "WSEjbSOAPHandlersTest/ejb"
+WSEjbSOAPHandlersTest2              "WSEjbSOAPHandlersTest2"/ejb"
+WSEjbWebServiceProviderTest         "WSEjbWebServiceProviderTest/ejb"
+WSEjbWebServiceRefTest2             "WSEjbWebServiceRefTest2/ejb"
+WSEjbAsyncTest                      "WSEjbAsyncTest/ejb"
 ----
 
 The following table shows the two test directories under the
 `webservices12/ejb/annotations` that do not specify the
-`<endpoint-address-uri>` deployment tag or do not contain a EJB JAR
+`<endpoint-address-uri>` deployment tag or do not contain a Jakarta Enterprise Bean JAR
 runtime deployment descriptor file. Because of this, the context root is
 calculated using the previously described formula. In both cases, the
 context root is calculated as a concatenation of the WSDL Service Name,
@@ -224,8 +226,7 @@ a slash (`/`), and the Simple Bean Class Name.
 
 [[sthref65]][[GLRCY]]
 
-Table F-4 Context Root Mapping for Directories Without Endpoint Address
-URIs
+===== Table F-4 Context Root Mapping for Directories Without Endpoint Address URIs
 
 [width="100%",cols="29%,71%",options="header",]
 |=======================================================================
@@ -240,19 +241,20 @@ URIs
 
 [source,oac_no_warn]
 ----
---------------           --------------------------------------------------------
-Test Directory           Context Root = <WSDL Service Name/Simple Bean Class Name>
---------------           --------------------------------------------------------
-WSEjbWebServiceRefTest1    "WSEjbWebServiceRefTest1HelloService/HelloBean"
-WSEjbWebServiceRefWithNoDDsTest "WSEjbWSRefWithNoDDsTestHelloEJBService/WSEjbWSRefWithNoDDsTestHelloEJB"
+--------------                  --------------------------------------------------------
+Test Directory                  Context Root = <WSDL Service Name/Simple Bean Class Name>
+--------------                  --------------------------------------------------------
+WSEjbWebServiceRefTest1         "WSEjbWebServiceRefTest1HelloService/HelloBean"
+WSEjbWebServiceRefWithNoDDsTest "WSEjbWSRefWithNoDDsTestHelloEJBService/\
+                                 WSEjbWSRefWithNoDDsTestHelloEJB"
 ----
 
 The context root mappings for some, but not all, tests also exist in the
 DAT files under the `$TS_HOME/bin` directory. These include the
-`jaxrpc-url-props.dat`, `jaxws-url-props.dat`, `jws-url-props.dat`, and
+`jaxrpc-url-props.dat` (Jakarta XML RPC), `jaxws-url-props.dat` (Jakarta XML Web Services), `jws-url-props.dat` (Jakarta Web Services Metadata), and
 `webservices12-url-props.dat` files.
 
-Licensees can use the previously described information in their porting
+Implementers can use the previously described information in their porting
 implementation layer for web services.
 
 

@@ -27,7 +27,7 @@ directories.
 
 [[sthref52]][[GFAXX]]
 
-Table A-1 Required Common Applications
+===== Table A-1 Required Common Applications
 
 [width="100%",cols="50%,50%",options="header",]
 |=======================================================================

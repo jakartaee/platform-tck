@@ -15,11 +15,11 @@ Preface
 [NOTE]
 ========================================================================
 
-The Java Enterprise Edition documentation is part of the Java Enterprise 
+The Jakarta Enterprise Edition documentation is part of the Jakarta Enterprise 
 Edition contribution to the Eclipse Foundation and is not intended for 
 use in relation to Java Enterprise Edition or Java Licensee 
-requirements. The documentation is in the process of being revised to 
-reflect the new Jakarta EE branding. 
+requirements. This documentation is in the process of being revised to 
+reflect the new Jakarta EE requirements and branding. 
 Additional changes will be made as requirements and procedures evolve 
 for Jakarta EE. Where applicable, references to Java EE or Java 
 Enterprise Edition should be considered references to Jakarta EE. 
@@ -35,9 +35,9 @@ troubleshooting problems you may encounter as you run the test suite.
 
 The Jakarta Platform, Enterprise Edition 8 Compatibility Test Suite (Jakarta
 EE 8 CTS) is a portable, configurable automated test suite for verifying
-the compatibility of a licensee's implementation of the Jakarta EE 8
-Specification (hereafter referred to as the licensee implementation).
-The Jakarta EE 8 CTS uses the JavaTest harness version 4.4.1 to run the
+the compatibility of an implementer's compliance with the Jakarta EE 8
+Specification (hereafter referred to as the implementer's implementation, or VI).
+The Jakarta EE 8 CTS uses the JavaTest harness version 5.0 to run the
 test suite.
 
 
@@ -56,9 +56,9 @@ of this guide.
 Who Should Use This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This guide is for developers of the Java EE 8 technology to assist them
+This guide is for developers of the Jakarta EE 8 technology to assist them
 in running the test suite that verifies compatibility of their
-implementation of the Java EE 8 Specification.
+implementation of the Jakarta EE 8 Specification.
 
 
 [[GJFXS]][[before-you-read-this-book]]
@@ -67,11 +67,11 @@ Before You Read This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before reading this guide, you should familiarize yourself with the Java
-programming language, the Java Platform, Enterprise Edition 8 (Java EE
+programming language, the Jakarta Platform, Enterprise Edition 8 (Jakarta EE
 8) Specification, and the JavaTest documentation.
 
-The Java Platform, Enterprise Edition 8 (Java EE 8) Specification can be
-downloaded from `http://jcp.org/en/jsr/detail?id=366`.
+The Jakarta Platform, Enterprise Edition 8 (Jakarta EE 8) Specification can be
+downloaded from `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
 For documentation on the test harness used for running the Java EE 8 CTS
 test suite, see
