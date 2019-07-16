@@ -418,8 +418,7 @@ Only tests that are required by the Full Profile will be run.
 
 [[sthref28]]
 
-===== Example 7-5 Running Tests for All Required Technologies in the Web
-Profile
+===== Example 7-5 Running Tests for All Required Technologies in the Web Profile
 
 [source,oac_no_warn]
 ----
@@ -431,8 +430,7 @@ Only tests that are required by the Web Profile will be run.
 
 [[sthref29]]
 
-===== Example 7-6 Running All Required Tests Except Connector Tests in the
-Full Profile
+===== Example 7-6 Running All Required Tests Except Connector Tests in the Full Profile
 
 [source,oac_no_warn]
 ----
@@ -500,8 +498,7 @@ Subsets
 
 [[sthref35]]
 
-===== Example 7-10 Running Tests for All Optional Technologies in the Full
-Profile
+===== Example 7-10 Running Tests for All Optional Technologies in the Full Profile
 
 [source,oac_no_warn]
 ----
@@ -511,8 +508,7 @@ ant -Dkeywords=javaee_optional runclient
 
 [[sthref36]]
 
-===== Example 7-11 Running the Optional JAXR and JAX-RPC Tests With the
-Required Full Profile Tests
+===== Example 7-11 Running the Optional JAXR and JAX-RPC Tests With the Required Full Profile Tests
 
 [source,oac_no_warn]
 ----
@@ -571,8 +567,7 @@ optional test areas for the Jakarta EE 8 Web Profile.
 
 [[sthref38]]
 
-===== Example 7-12 Running Tests for All Optional Technologies in the Web
-Profile
+===== Example 7-12 Running Tests for All Optional Technologies in the Web Profile
 
 [source,oac_no_warn]
 ----
@@ -582,8 +577,7 @@ ant -Dkeywords=javaee_web_profile_optional runclient
 
 [[sthref39]]
 
-===== Example 7-13 Running the Optional Jakarta Authorization and Authentication Tests With All
-Required Web Profile Tests
+===== Example 7-13 Running the Optional Jakarta Authorization and Authentication Tests With All Required Web Profile Tests
 
 [source,oac_no_warn]
 ----

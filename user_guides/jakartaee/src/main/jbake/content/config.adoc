@@ -57,7 +57,7 @@ configuration settings you are likely to make is the
 vendor-specific SQL files. These two files contain predefined Ant
 targets that are implemented such that they automatically configure the
 Jakarta EE 8 CI and its associated database in order to pass the CTS. A
-licensee may choose to implement these targets to work with their server
+Implementer may choose to implement these targets to work with their server
 environment to perform the steps described in link:#GEWWA[Section 5.3.3,
 "Configuring Your Application Server as the VI."]
 
