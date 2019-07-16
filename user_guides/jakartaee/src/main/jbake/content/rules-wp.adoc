@@ -1,38 +1,38 @@
 type=page
 status=published
-title=Procedure for Java Platform, Enterprise Edition 8 Web Profile Certification
+title=Procedure for Jakarta Platform, Enterprise Edition 8 Web Profile Certification
 next=install.html
 prev=rules.html
 ~~~~~~
-Procedure for Java Platform, Enterprise Edition 8 Web Profile Certification
-===========================================================================
+Procedure for Jakarta Platform, Enterprise Edition 8 Web Profile Certification
+==============================================================================
 
-[[GJJPZ]][[procedure-for-java-platform-enterprise-edition-8-web-profile-certification]]
+[[GJJPZ]][[procedure-for-jakarta-platform-enterprise-edition-8-web-profile-certification]]
 
-3 Procedure for Java Platform, Enterprise Edition 8 Web Profile Certification
------------------------------------------------------------------------------
+3 Procedure for Jakarta Platform, Enterprise Edition 8 Web Profile Certification
+--------------------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
-compatibility requirements for Java Platform, Enterprise Edition 8.
+compatibility requirements for Jakarta Platform, Enterprise Edition Version 8
+Web Profile.
 
 This chapter contains the following sections:
 
 * link:#CEGEJDGE[Certification Overview]
 * link:#CEGFGHIC[Compatibility Requirements]
-* link:#CEGHFFED[Java Platform, Enterprise Edition Version 8 Test
+* link:#CEGHFFED[Jakarta Platform, Enterprise Edition Version 8 Test
 Appeals Process]
-* link:#CEGEHIBD[Specifications for Java Platform, Enterprise Edition
-Version 8]
-* link:#CEGFDIEG[Libraries for Java Platform, Enterprise Edition Version
-8]
+* link:#CEGEHIBD[Specifications for Jakarta Platform, Enterprise Edition
+Version 8, Web Profile]
+* link:#CEGFDIEG[Libraries for Jakarta Platform, Enterprise Edition Version
+8, Web Profile]
 
 [[CEGEJDGE]][[certification-overview]]
 
 3.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for Java Platform, Enterprise Edition Version
-8 consists of the following activities:
+The certification process for Jakarta EE 8, Web Profile consists of the following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
 (TCK) and execute it in accordance with the instructions in this User's
@@ -40,7 +40,7 @@ Guide.
 * Ensure that you meet the requirements outlined in ”Compatibility
 Requirements,” below.
 
-* Certify to the Java Partner organization that you have finished
+* Certify to the EE4J, Jakarta EE Platform Specification committer team that you have finished
 testing and that you meet all of the compatibility requirements.
 
 [[CEGFGHIC]][[compatibility-requirements]]
@@ -48,8 +48,8 @@ testing and that you meet all of the compatibility requirements.
 3.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Java Platform, Enterprise Edition
-Version 8 consist of meeting the requirements set forth by the rules and
+The compatibility requirements for Jakarta Platform, Enterprise Edition
+Version 8 Web Profile consist of meeting the requirements set forth by the rules and
 associated definitions contained in this section.
 
 [[sthref10]][[definitions]]
@@ -59,6 +59,12 @@ associated definitions contained in this section.
 
 These definitions are for use only with these compatibility requirements
 and are not intended for any other purpose.
+
+[WARNING]
+====
+Definitions following are under review.
+
+====
 
 [[sthref11]][[sthref12]]
 
@@ -117,7 +123,7 @@ usage messages, or developer support programs.
 Standard Edition and Java Platform Enterprise Edition.
 
 |Endorsed Standard |A Java API defined through a standards process other
-than the Java Community Process. The Endorsed Standard packages are
+than the Jakarta Enterprise Specification Process. The Endorsed Standard packages are
 listed later in this chapter.
 
 |Exclude List |The most current list of tests, distributed by the
@@ -134,17 +140,17 @@ incorporates a function that generates web service endpoint descriptions
 in WSDL and XML schema format from Source Code as specified by the JAXWS
 Specification.
 
-|JSP Page |A text-based document that uses JavaServer Pages technology.
+|Jakarta Server Page |A text-based document that uses Jakarta Server Pages technology.
 
-|JSP Page Implementation Class |A program constructed by transforming
-the JSP Page text into a Java language program using the transformation
+|Jakarta Server Page Implementation Class |A program constructed by transforming
+the Jakarta Server Page text into a Java language program using the transformation
 rules described in the Specifications.
 
 |Libraries a|
-The class libraries, as specified through the Java Community Process
-(JCP), for the Technology Under Test.
+The class libraries, as specified through the Jakarta Enterprise Specification Process
+(JESP), for the Technology Under Test.
 
-The Libraries for Java Platform, Enterprise Edition Version 8 are listed
+The Libraries for Jakarta Platform, Enterprise Edition Version 8 are listed
 at the end of this chapter.
 
 |Location Resource a|
@@ -157,9 +163,9 @@ For example, classes may be required to exist in directories named in a
 CLASSPATH variable, or native libraries may be required to exist in
 directories named in a PATH variable.
 
-|Maintenance Lead |The Java Community Process member responsible for
-maintaining the Specification, reference implementation, and TCK for the
-Technology. Oracle is the Maintenance Lead for Java Platform, Enterprise
+|Maintenance Lead |The Jakarta EE Specification Process member or committer team responsible for
+maintaining the Specification, compatible implementation, and TCK for the
+Technology. Eclipse Foundation is the Maintenance Lead for Jakarta Platform, Enterprise
 Edition Version 8.
 
 |Operating Mode a|
@@ -174,7 +180,7 @@ Note that an Operating Mode may be selected by a command line switch, an
 environment variable, a GUI user interface element, a configuration or
 control file, etc.
 
-|Product |A licensee product in which the Technology Under Test is
+|Product |An Implementer product in which the Technology Under Test is
 implemented or incorporated, and that is subject to compatibility
 testing.
 
@@ -187,12 +193,12 @@ Configuration that links the Product to that encryption package.
 
 |Rebuildable Tests |Tests that must be built using an implementation
 specific mechanism. This mechanism must produce specification-defined
-artifacts. Rebuilding and running these tests against the Java EE 8
-Reference Implementation (RI) verifies that the mechanism generates
+artifacts. Rebuilding and running these tests against the Jakarta EE 8
+Compatible Implementation (CI) verifies that the mechanism generates
 compatible artifacts.
 
-|Reference Implementation (RI) |The prototype or "proof of concept"
-implementation of a Specification.
+|Compatible Implementation (CI) |A verified compatible implementation 
+of a Specification.
 
 |Resource |A Computational Resource, a Location Resource, or a Security
 Resource.
@@ -211,23 +217,23 @@ to access the files and network resources necessary for use of the
 Product.
 
 |Specifications a|
-The documents produced through the Java Community Process that define a
+The documents produced through the Jakarta Enterprise Specification Process that define a
 particular Version of a Technology.
 
 The Specifications for the Technology Under Test are referenced later in
 this chapter.
 
-|Technology |Specifications and a reference implementation produced
-through the Java Community Process.
+|Technology |Specifications and a compatible implementation produced
+through the Jakarta Enterprise Specification Process.
 
-|Technology Under Test |Specifications and the reference implementation
-for Java Platform, Enterprise Edition Version 8.
+|Technology Under Test |Specifications and a compatible implementation
+for Jakarta Platform, Enterprise Edition Version 8.
 
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
 
-|Version |A release of the Technology, as produced through the Java
-Community Process.
+|Version |A release of the Technology, as produced through the Jakarta
+Enterprise Specification Process.
 
 |WSDL-to-Java Output |Output of a WSDL-to-Java tool that is required for
 Web service deployment and invocation.
@@ -239,11 +245,16 @@ Specification.
 |=======================================================================
 
 
-[[CEGCFBHB]][[rules-for-java-platform-enterprise-edition-version-8-products]]
+[[CEGCFBHB]][[rules-for-jakarta-platform-enterprise-edition-version-8-products]]
 
-3.2.2 Rules for Java Platform, Enterprise Edition Version 8 Products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 8 Products
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+[WARNING]
+====
+Following is under review.
+
+====
 The following rules apply for each version of an operating system,
 software component, and hardware platform Documented as supporting the
 Product:
@@ -292,7 +303,7 @@ installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
 prior written permission. Any such allowed alterations to the
-Conformance Tests would be posted to the [Java Licensee Engineering] web
+Conformance Tests would be posted to the Jakarta EE Specifications web
 site and apply to all licensees.
 
 EE-WP3 The testing tools supplied as part of the Test Suite or as
@@ -333,7 +344,7 @@ EE-WP7.2 A Product may provide a newer version of an Endorsed Standard.
 Upon request, the Maintenance Lead will make available alternate
 Conformance Tests as necessary to conform with such newer version of an
 Endorsed Standard. Such alternate tests will be made available to and
-apply to all licensees. If a Product provides a newer version of an
+apply to all implementers. If a Product provides a newer version of an
 Endorsed Standard, the version of the Endorsed Standard supported by the
 Product must be Documented.
 
@@ -352,25 +363,25 @@ EE-WP9 The functional programmatic behavior of any binary class or
 interface must be that defined by the Specifications.
 
 EE-WP9.1 A Product may contain Operating Modes that meet all of these
-requirements, except Rule T9, provided that:
+requirements, except Rule EE-WP9, provided that:
 
-1.  At least the default Product Configuration of each Operating Mode
+.  At least the default Product Configuration of each Operating Mode
 must meet these requirements, without invoking this rule; testing may
 always use such a Product Configuration.
-2.  The Operating Modes must not violate the Java Platform, Standard
+.  The Operating Modes must not violate the Java Platform, Standard
 Edition Rules.
-3.  The Product Configurations of Operating Modes of an application and
+.  The Product Configurations of Operating Modes of an application and
 its components are configured at deployment time, or by administrative
 action, and can not be changed during the runtime of that application.
-4.  Some Product Configurations of such Operating Modes may provide only
+.  Some Product Configurations of such Operating Modes may provide only
 a subset of the functional programmatic behavior required by the
 Specifications. The behavior of applications that use more than the
 provided subset, when run in such Product Configurations, is
 unspecified.
-5.  The functional programmatic behavior of any binary class or
+.  The functional programmatic behavior of any binary class or
 interface in the above defined subset must be that defined by the
 Specifications.
-6.  Any Product Configuration that invokes this rule must be clearly
+.  Any Product Configuration that invokes this rule must be clearly
 Documented as not fully meeting the requirements of the Specifications.
 
 EE-WP10 Each Container must make technically accessible all Java SE
@@ -382,25 +393,25 @@ EE-WP10.1 Containers may impose security constraints, as defined by the
 Specifications.
 
 EE-WP11 A web Container must report an error, as defined by the
-Specifications, when processing a JSP Page that does not conform to the
+Specifications, when processing a Jakarta Server Page that does not conform to the
 Specifications.
 
 EE-WP12 The presence of a Java language comment or Java language
-directive in a JSP Page that specifies ”java” as the scripting language,
+directive in a Jakarta Server Page that specifies ”java” as the scripting language,
 when processed by a web Container, must not cause the functional
-programmatic behavior of that JSP Page to vary from the functional
-programmatic behavior of that JSP Page in the absence of that Java
+programmatic behavior of that Jakarta Server Page to vary from the functional
+programmatic behavior of that Jakarta Server Page in the absence of that Java
 language comment or Java language directive.
 
 EE-WP13 The contents of any fixed template data (defined by the
-Specifications) in a JSP Page, when processed by a web Container, must
-not affect the functional programmatic behavior of that JSP Page, except
+Specifications) in a Jakarta Server Page, when processed by a web Container, must
+not affect the functional programmatic behavior of that Jakarta Server Page, except
 as defined by the Specifications.
 
-EE-WP14 The functional programmatic behavior of a JSP Page that
+EE-WP14 The functional programmatic behavior of a Jakarta Server Page that
 specifies ”java” as the scripting language must be equivalent to the
-functional programmatic behavior of the JSP Page Implementation Class
-constructed from that JSP Page.
+functional programmatic behavior of the Jakarta Server Page Implementation Class
+constructed from that Jakarta Server Page.
 
 EE-WP15 A Deployment Tool must report an error when processing a
 Configuration Descriptor that does not conform to the Specifications.
@@ -411,8 +422,8 @@ programmatic behavior of the Deployment Tool to vary from the functional
 programmatic behavior of the Deployment Tool in the absence of that
 comment.
 
-EE-WP17 A Deployment Tool must report an error when processing an EJB
-deployment descriptor that includes an EJB QL expression that does not
+EE-WP17 A Deployment Tool must report an error when processing an Jakarta Enterprise Beans
+deployment descriptor that includes an Jakarta Enterprise Beans QL expression that does not
 conform to the Specifications.
 
 EE-WP18 The Runtime must report an error when processing a Configuration
@@ -423,25 +434,25 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE-WP20 Compatibility testing for the Java EE 8 Web Profile consists of
+EE-WP20 Compatibility testing for the Jakarta EE 8 Web Profile consists of
 running the tests for the technologies defined in
-link:intro.html#BHCGFHDI[Section 1.2.2, "Java EE 8 Web Profile
-Technologies Tested With Java EE 8 CTS."] If optional technologies
-defined in the Java EE 8 Web Profile platform are implemented in
-addition to the required Java EE 8 Web Profile technologies,
+link:intro.html#BHCGFHDI[Section 1.2.2, "Jakarta EE 8 Web Profile
+Technologies Tested With Jakarta EE 8 CTS."] If optional technologies
+defined in the Jakarta EE 8 Web Profile platform are implemented in
+addition to the required Jakarta EE 8 Web Profile technologies,
 corresponding tests within this TCK for those additional technologies
 must also be run.
 
-EE-WP21 Compliance testing for Java EE 8 Web Profile consists of running
-the Java EE 8 Web Profile tests and the following Technology
+EE-WP21 Compliance testing for Jakarta EE 8 Web Profile consists of running
+the Jakarta EE 8 Web Profile tests and the following Technology
 Compatibility Kits (TCKs):
 
-* Contexts and Dependency Injection for Java 2.0 (JSR 365)
-* Dependency Injection for Java 1.0 (JSR 330)
-* Bean Validation 2.0(JSR 380)
+* Jakarta Contexts and Dependency Injection 2.0
+* Jakarta Dependency Injection 1.0 
+* Jakarta Bean Validation 2.0
 
 In addition to the compatibility rules outlined in this CTS User's
-Guide, Java EE 8 implementations must also adhere to all of the
+Guide, Jakarta EE 8 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
@@ -458,332 +469,183 @@ EE-WP25 A Java-to-WSDL Tool must not produce Java-to-WSDL Output from
 source code that does not conform to the Java Language Specification
 (JLS).
 
-[[CEGHFFED]][[java-platform-enterprise-edition-version-8-test-appeals-process]]
+[[CEGHFFED]][[jakarta-platform-enterprise-edition-version-8-test-appeals-process]]
 
-3.3 Java Platform, Enterprise Edition Version 8 Test Appeals Process
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.3 Jakarta Platform, Enterprise Edition Version 8 Test Appeals Process
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Oracle has a well established process for managing challenges to its
-Java technology Test Suites and plans to continue using a similar
-process in the future. Oracle, as Java Platform, Enterprise Edition
-Maintenance Lead, will authorize representatives from the Java Partner
-Engineering group to be the point of contact for all test challenges.
-Typically this will be the engineer assigned to a company as part of its
-Java Platform, Enterprise Edition TCK support.
+Jakarta has a well established process for managing challenges to its
+TCKs. Any implementor may submit a challenge to one or more tests in the
+Jakarta EE version 8 TCK (AKA CTS) as it relates to their implementation.  Implementor
+means the entity as a whole in charge of producing the final certified release.
+*Challenges filed should represent the consensus of that entity*.
 
-If a test is determined to be invalid in function or if its basis in the
-specification is suspect, the test may be challenged by any licensee of
-the Java Platform, Enterprise Edition TCK. Each test validity issue must
-be covered by a separate test challenge. Test validity or invalidity
-will be determined based on its technical correctness such as:
+3.3.1 Valid Challenges
+^^^^^^^^^^^^^^^^^^^^^^
+Any test case (e.g., test class, @Test method), test case configuration (e.g., deployment descriptor), test beans, annotations, and other resources considered part of the TCK may be challenged.
 
-* Test has bugs (i.e., program logic errors).
-* Specification item covered by the test is ambiguous.
-* Test does not match the specification.
-* Test assumes unreasonable hardware and/or software requirements.
-* Test is biased to a particular implementation.
+The following scenarios are considered in scope for test challenges:
 
-Challenges based upon issues unrelated to technical correctness as
-defined by the specification will normally be rejected.
+* Claims that a test assertion conflicts with the specification.
+* Claims that a test asserts requirements over and above that of the specification.
+* Claims that an assertion of the specification is not sufficiently implementable.
+* Claims that a test is not portable or depends on a particular implementation.
 
-Test challenges must be made in writing to Java Partner Engineering and
-include all relevant information as described in link:#CEGFEIHH[Example
-3-1, "Test Challenge Form"]. The process used to determine the validity
-or invalidity of a test (or related group of tests) is described in
-link:#CEGCHJGH[Section 3.3.1, "Java Platform, Enterprise Edition Version
-8 TCK Test Appeals Steps"]
+3.3.2 Invalid Challenges
+^^^^^^^^^^^^^^^^^^^^^^^^
+The following scenarios are considered out of scope for test challenges and will be immediately closed if filed:
 
-All tests found to be invalid will either be placed on the Exclude List
-for that version of the Java Platform, Enterprise Edition TCK or have an
-alternate test made available.
+* Challenging an implementation’s claim of passing a test.  Certification is an honor system and these issues must be raised directly with the implementation.
+* Challenging the usefulness of a specification requirement.  The challenge process cannot be used to bypass the specification process and raise in question the need or relevance of a specification requirement.
+* Claims the TCK is inadequate or missing assertions required by the specification.  See the Improvement section, which is outside the scope of test challenges.
+* Challenges that do not represent a consensus of the implementing community will be closed until such time that the community does agree or agreement cannot be made.  The test challenge process is not the place for implementations to initiate their own internal discussions.
+* Challenges to tests that are already excluded for any reason.
+* Challenges that an excluded test should not have been excluded and should be re-added should be opened as a new enhancement request
 
-* Tests that are placed on the Exclude List will be placed on the
-Exclude List within one business day after the determination of test
-validity. The new Exclude List will be made available to all Java
-Platform, Enterprise Edition TCK licensees on the Java Platform,
-Enterprise Edition TCK website.
-* Oracle, as Maintenance Lead has the option of creating alternative
-tests to address any challenge. Alternative tests (and criteria for
-their use) will be made available on the Java Platform, Enterprise
-Edition TCK website. +
+Test challenges must be made in writing via the {TechnologyShortName} specification project issue tracker
+as described in link:#CJAJEAEI[Section 2.3.3, "TCK Test Appeals Steps."]
 
-[NOTE]
-=======================================================================
-
-Passing an alternative test is deemed equivalent to passing the original
-test.
-
-=======================================================================
+All tests found to be invalid will be placed on the Exclude List
+for that version of the {TechnologyShortName} TCK.
 
 
-[[CEGCHJGH]][[java-platform-enterprise-edition-version-8-tck-test-appeals-steps]]
+[[CJAJEAEI]][[tck-test-appeals-steps]]
 
-3.3.1 Java Platform, Enterprise Edition Version 8 TCK Test Appeals Steps
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3.3.3 TCK Test Appeals Steps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  Java Platform, Enterprise Edition TCK licensee writes a test
-challenge to Java Licensee Engineering contesting the validity of one or
-a related set of Java Platform, Enterprise Edition tests. +
-A detailed justification for why each test should be invalidated must be
-included with the challenge as described in link:#CEGFEIHH[Example 3-1,
-"Test Challenge Form"].
-2.  Java Licensee Engineering evaluates the challenge. +
-If the appeal is incomplete or unclear, it is returned to the submitting
-licensee for correction. If all is in order, Java Licensee Engineering
-will check with the responsible test developers to review the purpose
-and validity of the test before writing a response as described in
-link:#CEGCCIJG[Example 3-2, "Test Challenge Response Form"]. Java
-Licensee Engineering will attempt to complete the response within 5
-business days. If the challenge is similar to a previously rejected test
-challenge (i.e., same test and justification), Java Licensee Engineering
-will send the previous response to the licensee.
-3.  The challenge and any supporting materials from test developers is
-sent to the specification engineers for evaluation. +
-A decision of test validity or invalidity is normally made within 15
-working days of receipt of the challenge. All decisions will be
-documented with an explanation of why test validity was maintained or
-rejected.
-4.  The licensee is informed of the decision and proceeds accordingly. +
-If the test challenge is approved and one or more tests are invalidated,
-Oracle places the tests on the Exclude List for that version of the Java
-Platform, Enterprise Edition TCK (effectively removing the test(s) from
-the Test Suite). All tests placed on the Exclude List will have a bug
-report written to document the decision and made available to all
-licensees through the bug reporting database. If the test is valid but
-difficult to pass due to hardware or operating system limitations,
-Oracle may choose to provide an alternate test to use in place of the
-original test (all alternate tests are made available to the licensee
-community).
-5.  If the test challenge is rejected, the licensee may choose to
-escalate the decision to the Executive Committee (EC), however, it is
-expected that the licensee would continue to work with Oracle to resolve
-the issue and only involve the EC as a last resort.
+1. Challenges should be filed via the Jakarta EE Platform specification project’s issue tracker using the label `challenge` and include the following information:
+* The relevant specification version and section number(s)
+* The coordinates of the challenged test(s)
+* The exact TCK and exclude list versions
+* The implementation being tested, including name and company
+* The full test name
+* A full description of why the test is invalid and what the correct behavior is believed to be
+* Any supporting material; debug logs, test output, test logs, run scripts, etc.
 
-[[sthref13]][[test-challenge-and-response-forms]]
+2. Specification project evaluates the challenge. +
+Challenges can be resolved by a specification project lead, or a project challenge triage team, after a consensus of the specification project committers is reached or attempts to gain consensus fails.
+Specification projects may exercise lazy consensus, voting or any practice that follows the principles of Eclipse Foundation Development Process.
+The expected timeframe for a response is two weeks or less.
+If consensus cannot be reached by the specification project for a prolonged period of time, the default recommendation is to exclude the tests and address the dispute in a future revision of the specification.
 
-3.3.2 Test Challenge and Response Forms
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3.  Accepted Challenges. +
+A consensus that a test produces invalid results will result in the exclusion of that test from certification requirements, and an immediate update and release of an official distribution of the TCK including the new exclude list. The associated `challenge` issue must be closed with an `accepted` label to indicate it has been resolved.
 
-link:#CEGFEIHH[Example 3-1] shows the test challenge information you
-must provide to Java Licensee Engineering to initiate a challenge, and
-link:#CEGCCIJG[Example 3-2] shows the test challenge response format.
+4.  Rejected Challenges and Remedy. +
+When a`challenge` issue is rejected, it must be closed with a label of `invalid` to indicate it has been rejected.
+There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
+If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
+A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec.committee@eclipse.org).
+The committee will evaluate the matter purely in terms of due process.
+If the appeal is accepted, the original TCK challenge issue will be reopened and a label of `appealed-challenge` added, along with a discussion of the appeal decision, and the `challenge-appeal` issue with be closed.
+If the appeal is rejected, the `challenge-appeal` issue should closed with a label of `invalid`.
 
-[[CEGFEIHH]]
+5. Escalation Appeal. +
+If there is a concern that a TCK process issue has not been resolved satisfactorily, the
+https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
 
-Example 3-1 Test Challenge Form
+[[CEGEHIBD]][[specifications-for-jakarta-platform-enterprise-edition-version-8-web-profile]]
 
-[source,oac_no_warn]
-----
-Test Challenger Name and Company:
-Specification Name(s) and Version(s):
-Test Suite Name and Version:
-Exclude List Version:
-Test Name:
-Complaint (argument for why test is invalid):
-.jtr file of the failing test:
-Console log of the JavaTest harness and device with all debugging flags turned on (if applicable):
-.jti or .jte file for the test run:
-Startup scripts for the JavaTest harness and agent (if applicable):
-----
+3.4 Specifications for Jakarta Platform, Enterprise Edition Version 8, Web Profile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[[CEGCCIJG]]
+The Specifications for Jakarta EE 8 Web Profile are found on the Jakarta EE Platform Specification web
+site at `https://jakarta.ee/specifications`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-Example 3-2 Test Challenge Response Form
+[[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-8-web-profile]]
 
-[source,oac_no_warn]
-----
-Test Defender Name and Company:
-Test Defender Role in Defense (e.g., test developer, Maintenance Lead, etc.):
-Specification Name(s) and Version(s):
-Test Suite Name and Version:
-Test Name:
-Defense (argument for why test is valid):
-[Multiple challenges and corresponding responses may be listed here.]
-Implications of test invalidity (e.g., other affected tests and test framework code, creation or exposure of ambiguities in spec (due to unspecified requirements), invalidation of the reference implementation, creation of serious holes in test suite):
-Alternatives (e.g., are alternate test(s) appropriate?):
-----
-
-[[CEGEHIBD]][[specifications-for-java-platform-enterprise-edition-version-8]]
-
-3.4 Specifications for Java Platform, Enterprise Edition Version 8
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Specifications for Java EE 8 Web Profile are found on the JCP web
-site at `http://jcp.org/en/jsr/detail?id=366`.
-
-[[CEGFDIEG]][[libraries-for-java-platform-enterprise-edition-version-8]]
-
-3.5 Libraries for Java Platform, Enterprise Edition Version 8
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.5 Libraries for Jakarta Platform, Enterprise Edition Version 8, Web Profile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following location provides a list of packages that constitute the
 required class libraries for the full Java EE 8 platform:
 
-`http://docs.oracle.com/javaee/8/api/`
-
-The following list constitutes the subset of Java EE 8 packages that are
-required for the Java EE 8 Web Profile:
-
-javax.annotation
-
-javax.annotation.security
-
-javax.annotation.sql
-
-javax.decorator
-
-javax.ejb
-
-javax.ejb.embeddable
-
-javax.ejb.spi
-
-javax.el
-
-javax.enterprise.context
-
-javax.enterprise.context.spi
-
-javax.enterprise.event
-
-javax.enterprise.inject
-
-javax.enterprise.inject.spi
-
-javax.enterprise.util
-
-javax.faces
-
-javax.faces.application
-
-javax.faces.bean
-
-javax.faces.component
-
-javax.faces.component.behavior
-
-javax.faces.component.html
-
-javax.faces.component.visit
-
-javax.faces.context
-
-javax.faces.convert
-
-javax.faces.el
-
-javax.faces.event
-
-javax.faces.flow
-
-javax.faces.flow.builder
-
-javax.faces.lifecycle
-
-javax.faces.model
-
-javax.faces.render
-
-javax.faces.validator
-
-javax.faces.view
-
-javax.faces.view.facelets
-
-javax.faces.webapp
-
-javax.inject
-
-javax.interceptor
-
-javax.json
-
-javax.json.spi
-
-javax.json.stream
-
-javax.persistence
-
-javax.persistence.criteria
-
-javax.persistence.metamodel
-
-javax.persistence.spi
-
-javax.servlet
-
-javax.servlet.annotation
-
-javax.servlet.descriptor
-
-javax.servlet.http
-
-javax.servlet.jsp
-
-javax.servlet.jsp.el
-
-javax.servlet.jsp.jstl.core
-
-javax.servlet.jsp.jstl.fmt
-
-javax.servlet.jsp.jstl.sql
-
-javax.servlet.jsp.jstl.tlv
-
-javax.servlet.jsp.tagext
-
-javax.transaction
-
-javax.transaction.xa
-
-javax.validation
-
-javax.validation.bootstrap
-
-javax.validation.constraints
-
-javax.validation.constraintvalidation
-
-javax.validation.executable
-
-javax.validation.groups
-
-javax.validation.metadata
-
-javax.validation.spi
-
-javax.websocket
-
-javax.websocket.server
-
-javax.ws.rs
-
-javax.ws.rs.client
-
-javax.ws.rs.container
-
-javax.ws.rs.core
-
-javax.ws.rs.ext
-
-javax.json.bind
-
-javax.json.bind.adapter
-
-javax.json.bind.annotation
-
-javax.json.bind.config
-
-javax.json.bind.serializer
-
-javax.json.bind.spi
-
-javax.security.enterprise
-
-javax.security.enterprise.authentication.mechanism.http
-
-javax.security.enterprise.credential
-
-javax.security.enterprise.identitystore
+``https://projects.eclipse.org/projects/ee4j.jakartaee-platform`
+
+The following list constitutes the subset of Jakarta EE 8 packages that are
+required for the Jakarta EE 8 Web Profile:
+
+* javax.annotation
+* javax.annotation.security
+* javax.annotation.sql
+* javax.decorator
+* javax.ejb
+* javax.ejb.embeddable
+* javax.ejb.spi
+* javax.el
+* javax.enterprise.context
+* javax.enterprise.context.spi
+* javax.enterprise.event
+* javax.enterprise.inject
+* javax.enterprise.inject.spi
+* javax.enterprise.util
+* javax.faces
+* javax.faces.application
+* javax.faces.bean
+* javax.faces.component
+* javax.faces.component.behavior
+* javax.faces.component.html
+* javax.faces.component.visit
+* javax.faces.context
+* javax.faces.convert
+* javax.faces.el
+* javax.faces.event
+* javax.faces.flow
+* javax.faces.flow.builder
+* javax.faces.lifecycle
+* javax.faces.model
+* javax.faces.render
+* javax.faces.validator
+* javax.faces.view
+* javax.faces.view.facelets
+* javax.faces.webapp
+* javax.inject
+* javax.interceptor
+* javax.json
+* javax.json.spi
+* javax.json.stream
+* javax.persistence
+* javax.persistence.criteria
+* javax.persistence.metamodel
+* javax.persistence.spi
+* javax.servlet
+* javax.servlet.annotation
+* javax.servlet.descriptor
+* javax.servlet.http
+* javax.servlet.jsp
+* javax.servlet.jsp.el
+* javax.servlet.jsp.jstl.core
+* javax.servlet.jsp.jstl.fmt
+* javax.servlet.jsp.jstl.sql
+* javax.servlet.jsp.jstl.tlv
+* javax.servlet.jsp.tagext
+* javax.transaction
+* javax.transaction.xa
+* javax.validation
+* javax.validation.bootstrap
+* javax.validation.constraints
+* javax.validation.constraintvalidation
+* javax.validation.executable
+* javax.validation.groups
+* javax.validation.metadata
+* javax.validation.spi
+* javax.websocket
+* javax.websocket.server
+* javax.ws.rs
+* javax.ws.rs.client
+* javax.ws.rs.container
+* javax.ws.rs.core
+* javax.ws.rs.ext
+* javax.json.bind
+* javax.json.bind.adapter
+* javax.json.bind.annotation
+* javax.json.bind.config
+* javax.json.bind.serializer
+* javax.json.bind.spi
+* javax.security.enterprise
+* javax.security.enterprise.authentication.mechanism.http
+* javax.security.enterprise.credential
+* javax.security.enterprise.identitystore
 
 

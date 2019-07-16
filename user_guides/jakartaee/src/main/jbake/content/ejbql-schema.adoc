@@ -12,12 +12,12 @@ EJBQL Schema
 E EJBQL Schema
 --------------
 
-The EJB-QL tests perform queries against a CMP 2.0 abstract persistence
+The Jakarta Enterprise Beans, EJB-QL tests perform queries against a CMP 2.0 abstract persistence
 model that you deploy before you start the test runs.
 
 Section 9.3.5, "EJB QL and SQL," in the EJB 3.1 Specification
 (`http://jcp.org/en/jsr/detail?id=318`) contains a sample mapping that
-shows how the Java Platform, Enterprise Edition RI translates EJB QL to
+shows how the Jakarta Platform, Enterprise Edition CI translates EJB QL to
 SQL, which helps to clarify the EJB QL semantics.
 
 This appendix includes information about the following topics:
@@ -35,8 +35,10 @@ information about the persistence schema relationships.
 
 [[GFKUU]]
 
-.*Figure E-1 Persistence Schema Relationships*
+===== Figure E-1 Persistence Schema Relationships
 image:img/ejbschema.png["Persistence Schema Relationships"]
+
+Note: EJB in the figure above is a  references to Jakarta Enterprise Beans. 
 
 
 [width="100%",cols="34%,33%,33%",]
@@ -51,6 +53,7 @@ String alias;(cmp)
 Customer customerNoop;(cmr)
 Collection customersNoop;(cmr)
 Collection customers;(cmr)
+
 ----
 
 Country: DVC
@@ -59,6 +62,7 @@ Country: DVC
 ----
 String name;(cmp)
 String code;(cmp)
+
 ----
 
 AddressEJB
@@ -71,6 +75,7 @@ String city;(cmp)
 String state;(cmp)
 String zip;(cmp)
 Collection phones;(cmr)
+
 ----
 
 ProductEJB
@@ -82,9 +87,10 @@ String name;(cmp)
 float price;(cmp)
 int quantity;(cmp)
 long partNumber;(cmp)
+
 ----
 
- a|
+a|
 CustomerEJB
 
 [source,oac_no_warn]
@@ -98,6 +104,7 @@ Collection creditCards;(cmr)
 Collection orders;(cmr)
 Collection aliases;(cmr)
 SpouseLocal spouse;(cmr)
+
 ----
 
 CreditCardEJB
@@ -112,6 +119,7 @@ String number;(cmp)
 OrderLocal order;(cmr)
 CustomerLocal customer;(cmr)
 double balance;(cmp)
+
 ----
 
 InfoEJB
@@ -126,7 +134,7 @@ String zip;(cmp)
 SpouseLocal spouse;(cmr)
 ----
 
- a|
+a|
 OrderEJB
 
 [source,oac_no_warn]
@@ -137,6 +145,7 @@ CustomerLocal customer;(cmr)
 LineItemLocalsampleLineItem;(cmr)
 Collection lineItems;(cmr)
 CreditCardLocal creditCard;(cmr)
+
 ----
 
 LineItemEJB
@@ -147,6 +156,7 @@ String id;(pk)(cmp)
 int quantity;(cmp)
 OrderLocal order;(cmr)
 ProductLocal product;(cmr)
+
 ----
 
 PhoneEJB
@@ -170,6 +180,7 @@ String lastName;(cmp)
 String SocialSecurityNumber(cmp);
 InfoLocal info;(cmr)
 CustomerLocal customer;(cmr)
+
 ----
 
 |================================
@@ -189,8 +200,7 @@ Listed below are the SQL statements used for CMP 1.1 finders in:
 
 [[GFKSD]][[e.2.1-ejbeebbentitycmpclientviewtest-interopejbentitycmpclientviewtest]]
 
-E.2.1 ejb/ee/bb/entity/cmp/clientviewtest,
-interop/ejb/entity/cmp/clientviewtest
+E.2.1 ejb/ee/bb/entity/cmp/clientviewtest, interop/ejb/entity/cmp/clientviewtest
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 [source,oac_no_warn]

@@ -3,7 +3,7 @@
 # apply_template
 #
 export TEMPLATE=$PWD/Template/src/main/jbake
-SPECS=${SPECS:-`ls -d [a-z]*/. | grep -v javaee`}
+SPECS=${SPECS:-`ls -d [a-z]*/. | grep -v jakartaee`}
 
 update() {
 	cmp "$1" "$2" > /dev/null || cp "$1" "$2"

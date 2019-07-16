@@ -28,7 +28,7 @@
     <artifactId>cts_javaee</artifactId>
     <packaging>pom</packaging>
     <version>8.0.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Jakarta EE Platform, Enterprise Edition 8 Compatibility Test Suite User's Guide, Release 8</name>
+    <name>Eclipse Foundation Jakarta EE Platform, Enterprise Edition Compatibility Test Suite User's Guide, Release 8</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,7 +41,7 @@
         <jruby.version>9.2.6.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
-        <doc.pdf>Java-EE-TCK-Users-Guide.pdf</doc.pdf>
+        <doc.pdf>Jakarta-EE-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 

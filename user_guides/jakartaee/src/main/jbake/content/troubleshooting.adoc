@@ -13,7 +13,7 @@ Troubleshooting
 -----------------
 
 This chapter explains how to debug test failures that you could
-encounter as you run the Java Platform, Enterprise Edition Compatibility
+encounter as you run the Jakarta Platform, Enterprise Edition Compatibility
 Test Suite.
 
 [[GFAUR]][[common-cts-problems-and-resolutions]]
@@ -22,12 +22,12 @@ Test Suite.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section lists common problems that you may encounter as you run the
-Java Platform, Enterprise Edition Compatibility Test Suite software on
-the Java Platform, Enterprise Edition RI. It also proposes resolutions
+Jakarta Platform, Enterprise Edition Compatibility Test Suite software on
+the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 5.1. It also proposes resolutions
 for the problems, where applicable.
 
 * Problem: +
-The following exception may occur when a Java EE 8 CTS test tries to
+The following exception may occur when a Jakarta EE 8 CTS test tries to
 write a very long tracelog: +
 [source,oac_no_warn]
 ----
@@ -53,8 +53,8 @@ Set the `-Djavatest.maxOutputSize=`nnn system parameter in the
 to a value that is higher than the default setting of `100,000` on the
 JavaTest VM.
 * Problem: +
-When you start the Java Platform, Enterprise Edition RI on Windows
-XP/2000 by using the `javaee -verbose` command, the system may not find
+When you start the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 5.1 on 
+Windows by using the `javaee -verbose` command, the system may not find
 the specified path and could display one of the following errors: +
 [source,oac_no_warn]
 ----
@@ -63,11 +63,11 @@ the specified path and could display one of the following errors: +
 ----
 Resolution: +
 Set `JAVA_HOME` to the path where the version of Java being used was
-installed and set `JAVAEE_HOME` to the location of the Java Platform,
+installed and set `JAVAEE_HOME` to the location of the Jakarta Platform,
 Enterprise Edition installation directory.
 * Problem: +
 If the `cts.jar` and the `tsharness.jar` files are not loadable by the
-extension classloader of your Java Platform, Enterprise Edition server,
+extension classloader of your Jakarta Platform, Enterprise Edition server,
 the following exception will be displayed in the window where the server
 was started when you attempt to run the tests: +
 [source,oac_no_warn]
@@ -77,15 +77,16 @@ RemoteLoggingInitException
 ----
 Resolution: +
 Ensure that the `cts.jar` and `tsharness.jar` files can be loaded by the
-extension class loader of your Java Platform, Enterprise Edition server.
+extension class loader of your Jakarta Platform, Enterprise Edition server.
 
 [[GFAGN]][[support]]
 
 9.2 Support
 ~~~~~~~~~~~
 
-After completing the troubleshooting process explained in this chapter,
-if you still cannot resolve your test problems, please contact the Java
-Licensee Engineering representative assigned to your account.
+Jakarta EE is a community sponsored and community supported project. If you need additional
+assistance, you can reach out to the specific developer community. You will find the 
+list of all Eclipse EE4J projects at ``https://projects.eclipse.org/projects/ee4j`. All the sub-projects
+are listed. Each project page has details regarding how to contact thir developer community.
 
 

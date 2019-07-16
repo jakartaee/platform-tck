@@ -12,9 +12,12 @@ Installation
 4 Installation
 --------------
 
-This chapter explains how to install the Java EE 8 CTS software and
+This chapter explains how to install the Jakarta EE 8 CTS software and
 perform a sample test run to verify your installation and familiarize
-yourself with the CTS.
+yourself with the CTS. Installation instructions are provided for Eclipse
+GlassFish 5.1, a Compatible Implementation (CI) of Jakarta EE. If you are using
+another compatible implementation, refer to instructions provided with that
+implementation.
 
 After installing the software according to the instructions in this
 chapter, proceed to link:config.html#GBFVV[Chapter 5, "Setup and
@@ -22,53 +25,53 @@ Configuration,"] for instructions on configuring your test environment.
 
 This chapter covers the following topics:
 
-* link:#GEVGN[Installing the Java EE 8 Reference Implementation]
-* link:#GEVHP[Installing the Java EE 8 CTS]
+* link:#GEVGN[Installing the Jakarta EE 8 Compatible Implementation]
+* link:#GEVHP[Installing the Jakarta EE 8 CTS]
 * link:#GEVGZ[Verifying Your Installation (Optional)]
 
-[[GEVGN]][[installing-the-java-ee-8-reference-implementation]]
+[[GEVGN]][[installing-the-jakarta-ee-8-compatible-implementation]]
 
-4.1 Installing the Java EE 8 Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Installing the Jakarta EE 8 Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[sthref14]]
 
-Before You Begin
+==== Before You Begin
 
-If the Java EE 8 Reference Implementation (RI) is already installed, it
-is recommended that you shut it down and start with a new, clean RI
+If a Jakarta EE 8 Compatible Implementation (CI) is already installed, it
+is recommended that you shut it down and start with a new, clean CI
 installation.
 
 1.  Install the Java SE 8 JDK bundle, if it is not already installed. +
 Refer to the JDK installation instructions for details. The JDK bundle
 can be downloaded from
 `http://www.oracle.com/technetwork/java/javase/downloads/index.html`
-2.  Create or change to the directory in which you will install the Java
-EE 8 RI.
-3.  Copy or download the Java EE 8 RI.
-4.  Unzip the Java EE 8 RI bundle.
-5.  Set the following environment variables:
-* `JAVAEE_HOME` to the RI directory you just created
+2.  Create or change to the directory in which you will install the Jakarta
+EE 8 CI.
+3.  Copy or download the Jakarta EE 8 CI, for example, Eclipse GlassFish 5.1.
+4.  Unzip the Jakarta EE 8 CI bundle.
+5.  For Eclipse GlassFish 5.1, set the following environment variables:
+* `JAVAEE_HOME` to the CI directory you just created
 * `JAVA_HOME` to the JDK you want to use
-6.  Start the Java EE 8 RI by executing the following command: +
+6.  Start the Jakarta EE 8 CI, Eclipse GlassFish 5.1, by executing the following command: +
 [source,oac_no_warn]
 ----
 <JAVAEE_HOME>/bin/asadmin start-domain
 ----
 
-[[GEVHP]][[installing-the-java-ee-8-cts]]
+[[GEVHP]][[installing-the-jakarta-ee-8-cts]]
 
-4.2 Installing the Java EE 8 CTS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.2 Installing the Jakarta EE 8 CTS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Complete the following procedure to install the Java EE 8 CTS on a
+Complete the following procedure to install the Jakarta EE 8 CTS on a
 system running the Solaris, Linux, or Windows operating system.
 
 
 [NOTE]
 =======================================================================
 
-When installing in the Windows environment, the Java EE 8 RI, Java SE 8
+When installing in the Windows environment, the Jakarta EE 8 CI, Java SE 8
 JDK, and CTS should be installed on the same drive. If you must install
 these components on different drives, be sure to change the
 `ri.applicationRoot` and `s1as.applicationRoot` properties as needed in
@@ -79,34 +82,37 @@ more information.
 =======================================================================
 
 
-1.  Copy or download the CTS 8 software.
-2.  Change to the directory in which you want to install the Java EE 8
-CTS software and use the `unzip` command to extract the bundle: +
+.  Copy or download the CTS 8 software.
+.  Change to the directory in which you want to install the Jakarta EE 8
+CTS software and use the `unzip` command to extract the bundle: 
++
 [source,oac_no_warn]
 ----
 cd install_directory
 unzip javaeetck-nnn.zip
 ----
++
 This creates the `javaeetck` directory. The
 install_directory`/javaeetck` directory will be `TS_HOME`.
-3.  Set the `TS_HOME` environment variable to point to the `javaeetck`
+.  Set the `TS_HOME` environment variable to point to the `javaeetck`
 directory.
 
 After you complete the installation, follow the directions in
 link:config.html#GBFVV[Chapter 5, "Setup and Configuration,"] to set up
-and configure the Java EE 8 CTS test suite.
+and configure the Jakarta EE 8 CTS test suite.
 
 [[GEVGZ]][[verifying-your-installation-optional]]
 
 4.3 Verifying Your Installation (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This procedure is optional. After installing the Java EE 8 RI and Java
+This procedure is optional. After installing the Jakarta EE 8 CI and Java
 EE 8 CTS, you may want to verify your installation by running the CTS
-samples against the Java EE 8 RI. See link:config.html#GBFVV[Chapter 5,
+samples against the Jakarta EE 8 CI. See link:config.html#GBFVV[Chapter 5,
 "Setup and Configuration,"] for complete configuration instructions.
 
-1.  Set the following properties in your `<TS_HOME>/bin/ts.jte` file: +
+.  For the Jakarta EE 8 CI, Eclipse GlassFish 5.1, set the following properties in your `<TS_HOME>/bin/ts.jte` file: 
++
 [source,oac_no_warn]
 ----
 javaee.home=<JAVAEE_HOME>
@@ -114,10 +120,12 @@ javaee.home.ri=<JAVAEE_HOME>
 mailHost=<mail-server-host> // the name of an accessible SMTP server
 mailuser1=firstname.lastname@xyz.com // a valid email address
 javamail.password=password // password for mailuser1
-orb.host=localhost // the name of the machine running the Java EE 8 RI
-orb.host.ri=localhost // the name of the machine running the Java EE 8 RI
+orb.host=localhost // the name of the machine running the Jakarta EE 8 CI
+orb.host.ri=localhost // the name of the machine running the Jakarta EE 8 CI
 ----
-2.  Use these commands to run the Java EE 8 CTS sample tests: +
++
+.  Use these commands to run the Jakarta EE 8 CTS sample tests: 
++
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/bin

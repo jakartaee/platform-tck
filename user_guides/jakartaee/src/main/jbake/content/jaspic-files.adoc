@@ -1,52 +1,52 @@
 type=page
 status=published
-title=JASPIC Technology Notes and Files
+title=Jakarta Authentication Technology Notes and Files
 next=database-config.html
 prev=csiv2logs.html
 ~~~~~~
-JASPIC Technology Notes and Files
-=================================
+Jakarta Authentication  Technology Notes and Files
+==================================================
 
-[[GLAEQ]][[c-jaspic-technology-notes-and-files]]
+[[GLAEQ]][[c-jakarta-authentication-technology-notes-and-files]]
 
-C JASPIC Technology Notes and Files
------------------------------------
+C Jakarta Authentication Technology Notes and Files
+---------------------------------------------------
 
-The JASPIC technology tests are used to verify the compatibility of a
-licensee's implementation of the JASPIC 1.1 specification.
+The Jakarta Authentication (formerly jaspic) technology tests are used to verify the compatibility of an
+implementer's implementation of the Jakarta Authentication 1.1 specification.
 
 This appendix provides information about the following topics:
 
-* link:#GLAFO[JASPIC 1.1 Technology Overview]
-* link:#GLAFE[JASPIC TSSV Files]
+* link:#GLAFO[Jakarta Authentication 1.1 Technology Overview]
+* link:#GLAFE[Jakarta Authentication TSSV Files]
 
-You run the `ant enable.jaspic` command to configure the Java EE 8 RI to
-run the JASPIC tests. After running the JASPIC tests, you run the
-`ant disable.jaspic` command to restore the Java EE 8 RI to the state it
-was in before you configured it for running the JASPIC tests. This is
-required because JASPIC replaces some of the Java EE 8 RI's default
+You run the `ant enable.jaspic` command to configure the Jakarta EE 8 CI to
+run the Jakarta Authentication tests. After running the Jakarta Authentication tests, you run the
+`ant disable.jaspic` command to restore the Jakarta EE 8 CI to the state it
+was in before you configured it for running the Jakarta Authentication tests. This is
+required because Jakarta Authentication replaces some of the Jakarta EE 8 CI's default
 system security components with CTS security components. If this change
-is not reverted after the tests have been run, the RI's system security
+is not reverted after the tests have been run, the CI's system security
 could be left in a partially working state. The CTS security
 `AuthConfigFactory` and `AuthConfigProvider`(s) are designed for
 compatibility testing, not the functional completeness that one expects
-from the Java EE 8 RI.
+from the Jakarta EE 8 CI.
 
-[[GLAFO]][[c.1-jaspic-1.1-technology-overview]]
+[[GLAFO]][[c.1-jakarta-authentication-1.1-technology-overview]]
 
-C.1 JASPIC 1.1 Technology Overview
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C.1 Jakarta Authentication 1.1 Technology Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The JASPIC 1.1 specification (JSR 196) defines a service provider
+The Jakarta Authentication 1.1 specification defines a service provider
 interface (SPI) by which authentication providers implementing message
 authentication mechanisms can be integrated in client and server message
 processing runtimes (or containers).
 
-Java EE 8 CTS uses a Test Suite SPI Verifier (TSSV) to verify whether
+Jakarta EE 8 CTS uses a Test Suite SPI Verifier (TSSV) to verify whether
 the vendor's message processing runtimes invoke the right SPI in the
 right order.
 
-TSSV includes test suite implementations of:
+The TSSV includes test suite implementations of:
 
 * `AuthConfigFactory`
 * `AuthConfigProvider`
@@ -54,12 +54,13 @@ TSSV includes test suite implementations of:
 * `AuthContext(client & Server)`
 * `AuthenticationModules(Client & Server)`
 
-TSSV gets loaded into vendor's message processing runtime using one of
-the following two ways as defined by the JSR 196 specification:
+The TSSV gets loaded into vendor's message processing runtime using one of
+the following two ways as defined by the Jakarta Authentication 1.1 specification:
 
 * By defining a property in `JAVA_HOME/jre/lib/security/java.security`
 as follows:
 `authconfigprovider.factory=com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory`
+
 * By calling `registerConfigProvider()` method in vendor's
 `AuthConfigFactory` with the following values:
 
@@ -77,7 +78,7 @@ as follows:
 [NOTE]
 =======================================================================
 
-For the Java EE 8 CTS, we register more than one provider in vendor's
+For the Jakarta EE 8 CTS, we register more than one provider in vendor's
 message processing runtime.
 
 =======================================================================
@@ -86,25 +87,25 @@ message processing runtime.
 In a typical test scenario (for each profile of Servlet or SOAP), an
 application is deployed into a vendor's runtime, and a client invokes
 the service. The message policies required for the secure invocations
-are built into TSSV implementations, and the runtime is analyzed to see
+are built into the TSSV implementations, and the runtime is analyzed to see
 whether it invokes the right SPIs at the right time.
 
-TSSV uses Java logging APIs to log the client and server invocation into
+The TSSV uses Java logging APIs to log the client and server invocation into
 a log file (`TSSVLog.txt`), this log file is used by the TCK tests to
 validate actual logged runtime information against expected results to
 ensure that the runtime is compliant. The `jaspic_util_web.war` file
-contains the JASPIC log file processor, which writes output to the
+contains the Jakarta Authentication log file processor, which writes output to the
 `TSSVLog.txt` file. The `TSSVLog.txt` file is put into the location
 defined by the `log.file.location` property in the `ts.jte` file.
 
-[[GLAFE]][[c.2-jaspic-tssv-files]]
+[[GLAFE]][[c.2-jakarta-authentication-tssv-files]]
 
-C.2 JASPIC TSSV Files
-~~~~~~~~~~~~~~~~~~~~~
+C.2 Jakarta Authentication TSSV Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following sections describe the `tssv.jar`,
 `ProviderConfiguration.xml`, and `provider-configuration.dtd` files that
-are used by the JASPIC TCK tests.
+are used by the Jakarta Authentication TCK tests.
 
 [[GLAGR]][[c.2.1-tssv.jar-file]]
 
@@ -154,7 +155,7 @@ context identifier for your implementation.
 You should enable two levels of logging output to get finer levels of
 debugging and tracing information than is turned on by default. This is
 done by setting the `traceflag` property in the `ts.jte` file and the
-HARNESS_DEBUG environment variable to "true".  If both of these are set,
+`HARNESS_DEBUG` environment variable to `true`.  If both of these are set,
 application context identifier information should appear in the debug
 output.
 
