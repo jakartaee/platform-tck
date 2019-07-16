@@ -184,7 +184,7 @@ The `deployManageruname` and `deployManagerpasswd` properties are used
 when calling `DeploymentFactoryManager.getDeploymentManager`.
 
 `StandardDeployment14` calls into the new deployment porting interface
-(`TSDeploymentInterface2`). Licensees must implement this new interface
+(`TSDeploymentInterface2`). Implementers must implement this new interface
 and set the following property in the `ts.jte` file to point to their
 implementation:
 

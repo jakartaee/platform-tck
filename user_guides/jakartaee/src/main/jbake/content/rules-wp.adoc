@@ -304,7 +304,7 @@ modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
 prior written permission. Any such allowed alterations to the
 Conformance Tests would be posted to the Jakarta EE Specifications web
-site and apply to all licensees.
+site and apply to all Implementers.
 
 EE-WP3 The testing tools supplied as part of the Test Suite or as
 updated by the Maintenance Lead must be used to certify compliance.
@@ -313,7 +313,7 @@ EE-WP4 The Exclude List associated with the Test Suite cannot be
 modified.
 
 EE-WP5 The Maintenance Lead may define exceptions to these Rules. Such
-exceptions would be made available to and apply to all licensees.
+exceptions would be made available to and apply to all Implementers.
 
 EE-WP6 All hardware and software component additions, deletions, and
 modifications to a Documented supporting hardware/software platform,

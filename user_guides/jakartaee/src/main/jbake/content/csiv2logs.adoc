@@ -373,9 +373,9 @@ ew_ssl_ssln_upn_anonid
 
 * direction is the direction of the test. The direction is omitted if
 forward, or reverse if in the reverse direction. For these tests,
-forward means from licensee server to the Jakarta EE 8 CI server, and
-reverse means from the Jakarta EE 8 CI server to the licensee server. In
-other words, the application client runs in the licensee's container in
+forward means from Implementer server to the Jakarta EE 8 CI server, and
+reverse means from the Jakarta EE 8 CI server to the Implementer server. In
+other words, the application client runs in the Implementer's container in
 the forward direction.
 
 Sample test application names for Jakarta Enterprise Beans-to-Jakarta Enterprise Beans tests include the

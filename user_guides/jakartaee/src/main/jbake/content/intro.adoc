@@ -87,13 +87,13 @@ Profile.
 ^^^^^^^^^^^^^^^^^^
 
 A Jakarta EE 8 CTS is a set of tools and tests used to verify that a
-licensee's implementation of Jakarta EE 8 technology conforms to the
+Implementer's implementation of Jakarta EE 8 technology conforms to the
 applicable specification. All tests in the CTS are based on the written
 specifications for the Jakarta Platform. The CTS tests compatibility of a
-licensee's implementation of a technology to the applicable
+Implementer's implementation of a technology to the applicable
 specification of the technology. Compatibility testing is a means of
 ensuring correctness, completeness, and consistency across all
-implementations developed by technology licensees.
+implementations developed by technology Implementers.
 
 The set of tests included with the Jakarta EE 8 CTS is called the test
 suite. All tests in the CTS test suite are self-checking, but some tests
@@ -134,7 +134,7 @@ Specification Process community page (https://jakarta.ee/specifications).
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jakarta EE 8 CTS is a portable, configurable, automated test suite for
-verifying the compliance of a licensee's implementation of the Jakarta EE 8
+verifying the compliance of a Implementer's implementation of the Jakarta EE 8
 technologies. Jakarta EE 8 CTS includes version 5.0 of the JavaTest
 harness.
 
@@ -249,7 +249,7 @@ image:img/overviewa.png["Typical Jakarta Platform, Enterprise Edition Workflow"]
 
 Note: References in diagram to Java EE refer to Jakarta EE.
 
-link:#GEUZU[Figure 1-1] shows how most licensees will use the test
+link:#GEUZU[Figure 1-1] shows how most Implementers will use the test
 suite. They will set up and run the test suite with the Jakarta Platform,
 Enterprise Edition 8 Compatible Implementation (Jakarta EE 8 CI) first to
 become familiar with the testing process. Then they will set up and run
@@ -371,7 +371,7 @@ based on a particular file system behavior, and so on) may be excluded.
 [NOTE]
 =======================================================================
 
-Licensees are not permitted to alter or modify Exclude Lists. Changes to
+Implementers are not permitted to alter or modify Exclude Lists. Changes to
 an Exclude List can only be made by using the procedure described in
 link:rules.html#CJAICHHD[Section 2.3.1, "Jakarta Platform, Enterprise
 Edition Version 8 TCK Test Appeals Steps,"] and
