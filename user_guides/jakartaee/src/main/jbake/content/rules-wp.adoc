@@ -41,7 +41,8 @@ Guide.
 Requirements,” below.
 
 * Certify to the EE4J, Jakarta EE Platform Specification committer team that you have finished
-testing and that you meet all of the compatibility requirements.
+testing and that you meet all of the compatibility requirements,
+as required by the Eclipse Foundation TCK Licenses.												   
 
 [[CEGFGHIC]][[compatibility-requirements]]
 
@@ -59,12 +60,6 @@ associated definitions contained in this section.
 
 These definitions are for use only with these compatibility requirements
 and are not intended for any other purpose.
-
-[WARNING]
-====
-Definitions following are under review.
-
-====
 
 [[sthref11]][[sthref12]]
 
@@ -103,7 +98,7 @@ specification and which contains configuration information for a set of
 Java classes, archive, or other feature defined in the specification.
 
 |Conformance Tests |All tests in the Test Suite for an indicated
-Technology Under Test, as distributed by the Maintenance Lead, excluding
+Technology Under Test, as distributed by the Eclipse Foundation, excluding
 those tests on the Exclude List for the Technology Under Test.
 
 |Container |An implementation of the associated Libraries, as specified
@@ -127,8 +122,8 @@ than the Jakarta Enterprise Specification Process. The Endorsed Standard package
 listed later in this chapter.
 
 |Exclude List |The most current list of tests, distributed by the
-Maintenance Lead, that are not required to be passed to certify
-conformance. The Maintenance Lead may add to the Exclude List for that
+Eclipse Foundation, that are not required to be passed to certify
+conformance. The Jakarta EE Specification Committee may add to the Exclude List for that
 Test Suite as needed at any time, in which case the updated Exclude List
 supplants any previous Exclude Lists for that Test Suite.
 
@@ -163,10 +158,13 @@ For example, classes may be required to exist in directories named in a
 CLASSPATH variable, or native libraries may be required to exist in
 directories named in a PATH variable.
 
-|Maintenance Lead |The Jakarta EE Specification Process member or committer team responsible for
-maintaining the Specification, compatible implementation, and TCK for the
-Technology. Eclipse Foundation is the Maintenance Lead for Jakarta Platform, Enterprise
-Edition Version 8.
+|Maintenance Lead |The corresponding Jakarta EE Specification Project is 
+responsible for maintaining the Specification and the TCK for the 
+Technology. The Specification Project Team will propose revisions and 
+updates to the Jakarta EE Specification Committee which will approve and 
+release new versions of the specification and TCK. Eclipse Jakarta EE 
+Specification Committee is the Maintenance Lead for Jakarta Platform, 
+Enterprise Edition Version 8, Web Profile.
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -193,8 +191,8 @@ Configuration that links the Product to that encryption package.
 
 |Rebuildable Tests |Tests that must be built using an implementation
 specific mechanism. This mechanism must produce specification-defined
-artifacts. Rebuilding and running these tests against the Jakarta EE 8
-Compatible Implementation (CI) verifies that the mechanism generates
+artifacts. Rebuilding and running these tests against a known
+compatible implementation verifies that the mechanism generates
 compatible artifacts.
 
 |Compatible Implementation (CI) |A verified compatible implementation 
@@ -217,23 +215,23 @@ to access the files and network resources necessary for use of the
 Product.
 
 |Specifications a|
-The documents produced through the Jakarta Enterprise Specification Process that define a
-particular Version of a Technology.
+The documents produced through the Jakarta EE Specification Process (JESP) 
+that define a particular Version of a Technology.
 
 The Specifications for the Technology Under Test are referenced later in
 this chapter.
 
-|Technology |Specifications and a compatible implementation produced
-through the Jakarta Enterprise Specification Process.
+|Technology |Specifications and one or more compatible implementations produced
+through the Jakarta EE Specification Process (JESP).
 
 |Technology Under Test |Specifications and a compatible implementation
-for Jakarta Platform, Enterprise Edition Version 8.
+for Jakarta Platform, Enterprise Edition Version 8, Web Profile.
 
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
 
-|Version |A release of the Technology, as produced through the Jakarta
-Enterprise Specification Process.
+|Version |A release of the Technology, as produced through the 
+Jakarta EE Specification Process (JESP).
 
 |WSDL-to-Java Output |Output of a WSDL-to-Java tool that is required for
 Web service deployment and invocation.
@@ -250,11 +248,6 @@ Specification.
 3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 8 Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-[WARNING]
-====
-Following is under review.
-
-====
 The following rules apply for each version of an operating system,
 software component, and hardware platform Documented as supporting the
 Product:
@@ -303,8 +296,8 @@ installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
 prior written permission. Any such allowed alterations to the
-Conformance Tests would be posted to the Jakarta EE Specifications web
-site and apply to all Implementers.
+Conformance Tests will be provided via the Jakarta EE Specification Project
+website and apply to all vendor compatible implementations.
 
 EE-WP3 The testing tools supplied as part of the Test Suite or as
 updated by the Maintenance Lead must be used to certify compliance.
