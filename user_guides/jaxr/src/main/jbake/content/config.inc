@@ -59,7 +59,7 @@ Edit your ts_env or ts_env.bat file and set the following environment variables:
     in which you set your classpath is dependent upon the location from
     which you downloaded the {TechnologyShortName} CI software. +
     For example, if you are running Solaris 8 and you downloaded the
-    {TechnologyShortName} CI, Version {TechnologyVersion}_01 from {JSRURL}, you could set the following classpath: +
+    {TechnologyShortName} CI, Version {TechnologyVersion}_01 from {SpecificationURL}, you could set the following classpath: +
 
 ----
 LOCAL_CLASSES=${JAXR_HOME}/lib/commons-logging.jar:
@@ -78,7 +78,7 @@ ${TS_HOME}/lib/javatest.jar:${TS_HOME}/lib/harness.jar
 ----
 
 Or, if you are running on Windows and you downloaded the
-{TechnologyShortName} CI, Version {TechnologyVersion}_01 from the {JSRURL} from {JSRURL}, you could set the following classpath:
+{TechnologyShortName} CI, Version {TechnologyVersion}_01 from {SpecificationURL}, you could set the following classpath:
 
 ----
 set LOCAL_CLASSES=%JAXR_HOME%\lib\commons-logging.jar;
@@ -97,7 +97,7 @@ set LOCAL_CLASSES=%JAXR_HOME%\lib\commons-logging.jar;
 ----
 
 If you are running on Solaris 8 and you are using the {TechnologyShortName} CI, 
-Version {TechnologyVersion}_01 from the {JSRURL} from the Java Web Services Developer Pack, you would
+Version {TechnologyVersion}_01 from the {SpecificationURL} from the Java Web Services Developer Pack, you would
 set the following classpath:
 
 ----
@@ -126,7 +126,7 @@ ${TS_HOME}/lib/javatest.jar;${TS_HOME}/lib/harness.jar
 ----
 
 If you are running on Windows 2000/XP and you are using the {TechnologyShortName} 
-CI, Version {TechnologyVersion}_01 from the {JSRURL} from the Java Web Services 
+CI, Version {TechnologyVersion}_01 from the {SpecificationURL} from the Java Web Services 
 Developer Pack, you would set the following classpath:
 
 ----

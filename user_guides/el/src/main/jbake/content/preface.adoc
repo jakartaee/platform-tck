@@ -37,14 +37,6 @@ the authors of this guide.
 
 =======================================================================
 
-[WARNING]
-====
-Template TODO
-
-* The following paragraph needs to be reviewed
-
-====
-
 Jakarta EE is a community sponsored and community run program. 
 Organizations contribute, along side individual contributors who use, evolve 
 and assist others.
@@ -80,7 +72,7 @@ Before You Read This Book
 
 You should be familiar with the {TechnologyShortName}
 {TechnologyVersion}, version {TechnologyVersion} Specification, 
-which can be found at {JSRURL}.
+which can be found at {SpecificationURL}.
 
 Before running the tests in the {TechnologyShortName} TCK, you should
 familiarize yourself with the JavaTest documentation which can be

@@ -5,15 +5,18 @@ Some technologies will need additional rules.  If they're needed,
 remove the comment block delimiters below and update the rules as
 appropriate.  You may need to adjust the rule numbers to avoid gaps.
 
-The first comment block below is additional rules needed by JPA.
+The first comment block below is additional rules needed by
+Jakarta Persistence.
 
 The second comment block below is additional rules needed by
-JSP and Servlet.  (And EJB, if it had a standalone TCK.)
+Jakarta Server Pages and Jakarta Servlet.
+(And Jakarta Enterprise Beans, if it had a standalone TCK.)
 
 The third comment block below is additional rules that apply
 to any technology that defines deployment descriptors.
 
-The fourth comment block is special rules that apply only to JSP.
+The fourth comment block is special rules that apply only to
+Jakarta Server Pages.
 
 NOTE: This set of examples is NOT complete, but should be.
 ///////////////////////////////////////////////////////////////////////
@@ -23,7 +26,7 @@ NOTE: This set of examples is NOT complete, but should be.
 Configuration Descriptor that does not conform to the Specifications.
 
 *{techID}11* An error must be reported when processing a configuration
-descriptor that includes a Java Persistence QL expression that does not
+descriptor that includes a Jakarta Persistence QL expression that does not
 conform to the Specifications.
 
 *{techID}12* The presence of an XML comment in a Configuration
@@ -56,23 +59,25 @@ absence of that comment.
 
 ///////////////////////////////////////////////////////////////////////
 *{techID}11* A web Container must report an error, as defined by the
-Specifications, when processing a JSP Page that does not conform to the
-Specifications.
+Specifications, when processing a Jakarta Server Pages Page that does
+not conform to the Specifications.
 
 *{techID}12* The presence of a Java language comment or Java language
-directive in a JSP Page that specifies ”java” as the scripting
-language, when processed by a web Container, must not cause the
-functional programmatic behavior of that JSP Page to vary from the
-functional programmatic behavior of that JSP Page in the absence of
-that Java language comment or Java language directive.
+directive in a Jakarta Server Pages Page that specifies ”java” as the
+scripting language, when processed by a web Container, must not cause
+the functional programmatic behavior of that Jakarta Server Pages Page
+to vary from the functional programmatic behavior of that Jakarta
+Server Pages Page in the absence of that Java language comment or Java
+language directive.
 
 *{techID}13* The contents of any fixed template data (defined by the
-Specifications) in a JSP Page, when processed by a web Container, must
-not affect the functional programmatic behavior of that JSP Page,
-except as defined by the Specifications.
+Specifications) in a Jakarta Server Pages Page, when processed by a web
+Container, must not affect the functional programmatic behavior of that
+Jakarta Server Pages Page, except as defined by the Specifications.
 
-*{techID}14* The functional programmatic behavior of a JSP Page that
-specifies ”java” as the scripting language must be equivalent to the
-functional programmatic behavior of the JSP Page Implementation Class
-constructed from that JSP Page.
+*{techID}14* The functional programmatic behavior of a Jakarta Server
+Pages Page that specifies ”java” as the scripting language must be
+equivalent to the functional programmatic behavior of the Jakarta
+Server Pages Page Implementation Class constructed from that Jakarta
+Server Pages Page.
 ///////////////////////////////////////////////////////////////////////
