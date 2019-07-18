@@ -74,6 +74,7 @@ The {TechnologyShortName} TCK provides these deployment handlers:
 
 * `<TS_HOME>/bin/xml/impl/none/deploy.xml`
 * `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+* `<TS_HOME>/bin/xml/impl/tomcat/deploy.xml`
 
 The `deploy.xml` files in each of these directories are used to control
 deployment to a specific container (no deployment, deployment to
@@ -91,8 +92,8 @@ has a target to invoke any of the required targets (`-deploy`, `-undeploy`,
 To deploy tests to another {TechnologyShortName} implementation, you
 must create a custom handler.
 
-1. Create a new directory in the `<TS_HOME>/bin/impl` directory tree.
-  For example, create the `<TS_HOME>/bin/impl/my_deployment_handler` directory.
+1. Create a new directory in the `<TS_HOME>/bin/xml/impl` directory tree.
+  For example, create the `<TS_HOME>/bin/xml/impl/my_deployment_handler` directory.
   Replace my_deployment_handler with the value of the impl.vi
   property that you set in Step 5 of the configuration procedure
   described in Section 4.2, "Configuring Your Environment to Repackage

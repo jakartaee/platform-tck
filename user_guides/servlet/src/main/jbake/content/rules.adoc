@@ -38,17 +38,9 @@ consists of the following activities:
 Guide.
 * Ensure that you meet the requirements outlined in
 link:#CJAFGIGG[Compatibility Requirements] below.
-
-[WARNING]
-====
-Template TODO
-
-* This may need more details
-
-====
-
-* Certify to the Eclipse TCK organization that you have finished
-testing and that you meet all of the compatibility requirements.
+* Certify to the Eclipse Foundation that you have finished
+testing and that you meet all of the compatibility requirements,
+as required by the Eclipse Foundation TCK License.
 
 [[CJAFGIGG]][[compatibility-requirements]]
 
@@ -71,13 +63,6 @@ and are not intended for any other purpose.
 
 Table 2-1 Definitions 
 
-[WARNING]
-====
-Template TODO
-
-* Review the following definitions in this table and revise as needed
-
-====
 [width="100%",cols="25%,75%",options="header",]
 |=======================================================================
 |Term |Definition
@@ -108,7 +93,7 @@ Java classes, archive, or other feature defined in the specification.
 
 |Conformance Tests |All tests in the Test Suite for an indicated
 Technology Under Test, as released and distributed by the 
-Jakarta EE Specification Committee, excluding those tests on the 
+Eclipse Foundation, excluding those tests on the 
 published Exclude List for the Technology Under Test.
 
 |Documented |Made technically accessible and made known to users,
@@ -116,14 +101,14 @@ typically by means such as marketing materials, product documentation,
 usage messages, or developer support programs.
 
 |Exclude List |The most current list of tests, released and distributed by the
-Jakarta EE Specification Committee, that are not required to be passed to certify
+Eclipse Foundation, that are not required to be passed to certify
 conformance. The Jakarta EE Specification Committee may add to the Exclude List for that
 Test Suite as needed at any time, in which case the updated TCK version
 supplants any previous Exclude Lists for that Test Suite.
 
 |Libraries a|
-The class libraries, as specified through the Eclipse Foundation, Specification 
-Process (EFSP), as refined by the Jakarta EE Specification Process (JESP), for the Technology Under Test.
+The class libraries, as specified through the Jakarta EE Specification Process
+(JESP), for the Technology Under Test.
 
 The Libraries for {TechnologyFullName} are listed at the end of this chapter.
 
@@ -137,13 +122,11 @@ For example, classes may be required to exist in directories named in a
 CLASSPATH variable, or native libraries may be required to exist in
 directories named in a PATH variable.
 
-|Maintenance Lead |The Jakarta EE Specification Committee is responsible for
-maintaining the Specification, and TCK for the Technology. 
+|Maintenance Lead |The corresponding Jakarta EE Specification Project is responsible for
+maintaining the Specification, and the TCK for the Technology. 
 The Specification Project Team will propose revisions and updates to the Jakarta EE 
 Specification Committee which will approve and release new versions of the 
 specification and TCK. 
-Eclipse Jakarta EE Specification Committee is Maintenance Lead for 
-{TechnologyFullName}.
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -171,7 +154,7 @@ Configuration that links the Product to that encryption package.
 |Rebuildable Tests |Tests that must be built using an
 implementation-specific mechanism. This mechanism must produce
 specification-defined artifacts. Rebuilding and running these tests
-against a known Jakarta EE 8 CI verifies that the mechanism generates
+against a known compatible implementation verifies that the mechanism generates
 compatible artifacts.
 
 |Resource |A Computational Resource, a Location Resource, or a Security
@@ -189,16 +172,14 @@ to access the files and network resources necessary for use of the
 Product.
 
 |Specifications a|
-The documents produced through the Eclipse Foundation, Specification 
-Process (EFSP), as refined by the Jakarta EE Specification Process (JESP)
+The documents produced through the Jakarta EE Specification Process (JESP)
 that define a particular Version of a Technology.
 
 The Specifications for the Technology Under Test are referenced later in
 this chapter.
 
-|Technology |Specifications and a reference implementation produced
-through the Eclipse Foundation, Specification 
-Process (EFSP), as refined by the Jakarta EE Specification Process (JESP).
+|Technology |Specifications and one or more compatible implementations produced
+through the Jakarta EE Specification Process (JESP).
 
 |Technology Under Test |Specifications and a compatible implementation
 for {TechnologyFullName} Version {TechnologyVersion}.
@@ -206,8 +187,8 @@ for {TechnologyFullName} Version {TechnologyVersion}.
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
 
-|Version |A release of the Technology, as produced through the Eclipse Foundation, Specification 
-Process (EFSP), as refined by the Jakarta EE Specification Process (JESP).
+|Version |A release of the Technology, as produced through the
+Jakarta EE Specification Process (JESP).
 |=======================================================================
 
 
@@ -216,13 +197,6 @@ Process (EFSP), as refined by the Jakarta EE Specification Process (JESP).
 2.2.2 Rules for {TechnologyFullName} Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-[WARNING]
-====
-Template TODO
-
-* The following rules need to be carefully examined and may need revision.
-
-====
 The following rules apply for each version of an operating system,
 software component, and hardware platform Documented as supporting the
 Product:
@@ -265,7 +239,7 @@ installation. Apart from changing such properties and other allowed
 modifications described in this User's Guide (if any), no source or
 binary code for a Conformance Test may be altered in any way without
 prior written permission. Any such allowed alterations to the
-Conformance Tests will be provided via the Eclipse Jakarta EE Specification Project 
+Conformance Tests will be provided via the Jakarta EE Specification Project 
 website and apply to all vendor compatible implementations.
 
 *{techID}3* The testing tools supplied as part of the Test Suite or as
@@ -401,16 +375,8 @@ https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Dev
 2.4 Specifications for {TechnologyFullName}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[WARNING]
-====
-Template TODO
-
-* The following may need further updates to include the new Jakarta EE TCK process and web-site definitions
-
-====
 The {TechnologyFullName} specification is available from the specification
-project web-site. This site can be found from the https://projects.eclipse.org/projects/ee4j[Eclipse, EE4J Project page],
-then selecting the sub-project for {TechnologyFullName}.
+project web-site: {SpecificationURL}.
 
 [[CJABAHGI]][[libraries-for-technology]]
 
@@ -424,4 +390,4 @@ include::packages.inc[]
 
 For the latest list of packages, also see:
 
-{JSRURL}
+{SpecificationURL}
