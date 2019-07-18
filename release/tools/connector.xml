@@ -211,6 +211,9 @@
                      includes="**/**"/>
         </copy>
 	<antcall target="mvn"/>
+	<delete verbose="true">
+             <fileset dir="${deliverable.bundle.dir}" includes="**/?/**" />
+        </delete>
         <!--antcall target="javadoc"/-->
         <!--
 		  <antcall target="create.doc.bundle"/>

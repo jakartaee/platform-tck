@@ -153,6 +153,10 @@
         <!-- the com/sun/ts/lib/implementation/sun/common file -->
         <copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/common/SunRIURL.java" todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/common"/>
 	<antcall target="mvn"/>
+        <delete verbose="true">
+             <fileset dir="${deliverable.bundle.dir}" includes="**/?/**" />
+        </delete>
+
 
     </target>
     <target name="mvn">

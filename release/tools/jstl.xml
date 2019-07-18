@@ -156,6 +156,10 @@
 			<fileset dir="${ts.home}/src/com/sun/ts/lib/porting" includes="TSURLInterface.java, TSURL.java" />
 		</copy>
 		<antcall target="mvn"/>
+	        <delete verbose="true">
+        	     <fileset dir="${deliverable.bundle.dir}" includes="**/?/**" />
+	        </delete>
+
         <!--
             <antcall target="create.doc.bundle" />
         -->

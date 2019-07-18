@@ -110,6 +110,10 @@ com/sun/ts/lib/implementation/javaee/**/*"
 			excludes="**/*log"/>
 		</copy>
 		<antcall target="mvn"/>
+	        <delete verbose="true">
+        	     <fileset dir="${deliverable.bundle.dir}" includes="**/?/**" />
+	        </delete>
+
 
 	</target>
 	<target name="mvn">

@@ -195,7 +195,10 @@
             <fileset dir="${ts.home}/install/${deliverable.dir}/docs"
                      includes="**/**"/>
         </copy>
-        <antcall target="mvn"/>        
+        <antcall target="mvn"/>
+        <delete verbose="true">
+             <fileset dir="${deliverable.bundle.dir}" includes="**/?/**" />
+        </delete>        
     </target>
     <target name="mvn">
         <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>

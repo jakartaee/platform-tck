@@ -207,6 +207,10 @@
 					 includes="*jaxb*"/>
 		</delete>
 		<antcall target="mvn"/>
+	        <delete verbose="true">
+	             <fileset dir="${deliverable.bundle.dir}" includes="**/?/**" />
+        	</delete>
+
         <!--
 		  <antcall target="create.doc.bundle"/>
         -->
