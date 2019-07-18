@@ -63,9 +63,9 @@ the JavaTest harness software:
 [NOTE]
 =======================================================================
 
-The `<TS_HOME>/tools/ant/bin/ant` command referenced in the following
-two procedures and elsewhere in this guide is the Ant
-build tool, which is included in the {TechnologyShortName} TCK bundle.
+The `ant` command referenced in the following
+two procedures and elsewhere in this guide is the Apache Ant
+build tool, which will need to be downloaded separately.
 The `build.xml` file in `<TS_HOME>/bin` contains the various Ant
 targets for the {TechnologyShortName} TCK test suite.
 
@@ -151,7 +151,7 @@ The tests in the directory and its subdirectories are run.
 
 You can run certain tests in batch mode based on the test's prior run
 status by specifying the `priorStatus` system property when invoking
-`<TS_HOME>/tools/ant/bin/ant`.
+`ant`
 
 Invoke `ant` with the `priorStatus` property.
 

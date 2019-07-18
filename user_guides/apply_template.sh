@@ -50,6 +50,8 @@ do
 	echo "ed - $TEMPLATE/content/attributes.conf <<'EOF'"
 	grep '^:' attributes.conf | \
 	  sed -e 's;:\([a-zA-Z]*\):*\(.*\);g/:\1:/s,.*,:\1:\2,;'
+	grep '^:JSRURL:' attributes.conf | \
+	  sed -e 's;:JSRURL:*\(.*\);g/:SpecificationURL:/s,.*,:SpecificationURL:\1,;'
 	echo 'g/:JavaTestVersion:/s/.*/:JavaTestVersion: 5.0/'
 	echo w attributes.conf
 	echo q

@@ -107,15 +107,6 @@ of this TCK.
 1.1.4 Jakarta EE Specification Process (JESP) Program and Compatibility Testing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-[WARNING]
-====
-Template TODO
-
-* The following needs to be reviewed and possibly further refined to provide details consistent with
-the JESP and describe the Eclipse Jakarta EE process
-
-====
-
 The Jakarta EE Specification Process (JESP) program is the formalization of the
 open process that has been used since 2019 to develop and revise Jakarta EE
 technology specifications in cooperation with the international Jakarta EE
@@ -151,7 +142,7 @@ This section lists the applicable requirements and specifications.
 {TechnologyShortName} implementation are described in detail in the
 {TechnologyShortName} {TechnologyVersion} Specification.  Links to the
 {TechnologyShortName} specification and other product information can
-be found at {JSRURL}.
+be found at {SpecificationURL}.
 * {TechnologyShortName} Version: The {TechnologyShortName} {TechnologyVersion} TCK
 is based on the {TechnologyShortName}
 Specification, Version {TechnologyVersion}.

@@ -1,11 +1,11 @@
 type=page
 status=published
-title=Technology Compatibility Kit User's Guide for Technology Implementors
+title=TCK User's Guide for Technology Implementors
 next=title.html
 ~~~~~~
 include::attributes.conf[]
-Technology Compatibility Kit User's Guide for Technology Implementors
-=====================================================================
+TCK User's Guide for Technology Implementors
+============================================
 
 [[contents]]
 Contents

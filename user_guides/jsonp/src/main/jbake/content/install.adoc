@@ -57,22 +57,21 @@ additional information.
   a.  Copy or download the {TechnologyShortName} TCK software to your
       local system. +
       You can obtain the {TechnologyShortName} TCK software from the
-      Eclipse EE4J specification project
-      site {JSRURL}.  The {TechnologyShortName} TCK software is located in the
-      project site's Download area.
+      Jakarta EE site {SpecificationURL}.
   b.  Use the `unzip` command to extract the bundle in the directory of
       your choice: +
       +unzip {TCKPackageName}+ +
       This creates the TCK directory. The TCK is the test suite home,
       `<TS_HOME>`.
 include::install-server.inc[]
-.  Install the {TechnologyShortName} {TechnologyVersion} Compatible
+.  Install a {TechnologyShortName} {TechnologyVersion} Compatible
 Implementation. +
 A Compatible Implementation is used to validate your initial
 configuration and setup of the {TechnologyShortName} TCK
 {TechnologyVersion} tests, which are explained further in
 link:config.html#GBFVV[Chapter 4, "Setup and Configuration."] +
-A CI for {TechnologyShortName} may be obtained from Eclipse EE4J Project site for {TechnologyRI}, at {TechnologyRIURL}.
+The Compatible Implementations for {TechnologyShortName} are listed on
+the Jakarta EE Specifications web site: {SpecificationURL}.
 include::install-server-vi.inc[]
 .  Install the {TechnologyShortName} VI to be tested. +
 Follow the installation instructions for the particular VI under test.

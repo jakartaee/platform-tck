@@ -25,7 +25,7 @@ JavaTest Harness Software."]
 
 In these instructions, variables in angle brackets need to be expanded
 for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+UNIX/Linux and `%TS_HOME%` on Windows. In addition, the forward
 slashes (`/`) used in all of the examples need to be replaced with
 backslashes (`\`) for Windows. Finally, be sure to use the appropriate
 separator for your operating system when specifying multiple path
@@ -45,7 +45,7 @@ slashes as a path separator instead.
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
   {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `<ANT_HOME>/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
@@ -57,7 +57,7 @@ environment variables:
   c.  Set the `web.home` property to the installation directory of Jakarta EE
   8 CI.
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
-  for the JSR 370 API. +
+  for the Jakarta RESTful Web Services API. +
   The default setting for this property is
   `${web.home}/modules/javax.ws.rs-api.jar`.
   e.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
@@ -183,7 +183,7 @@ JavaTest Harness Software."]
 
 In these instructions, variables in angle brackets need to be expanded
 for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+UNIX/Linux and `%TS_HOME%` on Windows. In addition, the forward
 slashes (`/`) used in all of the examples need to be replaced with
 backslashes (`\`) for Windows. Finally, be sure to use the appropriate
 separator for your operating system when specifying multiple path
@@ -220,7 +220,7 @@ Information,"] for information about repackaging the
   c.  +{TechnologyHomeEnv}+ to the directory in which the
   {TechnologyShortName} {TechnologyVersion} VI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `<ANT_HOME>/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
@@ -234,7 +234,7 @@ environment variables:
   c.  Set the `web.home` property to the installation directory of the Web
   server.
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
-  for the JSR 370 API. +
+  for the Jakarta RESTful Web Services API. +
   The default setting for this property is
   `${web.home}/modules/javax.ws.rs-api.jar`.
   e.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
