@@ -96,6 +96,12 @@ Technology Under Test, as released and distributed by the
 Eclipse Foundation, excluding those tests on the 
 published Exclude List for the Technology Under Test.
 
+|Container |An implementation of the associated Libraries, as specified
+in the Specifications, and a version of a Java Platform, Standard
+Edition Runtime Product, as specified in the Specifications, or a later
+version of a Java Platform, Standard Edition Runtime Product that also
+meets these compatibility requirements.
+
 |Documented |Made technically accessible and made known to users,
 typically by means such as marketing materials, product documentation,
 usage messages, or developer support programs.
@@ -122,11 +128,11 @@ For example, classes may be required to exist in directories named in a
 CLASSPATH variable, or native libraries may be required to exist in
 directories named in a PATH variable.
 
-|Maintenance Lead |The corresponding Jakarta EE Specification Project is responsible for
-maintaining the Specification, and the TCK for the Technology. 
-The Specification Project Team will propose revisions and updates to the Jakarta EE 
-Specification Committee which will approve and release new versions of the 
-specification and TCK. 
+|Maintenance Lead |The corresponding Jakarta EE Specification Project
+is responsible for maintaining the Specification, and the TCK for the
+Technology.  The Specification Project Team will propose revisions and
+updates to the Jakarta EE Specification Committee which will approve
+and release new versions of the specification and TCK.
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -163,6 +169,8 @@ Resource.
 |Rules |These definitions and rules in this Compatibility Requirements
 section of this User's Guide.
 
+|Runtime |The Containers specified in the Specifications.
+
 |Security Resource a|
 A security privilege or policy necessary for the proper execution of the
 Test Suite.
@@ -189,6 +197,8 @@ the Maintenance Lead as applicable to a given Version of the Technology.
 
 |Version |A release of the Technology, as produced through the
 Jakarta EE Specification Process (JESP).
+
+include::defns.inc[]
 |=======================================================================
 
 
