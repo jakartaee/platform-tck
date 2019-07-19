@@ -43,7 +43,7 @@ link:#CJAJFCJI[Section 2.2, "Compatibility Requirements,"] below.
 
 * Certify to the Eclipse Foundation that you have finished
 testing and that you meet all of the compatibility requirements,
-as required by the Eclipse Foundation TCK Licenses.
+as required by the Eclipse Foundation TCK License.
 
 [[CJAJFCJI]][[compatibility-requirements]]
 
@@ -100,8 +100,9 @@ specification and which contains configuration information for a set of
 Java classes, archive, or other feature defined in the specification.
 
 |Conformance Tests |All tests in the Test Suite for an indicated
-Technology Under Test, as distributed by the Eclipse Foundation, excluding
-those tests on the Exclude List for the Technology Under Test.
+Technology Under Test, as released and distributed by the 
+Eclipse Foundation, excluding those tests on the
+published Exclude List for the Technology Under Test.
 
 |Container |An implementation of the associated Libraries, as specified
 in the Specifications, and a version of a Java Platform, Standard
@@ -127,10 +128,10 @@ Standard Edition and Java Platform Enterprise Edition.
 than the Jakarta Enterprise Specification Process. The Endorsed Standard packages are
 listed later in this chapter.
 
-|Exclude List |The most current list of tests, distributed by the
+|Exclude List |The most current list of tests, released and distributed by the
 Eclipse Foundation, that are not required to be passed to certify
 conformance. The Jakarta EE Specification Committee may add to the Exclude List for that
-Test Suite as needed at any time, in which case the updated Exclude List
+Test Suite as needed at any time, in which case the updated TCK version
 supplants any previous Exclude Lists for that Test Suite.
 
 |Java-to-WSDL Output |Output of a Java-to-WSDL Tool that is required for
@@ -148,7 +149,7 @@ the Jakarta Server Page text into a Java language program using the transformati
 rules described in the Specifications.
 
 |Libraries a|
-The class libraries, as specified through the Jakarta Enterprise Specification Process
+The class libraries, as specified through the Jakarta EE Specification Process
 (JESP), for the Technology Under Test.
 
 The Libraries for Jakarta Platform, Enterprise Edition Version 8 are listed
@@ -184,7 +185,7 @@ Note that an Operating Mode may be selected by a command line switch, an
 environment variable, a GUI user interface element, a configuration or
 control file, etc.
 
-|Product |An Implementer product in which the Technology Under Test is
+|Product |A vendor's product in which the Technology Under Test is
 implemented or incorporated, and that is subject to compatibility
 testing.
 
@@ -222,7 +223,7 @@ Product.
 
 |Specifications a|
 The documents produced through the Jakarta EE Specification Process (JESP)
- that define a particular Version of a Technology.
+that define a particular Version of a Technology.
 
 The Specifications for the Technology Under Test are referenced later in
 this chapter.
@@ -322,7 +323,7 @@ EE4 The Exclude List associated with the Test Suite cannot be
 modified.
 
 EE5 The Maintenance Lead may define exceptions to these Rules. Such
-exceptions would be made available to and apply to all Implementers.
+exceptions would be made available as above, and will apply to all vendor implementations.
 
 EE6 All hardware and software component additions, deletions, and
 modifications to a Documented supporting hardware/software platform,

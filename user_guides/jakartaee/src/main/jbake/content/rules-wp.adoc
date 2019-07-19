@@ -40,17 +40,16 @@ Guide.
 * Ensure that you meet the requirements outlined in ”Compatibility
 Requirements,” below.
 
-* Certify to the EE4J, Jakarta EE Platform Specification committer team that you have finished
+* Certify to the Eclipse Foundation that you have finished
 testing and that you meet all of the compatibility requirements,
-as required by the Eclipse Foundation TCK Licenses.												   
+as required by the Eclipse Foundation TCK License.
 
 [[CEGFGHIC]][[compatibility-requirements]]
 
 3.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Jakarta Platform, Enterprise Edition
-Version 8 Web Profile consist of meeting the requirements set forth by the rules and
+The compatibility requirements for Jakarta EE 8, Web Profile consist of meeting the requirements set forth by the rules and
 associated definitions contained in this section.
 
 [[sthref10]][[definitions]]
@@ -98,7 +97,7 @@ specification and which contains configuration information for a set of
 Java classes, archive, or other feature defined in the specification.
 
 |Conformance Tests |All tests in the Test Suite for an indicated
-Technology Under Test, as distributed by the Eclipse Foundation, excluding
+Technology Under Test, as released and distributed by the Eclipse Foundation, excluding
 those tests on the Exclude List for the Technology Under Test.
 
 |Container |An implementation of the associated Libraries, as specified
@@ -121,10 +120,10 @@ Standard Edition and Java Platform Enterprise Edition.
 than the Jakarta Enterprise Specification Process. The Endorsed Standard packages are
 listed later in this chapter.
 
-|Exclude List |The most current list of tests, distributed by the
+|Exclude List |The most current list of tests, released and distributed by the
 Eclipse Foundation, that are not required to be passed to certify
 conformance. The Jakarta EE Specification Committee may add to the Exclude List for that
-Test Suite as needed at any time, in which case the updated Exclude List
+Test Suite as needed at any time, in which case the updated TCK version
 supplants any previous Exclude Lists for that Test Suite.
 
 |Java-to-WSDL Output |Output of a Java-to-WSDL Tool that is required for
@@ -142,7 +141,7 @@ the Jakarta Server Page text into a Java language program using the transformati
 rules described in the Specifications.
 
 |Libraries a|
-The class libraries, as specified through the Jakarta Enterprise Specification Process
+The class libraries, as specified through the Jakarta EE Specification Process
 (JESP), for the Technology Under Test.
 
 The Libraries for Jakarta Platform, Enterprise Edition Version 8 are listed
@@ -178,7 +177,7 @@ Note that an Operating Mode may be selected by a command line switch, an
 environment variable, a GUI user interface element, a configuration or
 control file, etc.
 
-|Product |An Implementer product in which the Technology Under Test is
+|Product |A vendor's product in which the Technology Under Test is
 implemented or incorporated, and that is subject to compatibility
 testing.
 
@@ -215,7 +214,7 @@ to access the files and network resources necessary for use of the
 Product.
 
 |Specifications a|
-The documents produced through the Jakarta EE Specification Process (JESP) 
+The documents produced through the Jakarta EE Specification Process (JESP)
 that define a particular Version of a Technology.
 
 The Specifications for the Technology Under Test are referenced later in
@@ -230,7 +229,7 @@ for Jakarta Platform, Enterprise Edition Version 8, Web Profile.
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
 
-|Version |A release of the Technology, as produced through the 
+|Version |A release of the Technology, as produced through the
 Jakarta EE Specification Process (JESP).
 
 |WSDL-to-Java Output |Output of a WSDL-to-Java tool that is required for
@@ -306,7 +305,7 @@ EE-WP4 The Exclude List associated with the Test Suite cannot be
 modified.
 
 EE-WP5 The Maintenance Lead may define exceptions to these Rules. Such
-exceptions would be made available to and apply to all Implementers.
+exceptions would be made available as above, and will apply to all vendor implementations.
 
 EE-WP6 All hardware and software component additions, deletions, and
 modifications to a Documented supporting hardware/software platform,
@@ -543,7 +542,7 @@ https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Dev
 3.4 Specifications for Jakarta Platform, Enterprise Edition Version 8, Web Profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Specifications for Jakarta EE 8 Web Profile are found on the Jakarta EE Platform Specification web
+The Specifications for Jakarta Platform, Enterprise Edition 8, Web Profile are found on the Eclipse Foundation, Jakarta EE Specification web
 site at `https://jakarta.ee/specifications`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
 [[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-8-web-profile]]
