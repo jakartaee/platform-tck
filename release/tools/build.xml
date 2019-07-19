@@ -266,6 +266,8 @@
     	  <exec executable="zip" dir="${bundle.dir}" failonerror="true">
             <arg line="-rq"/>
             <arg line="${zip.file} ${zip.name}"/>
+	    <arg line="-x"/>
+	    <arg line="**/\?**"/>
         </exec>
         <exec executable="zip" dir="${bundle.dir}" failonerror="true">
             <arg line="-T"/>
