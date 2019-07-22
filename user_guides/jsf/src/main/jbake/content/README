@@ -11,6 +11,11 @@ for the specific technology:
 	Additional compatibility rules needed by some technologies.
 	The rules in rules.adoc should NOT be changed.
 
+- defns.inc
+
+	Additional definitions needed by additional compatibility
+	rules in rules.inc.
+
 - config.inc
 
 	Detailed instructions for configuring the TCK, included in
