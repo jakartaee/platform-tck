@@ -821,6 +821,7 @@
             <env key="JAVA_HOME" value="${java.home}" />
             <arg line=" ${exec.keytool.part2}" />
             <arg line=" -import"/>
+			<arg line=" -keyalg DSA"/>
             <arg line=" -alias ${cert.alias}"/>
             <arg line=" -file ${cert.file}"/>
             <arg line=" -noprompt"/>
@@ -837,6 +838,7 @@
             <env key="JAVA_HOME" value="${java.home}" />
             <arg line=" ${exec.keytool.part2}" />
             <arg line=" -export"/>
+			<arg line=" -keyalg DSA"/>
             <arg line=" -rfc"/>
             <arg line=" -alias ${cert.alias}"/>
             <arg line=" -file ${cert.file}"/>
