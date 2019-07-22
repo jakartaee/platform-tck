@@ -2,6 +2,7 @@
 
 #
 # Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2019 Payara Foundation and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -383,9 +384,7 @@ export JAVA_VERSION=`java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}'`
 echo $JAVA_VERSION > ${JT_REPORT_DIR}/.jdk_version
 
 cd  ${TS_HOME}/bin
-ant config.vi
-ant -f xml/impl/glassfish/s1as.xml start.javadb
-ant init.javadb
+ant config.vi.javadb
 ##### configVI.sh ends here #####
 
 ### populateMailbox for suites using mail server - Start ###
