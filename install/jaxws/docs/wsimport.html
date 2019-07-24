@@ -1,7 +1,7 @@
 <html>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,7 +18,7 @@
 -->
 
   <center>
-  <h1>  Java<sup><font size="-2">TM</font></sup> API for XML Web Services<br>
+  <h1> Jakarta XML Web Services<br>
       wsimport
   </h1>
   <b>Specification Version:</b> 2.2<br>
@@ -29,7 +29,7 @@
 </h2>
 <p>The <code>wsimport</code>
 tool
-generates&nbsp;JAX-WS&nbsp;portable&nbsp;artifacts,&nbsp;such&nbsp;as:
+generates&nbsp;Jakarta XML Web Services&nbsp;portable&nbsp;artifacts,&nbsp;such&nbsp;as:
 <br>
 </p>
 <ul>
@@ -86,7 +86,9 @@ details below.<br>
       <p><code>-b &lt;path&gt;</code></p>
       </td>
       <td>
-      <p>Specify external JAX-WS or JAXB binding files (Each <code>&lt;file&gt;</code>
+      <p>Specify external Jakarta XML Web Services or 
+        <!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+        <span data-sheets-value="{'1':2,'2':'Jakarta XML Binding'}" data-sheets-userformat="{'2':513,'3':{'1':0},'12':0}">Jakarta XML Binding</span> (JAXB) binding files (Each <code>&lt;file&gt;</code>
 must have its own <code>-b</code>)</p>
       </td>
     </tr>
@@ -177,7 +179,7 @@ and <code>@WebServiceClient.wsdlLocation</code> value<br>
     <tr>
       <td style="vertical-align: top;"><code>-target</code><br>
       </td>
-      <td style="vertical-align: top;"><code>Generate code as per the given JAX-WS specification version. Version 2.0 will generate compliant code for JAX-WS 2.0 spec.</code><br>
+      <td style="vertical-align: top;"><code>Generate code as per the given Jakarta XML Web Services specification version. Version 2.0 will generate compliant code for Jakarta XML Web Services 2.0 spec.</code><br>
       </td>
     </tr>
     <tr>
@@ -224,9 +226,13 @@ and <code>@WebServiceClient.wsdlLocation</code> value<br>
     </tr>
   </tbody>
 </table>
-<p>Multiple JAX-WS and JAXB binding files can be specified using <code>-b</code>
+<p>Multiple Jakarta XML Web Services and 
+  <!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+  <span data-sheets-value="{'1':2,'2':'Jakarta XML Binding'}" data-sheets-userformat="{'2':513,'3':{'1':0},'12':0}">Jakarta XML Binding</span> binding files can be specified using <code>-b</code>
 option and they can be used to customize various things like package
-names, bean names, etc. More information on JAX-WS and JAXB binding
+names, bean names, etc. More information on Jakarta XML Web Services and 
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+<span data-sheets-value="{'1':2,'2':'Jakarta XML Binding'}" data-sheets-userformat="{'2':513,'3':{'1':0},'12':0}">Jakarta XML Binding</span> binding
 files can be found in the <a href="https://jax-ws.dev.java.net/jax-ws-ea3/docs/customizations.html">customization
 documentation</a>.<br>
 </p>
@@ -313,7 +319,9 @@ on with this option<br>
       <p><code>binding</code></p>
       </td>
       <td width="70%">
-      <p>Specify external JAX-WS or JAXB binding files</p>
+      <p>Specify external Jakarta XML Web Services or 
+        <!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+        <span data-sheets-value="{'1':2,'2':'Jakarta XML Binding'}" data-sheets-userformat="{'2':513,'3':{'1':0},'12':0}">Jakarta XML Binding</span> binding files</p>
       </td>
       <td width="15%">
       <p><code>-b</code></p>
@@ -483,10 +491,8 @@ resolve entities, see wsimport_catalog sample.<br>
 
       <h4>xjcarg</h4>
 
-      <p>The usage is similar to &amp;arg&gt; nested element, except that these arguments are directly passed to the XJC tool (JAXB Schema Compiler), which will be used for compiling the schema referenced in the wsdl.
-        For details about the syntax, see
-
-        <a href="http://ant.apache.org/manual/using.html#arg">the relevant section</a> in the Ant manual.
+      <p>The usage is similar to &amp;arg&gt; nested element, except that these arguments are directly passed to the XJC tool (<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}--><span data-sheets-value="{'1':2,'2':'Jakarta XML Binding'}" data-sheets-userformat="{'2':513,'3':{'1':0},'12':0}">Jakarta XML Binding (JAXB)</span> Schema Compiler), which will be used for compiling the schema referenced in the wsdl.
+        For details about the syntax, see <a href="http://ant.apache.org/manual/using.html#arg">the relevant section</a> in the Ant manual.
 
 
 
@@ -504,7 +510,7 @@ added to the project as given below:</p>
 <pre>  &lt;taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport"&gt;<br>      &lt;classpath path="jaxws.classpath"/&gt;<br>  &lt;/taskdef&gt;<br></pre>
 <p>where <code>jaxws.classpath</code> is a reference to a <a href="http://ant.apache.org/manual/using.html#path">path-like structure</a>,
 defined elsewhere in the build environment, and contains the list of
-classes required by the JAX-WS tools.</p>
+classes required by the Jakarta XML Web Services tools.</p>
 <h3>Examples</h3>
 <pre>  &lt;wsimport<br>      <code>destdir</code>="${build.classes.home}"<br>      debug="true"<br>      wsdl="AddNumbers.wsdl"<br>      binding="custom.xml"/&gt;<br><br><br></pre>
 <p>The above example generates client-side artifacts for <code>AddNumbers.wsdl</code>,
@@ -537,5 +543,7 @@ configuration.<br>
 <span style="font-weight: bold;">version </span>is removed<br>
 <span style="font-weight: bold;"></span></div>
 <hr>
-<p><cite><small><address>Copyright (c) 2011, 2018 Oracle and/or its affiliates. All rights reserved.</address></small><cite></p>
+<p><cite><small><address>
+Copyright (c) 2011, 2019 Oracle and/or its affiliates. All rights reserved.
+</address></small><cite></p>
 </html>
