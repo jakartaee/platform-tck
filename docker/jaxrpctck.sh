@@ -25,6 +25,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jaxrpctck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jaxrpctck*.zip -d ${TCK_HOME}
+  TCK_NAME=jaxrpctck
+elif ls ${WORKSPACE}/standalone-bundles/*xml-rpc-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*xml-rpc-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=xml-rpc-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -44,7 +49,7 @@ JAVA_OPTIONS="-Djavax.net.ssl.keyStore=$TCK_HOME/glassfish5/glassfish/domains/do
 -Djavax.net.ssl.trustStore=$TCK_HOME/glassfish5/glassfish/domains/domain1/config/cacerts.jks \
 -Djava.naming.factory.url=iiop://localhost:3700 -Djava.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory"
 
-TS_HOME=$TCK_HOME/jaxrpctck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -75,8 +80,8 @@ echo "webHost1=localhost" >>  build.properties
 echo "webServerPort.1=8080" >>  build.properties
 echo "ts.home=$TS_HOME" >>  build.properties
 
-mkdir -p $TCK_HOME/jaxrpctckreport/jaxrpctck
-mkdir -p $TCK_HOME/jaxrpctckwork/jaxrpctck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cp $TS_HOME/lib/tsharness.jar $TCK_HOME/glassfish5/glassfish/lib
 cd $TCK_HOME/glassfish5/bin
@@ -97,14 +102,13 @@ sed -i 's/javax\.xml\.namespace//g' $TS_HOME/bin/sig-test-pkg-list.txt
 ./asadmin start-domain
 
 cd $TS_HOME/src/com/sun/ts/tests/jaxrpc/
-ant  -propertyfile $TS_HOME/bin/build.properties -Dreport.dir=$TCK_HOME/jaxrpctckreport/jaxrpctck -Dwork.dir=$TCK_HOME/jaxrpctckwork/jaxrpctck deploy.all 
+ant  -propertyfile $TS_HOME/bin/build.properties -Dreport.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME} -Dwork.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME} deploy.all 
 
-ant  -propertyfile $TS_HOME/bin/build.properties -Dreport.dir=$TCK_HOME/jaxrpctckreport/jaxrpctck -Dwork.dir=$TCK_HOME/jaxrpctckwork/jaxrpctck runclient
+ant  -propertyfile $TS_HOME/bin/build.properties -Dreport.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME} -Dwork.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME} runclient
 cd $TS_HOME/bin
-ant -propertyfile build.properties -Dts.harness.classpath=$TS_HOME/lib/javatest.jar:$TS_HOME/lib/tsharness.jar:$TS_HOME/lib/jaxrpctck.jar:$TS_HOME/classes -Dwork.dir=$TCK_HOME/jaxrpctckwork/jaxrpctck -Dreport.dir=$TCK_HOME/jaxrpctckreport/jaxrpctck report
+ant -propertyfile build.properties -Dts.harness.classpath=$TS_HOME/lib/javatest.jar:$TS_HOME/lib/tsharness.jar:$TS_HOME/lib/jaxrpctck.jar:$TS_HOME/classes -Dwork.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME} -Dreport.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME} report
 echo "Test run complete"
 
-TCK_NAME=jaxrpctck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

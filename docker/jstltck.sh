@@ -25,6 +25,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jstltck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jstltck*.zip -d ${TCK_HOME}
+  TCK_NAME=jstltck
+elif ls ${WORKSPACE}/standalone-bundles/*tags-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*tags-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=tags-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -39,7 +44,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/jstltck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -64,11 +69,11 @@ sed -i 's#sigTestClasspath=.*#sigTestClasspath=\$\{ts.home\}/classes:\$\{jstl.cl
 sed -i 's#jspservlet.classes=.*#jspservlet.classes=\$\{webServerHome\}/modules/jakarta.servlet-api.jar:\$\{webServerHome\}/modules/javax.servlet.jsp.jar:\$\{webServerHome\}/modules/jakarta.servlet.jsp-api.jar:\$\{webServerHome\}/modules/jakarta.el.jar#g' ts.jte
 sed -i 's#jstl.classes=.*#jstl.classes=\$\{webServerHome\}/modules/javax.servlet.jsp.jstl.jar\$\{pathsep\}\$\{webServerHome\}/modules/jakarta.servlet.jsp.jstl-api.jar#g' ts.jte
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jstltckreport/jstltck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jstltckwork/jstltck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/jstltckreport/jstltck
-mkdir -p $TCK_HOME/jstltckwork/jstltck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 export ANT_OPTS="${ANT_OPTS} -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http"
 cd $TCK_HOME/glassfish5/glassfish/bin
@@ -85,7 +90,6 @@ ant deploy.all
 ant run.all
 echo "Test run complete"
 
-TCK_NAME=jstltck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

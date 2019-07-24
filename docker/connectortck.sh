@@ -25,6 +25,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*connectortck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*connectortck*.zip -d ${TCK_HOME}
+  TCK_NAME=connectortck
+elif ls ${WORKSPACE}/standalone-bundles/*connectors-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*connectors-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=connectors-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -40,7 +45,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/connectortck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -50,11 +55,11 @@ cd $TS_HOME/bin
 sed -i "s#^connector.home=.*#connector.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
 sed -i "s#^orb.host=.*#orb.host=localhost#g" ts.jte
 sed -i "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/connectortckreport/connectortck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/connectortckwork/connectortck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/connectortckreport
-mkdir -p $TCK_HOME/connectortckwork
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TCK_HOME/glassfish5/bin
 ./asadmin start-domain
@@ -70,7 +75,6 @@ cd $TS_HOME/src/com/sun/ts/tests/connector
 ant  runclient
 echo "Test run complete"
 
-TCK_NAME=connectortck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

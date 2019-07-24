@@ -11,6 +11,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jsftck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jsftck*.zip -d ${TCK_HOME}
+  TCK_NAME=jsftck
+elif ls ${WORKSPACE}/standalone-bundles/*faces-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*faces-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=faces-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -25,7 +30,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/jsftck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 cd $TCK_HOME/glassfish5/bin
@@ -42,11 +47,11 @@ sed -i "s#^impl.vi.deploy.dir=.*#impl.vi.deploy.dir=$TCK_HOME/glassfish5/glassfi
 sed -i "s#^jsf.classes=.*#jsf.classes=${webServerHome}/modules/cdi-api.jar;${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar;${webServerHome}/modules/jakarta.inject.jar;${webServerHome}/modules/jakarta.faces.jar;${webServerHome}/modules/jakarta.servlet.jsp-api.jar;${webServerHome}/modules/jakarta.servlet-api.jar;${webServerHome}/modules/jakarta.el.jar#g" ts.jte
 sed -i 's/^impl\.deploy\.timeout\.multiplier=.*/impl\.deploy\.timeout\.multiplier=960/g' ts.jte
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jsftckreport/jsftck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jsftckwork/jsftck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/jsftckreport/jsftck/
-mkdir -p $TCK_HOME/jsftckwork/jsftck/
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}/
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}/
 
 cd $TS_HOME/src/com/sun/ts/tests/jsf
 ant -Dutil.dir=$TS_HOME deploy.all
@@ -54,7 +59,6 @@ ant -Dutil.dir=$TS_HOME runclient
 echo "Test run complete"
 
 
-TCK_NAME=jsftck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

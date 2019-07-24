@@ -28,6 +28,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*securityapitck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*securityapitck*.zip -d ${TCK_HOME}
+  TCK_NAME=securityapitck
+elif ls ${WORKSPACE}/standalone-bundles/*security-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*security-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=security-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -43,7 +48,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/securityapitck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 rm -f $TS_HOME/lib/js-1.6R1.jar
@@ -53,13 +58,13 @@ chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
 sed -i "s#web\.home=.*#web.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/securityapitckreport/securityapitck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/securityapitckwork/securityapitck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 sed -i 's#securityapi.classes=.*#securityapi.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.security.enterprise-api.jar${pathsep}${web.home}/modules/jakarta.security.auth.message-api.jar${pathsep}${web.home}/modules/endorsed/jakarta.annotation-api.jar${pathsep}${web.home}/modules/jakarta.inject.jar${pathsep}${web.home}/modules/cdi-api.jar${pathsep}${web.home}/modules/jakarta.faces.jar${pathsep}${web.home}/modules/jakarta.interceptor-api.jar${pathsep}${web.home}/modules/jakarta.ejb-api.jar${pathsep}/${ts.home}/lib/unboundid-ldapsdk.jar#g' ts.jte
 
-mkdir -p $TCK_HOME/securityapitckreport/securityapitck
-mkdir -p $TCK_HOME/securityapitckwork/securityapitck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TCK_HOME/glassfish5/bin
 ./asadmin start-database
@@ -70,7 +75,6 @@ ant init.ldap
 ant deploy.all
 ant run.all
 
-TCK_NAME=securityapitck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

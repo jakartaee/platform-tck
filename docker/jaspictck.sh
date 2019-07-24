@@ -24,6 +24,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jaspictck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jaspictck*.zip -d ${TCK_HOME}
+  TCK_NAME=jaspictck
+elif ls ${WORKSPACE}/standalone-bundles/*authentication-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*authentication-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=authentication-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -44,7 +49,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/jaspictck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -58,8 +63,8 @@ sed -i 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGe
 sed -i 's#wsimport\.ant\.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
 sed -i 's#harness\.log\.traceflag=false.*#harness.log.traceflag=true#g' ts.jte
 sed -i "s#tools\.jar=.*#tools.jar=$JAVA_HOME/lib/tools.jar#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaspictckreport/jaspictck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaspictckwork/jaspictck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 echo "persistence.unit.name.2=JPATCK2" >> ts.jte
 echo "persistence.unit.name=CTS-EM" >> ts.jte
@@ -71,8 +76,8 @@ echo "javax.persistence.jdbc.password=cts1" >> ts.jte
 echo "jpa.provider.implementation.specific.properties=eclipselink.logging.level\=OFF" >> ts.jte
 echo "persistence.second.level.caching.supported=true" >> ts.jte
 
-mkdir -p $TCK_HOME/jaspictckreport/jaspictck
-mkdir -p $TCK_HOME/jaspictckwork/jaspictck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TCK_HOME/glassfish5/bin
 ./asadmin start-domain
@@ -98,7 +103,6 @@ fi
 
 echo "Test run complete"
 
-TCK_NAME=jaspictck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

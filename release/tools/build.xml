@@ -160,8 +160,26 @@
                 <contains string="${deliverable.name}" substring="jakartaee-" casesensitive="false"/>
             </not>
         </condition>
+        <if>
+            <not>
+                <isset property="deliverable.tck.dir"/>
+            </not>
+            <then>
+		<property name="deliverable.tck.dir" value="${deliverable.name}"/>
+            </then>
+        </if>
+
         <changeCase name="deliverable.name.lower" value="${deliverable.name}" />
         <changeCase name="deliverable.name.upper" value="${deliverable.name}" toCase="upper"/>
+        <changeCase name="deliverable.tck.dir.lower" value="${deliverable.tck.dir}" />
+        <changeCase name="deliverable.tck.dir.upper" value="${deliverable.tck.dir}" toCase="upper"/>
+        <propertyregex property="deliverable.tck.dir.token" input="${deliverable.tck.dir.lower}" 
+                       regexp="(.*)j2ee(.*)"
+                       replace="\1jakartaee\2"
+                       defaultValue="${deliverable.tck.dir.lower}"/>
+        <changeCase name="deliverable.tck.dir.token.upper" value="${deliverable.tck.dir.token}" toCase="upper"/>
+
+
         <propertyregex property="deliverable.name.token" input="${deliverable.name.lower}" 
                        regexp="(.*)j2ee(.*)"
                        replace="\1jakartaee\2"
@@ -171,8 +189,28 @@
         <property name="build.num" value="build_${time.stamp.bundle.string}"/>
         <property name="bundle.dir" value="${build.dir}/${build.num}/bundle"/>
         
-        <property name="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.name.token}${deliverable.type}"/>
-        <property name="zip.name" value="${deliverable.name.token}${deliverable.type}"/>
+        <!--property name="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.name.token}${deliverable.type}"/-->
+        <condition property="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.name.token}${deliverable.type}">
+            <contains string="${deliverable.name}" substring="jakartaee" casesensitive="false"/>
+        </condition>
+        <condition property="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.tck.dir}-${deliverable.type}">
+            <not>
+                <contains string="${deliverable.name}" substring="jakartaee" casesensitive="false"/>
+            </not>
+        </condition>
+
+	<!--property name="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.tck.dir}-${deliverable.type}"/-->
+
+        <!--property name="zip.name" value="${deliverable.tck.dir.token}-${deliverable.type}"/-->
+	<condition property="zip.name" value="${deliverable.name.token}${deliverable.type}">
+            <contains string="${deliverable.name}" substring="jakartaee" casesensitive="false"/>
+        </condition>
+        <condition property="zip.name" value="${deliverable.tck.dir.token}-${deliverable.type}">
+            <not>
+                <contains string="${deliverable.name}" substring="jakartaee" casesensitive="false"/>
+            </not>
+        </condition>
+
          <if>
             <isset property="useEFTLicensefile"/>
          <then>
@@ -382,17 +420,20 @@
     
     <target name="caj" depends="has.override, no.override" >
         <property name="deliverable.name" value="caj"/>
+        <property name="deliverable.tck.dir" value="annotations"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="connector" depends="has.override, no.override" >
         <property name="deliverable.name" value="CONNECTOR"/>
+        <property name="deliverable.tck.dir" value="connectors"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jacc" depends="has.override, no.override">
         <property name="deliverable.name" value="JACC"/>
         <property name="test.areas" value="jacc"/>
+        <property name="deliverable.tck.dir" value="authorization"/>
         <antcall target="${the.target}"/>
     </target>
     
@@ -403,57 +444,68 @@
     
     <target name="jsp" depends="has.override, no.override" >
         <property name="deliverable.name" value="JSP"/>
+        <property name="deliverable.tck.dir" value="pages"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="el" depends="has.override, no.override" >
         <property name="deliverable.name" value="EL"/>
+    	<property name="deliverable.tck.dir" value="expression-language"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jaspic" depends="has.override, no.override" >
         <property name="deliverable.name" value="JASPIC"/>
+        <property name="deliverable.tck.dir" value="authentication"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="securityapi" depends="has.override, no.override" >
         <property name="deliverable.name" value="SECURITYAPI"/>
+        <property name="deliverable.tck.dir" value="security"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jstl" depends="has.override, no.override" >
         <property name="deliverable.name" value="JSTL"/>
+        <property name="deliverable.tck.dir" value="tags"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jsf" depends="has.override, no.override" >
         <property name="deliverable.name" value="JSF"/>
+        <property name="deliverable.tck.dir" value="faces"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="jta" depends="has.override, no.override" >
         <property name="deliverable.name" value="JTA"/>
+        <property name="deliverable.tck.dir" value="transactions"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="servlet" depends="has.override, no.override" >
         <property name="deliverable.name" value="SERVLET"/>
+        <property name="deliverable.tck.dir" value="servlet"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="jaxrs" depends="has.override, no.override" >
         <property name="deliverable.name" value="JAXRS"/>
+        <property name="deliverable.tck.dir" value="restful-ws"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="saaj" depends="has.override, no.override" >
         <property name="deliverable.name" value="SAAJ"/>
+        <property name="deliverable.tck.dir" value="soap"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jpa" depends="has.override, no.override">
         <property name="deliverable.name" value="JPA"/>
         <property name="test.areas" value="jpa"/>
+        <property name="deliverable.tck.dir" value="persistence"/>
         <antcall target="${the.target}"/>
     </target>
 
@@ -467,10 +519,12 @@
     </target>
     <target name="jaxrpc" depends="has.override, no.override" >
         <property name="deliverable.name" value="JAXRPC"/>
+        <property name="deliverable.tck.dir" value="xml-rpc"/>
         <antcall target="${the.target}"/>
     </target>
     <target name="jaxws" depends="has.override, no.override" >
         <property name="deliverable.name" value="JAXWS"/>
+	<property name="deliverable.tck.dir" value="xml-ws"/>
         <antcall target="${the.target}"/>
     </target>
     <target name="jsonb" depends="has.override, no.override" >
@@ -483,10 +537,12 @@
     </target>
     <target name="jaxr" depends="has.override, no.override" >
         <property name="deliverable.name" value="JAXR"/>
+        <property name="deliverable.tck.dir" value="xml-registries"/>
         <antcall target="${the.target}"/>
     </target>
     <target name="jms" depends="has.override, no.override" >
         <property name="deliverable.name" value="JMS"/>
+        <property name="deliverable.tck.dir" value="messaging"/>
         <antcall target="${the.target}"/>
     </target>
     <target name="concurrency" depends="has.override, no.override" >

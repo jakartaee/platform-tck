@@ -26,6 +26,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*saajtck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*saajtck*.zip -d ${TCK_HOME}
+  TCK_NAME=saajtck
+elif ls ${WORKSPACE}/standalone-bundles/*soap-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*soap-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=soap-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -40,7 +45,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/saajtck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -58,11 +63,11 @@ sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules
 #  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se8.map
 #fi
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/saajtckreport/saajtck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/saajtckwork/saajtck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/saajtckreport/saajtck
-mkdir -p $TCK_HOME/saajtckwork/saajtck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TS_HOME/bin
 ant config.vi
@@ -80,7 +85,6 @@ ant deploy.all
 ant run.all
 echo "Test run complete"
 
-TCK_NAME=saajtck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

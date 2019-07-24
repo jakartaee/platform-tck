@@ -25,6 +25,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*servlettck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*servlettck*.zip -d ${TCK_HOME}
+  TCK_NAME=servlettck
+elif ls ${WORKSPACE}/standalone-bundles/*servlet-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*servlet-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=servlet-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -39,7 +44,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/servlettck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 export JAVA_OPTIONS="${JAVA_OPTIONS} -Djava.endorsed.dirs=$TS_HOME/endorsedlib/"
@@ -48,15 +53,15 @@ chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
 sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/servlettckreport/servlettck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/servlettckwork/servlettck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 sed -i 's#impl.vi=.*#impl.vi=glassfish#g' ts.jte
 sed -i 's#webServerHost=.*#webServerHost=localhost#g' ts.jte
 sed -i 's#webServerPort=.*#webServerPort=8080#g' ts.jte
 sed -i 's#securedWebServicePort=.*#securedWebServicePort=8181#g' ts.jte
 
-mkdir -p $TCK_HOME/servlettckreport/servlettck
-mkdir -p $TCK_HOME/servlettckwork/servlettck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 $TCK_HOME/glassfish5/bin/asadmin start-domain
 
@@ -69,7 +74,6 @@ ant -Dutil.dir=$TS_HOME deploy.all
 ant -Dutil.dir=$TS_HOME runclient
 echo "Test run complete"
 
-TCK_NAME=servlettck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

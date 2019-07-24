@@ -25,6 +25,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jaxrstck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jaxrstck*.zip -d ${TCK_HOME}
+  TCK_NAME=jaxrstck
+elif ls ${WORKSPACE}/standalone-bundles/*restful-ws-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*restful-ws-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=restful-ws-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -40,15 +45,15 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/jaxrstck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
 sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaxrstckreport/jaxrstck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxrstckwork/jaxrstck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
 sed -i 's#jaxrs_impl\.classes=.*#jaxrs_impl.classes=${web.home}/modules/jakarta.json.jar:${web.home}/modules/jakarta.json.bind-api.jar:${web.home}/modules/jakarta.json.jar:${web.home}/modules/jsonp-jaxrs.jar:${web.home}/modules/jersey-client.jar:${web.home}/modules/jersey-common.jar:${web.home}/modules/jersey-server.jar:${web.home}/modules/jersey-container-servlet.jar:${web.home}/modules/jersey-container-servlet-core.jar:${web.home}/modules/jersey-media-jaxb.jar:${web.home}/modules/jersey-media-sse.jar:${web.home}/modules/jersey-hk2.jar:${web.home}/modules/osgi-resource-ocator.jar:${web.home}/modules/jakarta.inject.jar:${web.home}/modules/guava.jar:${web.home}/modules/hk2-api.jar:${web.home}/modules/hk2-locator.jar:${web.home}/modules/hk2-utils.jar:${web.home}/modules/cglib.jar:${web.home}/modules/asm-all-repackaged.jar:${web.home}/modules/bean-validator.jar:${web.home}/modules/endorsed/jakarta.annotation-api.jar#g' ts.jte
 sed -i 's#jaxrs_impl_lib=.*#jaxrs_impl_lib=${web.home}/modules/jersey-container-servlet-core.jar#g' ts.jte
@@ -61,8 +66,8 @@ sed -i 's#webServerPort=.*#webServerPort=8080#g' ts.jte
 sed -i 's#impl\.vi=.*#impl.vi=glassfish#g' ts.jte
 sed -i 's#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=${web.home}/domains/domain1/autodeploy#g' ts.jte
 
-mkdir -p $TCK_HOME/jaxrstckreport/jaxrstck/
-mkdir -p $TCK_HOME/jaxrstckwork/jaxrstck/
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TS_HOME/bin
 ant config.vi
@@ -76,7 +81,6 @@ cd $TS_HOME/src/com/sun/ts/tests/
 ant runclient
 echo "Test run complete"
 
-TCK_NAME=jaxrstck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

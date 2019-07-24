@@ -28,6 +28,11 @@ ls -l ${WORKSPACE}/*.zip
 if ls ${WORKSPACE}/standalone-bundles/*jtatck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jtatck*.zip -d ${TCK_HOME}
+  TCK_NAME=jtatck
+elif ls ${WORKSPACE}/standalone-bundles/*transactions-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*transactions-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=transactions-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -43,23 +48,23 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=${TCK_HOME}/jtatck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 cd ${TS_HOME}/bin
 
 sed -i "s#^webServerHome=.*#webServerHome=${TCK_HOME}/glassfish5/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=${TCK_HOME}/jtatckreport/jtatck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=${TCK_HOME}/jtatckwork/jtatck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=${TCK_HOME}/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=${TCK_HOME}/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   sed -i 's/javax.transaction-api.jar/jakarta.transaction-api.jar/g' ts.jte
   sed -i 's/javax.interceptor-api.jar/jakarta.interceptor-api.jar/g' ts.jte
   sed -i 's/javax.servlet-api.jar/jakarta.servlet-api.jar/g' ts.jte
 fi
 
-mkdir -p ${TCK_HOME}/jtatckreport/jtatck
-mkdir -p ${TCK_HOME}/jtatckwork/jtatck
-export JT_REPORT_DIR=${TCK_HOME}/jtatckreport
+mkdir -p ${TCK_HOME}/${TCK_NAME}report/${TCK_NAME}
+mkdir -p ${TCK_HOME}/${TCK_NAME}work/${TCK_NAME}
+export JT_REPORT_DIR=${TCK_HOME}/${TCK_NAME}report
 
 ant config.vi
 cd ${TS_HOME}/src/com/sun/ts/tests/
@@ -72,4 +77,4 @@ echo "1 jtatck ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
-tar zcvf ${WORKSPACE}/jtatck-results.tar.gz ${TCK_HOME}/jtatckreport ${TCK_HOME}/jtatckwork ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 ${TS_HOME}/bin/ts.*
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 ${TS_HOME}/bin/ts.*

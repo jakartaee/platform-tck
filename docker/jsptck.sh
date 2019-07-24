@@ -11,6 +11,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jsptck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jsptck*.zip -d ${TCK_HOME}
+  TCK_NAME=jsptck
+elif ls ${WORKSPACE}/standalone-bundles/*pages-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*pages-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=pages-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -25,7 +30,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/jsptck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -40,11 +45,11 @@ sed -i 's#^impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=${webServerHome}/domains/
 sed -i "s#^impl\.deploy\.timeout\.multiplier=.*#impl.deploy.timeout.multiplier=30#g" ts.jte
 sed -i 's#^jspservlet\.classes=.*#jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar#g' ts.jte
 sed -i 's#^jstl\.classes=.*#jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jsptckreport/jsptck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jsptckwork/jsptck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/jsptckreport/jsptck
-mkdir -p $TCK_HOME/jsptckwork/jsptck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TCK_HOME/glassfish5/bin
 ./asadmin start-domain
@@ -54,7 +59,6 @@ ant -Dutil.dir=$TS_HOME deploy.all
 ant -Dutil.dir=$TS_HOME runclient
 echo "Test run complete"
 
-TCK_NAME=jsptck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

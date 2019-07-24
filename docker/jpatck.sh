@@ -25,6 +25,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jpatck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jpatck*.zip -d ${TCK_HOME}
+  TCK_NAME=jpatck
+elif ls ${WORKSPACE}/standalone-bundles/*persistence-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*persistence-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=persistence-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -39,7 +44,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/jpatck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -57,11 +62,11 @@ sed -i "s#javax.persistence.jdbc.password=.*#javax.persistence.jdbc.password=cts
 echo "impl.vi=glassfish" >> ts.jte
 #sed -i "s#harness.log.traceflag=false.*#harness.log.traceflag=true#g" ts.jte
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jpatckreport/jpatck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jpatckwork/jpatck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/jpatckreport/jpatck
-mkdir -p $TCK_HOME/jpatckwork/jpatck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TCK_HOME/glassfish5/glassfish/bin
 ./asadmin start-database --dbhome $TCK_HOME/glassfish5/glassfish/databases --dbport 1527 --jvmoptions "-Djava.security.manager -Djava.security.policy=$TS_HOME/bin/security.policy"
@@ -72,7 +77,6 @@ ant -f xml/ts.top.import.xml deploy.all
 ant run.all
 echo "Test run complete"
 
-TCK_NAME=jpatck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

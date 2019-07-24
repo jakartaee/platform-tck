@@ -27,6 +27,11 @@ cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jaxwstck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jaxwstck*.zip -d ${TCK_HOME}
+  TCK_NAME=jaxwstck
+elif ls ${WORKSPACE}/standalone-bundles/*xml-ws-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*xml-ws-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=xml-ws-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -41,7 +46,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/jaxwstck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -55,11 +60,11 @@ sed -i 's#webServerPort\.2=.*#webServerPort.2=9080#g' ts.jte
 sed -i 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
 sed -i 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
 sed -i "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaxwstckreport/jaxwstck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxwstckwork/jaxwstck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/jaxwstckreport/jaxwstck
-mkdir -p $TCK_HOME/jaxwstckwork/jaxwstck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
 
@@ -101,10 +106,9 @@ ant -Dkeywords=all runclient
 
 #run sigtest
 cd $TS_HOME/src/com/sun/ts/tests/signaturetest
-ant -Dreport.dir=$TCK_HOME/jaxwstckreport/jaxwstck-sig -Dwork.dir=$TCK_HOME/jaxwstckwork/jaxwstck-sig runclient
+ant -Dreport.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}-sig -Dwork.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}-sig runclient
 
 
-TCK_NAME=jaxwstck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
