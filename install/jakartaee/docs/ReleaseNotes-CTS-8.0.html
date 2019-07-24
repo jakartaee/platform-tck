@@ -3,7 +3,7 @@
 <head>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,7 +19,7 @@
 
 -->
 
- <title>Release Notes for Java EE 8 CTS</title>
+ <title>Release Notes for Jakarta EE 8 Platform CTS</title>
 <style type="text/css">
 <!--
 body {  background-color: #ffffdd; color: #000000}
@@ -39,26 +39,26 @@ h4 {  font-style: italic; color: #000099}
 <body bgcolor="#ffffdd" text="#000000" link="#0000ff" vlink="#840084" alink="#0000ff">
 
 <div align="center">
-<h1>Java<small><sup>TM</sup></small> Enterprise Edition 8 Compatibility Test Suite<br>
-<em class="emphasize">Release Notes, September-2017</em></h1>
+<h1>Jakarta EE  8 Platform Compatibility Test Suite<br>
+<em class="emphasize">Release Notes, September 2019</em></h1>
 </div>
 
 <hr>
 <table border="0" title="Note">
  <tr valign="top">
  <td><strong>Note:</strong></td>
- <td><em>This is <strong>version &quot;September-2017&quot;</strong> of the Java EE 8 CTS. The Release Notes file that is posted on the <a href="https://javapartner.oracle.com" target="_blank">Java Partner Engineering</a> Web site contains the most current information about the Java EE CTS test suite, including any last minute changes. Always check that file for the most up-to-date information.</em></td>
+ <td><em>This is <strong>the initial version </strong> of the Jakarta EE 8 Compatibility Test Suite (CTS). The Release Notes file may be updated via the Jakarta EE Platform Specification Web Site: <a href="https://jakarta.ee/specifications/full-profile/8.0/">https://jakarta.ee/specifications/full-profile/8.0/</a> contains the most current information about the Jakarta EE 8 Platform CTS test suite, including any last minute changes. Always check that web-site for the most up-to-date information.</em></td>
  </tr>
 </table>
 
 <hr>
-<h2>Java EE CTS Requirements, Facts, and Figures</h2>
+<h2>Jakarta EE 8 Platform  CTS Requirements, Facts, and Figures</h2>
 <blockquote>
-<p>The Java EE 8 CTS requires a minimum of 3.7 GB of free disk space:</p>
+<p>The Jakarta EE 8 Platform  8 CTS requires a minimum of 3.7 GB of free disk space:</p>
 
 <ul>
-   <li>Java EE CTS (zipped): 661 MB</li>
-   <li>Java EE CTS (unzipped):  1 GB</li>
+   <li>Jakarta EE 8 Platform  CTS (zipped): 661 MB</li>
+   <li>Jakarta EE 8 Platform  CTS (unzipped):  1 GB</li>
    <li>Space for CTS log/report files: 2 GB minimum (trace off)</li>
 </ul>
 
@@ -82,16 +82,16 @@ h4 {  font-style: italic; color: #000099}
 	 </ul></li>
 </ul>
 
-<p>The tests for JAX-WS and SAAJ are removed from Java EE CTS, as these technologies are part of Java SE Platform now. However, they are available as standalone TCKs and licensees are required to run these standalone TCKs if they provide their own implementations of these APIs that override the implementations in the Java SE platform.</p>
+<p>The tests for JAX-WS and SAAJ are removed from Jakarta EE 8 Platform  CTS, as these technologies are part of Java SE Platform now. However, they are available as standalone TCKs and implementers are required to run these standalone TCKs if they provide their own implementations of these APIs that override and/or replace the implementations in the Java SE platform.</p>
 
-<p>Chapter 4, &quot;Installation&quot; in the <em>Java EE 8 CTS User's Guide</em>, explains how to install the Java EE Compatibility Test Suite on Solaris, Linux, and Windows systems.</p>
+<p>Chapter 4, &quot;Installation&quot; in the <em>Jakarta EE 8 Platform  8 CTS User's Guide</em>, explains how to install the Jakarta EE 8 Platform  Compatibility Test Suite on Linux, and Windows systems.</p>
 </blockquote>
 
 <hr>
-<h2>These are the stand alone TCKs, porting bundles, and JDK used to test the Java EE 8 Reference Implementation</h2>
+<h2>These are the stand alone TCKs, porting bundles, and JDK used to test the Jakarta EE 8 Platform  Compatible Implementation</h2>
 <ul>
   <li>JDK version 1.8.0_144</li>
-  <li>Java EE 8 RI version 5.0</li>
+  <li>Jakarta EE 8 Platform  8 CI, Eclipse GlassFish 5.1</li>
   <li>CDI version 2.0 [porting bundle file name cdi-tck-glassfish-porting-2.0_Latest.zip]</li>
   <li>Bean Validation version 2.0 [porting bundle file name bv-tck-glassfish-porting-2.0_15-Aug-2017.zip]</li>
   <li>Dependency Injection for Java version 1.0 [porting bundle file name 330-tck-glassfish-porting-1.0_09-Nov-2017.zip]</li>
@@ -105,7 +105,7 @@ h4 {  font-style: italic; color: #000099}
 <h2>Status Information</h2>
 <h3>Exclude List</h3>
 <blockquote>
-<p>You can find the exclude list in the CTS bundle in <code>&lt;TS_HOME&gt;/bin/ts.jtx</code>. Since the list can change over time, please be sure to get the latest exclude list available on the <a href="https://javapartner.oracle.com">Java Partner Engineering</a> Web site.</p>
+<p>You can find the exclude list in the CTS bundle in <code>&lt;TS_HOME&gt;/bin/ts.jtx</code>. New versions of the exclude list are released and the TCK bundle will be updated. Be sure to check for updates at the <em> Jakarta EE 8Platform Specification</em> Web Site: <a href="https://jakarta.ee/specifications/full-profile/8.0/">https://jakarta.ee/specifications/full-profile/8.0/</a><a href="https://jakarta.ee/specifications/full-profile/8.0/"></a> or  <a href="https://jakarta.ee/specifications/web-profile/8.0/">https://jakarta.ee/specifications/webl-profile/8.0/</a></p>
 </blockquote>
 
 <hr>
@@ -118,15 +118,15 @@ h4 {  font-style: italic; color: #000099}
   <li>javax.transaction.xa.Xid</li>
 </ul>
 </p>
-<p>The Java EE 8 CTS Signature tests will use the JTA 1.2 signature file by default. If the Java EE implementation under test includes JTA 1.3,  set the javax.transaction property to 1.3_se8 in the <code>&lt;TS_HOME&gt;/bin/sig-test_se8.map</code> file.
+<p>The Jakarta EE 8 Platform  8 CTS Signature tests will use the JTA 1.2 signature file by default. If the Jakarta EE 8 Platform  implementation under test includes JTA 1.3,  set the javax.transaction property to 1.3_se8 in the <code>&lt;TS_HOME&gt;/bin/sig-test_se8.map</code> file.
 </p>
 
 <hr>
 <h2>Known Problems and Workarounds</h2>
 
-<h3>Running the CTS Against Java EE RI on Windows</h3>
+<h3>Running the CTS Against Jakarta EE 8 Platform  CI on Windows</h3>
 <blockquote>
-<p>When configuring and running the CTS against the Java EE RI on Windows, please make sure to install all related software (Java SE, Java EE RI, CTS, etc.) on the same drive (for example, <code>C:</code>). If you want to install on a drive other than <code>C:</code>, please be sure to change the following properties in <code>&lt;TS_HOME&gt;/bin/ts.jte:</code></p>
+<p>When configuring and running the CTS against the Jakarta EE 8 Platform  CI on Windows, please make sure to install all related software (Java SE, Jakarta EE 8 Platform  CI, CTS, etc.) on the same drive (for example, <code>C:</code>). If you want to install on a drive other than <code>C:</code>, please be sure to change the following properties in <code>&lt;TS_HOME&gt;/bin/ts.jte:</code></p>
 
 <pre>
 pathsep=;
@@ -138,10 +138,10 @@ s1as.applicationRoot=c:
 <hr>
 <h2>Attributions</h2>
 <blockquote>
-<p>The Java EE CTS test suite includes software developed by the Apache Software Foundation (<a href="http://www.apache.org/">http://www.apache.org/</a>), the dom4j Project (<a href="http://sourceforge.net/projects/dom4j/">http://sourceforge.net/projects/dom4j/</a>), and the JDOM<small><sup>TM</sup></small> Project (<a href="http://www.jdom.org/">http://www.jdom.org/</a>). The Apache Ant Contrib project is located at <a href="http://ant-contrib.sourceforge.net/ ">http://ant-contrib.sourceforge.net/</a>.</p>
+<p>The Jakarta EE 8 Platform  CTS test suite includes software developed by the Apache Software Foundation (<a href="http://www.apache.org/">http://www.apache.org/</a>), the dom4j Project (<a href="http://sourceforge.net/projects/dom4j/">http://sourceforge.net/projects/dom4j/</a>), and the JDOM<small><sup>TM</sup></small> Project (<a href="http://www.jdom.org/">http://www.jdom.org/</a>). The Apache Ant Contrib project is located at <a href="http://ant-contrib.sourceforge.net/ ">http://ant-contrib.sourceforge.net/</a>.</p>
 </blockquote>
 
 <hr size="3">
-<small>Copyright (c) 2013,2018, Oracle and/or its affiliates. All rights reserved.</small>
+<small>Copyright &copy; 2013, 2019, Oracle and/or its affiliates. All rights reserved.</small>
 </body>
 </html>

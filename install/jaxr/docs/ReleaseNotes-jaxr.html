@@ -5,7 +5,7 @@
    <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; SunOS 5.9 sun4u) [Netscape]">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@
 
 -->
 
-   <title>JAXR TCK, Version 1.0_04 Release Notes, June 2003</title>
+   <title>Jakarta Registries version 1.0 TCK Release Notes, September 2019</title>
 <style type="text/css">
 
 <!--
@@ -54,20 +54,20 @@ h4 {  font-style: italic; color: #000099}
 
 <center>
 <h1>
-JAXR Technology Compatibility Kit, Version 1.0.x<br>
-<span class="emphasize">Release Notes,June 2003</span></h1></center>
+Jakarta Registries Technology Compatibility Kit, Version 1.0<br>
+<span class="emphasize">Release Notes, September 2019</span></h1></center>
 
 <hr size="3" noshade="noshade">
 <h2>
 <a NAME="kit_contents"></a>Kit Contents</h2>
-The JAXR TCK, Version 1.0.x includes the following items:
+The Jakarta Registries TCK, Version 1.0.x includes the following items:
 
 <ul>
-<p><b>JAXR TCK tests</b>
+<p><b>Jakarta Registries TCK tests</b>
 <ul>
 <li>
 A <b>signature test</b> that checks that all of the public APIs are supported
-in the JAXR Version 1.0_04 implementation that is being tested.</li>
+in the Jakarta Registries Version 1.0 implementation that is being tested.</li>
 
 <li>
 <b>API tests</b> for all of the public APIs under the <tt>javax.xml.registry</tt>
@@ -81,12 +81,12 @@ package.</li>
 <hr>
 <h2>
 <a NAME="platform"></a>Platform Notes</h2>
-The JAXR TCK tests have been built and tested with the Java Web Services
+The Jakarta Registries TCK tests have been built and tested with the Java Web Services
 Developers Pack (JWSDP) 1.2 running on the Java<sup><font size=-2>TM</font></sup>
-2 Platform, Standard Edition SDK, Version 1.4.1_02. If you are using a
+ Platform, Standard Edition SDK, Version 1.4.1_02. If you are using a
 different registry server, you will need to make adjustments to the procedures
 outlined in this document.
-<p>The JAXR TCK tests run on the following platforms:
+ <p>The Jakarta Registries TCK tests run on the following platforms:
 <ul>
 <li>
 Sun Solaris 8, 9</li>
@@ -110,7 +110,7 @@ replaced with backslashes (<tt>\</tt>) for Windows 2000/XP.
 <hr>
 <h2>
 <a NAME="install_setup_run"></a>Installing, Setting Up, and Running the
-JAXR TCK</h2>
+Jakarta Registries TCK</h2>
 The following sections explain how to:
 <ul>
 <li>
@@ -123,18 +123,18 @@ The following sections explain how to:
 <a href="#start">Start your Registry</a></li>
 
 <li>
-<a href="#run_all_tests">Run the JAXR TCK tests</a></li>
+<a href="#run_all_tests">Run the Jakarta Registries TCK tests</a></li>
 
 <li>
-<a href="#run_subset">Run a subset of the JAXR&nbsp; TCK tests</a></li>
+<a href="#run_subset">Run a subset of the Jakarta Registries&nbsp; TCK tests</a></li>
 
 <li>
-<a href="#use_ant">Build/Run the JAXR TCK tests using ant</a></li>
+<a href="#use_ant">Build/Run the Jakarta Registries TCK tests using ant</a></li>
 </ul>
 
 <h3>
 <a NAME="install"></a>Installing the Required Software</h3>
-Before you can run the JAXR TCK tests, you must install and set up the
+Before you can run the Jakarta Registries TCK tests, you must install and set up the
 following software components:
 <ul>
 <li>
@@ -142,10 +142,10 @@ J2SE 1.4.1 software</li>
 
 <li>
 Java Web Services Developers Pack 1.2 which provides an implementation
-of the JAXR 1.0&nbsp; Specification</li>
+of the Jakarta Registries 1.0&nbsp; Specification</li>
 
 <li>
-JAXR TCK, Version 1.0_04</li>
+Jakarta Registries TCK, Version 1.0</li>
 </ul>
 Complete the following steps to install the required software:
 <ol type="1">
@@ -161,19 +161,19 @@ the Project Web site (<a href="http://java.sun.com/webservices/downloads/webserv
 Refer to the documentation included with the Java Web Services Developers
 Pack for specific installation instructions.
 
-<p class="step"><b>Install the JAXR TCK software.</b>
-<p>Download the JAXR TCK software from the Java Partner Engineering Web
+<p class="step"><b>Install the Jakarta Registries TCK software.</b>
+<p>Download the Jakarta Registries TCK software from the Java Partner Engineering Web
 site and install:
 <ol type="a">
-<div class="step"><b>Copy or download the JAXR TCK software to your local
+<div class="step"><b>Copy or download the Jakarta Registries TCK software to your local
 system.</b></div>
-You can obtain the JAXR&nbsp; TCK software from the Java Partner Engineering
+You can obtain the Jakarta Registries&nbsp; TCK software from the Java Partner Engineering
 web site (<a href="http://javapartner.sun.com">http://javapartner.sun.com</a>).
-The JAXR TCK software is located in the <tt>OPTPKG-XML/jaxr</tt> directory
+The Jakarta Registries TCK software is located in the <tt>OPTPKG-XML/jaxr</tt> directory
 in the Web site's Download Center area.
 
 <p class="step"><b>Change to the directory where you want to install the
-JAXR TCK software:</b>
+Jakarta Registries TCK software:</b>
 <p><tt>cd &lt;install_directory></tt>
 
 <p class="step"><b>Use the unzip command to extract the bundle:</b>
@@ -194,7 +194,7 @@ environment:</b></div>
 <tt>JAVA_HOME</tt> variable to the installation directory of J2SE 1.4.1</li>
 
 <li>
-<tt>TS_HOME</tt> to the directory where the JAXR&nbsp; TCK software has
+<tt>TS_HOME</tt> to the directory where the Jakarta Registries&nbsp; TCK software has
 been installed</li>
 
 <li>
@@ -211,7 +211,7 @@ following environment variables:</b></div>
 <div class="step">&nbsp;</div>
 
 <div class="step">Set the <tt>local_classes</tt> property to point to the
-JAXR RI classes/jars and the TCK classes/jars (<tt>tsharness.jar</tt>,
+Jakarta Registries RI classes/jars and the TCK classes/jars (<tt>tsharness.jar</tt>,
 <tt>javatest.jar</tt>,
 <tt>jaxrtck.jar</tt>).</div>
 For example, if you are running the Java Web Services Developers Pack on
@@ -303,8 +303,8 @@ Java Web Services Developer Pack/1.2-fcs</pre>
 </ol>
 
 <h3>
-<a NAME="run_all_tests"></a>Running the JAXR TCK Tests</h3>
-To run the JAXR TCK tests, complete the following steps. Note that you
+<a NAME="run_all_tests"></a>Running the Jakarta Registries TCK Tests</h3>
+To run the Jakarta Registries TCK tests, complete the following steps. Note that you
 only need to complete steps 2-10 the first time you start the JT Harness.
 The online version of the JT Harness version 5.0 documentation is available <a href="https://wiki.openjdk.java.net/display/CodeTools/Documentation">here</a>.
 <br/><br/>After you complete these steps, you can either run all of
@@ -366,8 +366,8 @@ The tests in the <tt>{TS_HOME}/src/com/sun/ts/tests/jaxr</tt> directory
 will be executed.</b></ol>
 
 <h3>
-<a NAME="run_subset"></a>Running a Subset of the JAXR TCK Tests</h3>
-To run a subset of the JAXR TCK tests, complete the following steps:
+<a NAME="run_subset"></a>Running a Subset of the Jakarta Registries TCK Tests</h3>
+To run a subset of the Jakarta Registries TCK tests, complete the following steps:
 <ol type="1">
 <div class="step"><b>Pull down&nbsp;<span class="emphasize">Configuration</span>
 and select&nbsp;<span class="emphasize">Configuration Editor</span>.</b></div>
@@ -394,13 +394,13 @@ to run the test. This will now only run the&nbsp;<span class="emphasize">Attachm
 api test.</b></ol>
 
 <h3>
-<a NAME="use_ant"></a>Build/Deploy/Run the JAXR TCK Tests using ant</h3>
+<a NAME="use_ant"></a>Build/Deploy/Run the Jakarta Registries TCK Tests using ant</h3>
 Complete the following steps to set up your environment to build, deploy,
-and run the JAXR TCK tests using <tt>ant</tt>. The following example
+and run the Jakarta Registries TCK tests using <tt>ant</tt>. The following example
 is for the Solaris platform:
 <ol type="1">Set the following environment variables in your shell environment
 to use the build infrastructure that comes with the TCK:
-<ul><tt>TS_HOME </tt>to the directory where the JAXR TCK software has been
+<ul><tt>TS_HOME </tt>to the directory where the Jakarta Registries TCK software has been
 installed
 <p><tt>ANT_HOME </tt>to the directory where the Ant software is installed
 and include <tt>ANT_HOME/bin</tt> in <tt>PATH</tt>
@@ -415,8 +415,9 @@ Bourne Shell&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ANT_HOME=anthome
 
 Bourne Shell&nbsp; PATH=${TS_HOME}/bin:${PATH}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; export PATH</pre>
-<tt>JAVA_HOME </tt>to the directory where the J2SE SDK 1.4.1 software has
-been installed</ul>
+<tt>JAVA_HOME </tt>to the directory where the Java SE SDK 8 software has
+been installed
+</ul>
 Change to directory <tt>TS_HOME/install/jaxr</tt> and run <tt>ant</tt>
 to create and set up your <tt>TS_HOME/bin</tt> directory if it has not
 yet been setup.
@@ -426,12 +427,12 @@ file to set the required properties needed for using Ant build environment.
 Developers Pack has been installed
 <p><tt>webserver.host </tt>to the host the Web server is running on
 <p><tt>webserver.port </tt>to the port the Web server is running on
-<p><tt>j2ee.home.ri </tt>to the directory where the J2EE SDK 1.3.1 is installed
+<p><tt>j2ee.home.ri </tt>to the directory where the Jakarta EE 8Compatible Implementation (e.g. Eclipse GlassFish 5.1) is installed
 for reference to the packager tool used by the build infrastructure
 <p><tt>local.classes </tt>required classes needed for building/running
 the TCK</ul>
 </ol>
-To build the JAXR TCK tests using <tt>ant</tt>, complete the following
+To build the Jakarta Registries TCK tests using <tt>ant</tt>, complete the following
 steps:
 <ol type="1">
 <div class="step"><b>To build a single test directory, type the following:</b></div>
@@ -456,7 +457,7 @@ this test that was built, type the following:</b></div>
 ant clean build</pre>
 This will clean and build all the test directories under the <tt>api</tt>
 directory.</ol>
-To deploy the JAXR TCK tests using <tt>ant</tt>, complete the following
+To deploy the Jakarta Registries TCK tests using <tt>ant</tt>, complete the following
 steps:
 <ol type="1">
 <div class="step"><b>To deploy a single test directory, type the following:</b></div>
@@ -470,7 +471,7 @@ test directory to the <tt>webapps</tt> directory.
 <pre>cd &lt;TS_HOME>/src/com/sun/ts/tests/jaxr/api
 ant deploy</pre>
 This will deploy all the test WAR files for the <tt>api</tt> directory.</ol>
-To run the JAXR TCK tests using <tt>ant</tt>, complete the following
+To run the Jakarta Registries TCK tests using <tt>ant</tt>, complete the following
 steps:
 <ol type="1">
 <div class="step"><b>To run a single test directory, type the following:</b></div>
@@ -495,6 +496,6 @@ ant runclient</pre>
 This will run all the test directories under the <tt>api</tt> directory.</ol>
 
 <hr size="3" noshade="noshade">
-<p><font size=-1>Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.</a></font>
+<p><font size=-1>Copyright (c) 2003, 2019 Oracle and/or its affiliates. All rights reserved.</a></font>
 </body>
 </html>
