@@ -47,9 +47,9 @@ th {  background-color: #eeeeee; padding-left: 2pt; padding-right: 2pt;}
 <p>The Jakarta  Connectors, Version 1.7 Technology Compatibility Kit (TCK) includes the following items:</p>
 
 <ul>
-   <li><p><strong>JCA TCK tests for signature, API, and End-to-End tests:</strong></p></li>
+   <li><p><strong>Jakarta Connectors TCK tests for signature, API, and End-to-End tests:</strong></p></li>
    <ul type="square">
-	   <li><p>A <strong>signature test</strong> checks that all of the public APIs are supported in the JCA Version 1.7 implementation that is being tested</p></li>
+	   <li><p>A <strong>signature test</strong> checks that all of the public APIs are supported in the Jakarta Connectors Version 1.7 implementation that is being tested</p></li>
    	<li><p><strong>API tests</strong> for all of the public APIs under the <code>javax.resource</code> package (and its sub-packages)</p></li>
    	<li>
    	  <p><strong>End-To-End tests</strong> that demonstrate compliance with the <em>Jakarta Connectors 1.7 Specification</em></p></li>
@@ -69,25 +69,25 @@ Platform, Standard Edition 8 (Java SE 8).</P>
   <li>Windows 10</li>
 </ul>
 
-<p>The Jakarta Connectors TCK tests have been run against the JCA 1.7 Compatible Implementation, Eclipse GlassFish 5.1.</p>
+<p>The Jakarta Connectors TCK tests have been run against the Jakarta Connectors 1.7 Compatible Implementation, Eclipse GlassFish 5.1.</p>
 
 <hr>
 
-<h2><a name="install_setup_run">Installing, Setting Up, and Running the JCA TCK</a></h2>
+<h2><a name="install_setup_run">Installing, Setting Up, and Running the Jakarta Connectors TCK</a></h2>
 
-<p>Refer to the <cite>Jakarta Connectors TCK 1.7 User's Guide</cite> for complete instructions on installing, setting up, and running the JCA TCK.
+<p>Refer to the <cite>Jakarta Connectors TCK 1.7 User's Guide</cite> for complete instructions on installing, setting up, and running the Jakarta Connectors TCK.
 The online version of the JT Harness version 5.0 documentation is available <a href="https://wiki.openjdk.java.net/display/CodeTools/Documentation">here</a>.</p>
 
 
 <hr>
-<h2>JCA TCK Requirements, Facts, and Figures</h2>
+<h2>Jakarta Connectors TCK Requirements, Facts, and Figures</h2>
 <blockquote>
-<p>The JCA TCK requires a minimum of 203 MB of free disk space:</p>
+<p>The Jakarta Connectors TCK requires a minimum of 203 MB of free disk space:</p>
 
 <ul>
-   <li>JCA TCK (zipped): 31 MB</li>
-   <li>JCA TCK (unzipped):  164 MB</li>
-   <li>Space for JCA log/report files: 8 MB minimum </li>
+   <li>Jakarta Connectors TCK (zipped): 31 MB</li>
+   <li>Jakarta Connectors TCK (unzipped):  164 MB</li>
+   <li>Space for Jakarta Connectors log/report files: 8 MB minimum </li>
 </ul>
 
 <p>The test suite bundle contains the following:</p>
@@ -107,14 +107,14 @@ The online version of the JT Harness version 5.0 documentation is available <a h
 <h2>Status Information</h2>
 <h3>Exclude List</h3>
 <blockquote>
-<p>You can find the exclude list in the JCA bundle in <code>&lt;TS_HOME&gt;/bin/ts.jtx</code>. Since the list can change over time, please be sure to get the latest exclude list available from the Jakarta Connectors Specification Web Site: <a href="https://jakarta-ee/specifications/connectors/1.7/">https://jakarta-ee/specifications/connectors/1.7/</a></p>
+<p>You can find the exclude list in the Jakarta Connectors bundle in <code>&lt;TS_HOME&gt;/bin/ts.jtx</code>. Revisions to the Exclude List are published as updates to the TCK bundle. You can check the Jakarta Connectors Specification Web Site for updates: <a href="https://jakarta-ee/specifications/connectors/1.7/">https://jakarta-ee/specifications/connectors/1.7/</a></p>
 </blockquote>
 <hr>
 <h2>Known Problems and Workarounds</h2>
 
-<h3>Running the JCA TCK Against Java EE RI on Windows</h3>
+<h3>Running the Jakarta Connectors TCK Against Jakarta EE CI on Windows</h3>
 <blockquote>
-<p>When configuring and running the JCA TCK against the Eclipse GlassFish Compatible Implementation (CI) on Windows, please make sure to install all related software (Java SE, the CI, the TCK, etc.) on the same drive (for example, <code>C:</code>). If you want to install on a drive other than <code>C:</code>, please be sure to change the following properties in <code>&lt;TS_HOME&gt;/bin/ts.jte:</code></p>
+<p>When configuring and running the Jakarta Connectors TCK against the Eclipse GlassFish 5.1 Compatible Implementation (CI) on Windows, please make sure to install all related software (Java SE, the CI, the TCK, etc.) on the same drive (for example, <code>C:</code>). If you want to install on a drive other than <code>C:</code>, please be sure to change the following properties in <code>&lt;TS_HOME&gt;/bin/ts.jte:</code></p>
 
 <pre>
 s1as.applicationRoot=c:
