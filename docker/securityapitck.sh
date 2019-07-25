@@ -26,11 +26,11 @@ HOST=`hostname`
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*securityapitck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for securityapitck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*securityapitck*.zip -d ${TCK_HOME}
   TCK_NAME=securityapitck
 elif ls ${WORKSPACE}/standalone-bundles/*security-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for security-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*security-tck*.zip -d ${TCK_HOME}
   TCK_NAME=security-tck
 else

@@ -30,11 +30,11 @@ echo "Java Web Services Developer Pack started ..."
 
 cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jaxrtck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jaxrtck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jaxrtck*.zip -d ${TCK_HOME}
   TCK_NAME=jaxrtck
 elif ls ${WORKSPACE}/standalone-bundles/*xml-registries-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for xml-registries-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*xml-registries-tck*.zip -d ${TCK_HOME}
   TCK_NAME=xml-registries-tck
 else

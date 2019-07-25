@@ -134,14 +134,15 @@ ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
 
+cp ${WORKSPACE}/release/JAKARTAEE-SMOKE_BUILD/latest/jakartaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/
+cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/
+
 if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
-  cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/eclipse-jakartaeetck.zip
-else
-  cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
+  for file in *jakartaeetck*.zip;
+    do
+      mv $file eclipse-$file
+    done
 fi
-
-cp ${WORKSPACE}/release/JAKARTAEE-SMOKE_BUILD/latest/jakartaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaee-smoke.zip
-
 
 #Generate Version file
 GIT_HASH=`git rev-parse HEAD`

@@ -9,11 +9,11 @@ echo "ANT_OPTS in jsonptck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jsonptck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jsonptck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jsonptck*.zip -d ${TCK_HOME}
   TCK_NAME=jsonptck
 elif ls ${WORKSPACE}/standalone-bundles/*jsonp-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jsonp-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jsonp-tck*.zip -d ${TCK_HOME}
   TCK_NAME=jsonp-tck
 else

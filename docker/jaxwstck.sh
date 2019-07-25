@@ -25,11 +25,11 @@ HOST=`hostname`
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jaxwstck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jaxwstck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jaxwstck*.zip -d ${TCK_HOME}
   TCK_NAME=jaxwstck
 elif ls ${WORKSPACE}/standalone-bundles/*xml-ws-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for xml-ws-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*xml-ws-tck*.zip -d ${TCK_HOME}
   TCK_NAME=xml-ws-tck
 else

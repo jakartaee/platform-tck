@@ -23,11 +23,11 @@ echo "ANT_OPTS in jaxrpctck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jaxrpctck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jaxrpctck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jaxrpctck*.zip -d ${TCK_HOME}
   TCK_NAME=jaxrpctck
 elif ls ${WORKSPACE}/standalone-bundles/*xml-rpc-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for xml-rpc-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*xml-rpc-tck*.zip -d ${TCK_HOME}
   TCK_NAME=xml-rpc-tck
 else

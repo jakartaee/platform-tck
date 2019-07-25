@@ -22,15 +22,12 @@ echo "PATH in jtatck.sh $PATH"
 echo "ANT_OPTS in jtatck.sh $ANT_OPTS"
 
 cd ${TCK_HOME}
-ls -l ${WORKSPACE}/standalone-bundles/*.zip
-ls -l ${WORKSPACE}/bundles/*.zip
-ls -l ${WORKSPACE}/*.zip
 if ls ${WORKSPACE}/standalone-bundles/*jtatck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jtatck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jtatck*.zip -d ${TCK_HOME}
   TCK_NAME=jtatck
 elif ls ${WORKSPACE}/standalone-bundles/*transactions-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for transactions-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*transactions-tck*.zip -d ${TCK_HOME}
   TCK_NAME=transactions-tck
 else

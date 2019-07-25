@@ -23,11 +23,11 @@ echo "ANT_OPTS in jstltck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jstltck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jstltck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jstltck*.zip -d ${TCK_HOME}
   TCK_NAME=jstltck
 elif ls ${WORKSPACE}/standalone-bundles/*tags-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for tags-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*tags-tck*.zip -d ${TCK_HOME}
   TCK_NAME=tags-tck
 else

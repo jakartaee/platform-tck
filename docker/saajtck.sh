@@ -24,11 +24,11 @@ echo "ANT_OPTS in saajtck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*saajtck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for saajtck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*saajtck*.zip -d ${TCK_HOME}
   TCK_NAME=saajtck
 elif ls ${WORKSPACE}/standalone-bundles/*soap-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for soap-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*soap-tck*.zip -d ${TCK_HOME}
   TCK_NAME=soap-tck
 else

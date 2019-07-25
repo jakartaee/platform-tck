@@ -23,11 +23,11 @@ echo "ANT_OPTS in eltck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*eltck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for eltck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*eltck*.zip -d ${TCK_HOME}
   TCK_NAME=eltck
 elif ls ${WORKSPACE}/standalone-bundles/*expression-language-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for expression-language-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*expression-language-tck*.zip -d ${TCK_HOME}
   TCK_NAME=expression-language-tck
 else

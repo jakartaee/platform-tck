@@ -23,11 +23,11 @@ echo "ANT_OPTS in servlettck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*servlettck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for servlettck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*servlettck*.zip -d ${TCK_HOME}
   TCK_NAME=servlettck
 elif ls ${WORKSPACE}/standalone-bundles/*servlet-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for servlet-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*servlet-tck*.zip -d ${TCK_HOME}
   TCK_NAME=servlet-tck
 else

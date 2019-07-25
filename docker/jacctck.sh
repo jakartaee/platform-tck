@@ -23,11 +23,11 @@ echo "ANT_OPTS in jacctck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jacctck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jacctck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jacctck*.zip -d ${TCK_HOME}
   TCK_NAME=jacctck
 elif ls ${WORKSPACE}/standalone-bundles/*authorization-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for authorization-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*authorization-tck*.zip -d ${TCK_HOME}
   TCK_NAME=authorization-tck
 else

@@ -22,11 +22,11 @@ echo "ANT_OPTS in jmstck.sh $ANT_OPTS"
 
 cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jmstck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jmstck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jmstck*.zip -d ${TCK_HOME}
   TCK_NAME=jmstck
 elif ls ${WORKSPACE}/standalone-bundles/*messaging-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for messaging-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*messaging-tck*.zip -d ${TCK_HOME}
   TCK_NAME=messaging-tck
 else

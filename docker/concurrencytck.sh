@@ -23,11 +23,11 @@ echo "ANT_OPTS in concurrencytck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*concurrencytck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for concurrencytck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*concurrencytck*.zip -d ${TCK_HOME}
   TCK_NAME=concurrencytck
 elif ls ${WORKSPACE}/standalone-bundles/*concurrency-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for concurrency-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*concurrency-tck*.zip -d ${TCK_HOME}
   TCK_NAME=concurrency-tck
 else

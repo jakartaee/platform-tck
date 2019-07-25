@@ -9,11 +9,11 @@ echo "ANT_OPTS in jsptck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jsptck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jsptck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jsptck*.zip -d ${TCK_HOME}
   TCK_NAME=jsptck
 elif ls ${WORKSPACE}/standalone-bundles/*pages-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for pages-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*pages-tck*.zip -d ${TCK_HOME}
   TCK_NAME=pages-tck
 else

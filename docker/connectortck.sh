@@ -23,11 +23,11 @@ echo "ANT_OPTS in connectortck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*connectortck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for connectortck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*connectortck*.zip -d ${TCK_HOME}
   TCK_NAME=connectortck
 elif ls ${WORKSPACE}/standalone-bundles/*connectors-tck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for connectors-tck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*connectors-tck*.zip -d ${TCK_HOME}
   TCK_NAME=connectors-tck
 else
