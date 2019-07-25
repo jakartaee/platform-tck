@@ -70,8 +70,10 @@ ant config.vi
 cd $TS_HOME/bin
 ant enable.jacc
 
-cd $TS_HOME/src/com/sun/ts/tests/jacc/ejb
-ant deploy runclient
+# disable run for ejb, since jacc-tck runs tests for web profile
+#cd $TS_HOME/src/com/sun/ts/tests/jacc/ejb
+#ant deploy runclient
+
 cd $TS_HOME/src/com/sun/ts/tests/jacc/web
 ant deploy runclient
 echo "Test run complete"
