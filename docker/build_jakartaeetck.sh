@@ -134,14 +134,18 @@ ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
 
-if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
-  cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/eclipse-jakartaeetck.zip
-else
-  cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
-fi
+cp ${WORKSPACE}/release/JAKARTAEE-SMOKE_BUILD/latest/jakartaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/
+cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/
 
-cp ${WORKSPACE}/release/JAKARTAEE-SMOKE_BUILD/latest/jakartaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaee-smoke.zip
-
+for entry in `ls *.zip`; do
+  date=`echo "$entry" | cut -d_ -f2`
+  strippedEntry=`echo "$entry" | cut -d_ -f1`
+  if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
+    mv ${WORKSPACE}/jakartaeetck-bundles/$entry ${WORKSPACE}/jakartaeetck-bundles/eclipse-${strippedEntry}.zip
+  else
+    mv ${WORKSPACE}/jakartaeetck-bundles/$entry ${WORKSPACE}/jakartaeetck-bundles/${strippedEntry}.zip
+  fi
+done
 
 #Generate Version file
 GIT_HASH=`git rev-parse HEAD`

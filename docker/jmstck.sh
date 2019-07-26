@@ -22,8 +22,13 @@ echo "ANT_OPTS in jmstck.sh $ANT_OPTS"
 
 cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jmstck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for jmstck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*jmstck*.zip -d ${TCK_HOME}
+  TCK_NAME=jmstck
+elif ls ${WORKSPACE}/standalone-bundles/*messaging-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle for messaging-tck created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*messaging-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=messaging-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -38,7 +43,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/jmstck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -47,11 +52,11 @@ cd $TS_HOME/bin
 
 sed -i "s#^jms.home=.*#jms.home=$TCK_HOME/glassfish5/mq#g" ts.jte
 sed -i 's#^jms\.classes=.*#jms.classes=${ri.jars}#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jmstckreport/jmstck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jmstckwork/jmstck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/jmstckreport/jmstck
-mkdir -p $TCK_HOME/jmstckwork/jmstck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 ant config.vi
 
@@ -59,7 +64,6 @@ cd $TS_HOME/src/com/sun/ts/tests
 ant runclient
 echo "Test run complete"
 
-TCK_NAME=jmstck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt

@@ -22,9 +22,14 @@ echo "ANT_OPTS in cajtck.sh $ANT_OPTS"
 
 cd $TCK_HOME
 
-if ls ${WORKSPACE}/standalone-bundles/*cajtck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+if ls ${WORKSPACE}/standalone-bundles/*annotations-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle for annotations-tck created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*annotations-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=annotations-tck
+elif ls ${WORKSPACE}/standalone-bundles/*cajtck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle for cajtck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*cajtck*.zip -d ${TCK_HOME}
+  TCK_NAME=cajtck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -39,7 +44,8 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/cajtck
+TS_HOME=$TCK_HOME/$TCK_NAME
+
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -48,11 +54,11 @@ cd $TS_HOME/bin
 sed -i "s#^build.level=.*#build.level=2#g" ts.jte
 sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed#g" ts.jte
 sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/cajtckreport/cajtck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/cajtckwork/cajtck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/cajtckreport/cajtck
-mkdir -p $TCK_HOME/cajtckwork/cajtck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TCK_HOME/glassfish5/bin
 ./asadmin start-domain
@@ -60,12 +66,11 @@ cd $TCK_HOME/glassfish5/bin
 cd $TS_HOME/src/com/sun/ts/tests/signaturetest/caj
 ant runclient
 
-TCK_NAME=cajtck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 $TCK_HOME/cajtck/bin/ts.*
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*
 

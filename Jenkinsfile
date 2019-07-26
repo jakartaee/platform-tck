@@ -45,7 +45,7 @@ def generateCTSStage(job) {
               unstash 'jakartaeetck-bundles'
               sh """
                 env
-                unzip -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck.zip -d ${CTS_HOME}
+                unzip -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck*.zip -d ${CTS_HOME}
                 bash -x ${CTS_HOME}/jakartaeetck/docker/fix_classpaths.sh 2>&1 | tee ${CTS_HOME}/fix_classpaths.log
                 bash -x ${CTS_HOME}/jakartaeetck/docker/run_jakartaeetck.sh ${job} 2>&1 | tee ${CTS_HOME}/run_jakartaeetck.log
               """
@@ -65,7 +65,7 @@ def generateCTSStage(job) {
               unstash 'jakartaeetck-bundles'
               sh """
                 env
-                unzip -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck.zip -d ${CTS_HOME}
+                unzip -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck*.zip -d ${CTS_HOME}
                 bash -x ${CTS_HOME}/jakartaeetck/docker/fix_classpaths.sh 2>&1 | tee ${CTS_HOME}/fix_classpaths.log
                 bash -x ${CTS_HOME}/jakartaeetck/docker/run_jakartaeetck.sh ${job} 2>&1 | tee ${CTS_HOME}/run_cts.log
               """
@@ -95,7 +95,7 @@ def generateStandaloneTCKStage(job) {
               env
               bash -x ${WORKSPACE}/docker/${job}tck.sh 2>&1 | tee ${WORKSPACE}/${job}tck.log
             """
-            archiveArtifacts artifacts: "${job}tck-results.tar.gz,*-junitreports.tar.gz,${job}tck.log",allowEmptyArchive: true
+            archiveArtifacts artifacts: "*tck-results.tar.gz,*-junitreports.tar.gz,${job}tck.log",allowEmptyArchive: true
             junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
           }
         }

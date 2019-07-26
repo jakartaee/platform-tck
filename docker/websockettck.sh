@@ -23,8 +23,13 @@ echo "ANT_OPTS in websockettck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*websockettck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
+  echo "Using stashed bundle for websockettck created during the build phase"
   unzip ${WORKSPACE}/standalone-bundles/*websockettck*.zip -d ${TCK_HOME}
+  TCK_NAME=websockettck
+elif ls ${WORKSPACE}/standalone-bundles/*websocket-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle for websocket-tck created during the build phase"
+  unzip ${WORKSPACE}/standalone-bundles/*websocket-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=websocket-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
@@ -39,7 +44,7 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/websockettck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
@@ -51,14 +56,14 @@ sed -i "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
 sed -i "s#^webServerHost=.*#webServerHost=localhost#g" ts.jte
 sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/websockettckreport/websockettck/#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/websockettckwork/websockettck/#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}/#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}/#g" ts.jte
 
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   sed -i 's#websocket.api=.*#websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/cdi-api.jar#g' ts.jte
 fi
-mkdir -p $TCK_HOME/websockettckreport/websockettck
-mkdir -p $TCK_HOME/websockettckwork/websockettck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cat $TS_HOME/bin/server_policy.append >> $TCK_HOME/glassfish5/glassfish/domains/domain1/config/server.policy
 cd $TCK_HOME/glassfish5/bin
@@ -68,7 +73,6 @@ cd $TS_HOME/bin
 ant deploy.all
 ant run.all
 
-TCK_NAME=websockettck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
