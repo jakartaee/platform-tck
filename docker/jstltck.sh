@@ -82,7 +82,8 @@ cd $TCK_HOME/glassfish5/glassfish/bin
 ./asadmin create-jvm-options -Djavax.xml.accessExternalStylesheet=all
 ./asadmin create-jvm-options -Djavax.xml.accessExternalSchema=all
 ./asadmin create-jvm-options -Djavax.xml.accessExternalDTD=file,http
-./asadmin restart-domain
+./asadmin stop-domain
+./asadmin start-domain
 
 cd $TS_HOME/bin
 ant init.javadb
