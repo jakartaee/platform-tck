@@ -70,7 +70,7 @@ ant runclient
 echo "Test run complete"
 
 export HOST=`hostname -f`
-echo "1 jtatck ${HOST}" > ${WORKSPACE}/args.txt
+echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
