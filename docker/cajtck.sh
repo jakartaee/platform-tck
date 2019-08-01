@@ -35,14 +35,6 @@ else
   exit 1
 fi
 
-##### installRI.sh starts here #####
-echo "Download and install GlassFish 5.0.1 ..."
-if [ -z "${GF_BUNDLE_URL}" ]; then
-  echo "[ERROR] GF_BUNDLE_URL not set"
-  exit 1
-fi
-wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
 TS_HOME=$TCK_HOME/$TCK_NAME
 
@@ -59,9 +51,6 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
-
-cd $TCK_HOME/glassfish5/bin
-./asadmin start-domain
 
 cd $TS_HOME/src/com/sun/ts/tests/signaturetest/caj
 ant runclient
