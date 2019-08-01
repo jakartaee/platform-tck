@@ -63,7 +63,6 @@ mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 KEYWORDS=all
 cd $TS_HOME/bin
-ant -Dkeywords=$KEYWORDS deploy.all
 ant -Dkeywords=$KEYWORDS run.all
 echo "Test run complete"
 
