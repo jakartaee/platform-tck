@@ -60,9 +60,6 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
-cd $TCK_HOME/glassfish5/bin
-./asadmin start-domain
-
 cd $TS_HOME/src/com/sun/ts/tests/signaturetest/caj
 ant runclient
 
