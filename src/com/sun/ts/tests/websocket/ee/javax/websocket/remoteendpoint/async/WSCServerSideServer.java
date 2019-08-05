@@ -183,7 +183,7 @@ public class WSCServerSideServer {
    * Again, since the asynchronous thread sends message in virtually no time,
    * one does not have any force to hold that send operation in its thread, to
    * check the send operation is really unblocking and asynchronous
-   *
+   * 
    * @param asyncRemote
    * @return
    */
@@ -251,35 +251,32 @@ public class WSCServerSideServer {
 
   protected static String sendObject(Async asyncRemote, Class<?> type) {
     try {
-      Future<Void> future = null;
       if (type == byte.class) {
         byte b = -100;
-        future = asyncRemote.sendObject(b);
+        asyncRemote.sendObject(b);
       } else if (type == short.class) {
         short s = -101;
-        future = asyncRemote.sendObject(s);
+        asyncRemote.sendObject(s);
       } else if (type == int.class) {
         int i = -102;
-        future = asyncRemote.sendObject(i);
+        asyncRemote.sendObject(i);
       } else if (type == long.class) {
         long l = -103L;
-        future = asyncRemote.sendObject(l);
+        asyncRemote.sendObject(l);
       } else if (type == float.class) {
         float f = -104f;
-        future = asyncRemote.sendObject(f);
+        asyncRemote.sendObject(f);
       } else if (type == double.class) {
         double d = -105d;
-        future = asyncRemote.sendObject(d);
+        asyncRemote.sendObject(d);
       } else if (type == boolean.class) {
         boolean b = false;
-        future = asyncRemote.sendObject(b);
+        asyncRemote.sendObject(b);
       } else if (type == char.class) {
         char c = 106;
-        future = asyncRemote.sendObject(c);
+        asyncRemote.sendObject(c);
       }
-      @SuppressWarnings("null") // v being null is a bug so we want the NPE in this case
-      Void v = future.get();
-      return v == null ? RESPONSE[0] : RESPONSE[1];
+      return RESPONSE[0];
     } catch (Exception e) {
       e.printStackTrace();
       return IOUtil.printStackTrace(e);
@@ -379,10 +376,6 @@ public class WSCServerSideServer {
       // not thrown
       asyncRemote.sendText(OPS.BATCHING_ALLOWED.name());
       asyncRemote.flushBatch();
-      // If batching is supported then it will currently be enabled.
-      // Reset it so subsequent messages are not batched causing the
-      // test to fail.
-      asyncRemote.setBatchingAllowed(allowed);
       return RESPONSE[0];
     } catch (Exception e) {
       e.printStackTrace();

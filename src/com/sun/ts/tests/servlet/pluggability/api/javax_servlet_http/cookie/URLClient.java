@@ -24,7 +24,6 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
-import com.sun.ts.tests.servlet.api.javax_servlet_http.cookie.TestServlet;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 import com.sun.ts.tests.servlet.common.util.Data;
 import java.io.PrintWriter;
@@ -390,7 +389,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     // put expiry date into GMT
-    SimpleDateFormat sdf = new SimpleDateFormat(TestServlet.CUSTOM_HEADER_DATE_FORMAT);
+    SimpleDateFormat sdf = new SimpleDateFormat();
     sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
     String resultStringDate = sdf.format(expiryDate);
     try {
