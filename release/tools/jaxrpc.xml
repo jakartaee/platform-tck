@@ -48,9 +48,10 @@
 		<fileset dir="${ts.home}/install/${deliverable.name.lower}/other" 
 			includes="testsuite.jtt, vehicle.properties"/>
 	  </copy>
-          <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+          <!-- NOTICE will be EPL or EFTL specific: TBD-->
+          <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
                 <fileset dir="${ts.home}" includes="NOTICE" />
-          </copy>
+          </copy-->
       <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
 	  <!-- Copy over jaxrpcdocs -->

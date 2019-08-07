@@ -87,9 +87,10 @@
             <fileset dir="${ts.home}/internal/docs/${deliverable.name.lower}" 
                      includes="ServletJavadocAssertions.html, ServletSpecAssertions.html" />
         </copy>
-               <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+               <!-- NOTICE will be EPL or EFTL specific: TBD-->
+               <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
                    <fileset dir="${ts.home}" includes="NOTICE" />
-               </copy>
+               </copy-->
 		<copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
 	</target>
