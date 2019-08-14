@@ -130,6 +130,7 @@ for tck in ${TCK_LIST[@]}; do
     sed -i "s#impl\.vi=.*#impl.vi=glassfish#g" $BASEDIR/install/$tck/bin/ts.jte
     sed -i "s#jaxrs_impl_lib=.*#jaxrs_impl_lib=$GF_HOME/glassfish5/glassfish/modules/jersey-container-servlet-core.jar#g" $BASEDIR/install/$tck/bin/ts.jte
     sed -i "s#jaxrs_impl_name=.*#jaxrs_impl_name=jersey#g" $BASEDIR/install/$tck/bin/ts.jte
+    sed -i 's#servlet_adaptor=.*#servlet_adaptor=org\/glassfish\/jersey\/servlet\/ServletContainer.class#g' $BASEDIR/install/$tck/bin/ts.jte
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "websocket" == "$tck" ]

@@ -71,10 +71,7 @@ mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TS_HOME/bin
 ant config.vi
-cd $TS_HOME/src/com/sun/ts/tests/
-ant clean build package
 cd $TS_HOME/bin
-ant update.jaxrs.wars
 ant deploy.all
 
 cd $TS_HOME/src/com/sun/ts/tests/
