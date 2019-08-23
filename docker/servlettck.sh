@@ -68,10 +68,10 @@ $TCK_HOME/glassfish5/bin/asadmin start-domain
 cd $TS_HOME/bin
 ant -Dutil.dir=$TS_HOME config.security
 
-cd $TS_HOME/src/com/sun/ts/tests/servlet
+cd $TS_HOME/src/com/sun/ts/tests
 cat $TS_HOME/bin/server_policy.append>>$TCK_HOME/glassfish5/glassfish/domains/domain1/config/server.policy
 ant -Dutil.dir=$TS_HOME deploy.all
-ant -Dutil.dir=$TS_HOME runclient
+ant -Dutil.dir=$TS_HOME run.all
 echo "Test run complete"
 
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report

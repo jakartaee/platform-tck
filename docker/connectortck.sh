@@ -71,8 +71,8 @@ cd $TS_HOME/bin
 ant config.vi
 ant deploy.all
 
-cd $TS_HOME/src/com/sun/ts/tests/connector
-ant  runclient
+#cd $TS_HOME/src/com/sun/ts/tests/connector
+ant  run.all
 echo "Test run complete"
 
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
