@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -78,8 +78,10 @@ ant enable.jacc
 #cd $TS_HOME/src/com/sun/ts/tests/jacc/ejb
 #ant deploy runclient
 
-cd $TS_HOME/src/com/sun/ts/tests/jacc/web
-ant deploy runclient
+cd $TS_HOME/src/com/sun/ts/tests/
+ant deploy
+cd $TS_HOME/bin
+ant run.all
 echo "Test run complete"
 
 
