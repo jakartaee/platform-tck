@@ -94,11 +94,12 @@ cd $TCK_HOME/glassfish5/bin
 ./asadmin stop-domain
 ./asadmin start-domain
 
-cd $TS_HOME/src/com/sun/ts/tests/jaspic
+#cd $TS_HOME/src/com/sun/ts/tests/jaspic
+cd $TS_HOME/bin
 if [ -z "$KEYWORDS" ]; then
-  ant runclient
+  ant run.all
 else
-  ant runclient -Dkeywords=\"${KEYWORDS}\" ;
+  ant run.all -Dkeywords=\"${KEYWORDS}\" ;
 fi
 
 echo "Test run complete"

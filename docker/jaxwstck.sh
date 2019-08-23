@@ -101,12 +101,13 @@ cd $TCK_HOME/ri/glassfish5/glassfish/bin
 
 cd $TS_HOME/src/com/sun/ts/tests/jaxws
 ant -Dkeywords=all -Dbuild.vi=true build
+cd $TS_HOME/bin
 ant -Dkeywords=all deploy.all
-ant -Dkeywords=all runclient 
+ant -Dkeywords=all run.all 
 
 #run sigtest
-cd $TS_HOME/src/com/sun/ts/tests/signaturetest
-ant -Dreport.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}-sig -Dwork.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}-sig runclient
+#cd $TS_HOME/src/com/sun/ts/tests/signaturetest
+#ant -Dreport.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}-sig -Dwork.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}-sig runclient
 
 
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
