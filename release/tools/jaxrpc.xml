@@ -41,7 +41,7 @@
 
           <copy todir="${deliverable.bundle.dir}/lib" includeEmptyDirs="no">
                <fileset dir="${ts.home}/lib"
-                    includes="**/*"/>
+                    includes="sigtest.jar,javatest.jar,commons-logging*.jar,commons-http*.jar,jaxrpctck.jar,tsharness.jar,tspackager.jar,apiCheck.jar,ant_sun.jar"/>
           </copy>
 
 	  <copy todir="${deliverable.bundle.dir}/src">
@@ -99,12 +99,11 @@ com/sun/ts/tests/jaxrpc/**/*,
 com/sun/ts/tests/signaturetest/signature-repository/javax.xml.rpc.*,
 com/sun/ts/tests/signaturetest/signature-repository/javax.xml.namespace.*,
 com/sun/ts/tests/signaturetest/jaxrpc/**/*,
+com/sun/ts/tests/signaturetest/*,
 com/sun/ts/tests/common/vehicle/**/*,
 com/sun/ts/lib/porting/**/*TSURLInterface*,
 com/sun/ts/lib/implementation/sun/common/**/SunRIURL*,
 com/sun/ts/lib/deliverable/*, 
-com/sun/ts/lib/deliverable/cts/*, 
-com/sun/ts/lib/deliverable/cts/deploy/**/*,
 com/sun/ts/lib/porting/**/*,
 com/sun/ts/lib/deliverable/jaxrpc/*, 
 com/sun/ts/lib/implementation/javaee/**/*"
