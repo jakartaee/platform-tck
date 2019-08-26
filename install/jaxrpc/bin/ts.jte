@@ -37,7 +37,7 @@ env.ts_unix.description=\
 env.ts_unix.menu=true
 env.ts_unix.testsuite=com.sun.ts.lib.harness.TS
 env.ts_unix.command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
-        CLASSPATH=${TS_HOME}/lib/tsharness.jar:${TS_HOME}/lib/apiCheck.jar:${TS_HOME}/lib/jaxrpctck.jar:${TS_HOME}/lib/javatest.jar:${TS_HOME}/classes:${JAVA_HOME}/jre/lib/rt.jar:${LOCAL_CLASSES} \
+        CLASSPATH=${TS_HOME}/lib/sigtest.jar:${TS_HOME}/lib/tsharness.jar:${TS_HOME}/lib/apiCheck.jar:${TS_HOME}/lib/jaxrpctck.jar:${TS_HOME}/lib/javatest.jar:${TS_HOME}/classes:${JAVA_HOME}/jre/lib/rt.jar:${LOCAL_CLASSES} \
         DISPLAY=:0.0 \
         HOME=${user.home} \
         ${JAVA_HOME}/bin/java ${JAVA_OPTIONS} -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
@@ -102,7 +102,7 @@ porting.ts.jaxrpc.class.1=com.sun.ts.lib.implementation.sun.jaxrpc.SunRIJAXRPC
 webServerHost=localhost
 webServerPort=8080
 secureWebServerPort=8443
-
+webserver.home=
 #################################################################
 #The following properties must be set prior to running the JAXRPC
 #TCK tests. These properties are used for the JAXRPC security tests
@@ -128,7 +128,7 @@ ts_home=${ts.home}
 # jaxrpc.mode=j2ee	J2EE Programming Model
 #######################################################################
 jaxrpc.mode=jaxrpc
-
+local.classes=
 sigTestClasspath=${local.classes}:${JAVA_HOME}/lib/rt.jar
 platform.mode=standalone
 
