@@ -57,7 +57,7 @@
     </target>
 
     <target name="buildall" >
-        <property name="include.test.dir" value="jaxrpc"/>
+        <property name="include.test.dir" value="jaxrpc,signaturetest/jaxrpc"/>
         <property name="exclude.test.dir" value="nodir"/>
         <elementappend original="${include.test.dir}" prefix="com/sun/ts/tests" suffix="**/*.java" property="include.java.file"/>
         <elementappend original="${exclude.test.dir}" prefix="com/sun/ts/tests" suffix="**/*.java" property="exclude.java.file"/>

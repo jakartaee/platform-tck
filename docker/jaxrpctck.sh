@@ -80,6 +80,10 @@ echo "webHost1=localhost" >>  build.properties
 echo "webServerPort.1=8080" >>  build.properties
 echo "ts.home=$TS_HOME" >>  build.properties
 
+sed -i "s#ts.home=.*#ts.home=$TS_HOME#g" ts.jte
+sed -i "s#webserver.home=.*#webserver.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
+sed -i 's#local.classes=.*#local.classes=\$\{webserver.home\}/modules/webservices-osgi.jar:\$\{webserver.home\}/modules/jakarta.xml.rpc-api.jar:\${webserver.home\}/modules/jakarta.servlet-api.jar:\$\{webserver.home\}/modules/jakarta.mail.jar:\$\{webserver.home\}/modules/jaxb-osgi.jar:\$\{webserver.home\}/modules/jakarta.ejb-api.jar:\$\{webserver.home\}/modules/glassfish-naming.jar:\$\{webserver.home\}/modules/bean-validator.jar#g' ts.jte
+
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
@@ -101,7 +105,7 @@ sed -i 's/javax\.xml\.namespace//g' $TS_HOME/bin/sig-test-pkg-list.txt
 ./asadmin stop-domain
 ./asadmin start-domain
 
-cd $TS_HOME/src/com/sun/ts/tests/jaxrpc/
+cd $TS_HOME/src/com/sun/ts/tests/
 ant  -propertyfile $TS_HOME/bin/build.properties -Dreport.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME} -Dwork.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME} deploy.all 
 
 ant  -propertyfile $TS_HOME/bin/build.properties -Dreport.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME} -Dwork.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME} runclient

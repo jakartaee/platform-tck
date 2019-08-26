@@ -52,7 +52,7 @@ public class JAXRPCSigTest extends SigTest {
    *         verified.
    */
   protected String[] getPackages() {
-    return new String[] { "javax.xml.namespace", "javax.xml.rpc",
+    return new String[] { "javax.xml.rpc",
         "javax.xml.rpc.encoding", "javax.xml.rpc.handler",
         "javax.xml.rpc.handler.soap", "javax.xml.rpc.holders",
         "javax.xml.rpc.server", "javax.xml.rpc.soap", };

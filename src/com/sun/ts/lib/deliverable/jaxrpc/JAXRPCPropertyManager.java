@@ -20,6 +20,7 @@ import com.sun.javatest.TestEnvironment;
 import com.sun.ts.lib.deliverable.AbstractPropertyManager;
 import com.sun.ts.lib.deliverable.PropertyNotSetException;
 
+import java.io.File;
 import java.util.Properties;
 
 /**
@@ -101,7 +102,8 @@ public class JAXRPCPropertyManager extends AbstractPropertyManager {
       tsHome = getProperty("cts_home", null);
     if (tsHome != null)
       pTestProps.put("cts_home", tsHome);
-
+    if (tsHome != null)
+      pTestProps.put("bin.dir", tsHome + File.separator + "bin");
     // JAXRPC specific properties
     // property for running sig tests
     pTestProps.put("sigTestClasspath", getProperty("sigTestClasspath"));
