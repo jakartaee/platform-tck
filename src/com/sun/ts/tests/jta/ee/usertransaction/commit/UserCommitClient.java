@@ -401,9 +401,10 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
         retries++;
       }
       logMsg("Cleanup ok;");
-     else {
-	logMsg("CleanUp not required as Transaction is not in Active state.");
-     }
+      }
+      else {
+	    logMsg("CleanUp not required as Transaction is not in Active state.");
+      }
     } catch (Exception exception) {
       logErr("Cleanup Failed", exception);
       logTrace("Could not clean the environment");
