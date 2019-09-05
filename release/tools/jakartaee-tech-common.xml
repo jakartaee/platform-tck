@@ -24,7 +24,7 @@
     <!--    <property name="test.areas" value="samples"/> -->
 
     <property name="deliverable.version"           value="8.0"/>
-    <property name="deliverable.tck.version"           value="8.0.0"/>
+    <property name="deliverable.tck.version"           value="8.0.1"/>
 
     <target name="init">
         <mkdir dir="${deliverable.bundle.dir}/bin"/>
