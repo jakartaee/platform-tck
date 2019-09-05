@@ -15,6 +15,12 @@
 #
 
 #
+# Bug ID: https://github.com/eclipse-ee4j/jsonb-api/issues/180
+#
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_standalone
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_standalone
+
+#
 # Bug ID: https://github.com/eclipse-ee4j/jakartaee-tck/issues/102
 #
 com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_standalone

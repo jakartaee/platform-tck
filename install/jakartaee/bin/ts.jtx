@@ -173,6 +173,18 @@ com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.
 com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_servlet
 
 #
+# Bug ID: https://github.com/eclipse-ee4j/jsonb-api/issues/180
+#
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_servlet
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_servlet
+
+#
 # Bug ID: https://github.com/eclipse-ee4j/jakartaee-tck/issues/102
 #
 com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_appclient
@@ -191,7 +203,6 @@ com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#te
 com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_ejb
 com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_jsp
 com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_servlet
-
 
 ################
 # Interop
