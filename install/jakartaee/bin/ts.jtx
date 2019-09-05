@@ -180,6 +180,19 @@ com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianC
 com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_jsp
 com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_servlet
 
+#
+# Bug ID: https://github.com/eclipse-ee4j/jakartaee-tck/issues/103
+#
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_servlet
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_servlet
+
+
 ################
 # Interop
 ################

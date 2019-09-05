@@ -18,3 +18,10 @@
 # Bug ID: https://github.com/eclipse-ee4j/jakartaee-tck/issues/102
 #
 com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_standalone
+
+#
+# Bug ID: https://github.com/eclipse-ee4j/jakartaee-tck/issues/103
+#
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_standalone
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_standalone
+
