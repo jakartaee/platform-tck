@@ -379,6 +379,9 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
 
   public void cleanup() throws Fault {
     try {
+     // Referring to issue raised (https://github.com/eclipse-ee4j/jakartaee-tck/issues/70)
+     // Performing additional check if userTransaction is Active or not.
+     if(userTransaction.getStatus() == Status.STATUS_ACTIVE) {
       // Frees Current Thread, from Transaction
       Transact.free();
       try {
@@ -398,6 +401,10 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
         retries++;
       }
       logMsg("Cleanup ok;");
+      }
+      else {
+	    logMsg("CleanUp not required as Transaction is not in Active state.");
+      }
     } catch (Exception exception) {
       logErr("Cleanup Failed", exception);
       logTrace("Could not clean the environment");
