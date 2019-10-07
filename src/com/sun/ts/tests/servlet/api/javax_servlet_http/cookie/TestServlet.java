@@ -72,6 +72,8 @@ import java.util.TimeZone;
 
 public class TestServlet extends HttpTCKServlet {
 
+  public static String CUSTOM_HEADER_DATE_FORMAT = "yyyy-MM-dd HH:mm";
+
   public void cloneTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
@@ -543,7 +545,8 @@ public class TestServlet extends HttpTCKServlet {
     testCookie.setVersion(0);
 
     testCookie.setMaxAge(2);
-    SimpleDateFormat sdf = new SimpleDateFormat();
+    // Use a custom format to ensure Locale independence
+    SimpleDateFormat sdf = new SimpleDateFormat(CUSTOM_HEADER_DATE_FORMAT);
     sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
     Date currDate = new Date();
     String dateString = sdf.format(currDate);
