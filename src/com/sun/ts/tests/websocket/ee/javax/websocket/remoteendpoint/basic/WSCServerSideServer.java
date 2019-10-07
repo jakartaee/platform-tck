@@ -151,7 +151,7 @@ public class WSCServerSideServer {
    * Again, since the asynchronous thread sends message in virtually no time,
    * one does not have any force to hold that send operation in its thread, to
    * check the send operation is really unblocking and asynchronous
-   *
+   * 
    * @param asyncRemote
    * @return
    */
@@ -328,11 +328,6 @@ public class WSCServerSideServer {
       // really there is nothing to test, except that the exception is
       // not thrown
       basicRemote.sendText(OPS.BATCHING_ALLOWED.name());
-      basicRemote.flushBatch();
-      // If batching is supported then it will currently be enabled.
-      // Reset it so subsequent messages are not batched causing the
-      // test to fail.
-      basicRemote.setBatchingAllowed(allowed);
       return RESPONSE[0];
     } catch (Exception e) {
       e.printStackTrace();

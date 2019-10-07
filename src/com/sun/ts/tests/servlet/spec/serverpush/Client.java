@@ -247,22 +247,23 @@ public class Client extends EETest {
           + "HttpServletRequest should be added to the builder");
     }
 
-    if (response.contains("if-match")) {
+    if (response.contains("If-Match")) {
       throw new Fault(
           "Test fail: Conditional headers should NOT be added to the builder");
     }
 
-    if (response.contains("range")) {
+    if (response.contains("Range")) {
       throw new Fault(
           "Test fail: Range headers should NOT be added to the builder");
     }
 
-    if (!response.contains("authorization")) {
+    if (!response.contains("Authorization")) {
       throw new Fault(
           "Test fail: Authorization headers should be added to the builder");
     }
 
-    if (!response.contains("referer=" + requestURI)) {
+    if (!(response.contains("referer=" + requestURI)
+        || response.contains("Referer=" + requestURI))) {
       throw new Fault(
           "Test fail: Referer headers should be set to " + requestURI);
     }
