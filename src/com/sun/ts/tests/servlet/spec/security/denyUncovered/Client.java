@@ -47,7 +47,7 @@ public class Client extends ServiceEETest implements Serializable {
   private int portnum = 0;
 
   // this must be the decoded context path corresponding to the web module
-  private String contextPath = "/servlet_sec_denyUncovered_web";
+  private String contextPath = "/servlet_sec_denyUncovered";
 
   private String ctxtTestServlet = contextPath + "/TestServlet"; // specifies
                                                                  // access to

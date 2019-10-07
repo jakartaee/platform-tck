@@ -21,7 +21,7 @@
 <sun-application>
   <web>
     <web-uri>servlet_sec_denyUncovered_web.war</web-uri>
-    <context-root>servlet_sec_denyUncovered_web</context-root>
+    <context-root>servlet_sec_denyUncovered</context-root>
   </web>
   <unique-id>0</unique-id>
   <security-role-mapping>
