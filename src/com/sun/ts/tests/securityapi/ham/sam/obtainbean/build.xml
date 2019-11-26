@@ -37,11 +37,7 @@
 						includes="permissions.xml"
 						fullpath="META-INF/permissions.xml"/>
 		</ts.war>
-		<ts.ear archivename="${app.name}">
-                                <zipfileset dir="${ts.home}/src/${pkg.dir}"
-				includes="permissions.xml"
-				fullpath="META-INF/permissions.xml"/>
-                </ts.ear>
+		<ts.ear archivename="${app.name}"/>
 	</target>
 
         <target name="compile">
