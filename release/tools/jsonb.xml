@@ -22,7 +22,7 @@
   <import file="../../bin/xml/ts.common.props.xml"/>
   
   <property name="deliverable.version" value="1.0"/>
-  <property name="deliverable.tck.version" value="1.0.1"/>
+  <property name="deliverable.tck.version" value="1.0.2"/>
   <property name="exclude.source.folder" value="com/sun/ts/tests/jsonb/cdi/**"/>
   
   <condition property="exclude.classes" value="">
