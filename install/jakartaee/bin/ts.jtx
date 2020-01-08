@@ -269,3 +269,7 @@ com/sun/ts/tests/interop/security/ejbclient/stateless/Client.java#test5_reverse
 #
 com/sun/ts/tests/securityapi/idstore/noidstore/Client.java#testIdentityStoreValidate_noIDStore
 com/sun/ts/tests/securityapi/ham/sam/delegation/Client.java#testSAMDelegatesHAM
+
+#
+# Tests excluded for https://github.com/eclipse-ee4j/jakartaee-platform/issues/139
+com/sun/ts/tests/securityapi/ham/sam/obtainbean/Client.java\#testSAMObtainBean
