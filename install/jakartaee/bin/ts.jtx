@@ -272,4 +272,4 @@ com/sun/ts/tests/securityapi/ham/sam/delegation/Client.java#testSAMDelegatesHAM
 
 #
 # Tests excluded for https://github.com/eclipse-ee4j/jakartaee-platform/issues/139
-com/sun/ts/tests/securityapi/ham/sam/obtainbean/Client.java\#testSAMObtainBean
+com/sun/ts/tests/securityapi/ham/sam/obtainbean/Client.java#testSAMObtainBean
