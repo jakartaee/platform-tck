@@ -36,7 +36,7 @@ $Id$
       <!-- build provider jar -->
       <jar destfile="${lib.dir}/${provider.jar}">
           <fileset dir="${class.dir}" includes="${pkg.dir}/*.class"/>
-          <fileset dir="${src.dir}/${pkg.dir}" includes="META-INF/services/javax.json.spi.JsonProvider"/>
+          <fileset dir="${src.dir}/${pkg.dir}" includes="META-INF/services/jakarta.json.spi.JsonProvider"/>
       </jar>
   </target>
 

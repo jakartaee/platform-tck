@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,14 +23,15 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.json.*;
-import javax.json.spi.JsonProvider;
-import javax.json.stream.*;
+import jakarta.json.*;
+import jakarta.json.spi.JsonProvider;
+import jakarta.json.stream.*;
 import java.io.*;
 import java.nio.charset.Charset;
 
 import com.sun.javatest.Status;
 import java.util.Properties;
+import java.util.ServiceLoader;
 import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
@@ -90,6 +91,13 @@ public class Client extends ServiceEETest {
       else {
         logErr("Current provider is not my provider - unexpected.");
         pass = false;
+        ServiceLoader<JsonProvider> loader = ServiceLoader.load(JsonProvider.class);
+        Iterator<JsonProvider> it = loader.iterator();
+        List<JsonProvider> providers = new ArrayList<>();
+        while(it.hasNext()) {
+            providers.add(it.next());
+        }
+        logMsg("Providers: "+providers);
       }
     } catch (Exception e) {
       throw new Fault("jsonProviderTest1 Failed: ", e);

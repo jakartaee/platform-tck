@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,8 +50,8 @@ public class JSONPSigTest extends SigTestEE {
    *         verified.
    */
   protected String[] getPackages(String vehicleName) {
-    return new String[] { "javax.json", "javax.json.spi",
-        "javax.json.stream", };
+    return new String[] { "jakarta.json", "jakarta.json.spi",
+        "jakarta.json.stream", };
 
   }
 
