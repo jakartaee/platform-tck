@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -55,7 +55,9 @@ public abstract class SignatureTestDriver {
     } else if (isJavaSEVersion("1.8")) {
       thePkgListFile = "sig-test-pkg-list_se8.txt";
     } else if (isJavaSEVersion("9")) {
-      thePkgListFile = "sig-test-pkg-list_se9.txt";
+        thePkgListFile = "sig-test-pkg-list_se9.txt";    
+    } else if (isJavaSEVersion("11")) {
+        thePkgListFile = "sig-test-pkg-list_se11.txt";
     } else {
       // we didnt properly identify the java se version being used so
       // we will try to use the sig-test-pkg-list.txt file.
@@ -106,7 +108,9 @@ public abstract class SignatureTestDriver {
     } else if (isJavaSEVersion("1.8")) {
       theMapFile = "sig-test_se8.map";
     } else if (isJavaSEVersion("9")) {
-      theMapFile = "sig-test_se9.map";
+        theMapFile = "sig-test_se9.map";
+    } else if (isJavaSEVersion("11")) {
+        theMapFile = "sig-test_se11.map";
     } else {
       // we didnt properly identify the java se version being used so
       // we will try to use the sig-test.map file.
