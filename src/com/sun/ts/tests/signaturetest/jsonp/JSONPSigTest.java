@@ -120,7 +120,9 @@ public class JSONPSigTest extends SigTestEE {
    * define which sig driver we will use
    */
   protected SignatureTestDriver getSigTestDriver() {
-
+    String version = (String) System.getProperties().get("java.version");
+    if (version.startsWith("9") || version.startsWith("11"))
+      driver = new Jdk9SigTestDriver();
     if (driver == null) {
       driver = SignatureTestDriverFactory
           .getInstance(SignatureTestDriverFactory.SIG_TEST);
