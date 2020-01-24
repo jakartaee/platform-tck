@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,11 +26,11 @@ import com.sun.ts.tests.el.common.util.ResolverType;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.elresolver.VectELResolver;
 
-import javax.el.ELResolver;
-import javax.el.CompositeELResolver;
-import javax.el.ELContext;
-import javax.el.FunctionMapper;
-import javax.el.VariableMapper;
+import jakarta.el.ELResolver;
+import jakarta.el.CompositeELResolver;
+import jakarta.el.ELContext;
+import jakarta.el.FunctionMapper;
+import jakarta.el.VariableMapper;
 
 /**
  * A basic ELContext that meets the needs of most EL tests. The no-args
