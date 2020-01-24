@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.resource.ConnectionFactoryDefinition;

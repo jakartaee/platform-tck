@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton;
 
 import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.verifyDataSource;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.annotation.sql.DataSourceDefinition;

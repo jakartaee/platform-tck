@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 
 import java.util.List;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.ExcludeClassInterceptors;
 import javax.interceptor.ExcludeDefaultInterceptors;

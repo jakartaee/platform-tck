@@ -46,7 +46,7 @@ public class CAJSigTest extends SigTest {
   // all the classes that make up common annotations
   private final String GENERATED = "javax.annotation.Generated";
 
-  private final String MANAGEDBEAN = "javax.annotation.ManagedBean";
+  private final String MANAGEDBEAN = "jakarta.annotation.ManagedBean";
 
   private final String POSTCONSTRUCT = "javax.annotation.PostConstruct";
 

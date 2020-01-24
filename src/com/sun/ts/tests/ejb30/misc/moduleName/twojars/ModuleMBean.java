@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.misc.moduleName.twojars;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.annotation.Resource;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;

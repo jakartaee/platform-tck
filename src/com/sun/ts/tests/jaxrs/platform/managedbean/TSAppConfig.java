@@ -19,7 +19,7 @@ package com.sun.ts.tests.jaxrs.platform.managedbean;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;

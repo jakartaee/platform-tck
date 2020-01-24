@@ -31,7 +31,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.sql.DataSource;
 import javax.transaction.UserTransaction;
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;

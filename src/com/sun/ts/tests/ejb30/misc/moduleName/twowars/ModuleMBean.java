@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.misc.moduleName.twowars;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;

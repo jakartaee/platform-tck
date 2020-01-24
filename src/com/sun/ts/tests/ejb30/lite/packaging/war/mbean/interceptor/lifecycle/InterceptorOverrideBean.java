@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.interceptor.ExcludeDefaultInterceptors;
 

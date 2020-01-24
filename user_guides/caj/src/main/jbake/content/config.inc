@@ -62,7 +62,7 @@ environment variables:
 #javax.annotation.Generated
 ca.sig.generated=true
 
-#javax.annotation.ManagedBean
+#jakarta.annotation.ManagedBean
 ca.sig.managedbean=true
 
 #javax.annotation.PostConstruct

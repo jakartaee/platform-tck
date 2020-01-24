@@ -131,7 +131,7 @@ meth public abstract !hasdefault java.lang.String comments()
 meth public abstract !hasdefault java.lang.String date()
 meth public abstract java.lang.String[] value()
 
-CLSS public abstract interface !annotation javax.annotation.ManagedBean
+CLSS public abstract interface !annotation jakarta.annotation.ManagedBean
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation

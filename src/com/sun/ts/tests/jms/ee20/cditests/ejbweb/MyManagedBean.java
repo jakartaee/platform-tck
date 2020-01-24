@@ -27,7 +27,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;

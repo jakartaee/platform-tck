@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.misc.moduleName.appclientejb;
 
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;

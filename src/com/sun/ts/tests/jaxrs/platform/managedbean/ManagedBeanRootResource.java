@@ -18,7 +18,7 @@ package com.sun.ts.tests.jaxrs.platform.managedbean;
 
 import java.lang.annotation.Annotation;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.interceptor.Interceptors;

@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.assembly.mbean.appclient;
 
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
