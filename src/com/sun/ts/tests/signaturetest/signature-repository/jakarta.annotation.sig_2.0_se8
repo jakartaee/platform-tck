@@ -1,8 +1,8 @@
 #Signature file v4.1
-#Version 1.2_se8
+#Version 2.0_se8
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2020, 2020 Contributors to the Eclipse Foundation.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -108,6 +108,13 @@ CLSS public abstract interface !annotation java.lang.annotation.Documented
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
 
+CLSS public abstract interface !annotation java.lang.annotation.Repeatable
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> value()
+
 CLSS public abstract interface !annotation java.lang.annotation.Retention
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -131,7 +138,7 @@ meth public abstract !hasdefault java.lang.String comments()
 meth public abstract !hasdefault java.lang.String date()
 meth public abstract java.lang.String[] value()
 
-CLSS public abstract interface !annotation javax.annotation.ManagedBean
+CLSS public abstract interface !annotation jakarta.annotation.ManagedBean
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
@@ -152,11 +159,12 @@ intf java.lang.annotation.Annotation
 CLSS public abstract interface !annotation javax.annotation.Priority
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, PARAMETER])
 intf java.lang.annotation.Annotation
 meth public abstract int value()
 
 CLSS public abstract interface !annotation javax.annotation.Resource
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class javax.annotation.Resources)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, FIELD, METHOD])
 innr public final static !enum AuthenticationType
@@ -304,6 +312,7 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public abstract interface !annotation javax.annotation.sql.DataSourceDefinition
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class javax.annotation.sql.DataSourceDefinitions)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
@@ -331,4 +340,3 @@ CLSS public abstract interface !annotation javax.annotation.sql.DataSourceDefini
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract javax.annotation.sql.DataSourceDefinition[] value()
-
