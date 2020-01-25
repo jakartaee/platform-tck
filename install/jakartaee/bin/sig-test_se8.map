@@ -184,7 +184,7 @@ javax.validation=2.0_se8
 # Managed Beans 1.0 - no API to test
 # (This is listed along w/ EE spec at JSR-316)
 # Managed Beans consists of one annotation:   
-#     jakarta.annotation.ManagedBean 
+#     javax.annotation.ManagedBean 
 # ...so the sigtests for this area already covered under annotations sigs.
 
 # Dependency Injection for Java 1.0

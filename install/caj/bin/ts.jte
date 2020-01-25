@@ -231,7 +231,7 @@ command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
 #javax.annotation.Generated
 ca.sig.generated=true
 
-#jakarta.annotation.ManagedBean
+#javax.annotation.ManagedBean
 ca.sig.managedbean=true
 
 #javax.annotation.PostConstruct
