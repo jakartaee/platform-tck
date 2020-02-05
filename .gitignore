@@ -1,4 +1,7 @@
 target/
+.settings/
+.classpath
+.project
 /user_guides/jakartaee/src/main/jbake/content/attributes.conf-
 /user_guides/jakartaee/src/main/jbake/content/config.inc
 /user_guides/jakartaee/src/main/jbake/content/debug-tips.inc

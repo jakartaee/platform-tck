@@ -1,0 +1,29 @@
+<!-- Bean Validation TCK License: Apache License, Version 2.0 See the license.txt 
+    file in the root directory or <http://www.apache.org/licenses/LICENSE-2.0>. -->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="JSR-380-TCK" verbose="1">
+    <test name="JSR-380-TCK">
+
+        <method-selectors>
+            <method-selector>
+                <selector-class
+                    name="org.hibernate.beanvalidation.tck.util.IntegrationTestsMethodSelector" />
+            </method-selector>
+            <method-selector>
+                <selector-class
+                    name="org.hibernate.beanvalidation.tck.util.JavaFXTestsMethodSelector" />
+            </method-selector>
+        </method-selectors>
+
+        <packages>
+            <package
+                name="org.hibernate.beanvalidation.tck.tests" />
+        </packages>
+
+        <!-- Comment out the <packages> block and uncomment this to run a single test class -->
+<!--         <classes> -->
+<!--             <class name="org.hibernate.beanvalidation.tck.tests.validation.ValidatePropertyTest"/> -->
+<!--         </classes> -->
+
+    </test>
+</suite>

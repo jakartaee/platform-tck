@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>jakarta.tck</groupId>
+    <artifactId>jakartaee-tck-parent</artifactId>
+    <version>9.0.0-SNAPSHOT</version>
+    <name>JakartaEE TCK :: Parent</name>
+    <packaging>pom</packaging>
+
+    <licenses>
+        <license>
+            <name>Eclipse Public License v. 2.0</name>
+            <url>http://www.eclipse.org/legal/epl-v20.html</url>
+            <distribution>repo</distribution>
+            <comments>Standard Eclipse License</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com/eclipse-ee4j/jakartaee-tck.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/jakartaee-tck.git</developerConnection>
+        <url>https://github.com/eclipse-ee4j/jakartaee-tck.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <modules>
+        <module>beanvalidation</module>
+        <module>jsonb</module>
+    </modules>
+
+    <properties>
+        <!-- Specification versions -->
+        <beanvalidation.version>2.0.5</beanvalidation.version>
+        <jsonb.version>2.0.0-SNAPSHOT</jsonb.version>
+        <jsonp.version>2.0.0-RC1</jsonp.version>
+        
+        <!-- Runtime implementation versions -->
+        <liberty.version>20.0.0.1</liberty.version>
+    </properties>
+</project>
+
