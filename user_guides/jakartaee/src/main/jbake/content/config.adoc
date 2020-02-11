@@ -1105,7 +1105,7 @@ use self signed certificate bundled with the CTS bundle. These
 certificates are generated with localhost as the hostname and would work
 only when orb.host value is set to localhost in ts.jte. If the server's
 hostname is used instead of the localhost, the tests in this suite might
-fail with the below exception - javax.websocket.DeploymentException: SSL
+fail with the below exception - jakarta.websocket.DeploymentException: SSL
 handshake has failed.
 
 =======================================================================

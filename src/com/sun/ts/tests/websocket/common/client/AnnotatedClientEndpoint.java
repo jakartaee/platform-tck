@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,20 +19,20 @@ package com.sun.ts.tests.websocket.common.client;
 
 import java.util.concurrent.CountDownLatch;
 
-import javax.websocket.CloseReason;
-import javax.websocket.EndpointConfig;
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.OnClose;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.OnOpen;
+import jakarta.websocket.Session;
+import jakarta.websocket.WebSocketContainer;
 
 /**
  * For tests where the annotated client endpoint is to be tested, this
  * predefined endpoint can be used. Though merely a bridge to a ClientEndpoint
  * which can be used to connect to server using it in
- * {@link WebSocketContainer#connectToServer(javax.websocket.Endpoint, javax.websocket.ClientEndpointConfig, java.net.URI)}
+ * {@link WebSocketContainer#connectToServer(jakarta.websocket.Endpoint, jakarta.websocket.ClientEndpointConfig, java.net.URI)}
  * , this annotated endpoint is used to test the {@link OnMessage},
  * {@link OnError}, {@link OnOpen}, and {@link OnClose} are being called.
  * 

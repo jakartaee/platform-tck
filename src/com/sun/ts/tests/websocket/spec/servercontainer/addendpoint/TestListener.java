@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,11 +20,11 @@
  */
 package com.sun.ts.tests.websocket.spec.servercontainer.addendpoint;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.websocket.DeploymentException;
-import javax.websocket.server.ServerContainer;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.websocket.DeploymentException;
+import jakarta.websocket.server.ServerContainer;
 
 public class TestListener implements ServletContextListener {
 
@@ -45,7 +46,7 @@ public class TestListener implements ServletContextListener {
     try {
       final ServerContainer serverContainer = (ServerContainer) sce
           .getServletContext()
-          .getAttribute("javax.websocket.server.ServerContainer");
+          .getAttribute("jakarta.websocket.server.ServerContainer");
       serverContainer.addEndpoint(
           com.sun.ts.tests.websocket.spec.servercontainer.addendpoint.WSTestServer.class);
       serverContainer.addEndpoint(
