@@ -1552,6 +1552,29 @@ public class JAXRSClient extends JaxrsCommonClient {
     }
   }
 
+    /*
+   * @testName: responseCreatedRelativeURITest
+   *
+   * @assertion_ids: JAXRS:JAVADOC:121;
+   *
+   * @test_Strategy: The resource calls Response.created() to set the Location header with a
+   * relative URI. The relative URI should be converted into an absolute URI by resolving it
+   * relative to the base URI.
+   */
+  public void responseCreatedRelativeURITest()
+      throws Fault {
+    String resourceUrl = getAbsoluteUrl();
+    String expected = resourceUrl.substring(0, resourceUrl.length() - "resource".length()) + "created";
+    Response response = invokeGet("created");
+    try {
+      assertFault(expected.equals(response.getHeaderString("location")),
+        "#response.getHeaderString(\"location\") [" +
+        response.getHeaderString("location") + "] differs from ", expected);
+    } finally {
+      response.close();
+    }
+  }
+
   // ////////////////////////////////////////////////////////////////////
   protected <T> GenericType<T> generic(Class<T> clazz) {
     return new GenericType<T>(clazz);
