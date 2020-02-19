@@ -277,6 +277,17 @@ public class ResponseTest {
     return response;
   }
 
+  @Path("created")
+  @GET
+  public Response setLocationHeader() {
+    try {
+      Response response = Response.created(new URI("created")).status(200).build();
+      return response;
+    } catch (URISyntaxException e) {
+       throw new RuntimeException(e);
+    }
+  }
+
   // ////////////////////////////////////////////////////////////////////
   protected static Link createLink(String path, String rel) {
     return Link.fromUri(createUri(path)).rel(rel).build();
