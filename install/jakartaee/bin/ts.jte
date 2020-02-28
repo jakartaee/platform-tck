@@ -1287,7 +1287,7 @@ command.testExecuteAppClient2= \
         PATH="${javaee.home.ri}/nativelib" \
         APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/riinterceptors.jar \
 	TZ=${tz} \
-        ${JAVA_HOME}/bin/java \
+        ${RI_JAVA_HOME}/bin/java \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
         -Djava.security.policy=${javaee.home.ri}/lib/appclient/client.policy \
         -Dcts.tmp=$harness.temp.directory \
@@ -1316,7 +1316,7 @@ command.testExecuteAppClient2= \
         -Dprovider.configuration.file=${provider.configuration.file} \
         -Djava.security.properties=${s1as.domain}/${sjsas.instance.config.dir}/ts.java.security \
         -Dcom.sun.enterprise.iiop.security.interceptorFactory=com.sun.ts.tests.interop.csiv2.common.LoggingSecRequestInterceptorFactory \
-        -Djava.ext.dirs=${JAVA_HOME}/lib/ext${pathsep}${JAVA_HOME}/jre/lib/ext${pathsep}${javaee.home}/javadb/lib \
+        -Djava.ext.dirs=${RI_JAVA_HOME}/lib/ext${pathsep}${RI_JAVA_HOME}/jre/lib/ext${pathsep}${javaee.home}/javadb/lib \
         -Dcom.sun.aas.configRoot=${javaee.home.ri}/config \
         -Ddeliverable.class=${deliverable.class} -javaagent:${javaee.home.ri}/lib/gf-client.jar=arg=-configxml,arg=${ts.home}/tmp/appclient/ri.sun-acc.xml,client=jar=$testExecuteArgs
 
