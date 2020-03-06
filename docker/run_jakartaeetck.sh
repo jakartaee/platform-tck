@@ -36,6 +36,12 @@ if [ -z "${CTS_HOME}" ]; then
   export CTS_HOME="${WORKSPACE}"
 fi
 export TS_HOME=${CTS_HOME}/jakartaeetck/
+
+
+if [ -z "${RI_JAVA_HOME}" ]; then
+  export RI_JAVA_HOME=$JAVA_HOME
+fi
+
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
 echo "ANT_HOME ${ANT_HOME}"
@@ -140,6 +146,10 @@ else
 fi
 chmod -R 777 ${CTS_HOME}/ri
 
+if [ ! -z "${RI_JAVA_HOME}" ]; then
+ echo "AS_JAVA=${RI_JAVA_HOME}" >> ${CTS_HOME}/ri/glassfish5/glassfish/config/asenv.conf
+fi
+
 export ADMIN_PASSWORD_FILE="${CTS_HOME}/admin-password.txt"
 echo "AS_ADMIN_PASSWORD=adminadmin" > ${ADMIN_PASSWORD_FILE}
 
@@ -187,10 +197,11 @@ sleep 5
 echo "Stopping RI domain"
 ${CTS_HOME}/ri/glassfish5/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
 sleep 5
+
 echo "Killing any RI java processes that were not stopped gracefully"
 echo "Pending process to be killed:"
-ps -eaf | grep "$JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" 
-for i in `ps -eaf | grep "$JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
+ps -eaf | grep "$RI_JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" 
+for i in `ps -eaf | grep "$RI_JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
 do
   echo "[killJava.sh] kill -9 $i"
   kill -9 $i
@@ -500,7 +511,7 @@ else
   sed -i "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
   mv ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml  ${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/
+tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/ ${CTS_HOME}/ri/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/
 
 if [ -z ${vehicle} ];then
   JUNIT_REPORT_FILE_NAME=${TEST_SUITE}-junitreports.tar.gz
