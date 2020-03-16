@@ -31,11 +31,16 @@ import java.util.Date;
 import java.util.Properties;
 
 /**
- * Some tests use 2100 as a test calendar: January February Su Mo Tu We Th Fr Sa
- * Su Mo Tu We Th Fr Sa 1 2 1 2 3 4 5 6 3 4 5 6 7 8 9 7 8 9 10 11 12 13 10 11 12
- * 13 14 15 16 14 15 16 17 18 19 20 17 18 19 20 21 22 23 21 22 23 24 25 26 27 24
- * 25 26 27 28 29 30 28 31
- * 
+  * Some tests use 2100 as a test calendar:
+       January               February
+ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
+                 1  2      1  2  3  4  5  6
+  3  4  5  6  7  8  9   7  8  9 10 11 12 13
+ 10 11 12 13 14 15 16  14 15 16 17 18 19 20
+ 17 18 19 20 21 22 23  21 22 23 24 25 26 27
+ 24 25 26 27 28 29 30  28
+ 31
+
  */
 public class Client extends ClientBase {
   private static final int WAIT_YEARS = 6;
@@ -141,9 +146,10 @@ public class Client extends ClientBase {
     }
   }
 
-  protected void verifyNextTimeout(Date expected, Timer timer)
+  protected void verifyNextTimeout(Date expected, Timer timer, long... customIgnorableMillis)
       throws RuntimeException {
-    final long ignoreableMillis = DateUtils.MILLIS_PER_MINUTE;
+    final long ignorableMillis = customIgnorableMillis.length == 0 ?
+            DateUtils.MILLIS_PER_MINUTE : customIgnorableMillis[0];
     Date actual = scheduleBean.getNextTimeout(timer);
     long actualTimeRemaining = scheduleBean.getTimeRemaining(timer);
     Helper.getLogger().fine(
@@ -153,24 +159,23 @@ public class Client extends ClientBase {
     appendReason("Compare expected nextTimeout " + expected
         + ", and actual nextTimeout " + actual);
     try {
-      assertEquals(null, true,
-          DateUtils.isSameInstant(DateUtils.round(expected, Calendar.MINUTE),
-              DateUtils.round(actual, Calendar.MINUTE)));
+      assertEquals(null, true, DateUtils.isSameInstant(
+          DateUtils.round(expected, Calendar.MINUTE),
+          DateUtils.round(actual, Calendar.MINUTE)));
     } catch (RuntimeException e) {
-      appendReason(
-          "Rounded dates are not equal; next check if they are close.");
+      appendReason("Rounded dates are not equal; next check if they are close.");
       long dif = Math.abs(expected.getTime() - actual.getTime());
-      if (dif <= ignoreableMillis) {
-        appendReason("The time diff " + dif + " <= ignoreableMillis "
-            + ignoreableMillis);
+      if (dif <= ignorableMillis) {
+        appendReason("The time diff " + dif + " <= ignorableMillis "
+            + ignorableMillis);
       } else {
-        throw new RuntimeException(
-            "The time diff " + dif + " > " + ignoreableMillis);
+        throw new RuntimeException("The time diff " + dif + " > "
+            + ignorableMillis);
       }
     }
     Helper.assertCloseEnough("Check timeRemaining",
         expected.getTime() - System.currentTimeMillis(), actualTimeRemaining,
-        ignoreableMillis, getReasonBuffer());
+        ignorableMillis, getReasonBuffer());
   }
 
   protected Timer createTimer(ScheduleExpression exp, TimerInfo... infos) {
@@ -463,7 +468,13 @@ public class Client extends ClientBase {
       expectedNextTimeout = DateUtils.setMonths(expectedNextTimeout,
           Calendar.FEBRUARY);
       Timer timer = createTimer(exp);
-      verifyNextTimeout(expectedNextTimeout, timer);
+
+      // Use custom ignorable millis to accommodate the hour difference between
+      // the test timer's date (e.g., Feb 29) and execution date (e.g., March)
+      // due to daylight time switch in certain regions.
+      // See https://github.com/eclipse-ee4j/jakartaee-tck/issues/163
+      verifyNextTimeout(expectedNextTimeout, timer,
+              DateUtils.MILLIS_PER_HOUR + DateUtils.MILLIS_PER_MINUTE);
     }
     assertEquals("Check # of timers", 3, scheduleBean.getTimers().size());
   }
