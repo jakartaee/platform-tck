@@ -30,9 +30,11 @@ if [ "false" == "${buildStandaloneTCKFlag}" ]; then
   exit 0
 fi
 
-echo "########## Trunk.Install.V5 Config ##########"
-wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip -o latest-glassfish.zip
+if [ ! -d "$GF_HOME/glassfish5" ]; then
+  echo "########## Trunk.Install.V5 Config ##########"
+  wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
+  unzip -o latest-glassfish.zip
+fi
 
 if [ ! -z "$GF_VERSION_URL" ]; then
   wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version

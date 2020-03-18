@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,14 +28,14 @@ import java.math.RoundingMode;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import javax.el.ELContext;
-import javax.el.ELException;
-import javax.el.ELResolver;
-import javax.el.ExpressionFactory;
-import javax.el.MethodExpression;
-import javax.el.PropertyNotFoundException;
-import javax.el.PropertyNotWritableException;
-import javax.el.ValueExpression;
+import jakarta.el.ELContext;
+import jakarta.el.ELException;
+import jakarta.el.ELResolver;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.MethodExpression;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.PropertyNotWritableException;
+import jakarta.el.ValueExpression;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
@@ -82,9 +83,9 @@ public final class ExprEval {
    *
    * @return - The result of the expression evaluation.
    * 
-   * @throws javax.el.ELException
-   * @throws javax.el.PropertyNotFoundException
-   * @throws javax.el.PropertyNotWritableException
+   * @throws jakarta.el.ELException
+   * @throws jakarta.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotWritableException
    */
   public static Object evaluateValueExpression(String exprStr,
       NameValuePair[] nameVals, Class expectedClass, ResolverType resolverType)
@@ -143,9 +144,9 @@ public final class ExprEval {
    *
    * @return - The result of the expression evaluation.
    *
-   * @throws javax.el.ELException
-   * @throws javax.el.PropertyNotFoundException
-   * @throws javax.el.PropertyNotWritableException
+   * @throws jakarta.el.ELException
+   * @throws jakarta.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotWritableException
    */
   public static Object evaluateValueExpression(String exprStr,
       NameValuePair[] nameVals, Class expectedClass) throws ELException,
@@ -169,9 +170,9 @@ public final class ExprEval {
    *
    * @return - the result of the method invocation.
    * 
-   * @throws javax.el.ELException
-   * @throws javax.el.PropertyNotFoundException
-   * @throws javax.el.PropertyNotWritableException
+   * @throws jakarta.el.ELException
+   * @throws jakarta.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotWritableException
    */
   public static Object evaluateMethodExpression(String exprStr, Class[] params,
       Class expectedClass, ResolverType resolverType) throws ELException,
@@ -199,9 +200,9 @@ public final class ExprEval {
    *
    * @return - the result of the method invocation.
    *
-   * @throws javax.el.ELException
-   * @throws javax.el.PropertyNotFoundException
-   * @throws javax.el.PropertyNotWritableException
+   * @throws jakarta.el.ELException
+   * @throws jakarta.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotWritableException
    *
    */
   public static Object evaluateCoerceValueExpression(String exprStr,
@@ -237,9 +238,9 @@ public final class ExprEval {
    * @param contextobj
    *          - a Hashtable of context objects in the form of key=Class,
    *          value=value.
-   * @throws javax.el.ELException
-   * @throws javax.el.PropertyNotFoundException
-   * @throws javax.el.PropertyNotWritableException
+   * @throws jakarta.el.ELException
+   * @throws jakarta.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotWritableException
    * @throws java.lang.ClassNotFoundException
    * @return - status of the evaluation.
    */
