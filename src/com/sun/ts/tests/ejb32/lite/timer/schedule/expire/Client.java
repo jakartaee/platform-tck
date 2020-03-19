@@ -29,6 +29,7 @@ import javax.ejb.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+import java.util.TimeZone;
 
 /**
  * Some tests use 2100 as a test calendar:
@@ -447,10 +448,11 @@ public class Client extends ClientBase {
    * Feb 29 21:15:15 EST 2016
    *
    * UTC timezone is used to create the test timers to avoid the hour difference
-   * between next timeout time and expected next time that may be caused by daylight time switch.
-   * For example, such difference could occur when running this test in mid March
-   * when US switched to daylight saving time, while the configured timer is set to
-   * expire on Feb 29 (in standard time) a few years later.
+   * between next timeout time and expected next time that may be caused by
+   * daylight time switch. For example, such difference could occur when running
+   * this test in mid March when US switched to daylight saving time, while the
+   * configured timer is set to expire on Feb 29 (in standard time) a few years
+   * later.
    * See https://github.com/eclipse-ee4j/jakartaee-tck/issues/163
    */
   public void leapYears() {
@@ -462,14 +464,16 @@ public class Client extends ClientBase {
         (leapYears[1] - 6) + "-" + leapYears[1], String.valueOf(leapYears[2]) };
     String[] dayOfMonths = { "29, 29", "29, 29", "last, last" };
 
-    final Calendar cal = Calendar.getInstance(DateUtils.UTC_TIME_ZONE);
+    final TimeZone utc = TimeZone.getTimeZone("UTC");
+    final Calendar cal = Calendar.getInstance(utc);
     cal.set(Calendar.DAY_OF_MONTH, 1);
 
     for (int i = 0; i < leapYears.length; i++) {
       ScheduleExpression exp = TimerUtil.getPreciseScheduleExpression(cal)
-          .dayOfMonth(dayOfMonths[i]).month(2).year(yearRange[i]).timezone(DateUtils.UTC_TIME_ZONE.getID());
+          .dayOfMonth(dayOfMonths[i]).month(2).year(yearRange[i])
+              .timezone(utc.getID());
 
-      final Calendar cal2 = Calendar.getInstance(DateUtils.UTC_TIME_ZONE);
+      final Calendar cal2 = Calendar.getInstance(utc);
       cal2.set(leapYears[i], Calendar.FEBRUARY, 29);
       final Date expectedNextTimeout = cal2.getTime();
 
