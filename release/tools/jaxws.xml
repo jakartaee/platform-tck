@@ -152,7 +152,7 @@
 			<fileset dir="${ts.home}/src"
 			includes="
                    com/sun/ts/tests/jaxws/**/*,
-                   com/sun/ts/tests/signaturetest/signature-repository/javax.xml.ws.*,
+                   com/sun/ts/tests/signaturetest/signature-repository/jakarta.xml.ws.*,
                    com/sun/ts/tests/signaturetest/*,
                    com/sun/ts/tests/signaturetest/jaxws/*,
                    com/sun/ts/tests/common/vehicle/*,

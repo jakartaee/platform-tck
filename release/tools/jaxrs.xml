@@ -178,7 +178,7 @@
 					 com/sun/ts/tests/common/vehicle/standalone/*,
                      com/sun/ts/tests/servlet/common/util/Data.java,
                      com/sun/ts/tests/signaturetest/*,
-                     com/sun/ts/tests/signaturetest/signature-repository/*javax.ws.rs*, 
+                     com/sun/ts/tests/signaturetest/signature-repository/*jakarta.ws.rs*, 
                      com/sun/ts/tests/signaturetest/jaxrs/*"
                      excludes="${exclude.src}" />
         </copy>
