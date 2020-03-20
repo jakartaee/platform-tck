@@ -147,9 +147,9 @@ jakarta.servlet.jsp.tagext
 jakarta.transaction
 jakarta.transaction.xa
 jakarta.validation
-jakarta.validation.Configuration<{javax.validation
-jakarta.validation.Configuration<{javax.validation.bootstrap
-jakarta.validation.Configuration<{javax.validation.spi
+jakarta.validation.Configuration<{jakarta.validation
+jakarta.validation.Configuration<{jakarta.validation.bootstrap
+jakarta.validation.Configuration<{jakarta.validation.spi
 jakarta.validation.bootstrap
 jakarta.validation.constraints
 jakarta.validation.constraintvalidation

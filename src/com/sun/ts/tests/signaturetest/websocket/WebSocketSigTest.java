@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,8 +50,8 @@ public class WebSocketSigTest extends SigTestEE {
    * container (the default packages). This includes the appclient, ejb, jsp,
    * and servlet containers.
    */
-  private static final String[] DEFAULT_PKGS = { "javax.websocket",
-      "javax.websocket.server" };
+  private static final String[] DEFAULT_PKGS = { "jakarta.websocket",
+      "jakarta.websocket.server" };
 
   /*
    * Defines additional packages that are included when running signature tests
@@ -65,8 +65,8 @@ public class WebSocketSigTest extends SigTestEE {
    */
   private static final String[] SERVLET_JSP_PKGS = {};
 
-  private static final String[] NO_CONTAINER_PKGS = { "javax.websocket",
-      "javax.websocket.server" };
+  private static final String[] NO_CONTAINER_PKGS = { "jakarta.websocket",
+      "jakarta.websocket.server" };
 
   /***** Abstract Method Implementation *****/
   /**

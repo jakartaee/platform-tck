@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -53,9 +53,9 @@ public class JSTLClient extends SigTest {
    *         verified.
    */
   protected String[] getPackages() {
-    return new String[] { "javax.servlet.jsp.jstl.core",
-        "javax.servlet.jsp.jstl.fmt", "javax.servlet.jsp.jstl.sql",
-        "javax.servlet.jsp.jstl.tlv" };
+    return new String[] { "jakarta.servlet.jsp.jstl.core",
+        "jakarta.servlet.jsp.jstl.fmt", "jakarta.servlet.jsp.jstl.sql",
+        "jakarta.servlet.jsp.jstl.tlv" };
   }
 
   /***** Boilerplate Code *****/

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -210,7 +210,7 @@ public class SigTestDriver extends SignatureTestDriver {
   }
 
   /*
-   * @return This returns true if javax.transaction.xa is not found in the
+   * @return This returns true if jakarta.transaction.xa is not found in the
    * JTA API jar
    */
   protected boolean verifyJTAJarForNoXA(String classpath, String repositoryDir) throws Exception  {
@@ -224,7 +224,7 @@ public class SigTestDriver extends SignatureTestDriver {
     command.add(FILENAME_FLAG);
     command.add(repositoryDir  + "empty.sig");
     command.add(PACKAGE_FLAG);
-    command.add("javax.transaction.xa");
+    command.add("jakarta.transaction.xa");
     command.add(CLASSPATH_FLAG);
     command.add(classpath);
 
