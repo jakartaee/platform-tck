@@ -202,10 +202,10 @@ public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
   public String dayOfWeekOverDayOfMonth() {
     TimerInfo info = new TimerInfo("dayOfWeekOverDayOfMonth");
     Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.DAY_OF_WEEK, 1);
+    cal.add(Calendar.DAY_OF_WEEK, 2);
     int nextDayOfWeek = TimerUtil.getForSchedule(Calendar.DAY_OF_WEEK, cal);
     // every year, every month, every hour, every minute, every second, but not
-    // every day. Only for the next day of week. So the timeout method for
+    // every day. Only for 2+ day of week. So the timeout method for
     // this test must not be invoked during test run.
     // There are chances of false positive; if a container does not fire
     // any timeout event, this test will also pass.
@@ -222,7 +222,7 @@ public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
   public String dayOfMonthOverDayOfWeek() {
     TimerInfo info = new TimerInfo("dayOfMonthOverDayOfWeek");
     Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.DAY_OF_MONTH, 1);
+    cal.add(Calendar.DAY_OF_MONTH, 2);
     int nextDayOfMonth = TimerUtil.getForSchedule(Calendar.DAY_OF_MONTH, cal);
     ScheduleExpression exp = new ScheduleExpression().year("*").month("*")
         .dayOfWeek("*").dayOfMonth(nextDayOfMonth).second("*").minute("*")
