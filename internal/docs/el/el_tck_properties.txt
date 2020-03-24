@@ -28,7 +28,7 @@ TCKFullName=Expression Language TCK
 TCKShortName=EL TCK
 
 // 1c. Technology full name.
-TechnologyFullName=Expression Language TCK 1.1
+TechnologyFullName=Expression Language TCK 4.0
 
 // 1d. Technology short name.
 TechnologyShortName=EL
@@ -130,7 +130,7 @@ Java 2 Platform, Standard Edition, Version 1.7
 
 // Begin API list
 %%API%%
-javax.el
+jakarta.el
 %%API%%
 // End API list
 

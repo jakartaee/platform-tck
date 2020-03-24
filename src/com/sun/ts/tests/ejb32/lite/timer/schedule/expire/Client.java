@@ -29,12 +29,19 @@ import javax.ejb.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+import java.util.TimeZone;
 
 /**
- * Some tests use 2100 as a test calendar: January February Su Mo Tu We Th Fr Sa
- * Su Mo Tu We Th Fr Sa 1 2 1 2 3 4 5 6 3 4 5 6 7 8 9 7 8 9 10 11 12 13 10 11 12
- * 13 14 15 16 14 15 16 17 18 19 20 17 18 19 20 21 22 23 21 22 23 24 25 26 27 24
- * 25 26 27 28 29 30 28 31
+ * Some tests use 2100 as a test calendar:
+       January               February
+ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
+                 1  2      1  2  3  4  5  6
+  3  4  5  6  7  8  9   7  8  9 10 11 12 13
+ 10 11 12 13 14 15 16  14 15 16 17 18 19 20
+ 17 18 19 20 21 22 23  21 22 23 24 25 26 27
+ 24 25 26 27 28 29 30  28
+ 31
+
  * 
  */
 public class Client extends ClientBase {
@@ -439,6 +446,14 @@ public class Client extends ClientBase {
    * 2104/2/last. For example, year=2013-2016 month=2 dayOfMonth=29 dayOfWeek=*
    * hour=21 minute=15 second=31 start null end null expected nextTimeout Mon
    * Feb 29 21:15:15 EST 2016
+   *
+   * UTC timezone is used to create the test timers to avoid the hour difference
+   * between next timeout time and expected next time that may be caused by
+   * daylight time switch. For example, such difference could occur when running
+   * this test in mid March when US switched to daylight saving time, while the
+   * configured timer is set to expire on Feb 29 (in standard time) a few years
+   * later.
+   * See https://github.com/eclipse-ee4j/jakartaee-tck/issues/163
    */
   public void leapYears() {
     scheduleBean.cancelAllTimers();
@@ -449,19 +464,19 @@ public class Client extends ClientBase {
         (leapYears[1] - 6) + "-" + leapYears[1], String.valueOf(leapYears[2]) };
     String[] dayOfMonths = { "29, 29", "29, 29", "last, last" };
 
-    Calendar cal = Calendar.getInstance();
+    final TimeZone utc = TimeZone.getTimeZone("UTC");
+    final Calendar cal = Calendar.getInstance(utc);
     cal.set(Calendar.DAY_OF_MONTH, 1);
 
     for (int i = 0; i < leapYears.length; i++) {
       ScheduleExpression exp = TimerUtil.getPreciseScheduleExpression(cal)
-          .dayOfMonth(dayOfMonths[i]).month(2).year(yearRange[i]);
+          .dayOfMonth(dayOfMonths[i]).month(2).year(yearRange[i])
+              .timezone(utc.getID());
 
-      Date expectedNextTimeout = TimerUtil.getCurrentDatePlus(0, 0);
-      expectedNextTimeout = DateUtils.setYears(expectedNextTimeout,
-          leapYears[i]);
-      expectedNextTimeout = DateUtils.setDays(expectedNextTimeout, 29);
-      expectedNextTimeout = DateUtils.setMonths(expectedNextTimeout,
-          Calendar.FEBRUARY);
+      final Calendar cal2 = Calendar.getInstance(utc);
+      cal2.set(leapYears[i], Calendar.FEBRUARY, 29);
+      final Date expectedNextTimeout = cal2.getTime();
+
       Timer timer = createTimer(exp);
       verifyNextTimeout(expectedNextTimeout, timer);
     }

@@ -61,6 +61,8 @@
                else="${java.home}${file.separator}..">
         <available file="${java.home}${file.separator}lib${file.separator}tools.jar"/>
     </condition>
+
+    <property name="RI_JAVA_HOME"  value="${env.RI_JAVA_HOME}"/>
     
     <!-- Common properties -->
     <property name="dist.dir"        value="${ts.home}/dist"/>
