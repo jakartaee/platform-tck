@@ -754,6 +754,7 @@
             <sysproperty key="local.classes" value="${local.classes}" />
             <sysproperty key="JAVA_HOME" value="${java.home}"/>
             <sysproperty key="jdk.home" value="${env.JAVA_HOME}" />
+            <sysproperty key="RI_JAVA_HOME" value="${env.RI_JAVA_HOME}"/>
             <sysproperty key="JAVA_OPTIONS" value="${java.options}"/>
             <sysproperty key="cts.jtroutput" value="true"/>
             <sysproperty key="windir" value="${env.windir}"/>

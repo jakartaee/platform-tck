@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,12 +26,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import javax.el.Expression;
-import javax.el.MethodExpression;
-import javax.el.MethodInfo;
-import javax.el.ValueExpression;
-import javax.el.ELContext;
-import javax.el.PropertyNotWritableException;
+import jakarta.el.Expression;
+import jakarta.el.MethodExpression;
+import jakarta.el.MethodInfo;
+import jakarta.el.ValueExpression;
+import jakarta.el.ELContext;
+import jakarta.el.PropertyNotWritableException;
 
 public class ExpressionTest {
 
