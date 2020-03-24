@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.JobExecution;
-import javax.batch.runtime.StepExecution;
+import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.JobExecution;
+import jakarta.batch.runtime.StepExecution;
 
 import com.ibm.jbatch.tck.utils.JobOperatorBridge;
 import com.ibm.jbatch.tck.utils.TCKJobExecutionWrapper;
@@ -104,8 +104,8 @@ TestUtil.logTrace(METHOD);
 
 			Properties jobParams = new Properties();
 
-			jobParams.put("javax.transaction.global.mode", "true");
-			jobParams.put("javax.transaction.global.timeout", "20");
+			jobParams.put("jakarta.transaction.global.mode", "true");
+			jobParams.put("jakarta.transaction.global.timeout", "20");
 			jobParams.put("init.numbers.quantity", initNumbers.toString());
 			jobParams.put("forced.fail.count.read", forcedFailCountRead.toString());
 			jobParams.put("forced.fail.count.write", forcedFailCountWrite.toString());
@@ -153,8 +153,8 @@ TestUtil.logTrace(METHOD);
 
 			Properties jobParams = new Properties();
 
-			jobParams.put("javax.transaction.global.mode", "true");
-			jobParams.put("javax.transaction.global.timeout", "20");
+			jobParams.put("jakarta.transaction.global.mode", "true");
+			jobParams.put("jakarta.transaction.global.timeout", "20");
 			jobParams.put("init.numbers.quantity", initNumbers.toString());
 			jobParams.put("forced.fail.count.read", forcedFailCountRead.toString());
 			jobParams.put("forced.fail.count.write", forcedFailCountWrite.toString());
@@ -202,8 +202,8 @@ TestUtil.logTrace(METHOD);
 
 			Properties jobParams = new Properties();
 
-			jobParams.put("javax.transaction.global.mode", "true");
-			jobParams.put("javax.transaction.global.timeout", "20");
+			jobParams.put("jakarta.transaction.global.mode", "true");
+			jobParams.put("jakarta.transaction.global.timeout", "20");
 			jobParams.put("init.numbers.quantity", initNumbers.toString());
 			jobParams.put("forced.fail.count.read", forcedFailCountRead.toString());
 			jobParams.put("forced.fail.count.write", forcedFailCountWrite.toString());
@@ -249,13 +249,13 @@ TestUtil.logTrace(METHOD);
 
 			Properties jobParams = new Properties();
 			TestUtil.logMsg("Create job parameters for execution #1:");
-			TestUtil.logMsg("javax.transaction.global.timeout=300");
+			TestUtil.logMsg("jakarta.transaction.global.timeout=300");
 			TestUtil.logMsg("commit.interval="+itemCount.toString());
 			TestUtil.logMsg("init.inventory.quantity="+initInventory.toString());
 			TestUtil.logMsg("forced.fail.count="+forcedFailCount.toString());
 			TestUtil.logMsg("dummy.delay.seconds="+dummyDelay.toString());
 			TestUtil.logMsg("expected.inventory="+expectedInventory.toString());
-			jobParams.put("javax.transaction.global.timeout", "300");
+			jobParams.put("jakarta.transaction.global.timeout", "300");
 			jobParams.put("commit.interval", itemCount.toString());
 			jobParams.put("init.inventory.quantity", initInventory.toString());
 			jobParams.put("forced.fail.count", forcedFailCount.toString());
@@ -304,13 +304,13 @@ TestUtil.logTrace(METHOD);
 			Properties jobParams = new Properties();
 
 			TestUtil.logMsg("Create job parameters for execution #1:");
-			TestUtil.logMsg("javax.transaction.global.timeout=300");
+			TestUtil.logMsg("jakarta.transaction.global.timeout=300");
 			TestUtil.logMsg("commit.interval="+itemCount.toString());
 			TestUtil.logMsg("init.inventory.quantity="+initInventory.toString());
 			TestUtil.logMsg("forced.fail.count="+forcedFailCount.toString());
 			TestUtil.logMsg("dummy.delay.seconds="+dummyDelay.toString());
 			TestUtil.logMsg("expected.inventory="+expectedInventory.toString());
-			jobParams.put("javax.transaction.global.timeout", "300");
+			jobParams.put("jakarta.transaction.global.timeout", "300");
 			jobParams.put("commit.interval", itemCount.toString());
 			jobParams.put("init.inventory.quantity", initInventory.toString());
 			jobParams.put("forced.fail.count", forcedFailCount.toString());
@@ -357,13 +357,13 @@ TestUtil.logTrace(METHOD);
 			Properties jobParams = new Properties();
 
 			TestUtil.logMsg("Create job parameters for execution #1:");
-			TestUtil.logMsg("javax.transaction.global.timeout=300");
+			TestUtil.logMsg("jakarta.transaction.global.timeout=300");
 			TestUtil.logMsg("commit.interval="+itemCount.toString());
 			TestUtil.logMsg("init.inventory.quantity="+initInventory.toString());
 			TestUtil.logMsg("forced.fail.count="+forcedFailCount.toString());
 			TestUtil.logMsg("dummy.delay.seconds="+dummyDelay.toString());
 			TestUtil.logMsg("expected.inventory="+expectedInventory.toString());
-			jobParams.put("javax.transaction.global.timeout", "300");
+			jobParams.put("jakarta.transaction.global.timeout", "300");
 			jobParams.put("commit.interval", itemCount.toString());
 			jobParams.put("init.inventory.quantity", initInventory.toString());
 			jobParams.put("forced.fail.count", forcedFailCount.toString());
@@ -401,7 +401,7 @@ TestUtil.logTrace(METHOD);
 
 	/*
 	 * @testName: testGlobalTranNoDelayLongTimeout
-	 * @assertion: Step-level property of 'javax.transaction.global.timeout' 
+	 * @assertion: Step-level property of 'jakarta.transaction.global.timeout' 
 	 * _Strategy: This test sets a long (180 sec.) checkpoint timeout explicitly in the JSL, and it does not
 	 *                 use any delay or sleep, so it just confirms that the timeout doesn't hit and the chunk completes
 	 *                 normally.
@@ -460,13 +460,13 @@ TestUtil.logTrace(METHOD);
 	 *  (this test name is now a misnomer since we changed the test logic to exclude the "short timeout")
 	 * 
 	 * @testName: testGlobalTranLongDelayMixOfLongTimeoutStepsAndShortTimeoutSteps
-	 * @assertion: Step-level property of 'javax.transaction.global.timeout', including defaults.  Also shows that 
+	 * @assertion: Step-level property of 'jakarta.transaction.global.timeout', including defaults.  Also shows that 
 	 *             job-level property is ignored.
 	 * _Strategy: This test uses three steps that are basically the same, reading and writing from the same tables
 	 *                 (along with some helper steps in between to init the tables).
 	 *                 Two of the steps are configured with long timeouts, and one with a short timeout. 
 	 *                 The long timeouts involve variations:
-	 *                  - step 2 : <property name="javax.transaction.global.timeout" value="0" />
+	 *                  - step 2 : <property name="jakarta.transaction.global.timeout" value="0" />
 	 *                        (shows that '0' means indefinite timeout)
 	 *                  - step 3 : No property specified
 	 *                        (shows that the default is 180 seconds).

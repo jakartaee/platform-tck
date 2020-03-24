@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.batch.api.chunk.listener.SkipWriteListener;
-import javax.batch.runtime.context.StepContext;
+import jakarta.batch.api.chunk.listener.SkipWriteListener;
+import jakarta.batch.runtime.context.StepContext;
 import javax.inject.Inject;
 
 

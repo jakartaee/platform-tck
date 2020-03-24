@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -19,7 +19,7 @@ package com.ibm.jbatch.tck.artifacts.specialized;
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.batch.api.partition.PartitionPlanImpl;
+import jakarta.batch.api.partition.PartitionPlanImpl;
 
 @javax.inject.Named("myPartitionPlan")
 public class MyPartitionPlan extends PartitionPlanImpl {

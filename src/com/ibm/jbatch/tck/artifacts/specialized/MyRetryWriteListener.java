@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -22,8 +22,8 @@ import com.sun.ts.lib.util.TestUtil;
 import java.util.logging.Logger;
 import java.util.List;
 
-import javax.batch.api.chunk.listener.RetryWriteListener;
-import javax.batch.runtime.context.JobContext;
+import jakarta.batch.api.chunk.listener.RetryWriteListener;
+import jakarta.batch.runtime.context.JobContext;
 import javax.inject.Inject;
 
 
