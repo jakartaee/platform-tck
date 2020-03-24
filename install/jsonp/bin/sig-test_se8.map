@@ -32,9 +32,9 @@
 # with the following format:
 # <package>.sig_<technology_version>_<JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    javax.json.sig_2.0.0_se8:
-#    javax.json.sig_2.0.0_se11:
-#      <package> = javax.json
+#    jakarta.json.sig_2.0.0_se8:
+#    jakarta.json.sig_2.0.0_se11:
+#      <package> = jakarta.json
 #      <technology_version> = 2.0.0  (for JSON-P) 
 #      <JavaSE_version_these_work_with> = se8 and se11
 #

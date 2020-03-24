@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -53,10 +53,10 @@ public class JaspicSigTest extends SigTestEE {
    * container (the default packages). This includes the appclient, ejb, jsp,
    * and servlet containers.
    */
-  private static final String[] DEFAULT_PKGS = { "javax.security.auth.message",
-      "javax.security.auth.message.callback",
-      "javax.security.auth.message.config",
-      "javax.security.auth.message.module", };
+  private static final String[] DEFAULT_PKGS = { "jakarta.security.auth.message",
+      "jakarta.security.auth.message.callback",
+      "jakarta.security.auth.message.config",
+      "jakarta.security.auth.message.module", };
 
   /*
    * Defines additional packages that are included when running signature tests
@@ -71,9 +71,9 @@ public class JaspicSigTest extends SigTestEE {
   private static final String[] SERVLET_JSP_PKGS = {};
 
   private static final String[] NO_CONTAINER_PKGS = {
-      "javax.security.auth.message", "javax.security.auth.message.callback",
-      "javax.security.auth.message.config",
-      "javax.security.auth.message.module", };
+      "jakarta.security.auth.message", "jakarta.security.auth.message.callback",
+      "jakarta.security.auth.message.config",
+      "jakarta.security.auth.message.module", };
 
   /**
    * Adds the default packages and the command line flags to the specified list

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -52,10 +52,10 @@ public class JAXWSSigTest extends SigTestEE {
    *         verified.
    */
   protected String[] getPackages(String vehicleName) {
-    return new String[] { "javax.xml.ws", "javax.xml.ws.handler",
-        "javax.xml.ws.handler.soap", "javax.xml.ws.http", "javax.xml.ws.soap",
-        "javax.xml.ws.spi", "javax.xml.ws.spi.http",
-        "javax.xml.ws.wsaddressing", };
+    return new String[] { "jakarta.xml.ws", "jakarta.xml.ws.handler",
+        "jakarta.xml.ws.handler.soap", "jakarta.xml.ws.http", "jakarta.xml.ws.soap",
+        "jakarta.xml.ws.spi", "jakarta.xml.ws.spi.http",
+        "jakarta.xml.ws.wsaddressing", };
 
   }
 

@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates and others.
- * All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -267,8 +266,8 @@ public abstract class SigTestEE extends ServiceEETest {
         boolean isJTASigTest = false;
 
         // Determine whether the signature map file contains package 
-        // javax.transaction
-        String jtaVersion = mapFileAsProps.getProperty("javax.transaction");
+        // jakarta.transaction
+        String jtaVersion = mapFileAsProps.getProperty("jakarta.transaction");
         if (jtaVersion == null || "".equals(jtaVersion.trim())) {
           TestUtil.logMsg("SigTestEE.signatureTest() returning, " +
               "as this is neither JTA TCK run, not Java EE CTS run.");
@@ -277,7 +276,7 @@ public abstract class SigTestEE extends ServiceEETest {
 
         TestUtil.logMsg("jtaVersion " + jtaVersion);  
         // Signature map packaged in JTA TCK will contain a single package 
-        // javax.transaction
+        // jakarta.transaction
         if (mapFileAsProps.size() == 1) {
             isJTASigTest = true;
         }
@@ -300,7 +299,7 @@ public abstract class SigTestEE extends ServiceEETest {
   /**
    * Called by the test framework to run this test.  This method utilizes the
    * state information set in the setup method to run.  This test validates
-   * that the javax.transaction.xa type is not in the JTA API jar
+   * that the jakarta.transaction.xa type is not in the JTA API jar
    *
    * This method is called only for standaone vehicle, as calling the same
    * for all the vehicles in the CTS run is not necessary.
@@ -324,10 +323,10 @@ public abstract class SigTestEE extends ServiceEETest {
     boolean result = getSigTestDriver().verifyJTAJarForNoXA(
                 testInfo.getJtaJarClasspath(), repositoryDir);
     if(result) {
-      TestUtil.logMsg("PASS: javax.transaction.xa not found in API jar");
+      TestUtil.logMsg("PASS: jakarta.transaction.xa not found in API jar");
     } else {
-      TestUtil.logErr("FAIL: javax.transaction.xa found in API jar");
-      throw new Fault("javax.transaction.xa validation failed");
+      TestUtil.logErr("FAIL: jakarta.transaction.xa found in API jar");
+      throw new Fault("jakarta.transaction.xa validation failed");
     }
     TestUtil.logMsg("SigTestEE#verifyJtaJarTest returning");
   }

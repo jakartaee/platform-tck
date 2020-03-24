@@ -140,7 +140,7 @@
                    com/sun/ts/tests/common/vehicle/standalone/*,
                    com/sun/ts/tests/signaturetest/*,
                    com/sun/ts/tests/signaturetest/jms/*,
-                   com/sun/ts/tests/signaturetest/signature-repository/javax.jms.*${deliverable.version}*,
+                   com/sun/ts/tests/signaturetest/signature-repository/jakarta.jms.*${deliverable.version}*,
                    com/sun/ts/tests/jms/common/**/*,
                    com/sun/ts/tests/jms/core/**/*,
                    com/sun/ts/tests/jms/core20/**/*,

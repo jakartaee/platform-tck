@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -46,8 +46,8 @@ public class JPASigTest extends SigTest {
    *         verified.
    */
   protected String[] getPackages() {
-    return new String[] { "javax.persistence", "javax.persistence.criteria",
-        "javax.persistence.metamodel", "javax.persistence.spi" };
+    return new String[] { "jakarta.persistence", "jakarta.persistence.criteria",
+        "jakarta.persistence.metamodel", "jakarta.persistence.spi" };
   }
 
   /***** Boilerplate Code *****/

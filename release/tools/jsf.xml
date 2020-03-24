@@ -178,7 +178,7 @@
                      includes="com/sun/ts/tests/jsf/**/*,
                      com/sun/ts/tests/common/webclient/**/*,
                      web/jsf/**/*,
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.faces.*,
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.faces.*,
                      com/sun/ts/tests/signaturetest/*,
                      com/sun/ts/tests/signaturetest/jsf/**/*,
                      ${lib.pkg.dir}/deliverable/jsf/*"
