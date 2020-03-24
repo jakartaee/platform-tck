@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -206,7 +207,7 @@ public class JavaEESigTest extends SigTestEE {
         "javax.ws.rs.ext", "javax.ws.rs.client", "javax.ws.rs.container",
         "javax.ws.rs.sse"  });
     SERVLET_MAP.put("websocket",
-        new String[] { "javax.websocket", "javax.websocket.server" });
+        new String[] { "jakarta.websocket", "jakarta.websocket.server" });
 
     JSP_MAP = SERVLET_MAP;
 

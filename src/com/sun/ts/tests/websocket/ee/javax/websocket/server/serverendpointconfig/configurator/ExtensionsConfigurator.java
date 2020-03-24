@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,8 +19,8 @@ package com.sun.ts.tests.websocket.ee.javax.websocket.server.serverendpointconfi
 
 import java.util.List;
 
-import javax.websocket.Extension;
-import javax.websocket.server.ServerEndpointConfig.Configurator;
+import jakarta.websocket.Extension;
+import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 import com.sun.ts.tests.websocket.common.impl.ExtensionImpl;
 
