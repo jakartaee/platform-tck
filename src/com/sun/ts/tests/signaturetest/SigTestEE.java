@@ -47,8 +47,12 @@ public abstract class SigTestEE extends ServiceEETest {
   protected SignatureTestDriver getSigTestDriver() {
 
     if (driver == null) {
-      driver = SignatureTestDriverFactory
-          .getInstance(SignatureTestDriverFactory.SIG_TEST);
+        String version = (String) System.getProperties().get("java.version");
+        if (version.startsWith("9") || version.startsWith("11"))
+            driver = new Jdk9SigTestDriver();
+        if (driver == null) {
+            driver = SignatureTestDriverFactory.getInstance(SignatureTestDriverFactory.SIG_TEST);
+        }    
     }
 
     return driver;

@@ -60,7 +60,7 @@ public abstract class SignatureTestDriver {
     } else if (isJavaSEVersion("11")) {
       thePkgListFile = "sig-test-pkg-list_se11.txt";
     } else {
-      // we didnt properly identify the java se version being used so
+      // we didn't properly identify the java se version being used so
       // we will try to use the sig-test-pkg-list.txt file.
       thePkgListFile = "sig-test-pkg-list.txt";
     }

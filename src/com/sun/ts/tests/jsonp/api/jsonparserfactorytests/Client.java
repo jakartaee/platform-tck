@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.json.*;
-import javax.json.stream.*;
+import jakarta.json.*;
+import jakarta.json.stream.*;
 import java.io.*;
 import java.nio.charset.Charset;
 
@@ -35,7 +35,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.ArrayList;
 
-import javax.json.stream.JsonParser.Event.*;
+import jakarta.json.stream.JsonParser.Event.*;
 
 import com.sun.ts.tests.jsonp.common.*;
 
@@ -533,7 +533,7 @@ public class Client extends ServiceEETest {
    * @test_Strategy: Test JsonParserFactory exception conditions. Trip the
    * following exception due to unknown encoding or i/o error:
    *
-   * javax.json.JsonException
+   * jakarta.json.JsonException
    */
   public void jsonParserFactoryExceptionTest() throws Fault {
     boolean pass = true;
