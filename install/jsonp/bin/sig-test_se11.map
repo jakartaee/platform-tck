@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,15 +17,4 @@
 #
 # $Id$
 #
-
-##
-# This file contains a list of all the packages
-# contained in the signature files for this
-# deliverable.  This file is used to exclude valid
-# sub-packages from being verified when their
-# parent package's signature is checked.
-##
-
-jakarta.json
-jakarta.json.spi
-jakarta.json.stream
+jakarta.json=2.0.0_se11
