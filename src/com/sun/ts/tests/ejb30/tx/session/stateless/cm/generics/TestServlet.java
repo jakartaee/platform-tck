@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,9 +25,9 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
-import javax.ejb.EJBTransactionRequiredException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBTransactionRequiredException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -195,8 +195,8 @@ public class TestServlet extends HttpTCKServlet {
     boolean pass2 = false;
     StringBuilder reason = new StringBuilder();
     //
-    // In ejb3, local client also get javax.ejb.EJBTransactionRequiredException,
-    // not javax.ejb.TransactionRequiredLocalException.
+    // In ejb3, local client also get jakarta.ejb.EJBTransactionRequiredException,
+    // not jakarta.ejb.TransactionRequiredLocalException.
     try {
       Helper.getLogger()
           .info("TestServlet about to invoke localIntGreetingBean.greeting(0)");
@@ -210,7 +210,7 @@ public class TestServlet extends HttpTCKServlet {
       reason.append(
           " Got expected EJBTransactionRequiredException when invoking .");
       reason.append(localIntGreetingBean).append(" greeting() method");
-    } catch (javax.ejb.TransactionRequiredLocalException e) {
+    } catch (jakarta.ejb.TransactionRequiredLocalException e) {
       Helper.getLogger().info("TestServlet got unexpected " + e);
       reason.append(" Got unexpected exception: ");
       reason.append(e.toString());
@@ -228,7 +228,7 @@ public class TestServlet extends HttpTCKServlet {
       reason.append(
           " Got expected EJBTransactionRequiredException when invoking .");
       reason.append(localIntGreetingBean).append(" reverse() method");
-    } catch (javax.ejb.TransactionRequiredLocalException e) {
+    } catch (jakarta.ejb.TransactionRequiredLocalException e) {
       Helper.getLogger().info("TestServlet got unexpected " + e);
       reason.append(" Got unexpected exception: ");
       reason.append(e.toString());
@@ -244,8 +244,8 @@ public class TestServlet extends HttpTCKServlet {
     boolean pass1 = false;
     StringBuilder reason = new StringBuilder();
     //
-    // In ejb3, local client also get javax.ejb.EJBTransactionRequiredException,
-    // not javax.ejb.TransactionRequiredLocalException.
+    // In ejb3, local client also get jakarta.ejb.EJBTransactionRequiredException,
+    // not jakarta.ejb.TransactionRequiredLocalException.
     try {
       java.util.Date date = new java.util.Date();
       Helper.getLogger().info(
@@ -262,7 +262,7 @@ public class TestServlet extends HttpTCKServlet {
       reason.append(
           " Got expected EJBTransactionRequiredException when invoking .");
       reason.append(localDateGreetingBean).append(" greeting() method");
-    } catch (javax.ejb.TransactionRequiredLocalException e) {
+    } catch (jakarta.ejb.TransactionRequiredLocalException e) {
       Helper.getLogger().info("TestServlet got unexpected " + e);
       reason.append(" Got unexpected exception: ");
       reason.append(e.toString());
@@ -284,7 +284,7 @@ public class TestServlet extends HttpTCKServlet {
       java.util.Date rolesAllowedResult = localDateGreetingBean
           .rolesAllowed(date);
       reason.append(
-          "Failed to get expected javax.ejb.EJBException when invoking .");
+          "Failed to get expected jakarta.ejb.EJBException when invoking .");
       reason.append(localDateGreetingBean).append(" rolesAllowed() method");
       reason.append(" It incorrectly returned ")
           .append(rolesAllowedResult.toString());
@@ -310,7 +310,7 @@ public class TestServlet extends HttpTCKServlet {
       java.util.Date rolesAllowedNoArgResult = localDateGreetingBean
           .rolesAllowedNoArg();
       reason.append(
-          "Failed to get expected javax.ejb.EJBException when invoking .");
+          "Failed to get expected jakarta.ejb.EJBException when invoking .");
       reason.append(localDateGreetingBean)
           .append(" rolesAllowedNoArg() method");
       reason.append(" It incorrectly returned ")
@@ -350,7 +350,7 @@ public class TestServlet extends HttpTCKServlet {
           " Got expected EJBTransactionRequiredException when invoking .");
       reason.append(localParameterizedBean)
           .append(" parameterizedParam(List<String>) method");
-    } catch (javax.ejb.TransactionRequiredLocalException e) {
+    } catch (jakarta.ejb.TransactionRequiredLocalException e) {
       Helper.getLogger().info("TestServlet got unexpected " + e);
       reason.append(" Got unexpected exception: ");
       reason.append(e.toString());
@@ -383,7 +383,7 @@ public class TestServlet extends HttpTCKServlet {
           " Got expected EJBTransactionRequiredException when invoking .");
       reason.append(localParameterizedBean)
           .append(" parameterizedReturn(int) method");
-    } catch (javax.ejb.TransactionRequiredLocalException e) {
+    } catch (jakarta.ejb.TransactionRequiredLocalException e) {
       Helper.getLogger().info("TestServlet got unexpected " + e);
       reason.append(" Got unexpected exception: ");
       reason.append(e.toString());

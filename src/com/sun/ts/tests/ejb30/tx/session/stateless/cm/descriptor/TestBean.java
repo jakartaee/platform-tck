@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,13 +25,13 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TestBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TestIF;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TxIF;
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
-import javax.ejb.EJBTransactionRequiredException;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBTransactionRequiredException;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
@@ -57,10 +57,10 @@ public class TestBean extends TestBeanBase implements TestIF {
     try {
       sameMethodLocalBean.sameMethod();
       throw new TestFailedException(
-          "Expecting javax.ejb.EJBTransactionRequiredException, but got none");
+          "Expecting jakarta.ejb.EJBTransactionRequiredException, but got none");
     } catch (EJBTransactionRequiredException e) {
       Helper.getLogger()
-          .info("Got expected javax.ejb.EJBTransactionRequiredException");
+          .info("Got expected jakarta.ejb.EJBTransactionRequiredException");
     }
   }
 
@@ -73,11 +73,11 @@ public class TestBean extends TestBeanBase implements TestIF {
     try {
       b.mandatoryTest(description);
       reason += this
-          + " Expecting javax.ejb.EJBTransactionRequiredException, but got none";
+          + " Expecting jakarta.ejb.EJBTransactionRequiredException, but got none";
       throw new TestFailedException(reason);
     } catch (EJBTransactionRequiredException e) {
       reason += this
-          + " Got expected javax.ejb.EJBTransactionRequiredException";
+          + " Got expected jakarta.ejb.EJBTransactionRequiredException";
       Helper.getLogger().info(reason);
     }
   }
@@ -92,17 +92,17 @@ public class TestBean extends TestBeanBase implements TestIF {
     try {
       ut.begin();
       b.neverTest(description);
-      reason = "Expecting javax.ejb.EJBException, but got none";
+      reason = "Expecting jakarta.ejb.EJBException, but got none";
       throw new TestFailedException(reason);
     } catch (EJBException e) {
-      reason = this + " Got expected javax.ejb.EJBException";
+      reason = this + " Got expected jakarta.ejb.EJBException";
       Helper.getLogger().info(reason);
     } catch (NotSupportedException ex) {
       throw new TestFailedException(
-          "Expecting javax.ejb.EJBException, but got " + ex);
+          "Expecting jakarta.ejb.EJBException, but got " + ex);
     } catch (SystemException ex) {
       throw new TestFailedException(
-          "Expecting javax.ejb.EJBException, but got " + ex);
+          "Expecting jakarta.ejb.EJBException, but got " + ex);
     } finally {
       try {
         ut.rollback();

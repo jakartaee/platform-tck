@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import com.sun.ts.lib.harness.*;
 
 import java.io.*;
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.rmi.*;
 
 import com.sun.javatest.Status;
@@ -89,7 +89,7 @@ public class Client extends EETest {
    * @test_Strategy: Create an instance of a stateful session Testbean bean.
    * Create an instance of a stateless session TxBean (Mandatory) bean. Access a
    * TX_MANDATORY EJB without a global transaction context and ensure that this
-   * operation throws the javax.ejb.TransactionRequiredLocalException exception.
+   * operation throws the jakarta.ejb.TransactionRequiredLocalException exception.
    *
    */
   public void test1() throws Fault {

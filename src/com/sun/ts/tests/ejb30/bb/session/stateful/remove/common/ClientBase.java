@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,16 +25,16 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.rmi.NoSuchObjectException;
-import javax.ejb.CreateException;
+import jakarta.ejb.CreateException;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.EETest.Fault;
 import java.rmi.RemoteException;
 import java.util.Properties;
-import javax.ejb.Handle;
-import javax.ejb.NoSuchEJBException;
+import jakarta.ejb.Handle;
+import jakarta.ejb.NoSuchEJBException;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF;
-import javax.ejb.RemoveException;
+import jakarta.ejb.RemoveException;
 
 abstract public class ClientBase extends EETest {
   protected Properties props;
@@ -109,7 +109,7 @@ abstract public class ClientBase extends EETest {
     removeBean.remove();
     try {
       removeBean.remove();
-      throw new Fault("Expecting javax.ejb.NoSuchEJBException, but got none.");
+      throw new Fault("Expecting jakarta.ejb.NoSuchEJBException, but got none.");
     } catch (NoSuchEJBException e) {
       TLogger.log("Got expected exception: " + e.toString());
       removeBean = null;
@@ -372,7 +372,7 @@ abstract public class ClientBase extends EETest {
     }
     try {
       removeNotRetainBean.remove();
-      throw new Fault("Expecting javax.ejb.NoSuchEJBException, but got none.");
+      throw new Fault("Expecting jakarta.ejb.NoSuchEJBException, but got none.");
     } catch (NoSuchEJBException e) {
       TLogger.log("Got expected exception: " + e.toString());
     } catch (TestFailedException e) {
@@ -400,7 +400,7 @@ abstract public class ClientBase extends EETest {
     }
     try {
       removeNotRetainBean.remove2();
-      throw new Fault("Expecting javax.ejb.NoSuchEJBException, but got none.");
+      throw new Fault("Expecting jakarta.ejb.NoSuchEJBException, but got none.");
     } catch (NoSuchEJBException e) {
       TLogger.log("Got expected exception: " + e.toString());
     } catch (AtUncheckedAppException e) {
@@ -428,7 +428,7 @@ abstract public class ClientBase extends EETest {
     }
     try {
       removeNotRetainBean.alwaysRemoveAfterSystemException();
-      throw new Fault("Expecting javax.ejb.NoSuchEJBException, but got none.");
+      throw new Fault("Expecting jakarta.ejb.NoSuchEJBException, but got none.");
     } catch (NoSuchEJBException e) {
       TLogger.log("Got expected exception: " + e.toString());
     } finally {

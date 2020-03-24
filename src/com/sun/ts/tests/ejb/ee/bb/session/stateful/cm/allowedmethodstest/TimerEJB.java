@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.*;
 import javax.transaction.*;
 import java.rmi.*;
@@ -52,15 +52,15 @@ public class TimerEJB implements SessionBean, TimedObject {
   public void ejbPassivate() {
   }
 
-  public void ejbTimeout(javax.ejb.Timer timer) {
+  public void ejbTimeout(jakarta.ejb.Timer timer) {
   }
 
   public TimerHandle startTimer(long duration, String info) {
     try {
       TestUtil.logTrace("startTimer method entered");
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("create Timer");
-      javax.ejb.Timer t = ts.createTimer(duration, info);
+      jakarta.ejb.Timer t = ts.createTimer(duration, info);
       return t.getHandle();
     } catch (Exception e) {
       TestUtil.printStackTrace(e);
@@ -72,7 +72,7 @@ public class TimerEJB implements SessionBean, TimedObject {
     Collection ccol = null;
     try {
       TestUtil.logTrace("findAndCancelTimer method entered");
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("getTimers");
       ccol = ts.getTimers();
       if (!ccol.isEmpty()) {
@@ -80,7 +80,7 @@ public class TimerEJB implements SessionBean, TimedObject {
         Iterator i = ccol.iterator();
         while (i.hasNext()) {
           TestUtil.logTrace("Looking up next timer");
-          javax.ejb.Timer t = (javax.ejb.Timer) i.next();
+          jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
           TestUtil.logTrace("Cancel timer with info: " + t.getInfo());
           t.cancel();
         }

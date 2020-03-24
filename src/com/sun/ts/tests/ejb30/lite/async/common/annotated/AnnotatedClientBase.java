@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,8 +27,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
@@ -75,7 +75,7 @@ abstract public class AnnotatedClientBase extends AsyncClientBase {
    * throws RuntimeException or Error. For singleton, the same bean instance is
    * retained; for stateless, it should be a different bean instance; for
    * stateful, any subsequent access should result in
-   * javax.ejb.NoSuchEJBException.
+   * jakarta.ejb.NoSuchEJBException.
    * 
    * @param b
    * @throws ExecutionException

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,12 +22,12 @@ package com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.ejb.AccessTimeout;
-import javax.ejb.ConcurrencyManagement;
-import javax.ejb.ConcurrencyManagementType;
-import javax.ejb.Local;
-import javax.ejb.Stateful;
-import javax.ejb.StatefulTimeout;
+import jakarta.ejb.AccessTimeout;
+import jakarta.ejb.ConcurrencyManagement;
+import jakarta.ejb.ConcurrencyManagementType;
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.StatefulTimeout;
 
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase;
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF;

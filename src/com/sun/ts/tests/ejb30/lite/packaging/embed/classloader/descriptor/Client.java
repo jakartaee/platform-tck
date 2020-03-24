@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,7 +33,7 @@ public final class Client extends
    * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/ejbembed_vehicle_ejb.jar"
    * 
    * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-   * modules. Also javax.ejb.embeddable.modules property is set to include the
+   * modules. Also jakarta.ejb.embeddable.modules property is set to include the
    * file location of the additional ejb modules. Module name is set in
    * ejb-jar.xml.
    */
@@ -52,7 +52,7 @@ public final class Client extends
    * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/ejbembed_vehicle_ejb.jar"
    * 
    * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-   * modules. Also javax.ejb.embeddable.modules property is set to include the
+   * modules. Also jakarta.ejb.embeddable.modules property is set to include the
    * file location of the additional ejb modules. Module name is set in
    * ejb-jar.xml.
    */
@@ -72,7 +72,7 @@ public final class Client extends
    * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/ejbembed_vehicle_ejb.jar"
    * 
    * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-   * modules. Also javax.ejb.embeddable.modules property is set to include the
+   * modules. Also jakarta.ejb.embeddable.modules property is set to include the
    * file location of the additional ejb modules. Module name is set in
    * ejb-jar.xml.
    */

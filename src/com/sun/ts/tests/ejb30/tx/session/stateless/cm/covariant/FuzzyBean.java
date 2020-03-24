@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,9 +23,9 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyBeanBase;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyLocalIF;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyRemoteIF;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 
 @Stateless()
 public class FuzzyBean extends FuzzyBeanBase

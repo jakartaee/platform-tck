@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ package com.sun.ts.tests.common.dao.coffee.variants;
 import java.util.Properties;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.ejb.CreateException;
+import jakarta.ejb.CreateException;
 import com.sun.ts.tests.common.dao.DAO;
 import com.sun.ts.tests.common.dao.DAOException;
 

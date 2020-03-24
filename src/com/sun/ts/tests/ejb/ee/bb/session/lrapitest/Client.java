@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import java.rmi.*;
 
 import com.sun.javatest.Status;
@@ -292,7 +292,7 @@ public class Client extends EETest {
    * 
    * @test_Strategy: Create a local stateful session bean. Remove local object
    * reference and attempt to call the bean again. Expect the following
-   * exception javax.ejb.NoSuchObjectLocalException.
+   * exception jakarta.ejb.NoSuchObjectLocalException.
    */
 
   public void test7() throws Fault {
@@ -301,7 +301,7 @@ public class Client extends EETest {
     try {
       logMsg("Create EJB instance");
       bRef = bHome.create(props);
-      logMsg("Test for javax.ejb.NoSuchObjectLocalException");
+      logMsg("Test for jakarta.ejb.NoSuchObjectLocalException");
       pass = bRef.test7();
     } catch (Exception e) {
       throw new Fault("test7 failed", e);
@@ -325,11 +325,11 @@ public class Client extends EETest {
    * @test_Strategy: If a session bean is participating in a transaction, it is
    * an error for a client to invoke the remove method on the session object's
    * home or component interface. The container must detect such an attempt and
-   * throw the javax.ejb.RemoveException.
+   * throw the jakarta.ejb.RemoveException.
    *
    * Create a local stateful session bean. Invoke business method and attempt to
    * invoke the remove method on the local session object's component interface
-   * while participating in a transaction. Expect javax.ejb.RemoveException.
+   * while participating in a transaction. Expect jakarta.ejb.RemoveException.
    */
 
   public void test8() throws Fault {
@@ -338,7 +338,7 @@ public class Client extends EETest {
     try {
       logMsg("Create EJB instance");
       bRef = bHome.create(props);
-      logMsg("Test for javax.ejb.RemoveException on Local Interface");
+      logMsg("Test for jakarta.ejb.RemoveException on Local Interface");
       pass = bRef.test8();
     } catch (Exception e) {
       throw new Fault("test8 failed", e);
@@ -364,12 +364,12 @@ public class Client extends EETest {
    * @test_Strategy: If a session bean is participating in a transaction, it is
    * an error for a client to invoke the remove method on the session object's
    * home or component interface. The container must detect such an attempt and
-   * throw the javax.ejb.RemoveException.
+   * throw the jakarta.ejb.RemoveException.
    *
    * Create an remote stateful session bean. Invoke business method and attempt
    * to invoke the remove method on the remote session object's component
    * interface while participating in a transaction. Expect
-   * javax.ejb.RemoveException.
+   * jakarta.ejb.RemoveException.
    */
 
   public void test9() throws Fault {
@@ -378,7 +378,7 @@ public class Client extends EETest {
     try {
       logMsg("Create EJB instance");
       bRef = bHome.create(props);
-      logMsg("Test for javax.ejb.RemoveException on Remote Interface");
+      logMsg("Test for jakarta.ejb.RemoveException on Remote Interface");
       pass = bRef.test9();
     } catch (Exception e) {
       throw new Fault("test9 failed", e);
@@ -404,7 +404,7 @@ public class Client extends EETest {
    * @test_Strategy: If a session bean is participating in a transaction, it is
    * an error for a client to invoke the remove method on the session object's
    * home or component interface. The container must detect such an attempt and
-   * throw the javax.ejb.RemoveException.
+   * throw the jakarta.ejb.RemoveException.
    *
    * Create an local stateful session bean. Invoke business method and attempt
    * to invoke the remove method on the session object's local home interface
@@ -417,7 +417,7 @@ public class Client extends EETest {
     try {
       logMsg("Create EJB instance");
       bRef = bHome.create(props);
-      logMsg("Test for javax.ejb.RemoveException on Local Home Interface");
+      logMsg("Test for jakarta.ejb.RemoveException on Local Home Interface");
       pass = bRef.test10();
     } catch (Exception e) {
       throw new Fault("test10 failed", e);
@@ -443,7 +443,7 @@ public class Client extends EETest {
    * @test_Strategy: If a session bean is participating in a transaction, it is
    * an error for a client to invoke the remove method on the session object's
    * home or component interface. The container must detect such an attempt and
-   * throw the javax.ejb.RemoveException.
+   * throw the jakarta.ejb.RemoveException.
    *
    * Create a remote stateful session bean. Invoke business method and attempt
    * to invoke the remove method on the session object's remote home interface
@@ -456,7 +456,7 @@ public class Client extends EETest {
     try {
       logMsg("Create EJB instance");
       bRef = bHome.create(props);
-      logMsg("Test for javax.ejb.RemoveException on Remote Home Interface");
+      logMsg("Test for jakarta.ejb.RemoveException on Remote Home Interface");
       pass = bRef.test11();
     } catch (Exception e) {
       throw new Fault("test11 failed", e);
@@ -482,7 +482,7 @@ public class Client extends EETest {
    * @test_Strategy: If a session bean is participating in a transaction, it is
    * an error for a client to invoke the remove method on the session object's
    * home or component interface. The container must detect such an attempt and
-   * throw the javax.ejb.RemoveException. The container should not mark the
+   * throw the jakarta.ejb.RemoveException. The container should not mark the
    * Transaction for rollback, thus allowing the client to recover.
    *
    * Create local SSF bean and remove, create remote SSF bean and remove

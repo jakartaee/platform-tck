@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,7 +33,7 @@ abstract public class SessionSyncBeanBase implements SessionSyncIF {
   /*
    * (non-Javadoc)
    * 
-   * @see javax.ejb.SessionSynchronization#afterBegin()
+   * @see jakarta.ejb.SessionSynchronization#afterBegin()
    */
   public void afterBegin() {
     // This should be the very first entry point of any business method
@@ -45,7 +45,7 @@ abstract public class SessionSyncBeanBase implements SessionSyncIF {
   /*
    * (non-Javadoc)
    * 
-   * @see javax.ejb.SessionSynchronization#afterCompletion(boolean)
+   * @see jakarta.ejb.SessionSynchronization#afterCompletion(boolean)
    */
   public void afterCompletion(boolean arg0) {
     history.add(afterCompletion);
@@ -54,7 +54,7 @@ abstract public class SessionSyncBeanBase implements SessionSyncIF {
   /*
    * (non-Javadoc)
    * 
-   * @see javax.ejb.SessionSynchronization#beforeCompletion()
+   * @see jakarta.ejb.SessionSynchronization#beforeCompletion()
    */
   public void beforeCompletion() {
     history.add(beforeCompletion);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,16 +23,16 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.ejb.NoSuchObjectLocalException;
-import javax.ejb.Schedule;
-import javax.ejb.ScheduleExpression;
-import javax.ejb.Schedules;
-import javax.ejb.Stateless;
-import javax.ejb.Timer;
-import javax.ejb.TimerConfig;
-import javax.ejb.TimerHandle;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import jakarta.ejb.NoSuchObjectLocalException;
+import jakarta.ejb.Schedule;
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Schedules;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
+import jakarta.ejb.TimerHandle;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 
 import org.apache.commons.lang3.time.DateUtils;
 

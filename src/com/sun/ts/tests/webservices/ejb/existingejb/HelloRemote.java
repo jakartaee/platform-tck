@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
- * Copyright (c) 2002 International Business Machines Corp. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2002, 2020 International Business Machines Corp. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,7 @@
 
 package com.sun.ts.tests.webservices.ejb.existingejb;
 
-import javax.ejb.EJBObject;
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
 public interface HelloRemote extends EJBObject {

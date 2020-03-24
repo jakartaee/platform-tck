@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,13 +21,13 @@
 package com.sun.ts.tests.ejb30.lite.view.singleton.annotated;
 
 import javax.annotation.Resource;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateless;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
 
-// Singleton is not allowed to implement javax.ejb.SessionBean interface.
+// Singleton is not allowed to implement jakarta.ejb.SessionBean interface.
 // The easiest fix is to change it to Stateless.
 //@Singleton
 @Stateless
