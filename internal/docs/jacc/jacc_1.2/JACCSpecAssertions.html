@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -443,8 +443,8 @@ component request being processed by the container.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:100"></a><font size="1PT">JACC:SPEC:100</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1.4</font></TD><TD align="left" valign="center"><font size="1PT">All EJB containers must register a PolicyContextHandler whose getContext
-method returns a javax.ejb.EnterpriseBean object when invoked with the key
-javax.ejb.EnterpriseBean. When this handler is activated, the container must
+method returns a jakarta.ejb.EnterpriseBean object when invoked with the key
+jakarta.ejb.EnterpriseBean. When this handler is activated, the container must
 return the EnterpriseBean object corresponding to theEJB component request being
 processed by the container.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -455,7 +455,7 @@ processed by the container.
 <TD align="center" valign="center"><a name="JACC:SPEC:101"></a><font size="1PT">JACC:SPEC:101</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1.5</font></TD><TD align="left" valign="center"><font size="1PT">All EJB containers must register a PolicyContextHandler whose getContext
 method returns an array of objects (Object[]) containing the arguments of the EJB
 method invocation (in the same order as they appear in the method signature)
-when invoked with the key javax.ejb.arguments. The context handler must
+when invoked with the key jakarta.ejb.arguments. The context handler must
 return the value null when called in the context of a SOAP request that arrived at
 the ServiceEndpoint method interface. Otherwise, the context handler must return
 the array of objects corresponding to the parameters of the EJB component
@@ -704,7 +704,7 @@ again.
        business method of the EJB Remote, Local, or ServiceEndpoint 
        interfaces of the EnterpriseBean object. The value null must be 
        returned if the bean implementation class does not implement the 
-       javax.ejb.EnterpriseBean interface.
+       jakarta.ejb.EnterpriseBean interface.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
