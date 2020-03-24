@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2015, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,11 +17,11 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.pasrv.nomoreendpoints;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-import javax.websocket.server.ServerContainer;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
+import jakarta.websocket.server.ServerContainer;
 
 import com.sun.ts.tests.websocket.negdep.EchoServerEndpoint;
 
@@ -39,7 +40,7 @@ public class TestListener implements ServletContextListener {
     ServletContext context = sce.getServletContext();
     try {
       final ServerContainer serverContainer = (ServerContainer) context
-          .getAttribute("javax.websocket.server.ServerContainer");
+          .getAttribute("jakarta.websocket.server.ServerContainer");
       serverContainer.addEndpoint(EchoServerEndpoint.class);
     } catch (Exception ex) {
       // The DeploymentException can be thrown here, since no

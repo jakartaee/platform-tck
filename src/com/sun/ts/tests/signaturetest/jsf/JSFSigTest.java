@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -47,14 +47,14 @@ public class JSFSigTest extends SigTest {
    *         verified.
    */
   protected String[] getPackages() {
-    return new String[] { "javax.faces", "javax.faces.application",
-        "javax.faces.bean", "javax.faces.component",
-        "javax.faces.component.behavior", "javax.faces.component.html",
-        "javax.faces.component.visit", "javax.faces.context",
-        "javax.faces.convert", "javax.faces.el", "javax.faces.event",
-        "javax.faces.flow", "javax.faces.flow.builder", "javax.faces.lifecycle",
-        "javax.faces.model", "javax.faces.render", "javax.faces.validator",
-        "javax.faces.view", "javax.faces.view.facelets", "javax.faces.webapp" };
+    return new String[] { "jakarta.faces", "jakarta.faces.application",
+        "jakarta.faces.bean", "jakarta.faces.component",
+        "jakarta.faces.component.behavior", "jakarta.faces.component.html",
+        "jakarta.faces.component.visit", "jakarta.faces.context",
+        "jakarta.faces.convert", "jakarta.faces.el", "jakarta.faces.event",
+        "jakarta.faces.flow", "jakarta.faces.flow.builder", "jakarta.faces.lifecycle",
+        "jakarta.faces.model", "jakarta.faces.render", "jakarta.faces.validator",
+        "jakarta.faces.view", "jakarta.faces.view.facelets", "jakarta.faces.webapp" };
   }
 
   /**

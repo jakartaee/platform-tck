@@ -1,3 +1,3 @@
-** `javax.websocket`
+** `jakarta.websocket`
 
-** `javax.websocket.server`
+** `jakarta.websocket.server`

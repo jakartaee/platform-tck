@@ -177,7 +177,7 @@
 		<copy todir="${deliverable.bundle.dir}/src/com/sun/ts/tests/signaturetest/signature-repository/"
 			  includeEmptyDirs="no">
 			<fileset dir="${ts.home}/src/com/sun/ts/tests/signaturetest/signature-repository/"
-					 includes="javax.servlet.sig_2.5*" />
+					 includes="jakarta.servlet.sig_*" />
 		</copy>
 
         <!-- the com/sun/ts/lib file -->

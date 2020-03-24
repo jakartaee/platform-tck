@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,9 +46,9 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:193; WebSocket:JAVADOC:69;
    * WebSocket:JAVADOC:79;
    * 
-   * @test_Strategy: javax.websocket.server.ServerEndpointConfig.getConfigurator
-   * javax.websocket.Endpoint.onOpen;
-   * javax.websocket.MessageHandler.Whole.onMessage
+   * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getConfigurator
+   * jakarta.websocket.Endpoint.onOpen;
+   * jakarta.websocket.MessageHandler.Whole.onMessage
    */
   public void getConfiguratorTest() throws Fault {
     String[] endpoints = new String[] { "programatic/subprotocols",
@@ -71,9 +72,9 @@ public class WSClient extends WebSocketCommonClient {
    * WebSocket:JAVADOC:79;
    * 
    * @test_Strategy:
-   * javax.websocket.server.ServerEndpointConfig.getEndpointClass
-   * javax.websocket.Endpoint.onOpen;
-   * javax.websocket.MessageHandler.Whole.onMessage
+   * jakarta.websocket.server.ServerEndpointConfig.getEndpointClass
+   * jakarta.websocket.Endpoint.onOpen;
+   * jakarta.websocket.MessageHandler.Whole.onMessage
    */
   public void getEndpointClassTest() throws Fault {
     String[] endpoints = new String[] { "programatic/subprotocols",
@@ -99,9 +100,9 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:195; WebSocket:JAVADOC:69;
    * WebSocket:JAVADOC:79;
    * 
-   * @test_Strategy: javax.websocket.server.ServerEndpointConfig.getExtensions
-   * javax.websocket.Endpoint.onOpen;
-   * javax.websocket.MessageHandler.Whole.onMessage
+   * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getExtensions
+   * jakarta.websocket.Endpoint.onOpen;
+   * jakarta.websocket.MessageHandler.Whole.onMessage
    */
   public void getExtensionsTest() throws Fault {
     String[] endpoints = new String[] { "programatic/subprotocols",
@@ -124,9 +125,9 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:196; WebSocket:JAVADOC:69;
    * WebSocket:JAVADOC:79;
    * 
-   * @test_Strategy: javax.websocket.server.ServerEndpointConfig.getPath
-   * javax.websocket.Endpoint.onOpen;
-   * javax.websocket.MessageHandler.Whole.onMessage
+   * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getPath
+   * jakarta.websocket.Endpoint.onOpen;
+   * jakarta.websocket.MessageHandler.Whole.onMessage
    */
   public void getPathTest() throws Fault {
     String[] sequence = new String[] { "programatic/subprotocols",
@@ -146,10 +147,10 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
    * WebSocket:JAVADOC:79;
    * 
-   * @test_Strategy: javax.websocket.server.ServerEndpointConfig.getSubprotocols
+   * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols
    * Return the websocket subprotocols configured.
-   * javax.websocket.Endpoint.onOpen;
-   * javax.websocket.MessageHandler.Whole.onMessage
+   * jakarta.websocket.Endpoint.onOpen;
+   * jakarta.websocket.MessageHandler.Whole.onMessage
    */
   public void getSubprotocolsTest() throws Fault {
     String[] endpoints = new String[] { "programatic/subprotocols",
@@ -169,10 +170,10 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
    * WebSocket:JAVADOC:79;
    * 
-   * @test_Strategy: javax.websocket.server.ServerEndpointConfig.getSubprotocols
+   * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols
    * Return the websocket subprotocols configured.
-   * javax.websocket.Endpoint.onOpen;
-   * javax.websocket.MessageHandler.Whole.onMessage
+   * jakarta.websocket.Endpoint.onOpen;
+   * jakarta.websocket.MessageHandler.Whole.onMessage
    */
   public void getEmptySubprotocolsTest() throws Fault {
     String[] endpoints = new String[] { "annotated/configurator",

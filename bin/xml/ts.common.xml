@@ -125,10 +125,6 @@
 			</then>
 		</if>
 	</target>
-  
-  <condition property="compile.arg" value="-Djava.endorsed.dirs=${endorsed.dirs}" else="${jdk9.compiler.arg}">
-     <or><equals arg1="${ant.java.version}" arg2="1.8"/><equals arg1="${ant.java.version}" arg2="1.7"/><equals arg1="${ant.java.version}" arg2="1.6"/></or>
-  </condition>
 
 	<presetdef name="ts.javac">
 
@@ -147,7 +143,7 @@
 			<classpath>
 				<pathelement path="${ts.classpath}${pathsep}${ant.home}/lib/ant.jar" />
 			</classpath>
-			<compilerarg line="${compile.arg}"/>
+			<compilerarg line="${jdk.compiler.args}"/>
 		</javac>
 	</presetdef>
 

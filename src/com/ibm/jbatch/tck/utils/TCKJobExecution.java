@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 International Business Machines Corp.
+ * Copyright 2013, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -19,9 +19,9 @@ package com.ibm.jbatch.tck.utils;
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.batch.operations.JobSecurityException;
-import javax.batch.operations.NoSuchJobExecutionException;
-import javax.batch.runtime.JobExecution;
+import jakarta.batch.operations.JobSecurityException;
+import jakarta.batch.operations.NoSuchJobExecutionException;
+import jakarta.batch.runtime.JobExecution;
 
 public interface TCKJobExecution extends JobExecution {
 	

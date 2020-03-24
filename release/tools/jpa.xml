@@ -134,7 +134,7 @@
                                com/sun/ts/tests/common/vehicle/ejb3share/*,
                                com/sun/ts/tests/signaturetest/jpa/**/*,
                                com/sun/ts/tests/signaturetest/*,
-                               com/sun/ts/tests/signaturetest/signature-repository/javax.persistence.*"
+                               com/sun/ts/tests/signaturetest/signature-repository/jakarta.persistence.*"
                       excludes="**/*log,com/sun/ts/tests/common/web,
                                com/sun/ts/tests/signaturetest/*Record*,
                                com/sun/ts/tests/signaturetest/*record*,

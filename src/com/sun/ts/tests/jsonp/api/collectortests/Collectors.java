@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,14 +24,14 @@ import java.util.Map;
 import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collector;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
-import javax.json.stream.JsonCollectors;
-import javax.json.stream.JsonParser;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonCollectors;
+import jakarta.json.stream.JsonParser;
 
 import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
 import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
@@ -39,7 +39,7 @@ import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 // $Id$
 /**
  * JavaScript Object Notation (JSON) Pointer compatibility tests.<br>
- * Test {@link javax.json.stream.JsonCollectors} class implementation. This
+ * Test {@link jakarta.json.stream.JsonCollectors} class implementation. This
  * class was added to resolve
  * {@see <a href="https://java.net/jira/browse/JSON_PROCESSING_SPEC-68">RFE:
  * Support JSON queries using JDK's stream operations</a>}.
@@ -77,7 +77,7 @@ public class Collectors {
       .build();
 
   /**
-   * Creates an instance of {@link javax.json.stream.JsonCollectors} class
+   * Creates an instance of {@link jakarta.json.stream.JsonCollectors} class
    * implementation tests.
    */
   Collectors() {
@@ -85,7 +85,7 @@ public class Collectors {
   }
 
   /**
-   * Test {@link javax.json.stream.JsonCollectors} class implementation. Suite
+   * Test {@link jakarta.json.stream.JsonCollectors} class implementation. Suite
    * entry point.
    * 
    * @return Result of all tests in this suite.

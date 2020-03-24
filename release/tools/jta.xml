@@ -137,7 +137,7 @@
                      ${lib.pkg.dir}/deliverable/jta/*,
                      com/sun/ts/tests/signaturetest/*,
                      com/sun/ts/tests/signaturetest/jta/**,
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.transaction*,
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.transaction*,
                      com/sun/ts/tests/signaturetest/signature-repository/empty.sig"
                      excludes="com/sun/ts/tests/signaturetest/*Record*,
                                com/sun/ts/tests/signaturetest/*record*"/>

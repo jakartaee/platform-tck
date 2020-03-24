@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,7 +46,7 @@ public class WSClient extends WebSocketCommonClient {
    * WebSocket:JAVADOC:66;
    * 
    * @test_Strategy: check @OnError works on Endpoint on Server Side
-   * javax.websocket.Endpoint.onOpen Endpoint.Endpoint
+   * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
    */
   public void onErrorWorksTest() throws Fault {
     invoke("msg", WSCMsgServer.MESSAGES[0], WSCMsgServer.EMPTY);
@@ -63,7 +64,7 @@ public class WSClient extends WebSocketCommonClient {
    * WebSocket:JAVADOC:66;
    * 
    * @test_Strategy: check @OnClose works on Endpoint on Server side
-   * javax.websocket.Endpoint.onOpen Endpoint.Endpoint
+   * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
    */
   public void onCloseWorksTest() throws Fault {
     invoke("msg", WSCMsgServer.MESSAGES[0], WSCMsgServer.EMPTY);

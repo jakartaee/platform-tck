@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -49,8 +49,8 @@ public class JSPSigTest extends SigTest {
    *         verified.
    */
   protected String[] getPackages() {
-    return new String[] { "javax.servlet.jsp", "javax.servlet.jsp.el",
-        "javax.servlet.jsp.tagext" };
+    return new String[] { "jakarta.servlet.jsp", "jakarta.servlet.jsp.el",
+        "jakarta.servlet.jsp.tagext" };
   }
 
   /***** Boilerplate Code *****/

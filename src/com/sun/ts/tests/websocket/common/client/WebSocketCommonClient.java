@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,11 +28,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.ClientEndpointConfig.Configurator;
-import javax.websocket.Endpoint;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.ClientEndpointConfig.Configurator;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.Session;
+import jakarta.websocket.WebSocketContainer;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
@@ -387,7 +388,7 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
 
   /**
    * Invoke additional request with new entity and hold open
-   * {@link javax.websocket.Session} to a server {@link Endpoint}, the response
+   * {@link jakarta.websocket.Session} to a server {@link Endpoint}, the response
    * is caught by client {@link Endpoint} set by current
    * {@link WebSocketTestCase}
    * <p/>

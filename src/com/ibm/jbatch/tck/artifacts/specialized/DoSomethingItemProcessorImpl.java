@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -21,7 +21,7 @@ import com.sun.ts.lib.util.TestUtil;
 
 
 
-import javax.batch.api.chunk.ItemProcessor;
+import jakarta.batch.api.chunk.ItemProcessor;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 

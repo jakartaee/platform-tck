@@ -151,7 +151,7 @@
 		   com/sun/ts/tests/concurrency/spec/ManagedThreadFactory/build.xml,
 		   com/sun/ts/tests/concurrency/spec/ManagedThreadFactory/apitests/*,
 		   com/sun/ts/tests/concurrency/spec/ManagedThreadFactory/context_servlet/*,
-                   com/sun/ts/tests/signaturetest/signature-repository/javax.enterprise.concurrent.*,
+                   com/sun/ts/tests/signaturetest/signature-repository/jakarta.enterprise.concurrent.*,
                    com/sun/ts/tests/signaturetest/*,
                    com/sun/ts/tests/signaturetest/concurrency/*,
                    com/sun/ts/tests/common/vehicle/*,

@@ -2,7 +2,8 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,83 +33,83 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>1</id>
       <description>An optional custom configurator class that the developer would like to use to provide custom configuration of new instances of this endpoint. The implementation creates a new instance of the configurator per logical endpoint.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpoint</class-interface>
       <method name="configurator" return-type="java.lang.Class" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>2</id>
       <description>The array of Java classes that are to act as Decoders for messages coming into the client.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpoint</class-interface>
       <method name="decoders" return-type="java.lang.Class[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>3</id>
       <description>The array of Java classes that are to act as Encoders for messages sent by the client.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpoint</class-interface>
       <method name="encoders" return-type="java.lang.Class[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>4</id>
       <description>The names of the subprotocols this client supports.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpoint</class-interface>
       <method name="subprotocols" return-type="java.lang.String[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>5</id>
       <description>Return the custom configurator for this configuration. If the developer did not provide one, the platform default configurator is returned.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig</class-interface>
-      <method name="getConfigurator" return-type="javax.websocket.ClientEndpointConfig.ClientEndpointConfig.Configurator" />
+      <method name="getConfigurator" return-type="jakarta.websocket.ClientEndpointConfig.ClientEndpointConfig.Configurator" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>6</id>
       <description>Return the extensions, in order of preference, favorite first, that this client would like to use for its sessions. These are the extensions that will be used to populate the Sec-WebSocket-Extensions header in the opening handshake for clients using this configuration. The first extension in the list is the most preferred extension. See Negotiating Extensions.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig</class-interface>
       <method name="getExtensions" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>7</id>
       <description>Return the ordered list of sub protocols a client endpoint would like to use, in order of preference, favorite first that this client would like to use for its sessions. This list is used to generate the Sec-WebSocket-Protocol header in the opening handshake for clients using this configuration. The first protocol name is the most preferred. See Client Opening Handshake.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig</class-interface>
       <method name="getPreferredSubprotocols" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>8</id>
       <description>Builds a configuration object using the attributes set on this builder.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Builder</class-interface>
-      <method name="build" return-type="javax.websocket.ClientEndpointConfig" />
+      <method name="build" return-type="jakarta.websocket.ClientEndpointConfig" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>9</id>
       <description>Sets the configurator object for the configuration this builder will build.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Builder</class-interface>
-      <method name="configurator" return-type="javax.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
+      <method name="configurator" return-type="jakarta.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
         <parameters>
-          <parameter>javax.websocket.ClientEndpointConfig.ClientEndpointConfig.Configurator</parameter>
+          <parameter>jakarta.websocket.ClientEndpointConfig.ClientEndpointConfig.Configurator</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>10</id>
       <description>Creates a new builder object with no subprotocols, extensions, encoders, decoders and a null configurator.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Builder</class-interface>
-      <method name="create" return-type="javax.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder" />
+      <method name="create" return-type="jakarta.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>11</id>
       <description>Assign the list of decoder implementation classes the client will use.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Builder</class-interface>
-      <method name="decoders" return-type="javax.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
+      <method name="decoders" return-type="jakarta.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
         <parameters>
           <parameter>java.util.List</parameter>
         </parameters>
@@ -117,9 +118,9 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>12</id>
       <description>Assign the list of encoder implementation classes the client will use.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Builder</class-interface>
-      <method name="encoders" return-type="javax.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
+      <method name="encoders" return-type="jakarta.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
         <parameters>
           <parameter>java.util.List</parameter>
         </parameters>
@@ -128,9 +129,9 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>13</id>
       <description>Set the extensions for the configuration this builder will build. The list is treated in order of preference, favorite first, that the client would like to use for its sessions.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Builder</class-interface>
-      <method name="extensions" return-type="javax.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
+      <method name="extensions" return-type="jakarta.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
         <parameters>
           <parameter>java.util.List</parameter>
         </parameters>
@@ -139,9 +140,9 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>14</id>
       <description>Set the preferred sub protocols for the configuration this builder will build. The list is treated in order of preference, favorite first, that this client would like to use for its sessions.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Builder</class-interface>
-      <method name="preferredSubprotocols" return-type="javax.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
+      <method name="preferredSubprotocols" return-type="jakarta.websocket.ClientEndpointConfig.ClientEndpointConfig.Builder">
         <parameters>
           <parameter>java.util.List</parameter>
         </parameters>
@@ -150,18 +151,18 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>15</id>
       <description>This method is called by the implementation after it has received a handshake response from the server as a result of a handshake interaction it initiated. The developer may implement this method in order to inspect the returning handshake response.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Configurator</class-interface>
       <method name="afterResponse" return-type="void">
         <parameters>
-          <parameter>javax.websocket.HandshakeResponse</parameter>
+          <parameter>jakarta.websocket.HandshakeResponse</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>16</id>
       <description>This method is called by the implementation after it has formulated the handshake request that will be used to initiate the connection to the server, but before it has sent any part of the request. This allows the developer to inspect and modify the handshake request headers prior to the start of the handshake interaction.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Configurator</class-interface>
       <method name="beforeRequest" return-type="void">
         <parameters>
@@ -172,18 +173,18 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>17</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ClientEndpointConfig.Configurator</class-interface>
       <method name="ClientEndpointConfig.Configurator" return-type="ClientEndpointConfig.Configurator" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>18</id>
       <description>Creates a reason for closing a web socket connection with the given code and reason phrase.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason</class-interface>
       <method name="CloseReason" return-type="CloseReason">
         <parameters>
-          <parameter>javax.websocket.CloseReason.CloseReason.CloseCode</parameter>
+          <parameter>jakarta.websocket.CloseReason.CloseReason.CloseCode</parameter>
           <parameter>java.lang.String</parameter>
         </parameters>
       </method>
@@ -191,37 +192,37 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>19</id>
       <description>The Close code associated with this CloseReason.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason</class-interface>
-      <method name="getCloseCode" return-type="javax.websocket.CloseReason.CloseReason.CloseCode" />
+      <method name="getCloseCode" return-type="jakarta.websocket.CloseReason.CloseReason.CloseCode" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>20</id>
       <description>The reason phrase associated with this CloseReason.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason</class-interface>
       <method name="getReasonPhrase" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="false">
       <id>21</id>
       <description>Converts the CloseReason to a debug-friendly string. The exact format is not defined by the specification and may change in future releases.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason</class-interface>
       <method name="toString" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>22</id>
       <description>Returns the code number, for example the integer '1000' for normal closure.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason.CloseCode</class-interface>
       <method name="getCode" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>23</id>
       <description>Creates a CloseCode from the given int code number. This method throws an IllegalArgumentException if the int is not one of the</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason.CloseCodes</class-interface>
-      <method name="getCloseCode" return-type="javax.websocket.CloseReason.CloseReason.CloseCode">
+      <method name="getCloseCode" return-type="jakarta.websocket.CloseReason.CloseReason.CloseCode">
         <parameters>
           <parameter>int</parameter>
         </parameters>
@@ -230,16 +231,16 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>24</id>
       <description>Return the code number of this status code.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason.CloseCodes</class-interface>
       <method name="getCode" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>25</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason.CloseCodes</class-interface>
-      <method name="valueOf" return-type="javax.websocket.CloseReason.CloseReason.CloseCodes">
+      <method name="valueOf" return-type="jakarta.websocket.CloseReason.CloseReason.CloseCodes">
         <parameters>
           <parameter>java.lang.String</parameter>
         </parameters>
@@ -248,28 +249,28 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>26</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>CloseReason.CloseCodes</class-interface>
-      <method name="values" return-type="javax.websocket.CloseReason.CloseReason.CloseCodes[]" />
+      <method name="values" return-type="jakarta.websocket.CloseReason.CloseReason.CloseCodes[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>27</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>ContainerProvider</class-interface>
       <method name="ContainerProvider" return-type="ContainerProvider" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>28</id>
-      <description>Obtain a new instance of a WebSocketContainer. The method looks for the ContainerProvider implementation class in the order listed in the META-INF/services/javax.websocket.ContainerProvider file, returning the WebSocketContainer implementation from the ContainerProvider implementation that is not null.</description>
-      <package>javax.websocket</package>
+      <description>Obtain a new instance of a WebSocketContainer. The method looks for the ContainerProvider implementation class in the order listed in the META-INF/services/jakarta.websocket.ContainerProvider file, returning the WebSocketContainer implementation from the ContainerProvider implementation that is not null.</description>
+      <package>jakarta.websocket</package>
       <class-interface>ContainerProvider</class-interface>
-      <method name="getWebSocketContainer" return-type="javax.websocket.WebSocketContainer" />
+      <method name="getWebSocketContainer" return-type="jakarta.websocket.WebSocketContainer" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>29</id>
       <description>Constructor with the binary data that could not be decoded, and the reason why it failed to be, and the cause. The buffer may represent the whole message, or the part of the message most relevant to the decoding error, depending whether the application is using one of the streaming methods or not.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>DecodeException</class-interface>
       <method name="DecodeException" return-type="DecodeException">
         <parameters>
@@ -282,7 +283,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>30</id>
       <description>Constructor with the text data that could not be decoded, and the reason why it failed to be, and the cause. The encoded string may represent the whole message, or the part of the message most relevant to the decoding error, depending whether the application is using one of the streaming methods or not.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>DecodeException</class-interface>
       <method name="DecodeException" return-type="DecodeException">
         <parameters>
@@ -295,7 +296,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>31</id>
       <description>Constructs a DecodedException with the given ByteBuffer that cannot be decoded, and reason why. The buffer may represent the whole message, or the part of the message most relevant to the decoding error, depending whether the application is using one of the streaming methods or not.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>DecodeException</class-interface>
       <method name="DecodeException" return-type="DecodeException">
         <parameters>
@@ -307,7 +308,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>32</id>
       <description>Constructs a DecodedException with the given encoded string that cannot be decoded, and reason why. The encoded string may represent the whole message, or the part of the message most relevant to the decoding error, depending whether the application is using one of the streaming methods or not.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>DecodeException</class-interface>
       <method name="DecodeException" return-type="DecodeException">
         <parameters>
@@ -319,39 +320,39 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>33</id>
       <description>Return the ByteBuffer containing either the whole message, or the partial message, that could not be decoded, or null if this exception arose from a failure to decode a text message. if this exception arose from a failure to decode a text message.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>DecodeException</class-interface>
       <method name="getBytes" return-type="java.nio.ByteBuffer" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>34</id>
       <description>Return the encoded string that is either the whole message, or the partial message that could not be decoded, or null if this exception arose from a failure to decode a binary message.. if this exception arose from a failure to decode a binary message..</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>DecodeException</class-interface>
       <method name="getText" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>35</id>
       <description>This method is called when the decoder is about to be removed from service in order that any resources the encoder used may be closed gracefully.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder</class-interface>
       <method name="destroy" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>36</id>
       <description>This method is called with the endpoint configuration object of the endpoint this decoder is intended for when it is about to be brought into service.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder</class-interface>
       <method name="init" return-type="void">
         <parameters>
-          <parameter>javax.websocket.EndpointConfig</parameter>
+          <parameter>jakarta.websocket.EndpointConfig</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>37</id>
       <description>Decode the given bytes into an object of type T.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.Binary</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
@@ -362,19 +363,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>38</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.Binary</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
           <parameter>java.nio.ByteBuffer</parameter>
         </parameters>
-        <throw>javax.websocket.DecodeException</throw>
+        <throw>jakarta.websocket.DecodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>39</id>
       <description>Answer whether the given bytes can be decoded into an object of type T.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.Binary</class-interface>
       <method name="willDecode" return-type="boolean">
         <parameters>
@@ -385,7 +386,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>40</id>
       <description>Decode the given bytes read from the input stream into an object of type T.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.BinaryStream</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
@@ -396,19 +397,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>41</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.BinaryStream</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
           <parameter>java.io.InputStream</parameter>
         </parameters>
-        <throw>javax.websocket.DecodeException</throw>
+        <throw>jakarta.websocket.DecodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>42</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.BinaryStream</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
@@ -420,7 +421,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>43</id>
       <description>Decode the given String into an object of type T.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.Text</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
@@ -431,19 +432,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>44</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.Text</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
           <parameter>java.lang.String</parameter>
         </parameters>
-        <throw>javax.websocket.DecodeException</throw>
+        <throw>jakarta.websocket.DecodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>45</id>
       <description>Answer whether the given String can be decoded into an object of type T.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.Text</class-interface>
       <method name="willDecode" return-type="boolean">
         <parameters>
@@ -454,7 +455,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>46</id>
       <description>Reads the websocket message from the implementation provided Reader and decodes it into an instance of the supplied object type.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.TextStream</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
@@ -465,19 +466,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>47</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.TextStream</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
           <parameter>java.io.Reader</parameter>
         </parameters>
-        <throw>javax.websocket.DecodeException</throw>
+        <throw>jakarta.websocket.DecodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>48</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Decoder.TextStream</class-interface>
       <method name="decode" return-type="java.lang.Object">
         <parameters>
@@ -489,7 +490,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>49</id>
       <description>Creates a deployment exception with the given reason for the deployment failure.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>DeploymentException</class-interface>
       <method name="DeploymentException" return-type="DeploymentException">
         <parameters>
@@ -500,7 +501,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>50</id>
       <description>Creates a deployment exception with the given reason for the deployment failure and wrapped cause of the failure.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>DeploymentException</class-interface>
       <method name="DeploymentException" return-type="DeploymentException">
         <parameters>
@@ -512,7 +513,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>51</id>
       <description>Constructor with the object being encoded, and the reason why it failed to be.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>EncodeException</class-interface>
       <method name="EncodeException" return-type="EncodeException">
         <parameters>
@@ -524,7 +525,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>52</id>
       <description>Constructor with the object being encoded, and the reason why it failed to be, and the cause.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>EncodeException</class-interface>
       <method name="EncodeException" return-type="EncodeException">
         <parameters>
@@ -537,32 +538,32 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>53</id>
       <description>Return the Object that could not be encoded.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>EncodeException</class-interface>
       <method name="getObject" return-type="java.lang.Object" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>54</id>
       <description>This method is called when the encoder is about to be removed from service in order that any resources the encoder used may be closed gracefully.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder</class-interface>
       <method name="destroy" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>55</id>
       <description>This method is called with the endpoint configuration object of the endpoint this encoder is intended for when it is about to be brought into service.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder</class-interface>
       <method name="init" return-type="void">
         <parameters>
-          <parameter>javax.websocket.EndpointConfig</parameter>
+          <parameter>jakarta.websocket.EndpointConfig</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>56</id>
       <description>Encode the given object into a byte array.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.Binary</class-interface>
       <method name="encode" return-type="java.nio.ByteBuffer">
         <parameters>
@@ -573,19 +574,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>57</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.Binary</class-interface>
       <method name="encode" return-type="java.nio.ByteBuffer">
         <parameters>
           <parameter>java.lang.Object</parameter>
         </parameters>
-        <throw>javax.websocket.EncodeException</throw>
+        <throw>jakarta.websocket.EncodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>58</id>
       <description>Encode the given object into a binary stream written to the implementation provided OutputStream.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.BinaryStream</class-interface>
       <method name="encode" return-type="void">
         <parameters>
@@ -597,20 +598,20 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>59</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.BinaryStream</class-interface>
       <method name="encode" return-type="void">
         <parameters>
           <parameter>java.lang.Object</parameter>
           <parameter>java.io.OutputStream</parameter>
         </parameters>
-        <throw>javax.websocket.EncodeException</throw>
+        <throw>jakarta.websocket.EncodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>60</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.BinaryStream</class-interface>
       <method name="encode" return-type="void">
         <parameters>
@@ -623,7 +624,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>61</id>
       <description>Encode the given object into a String.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.Text</class-interface>
       <method name="encode" return-type="java.lang.String">
         <parameters>
@@ -634,19 +635,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>62</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.Text</class-interface>
       <method name="encode" return-type="java.lang.String">
         <parameters>
           <parameter>java.lang.Object</parameter>
         </parameters>
-        <throw>javax.websocket.EncodeException</throw>
+        <throw>jakarta.websocket.EncodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>63</id>
       <description>Encode the given object to a character stream writing it to the supplied Writer. Implementations of this method may use the EncodeException to indicate a failure to convert the supplied object to an encoded form, and may use the IOException to indicate a failure to write the data to the supplied stream.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.TextStream</class-interface>
       <method name="encode" return-type="void">
         <parameters>
@@ -658,20 +659,20 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>64</id>
       <description>if there was an error encoding the object due to its state.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.TextStream</class-interface>
       <method name="encode" return-type="void">
         <parameters>
           <parameter>java.lang.Object</parameter>
           <parameter>java.io.Writer</parameter>
         </parameters>
-        <throw>javax.websocket.EncodeException</throw>
+        <throw>jakarta.websocket.EncodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>65</id>
       <description>if there was an exception writing to the writer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Encoder.TextStream</class-interface>
       <method name="encode" return-type="void">
         <parameters>
@@ -684,30 +685,30 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>66</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Endpoint</class-interface>
       <method name="Endpoint" return-type="Endpoint" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>67</id>
       <description>This method is called immediately prior to the session with the remote peer being closed. It is called whether the session is being closed because the remote peer initiated a close and sent a close frame, or whether the local websocket container or this endpoint requests to close the session. The developer may take this last opportunity to retrieve session attributes such as the ID, or any application data it holds before it becomes unavailable after the completion of the method. Developers should not attempt to modify the session from within this method, or send new messages from this call as the underlying connection will not be able to send them at this stage.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Endpoint</class-interface>
       <method name="onClose" return-type="void">
         <parameters>
-          <parameter>javax.websocket.Session</parameter>
-          <parameter>javax.websocket.CloseReason</parameter>
+          <parameter>jakarta.websocket.Session</parameter>
+          <parameter>jakarta.websocket.CloseReason</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>68</id>
       <description>Developers may implement this method when the web socket session creates some kind of error that is not modeled in the web socket protocol. This may for example be a notification that an incoming message is too big to handle, or that the incoming message could not be encoded. There are a number of categories of exception that this method is (currently) defined to handle: connection problems, for example, a socket failure that occurs before the web socket connection can be formally closed. These are modeled as SessionExceptions runtime errors thrown by developer created message handlers calls. conversion errors encoding incoming messages before any message handler has been called. These are modeled as DecodeExceptions</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Endpoint</class-interface>
       <method name="onError" return-type="void">
         <parameters>
-          <parameter>javax.websocket.Session</parameter>
+          <parameter>jakarta.websocket.Session</parameter>
           <parameter>java.lang.Throwable</parameter>
         </parameters>
       </method>
@@ -715,75 +716,75 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>69</id>
       <description>Developers must implement this method to be notified when a new conversation has just begun.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Endpoint</class-interface>
       <method name="onOpen" return-type="void">
         <parameters>
-          <parameter>javax.websocket.Session</parameter>
-          <parameter>javax.websocket.EndpointConfig</parameter>
+          <parameter>jakarta.websocket.Session</parameter>
+          <parameter>jakarta.websocket.EndpointConfig</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>70</id>
       <description>Return the Decoder implementation classes configured. These will be instantiated by the container to decode incoming messages into the expected custom objects on MessageHandler.Whole#onMessage(Object) callbacks.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>EndpointConfig</class-interface>
       <method name="getDecoders" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>71</id>
       <description>Return the Encoder implementation classes configured. These will be instantiated by the container to encode custom objects passed into the send() methods on remote endpoints.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>EndpointConfig</class-interface>
       <method name="getEncoders" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>72</id>
       <description>This method returns a modifiable Map that the developer may use to store application specific information relating to the endpoint that uses this configuration instance. Web socket applications running on distributed implementations of the web container should make any application specific objects stored here java.io.Serializable, or the object may not be recreated after a failover.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>EndpointConfig</class-interface>
       <method name="getUserProperties" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>73</id>
       <description>The name of the extension.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Extension</class-interface>
       <method name="getName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>74</id>
       <description>The extension parameters for this extension in the order they appear in the http headers.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Extension</class-interface>
       <method name="getParameters" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>75</id>
       <description>Return the name of the extension parameter.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Extension.Parameter</class-interface>
       <method name="getName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>76</id>
       <description>Return the value of the extension parameter.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Extension.Parameter</class-interface>
       <method name="getValue" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>77</id>
       <description>Return the list of Http headers sent by the web socket server.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>HandshakeResponse</class-interface>
       <method name="getHeaders" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>78</id>
       <description>Called when the next part of a message has been fully received.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>MessageHandler.Partial</class-interface>
       <method name="onMessage" return-type="void">
         <parameters>
@@ -795,7 +796,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>79</id>
       <description>Called when the message has been fully received.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>MessageHandler.Whole</class-interface>
       <method name="onMessage" return-type="void">
         <parameters>
@@ -806,28 +807,28 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>80</id>
       <description>Specifies the maximum size of message in bytes that the method this annotates will be able to process, or -1 to indicate that there is no maximum. The default is -1. This attribute only applies when the annotation is used to process whole messages, not to those methods that process messages in parts or use a stream or reader parameter to handle the incoming message. If the incoming whole message exceeds this limit, then the implementation generates an error and closes the connection using the reason that the message was too big.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>OnMessage</class-interface>
       <method name="maxMessageSize" return-type="long" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>81</id>
       <description>The application data inside the pong message from the peer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>PongMessage</class-interface>
       <method name="getApplicationData" return-type="java.nio.ByteBuffer" />
     </assertion>
     <assertion required="false" impl-spec="false" status="active" testable="true">
       <id>82</id>
       <description>This method is only used when batching is allowed for this RemoteEndpint. Calling this method forces the implementation to send any unsent messages it has been batching.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="flushBatch" return-type="void" />
     </assertion>
     <assertion required="false" impl-spec="false" status="active" testable="true">
       <id>83</id>
       <description />
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="flushBatch" return-type="void">
         <throw>java.io.IOException</throw>
@@ -836,14 +837,14 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>84</id>
       <description>Return whether the implementation is allowed to batch outgoing messages before sending. The default mode for RemoteEndpoints is false. The value may be changed by calling #setBatchingAllowed(boolean) setBatchingAllowed.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="getBatchingAllowed" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>85</id>
       <description>Send a Ping message containing the given application data to the remote endpoint. The corresponding Pong message may be picked up using the MessageHandler.Pong handler.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="sendPing" return-type="void">
         <parameters>
@@ -854,7 +855,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>86</id>
       <description>if the ping failed to be sent</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="sendPing" return-type="void">
         <parameters>
@@ -866,7 +867,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>87</id>
       <description>if the applicationData exceeds the maximum allowed payload of 125 bytes</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="sendPing" return-type="void">
         <parameters>
@@ -878,7 +879,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>88</id>
       <description>Allows the developer to send an unsolicited Pong message containing the given application data in order to serve as a unidirectional heartbeat for the session.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="sendPong" return-type="void">
         <parameters>
@@ -889,7 +890,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>89</id>
       <description>if the pong failed to be sent</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="sendPong" return-type="void">
         <parameters>
@@ -901,7 +902,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>90</id>
       <description>if the applicationData exceeds the maximum allowed payload of 125 bytes</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="sendPong" return-type="void">
         <parameters>
@@ -913,7 +914,7 @@
     <assertion required="false" impl-spec="false" status="active" testable="true">
       <id>91</id>
       <description>Indicate to the implementation that it is allowed to batch outgoing messages before sending. Not all implementations support batching of outgoing messages. The default mode for RemoteEndpoints is false. If the developer has indicated that batching of outgoing messages is permitted, then the developer must call flushBatch() in order to be sure that all the messages passed into the send methods of this RemoteEndpoint are sent. When batching is allowed, the implementations send operations are considered to have completed if the message has been written to the local batch, in the case when there is still room in the batch for the message, and are considered to have completed if the batch has been send to the peer and the remainder written to the new batch, in the case when writing the message causes the batch to need to be sent. The blocking and asynchronous send methods use this notion of completion in order to complete blocking calls, notify SendHandlers and complete Futures respectively. When batching is allowed, if the developer has called send methods on this RemoteEndpoint without calling flushBatch(), then the implementation may not have sent all the messages the developer has asked to be sent. If the parameter value is false and the implementation has a batch of unsent messages, then the implementation must immediately send the batch of unsent messages.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="setBatchingAllowed" return-type="void">
         <parameters>
@@ -924,7 +925,7 @@
     <assertion required="false" impl-spec="false" status="active" testable="true">
       <id>92</id>
       <description>if batching is being disabled and there are unsent messages this error may be thrown as the implementation sends the batch of unsent messages if there is a problem.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint</class-interface>
       <method name="setBatchingAllowed" return-type="void">
         <parameters>
@@ -936,14 +937,14 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>93</id>
       <description>Return the number of milliseconds the implementation will timeout attempting to send a websocket message. A non-positive number indicates the implementation will not timeout attempting to send a websocket message asynchronously. This value overrides the default value assigned in the WebSocketContainer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Async</class-interface>
       <method name="getSendTimeout" return-type="long" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>94</id>
       <description>Initiates the asynchronous transmission of a binary message. This method returns before the message is transmitted. Developers use the returned Future object to track progress of the transmission. The Future's get() method returns null upon successful completion. Errors in transmission are wrapped in the java.util.concurrent.ExecutionException thrown when querying the Future object.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Async</class-interface>
       <method name="sendBinary" return-type="java.util.concurrent.Future">
         <parameters>
@@ -954,19 +955,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>95</id>
       <description>Initiates the asynchronous transmission of a binary message. This method returns before the message is transmitted. Developers provide a callback to be notified when the message has been transmitted. Errors in transmission are given to the developer in the SendResult object.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Async</class-interface>
       <method name="sendBinary" return-type="void">
         <parameters>
           <parameter>java.nio.ByteBuffer</parameter>
-          <parameter>javax.websocket.SendHandler</parameter>
+          <parameter>jakarta.websocket.SendHandler</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>96</id>
       <description>Initiates the asynchronous transmission of a custom developer object. The developer will have provided an encoder for this object type in the endpoint configuration. Containers will by default be able to encode java primitive types and their object equivalents, otherwise the developer must have provided an encoder for the object type in the endpoint configuration. Progress may be tracked using the Future object. The Future's get() methods return null upon successful completion. Errors in transmission are wrapped in the java.util.concurrent.ExecutionException thrown when querying the Future object.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Async</class-interface>
       <method name="sendObject" return-type="java.util.concurrent.Future">
         <parameters>
@@ -977,31 +978,31 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>97</id>
       <description>Initiates the asynchronous transmission of a custom developer object. Containers will by default be able to encode java primitive types and their object equivalents, otherwise the developer must have provided an encoder for the object type in the endpoint configuration. Developers are notified when transmission is complete through the supplied callback object.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Async</class-interface>
       <method name="sendObject" return-type="void">
         <parameters>
           <parameter>java.lang.Object</parameter>
-          <parameter>javax.websocket.SendHandler</parameter>
+          <parameter>jakarta.websocket.SendHandler</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>98</id>
       <description>Initiates the asynchronous transmission of a text message. This method returns before the message is transmitted. Developers provide a callback to be notified when the message has been transmitted. Errors in transmission are given to the developer in the SendResult object.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Async</class-interface>
       <method name="sendText" return-type="void">
         <parameters>
           <parameter>java.lang.String</parameter>
-          <parameter>javax.websocket.SendHandler</parameter>
+          <parameter>jakarta.websocket.SendHandler</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>99</id>
       <description>Initiates the asynchronous transmission of a text message. This method returns before the message is transmitted. Developers use the returned Future object to track progress of the transmission. The Future's get() method returns null upon successful completion. Errors in transmission are wrapped in the java.util.concurrent.ExecutionException thrown when querying the Future object.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Async</class-interface>
       <method name="sendText" return-type="java.util.concurrent.Future">
         <parameters>
@@ -1012,7 +1013,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>100</id>
       <description>Sets the number of milliseconds the implementation will timeout attempting to send a websocket message. A non-positive number indicates the implementation will not timeout attempting to send a websocket message asynchronously. This value overrides the default value assigned in the WebSocketContainer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Async</class-interface>
       <method name="setSendTimeout" return-type="void">
         <parameters>
@@ -1023,14 +1024,14 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>101</id>
       <description>Opens an output stream on which a binary message may be sent. The developer must close the output stream in order to indicate that the complete message has been placed into the output stream.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="getSendStream" return-type="java.io.OutputStream" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>102</id>
       <description>if there is a problem obtaining the OutputStream to write the binary message.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="getSendStream" return-type="java.io.OutputStream">
         <throw>java.io.IOException</throw>
@@ -1039,14 +1040,14 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>103</id>
       <description>Opens an character stream on which a text message may be sent. The developer must close the writer in order to indicate that the complete message has been placed into the character stream.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="getSendWriter" return-type="java.io.Writer" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>104</id>
       <description>if there is a problem obtaining the Writer to write the text message.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="getSendWriter" return-type="java.io.Writer">
         <throw>java.io.IOException</throw>
@@ -1055,7 +1056,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>105</id>
       <description>Send a binary message, returning when all of the message has been transmitted.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendBinary" return-type="void">
         <parameters>
@@ -1066,7 +1067,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>106</id>
       <description>if there is a problem delivering the message.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendBinary" return-type="void">
         <parameters>
@@ -1078,7 +1079,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>107</id>
       <description>Send a binary message in parts, blocking until all of the message has been transmitted. The runtime reads the message in order. Non-final parts are sent with isLast set to false. The final piece must be sent with isLast set to true.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendBinary" return-type="void">
         <parameters>
@@ -1090,7 +1091,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>108</id>
       <description>if there is a problem delivering the partial message.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendBinary" return-type="void">
         <parameters>
@@ -1103,7 +1104,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>109</id>
       <description>Sends a custom developer object, blocking until it has been transmitted. Containers will by default be able to encode java primitive types and their object equivalents, otherwise the developer must have provided an encoder for the object type in the endpoint configuration. A developer-provided encoder for a Java primitive type overrides the container default encoder.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendObject" return-type="void">
         <parameters>
@@ -1114,7 +1115,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>110</id>
       <description>if there is a communication error sending the message object.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendObject" return-type="void">
         <parameters>
@@ -1126,19 +1127,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>111</id>
       <description>if there was a problem encoding the message object into the form of a native websocket message.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendObject" return-type="void">
         <parameters>
           <parameter>java.lang.Object</parameter>
         </parameters>
-        <throw>javax.websocket.EncodeException</throw>
+        <throw>jakarta.websocket.EncodeException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>112</id>
       <description>Send a text message, blocking until all of the message has been transmitted.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendText" return-type="void">
         <parameters>
@@ -1149,7 +1150,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>113</id>
       <description>if there is a problem delivering the message.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendText" return-type="void">
         <parameters>
@@ -1161,7 +1162,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>114</id>
       <description>Send a text message in parts, blocking until all of the message has been transmitted. The runtime reads the message in order. Non-final parts of the message are sent with isLast set to false. The final part must be sent with isLast set to true.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendText" return-type="void">
         <parameters>
@@ -1173,7 +1174,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>115</id>
       <description>if there is a problem delivering the message fragment.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>RemoteEndpoint.Basic</class-interface>
       <method name="sendText" return-type="void">
         <parameters>
@@ -1186,32 +1187,32 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>116</id>
       <description>Called once the message has been transmitted.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>SendHandler</class-interface>
       <method name="onResult" return-type="void">
         <parameters>
-          <parameter>javax.websocket.SendResult</parameter>
+          <parameter>jakarta.websocket.SendResult</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>117</id>
       <description>The problem sending the message.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>SendResult</class-interface>
       <method name="getException" return-type="java.lang.Throwable" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>118</id>
       <description>Determines if this result is ok or not.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>SendResult</class-interface>
       <method name="isOK" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>119</id>
       <description>Construct a SendResult carrying an exception.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>SendResult</class-interface>
       <method name="SendResult" return-type="SendResult">
         <parameters>
@@ -1222,29 +1223,29 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>120</id>
       <description>Construct a SendResult signifying a successful send carrying no exception.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>SendResult</class-interface>
       <method name="SendResult" return-type="SendResult" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>121</id>
-      <description>Register to handle to incoming messages in this conversation. A maximum of one message handler per native websocket message type (text, binary, pong) may be added to each Session. I.e. a maximum of one message handler to handle incoming text messages a maximum of one message handler for handling incoming binary messages, and a maximum of one for handling incoming pong messages. For further details of which message handlers handle which of the native websocket message types please see MessageHandler.Whole and MessageHandler.Partial. Adding more than one of any one type will result in a runtime exception. This method is not safe to use unless you are providing an anonymous class derived directly from javax.websocket.MessageHandler.Whole or javax.websocket.MessageHandler.Partial. In all other cases (Lambda Expressions, more complex inheritance or generic type arrangements), one of the following methods have to be used: #addMessageHandler(Class, javax.websocket.MessageHandler.Whole) or #addMessageHandler(Class, javax.websocket.MessageHandler.Partial).</description>
-      <package>javax.websocket</package>
+      <description>Register to handle to incoming messages in this conversation. A maximum of one message handler per native websocket message type (text, binary, pong) may be added to each Session. I.e. a maximum of one message handler to handle incoming text messages a maximum of one message handler for handling incoming binary messages, and a maximum of one for handling incoming pong messages. For further details of which message handlers handle which of the native websocket message types please see MessageHandler.Whole and MessageHandler.Partial. Adding more than one of any one type will result in a runtime exception. This method is not safe to use unless you are providing an anonymous class derived directly from jakarta.websocket.MessageHandler.Whole or jakarta.websocket.MessageHandler.Partial. In all other cases (Lambda Expressions, more complex inheritance or generic type arrangements), one of the following methods have to be used: #addMessageHandler(Class, jakarta.websocket.MessageHandler.Whole) or #addMessageHandler(Class, jakarta.websocket.MessageHandler.Partial).</description>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="addMessageHandler" return-type="void">
         <parameters>
-          <parameter>javax.websocket.MessageHandler</parameter>
+          <parameter>jakarta.websocket.MessageHandler</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>122</id>
       <description>if there is already a MessageHandler registered for the same native websocket message type as this handler.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="addMessageHandler" return-type="void">
         <parameters>
-          <parameter>javax.websocket.MessageHandler</parameter>
+          <parameter>jakarta.websocket.MessageHandler</parameter>
         </parameters>
         <throw>java.lang.IllegalStateException</throw>
       </method>
@@ -1252,14 +1253,14 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>123</id>
       <description>Close the current conversation with a normal status code and no reason phrase.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="close" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>124</id>
       <description>if there was a connection error closing the connection.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="close" return-type="void">
         <throw>java.io.IOException</throw>
@@ -1268,22 +1269,22 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>125</id>
       <description>Close the current conversation, giving a reason for the closure. The close call causes the implementation to attempt notify the client of the close as soon as it can. This may cause the sending of unsent messages immediately prior to the close notification. After the close notification has been sent the implementation notifies the endpoint's onClose method. Note the websocket specification defines the acceptable uses of status codes and reason phrases. If the application cannot determine a suitable close code to use for the closeReason, it is recommended to use CloseReason.CloseCodes#NO_STATUS_CODE.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="close" return-type="void">
         <parameters>
-          <parameter>javax.websocket.CloseReason</parameter>
+          <parameter>jakarta.websocket.CloseReason</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>126</id>
       <description>if there was a connection error closing the connection</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="close" return-type="void">
         <parameters>
-          <parameter>javax.websocket.CloseReason</parameter>
+          <parameter>jakarta.websocket.CloseReason</parameter>
         </parameters>
         <throw>java.io.IOException</throw>
       </method>
@@ -1291,158 +1292,158 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>127</id>
       <description>Return a reference a RemoteEndpoint object representing the peer of this conversation that is able to send messages asynchronously to the peer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
-      <method name="getAsyncRemote" return-type="javax.websocket.RemoteEndpoint.RemoteEndpoint.Async" />
+      <method name="getAsyncRemote" return-type="jakarta.websocket.RemoteEndpoint.RemoteEndpoint.Async" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>128</id>
       <description>Return a reference a RemoteEndpoint object representing the peer of this conversation that is able to send messages synchronously to the peer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
-      <method name="getBasicRemote" return-type="javax.websocket.RemoteEndpoint.RemoteEndpoint.Basic" />
+      <method name="getBasicRemote" return-type="jakarta.websocket.RemoteEndpoint.RemoteEndpoint.Basic" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>129</id>
       <description>Return the container that this session is part of.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
-      <method name="getContainer" return-type="javax.websocket.WebSocketContainer" />
+      <method name="getContainer" return-type="jakarta.websocket.WebSocketContainer" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>130</id>
       <description>Returns a string containing the unique identifier assigned to this session. The identifier is assigned by the web socket implementation and is implementation dependent.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getId" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>131</id>
       <description>The maximum length of incoming binary messages that this Session can buffer. If the implementation receives a binary message that it cannot buffer because it is too large, it must close the session with a close code of CloseReason.CloseCodes#TOO_BIG.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getMaxBinaryMessageBufferSize" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>132</id>
       <description>Return the number of milliseconds before this conversation may be closed by the container if it is inactive, i.e. no messages are either sent or received in that time.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getMaxIdleTimeout" return-type="long" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>133</id>
       <description>The maximum length of incoming text messages that this Session can buffer. If the implementation receives a text message that it cannot buffer because it is too large, it must close the session with a close code of CloseReason.CloseCodes#TOO_BIG.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getMaxTextMessageBufferSize" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>134</id>
       <description>Return an unmodifiable copy of the set of MessageHandlers for this Session.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getMessageHandlers" return-type="java.util.Set" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>135</id>
       <description>Return the list of extensions currently in use for this conversation.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getNegotiatedExtensions" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>136</id>
       <description>Return the sub protocol agreed during the websocket handshake for this conversation.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getNegotiatedSubprotocol" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>137</id>
       <description>Return a copy of the Set of all the open web socket sessions that represent connections to the same endpoint to which this session represents a connection. The Set includes the session this method is called on. These sessions may not still be open at any point after the return of this method. For example, iterating over the set at a later time may yield one or more closed sessions. Developers should use session.isOpen() to check.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getOpenSessions" return-type="java.util.Set" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>138</id>
       <description>Return a map of the path parameter names and values used associated with the request this session was opened under.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getPathParameters" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>139</id>
       <description>Returns the version of the websocket protocol currently being used. This is taken as the value of the Sec-WebSocket-Version header used in the opening handshake. i.e. "13".</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getProtocolVersion" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>140</id>
       <description>Return the query string associated with the request this session was opened under.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getQueryString" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>141</id>
       <description>Return the request parameters associated with the request this session was opened under.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getRequestParameterMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>142</id>
       <description>Return the URI under which this session was opened, including the query string if there is one.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getRequestURI" return-type="java.net.URI" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>143</id>
       <description>Return the authenticated user for this Session or null if no user is authenticated for this session.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getUserPrincipal" return-type="java.security.Principal" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>144</id>
       <description>While the session is open, this method returns a Map that the developer may use to store application specific information relating to this session instance. The developer may retrieve information from this Map at any time between the opening of the session and during the onClose() method. But outside that time, any information stored using this Map may no longer be kept by the container. Web socket applications running on distributed implementations of the web container should make any application specific objects stored here java.io.Serializable, or the object may not be recreated after a failover.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="getUserProperties" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>145</id>
       <description>Return true if and only if the underlying socket is open.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="isOpen" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>146</id>
       <description>Return true if and only if the underlying socket is using a secure transport.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="isSecure" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>147</id>
       <description>Remove the given MessageHandler from the set belonging to this session. This method may block if the given handler is processing a message until it is no longer in use.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="removeMessageHandler" return-type="void">
         <parameters>
-          <parameter>javax.websocket.MessageHandler</parameter>
+          <parameter>jakarta.websocket.MessageHandler</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>148</id>
       <description>Sets the maximum length of incoming binary messages that this Session can buffer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="setMaxBinaryMessageBufferSize" return-type="void">
         <parameters>
@@ -1453,7 +1454,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>149</id>
       <description>Set the non-zero number of milliseconds before this session will be closed by the container if it is inactive, ie no messages are either sent or received. A value that is 0 or negative indicates the session will never timeout due to inactivity.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="setMaxIdleTimeout" return-type="void">
         <parameters>
@@ -1464,7 +1465,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>150</id>
       <description>Sets the maximum length of incoming text messages that this Session can buffer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="setMaxTextMessageBufferSize" return-type="void">
         <parameters>
@@ -1475,29 +1476,29 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>151</id>
       <description>Return the Session on which the problem occurred.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>SessionException</class-interface>
-      <method name="getSession" return-type="javax.websocket.Session" />
+      <method name="getSession" return-type="jakarta.websocket.Session" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>152</id>
       <description>Creates a new instance of this exception with the given message, the wrapped cause of the exception and the session with which the problem is associated.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>SessionException</class-interface>
       <method name="SessionException" return-type="SessionException">
         <parameters>
           <parameter>java.lang.String</parameter>
           <parameter>java.lang.Throwable</parameter>
-          <parameter>javax.websocket.Session</parameter>
+          <parameter>jakarta.websocket.Session</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>153</id>
-      <description>Connect the supplied annotated endpoint instance to its server. The supplied object must be a class decorated with the class level javax.websocket.server.ServerEndpoint annotation. This method blocks until the connection is established, or throws an error if either the connection could not be made or there was a problem with the supplied endpoint class. If the developer uses this method to deploy the client endpoint, services like dependency injection that are supported, for example, when the implementation is part of the Java EE platform may not be available. If the client endpoint uses dependency injection, use WebSocketContainer#connectToServer(java.lang.Class, java.net.URI) instead.</description>
-      <package>javax.websocket</package>
+      <description>Connect the supplied annotated endpoint instance to its server. The supplied object must be a class decorated with the class level jakarta.websocket.server.ServerEndpoint annotation. This method blocks until the connection is established, or throws an error if either the connection could not be made or there was a problem with the supplied endpoint class. If the developer uses this method to deploy the client endpoint, services like dependency injection that are supported, for example, when the implementation is part of the Java EE platform may not be available. If the client endpoint uses dependency injection, use WebSocketContainer#connectToServer(java.lang.Class, java.net.URI) instead.</description>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Object</parameter>
           <parameter>java.net.URI</parameter>
@@ -1507,22 +1508,22 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>154</id>
       <description>if the annotated endpoint instance is not valid.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Object</parameter>
           <parameter>java.net.URI</parameter>
         </parameters>
-        <throw>javax.websocket.DeploymentException</throw>
+        <throw>jakarta.websocket.DeploymentException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>155</id>
       <description>if there was a network or protocol problem that prevented the client endpoint being connected to its server.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Object</parameter>
           <parameter>java.net.URI</parameter>
@@ -1532,10 +1533,10 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>156</id>
-      <description>Connect the supplied annotated endpoint to its server. The supplied object must be a class decorated with the class level javax.websocket.server.ServerEndpoint annotation. This method blocks until the connection is established, or throws an error if either the connection could not be made or there was a problem with the supplied endpoint class.</description>
-      <package>javax.websocket</package>
+      <description>Connect the supplied annotated endpoint to its server. The supplied object must be a class decorated with the class level jakarta.websocket.server.ServerEndpoint annotation. This method blocks until the connection is established, or throws an error if either the connection could not be made or there was a problem with the supplied endpoint class.</description>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Class</parameter>
           <parameter>java.net.URI</parameter>
@@ -1545,22 +1546,22 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>157</id>
       <description>if the class is not a valid annotated endpoint class.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Class</parameter>
           <parameter>java.net.URI</parameter>
         </parameters>
-        <throw>javax.websocket.DeploymentException</throw>
+        <throw>jakarta.websocket.DeploymentException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>158</id>
       <description>if there was a network or protocol problem that prevented the client endpoint being connected to its server.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Class</parameter>
           <parameter>java.net.URI</parameter>
@@ -1570,13 +1571,13 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>159</id>
-      <description>Connect the supplied programmatic client endpoint instance to its server with the given configuration. This method blocks until the connection is established, or throws an error if the connection could not be made. If the developer uses this method to deploy the client endpoint, services like dependency injection that are supported, for example, when the implementation is part of the Java EE platform may not be available. If the client endpoint uses dependency injection, use WebSocketContainer#connectToServer(java.lang.Class, javax.websocket.ClientEndpointConfig, java.net.URI) instead.</description>
-      <package>javax.websocket</package>
+      <description>Connect the supplied programmatic client endpoint instance to its server with the given configuration. This method blocks until the connection is established, or throws an error if the connection could not be made. If the developer uses this method to deploy the client endpoint, services like dependency injection that are supported, for example, when the implementation is part of the Java EE platform may not be available. If the client endpoint uses dependency injection, use WebSocketContainer#connectToServer(java.lang.Class, jakarta.websocket.ClientEndpointConfig, java.net.URI) instead.</description>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
-          <parameter>javax.websocket.Endpoint</parameter>
-          <parameter>javax.websocket.ClientEndpointConfig</parameter>
+          <parameter>jakarta.websocket.Endpoint</parameter>
+          <parameter>jakarta.websocket.ClientEndpointConfig</parameter>
           <parameter>java.net.URI</parameter>
         </parameters>
       </method>
@@ -1584,26 +1585,26 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>160</id>
       <description>if the configuration is not valid</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
-          <parameter>javax.websocket.Endpoint</parameter>
-          <parameter>javax.websocket.ClientEndpointConfig</parameter>
+          <parameter>jakarta.websocket.Endpoint</parameter>
+          <parameter>jakarta.websocket.ClientEndpointConfig</parameter>
           <parameter>java.net.URI</parameter>
         </parameters>
-        <throw>javax.websocket.DeploymentException</throw>
+        <throw>jakarta.websocket.DeploymentException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>161</id>
       <description>if there was a network or protocol problem that prevented the client endpoint being connected to its server</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
-          <parameter>javax.websocket.Endpoint</parameter>
-          <parameter>javax.websocket.ClientEndpointConfig</parameter>
+          <parameter>jakarta.websocket.Endpoint</parameter>
+          <parameter>jakarta.websocket.ClientEndpointConfig</parameter>
           <parameter>java.net.URI</parameter>
         </parameters>
         <throw>java.io.IOException</throw>
@@ -1612,12 +1613,12 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>162</id>
       <description>Connect the supplied programmatic endpoint to its server with the given configuration. This method blocks until the connection is established, or throws an error if the connection could not be made.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Class</parameter>
-          <parameter>javax.websocket.ClientEndpointConfig</parameter>
+          <parameter>jakarta.websocket.ClientEndpointConfig</parameter>
           <parameter>java.net.URI</parameter>
         </parameters>
       </method>
@@ -1625,26 +1626,26 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>163</id>
       <description>if the configuration is not valid</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Class</parameter>
-          <parameter>javax.websocket.ClientEndpointConfig</parameter>
+          <parameter>jakarta.websocket.ClientEndpointConfig</parameter>
           <parameter>java.net.URI</parameter>
         </parameters>
-        <throw>javax.websocket.DeploymentException</throw>
+        <throw>jakarta.websocket.DeploymentException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>164</id>
       <description>if there was a network or protocol problem that prevented the client endpoint being connected to its server</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
-      <method name="connectToServer" return-type="javax.websocket.Session">
+      <method name="connectToServer" return-type="jakarta.websocket.Session">
         <parameters>
           <parameter>java.lang.Class</parameter>
-          <parameter>javax.websocket.ClientEndpointConfig</parameter>
+          <parameter>jakarta.websocket.ClientEndpointConfig</parameter>
           <parameter>java.net.URI</parameter>
         </parameters>
         <throw>java.io.IOException</throw>
@@ -1653,42 +1654,42 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>165</id>
       <description>Return the number of milliseconds the implementation will timeout attempting to send a websocket message for all RemoteEndpoints associated with this container. A non-positive number indicates the implementation will not timeout attempting to send a websocket message asynchronously. Note this default may be overridden in each RemoteEndpoint.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="getDefaultAsyncSendTimeout" return-type="long" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>166</id>
       <description>Returns the default maximum size of incoming binary message that this container will buffer. This default may be overridden on a per session basis using Session#setMaxBinaryMessageBufferSize(int)</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="getDefaultMaxBinaryMessageBufferSize" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>167</id>
       <description>Return the default time in milliseconds after which any web socket sessions in this container will be closed if it has been inactive. A value that is 0 or negative indicates the sessions will never timeout due to inactivity. The value may be overridden on a per session basis using Session#setMaxIdleTimeout(long)</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="getDefaultMaxSessionIdleTimeout" return-type="long" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>168</id>
       <description>Returns the default maximum size of incoming text message that this container will buffer. This default may be overridden on a per session basis using Session#setMaxTextMessageBufferSize(int)</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="getDefaultMaxTextMessageBufferSize" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>169</id>
       <description>Return the set of Extensions installed in the container.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="getInstalledExtensions" return-type="java.util.Set" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>170</id>
       <description>Sets the number of milliseconds the implementation will timeout attempting to send a websocket message for all RemoteEndpoints associated with this container. A non-positive number indicates the implementation will not timeout attempting to send a websocket message asynchronously. Note this default may be overridden in each RemoteEndpoint.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="setAsyncSendTimeout" return-type="void">
         <parameters>
@@ -1699,7 +1700,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>171</id>
       <description>Sets the default maximum size of incoming binary message that this container will buffer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="setDefaultMaxBinaryMessageBufferSize" return-type="void">
         <parameters>
@@ -1710,7 +1711,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>172</id>
       <description>Sets the default time in milliseconds after which any web socket sessions in this container will be closed if it has been inactive. A value that is 0 or negative indicates the sessions will never timeout due to inactivity. The value may be overridden on a per session basis using Session#setMaxIdleTimeout(long)</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="setDefaultMaxSessionIdleTimeout" return-type="void">
         <parameters>
@@ -1721,7 +1722,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>173</id>
       <description>Sets the maximum size of incoming text message that this container will buffer.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="setDefaultMaxTextMessageBufferSize" return-type="void">
         <parameters>
@@ -1732,49 +1733,49 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>174</id>
       <description>Return the read only Map of Http Headers that came with the handshake request. The header names are case insensitive.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="getHeaders" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>175</id>
       <description>Return a reference to the HttpSession that the web socket handshake that started this conversation was part of, if the implementation is part of a Java EE web container.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="getHttpSession" return-type="java.lang.Object" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>176</id>
       <description>Return the request parameters associated with the request.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="getParameterMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>177</id>
       <description>Return the query string associated with the request.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="getQueryString" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>178</id>
       <description>Return the request URI of the handshake request.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="getRequestURI" return-type="java.net.URI" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>179</id>
       <description>Return the authenticated user or null if no user is authenticated for this handshake.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="getUserPrincipal" return-type="java.security.Principal" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>180</id>
       <description>Checks whether the current user is in the given role. Roles and role membership can be defined using deployment descriptors of the containing WAR file, if running in a Java EE web container. If the user has not been authenticated, the method returns false.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="isUserInRole" return-type="boolean">
         <parameters>
@@ -1785,14 +1786,14 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>181</id>
       <description>The name of the variable used in the URI-template. If the name does not match a path variable in the URI-template, the value of the method parameter this annotation annotates is null.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>PathParam</class-interface>
       <method name="value" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>182</id>
       <description>Return a set of annotated endpoint classes that the server container must deploy. The set of classes passed in to this method is the set obtained by scanning the archive containing the implementation of this interface. Therefore, this set passed in contains all the annotated endpoint classes in the JAR or WAR file containing the implementation of this interface. This set passed in may be used the build the set to return to the container for deployment.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerApplicationConfig</class-interface>
       <method name="getAnnotatedEndpointClasses" return-type="java.util.Set">
         <parameters>
@@ -1803,7 +1804,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>183</id>
       <description>Return a set of ServerEndpointConfig instances that the server container will use to deploy the programmatic endpoints. The set of Endpoint classes passed in to this method is the set obtained by scanning the archive containing the implementation of this ServerApplicationConfig. This set passed in may be used the build the set of ServerEndpointConfig instances to return to the container for deployment.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerApplicationConfig</class-interface>
       <method name="getEndpointConfigs" return-type="java.util.Set">
         <parameters>
@@ -1814,7 +1815,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>184</id>
       <description>Deploys the given annotated endpoint into this ServerContainer during the initialization phase of deploying the application.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerContainer</class-interface>
       <method name="addEndpoint" return-type="void">
         <parameters>
@@ -1825,132 +1826,132 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>185</id>
       <description>if the annotated endpoint was badly formed.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerContainer</class-interface>
       <method name="addEndpoint" return-type="void">
         <parameters>
           <parameter>java.lang.Class</parameter>
         </parameters>
-        <throw>javax.websocket.DeploymentException</throw>
+        <throw>jakarta.websocket.DeploymentException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>186</id>
       <description />
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerContainer</class-interface>
       <method name="addEndpoint" return-type="void">
         <parameters>
-          <parameter>javax.websocket.server.ServerEndpointConfig</parameter>
+          <parameter>jakarta.websocket.server.ServerEndpointConfig</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>187</id>
       <description>if the endpoint was badly formed.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerContainer</class-interface>
       <method name="addEndpoint" return-type="void">
         <parameters>
-          <parameter>javax.websocket.server.ServerEndpointConfig</parameter>
+          <parameter>jakarta.websocket.server.ServerEndpointConfig</parameter>
         </parameters>
-        <throw>javax.websocket.DeploymentException</throw>
+        <throw>jakarta.websocket.DeploymentException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>188</id>
       <description>The optional custom configurator class that the developer would like to use to further configure new instances of this endpoint. If no configurator class is provided, the implementation uses its own. The implementation creates a new instance of the configurator per logical endpoint.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpoint</class-interface>
       <method name="configurator" return-type="java.lang.Class" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>189</id>
       <description>The ordered array of decoder classes this endpoint will use. For example, if the developer has provided a MysteryObject decoder, this endpoint will be able to receive MysteryObjects as web socket messages. The websocket runtime will use the first decoder in the list able to decode a message, ignoring the remaining decoders.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpoint</class-interface>
       <method name="decoders" return-type="java.lang.Class[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>190</id>
       <description>The ordered array of encoder classes this endpoint will use. For example, if the developer has provided a MysteryObject encoder, this class will be able to send web socket messages in the form of MysteryObjects. The websocket runtime will use the first encoder in the list able to encode a message, ignoring the remaining encoders.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpoint</class-interface>
       <method name="encoders" return-type="java.lang.Class[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>191</id>
       <description>The ordered array of web socket protocols this endpoint supports. For example, {"superchat", "chat"}.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpoint</class-interface>
       <method name="subprotocols" return-type="java.lang.String[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>192</id>
       <description>The URI or URI-template, level-1 (See RFC 6570) where the endpoint will be deployed. The URI us relative to the root of the web socket container and must begin with a leading "/". Trailing "/"'s are ignored. Examples: #64;ServerEndpoint("/chat") #64;ServerEndpoint("/chat/{user}") #64;ServerEndpoint("/booking/{privilege-level}")</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpoint</class-interface>
       <method name="value" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>193</id>
-      <description>Return the ServerEndpointConfig.Configurator this configuration is using. If none was set by calling ServerEndpointConfig.Builder#configurator(javax.websocket.server.ServerEndpointConfig.Configurator) this methods returns the platform default configurator.</description>
-      <package>javax.websocket.server</package>
+      <description>Return the ServerEndpointConfig.Configurator this configuration is using. If none was set by calling ServerEndpointConfig.Builder#configurator(jakarta.websocket.server.ServerEndpointConfig.Configurator) this methods returns the platform default configurator.</description>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig</class-interface>
-      <method name="getConfigurator" return-type="javax.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Configurator" />
+      <method name="getConfigurator" return-type="jakarta.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Configurator" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>194</id>
       <description>Returns the Class of the endpoint this configuration is configuring. If the endpoint is an annotated endpoint, the value is the class of the Java class annotated with @ServerEndpoint. if the endpoint is a programmatic, the value is the class of the subclass of Endpoint.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig</class-interface>
       <method name="getEndpointClass" return-type="java.lang.Class" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>195</id>
       <description>Return the websocket extensions configured.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig</class-interface>
       <method name="getExtensions" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>196</id>
       <description>Return the path for this endpoint configuration. The path is the URI or URI-template (level 1) relative to the websocket root of the server to which the endpoint using this configuration will be mapped. The path is always non-null and always begins with a leading "/".</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig</class-interface>
       <method name="getPath" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>197</id>
       <description>Return the websocket subprotocols configured.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig</class-interface>
       <method name="getSubprotocols" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>198</id>
       <description>Builds the configuration object using the current attributes that have been set on this builder object.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Builder</class-interface>
-      <method name="build" return-type="javax.websocket.server.ServerEndpointConfig" />
+      <method name="build" return-type="jakarta.websocket.server.ServerEndpointConfig" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>199</id>
       <description>Sets the custom configurator to use on the configuration object built by this builder.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Builder</class-interface>
-      <method name="configurator" return-type="javax.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
+      <method name="configurator" return-type="jakarta.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
         <parameters>
-          <parameter>javax.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Configurator</parameter>
+          <parameter>jakarta.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Configurator</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>200</id>
       <description>Creates the builder with the mandatory information of the endpoint class (programmatic or annotated), the relative URI or URI-template to use, and with no subprotocols, extensions, encoders, decoders or custom configurator.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Builder</class-interface>
-      <method name="create" return-type="javax.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
+      <method name="create" return-type="jakarta.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
         <parameters>
           <parameter>java.lang.Class</parameter>
           <parameter>java.lang.String</parameter>
@@ -1960,9 +1961,9 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>201</id>
       <description>Sets the decoder implementation classes to use in the configuration.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Builder</class-interface>
-      <method name="decoders" return-type="javax.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
+      <method name="decoders" return-type="jakarta.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
         <parameters>
           <parameter>java.util.List</parameter>
         </parameters>
@@ -1971,9 +1972,9 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>202</id>
       <description>Sets the list of encoder implementation classes for this builder.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Builder</class-interface>
-      <method name="encoders" return-type="javax.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
+      <method name="encoders" return-type="jakarta.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
         <parameters>
           <parameter>java.util.List</parameter>
         </parameters>
@@ -1982,9 +1983,9 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>203</id>
       <description>Sets the extensions to use in the configuration.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Builder</class-interface>
-      <method name="extensions" return-type="javax.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
+      <method name="extensions" return-type="jakarta.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
         <parameters>
           <parameter>java.util.List</parameter>
         </parameters>
@@ -1993,9 +1994,9 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>204</id>
       <description>Sets the subprotocols to use in the configuration.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Builder</class-interface>
-      <method name="subprotocols" return-type="javax.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
+      <method name="subprotocols" return-type="jakarta.websocket.server.ServerEndpointConfig.ServerEndpointConfig.Builder">
         <parameters>
           <parameter>java.util.List</parameter>
         </parameters>
@@ -2004,7 +2005,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>205</id>
       <description>Check the value of the Origin header (See Origin Header) the client passed during the opening handshake. The platform default implementation of this method makes a check of the validity of the Origin header sent along with the opening handshake following the recommendation at: Sending the Server's Opening Handshake.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Configurator</class-interface>
       <method name="checkOrigin" return-type="boolean">
         <parameters>
@@ -2015,7 +2016,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>206</id>
       <description>This method is called by the container each time a new client connects to the logical endpoint this configurator configures. Developers may override this method to control instantiation of endpoint instances in order to customize the initialization of the endpoint instance, or manage them in some other way. If the developer overrides this method, services like dependency injection that are otherwise supported, for example, when the implementation is part of the Java EE platform may not be available. The platform default implementation of this method returns a new endpoint instance per call, thereby ensuring that there is one endpoint instance per client, the default deployment cardinality.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Configurator</class-interface>
       <method name="getEndpointInstance" return-type="java.lang.Object">
         <parameters>
@@ -2026,7 +2027,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="false">
       <id>207</id>
       <description>if there was an error producing the endpoint instance.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Configurator</class-interface>
       <method name="getEndpointInstance" return-type="java.lang.Object">
         <parameters>
@@ -2038,7 +2039,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>208</id>
       <description>Return the ordered list of extensions that t server endpoint will support given the requested extension list passed in, the empty list if none. See Negotiating Extensions The default platform implementation of this method returns a list containing all of the requested extensions passed to this method that it supports, using the order in the requested extensions, the empty list if none.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Configurator</class-interface>
       <method name="getNegotiatedExtensions" return-type="java.util.List">
         <parameters>
@@ -2050,7 +2051,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>209</id>
       <description>Return the subprotocol the server endpoint has chosen from the requested list supplied by a client who wishes to connect, or none if there wasn't one this server endpoint liked. See Sending the Server's Opening Handshake. Subclasses may provide custom algorithms based on other factors. The default platform implementation of this method returns the first subprotocol in the list sent by the client that the server supports, or the empty string if there isn't one.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Configurator</class-interface>
       <method name="getNegotiatedSubprotocol" return-type="java.lang.String">
         <parameters>
@@ -2062,20 +2063,20 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>210</id>
       <description>Called by the container after it has formulated a handshake response resulting from a well-formed handshake request. The container has already has already checked that this configuration has a matching URI, determined the validity of the origin using the checkOrigin method, and filled out the negotiated subprotocols and extensions based on this configuration. Custom configurations may override this method in order to inspect the request parameters and modify the handshake response that the server has formulated. and the URI checking also. If the developer does not override this method, no further modification of the request and response are made by the implementation.</description>
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Configurator</class-interface>
       <method name="modifyHandshake" return-type="void">
         <parameters>
-          <parameter>javax.websocket.server.ServerEndpointConfig</parameter>
-          <parameter>javax.websocket.server.HandshakeRequest</parameter>
-          <parameter>javax.websocket.HandshakeResponse</parameter>
+          <parameter>jakarta.websocket.server.ServerEndpointConfig</parameter>
+          <parameter>jakarta.websocket.server.HandshakeRequest</parameter>
+          <parameter>jakarta.websocket.HandshakeResponse</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>211</id>
       <description />
-      <package>javax.websocket.server</package>
+      <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Configurator</class-interface>
       <method name="ServerEndpointConfig.Configurator" return-type="ServerEndpointConfig.Configurator" />
     </assertion>
@@ -2085,24 +2086,24 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>212</id>
       <description>Register to handle to incoming messages in this conversation. A maximum of one message handler per native websocket message type (text, binary, pong) may be added to each Session. I.e. a maximum of one message handler to handle incoming text messages a maximum of one message handler for handling incoming binary messages, and a maximum of one for handling incoming pong messages. For further details of which message handlers handle which of the native websocket message types please see MessageHandler.Whole and MessageHandler.Partial. Adding more than one of any one type will result in a runtime exception.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="addMessageHandler" return-type="void">
         <parameters>
           <parameter>java.lang.Class</parameter>
-          <parameter>javax.websocket.MessageHandler.MessageHandler.Whole</parameter>
+          <parameter>jakarta.websocket.MessageHandler.MessageHandler.Whole</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>213</id>
       <description>Register to handle to incoming messages in this conversation. A maximum of one message handler per native websocket message type (text, binary, pong) may be added to each Session. I.e. a maximum of one message handler to handle incoming text messages a maximum of one message handler for handling incoming binary messages, and a maximum of one for handling incoming pong messages. For further details of which message handlers handle which of the native websocket message types please see MessageHandler.Whole and MessageHandler.Partial. Adding more than one of any one type will result in a runtime exception.</description>
-      <package>javax.websocket</package>
+      <package>jakarta.websocket</package>
       <class-interface>Session</class-interface>
       <method name="addMessageHandler" return-type="void">
         <parameters>
           <parameter>java.lang.Class</parameter>
-          <parameter>javax.websocket.MessageHandler.MessageHandler.Partial</parameter>
+          <parameter>jakarta.websocket.MessageHandler.MessageHandler.Partial</parameter>
         </parameters>
       </method>
     </assertion>

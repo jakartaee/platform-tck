@@ -145,8 +145,8 @@
                      ${lib.pkg.dir}/deliverable/jsp/*,
                      com/sun/ts/tests/signaturetest/*,
                      com/sun/ts/tests/signaturetest/jsp/**/*,
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.servlet.jsp.sig*,
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.el.sig*"
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.servlet.jsp.sig*,
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.el.sig*"
                      excludes="web/jsp/spec/sec/,
                      web/jsp/spec/tagext/resource/,
                      com/sun/ts/tests/jsp/spec/security/,

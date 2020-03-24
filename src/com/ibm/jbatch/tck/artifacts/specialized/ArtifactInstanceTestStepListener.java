@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -22,10 +22,10 @@ import com.sun.ts.lib.util.TestUtil;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.batch.api.BatchProperty;
-import javax.batch.api.listener.StepListener;
-import javax.batch.runtime.context.JobContext;
-import javax.batch.runtime.context.StepContext;
+import jakarta.batch.api.BatchProperty;
+import jakarta.batch.api.listener.StepListener;
+import jakarta.batch.runtime.context.JobContext;
+import jakarta.batch.runtime.context.StepContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 

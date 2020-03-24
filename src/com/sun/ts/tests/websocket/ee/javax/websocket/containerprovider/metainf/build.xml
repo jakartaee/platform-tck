@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 20130, 2020 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,7 +38,7 @@
 	<target name="package.lib.jar">
 		<jar destfile="${ts.home}/classes/${pkg.dir}/${app.name}_lib.jar">
 			<zipfileset dir="${ts.home}/classes" includes="${pkg.dir}/TCK*.class,${pkg.dir}/LibrariedQuestionaire*.class" />
-			<zipfileset dir="${ts.home}/src/${pkg.dir}" includes="javax.websocket.ContainerProvider" prefix="META-INF/services" />
+			<zipfileset dir="${ts.home}/src/${pkg.dir}" includes="jakarta.websocket.ContainerProvider" prefix="META-INF/services" />
 		</jar>
 	</target>
 

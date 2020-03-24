@@ -157,7 +157,7 @@
                                com/sun/ts/tests/build.xml,
                                com/sun/ts/tests/signaturetest/*,
                                com/sun/ts/tests/signaturetest/connector/**/*,
-                               com/sun/ts/tests/signaturetest/signature-repository/javax.resource*"
+                               com/sun/ts/tests/signaturetest/signature-repository/jakarta.resource*"
                      excludes="**/.svn/*,
                                com/sun/ts/lib/tests,
                                com/sun/ts/tests/connector/deployment/**,
