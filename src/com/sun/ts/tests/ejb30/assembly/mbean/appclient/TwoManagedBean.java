@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.assembly.mbean.appclient;
 import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.ejb.EJB;
+import jakarta.ejb.EJB;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;

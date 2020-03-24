@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.*;
 
 import java.util.*;
 import java.rmi.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.transaction.*;
 
 public class TestBeanEJB implements SessionBean {
@@ -223,7 +223,7 @@ public class TestBeanEJB implements SessionBean {
         int level = beanRef.getDefaultTxIsolationLevel(tName);
         TestUtil.logTrace("Bean instance not discarded as expected!");
         b3 = false;
-      } catch (javax.ejb.NoSuchObjectLocalException ne) {
+      } catch (jakarta.ejb.NoSuchObjectLocalException ne) {
         b3 = true;
         TestUtil.logTrace("Bean instance was discarded as expected");
       } catch (EJBException ee) {
@@ -318,7 +318,7 @@ public class TestBeanEJB implements SessionBean {
         int level = beanRef.getDefaultTxIsolationLevel(tName);
         TestUtil.logTrace("Bean instance not discarded as expected!");
         b3 = false;
-      } catch (javax.ejb.NoSuchObjectLocalException ne) {
+      } catch (jakarta.ejb.NoSuchObjectLocalException ne) {
         b3 = true;
         TestUtil.logTrace("Bean instance was discarded as expected");
       } catch (EJBException ee) {
@@ -412,7 +412,7 @@ public class TestBeanEJB implements SessionBean {
         int level = beanRef.getDefaultTxIsolationLevel(tName);
         TestUtil.logTrace("Bean instance not discarded as expected!");
         b3 = false;
-      } catch (javax.ejb.NoSuchObjectLocalException ne) {
+      } catch (jakarta.ejb.NoSuchObjectLocalException ne) {
         b3 = true;
         TestUtil.logTrace("Bean instance was discarded as expected");
       } catch (EJBException ee) {

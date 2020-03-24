@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 import javax.transaction.UserTransaction;
-import javax.ejb.EJBTransactionRequiredException;
+import jakarta.ejb.EJBTransactionRequiredException;
 import javax.transaction.NotSupportedException;
 import javax.transaction.Status;
 import javax.transaction.SystemException;
@@ -66,10 +66,10 @@ abstract public class TestBeanBase extends LocalTestBeanBase implements TestIF {
     String reason = "";
     try {
       txBean.mandatoryTest();
-      reason += "Expecting javax.ejb.EJBTransactionRequiredException, but got none";
+      reason += "Expecting jakarta.ejb.EJBTransactionRequiredException, but got none";
       throw new TestFailedException(reason);
     } catch (EJBTransactionRequiredException e) {
-      reason += "Got expected javax.ejb.EJBTransactionRequiredException";
+      reason += "Got expected jakarta.ejb.EJBTransactionRequiredException";
       Helper.getLogger().info(reason);
     }
     mandatoryTestOverloaded(txBean);
@@ -132,7 +132,7 @@ abstract public class TestBeanBase extends LocalTestBeanBase implements TestIF {
       throw new TestFailedException(e);
     } catch (SystemException e) {
       throw new TestFailedException(e);
-    } catch (javax.ejb.EJBTransactionRolledbackException e) {
+    } catch (jakarta.ejb.EJBTransactionRolledbackException e) {
       result = "Got expected EJBTransactionRolledbackException.";
       Integer status = null;
       try {
@@ -160,17 +160,17 @@ abstract public class TestBeanBase extends LocalTestBeanBase implements TestIF {
     try {
       ut.begin();
       txBean.neverTest();
-      reason = "Expecting javax.ejb.EJBException, but got none";
+      reason = "Expecting jakarta.ejb.EJBException, but got none";
       throw new TestFailedException(reason);
     } catch (EJBException e) {
-      reason = "Got expected javax.ejb.EJBException";
+      reason = "Got expected jakarta.ejb.EJBException";
       Helper.getLogger().info(reason);
     } catch (NotSupportedException ex) {
       throw new TestFailedException(
-          "Expecting javax.ejb.EJBException, but got " + ex);
+          "Expecting jakarta.ejb.EJBException, but got " + ex);
     } catch (SystemException ex) {
       throw new TestFailedException(
-          "Expecting javax.ejb.EJBException, but got " + ex);
+          "Expecting jakarta.ejb.EJBException, but got " + ex);
     } finally {
       try {
         ut.rollback();

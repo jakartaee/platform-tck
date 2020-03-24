@@ -563,8 +563,8 @@ required for the Jakarta EE 8 Web Profile:
 * javax.annotation.sql
 * javax.decorator
 * javax.ejb
-* javax.ejb.embeddable
-* javax.ejb.spi
+* jakarta.ejb.embeddable
+* jakarta.ejb.spi
 * javax.el
 * javax.enterprise.context
 * javax.enterprise.context.spi

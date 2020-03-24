@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.basic;
 
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import javax.ejb.Remove;
+import jakarta.ejb.Remove;
 
 /**
  * A stateful base calculator session bean class that implements
- * javax.ejb.SessionBean. ejbCreate method is optional and not implemented here.
+ * jakarta.ejb.SessionBean. ejbCreate method is optional and not implemented here.
  */
 
 public interface StatefulRemoteCalculator extends RemoteCalculator {

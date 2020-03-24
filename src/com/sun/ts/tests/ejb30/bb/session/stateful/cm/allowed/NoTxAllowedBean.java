@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,12 +23,12 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 import com.sun.ts.tests.ejb30.common.allowed.NoTxAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
 import javax.annotation.Resource;
-import javax.ejb.Remote;
-import javax.ejb.Remove;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateful;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 
 @Stateful(name = "NoTxAllowedBean")
 @Remote({ NoTxAllowedIF.class })

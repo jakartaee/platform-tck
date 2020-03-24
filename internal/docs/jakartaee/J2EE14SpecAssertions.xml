@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1744,7 +1744,7 @@ HTTP access through firewalls be possible where local policy allows.
 		</assertion>
 		<assertion required = "true" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
 			<id>J2EE:SPEC:211</id>
-			<description>Web containers must throw a java.lang.IllegalArgumentException if an object that is not one of the types  java.io.Serializable, javax.ejb.EJBObject, javax.ejb.EJBHome, javax.ejb.EJBLocalObject, javax.ejb.EJBLocalHome, javax.transaction.UserTransaction, a javax.naming.Context object for the java:comp/env context, or another type supported by the container, is passed to the setAttribute or putValue methods of an HttpSession object corresponding to a J2EE distributable session.</description>
+			<description>Web containers must throw a java.lang.IllegalArgumentException if an object that is not one of the types  java.io.Serializable, jakarta.ejb.EJBObject, jakarta.ejb.EJBHome, jakarta.ejb.EJBLocalObject, jakarta.ejb.EJBLocalHome, javax.transaction.UserTransaction, a javax.naming.Context object for the java:comp/env context, or another type supported by the container, is passed to the setAttribute or putValue methods of an HttpSession object corresponding to a J2EE distributable session.</description>
 			<location chapter = "6" section = "4"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,11 +24,11 @@ import java.util.Properties;
 import java.io.Serializable;
 import java.io.IOException;
 import javax.naming.NamingException;
-import javax.ejb.EntityBean;
-import javax.ejb.EntityContext;
-import javax.ejb.EJBException;
-import javax.ejb.CreateException;
-import javax.ejb.RemoveException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.RemoveException;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.RemoteLoggingInitException;

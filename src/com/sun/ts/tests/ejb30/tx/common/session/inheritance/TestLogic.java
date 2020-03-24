@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import javax.ejb.EJBException;
-import javax.ejb.EJBTransactionRequiredException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBTransactionRequiredException;
 import javax.transaction.Status;
 import javax.transaction.UserTransaction;
 
@@ -52,7 +52,7 @@ public class TestLogic {
     result = null;
     try {
       result = beanRemote.bar();
-      reason.append("Expecting javax.ejb.EJBTransactionRequiredException");
+      reason.append("Expecting jakarta.ejb.EJBTransactionRequiredException");
       reason.append(", but got no exception.");
     } catch (EJBTransactionRequiredException e) {
       pass2 = true;
@@ -89,7 +89,7 @@ public class TestLogic {
     result = null;
     try {
       result = beanLocal.bar();
-      reason.append("Expecting javax.ejb.EJBTransactionRequiredException");
+      reason.append("Expecting jakarta.ejb.EJBTransactionRequiredException");
       reason.append(", but got no exception.");
     } catch (EJBTransactionRequiredException e) {
       pass2 = true;
@@ -144,7 +144,7 @@ public class TestLogic {
     result = null;
     try {
       result = beanRemote.bar();
-      reason.append("Expecting javax.ejb.EJBTransactionRequiredException");
+      reason.append("Expecting jakarta.ejb.EJBTransactionRequiredException");
       reason.append(", but got no exception.");
     } catch (EJBTransactionRequiredException e) {
       pass2 = true;
@@ -199,7 +199,7 @@ public class TestLogic {
     result = null;
     try {
       result = beanlocal.bar();
-      reason.append("Expecting javax.ejb.EJBTransactionRequiredException");
+      reason.append("Expecting jakarta.ejb.EJBTransactionRequiredException");
       reason.append(", but got no exception.");
     } catch (EJBTransactionRequiredException e) {
       pass2 = true;
@@ -357,7 +357,7 @@ public class TestLogic {
       ut.begin();
       try {
         result = beanRemote.foo();
-        reason.append("Expecting javax.ejb.EJBException");
+        reason.append("Expecting jakarta.ejb.EJBException");
         reason.append(", but got no exception.");
       } catch (EJBException ejbe) {
         pass1 = true;
@@ -413,7 +413,7 @@ public class TestLogic {
       ut.begin();
       try {
         result = beanLocal.foo();
-        reason.append("Expecting javax.ejb.EJBException");
+        reason.append("Expecting jakarta.ejb.EJBException");
         reason.append(", but got no exception.");
       } catch (EJBException ejbe) {
         pass1 = true;
@@ -469,7 +469,7 @@ public class TestLogic {
       ut.begin();
       try {
         result = beanRemote.foo();
-        reason.append("Expecting javax.ejb.EJBException");
+        reason.append("Expecting jakarta.ejb.EJBException");
         reason.append(", but got no exception.");
       } catch (EJBException ejbe) {
         pass1 = true;
@@ -484,7 +484,7 @@ public class TestLogic {
     result = null;
     try {
       result = beanRemote.bar();
-      reason.append("Expecting javax.ejb.EJBTransactionRequiredException");
+      reason.append("Expecting jakarta.ejb.EJBTransactionRequiredException");
       reason.append(", but got no exception.");
     } catch (EJBTransactionRequiredException e) {
       pass2 = true;
@@ -512,7 +512,7 @@ public class TestLogic {
       ut.begin();
       try {
         result = beanLocal.foo();
-        reason.append("Expecting javax.ejb.EJBException");
+        reason.append("Expecting jakarta.ejb.EJBException");
         reason.append(", but got no exception.");
       } catch (EJBException ejbe) {
         pass1 = true;
@@ -527,7 +527,7 @@ public class TestLogic {
     result = null;
     try {
       result = beanLocal.bar();
-      reason.append("Expecting javax.ejb.EJBTransactionRequiredException");
+      reason.append("Expecting jakarta.ejb.EJBTransactionRequiredException");
       reason.append(", but got no exception.");
     } catch (EJBTransactionRequiredException e) {
       pass2 = true;
@@ -557,7 +557,7 @@ public class TestLogic {
         "About to invoke fbeanLocal.foo(), which has tx attribute Mandatory.");
     try {
       String result = beanLocal.foo();
-      reason.append("Expecting javax.ejb.EJBTransactionRequiredException");
+      reason.append("Expecting jakarta.ejb.EJBTransactionRequiredException");
       reason.append(", but got no exception.");
     } catch (EJBTransactionRequiredException e) {
       pass1 = true;
@@ -621,7 +621,7 @@ public class TestLogic {
         "About to invoke fbeanRemote.foo(), which has tx attribute Mandatory.");
     try {
       String result = beanRemote.foo();
-      reason.append("Expecting javax.ejb.EJBTransactionRequiredException");
+      reason.append("Expecting jakarta.ejb.EJBTransactionRequiredException");
       reason.append(", but got no exception.");
     } catch (EJBTransactionRequiredException e) {
       pass1 = true;

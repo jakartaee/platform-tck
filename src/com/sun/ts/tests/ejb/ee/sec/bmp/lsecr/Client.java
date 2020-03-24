@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import java.io.*;
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import com.sun.javatest.Status;
 
 import com.sun.ts.tests.ejb.ee.sec.bmp.common.*;
@@ -266,14 +266,14 @@ public class Client extends EETest {
    * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing
    * a local method of the second bean. 2. Protect bean method with multiple
    * security roles. 3. Make sure that run-as identity is not in any of the
-   * security roles that protects the method. 4. Verify javax.ejb.EJBException
+   * security roles that protects the method. 4. Verify jakarta.ejb.EJBException
    * is generated. Note: If a caller principal is not in one of the security
    * roles defined in a method permission element for the method, then the ejb
-   * container must generate a javax.ejb.EJBException.
+   * container must generate a jakarta.ejb.EJBException.
    *
    * This is a local interface test.
    *
-   * EJB Specification v2.0 specifies that javax.ejb.EJBException is returned
+   * EJB Specification v2.0 specifies that jakarta.ejb.EJBException is returned
    * not only for authorization failures but also for communicaton errors. The
    * test may pass instead of failing if the exception is generated because of a
    * communication failure.
@@ -329,7 +329,7 @@ public class Client extends EETest {
    * 
    * @test_Strategy: 1. Create a bmp entity bean using runas identity invokes a
    * local method of the second bean. 2. Put this local method on exclude-list.
-   * 3. Verify javax.ejb.EJBException is generated.
+   * 3. Verify jakarta.ejb.EJBException is generated.
    * 
    * Note: "The exclude-list element defines a set of methods which the
    * assembler marks to be uncallable. It contains one or more methods. If the
@@ -337,7 +337,7 @@ public class Client extends EETest {
    * the deployer should consider those methods to be uncallable."
    *
    * This test tests an ejb using runas identity accessing a local interface
-   * method in the exclude list, javax.ejb.EJBException will be thrown when
+   * method in the exclude list, jakarta.ejb.EJBException will be thrown when
    * invoked.
    *
    */

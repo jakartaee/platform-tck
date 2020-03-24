@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,12 +24,12 @@ import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
-import javax.ejb.SessionContext;
+import jakarta.ejb.SessionContext;
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
 import com.sun.ts.tests.ejb30.common.allowed.Operations;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import javax.ejb.EJBException;
-import javax.ejb.TimerHandle;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.TimerHandle;
 import javax.transaction.UserTransaction;
 
 public class StatefulBMTOperations extends StatefulOperations

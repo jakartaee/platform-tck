@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.*;
 import javax.transaction.*;
 import java.rmi.*;
@@ -88,7 +88,7 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     TestUtil.logTrace("ejbPassivate");
   }
 
-  public void ejbTimeout(javax.ejb.Timer timer) {
+  public void ejbTimeout(jakarta.ejb.Timer timer) {
     TestUtil.logTrace("ejbTimeout");
   }
 
@@ -389,9 +389,9 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     // Timer_Service_Method test
     try {
-      javax.ejb.TimerService timesrv = sctx.getTimerService();
-      javax.ejb.Timer tt = timesrv.createTimer((long) 10000, "info");
-      javax.ejb.TimerHandle th = tt.getHandle();
+      jakarta.ejb.TimerService timesrv = sctx.getTimerService();
+      jakarta.ejb.Timer tt = timesrv.createTimer((long) 10000, "info");
+      jakarta.ejb.TimerHandle th = tt.getHandle();
       TestUtil.logTrace("getTimers:  " + th.getTimer());
       tt.cancel();
       TestUtil.logMsg("Operations test: Timer_Service_Methods() - allowed");

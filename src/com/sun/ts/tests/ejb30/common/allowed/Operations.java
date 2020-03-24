@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.allowed;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
-import javax.ejb.SessionContext;
+import jakarta.ejb.SessionContext;
 import javax.naming.InitialContext;
 import javax.transaction.UserTransaction;
 
@@ -182,8 +182,8 @@ public class Operations implements Constants {
     // @todo TimerService_Methods, etc
     // TimerService_Methods_Test1
     try {
-      javax.ejb.TimerService timesrv = sctx.getTimerService();
-      javax.ejb.Timer tt = timesrv.createTimer((long) 10000, "test1");
+      jakarta.ejb.TimerService timesrv = sctx.getTimerService();
+      jakarta.ejb.Timer tt = timesrv.createTimer((long) 10000, "test1");
       tt.cancel();
       results.setProperty(TimerService_Methods_Test1, allowed);
     } catch (IllegalStateException e) {
@@ -194,8 +194,8 @@ public class Operations implements Constants {
 
     // TimerService_Methods_Test2
     try {
-      javax.ejb.TimerService timesrv2 = sctx.getTimerService();
-      javax.ejb.Timer t2 = timesrv2.createTimer((long) 10000, (long) 10000,
+      jakarta.ejb.TimerService timesrv2 = sctx.getTimerService();
+      jakarta.ejb.Timer t2 = timesrv2.createTimer((long) 10000, (long) 10000,
           "test2");
       t2.cancel();
       results.setProperty(TimerService_Methods_Test2, allowed);
@@ -209,8 +209,8 @@ public class Operations implements Constants {
     try {
       long expiration = (System.currentTimeMillis() + (long) 900000);
       java.util.Date d = new java.util.Date(expiration);
-      javax.ejb.TimerService timesrv3 = sctx.getTimerService();
-      javax.ejb.Timer t3 = timesrv3.createTimer(d, "test3");
+      jakarta.ejb.TimerService timesrv3 = sctx.getTimerService();
+      jakarta.ejb.Timer t3 = timesrv3.createTimer(d, "test3");
       t3.cancel();
       results.setProperty(TimerService_Methods_Test3, allowed);
     } catch (IllegalStateException e) {
@@ -223,8 +223,8 @@ public class Operations implements Constants {
     try {
       long expiration = (System.currentTimeMillis() + (long) 900000);
       java.util.Date d = new java.util.Date(expiration);
-      javax.ejb.TimerService timesrv4 = sctx.getTimerService();
-      javax.ejb.Timer t4 = timesrv4.createTimer(d, (long) 10000, "test4");
+      jakarta.ejb.TimerService timesrv4 = sctx.getTimerService();
+      jakarta.ejb.Timer t4 = timesrv4.createTimer(d, (long) 10000, "test4");
       t4.cancel();
       results.setProperty(TimerService_Methods_Test4, allowed);
     } catch (IllegalStateException e) {
@@ -235,7 +235,7 @@ public class Operations implements Constants {
 
     // TimerService_Methods_Test5
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       java.util.Collection ccol = ts.getTimers();
       results.setProperty(TimerService_Methods_Test5, allowed);
     } catch (IllegalStateException e) {
@@ -246,8 +246,8 @@ public class Operations implements Constants {
 
     // TimerService_Methods_Test6
     try {
-      javax.ejb.TimerService timesrv6 = sctx.getTimerService();
-      javax.ejb.Timer t6 = timesrv6.createTimer((long) 10000, "test6");
+      jakarta.ejb.TimerService timesrv6 = sctx.getTimerService();
+      jakarta.ejb.Timer t6 = timesrv6.createTimer((long) 10000, "test6");
       t6.getHandle();
       t6.cancel();// added 4/15/2005
       results.setProperty(TimerService_Methods_Test6, allowed);
@@ -259,8 +259,8 @@ public class Operations implements Constants {
 
     // TimerService_Methods_Test7
     try {
-      javax.ejb.TimerService timesrv7 = sctx.getTimerService();
-      javax.ejb.Timer t7 = timesrv7.createTimer((long) 10000, "test7");
+      jakarta.ejb.TimerService timesrv7 = sctx.getTimerService();
+      jakarta.ejb.Timer t7 = timesrv7.createTimer((long) 10000, "test7");
       t7.cancel();
       results.setProperty(TimerService_Methods_Test7, allowed);
     } catch (IllegalStateException e) {
