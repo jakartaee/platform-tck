@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -23,7 +23,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.batch.api.chunk.AbstractItemWriter;
+import jakarta.batch.api.chunk.AbstractItemWriter;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.CheckpointData;
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;

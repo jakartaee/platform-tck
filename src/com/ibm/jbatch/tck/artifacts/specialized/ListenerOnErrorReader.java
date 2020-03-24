@@ -1,5 +1,5 @@
 /**
- * Copyright 2013 International Business Machines Corp.
+ * Copyright 2013, 2020 International Business Machines Corp.
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -21,8 +21,8 @@ import com.sun.ts.lib.util.TestUtil;
 
 import java.io.Serializable;
 
-import javax.batch.api.BatchProperty;
-import javax.batch.api.chunk.ItemReader;
+import jakarta.batch.api.BatchProperty;
+import jakarta.batch.api.chunk.ItemReader;
 import javax.inject.Inject;
 import javax.inject.Named;
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -22,8 +22,8 @@ import com.sun.ts.lib.util.TestUtil;
 
 import java.io.Externalizable;
 
-import javax.batch.api.partition.PartitionCollector;
-import javax.batch.runtime.context.StepContext;
+import jakarta.batch.api.partition.PartitionCollector;
+import jakarta.batch.runtime.context.StepContext;
 import javax.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.reusable.ExternalizableString;
