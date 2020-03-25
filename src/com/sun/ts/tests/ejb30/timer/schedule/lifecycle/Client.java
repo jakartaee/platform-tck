@@ -150,11 +150,11 @@ public class Client extends ClientBase {
    */
   public void timerEquals() {
     ScheduleExpression exp = new ScheduleExpression();
-    String t1Name = getTestName() + "t1";
-    Timer t1 = scheduleBean.createSecondLaterTimer(t1Name);
     Timer t2 = scheduleBean.createFarFutureTimer(getTestName());
     Timer t3 = scheduleBean.createTimer(exp, getTestName());
     Timer t4 = scheduleBean.createTimer(exp, getTestName());
+    String t1Name = getTestName() + "t1";
+    Timer t1 = scheduleBean.createSecondLaterTimer(t1Name);
     Timer t1Found = scheduleBean.findTimer(t1Name);
     assertEquals("Compare timer to itself.", t1, t1);
     assertEquals("Compare timer to t1Found.", t1, t1Found);
