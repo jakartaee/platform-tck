@@ -31,6 +31,7 @@ import javax.ejb.EJB;
 import javax.ejb.ScheduleExpression;
 import javax.ejb.Timer;
 import javax.ejb.TimerHandle;
+import javax.ejb.NoSuchObjectLocalException;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
@@ -160,13 +161,22 @@ public class Client extends ClientBase {
     assertNotEquals("Compare timer to null.", t1, null);
     assertNotEquals("Compare timer to 1.", t1, 1);
     assertNotEquals("Compare timer to true.", t1, true);
-    assertNotEquals("Compare timer to TimerHandle.", t1,
-        scheduleBean.getTimerHandle(t1));
-    assertNotEquals("Compare TimerHandle to timer.",
-        scheduleBean.getTimerHandle(t1), t1);
+    try{
+      TimerHandle timerHandle = scheduleBean.getTimerHandle(t1);
+      assertNotEquals("Compare timer to TimerHandle.", t1, timerHandle);
+      assertNotEquals("Compare TimerHandle to timer.", timerHandle, t1);
+    }
+    catch (NoSuchObjectLocalException ex){
+      ex.printStackTrace();
+    }
     assertNotEquals("Compare 2 timers.", t1, t2);
     assertNotEquals("Compare timer 3 to timer 4.", t3, t4);
-    scheduleBean.cancelTimer(t1, t2, t3, t4);
+    try{
+      scheduleBean.cancelTimer(t1, t2, t3, t4);
+    }
+    catch(NoSuchObjectLocalException ex){
+      ex.printStackTrace();
+    }
   }
 
   /*
