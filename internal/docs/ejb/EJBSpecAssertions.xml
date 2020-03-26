@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -448,9 +448,9 @@
 					<section id="3.3" name="Enterprise beans using bean-managed transaction demarcation"/>
 					<section id="3.3.1" name="getRollbackOnly() and setRollbackOnly() method"/>
 					<section id="3.4" name="Enterprise beans using container-managed transaction demarcation"/>
-					<section id="3.4.1" name="javax.ejb.SessionSynchronization interface"/>
-					<section id="3.4.2" name="javax.ejb.EJBContext.setRollbackOnly() method"/>
-					<section id="3.4.3" name="javax.ejb.EJBContext.getRollbackOnly() method"/>
+					<section id="3.4.1" name="jakarta.ejb.SessionSynchronization interface"/>
+					<section id="3.4.2" name="jakarta.ejb.EJBContext.setRollbackOnly() method"/>
+					<section id="3.4.3" name="jakarta.ejb.EJBContext.getRollbackOnly() method"/>
 					<section id="3.5" name="Use of JMS APIs in transactions"/>
 					<section id="3.6" name="Specification of a Bean's Transaction Management Type"/>
 					<section id="3.7" name="Specification of the Transaction Attribute for a Bean's Method"/>
@@ -471,7 +471,7 @@
 					<section id="6.2.8" name="Handling of setRollbackOnly() method"/>
 					<section id="6.2.9" name="Handling of getRollbackOnly() method"/>
 					<section id="6.2.10" name="Handling of getUserTransaction() method"/>
-					<section id="6.2.11" name="javax.ejb.SessionSynchronization callbacks"/>
+					<section id="6.2.11" name="jakarta.ejb.SessionSynchronization callbacks"/>
 					<section id="6.3" name="Container-managed transaction demarcation for Message-driven Beans"/>
 					<section id="6.3.1" name="NotSupported"/>
 					<section id="6.3.2" name="Required"/>
@@ -496,7 +496,7 @@
 					<section id="2" name="Bean Provider's responsibilities"/>
 					<section id="2.1" name="Application exceptions"/>
 					<section id="2.2" name="System exceptions"/>
-					<section id="2.2.1" name="javax.ejb.NoSuchEntityException"/>
+					<section id="2.2.1" name="jakarta.ejb.NoSuchEntityException"/>
 					<section id="3" name="Container Provider responsibilities"/>
 					<section id="3.1" name="Exceptions from a session or entity bean's business interface methods"/>
 					<section id="3.2" name="Exceptions from Method Invoked via Session or Entity Bean's 2.1 Client View or through Web Service Client"/>
@@ -505,7 +505,7 @@
 					<section id="3.5" name="Exceptions from PostConstruct and PreDestroy Methods of a Message-Driven Bean"/>
 					<section id="3.6" name="Exceptions from entity bean ejbTimeout method"/>
 					<section id="3.7" name="Exceptions from container-invoked callbacks"/>		
-					<section id="3.8" name="javax.ejb.NoSuchEntityException"/>
+					<section id="3.8" name="jakarta.ejb.NoSuchEntityException"/>
 					<section id="3.9" name="Non-existing stateful session or entity object"/>
 					<section id="3.10" name="Exceptions from the management of container-managed transactions"/>
 					<section id="3.11" name="Release of resources"/>
@@ -514,10 +514,10 @@
 					<section id="4.1" name="Application exception"/>
 					<section id="4.1.1" name="Local and remote clients"/>
 					<section id="4.1.2" name="Web service clients"/>
-					<section id="4.2" name="java.rmi.RemoteException and javax.ejb.EJBException"/>
-					<section id="4.2.1" name="javax.transaction.TransactionRolledbackException and javax.ejb.TransactionRolledbackLocalException"/>
-					<section id="4.2.2" name="javax.transaction.TransactionRequiredException and javax.ejb.TransactionRequiredLocalException"/>
-					<section id="4.2.3" name="java.rmi.NoSuchObjectException and javax.ejb.NoSuchObjectLocalException"/>
+					<section id="4.2" name="java.rmi.RemoteException and jakarta.ejb.EJBException"/>
+					<section id="4.2.1" name="javax.transaction.TransactionRolledbackException and jakarta.ejb.TransactionRolledbackLocalException"/>
+					<section id="4.2.2" name="javax.transaction.TransactionRequiredException and jakarta.ejb.TransactionRequiredLocalException"/>
+					<section id="4.2.3" name="java.rmi.NoSuchObjectException and jakarta.ejb.NoSuchObjectLocalException"/>
 					<section id="5" name="System Administrator's responsibilities"/>
 				</sections>
 			</chapter>
@@ -638,7 +638,7 @@
                                         <section id="6.2" name="Security Domain(s)"/>
                                         <section id="6.3" name="Security Mechanism"/>
                                         <section id="6.4" name="Passing Principals on EJB Calls"/>
-                                        <section id="6.5" name="Security Mehods in javax.ejb.EJBContext"/>
+                                        <section id="6.5" name="Security Mehods in jakarta.ejb.EJBContext"/>
                                         <section id="6.6" name="Secure Access to Resource Managers"/>
                                         <section id="6.7" name="Principal Mapping"/>
                                         <section id="6.8" name="System Principal"/>
@@ -875,7 +875,7 @@
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:19.3</id>
-					<description>Get the javax.ejb.EJBMetaData interface for the session bean.</description>
+					<description>Get the jakarta.ejb.EJBMetaData interface for the session bean.</description>
 					<location chapter="3" section="6"/>
 					<comment>bb.session.stateful.clientviewtest.test17, and test15  and bb.session.stateless.clientviewtest.test6</comment>
 				</assertion>
@@ -907,19 +907,19 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:23</id>
-			<description>A remote client may remove a session object using the remove (Handle handle) method of the javax.ejb.EJBHome interface. </description>
+			<description>A remote client may remove a session object using the remove (Handle handle) method of the jakarta.ejb.EJBHome interface. </description>
 			<location chapter="3" section="6.2"/>
 			<comment>bb.session.stateful.clientviewtest.test3 and bb.session.stateless.clientviewtest.test3</comment>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:24</id>
-			<description>A remote client may remove a session object using the remove() method on the javax.ejb.EJBObject interface.</description>
+			<description>A remote client may remove a session object using the remove() method on the jakarta.ejb.EJBObject interface.</description>
 			<location chapter="3" section="6.2"/>
 			<comment>bb.session.stateful.clientviewtest.test5 and bb.session.stateless.clientviewtest.test5</comment>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:25</id>
-			<description>Because session objects do not have primary keys that are accessible to clients, invoking the javax.ejb.EJBHome.remove (Object primaryKey) method on a session results in the javax.ejb.RemoveException.</description>
+			<description>Because session objects do not have primary keys that are accessible to clients, invoking the jakarta.ejb.EJBHome.remove (Object primaryKey) method on a session results in the jakarta.ejb.RemoveException.</description>
 			<location chapter="3" section="6.2"/>
 			<comment>bb.session.stateful.clientviewtest.test5 and bb.session.stateless.clientviewtest.test5</comment>
 		</assertion>
@@ -962,13 +962,13 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:30</id>
-			<description>A local client may remove a session object using the remove() method on the javax.ejb.EJBLocalObject interface.</description>
+			<description>A local client may remove a session object using the remove() method on the jakarta.ejb.EJBLocalObject interface.</description>
 			<location chapter="3" section="6.3.2"/>
 			<comment>bb.session.lrapitest.test4</comment>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:31</id>
-			<description>Because session objects do not have primary keys that are accessible to clients, invoking the javax.ejb.EJBLocalHome.remove (Object primaryKey) method on a session results in the javax.ejb.RemoveException.</description>
+			<description>Because session objects do not have primary keys that are accessible to clients, invoking the jakarta.ejb.EJBLocalHome.remove (Object primaryKey) method on a session results in the jakarta.ejb.RemoveException.</description>
 			<location chapter="3" section="6.3.2"/>
 			<comment>bb.session.lrapitest.test4</comment>
 		</assertion>
@@ -1022,7 +1022,7 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:40</id>
-			<description>In contrast to entity objects which expose their identiy as a primary key, session objects hide their identity.  As a result, the EJBLocalObject.getPrimaryKey()method results in a javax.ejb.EJBException.</description>
+			<description>In contrast to entity objects which expose their identiy as a primary key, session objects hide their identity.  As a result, the EJBLocalObject.getPrimaryKey()method results in a jakarta.ejb.EJBException.</description>
 			<location chapter="3" section="6.5"/>
 			<comment/>
 		</assertion>
@@ -1115,7 +1115,7 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:46</id>
-			<description>It is invalid to reference a [stateful] session object that does not exist. Attempted invocations on a session object that does not exist result in the exception javax.ejb.NoSuchObjectLocalException.</description>
+			<description>It is invalid to reference a [stateful] session object that does not exist. Attempted invocations on a session object that does not exist result in the exception jakarta.ejb.NoSuchObjectLocalException.</description>
 			<location chapter="3" section="6.6.2"/>
 			<comment>bb.session.lrapitest.test7</comment>
 		</assertion>
@@ -1259,7 +1259,7 @@
 				</assertion>
 				<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="false">
 					<id>EJB:SPEC:55.4</id>
-					<description>If the session bean stores in its conversational state an object reference to the javax.ejb.SessionContext interface passed to the instance in the setSessionContext(..) method, the container must be able to save and restore the reference across the instance's passivation.</description>
+					<description>If the session bean stores in its conversational state an object reference to the jakarta.ejb.SessionContext interface passed to the instance in the setSessionContext(..) method, the container must be able to save and restore the reference across the instance's passivation.</description>
 					<location chapter="4" section="2.1"/>
 					<comment/>
 				</assertion>
@@ -1502,13 +1502,13 @@ a stateless session bean because the container routes each request to a differen
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>EJB:SPEC:77</id>
-			<description>When the client calls remove on the home or component interface to remove the session object, the container issues ejbRemove() on the bean instance  This ends the life of the session bean instance and the associated session object. A subsquent attempt by its client to invoke the session object causes the javax.ejb.NoSuchObjectLocalException to be thrown if the client is a local client. </description>
+			<description>When the client calls remove on the home or component interface to remove the session object, the container issues ejbRemove() on the bean instance  This ends the life of the session bean instance and the associated session object. A subsquent attempt by its client to invoke the session object causes the jakarta.ejb.NoSuchObjectLocalException to be thrown if the client is a local client. </description>
 			<location chapter="4" section="4"/>
 			<comment/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:78</id>
-			<description>The ejbRemove() method cannot be called when the instance is participating in a transaction.  An attempt to remove a session object while the object is in a transaction will cause the container to throw the javax.ejb.RemoveException to the client.</description>
+			<description>The ejbRemove() method cannot be called when the instance is participating in a transaction.  An attempt to remove a session object while the object is in a transaction will cause the container to throw the jakarta.ejb.RemoveException to the client.</description>
 			<location chapter="4" section="4"/>
 			<comment>bb.session.stateful.sessionbeantest.test3a</comment>
 		</assertion>
@@ -3009,7 +3009,7 @@ a stateless session bean because the container routes each request to a differen
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:101</id>
-			<description>A stateless session bean must not implement the javax.ejb.SessoinSynchronization interface.</description>
+			<description>A stateless session bean must not implement the jakarta.ejb.SessoinSynchronization interface.</description>
 			<location chapter="4" section="5"/>
 			<comment/>
 		</assertion>
@@ -4237,7 +4237,7 @@ a stateless session bean because the container routes each request to a differen
 			<id>EJB:SPEC:10506</id>
 			<description>A message driven bean can be registered with
 the EJB Timer Service for time-based event notifications
-if it implements the javax.ejb.TimedObject interface in addition to the message
+if it implements the jakarta.ejb.TimedObject interface in addition to the message
 listener interface.</description>
 			<location chapter="5" section="4.7"/>
 		</assertion>
@@ -4545,7 +4545,7 @@ listener interface.</description>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:126.4</id>
-					<description>Get the javax.ejb.EJBMetaData interface for the entity bean.</description>
+					<description>Get the jakarta.ejb.EJBMetaData interface for the entity bean.</description>
 					<location chapter="7" section="5"/>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -4567,7 +4567,7 @@ listener interface.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>EJB:SPEC:128</id>
-			<description>The throws clause of every createMETHOD method on the remote home interface includes the java.rmi.RemoteException and javax.ejb.CreateException.</description>
+			<description>The throws clause of every createMETHOD method on the remote home interface includes the java.rmi.RemoteException and jakarta.ejb.CreateException.</description>
 			<location chapter="7" section="5.1"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -4577,7 +4577,7 @@ listener interface.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>EJB:SPEC:130</id>
-			<description>The throws clause of every finder method on the remote home interface includes the java.rmi.RemoteException and javax.ejb.FinderException.</description>
+			<description>The throws clause of every finder method on the remote home interface includes the java.rmi.RemoteException and jakarta.ejb.FinderException.</description>
 			<location chapter="7" section="5.2"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -4613,7 +4613,7 @@ listener interface.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:137</id>
-			<description>The javax.ejb.EJBHome interface defines several methods that allow the client to remove an entity object.</description>
+			<description>The jakarta.ejb.EJBHome interface defines several methods that allow the client to remove an entity object.</description>
 			<location chapter="7" section="5.3"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -4816,7 +4816,7 @@ Value Type in RMI-IIOP, subject to the restrictions defined in Subsections
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:152</id>
-			<description>The javax.ejb.EJBObject interface defines the methods that allow the client to perform the following operations on an entity object's reference:</description>
+			<description>The jakarta.ejb.EJBObject interface defines the methods that allow the client to perform the following operations on an entity object's reference:</description>
 			<location chapter="7" section="9"/>
 			<sub-assertions>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -4843,7 +4843,7 @@ Value Type in RMI-IIOP, subject to the restrictions defined in Subsections
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:153</id>
-			<description>The javax.ejb.EJBLocalObject interface defines the methods that allow the client to perform the following operations on an entity object's local reference:</description>
+			<description>The jakarta.ejb.EJBLocalObject interface defines the methods that allow the client to perform the following operations on an entity object's local reference:</description>
 			<location chapter="7" section="10"/>
 			<sub-assertions>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -4892,7 +4892,7 @@ Value Type in RMI-IIOP, subject to the restrictions defined in Subsections
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:159</id>
-			<description>A handle to a remote home interface must implement javax.ejb.HomeHandle interface.</description>
+			<description>A handle to a remote home interface must implement jakarta.ejb.HomeHandle interface.</description>
 			<location chapter="7" section="12"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -5574,7 +5574,7 @@ me transaction context as the ejbSelectMethod method and whose abstract schema t
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:249.10</id>
-					<description>The getTimerService method returns the javax.ejb.TimerService interface.</description>
+					<description>The getTimerService method returns the jakarta.ejb.TimerService interface.</description>
 					<location chapter="8" section="5.4"/>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -6774,7 +6774,7 @@ me transaction context as the ejbSelectMethod method and whose abstract schema t
 		</assertion>
 		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:286</id>
-			<description>If the entity bean is specified as non-reentrant in the deployment desriptor, the Container must reject an attempt to re-enter the instance via the entity bean's component interface while the instance is executing a business method.  If the attempt is made to reenter the instance through the remote interface, the container must throw the java.rmi.RemoteException to the caller.  If the attempt is made to reenter the instance through the local interface, the container must throw the javax.ejb.EJBException to the caller.  The container must allow the call if the Bean's deployment descriptor specifies that the entity bean is reentrant.</description>
+			<description>If the entity bean is specified as non-reentrant in the deployment desriptor, the Container must reject an attempt to re-enter the instance via the entity bean's component interface while the instance is executing a business method.  If the attempt is made to reenter the instance through the remote interface, the container must throw the java.rmi.RemoteException to the caller.  If the attempt is made to reenter the instance through the local interface, the container must throw the jakarta.ejb.EJBException to the caller.  The container must allow the call if the Bean's deployment descriptor specifies that the entity bean is reentrant.</description>
 			<location chapter="8" section="5.12"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -6789,7 +6789,7 @@ me transaction context as the ejbSelectMethod method and whose abstract schema t
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:289</id>
-			<description>The throws clause [of the concrete ejbFindMETHOD method] must define the javax.ejb.FinderException.</description>
+			<description>The throws clause [of the concrete ejbFindMETHOD method] must define the jakarta.ejb.FinderException.</description>
 			<location chapter="8" section="7.3"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -6819,7 +6819,7 @@ me transaction context as the ejbSelectMethod method and whose abstract schema t
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:295</id>
-			<description>The implementation of the remove() methods defined in the javax.ejb.EJBHome interface must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
+			<description>The implementation of the remove() methods defined in the jakarta.ejb.EJBHome interface must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
 			<location chapter="8" section="7.5"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -6844,7 +6844,7 @@ me transaction context as the ejbSelectMethod method and whose abstract schema t
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:300</id>
-			<description>The implementation of the remove() method (defined in the javax.ejb.EJBObject interface) must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
+			<description>The implementation of the remove() method (defined in the jakarta.ejb.EJBObject interface) must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
 			<location chapter="8" section="7.6"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -6859,7 +6859,7 @@ me transaction context as the ejbSelectMethod method and whose abstract schema t
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:303</id>
-			<description>The implementation of the remove() methods defined in the javax.ejb.EJBLocalHome interface must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
+			<description>The implementation of the remove() methods defined in the jakarta.ejb.EJBLocalHome interface must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
 			<location chapter="8" section="7.7"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -6884,7 +6884,7 @@ me transaction context as the ejbSelectMethod method and whose abstract schema t
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:308</id>
-			<description>The implementation of the remove() method (defined in the javax.ejb.EJBLocalObject interface) must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
+			<description>The implementation of the remove() method (defined in the jakarta.ejb.EJBLocalObject interface) must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
 			<location chapter="8" section="7.8"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -7928,7 +7928,7 @@ time.  The container must ensure that the primary key of the associated entity o
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:450.10</id>
-					<description>The getTimerService method returns the javax.ejb.TimerService interface.</description>
+					<description>The getTimerService method returns the jakarta.ejb.TimerService interface.</description>
 					<location chapter="10" section="1.7"/>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -9149,7 +9149,7 @@ time.  The container must ensure that the primary key of the associated entity o
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:473</id>
-			<description>If the entity bean is specified as non-reentrant in the deployment desriptor, the Container must reject an attempt to re-enter the instance via the entity bean's component interface while the instance is executing a business method.  If the attempt is made to reenter the instance through the remote interface, the container must throw the java.rmi.RemoteException to the caller.  If the attempt is made to reenter the instance through the local interface, the container must throw the javax.ejb.EJBException to the caller.  The container must allow the call if the Bean's deployment descriptor specifies that the entity bean is reentrant.</description>
+			<description>If the entity bean is specified as non-reentrant in the deployment desriptor, the Container must reject an attempt to re-enter the instance via the entity bean's component interface while the instance is executing a business method.  If the attempt is made to reenter the instance through the remote interface, the container must throw the java.rmi.RemoteException to the caller.  If the attempt is made to reenter the instance through the local interface, the container must throw the jakarta.ejb.EJBException to the caller.  The container must allow the call if the Bean's deployment descriptor specifies that the entity bean is reentrant.</description>
 			<location chapter="10" section="1.14"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -9179,7 +9179,7 @@ time.  The container must ensure that the primary key of the associated entity o
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:479</id>
-			<description>The implementation of the remove() methods defined in the javax.ejb.EJBHome interface must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
+			<description>The implementation of the remove() methods defined in the jakarta.ejb.EJBHome interface must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
 			<location chapter="10" section="3.2"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -9208,7 +9208,7 @@ characters of METHOD is uppercased in the name of the ejbHomeMETHOD method), pas
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:484</id>
-			<description>The implementation of the remove() method (defined in the javax.ejb.EJBObject interface) must activate an
+			<description>The implementation of the remove() method (defined in the jakarta.ejb.EJBObject interface) must activate an
 instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.
 			</description>
 			<location chapter="10" section="3.3"/>
@@ -9227,7 +9227,7 @@ ready state) and invoke the matching business method on the instance.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:487</id>
-			<description>The implementation of the remove() methods defined in the javax.ejb.EJBLocalHome interface must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
+			<description>The implementation of the remove() methods defined in the jakarta.ejb.EJBLocalHome interface must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
 			<location chapter="10" section="3.4"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -9252,7 +9252,7 @@ ready state) and invoke the matching business method on the instance.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:492</id>
-			<description>The implementation of the remove() method (defined in the javax.ejb.EJBLocalObject interface) must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
+			<description>The implementation of the remove() method (defined in the jakarta.ejb.EJBLocalObject interface) must activate an instance (if an instance is not in the ready state) and invoke the ejbRemove method on the instance.</description>
 			<location chapter="10" section="3.5"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
@@ -9520,7 +9520,7 @@ ready state) and invoke the matching business method on the instance.
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:550</id>
 			<description>A stateful Session Bean with container-managed transaction demarcation can optionally 
-				implement the javax.ejb.SessionSynchronization interface.
+				implement the jakarta.ejb.SessionSynchronization interface.
 			</description>
 			<location chapter="13" section="3.4.1"/>
 		</assertion>
@@ -9568,8 +9568,8 @@ ready state) and invoke the matching business method on the instance.
 			<id>EJB:SPEC:556</id>
 			<description>For a session bean, the transaction attributes must be specified for the methods defined 
 				in the bean's component interface and all the direct and indirect superinterfaces of the 
-				component interface, excluding the methods of the javax.ejb.EJBObject or the  
-				javax.ejb.EJBLocalObject interface, and for the ejbTimeout method.
+				component interface, excluding the methods of the jakarta.ejb.EJBObject or the  
+				jakarta.ejb.EJBLocalObject interface, and for the ejbTimeout method.
 			</description>
 			<location chapter="13" section="4.1"/>
 		</assertion>
@@ -9653,7 +9653,7 @@ ready state) and invoke the matching business method on the instance.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:566</id>
-			<description>If an enterprise bean implements the javax.ejb.SessionSynchronization interface, the
+			<description>If an enterprise bean implements the jakarta.ejb.SessionSynchronization interface, the
 				Application Assembler can specify only the following values for the transaction attributes 
 				of the bean's methods: Required, RequiresNew, or Mandatory.
 			</description>
@@ -9789,7 +9789,7 @@ ready state) and invoke the matching business method on the instance.
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:572</id>
 			<description> The Container must make the javax.transaction.UserTransaction interface available to
-				the enterprise bean's business method or message listener methods via the javax.ejb.EJBContext
+				the enterprise bean's business method or message listener methods via the jakarta.ejb.EJBContext
 				interface and under the environment entry java:comp/UserTransaction.
 			</description>
 			<location chapter="13" section="6.1"/>
@@ -9828,7 +9828,7 @@ ready state) and invoke the matching business method on the instance.
 						2)  Roll back the started transaction.
 						3)  Discard the instance of the session bean.
 						4)  Throw the java.rmi.RemoteException to the client if the client is a remote client, or
-						    throw the javax.ejb.EJBException if the client is a local client.
+						    throw the jakarta.ejb.EJBException if the client is a local client.
 			</description>
 			<location chapter="13" section="6.1"/>
 		</assertion>
@@ -9907,7 +9907,7 @@ ready state) and invoke the matching business method on the instance.
 			<id>EJB:SPEC:580</id>
 			<description>The Container must throw the java.lang.IllegalStateException if an instance of a bean
 				with bean-managed transaction demarcation attempts to invoke the setRollbackOnly() or
-				getRollbackOnly() method of the javax.ejb.EJBContext interface.
+				getRollbackOnly() method of the jakarta.ejb.EJBContext interface.
 			</description>
 			<location chapter="13" section="6.1"/>
 		</assertion>
@@ -10141,7 +10141,7 @@ beans, the Container passes the
 					<id>EJB:SPEC:587.3</id>
 					<description>If the client calls without a transaction context, the Container throws the 
 						javax.transaction.TransactionRequiredException exception if the client is a remote client, or
-						the javax.ejb.TransactionRequiredLocalException if the client is a local client.
+						the jakarta.ejb.TransactionRequiredLocalException if the client is a local client.
 					</description>
 					<location chapter="13" section="6.2.5"/>
 					<comment>/session*/*/cm/TxM_Single/Client.java, entity*/*/cm/Tx_Single/Client.java, entity*/*/cm/Tx_Multi/Client.java</comment>
@@ -10168,7 +10168,7 @@ beans, the Container passes the
 					<id>EJB:SPEC:588.3</id>
 					<description>If the client calls with a transaction context, the Container throws the 
 						java.rmi.RemoteException exception if the client is a remote client, or the 
-						javax.ejb.EJBException if the client is a local client.
+						jakarta.ejb.EJBException if the client is a local client.
 					</description>
 					<location chapter="13" section="6.2.6"/>
 					<comment>session*/stateful/bm/TxN_GlobalSingle/Client.java, entity*/*/bm/Tx_Single/Client.java, entity/*/bm/Tx_Multi/Client.java, entity*/*/bm/TxN_Exceptions/Client.java</comment>
@@ -10253,7 +10253,7 @@ beans, the Container passes the
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:594</id>
-			<description>If a Session Bean class implements the javax.ejb.SessionSynchronization interface, the
+			<description>If a Session Bean class implements the jakarta.ejb.SessionSynchronization interface, the
 				Container must invoke the afterBegin(), beforeCompletion(), and afterCompletion(...)
 				callbacks on the instance as part of the transaction commit protocol.
 			</description>
@@ -10530,7 +10530,7 @@ beans, the Container passes the
 		</assertion>
 		<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="false">
 			<id>EJB:SPEC:10619</id>
-			<description>The javax.ejb.CreateException, javax.ejb.RemoveException, javax.ejb.FinderException,
+			<description>The jakarta.ejb.CreateException, jakarta.ejb.RemoveException, jakarta.ejb.FinderException,
 				and subclasses thereof are considered to be application exceptions.
 				These exceptions are covered by the rules on application exceptions that are defined Chapter 18.
 			</description>
@@ -10597,14 +10597,14 @@ beans, the Container passes the
 				<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="false">
 					<id>EJB:SPEC:624.2</id>
 					<description>If the bean method performs an operation that results in a checked exception that the bean
-						method cannot recover, the bean method should throw the javax.ejb.EJBException that wraps the 
+						method cannot recover, the bean method should throw the jakarta.ejb.EJBException that wraps the 
 						original exception.
 					</description>
 					<location chapter="14" section="2.2"/>
 				</assertion>
 				<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="false">
 					<id>EJB:SPEC:624.3</id>
-					<description>Any other unexpected error conditions should be reported using the javax.ejb.EJBException.</description>
+					<description>Any other unexpected error conditions should be reported using the jakarta.ejb.EJBException.</description>
 					<location chapter="14" section="2.2"/>
 				</assertion>
 			</sub-assertions>
@@ -11135,7 +11135,7 @@ started but not yet
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 					<id>EJB:SPEC:647.5</id>
 					<description>If the exception or error happened during the processing of a client-invoked method,
-						javax.ejb.EJBException to the client if the client is a local client.
+						jakarta.ejb.EJBException to the client if the client is a local client.
 					</description>
 					<location chapter="14" section="3.7"/>
 				</assertion>
@@ -11170,7 +11170,7 @@ started but not yet
 				</assertion>
 				<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:648.2</id>
-					<description>The Container should throw the javax.ejb.NoSuchObjectLocalException to a local client.</description>
+					<description>The Container should throw the jakarta.ejb.NoSuchObjectLocalException to a local client.</description>
 					<location chapter="14" section="3.7"/>
 				</assertion>
 			</sub-assertions>
@@ -11190,7 +11190,7 @@ entity object,
 				</assertion>
 				<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:649.2</id>
-					<description>Throw the javax.ejb.NoSuchObjectLocalException to a local client.</description>
+					<description>Throw the jakarta.ejb.NoSuchObjectLocalException to a local client.</description>
 					<location chapter="14" section="3.9"/>
 				</assertion>
 			</sub-assertions>
@@ -11199,7 +11199,7 @@ entity object,
 			<id>EJB:SPEC:650</id>
 			<description>If the Container fails to start or commit a container-managed transaction, the Container 
 				must throw the java.rmi.RemoteException to a remote or web service client and the 
-				javax.ejb.EJBException to a local client.
+				jakarta.ejb.EJBException to a local client.
 			</description>
 			<location chapter="14" section="3.10"/>
 			<sub-assertions>
@@ -11207,7 +11207,7 @@ entity object,
 					<id>EJB:SPEC:650.1</id>
 					<description>In the case where the Container fails to start or commit a container-managed transaction 
 						on behalf of a message-driven bean, the Container must throw and log the 
-						javax.ejb.EJBException.
+						jakarta.ejb.EJBException.
 					</description>
 					<location chapter="14" section="3.10"/>
 				</assertion>
@@ -11232,7 +11232,7 @@ entity object,
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:653</id>
-			<description>Enterprise beans written for the EJB 2.0 or later specification must use the javax.ejb.EJBException 
+			<description>Enterprise beans written for the EJB 2.0 or later specification must use the jakarta.ejb.EJBException 
 				instead of the java.rmi.RemoteException for the ejbCreate, ejbPostCreate, ejbFindMETHOD;, and ejbRemove 
 				methods, and for container-invoked callbacks.
 			</description>
@@ -11250,7 +11250,7 @@ entity object,
 				<assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:654.1</id>
 					<description>The Container should treat the java.rmi.RemoteException thrown by an enterprise bean 
-						method in the same way as it is specified for the javax.ejb.EJBException.
+						method in the same way as it is specified for the jakarta.ejb.EJBException.
 					</description>
 					<location chapter="14" section="3.12"/>
 				</assertion>
@@ -11283,7 +11283,7 @@ entity object,
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:658</id>
 			<description>Clients that are enterprise beans with container-managed transaction demarcation can use 
-				the getRollbackOnly() method of the javax.ejb.EJBContext object to learn if the current 
+				the getRollbackOnly() method of the jakarta.ejb.EJBContext object to learn if the current 
 				transaction has been marked for rollback.
 			</description>
 			<location chapter="14" section="4.1.1"/>
@@ -11309,7 +11309,7 @@ entity object,
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:661</id>
 			<description>A remote or a Java-based web service client receives the java.rmi.RemoteException and a
-				local client receives the javax.ejb.EJBException as an indication of a failure to invoke an 
+				local client receives the jakarta.ejb.EJBException as an indication of a failure to invoke an 
 				enterprise bean method or to properly complete its invocation.
 			</description>
 			<location chapter="14" section="4.2"/>
@@ -11332,7 +11332,7 @@ entity object,
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:663</id>
-			<description>The javax.ejb.NoSuchObjectLocalException is thrown to the client if a local business 
+			<description>The jakarta.ejb.NoSuchObjectLocalException is thrown to the client if a local business 
 				method cannot complete because the EJB object no longer exists.
 			</description>
 			<location chapter="14" section="4.2.3"/>
@@ -11525,8 +11525,8 @@ entity object,
 			<sub-assertions>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:678.1</id>
-					<description>              Java interfaces javax.ejb.Handle, javax.ejb.HomeHandle, and 
-              javax.ejb.EJBMetaData are passed by value during remote
+					<description>              Java interfaces jakarta.ejb.Handle, jakarta.ejb.HomeHandle, and 
+              jakarta.ejb.EJBMetaData are passed by value during remote
               invocations on enterprise beans.
             
 					</description>
@@ -11729,8 +11729,8 @@ entity object,
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:685</id>
 			<description>          System value classes are serializable value classes implementing
-          the javax.ejb.Handle, javax.ejb.HomeHandle,
-          javax.ejb.EJBMetaData, java.util.Enumeration,
+          the jakarta.ejb.Handle, jakarta.ejb.HomeHandle,
+          jakarta.ejb.EJBMetaData, java.util.Enumeration,
           java.util.Collection, and java.util.Iterator interfaces. These 
           value classes are provided by the EJB container vendor. They
           must be provided in the form of a JAR file by the container
@@ -13852,7 +13852,7 @@ factory references.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:795</id>
-			<description>The javax.ejb.EJBContext interface provides two methods (plus two
+			<description>The jakarta.ejb.EJBContext interface provides two methods (plus two
      deprecated methods that were defined in EJB 1.0) that allow the Bean
      Provider to access security information about the enter-prise bean s
      caller.
@@ -14343,8 +14343,8 @@ factory references.
 	  the Container denies a client access to a business method, the
 	  Container must throw the java.rmi.RemoteException (or its subclass,
 	  the java.rmi.AccessException) to the client if the client is a remote
-	  client, or the javax.ejb.EJBException (or its subclass, the
-	  javax.ejb.AccessLocalExcep-tion) if the client is a local client.
+	  client, or the jakarta.ejb.EJBException (or its subclass, the
+	  jakarta.ejb.AccessLocalExcep-tion) if the client is a local client.
 
 	  The EJB Container must isolate an enterprise bean instance from other
 	  instances and other application components running on the server.  The
@@ -14500,7 +14500,7 @@ factory references.
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:840</id>
 			<description>The enterprise bean class of a bean that is to be registered with the timer service for timer 
-				callbacks must implement the javax.ejb.TimedObject interface.
+				callbacks must implement the jakarta.ejb.TimedObject interface.
 			</description>
 			<location chapter="18" section="2.2"/>
 		</assertion>
@@ -14546,14 +14546,14 @@ factory references.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:846</id>
-			<description>The javax.ejb.Timer interface allows the Bean Provider to cancel a timer and to obtain 
+			<description>The jakarta.ejb.Timer interface allows the Bean Provider to cancel a timer and to obtain 
 				information about the timer.
 			</description>
 			<location chapter="18" section="2.3"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:847</id>
-			<description>The javax.ejb.TimerHandle interface allows the Bean Provider to obtain a serializable timer 
+			<description>The jakarta.ejb.TimerHandle interface allows the Bean Provider to obtain a serializable timer 
 				handle that may be persisted.
 			</description>
 			<location chapter="18" section="2.3"/>
@@ -14582,7 +14582,7 @@ factory references.
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>EJB:SPEC:851</id>
 			<description>A stateless session bean or entity bean that is to be registered with the Timer Service must 
-				implement the javax.ejb.TimedObject interface
+				implement the jakarta.ejb.TimedObject interface
 			</description>
 			<location chapter="18" section="3.1"/>
 			<sub-assertions>
@@ -14699,7 +14699,7 @@ factory references.
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:863.2</id>
 					<description>If a method is subsequently invoked on the timer after the completion of the ejbTimeout 
-						method, the container must throw the javax.ejb.NoSuchObjectLocalException.
+						method, the container must throw the jakarta.ejb.NoSuchObjectLocalException.
 					</description>
 					<location chapter="18" section="4.2"/>
 				</assertion>
@@ -14754,7 +14754,7 @@ factory references.
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:867.2</id>
 					<description>If a method is subsequently invoked on the timer, the container must throw the 
-						javax.ejb.NoSuchObjectLocalException.
+						jakarta.ejb.NoSuchObjectLocalException.
 					</description>
 					<location chapter="18" section="4.3"/>
 				</assertion>
@@ -14956,8 +14956,8 @@ factory references.
 			<description>          It is the responsibility of the provider of the container hosting
           the referenced beans to provide the system value classes and make
           them available for use when the client is deployed (e.g., the
-          serializable value classes imple-menting the javax.ejb.Handle,
-          javax.ejb.HomeHandle, javax.ejb.EJBMetaData,
+          serializable value classes imple-menting the jakarta.ejb.Handle,
+          jakarta.ejb.HomeHandle, jakarta.ejb.EJBMetaData,
           java.util.Enumeration, java.util.Collection, and
           java.util.Iterator interfaces).
         
@@ -14996,7 +14996,7 @@ factory references.
 					<description>            The EJB Container must include the JTA 1.0.1 extension, and it
             must provide the javax.transaction.UserTransaction interface
             to enterprise beans with bean-managed transaction demarcation
-            through the javax.ejb.EJBContext interface.
+            through the jakarta.ejb.EJBContext interface.
           
 					</description>
 					<keywords>

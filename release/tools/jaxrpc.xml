@@ -96,8 +96,8 @@
 			<fileset dir="${ts.home}/src"
 			includes="
 com/sun/ts/tests/jaxrpc/**/*,
-com/sun/ts/tests/signaturetest/signature-repository/javax.xml.rpc.*,
-com/sun/ts/tests/signaturetest/signature-repository/javax.xml.namespace.*,
+com/sun/ts/tests/signaturetest/signature-repository/jakarta.xml.rpc.*,
+com/sun/ts/tests/signaturetest/signature-repository/jakarta.xml.namespace.*,
 com/sun/ts/tests/signaturetest/jaxrpc/**/*,
 com/sun/ts/tests/signaturetest/*,
 com/sun/ts/tests/common/vehicle/**/*,

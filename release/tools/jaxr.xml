@@ -91,7 +91,7 @@
         <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
             <fileset dir="${ts.home}/src"
                      includes="com/sun/ts/tests/jaxr/**/*, 
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.xml.registry.sig_1.0*, 
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.xml.registry.sig_1.0*, 
                      com/sun/ts/tests/signaturetest/jaxr/**/*, 
                      com/sun/ts/tests/signaturetest/*, 
                      com/sun/ts/tests/common/vehicle/**/*,

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.JobExecution;
-import javax.batch.runtime.StepExecution;
+import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.JobExecution;
+import jakarta.batch.runtime.StepExecution;
 
 import com.ibm.jbatch.tck.utils.JobOperatorBridge;
 

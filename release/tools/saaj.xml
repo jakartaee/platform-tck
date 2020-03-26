@@ -136,7 +136,7 @@
 			<fileset dir="${ts.home}/src"
 			includes="
                    com/sun/ts/tests/saaj/**/*,
-                   com/sun/ts/tests/signaturetest/signature-repository/javax.xml.soap.*,
+                   com/sun/ts/tests/signaturetest/signature-repository/jakarta.xml.soap.*,
                    com/sun/ts/tests/signaturetest/*,
                    com/sun/ts/tests/signaturetest/saaj/*,
                    com/sun/ts/tests/common/vehicle/*,

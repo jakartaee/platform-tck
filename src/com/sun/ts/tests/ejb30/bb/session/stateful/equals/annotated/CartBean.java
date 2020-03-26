@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.equals.annotated;
 
-import javax.ejb.Local;
-import javax.ejb.Remote;
-import javax.ejb.Remove;
-import javax.ejb.Stateful;
-import javax.ejb.SessionContext;
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.equals.CartIF;
 import com.sun.ts.tests.ejb30.common.equals.LocalCartIF;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "cart-bean")
 @Remote({ CartIF.class })

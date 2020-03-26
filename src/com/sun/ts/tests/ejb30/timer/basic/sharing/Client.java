@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,8 +29,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Vector;
-import javax.ejb.EJB;
-import javax.ejb.Timer;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Timer;
 
 public class Client extends ClientBase {
   private static final int THREAD_COUNT = 100;

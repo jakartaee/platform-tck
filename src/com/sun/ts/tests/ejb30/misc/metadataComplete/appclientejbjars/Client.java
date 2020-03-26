@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,14 +24,14 @@ import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.*;
 import javax.annotation.Resources;
-import javax.ejb.EJB;
+import jakarta.ejb.EJB;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.EETest.Fault;
 
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import javax.annotation.Resource;
-import javax.ejb.EJBs;
+import jakarta.ejb.EJBs;
 import javax.naming.NamingException;
 import org.omg.CORBA.ORB;
 

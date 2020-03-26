@@ -104,7 +104,7 @@
 		<copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
 			<fileset dir="${ts.home}/src"
    			   includes="
-                       com/sun/ts/tests/signaturetest/signature-repository/javax.annotation.*${deliverable.version}*,
+                       com/sun/ts/tests/signaturetest/signature-repository/jakarta.annotation.*${deliverable.version}*,
                        com/sun/ts/tests/signaturetest/*,
                        com/sun/ts/tests/signaturetest/caj/*"
 			   excludes="

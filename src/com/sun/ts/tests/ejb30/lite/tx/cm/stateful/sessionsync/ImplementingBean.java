@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync;
 
-import javax.ejb.SessionSynchronization;
-import javax.ejb.Stateful;
+import jakarta.ejb.SessionSynchronization;
+import jakarta.ejb.Stateful;
 
 /**
  * This bean implements SessionSynchronization interface to specify afterBegin,

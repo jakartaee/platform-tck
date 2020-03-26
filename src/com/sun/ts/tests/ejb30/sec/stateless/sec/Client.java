@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.sec.stateless.sec;
 
-import javax.ejb.EJB;
+import jakarta.ejb.EJB;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.harness.EETest;
@@ -29,9 +29,9 @@ import java.util.Properties;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.sec.stateless.common.SecTest;
 import com.sun.ts.tests.ejb30.sec.stateless.common.SecTestRoleRef;
-import javax.ejb.EJBException;
+import jakarta.ejb.EJBException;
 // EJBException is used in  line number 95 and 300 to satisfy compiler
-// the right exception is javax.ejb.EJBAccessException
+// the right exception is jakarta.ejb.EJBAccessException
 
 public class Client extends EETest {
 
@@ -96,7 +96,7 @@ public class Client extends EETest {
    * @test_Strategy: 1. Create a stateless session bean with a method. 2.
    * Protect bean method with multiple security roles. 3. Call bean method as a
    * principal who is not in any of the security roles that protects the method.
-   * 4. Verify javax.ejb.EJBAccessException is generated.
+   * 4. Verify jakarta.ejb.EJBAccessException is generated.
    */
 
   public void test1() throws Fault {
@@ -106,8 +106,8 @@ public class Client extends EETest {
       logErr(
           "Method call did not generate an expected java.rmi.RemoteException");
       throw new Fault("No caller authorization test failed");
-    } catch (javax.ejb.EJBException e) {
-      logMsg("Caught javax.ejb.EJBException as expected");
+    } catch (jakarta.ejb.EJBException e) {
+      logMsg("Caught jakarta.ejb.EJBException as expected");
       logMsg("No authorization test passed");
     } catch (Exception e) {
       throw new Fault("No caller authorization test failed:", e);
@@ -305,7 +305,7 @@ public class Client extends EETest {
     logMsg("Starting exclude-list test1");
     try {
       ejb1ref.excludetest1();
-    } catch (javax.ejb.EJBException e) {
+    } catch (jakarta.ejb.EJBException e) {
       logMsg("Caught java.rmi.RemoteException as expected");
       logMsg("exclude-list test1 passed");
     } catch (Exception e) {

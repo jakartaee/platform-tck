@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,9 +19,9 @@ package com.sun.ts.tests.websocket.ee.javax.websocket.remoteendpoint.usercoder;
 
 import java.nio.ByteBuffer;
 
-import javax.websocket.Decoder;
-import javax.websocket.EncodeException;
-import javax.websocket.Encoder;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.Encoder;
 
 public abstract class CoderSuperClassBinary<T> extends CoderSuperClass
     implements Encoder.Binary<T>, Decoder.Binary<T> {

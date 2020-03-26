@@ -442,5 +442,47 @@
     </else>
     </if>
     -->
- <property name="jdk9.compiler.arg" value="--add-modules java.activation --add-modules java.transaction --add-modules java.xml.bind --add-modules java.xml.ws --add-modules java.xml.ws.annotation --patch-module java.transaction=${s1as.modules}/jakarta.transaction-api.jar --patch-module java.xml.ws.annotation=${s1as.modules}/endorsed/javax.annotation-api.jar --add-exports java.xml.ws.annotation/javax.annotation.security=ALL-UNNAMED --add-exports java.xml.ws.annotation/javax.annotation=ALL-UNNAMED --add-exports java.xml.ws.annotation/javax.annotation.sql=ALL-UNNAMED" />
+ 
+ 
+	<property name="unknown.compiler.arg" value=""/>
+	<property name="jdk1.6.compiler.arg" value="-Djava.endorsed.dirs=${endorsed.dirs}"/>
+	<property name="jdk1.7.compiler.arg" value="${jdk1.6.compiler.arg}"/>
+	<property name="jdk1.8.compiler.arg" value="${jdk1.6.compiler.arg}"/>
+	<property name="jdk9.compiler.arg" value="--add-modules java.activation --add-modules java.transaction --add-modules java.xml.bind --add-modules java.xml.ws --add-modules java.xml.ws.annotation --patch-module java.transaction=${s1as.modules}/jakarta.transaction-api.jar --patch-module java.xml.ws.annotation=${s1as.modules}/endorsed/javax.annotation-api.jar --add-exports java.xml.ws.annotation/javax.annotation.security=ALL-UNNAMED --add-exports java.xml.ws.annotation/javax.annotation=ALL-UNNAMED --add-exports java.xml.ws.annotation/javax.annotation.sql=ALL-UNNAMED" />
+	<property name="jdk11.compiler.arg" value="--patch-module java.activation=${s1as.modules}/jakarta.activation.jar --patch-module java.xml.bind=${s1as.modules}/endorsed/jaxb-api.jar --patch-module java.transaction=${s1as.modules}/jakarta.transaction-api.jar --patch-module java.xml.ws.annotation=${s1as.modules}/endorsed/jakarta.annotation-api.jar --add-exports java.xml.ws.annotation/jakarta.annotation.security=ALL-UNNAMED --add-exports java.xml.ws.annotation/jakarta.annotation=ALL-UNNAMED --add-exports java.xml.ws.annotation/jakarta.annotation.sql=ALL-UNNAMED" />
+
+	<if>
+	    <equals arg1="${ant.java.version}" arg2="1.6"/>
+	    <then>
+	    	<property name="jdk.compiler.args" value="${jdk1.6.compiler.arg}"/>
+	    </then>
+		<elseif>
+	    	<equals arg1="${ant.java.version}" arg2="1.7"/>
+	        <then>
+	        	<property name="jdk.compiler.args" value="${jdk1.7.compiler.arg}"/>
+	        </then>
+	    </elseif>
+		<elseif>
+	    	<equals arg1="${ant.java.version}" arg2="1.8"/>
+	        <then>
+	        	<property name="jdk.compiler.args" value="${jdk1.8.compiler.arg}"/>
+	        </then>
+	    </elseif>
+		<elseif>
+	    	<equals arg1="${ant.java.version}" arg2="1.9"/>
+	        <then>
+	        	<property name="jdk.compiler.args" value="${jdk9.compiler.arg}"/>
+	        </then>
+	    </elseif>
+	    <elseif>
+	    	<equals arg1="${ant.java.version}" arg2="11"/>
+	        <then>
+	        	<property name="jdk.compiler.args" value="${jdk11.compiler.arg}"/>
+	        </then>
+	    </elseif>
+	    <else>
+	    	<property name="jdk.compiler.args" value="${unknown.compiler.arg}"/>
+	    </else>
+	</if>
+
 </project>

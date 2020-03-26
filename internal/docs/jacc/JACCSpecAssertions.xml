@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1423,8 +1423,8 @@ component request being processed by the container.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>100</id>
 			<description>All EJB containers must register a PolicyContextHandler whose getContext
-method returns a javax.ejb.EnterpriseBean object when invoked with the key
-javax.ejb.EnterpriseBean. When this handler is activated, the container must
+method returns a jakarta.ejb.EnterpriseBean object when invoked with the key
+jakarta.ejb.EnterpriseBean. When this handler is activated, the container must
 return the EnterpriseBean object corresponding to theEJB component request being
 processed by the container.
 			</description>
@@ -1436,7 +1436,7 @@ processed by the container.
 			<description>All EJB containers must register a PolicyContextHandler whose getContext
 method returns an array of objects (Object[]) containing the arguments of the EJB
 method invocation (in the same order as they appear in the method signature)
-when invoked with the key javax.ejb.arguments. The context handler must
+when invoked with the key jakarta.ejb.arguments. The context handler must
 return the value null when called in the context of a SOAP request that arrived at
 the ServiceEndpoint method interface. Otherwise, the context handler must return
 the array of objects corresponding to the parameters of the EJB component
@@ -1967,7 +1967,7 @@ Policy providers.
        business method of the EJB Remote, Local, or ServiceEndpoint 
        interfaces of the EnterpriseBean object. The value null must be 
        returned if the bean implementation class does not implement the 
-       javax.ejb.EnterpriseBean interface.
+       jakarta.ejb.EnterpriseBean interface.
             </description>
 			<location chapter = "4" section = "4.6.1.4"/>
 			<comment>container</comment>

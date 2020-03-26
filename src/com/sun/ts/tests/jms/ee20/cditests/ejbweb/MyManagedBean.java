@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.annotation.ManagedBean;
+import jakarta.annotation.ManagedBean;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;

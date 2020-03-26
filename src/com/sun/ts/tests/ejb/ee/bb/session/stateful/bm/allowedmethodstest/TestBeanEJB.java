@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.*;
 import javax.transaction.*;
 import java.rmi.*;
@@ -397,7 +397,7 @@ public class TestBeanEJB implements SessionBean {
     // Timer Method test
     try {
       if (th != null) {
-        javax.ejb.Timer t = th.getTimer();
+        jakarta.ejb.Timer t = th.getTimer();
         TestUtil.logMsg("Got timer");
         th = t.getHandle();
         TestUtil.logMsg("Got timer handle");

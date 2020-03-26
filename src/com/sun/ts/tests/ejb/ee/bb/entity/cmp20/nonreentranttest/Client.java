@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import com.sun.ts.lib.harness.*;
 
 import java.io.*;
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import java.rmi.*;
 
 import com.sun.javatest.Status;
@@ -170,7 +170,7 @@ public class Client extends EETest {
    * 
    * @test_Strategy: It is not possible for an application to make loopback
    * calls to an entity instance that is marked as non-reentrant. The Container
-   * must throw javax.ejb.EJBException if access is through a Local interface
+   * must throw jakarta.ejb.EJBException if access is through a Local interface
    * method. This test uses same bean instance. Deploy it on the J2EE server.
    * Call loopback test on same bean. Self referential test.
    *
@@ -203,7 +203,7 @@ public class Client extends EETest {
    * 
    * @test_Strategy: It is not possible for an application to make loopback
    * calls to a entity instance that is marked as non-reentrant. The Container
-   * must throw javax.ejb.EJBException if access is through a Local interface
+   * must throw jakarta.ejb.EJBException if access is through a Local interface
    * method. This test uses another bean instance. Deploy it on the J2EE server.
    * Call loopback test on first bean which in turn calls a second bean which
    * then calls first bean again.

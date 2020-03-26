@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,10 +27,10 @@ import java.util.Properties;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.sec.stateful.common.SecTest;
 import com.sun.ts.tests.ejb30.sec.stateful.common.SecTestRoleRef;
-import javax.ejb.EJBException;
-import javax.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJB;
 // EJBException is used in  line number 95 and 300 to satisfy compiler
-// the right exception is javax.ejb.EJBAccessException
+// the right exception is jakarta.ejb.EJBAccessException
 
 public class Client extends EETest {
 
@@ -109,7 +109,7 @@ public class Client extends EETest {
       logErr(
           "Method call did not generate an expected java.rmi.RemoteException");
       throw new Fault("No caller authorization test failed");
-    } catch (javax.ejb.EJBException ee) {
+    } catch (jakarta.ejb.EJBException ee) {
       logMsg("Caught java.rmi.RemoteException as expected");
       logMsg("No authorization test passed");
     } catch (Exception e) {
@@ -307,7 +307,7 @@ public class Client extends EETest {
     logMsg("Starting exclude-list test1");
     try {
       ejb1ref.excludetest1();
-    } catch (javax.ejb.EJBException ee) {
+    } catch (jakarta.ejb.EJBException ee) {
       logMsg("Caught java.rmi.RemoteException as expected");
       logMsg("exclude-list test1 passed");
     } catch (Exception e) {

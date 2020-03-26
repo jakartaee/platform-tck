@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.*;
 
 import java.util.*;
 import java.rmi.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.transaction.*;
 
 public class TestBeanEJB implements SessionBean {
@@ -175,7 +175,7 @@ public class TestBeanEJB implements SessionBean {
 
       /*
        * try { dbResults = beanRef.getResults(tName); } catch
-       * (javax.ejb.EJBException re) { // Table or view should not exist
+       * (jakarta.ejb.EJBException re) { // Table or view should not exist
        * TestUtil.logTrace("Caught expected EJBException"); b3 = true; }
        */
 
@@ -265,7 +265,7 @@ public class TestBeanEJB implements SessionBean {
 
       /*
        * try { dbResults = beanRef.getResults(tName); } catch
-       * (javax.ejb.EJBException ee) { // Table or view should not exist
+       * (jakarta.ejb.EJBException ee) { // Table or view should not exist
        * TestUtil.logTrace("Caught expected EJBException"); b3 = true; }
        */
 

@@ -8,19 +8,24 @@ Installing the Software
 Before you can run the WebSocket TCK tests, you need to install
 and set up the following software components:
 
-1) Java SE 7
-2) WebSocket RI Version 1.1
-3) WebSocket TCK Version 1.1
+1) Java SE 8
+2) WebSocket RI Version 2.0
+3) WebSocket TCK Version 2.0
 
-1. Download and install Java SE 7 software.
+1. Download and install Java SE 8 software.
 
-2. Download and install the WebSocket 1.1 Reference Implementation/jarfile.
+   mkdir /java
+   cd /java
+   unzip <java-zip-bundle>
+
+
+2. Download and install the WebSocket 2.0 Reference Implementation/jarfile.
 
    mkdir /ri
    cd /ri
    
 
-3. Download and install the WebSocket TCK 1.1 software.
+3. Download and install the WebSocket TCK 2.0 software.
 
    mkdir /tck
    cd /tck
@@ -32,14 +37,14 @@ Setup and Configuration of the WebSocket TCK
 1. Configure the WebSocket TCK to run against the WebSocket RI. Set the following
    variables in your shell environment.
 
-   setenv JAVA_HOME /javase7
+   setenv JAVA_HOME /java
    setenv TS_HOME /tck/websockettck
    setenv ANT_HOME /tck/anthome
    setenv PATH $JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
 2. Edit the $TS_HOME/bin/ts.jte file and set the following properties:
 
-        web.home=/ri/glassfish4/glassfish
+        web.home=/ri/glassfish5/glassfish
         webServerHost=localhost
         webServerPort=8080
         impl.vi=glassfish
@@ -48,12 +53,12 @@ Setup and Configuration of the WebSocket TCK
 ------------------------------
 Executing the WebSocket TCK Tests
 ------------------------------
-At this point we are ready to run the WebSocket TCK tests against the WebSocket 1.0
+At this point we are ready to run the WebSocket TCK tests against the WebSocket 2.0
 Reference Implementation.
 
-1. Start WebSocket 1.1 Reference Implementation:
+1. Start WebSocket 2.0 Reference Implementation:
 
-   cd /ri/glassfish4/glassfish/bin
+   cd /ri/glassfish5/glassfish/bin
    ./asadmin start-domain
 
 2. Deploy all WebSocket TCK tests.

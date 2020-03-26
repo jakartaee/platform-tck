@@ -25,4 +25,4 @@
 ###############################################################
 
 # JSTL 1.2 packages
-javax.servlet.jsp.jstl=1.2_se8
+jakarta.servlet.jsp.jstl=1.2_se8

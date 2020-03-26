@@ -153,7 +153,7 @@
                                com/sun/ts/tests/build.xml,
                                com/sun/ts/tests/signaturetest/*,
                                com/sun/ts/tests/signaturetest/jacc/**/*,
-                               com/sun/ts/tests/signaturetest/signature-repository/javax.security.jacc*"
+                               com/sun/ts/tests/signaturetest/signature-repository/jakarta.security.jacc*"
                      excludes="**/.svn/*,
                                com/sun/ts/lib/tests,
                                com/sun/ts/tests/jacc/ejb/methodperm/**,
