@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -52,10 +52,10 @@ public class JAXRPCSigTest extends SigTest {
    *         verified.
    */
   protected String[] getPackages() {
-    return new String[] { "javax.xml.rpc",
-        "javax.xml.rpc.encoding", "javax.xml.rpc.handler",
-        "javax.xml.rpc.handler.soap", "javax.xml.rpc.holders",
-        "javax.xml.rpc.server", "javax.xml.rpc.soap", };
+    return new String[] { "jakarta.xml.rpc",
+        "jakarta.xml.rpc.encoding", "jakarta.xml.rpc.handler",
+        "jakarta.xml.rpc.handler.soap", "jakarta.xml.rpc.holders",
+        "jakarta.xml.rpc.server", "jakarta.xml.rpc.soap", };
   }
 
   /***** Boilerplate Code *****/

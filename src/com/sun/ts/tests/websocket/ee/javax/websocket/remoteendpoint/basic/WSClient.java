@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +21,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.Encoder;
-import javax.websocket.RemoteEndpoint.Basic;
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.RemoteEndpoint.Basic;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.websocket.common.client.BinaryAndTextClientEndpoint;

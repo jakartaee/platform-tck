@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.descriptor;
 
-import javax.ejb.EJBContext;
-import javax.ejb.Remote;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateless;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import javax.annotation.Resource;
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
@@ -33,7 +33,7 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 @Stateless(name = "SessionBeanCallbackBean")
 @Remote({ CallbackIF.class })
 public class SessionBeanCallbackBean extends CallbackBeanBase
-    implements CallbackIF, javax.ejb.SessionBean {
+    implements CallbackIF, jakarta.ejb.SessionBean {
 
   @Resource
   private SessionContext sctx;

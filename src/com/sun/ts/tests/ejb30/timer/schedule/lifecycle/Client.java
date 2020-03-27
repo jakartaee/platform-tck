@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,11 +27,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
 
-import javax.ejb.EJB;
-import javax.ejb.ScheduleExpression;
-import javax.ejb.Timer;
-import javax.ejb.TimerHandle;
-import javax.ejb.NoSuchObjectLocalException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerHandle;
+import jakarta.ejb.NoSuchObjectLocalException;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
@@ -221,7 +221,7 @@ public class Client extends ClientBase {
    * @testName: completeAndNoSuchObjectLocalException
    * 
    * @test_Strategy: after a timer completes, further access will result in
-   * javax.ejb.NoSuchObjectLocalException
+   * jakarta.ejb.NoSuchObjectLocalException
    */
   public void completeAndNoSuchObjectLocalException() {
     Timer t = scheduleBean.createSecondLaterTimer(getTestName());
@@ -233,7 +233,7 @@ public class Client extends ClientBase {
    * @testName: cancelAndNoSuchObjectLocalException
    * 
    * @test_Strategy: after a timer cancellation, further access will result in
-   * javax.ejb.NoSuchObjectLocalException
+   * jakarta.ejb.NoSuchObjectLocalException
    */
   public void cancelAndNoSuchObjectLocalException() {
     Timer t = scheduleBean.createFarFutureTimer(getTestName());
@@ -245,7 +245,7 @@ public class Client extends ClientBase {
    * @testName: cancelWithTxAndNoSuchObjectLocalException
    * 
    * @test_Strategy: after a timer cancellation within a tx context, further
-   * access will result in javax.ejb.NoSuchObjectLocalException
+   * access will result in jakarta.ejb.NoSuchObjectLocalException
    */
   public void cancelWithTxAndNoSuchObjectLocalException() {
     Timer t = scheduleBean.createFarFutureTimer(getTestName());

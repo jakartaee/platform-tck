@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -245,8 +245,8 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:112</id>
-      <description>The application server must wrap such an unchecked exception within a javax.ejb.EJBException (which is a java.lang.RuntimeException) 
-			and throw the javax.ejb.EJBException to the resource adapter.</description>
+      <description>The application server must wrap such an unchecked exception within a jakarta.ejb.EJBException (which is a java.lang.RuntimeException) 
+			and throw the jakarta.ejb.EJBException to the resource adapter.</description>
       <location chapter="13" section="5.7" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

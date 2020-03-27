@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -41,7 +41,7 @@
             <timeout-method>
                 <method-name>timeout</method-name>
                 <method-params>
-                    <method-param>javax.ejb.Timer</method-param>
+                    <method-param>jakarta.ejb.Timer</method-param>
                 </method-params>
             </timeout-method>
             <timer>
@@ -52,7 +52,7 @@
                 <timeout-method>
                     <method-name>auto</method-name>
                     <method-params>
-                        <method-param>javax.ejb.Timer</method-param>
+                        <method-param>jakarta.ejb.Timer</method-param>
                     </method-params>
                 </timeout-method>
                 <info>WithParamTimeoutBean.auto</info>

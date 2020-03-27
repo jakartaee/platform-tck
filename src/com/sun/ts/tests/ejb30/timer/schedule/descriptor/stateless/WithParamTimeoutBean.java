@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.timer.schedule.descriptor.stateless;
 
-import javax.ejb.Stateless;
-import javax.ejb.Timer;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timer;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;

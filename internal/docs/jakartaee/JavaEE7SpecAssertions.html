@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -2061,8 +2061,8 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
 <TD align="center" valign="center"><a name="JavaEE:SPEC:211"></a><font size="1PT">JavaEE:SPEC:211</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
                 Web containers must throw a java.lang.IllegalArgumentException if 
                 an object that is not one of the types  java.io.Serializable, 
-                javax.ejb.EJBObject, javax.ejb.EJBHome, javax.ejb.EJBLocalObject, 
-                javax.ejb.EJBLocalHome, javax.transaction.UserTransaction, a 
+                jakarta.ejb.EJBObject, jakarta.ejb.EJBHome, jakarta.ejb.EJBLocalObject, 
+                jakarta.ejb.EJBLocalHome, javax.transaction.UserTransaction, a 
                 javax.naming.Context object for the java:comp/env context, or another 
                 type supported by the container, is passed to the setAttribute or 
                 putValue methods of an HttpSession object corresponding to a Java EE 

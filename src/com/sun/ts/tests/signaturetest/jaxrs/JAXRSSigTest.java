@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -53,9 +53,9 @@ public class JAXRSSigTest extends SigTestEE {
    * container (the default packages). This includes the appclient, ejb, jsp,
    * and servlet containers.
    */
-  private static final String[] DEFAULT_PKGS = { "javax.ws.rs",
-      "javax.ws.rs.client", "javax.ws.rs.core", "javax.ws.rs.container",
-      "javax.ws.rs.ext", "javax.ws.rs.sse", };
+  private static final String[] DEFAULT_PKGS = { "jakarta.ws.rs",
+      "jakarta.ws.rs.client", "jakarta.ws.rs.core", "jakarta.ws.rs.container",
+      "jakarta.ws.rs.ext", "jakarta.ws.rs.sse", };
 
   /*
    * Defines additional packages that are included when running signature tests
@@ -69,9 +69,9 @@ public class JAXRSSigTest extends SigTestEE {
    */
   private static final String[] SERVLET_JSP_PKGS = {};
 
-  private static final String[] NO_CONTAINER_PKGS = { "javax.ws.rs",
-      "javax.ws.rs.client", "javax.ws.rs.core", "javax.ws.rs.container",
-      "javax.ws.rs.ext", "javax.ws.rs.sse", };
+  private static final String[] NO_CONTAINER_PKGS = { "jakarta.ws.rs",
+      "jakarta.ws.rs.client", "jakarta.ws.rs.core", "jakarta.ws.rs.container",
+      "jakarta.ws.rs.ext", "jakarta.ws.rs.sse", };
 
   /***** Abstract Method Implementation *****/
   /**

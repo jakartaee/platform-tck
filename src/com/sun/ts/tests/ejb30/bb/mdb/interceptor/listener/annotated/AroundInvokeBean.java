@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,11 +28,11 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestMDBImpl;
-import javax.ejb.MessageDrivenContext;
-import javax.ejb.MessageDriven;
-import javax.ejb.ActivationConfigProperty;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB1;
@@ -88,7 +88,7 @@ public class AroundInvokeBean extends AroundInvokeBase
   }
 
   // ============ abstract methods from super ==========================
-  protected javax.ejb.EJBContext getEJBContext() {
+  protected jakarta.ejb.EJBContext getEJBContext() {
     return this.ejbContext;
   }
 }

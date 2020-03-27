@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -232,7 +232,7 @@ class PackageList {
 
   /**
    * Extract the package name from the specified string. The specified string
-   * should have the form: "package javax.ejb;"
+   * should have the form: "package jakarta.ejb;"
    *
    * @param packageLine
    *          The string containing the package name.
@@ -247,7 +247,7 @@ class PackageList {
     // sig test framework doesn't have the concept of package entries
     // as the ApiCheck signature format does.
     // Instead, we need to parse an entry similar to this:
-    // CLSS public javax.some.package.SomeClass
+    // CLSS public jakarta.some.package.SomeClass
 
     return packageLine.substring(packageLine.lastIndexOf(' ') + 1,
         packageLine.lastIndexOf('.'));
@@ -404,8 +404,8 @@ class PackageList {
    */
   public static void main(String[] args) throws Exception {
     System.out.println("\n\n*** Creating package list file ***\n\n");
-    PackageList list = new PackageList("javax.ejb",
-        "/home/ryano/cts-tools-master/tools/api-check/test/javax.ejb.sig_2.1",
+    PackageList list = new PackageList("jakarta.ejb",
+        "/home/ryano/cts-tools-master/tools/api-check/test/jakarta.ejb.sig_2.1",
         "/home/ryano/cts-tools-master/tools/api-check/test/pkg-list.txt");
     list.writePkgListFile();
 
@@ -413,8 +413,8 @@ class PackageList {
         .println("\n\n*** Reading sub-packages from package list file ***\n\n");
     PackageList readList = new PackageList(
         "/home/ryano/cts-tools-master/tools/api-check/test/pkg-list.txt");
-    System.out.println(Arrays.asList(readList.getSubPackages("javax.ejb")));
-    System.out.println(readList.getSubPackagesFormatted("javax.ejb"));
+    System.out.println(Arrays.asList(readList.getSubPackages("jakarta.ejb")));
+    System.out.println(readList.getSubPackagesFormatted("jakarta.ejb"));
   }
 
 } // end class PackageList

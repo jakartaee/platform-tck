@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,17 +25,17 @@
         <ts.vehicles name="${app.name}" buildleveloverride="2">
         </ts.vehicles>
 
-        <!-- add javax.ejb.spi.EJBContainerProvider to META-INF/services -->
+        <!-- add jakarta.ejb.spi.EJBContainerProvider to META-INF/services -->
 
         <jar update="true" destfile="${dist.dir}/${pkg.dir}/ejbembed_vehicle_ejb.jar">
           <!-- 
           ant 1.7.0 has a bug that it writes to the wrong place (META-INF/service).
           That bug was fixed in ant 1.7.1, but somehow I couldn't get it to work with update=true
           
-          <service type="javax.ejb.spi.EJBContainerProvider"
+          <service type="jakarta.ejb.spi.EJBContainerProvider"
              provider="com.sun.ts.tests.ejb30.lite.packaging.embed.provider.TSEJBContainerProviderImpl"/>
           -->
-          <zipfileset prefix="META-INF/services" dir="${basedir}" includes="javax.ejb.spi.EJBContainerProvider"/>
+          <zipfileset prefix="META-INF/services" dir="${basedir}" includes="jakarta.ejb.spi.EJBContainerProvider"/>
         </jar>
     </target>
 </project>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,13 +31,13 @@ import javax.interceptor.AroundInvoke;
 import javax.annotation.Resource;
 import javax.interceptor.Interceptors;
 import javax.interceptor.InvocationContext;
-import javax.ejb.Local;
-import javax.ejb.Remote;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateless;
-import javax.ejb.Timeout;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 
 @Stateless(name = "AllowedBean")
 @Remote({ AllowedIF.class })
@@ -53,7 +53,7 @@ public class AllowedBean extends AllowedBeanBase
 
   @Timeout
   @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void timeout(javax.ejb.Timer timer) {
+  public void timeout(jakarta.ejb.Timer timer) {
     TLogger.log("timeout: " + this.getClass().getName());
   }
 
