@@ -165,8 +165,16 @@ public class TimerBeanBaseWithoutTimeOutMethod {
     return TimerUtil.createSecondLaterTimer(timerService, name);
   }
 
+  public Timer createSecondLaterTimer(String name, int seconds) {
+    return TimerUtil.createSecondLaterTimer(timerService, name, seconds);
+  }
+
   public Timer createSecondLaterTimer(TimerConfig timerConfig) {
     return TimerUtil.createSecondLaterTimer(timerService, timerConfig);
+  }
+
+  public Timer createSecondLaterTimer(TimerConfig timerConfig, int seconds) {
+    return TimerUtil.createSecondLaterTimer(timerService, timerConfig, seconds);
   }
 
   public Timer createMillisecondLaterTimer(String name) {

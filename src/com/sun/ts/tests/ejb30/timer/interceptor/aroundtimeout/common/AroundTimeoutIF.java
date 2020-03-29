@@ -27,4 +27,6 @@ public interface AroundTimeoutIF {
   public static final String STATUS_SINGLETON_BEAN_NAME = "timeoutStatusBean";
 
   Timer createSecondLaterTimer(String name);
+
+  Timer createSecondLaterTimer(String name, int seconds);
 }
