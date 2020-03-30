@@ -68,7 +68,7 @@ endorsed.dirs=
 ####################################################################
 ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxb-libs.jar${pathsep}${ts.home}/lib/jaxb-impl.jar
 
-ts.classpath=${local.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar{pathsep}${ts.home}/glassfish5/glassfish/modules/jakartaee-api.jar
+ts.classpath=${local.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakartaee-api.jar
 
 ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${ts.home}/classes${pathsep}${local.classes}
 
