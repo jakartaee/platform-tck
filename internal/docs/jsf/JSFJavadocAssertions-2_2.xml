@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -412,7 +412,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="deprecated" testable="true">
       <id>JSF:JAVADOC:37</id>
-      <description>Wrap the argument componentBinding in an implementation of ValueExpression and call through to #createComponent(javax.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String).</description>
+      <description>Wrap the argument componentBinding in an implementation of ValueExpression and call through to #createComponent(jakarta.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String).</description>
       <package>javax.faces.application</package>
       <class-interface>Application</class-interface>
       <method name="createComponent" return-type="javax.faces.component.UIComponent">
@@ -879,7 +879,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:79</id>
-      <description>Return the singleton ELResolver instance to be used for all EL resolution. This is actually an instance of javax.el.CompositeELResolver that must contain the following ELResolver instances in the following order: ELResolver instances declared using the element in the application configuration resources. An implementation that wraps the head of the legacy VariableResolver chain, as per section VariableResolver ChainWrapper in Chapter JSF.5 in the spec document. An implementation that wraps the head of the legacy PropertyResolver chain, as per section PropertyResolver ChainWrapper in Chapter JSF.5 in the spec document. Any ELResolver instances added by calls to #addELResolver. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend Application.</description>
+      <description>Return the singleton ELResolver instance to be used for all EL resolution. This is actually an instance of jakarta.el.CompositeELResolver that must contain the following ELResolver instances in the following order: ELResolver instances declared using the element in the application configuration resources. An implementation that wraps the head of the legacy VariableResolver chain, as per section VariableResolver ChainWrapper in Chapter JSF.5 in the spec document. An implementation that wraps the head of the legacy PropertyResolver chain, as per section PropertyResolver ChainWrapper in Chapter JSF.5 in the spec document. Any ELResolver instances added by calls to #addELResolver. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend Application.</description>
       <package>javax.faces.application</package>
       <class-interface>Application</class-interface>
       <method name="getELResolver" return-type="ELResolver" />
@@ -1523,7 +1523,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:143</id>
-      <description>The default behavior of this method is to call Application#addELContextListener(javax.el.ELContextListener) on the wrapped Application object.</description>
+      <description>The default behavior of this method is to call Application#addELContextListener(jakarta.el.ELContextListener) on the wrapped Application object.</description>
       <package>javax.faces.application</package>
       <class-interface>ApplicationWrapper</class-interface>
       <method name="addELContextListener" return-type="void">
@@ -1534,7 +1534,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:144</id>
-      <description>The default behavior of this method is to call Application#addELResolver(javax.el.ELResolver) on the wrapped Application object.</description>
+      <description>The default behavior of this method is to call Application#addELResolver(jakarta.el.ELResolver) on the wrapped Application object.</description>
       <package>javax.faces.application</package>
       <class-interface>ApplicationWrapper</class-interface>
       <method name="addELResolver" return-type="void">
@@ -1610,7 +1610,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:153</id>
-      <description>The default behavior of this method is to call Application#createComponent(javax.el.ValueExpression, javax.faces.context.FacesContext, String) on the wrapped Application object.</description>
+      <description>The default behavior of this method is to call Application#createComponent(jakarta.el.ValueExpression, javax.faces.context.FacesContext, String) on the wrapped Application object.</description>
       <package>javax.faces.application</package>
       <class-interface>ApplicationWrapper</class-interface>
       <method name="createComponent" return-type="javax.faces.component.UIComponent">
@@ -1637,7 +1637,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:155</id>
-      <description>The default behavior of this method is to call Application#createComponent(javax.el.ValueExpression, javax.faces.context.FacesContext, String, String) on the wrapped Application object.</description>
+      <description>The default behavior of this method is to call Application#createComponent(jakarta.el.ValueExpression, javax.faces.context.FacesContext, String, String) on the wrapped Application object.</description>
       <package>javax.faces.application</package>
       <class-interface>ApplicationWrapper</class-interface>
       <method name="createComponent" return-type="javax.faces.component.UIComponent">
@@ -1923,7 +1923,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:193</id>
-      <description>The default behavior of this method is to call Application#removeELContextListener(javax.el.ELContextListener) on the wrapped Application object.</description>
+      <description>The default behavior of this method is to call Application#removeELContextListener(jakarta.el.ELContextListener) on the wrapped Application object.</description>
       <package>javax.faces.application</package>
       <class-interface>ApplicationWrapper</class-interface>
       <method name="removeELContextListener" return-type="void">
@@ -3862,7 +3862,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="deprecated" testable="true">
       <id>JSF:JAVADOC:394</id>
-      <description>If the implementing class also implements ActionSource2, the implementation of this method must call through to ActionSource2#getActionExpression and examine the result. If the result came from a previous call to #setAction, extract the MethodBinding from it and return it. Otherwise, wrap the returned javax.el.MethodExpression in a MethodBinding implementation, and return it. If the implementing class does not implement ActionSource2, return the MethodBindingpointing at the application action to be invoked, if this UIComponent is activated by the user, during the Apply Request Values or Invoke Application phase of the request processing lifecycle, depending on the value of the immediate property.</description>
+      <description>If the implementing class also implements ActionSource2, the implementation of this method must call through to ActionSource2#getActionExpression and examine the result. If the result came from a previous call to #setAction, extract the MethodBinding from it and return it. Otherwise, wrap the returned jakarta.el.MethodExpression in a MethodBinding implementation, and return it. If the implementing class does not implement ActionSource2, return the MethodBindingpointing at the application action to be invoked, if this UIComponent is activated by the user, during the Apply Request Values or Invoke Application phase of the request processing lifecycle, depending on the value of the immediate property.</description>
       <package>javax.faces.component</package>
       <class-interface>ActionSource</class-interface>
       <method name="getAction" return-type="javax.faces.el.MethodBinding" />
@@ -3913,7 +3913,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="deprecated" testable="true">
       <id>JSF:JAVADOC:400</id>
-      <description>If the implementing class also implements ActionSource2, the implementation of this method must wrap the argument action in a class that implements javax.el.MethodExpression and call through to ActionSource2#setActionExpression, passing the wrapped action. If the implementing class does not implement ActionSource2, set the MethodBinding pointing at the appication action to be invoked, if this UIComponent is activated by the user, during the Apply Request Values or Invoke Application phase of the request processing lifecycle, depending on the value of the immediate property. Any method referenced by such an expression must be public, with a return type of String, and accept no parameters.</description>
+      <description>If the implementing class also implements ActionSource2, the implementation of this method must wrap the argument action in a class that implements jakarta.el.MethodExpression and call through to ActionSource2#setActionExpression, passing the wrapped action. If the implementing class does not implement ActionSource2, set the MethodBinding pointing at the appication action to be invoked, if this UIComponent is activated by the user, during the Apply Request Values or Invoke Application phase of the request processing lifecycle, depending on the value of the immediate property. Any method referenced by such an expression must be public, with a return type of String, and accept no parameters.</description>
       <package>javax.faces.component</package>
       <class-interface>ActionSource</class-interface>
       <method name="setAction" return-type="void">
@@ -10131,7 +10131,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1069</id>
-      <description>Unwrap the argument t until the unwrapping encounters an Object whose getClass() is not equal to FacesException.class or javax.el.ELException.class. If there is no root cause, null is returned.</description>
+      <description>Unwrap the argument t until the unwrapping encounters an Object whose getClass() is not equal to FacesException.class or jakarta.el.ELException.class. If there is no root cause, null is returned.</description>
       <package>javax.faces.context</package>
       <class-interface>ExceptionHandler</class-interface>
       <method name="getRootCause" return-type="java.lang.Throwable">
@@ -11992,7 +11992,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1283</id>
-      <description>Return the ELContext instance for this FacesContext instance. This ELContext instance has the same lifetime and scope as the FacesContext instance with which it is associated, and may be created lazily the first time this method is called for a given FacesContext instance. Upon creation of the ELContext instance, the implementation must take the following action: Call the ELContext#putContext method on the instance, passing in FacesContext.class and the this reference for the FacesContext instance itself. If the Collection returned by javax.faces.application.Application#getELContextListeners is non-empty, create an instance of javax.el.ELContextEvent and pass it to each javax.el.ELContextListener instance in the Collection by calling the javax.el.ELContextListener#contextCreated method.</description>
+      <description>Return the ELContext instance for this FacesContext instance. This ELContext instance has the same lifetime and scope as the FacesContext instance with which it is associated, and may be created lazily the first time this method is called for a given FacesContext instance. Upon creation of the ELContext instance, the implementation must take the following action: Call the ELContext#putContext method on the instance, passing in FacesContext.class and the this reference for the FacesContext instance itself. If the Collection returned by javax.faces.application.Application#getELContextListeners is non-empty, create an instance of jakarta.el.ELContextEvent and pass it to each jakarta.el.ELContextListener instance in the Collection by calling the jakarta.el.ELContextListener#contextCreated method.</description>
       <package>javax.faces.context</package>
       <class-interface>FacesContext</class-interface>
       <method name="getELContext" return-type="ELContext" />

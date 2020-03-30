@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,9 +18,9 @@ package com.sun.ts.tests.jsp.api.javax_el.methodinfo;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
-import javax.el.MethodExpression;
-import javax.el.MethodInfo;
-import javax.el.ELContext;
+import jakarta.el.MethodExpression;
+import jakarta.el.MethodInfo;
+import jakarta.el.ELContext;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import java.io.*;

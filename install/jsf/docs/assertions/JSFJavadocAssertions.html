@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018-2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -695,7 +695,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Wrap
 		the argument componentBinding in an implementation of ValueExpression
 		and call through to
-		#createComponent(javax.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String).
+		#createComponent(jakarta.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String).
 
 		</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1546,7 +1546,7 @@ JavaDoc Assertion Detail</h2>
 
 
 
-		This is actually an instance of javax.el.CompositeELResolver that must
+		This is actually an instance of jakarta.el.CompositeELResolver that must
 		contain the following ELResolver instances in the following order:
 		ELResolver instances declared using the element in the application
 		configuration resources. An implementation that wraps the head of the
@@ -2716,7 +2716,7 @@ JavaDoc Assertion Detail</h2>
 		( ELContextListener ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> The
 		default behavior of this method is to call
-		Application#addELContextListener(javax.el.ELContextListener) on the
+		Application#addELContextListener(jakarta.el.ELContextListener) on the
 		wrapped Application object. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -2732,7 +2732,7 @@ JavaDoc Assertion Detail</h2>
 		( ELResolver ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> The
 		default behavior of this method is to call
-		Application#addELResolver(javax.el.ELResolver) on the wrapped
+		Application#addELResolver(jakarta.el.ELResolver) on the wrapped
 		Application object. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -2883,7 +2883,7 @@ JavaDoc Assertion Detail</h2>
 		String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> The
 		default behavior of this method is to call
-		Application#createComponent(javax.el.ValueExpression,
+		Application#createComponent(jakarta.el.ValueExpression,
 		javax.faces.context.FacesContext, String) on the wrapped Application
 		object. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2921,7 +2921,7 @@ JavaDoc Assertion Detail</h2>
 		String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> The
 		default behavior of this method is to call
-		Application#createComponent(javax.el.ValueExpression,
+		Application#createComponent(jakarta.el.ValueExpression,
 		javax.faces.context.FacesContext, String, String) on the wrapped
 		Application object. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3506,7 +3506,7 @@ JavaDoc Assertion Detail</h2>
 		( ELContextListener ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> The
 		default behavior of this method is to call
-		Application#removeELContextListener(javax.el.ELContextListener) on the
+		Application#removeELContextListener(jakarta.el.ELContextListener) on the
 		wrapped Application object. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -6858,7 +6858,7 @@ JavaDoc Assertion Detail</h2>
 		of this method must call through to ActionSource2#getActionExpression
 		and examine the result. If the result came from a previous call to
 		#setAction, extract the MethodBinding from it and return it.
-		Otherwise, wrap the returned javax.el.MethodExpression in a
+		Otherwise, wrap the returned jakarta.el.MethodExpression in a
 		MethodBinding implementation, and return it. If the implementing class
 		does not implement ActionSource2, return the MethodBindingpointing at
 		the application action to be invoked, if this UIComponent is activated
@@ -6960,7 +6960,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> If the
 		implementing class also implements ActionSource2, the implementation
 		of this method must wrap the argument action in a class that
-		implements javax.el.MethodExpression and call through to
+		implements jakarta.el.MethodExpression and call through to
 		ActionSource2#setActionExpression, passing the wrapped action. If the
 		implementing class does not implement ActionSource2, set the
 		MethodBinding pointing at the appication action to be invoked, if this
@@ -18226,7 +18226,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Unwrap
 		the argument t until the unwrapping encounters an Object whose
 		getClass() is not equal to FacesException.class or
-		javax.el.ELException.class. If there is no root cause, null is
+		jakarta.el.ELException.class. If there is no root cause, null is
 		returned. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -21847,9 +21847,9 @@ JavaDoc Assertion Detail</h2>
 		in FacesContext.class and the this reference for the FacesContext
 		instance itself. If the Collection returned by
 		javax.faces.application.Application#getELContextListeners is
-		non-empty, create an instance of javax.el.ELContextEvent and pass it
-		to each javax.el.ELContextListener instance in the Collection by
-		calling the javax.el.ELContextListener#contextCreated method. </font></TD>
+		non-empty, create an instance of jakarta.el.ELContextEvent and pass it
+		to each jakarta.el.ELContextListener instance in the Collection by
+		calling the jakarta.el.ELContextListener#contextCreated method. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
