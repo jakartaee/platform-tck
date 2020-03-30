@@ -78,6 +78,11 @@ echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/version.info
 echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/version.info
 echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/version.info
 
+#temporary fix to get build passing until we have glassfish with new api jars
+wget --progress=bar:force --no-cache \
+     https://repo1.maven.org/maven2/jakarta/platform/jakarta.jakartaee-api/9.0.0-RC1/jakarta.jakartaee-api-9.0.0-RC1.jar \
+     -O $GF_HOME/glassfish5/glassfish/modules/jakartaee-api.jar
+
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   mkdir -p ${WORKSPACE}/standalone-bundles/
   IFS=' ' # space is set as delimiter
@@ -202,7 +207,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "saaj" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dlocal.classes=$GF_HOME/glassfish5/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/glassfish5/glassfish/modules/jakarta.ejb-api.jar -Dwebcontainer.home=$GF_HOME/glassfish5/glassfish -Dendorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed"
+    TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$GF_HOME/glassfish5/glassfish -Dendorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "servlet" == "$tck" ]

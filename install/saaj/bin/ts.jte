@@ -48,7 +48,7 @@ webServerPort=8080
 ###########################################################################
 # local.classes should contain any RI specific jars/classes
 ###########################################################################
-local.classes=
+local.classes=${ts.home}/glassfish5/glassfish/modules/jakarta.servlet-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakartaee-api.jar
 
 ####################################################################
 # @endorsed.dirs  If using JavaSE 8, verify that the property 
@@ -68,7 +68,7 @@ endorsed.dirs=
 ####################################################################
 ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxb-libs.jar${pathsep}${ts.home}/lib/jaxb-impl.jar
 
-ts.classpath=${local.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar
+ts.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${local.classes}
 
 ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${ts.home}/classes${pathsep}${local.classes}
 
