@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "US-ASCII"?>
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
-  Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+  Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
   This program and the accompanying materials are made available under the
   terms of the Eclipse Public License v. 2.0, which is available at
@@ -4760,7 +4760,7 @@
 			<class-interface>JspApplicationContext</class-interface>
 			<method name = "addELContextListener" return-type = "void">
 				<parameters>
-					<parameter>javax.el.ELContextListener</parameter>
+					<parameter>jakarta.el.ELContextListener</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -4773,14 +4773,14 @@
                             
                             
                             
-                               For example, in the EL expression ${employee.lastName}, an  ELResolver determines what object "employee"  references and how to find its "lastName" property.   When evaluating an expression, the JSP container will consult a  set of standard resolvers as well as any resolvers registered via  this method. The set of resolvers are consulted in the following  order:      javax.servlet.jsp.el.ImplicitObjectELResolver    ELResolvers registered via this method, in the        order in which they are registered.    javax.el.MapELResolverjavax.el.ListELResolverjavax.el.ArrayELResolverjavax.el.BeanELResolverjavax.servlet.jsp.el.ScopedAttributeELResolver     It is illegal to register an ELResolver after the  application has received any request from the client. If an  attempt is made to register an ELResolver after that time,  an IllegalStateException is thrown.  This restriction is  in place to allow the JSP container to optimize for the common  case where no additional ELResolvers are in the chain,  aside from the standard ones. It is permissible to add  ELResolvers before or after initialization to  a CompositeELResolver that is already in the chain.   It is not possible to remove an ELResolver registered  with this method, once it has been registered.
+                               For example, in the EL expression ${employee.lastName}, an  ELResolver determines what object "employee"  references and how to find its "lastName" property.   When evaluating an expression, the JSP container will consult a  set of standard resolvers as well as any resolvers registered via  this method. The set of resolvers are consulted in the following  order:      javax.servlet.jsp.el.ImplicitObjectELResolver    ELResolvers registered via this method, in the        order in which they are registered.    jakarta.el.MapELResolverjakarta.el.ListELResolverjakarta.el.ArrayELResolverjakarta.el.BeanELResolverjavax.servlet.jsp.el.ScopedAttributeELResolver     It is illegal to register an ELResolver after the  application has received any request from the client. If an  attempt is made to register an ELResolver after that time,  an IllegalStateException is thrown.  This restriction is  in place to allow the JSP container to optimize for the common  case where no additional ELResolvers are in the chain,  aside from the standard ones. It is permissible to add  ELResolvers before or after initialization to  a CompositeELResolver that is already in the chain.   It is not possible to remove an ELResolver registered  with this method, once it has been registered.
                         
 			</description>
 			<package>javax.servlet.jsp</package>
 			<class-interface>JspApplicationContext</class-interface>
 			<method name = "addELResolver" return-type = "void">
 				<parameters>
-					<parameter>javax.el.ELResolver</parameter>
+					<parameter>jakarta.el.ELResolver</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -4791,7 +4791,7 @@
 			</description>
 			<package>javax.servlet.jsp</package>
 			<class-interface>JspApplicationContext</class-interface>
-			<method name = "getExpressionFactory" return-type = "javax.el.ExpressionFactory"/>
+			<method name = "getExpressionFactory" return-type = "jakarta.el.ExpressionFactory"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "deprecated" testable = "true">
 			<id>412</id>
@@ -4903,7 +4903,7 @@
 			<class-interface>ImplicitObjectELResolver</class-interface>
 			<method name = "getCommonPropertyType" return-type = "java.lang.Class">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
 			</method>
@@ -4921,7 +4921,7 @@
 			<class-interface>ImplicitObjectELResolver</class-interface>
 			<method name = "getFeatureDescriptors" return-type = "java.util.Iterator">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
 			</method>
@@ -4936,7 +4936,7 @@
 			<class-interface>ImplicitObjectELResolver</class-interface>
 			<method name = "getType" return-type = "java.lang.Class">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
@@ -4952,7 +4952,7 @@
 			<class-interface>ImplicitObjectELResolver</class-interface>
 			<method name = "getValue" return-type = "java.lang.Object">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
@@ -4975,7 +4975,7 @@
 			<class-interface>ImplicitObjectELResolver</class-interface>
 			<method name = "isReadOnly" return-type = "boolean">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
@@ -4991,7 +4991,7 @@
 			<class-interface>ImplicitObjectELResolver</class-interface>
 			<method name = "setValue" return-type = "void">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
@@ -5008,7 +5008,7 @@
 			<class-interface>ScopedAttributeELResolver</class-interface>
 			<method name = "getCommonPropertyType" return-type = "java.lang.Class">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
 			</method>
@@ -5026,7 +5026,7 @@
 			<class-interface>ScopedAttributeELResolver</class-interface>
 			<method name = "getFeatureDescriptors" return-type = "java.util.Iterator">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
 			</method>
@@ -5041,7 +5041,7 @@
 			<class-interface>ScopedAttributeELResolver</class-interface>
 			<method name = "getType" return-type = "java.lang.Class">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
@@ -5057,7 +5057,7 @@
 			<class-interface>ScopedAttributeELResolver</class-interface>
 			<method name = "getValue" return-type = "java.lang.Object">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
@@ -5073,7 +5073,7 @@
 			<class-interface>ScopedAttributeELResolver</class-interface>
 			<method name = "isReadOnly" return-type = "boolean">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
 				</parameters>
@@ -5096,7 +5096,7 @@
 			<class-interface>ScopedAttributeELResolver</class-interface>
 			<method name = "setValue" return-type = "void">
 				<parameters>
-					<parameter>javax.el.ELContext</parameter>
+					<parameter>jakarta.el.ELContext</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
 					<parameter>java.lang.Object</parameter>
@@ -5143,7 +5143,7 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>436</id>
 			<description>                            Returns true if this attribute is to be passed a  ValueExpression so that expression evaluation  can be deferred.
-                               If this method returns true, then  getTypeName() must return  "javax.el.ValueExpression".   The getExpectedType() method can be used to retrieve  the expected type this value expression will be constructed with.
+                               If this method returns true, then  getTypeName() must return  "jakarta.el.ValueExpression".   The getExpectedType() method can be used to retrieve  the expected type this value expression will be constructed with.
                         
 			</description>
 			<package>javax.servlet.jsp.tagext</package>
@@ -5153,7 +5153,7 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>437</id>
 			<description>                            Returns true if this attribute is to be passed a  MethodExpression so that expression evaluation  can be deferred.
-                               If this method returns true, then  getTypeName() must return  "javax.el.MethodExpression".   The getMethodSignature() method can be used to retrieve  the expected method signature this method expression will be  constructed with.
+                               If this method returns true, then  getTypeName() must return  "jakarta.el.MethodExpression".   The getMethodSignature() method can be used to retrieve  the expected method signature this method expression will be  constructed with.
                         
 			</description>
 			<package>javax.servlet.jsp.tagext</package>

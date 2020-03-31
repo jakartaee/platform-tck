@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!--
 
-    Copyright (c) 2005, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -3170,7 +3170,7 @@
                 non-empty, create an instance of ELContextEvent and pass 
                 it to each ELContextListener instance in the Collection 
                 by calling the ELContextListener.contextCreated
-                (javax.el.ELContextEvent) method.
+                (jakarta.el.ELContextEvent) method.
             </description>
             <location chapter="6" section="1.2"/>
         </assertion>
@@ -5211,12 +5211,12 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:176.2</id>
             <description>
-                If the type of the attribute is javax.el.MethodExpression, the 
+                If the type of the attribute is jakarta.el.MethodExpression, the 
                 TLD for the attribute must contain a &lt;deferred-method&gt; 
                 with a nested &lt;method-signature&gt;, inside of which is the
                 method signature for that MethodExpression, as given in the 
                 TLDDocs. The JavaBeans setter method in the tag handler for the 
-                tag must  be of type javax.el.MethodExpression.
+                tag must  be of type jakarta.el.MethodExpression.
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>

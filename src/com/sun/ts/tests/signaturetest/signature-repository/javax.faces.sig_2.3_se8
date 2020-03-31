@@ -2,7 +2,7 @@
 #Version 2.3_se8
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -232,20 +232,20 @@ meth public {java.util.Map%1} merge({java.util.Map%0},{java.util.Map%1},java.uti
 meth public {java.util.Map%1} putIfAbsent({java.util.Map%0},{java.util.Map%1})
 meth public {java.util.Map%1} replace({java.util.Map%0},{java.util.Map%1})
 
-CLSS public abstract javax.el.ELContext
+CLSS public abstract jakarta.el.ELContext
 cons public <init>()
-meth public abstract javax.el.ELResolver getELResolver()
-meth public abstract javax.el.FunctionMapper getFunctionMapper()
-meth public abstract javax.el.VariableMapper getVariableMapper()
+meth public abstract jakarta.el.ELResolver getELResolver()
+meth public abstract jakarta.el.FunctionMapper getFunctionMapper()
+meth public abstract jakarta.el.VariableMapper getVariableMapper()
 meth public boolean isLambdaArgument(java.lang.String)
 meth public boolean isPropertyResolved()
 meth public java.lang.Object convertToType(java.lang.Object,java.lang.Class<?>)
 meth public java.lang.Object getContext(java.lang.Class)
 meth public java.lang.Object getLambdaArgument(java.lang.String)
-meth public java.util.List<javax.el.EvaluationListener> getEvaluationListeners()
+meth public java.util.List<jakarta.el.EvaluationListener> getEvaluationListeners()
 meth public java.util.Locale getLocale()
-meth public javax.el.ImportHandler getImportHandler()
-meth public void addEvaluationListener(javax.el.EvaluationListener)
+meth public jakarta.el.ImportHandler getImportHandler()
+meth public void addEvaluationListener(jakarta.el.EvaluationListener)
 meth public void enterLambdaScope(java.util.Map<java.lang.String,java.lang.Object>)
 meth public void exitLambdaScope()
 meth public void notifyAfterEvaluation(java.lang.String)
@@ -428,13 +428,13 @@ meth public abstract void setViewHandler(javax.faces.application.ViewHandler)
 meth public java.util.Iterator<java.lang.String> getBehaviorIds()
 meth public java.util.Map<java.lang.String,java.lang.String> getDefaultValidatorInfo()
 meth public java.util.ResourceBundle getResourceBundle(javax.faces.context.FacesContext,java.lang.String)
-meth public javax.el.ELContextListener[] getELContextListeners()
-meth public javax.el.ELResolver getELResolver()
-meth public javax.el.ExpressionFactory getExpressionFactory()
+meth public jakarta.el.ELContextListener[] getELContextListeners()
+meth public jakarta.el.ELResolver getELResolver()
+meth public jakarta.el.ExpressionFactory getExpressionFactory()
 meth public javax.faces.application.ProjectStage getProjectStage()
 meth public javax.faces.application.ResourceHandler getResourceHandler()
-meth public javax.faces.component.UIComponent createComponent(javax.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String)
-meth public javax.faces.component.UIComponent createComponent(javax.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String,java.lang.String)
+meth public javax.faces.component.UIComponent createComponent(jakarta.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String)
+meth public javax.faces.component.UIComponent createComponent(jakarta.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String,java.lang.String)
 meth public javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,java.lang.String,java.lang.String)
 meth public javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,javax.faces.application.Resource)
 meth public javax.faces.component.behavior.Behavior createBehavior(java.lang.String)
@@ -443,12 +443,12 @@ meth public javax.faces.component.search.SearchKeywordResolver getSearchKeywordR
 meth public javax.faces.flow.FlowHandler getFlowHandler()
 meth public void addBehavior(java.lang.String,java.lang.String)
 meth public void addDefaultValidatorId(java.lang.String)
-meth public void addELContextListener(javax.el.ELContextListener)
-meth public void addELResolver(javax.el.ELResolver)
+meth public void addELContextListener(jakarta.el.ELContextListener)
+meth public void addELResolver(jakarta.el.ELResolver)
 meth public void addSearchKeywordResolver(javax.faces.component.search.SearchKeywordResolver)
 meth public void publishEvent(javax.faces.context.FacesContext,java.lang.Class<? extends javax.faces.event.SystemEvent>,java.lang.Class<?>,java.lang.Object)
 meth public void publishEvent(javax.faces.context.FacesContext,java.lang.Class<? extends javax.faces.event.SystemEvent>,java.lang.Object)
-meth public void removeELContextListener(javax.el.ELContextListener)
+meth public void removeELContextListener(jakarta.el.ELContextListener)
 meth public void setFlowHandler(javax.faces.flow.FlowHandler)
 meth public void setResourceHandler(javax.faces.application.ResourceHandler)
 meth public void setSearchExpressionHandler(javax.faces.component.search.SearchExpressionHandler)
@@ -493,9 +493,9 @@ meth public java.util.Iterator<java.util.Locale> getSupportedLocales()
 meth public java.util.Locale getDefaultLocale()
 meth public java.util.Map<java.lang.String,java.lang.String> getDefaultValidatorInfo()
 meth public java.util.ResourceBundle getResourceBundle(javax.faces.context.FacesContext,java.lang.String)
-meth public javax.el.ELContextListener[] getELContextListeners()
-meth public javax.el.ELResolver getELResolver()
-meth public javax.el.ExpressionFactory getExpressionFactory()
+meth public jakarta.el.ELContextListener[] getELContextListeners()
+meth public jakarta.el.ELResolver getELResolver()
+meth public jakarta.el.ExpressionFactory getExpressionFactory()
 meth public javax.faces.application.Application getWrapped()
 meth public javax.faces.application.NavigationHandler getNavigationHandler()
 meth public javax.faces.application.ProjectStage getProjectStage()
@@ -503,8 +503,8 @@ meth public javax.faces.application.ResourceHandler getResourceHandler()
 meth public javax.faces.application.StateManager getStateManager()
 meth public javax.faces.application.ViewHandler getViewHandler()
 meth public javax.faces.component.UIComponent createComponent(java.lang.String)
-meth public javax.faces.component.UIComponent createComponent(javax.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String)
-meth public javax.faces.component.UIComponent createComponent(javax.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String,java.lang.String)
+meth public javax.faces.component.UIComponent createComponent(jakarta.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String)
+meth public javax.faces.component.UIComponent createComponent(jakarta.el.ValueExpression,javax.faces.context.FacesContext,java.lang.String,java.lang.String)
 meth public javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,java.lang.String,java.lang.String)
 meth public javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,javax.faces.application.Resource)
 meth public javax.faces.component.UIComponent createComponent(javax.faces.el.ValueBinding,javax.faces.context.FacesContext,java.lang.String)
@@ -529,13 +529,13 @@ meth public void addComponent(java.lang.String,java.lang.String)
 meth public void addConverter(java.lang.Class<?>,java.lang.String)
 meth public void addConverter(java.lang.String,java.lang.String)
 meth public void addDefaultValidatorId(java.lang.String)
-meth public void addELContextListener(javax.el.ELContextListener)
-meth public void addELResolver(javax.el.ELResolver)
+meth public void addELContextListener(jakarta.el.ELContextListener)
+meth public void addELResolver(jakarta.el.ELResolver)
 meth public void addSearchKeywordResolver(javax.faces.component.search.SearchKeywordResolver)
 meth public void addValidator(java.lang.String,java.lang.String)
 meth public void publishEvent(javax.faces.context.FacesContext,java.lang.Class<? extends javax.faces.event.SystemEvent>,java.lang.Class<?>,java.lang.Object)
 meth public void publishEvent(javax.faces.context.FacesContext,java.lang.Class<? extends javax.faces.event.SystemEvent>,java.lang.Object)
-meth public void removeELContextListener(javax.el.ELContextListener)
+meth public void removeELContextListener(jakarta.el.ELContextListener)
 meth public void setActionListener(javax.faces.event.ActionListener)
 meth public void setDefaultLocale(java.util.Locale)
 meth public void setDefaultRenderKitId(java.lang.String)
@@ -1041,8 +1041,8 @@ meth public abstract void setImmediate(boolean)
 
 CLSS public abstract interface javax.faces.component.ActionSource2
 intf javax.faces.component.ActionSource
-meth public abstract javax.el.MethodExpression getActionExpression()
-meth public abstract void setActionExpression(javax.el.MethodExpression)
+meth public abstract jakarta.el.MethodExpression getActionExpression()
+meth public abstract void setActionExpression(jakarta.el.MethodExpression)
 
 CLSS public abstract interface javax.faces.component.ContextCallback
 meth public abstract void invokeContextCallback(javax.faces.context.FacesContext,javax.faces.component.UIComponent)
@@ -1137,7 +1137,7 @@ intf javax.faces.component.ActionSource2
 meth public boolean isImmediate()
 meth public java.lang.Object getValue()
 meth public java.lang.String getFamily()
-meth public javax.el.MethodExpression getActionExpression()
+meth public jakarta.el.MethodExpression getActionExpression()
 meth public javax.faces.el.MethodBinding getAction()
 meth public javax.faces.el.MethodBinding getActionListener()
 meth public javax.faces.event.ActionListener[] getActionListeners()
@@ -1146,7 +1146,7 @@ meth public void broadcast(javax.faces.event.FacesEvent)
 meth public void queueEvent(javax.faces.event.FacesEvent)
 meth public void removeActionListener(javax.faces.event.ActionListener)
 meth public void setAction(javax.faces.el.MethodBinding)
-meth public void setActionExpression(javax.el.MethodExpression)
+meth public void setActionExpression(jakarta.el.MethodExpression)
 meth public void setActionListener(javax.faces.el.MethodBinding)
 meth public void setImmediate(boolean)
 meth public void setValue(java.lang.Object)
@@ -1155,7 +1155,7 @@ hcls PropertyKeys
 
 CLSS public abstract javax.faces.component.UIComponent
 cons public <init>()
-fld protected java.util.Map<java.lang.String,javax.el.ValueExpression> bindings
+fld protected java.util.Map<java.lang.String,jakarta.el.ValueExpression> bindings
  anno 0 java.lang.Deprecated()
 fld public final static java.lang.String ATTRS_WITH_DECLARED_DEFAULT_VALUES = "javax.faces.component.ATTR_NAMES_WITH_DEFAULT_VALUES"
 fld public final static java.lang.String BEANINFO_KEY = "javax.faces.component.BEANINFO_KEY"
@@ -1221,7 +1221,7 @@ meth public java.util.List<javax.faces.event.SystemEventListener> getListenersFo
 meth public java.util.Map<java.lang.String,java.lang.Object> getPassThroughAttributes()
 meth public java.util.Map<java.lang.String,java.lang.Object> getPassThroughAttributes(boolean)
 meth public java.util.Map<java.lang.String,java.lang.String> getResourceBundleMap()
-meth public javax.el.ValueExpression getValueExpression(java.lang.String)
+meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
 meth public javax.faces.component.TransientStateHelper getTransientStateHelper()
 meth public javax.faces.component.TransientStateHelper getTransientStateHelper(boolean)
 meth public javax.faces.component.UIComponent getNamingContainer()
@@ -1237,7 +1237,7 @@ meth public void processEvent(javax.faces.event.ComponentSystemEvent)
 meth public void pushComponentToEL(javax.faces.context.FacesContext,javax.faces.component.UIComponent)
 meth public void restoreTransientState(javax.faces.context.FacesContext,java.lang.Object)
 meth public void setInView(boolean)
-meth public void setValueExpression(java.lang.String,javax.el.ValueExpression)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 meth public void subscribeToEvent(java.lang.Class<? extends javax.faces.event.SystemEvent>,javax.faces.event.ComponentSystemEventListener)
 meth public void unsubscribeFromEvent(java.lang.Class<? extends javax.faces.event.SystemEvent>,javax.faces.event.ComponentSystemEventListener)
 supr java.lang.Object
@@ -1344,7 +1344,7 @@ meth public void setRowStatePreserved(boolean)
 meth public void setRows(int)
 meth public void setValue(java.lang.Object)
 meth public void setValueBinding(java.lang.String,javax.faces.el.ValueBinding)
-meth public void setValueExpression(java.lang.String,javax.el.ValueExpression)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 meth public void setVar(java.lang.String)
 supr javax.faces.component.UIComponentBase
 hfds _initialDescendantFullComponentState,_rowDeltaStates,_rowTransientStates,baseClientId,baseClientIdLength,clientIdBuilder,isNested,model,oldVar
@@ -1377,12 +1377,12 @@ fld public final static java.lang.String COMPONENT_TYPE = "javax.faces.Graphic"
 meth public java.lang.Object getValue()
 meth public java.lang.String getFamily()
 meth public java.lang.String getUrl()
-meth public javax.el.ValueExpression getValueExpression(java.lang.String)
+meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
 meth public javax.faces.el.ValueBinding getValueBinding(java.lang.String)
 meth public void setUrl(java.lang.String)
 meth public void setValue(java.lang.Object)
 meth public void setValueBinding(java.lang.String,javax.faces.el.ValueBinding)
-meth public void setValueExpression(java.lang.String,javax.el.ValueExpression)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr javax.faces.component.UIComponentBase
 hcls PropertyKeys
 
@@ -1394,7 +1394,7 @@ meth public java.lang.String getFamily()
 meth public java.lang.String getType()
 meth public java.lang.String getVar()
 meth public void setType(java.lang.String)
-meth public void setValueExpression(java.lang.String,javax.el.ValueExpression)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 meth public void setVar(java.lang.String)
 supr javax.faces.component.UIComponentBase
 hcls PropertyKeys
@@ -1569,11 +1569,11 @@ fld public final static java.lang.String COMPONENT_FAMILY = "javax.faces.SelectB
 fld public final static java.lang.String COMPONENT_TYPE = "javax.faces.SelectBoolean"
 meth public boolean isSelected()
 meth public java.lang.String getFamily()
-meth public javax.el.ValueExpression getValueExpression(java.lang.String)
+meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
 meth public javax.faces.el.ValueBinding getValueBinding(java.lang.String)
 meth public void setSelected(boolean)
 meth public void setValueBinding(java.lang.String,javax.faces.el.ValueBinding)
-meth public void setValueExpression(java.lang.String,javax.el.ValueExpression)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr javax.faces.component.UIInput
 
 CLSS public javax.faces.component.UISelectItem
@@ -1617,11 +1617,11 @@ meth protected boolean compareValues(java.lang.Object,java.lang.Object)
 meth protected void validateValue(javax.faces.context.FacesContext,java.lang.Object)
 meth public java.lang.Object[] getSelectedValues()
 meth public java.lang.String getFamily()
-meth public javax.el.ValueExpression getValueExpression(java.lang.String)
+meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
 meth public javax.faces.el.ValueBinding getValueBinding(java.lang.String)
 meth public void setSelectedValues(java.lang.Object[])
 meth public void setValueBinding(java.lang.String,javax.faces.el.ValueBinding)
-meth public void setValueExpression(java.lang.String,javax.el.ValueExpression)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr javax.faces.component.UIInput
 hcls ArrayIterator
 
@@ -1648,7 +1648,7 @@ meth public boolean isOnPostback()
 meth public boolean isRendered()
 meth public java.lang.String getFamily()
 meth public java.lang.String getPhase()
-meth public javax.el.MethodExpression getActionExpression()
+meth public jakarta.el.MethodExpression getActionExpression()
 meth public javax.faces.el.MethodBinding getAction()
  anno 0 java.lang.Deprecated()
 meth public javax.faces.el.MethodBinding getActionListener()
@@ -1661,7 +1661,7 @@ meth public void decode(javax.faces.context.FacesContext)
 meth public void removeActionListener(javax.faces.event.ActionListener)
 meth public void setAction(javax.faces.el.MethodBinding)
  anno 0 java.lang.Deprecated()
-meth public void setActionExpression(javax.el.MethodExpression)
+meth public void setActionExpression(jakarta.el.MethodExpression)
 meth public void setActionListener(javax.faces.el.MethodBinding)
  anno 0 java.lang.Deprecated()
 meth public void setImmediate(boolean)
@@ -1725,8 +1725,8 @@ meth public java.util.List<javax.faces.event.SystemEventListener> getViewListene
 meth public java.util.Locale getLocale()
 meth public java.util.Map<java.lang.String,java.lang.Object> getViewMap()
 meth public java.util.Map<java.lang.String,java.lang.Object> getViewMap(boolean)
-meth public javax.el.MethodExpression getAfterPhaseListener()
-meth public javax.el.MethodExpression getBeforePhaseListener()
+meth public jakarta.el.MethodExpression getAfterPhaseListener()
+meth public jakarta.el.MethodExpression getBeforePhaseListener()
 meth public void addComponentResource(javax.faces.context.FacesContext,javax.faces.component.UIComponent)
 meth public void addComponentResource(javax.faces.context.FacesContext,javax.faces.component.UIComponent,java.lang.String)
 meth public void addPhaseListener(javax.faces.event.PhaseListener)
@@ -1747,8 +1747,8 @@ meth public void removePhaseListener(javax.faces.event.PhaseListener)
 meth public void resetValues(javax.faces.context.FacesContext,java.util.Collection<java.lang.String>)
 meth public void restoreState(javax.faces.context.FacesContext,java.lang.Object)
 meth public void restoreViewScopeState(javax.faces.context.FacesContext,java.lang.Object)
-meth public void setAfterPhaseListener(javax.el.MethodExpression)
-meth public void setBeforePhaseListener(javax.el.MethodExpression)
+meth public void setAfterPhaseListener(jakarta.el.MethodExpression)
+meth public void setBeforePhaseListener(jakarta.el.MethodExpression)
 meth public void setInView(boolean)
 meth public void setLocale(java.util.Locale)
 meth public void setRenderKitId(java.lang.String)
@@ -1780,7 +1780,7 @@ meth public void setOnmessage(java.lang.String)
 meth public void setOnopen(java.lang.String)
 meth public void setScope(java.lang.String)
 meth public void setUser(java.io.Serializable)
-meth public void setValueExpression(java.lang.String,javax.el.ValueExpression)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr javax.faces.component.UIComponentBase
 hfds CONTAINS_EVERYTHING,ERROR_ENDPOINT_NOT_ENABLED,ERROR_INVALID_CHANNEL,ERROR_INVALID_USER,PATTERN_CHANNEL_NAME
 hcls PropertyKeys
@@ -1817,7 +1817,7 @@ meth public java.lang.String getRendererType()
 meth public java.util.Collection<java.lang.String> getExecute()
 meth public java.util.Collection<java.lang.String> getRender()
 meth public java.util.Set<javax.faces.component.behavior.ClientBehaviorHint> getHints()
-meth public javax.el.ValueExpression getValueExpression(java.lang.String)
+meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
 meth public void addAjaxBehaviorListener(javax.faces.event.AjaxBehaviorListener)
 meth public void removeAjaxBehaviorListener(javax.faces.event.AjaxBehaviorListener)
 meth public void restoreState(javax.faces.context.FacesContext,java.lang.Object)
@@ -1829,7 +1829,7 @@ meth public void setOnerror(java.lang.String)
 meth public void setOnevent(java.lang.String)
 meth public void setRender(java.util.Collection<java.lang.String>)
 meth public void setResetValues(boolean)
-meth public void setValueExpression(java.lang.String,javax.el.ValueExpression)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr javax.faces.component.behavior.ClientBehaviorBase
 hfds ALL,ALL_LIST,DELAY,DISABLED,EXECUTE,FORM,FORM_LIST,HINTS,IMMEDIATE,NONE,NONE_LIST,ONERROR,ONEVENT,RENDER,RESET_VALUES,SPLIT_PATTERN,THIS,THIS_LIST,bindings,delay,disabled,execute,immediate,onerror,onevent,render,resetValues
 
@@ -4871,7 +4871,7 @@ meth public java.util.List<java.lang.String> getResourceLibraryContracts()
 meth public java.util.List<javax.faces.application.FacesMessage> getMessageList()
 meth public java.util.List<javax.faces.application.FacesMessage> getMessageList(java.lang.String)
 meth public java.util.Map<java.lang.Object,java.lang.Object> getAttributes()
-meth public javax.el.ELContext getELContext()
+meth public jakarta.el.ELContext getELContext()
 meth public javax.faces.context.ExceptionHandler getExceptionHandler()
 meth public javax.faces.context.PartialViewContext getPartialViewContext()
 meth public javax.faces.event.PhaseId getCurrentPhaseId()
@@ -4914,7 +4914,7 @@ meth public java.util.List<java.lang.String> getResourceLibraryContracts()
 meth public java.util.List<javax.faces.application.FacesMessage> getMessageList()
 meth public java.util.List<javax.faces.application.FacesMessage> getMessageList(java.lang.String)
 meth public java.util.Map<java.lang.Object,java.lang.Object> getAttributes()
-meth public javax.el.ELContext getELContext()
+meth public jakarta.el.ELContext getELContext()
 meth public javax.faces.application.Application getApplication()
 meth public javax.faces.application.FacesMessage$Severity getMaximumSeverity()
 meth public javax.faces.component.UIViewRoot getViewRoot()
@@ -5363,7 +5363,7 @@ meth public java.lang.String getAsString(javax.faces.context.FacesContext,javax.
 supr java.lang.Object
 
 CLSS public abstract interface javax.faces.el.CompositeComponentExpressionHolder
-meth public abstract javax.el.ValueExpression getExpression(java.lang.String)
+meth public abstract jakarta.el.ValueExpression getExpression(java.lang.String)
 
 CLSS public javax.faces.el.EvaluationException
 cons public <init>()
@@ -5553,8 +5553,8 @@ meth public abstract javax.faces.event.ListenerFor[] value()
 
 CLSS public javax.faces.event.MethodExpressionActionListener
 cons public <init>()
-cons public <init>(javax.el.MethodExpression)
-cons public <init>(javax.el.MethodExpression,javax.el.MethodExpression)
+cons public <init>(jakarta.el.MethodExpression)
+cons public <init>(jakarta.el.MethodExpression,jakarta.el.MethodExpression)
 intf javax.faces.component.StateHolder
 intf javax.faces.event.ActionListener
 meth public boolean isTransient()
@@ -5567,8 +5567,8 @@ hfds ACTION_LISTENER_ZEROARG_SIG,LOGGER,isTransient,methodExpressionOneArg,metho
 
 CLSS public javax.faces.event.MethodExpressionValueChangeListener
 cons public <init>()
-cons public <init>(javax.el.MethodExpression)
-cons public <init>(javax.el.MethodExpression,javax.el.MethodExpression)
+cons public <init>(jakarta.el.MethodExpression)
+cons public <init>(jakarta.el.MethodExpression,jakarta.el.MethodExpression)
 intf javax.faces.component.StateHolder
 intf javax.faces.event.ValueChangeListener
 meth public boolean isTransient()
@@ -5821,8 +5821,8 @@ meth public abstract java.util.Map<java.lang.String,javax.faces.flow.FlowCallNod
 meth public abstract java.util.Map<java.lang.String,javax.faces.flow.Parameter> getInboundParameters()
 meth public abstract java.util.Map<java.lang.String,javax.faces.flow.ReturnNode> getReturns()
 meth public abstract java.util.Map<java.lang.String,javax.faces.flow.SwitchNode> getSwitches()
-meth public abstract javax.el.MethodExpression getFinalizer()
-meth public abstract javax.el.MethodExpression getInitializer()
+meth public abstract jakarta.el.MethodExpression getFinalizer()
+meth public abstract jakarta.el.MethodExpression getInitializer()
 meth public abstract javax.faces.flow.FlowCallNode getFlowCall(javax.faces.flow.Flow)
 meth public abstract javax.faces.flow.FlowNode getNode(java.lang.String)
 supr java.lang.Object
@@ -5885,14 +5885,14 @@ meth public abstract java.lang.String value()
 CLSS public abstract javax.faces.flow.MethodCallNode
 cons public <init>()
 meth public abstract java.util.List<javax.faces.flow.Parameter> getParameters()
-meth public abstract javax.el.MethodExpression getMethodExpression()
-meth public abstract javax.el.ValueExpression getOutcome()
+meth public abstract jakarta.el.MethodExpression getMethodExpression()
+meth public abstract jakarta.el.ValueExpression getOutcome()
 supr javax.faces.flow.FlowNode
 
 CLSS public abstract javax.faces.flow.Parameter
 cons public <init>()
 meth public abstract java.lang.String getName()
-meth public abstract javax.el.ValueExpression getValue()
+meth public abstract jakarta.el.ValueExpression getValue()
 supr java.lang.Object
 
 CLSS public abstract javax.faces.flow.ReturnNode
@@ -5921,12 +5921,12 @@ CLSS public abstract javax.faces.flow.builder.FlowBuilder
 cons public <init>()
 meth public abstract javax.faces.flow.Flow getFlow()
 meth public abstract javax.faces.flow.builder.FlowBuilder finalizer(java.lang.String)
-meth public abstract javax.faces.flow.builder.FlowBuilder finalizer(javax.el.MethodExpression)
+meth public abstract javax.faces.flow.builder.FlowBuilder finalizer(jakarta.el.MethodExpression)
 meth public abstract javax.faces.flow.builder.FlowBuilder id(java.lang.String,java.lang.String)
 meth public abstract javax.faces.flow.builder.FlowBuilder inboundParameter(java.lang.String,java.lang.String)
-meth public abstract javax.faces.flow.builder.FlowBuilder inboundParameter(java.lang.String,javax.el.ValueExpression)
+meth public abstract javax.faces.flow.builder.FlowBuilder inboundParameter(java.lang.String,jakarta.el.ValueExpression)
 meth public abstract javax.faces.flow.builder.FlowBuilder initializer(java.lang.String)
-meth public abstract javax.faces.flow.builder.FlowBuilder initializer(javax.el.MethodExpression)
+meth public abstract javax.faces.flow.builder.FlowBuilder initializer(jakarta.el.MethodExpression)
 meth public abstract javax.faces.flow.builder.FlowCallBuilder flowCallNode(java.lang.String)
 meth public abstract javax.faces.flow.builder.MethodCallBuilder methodCallNode(java.lang.String)
 meth public abstract javax.faces.flow.builder.NavigationCaseBuilder navigationCase()
@@ -5948,7 +5948,7 @@ intf javax.faces.flow.builder.NodeBuilder
 meth public abstract javax.faces.flow.builder.FlowCallBuilder flowReference(java.lang.String,java.lang.String)
 meth public abstract javax.faces.flow.builder.FlowCallBuilder markAsStartNode()
 meth public abstract javax.faces.flow.builder.FlowCallBuilder outboundParameter(java.lang.String,java.lang.String)
-meth public abstract javax.faces.flow.builder.FlowCallBuilder outboundParameter(java.lang.String,javax.el.ValueExpression)
+meth public abstract javax.faces.flow.builder.FlowCallBuilder outboundParameter(java.lang.String,jakarta.el.ValueExpression)
 supr java.lang.Object
 
 CLSS public abstract interface !annotation javax.faces.flow.builder.FlowDefinition
@@ -5961,10 +5961,10 @@ CLSS public abstract javax.faces.flow.builder.MethodCallBuilder
 cons public <init>()
 intf javax.faces.flow.builder.NodeBuilder
 meth public abstract javax.faces.flow.builder.MethodCallBuilder defaultOutcome(java.lang.String)
-meth public abstract javax.faces.flow.builder.MethodCallBuilder defaultOutcome(javax.el.ValueExpression)
+meth public abstract javax.faces.flow.builder.MethodCallBuilder defaultOutcome(jakarta.el.ValueExpression)
 meth public abstract javax.faces.flow.builder.MethodCallBuilder expression(java.lang.String)
 meth public abstract javax.faces.flow.builder.MethodCallBuilder expression(java.lang.String,java.lang.Class[])
-meth public abstract javax.faces.flow.builder.MethodCallBuilder expression(javax.el.MethodExpression)
+meth public abstract javax.faces.flow.builder.MethodCallBuilder expression(jakarta.el.MethodExpression)
 meth public abstract javax.faces.flow.builder.MethodCallBuilder markAsStartNode()
 meth public abstract javax.faces.flow.builder.MethodCallBuilder parameters(java.util.List<javax.faces.flow.Parameter>)
 supr java.lang.Object
@@ -5973,7 +5973,7 @@ CLSS public abstract javax.faces.flow.builder.NavigationCaseBuilder
 cons public <init>()
 innr public abstract RedirectBuilder
 meth public abstract javax.faces.flow.builder.NavigationCaseBuilder condition(java.lang.String)
-meth public abstract javax.faces.flow.builder.NavigationCaseBuilder condition(javax.el.ValueExpression)
+meth public abstract javax.faces.flow.builder.NavigationCaseBuilder condition(jakarta.el.ValueExpression)
 meth public abstract javax.faces.flow.builder.NavigationCaseBuilder fromAction(java.lang.String)
 meth public abstract javax.faces.flow.builder.NavigationCaseBuilder fromOutcome(java.lang.String)
 meth public abstract javax.faces.flow.builder.NavigationCaseBuilder fromViewId(java.lang.String)
@@ -5996,7 +5996,7 @@ CLSS public abstract javax.faces.flow.builder.ReturnBuilder
 cons public <init>()
 intf javax.faces.flow.builder.NodeBuilder
 meth public abstract javax.faces.flow.builder.ReturnBuilder fromOutcome(java.lang.String)
-meth public abstract javax.faces.flow.builder.ReturnBuilder fromOutcome(javax.el.ValueExpression)
+meth public abstract javax.faces.flow.builder.ReturnBuilder fromOutcome(jakarta.el.ValueExpression)
 meth public abstract javax.faces.flow.builder.ReturnBuilder markAsStartNode()
 supr java.lang.Object
 
@@ -6005,14 +6005,14 @@ cons public <init>()
 intf javax.faces.flow.builder.NodeBuilder
 meth public abstract javax.faces.flow.builder.SwitchBuilder markAsStartNode()
 meth public abstract javax.faces.flow.builder.SwitchCaseBuilder defaultOutcome(java.lang.String)
-meth public abstract javax.faces.flow.builder.SwitchCaseBuilder defaultOutcome(javax.el.ValueExpression)
+meth public abstract javax.faces.flow.builder.SwitchCaseBuilder defaultOutcome(jakarta.el.ValueExpression)
 meth public abstract javax.faces.flow.builder.SwitchCaseBuilder switchCase()
 supr java.lang.Object
 
 CLSS public abstract javax.faces.flow.builder.SwitchCaseBuilder
 cons public <init>()
 meth public abstract javax.faces.flow.builder.SwitchCaseBuilder condition(java.lang.String)
-meth public abstract javax.faces.flow.builder.SwitchCaseBuilder condition(javax.el.ValueExpression)
+meth public abstract javax.faces.flow.builder.SwitchCaseBuilder condition(jakarta.el.ValueExpression)
 meth public abstract javax.faces.flow.builder.SwitchCaseBuilder fromOutcome(java.lang.String)
 meth public abstract javax.faces.flow.builder.SwitchCaseBuilder switchCase()
 supr java.lang.Object
@@ -6512,7 +6512,7 @@ hfds initialState,maximum,minimum,transientValue
 
 CLSS public javax.faces.validator.MethodExpressionValidator
 cons public <init>()
-cons public <init>(javax.el.MethodExpression)
+cons public <init>(jakarta.el.MethodExpression)
 intf javax.faces.component.StateHolder
 intf javax.faces.validator.Validator
 meth public boolean isTransient()
@@ -6801,14 +6801,14 @@ cons public <init>()
 fld public final static java.lang.String FACELET_CONTEXT_KEY
 meth public abstract java.lang.Object getAttribute(java.lang.String)
 meth public abstract java.lang.String generateUniqueId(java.lang.String)
-meth public abstract javax.el.ExpressionFactory getExpressionFactory()
+meth public abstract jakarta.el.ExpressionFactory getExpressionFactory()
 meth public abstract javax.faces.context.FacesContext getFacesContext()
 meth public abstract void includeFacelet(javax.faces.component.UIComponent,java.lang.String) throws java.io.IOException
 meth public abstract void includeFacelet(javax.faces.component.UIComponent,java.net.URL) throws java.io.IOException
 meth public abstract void setAttribute(java.lang.String,java.lang.Object)
-meth public abstract void setFunctionMapper(javax.el.FunctionMapper)
-meth public abstract void setVariableMapper(javax.el.VariableMapper)
-supr javax.el.ELContext
+meth public abstract void setFunctionMapper(jakarta.el.FunctionMapper)
+meth public abstract void setVariableMapper(jakarta.el.VariableMapper)
+supr jakarta.el.ELContext
 
 CLSS public javax.faces.view.facelets.FaceletException
 cons public <init>()
@@ -6906,8 +6906,8 @@ meth public abstract java.lang.String getNamespace()
 meth public abstract java.lang.String getQName()
 meth public abstract java.lang.String getValue()
 meth public abstract java.lang.String getValue(javax.faces.view.facelets.FaceletContext)
-meth public abstract javax.el.MethodExpression getMethodExpression(javax.faces.view.facelets.FaceletContext,java.lang.Class,java.lang.Class[])
-meth public abstract javax.el.ValueExpression getValueExpression(javax.faces.view.facelets.FaceletContext,java.lang.Class)
+meth public abstract jakarta.el.MethodExpression getMethodExpression(javax.faces.view.facelets.FaceletContext,java.lang.Class,java.lang.Class[])
+meth public abstract jakarta.el.ValueExpression getValueExpression(javax.faces.view.facelets.FaceletContext,java.lang.Class)
 meth public abstract javax.faces.view.Location getLocation()
 meth public javax.faces.view.facelets.Tag getTag()
 meth public void setTag(javax.faces.view.facelets.Tag)
@@ -7114,12 +7114,12 @@ CLSS public abstract javax.faces.webapp.UIComponentELTag
 cons public <init>()
 intf javax.servlet.jsp.tagext.Tag
 meth protected boolean hasBinding()
-meth protected javax.el.ELContext getELContext()
+meth protected jakarta.el.ELContext getELContext()
 meth protected javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,java.lang.String) throws javax.servlet.jsp.JspException
 meth protected void setProperties(javax.faces.component.UIComponent)
 meth public void release()
-meth public void setBinding(javax.el.ValueExpression) throws javax.servlet.jsp.JspException
-meth public void setRendered(javax.el.ValueExpression)
+meth public void setBinding(jakarta.el.ValueExpression) throws javax.servlet.jsp.JspException
+meth public void setRendered(jakarta.el.ValueExpression)
 supr javax.faces.webapp.UIComponentClassicTagBase
 hfds binding,rendered
 
@@ -7147,7 +7147,7 @@ meth protected abstract int getIndexOfNextChildTag()
 meth protected abstract javax.faces.context.FacesContext getFacesContext()
 meth protected abstract void addChild(javax.faces.component.UIComponent)
 meth protected abstract void addFacet(java.lang.String)
-meth protected javax.el.ELContext getELContext()
+meth protected jakarta.el.ELContext getELContext()
 meth public abstract boolean getCreated()
 meth public abstract java.lang.String getComponentType()
 meth public abstract java.lang.String getRendererType()

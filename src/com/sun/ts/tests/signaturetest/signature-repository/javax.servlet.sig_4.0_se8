@@ -2,7 +2,7 @@
 #Version 4.0_se8
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -200,21 +200,21 @@ meth public java.lang.String toString()
 supr java.lang.Object
 hfds serialVersionUID
 
-CLSS public abstract javax.el.ELResolver
+CLSS public abstract jakarta.el.ELResolver
 cons public <init>()
 fld public final static java.lang.String RESOLVABLE_AT_DESIGN_TIME = "resolvableAtDesignTime"
 fld public final static java.lang.String TYPE = "type"
-meth public abstract boolean isReadOnly(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public abstract java.lang.Class<?> getCommonPropertyType(javax.el.ELContext,java.lang.Object)
-meth public abstract java.lang.Class<?> getType(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public abstract java.lang.Object getValue(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public abstract java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(javax.el.ELContext,java.lang.Object)
-meth public abstract void setValue(javax.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
-meth public java.lang.Object convertToType(javax.el.ELContext,java.lang.Object,java.lang.Class<?>)
-meth public java.lang.Object invoke(javax.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
+meth public abstract boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public abstract java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
+meth public abstract java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public abstract java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public abstract java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
+meth public java.lang.Object convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<?>)
+meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 supr java.lang.Object
 
-CLSS public abstract javax.el.Expression
+CLSS public abstract jakarta.el.Expression
 cons public <init>()
 intf java.io.Serializable
 meth public abstract boolean equals(java.lang.Object)
@@ -223,15 +223,15 @@ meth public abstract int hashCode()
 meth public abstract java.lang.String getExpressionString()
 supr java.lang.Object
 
-CLSS public abstract javax.el.ValueExpression
+CLSS public abstract jakarta.el.ValueExpression
 cons public <init>()
-meth public abstract boolean isReadOnly(javax.el.ELContext)
+meth public abstract boolean isReadOnly(jakarta.el.ELContext)
 meth public abstract java.lang.Class<?> getExpectedType()
-meth public abstract java.lang.Class<?> getType(javax.el.ELContext)
-meth public abstract java.lang.Object getValue(javax.el.ELContext)
-meth public abstract void setValue(javax.el.ELContext,java.lang.Object)
-meth public javax.el.ValueReference getValueReference(javax.el.ELContext)
-supr javax.el.Expression
+meth public abstract java.lang.Class<?> getType(jakarta.el.ELContext)
+meth public abstract java.lang.Object getValue(jakarta.el.ELContext)
+meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object)
+meth public jakarta.el.ValueReference getValueReference(jakarta.el.ELContext)
+supr jakarta.el.Expression
 
 CLSS public abstract interface javax.servlet.AsyncContext
 fld public final static java.lang.String ASYNC_CONTEXT_PATH = "javax.servlet.async.context_path"
@@ -1301,9 +1301,9 @@ intf javax.servlet.jsp.JspPage
 meth public abstract void _jspService(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
 
 CLSS public abstract interface javax.servlet.jsp.JspApplicationContext
-meth public abstract javax.el.ExpressionFactory getExpressionFactory()
-meth public abstract void addELContextListener(javax.el.ELContextListener)
-meth public abstract void addELResolver(javax.el.ELResolver)
+meth public abstract jakarta.el.ExpressionFactory getExpressionFactory()
+meth public abstract void addELContextListener(jakarta.el.ELContextListener)
+meth public abstract void addELResolver(jakarta.el.ELResolver)
 
 CLSS public abstract javax.servlet.jsp.JspContext
 cons public <init>()
@@ -1312,7 +1312,7 @@ meth public abstract java.lang.Object findAttribute(java.lang.String)
 meth public abstract java.lang.Object getAttribute(java.lang.String)
 meth public abstract java.lang.Object getAttribute(java.lang.String,int)
 meth public abstract java.util.Enumeration<java.lang.String> getAttributeNamesInScope(int)
-meth public abstract javax.el.ELContext getELContext()
+meth public abstract jakarta.el.ELContext getELContext()
 meth public abstract javax.servlet.jsp.JspWriter getOut()
 meth public abstract javax.servlet.jsp.el.ExpressionEvaluator getExpressionEvaluator()
 meth public abstract javax.servlet.jsp.el.VariableResolver getVariableResolver()
@@ -1466,24 +1466,24 @@ meth public abstract java.lang.reflect.Method resolveFunction(java.lang.String,j
 
 CLSS public javax.servlet.jsp.el.ImplicitObjectELResolver
 cons public <init>()
-meth public boolean isReadOnly(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.lang.Class getType(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.lang.Class<java.lang.String> getCommonPropertyType(javax.el.ELContext,java.lang.Object)
-meth public java.lang.Object getValue(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(javax.el.ELContext,java.lang.Object)
-meth public void setValue(javax.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
-supr javax.el.ELResolver
+meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
+meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
+supr jakarta.el.ELResolver
 hcls EnumeratedMap,ImplicitObjects
 
 CLSS public javax.servlet.jsp.el.ScopedAttributeELResolver
 cons public <init>()
-meth public boolean isReadOnly(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.lang.Class<java.lang.Object> getType(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.lang.Class<java.lang.String> getCommonPropertyType(javax.el.ELContext,java.lang.Object)
-meth public java.lang.Object getValue(javax.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(javax.el.ELContext,java.lang.Object)
-meth public void setValue(javax.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
-supr javax.el.ELResolver
+meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
+meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
+supr jakarta.el.ELResolver
 
 CLSS public abstract interface javax.servlet.jsp.el.VariableResolver
 meth public abstract java.lang.Object resolveVariable(java.lang.String) throws javax.servlet.jsp.el.ELException
@@ -1523,27 +1523,27 @@ supr java.lang.Object
 hfds APPLICATION_SCOPE_SUFFIX,PAGE_SCOPE_SUFFIX,REQUEST_SCOPE_SUFFIX,SESSION_SCOPE_SUFFIX
 
 CLSS public final javax.servlet.jsp.jstl.core.IndexedValueExpression
-cons public <init>(javax.el.ValueExpression,int)
+cons public <init>(jakarta.el.ValueExpression,int)
 fld protected final java.lang.Integer i
-fld protected final javax.el.ValueExpression orig
+fld protected final jakarta.el.ValueExpression orig
 meth public boolean equals(java.lang.Object)
 meth public boolean isLiteralText()
-meth public boolean isReadOnly(javax.el.ELContext)
+meth public boolean isReadOnly(jakarta.el.ELContext)
 meth public int hashCode()
 meth public java.lang.Class getExpectedType()
-meth public java.lang.Class getType(javax.el.ELContext)
-meth public java.lang.Object getValue(javax.el.ELContext)
+meth public java.lang.Class getType(jakarta.el.ELContext)
+meth public java.lang.Object getValue(jakarta.el.ELContext)
 meth public java.lang.String getExpressionString()
-meth public void setValue(javax.el.ELContext,java.lang.Object)
-supr javax.el.ValueExpression
+meth public void setValue(jakarta.el.ELContext,java.lang.Object)
+supr jakarta.el.ValueExpression
 hfds serialVersionUID
 
 CLSS public final javax.servlet.jsp.jstl.core.IteratedExpression
-cons public <init>(javax.el.ValueExpression,java.lang.String)
+cons public <init>(jakarta.el.ValueExpression,java.lang.String)
 fld protected final java.lang.String delims
-fld protected final javax.el.ValueExpression orig
-meth public java.lang.Object getItem(javax.el.ELContext,int)
-meth public javax.el.ValueExpression getValueExpression()
+fld protected final jakarta.el.ValueExpression orig
+meth public java.lang.Object getItem(jakarta.el.ELContext,int)
+meth public jakarta.el.ValueExpression getValueExpression()
 supr java.lang.Object
 hfds base,index,iter,serialVersionUID
 
@@ -1553,14 +1553,14 @@ fld protected final int i
 fld protected final javax.servlet.jsp.jstl.core.IteratedExpression iteratedExpression
 meth public boolean equals(java.lang.Object)
 meth public boolean isLiteralText()
-meth public boolean isReadOnly(javax.el.ELContext)
+meth public boolean isReadOnly(jakarta.el.ELContext)
 meth public int hashCode()
 meth public java.lang.Class getExpectedType()
-meth public java.lang.Class getType(javax.el.ELContext)
-meth public java.lang.Object getValue(javax.el.ELContext)
+meth public java.lang.Class getType(jakarta.el.ELContext)
+meth public java.lang.Object getValue(jakarta.el.ELContext)
 meth public java.lang.String getExpressionString()
-meth public void setValue(javax.el.ELContext,java.lang.Object)
-supr javax.el.ValueExpression
+meth public void setValue(jakarta.el.ELContext,java.lang.Object)
+supr jakarta.el.ValueExpression
 hfds serialVersionUID
 
 CLSS public abstract interface javax.servlet.jsp.jstl.core.LoopTag
@@ -1588,7 +1588,7 @@ fld protected int end
 fld protected int step
 fld protected java.lang.String itemId
 fld protected java.lang.String statusId
-fld protected javax.el.ValueExpression deferredExpression
+fld protected jakarta.el.ValueExpression deferredExpression
 intf javax.servlet.jsp.jstl.core.LoopTag
 intf javax.servlet.jsp.tagext.IterationTag
 intf javax.servlet.jsp.tagext.TryCatchFinally

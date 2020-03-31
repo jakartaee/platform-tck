@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018-2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -4217,7 +4217,7 @@
                             
                             
                             
-                               For example, in the EL expression ${employee.lastName}, an  ELResolver determines what object "employee"  references and how to find its "lastName" property.   When evaluating an expression, the JSP container will consult a  set of standard resolvers as well as any resolvers registered via  this method. The set of resolvers are consulted in the following  order:      javax.servlet.jsp.el.ImplicitObjectELResolver    ELResolvers registered via this method, in the        order in which they are registered.    javax.el.MapELResolverjavax.el.ListELResolverjavax.el.ArrayELResolverjavax.el.BeanELResolverjavax.servlet.jsp.el.ScopedAttributeELResolver     It is illegal to register an ELResolver after the  application has received any request from the client. If an  attempt is made to register an ELResolver after that time,  an IllegalStateException is thrown.  This restriction is  in place to allow the JSP container to optimize for the common  case where no additional ELResolvers are in the chain,  aside from the standard ones. It is permissible to add  ELResolvers before or after initialization to  a CompositeELResolver that is already in the chain.   It is not possible to remove an ELResolver registered  with this method, once it has been registered.
+                               For example, in the EL expression ${employee.lastName}, an  ELResolver determines what object "employee"  references and how to find its "lastName" property.   When evaluating an expression, the JSP container will consult a  set of standard resolvers as well as any resolvers registered via  this method. The set of resolvers are consulted in the following  order:      javax.servlet.jsp.el.ImplicitObjectELResolver    ELResolvers registered via this method, in the        order in which they are registered.    jakarta.el.MapELResolverjakarta.el.ListELResolverjakarta.el.ArrayELResolverjakarta.el.BeanELResolverjavax.servlet.jsp.el.ScopedAttributeELResolver     It is illegal to register an ELResolver after the  application has received any request from the client. If an  attempt is made to register an ELResolver after that time,  an IllegalStateException is thrown.  This restriction is  in place to allow the JSP container to optimize for the common  case where no additional ELResolvers are in the chain,  aside from the standard ones. It is permissible to add  ELResolvers before or after initialization to  a CompositeELResolver that is already in the chain.   It is not possible to remove an ELResolver registered  with this method, once it has been registered.
                         
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -4559,7 +4559,7 @@
 <TR>
 <TD align="center" valign="center"><a name="JSP:JAVADOC:436"></a><font size="1PT">JSP:JAVADOC:436</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.servlet.jsp.tagext.TagAttributeInfo.isDeferredValue<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">                            Returns true if this attribute is to be passed a  ValueExpression so that expression evaluation  can be deferred.
-                               If this method returns true, then  getTypeName() must return  "javax.el.ValueExpression".   The getExpectedType() method can be used to retrieve  the expected type this value expression will be constructed with.
+                               If this method returns true, then  getTypeName() must return  "jakarta.el.ValueExpression".   The getExpectedType() method can be used to retrieve  the expected type this value expression will be constructed with.
                         
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -4568,7 +4568,7 @@
 <TR>
 <TD align="center" valign="center"><a name="JSP:JAVADOC:437"></a><font size="1PT">JSP:JAVADOC:437</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.servlet.jsp.tagext.TagAttributeInfo.isDeferredMethod<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">                            Returns true if this attribute is to be passed a  MethodExpression so that expression evaluation  can be deferred.
-                               If this method returns true, then  getTypeName() must return  "javax.el.MethodExpression".   The getMethodSignature() method can be used to retrieve  the expected method signature this method expression will be  constructed with.
+                               If this method returns true, then  getTypeName() must return  "jakarta.el.MethodExpression".   The getMethodSignature() method can be used to retrieve  the expected method signature this method expression will be  constructed with.
                         
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
