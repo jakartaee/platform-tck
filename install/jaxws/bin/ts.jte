@@ -102,11 +102,11 @@ catalog.path=${src.dir}/com/sun/ts/tests/jaxws/common/xml/catalog
 ####################################################################
 ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jaxwstck.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxb-libs.jar${pathsep}${ts.home}/lib/jaxb-impl.jar
 
-ts.classpath=${jaxws.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jaxwstck.jar
+ts.classpath=${jaxws.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jaxwstck.jar${pathsep}${local.classes}
 
-ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/jaxwstck.jar${pathsep}${ts.home}/classes${pathsep}${jaxws.classes}${pathsep}${catalog.path}
+ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/jaxwstck.jar${pathsep}${ts.home}/classes${pathsep}${jaxws.classes}${pathsep}${catalog.path}${pathsep}${local.classes}
 
-ts.run.classpath.ri=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/jaxwstck.jar${pathsep}${ts.home}/classes${pathsep}${jaxws.classes.ri}${pathsep}${catalog.path}
+ts.run.classpath.ri=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/jaxwstck.jar${pathsep}${ts.home}/classes${pathsep}${jaxws.classes.ri}${pathsep}${catalog.path}${pathsep}${local.classes}
 
 ###########################################################################
 # @tools.jar  should be set to the location of the tools.jar from the installed

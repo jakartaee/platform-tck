@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,7 @@ import java.util.Timer;
 import javax.resource.spi.XATerminator;
 import javax.transaction.xa.Xid;
 import javax.resource.spi.UnavailableException;
-import jakarta.transaction.TransactionSynchronizationRegistry;
+import javax.transaction.TransactionSynchronizationRegistry;
 import com.sun.ts.lib.util.TSNamingContext;
 
 public class TestBootstrapContext {
