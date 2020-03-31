@@ -28,7 +28,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import javax.jms.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.naming.*;
 import javax.inject.Inject;
 import javax.annotation.Resource;

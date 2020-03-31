@@ -27,7 +27,7 @@ import com.sun.ts.tests.jta.ee.txpropagationtest.*;
 
 import java.io.*;
 import java.util.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 
 import com.sun.javatest.Status;
 

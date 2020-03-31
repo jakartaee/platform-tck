@@ -29,7 +29,7 @@ import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.*;
 import java.io.*;
 import java.util.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.rmi.PortableRemoteObject;
 import java.rmi.*;
 

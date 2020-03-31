@@ -26,7 +26,7 @@ import com.sun.ts.lib.porting.*;
 import java.util.*;
 import jakarta.ejb.*;
 import javax.naming.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.rmi.*;
 import java.sql.*;
 import java.security.Principal;
@@ -567,19 +567,20 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     }
 
     // getMessageContext test
-    try {
-      sctx.getMessageContext();
-      TestUtil.logMsg("Operations test: getMessageContext() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("getMessageContext", "false");
-      TestUtil.logMsg("Operations test: getMessageContext() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("getMessageContext", "unexpected");
-      TestUtil.logMsg(
-          "Operations test: getMessageContext() - not allowed (Unexpected Exception) - "
-              + e);
-    }
+// TODO: Verify
+// jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore    try {
+//      sctx.getMessageContext();
+//      TestUtil.logMsg("Operations test: getMessageContext() - allowed");
+//    } catch (IllegalStateException e) {
+//      methodList[i].setProperty("getMessageContext", "false");
+//      TestUtil.logMsg("Operations test: getMessageContext() - not allowed");
+//    } catch (Exception e) {
+//      TestUtil.printStackTrace(e);
+//      methodList[i].setProperty("getMessageContext", "unexpected");
+//      TestUtil.logMsg(
+//          "Operations test: getMessageContext() - not allowed (Unexpected Exception) - "
+//              + e);
+//    }
 
     // getRollbackOnly test
     try {

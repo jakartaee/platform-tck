@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2002 International Business Machines Corp. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -29,12 +29,12 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.rmi.*;
-import javax.xml.soap.*;
+import jakarta.xml.soap.*;
 import javax.xml.rpc.soap.*;
 import javax.xml.rpc.handler.*;
 import javax.xml.rpc.handler.soap.*;
 import java.util.*;
-import javax.xml.soap.*;
+import jakarta.xml.soap.*;
 import javax.xml.rpc.JAXRPCException;
 import javax.xml.rpc.handler.*;
 import javax.xml.rpc.handler.soap.*;

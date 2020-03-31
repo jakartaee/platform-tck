@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,9 +33,9 @@ import javax.jws.WebService;
 
 import java.lang.reflect.*;
 
-import javax.xml.ws.handler.MessageContext;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.WebServiceContext;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceContext;
 
 @WebService(portName = "HttpTestPort", serviceName = "HttpTestService", targetNamespace = "http://httptestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLHttpServletMsgCtxPropsTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTest")
 public class HttpTestImpl implements HttpTest {

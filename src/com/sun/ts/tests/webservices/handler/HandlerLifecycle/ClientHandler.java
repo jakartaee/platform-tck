@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2002 International Business Machines Corp. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -25,12 +25,12 @@ import com.sun.javatest.Status;
 
 import com.sun.ts.tests.jaxrpc.common.HandlerBase;
 
-import javax.xml.soap.*;
+import jakarta.xml.soap.*;
 import javax.xml.rpc.soap.*;
 import javax.xml.rpc.handler.*;
 import javax.xml.rpc.handler.soap.*;
 import java.util.*;
-import javax.xml.soap.*;
+import jakarta.xml.soap.*;
 import javax.xml.rpc.handler.*;
 import javax.xml.rpc.*;
 import javax.xml.rpc.handler.soap.*;
@@ -81,7 +81,7 @@ public class ClientHandler extends HandlerBase {
         }
       }
       msg.saveChanges();
-    } catch (javax.xml.soap.SOAPException se) {
+    } catch (jakarta.xml.soap.SOAPException se) {
       se.printStackTrace();
     } finally {
       postinvoke();
@@ -136,7 +136,7 @@ public class ClientHandler extends HandlerBase {
         }
       }
       msg.saveChanges();
-    } catch (javax.xml.soap.SOAPException se) {
+    } catch (jakarta.xml.soap.SOAPException se) {
       se.printStackTrace();
     } finally {
       postinvoke();

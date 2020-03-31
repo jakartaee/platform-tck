@@ -32,7 +32,7 @@ import java.util.*;
 import java.sql.*;
 import javax.sql.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import com.sun.ts.tests.common.connector.whitebox.TSEISDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 

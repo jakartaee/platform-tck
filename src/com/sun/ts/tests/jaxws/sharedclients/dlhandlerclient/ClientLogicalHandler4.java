@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,14 +24,14 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jaxws.common.*;
 
-import javax.xml.ws.handler.LogicalMessageContext;
-import javax.xml.ws.soap.SOAPFaultException;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.ProtocolException;
-import javax.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.handler.LogicalMessageContext;
+import jakarta.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.ProtocolException;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import javax.xml.namespace.QName;
-import javax.xml.soap.SOAPFactory;
-import javax.xml.soap.Name;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.Name;
 
 import java.io.StringReader;
 import javax.xml.transform.stream.StreamSource;
@@ -50,7 +50,7 @@ public class ClientLogicalHandler4 extends LogicalHandlerBase {
 
   private Name name = null;
 
-  private javax.xml.soap.SOAPFault sf;
+  private jakarta.xml.soap.SOAPFault sf;
 
   public ClientLogicalHandler4() {
     super();

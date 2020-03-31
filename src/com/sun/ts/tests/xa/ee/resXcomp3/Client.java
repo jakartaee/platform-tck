@@ -25,7 +25,7 @@ package com.sun.ts.tests.xa.ee.resXcomp3;
 
 import java.io.*;
 import java.util.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.transaction.xa.XAException;
 
 import com.sun.ts.lib.util.*;

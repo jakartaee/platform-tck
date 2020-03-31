@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,12 +29,12 @@ import java.net.*;
 import java.util.*;
 import java.rmi.*;
 
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import java.util.Properties;
 import com.sun.ts.tests.jaxws.common.*;
 
 import javax.xml.namespace.QName;
-import javax.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBContext;
 
 public class Client extends ServiceEETest {
 
@@ -95,14 +95,14 @@ public class Client extends ServiceEETest {
   private JAXBContext createJAXBContext() {
     try {
       return JAXBContext.newInstance(JAXB_OBJECT_FACTORY);
-    } catch (javax.xml.bind.JAXBException e) {
+    } catch (jakarta.xml.bind.JAXBException e) {
       throw new WebServiceException(e.getMessage(), e);
     }
   }
 
   private Dispatch<Object> createDispatchJAXB() throws Exception {
     return service.createDispatch(PORT_QNAME, createJAXBContext(),
-        javax.xml.ws.Service.Mode.PAYLOAD);
+        jakarta.xml.ws.Service.Mode.PAYLOAD);
   }
 
   private void getTestURLs() throws Exception {

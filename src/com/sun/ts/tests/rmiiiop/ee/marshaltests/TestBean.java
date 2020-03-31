@@ -23,7 +23,7 @@ package com.sun.ts.tests.rmiiiop.ee.marshaltests;
 import java.util.*;
 import java.rmi.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.rmi.*;
 
 public interface TestBean extends EJBObject {

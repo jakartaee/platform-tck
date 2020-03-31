@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,11 +26,11 @@ import com.sun.ts.lib.harness.*;
 import javax.jws.WebService;
 import javax.jws.WebParam;
 import javax.jws.HandlerChain;
-import javax.xml.ws.BindingType;
-import javax.xml.ws.soap.SOAPBinding;
-import javax.xml.ws.Holder;
-import javax.xml.ws.Action;
-import javax.xml.ws.soap.Addressing;
+import jakarta.xml.ws.BindingType;
+import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.Action;
+import jakarta.xml.ws.soap.Addressing;
 
 @WebService(name = "AddressingFeatureTest1", portName = "AddressingFeatureTest1Port", targetNamespace = "http://addressingfeatureservice.org/wsdl", serviceName = "AddressingFeatureTest1Service")
 

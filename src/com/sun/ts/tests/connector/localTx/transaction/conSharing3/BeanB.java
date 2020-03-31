@@ -23,7 +23,7 @@ package com.sun.ts.tests.connector.localTx.transaction.conSharing3;
 import java.rmi.*;
 import java.util.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import com.sun.ts.lib.util.*;
 
 public interface BeanB extends EJBObject {

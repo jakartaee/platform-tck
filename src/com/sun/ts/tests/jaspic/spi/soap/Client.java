@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -603,7 +603,7 @@ public class Client extends EETest {
    *                 have been initialized such that the non-null objects
    *                 returned by the getRequestMessage and getResponseMessage
    *                 methods of the MessageInfo are an instanceof
-   *                 javax.xml.soap.SOAPMessage.
+   *                 jakarta.xml.soap.SOAPMessage.
    *
    *
    */
@@ -611,12 +611,12 @@ public class Client extends EETest {
     boolean verified = false;
 
     String args[] = {
-        "secureRequest : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage",
-        "validateRequest : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage",
-        "secureResponse : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage",
-        "secureResponse : MessageInfo.getResponseMessage() is of type javax.xml.soap.SOAPMessage",
-        "validateResponse : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage",
-        "validateResponse : MessageInfo.getResponseMessage() is of type javax.xml.soap.SOAPMessage" };
+        "secureRequest : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "validateRequest : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "secureResponse : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "secureResponse : MessageInfo.getResponseMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "validateResponse : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "validateResponse : MessageInfo.getResponseMessage() is of type jakarta.xml.soap.SOAPMessage" };
 
     // verify whether the log contains required messages.
     verified = logProcessor.verifyLogContains(args);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,12 +24,12 @@ import javax.annotation.Resource;
 import javax.jws.HandlerChain;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
-import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.Action;
-import javax.xml.ws.FaultAction;
-import javax.xml.ws.BindingType;
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.Action;
+import jakarta.xml.ws.FaultAction;
+import jakarta.xml.ws.BindingType;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.soap.SOAPBinding;
 
 @HandlerChain(name = "", file = "server-handler.xml")
 @WebService(name = "AddNumbers", portName = "AddNumbersPort", targetNamespace = "http://foobar.org/", serviceName = "AddNumbersService")

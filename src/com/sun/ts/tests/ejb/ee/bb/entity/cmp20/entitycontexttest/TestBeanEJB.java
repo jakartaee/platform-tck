@@ -27,7 +27,7 @@ import java.util.*;
 import jakarta.ejb.*;
 import java.rmi.*;
 import java.security.Principal;
-import javax.transaction.*;
+import jakarta.transaction.*;
 
 public abstract class TestBeanEJB implements EntityBean, TimedObject {
   private EntityContext ectx = null;

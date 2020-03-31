@@ -30,7 +30,7 @@ import com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome;
 
 import java.io.Serializable;
 
-import javax.mail.*;
+import jakarta.mail.*;
 
 import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
 

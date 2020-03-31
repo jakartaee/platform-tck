@@ -25,7 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.TSLoginContext;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.io.Serializable;
 
 public class ProxyBeanEJB extends StatefulWrapper {

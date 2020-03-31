@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 
 import java.util.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.rmi.*;
 
 public class TestBeanEJB implements SessionBean {

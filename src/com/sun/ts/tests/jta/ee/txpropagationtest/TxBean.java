@@ -23,7 +23,7 @@ package com.sun.ts.tests.jta.ee.txpropagationtest;
 import java.rmi.*;
 import java.util.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import com.sun.ts.lib.util.*;
 
 public interface TxBean extends EJBObject {

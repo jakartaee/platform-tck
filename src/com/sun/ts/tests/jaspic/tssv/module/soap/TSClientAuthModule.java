@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -106,7 +106,7 @@ public class TSClientAuthModule
    */
   @Override
   public Class[] getSupportedMessageTypes() {
-    Class[] classarray = { javax.xml.soap.SOAPMessage.class };
+    Class[] classarray = { jakarta.xml.soap.SOAPMessage.class };
     logMsg("TSClientAuthModule.getSupportedMessageTypes called");
     return classarray;
   }
@@ -373,9 +373,9 @@ public class TSClientAuthModule
     Object responseMessage = messageInfo.getResponseMessage();
 
     if (requestMessage != null) {
-      if (requestMessage instanceof javax.xml.soap.SOAPMessage) {
+      if (requestMessage instanceof jakarta.xml.soap.SOAPMessage) {
         msg = methodName
-            + " : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage";
+            + " : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage";
         logMsg(msg);
       } else {
         msg = methodName + " : MessageInfo.getRequestMessage() is of type "
@@ -386,9 +386,9 @@ public class TSClientAuthModule
     }
 
     if (responseMessage != null) {
-      if (responseMessage instanceof javax.xml.soap.SOAPMessage) {
+      if (responseMessage instanceof jakarta.xml.soap.SOAPMessage) {
         msg = methodName
-            + " : MessageInfo.getResponseMessage() is of type javax.xml.soap.SOAPMessage";
+            + " : MessageInfo.getResponseMessage() is of type jakarta.xml.soap.SOAPMessage";
         logMsg(msg);
       } else {
         msg = methodName + " : MessageInfo.getResponseMessage() is of type "

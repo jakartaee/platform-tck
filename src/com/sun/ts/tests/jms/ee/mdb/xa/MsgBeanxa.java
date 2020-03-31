@@ -34,7 +34,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.tests.jms.commonee.*;
 
-import javax.transaction.*;
+import jakarta.transaction.*;
 
 public class MsgBeanxa implements MessageDrivenBean, MessageListener {
 

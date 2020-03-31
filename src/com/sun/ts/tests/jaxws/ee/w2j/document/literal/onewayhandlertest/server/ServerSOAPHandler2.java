@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,11 +29,11 @@ import com.sun.ts.tests.jaxws.common.SOAPHandlerBase2;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
 import com.sun.ts.tests.jaxws.common.HandlerTracker;
 import javax.xml.namespace.QName;
-import javax.xml.soap.SOAPFactory;
-import javax.xml.ws.soap.SOAPFaultException;
-import javax.xml.soap.SOAPFault;
-import javax.xml.soap.Name;
-import javax.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.soap.SOAPFault;
+import jakarta.xml.soap.Name;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public class ServerSOAPHandler2 extends SOAPHandlerBase2 {
   private static final String WHICHHANDLERTYPE = "Server";

@@ -319,7 +319,7 @@ public class Client extends ClientBase implements Constants {
    *
    * @test_Strategy: For a bean-managed stateful session bean, attempt to call
    * ut.begin() after a TX has already been started. This is disallowed so check
-   * that a javax.transaction. NotSupportedException is thrown.
+   * that a jakarta.transaction. NotSupportedException is thrown.
    */
 
   public void utBeginTest() throws Fault {

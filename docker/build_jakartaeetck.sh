@@ -98,6 +98,12 @@ ls -l $GF_HOME/glassfish5/glassfish/
 wget --progress=bar:force --no-cache \
      https://repo1.maven.org/maven2/jakarta/platform/jakarta.jakartaee-api/9.0.0-RC1/jakarta.jakartaee-api-9.0.0-RC1.jar \
      -O $GF_HOME/glassfish5/glassfish/modules/jakartaee-api.jar
+wget --progress=bar:force --no-cache \
+     https://repo1.maven.org/maven2/jakarta/xml/ws/jakarta.xml.ws-api/3.0.0-RC1/jakarta.xml.ws-api-3.0.0-RC1.jar \
+     -O $GF_HOME/glassfish5/glassfish/modules/jakarta.xml.ws-api.jar
+wget --progress=bar:force --no-cache \
+     https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/3.0.0-RC2/jakarta.xml.bind-api-3.0.0-RC2.jar \
+      -O $GF_HOME/glassfish5/glassfish/modules/jakarta.xml.bind-api.jar
 
 if [ ! -z "$GF_VERSION_URL" ]; then
   wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version

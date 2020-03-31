@@ -26,7 +26,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
 import javax.jms.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.naming.*;
 import javax.inject.Inject;
 import javax.annotation.Resource;

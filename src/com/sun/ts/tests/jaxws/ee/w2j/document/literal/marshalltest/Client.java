@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,8 +31,8 @@ import java.net.*;
 import java.rmi.*;
 import java.util.*;
 
-import javax.xml.ws.*;
-import javax.xml.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
 
 import java.util.Properties;
 import java.util.GregorianCalendar;
@@ -169,7 +169,7 @@ public class Client extends ServiceEETest {
      * TestUtil.logMsg("JNDI lookup for Service1"); InitialContext ctx = new
      * InitialContext();
      * TestUtil.logMsg("Lookup java:comp/env/service/wsw2jdlmarshalltest");
-     * Service svc = (javax.xml.ws.Service)
+     * Service svc = (jakarta.xml.ws.Service)
      * ctx.lookup("java:comp/env/service/wsw2jdlmarshalltest");
      * TestUtil.logMsg("Get port1 from Service1"); port = (MarshallTest)
      * svc.getPort(com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.

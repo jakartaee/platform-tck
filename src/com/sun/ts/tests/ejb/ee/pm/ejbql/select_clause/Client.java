@@ -31,7 +31,7 @@ import java.util.*;
 import java.lang.*;
 import java.math.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.rmi.PortableRemoteObject;
 import java.rmi.*;
 

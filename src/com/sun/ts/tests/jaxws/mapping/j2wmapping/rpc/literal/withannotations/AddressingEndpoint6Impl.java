@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import javax.jws.WebService;
-import javax.xml.ws.BindingType;
-import javax.xml.ws.soap.SOAPBinding;
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.soap.AddressingFeature;
+import jakarta.xml.ws.BindingType;
+import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.soap.AddressingFeature;
 
 @WebService(portName = "AddressingEndpoint6Port", serviceName = "AddressingService6", targetNamespace = "http://rpclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint6")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)

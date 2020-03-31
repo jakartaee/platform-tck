@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2738;
 
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.Holder;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 import com.sun.ts.lib.harness.EETest;
 
@@ -32,7 +32,7 @@ public class W2JRLR2738Client extends SOAPClient {
   }
 
   public W2JRLR2738Client(String webServerHost, int port, int mode,
-      javax.xml.ws.Service webServiceRef) throws EETest.Fault {
+      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
     super(webServerHost, port, mode);
     stubContext.setNamespace(
         "http://w2jrlr2738testservice.org/W2JRLR2738TestService.wsdl");

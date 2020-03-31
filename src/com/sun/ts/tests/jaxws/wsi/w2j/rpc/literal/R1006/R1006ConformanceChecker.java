@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +22,8 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1006;
 
 import com.sun.ts.tests.jaxws.common.RequestConformanceChecker;
 
-import javax.xml.ws.handler.soap.SOAPMessageContext;
-import javax.xml.soap.*;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.soap.*;
 import java.util.Iterator;
 
 public class R1006ConformanceChecker extends RequestConformanceChecker {

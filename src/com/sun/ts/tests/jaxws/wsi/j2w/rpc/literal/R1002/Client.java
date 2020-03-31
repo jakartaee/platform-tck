@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.faultclient.*;
 import com.sun.javatest.Status;
 
-import javax.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.ws.soap.SOAPFaultException;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.*;
@@ -81,7 +81,7 @@ public class Client extends ServiceEETest {
       client.alwaysThrowsSOAPFaultExceptionDetailNoChildren();
     } catch (SOAPFaultException sfe) {
       // expected result
-    } catch (javax.xml.ws.WebServiceException re) {
+    } catch (jakarta.xml.ws.WebServiceException re) {
       // expected result
     } catch (Exception e) {
       e.printStackTrace();
@@ -107,7 +107,7 @@ public class Client extends ServiceEETest {
       client.alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren();
     } catch (SOAPFaultException sfe) {
       // expected result
-    } catch (javax.xml.ws.WebServiceException re) {
+    } catch (jakarta.xml.ws.WebServiceException re) {
       // expected result
     } catch (Exception e) {
       e.printStackTrace();
@@ -133,7 +133,7 @@ public class Client extends ServiceEETest {
       client.alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren();
     } catch (SOAPFaultException sfe) {
       // expected result
-    } catch (javax.xml.ws.WebServiceException re) {
+    } catch (jakarta.xml.ws.WebServiceException re) {
       // expected result
     } catch (Exception e) {
       e.printStackTrace();

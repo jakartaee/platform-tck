@@ -27,7 +27,7 @@ import com.sun.ts.lib.harness.*;
 import java.io.*;
 import java.util.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.rmi.*;
 
 import com.sun.javatest.Status;
@@ -381,7 +381,7 @@ public class Client extends EETest {
    *
    * @test_Strategy: For a bean-managed stateful session bean, attempt to call
    * ut.begin() after a TX has already been started. This is disallowed so check
-   * that a javax.transaction. NotSupportedException is thrown.
+   * that a jakarta.transaction. NotSupportedException is thrown.
    *
    */
 

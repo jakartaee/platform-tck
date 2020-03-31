@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,12 +33,12 @@ import java.net.*;
 import java.util.*;
 import java.rmi.*;
 
-import javax.xml.ws.*;
-import javax.xml.ws.EndpointReference;
-import javax.xml.ws.wsaddressing.W3CEndpointReference;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.EndpointReference;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.ws.soap.*;
 import javax.xml.namespace.QName;
-import javax.xml.ws.handler.*;
+import jakarta.xml.ws.handler.*;
 import javax.xml.transform.Source;
 import com.sun.ts.tests.jaxws.wsa.common.*;
 
@@ -110,7 +110,7 @@ public class Client extends ServiceEETest {
   static HelloService service = null;
 
   private Dispatch<Source> createDispatchSrc(QName port, Class type,
-      javax.xml.ws.Service.Mode mode) {
+      jakarta.xml.ws.Service.Mode mode) {
     TestUtil.logMsg("Create a Dispatch object for SOAP 1.1 over HTTP binding");
     return service.createDispatch(port, type, mode);
   }
@@ -125,7 +125,7 @@ public class Client extends ServiceEETest {
     getPorts();
     bpStub = (BindingProvider) port;
     dispatchSrc = createDispatchSrc(PORT_QNAME, Source.class,
-        javax.xml.ws.Service.Mode.PAYLOAD);
+        jakarta.xml.ws.Service.Mode.PAYLOAD);
     JAXWS_Util.setTargetEndpointAddress(port, url);
   }
 
@@ -138,7 +138,7 @@ public class Client extends ServiceEETest {
     String url = JAXWS_Util.getTargetEndpointAddress(port);
     TestUtil.logMsg("Target Endpoint Address=" + url);
     dispatchSrc = service.createDispatch(PORT_QNAME, Source.class,
-        javax.xml.ws.Service.Mode.PAYLOAD);
+        jakarta.xml.ws.Service.Mode.PAYLOAD);
   }
 
   private void getTestURLs() throws Exception {

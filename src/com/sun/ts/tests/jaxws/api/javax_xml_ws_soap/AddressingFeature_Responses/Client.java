@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,26 +29,26 @@ import java.net.*;
 import java.util.*;
 import java.rmi.*;
 
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.soap.*;
 
 import com.sun.javatest.Status;
 
 public class Client extends ServiceEETest {
 
   // Expected Enum Constant Summary
-  private final static javax.xml.ws.soap.AddressingFeature.Responses expectedEnums[] = {
-      javax.xml.ws.soap.AddressingFeature.Responses.ALL,
-      javax.xml.ws.soap.AddressingFeature.Responses.ANONYMOUS,
-      javax.xml.ws.soap.AddressingFeature.Responses.NON_ANONYMOUS, };
+  private final static jakarta.xml.ws.soap.AddressingFeature.Responses expectedEnums[] = {
+      jakarta.xml.ws.soap.AddressingFeature.Responses.ALL,
+      jakarta.xml.ws.soap.AddressingFeature.Responses.ANONYMOUS,
+      jakarta.xml.ws.soap.AddressingFeature.Responses.NON_ANONYMOUS, };
 
   private boolean findEnums(
-      javax.xml.ws.soap.AddressingFeature.Responses[] args) {
+      jakarta.xml.ws.soap.AddressingFeature.Responses[] args) {
     boolean pass = true;
     boolean found;
-    for (javax.xml.ws.soap.AddressingFeature.Responses a : args) {
+    for (jakarta.xml.ws.soap.AddressingFeature.Responses a : args) {
       found = false;
       TestUtil.logMsg("Searching expected list of enums for " + a);
-      for (javax.xml.ws.soap.AddressingFeature.Responses b : expectedEnums) {
+      for (jakarta.xml.ws.soap.AddressingFeature.Responses b : expectedEnums) {
         if (a == b) {
           found = true;
           break;
@@ -65,10 +65,10 @@ public class Client extends ServiceEETest {
   }
 
   private void printEnums(
-      javax.xml.ws.soap.AddressingFeature.Responses[] args) {
+      jakarta.xml.ws.soap.AddressingFeature.Responses[] args) {
     TestUtil.logMsg("Print Enums");
     TestUtil.logMsg("-----------");
-    for (javax.xml.ws.soap.AddressingFeature.Responses c : args)
+    for (jakarta.xml.ws.soap.AddressingFeature.Responses c : args)
       TestUtil.logMsg("" + c);
   }
 
@@ -98,7 +98,7 @@ public class Client extends ServiceEETest {
    * @assertion_ids: JAXWS:JAVADOC:226;
    *
    * @test_Strategy: Verify
-   * javax.xml.ws.soap.AddressingFeature.Responses.values() returns array
+   * jakarta.xml.ws.soap.AddressingFeature.Responses.values() returns array
    * containing the constants of this enum type.
    */
   public void valuesTest() throws Fault {
@@ -106,8 +106,8 @@ public class Client extends ServiceEETest {
     boolean pass = true;
     try {
       TestUtil.logMsg(
-          "Call javax.xml.ws.soap.AddressingFeature.Responses.values() ...");
-      javax.xml.ws.soap.AddressingFeature.Responses[] responses = javax.xml.ws.soap.AddressingFeature.Responses
+          "Call jakarta.xml.ws.soap.AddressingFeature.Responses.values() ...");
+      jakarta.xml.ws.soap.AddressingFeature.Responses[] responses = javax.xml.ws.soap.AddressingFeature.Responses
           .values();
       printEnums(responses);
       pass = findEnums(responses);
@@ -127,7 +127,7 @@ public class Client extends ServiceEETest {
    * @assertion_ids: JAXWS:JAVADOC:225;
    *
    * @test_Strategy: Verify
-   * javax.xml.ws.soap.AddressingFeature.Responses.valueOf(String name) returns
+   * jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(String name) returns
    * the enum constant of this type with specified name.
    */
   public void valueOfTest() throws Fault {
@@ -135,19 +135,19 @@ public class Client extends ServiceEETest {
     boolean pass = true;
     try {
       TestUtil.logMsg(
-          "Call javax.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) ...");
-      javax.xml.ws.soap.AddressingFeature.Responses responses = javax.xml.ws.soap.AddressingFeature.Responses
+          "Call jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) ...");
+      jakarta.xml.ws.soap.AddressingFeature.Responses responses = javax.xml.ws.soap.AddressingFeature.Responses
           .valueOf("ALL");
-      if (responses != javax.xml.ws.soap.AddressingFeature.Responses.ALL) {
+      if (responses != jakarta.xml.ws.soap.AddressingFeature.Responses.ALL) {
         TestUtil.logErr(
-            "javax.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) failed:"
+            "jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) failed:"
                 + " expected: "
-                + javax.xml.ws.soap.AddressingFeature.Responses.ALL
+                + jakarta.xml.ws.soap.AddressingFeature.Responses.ALL
                 + ", received: " + responses);
         pass = false;
       } else {
         TestUtil.logMsg(
-            "javax.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) passed");
+            "jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) passed");
       }
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: " + e.getMessage());

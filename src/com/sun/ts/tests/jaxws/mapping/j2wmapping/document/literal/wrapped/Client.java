@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,10 +45,10 @@ import com.sun.ts.tests.jaxws.wsi.utils.DescriptionUtils;
 import com.sun.ts.tests.jaxws.wsi.j2w.NamespaceAttributeVerifier;
 
 import java.lang.annotation.Annotation;
-import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
-import javax.activation.DataHandler;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.adapters.HexBinaryAdapter;
+import jakarta.activation.DataHandler;
 
 import com.sun.ts.tests.jaxws.common.*;
 
@@ -1191,7 +1191,7 @@ public class Client extends ServiceEETest
    * wrapper must be named as "parameters" for output messages in the generated
    * WSDL, otherwise it would be named as "result". - (Customizing Wrapper
    * wsdl:part names): Non-default partName values of the
-   * javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations,
+   * jakarta.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations,
    * if specified on SEI method, MUST be used as wsdl:part name for input and
    * output messages respectively in the generated WSDL. - (wsdl:message naming
    * using WebFault): If an exception has @WebFault, then messageName MUST be
@@ -1515,24 +1515,24 @@ public class Client extends ServiceEETest
       TestUtil.logMsg("Loading wrapper bean " + JAXB_ANNOTATIONS_TEST1);
       Class c = Class.forName(JAXB_ANNOTATIONS_TEST1);
       if (!AnnotationUtils.isAnnotationOnFieldPresent(c, "xmljavatypeadapter",
-          javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.class)) {
+          jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter.class)) {
         TestUtil.logErr(
-            "javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter not present for field (xmljavatypeadapter)");
+            "jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter not present for field (xmljavatypeadapter)");
         pass = false;
       }
       XmlJavaTypeAdapter a = (XmlJavaTypeAdapter) AnnotationUtils
           .getAnnotationOnField(c, "xmljavatypeadapter",
-              javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.class);
+              jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter.class);
       String type = a.value().getName();
-      if (type.equals("javax.xml.bind.annotation.adapters.HexBinaryAdapter"))
+      if (type.equals("jakarta.xml.bind.annotation.adapters.HexBinaryAdapter"))
         TestUtil.logMsg("XmlJavaTypeAdapter value is of expected type: "
-            + "javax.xml.bind.annotation.adapters.HexBinaryAdapter");
+            + "jakarta.xml.bind.annotation.adapters.HexBinaryAdapter");
       else
         TestUtil
             .logErr("XmlJavaTypeAdapter value is of unexpected type: " + type);
 
       XmlElement x = (XmlElement) AnnotationUtils.getAnnotationOnField(c,
-          "xmljavatypeadapter", javax.xml.bind.annotation.XmlElement.class);
+          "xmljavatypeadapter", jakarta.xml.bind.annotation.XmlElement.class);
       if (!AnnotationUtils.verifyXmlElement(x, "xmljavatypeadapter", "foo",
           true, true))
         pass = false;
@@ -1545,13 +1545,13 @@ public class Client extends ServiceEETest
       TestUtil.logMsg("Loading wrapper bean " + JAXB_ANNOTATIONS_TEST2);
       Class c = Class.forName(JAXB_ANNOTATIONS_TEST2);
       if (!AnnotationUtils.isAnnotationOnFieldPresent(c, "xmlmimetype",
-          javax.xml.bind.annotation.XmlMimeType.class)) {
+          jakarta.xml.bind.annotation.XmlMimeType.class)) {
         TestUtil.logErr(
-            "javax.xml.bind.annotation.XmlMimeType not present for field (xmlmimetype)");
+            "jakarta.xml.bind.annotation.XmlMimeType not present for field (xmlmimetype)");
         pass = false;
       }
       XmlMimeType a = (XmlMimeType) AnnotationUtils.getAnnotationOnField(c,
-          "xmlmimetype", javax.xml.bind.annotation.XmlMimeType.class);
+          "xmlmimetype", jakarta.xml.bind.annotation.XmlMimeType.class);
       String type = a.value();
       if (type.equals("application/octet-stream"))
         TestUtil.logMsg("XmlMimeType value is of expected type: "
@@ -1560,7 +1560,7 @@ public class Client extends ServiceEETest
         TestUtil.logErr("XmlMimeType value is of unexpected type: " + type);
 
       XmlElement x = (XmlElement) AnnotationUtils.getAnnotationOnField(c,
-          "xmlmimetype", javax.xml.bind.annotation.XmlElement.class);
+          "xmlmimetype", jakarta.xml.bind.annotation.XmlElement.class);
       if (!AnnotationUtils.verifyXmlElement(x, "xmlmimetype", "foo", false,
           false))
         pass = false;
@@ -1572,14 +1572,14 @@ public class Client extends ServiceEETest
       TestUtil.logMsg("Loading wrapper bean " + JAXB_ANNOTATIONS_TEST3);
       Class c = Class.forName(JAXB_ANNOTATIONS_TEST3);
       if (!AnnotationUtils.isAnnotationOnFieldPresent(c, "xmlattachmentref",
-          javax.xml.bind.annotation.XmlAttachmentRef.class)) {
+          jakarta.xml.bind.annotation.XmlAttachmentRef.class)) {
         TestUtil.logErr(
-            "javax.xml.bind.annotation.XmlAttachmentRef not present for field (xmlattachmentref)");
+            "jakarta.xml.bind.annotation.XmlAttachmentRef not present for field (xmlattachmentref)");
         pass = false;
       }
 
       XmlElement x = (XmlElement) AnnotationUtils.getAnnotationOnField(c,
-          "xmlattachmentref", javax.xml.bind.annotation.XmlElement.class);
+          "xmlattachmentref", jakarta.xml.bind.annotation.XmlElement.class);
       if (!AnnotationUtils.verifyXmlElement(x, "xmlattachmentref", "foo", false,
           false))
         pass = false;
@@ -1591,14 +1591,14 @@ public class Client extends ServiceEETest
       TestUtil.logMsg("Loading wrapper bean " + JAXB_ANNOTATIONS_TEST4);
       Class c = Class.forName(JAXB_ANNOTATIONS_TEST4);
       if (!AnnotationUtils.isAnnotationOnFieldPresent(c, "xmllist",
-          javax.xml.bind.annotation.XmlList.class)) {
+          jakarta.xml.bind.annotation.XmlList.class)) {
         TestUtil.logErr(
-            "javax.xml.bind.annotation.XmlList not present for field (xmllist)");
+            "jakarta.xml.bind.annotation.XmlList not present for field (xmllist)");
         pass = false;
       }
 
       XmlElement x = (XmlElement) AnnotationUtils.getAnnotationOnField(c,
-          "xmllist", javax.xml.bind.annotation.XmlElement.class);
+          "xmllist", jakarta.xml.bind.annotation.XmlElement.class);
       if (!AnnotationUtils.verifyXmlElement(x, "xmllist", "foo", false, true))
         pass = false;
     } catch (Exception e) {
@@ -1629,7 +1629,7 @@ public class Client extends ServiceEETest
       TestUtil.logMsg("Loading fault bean " + JAXB_ANNOTATIONS_FAULTBEAN);
       Class c = Class.forName(JAXB_ANNOTATIONS_FAULTBEAN);
       XmlType x = (XmlType) AnnotationUtils.getAnnotationOnClass(c,
-          javax.xml.bind.annotation.XmlType.class);
+          jakarta.xml.bind.annotation.XmlType.class);
       if (!AnnotationUtils.verifyXmlType(x, "Bozo", "http://bozo.org/wsdl"))
         pass = false;
     } catch (Exception e) {

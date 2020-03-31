@@ -27,7 +27,7 @@ import com.sun.ts.lib.harness.*;
 import java.io.*;
 import java.util.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.rmi.*;
 import com.sun.ts.tests.common.dao.DAOFactory;
 
