@@ -31,6 +31,7 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerHandle;
+import jakarta.ejb.NoSuchObjectLocalException;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
@@ -149,24 +150,33 @@ public class Client extends ClientBase {
    */
   public void timerEquals() {
     ScheduleExpression exp = new ScheduleExpression();
-    String t1Name = getTestName() + "t1";
-    Timer t1 = scheduleBean.createSecondLaterTimer(t1Name);
     Timer t2 = scheduleBean.createFarFutureTimer(getTestName());
     Timer t3 = scheduleBean.createTimer(exp, getTestName());
     Timer t4 = scheduleBean.createTimer(exp, getTestName());
+    String t1Name = getTestName() + "t1";
+    Timer t1 = scheduleBean.createSecondLaterTimer(t1Name);
     Timer t1Found = scheduleBean.findTimer(t1Name);
     assertEquals("Compare timer to itself.", t1, t1);
     assertEquals("Compare timer to t1Found.", t1, t1Found);
     assertNotEquals("Compare timer to null.", t1, null);
     assertNotEquals("Compare timer to 1.", t1, 1);
     assertNotEquals("Compare timer to true.", t1, true);
-    assertNotEquals("Compare timer to TimerHandle.", t1,
-        scheduleBean.getTimerHandle(t1));
-    assertNotEquals("Compare TimerHandle to timer.",
-        scheduleBean.getTimerHandle(t1), t1);
+    try{
+      TimerHandle timerHandle = scheduleBean.getTimerHandle(t1);
+      assertNotEquals("Compare timer to TimerHandle.", t1, timerHandle);
+      assertNotEquals("Compare TimerHandle to timer.", timerHandle, t1);
+    }
+    catch (NoSuchObjectLocalException ex){
+      ex.printStackTrace();
+    }
     assertNotEquals("Compare 2 timers.", t1, t2);
     assertNotEquals("Compare timer 3 to timer 4.", t3, t4);
-    scheduleBean.cancelTimer(t1, t2, t3, t4);
+    try{
+      scheduleBean.cancelTimer(t1, t2, t3, t4);
+    }
+    catch(NoSuchObjectLocalException ex){
+      ex.printStackTrace();
+    }
   }
 
   /*
