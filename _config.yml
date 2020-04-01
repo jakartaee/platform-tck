@@ -6,5 +6,5 @@ description: [Source code and resources to build and run the Jakarta EE TCK suit
 
 links:
   source: https://github.com/eclipse-ee4j/jakartaee-tck
-  download: http://download.eclipse.org/ee4j/jakartaee-tck/jakartaee8/promoted/jakartaeetck-8.0.2.zip
+  download: https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee8/promoted/jakartaeetck-8.0.2.zip
   mailinglist: https://accounts.eclipse.org/mailing-list/jakartaee-tck-dev
