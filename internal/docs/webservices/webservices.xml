@@ -600,7 +600,7 @@ descriptor (not required with JAX-WS when annotations are used) in a Java EE mod
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 <id>WS4EE:SPEC:96</id>
 <description> Handlers must not
-			demarcate transactions using the javax.transaction.UserTransaction
+			demarcate transactions using the jakarta.transaction.UserTransaction
 			interface.</description>
 <location chapter="6" section="2.2.3" />
 </assertion>

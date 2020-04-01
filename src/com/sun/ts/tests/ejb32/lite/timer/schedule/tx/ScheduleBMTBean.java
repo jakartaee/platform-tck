@@ -22,10 +22,10 @@ import javax.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.transaction.NotSupportedException;
-import javax.transaction.Status;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;

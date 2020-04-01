@@ -27,7 +27,7 @@ import jakarta.ejb.Stateless;
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 @Stateless()
 @Local

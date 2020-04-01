@@ -23,7 +23,7 @@ import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import jakarta.ejb.EJBContext;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 abstract public class BeanBase {
 

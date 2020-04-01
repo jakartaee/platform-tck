@@ -20,7 +20,7 @@ import java.util.logging.Level;
 
 import javax.annotation.Resource;
 import jakarta.ejb.*;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 

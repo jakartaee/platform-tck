@@ -91,7 +91,7 @@ public class Client extends EETest {
    * session bean with container-managed transaction type (server). From the
    * client, call a method in the server that uses the Mandatory transaction
    * attribute without a global transaction context. Ensure that this operation
-   * throws the javax.transaction.TransactionRequiredException exception.
+   * throws the jakarta.transaction.TransactionRequiredException exception.
    *
    */
   public void test1() throws Fault {
@@ -134,11 +134,11 @@ public class Client extends EETest {
    * attribute in a Style 3 declaration (see 17.4.1) and the Mandatory
    * transaction attribute in a Style 2 declaration. The call occurs without a
    * global transaction context. Ensure that this operation executes
-   * successfully and that the javax.transaction.TransactionRequiredException
+   * successfully and that the jakarta.transaction.TransactionRequiredException
    * exception is not thrown. Call a method with the same name but a different
    * parameter list that has no Style 3 declaration (hence the Style 2
    * declaration applies). Ensure that this operation throws the
-   * javax.transaction.TransactionRequiredException exception.
+   * jakarta.transaction.TransactionRequiredException exception.
    *
    */
   public void test2() throws Fault {

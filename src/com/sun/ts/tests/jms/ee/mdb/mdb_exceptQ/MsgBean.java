@@ -31,7 +31,7 @@ import javax.jms.*;
 import java.security.*;
 import java.sql.*;
 import javax.sql.*;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
@@ -262,7 +262,7 @@ public class MsgBean extends ParentMsgBeanNoTx {
       try {
         ut.begin();
         TestUtil.logErr("BMT MDB getBeginAgain() Test Failed!");
-      } catch (javax.transaction.NotSupportedException e) {
+      } catch (jakarta.transaction.NotSupportedException e) {
         TestUtil.logTrace("BMT MDB getBeginAgain() Test Succeeded!");
         TestUtil.logTrace("Got expected NotSupportedException");
         result = true;

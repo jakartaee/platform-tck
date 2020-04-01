@@ -526,7 +526,7 @@ independent of authentication.
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
 			<id>J2EE:SPEC:39</id>
-			<description>Servlets and JSP pages demarcate a transaction using the javax.transaction.UserTransaction interface which is defined in the JTA specification.</description>
+			<description>Servlets and JSP pages demarcate a transaction using the jakarta.transaction.UserTransaction interface which is defined in the JTA specification.</description>
 			<location chapter = "4" section = "2.1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
@@ -553,7 +553,7 @@ independent of authentication.
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
 			<id>J2EE:SPEC:45</id>
-			<description>The J2EE platform must provide an object implementing the javax.transaction.UserTransaction interface to all web components.</description>
+			<description>The J2EE platform must provide an object implementing the jakarta.transaction.UserTransaction interface to all web components.</description>
 			<location chapter = "4" section = "2.1.1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
@@ -1744,7 +1744,7 @@ HTTP access through firewalls be possible where local policy allows.
 		</assertion>
 		<assertion required = "true" impl-spec = "true" defined-by = "platform" status = "active" testable = "false">
 			<id>J2EE:SPEC:211</id>
-			<description>Web containers must throw a java.lang.IllegalArgumentException if an object that is not one of the types  java.io.Serializable, jakarta.ejb.EJBObject, jakarta.ejb.EJBHome, jakarta.ejb.EJBLocalObject, jakarta.ejb.EJBLocalHome, javax.transaction.UserTransaction, a javax.naming.Context object for the java:comp/env context, or another type supported by the container, is passed to the setAttribute or putValue methods of an HttpSession object corresponding to a J2EE distributable session.</description>
+			<description>Web containers must throw a java.lang.IllegalArgumentException if an object that is not one of the types  java.io.Serializable, jakarta.ejb.EJBObject, jakarta.ejb.EJBHome, jakarta.ejb.EJBLocalObject, jakarta.ejb.EJBLocalHome, jakarta.transaction.UserTransaction, a javax.naming.Context object for the java:comp/env context, or another type supported by the container, is passed to the setAttribute or putValue methods of an HttpSession object corresponding to a J2EE distributable session.</description>
 			<location chapter = "6" section = "4"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">

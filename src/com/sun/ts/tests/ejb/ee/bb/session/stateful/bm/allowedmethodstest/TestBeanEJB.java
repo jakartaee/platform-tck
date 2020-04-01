@@ -469,7 +469,7 @@ public class TestBeanEJB implements SessionBean {
           "Attempt to call begin again before commit() or rollback()");
       sctx.getUserTransaction().begin();
       TestUtil.logMsg("UserTransaction.begin - allowed");
-    } catch (javax.transaction.NotSupportedException nse) {
+    } catch (jakarta.transaction.NotSupportedException nse) {
       pass = true;
       TestUtil.logMsg("NotSupportedException caught as expected");
     } catch (Exception e) {

@@ -25,7 +25,7 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
 import jakarta.ejb.SessionContext;
 import javax.naming.InitialContext;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 public class Operations implements Constants {
   private static Operations instance = new Operations();

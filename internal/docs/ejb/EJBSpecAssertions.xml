@@ -515,8 +515,8 @@
 					<section id="4.1.1" name="Local and remote clients"/>
 					<section id="4.1.2" name="Web service clients"/>
 					<section id="4.2" name="java.rmi.RemoteException and jakarta.ejb.EJBException"/>
-					<section id="4.2.1" name="javax.transaction.TransactionRolledbackException and jakarta.ejb.TransactionRolledbackLocalException"/>
-					<section id="4.2.2" name="javax.transaction.TransactionRequiredException and jakarta.ejb.TransactionRequiredLocalException"/>
+					<section id="4.2.1" name="jakarta.transaction.TransactionRolledbackException and jakarta.ejb.TransactionRolledbackLocalException"/>
+					<section id="4.2.2" name="jakarta.transaction.TransactionRequiredException and jakarta.ejb.TransactionRequiredLocalException"/>
 					<section id="4.2.3" name="java.rmi.NoSuchObjectException and jakarta.ejb.NoSuchObjectLocalException"/>
 					<section id="5" name="System Administrator's responsibilities"/>
 				</sections>
@@ -1392,7 +1392,7 @@
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:61.11</id>
-					<description>The getUserTransaction() method returns the javax.transaction.UserTransaction interface.</description>
+					<description>The getUserTransaction() method returns the jakarta.transaction.UserTransaction interface.</description>
 					<location chapter="4" section="3.3"/>
 					<comment>bb.session.stateful.sessioncontexttest.test8</comment>
 				</assertion>
@@ -4263,7 +4263,7 @@ listener interface.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:511</id>
-			<description>The getUserTransaction method returns the javax.transaction.UserTransaction interface that the instance can use to demarcate transactions, and to obtain transaction status. Only instances of a message-driven bean with bean-managed transaction demarcation can use this method.</description>
+			<description>The getUserTransaction method returns the jakarta.transaction.UserTransaction interface that the instance can use to demarcate transactions, and to obtain transaction status. Only instances of a message-driven bean with bean-managed transaction demarcation can use this method.</description>
 			<location chapter="5" section="4.4"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -5579,7 +5579,7 @@ me transaction context as the ejbSelectMethod method and whose abstract schema t
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:249.11</id>
-					<description>the getUserTransaction method returns the javax.transaction.UserTransaction interface.  Entity bean instances must not call this method.</description>
+					<description>the getUserTransaction method returns the jakarta.transaction.UserTransaction interface.  Entity bean instances must not call this method.</description>
 					<location chapter="8" section="5.4"/>
 				</assertion>
 			</sub-assertions>
@@ -7933,7 +7933,7 @@ time.  The container must ensure that the primary key of the associated entity o
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:450.11</id>
-					<description>the getUserTransaction method returns the javax.transaction.UserTransaction interface.  Entity bean instances must not call this method.</description>
+					<description>the getUserTransaction method returns the jakarta.transaction.UserTransaction interface.  Entity bean instances must not call this method.</description>
 					<location chapter="10" section="1.7"/>
 				</assertion>
 			</sub-assertions>
@@ -9423,7 +9423,7 @@ ready state) and invoke the matching business method on the instance.
 			<sub-assertions>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>543.1</id>
-					<description>The javax.transaction.UserTransaction interface is used to demarcate transactions.</description>
+					<description>The jakarta.transaction.UserTransaction interface is used to demarcate transactions.</description>
 					<location chapter="13" section="3.3"/>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -9485,7 +9485,7 @@ ready state) and invoke the matching business method on the instance.
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:547.1</id>
 					<description>An enterprise bean with bean-managed transaction demarcation can obtain the status of a
-						transaction by using the getStatus() method of the javax.transaction.UserTransaction 
+						transaction by using the getStatus() method of the jakarta.transaction.UserTransaction 
 						interface.
 					</description>
 					<location chapter="13" section="3.3.1"/>
@@ -9494,7 +9494,7 @@ ready state) and invoke the matching business method on the instance.
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:547.2</id>
 					<description>An enterprise bean with bean-managed transaction demarcation can rollback a transaction
-						using the rollback() method of the javax.transaction.UserTransaction interface.
+						using the rollback() method of the jakarta.transaction.UserTransaction interface.
 					</description>
 					<location chapter="13" section="3.3.1"/>
 					<comment>Most bm tests</comment>
@@ -9513,7 +9513,7 @@ ready state) and invoke the matching business method on the instance.
 			<id>EJB:SPEC:549</id>
 			<description>When using container-managed transaction demarcation, the enterprise bean's business 
 				methods, message listener methods, or ejbTimeout method must not attempt to obtain or use the 
-				javax.transaction.UserTransaction interface.
+				jakarta.transaction.UserTransaction interface.
 			</description>
 			<location chapter="13" section="3.4"/>
 		</assertion>
@@ -9788,7 +9788,7 @@ ready state) and invoke the matching business method on the instance.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:572</id>
-			<description> The Container must make the javax.transaction.UserTransaction interface available to
+			<description> The Container must make the jakarta.transaction.UserTransaction interface available to
 				the enterprise bean's business method or message listener methods via the jakarta.ejb.EJBContext
 				interface and under the environment entry java:comp/UserTransaction.
 			</description>
@@ -9897,8 +9897,8 @@ ready state) and invoke the matching business method on the instance.
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:579</id>
 			<description>When an instance attempts to start a transaction using the begin() method of the 
-				javax.transaction.UserTransaction interface while the instance has not committed the previous 
-				transaction, the Container must throw the javax.transaction.NotSupportedException in the
+				jakarta.transaction.UserTransaction interface while the instance has not committed the previous 
+				transaction, the Container must throw the jakarta.transaction.NotSupportedException in the
 				begin() method.
 			</description>
 			<location chapter="13" section="6.1"/>
@@ -10140,7 +10140,7 @@ beans, the Container passes the
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:587.3</id>
 					<description>If the client calls without a transaction context, the Container throws the 
-						javax.transaction.TransactionRequiredException exception if the client is a remote client, or
+						jakarta.transaction.TransactionRequiredException exception if the client is a remote client, or
 						the jakarta.ejb.TransactionRequiredLocalException if the client is a local client.
 					</description>
 					<location chapter="13" section="6.2.5"/>
@@ -10676,14 +10676,14 @@ following:
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:629.4</id>
-					<description>Throw the javax.transaction.TransactionRolledBackException to
+					<description>Throw the jakarta.transaction.TransactionRolledBackException to
 						a remote client.
 					</description>
 					<location chapter="14" section="3.1"/>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:629.5</id>
-					<description>Throw the javax.transaction.TransactionRolledBackLocalException to
+					<description>Throw the jakarta.transaction.TransactionRolledBackLocalException to
 						a local client.
 					</description>
 					<location chapter="14" section="3.1"/>
@@ -11142,14 +11142,14 @@ started but not yet
 				<assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
 					<id>EJB:SPEC:647.6</id>
 					<description>If the instance executed in the client's transaction, the Container should throw the 
-						javax.transaction.TransactionRolledbackException to a remote client.
+						jakarta.transaction.TransactionRolledbackException to a remote client.
 					</description>
 					<location chapter="14" section="3.7"/>
 				</assertion>
 				<assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
 					<id>EJB:SPEC:647.7</id>
 					<description>If the instance executed in the client's transaction, the Container should throw the 
-						javax.transaction.TransactionRolledbackLocalException to a local client.
+						jakarta.transaction.TransactionRolledbackLocalException to a local client.
 					</description>
 					<location chapter="14" section="3.7"/>
 				</assertion>
@@ -11291,7 +11291,7 @@ entity object,
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:659</id>
 			<description>Clients that are not enterprise beans with container-managed transaction demarcation
-				can use the getStatus() method of the javax.transaction.UserTransaction interface to
+				can use the getStatus() method of the jakarta.transaction.UserTransaction interface to
 				obtain the transaction status.
 			</description>
 			<location chapter="14" section="4.1.1"/>
@@ -11589,7 +11589,7 @@ entity object,
 					<id>EJB:SPEC:679.2</id>
 					<description>              When client's invocation was made over IIOP, the EJB server is
               required to map
-              javax.transaction.TransactionRequiredException
+              jakarta.transaction.TransactionRequiredException
               to TRANSACTION_REQUIRED CORBA system exception.
             
 					</description>
@@ -11601,7 +11601,7 @@ entity object,
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:679.3</id>
 					<description>              When client's invocation was made over IIOP, the EJB server is
-              required to map javax.transaction.InvalidTransactionException 
+              required to map jakarta.transaction.InvalidTransactionException 
               to INVALID_TRANSACTION CORBA system exception.
             
 					</description>
@@ -14994,7 +14994,7 @@ factory references.
 				<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:883.1</id>
 					<description>            The EJB Container must include the JTA 1.0.1 extension, and it
-            must provide the javax.transaction.UserTransaction interface
+            must provide the jakarta.transaction.UserTransaction interface
             to enterprise beans with bean-managed transaction demarcation
             through the jakarta.ejb.EJBContext interface.
           

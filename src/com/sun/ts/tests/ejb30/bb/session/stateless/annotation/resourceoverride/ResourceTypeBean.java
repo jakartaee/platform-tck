@@ -38,7 +38,7 @@ import javax.jms.ConnectionFactory;
 import javax.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import javax.jms.Queue;
 import javax.jms.Topic;
 import org.omg.CORBA.ORB;
@@ -168,7 +168,7 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
     return (Topic) getEJBContext().lookup(getTopicName());
   }
 
-  protected javax.transaction.UserTransaction getUserTransaction() {
+  protected jakarta.transaction.UserTransaction getUserTransaction() {
     return getEJBContext().getUserTransaction();
   }
 

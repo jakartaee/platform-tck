@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -406,11 +406,11 @@ public class Client extends ServiceEETest implements Serializable {
 
       // Verify the test results
       TestUtil.logMsg("Verifying the test results");
-      if (txStatus1 == javax.transaction.Status.STATUS_NO_TRANSACTION)
+      if (txStatus1 == jakarta.transaction.Status.STATUS_NO_TRANSACTION)
         b1 = true;
-      if (txStatus2 == javax.transaction.Status.STATUS_ACTIVE)
+      if (txStatus2 == jakarta.transaction.Status.STATUS_ACTIVE)
         b2 = true;
-      if (txStatus3 == javax.transaction.Status.STATUS_NO_TRANSACTION)
+      if (txStatus3 == jakarta.transaction.Status.STATUS_NO_TRANSACTION)
         b3 = true;
 
       if (b1 && b2 && b3)
@@ -707,11 +707,11 @@ public class Client extends ServiceEETest implements Serializable {
 
       // Verify the test results
       TestUtil.logMsg("Verifying the test results");
-      if (txStatus1 == javax.transaction.Status.STATUS_NO_TRANSACTION)
+      if (txStatus1 == jakarta.transaction.Status.STATUS_NO_TRANSACTION)
         b1 = true;
-      if (txStatus2 == javax.transaction.Status.STATUS_ACTIVE)
+      if (txStatus2 == jakarta.transaction.Status.STATUS_ACTIVE)
         b2 = true;
-      if (txStatus3 == javax.transaction.Status.STATUS_NO_TRANSACTION)
+      if (txStatus3 == jakarta.transaction.Status.STATUS_NO_TRANSACTION)
         b3 = true;
 
       if (b1 && b2 && b3)

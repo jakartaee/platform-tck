@@ -39,7 +39,7 @@ import javax.jms.ConnectionFactory;
 import javax.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import javax.jms.Queue;
 import javax.jms.Topic;
 import org.omg.CORBA.ORB;
@@ -48,7 +48,7 @@ import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TIMER_
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME;
 import jakarta.ejb.TimerService;
 import javax.jms.Destination;
-import javax.transaction.TransactionSynchronizationRegistry;
+import jakarta.transaction.TransactionSynchronizationRegistry;
 
 @Stateless(name = "ResourceTypeBean")
 @Remote({ ResourceIF.class })
@@ -207,7 +207,7 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
     return (Topic) getEJBContext().lookup(getTopicName());
   }
 
-  protected javax.transaction.UserTransaction getUserTransaction() {
+  protected jakarta.transaction.UserTransaction getUserTransaction() {
     return (UserTransaction) getEJBContext().lookup(getUserTransactionName());
   }
 

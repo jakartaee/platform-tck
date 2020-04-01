@@ -30,7 +30,7 @@ import com.sun.ts.tests.ejb30.common.allowed.Operations;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.TimerHandle;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 public class StatefulBMTOperations extends StatefulOperations
     implements Constants {

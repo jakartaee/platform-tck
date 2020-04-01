@@ -29,7 +29,7 @@ import jakarta.ejb.*;
 import java.rmi.*;
 import java.sql.*;
 import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 public class DBSupport2 implements java.io.Serializable {
 

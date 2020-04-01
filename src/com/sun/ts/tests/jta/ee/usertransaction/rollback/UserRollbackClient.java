@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,9 +33,9 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 // Test Specific Imports.
-import javax.transaction.UserTransaction;
-import javax.transaction.Status;
-import javax.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
 
 /**
  * The UserRollbackClient class tests rollback() method of UserTransaction

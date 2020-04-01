@@ -48,10 +48,10 @@ import jakarta.ejb.EJBTransactionRolledbackException;
 import javax.jms.MessageListener;
 import javax.jms.Queue;
 import javax.jms.QueueConnectionFactory;
-import javax.transaction.UserTransaction;
-import static javax.transaction.Status.STATUS_MARKED_ROLLBACK;
-import static javax.transaction.Status.STATUS_UNKNOWN;
-import static javax.transaction.Status.STATUS_ACTIVE;
+import jakarta.transaction.UserTransaction;
+import static jakarta.transaction.Status.STATUS_MARKED_ROLLBACK;
+import static jakarta.transaction.Status.STATUS_UNKNOWN;
+import static jakarta.transaction.Status.STATUS_ACTIVE;
 
 @MessageDriven(name = "MdbTestBean", messageListenerInterface = MessageListener.class, activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })

@@ -24,8 +24,8 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.transaction.Status;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.Status;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;

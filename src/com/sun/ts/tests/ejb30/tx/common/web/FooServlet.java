@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.tx.common.web;
 import javax.annotation.Resource;
 import javax.servlet.http.*;
 import javax.servlet.*;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 public class FooServlet extends HttpServlet {
   @Resource

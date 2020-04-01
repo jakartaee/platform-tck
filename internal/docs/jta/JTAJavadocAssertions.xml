@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -227,7 +227,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="begin" return-type="void">
-<throw>javax.transaction.NotSupportedException</throw>
+<throw>jakarta.transaction.NotSupportedException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="false">
@@ -236,7 +236,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="begin" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -255,7 +255,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.RollbackException</throw>
+<throw>jakarta.transaction.RollbackException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="false">
@@ -264,7 +264,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.HeuristicMixedException</throw>
+<throw>jakarta.transaction.HeuristicMixedException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="false">
@@ -273,7 +273,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.HeuristicRollbackException</throw>
+<throw>jakarta.transaction.HeuristicRollbackException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="false">
@@ -300,7 +300,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -337,7 +337,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="rollback" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -364,7 +364,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="setRollbackOnly" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -382,7 +382,7 @@
 <package>javax.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="getStatus" return-type="int">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -408,7 +408,7 @@
 <parameters>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -448,7 +448,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="begin" return-type="void">
-<throw>javax.transaction.NotSupportedException</throw>
+<throw>jakarta.transaction.NotSupportedException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -457,7 +457,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="begin" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -476,7 +476,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.RollbackException</throw>
+<throw>jakarta.transaction.RollbackException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -485,7 +485,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.HeuristicMixedException</throw>
+<throw>jakarta.transaction.HeuristicMixedException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -494,7 +494,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.HeuristicRollbackException</throw>
+<throw>jakarta.transaction.HeuristicRollbackException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -521,7 +521,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -539,7 +539,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="getStatus" return-type="int">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -549,15 +549,15 @@
                         </description>
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
-<method name="getTransaction" return-type="javax.transaction.Transaction"/>
+<method name="getTransaction" return-type="jakarta.transaction.Transaction"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:57</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
-<method name="getTransaction" return-type="javax.transaction.Transaction">
-<throw>javax.transaction.SystemException</throw>
+<method name="getTransaction" return-type="jakarta.transaction.Transaction">
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -570,7 +570,7 @@
 <class-interface>TransactionManager</class-interface>
 <method name="resume" return-type="void">
 <parameters>
-<parameter>javax.transaction.Transaction</parameter>
+<parameter>jakarta.transaction.Transaction</parameter>
 </parameters>
 </method>
 </assertion>
@@ -581,9 +581,9 @@
 <class-interface>TransactionManager</class-interface>
 <method name="resume" return-type="void">
 <parameters>
-<parameter>javax.transaction.Transaction</parameter>
+<parameter>jakarta.transaction.Transaction</parameter>
 </parameters>
-<throw>javax.transaction.InvalidTransactionException</throw>
+<throw>jakarta.transaction.InvalidTransactionException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -593,7 +593,7 @@
 <class-interface>TransactionManager</class-interface>
 <method name="resume" return-type="void">
 <parameters>
-<parameter>javax.transaction.Transaction</parameter>
+<parameter>jakarta.transaction.Transaction</parameter>
 </parameters>
 <throw>java.lang.IllegalStateException</throw>
 </method>
@@ -605,9 +605,9 @@
 <class-interface>TransactionManager</class-interface>
 <method name="resume" return-type="void">
 <parameters>
-<parameter>javax.transaction.Transaction</parameter>
+<parameter>jakarta.transaction.Transaction</parameter>
 </parameters>
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -644,7 +644,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="rollback" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -671,7 +671,7 @@
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="setRollbackOnly" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -697,7 +697,7 @@
 <parameters>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -708,15 +708,15 @@
                         </description>
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
-<method name="suspend" return-type="javax.transaction.Transaction"/>
+<method name="suspend" return-type="jakarta.transaction.Transaction"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:72</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
 <package>javax.transaction</package>
 <class-interface>TransactionManager</class-interface>
-<method name="suspend" return-type="javax.transaction.Transaction">
-<throw>javax.transaction.SystemException</throw>
+<method name="suspend" return-type="jakarta.transaction.Transaction">
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -833,7 +833,7 @@
 <package>javax.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.RollbackException</throw>
+<throw>jakarta.transaction.RollbackException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -842,7 +842,7 @@
 <package>javax.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.HeuristicMixedException</throw>
+<throw>jakarta.transaction.HeuristicMixedException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -851,7 +851,7 @@
 <package>javax.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.HeuristicRollbackException</throw>
+<throw>jakarta.transaction.HeuristicRollbackException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -869,7 +869,7 @@
 <package>javax.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -909,7 +909,7 @@
 <parameter>javax.transaction.xa.XAResource</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -934,7 +934,7 @@
 <parameters>
 <parameter>javax.transaction.xa.XAResource</parameter>
 </parameters>
-<throw>javax.transaction.RollbackException</throw>
+<throw>jakarta.transaction.RollbackException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -958,7 +958,7 @@
 <parameters>
 <parameter>javax.transaction.xa.XAResource</parameter>
 </parameters>
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -976,7 +976,7 @@
 <package>javax.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="getStatus" return-type="int">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -989,7 +989,7 @@
 <class-interface>Transaction</class-interface>
 <method name="registerSynchronization" return-type="void">
 <parameters>
-<parameter>javax.transaction.Synchronization</parameter>
+<parameter>jakarta.transaction.Synchronization</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1000,9 +1000,9 @@
 <class-interface>Transaction</class-interface>
 <method name="registerSynchronization" return-type="void">
 <parameters>
-<parameter>javax.transaction.Synchronization</parameter>
+<parameter>jakarta.transaction.Synchronization</parameter>
 </parameters>
-<throw>javax.transaction.RollbackException</throw>
+<throw>jakarta.transaction.RollbackException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -1012,7 +1012,7 @@
 <class-interface>Transaction</class-interface>
 <method name="registerSynchronization" return-type="void">
 <parameters>
-<parameter>javax.transaction.Synchronization</parameter>
+<parameter>jakarta.transaction.Synchronization</parameter>
 </parameters>
 <throw>java.lang.IllegalStateException</throw>
 </method>
@@ -1024,9 +1024,9 @@
 <class-interface>Transaction</class-interface>
 <method name="registerSynchronization" return-type="void">
 <parameters>
-<parameter>javax.transaction.Synchronization</parameter>
+<parameter>jakarta.transaction.Synchronization</parameter>
 </parameters>
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -1053,7 +1053,7 @@
 <package>javax.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="rollback" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
@@ -1080,7 +1080,7 @@
 <package>javax.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="setRollbackOnly" return-type="void">
-<throw>javax.transaction.SystemException</throw>
+<throw>jakarta.transaction.SystemException</throw>
 </method>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">

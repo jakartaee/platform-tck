@@ -33,7 +33,7 @@ import javax.jms.*;
 import java.security.*;
 import java.sql.*;
 import javax.sql.*;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 

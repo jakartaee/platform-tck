@@ -28,9 +28,9 @@ import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import javax.jms.MessageListener;
-import javax.transaction.NotSupportedException;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
 
 //This MDB implements javax.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element
