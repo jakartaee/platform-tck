@@ -26,7 +26,7 @@ import javax.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;

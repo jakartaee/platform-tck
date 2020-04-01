@@ -39,7 +39,7 @@ import java.util.Enumeration;
 import java.rmi.RemoteException;
 import jakarta.ejb.*;
 import javax.naming.Context;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.QueueConnection;
 import javax.jms.Queue;

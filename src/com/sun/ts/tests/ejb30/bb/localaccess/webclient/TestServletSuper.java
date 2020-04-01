@@ -29,7 +29,7 @@ import jakarta.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.bb.localaccess.common.Constants;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;

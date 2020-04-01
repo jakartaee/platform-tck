@@ -29,9 +29,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Status;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
 import com.sun.ts.tests.ejb30.tx.common.web.LocalIF;
 import com.sun.ts.tests.ejb30.tx.common.web.RemoteIF;
 import static com.sun.ts.tests.ejb30.tx.common.web.Constants.*;
@@ -93,9 +93,9 @@ public class TxServlet extends HttpServlet {
       } else if (servletLocalCmtMandatory.equals(testName)) {
         localBean.mandatory();
       }
-    } catch (javax.transaction.NotSupportedException e) {
+    } catch (jakarta.transaction.NotSupportedException e) {
       throw new ServletException(e);
-    } catch (javax.transaction.SystemException e) {
+    } catch (jakarta.transaction.SystemException e) {
       throw new ServletException(e);
     }
   }

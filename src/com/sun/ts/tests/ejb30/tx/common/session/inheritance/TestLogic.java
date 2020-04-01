@@ -24,8 +24,8 @@ import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EJBTransactionRequiredException;
-import javax.transaction.Status;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.Status;
+import jakarta.transaction.UserTransaction;
 
 public class TestLogic {
   protected static final String fooReturnValue = "foo";

@@ -37,10 +37,10 @@ import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.TopicConnectionFactory;
 import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import javax.jms.Queue;
 import javax.jms.Topic;
-import javax.transaction.TransactionSynchronizationRegistry;
+import jakarta.transaction.TransactionSynchronizationRegistry;
 import org.omg.CORBA.ORB;
 
 @Stateless(name = "ResourceSetterBean")
@@ -309,7 +309,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
     userTransaction = ut;
   }
 
-  protected javax.transaction.UserTransaction getUserTransaction() {
+  protected jakarta.transaction.UserTransaction getUserTransaction() {
     return userTransaction;
   }
 

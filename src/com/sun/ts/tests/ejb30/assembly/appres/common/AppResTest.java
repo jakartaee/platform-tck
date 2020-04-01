@@ -29,7 +29,7 @@ import javax.jms.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 

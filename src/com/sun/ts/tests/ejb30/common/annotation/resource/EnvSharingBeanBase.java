@@ -37,7 +37,7 @@ import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.USER_T
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
 import javax.jms.Queue;
 import javax.jms.Topic;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import org.omg.CORBA.ORB;
 
 abstract public class EnvSharingBeanBase extends ResourceBeanBase

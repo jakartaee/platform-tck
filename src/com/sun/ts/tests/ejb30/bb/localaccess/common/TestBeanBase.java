@@ -21,14 +21,14 @@
 package com.sun.ts.tests.ejb30.bb.localaccess.common;
 
 import static com.sun.ts.tests.ejb30.bb.localaccess.common.Constants.SERVER_MSG;
-import static javax.transaction.Status.STATUS_ACTIVE;
-import static javax.transaction.Status.STATUS_MARKED_ROLLBACK;
-import static javax.transaction.Status.STATUS_UNKNOWN;
+import static jakarta.transaction.Status.STATUS_ACTIVE;
+import static jakarta.transaction.Status.STATUS_MARKED_ROLLBACK;
+import static jakarta.transaction.Status.STATUS_UNKNOWN;
 
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.EJBTransactionRolledbackException;
 import javax.naming.NamingException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;

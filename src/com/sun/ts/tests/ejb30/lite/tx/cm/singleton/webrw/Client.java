@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 import jakarta.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.singleton.rw.TestBean;

@@ -447,8 +447,8 @@ public class Client extends ClientBase implements Constants {
       allowedBean = lookupAllowedBean();
       allowedBean.setTestMethod(beforeCompletionTest);
       results = allowedBean.beforeCompletionTest();
-      // @todo should we catch javax.transaction.TransactionRolledbackException?
-      // } catch (javax.transaction.TransactionRolledbackException e) {
+      // @todo should we catch jakarta.transaction.TransactionRolledbackException?
+      // } catch (jakarta.transaction.TransactionRolledbackException e) {
       //
     } catch (Exception e) {
       throw new Fault("beforeCompletionTest failed", e);
@@ -658,7 +658,7 @@ public class Client extends ClientBase implements Constants {
         reason = "Expected " + expected + ", but got " + result;
         throw new Fault(reason);
       }
-      // @todo should we catch javax.transaction.TransactionRolledbackException?
+      // @todo should we catch jakarta.transaction.TransactionRolledbackException?
     } catch (EJBException e) {
       result = setRollbackOnlyBean
           .getResultFor(beforeCompletionSetRollbackOnlyTest);

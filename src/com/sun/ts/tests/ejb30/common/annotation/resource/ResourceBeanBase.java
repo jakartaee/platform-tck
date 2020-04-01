@@ -42,8 +42,8 @@ import javax.jms.TopicConnectionFactory;
 import javax.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.transaction.TransactionSynchronizationRegistry;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.TransactionSynchronizationRegistry;
+import jakarta.transaction.UserTransaction;
 
 import org.omg.CORBA.ORB;
 

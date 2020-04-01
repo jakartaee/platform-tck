@@ -31,7 +31,7 @@ import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 @Stateful
 @Remote({ TestIF.class })
@@ -51,9 +51,9 @@ public class TestBean extends TestBeanBase implements TestIF {
             e);
       }
       localTxBean0.localRequiresNewRemoveTest();
-    } catch (javax.transaction.NotSupportedException e) {
+    } catch (jakarta.transaction.NotSupportedException e) {
       throw new TestFailedException(e);
-    } catch (javax.transaction.SystemException e) {
+    } catch (jakarta.transaction.SystemException e) {
       throw new TestFailedException(e);
     } finally {
       try {

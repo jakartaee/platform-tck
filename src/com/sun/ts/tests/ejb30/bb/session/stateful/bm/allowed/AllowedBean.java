@@ -38,7 +38,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.transaction.Status;
+import jakarta.transaction.Status;
 
 @Stateful(name = "AllowedBean")
 @Remote({ AllowedIF.class })
@@ -83,9 +83,9 @@ public class AllowedBean extends AllowedBeanNonSessionSynchronizationBase
           "Attempt to call begin again before commit() or rollback()");
       sessionContext.getUserTransaction().begin();
       reason = "Was able to call begin again before commit() or rollback()";
-    } catch (javax.transaction.NotSupportedException nse) {
+    } catch (jakarta.transaction.NotSupportedException nse) {
       pass = true;
-      reason = "javax.transaction.NotSupportedException caught as expected";
+      reason = "jakarta.transaction.NotSupportedException caught as expected";
       TLogger.log(reason);
     } catch (Exception e) {
       reason = "Unexpected Exception - " + e;

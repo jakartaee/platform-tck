@@ -206,7 +206,7 @@ public class Client extends EETest {
    * attribute is set to Mandatory in a client's transaction context. The client
    * is required to call with a transaction context. If the client calls without
    * a transaction context, the Container throws
-   * javax.transaction.TransactionRequiredException exception.
+   * jakarta.transaction.TransactionRequiredException exception.
    * (Container-managed transaction demarcation Mandatory) The Container must
    * invoke the ejbCreate() and ejbPostCreate() methods in the transaction
    * context determined by the transaction attribute of the matching create()

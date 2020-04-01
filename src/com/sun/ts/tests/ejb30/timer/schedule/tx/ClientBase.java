@@ -24,7 +24,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;

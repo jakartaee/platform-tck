@@ -780,7 +780,7 @@ independent of authentication.
         </assertion>
         <assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
             <id>JavaEE:SPEC:39</id>
-            <description>Servlets and JSP pages demarcate a transaction using the javax.transaction.UserTransaction interface which is defined in the JTA specification.</description>
+            <description>Servlets and JSP pages demarcate a transaction using the jakarta.transaction.UserTransaction interface which is defined in the JTA specification.</description>
             <location chapter = "4" section = "2.1"/>
         </assertion>
         <assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
@@ -807,7 +807,7 @@ independent of authentication.
         </assertion>
         <assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
             <id>JavaEE:SPEC:45</id>
-            <description>The Java EE platform must provide an object implementing the javax.transaction.UserTransaction interface to all web components.</description>
+            <description>The Java EE platform must provide an object implementing the jakarta.transaction.UserTransaction interface to all web components.</description>
             <location chapter = "4" section = "2.1.1"/>
         </assertion>
         <assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
@@ -3431,7 +3431,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                 Web containers must throw a java.lang.IllegalArgumentException if 
                 an object that is not one of the types  java.io.Serializable, 
                 jakarta.ejb.EJBObject, jakarta.ejb.EJBHome, jakarta.ejb.EJBLocalObject, 
-                jakarta.ejb.EJBLocalHome, javax.transaction.UserTransaction, a 
+                jakarta.ejb.EJBLocalHome, jakarta.transaction.UserTransaction, a 
                 javax.naming.Context object for the java:comp/env context, or another 
                 type supported by the container, is passed to the setAttribute or 
                 putValue methods of an HttpSession object corresponding to a Java EE 

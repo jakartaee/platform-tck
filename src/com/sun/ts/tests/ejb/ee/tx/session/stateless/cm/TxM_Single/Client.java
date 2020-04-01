@@ -89,7 +89,7 @@ public class Client extends EETest {
    * @test_Strategy: Create an instance of a stateful session Testbean bean.
    * Create an instance of a stateless session TxBean (Mandatory) bean. Access a
    * TX_MANDATORY EJB without a global transaction context and ensure that this
-   * operation throws the javax.transaction.TransactionRequiredException
+   * operation throws the jakarta.transaction.TransactionRequiredException
    * exception.
    *
    */

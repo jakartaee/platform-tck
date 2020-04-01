@@ -30,7 +30,7 @@ import javax.annotation.Resource;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 /**
  * A stateful base calculator session bean class that implements

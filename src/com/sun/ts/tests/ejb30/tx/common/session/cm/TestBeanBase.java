@@ -24,11 +24,11 @@ import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import jakarta.ejb.EJBTransactionRequiredException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.Status;
-import javax.transaction.SystemException;
+import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
 
 abstract public class TestBeanBase extends LocalTestBeanBase implements TestIF {
   @EJB(name = "txBean")
