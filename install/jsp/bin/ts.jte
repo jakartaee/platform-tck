@@ -85,9 +85,9 @@ webServerHome=/ri/4.0/glassfish3/glassfish
 impl.vi=glassfish
 impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy
 impl.deploy.timeout.multiplier=30
-jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar
-el.classes=${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/jakarta.el.jar
-jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar
+jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar${pathsep}${webServerHome}/modules/jakartaee-api.jar
+el.classes=${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/jakarta.el.jar${pathsep}${webServerHome}/modules/jakartaee-api.jar
+jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/jakartaee-api.jar
 
 ########################################################################
 #
