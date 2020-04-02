@@ -475,14 +475,14 @@ public abstract class SignatureTestDriver {
 
   /**
    * This method checks whether JTA API jar contains classes from
-   * javax.transaction.xa package
+   * jakarta.transaction.xa package
    *
    * @param classpath
    *           the classpath, pointing JTA API jar
    * @param repositoryDir
    *           the directory containing an empty signature file
    *
-   * @return <code>true</code> if the package javax.transaction.xa is not
+   * @return <code>true</code> if the package jakarta.transaction.xa is not
    *        found in the JTA API jar, otherwise <code>false</code>
    */
    protected  abstract boolean verifyJTAJarForNoXA(String classpath,
