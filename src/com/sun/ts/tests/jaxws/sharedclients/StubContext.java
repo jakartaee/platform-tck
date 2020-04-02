@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,8 +27,8 @@ import com.sun.ts.lib.util.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-import javax.xml.ws.WebServiceFeature;
+import jakarta.xml.ws.Service;
+import jakarta.xml.ws.WebServiceFeature;
 import java.net.URL;
 
 public class StubContext {
@@ -83,7 +83,7 @@ public class StubContext {
 
   private Object stub;
 
-  private javax.xml.ws.Service webServiceRef;
+  private jakarta.xml.ws.Service webServiceRef;
 
   private WebServiceFeature[] wsf;
 
@@ -289,7 +289,7 @@ public class StubContext {
    * @param webServiceRef
    *          The webServiceRef to set
    */
-  public void setWebServiceRef(javax.xml.ws.Service webServiceRef) {
+  public void setWebServiceRef(jakarta.xml.ws.Service webServiceRef) {
     this.webServiceRef = webServiceRef;
   }
 }

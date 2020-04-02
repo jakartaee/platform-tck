@@ -26,7 +26,7 @@ import com.sun.ts.lib.porting.*;
 import java.util.*;
 import jakarta.ejb.*;
 import javax.naming.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.rmi.*;
 import java.sql.*;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,7 @@ import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.wsi.utils.PropertyUtils;
 
-import javax.xml.ws.Service;
+import jakarta.xml.ws.Service;
 
 public class ClientFactory {
 
@@ -72,7 +72,7 @@ public class ClientFactory {
             Integer.valueOf(webServerPort), Integer.valueOf(mode) });
       } else {
         Constructor ctr = clazz.getConstructor(new Class[] { String.class,
-            int.class, int.class, javax.xml.ws.Service.class });
+            int.class, int.class, jakarta.xml.ws.Service.class });
         return (SOAPClient) ctr.newInstance(
             new Object[] { webServerHost, Integer.valueOf(webServerPort),
                 Integer.valueOf(mode), getWebServiceRef(theTest, theService) });
@@ -91,7 +91,7 @@ public class ClientFactory {
     }
   }
 
-  private static javax.xml.ws.Service getWebServiceRef(ServiceEETest theTest,
+  private static jakarta.xml.ws.Service getWebServiceRef(ServiceEETest theTest,
       Service theService) {
     Service service = theService;
     TestUtil.logMsg(

@@ -27,7 +27,7 @@ import com.sun.ts.lib.util.*;
 import java.util.Properties;
 import java.io.Serializable;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.Queue;
 

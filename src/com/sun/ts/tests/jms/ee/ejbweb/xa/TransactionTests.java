@@ -28,7 +28,7 @@ import java.io.*;
 import java.util.Properties;
 import com.sun.javatest.Status;
 import javax.jms.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 

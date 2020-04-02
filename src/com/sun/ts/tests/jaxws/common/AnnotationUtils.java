@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.common;
 import com.sun.ts.lib.util.*;
 
 import java.lang.annotation.Annotation;
-import javax.xml.ws.WebFault;
-import javax.xml.ws.*;
+import jakarta.xml.ws.WebFault;
+import jakarta.xml.ws.*;
 import javax.jws.*;
 import javax.jws.soap.*;
 import java.lang.reflect.Field;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import java.lang.reflect.Method;
 
@@ -601,9 +601,9 @@ public class AnnotationUtils {
   public static boolean verifyWebFaultAnnotation(Class c, String name,
       String targetNamespace, String faultBean) {
     boolean result = true;
-    if (c.isAnnotationPresent(javax.xml.ws.WebFault.class)) {
-      WebFault wf = (javax.xml.ws.WebFault) c
-          .getAnnotation(javax.xml.ws.WebFault.class);
+    if (c.isAnnotationPresent(jakarta.xml.ws.WebFault.class)) {
+      WebFault wf = (jakarta.xml.ws.WebFault) c
+          .getAnnotation(jakarta.xml.ws.WebFault.class);
       if (wf != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(wf.toString());
@@ -663,9 +663,9 @@ public class AnnotationUtils {
       TestUtil.logErr("Method name not found for -> " + methodName);
       return false;
     }
-    if (method.isAnnotationPresent(javax.xml.ws.RequestWrapper.class)) {
-      javax.xml.ws.RequestWrapper rw = (javax.xml.ws.RequestWrapper) method
-          .getAnnotation(javax.xml.ws.RequestWrapper.class);
+    if (method.isAnnotationPresent(jakarta.xml.ws.RequestWrapper.class)) {
+      jakarta.xml.ws.RequestWrapper rw = (javax.xml.ws.RequestWrapper) method
+          .getAnnotation(jakarta.xml.ws.RequestWrapper.class);
       if (rw != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(rw.toString());
@@ -725,9 +725,9 @@ public class AnnotationUtils {
       TestUtil.logErr("Method name not found for -> " + methodName);
       return false;
     }
-    if (method.isAnnotationPresent(javax.xml.ws.ResponseWrapper.class)) {
-      javax.xml.ws.ResponseWrapper rw = (javax.xml.ws.ResponseWrapper) method
-          .getAnnotation(javax.xml.ws.ResponseWrapper.class);
+    if (method.isAnnotationPresent(jakarta.xml.ws.ResponseWrapper.class)) {
+      jakarta.xml.ws.ResponseWrapper rw = (javax.xml.ws.ResponseWrapper) method
+          .getAnnotation(jakarta.xml.ws.ResponseWrapper.class);
       if (rw != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(rw.toString());
@@ -781,9 +781,9 @@ public class AnnotationUtils {
   public static boolean verifyWebServiceClientAnnotation(Class c, String name,
       String targetNamespace, String wsdlLocation) {
     boolean result = true;
-    if (c.isAnnotationPresent(javax.xml.ws.WebServiceClient.class)) {
-      WebServiceClient wsc = (javax.xml.ws.WebServiceClient) c
-          .getAnnotation(javax.xml.ws.WebServiceClient.class);
+    if (c.isAnnotationPresent(jakarta.xml.ws.WebServiceClient.class)) {
+      WebServiceClient wsc = (jakarta.xml.ws.WebServiceClient) c
+          .getAnnotation(jakarta.xml.ws.WebServiceClient.class);
       if (wsc != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(wsc.toString());
@@ -843,8 +843,8 @@ public class AnnotationUtils {
       return false;
     }
     if (methodName.equals(method.getName())) {
-      if (method.isAnnotationPresent(javax.xml.ws.WebEndpoint.class)) {
-        WebEndpoint wep = method.getAnnotation(javax.xml.ws.WebEndpoint.class);
+      if (method.isAnnotationPresent(jakarta.xml.ws.WebEndpoint.class)) {
+        WebEndpoint wep = method.getAnnotation(jakarta.xml.ws.WebEndpoint.class);
         if (wep != null) {
           TestUtil.logTrace("Annotation:");
           TestUtil.logTrace(wep.toString());
@@ -916,9 +916,9 @@ public class AnnotationUtils {
       return false;
     }
     if (methodName.equals(method.getName())) {
-      if (method.isAnnotationPresent(javax.xml.ws.Action.class)) {
+      if (method.isAnnotationPresent(jakarta.xml.ws.Action.class)) {
         if (shouldExist) {
-          Action action = method.getAnnotation(javax.xml.ws.Action.class);
+          Action action = method.getAnnotation(jakarta.xml.ws.Action.class);
           if (action != null) {
             TestUtil.logTrace("Annotation:");
             TestUtil.logTrace(action.toString());

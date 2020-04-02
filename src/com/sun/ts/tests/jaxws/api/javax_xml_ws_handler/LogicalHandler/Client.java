@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,12 +31,12 @@ import java.net.*;
 import java.util.*;
 import java.rmi.*;
 
-import javax.xml.ws.*;
-import javax.xml.ws.ProtocolException;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.ProtocolException;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+import jakarta.xml.ws.soap.*;
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
@@ -116,7 +116,7 @@ public class Client extends ServiceEETest {
 
   private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService.class;
 
-  private static final String THEBINDINGPROTOCOL = javax.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING;
+  private static final String THEBINDINGPROTOCOL = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING;
 
   private static final String LOGICAL = "Logical";
 
@@ -1177,7 +1177,7 @@ public class Client extends ServiceEETest {
           ByteArrayOutputStream baos = new ByteArrayOutputStream();
           PrintStream ps = new PrintStream(baos, true);
           e.printStackTrace(ps);
-          if (e instanceof javax.xml.ws.soap.SOAPFaultException)
+          if (e instanceof jakarta.xml.ws.soap.SOAPFaultException)
             TestUtil.logMsg("Did get expected nested SOAPFaultException");
           else {
             TestUtil.logErr("Did not get expected nested SOAPFaultException");
@@ -1300,7 +1300,7 @@ public class Client extends ServiceEETest {
           ByteArrayOutputStream baos = new ByteArrayOutputStream();
           PrintStream ps = new PrintStream(baos, true);
           e.printStackTrace(ps);
-          if (e instanceof javax.xml.ws.soap.SOAPFaultException)
+          if (e instanceof jakarta.xml.ws.soap.SOAPFaultException)
             TestUtil.logMsg("Did get expected nested SOAPFaultException");
           else {
             TestUtil.logErr("Did not get expected nested SOAPFaultException");
@@ -1426,7 +1426,7 @@ public class Client extends ServiceEETest {
           ByteArrayOutputStream baos = new ByteArrayOutputStream();
           PrintStream ps = new PrintStream(baos, true);
           e.printStackTrace(ps);
-          if (e instanceof javax.xml.ws.soap.SOAPFaultException)
+          if (e instanceof jakarta.xml.ws.soap.SOAPFaultException)
             TestUtil.logMsg("Did get expected nested SOAPFaultException");
           else {
             TestUtil.logErr("Did not get expected nested SOAPFaultException");
@@ -1722,7 +1722,7 @@ public class Client extends ServiceEETest {
           ByteArrayOutputStream baos = new ByteArrayOutputStream();
           PrintStream ps = new PrintStream(baos, true);
           e.printStackTrace(ps);
-          if (e instanceof javax.xml.ws.soap.SOAPFaultException)
+          if (e instanceof jakarta.xml.ws.soap.SOAPFaultException)
             TestUtil.logMsg("Did get expected nested SOAPFaultException");
           else {
             TestUtil.logErr("Did not get expected nested SOAPFaultException");

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest;
 
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import java.io.ByteArrayInputStream;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.soap.MTOM;
-import javax.xml.ws.RespectBinding;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.soap.MTOM;
+import jakarta.xml.ws.RespectBinding;
 
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
@@ -38,21 +38,21 @@ import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 @Addressing(enabled = true)
 @MTOM(enabled = true)
 @RespectBinding(enabled = true)
-@ServiceMode(value = javax.xml.ws.Service.Mode.PAYLOAD)
+@ServiceMode(value = jakarta.xml.ws.Service.Mode.PAYLOAD)
 
 public class ProviderTestImpl implements Provider<Source> {
 
-  private static final javax.xml.bind.JAXBContext jaxbContext = createJAXBContext();
+  private static final jakarta.xml.bind.JAXBContext jaxbContext = createJAXBContext();
 
-  public javax.xml.bind.JAXBContext getJAXBContext() {
+  public jakarta.xml.bind.JAXBContext getJAXBContext() {
     return jaxbContext;
   }
 
-  private static javax.xml.bind.JAXBContext createJAXBContext() {
+  private static jakarta.xml.bind.JAXBContext createJAXBContext() {
     try {
-      return javax.xml.bind.JAXBContext.newInstance(
+      return jakarta.xml.bind.JAXBContext.newInstance(
           com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ObjectFactory.class);
-    } catch (javax.xml.bind.JAXBException e) {
+    } catch (jakarta.xml.bind.JAXBException e) {
       throw new WebServiceException(e.getMessage(), e);
     }
   }

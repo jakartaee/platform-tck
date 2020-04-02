@@ -28,7 +28,7 @@ import java.rmi.*;
 import java.util.*;
 import java.io.*;
 import java.security.Principal;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.naming.*;
 import java.sql.*;
 

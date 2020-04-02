@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2748;
 
 import java.util.Properties;
 
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 

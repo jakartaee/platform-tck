@@ -28,7 +28,7 @@ import com.sun.ts.tests.interop.ejb.session.stateful.bean2beanmultijartest.bean1
 import java.io.*;
 import java.util.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.rmi.*;
 
 import com.sun.javatest.Status;

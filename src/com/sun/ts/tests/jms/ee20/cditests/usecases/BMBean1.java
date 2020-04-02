@@ -23,7 +23,7 @@ import java.util.Properties;
 import java.util.ArrayList;
 import javax.jms.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.naming.*;
 import javax.inject.Inject;
 import javax.annotation.Resource;

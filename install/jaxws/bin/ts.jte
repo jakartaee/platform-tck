@@ -79,7 +79,7 @@ endorsed.dirs.ri=${jaxws.home.ri}/modules/endorsed
 ###########################################################################
 # @jaxws.classes  should contain all Vendor specific jars/classes
 ###########################################################################
-jaxws.classes=${endorsed.dirs}/webservices-api-osgi.jar${pathsep}${endorsed.dirs}/jaxb-api-osgi.jar${pathsep}${jaxws.lib}/webservices-osgi.jar${pathsep}${jaxws.lib}/jaxb-osgi.jar${pathsep}${jaxws.lib}/gmbal.jar${pathsep}${jaxws.lib}/management-api.jar${pathsep}${jaxws.lib}/mimepull.jar${pathsep}${jaxws.lib}/ha-api.jar
+jaxws.classes=${endorsed.dirs}/webservices-api-osgi.jar${pathsep}${endorsed.dirs}/jaxb-api-osgi.jar${pathsep}${jaxws.lib}/webservices-osgi.jar${pathsep}${jaxws.lib}/jaxb-osgi.jar${pathsep}${jaxws.lib}/gmbal.jar${pathsep}${jaxws.lib}/management-api.jar${pathsep}${jaxws.lib}/mimepull.jar${pathsep}${jaxws.lib}/ha-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakartaee-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakarta.xml.ws-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakarta.xml.bind-api.jar
 
 ###########################################################################
 # @jaxws.classes.ri  should contain all RI specific jars/classes

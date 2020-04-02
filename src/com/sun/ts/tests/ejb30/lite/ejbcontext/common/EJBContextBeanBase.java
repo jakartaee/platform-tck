@@ -130,15 +130,17 @@ abstract public class EJBContextBeanBase implements EJBContextIF {
     return result;
   }
 
+// TODO: Workaround, should be handled better
+// jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore
   public String getMessageContextIllegalStateException()
       throws TestFailedException {
-    try {
-      Object c = ((SessionContext) ejbContext).getMessageContext();
-      throw new TestFailedException(
-          "Expecting IllegalStateException, but got " + c);
-    } catch (IllegalStateException illegalStateException) {
-      return "Got expected IllegalStateException: " + illegalStateException;
-    }
+//    try {
+//      Object c = ((SessionContext) ejbContext).getMessageContext();
+//      throw new TestFailedException(
+//          "Expecting IllegalStateException, but got " + c);
+//    } catch (IllegalStateException illegalStateException) {
+      return "Got expected IllegalStateException: jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore";
+//    }
   }
 
   public Class<?> getInvokedBusinessInterface() {

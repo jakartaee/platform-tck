@@ -27,7 +27,7 @@ import com.sun.ts.lib.porting.*;
 import java.util.*;
 import java.rmi.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 

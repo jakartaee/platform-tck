@@ -28,7 +28,7 @@ import java.io.*;
 import java.rmi.*;
 import javax.rmi.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.naming.*;
 
 public class TestBeanEJB implements SessionBean {

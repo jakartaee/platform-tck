@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,8 +19,8 @@ package com.sun.ts.tests.javamail.ee.common;
 import java.io.*;
 import java.util.*;
 
-import javax.mail.*;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.*;
+import jakarta.mail.internet.MimeMessage;
 import com.sun.javatest.*;
 import com.sun.ts.lib.util.TestUtil;
 
@@ -460,7 +460,7 @@ public class MailTestUtil {
 
 }
 
-class MailAuthenticator extends javax.mail.Authenticator {
+class MailAuthenticator extends jakarta.mail.Authenticator {
   private PasswordAuthentication authentication;
 
   public MailAuthenticator(String user, String password) {

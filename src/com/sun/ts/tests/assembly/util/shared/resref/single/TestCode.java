@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,13 +29,13 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.activation.DataHandler;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.InternetAddress;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.activation.DataHandler;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.InternetAddress;
 
 import java.net.URL;
 import java.net.URLConnection;

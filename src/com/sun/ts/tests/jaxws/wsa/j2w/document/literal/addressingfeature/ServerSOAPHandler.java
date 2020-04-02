@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,10 +29,10 @@ import com.sun.ts.tests.jaxws.wsa.common.AddressingPropertyException;
 import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
 import com.sun.ts.tests.jaxws.wsa.common.MapException;
 import com.sun.ts.tests.jaxws.wsa.common.MapRequiredException;
-import javax.xml.ws.handler.soap.SOAPMessageContext;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.wsaddressing.W3CEndpointReference;
-import javax.xml.soap.SOAPException;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.soap.SOAPException;
 
 public class ServerSOAPHandler extends WsaBaseSOAPHandler {
   String testName = null;

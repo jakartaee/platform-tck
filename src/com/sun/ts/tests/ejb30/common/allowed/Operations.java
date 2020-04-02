@@ -53,16 +53,18 @@ public class Operations implements Constants {
     }
   }
 
+// TODO: Verify
+// jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore
   public void runMessageContext(SessionContext sctx, Properties results) {
-    // getMessageContext test
-    try {
-      sctx.getMessageContext();
-      results.setProperty(getMessageContext, allowed);
-    } catch (IllegalStateException e) {
-      results.setProperty(getMessageContext, disallowed);
-    } catch (Exception e) {
-      results.setProperty(getMessageContext, e.toString());
-    }
+//    // getMessageContext test
+//    try {
+//      sctx.getMessageContext();
+//      results.setProperty(getMessageContext, allowed);
+//    } catch (IllegalStateException e) {
+//      results.setProperty(getMessageContext, disallowed);
+//    } catch (Exception e) {
+//      results.setProperty(getMessageContext, e.toString());
+//    }
   }
 
   public void runRollbackOnly(SessionContext sctx, Properties results) {

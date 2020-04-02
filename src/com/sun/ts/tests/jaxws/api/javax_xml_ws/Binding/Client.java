@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,10 +33,10 @@ import java.net.*;
 import java.util.*;
 import java.rmi.*;
 
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
 import javax.xml.namespace.QName;
-import javax.xml.ws.handler.*;
+import jakarta.xml.ws.handler.*;
 import javax.xml.transform.Source;
 
 import javax.naming.InitialContext;
@@ -176,7 +176,7 @@ public class Client extends ServiceEETest {
       TestUtil
           .logMsg("Create a Dispatch object for SOAP 1.1 over HTTP binding");
       dispatch = service.createDispatch(PORT_QNAME, Source.class,
-          javax.xml.ws.Service.Mode.PAYLOAD);
+          jakarta.xml.ws.Service.Mode.PAYLOAD);
     } catch (Exception e) {
       TestUtil.printStackTrace(e);
       throw new Fault("setup failed:", e);

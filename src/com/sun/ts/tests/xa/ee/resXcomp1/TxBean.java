@@ -27,7 +27,7 @@ package com.sun.ts.tests.xa.ee.resXcomp1;
 import java.rmi.*;
 import java.util.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import com.sun.ts.lib.util.*;
 
 public interface TxBean extends EJBObject {

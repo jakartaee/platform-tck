@@ -29,7 +29,7 @@ import java.rmi.*;
 import java.sql.*;
 import javax.sql.*;
 import jakarta.ejb.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 
 public class TxBeanEJB implements SessionBean {
 

@@ -28,7 +28,7 @@ import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.porting.*;
 
 import javax.transaction.xa.XAException;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.sql.*;
 import javax.sql.*;
 import jakarta.ejb.*;

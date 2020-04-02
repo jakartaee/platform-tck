@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,15 +18,15 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import javax.jws.WebService;
 
 @WebService(portName = "SwaTestTwoPort", serviceName = "WSIRLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest2")
 public class SwaTestImpl2 implements SwaTest2 {
   public java.lang.String putMultipleAttachments(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestPut request,
-      javax.activation.DataHandler attach1,
-      javax.activation.DataHandler attach2) {
+      jakarta.activation.DataHandler attach1,
+      jakarta.activation.DataHandler attach2) {
     try {
       String response = "ok";
       System.out.println("Enter putMultipleAttachments() ......");

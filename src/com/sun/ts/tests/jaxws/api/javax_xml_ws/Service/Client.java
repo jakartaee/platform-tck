@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,17 +36,17 @@ import java.rmi.*;
 import java.math.BigInteger;
 import java.math.BigDecimal;
 
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
 import javax.xml.namespace.QName;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.EndpointReference;
-import javax.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.EndpointReference;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
 
 import javax.xml.transform.Source;
 
 import javax.naming.InitialContext;
-import javax.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBContext;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)
@@ -153,21 +153,21 @@ public class Client extends ServiceEETest {
   private JAXBContext createJAXBContext() {
     try {
       return JAXBContext.newInstance(JAXB_OBJECT_FACTORY);
-    } catch (javax.xml.bind.JAXBException e) {
+    } catch (jakarta.xml.bind.JAXBException e) {
       throw new WebServiceException(e.getMessage(), e);
     }
   }
 
-  private Dispatch<Object> createDispatchJAXB(javax.xml.ws.Service service)
+  private Dispatch<Object> createDispatchJAXB(jakarta.xml.ws.Service service)
       throws Exception {
     return service.createDispatch(PORT_QNAME, createJAXBContext(),
-        javax.xml.ws.Service.Mode.PAYLOAD);
+        jakarta.xml.ws.Service.Mode.PAYLOAD);
   }
 
-  private Dispatch<Object> createDispatchJAXB(javax.xml.ws.Service service,
+  private Dispatch<Object> createDispatchJAXB(jakarta.xml.ws.Service service,
       WebServiceFeature[] wsf) throws Exception {
     return service.createDispatch(PORT_QNAME, createJAXBContext(),
-        javax.xml.ws.Service.Mode.PAYLOAD, wsf);
+        jakarta.xml.ws.Service.Mode.PAYLOAD, wsf);
   }
 
   public static void main(String[] args) {
@@ -229,14 +229,14 @@ public class Client extends ServiceEETest {
    * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
    * JAXWS:SPEC:4010; JAXWS:JAVADOC:48; JAXWS:SPEC:6003;
    *
-   * @test_Strategy: Call javax.xml.ws.Service.create(QName) to return a service
+   * @test_Strategy: Call jakarta.xml.ws.Service.create(QName) to return a service
    * instance.
    */
   public void createTest1() throws Fault {
     TestUtil.logTrace("createTest1");
     boolean pass = true;
-    javax.xml.ws.Service service = null;
-    TestUtil.logMsg("Call javax.xml.ws.Service.create(QName) ...");
+    jakarta.xml.ws.Service service = null;
+    TestUtil.logMsg("Call jakarta.xml.ws.Service.create(QName) ...");
     try {
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(SERVICE_QNAME);
@@ -244,7 +244,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       if (service == null) {
@@ -268,14 +268,14 @@ public class Client extends ServiceEETest {
    * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
    * JAXWS:SPEC:4010; JAXWS:JAVADOC:47; JAXWS:SPEC:6003;
    *
-   * @test_Strategy: Call javax.xml.ws.Service.create(URL, QName) to return a
+   * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName) to return a
    * service instance.
    */
   public void createTest2() throws Fault {
     TestUtil.logTrace("createTest2");
     boolean pass = true;
-    javax.xml.ws.Service service = null;
-    TestUtil.logMsg("Call javax.xml.ws.Service.create(URL, QName) ...");
+    jakarta.xml.ws.Service service = null;
+    TestUtil.logMsg("Call jakarta.xml.ws.Service.create(URL, QName) ...");
     try {
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
@@ -283,7 +283,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       if (service == null) {
@@ -308,7 +308,7 @@ public class Client extends ServiceEETest {
    * JAXWS:SPEC:4010; JAXWS:JAVADOC:217; JAXWS:SPEC:6003; JAXWS:SPEC:4000;
    * JAXWS:SPEC:4031;
    *
-   * @test_Strategy: Call javax.xml.ws.Service.create(QName,
+   * @test_Strategy: Call jakarta.xml.ws.Service.create(QName,
    * WebServiceFeature[]) to return a service instance. Pass in a
    * WebServiceFeature that the endpoint supports. A valid service object should
    * be returned with that WebServiceFeature enabled.
@@ -316,9 +316,9 @@ public class Client extends ServiceEETest {
   public void createWithWSFTest1() throws Fault {
     TestUtil.logTrace("createWithWSFTest1");
     boolean pass = true;
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     TestUtil.logMsg(
-        "Call javax.xml.ws.Service.create(QName, WebServiceFeature[]) ...");
+        "Call jakarta.xml.ws.Service.create(QName, WebServiceFeature[]) ...");
     TestUtil.logMsg("Pass in AddressingFeature(true) as WebServiceFeature ...");
     try {
       if (modeProperty.equals("standalone")) {
@@ -327,7 +327,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       if (service == null) {
@@ -354,7 +354,7 @@ public class Client extends ServiceEETest {
    * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
    * JAXWS:SPEC:4010; JAXWS:JAVADOC:216; JAXWS:SPEC:6003; JAXWS:SPEC:4031;
    *
-   * @test_Strategy: Call javax.xml.ws.Service.create(URL, QName,
+   * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName,
    * WebServiceFeature[]) to return a service instance. Pass in a
    * WebServiceFeature that the endpoint supports. A valid service object should
    * be returned with that WebServiceFeature enabled.
@@ -362,9 +362,9 @@ public class Client extends ServiceEETest {
   public void createWithWSFTest2() throws Fault {
     TestUtil.logTrace("createWithWSFTest2");
     boolean pass = true;
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     TestUtil.logMsg(
-        "Call javax.xml.ws.Service.create(URL, QName, WebServiceFeature[]) ...");
+        "Call jakarta.xml.ws.Service.create(URL, QName, WebServiceFeature[]) ...");
     TestUtil.logMsg("Pass in AddressingFeature(true) as WebServiceFeature ...");
     try {
       if (modeProperty.equals("standalone")) {
@@ -373,7 +373,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       if (service == null) {
@@ -400,7 +400,7 @@ public class Client extends ServiceEETest {
    * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
    * JAXWS:SPEC:4010; JAXWS:JAVADOC:217; JAXWS:SPEC:6003;
    *
-   * @test_Strategy: Call javax.xml.ws.Service.create(QName,
+   * @test_Strategy: Call jakarta.xml.ws.Service.create(QName,
    * WebServiceFeature[]) to return a service instance. Pass in a
    * WebServiceFeature that the endpoint doesn't support. API should throw back
    * a WebServiceException.
@@ -408,9 +408,9 @@ public class Client extends ServiceEETest {
   public void createWithWSFNegativeTest1() throws Fault {
     TestUtil.logTrace("createWithWSFNegativeTest1");
     boolean pass = true;
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     TestUtil.logMsg(
-        "Call javax.xml.ws.Service.create(QName, WebServiceFeature[]) ...");
+        "Call jakarta.xml.ws.Service.create(QName, WebServiceFeature[]) ...");
     TestUtil.logMsg("Pass in TCKFeature(true) as WebServiceFeature ...");
     TestUtil.logMsg(
         "API must throw WebServiceException as endpoint does not know TCKFeature(true) ...");
@@ -423,7 +423,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       if (!pass) {
@@ -451,7 +451,7 @@ public class Client extends ServiceEETest {
    * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
    * JAXWS:SPEC:4010; JAXWS:JAVADOC:216; JAXWS:SPEC:6003;
    *
-   * @test_Strategy: Call javax.xml.ws.Service.create(URL, QName,
+   * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName,
    * WebServiceFeature[]) to return a service instance. Pass in a
    * WebServiceFeature that the endpoint doesn't support. API should throw back
    * a WebServiceException.
@@ -459,9 +459,9 @@ public class Client extends ServiceEETest {
   public void createWithWSFNegativeTest2() throws Fault {
     TestUtil.logTrace("createWithWSFNegativeTest2");
     boolean pass = true;
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     TestUtil.logMsg(
-        "Call javax.xml.ws.Service.create(URL, QName, WebServiceFeature[]) ...");
+        "Call jakarta.xml.ws.Service.create(URL, QName, WebServiceFeature[]) ...");
     TestUtil.logMsg("Pass in TCKFeature(true) as WebServiceFeature ...");
     TestUtil.logMsg(
         "API must throw WebServiceException as endpoint does not know TCKFeature(true) ...");
@@ -474,7 +474,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       if (!pass) {
@@ -510,14 +510,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetPort1PosTest1WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -556,14 +556,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetPortTest1WithFeatures");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -620,14 +620,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetPortTest2WithFeatures");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -681,14 +681,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetPortTest3WithFeatures");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
 
@@ -754,14 +754,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetPort1NegTest1WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -799,14 +799,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetPort2PosTest1WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -847,14 +847,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetPort2NegTest1WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -891,14 +891,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetPortsTest1WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg("Test getPorts with (WSDL access) - positive test 1");
@@ -939,14 +939,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetServiceNameTest1");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg("Get service name via Service.getServiceName()");
@@ -981,14 +981,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetWSDLDocumentLocationTest1");
     boolean pass = false;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg("Call Service.getWSDLDocumentLocation() to get WSDL url");
@@ -1022,14 +1022,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("GetHandlerResolverTest1WithWsdl");
     boolean pass = false;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg("Call Service.getHandlerResolver() - should pass");
@@ -1061,14 +1061,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("SetHandlerResolverTest1WithWsdl");
     boolean pass = false;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME, SERVICE_CLASS);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg("Call Service.getHandlerResolver() - should pass");
@@ -1105,20 +1105,20 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("CreateDispatchTest1WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
           "Create Dispatch object via Service.createDispatch(QName, Source, Mode)");
       Dispatch dispatch = service.createDispatch(PORT_QNAME, Source.class,
-          javax.xml.ws.Service.Mode.PAYLOAD);
+          jakarta.xml.ws.Service.Mode.PAYLOAD);
       if (dispatch == null) {
         TestUtil.logErr("Service.createDispatch() returned null");
         pass = false;
@@ -1149,14 +1149,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("CreateDispatchTest2WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -1190,20 +1190,20 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("CreateDispatchTest1WithFeatures");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
           "Create Dispatch via Service.createDispatch(QName, Source, Mode, WebServiceFeature ...) - Addressing(true)");
       Dispatch<Source> dispatch = service.createDispatch(PORT2_QNAME,
-          Source.class, javax.xml.ws.Service.Mode.PAYLOAD, wsftrue);
+          Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
       if (dispatch == null) {
         TestUtil.logErr("Service.createDispatch() returned null");
         pass = false;
@@ -1212,7 +1212,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg(
           "Create Dispatch via Service.createDispatch(QName, Source, Mode, WebServiceFeature ...) - Addressing(false)");
       dispatch = service.createDispatch(PORT2_QNAME, Source.class,
-          javax.xml.ws.Service.Mode.PAYLOAD, wsffalse);
+          jakarta.xml.ws.Service.Mode.PAYLOAD, wsffalse);
       if (dispatch == null) {
         TestUtil.logErr("Service.createDispatch() returned null");
         pass = false;
@@ -1241,14 +1241,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("CreateDispatchTest2WithFeatures");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -1292,14 +1292,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("CreateDispatchObjectUsingEPRWithWFTrueTest");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
 
@@ -1312,7 +1312,7 @@ public class Client extends ServiceEETest {
           "Create Dispatch via Service.createDispatch(EndpointReference, Source, Mode, WebServiceFeature ...) - Addressing(true)");
       String bindingID = new String(SOAPBinding.SOAP11HTTP_BINDING);
       Dispatch<Source> dispatch = service.createDispatch(epr, Source.class,
-          javax.xml.ws.Service.Mode.PAYLOAD, wsftrue);
+          jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
       if (dispatch == null) {
         TestUtil.logErr("Service.createDispatch() returned null");
         pass = false;
@@ -1321,7 +1321,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg(
           "Create Dispatch via Service.createDispatch(EndpointReference, Source, Mode, WebServiceFeature ...) - Addressing(false)");
       dispatch = service.createDispatch(epr, Source.class,
-          javax.xml.ws.Service.Mode.PAYLOAD, wsffalse);
+          jakarta.xml.ws.Service.Mode.PAYLOAD, wsffalse);
       if (dispatch == null) {
         TestUtil.logErr("Service.createDispatch() returned null");
         pass = false;
@@ -1350,14 +1350,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("CreateDispatchObjectUsingEPRWithWFTrueTest2");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
 
@@ -1370,7 +1370,7 @@ public class Client extends ServiceEETest {
           "Create Dispatch via Service.createDispatch(EndpointReference, JAXBContext, Mode, WebServiceFeature ...) - Addressing(true)");
       String bindingID = new String(SOAPBinding.SOAP11HTTP_BINDING);
       Dispatch<Object> dispatch = service.createDispatch(epr,
-          createJAXBContext(), javax.xml.ws.Service.Mode.PAYLOAD, wsftrue);
+          createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
       if (dispatch == null) {
         TestUtil.logErr("Service.createDispatch() returned null");
         pass = false;
@@ -1379,7 +1379,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg(
           "Create Dispatch via Service.createDispatch(EndpointReference, JAXBContext, Mode, WebServiceFeature ...) - Addressing(false)");
       dispatch = service.createDispatch(epr, createJAXBContext(),
-          javax.xml.ws.Service.Mode.PAYLOAD, wsffalse);
+          jakarta.xml.ws.Service.Mode.PAYLOAD, wsffalse);
       if (dispatch == null) {
         TestUtil.logErr("Service.createDispatch() returned null");
         pass = false;
@@ -1410,14 +1410,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("CreateDispatchExceptionTest1WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil.logMsg(
@@ -1426,7 +1426,7 @@ public class Client extends ServiceEETest {
       String bindingID = new String(SOAPBinding.SOAP11HTTP_BINDING);
       service.addPort(PORT_QNAME, bindingID, url);
       Dispatch dispatch = service.createDispatch(NONEXISTANT_PORT_QNAME,
-          Source.class, javax.xml.ws.Service.Mode.PAYLOAD);
+          Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD);
       TestUtil.logErr(
           "Service.createDispatch(QName. Object, Mode) did not throw expected WebServiceException");
       pass = false;
@@ -1455,14 +1455,14 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("CreatePortTest1WithWsdl");
     boolean pass = true;
     try {
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       TestUtil
@@ -1495,14 +1495,14 @@ public class Client extends ServiceEETest {
     try {
       java.util.concurrent.Executor executor = new java.util.concurrent.ScheduledThreadPoolExecutor(
           1);
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       service.setExecutor(executor);
@@ -1545,14 +1545,14 @@ public class Client extends ServiceEETest {
     try {
       java.util.concurrent.Executor executor = new java.util.concurrent.ScheduledThreadPoolExecutor(
           1);
-      javax.xml.ws.Service service = null;
+      jakarta.xml.ws.Service service = null;
       if (modeProperty.equals("standalone")) {
         service = JAXWS_Util.getService(wsdlurl, SERVICE_QNAME);
       } else {
         TestUtil.logMsg("Get Initial Context");
         InitialContext ctx = new InitialContext();
         TestUtil.logMsg("Get JAXWS service instance with WSDL");
-        service = (javax.xml.ws.Service) ctx
+        service = (jakarta.xml.ws.Service) ctx
             .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL);
       }
       service.setExecutor(executor);
@@ -1573,33 +1573,33 @@ public class Client extends ServiceEETest {
       throw new Fault("setExecutorTest failed");
   }
 
-  private javax.xml.ws.Service getService(QName sname,
+  private jakarta.xml.ws.Service getService(QName sname,
       WebServiceFeature[] wsfeatures) throws Exception {
     TestUtil.logMsg("JAXWS_Util:getService(QName, WebServiceFeature[])");
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     TestUtil.logMsg("QNAME=" + sname);
     TestUtil.logMsg(
-        "Creating Service via javax.xml.ws.Service.create(QName, WebServiceFeature[])");
-    service = javax.xml.ws.Service.create(sname, wsfeatures);
+        "Creating Service via jakarta.xml.ws.Service.create(QName, WebServiceFeature[])");
+    service = jakarta.xml.ws.Service.create(sname, wsfeatures);
     if (service == null)
       TestUtil.logErr(
-          "FATAL: javax.xml.ws.Service.create(QName, WebServiceFeature[]) returned a null");
+          "FATAL: jakarta.xml.ws.Service.create(QName, WebServiceFeature[]) returned a null");
     return service;
   }
 
-  private javax.xml.ws.Service getService(URL wsdlurl, QName sname,
+  private jakarta.xml.ws.Service getService(URL wsdlurl, QName sname,
       WebServiceFeature[] wsfeatures) throws Exception {
     TestUtil.logMsg("JAXWS_Util:getService(URL, QName, WebServiceFeature[])");
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     if (wsdlurl != null)
       TestUtil.logMsg("URL=" + wsdlurl.toString());
     TestUtil.logMsg("QName=" + sname);
     TestUtil.logMsg(
-        "Creating Service via javax.xml.ws.Service.create(URL, QName, WebServiceFeature[])");
-    service = javax.xml.ws.Service.create(wsdlurl, sname, wsfeatures);
+        "Creating Service via jakarta.xml.ws.Service.create(URL, QName, WebServiceFeature[])");
+    service = jakarta.xml.ws.Service.create(wsdlurl, sname, wsfeatures);
     if (service == null)
       TestUtil.logErr(
-          "FATAL: javax.xml.ws.Service.create(URL, QName, WebServiceFeature[]) returned a null");
+          "FATAL: jakarta.xml.ws.Service.create(URL, QName, WebServiceFeature[]) returned a null");
     return service;
   }
 }

@@ -25,7 +25,7 @@ import javax.xml.ws.Provider;
 import javax.xml.ws.WebServiceProvider;
 import javax.xml.ws.ServiceMode;
 import javax.xml.ws.Service;
-import javax.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPMessage;
 import jakarta.ejb.Stateless;
 
 import javax.xml.transform.Source;
