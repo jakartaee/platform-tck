@@ -32,7 +32,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.*;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 @PersistenceContexts({
     @PersistenceContext(name = "persistence/CTS-EM", unitName = "CTS-EM"),
