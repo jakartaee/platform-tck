@@ -89,6 +89,17 @@ public class ProvidersServlet extends ApplicationServlet {
         .getExceptionMapper(Exception.class);
     return em.toResponse(new RuntimeException());
   }
+  
+  @GET
+  @Path("isRegisteredDefaultException")
+  public Response isRegisteredDefaultExceptionTest() {
+    ExceptionMapper<Throwable> em = providers
+        .getExceptionMapper(Throwable.class);
+    if (em == null)
+        return Response.status(500).build();
+    else
+        return Response.status(200).build();
+  }
 
   @GET
   @Path("isRegisteredExceptionMapperNullEx")

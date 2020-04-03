@@ -139,6 +139,21 @@ public class JAXRSProvidersClient
         getStatusCode(Status.INTERNAL_SERVER_ERROR));
     invoke();
   }
+  
+  /*
+   * @testName: isRegisteredDefaultExceptionMapperTest
+   * 
+   * @assertion_ids: JAXRS:JAVADOC:270; JAXRS:JAVADOC:281; JAXRS:SPEC:39;
+   * 
+   * @test_Strategy: Try to get default ExceptionMapper
+   */
+  public void isRegisteredDefaultExceptionMapperTest() throws Fault {
+    setProperty(Property.REQUEST,
+        buildRequest(GET, "isRegisteredDefaultException"));
+    setProperty(Property.STATUS_CODE,
+        getStatusCode(Status.OK));
+    invoke();
+  }
 
   /*
    * @testName: isRegisteredExceptionMapperNullExceptionTest
