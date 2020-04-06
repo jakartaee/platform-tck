@@ -18,9 +18,9 @@ package com.sun.ts.tests.concurrency.spec.ManagedExecutorService.managed.forbidd
 
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
-import javax.enterprise.concurrent.ManagedExecutorService;
+import jakarta.enterprise.concurrent.ManagedExecutorService;
 
 @Stateless
 public class TestEjb implements TestEjbRemote {

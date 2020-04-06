@@ -18,7 +18,7 @@ package com.sun.ts.tests.concurrency.spec.ContextService.tx;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.enterprise.concurrent.ContextService;
+import jakarta.enterprise.concurrent.ContextService;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

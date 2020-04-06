@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.contextPropagate;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
-import javax.enterprise.concurrent.ManagedThreadFactory;
+import jakarta.enterprise.concurrent.ManagedThreadFactory;
 
 @Local(ContextPropagateInterface.class)
 @Stateless
