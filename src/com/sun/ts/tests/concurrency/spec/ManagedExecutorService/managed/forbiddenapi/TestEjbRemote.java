@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.concurrency.spec.ManagedExecutorService.managed.forbiddenapi;
 
-import javax.ejb.Remote;
+import jakarta.ejb.Remote;
 
 @Remote
 public interface TestEjbRemote {

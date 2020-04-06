@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,12 +18,12 @@ package com.sun.ts.tests.concurrency.spec.ContextService.tx;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.enterprise.concurrent.ContextService;
+import jakarta.enterprise.concurrent.ContextService;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.transaction.Transaction;
+import jakarta.transaction.Transaction;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

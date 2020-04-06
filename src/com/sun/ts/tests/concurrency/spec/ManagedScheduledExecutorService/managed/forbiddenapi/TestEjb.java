@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.concurrency.spec.ManagedScheduledExecutorService.managed.forbiddenapi;
 
-import javax.ejb.Stateless;
-import javax.enterprise.concurrent.*;
+import jakarta.ejb.Stateless;
+import jakarta.enterprise.concurrent.*;
 import java.util.concurrent.*;
 import javax.naming.*;
 import com.sun.ts.tests.concurrency.api.common.*;
