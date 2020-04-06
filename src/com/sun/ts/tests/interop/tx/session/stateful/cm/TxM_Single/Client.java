@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import com.sun.ts.lib.harness.*;
 
 import java.io.*;
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.rmi.*;
 
 import com.sun.javatest.Status;
@@ -200,11 +200,11 @@ public class Client extends EETest {
    * declaration. The call occurs without a global transaction context.
    *
    * Ensure that this operation executes successfully and that the
-   * javax.transaction.TransactionRequiredException exception is not thrown.
+   * jakarta.transaction.TransactionRequiredException exception is not thrown.
    *
    * Call a method with the same name but a different parameter list that has no
    * Style 3 declaration (hence the Style 2 declaration applies). Ensure that
-   * this operation throws the javax.transaction.TransactionRequiredException
+   * this operation throws the jakarta.transaction.TransactionRequiredException
    * exception.
    *
    * If the TxBean EJB Container is configured to not support transaction
@@ -221,11 +221,11 @@ public class Client extends EETest {
    * declaration. The call occurs without a global transaction context.
    *
    * Ensure that this operation executes successfully and that the
-   * javax.transaction.TransactionRequiredException exception is not thrown.
+   * jakarta.transaction.TransactionRequiredException exception is not thrown.
    *
    * Call a method with the same name but a different parameter list that has no
    * Style 3 declaration (hence the Style 2 declaration applies). Ensure that
-   * this operation throws the javax.transaction.TransactionRequiredException
+   * this operation throws the jakarta.transaction.TransactionRequiredException
    * exception.
    *
    */

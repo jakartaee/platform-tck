@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest;
 
-import javax.ejb.SessionBean;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateless;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import javax.jws.WebService;
 
 @WebService(portName = "JunkJunkJunkPortName", serviceName = "JunkJunkJunkServiceName", targetNamespace = "http://Tx.org", wsdlLocation = "META-INF/wsdl/TxService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest.Tx")

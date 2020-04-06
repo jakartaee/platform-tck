@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb30.misc.nomethodbean;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.ejb.EJB;
-import javax.ejb.EJBs;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

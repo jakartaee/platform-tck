@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,21 +30,21 @@ import java.util.*;
 import java.rmi.*;
 
 import javax.xml.namespace.QName;
-import javax.xml.ws.soap.*;
-import javax.xml.soap.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
 
 import com.sun.javatest.Status;
 
 public class Client extends ServiceEETest {
-  private javax.xml.soap.Detail detail = null;
+  private jakarta.xml.soap.Detail detail = null;
 
-  private javax.xml.soap.DetailEntry detailentry = null;
+  private jakarta.xml.soap.DetailEntry detailentry = null;
 
-  private javax.xml.soap.SOAPFault soapfault = null;
+  private jakarta.xml.soap.SOAPFault soapfault = null;
 
-  private javax.xml.soap.Name name = null;
+  private jakarta.xml.soap.Name name = null;
 
-  private javax.xml.soap.MessageFactory msgfactory = null;
+  private jakarta.xml.soap.MessageFactory msgfactory = null;
 
   public static void main(String[] args) {
     Client theTests = new Client();
@@ -62,23 +62,23 @@ public class Client extends ServiceEETest {
     try {
       // Create a soap message factory instance.
       TestUtil.logMsg("Create a SOAP MessageFactory instance");
-      msgfactory = javax.xml.soap.MessageFactory.newInstance();
+      msgfactory = jakarta.xml.soap.MessageFactory.newInstance();
 
       // Create a soap message.
       TestUtil.logMsg("Create a SOAPMessage");
-      javax.xml.soap.SOAPMessage soapmsg = msgfactory.createMessage();
+      jakarta.xml.soap.SOAPMessage soapmsg = msgfactory.createMessage();
 
       // Retrieve the soap part from the soap message..
       TestUtil.logMsg("Get SOAP Part");
-      javax.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
+      jakarta.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
 
       // Retrieve the envelope from the soap part.
       TestUtil.logMsg("Get SOAP Envelope");
-      javax.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
+      jakarta.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
 
       // Retrieve the soap body from the envelope.
       TestUtil.logMsg("Get SOAP Body");
-      javax.xml.soap.SOAPBody body = envelope.getBody();
+      jakarta.xml.soap.SOAPBody body = envelope.getBody();
 
       // Add a soap fault to the soap body.
       soapfault = body.addFault();
@@ -110,7 +110,7 @@ public class Client extends ServiceEETest {
     TestUtil.logTrace("SOAPFaultExceptionConstructorTest");
     boolean pass = true;
     TestUtil.logMsg(
-        "Create instance via SOAPFaultException(javax.xml.soap.SOAPFault");
+        "Create instance via SOAPFaultException(jakarta.xml.soap.SOAPFault");
     SOAPFaultException sf = new SOAPFaultException(soapfault);
     if (sf != null) {
       TestUtil.logMsg("SOAPFaultException object created successfully");
@@ -136,7 +136,7 @@ public class Client extends ServiceEETest {
     SOAPFault theFault;
     boolean pass = true;
     TestUtil.logMsg(
-        "Create instance via SOAPFaultException(javax.xml.soap.SOAPFault");
+        "Create instance via SOAPFaultException(jakarta.xml.soap.SOAPFault");
     SOAPFaultException sf = new SOAPFaultException(soapfault);
     if (sf != null) {
       TestUtil.logMsg("SOAPFaultException object created successfully");

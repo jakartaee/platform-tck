@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,20 +22,20 @@ package com.sun.ts.tests.jaxws.wsa.common;
 
 import com.sun.ts.tests.jaxws.common.XMLUtils;
 
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.SOAPConstants;
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPMessage;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPHeader;
-import javax.xml.soap.SOAPFault;
-import javax.xml.soap.Detail;
-import javax.xml.soap.DetailEntry;
-import javax.xml.soap.Text;
-import javax.xml.ws.soap.*;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.SOAPConstants;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPHeader;
+import jakarta.xml.soap.SOAPFault;
+import jakarta.xml.soap.Detail;
+import jakarta.xml.soap.DetailEntry;
+import jakarta.xml.soap.Text;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 import javax.xml.namespace.QName;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -54,12 +54,12 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import javax.xml.ws.Dispatch;
+import jakarta.xml.ws.Dispatch;
 
 import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
 import com.sun.ts.tests.jaxws.wsa.common.MemberSubmissionAddressingConstants;
 
-public class WsaSOAPUtils implements javax.xml.soap.SOAPConstants,
+public class WsaSOAPUtils implements jakarta.xml.soap.SOAPConstants,
     com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants {
 
   public static final String UUID = "uuid:" + java.util.UUID.randomUUID();

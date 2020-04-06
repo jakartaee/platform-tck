@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,11 +34,11 @@ import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPFactory;
-import javax.xml.soap.SOAPFault;
-import javax.xml.soap.SOAPMessage;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.SOAPFault;
+import jakarta.xml.soap.SOAPMessage;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -347,7 +347,7 @@ public final class JWS_Util {
   }
 
   private static void _getSOAPElementContent(SOAPElement se) {
-    javax.xml.soap.Name name = se.getElementName();
+    jakarta.xml.soap.Name name = se.getElementName();
     if (name.getURI() == null || name.getURI().equals("")) {
       TestUtil.logMsg(" Element=" + name.getLocalName());
       content += name.getLocalName();
@@ -359,8 +359,8 @@ public final class JWS_Util {
     Iterator i = se.getAllAttributes();
     while (i.hasNext()) {
       Object o = i.next();
-      if (o instanceof javax.xml.soap.Name) {
-        javax.xml.soap.Name attr = (javax.xml.soap.Name) o;
+      if (o instanceof jakarta.xml.soap.Name) {
+        jakarta.xml.soap.Name attr = (jakarta.xml.soap.Name) o;
         if (attr.getURI() == null || attr.getURI().equals("")) {
           TestUtil.logMsg("  AttrName=" + attr.getLocalName() + " AttrValue="
               + se.getAttributeValue(attr));
@@ -377,8 +377,8 @@ public final class JWS_Util {
     i = se.getChildElements();
     while (i.hasNext()) {
       Object o = i.next();
-      if (o instanceof javax.xml.soap.Name) {
-        javax.xml.soap.Name elem = (javax.xml.soap.Name) o;
+      if (o instanceof jakarta.xml.soap.Name) {
+        jakarta.xml.soap.Name elem = (jakarta.xml.soap.Name) o;
         if (elem.getURI() == null || elem.getURI().equals("")) {
           TestUtil.logMsg(" Element=" + elem.getLocalName());
           content += " " + elem.getLocalName();
@@ -387,8 +387,8 @@ public final class JWS_Util {
               " Element=" + elem.getLocalName() + " URI=" + elem.getURI());
           content += " " + elem.getLocalName() + " " + elem.getURI();
         }
-      } else if (o instanceof javax.xml.soap.Text) {
-        javax.xml.soap.Text text = (javax.xml.soap.Text) o;
+      } else if (o instanceof jakarta.xml.soap.Text) {
+        jakarta.xml.soap.Text text = (jakarta.xml.soap.Text) o;
         TestUtil.logMsg("  Text=" + text.getValue());
         content += " " + text.getValue();
       } else {
@@ -399,27 +399,27 @@ public final class JWS_Util {
   }
 
   public static SOAPFault createSOAPFault(String soapVer) throws Exception {
-    javax.xml.soap.SOAPFault soapFault = null;
+    jakarta.xml.soap.SOAPFault soapFault = null;
     try {
       // Create a soap message factory instance.
       TestUtil.logMsg("Create a SOAP MessageFactory instance - " + soapVer);
-      javax.xml.soap.MessageFactory mfactory = getMessageFactory(soapVer);
+      jakarta.xml.soap.MessageFactory mfactory = getMessageFactory(soapVer);
 
       // Create a soap message.
       TestUtil.logMsg("Create a SOAPMessage");
-      javax.xml.soap.SOAPMessage soapmsg = mfactory.createMessage();
+      jakarta.xml.soap.SOAPMessage soapmsg = mfactory.createMessage();
 
       // Retrieve the soap part from the soap message..
       TestUtil.logMsg("Get SOAP Part");
-      javax.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
+      jakarta.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
 
       // Retrieve the envelope from the soap part.
       TestUtil.logMsg("Get SOAP Envelope");
-      javax.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
+      jakarta.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
 
       // Retrieve the soap body from the envelope.
       TestUtil.logMsg("Get SOAP Body");
-      javax.xml.soap.SOAPBody body = envelope.getBody();
+      jakarta.xml.soap.SOAPBody body = envelope.getBody();
 
       // Add a soap fault to the soap body.
       soapFault = body.addFault();
@@ -432,35 +432,35 @@ public final class JWS_Util {
 
   public static SOAPFault createSOAPFault(String soapVer,
       javax.xml.namespace.QName faultCode, String faultActor,
-      String faultString, javax.xml.soap.Name name) throws Exception {
-    javax.xml.soap.SOAPFault soapFault = null;
+      String faultString, jakarta.xml.soap.Name name) throws Exception {
+    jakarta.xml.soap.SOAPFault soapFault = null;
     try {
       // Create a soap message factory instance.
       TestUtil.logMsg("Create a SOAP MessageFactory instance - " + soapVer);
-      javax.xml.soap.MessageFactory mfactory = getMessageFactory(soapVer);
+      jakarta.xml.soap.MessageFactory mfactory = getMessageFactory(soapVer);
 
       // Create a soap message.
       TestUtil.logMsg("Create a SOAPMessage");
-      javax.xml.soap.SOAPMessage soapmsg = mfactory.createMessage();
+      jakarta.xml.soap.SOAPMessage soapmsg = mfactory.createMessage();
 
       // Retrieve the soap part from the soap message..
       TestUtil.logMsg("Get SOAP Part");
-      javax.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
+      jakarta.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
 
       // Retrieve the envelope from the soap part.
       TestUtil.logMsg("Get SOAP Envelope");
-      javax.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
+      jakarta.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
 
       // Retrieve the soap body from the envelope.
       TestUtil.logMsg("Get SOAP Body");
-      javax.xml.soap.SOAPBody body = envelope.getBody();
+      jakarta.xml.soap.SOAPBody body = envelope.getBody();
 
       // Add a soap fault to the soap body.
       soapFault = body.addFault();
       soapFault.setFaultCode(faultCode);
       soapFault.setFaultActor(faultActor);
       soapFault.setFaultString(faultString);
-      javax.xml.soap.Detail detail = soapFault.addDetail();
+      jakarta.xml.soap.Detail detail = soapFault.addDetail();
       detail.addDetailEntry(name);
     } catch (Exception e) {
       TestUtil.logErr("Exception caught: " + e);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,17 +34,17 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.rmi.*;
 
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
-import javax.xml.ws.soap.*;
-import javax.xml.ws.handler.*;
-import javax.xml.bind.*;
-import javax.xml.soap.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.bind.*;
+import jakarta.xml.soap.*;
 
 import javax.naming.InitialContext;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
 import javax.xml.transform.Source;
 import java.net.*;
 import java.util.*;
@@ -126,24 +126,24 @@ public class Client extends ServiceEETest {
   private JAXBContext createJAXBContext() {
     try {
       return JAXBContext.newInstance(JAXB_OBJECT_FACTORY);
-    } catch (javax.xml.bind.JAXBException e) {
+    } catch (jakarta.xml.bind.JAXBException e) {
       throw new WebServiceException(e.getMessage(), e);
     }
   }
 
   private Dispatch<Object> createDispatchJAXB() throws Exception {
     return service.createDispatch(PORT_QNAME, createJAXBContext(),
-        javax.xml.ws.Service.Mode.PAYLOAD);
+        jakarta.xml.ws.Service.Mode.PAYLOAD);
   }
 
   private Dispatch<Source> createDispatchSource() throws Exception {
     return service.createDispatch(PORT_QNAME, Source.class,
-        javax.xml.ws.Service.Mode.PAYLOAD);
+        jakarta.xml.ws.Service.Mode.PAYLOAD);
   }
 
   private Dispatch<SOAPMessage> createDispatchSOAPMessage() throws Exception {
     return service.createDispatch(PORT_QNAME, SOAPMessage.class,
-        javax.xml.ws.Service.Mode.MESSAGE);
+        jakarta.xml.ws.Service.Mode.MESSAGE);
   }
 
   class MyHandlerXML implements AsyncHandler<Source> {

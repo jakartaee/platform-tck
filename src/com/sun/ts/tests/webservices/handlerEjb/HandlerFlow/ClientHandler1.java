@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2002 International Business Machines Corp. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,7 +20,7 @@ package com.sun.ts.tests.webservices.handlerEjb.HandlerFlow;
 import com.sun.ts.tests.jaxrpc.common.HandlerBase;
 import com.sun.ts.tests.jaxrpc.common.HandlerTracker;
 
-import javax.xml.soap.*;
+import jakarta.xml.soap.*;
 import javax.xml.rpc.soap.*;
 import javax.xml.rpc.handler.*;
 import javax.xml.rpc.handler.soap.*;

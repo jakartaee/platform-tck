@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -414,8 +414,8 @@ component request being processed by the container.
 </TR>
 <TR>
 <TD valign="center" align="center"><a name="JACC:SPEC:100"></a><font size="1PT">JACC:SPEC:100</font></TD><TD valign="center" align="center"><font size="1PT">4</font></TD><TD valign="center" align="center"><font size="1PT">4.6.1.4</font></TD><TD valign="center" align="left"><font size="1PT">All EJB containers must register a PolicyContextHandler whose getContext
-method returns a javax.ejb.EnterpriseBean object when invoked with the key
-&ldquo;javax.ejb.EnterpriseBean&rdquo;. When this handler is activated, the container must
+method returns a jakarta.ejb.EnterpriseBean object when invoked with the key
+&ldquo;jakarta.ejb.EnterpriseBean&rdquo;. When this handler is activated, the container must
 return the EnterpriseBean object corresponding to the component request being
 processed by the container.
 			</font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
@@ -426,7 +426,7 @@ processed by the container.
 <TD valign="center" align="center"><a name="JACC:SPEC:101"></a><font size="1PT">JACC:SPEC:101</font></TD><TD valign="center" align="center"><font size="1PT">4</font></TD><TD valign="center" align="center"><font size="1PT">4.6.1.5</font></TD><TD valign="center" align="left"><font size="1PT">All EJB containers must register a PolicyContextHandler whose getContext
 method returns an array of objects (Object[]) containing the arguments of the EJB
 method invocation (in the same order as they appear in the method signature)
-when invoked with the key &ldquo;javax.ejb.arguments&rdquo;. If there are no parameters in
+when invoked with the key &ldquo;jakarta.ejb.arguments&rdquo;. If there are no parameters in
 the method signature, the context handler must return the value null.
 			</font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
 <br>

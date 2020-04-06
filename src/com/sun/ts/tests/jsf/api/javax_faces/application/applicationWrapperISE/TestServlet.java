@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.application.applicationWrapperISE;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.el.ELResolver;
+import jakarta.el.ELResolver;
 import javax.faces.application.Application;
 import javax.faces.application.ApplicationWrapper;
 import javax.faces.application.ResourceHandler;

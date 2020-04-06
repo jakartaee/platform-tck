@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,17 +19,17 @@ package com.sun.ts.tests.jsonp.api.jsonarraytests;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
 import java.util.ArrayList;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonString;
-import javax.json.JsonValue;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonString;
+import jakarta.json.JsonValue;
 
 import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
 import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 import java.util.Iterator;
 import java.util.List;
-import javax.json.JsonNumber;
+import jakarta.json.JsonNumber;
 
 // $Id$
 /**

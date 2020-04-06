@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,9 +23,9 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.ejblink.one;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkBeanBase;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import javax.ejb.Remove;
-import javax.ejb.Stateful;
-import javax.ejb.SessionContext;
+import jakarta.ejb.Remove;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
 
 @Stateful(name = "EjbLink3Bean")

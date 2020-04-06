@@ -141,7 +141,7 @@
                      com/sun/ts/tests/common/webclient/**/*,
                      com/sun/ts/tests/signaturetest/*,
                      com/sun/ts/tests/signaturetest/securityapi/**/*,
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.security.enterprise*"
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.security.enterprise*"
                   excludes="**/.svn/*,
                          com/sun/ts/tests/signaturetest/*Record*,
                          com/sun/ts/tests/signaturetest/*record*"/>

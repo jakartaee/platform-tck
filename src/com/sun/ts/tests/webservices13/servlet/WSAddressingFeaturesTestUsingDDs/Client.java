@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
 import com.sun.ts.tests.jaxws.wsa.common.WsaSOAPUtils;
 import com.sun.javatest.Status;
 
-import javax.ejb.EJB;
+import jakarta.ejb.EJB;
 import javax.xml.ws.*;
 import javax.xml.ws.soap.*;
 import javax.xml.namespace.QName;

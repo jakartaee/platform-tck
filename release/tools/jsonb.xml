@@ -122,7 +122,7 @@
 			<fileset dir="${ts.home}/src"
 			includes="
                com/sun/ts/tests/jsonb/**/*,
-               com/sun/ts/tests/signaturetest/signature-repository/javax.json.*,
+               com/sun/ts/tests/signaturetest/signature-repository/jakarta.json.*,
                com/sun/ts/tests/signaturetest/*,
                com/sun/ts/tests/signaturetest/jsonb/*,
                com/sun/ts/tests/common/vehicle/*,

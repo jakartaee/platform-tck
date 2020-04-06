@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,7 +20,7 @@ package com.sun.ts.tests.websocket.ee.javax.websocket.throwingcoder;
 import java.io.IOException;
 import java.io.Writer;
 
-import javax.websocket.EncodeException;
+import jakarta.websocket.EncodeException;
 
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamEncoder;

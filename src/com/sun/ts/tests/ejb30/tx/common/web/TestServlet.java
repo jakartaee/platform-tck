@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,11 +31,11 @@ import java.io.PrintWriter;
 import static com.sun.ts.tests.ejb30.tx.common.web.Constants.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.NotSupportedException;
-import static javax.transaction.Status.*;
-import javax.transaction.Status;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.NotSupportedException;
+import static jakarta.transaction.Status.*;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
 
 public class TestServlet extends HttpTCKServlet {
   private void doTest(HttpServletRequest request, HttpServletResponse response,

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,23 +29,23 @@ import java.net.*;
 import java.util.*;
 import java.rmi.*;
 
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 
 import com.sun.javatest.Status;
 
 public class Client extends ServiceEETest {
 
   // Expected Enum Constant Summary
-  private final static javax.xml.ws.Service.Mode expectedEnums[] = {
-      javax.xml.ws.Service.Mode.MESSAGE, javax.xml.ws.Service.Mode.PAYLOAD, };
+  private final static jakarta.xml.ws.Service.Mode expectedEnums[] = {
+      jakarta.xml.ws.Service.Mode.MESSAGE, javax.xml.ws.Service.Mode.PAYLOAD, };
 
-  private boolean findEnums(javax.xml.ws.Service.Mode[] args) {
+  private boolean findEnums(jakarta.xml.ws.Service.Mode[] args) {
     boolean pass = true;
     boolean found;
-    for (javax.xml.ws.Service.Mode a : args) {
+    for (jakarta.xml.ws.Service.Mode a : args) {
       found = false;
       TestUtil.logMsg("Searching expected list of enums for " + a);
-      for (javax.xml.ws.Service.Mode b : expectedEnums) {
+      for (jakarta.xml.ws.Service.Mode b : expectedEnums) {
         if (a == b) {
           found = true;
           break;
@@ -61,10 +61,10 @@ public class Client extends ServiceEETest {
     return pass;
   }
 
-  private void printEnums(javax.xml.ws.Service.Mode[] args) {
+  private void printEnums(jakarta.xml.ws.Service.Mode[] args) {
     TestUtil.logMsg("Print Enums");
     TestUtil.logMsg("-----------");
-    for (javax.xml.ws.Service.Mode c : args)
+    for (jakarta.xml.ws.Service.Mode c : args)
       TestUtil.logMsg("" + c);
   }
 
@@ -93,15 +93,15 @@ public class Client extends ServiceEETest {
    *
    * @assertion_ids: JAXWS:JAVADOC:60; JAXWS:JAVADOC:61;
    *
-   * @test_Strategy: Verify javax.xml.ws.Service.Mode.values() returns array
+   * @test_Strategy: Verify jakarta.xml.ws.Service.Mode.values() returns array
    * containing the constants of this enum type.
    */
   public void valuesTest() throws Fault {
     TestUtil.logTrace("valuesTest");
     boolean pass = true;
     try {
-      TestUtil.logMsg("Call javax.xml.ws.Service.Mode.values() ...");
-      javax.xml.ws.Service.Mode[] methods = javax.xml.ws.Service.Mode.values();
+      TestUtil.logMsg("Call jakarta.xml.ws.Service.Mode.values() ...");
+      jakarta.xml.ws.Service.Mode[] methods = javax.xml.ws.Service.Mode.values();
       printEnums(methods);
       pass = findEnums(methods);
     } catch (Exception e) {
@@ -119,23 +119,23 @@ public class Client extends ServiceEETest {
    *
    * @assertion_ids: JAXWS:JAVADOC:59;
    *
-   * @test_Strategy: Verify javax.xml.ws.Service.Mode.valueOf(String name)
+   * @test_Strategy: Verify jakarta.xml.ws.Service.Mode.valueOf(String name)
    * returns the enum constant of this type with specified name.
    */
   public void valueOfTest() throws Fault {
     TestUtil.logTrace("valuesTest");
     boolean pass = true;
     try {
-      TestUtil.logMsg("Call javax.xml.ws.Service.Mode.valueOf(MESSAGE) ...");
-      javax.xml.ws.Service.Mode method = javax.xml.ws.Service.Mode
+      TestUtil.logMsg("Call jakarta.xml.ws.Service.Mode.valueOf(MESSAGE) ...");
+      jakarta.xml.ws.Service.Mode method = javax.xml.ws.Service.Mode
           .valueOf("MESSAGE");
-      if (method != javax.xml.ws.Service.Mode.MESSAGE) {
+      if (method != jakarta.xml.ws.Service.Mode.MESSAGE) {
         TestUtil.logErr(
-            "javax.xml.ws.Service.Mode.valueOf(MESSAGE) failed:" + " expected: "
-                + javax.xml.ws.Service.Mode.MESSAGE + ", received: " + method);
+            "jakarta.xml.ws.Service.Mode.valueOf(MESSAGE) failed:" + " expected: "
+                + jakarta.xml.ws.Service.Mode.MESSAGE + ", received: " + method);
         pass = false;
       } else {
-        TestUtil.logMsg("javax.xml.ws.Service.Mode.valueOf(MESSAGE) passed");
+        TestUtil.logMsg("jakarta.xml.ws.Service.Mode.valueOf(MESSAGE) passed");
       }
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: " + e.getMessage());

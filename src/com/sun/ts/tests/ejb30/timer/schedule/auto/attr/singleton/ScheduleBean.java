@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,9 +23,9 @@ import java.util.Collection;
 import java.util.logging.Level;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.ejb.Timer;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
+import jakarta.ejb.Timer;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 

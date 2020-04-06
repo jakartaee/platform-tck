@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.embed.provider;
 
-import javax.ejb.embeddable.EJBContainer;
+import jakarta.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 
 public class TSEJBContainerImplBase extends EJBContainer {
@@ -27,7 +27,7 @@ public class TSEJBContainerImplBase extends EJBContainer {
   /*
    * (non-Javadoc)
    * 
-   * @see javax.ejb.embeddable.EJBContainer#close()
+   * @see jakarta.ejb.embeddable.EJBContainer#close()
    */
   @Override
   public void close() {
@@ -36,7 +36,7 @@ public class TSEJBContainerImplBase extends EJBContainer {
   /*
    * (non-Javadoc)
    * 
-   * @see javax.ejb.embeddable.EJBContainer#getContext()
+   * @see jakarta.ejb.embeddable.EJBContainer#getContext()
    */
   @Override
   public Context getContext() {

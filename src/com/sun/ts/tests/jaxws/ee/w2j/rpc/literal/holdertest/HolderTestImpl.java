@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jaxws.common.*;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import java.rmi.AccessException;
 
 import java.util.Calendar;
@@ -28,7 +28,7 @@ import java.math.BigInteger;
 import java.math.BigDecimal;
 import javax.xml.namespace.QName;
 import javax.xml.datatype.*;
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.Holder;
 
 import com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.*;
 
@@ -50,18 +50,18 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutSimpleTypes(
-      javax.xml.ws.Holder<java.lang.String> varString,
-      javax.xml.ws.Holder<java.math.BigInteger> varInteger,
-      javax.xml.ws.Holder<java.lang.Integer> varInt,
-      javax.xml.ws.Holder<java.lang.Long> varLong,
-      javax.xml.ws.Holder<java.lang.Short> varShort,
-      javax.xml.ws.Holder<java.math.BigDecimal> varDecimal,
-      javax.xml.ws.Holder<java.lang.Float> varFloat,
-      javax.xml.ws.Holder<java.lang.Double> varDouble,
-      javax.xml.ws.Holder<java.lang.Boolean> varBoolean,
-      javax.xml.ws.Holder<java.lang.Byte> varByte,
-      javax.xml.ws.Holder<javax.xml.namespace.QName> varQName,
-      javax.xml.ws.Holder<javax.xml.datatype.XMLGregorianCalendar> varDateTime) {
+      jakarta.xml.ws.Holder<java.lang.String> varString,
+      jakarta.xml.ws.Holder<java.math.BigInteger> varInteger,
+      jakarta.xml.ws.Holder<java.lang.Integer> varInt,
+      jakarta.xml.ws.Holder<java.lang.Long> varLong,
+      jakarta.xml.ws.Holder<java.lang.Short> varShort,
+      jakarta.xml.ws.Holder<java.math.BigDecimal> varDecimal,
+      jakarta.xml.ws.Holder<java.lang.Float> varFloat,
+      jakarta.xml.ws.Holder<java.lang.Double> varDouble,
+      jakarta.xml.ws.Holder<java.lang.Boolean> varBoolean,
+      jakarta.xml.ws.Holder<java.lang.Byte> varByte,
+      jakarta.xml.ws.Holder<javax.xml.namespace.QName> varQName,
+      jakarta.xml.ws.Holder<javax.xml.datatype.XMLGregorianCalendar> varDateTime) {
     System.out.println("Entering echoInOutSimpleTypes()");
     String v1 = "String1";
     BigInteger v2 = new BigInteger("3512359");
@@ -159,18 +159,18 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutSimpleTypesArray(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfstring> varString,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfinteger> varInteger,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfint> varInt,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOflong> varLong,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfshort> varShort,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfdecimal> varDecimal,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOffloat> varFloat,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfdouble> varDouble,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfboolean> varBoolean,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfbyte> varByte,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfQName> varQName,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfdateTime> varDateTime) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfstring> varString,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfinteger> varInteger,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfint> varInt,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOflong> varLong,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfshort> varShort,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfdecimal> varDecimal,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOffloat> varFloat,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfdouble> varDouble,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfboolean> varBoolean,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfbyte> varByte,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfQName> varQName,
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfdateTime> varDateTime) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutSimpleTypesArray()");
@@ -390,7 +390,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutBook(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.Book> varBook) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.Book> varBook) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutBook()");
@@ -421,7 +421,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutBookArray(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfBook> varBook) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.ArrayOfBook> varBook) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutBookArray()");

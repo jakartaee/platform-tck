@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,9 +24,9 @@ import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Vector;
 import java.util.Properties;
-import javax.ejb.EJBException;
-import javax.ejb.MessageDrivenBean;
-import javax.ejb.MessageDrivenContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.MessageDrivenBean;
+import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
 import javax.jms.*;
 import java.sql.*;

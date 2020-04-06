@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,9 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance;
 
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
+import jakarta.ejb.Lock;
+import jakarta.ejb.LockType;
+import jakarta.ejb.Singleton;
 
 /**
  * The purpose of this class is to verify a subclass can override the @Lock

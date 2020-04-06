@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,9 +24,9 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.HandlerChain;
-import javax.xml.ws.Action;
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.soap.AddressingFeature;
+import jakarta.xml.ws.Action;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.soap.AddressingFeature;
 
 @WebService(name = "AddNumbersPortType23001", portName = "AddNumbersPort23001", serviceName = "AddNumbersService23001", targetNamespace = "http://example.com/")
 

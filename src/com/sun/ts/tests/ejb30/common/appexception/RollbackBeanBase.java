@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,18 +23,18 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.transaction.UserTransaction;
-import static javax.transaction.Status.STATUS_ACTIVE;
-import static javax.transaction.Status.STATUS_COMMITTED;
-import static javax.transaction.Status.STATUS_COMMITTING;
-import static javax.transaction.Status.STATUS_MARKED_ROLLBACK;
-import static javax.transaction.Status.STATUS_NO_TRANSACTION;
-import static javax.transaction.Status.STATUS_PREPARED;
-import static javax.transaction.Status.STATUS_PREPARING;
-import static javax.transaction.Status.STATUS_ROLLEDBACK;
-import static javax.transaction.Status.STATUS_ROLLING_BACK;
-import static javax.transaction.Status.STATUS_UNKNOWN;
+import jakarta.ejb.EJB;
+import jakarta.transaction.UserTransaction;
+import static jakarta.transaction.Status.STATUS_ACTIVE;
+import static jakarta.transaction.Status.STATUS_COMMITTED;
+import static jakarta.transaction.Status.STATUS_COMMITTING;
+import static jakarta.transaction.Status.STATUS_MARKED_ROLLBACK;
+import static jakarta.transaction.Status.STATUS_NO_TRANSACTION;
+import static jakarta.transaction.Status.STATUS_PREPARED;
+import static jakarta.transaction.Status.STATUS_PREPARING;
+import static jakarta.transaction.Status.STATUS_ROLLEDBACK;
+import static jakarta.transaction.Status.STATUS_ROLLING_BACK;
+import static jakarta.transaction.Status.STATUS_UNKNOWN;
 
 public class RollbackBeanBase implements RollbackIF {
   @EJB(beanName = "AppExceptionBean", description = "just to see if descripton field works or not.  It should map to <ejb-ref>/<description> xml element.")

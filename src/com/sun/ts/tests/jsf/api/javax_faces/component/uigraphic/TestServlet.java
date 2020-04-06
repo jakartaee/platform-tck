@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,8 +30,8 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.el.ValueExpression;
-import javax.el.ExpressionFactory;
+import jakarta.el.ValueExpression;
+import jakarta.el.ExpressionFactory;
 
 import com.sun.ts.tests.jsf.api.javax_faces.component.common.BaseComponentTestServlet;
 import com.sun.ts.tests.jsf.api.javax_faces.component.common.BufferedResponseWrapper;

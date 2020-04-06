@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.*;
 import java.rmi.*;
 import java.sql.*;
@@ -226,7 +226,7 @@ public class TestBeanEJB implements EntityBean, TimedObject {
     TestUtil.logTrace("ejbPassivate");
   }
 
-  public void ejbTimeout(javax.ejb.Timer timer) {
+  public void ejbTimeout(jakarta.ejb.Timer timer) {
     TestUtil.logTrace("ejbTimeout");
   }
 
@@ -437,8 +437,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     // TimerService_Methods_Test1
     try {
-      javax.ejb.TimerService timesrv = ectx.getTimerService();
-      javax.ejb.Timer tt = timesrv.createTimer((long) 10000, "test1");
+      jakarta.ejb.TimerService timesrv = ectx.getTimerService();
+      jakarta.ejb.Timer tt = timesrv.createTimer((long) 10000, "test1");
       tt.cancel();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test1() - allowed");
@@ -456,8 +456,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     // TimerService_Methods_Test2
     try {
-      javax.ejb.TimerService timesrv2 = ectx.getTimerService();
-      javax.ejb.Timer t2 = timesrv2.createTimer((long) 10000, (long) 10000,
+      jakarta.ejb.TimerService timesrv2 = ectx.getTimerService();
+      jakarta.ejb.Timer t2 = timesrv2.createTimer((long) 10000, (long) 10000,
           "test2");
       t2.cancel();
       TestUtil
@@ -477,8 +477,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
     try {
       long expiration = (System.currentTimeMillis() + (long) 900000);
       java.util.Date d = new java.util.Date(expiration);
-      javax.ejb.TimerService timesrv3 = ectx.getTimerService();
-      javax.ejb.Timer t3 = timesrv3.createTimer(d, "test3");
+      jakarta.ejb.TimerService timesrv3 = ectx.getTimerService();
+      jakarta.ejb.Timer t3 = timesrv3.createTimer(d, "test3");
       t3.cancel();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test3() - allowed");
@@ -498,8 +498,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
     try {
       long expiration = (System.currentTimeMillis() + (long) 900000);
       java.util.Date d = new java.util.Date(expiration);
-      javax.ejb.TimerService timesrv4 = ectx.getTimerService();
-      javax.ejb.Timer t4 = timesrv4.createTimer(d, (long) 10000, "test4");
+      jakarta.ejb.TimerService timesrv4 = ectx.getTimerService();
+      jakarta.ejb.Timer t4 = timesrv4.createTimer(d, (long) 10000, "test4");
       t4.cancel();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test4() - allowed");
@@ -517,7 +517,7 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     // TimerService_Methods_Test5
     try {
-      javax.ejb.TimerService ts = ectx.getTimerService();
+      jakarta.ejb.TimerService ts = ectx.getTimerService();
       Collection ccol = ts.getTimers();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test5() - allowed");
@@ -535,8 +535,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     // TimerService_Methods_Test6
     try {
-      javax.ejb.TimerService timesrv6 = ectx.getTimerService();
-      javax.ejb.Timer t6 = timesrv6.createTimer((long) 10000, "test6");
+      jakarta.ejb.TimerService timesrv6 = ectx.getTimerService();
+      jakarta.ejb.Timer t6 = timesrv6.createTimer((long) 10000, "test6");
       t6.getHandle();
       t6.cancel();
       TestUtil
@@ -555,8 +555,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     // TimerService_Methods_Test7
     try {
-      javax.ejb.TimerService timesrv7 = ectx.getTimerService();
-      javax.ejb.Timer t7 = timesrv7.createTimer((long) 10000, "test7");
+      jakarta.ejb.TimerService timesrv7 = ectx.getTimerService();
+      jakarta.ejb.Timer t7 = timesrv7.createTimer((long) 10000, "test7");
       t7.cancel();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test7() - allowed");
@@ -594,16 +594,16 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
   public void doTimer(long duration, String info) {
     TestUtil.logTrace("doTimer");
-    javax.ejb.TimerService ts = ectx.getTimerService();
+    jakarta.ejb.TimerService ts = ectx.getTimerService();
     TestUtil.logTrace("create Timer");
-    javax.ejb.Timer t = ts.createTimer(duration, info);
+    jakarta.ejb.Timer t = ts.createTimer(duration, info);
   }
 
   public void findAndCancelTimer() {
     Collection ccol = null;
     try {
       TestUtil.logTrace("findAndCancelTimer method entered");
-      javax.ejb.TimerService ts = ectx.getTimerService();
+      jakarta.ejb.TimerService ts = ectx.getTimerService();
       TestUtil.logTrace("Get Timers");
       ccol = ts.getTimers();
       if (ccol.size() != 0) {
@@ -611,7 +611,7 @@ public class TestBeanEJB implements EntityBean, TimedObject {
         Iterator i = ccol.iterator();
         while (i.hasNext()) {
           TestUtil.logTrace("Get next timer");
-          javax.ejb.Timer t = (javax.ejb.Timer) i.next();
+          jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
           TestUtil.logTrace("Next timer to Cancel: " + t.getInfo());
           t.cancel();
         }

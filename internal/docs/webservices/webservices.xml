@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -250,7 +250,7 @@ A Service Implementation Bean of Singleton EJB can have a shared state. The sing
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 <id>WS4EE:SPEC:49</id>
-<description> Service implementation EJB be annotated with the javax.ejb.Stateless annotation or denoted in the deployment descriptor as a stateless session bean. The bean class no longer implements the javax.ejb.SessionBean interface.
+<description> Service implementation EJB be annotated with the jakarta.ejb.Stateless annotation or denoted in the deployment descriptor as a stateless session bean. The bean class no longer implements the jakarta.ejb.SessionBean interface.
 			</description>
 <location chapter="5" section="3.2.3.1" />
 </assertion>
@@ -274,7 +274,7 @@ of a WebServiceContext must meet the requirements defined by the JAX-WS specific
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 <id>WS4EE:SPEC:252</id>
 <description>
-EJB 3.1 introduces Singleton session bean component that provides an easy access to shared state. A Singleton session bean is instantiated once per application. A Singleton session bean must be annotated with the javax.ejb.Singleton annotation or denoted in the deployment descriptor as a singleton session bean.
+EJB 3.1 introduces Singleton session bean component that provides an easy access to shared state. A Singleton session bean is instantiated once per application. A Singleton session bean must be annotated with the jakarta.ejb.Singleton annotation or denoted in the deployment descriptor as a singleton session bean.
 
 The full requirements for Singleton Session Bean are defined in the section 4.8 of EJB 3.1 specification. 
 </description>
@@ -600,7 +600,7 @@ descriptor (not required with JAX-WS when annotations are used) in a Java EE mod
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 <id>WS4EE:SPEC:96</id>
 <description> Handlers must not
-			demarcate transactions using the javax.transaction.UserTransaction
+			demarcate transactions using the jakarta.transaction.UserTransaction
 			interface.</description>
 <location chapter="6" section="2.2.3" />
 </assertion>
@@ -1227,7 +1227,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 			element in the web.xml deployment descriptor. A Stateless Session
 			Bean Service Implementation must match the behavior defined by the
 			&lt;session&gt; element and the &lt;assembly&gt; element.
-Generation of any run-time classes the container requires to support a JAX-RPC or JAX-WS Service Endpoint or Stateless Session Bean or Singleton Bean Service Implementation is provider specific. A Singleton Bean Service Implementation must match the behavior defined by the javax.ejb.Singleton annotation or &lt;session&gt; element and the &lt;assembly-descriptor&gt; in the ejb-jar.xml deployment descriptor.</description>
+Generation of any run-time classes the container requires to support a JAX-RPC or JAX-WS Service Endpoint or Stateless Session Bean or Singleton Bean Service Implementation is provider specific. A Singleton Bean Service Implementation must match the behavior defined by the jakarta.ejb.Singleton annotation or &lt;session&gt; element and the &lt;assembly-descriptor&gt; in the ejb-jar.xml deployment descriptor.</description>
 <location chapter="8" section="2.2" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

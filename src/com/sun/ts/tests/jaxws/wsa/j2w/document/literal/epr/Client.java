@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,8 +28,8 @@ import java.io.*;
 import java.net.*;
 import java.rmi.*;
 import java.util.*;
-import javax.xml.ws.*;
-import javax.xml.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
 import java.util.Properties;
 import java.math.BigInteger;
 import java.math.BigDecimal;
@@ -37,12 +37,12 @@ import javax.xml.namespace.QName;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jaxws.common.*;
 import com.sun.ts.tests.jaxws.wsa.common.*;
-import javax.xml.ws.wsaddressing.W3CEndpointReference;
-import javax.xml.ws.soap.AddressingFeature;
-import javax.xml.ws.soap.SOAPFaultException;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.JAXBElement;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.ws.soap.AddressingFeature;
+import jakarta.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBElement;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.dom.DOMResult;
@@ -132,7 +132,7 @@ public class Client extends ServiceEETest {
   private JAXBContext createJAXBContext() {
     try {
       return JAXBContext.newInstance(JAXB_OBJECT_FACTORY);
-    } catch (javax.xml.bind.JAXBException e) {
+    } catch (jakarta.xml.bind.JAXBException e) {
       throw new WebServiceException(e.getMessage(), e);
     }
   }
@@ -141,30 +141,30 @@ public class Client extends ServiceEETest {
       WebServiceFeature[] wsf) throws Exception {
     if (wsf == null)
       return service.createDispatch(myepr, createJAXBContext(),
-          javax.xml.ws.Service.Mode.PAYLOAD);
+          jakarta.xml.ws.Service.Mode.PAYLOAD);
     else
       return service.createDispatch(myepr, createJAXBContext(),
-          javax.xml.ws.Service.Mode.PAYLOAD, wsf);
+          jakarta.xml.ws.Service.Mode.PAYLOAD, wsf);
   }
 
   private Dispatch<Source> createDispatchSource(W3CEndpointReference myepr,
       WebServiceFeature[] wsf) throws Exception {
     if (wsf == null)
       return service.createDispatch(myepr, Source.class,
-          javax.xml.ws.Service.Mode.PAYLOAD);
+          jakarta.xml.ws.Service.Mode.PAYLOAD);
     else
       return service.createDispatch(myepr, Source.class,
-          javax.xml.ws.Service.Mode.PAYLOAD, wsf);
+          jakarta.xml.ws.Service.Mode.PAYLOAD, wsf);
   }
 
   private Dispatch<SOAPMessage> createDispatchSOAPMessage(
       W3CEndpointReference myepr, WebServiceFeature[] wsf) throws Exception {
     if (wsf == null)
       return service.createDispatch(myepr, SOAPMessage.class,
-          javax.xml.ws.Service.Mode.MESSAGE);
+          jakarta.xml.ws.Service.Mode.MESSAGE);
     else
       return service.createDispatch(myepr, SOAPMessage.class,
-          javax.xml.ws.Service.Mode.MESSAGE, wsf);
+          jakarta.xml.ws.Service.Mode.MESSAGE, wsf);
   }
 
   private void getTestURLs() throws Exception {
@@ -418,7 +418,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg("Retrieve EPR via BindingProvider.getEndpointReference("
           + "java.lang.Class)");
       W3CEndpointReference epr = (W3CEndpointReference) bp.getEndpointReference(
-          javax.xml.ws.wsaddressing.W3CEndpointReference.class);
+          jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
       if (epr != null) {
         TestUtil.logMsg("---------------------------");
         TestUtil.logMsg("DUMP OF ENDPOINT REFERENCE");
@@ -1313,7 +1313,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg("Create a Dispatch object of type SOAPMessage");
       W3CEndpointReference myepr = (W3CEndpointReference) bp
           .getEndpointReference(
-              javax.xml.ws.wsaddressing.W3CEndpointReference.class);
+              jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
       TestUtil.logMsg("Pass WebServiceFeature with Addressing=true");
       dispatchSM = createDispatchSOAPMessage(myepr, wsftrue);
       SOAPMessage requestMsg = JAXWS_Util
@@ -1362,7 +1362,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg("Create a Dispatch object of type SOAPMessage");
       W3CEndpointReference myepr = (W3CEndpointReference) bp
           .getEndpointReference(
-              javax.xml.ws.wsaddressing.W3CEndpointReference.class);
+              jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
       TestUtil.logMsg("Pass WebServiceFeature with Addressing=false");
       dispatchSM = createDispatchSOAPMessage(myepr, wsffalse);
       SOAPMessage requestMsg = JAXWS_Util
@@ -1404,7 +1404,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg("Create a Dispatch object of type JAXB");
       W3CEndpointReference myepr = (W3CEndpointReference) bp
           .getEndpointReference(
-              javax.xml.ws.wsaddressing.W3CEndpointReference.class);
+              jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
       ObjectFactory of = new ObjectFactory();
       DoAddNumbers numbers = of.createDoAddNumbers();
       numbers.setArg0(10);
@@ -1457,7 +1457,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg("Create a Dispatch object of type JAXB");
       W3CEndpointReference myepr = (W3CEndpointReference) bp
           .getEndpointReference(
-              javax.xml.ws.wsaddressing.W3CEndpointReference.class);
+              jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
       ObjectFactory of = new ObjectFactory();
       DoAddNumbers numbers = of.createDoAddNumbers();
       numbers.setArg0(10);

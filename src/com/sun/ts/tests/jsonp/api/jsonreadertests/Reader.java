@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2016, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,11 +25,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
-import javax.json.Json;
-import javax.json.JsonException;
-import javax.json.JsonReader;
-import javax.json.JsonValue;
-import javax.json.stream.JsonParsingException;
+import jakarta.json.Json;
+import jakarta.json.JsonException;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonParsingException;
 
 import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
 import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;

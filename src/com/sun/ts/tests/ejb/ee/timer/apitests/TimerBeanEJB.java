@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 
 public class TimerBeanEJB implements SessionBean, TimedObject {
   private SessionContext sctx = null;
@@ -48,7 +48,7 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
   public void ejbPassivate() {
   }
 
-  public void ejbTimeout(javax.ejb.Timer timer) {
+  public void ejbTimeout(jakarta.ejb.Timer timer) {
   }
 
   /*
@@ -60,9 +60,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     long duration = -1;
     String info = "test1";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("Create Timer");
-      javax.ejb.Timer t = ts.createTimer(duration, info);
+      jakarta.ejb.Timer t = ts.createTimer(duration, info);
       TestUtil.logErr("No IllegalArgumentException occurred - unexpected");
       pass = false;
     } catch (IllegalArgumentException e) {
@@ -81,9 +81,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     long intervalDuration = 10;
     String info = "test2";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("Create Timer");
-      javax.ejb.Timer t = ts.createTimer(initialDuration, intervalDuration,
+      jakarta.ejb.Timer t = ts.createTimer(initialDuration, intervalDuration,
           info);
       TestUtil.logErr("No IllegalArgumentException occurred - unexpected");
       pass = false;
@@ -103,9 +103,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     long intervalDuration = -1;
     String info = "test3";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("Create Timer");
-      javax.ejb.Timer t = ts.createTimer(initialDuration, intervalDuration,
+      jakarta.ejb.Timer t = ts.createTimer(initialDuration, intervalDuration,
           info);
       TestUtil.logErr("No IllegalArgumentException occurred - unexpected");
       pass = false;
@@ -124,9 +124,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     java.util.Date d = null;
     String info = "test4";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("Create Timer");
-      javax.ejb.Timer t = ts.createTimer(d, info);
+      jakarta.ejb.Timer t = ts.createTimer(d, info);
       TestUtil.logErr("No IllegalArgumentException occurred - unexpected");
       pass = false;
     } catch (IllegalArgumentException e) {
@@ -145,9 +145,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     long intervalDuration = 10;
     String info = "test5";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("Create Timer");
-      javax.ejb.Timer t = ts.createTimer(d, intervalDuration, info);
+      jakarta.ejb.Timer t = ts.createTimer(d, intervalDuration, info);
       TestUtil.logErr("No IllegalArgumentException occurred - unexpected");
       pass = false;
     } catch (IllegalArgumentException e) {
@@ -165,9 +165,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     long duration = 30000;
     String info = "test6";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("Create valid timer");
-      javax.ejb.Timer t = ts.createTimer(duration, info);
+      jakarta.ejb.Timer t = ts.createTimer(duration, info);
       TestUtil.logTrace("Cancel timer");
       t.cancel();
       TestUtil
@@ -188,9 +188,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     long duration = 30000;
     String info = "test7";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("create valid timer");
-      javax.ejb.Timer t = ts.createTimer(duration, info);
+      jakarta.ejb.Timer t = ts.createTimer(duration, info);
       TestUtil.logTrace("cancel timer");
       t.cancel();
       TestUtil.logTrace(
@@ -212,9 +212,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     java.util.Date d = new Date(expiration);
     String info = "test8";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("create valid timer");
-      javax.ejb.Timer t = ts.createTimer(d, info);
+      jakarta.ejb.Timer t = ts.createTimer(d, info);
       TestUtil.logTrace("cancel timer");
       t.cancel();
       TestUtil.logTrace(
@@ -235,9 +235,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     long duration = 30000;
     String info = "test9";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("Create valid timer");
-      javax.ejb.Timer t = ts.createTimer(duration, info);
+      jakarta.ejb.Timer t = ts.createTimer(duration, info);
       TestUtil.logTrace("Cancel timer");
       t.cancel();
       TestUtil.logTrace("Invoke getInfo and expect NoSuchObjectLocalException");
@@ -257,9 +257,9 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
     long duration = 30000;
     String info = "test10";
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("Create valid timer");
-      javax.ejb.Timer t = ts.createTimer(duration, info);
+      jakarta.ejb.Timer t = ts.createTimer(duration, info);
       TestUtil.logTrace("Cancel timer");
       t.cancel();
       TestUtil
@@ -281,12 +281,12 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
   public void findAndCancelTimer() {
     try {
       TestUtil.logTrace("findTimer method entered");
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("find Timers");
       Collection ccol = ts.getTimers();
       Iterator i = ccol.iterator();
       while (i.hasNext()) {
-        javax.ejb.Timer t = (javax.ejb.Timer) i.next();
+        jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
         t.cancel();
       }
     } catch (Exception e) {

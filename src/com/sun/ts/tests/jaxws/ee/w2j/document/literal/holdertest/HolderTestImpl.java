@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jaxws.common.*;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import java.rmi.AccessException;
 
 import java.util.Calendar;
@@ -32,7 +32,7 @@ import java.math.BigInteger;
 import java.math.BigDecimal;
 import javax.xml.namespace.QName;
 import javax.xml.datatype.*;
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.Holder;
 
 import javax.imageio.metadata.IIOMetadataNode;
 
@@ -57,7 +57,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutStringTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.StringElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.StringElement> param) {
     System.out.println("Entering echoInOutStringTypes()");
     String expected = "String1";
     String actual = param.value.getString();
@@ -71,7 +71,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutIntegerTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.IntegerElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.IntegerElement> param) {
     System.out.println("Entering echoInOutIntegerTypes()");
     BigInteger expected = new BigInteger("3512359");
     BigInteger actual = param.value.getInteger();
@@ -85,7 +85,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutIntTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.IntElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.IntElement> param) {
     System.out.println("Entering echoInOutIntTypes()");
     int expected = (int) Integer.MIN_VALUE;
     int actual = param.value.getInt();
@@ -99,7 +99,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutLongTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.LongElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.LongElement> param) {
     System.out.println("Entering echoInOutLongTypes()");
     long expected = (long) Long.MIN_VALUE;
     long actual = param.value.getLong();
@@ -113,7 +113,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutShortTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ShortElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ShortElement> param) {
     System.out.println("Entering echoInOutShortTypes()");
     short expected = (short) Short.MIN_VALUE;
     short actual = param.value.getShort();
@@ -127,7 +127,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutDecimalTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.DecimalElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.DecimalElement> param) {
     System.out.println("Entering echoInOutDecimalTypes()");
     BigDecimal expected = new BigDecimal("3512359.1456");
     BigDecimal actual = param.value.getDecimal();
@@ -141,7 +141,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutFloatTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.FloatElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.FloatElement> param) {
     System.out.println("Entering echoInOutFloatTypes()");
     float expected = (float) Float.MIN_VALUE;
     float actual = param.value.getFloat();
@@ -155,7 +155,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutDoubleTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.DoubleElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.DoubleElement> param) {
     System.out.println("Entering echoInOutDoubleTypes()");
     double expected = (double) Double.MIN_VALUE;
     double actual = param.value.getDouble();
@@ -169,7 +169,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutBooleanTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.BooleanElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.BooleanElement> param) {
     System.out.println("Entering echoInOutBooleanTypes()");
     boolean expected = false;
     boolean actual = param.value.isBoolean();
@@ -183,7 +183,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutByteTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ByteElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ByteElement> param) {
     System.out.println("Entering echoInOutByteTypes()");
     byte expected = (byte) Byte.MIN_VALUE;
     byte actual = param.value.getByte();
@@ -197,7 +197,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutQNameTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.QNameElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.QNameElement> param) {
     System.out.println("Entering echoInOutQNameTypes()");
     QName expected = new QName("String2");
     ;
@@ -212,7 +212,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutDateTimeTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.DateTimeElement> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.DateTimeElement> param) {
     System.out.println("Entering echoInOutDateTimeTypes()");
     XMLGregorianCalendar expected = dtfactory.newXMLGregorianCalendar(96, 5, 1,
         0, 30, 0, 0, 0);
@@ -228,7 +228,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayStringTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfString> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfString> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayStringTypes()");
@@ -264,7 +264,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayIntegerTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfInteger> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfInteger> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayIntegerTypes()");
@@ -299,7 +299,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayIntTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfInt> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfInt> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayIntTypes()");
@@ -332,7 +332,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayLongTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfLong> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfLong> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayLongTypes()");
@@ -366,7 +366,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayShortTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfShort> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfShort> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayShortTypes()");
@@ -399,7 +399,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayDecimalTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfDecimal> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfDecimal> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayDecimalTypes()");
@@ -434,7 +434,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayFloatTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfFloat> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfFloat> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayFloatTypes()");
@@ -468,7 +468,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayDoubleTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfDouble> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfDouble> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayDoubleTypes()");
@@ -502,7 +502,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayBooleanTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfBoolean> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfBoolean> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayBooleanTypes()");
@@ -536,7 +536,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayByteTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfByte> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfByte> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayByteTypes()");
@@ -569,7 +569,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayQNameTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfQName> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfQName> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayQNameTypes()");
@@ -605,7 +605,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutArrayDateTimeTypes(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfDateTime> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfDateTime> param) {
     boolean pass = true;
     StringBuffer result = new StringBuffer();
     System.out.println("Entering echoInOutArrayDateTimeTypes()");
@@ -643,7 +643,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutBook(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.Book> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.Book> param) {
     System.out.println("Entering echoInOutBookTypes()");
     Book expected = new Book();
     expected.setAuthor("author0");
@@ -672,7 +672,7 @@ public class HolderTestImpl implements HolderTest {
   }
 
   public void echoInOutBookArray(
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfBook> param) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.ArrayOfBook> param) {
     System.out.println("Entering echoInOutArrayBookTypes()");
     int size = param.value.getBook().size();
     if (size != 2) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import java.io.*;
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import com.sun.javatest.Status;
 
 import com.sun.ts.tests.ejb.ee.sec.stateless.common.*;
@@ -229,7 +229,7 @@ public class Client extends EETest {
    * @test_Strategy: 1. Create a stateless session bean accessing a local method
    * of a second bean 2. Protect the bean method with multiple security roles.
    * 3. Call bean method as a principal who is not in any of the security roles
-   * that protects the method. 4. Verify javax.ejb.EJBException is generated.
+   * that protects the method. 4. Verify jakarta.ejb.EJBException is generated.
    */
 
   public void test6() throws Fault {
@@ -277,7 +277,7 @@ public class Client extends EETest {
    *
    * @test_Strategy: 1. Create a stateless session bean invokes a local method
    * of the second bean. 2. Put this local method on exclude-list. 3. Verify
-   * javax.ejb.EJBException is generated.
+   * jakarta.ejb.EJBException is generated.
    */
 
   public void test8() throws Fault {

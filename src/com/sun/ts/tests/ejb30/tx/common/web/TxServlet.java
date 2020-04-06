@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,15 +23,15 @@ package com.sun.ts.tests.ejb30.tx.common.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Status;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
 import com.sun.ts.tests.ejb30.tx.common.web.LocalIF;
 import com.sun.ts.tests.ejb30.tx.common.web.RemoteIF;
 import static com.sun.ts.tests.ejb30.tx.common.web.Constants.*;
@@ -93,9 +93,9 @@ public class TxServlet extends HttpServlet {
       } else if (servletLocalCmtMandatory.equals(testName)) {
         localBean.mandatory();
       }
-    } catch (javax.transaction.NotSupportedException e) {
+    } catch (jakarta.transaction.NotSupportedException e) {
       throw new ServletException(e);
-    } catch (javax.transaction.SystemException e) {
+    } catch (jakarta.transaction.SystemException e) {
       throw new ServletException(e);
     }
   }

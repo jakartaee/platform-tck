@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.handlerchaintest;
 
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import java.io.StringReader;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -34,21 +34,21 @@ import javax.jws.HandlerChain;
 @HandlerChain(name = "", file = "server-handler.xml")
 @WebServiceProvider(serviceName = "HandlerChainTestService", portName = "HandlerChainTestPort", targetNamespace = "http://handlerchaintestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JHandlerChainTestService.wsdl")
 @BindingType(value = "http://schemas.xmlsoap.org/wsdl/soap/http")
-@ServiceMode(value = javax.xml.ws.Service.Mode.PAYLOAD)
+@ServiceMode(value = jakarta.xml.ws.Service.Mode.PAYLOAD)
 
 public class HandlerChainTestImpl implements Provider<Source> {
 
-  private static final javax.xml.bind.JAXBContext jaxbContext = createJAXBContext();
+  private static final jakarta.xml.bind.JAXBContext jaxbContext = createJAXBContext();
 
-  public javax.xml.bind.JAXBContext getJAXBContext() {
+  public jakarta.xml.bind.JAXBContext getJAXBContext() {
     return jaxbContext;
   }
 
-  private static javax.xml.bind.JAXBContext createJAXBContext() {
+  private static jakarta.xml.bind.JAXBContext createJAXBContext() {
     try {
-      return javax.xml.bind.JAXBContext.newInstance(
+      return jakarta.xml.bind.JAXBContext.newInstance(
           com.sun.ts.tests.jaxws.ee.w2j.document.literal.handlerchaintest.ObjectFactory.class);
-    } catch (javax.xml.bind.JAXBException e) {
+    } catch (jakarta.xml.bind.JAXBException e) {
       throw new WebServiceException(e.getMessage(), e);
     }
   }

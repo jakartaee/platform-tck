@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,10 +22,10 @@ package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.common.*;
-import javax.xml.ws.handler.LogicalMessageContext;
-import javax.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.ws.handler.LogicalMessageContext;
+import jakarta.xml.ws.soap.SOAPFaultException;
 import javax.xml.namespace.QName;
-import javax.xml.soap.*;
+import jakarta.xml.soap.*;
 
 public class ServerLogicalHandler6 extends LogicalHandlerBase {
 
@@ -42,7 +42,7 @@ public class ServerLogicalHandler6 extends LogicalHandlerBase {
 
   private Name name = null;
 
-  private javax.xml.soap.SOAPFault sf;
+  private jakarta.xml.soap.SOAPFault sf;
 
   public ServerLogicalHandler6() {
     super();

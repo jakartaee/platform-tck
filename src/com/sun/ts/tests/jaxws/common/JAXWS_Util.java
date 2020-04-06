@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,11 +27,11 @@ import java.util.*;
 import java.lang.reflect.*;
 import java.net.*;
 
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
-import javax.xml.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+import jakarta.xml.soap.*;
 import java.io.*;
 import javax.naming.*;
 
@@ -51,7 +51,7 @@ import javax.xml.transform.Result;
 
 import java.lang.reflect.*;
 
-import javax.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPMessage;
 
 public final class JAXWS_Util {
   public static final String SOAP11 = "soap11";
@@ -112,53 +112,53 @@ public final class JAXWS_Util {
   }
 
   /*************************************************************************
-   * javax.xml.ws.Service.create and service.getPort wrapper methods
+   * jakarta.xml.ws.Service.create and service.getPort wrapper methods
    *************************************************************************/
 
-  public static javax.xml.ws.Service getService(QName sname) throws Exception {
+  public static jakarta.xml.ws.Service getService(QName sname) throws Exception {
     TestUtil.logMsg("JAXWS_Util:getService(QName)");
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     TestUtil.logMsg("QNAME=" + sname);
-    TestUtil.logMsg("Creating Service via javax.xml.ws.Service.create(QName)");
-    service = javax.xml.ws.Service.create(sname);
+    TestUtil.logMsg("Creating Service via jakarta.xml.ws.Service.create(QName)");
+    service = jakarta.xml.ws.Service.create(sname);
     if (service == null)
       TestUtil
-          .logErr("FATAL: javax.xml.ws.Service.create(QName) returned a null");
+          .logErr("FATAL: jakarta.xml.ws.Service.create(QName) returned a null");
     return service;
   }
 
-  public static javax.xml.ws.Service getService(URL wsdlurl, QName sname)
+  public static jakarta.xml.ws.Service getService(URL wsdlurl, QName sname)
       throws Exception {
     TestUtil.logMsg("JAXWS_Util:getService(URL, QName)");
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     if (wsdlurl != null)
       TestUtil.logMsg("URL=" + wsdlurl.toString());
     TestUtil.logMsg("QName=" + sname);
     TestUtil
-        .logMsg("Creating Service via javax.xml.ws.Service.create(URL, QName)");
-    service = javax.xml.ws.Service.create(wsdlurl, sname);
+        .logMsg("Creating Service via jakarta.xml.ws.Service.create(URL, QName)");
+    service = jakarta.xml.ws.Service.create(wsdlurl, sname);
     if (service == null)
       TestUtil.logErr(
-          "FATAL: javax.xml.ws.Service.create(URL, QName) returned a null");
+          "FATAL: jakarta.xml.ws.Service.create(URL, QName) returned a null");
     return service;
   }
 
-  public static javax.xml.ws.Service getService(Class siClass)
+  public static jakarta.xml.ws.Service getService(Class siClass)
       throws Exception {
     TestUtil.logMsg("JAXWS_Util:getService(Class)");
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     TestUtil.logMsg("siClass=" + siClass.getName());
-    service = (javax.xml.ws.Service) siClass.newInstance();
+    service = (jakarta.xml.ws.Service) siClass.newInstance();
     if (service == null)
       TestUtil
           .logErr("FATAL: JAXWS_Util.getService(Class) returned service=null");
     return service;
   }
 
-  public static javax.xml.ws.Service getService(URL wsdlurl, QName siName,
+  public static jakarta.xml.ws.Service getService(URL wsdlurl, QName siName,
       Class siClass) throws Exception {
     TestUtil.logMsg("JAXWS_Util:getService(URL, QName, Class)");
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     if (wsdlurl != null)
       TestUtil.logMsg("URL=" + wsdlurl.toString());
     TestUtil.logMsg("siName=" + siName);
@@ -166,7 +166,7 @@ public final class JAXWS_Util {
     Modules.ensureReadable(JAXWS_Util.class, siClass.getSuperclass());
     TestUtil.logMsg("siClass=" + siClass.getName());
     Constructor ctr = siClass.getConstructor(URL.class, QName.class);
-    service = (javax.xml.ws.Service) ctr.newInstance(wsdlurl, siName);
+    service = (jakarta.xml.ws.Service) ctr.newInstance(wsdlurl, siName);
     if (service == null)
       TestUtil.logErr(
           "FATAL: JAXWS_Util.getService(URL, QName, Class) returned service=null");
@@ -199,7 +199,7 @@ public final class JAXWS_Util {
       }
     }
     Constructor ctr = siClass.getConstructor(URL.class, QName.class);
-    javax.xml.ws.Service svc = (javax.xml.ws.Service) ctr.newInstance(wsdlurl,
+    jakarta.xml.ws.Service svc = (jakarta.xml.ws.Service) ctr.newInstance(wsdlurl,
         siName);
     TestUtil.logMsg("Get stub/proxy for seiClass -> " + seiClass.getName()
         + ", port ->" + portName);
@@ -220,18 +220,18 @@ public final class JAXWS_Util {
     return stub;
   }
 
-  public static Object getPort(javax.xml.ws.Service svc, QName port,
+  public static Object getPort(jakarta.xml.ws.Service svc, QName port,
       Class seiClass) throws Exception {
-    TestUtil.logMsg("JAXWS_Util.getPort(javax.xml.ws.Service, QName, Class)");
+    TestUtil.logMsg("JAXWS_Util.getPort(jakarta.xml.ws.Service, QName, Class)");
     Object stub = getPort(svc, port, seiClass, null);
     return stub;
   }
 
   // Addressing getPort call
-  public static Object getPort(javax.xml.ws.Service svc, QName port,
+  public static Object getPort(jakarta.xml.ws.Service svc, QName port,
       Class seiClass, WebServiceFeature[] wsf) throws Exception {
     TestUtil.logMsg(
-        "JAXWS_Util.getPort(javax.xml.ws.Service, QName, Class, WebServiceFeature[])");
+        "JAXWS_Util.getPort(jakarta.xml.ws.Service, QName, Class, WebServiceFeature[])");
     TestUtil.logMsg("Get stub/proxy for port qname=" + port);
     Object stub = null;
     if (wsf != null)
@@ -241,10 +241,10 @@ public final class JAXWS_Util {
     if (stub == null) {
       if (wsf != null)
         TestUtil.logErr(
-            "FATAL: JAXWS_Util.getPort(javax.xml.ws.Service, QName, Class, WebServiceFeature[]) returned stub/proxy=null");
+            "FATAL: JAXWS_Util.getPort(jakarta.xml.ws.Service, QName, Class, WebServiceFeature[]) returned stub/proxy=null");
       else
         TestUtil.logErr(
-            "FATAL: JAXWS_Util.getPort(javax.xml.ws.Service, QName, Class) returned stub/proxy=null");
+            "FATAL: JAXWS_Util.getPort(jakarta.xml.ws.Service, QName, Class) returned stub/proxy=null");
     } else
       TestUtil.logMsg("Obtained stub/proxy=" + stub);
     return stub;
@@ -288,15 +288,15 @@ public final class JAXWS_Util {
    * Other methods
    *************************************************************************/
 
-  public static void dumpWSDLLocation(javax.xml.ws.Service service) {
+  public static void dumpWSDLLocation(jakarta.xml.ws.Service service) {
     TestUtil.logMsg("service wsdl loc=" + service.getWSDLDocumentLocation());
   }
 
-  public static void dumpServiceName(javax.xml.ws.Service service) {
+  public static void dumpServiceName(jakarta.xml.ws.Service service) {
     TestUtil.logMsg("service name=" + service.getServiceName());
   }
 
-  public static void dumpPorts(javax.xml.ws.Service service) {
+  public static void dumpPorts(jakarta.xml.ws.Service service) {
     for (Iterator iterator = service.getPorts(); iterator.hasNext();) {
       QName name = (QName) iterator.next();
       TestUtil.logMsg("port:" + name.toString());
@@ -456,7 +456,7 @@ public final class JAXWS_Util {
   }
 
   private static void _GetSOAPElementContent(SOAPElement se) {
-    javax.xml.soap.Name name = se.getElementName();
+    jakarta.xml.soap.Name name = se.getElementName();
     if (name.getURI() == null || name.getURI().equals("")) {
       TestUtil.logMsg(" Element=" + name.getLocalName());
       content += name.getLocalName();
@@ -468,8 +468,8 @@ public final class JAXWS_Util {
     Iterator i = se.getAllAttributes();
     while (i.hasNext()) {
       Object o = i.next();
-      if (o instanceof javax.xml.soap.Name) {
-        javax.xml.soap.Name attr = (javax.xml.soap.Name) o;
+      if (o instanceof jakarta.xml.soap.Name) {
+        jakarta.xml.soap.Name attr = (jakarta.xml.soap.Name) o;
         if (attr.getURI() == null || attr.getURI().equals("")) {
           TestUtil.logMsg("  AttrName=" + attr.getLocalName() + " AttrValue="
               + se.getAttributeValue(attr));
@@ -486,8 +486,8 @@ public final class JAXWS_Util {
     i = se.getChildElements();
     while (i.hasNext()) {
       Object o = i.next();
-      if (o instanceof javax.xml.soap.Name) {
-        javax.xml.soap.Name elem = (javax.xml.soap.Name) o;
+      if (o instanceof jakarta.xml.soap.Name) {
+        jakarta.xml.soap.Name elem = (jakarta.xml.soap.Name) o;
         if (elem.getURI() == null || elem.getURI().equals("")) {
           TestUtil.logMsg(" Element=" + elem.getLocalName());
           content += " " + elem.getLocalName();
@@ -496,8 +496,8 @@ public final class JAXWS_Util {
               " Element=" + elem.getLocalName() + " URI=" + elem.getURI());
           content += " " + elem.getLocalName() + " " + elem.getURI();
         }
-      } else if (o instanceof javax.xml.soap.Text) {
-        javax.xml.soap.Text text = (javax.xml.soap.Text) o;
+      } else if (o instanceof jakarta.xml.soap.Text) {
+        jakarta.xml.soap.Text text = (jakarta.xml.soap.Text) o;
         TestUtil.logMsg("  Text=" + text.getValue());
         content += " " + text.getValue();
       } else {
@@ -508,27 +508,27 @@ public final class JAXWS_Util {
   }
 
   public static SOAPFault createSOAPFault(String soapVer) throws Exception {
-    javax.xml.soap.SOAPFault soapFault = null;
+    jakarta.xml.soap.SOAPFault soapFault = null;
     try {
       // Create a soap message factory instance.
       TestUtil.logMsg("Create a SOAP MessageFactory instance - " + soapVer);
-      javax.xml.soap.MessageFactory mfactory = getMessageFactory(soapVer);
+      jakarta.xml.soap.MessageFactory mfactory = getMessageFactory(soapVer);
 
       // Create a soap message.
       TestUtil.logMsg("Create a SOAPMessage");
-      javax.xml.soap.SOAPMessage soapmsg = mfactory.createMessage();
+      jakarta.xml.soap.SOAPMessage soapmsg = mfactory.createMessage();
 
       // Retrieve the soap part from the soap message..
       TestUtil.logMsg("Get SOAP Part");
-      javax.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
+      jakarta.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
 
       // Retrieve the envelope from the soap part.
       TestUtil.logMsg("Get SOAP Envelope");
-      javax.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
+      jakarta.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
 
       // Retrieve the soap body from the envelope.
       TestUtil.logMsg("Get SOAP Body");
-      javax.xml.soap.SOAPBody body = envelope.getBody();
+      jakarta.xml.soap.SOAPBody body = envelope.getBody();
 
       // Add a soap fault to the soap body.
       soapFault = body.addFault();
@@ -541,35 +541,35 @@ public final class JAXWS_Util {
 
   public static SOAPFault createSOAPFault(String soapVer,
       javax.xml.namespace.QName faultCode, String faultActor,
-      String faultString, javax.xml.soap.Name name) throws Exception {
-    javax.xml.soap.SOAPFault soapFault = null;
+      String faultString, jakarta.xml.soap.Name name) throws Exception {
+    jakarta.xml.soap.SOAPFault soapFault = null;
     try {
       // Create a soap message factory instance.
       TestUtil.logMsg("Create a SOAP MessageFactory instance - " + soapVer);
-      javax.xml.soap.MessageFactory mfactory = getMessageFactory(soapVer);
+      jakarta.xml.soap.MessageFactory mfactory = getMessageFactory(soapVer);
 
       // Create a soap message.
       TestUtil.logMsg("Create a SOAPMessage");
-      javax.xml.soap.SOAPMessage soapmsg = mfactory.createMessage();
+      jakarta.xml.soap.SOAPMessage soapmsg = mfactory.createMessage();
 
       // Retrieve the soap part from the soap message..
       TestUtil.logMsg("Get SOAP Part");
-      javax.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
+      jakarta.xml.soap.SOAPPart sp = soapmsg.getSOAPPart();
 
       // Retrieve the envelope from the soap part.
       TestUtil.logMsg("Get SOAP Envelope");
-      javax.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
+      jakarta.xml.soap.SOAPEnvelope envelope = sp.getEnvelope();
 
       // Retrieve the soap body from the envelope.
       TestUtil.logMsg("Get SOAP Body");
-      javax.xml.soap.SOAPBody body = envelope.getBody();
+      jakarta.xml.soap.SOAPBody body = envelope.getBody();
 
       // Add a soap fault to the soap body.
       soapFault = body.addFault();
       soapFault.setFaultCode(faultCode);
       soapFault.setFaultActor(faultActor);
       soapFault.setFaultString(faultString);
-      javax.xml.soap.Detail detail = soapFault.addDetail();
+      jakarta.xml.soap.Detail detail = soapFault.addDetail();
       detail.addDetailEntry(name);
     } catch (Exception e) {
       TestUtil.logErr("Exception caught: " + e);

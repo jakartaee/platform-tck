@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,8 +24,8 @@ import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJBs;
-import javax.ejb.EJB;
+import jakarta.ejb.EJBs;
+import jakarta.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

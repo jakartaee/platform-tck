@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,10 +26,10 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF;
 import java.rmi.RemoteException;
-import javax.ejb.CreateException;
-import javax.ejb.NoSuchEJBException;
-import javax.ejb.NoSuchObjectLocalException;
-import javax.ejb.RemoveException;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.NoSuchEJBException;
+import jakarta.ejb.NoSuchObjectLocalException;
+import jakarta.ejb.RemoveException;
 
 abstract public class TestBeanBase implements TestIF {
 
@@ -61,7 +61,7 @@ abstract public class TestBeanBase implements TestIF {
     try {
       removeBean.remove2();
       throw new TestFailedException(
-          "Expecting javax.ejb.NoSuchEJBException, " + "but got none");
+          "Expecting jakarta.ejb.NoSuchEJBException, " + "but got none");
     } catch (NoSuchEJBException e) {
       // good.
     }
@@ -75,7 +75,7 @@ abstract public class TestBeanBase implements TestIF {
     try {
       removeBean.remove2();
       throw new TestFailedException(
-          "Expecting javax.ejb.NoSuchEJBException, " + "but got none");
+          "Expecting jakarta.ejb.NoSuchEJBException, " + "but got none");
     } catch (NoSuchEJBException e) {
       // good.
     }
@@ -89,7 +89,7 @@ abstract public class TestBeanBase implements TestIF {
     try {
       removeBean2.remove2();
       throw new TestFailedException(
-          "Expecting javax.ejb.NoSuchEJBException, " + "but got none");
+          "Expecting jakarta.ejb.NoSuchEJBException, " + "but got none");
     } catch (NoSuchEJBException e) {
       // good.
     }
@@ -251,12 +251,12 @@ abstract public class TestBeanBase implements TestIF {
       bean = beanHome.create();
       beanHome.remove(bean);
       throw new TestFailedException(
-          "Expecting javax.ejb.RemoveException, but got none");
+          "Expecting jakarta.ejb.RemoveException, but got none");
     } catch (RemoveException e) {
       // TLogger.log("Got expected exception " + e.toString());
     } catch (CreateException e) {
       throw new TestFailedException(
-          "Expecting javax.ejb.RemoveException, but got", e);
+          "Expecting jakarta.ejb.RemoveException, but got", e);
     }
     try {
       bean.remove();
@@ -266,12 +266,12 @@ abstract public class TestBeanBase implements TestIF {
     try {
       bean.remove();
       throw new TestFailedException(
-          "Expecting javax.ejb.NoSuchObjectLocalException, " + "but got none.");
+          "Expecting jakarta.ejb.NoSuchObjectLocalException, " + "but got none.");
     } catch (NoSuchObjectLocalException e) {
       // TLogger.log("Got expected exception: " + e.toString());
     } catch (RemoveException e) {
       throw new TestFailedException(
-          "Expecting javax.ejb.NoSuchObjectLocalException, but got", e);
+          "Expecting jakarta.ejb.NoSuchObjectLocalException, but got", e);
     }
   }
 }

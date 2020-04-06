@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -19,8 +19,8 @@ package com.ibm.jbatch.tck.artifacts.specialized;
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.batch.api.listener.AbstractJobListener;
-import javax.batch.runtime.context.JobContext;
+import jakarta.batch.api.listener.AbstractJobListener;
+import jakarta.batch.runtime.context.JobContext;
 import javax.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.common.StatusConstants;

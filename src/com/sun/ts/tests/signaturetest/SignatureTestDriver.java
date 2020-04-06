@@ -60,7 +60,7 @@ public abstract class SignatureTestDriver {
     } else if (isJavaSEVersion("11")) {
       thePkgListFile = "sig-test-pkg-list_se11.txt";
     } else {
-      // we didnt properly identify the java se version being used so
+      // we didn't properly identify the java se version being used so
       // we will try to use the sig-test-pkg-list.txt file.
       thePkgListFile = "sig-test-pkg-list.txt";
     }
@@ -475,14 +475,14 @@ public abstract class SignatureTestDriver {
 
   /**
    * This method checks whether JTA API jar contains classes from
-   * javax.transaction.xa package
+   * jakarta.transaction.xa package
    *
    * @param classpath
    *           the classpath, pointing JTA API jar
    * @param repositoryDir
    *           the directory containing an empty signature file
    *
-   * @return <code>true</code> if the package javax.transaction.xa is not
+   * @return <code>true</code> if the package jakarta.transaction.xa is not
    *        found in the JTA API jar, otherwise <code>false</code>
    */
    protected  abstract boolean verifyJTAJarForNoXA(String classpath,
@@ -622,7 +622,7 @@ public abstract class SignatureTestDriver {
        * that matches the package name under test. So we look for a package name
        * in the properties file that could be the parent package for the package
        * under test. We do this by removing the specified packages last package
-       * name section. So javax.ejb.spi would become javax.ejb
+       * name section. So jakarta.ejb.spi would become jakarta.ejb
        */
       int index = packageName.lastIndexOf(".");
       if (index <= 0) {

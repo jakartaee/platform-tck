@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -422,7 +422,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:30"></a><font size="1PT">CONCURRENCY:SPEC:30</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.8</font></TD><TD align="left" valign="center"><font size="1PT">ManagedExecutorService implementations must support user-managed global transaction demarcation using the javax.transaction.UserTransaction interface</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:30"></a><font size="1PT">CONCURRENCY:SPEC:30</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.8</font></TD><TD align="left" valign="center"><font size="1PT">ManagedExecutorService implementations must support user-managed global transaction demarcation using the jakarta.transaction.UserTransaction interface</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -447,7 +447,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:32"></a><font size="1PT">CONCURRENCY:SPEC:32</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.8.1</font></TD><TD align="left" valign="center"><font size="1PT">The javax.transaction.UserTransaction interface must be made available in the local JNDI namespace
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:32"></a><font size="1PT">CONCURRENCY:SPEC:32</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.8.1</font></TD><TD align="left" valign="center"><font size="1PT">The jakarta.transaction.UserTransaction interface must be made available in the local JNDI namespace
                 as environment entry: java:comp/UserTransaction
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -468,7 +468,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:35"></a><font size="1PT">CONCURRENCY:SPEC:35</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.8.1</font></TD><TD align="left" valign="center"><font size="1PT">A task instance that starts a transaction using the javax.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction..</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:35"></a><font size="1PT">CONCURRENCY:SPEC:35</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.8.1</font></TD><TD align="left" valign="center"><font size="1PT">A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction..</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -483,7 +483,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:38"></a><font size="1PT">CONCURRENCY:SPEC:38</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.8.2</font></TD><TD align="left" valign="center"><font size="1PT">The task provider uses the javax.transaction.UserTransaction interface to demarcate transactions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:38"></a><font size="1PT">CONCURRENCY:SPEC:38</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.8.2</font></TD><TD align="left" valign="center"><font size="1PT">The task provider uses the jakarta.transaction.UserTransaction interface to demarcate transactions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -781,7 +781,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:63"></a><font size="1PT">CONCURRENCY:SPEC:63</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">ManagedScheduledExecutorService implementations must support user-managed global transaction demarcation using the javax.transaction.UserTransaction interface</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:63"></a><font size="1PT">CONCURRENCY:SPEC:63</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">ManagedScheduledExecutorService implementations must support user-managed global transaction demarcation using the jakarta.transaction.UserTransaction interface</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -806,7 +806,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:65"></a><font size="1PT">CONCURRENCY:SPEC:65</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2.8.1</font></TD><TD align="left" valign="center"><font size="1PT">The javax.transaction.UserTransaction interface must be made available in the local JNDI namespace
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:65"></a><font size="1PT">CONCURRENCY:SPEC:65</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2.8.1</font></TD><TD align="left" valign="center"><font size="1PT">The jakarta.transaction.UserTransaction interface must be made available in the local JNDI namespace
                 as environment entry: java:comp/UserTransaction
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -827,7 +827,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:68"></a><font size="1PT">CONCURRENCY:SPEC:68</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2.8.1</font></TD><TD align="left" valign="center"><font size="1PT">A task instance that starts a transaction using the javax.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:68"></a><font size="1PT">CONCURRENCY:SPEC:68</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2.8.1</font></TD><TD align="left" valign="center"><font size="1PT">A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -842,7 +842,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:71"></a><font size="1PT">CONCURRENCY:SPEC:71</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2.8.2</font></TD><TD align="left" valign="center"><font size="1PT">The task provider uses the javax.transaction.UserTransaction interface to demarcate transactions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:71"></a><font size="1PT">CONCURRENCY:SPEC:71</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2.8.2</font></TD><TD align="left" valign="center"><font size="1PT">The task provider uses the jakarta.transaction.UserTransaction interface to demarcate transactions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -963,7 +963,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:86"></a><font size="1PT">CONCURRENCY:SPEC:86</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5</font></TD><TD align="left" valign="center"><font size="1PT">Contextual dynamic proxies support user-managed global transaction demarcation using the javax.transaction.UserTransaction interface</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:86"></a><font size="1PT">CONCURRENCY:SPEC:86</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5</font></TD><TD align="left" valign="center"><font size="1PT">Contextual dynamic proxies support user-managed global transaction demarcation using the jakarta.transaction.UserTransaction interface</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -998,7 +998,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:91.1"></a><font size="1PT">CONCURRENCY:SPEC:91.1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.1</font></TD><TD align="left" valign="center"><font size="1PT">The javax.transaction.UserTransaction interface must be made available in the local JNDI namespace
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:91.1"></a><font size="1PT">CONCURRENCY:SPEC:91.1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.1</font></TD><TD align="left" valign="center"><font size="1PT">The jakarta.transaction.UserTransaction interface must be made available in the local JNDI namespace
                         as environment entry: java:comp/UserTransaction
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1019,7 +1019,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:91.4"></a><font size="1PT">CONCURRENCY:SPEC:91.4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.1</font></TD><TD align="left" valign="center"><font size="1PT">A task instance that starts a transaction using the javax.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:91.4"></a><font size="1PT">CONCURRENCY:SPEC:91.4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.1</font></TD><TD align="left" valign="center"><font size="1PT">A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1041,7 +1041,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:92.2"></a><font size="1PT">CONCURRENCY:SPEC:92.2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.2</font></TD><TD align="left" valign="center"><font size="1PT">The task provider uses the javax.transaction.UserTransaction interface to demarcate transactions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:92.2"></a><font size="1PT">CONCURRENCY:SPEC:92.2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.5.2</font></TD><TD align="left" valign="center"><font size="1PT">The task provider uses the jakarta.transaction.UserTransaction interface to demarcate transactions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1228,7 +1228,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:107"></a><font size="1PT">CONCURRENCY:SPEC:107</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.6</font></TD><TD align="left" valign="center"><font size="1PT">ManagedThreadFactory implementations must support user-managed global transaction demarcation using the javax.transaction.UserTransaction interface,</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:107"></a><font size="1PT">CONCURRENCY:SPEC:107</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.6</font></TD><TD align="left" valign="center"><font size="1PT">ManagedThreadFactory implementations must support user-managed global transaction demarcation using the jakarta.transaction.UserTransaction interface,</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1238,7 +1238,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:109"></a><font size="1PT">CONCURRENCY:SPEC:109</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1</font></TD><TD align="left" valign="center"><font size="1PT">The javax.transaction.UserTransaction interface must be made available in the local JNDI namespace
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:109"></a><font size="1PT">CONCURRENCY:SPEC:109</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1</font></TD><TD align="left" valign="center"><font size="1PT">The jakarta.transaction.UserTransaction interface must be made available in the local JNDI namespace
                 as environment entry: java:comp/UserTransaction
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1259,7 +1259,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:112"></a><font size="1PT">CONCURRENCY:SPEC:112</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1</font></TD><TD align="left" valign="center"><font size="1PT">A task instance that starts a transaction using the javax.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:112"></a><font size="1PT">CONCURRENCY:SPEC:112</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1</font></TD><TD align="left" valign="center"><font size="1PT">A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1274,7 +1274,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:115"></a><font size="1PT">CONCURRENCY:SPEC:115</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.6.2</font></TD><TD align="left" valign="center"><font size="1PT">The task provider uses the javax.transaction.UserTransaction interface to demarcate transactions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="CONCURRENCY:SPEC:115"></a><font size="1PT">CONCURRENCY:SPEC:115</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.6.2</font></TD><TD align="left" valign="center"><font size="1PT">The task provider uses the jakarta.transaction.UserTransaction interface to demarcate transactions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>

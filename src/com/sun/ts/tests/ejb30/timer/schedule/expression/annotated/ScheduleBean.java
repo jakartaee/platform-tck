@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,13 +31,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.ejb.ScheduleExpression;
-import javax.ejb.Stateless;
-import javax.ejb.Timeout;
-import javax.ejb.Timer;
-import javax.ejb.TimerConfig;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;

@@ -26,9 +26,9 @@ import com.sun.ts.tests.saaj.common.*;
 
 import javax.servlet.http.*;
 import javax.servlet.*;
-import javax.xml.soap.*;
+import jakarta.xml.soap.*;
 import javax.xml.namespace.*;
-import javax.activation.DataHandler;
+import jakarta.activation.DataHandler;
 import java.net.*;
 import java.io.*;
 import java.util.*;

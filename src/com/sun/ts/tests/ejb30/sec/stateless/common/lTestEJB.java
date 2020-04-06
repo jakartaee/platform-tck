@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,16 +26,16 @@ import com.sun.ts.lib.util.TestUtil;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.annotation.Resource;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.EJBs;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.ejb.SessionContext;
-import javax.ejb.EJBException;
-import javax.ejb.Remote;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.EJBs;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.Remote;
 
 @Stateless(name = "lTestEJB")
 @Remote({ lTest.class })
@@ -129,8 +129,8 @@ public class lTestEJB implements lTest {
       TestUtil.logErr(
           "Method call did not generate an expected java.rmi.RemoteException");
       return false;
-    } catch (javax.ejb.EJBException e) {
-      TestUtil.logMsg("Caught javax.ejb.EJBException as expected");
+    } catch (jakarta.ejb.EJBException e) {
+      TestUtil.logMsg("Caught jakarta.ejb.EJBException as expected");
       cleanup(ejb1);
       return true;
     } catch (Exception e) {
@@ -275,7 +275,7 @@ public class lTestEJB implements lTest {
       TestUtil.logTrace("Should not be here.");
       return false;
 
-    } catch (javax.ejb.EJBException e) {
+    } catch (jakarta.ejb.EJBException e) {
       TestUtil.logTrace("Got expected EJBException");
       return true;
     } catch (Exception ex) {

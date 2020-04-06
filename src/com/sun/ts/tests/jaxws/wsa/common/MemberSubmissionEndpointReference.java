@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,16 +22,16 @@ package com.sun.ts.tests.jaxws.wsa.common;
 
 import org.w3c.dom.Element;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.annotation.*;
 import javax.xml.namespace.QName;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
-import javax.xml.ws.EndpointReference;
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.EndpointReference;
+import jakarta.xml.ws.WebServiceException;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +56,7 @@ public class MemberSubmissionEndpointReference extends EndpointReference
    * @param source
    *          A source object containing valid XmlInfoset instance consistent
    *          with the Member Submission WS-Addressing
-   * @throws javax.xml.ws.WebServiceException
+   * @throws jakarta.xml.ws.WebServiceException
    *           if the source does not contain a valid W3C WS-Addressing
    *           EndpointReference.
    * @throws WebServiceException

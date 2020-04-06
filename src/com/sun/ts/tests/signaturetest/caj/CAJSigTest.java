@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -44,33 +44,33 @@ import com.sun.ts.tests.signaturetest.*;
 public class CAJSigTest extends SigTest {
 
   // all the classes that make up common annotations
-  private final String GENERATED = "javax.annotation.Generated";
+  private final String GENERATED = "jakarta.annotation.Generated";
 
-  private final String MANAGEDBEAN = "javax.annotation.ManagedBean";
+  private final String MANAGEDBEAN = "jakarta.annotation.ManagedBean";
 
-  private final String POSTCONSTRUCT = "javax.annotation.PostConstruct";
+  private final String POSTCONSTRUCT = "jakarta.annotation.PostConstruct";
 
-  private final String PREDESTROY = "javax.annotation.PreDestroy";
+  private final String PREDESTROY = "jakarta.annotation.PreDestroy";
 
-  private final String PRIORITY = "javax.annotation.Priority";
+  private final String PRIORITY = "jakarta.annotation.Priority";
 
-  private final String RESOURCE = "javax.annotation.Resource,javax.annotation.Resource$AuthenticationType";
+  private final String RESOURCE = "jakarta.annotation.Resource,jakarta.annotation.Resource$AuthenticationType";
 
-  private final String RESOURCES = "javax.annotation.Resources";
+  private final String RESOURCES = "jakarta.annotation.Resources";
 
-  private final String SECURITYDECLAREROLES = "javax.annotation.security.DeclareRoles";
+  private final String SECURITYDECLAREROLES = "jakarta.annotation.security.DeclareRoles";
 
-  private final String SECURITYDENYALL = "javax.annotation.security.DenyAll";
+  private final String SECURITYDENYALL = "jakarta.annotation.security.DenyAll";
 
-  private final String SECURITYPERMITALL = "javax.annotation.security.PermitAll";
+  private final String SECURITYPERMITALL = "jakarta.annotation.security.PermitAll";
 
-  private final String SECURITYROLESALLOWED = "javax.annotation.security.RolesAllowed";
+  private final String SECURITYROLESALLOWED = "jakarta.annotation.security.RolesAllowed";
 
-  private final String SECURITYRUNAS = "javax.annotation.security.RunAs";
+  private final String SECURITYRUNAS = "jakarta.annotation.security.RunAs";
 
-  private final String SQLDATASOURCEDEFINITION = "javax.annotation.sql.DataSourceDefinition";
+  private final String SQLDATASOURCEDEFINITION = "jakarta.annotation.sql.DataSourceDefinition";
 
-  private final String SQLDATASOURCEDEFINITIONS = "javax.annotation.sql.DataSourceDefinitions";
+  private final String SQLDATASOURCEDEFINITIONS = "jakarta.annotation.sql.DataSourceDefinitions";
 
   private boolean ca_generated = false;
 

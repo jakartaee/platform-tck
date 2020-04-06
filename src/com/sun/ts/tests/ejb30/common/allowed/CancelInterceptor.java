@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,12 +24,12 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Collection;
 import java.util.Iterator;
-import javax.ejb.EJBContext;
+import jakarta.ejb.EJBContext;
 import javax.interceptor.InvocationContext;
-import javax.ejb.SessionContext;
+import jakarta.ejb.SessionContext;
 import javax.interceptor.AroundInvoke;
-import javax.ejb.Timer;
-import javax.ejb.TimerService;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerService;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -54,7 +54,7 @@ public class CancelInterceptor {
       Collection ccol = ts.getTimers();
       Iterator i = ccol.iterator();
       while (i.hasNext()) {
-        Timer t = (javax.ejb.Timer) i.next();
+        Timer t = (jakarta.ejb.Timer) i.next();
         t.cancel();
       }
     } catch (Exception e) {

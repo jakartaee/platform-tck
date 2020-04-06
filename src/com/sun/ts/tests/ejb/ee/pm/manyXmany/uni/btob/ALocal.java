@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb.ee.pm.manyXmany.uni.btob;
 import com.sun.ts.lib.util.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import java.rmi.*;
 
 public interface ALocal extends EJBLocalObject {

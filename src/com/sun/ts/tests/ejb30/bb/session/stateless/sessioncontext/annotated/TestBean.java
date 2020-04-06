@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,12 +31,12 @@ import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteHome;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteIF;
 import java.rmi.RemoteException;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import javax.ejb.SessionContext;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
-import javax.ejb.CreateException;
-import javax.ejb.EJB;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJB;
 
 @Stateless(name = "TestBean")
 @Remote({ TestIF.class })

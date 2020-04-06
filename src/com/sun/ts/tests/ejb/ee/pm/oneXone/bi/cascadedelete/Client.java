@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import java.rmi.*;
 
 import com.sun.javatest.Status;
@@ -184,7 +184,7 @@ public class Client extends EETest {
    * @test_Strategy: A 1x1 bi-directional relationship between entitybean
    * objects. Create a 1x1 bi-directional relationship between entitybean
    * objects. Perform cascade delete of entitybean object. Deploy it on the J2EE
-   * server. Ensure that the Persistence Manager throws javax.ejb.EJBException
+   * server. Ensure that the Persistence Manager throws jakarta.ejb.EJBException
    * when trying to invoke an accessor methods on a deleted entitybean objects.
    *
    */
@@ -201,7 +201,7 @@ public class Client extends EETest {
       b = bHome.create("1", "bean1", 1, a1, b1, 2);
       b.init(props);
 
-      // Check that PM throws javax.ejb.EJBException
+      // Check that PM throws jakarta.ejb.EJBException
       if (b.test3())
         TestUtil.logMsg("pm does throw EJBException passed");
       else {

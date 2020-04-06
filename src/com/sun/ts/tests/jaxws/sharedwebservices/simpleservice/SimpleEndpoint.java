@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,6 +50,6 @@ public interface SimpleEndpoint {
   @javax.jws.WebMethod(operationName = "holderOperation")
   @javax.jws.WebResult(name = "return", targetNamespace = "http://simpletestservice.org/wsdl")
   public java.lang.String holderOperation(
-      @javax.jws.WebParam(name = "arg0", mode = javax.jws.WebParam.Mode.INOUT) javax.xml.ws.Holder<java.lang.String> arg0,
-      @javax.jws.WebParam(name = "arg1", mode = javax.jws.WebParam.Mode.INOUT) javax.xml.ws.Holder<java.lang.String> arg1);
+      @javax.jws.WebParam(name = "arg0", mode = javax.jws.WebParam.Mode.INOUT) jakarta.xml.ws.Holder<java.lang.String> arg0,
+      @javax.jws.WebParam(name = "arg1", mode = javax.jws.WebParam.Mode.INOUT) jakarta.xml.ws.Holder<java.lang.String> arg1);
 }

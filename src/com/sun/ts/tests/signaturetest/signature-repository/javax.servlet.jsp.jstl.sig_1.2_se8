@@ -2,7 +2,7 @@
 #Version 1.2_se8
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,7 +35,7 @@ meth public final void wait(long,int) throws java.lang.InterruptedException
 meth public int hashCode()
 meth public java.lang.String toString()
 
-CLSS public abstract javax.el.Expression
+CLSS public abstract jakarta.el.Expression
 cons public <init>()
 intf java.io.Serializable
 meth public abstract boolean equals(java.lang.Object)
@@ -44,15 +44,15 @@ meth public abstract int hashCode()
 meth public abstract java.lang.String getExpressionString()
 supr java.lang.Object
 
-CLSS public abstract javax.el.ValueExpression
+CLSS public abstract jakarta.el.ValueExpression
 cons public <init>()
-meth public abstract boolean isReadOnly(javax.el.ELContext)
+meth public abstract boolean isReadOnly(jakarta.el.ELContext)
 meth public abstract java.lang.Class<?> getExpectedType()
-meth public abstract java.lang.Class<?> getType(javax.el.ELContext)
-meth public abstract java.lang.Object getValue(javax.el.ELContext)
-meth public abstract void setValue(javax.el.ELContext,java.lang.Object)
-meth public javax.el.ValueReference getValueReference(javax.el.ELContext)
-supr javax.el.Expression
+meth public abstract java.lang.Class<?> getType(jakarta.el.ELContext)
+meth public abstract java.lang.Object getValue(jakarta.el.ELContext)
+meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object)
+meth public jakarta.el.ValueReference getValueReference(jakarta.el.ELContext)
+supr jakarta.el.Expression
 
 CLSS public abstract javax.servlet.jsp.jstl.core.ConditionalTagSupport
 cons public <init>()
@@ -89,27 +89,27 @@ supr java.lang.Object
 hfds APPLICATION_SCOPE_SUFFIX,PAGE_SCOPE_SUFFIX,REQUEST_SCOPE_SUFFIX,SESSION_SCOPE_SUFFIX
 
 CLSS public final javax.servlet.jsp.jstl.core.IndexedValueExpression
-cons public <init>(javax.el.ValueExpression,int)
+cons public <init>(jakarta.el.ValueExpression,int)
 fld protected final java.lang.Integer i
-fld protected final javax.el.ValueExpression orig
+fld protected final jakarta.el.ValueExpression orig
 meth public boolean equals(java.lang.Object)
 meth public boolean isLiteralText()
-meth public boolean isReadOnly(javax.el.ELContext)
+meth public boolean isReadOnly(jakarta.el.ELContext)
 meth public int hashCode()
 meth public java.lang.Class getExpectedType()
-meth public java.lang.Class getType(javax.el.ELContext)
-meth public java.lang.Object getValue(javax.el.ELContext)
+meth public java.lang.Class getType(jakarta.el.ELContext)
+meth public java.lang.Object getValue(jakarta.el.ELContext)
 meth public java.lang.String getExpressionString()
-meth public void setValue(javax.el.ELContext,java.lang.Object)
-supr javax.el.ValueExpression
+meth public void setValue(jakarta.el.ELContext,java.lang.Object)
+supr jakarta.el.ValueExpression
 hfds serialVersionUID
 
 CLSS public final javax.servlet.jsp.jstl.core.IteratedExpression
-cons public <init>(javax.el.ValueExpression,java.lang.String)
+cons public <init>(jakarta.el.ValueExpression,java.lang.String)
 fld protected final java.lang.String delims
-fld protected final javax.el.ValueExpression orig
-meth public java.lang.Object getItem(javax.el.ELContext,int)
-meth public javax.el.ValueExpression getValueExpression()
+fld protected final jakarta.el.ValueExpression orig
+meth public java.lang.Object getItem(jakarta.el.ELContext,int)
+meth public jakarta.el.ValueExpression getValueExpression()
 supr java.lang.Object
 hfds base,index,iter,serialVersionUID
 
@@ -119,14 +119,14 @@ fld protected final int i
 fld protected final javax.servlet.jsp.jstl.core.IteratedExpression iteratedExpression
 meth public boolean equals(java.lang.Object)
 meth public boolean isLiteralText()
-meth public boolean isReadOnly(javax.el.ELContext)
+meth public boolean isReadOnly(jakarta.el.ELContext)
 meth public int hashCode()
 meth public java.lang.Class getExpectedType()
-meth public java.lang.Class getType(javax.el.ELContext)
-meth public java.lang.Object getValue(javax.el.ELContext)
+meth public java.lang.Class getType(jakarta.el.ELContext)
+meth public java.lang.Object getValue(jakarta.el.ELContext)
 meth public java.lang.String getExpressionString()
-meth public void setValue(javax.el.ELContext,java.lang.Object)
-supr javax.el.ValueExpression
+meth public void setValue(jakarta.el.ELContext,java.lang.Object)
+supr jakarta.el.ValueExpression
 hfds serialVersionUID
 
 CLSS public abstract interface javax.servlet.jsp.jstl.core.LoopTag
@@ -154,7 +154,7 @@ fld protected int end
 fld protected int step
 fld protected java.lang.String itemId
 fld protected java.lang.String statusId
-fld protected javax.el.ValueExpression deferredExpression
+fld protected jakarta.el.ValueExpression deferredExpression
 intf javax.servlet.jsp.jstl.core.LoopTag
 intf javax.servlet.jsp.tagext.IterationTag
 intf javax.servlet.jsp.tagext.TryCatchFinally

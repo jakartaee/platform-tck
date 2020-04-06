@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,9 +24,9 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.rmi.*;
 import java.util.*;
 import java.sql.*;
@@ -85,7 +85,7 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     TestUtil.logTrace("ejbPassivate");
   }
 
-  public void ejbTimeout(javax.ejb.Timer timer) {
+  public void ejbTimeout(jakarta.ejb.Timer timer) {
     TestUtil.logTrace("ejbTimeout");
   }
 
@@ -372,8 +372,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     // TimerService_Methods_Test1
     try {
-      javax.ejb.TimerService timesrv = sctx.getTimerService();
-      javax.ejb.Timer tt = timesrv.createTimer((long) 10000, "test1");
+      jakarta.ejb.TimerService timesrv = sctx.getTimerService();
+      jakarta.ejb.Timer tt = timesrv.createTimer((long) 10000, "test1");
       tt.cancel();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test1() - allowed");
@@ -391,8 +391,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     // TimerService_Methods_Test2
     try {
-      javax.ejb.TimerService timesrv2 = sctx.getTimerService();
-      javax.ejb.Timer t2 = timesrv2.createTimer((long) 10000, (long) 10000,
+      jakarta.ejb.TimerService timesrv2 = sctx.getTimerService();
+      jakarta.ejb.Timer t2 = timesrv2.createTimer((long) 10000, (long) 10000,
           "test2");
       t2.cancel();
       TestUtil
@@ -413,8 +413,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     try {
       long expiration = (System.currentTimeMillis() + (long) 900000);
       java.util.Date d = new java.util.Date(expiration);
-      javax.ejb.TimerService timesrv3 = sctx.getTimerService();
-      javax.ejb.Timer t3 = timesrv3.createTimer(d, "test3");
+      jakarta.ejb.TimerService timesrv3 = sctx.getTimerService();
+      jakarta.ejb.Timer t3 = timesrv3.createTimer(d, "test3");
       t3.cancel();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test3() - allowed");
@@ -434,8 +434,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     try {
       long expiration = (System.currentTimeMillis() + (long) 900000);
       java.util.Date d = new java.util.Date(expiration);
-      javax.ejb.TimerService timesrv4 = sctx.getTimerService();
-      javax.ejb.Timer t4 = timesrv4.createTimer(d, (long) 10000, "test4");
+      jakarta.ejb.TimerService timesrv4 = sctx.getTimerService();
+      jakarta.ejb.Timer t4 = timesrv4.createTimer(d, (long) 10000, "test4");
       t4.cancel();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test4() - allowed");
@@ -453,7 +453,7 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     // TimerService_Methods_Test5
     try {
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       Collection ccol = ts.getTimers();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test5() - allowed");
@@ -471,8 +471,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     // TimerService_Methods_Test6
     try {
-      javax.ejb.TimerService timesrv6 = sctx.getTimerService();
-      javax.ejb.Timer t6 = timesrv6.createTimer((long) 10000, "test6");
+      jakarta.ejb.TimerService timesrv6 = sctx.getTimerService();
+      jakarta.ejb.Timer t6 = timesrv6.createTimer((long) 10000, "test6");
       t6.getHandle();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test6() - allowed");
@@ -490,8 +490,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     // TimerService_Methods_Test7
     try {
-      javax.ejb.TimerService timesrv7 = sctx.getTimerService();
-      javax.ejb.Timer t7 = timesrv7.createTimer((long) 10000, "test7");
+      jakarta.ejb.TimerService timesrv7 = sctx.getTimerService();
+      jakarta.ejb.Timer t7 = timesrv7.createTimer((long) 10000, "test7");
       t7.cancel();
       TestUtil
           .logMsg("Operations test: TimerService_Methods_Test7() - allowed");
@@ -508,19 +508,21 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     }
 
     // getMessageContext test
-    try {
-      sctx.getMessageContext();
-      TestUtil.logMsg("Operations test: getMessageContext() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("getMessageContext", "false");
-      TestUtil.logMsg("Operations test: getMessageContext() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("getMessageContext", "unexpected");
-      TestUtil.logMsg(
-          "Operations test: getMessageContext() - not allowed (Unexpected Exception) - "
-              + e);
-    }
+// TODO: Verify
+// jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore
+//    try {
+//      sctx.getMessageContext();
+//      TestUtil.logMsg("Operations test: getMessageContext() - allowed");
+//    } catch (IllegalStateException e) {
+//      methodList[i].setProperty("getMessageContext", "false");
+//      TestUtil.logMsg("Operations test: getMessageContext() - not allowed");
+//    } catch (Exception e) {
+//      TestUtil.printStackTrace(e);
+//      methodList[i].setProperty("getMessageContext", "unexpected");
+//      TestUtil.logMsg(
+//          "Operations test: getMessageContext() - not allowed (Unexpected Exception) - "
+//              + e);
+//    }
 
     // getRollbackOnly test
     try {
@@ -568,12 +570,12 @@ public class TestBeanEJB implements SessionBean, TimedObject {
   public void findAndCancelTimer() {
     try {
       TestUtil.logTrace("findTimer method entered");
-      javax.ejb.TimerService ts = sctx.getTimerService();
+      jakarta.ejb.TimerService ts = sctx.getTimerService();
       TestUtil.logTrace("find Timers");
       Collection ccol = ts.getTimers();
       Iterator i = ccol.iterator();
       while (i.hasNext()) {
-        javax.ejb.Timer t = (javax.ejb.Timer) i.next();
+        jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
         t.cancel();
       }
     } catch (Exception e) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,8 +28,8 @@ import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.USER_T
 
 import java.net.URL;
 
-import javax.ejb.EJBContext;
-import javax.ejb.TimerService;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.TimerService;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -42,8 +42,8 @@ import javax.jms.TopicConnectionFactory;
 import javax.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.transaction.TransactionSynchronizationRegistry;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.TransactionSynchronizationRegistry;
+import jakarta.transaction.UserTransaction;
 
 import org.omg.CORBA.ORB;
 

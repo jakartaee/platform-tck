@@ -21,13 +21,13 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.Future;
 
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.PongMessage;
-import javax.websocket.RemoteEndpoint.Async;
-import javax.websocket.SendResult;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.PongMessage;
+import jakarta.websocket.RemoteEndpoint.Async;
+import jakarta.websocket.SendResult;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.ServerEndpoint;
 
 import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;

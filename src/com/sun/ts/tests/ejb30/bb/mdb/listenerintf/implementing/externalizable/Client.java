@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -65,7 +65,7 @@ public class Client
    * @assertion_ids: EJB:JAVADOC:130; EJB:JAVADOC:131
    * 
    * @test_Strategy: java.io.Serializable, java.io.Externalizable, and
-   * javax.ejb.* interfaces should not be considered when determining the
+   * jakarta.ejb.* interfaces should not be considered when determining the
    * messaging type.
    */
 }

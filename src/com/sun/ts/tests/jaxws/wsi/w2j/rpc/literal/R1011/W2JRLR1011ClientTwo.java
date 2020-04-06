@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ public class W2JRLR1011ClientTwo extends SOAPClient {
   }
 
   public W2JRLR1011ClientTwo(String webServerHost, int webServerPort, int mode,
-      javax.xml.ws.Service webServiceRef) throws EETest.Fault {
+      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
     super(webServerHost, webServerPort, mode);
     stubContext.setNamespace(
         "http://w2jrlr1011testservice.org/W2JRLR1011TestService.wsdl");

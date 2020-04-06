@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,15 +30,15 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
-import javax.ejb.CreateException;
-import javax.ejb.Local;
-import javax.ejb.LocalHome;
-import javax.ejb.Remote;
-import javax.ejb.RemoteHome;
-import javax.ejb.Init;
-import javax.ejb.Remove;
-import javax.ejb.Stateful;
-import javax.ejb.SessionContext;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.Local;
+import jakarta.ejb.LocalHome;
+import jakarta.ejb.Remote;
+import jakarta.ejb.RemoteHome;
+import jakarta.ejb.Init;
+import jakarta.ejb.Remove;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
 
 @Stateful(name = "RemoveNotRetainBean")

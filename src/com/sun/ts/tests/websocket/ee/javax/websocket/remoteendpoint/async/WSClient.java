@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,9 +20,9 @@ package com.sun.ts.tests.websocket.ee.javax.websocket.remoteendpoint.async;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.Encoder;
-import javax.websocket.RemoteEndpoint.Async;
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.RemoteEndpoint.Async;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.websocket.common.client.BinaryAndTextClientEndpoint;
@@ -65,7 +66,7 @@ public class WSClient extends WebSocketCommonClient {
    * WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: setSendTimeOut and getSendTimeout
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendTimeoutOnServerTest() throws Fault {
     invoke("server", OPS.TIMEOUT.name(), RESPONSE[0]);
@@ -78,7 +79,7 @@ public class WSClient extends WebSocketCommonClient {
    * WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: setSendTimeOut and getSendTimeout
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendTimeoutOnClientTest() throws Fault {
     EndpointCallback callback = new AsyncEndpointCallback() {
@@ -102,7 +103,7 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendBinaryOnServerTest() throws Fault {
     sendOnServer(OPS.SENDBINARY);
@@ -115,7 +116,7 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendBinaryOnClientTest() throws Fault {
     sendOnClient(OPS.SENDBINARY);
@@ -164,9 +165,9 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.SendHandler.onResult( SendResult )
-   * javax.websocket.SendResult.SendResult()
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.SendHandler.onResult( SendResult )
+   * jakarta.websocket.SendResult.SendResult()
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendBinaryWithHandlerOnServerTest() throws Fault {
     sendOnServer(OPS.SENDBINARYHANDLER);
@@ -180,9 +181,9 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.SendHandler.onResult( SendResult )
-   * javax.websocket.SendResult.SendResult()
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.SendHandler.onResult( SendResult )
+   * jakarta.websocket.SendResult.SendResult()
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendBinaryWithHandlerOnClientTest() throws Fault {
     sendOnClient(OPS.SENDBINARYHANDLER);
@@ -247,7 +248,7 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECT);
@@ -260,7 +261,7 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT);
@@ -272,7 +273,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectBooleanOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECT_BOOL, false);
@@ -284,7 +285,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectBooleanOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT_BOOL, String.valueOf(false));
@@ -296,7 +297,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectByteOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECT_BYTE, -100);
@@ -308,7 +309,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectByteOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT_BYTE, "-100");
@@ -332,7 +333,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectCharOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT_CHAR, String.valueOf((char) 106));
@@ -344,7 +345,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectDoubleOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECT_DOUBLE, -105d);
@@ -356,7 +357,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectDoubleOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT_DOUBLE, "-105");
@@ -368,7 +369,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectFloatOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECT_FLOAT, -104f);
@@ -380,7 +381,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectFloatOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT_FLOAT, "-104");
@@ -392,7 +393,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectIntOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECT_INT, -102);
@@ -404,7 +405,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectIntOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT_INT, "-102");
@@ -416,7 +417,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectLongOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECT_LONG, -103L);
@@ -428,7 +429,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectLongOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT_LONG, "-103");
@@ -440,7 +441,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectShortOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECT_SHORT, -101);
@@ -452,7 +453,7 @@ public class WSClient extends WebSocketCommonClient {
    * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:127;
    * 
    * @test_Strategy: Containers will by default be able to encode java primitive
-   * types and their object equivalents javax.websocket.Session.getAsyncRemote
+   * types and their object equivalents jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectShortOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECT_SHORT, "-101");
@@ -513,9 +514,9 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.SendHandler.onResult( SendResult )
-   * javax.websocket.SendHandler.SendHandler()
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.SendHandler.onResult( SendResult )
+   * jakarta.websocket.SendHandler.SendHandler()
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectWithHandlerOnServerTest() throws Fault {
     sendOnServer(OPS.SENDOBJECTHANDLER);
@@ -529,9 +530,9 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.SendHandler.onResult( SendResult )
-   * javax.websocket.SendHandler.SendHandler()
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.SendHandler.onResult( SendResult )
+   * jakarta.websocket.SendHandler.SendHandler()
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendObjectWithHandlerOnClientTest() throws Fault {
     sendOnClient(OPS.SENDOBJECTHANDLER);
@@ -625,7 +626,7 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendTextOnServerTest() throws Fault {
     sendOnServer(OPS.SENDTEXT);
@@ -638,7 +639,7 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendTextOnClientTest() throws Fault {
     sendOnClient(OPS.SENDTEXT);
@@ -674,9 +675,9 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.SendHandler.onResult( SendResult )
-   * javax.websocket.SendHandler.SendHandler()
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.SendHandler.onResult( SendResult )
+   * jakarta.websocket.SendHandler.SendHandler()
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendTextWithHandlerOnServerTest() throws Fault {
     sendOnServer(OPS.SENDTEXTHANDLER);
@@ -690,9 +691,9 @@ public class WSClient extends WebSocketCommonClient {
    * 
    * @test_Strategy: Initiates the asynchronous transmission of a binary
    * message. The Future's get() method returns null upon successful completion.
-   * javax.websocket.SendHandler.onResult( SendResult )
-   * javax.websocket.SendHandler.SendHandler()
-   * javax.websocket.Session.getAsyncRemote
+   * jakarta.websocket.SendHandler.onResult( SendResult )
+   * jakarta.websocket.SendHandler.SendHandler()
+   * jakarta.websocket.Session.getAsyncRemote
    */
   public void sendTextWithHandlerOnClientTest() throws Fault {
     sendOnClient(OPS.SENDTEXTHANDLER);

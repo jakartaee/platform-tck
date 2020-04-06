@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,7 +32,7 @@ public class SwaTestClient1 extends SOAPClient {
   }
 
   public SwaTestClient1(String webServerHost, int port, int mode,
-      javax.xml.ws.Service webServiceRef) throws EETest.Fault {
+      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
     super(webServerHost, port, mode);
     stubContext.setNamespace("http://SwaTestService.org/wsdl");
     stubContext.setService("WSIRLSwaTestService");
@@ -51,8 +51,8 @@ public class SwaTestClient1 extends SOAPClient {
 
   public com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponse echoMultipleAttachments(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequest request,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2)
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2)
       throws Exception {
     return ((SwaTest1) stubContext.getStub()).echoMultipleAttachments(request,
         attach1, attach2);

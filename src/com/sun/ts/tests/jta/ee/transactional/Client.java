@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,12 +27,12 @@ import javax.interceptor.Interceptor;
 
 import com.sun.ts.lib.harness.ServiceEETest;
 
-import javax.transaction.UserTransaction;
-import javax.transaction.SystemException;
-import javax.transaction.Status;
-import javax.transaction.TransactionalException;
-import javax.transaction.TransactionRequiredException;
-import javax.transaction.InvalidTransactionException;
+import jakarta.transaction.UserTransaction;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.Status;
+import jakarta.transaction.TransactionalException;
+import jakarta.transaction.TransactionRequiredException;
+import jakarta.transaction.InvalidTransactionException;
 import javax.inject.Inject;
 import javax.enterprise.context.ContextNotActiveException;
 
@@ -793,7 +793,7 @@ public class Client extends EJBLiteClientBase {
    * 
    * @test_Strategy:
    * 
-   * The javax.transaction.TransactionScoped annotation provides the ability to
+   * The jakarta.transaction.TransactionScoped annotation provides the ability to
    * specify a standard CDI scope to define bean instances whose lifecycle is
    * scoped to the currently active JTA transaction.
    * 
@@ -837,7 +837,7 @@ public class Client extends EJBLiteClientBase {
    * 
    * @test_Strategy:
    * 
-   * The javax.transaction.TransactionScoped annotation provides the ability to
+   * The jakarta.transaction.TransactionScoped annotation provides the ability to
    * specify a standard CDI scope to define bean instances whose lifecycle is
    * scoped to the currently active JTA transaction.
    * 

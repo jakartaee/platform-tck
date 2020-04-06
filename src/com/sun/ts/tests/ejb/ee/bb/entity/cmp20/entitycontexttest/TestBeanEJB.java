@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,10 +24,10 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import java.rmi.*;
 import java.security.Principal;
-import javax.transaction.*;
+import jakarta.transaction.*;
 
 public abstract class TestBeanEJB implements EntityBean, TimedObject {
   private EntityContext ectx = null;
@@ -104,7 +104,7 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
     TestUtil.logTrace("ejbPassivate");
   }
 
-  public void ejbTimeout(javax.ejb.Timer timer) {
+  public void ejbTimeout(jakarta.ejb.Timer timer) {
     TestUtil.logTrace("ejbTimeout");
   }
 
@@ -335,8 +335,8 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
   public boolean getTimerServiceTest() {
     TestUtil.logTrace("getTimerServiceTest");
     try {
-      javax.ejb.TimerService ts = ectx.getTimerService();
-      if (ts instanceof javax.ejb.TimerService) {
+      jakarta.ejb.TimerService ts = ectx.getTimerService();
+      if (ts instanceof jakarta.ejb.TimerService) {
         TestUtil.logMsg("getTimerService() returned Timer Service reference");
         return true;
       } else {

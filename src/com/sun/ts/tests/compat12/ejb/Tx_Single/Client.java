@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import com.sun.ts.lib.harness.*;
 
 import java.io.*;
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.rmi.*;
 
 import com.sun.javatest.Status;
@@ -206,7 +206,7 @@ public class Client extends EETest {
    * attribute is set to Mandatory in a client's transaction context. The client
    * is required to call with a transaction context. If the client calls without
    * a transaction context, the Container throws
-   * javax.transaction.TransactionRequiredException exception.
+   * jakarta.transaction.TransactionRequiredException exception.
    * (Container-managed transaction demarcation Mandatory) The Container must
    * invoke the ejbCreate() and ejbPostCreate() methods in the transaction
    * context determined by the transaction attribute of the matching create()

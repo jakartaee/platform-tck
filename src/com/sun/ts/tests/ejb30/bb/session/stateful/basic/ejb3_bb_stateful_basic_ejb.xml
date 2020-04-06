@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@
             <ejb-name>RemoteCalculatorBean</ejb-name>
             <resource-env-ref>
                 <resource-env-ref-name>myut</resource-env-ref-name>
-                <resource-env-ref-type>javax.transaction.UserTransaction</resource-env-ref-type>
+                <resource-env-ref-type>jakarta.transaction.UserTransaction</resource-env-ref-type>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.basic.RemoteCalculatorBean</injection-target-class>
                     <injection-target-name>ut</injection-target-name>
@@ -32,7 +32,7 @@
             <!--
             <resource-ref>
                 <res-ref-name>myut</res-ref-name>
-                <res-type>javax.transaction.UserTransaction</res-type>
+                <res-type>jakarta.transaction.UserTransaction</res-type>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.basic.RemoteCalculatorBean</injection-target-class>
                     <injection-target-name>ut</injection-target-name>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,9 +27,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import java.beans.FeatureDescriptor;
 
-import javax.el.ELResolver;
-import javax.el.ELContext;
-import javax.el.ELException;
+import jakarta.el.ELResolver;
+import jakarta.el.ELContext;
+import jakarta.el.ELException;
 
 /**
  * <p>
@@ -58,7 +58,7 @@ public class SimpleMethodELResolver extends ELResolver {
    * <code>context.setPropertyResolved(true)</code> is called, the method is
    * invoked, and the value returned.
    *
-   * This method will not throw <code>javax.el.PropertyNotFoundException</code>
+   * This method will not throw <code>jakarta.el.PropertyNotFoundException</code>
    * if an appropriate method cannot be found to invoke.
    * </p>
    *
@@ -77,11 +77,11 @@ public class SimpleMethodELResolver extends ELResolver {
    *
    * @throws NullPointerException
    *           if context is <code>null</code>
-   * @throws javax.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotFoundException
    *           if the given (base, property) pair is handled by this
    *           <code>ELResolver</code> but the specified variable or property
    *           does not exist or is not readable.
-   * @throws javax.el.ELException
+   * @throws jakarta.el.ELException
    *           if an exception was thrown while performing the property or
    *           variable resolution. The thrown exception must be included as the
    *           cause property of this exception, if available.
@@ -129,7 +129,7 @@ public class SimpleMethodELResolver extends ELResolver {
    * This method will attempt to return the return-type of the reflected method,
    * if appropriate to do so.
    *
-   * This method will not throw <code>javax.el.PropertyNotFoundException</code>
+   * This method will not throw <code>jakarta.el.PropertyNotFoundException</code>
    * if an appropriate method cannot be found to invoke.
    * </p>
    *
@@ -147,11 +147,11 @@ public class SimpleMethodELResolver extends ELResolver {
    *
    * @throws NullPointerException
    *           if context is <code>null</code>
-   * @throws javax.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotFoundException
    *           if the given (base, property) pair is handled by this
    *           <code>ELResolver</code> but the specified variable or property
    *           does not exist or is not readable.
-   * @throws javax.el.ELException
+   * @throws jakarta.el.ELException
    *           if an exception was thrown while performing the property or
    *           variable resolution. The thrown exception must be included as the
    *           cause property of this exception, if available.
@@ -209,15 +209,15 @@ public class SimpleMethodELResolver extends ELResolver {
    *
    * @throws NullPointerException
    *           if context is <code>null</code>
-   * @throws javax.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotFoundException
    *           if the given (base, property) pair is handled by this
    *           <code>ELResolver</code> but the specified variable or property
    *           does not exist.
-   * @throws javax.el.PropertyNotWritableException
+   * @throws jakarta.el.PropertyNotWritableException
    *           if the given (base, property) pair is handled by this
    *           <code>ELResolver</code> but the specified variable or property is
    *           not writable.
-   * @throws javax.el.ELException
+   * @throws jakarta.el.ELException
    *           if an exception was thrown while attempting to set the property
    *           or variable. The thrown exception must be included as the cause
    *           property of this exception, if available.
@@ -254,11 +254,11 @@ public class SimpleMethodELResolver extends ELResolver {
    *
    * @throws NullPointerException
    *           if context is <code>null</code>
-   * @throws javax.el.PropertyNotFoundException
+   * @throws jakarta.el.PropertyNotFoundException
    *           if the given (base, property) pair is handled by this
    *           <code>ELResolver</code> but the specified variable or property
    *           does not exist.
-   * @throws javax.el.ELException
+   * @throws jakarta.el.ELException
    *           if an exception was thrown while performing the property or
    *           variable resolution. The thrown exception must be included as the
    *           cause property of this exception, if available.
@@ -399,7 +399,7 @@ public class SimpleMethodELResolver extends ELResolver {
    * <p>
    * This assists tools in auto-completion and also provides a way to express
    * that the resolver accepts a primitive value, such as an integer index into
-   * an array. For example, the {@link javax.el.ArrayELResolver} will accept any
+   * an array. For example, the {@link jakarta.el.ArrayELResolver} will accept any
    * <code>int</code> as a <code>property</code>, so the return value would be
    * <code>Integer.class</code>.
    * </p>

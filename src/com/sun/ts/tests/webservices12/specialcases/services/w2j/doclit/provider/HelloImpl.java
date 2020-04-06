@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,8 +25,8 @@ import javax.xml.ws.Provider;
 import javax.xml.ws.WebServiceProvider;
 import javax.xml.ws.ServiceMode;
 import javax.xml.ws.Service;
-import javax.xml.soap.SOAPMessage;
-import javax.ejb.Stateless;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.ejb.Stateless;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.jaxws.wsi.utils;
 
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPMessage;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPBody;
-import javax.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.ws.soap.SOAPFaultException;
 
-public class SOAPUtils implements javax.xml.soap.SOAPConstants {
+public class SOAPUtils implements jakarta.xml.soap.SOAPConstants {
   public static final String FAULT_DETAIL = "detail";
 
   public static final String FAULT_ACTOR = "faultactor";

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,11 +22,11 @@ import static com.sun.ts.tests.websocket.common.util.StringUtil.objectsToString;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
-import javax.websocket.Decoder;
-import javax.websocket.Encoder;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
-import javax.websocket.server.ServerEndpointConfig.Configurator;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.ServerEndpoint;
+import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 

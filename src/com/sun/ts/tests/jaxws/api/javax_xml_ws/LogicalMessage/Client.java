@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,14 +29,14 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
 
 import java.rmi.*;
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
 import javax.naming.InitialContext;
 import java.net.*;
 import java.util.*;
-import javax.xml.ws.*;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.soap.*;
 
 import javax.jws.HandlerChain;
 

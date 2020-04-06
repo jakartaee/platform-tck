@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 import java.util.List;
 import java.util.logging.Level;
 
-import javax.ejb.ConcurrentAccessException;
+import jakarta.ejb.ConcurrentAccessException;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;

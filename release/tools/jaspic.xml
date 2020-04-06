@@ -181,7 +181,7 @@
                          com/sun/ts/tests/build.xml,
                          com/sun/ts/tests/signaturetest/*,
                          com/sun/ts/tests/signaturetest/jaspic/**/*,
-                         com/sun/ts/tests/signaturetest/signature-repository/javax.security.auth*"
+                         com/sun/ts/tests/signaturetest/signature-repository/jakarta.security.auth*"
                      excludes="**/.svn/*,
                          com/sun/ts/tests/signaturetest/*Record*,
                          com/sun/ts/tests/signaturetest/*record*"/>

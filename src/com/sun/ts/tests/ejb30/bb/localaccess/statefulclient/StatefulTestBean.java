@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,18 +24,18 @@ import com.sun.ts.tests.ejb30.bb.localaccess.common.DefaultLocalIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.LocalIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.StatefulDefaultLocalIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.StatefulLocalIF;
-import javax.ejb.EJB;
-import javax.ejb.EJBContext;
-import javax.ejb.EJBs;
-import javax.ejb.Remote;
-import javax.ejb.Stateful;
-import javax.ejb.Remove;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.EJBs;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.Remove;
 import javax.annotation.Resource;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
-import javax.ejb.SessionContext;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Stateful
 @Remote({ TestBeanIF.class })

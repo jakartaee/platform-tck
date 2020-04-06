@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -38,20 +38,20 @@ public class <your_test_class_name> extends SigTestEE {
     public  static final String JSP_VEHICLE        = "jsp";
     public  static final String APP_CLIENT_VEHICLE = "appclient";
 
-    private static final String[] ejbPackages     = {"javax.sql",
-						     "javax.ejb",
-						     "javax.ejb.spi"};
-    private static final String[] servletPackages = {"javax.sql",
-						     "javax.ejb",
-						     "javax.ejb.spi",
-						     "javax.servlet",
-						     "javax.servlet.http"};
-    private static final String[] jspPackages     = {"javax.sql",
-						     "javax.ejb",
-						     "javax.ejb.spi",
-						     "javax.servlet.jsp",
-						     "javax.servlet.jsp.tagext"};
-    private static final String[] appPackages     = {"javax.sql"};
+    private static final String[] ejbPackages     = {"jakarta.sql",
+						     "jakarta.ejb",
+						     "jakarta.ejb.spi"};
+    private static final String[] servletPackages = {"jakarta.sql",
+						     "jakarta.ejb",
+						     "jakarta.ejb.spi",
+						     "jakarta.servlet",
+						     "jakarta.servlet.http"};
+    private static final String[] jspPackages     = {"jakarta.sql",
+						     "jakarta.ejb",
+						     "jakarta.ejb.spi",
+						     "jakarta.servlet.jsp",
+						     "jakarta.servlet.jsp.tagext"};
+    private static final String[] appPackages     = {"jakarta.sql"};
 
 
     /***** Abstract Method Implementation *****/

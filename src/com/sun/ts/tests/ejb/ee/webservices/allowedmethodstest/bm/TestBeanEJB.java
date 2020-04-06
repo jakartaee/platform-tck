@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,9 +24,9 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import java.rmi.*;
 import java.util.*;
 import java.sql.*;
@@ -85,7 +85,7 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     TestUtil.logTrace("ejbPassivate");
   }
 
-  public void ejbTimeout(javax.ejb.Timer timer) {
+  public void ejbTimeout(jakarta.ejb.Timer timer) {
     TestUtil.logTrace("ejbTimeout");
   }
 
@@ -348,8 +348,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     // Timer_Service_Method test
     try {
-      javax.ejb.TimerService timesrv = sctx.getTimerService();
-      javax.ejb.Timer tt = timesrv.createTimer((long) 10000, "info");
+      jakarta.ejb.TimerService timesrv = sctx.getTimerService();
+      jakarta.ejb.Timer tt = timesrv.createTimer((long) 10000, "info");
       TestUtil.logTrace("getTimers:  " + timesrv.getTimers());
       tt.cancel();
       TestUtil.logMsg("Operations test: Timer_Service_Methods() - allowed");
@@ -365,19 +365,20 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     }
 
     // getMessageContext test
-    try {
-      sctx.getMessageContext();
-      TestUtil.logMsg("Operations test: getMessageContext() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("getMessageContext", "false");
-      TestUtil.logMsg("Operations test: getMessageContext() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("getMessageContext", "unexpected");
-      TestUtil.logMsg(
-          "Operations test: getMessageContext() - not allowed (Unexpected Exception) - "
-              + e);
-    }
+// TODO: Verify
+// jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore    try {
+//      sctx.getMessageContext();
+//      TestUtil.logMsg("Operations test: getMessageContext() - allowed");
+//    } catch (IllegalStateException e) {
+//      methodList[i].setProperty("getMessageContext", "false");
+//      TestUtil.logMsg("Operations test: getMessageContext() - not allowed");
+//    } catch (Exception e) {
+//      TestUtil.printStackTrace(e);
+//      methodList[i].setProperty("getMessageContext", "unexpected");
+//      TestUtil.logMsg(
+//          "Operations test: getMessageContext() - not allowed (Unexpected Exception) - "
+//              + e);
+//    }
 
     // getRollbackOnly test
     try {
@@ -424,9 +425,9 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
   public void doTimer(long duration, String info) {
     TestUtil.logTrace("doTimer");
-    javax.ejb.TimerService ts = sctx.getTimerService();
+    jakarta.ejb.TimerService ts = sctx.getTimerService();
     TestUtil.logTrace("create Timer");
-    javax.ejb.Timer t = ts.createTimer((long) duration, info);
+    jakarta.ejb.Timer t = ts.createTimer((long) duration, info);
   }
 
   public boolean getCallerPrincipalTest(String s) {

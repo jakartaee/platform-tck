@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ package com.sun.ts.tests.jaxws.api.javax_xml_ws.AsyncHandler;
 import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
 
 import com.sun.ts.lib.util.*;
-import javax.xml.ws.AsyncHandler;
-import javax.xml.ws.Response;
+import jakarta.xml.ws.AsyncHandler;
+import jakarta.xml.ws.Response;
 
 public class JAXBAsyncHandler implements AsyncHandler<Object> {
   private boolean dataReady = false;

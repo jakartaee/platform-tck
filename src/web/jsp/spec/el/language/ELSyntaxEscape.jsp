@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2005, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,8 +17,8 @@
 --%>
 
 <%@ page import="com.sun.ts.tests.jsp.common.util.JspTestUtil,
-             javax.el.ValueExpression,
-             javax.el.ELContext"%>
+             jakarta.el.ValueExpression,
+             jakarta.el.ELContext"%>
 <%@ page contentType="text/plain" %>
 
 <%!

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,7 @@ import com.sun.ts.tests.jaxws.wsa.common.MapRequiredException;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
 import javax.xml.ws.WebServiceException;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
-import javax.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPException;
 
 public class ServerSOAPHandler extends WsaBaseSOAPHandler {
   protected void checkInboundAction(SOAPMessageContext context, String oper,
