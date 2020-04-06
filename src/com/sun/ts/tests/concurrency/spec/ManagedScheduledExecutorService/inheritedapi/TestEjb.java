@@ -17,7 +17,7 @@
 package com.sun.ts.tests.concurrency.spec.ManagedScheduledExecutorService.inheritedapi;
 
 import jakarta.ejb.Stateless;
-import javax.enterprise.concurrent.*;
+import jakarta.enterprise.concurrent.*;
 import java.util.concurrent.*;
 import javax.naming.*;
 import com.sun.ts.tests.concurrency.api.common.*;
