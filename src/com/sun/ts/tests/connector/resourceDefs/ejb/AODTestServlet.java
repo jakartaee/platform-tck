@@ -20,8 +20,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.*;
 
-import javax.resource.AdministeredObjectDefinition;
-import javax.resource.AdministeredObjectDefinitions;
+import jakarta.resource.AdministeredObjectDefinition;
+import jakarta.resource.AdministeredObjectDefinitions;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.ServletSecurity;

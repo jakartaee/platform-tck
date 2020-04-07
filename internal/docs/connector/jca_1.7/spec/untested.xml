@@ -193,7 +193,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:56</id>
-      <description>The application server is required to implement the javax.resource.spi.-ConnectionEventListener interface to get transaction-related 				event notifications.</description>
+      <description>The application server is required to implement the jakarta.resource.spi.-ConnectionEventListener interface to get transaction-related 				event notifications.</description>
       <location chapter="7" section="13.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

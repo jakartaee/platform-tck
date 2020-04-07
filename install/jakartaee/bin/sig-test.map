@@ -133,7 +133,7 @@ javax.transaction=1.1_se6
 javax.mail=1.4_se6
 
 # Connector 1.6 
-javax.resource=1.6_se6
+jakarta.resource=1.6_se6
 
 # JAX-RPC 1.1 
 javax.xml.rpc=1.1_se6

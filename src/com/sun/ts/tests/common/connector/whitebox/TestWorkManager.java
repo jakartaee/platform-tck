@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,18 +20,18 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.resource.spi.BootstrapContext;
-import javax.resource.spi.work.WorkManager;
-import javax.resource.spi.work.HintsContext;
-import javax.resource.spi.work.ExecutionContext;
-import javax.resource.spi.work.WorkException;
-import javax.resource.spi.work.WorkCompletedException;
-import javax.resource.spi.work.WorkRejectedException;
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.work.WorkManager;
+import jakarta.resource.spi.work.HintsContext;
+import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.WorkException;
+import jakarta.resource.spi.work.WorkCompletedException;
+import jakarta.resource.spi.work.WorkRejectedException;
 import com.sun.ts.tests.common.connector.util.*;
 import javax.transaction.xa.Xid;
-import javax.resource.spi.XATerminator;
-import javax.resource.spi.work.TransactionContext;
-import javax.resource.spi.work.SecurityContext;
+import jakarta.resource.spi.XATerminator;
+import jakarta.resource.spi.work.TransactionContext;
+import jakarta.resource.spi.work.SecurityContext;
 
 public class TestWorkManager {
 
