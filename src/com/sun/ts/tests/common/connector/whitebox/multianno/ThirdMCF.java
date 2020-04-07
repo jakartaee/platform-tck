@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.common.connector.whitebox.multianno;
 
-import javax.resource.*;
-import javax.resource.spi.*;
-import javax.resource.spi.security.PasswordCredential;
+import jakarta.resource.*;
+import jakarta.resource.spi.*;
+import jakarta.resource.spi.security.PasswordCredential;
 import java.io.*;
 import javax.security.auth.Subject;
 import java.util.*;
@@ -33,7 +33,7 @@ import com.sun.ts.tests.common.connector.whitebox.*;
  *
  */
 public class ThirdMCF implements ManagedConnectionFactory,
-    ResourceAdapterAssociation, Serializable, javax.resource.Referenceable {
+    ResourceAdapterAssociation, Serializable, jakarta.resource.Referenceable {
   private javax.naming.Reference reference;
 
   private ResourceAdapter resourceAdapter;

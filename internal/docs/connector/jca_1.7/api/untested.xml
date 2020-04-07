@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,366 +29,366 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>17</id>
       <description>Initiates close of the connection handle at the application level. A client should not use a closed connection to interact with an EIS.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
       <method name="close" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>18</id>
       <description>Exception thrown if close on a connection handle fails. Any invalid connection close invocation--example, calling close on a connection handle that is already closed--should also throw this exception.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
       <method name="close" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>19</id>
       <description>Creates an Interaction associated with this Connection. An Interaction enables an application to execute EIS functions.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
-      <method name="createInteraction" return-type="javax.resource.cci.Interaction" />
+      <method name="createInteraction" return-type="jakarta.resource.cci.Interaction" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>20</id>
       <description>Failed to create an Interaction</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
-      <method name="createInteraction" return-type="javax.resource.cci.Interaction">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="createInteraction" return-type="jakarta.resource.cci.Interaction">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>21</id>
       <description>Returns an LocalTransaction instance that enables a component to demarcate resource manager local transactions on the Connection. If a resource adapter does not allow a component to demarcate local transactions on an Connection using LocalTransaction interface, then the method getLocalTransaction should throw a NotSupportedException.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
-      <method name="getLocalTransaction" return-type="javax.resource.cci.LocalTransaction" />
+      <method name="getLocalTransaction" return-type="jakarta.resource.cci.LocalTransaction" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>22</id>
       <description>Failed to return a LocalTransaction instance because of a resource adapter error</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
-      <method name="getLocalTransaction" return-type="javax.resource.cci.LocalTransaction">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getLocalTransaction" return-type="jakarta.resource.cci.LocalTransaction">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>24</id>
       <description>Failed to get information about the connected EIS instance. Error can be resource adapter-internal, EIS-specific or communication related.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
-      <method name="getMetaData" return-type="javax.resource.cci.ConnectionMetaData">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getMetaData" return-type="jakarta.resource.cci.ConnectionMetaData">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>25</id>
       <description>Gets the information on the ResultSet functionality supported by a connected EIS instance.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
-      <method name="getResultSetInfo" return-type="javax.resource.cci.ResultSetInfo" />
+      <method name="getResultSetInfo" return-type="jakarta.resource.cci.ResultSetInfo" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>26</id>
       <description>Failed to get ResultSet related information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Connection</class-interface>
-      <method name="getResultSetInfo" return-type="javax.resource.cci.ResultSetInfo">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getResultSetInfo" return-type="jakarta.resource.cci.ResultSetInfo">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>28</id>
       <description>Failed to get a connection to the EIS instance. Examples of error cases are: Invalid configuration of ManagedConnectionFactory-- example: invalid server name Application server-internal error--example: connection pool related error Communication error EIS-specific error--example: EIS not active Resource adapter-internal error Security related error; example: invalid user Failure to allocate system resources</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionFactory</class-interface>
-      <method name="getConnection" return-type="javax.resource.cci.Connection">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getConnection" return-type="jakarta.resource.cci.Connection">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>29</id>
-      <description>Gets a connection to an EIS instance. A component should use the getConnection variant with javax.resource.cci.ConnectionSpec parameter, if it needs to pass any resource adapter specific security information and connection parameters. In the component- managed sign-on case, an application component passes security information (example: username, password) through the ConnectionSpec instance. It is important to note that the properties passed through the getConnection method should be client-specific (example: username, password, language) and not related to the configuration of a target EIS instance (example: port number, server name). The ManagedConnectionFactory instance is configured with complete set of properties required for the creation of a connection to an EIS instance.</description>
-      <package>javax.resource.cci</package>
+      <description>Gets a connection to an EIS instance. A component should use the getConnection variant with jakarta.resource.cci.ConnectionSpec parameter, if it needs to pass any resource adapter specific security information and connection parameters. In the component- managed sign-on case, an application component passes security information (example: username, password) through the ConnectionSpec instance. It is important to note that the properties passed through the getConnection method should be client-specific (example: username, password, language) and not related to the configuration of a target EIS instance (example: port number, server name). The ManagedConnectionFactory instance is configured with complete set of properties required for the creation of a connection to an EIS instance.</description>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionFactory</class-interface>
-      <method name="getConnection" return-type="javax.resource.cci.Connection">
+      <method name="getConnection" return-type="jakarta.resource.cci.Connection">
         <parameters>
-          <parameter>javax.resource.cci.ConnectionSpec</parameter>
+          <parameter>jakarta.resource.cci.ConnectionSpec</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>30</id>
       <description>Failed to get a connection to the EIS instance. Examples of error cases are: Invalid specification of input parameters Invalid configuration of ManagedConnectionFactory-- example: invalid server name Application server-internal error--example: connection pool related error Communication error EIS-specific error--example: EIS not active Resource adapter-internal error Security related error; example: invalid user Failure to allocate system resources</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionFactory</class-interface>
-      <method name="getConnection" return-type="javax.resource.cci.Connection">
+      <method name="getConnection" return-type="jakarta.resource.cci.Connection">
         <parameters>
-          <parameter>javax.resource.cci.ConnectionSpec</parameter>
+          <parameter>jakarta.resource.cci.ConnectionSpec</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>31</id>
       <description>Gets metadata for the Resource Adapter. Note that the metadata information is about the ResourceAdapter and not the EIS instance. An invocation of this method does not require that an active connection to an EIS instance should have been established.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionFactory</class-interface>
-      <method name="getMetaData" return-type="javax.resource.cci.ResourceAdapterMetaData" />
+      <method name="getMetaData" return-type="jakarta.resource.cci.ResourceAdapterMetaData" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>32</id>
       <description>Failed to get metadata information about the resource adapter</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionFactory</class-interface>
-      <method name="getMetaData" return-type="javax.resource.cci.ResourceAdapterMetaData">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getMetaData" return-type="jakarta.resource.cci.ResourceAdapterMetaData">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>33</id>
       <description>Gets a RecordFactory instance. The RecordFactory is used for the creation of generic Record instances.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionFactory</class-interface>
-      <method name="getRecordFactory" return-type="javax.resource.cci.RecordFactory" />
+      <method name="getRecordFactory" return-type="jakarta.resource.cci.RecordFactory" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>34</id>
       <description>Failed to create a RecordFactory</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionFactory</class-interface>
-      <method name="getRecordFactory" return-type="javax.resource.cci.RecordFactory">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getRecordFactory" return-type="jakarta.resource.cci.RecordFactory">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>35</id>
       <description>Returns product name of the underlying EIS instance connected through the Connection that produced this metadata.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionMetaData</class-interface>
       <method name="getEISProductName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>36</id>
       <description>Failed to get the information for the EIS instance</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionMetaData</class-interface>
       <method name="getEISProductName" return-type="java.lang.String">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>37</id>
       <description>Returns product version of the underlying EIS instance.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionMetaData</class-interface>
       <method name="getEISProductVersion" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>38</id>
       <description>Failed to get the information for the EIS instance</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionMetaData</class-interface>
       <method name="getEISProductVersion" return-type="java.lang.String">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>39</id>
       <description>Returns the user name for an active connection as known to the underlying EIS instance. The name corresponds the resource principal under whose security context a connection to the EIS instance has been established.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionMetaData</class-interface>
       <method name="getUserName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>40</id>
       <description>Failed to get the information for the EIS instance</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ConnectionMetaData</class-interface>
       <method name="getUserName" return-type="java.lang.String">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>41</id>
       <description>Clears all the warning reported by this Interaction instance. After a call to this method, the method getWarnings will return null until a new warning is reported for this Interaction.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
       <method name="clearWarnings" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>42</id>
       <description>Failed to clear ResourceWarnings associated with Interaction</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
       <method name="clearWarnings" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>43</id>
       <description>Closes the current Interaction and release all the resources held for this instance by the resource adapter. The close of an Interaction instance does not close the associated Connection instance. It is recommended that Interaction instances be closed explicitly to free any held resources.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
       <method name="close" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>44</id>
       <description>Failed to close the Interaction instance. Invoking close on an already closed Interaction should also throw this exception.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
       <method name="close" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>45</id>
       <description>Executes an interaction represented by the InteractionSpec. This form of invocation takes an input Record and updates the output Record.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
       <method name="execute" return-type="boolean">
         <parameters>
-          <parameter>javax.resource.cci.InteractionSpec</parameter>
-          <parameter>javax.resource.cci.Record</parameter>
-          <parameter>javax.resource.cci.Record</parameter>
+          <parameter>jakarta.resource.cci.InteractionSpec</parameter>
+          <parameter>jakarta.resource.cci.Record</parameter>
+          <parameter>jakarta.resource.cci.Record</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>46</id>
       <description>Exception if execute operation fails. Examples of error cases are: Resource adapter internal, EIS-specific or communication error Invalid specification of an InteractionSpec, input or output record structure Errors in use of input or output Record Invalid connection associated with this Interaction</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
       <method name="execute" return-type="boolean">
         <parameters>
-          <parameter>javax.resource.cci.InteractionSpec</parameter>
-          <parameter>javax.resource.cci.Record</parameter>
-          <parameter>javax.resource.cci.Record</parameter>
+          <parameter>jakarta.resource.cci.InteractionSpec</parameter>
+          <parameter>jakarta.resource.cci.Record</parameter>
+          <parameter>jakarta.resource.cci.Record</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>47</id>
       <description>Executes an interaction represented by the InteractionSpec. This form of invocation takes an input Record and returns an output Record if the execution of the Interaction has been successfull.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
-      <method name="execute" return-type="javax.resource.cci.Record">
+      <method name="execute" return-type="jakarta.resource.cci.Record">
         <parameters>
-          <parameter>javax.resource.cci.InteractionSpec</parameter>
-          <parameter>javax.resource.cci.Record</parameter>
+          <parameter>jakarta.resource.cci.InteractionSpec</parameter>
+          <parameter>jakarta.resource.cci.Record</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>48</id>
       <description>Exception if execute operation fails. Examples of error cases are: Resource adapter internal, EIS-specific or communication error Invalid specification of an InteractionSpec or input record structure Errors in use of input Record or creation of an output Record Invalid connection associated with this Interaction</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
-      <method name="execute" return-type="javax.resource.cci.Record">
+      <method name="execute" return-type="jakarta.resource.cci.Record">
         <parameters>
-          <parameter>javax.resource.cci.InteractionSpec</parameter>
-          <parameter>javax.resource.cci.Record</parameter>
+          <parameter>jakarta.resource.cci.InteractionSpec</parameter>
+          <parameter>jakarta.resource.cci.Record</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>49</id>
       <description>Gets the Connection associated with the Interaction.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
-      <method name="getConnection" return-type="javax.resource.cci.Connection" />
+      <method name="getConnection" return-type="jakarta.resource.cci.Connection" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>50</id>
       <description>Gets the first ResourceWarning from the chain of warnings associated with this Interaction instance.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
-      <method name="getWarnings" return-type="javax.resource.cci.ResourceWarning" />
+      <method name="getWarnings" return-type="jakarta.resource.cci.ResourceWarning" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>51</id>
       <description>Failed to get ResourceWarnings associated with Interaction</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Interaction</class-interface>
-      <method name="getWarnings" return-type="javax.resource.cci.ResourceWarning">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getWarnings" return-type="jakarta.resource.cci.ResourceWarning">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>52</id>
       <description>Begins a local transaction on an EIS instance.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="begin" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>53</id>
       <description>Failed to begin a local transaction. Examples of error cases are: Resource adapter internal or EIS-specific error Connection is already participating in a local or JTA transaction</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="begin" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>54</id>
       <description>Commits the current local transaction and release all locks held by the underlying EIS instance.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="commit" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>55</id>
       <description>Failed to commit a local transaction. Examples of error cases are: Resource adapter internal or EIS-specific error Violation of integrity constraints, deadlock detection, communication failure during transaction completion, or any retry requirement Connection is participating in an active JTA transaction Invalid transaction context; commit operation invoked without an active transaction context</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="commit" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>56</id>
       <description>Rollbacks the current resource manager local transaction.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="rollback" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>57</id>
       <description>Failed to rollback a local transaction. Examples of error cases are: Resource adapter internal or EIS-specific error Connection is participating in an active JTA transaction Invalid transaction context; rollback operation invoked without an active transaction context</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="rollback" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>59</id>
       <description>indicates an exceptional condition.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>MessageListener</class-interface>
-      <method name="onMessage" return-type="javax.resource.cci.Record">
+      <method name="onMessage" return-type="jakarta.resource.cci.Record">
         <parameters>
-          <parameter>javax.resource.cci.Record</parameter>
+          <parameter>jakarta.resource.cci.Record</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>60</id>
       <description>Creates and returns a copy of this object. The precise meaning of "copy" may depend on the class of the object.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Record</class-interface>
       <method name="clone" return-type="java.lang.Object" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>61</id>
       <description>If the object's class does not support the Cloneable interface Subclasses that override the clone method can also throw this exception to indicate that an instance cannot be cloned.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Record</class-interface>
       <method name="clone" return-type="java.lang.Object">
         <throw>java.lang.CloneNotSupportedException</throw>
@@ -397,7 +397,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>62</id>
       <description>Check if this instance is equal to another Record.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Record</class-interface>
       <method name="equals" return-type="boolean">
         <parameters>
@@ -408,28 +408,28 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>63</id>
       <description>Gets the name of the Record.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Record</class-interface>
       <method name="getRecordName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>64</id>
       <description>Gets a short description string for the Record. This property is used primarily by application development tools.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Record</class-interface>
       <method name="getRecordShortDescription" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>65</id>
       <description>Returns the hash code for the Record instance.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Record</class-interface>
       <method name="hashCode" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>66</id>
       <description>Sets the name of the Record.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Record</class-interface>
       <method name="setRecordName" return-type="void">
         <parameters>
@@ -440,7 +440,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>67</id>
       <description>Sets a short description string for the Record. This property is used primarily by application development tools.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Record</class-interface>
       <method name="setRecordShortDescription" return-type="void">
         <parameters>
@@ -451,9 +451,9 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>68</id>
       <description>Creates a IndexedRecord. The method takes the name of the record that is to be created by the RecordFactory. The name of the record acts as a pointer to the meta information (stored in the metadata repository) for a specific record type.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>RecordFactory</class-interface>
-      <method name="createIndexedRecord" return-type="javax.resource.cci.IndexedRecord">
+      <method name="createIndexedRecord" return-type="jakarta.resource.cci.IndexedRecord">
         <parameters>
           <parameter>java.lang.String</parameter>
         </parameters>
@@ -462,21 +462,21 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>69</id>
       <description>Failed to create an IndexedRecord. Example error cases are: Invalid specification of record name Resource adapter internal error Failed to access metadata repository</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>RecordFactory</class-interface>
-      <method name="createIndexedRecord" return-type="javax.resource.cci.IndexedRecord">
+      <method name="createIndexedRecord" return-type="jakarta.resource.cci.IndexedRecord">
         <parameters>
           <parameter>java.lang.String</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>70</id>
       <description>Creates a MappedRecord. The method takes the name of the record that is to be created by the RecordFactory. The name of the record acts as a pointer to the meta information (stored in the metadata repository) for a specific record type.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>RecordFactory</class-interface>
-      <method name="createMappedRecord" return-type="javax.resource.cci.MappedRecord">
+      <method name="createMappedRecord" return-type="jakarta.resource.cci.MappedRecord">
         <parameters>
           <parameter>java.lang.String</parameter>
         </parameters>
@@ -485,89 +485,89 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>71</id>
       <description>Failed to create a MappedRecord. Example error cases are: Invalid specification of record name Resource adapter internal error Failed to access metadata repository</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>RecordFactory</class-interface>
-      <method name="createMappedRecord" return-type="javax.resource.cci.MappedRecord">
+      <method name="createMappedRecord" return-type="jakarta.resource.cci.MappedRecord">
         <parameters>
           <parameter>java.lang.String</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>72</id>
       <description>Gets a tool displayable name of the resource adapter.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="getAdapterName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>73</id>
       <description>Gets a tool displayable short desription of the resource adapter.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="getAdapterShortDescription" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>74</id>
       <description>Gets the name of the vendor that has provided the resource adapter.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="getAdapterVendorName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>75</id>
       <description>Gets the version of the resource adapter.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="getAdapterVersion" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>76</id>
       <description>Returns an array of fully-qualified names of InteractionSpec types supported by the CCI implementation for this resource adapter. Note that the fully-qualified class name is for the implementation class of an InteractionSpec. This method may be used by tools vendor to find information on the supported InteractionSpec types. The method should return an array of length 0 if the CCI implementation does not define specific InteractionSpec types.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="getInteractionSpecsSupported" return-type="java.lang.String[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>77</id>
       <description>Returns a string representation of the version of the connector architecture specification that is supported by the resource adapter.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="getSpecVersion" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>78</id>
       <description>Returns true if the implementation class for the Interaction interface implements public boolean execute(InteractionSpec ispec, Record input, Record output) method; otherwise the method returns false.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="supportsExecuteWithInputAndOutputRecord" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>79</id>
       <description>Returns true if the implementation class for the Interaction interface implements public Record execute(InteractionSpec ispec, Record input) method; otherwise the method returns false.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="supportsExecuteWithInputRecordOnly" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>80</id>
       <description>Returns true if the resource adapter implements the LocalTransaction interface and supports local transaction demarcation on the underlying EIS instance through the LocalTransaction interface.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceAdapterMetaData</class-interface>
       <method name="supportsLocalTransactionDemarcation" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>82</id>
       <description>Constructs a new instance with null as its detail message.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceWarning</class-interface>
       <method name="ResourceWarning" return-type="ResourceWarning" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>83</id>
       <description>Constructs a new instance with the specified detail message.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceWarning</class-interface>
       <method name="ResourceWarning" return-type="ResourceWarning">
         <parameters>
@@ -578,7 +578,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>84</id>
       <description>Constructs a new throwable with the specified cause.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceWarning</class-interface>
       <method name="ResourceWarning" return-type="ResourceWarning">
         <parameters>
@@ -589,7 +589,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>85</id>
       <description>Constructs a new throwable with the specified detail message and cause.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceWarning</class-interface>
       <method name="ResourceWarning" return-type="ResourceWarning">
         <parameters>
@@ -601,7 +601,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>86</id>
       <description>Constructs a new throwable with the specified detail message and an error code.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResourceWarning</class-interface>
       <method name="ResourceWarning" return-type="ResourceWarning">
         <parameters>
@@ -613,7 +613,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>88</id>
       <description>Indicates whether or not a visible row delete can be detected by calling ResultSet.rowDeleted. If deletesAreDetected returns false, then deleted rows are removed from the ResultSet.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="deletesAreDetected" return-type="boolean">
         <parameters>
@@ -624,19 +624,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>89</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="deletesAreDetected" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>90</id>
       <description>Indicates whether or not a visible row insert can be detected by calling ResultSet.rowInserted.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="insertsAreDetected" return-type="boolean">
         <parameters>
@@ -647,19 +647,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>91</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="insertsAreDetected" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>92</id>
       <description>Indicates whether deletes made by others are visible.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="othersDeletesAreVisible" return-type="boolean">
         <parameters>
@@ -670,19 +670,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>93</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="othersDeletesAreVisible" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>94</id>
       <description>Indicates whether inserts made by others are visible.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="othersInsertsAreVisible" return-type="boolean">
         <parameters>
@@ -693,19 +693,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>95</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="othersInsertsAreVisible" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>96</id>
       <description>Indicates whether updates made by others are visible.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="othersUpdatesAreVisible" return-type="boolean">
         <parameters>
@@ -716,19 +716,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>97</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="othersUpdatesAreVisible" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>98</id>
       <description>Indicates whether a ResultSet's own deletes are visible.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="ownDeletesAreVisible" return-type="boolean">
         <parameters>
@@ -739,19 +739,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>99</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="ownDeletesAreVisible" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>100</id>
       <description>Indicates whether a ResultSet's own inserts are visible.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="ownInsertsAreVisible" return-type="boolean">
         <parameters>
@@ -762,19 +762,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>101</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="ownInsertsAreVisible" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>102</id>
       <description>Indicates whether a ResultSet's own updates are visible.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="ownUpdatesAreVisible" return-type="boolean">
         <parameters>
@@ -785,19 +785,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>103</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="ownUpdatesAreVisible" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>104</id>
       <description>Indicates whether or not a resource adapter supports a type of ResultSet.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="supportsResultSetType" return-type="boolean">
         <parameters>
@@ -808,19 +808,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>105</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="supportsResultSetType" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>106</id>
       <description>Indicates whether or not a resource adapter supports the concurrency type in combination with the given ResultSet type/</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="supportsResultTypeConcurrency" return-type="boolean">
         <parameters>
@@ -832,20 +832,20 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>107</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="supportsResultTypeConcurrency" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>108</id>
       <description>Indicates whether or not a visible row update can be detected by calling the method ResultSet.rowUpdated.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="updatesAreDetected" return-type="boolean">
         <parameters>
@@ -856,19 +856,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>109</id>
       <description>Failed to get the information</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>ResultSetInfo</class-interface>
       <method name="updatesAreDetected" return-type="boolean">
         <parameters>
           <parameter>int</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>110</id>
       <description>Read data from an InputStream and initialize fields of a Streamable object.</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Streamable</class-interface>
       <method name="read" return-type="void">
         <parameters>
@@ -879,7 +879,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>111</id>
       <description />
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Streamable</class-interface>
       <method name="read" return-type="void">
         <parameters>
@@ -891,7 +891,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>112</id>
       <description>Write fields of a Streamable object to an OutputStream</description>
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Streamable</class-interface>
       <method name="write" return-type="void">
         <parameters>
@@ -902,7 +902,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>113</id>
       <description />
-      <package>javax.resource.cci</package>
+      <package>jakarta.resource.cci</package>
       <class-interface>Streamable</class-interface>
       <method name="write" return-type="void">
         <parameters>
@@ -914,43 +914,43 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>116</id>
       <description />
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ActivationSpec</class-interface>
       <method name="validate" return-type="void">
-        <throw>javax.resource.spi.InvalidPropertyException</throw>
+        <throw>jakarta.resource.spi.InvalidPropertyException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>117</id>
       <description>Specifies the Java type of the interface implemented by the administered object.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>AdministeredObject</class-interface>
       <method name="adminObjectInterfaces" return-type="java.lang.Class[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>127</id>
       <description />
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>AuthenticationMechanism.CredentialInterface</class-interface>
-      <method name="values" return-type="javax.resource.spi.AuthenticationMechanism.AuthenticationMechanism.CredentialInterface[]" />
+      <method name="values" return-type="jakarta.resource.spi.AuthenticationMechanism.AuthenticationMechanism.CredentialInterface[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>129</id>
       <description>indicates that a Timer instance is not available. The request may be retried later.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>BootstrapContext</class-interface>
       <method name="createTimer" return-type="java.util.Timer">
-        <throw>javax.resource.spi.UnavailableException</throw>
+        <throw>jakarta.resource.spi.UnavailableException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>150</id>
       <description>Construct a ConnectionEvent object. Exception defaults to null.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ConnectionEvent</class-interface>
       <method name="ConnectionEvent" return-type="ConnectionEvent">
         <parameters>
-          <parameter>javax.resource.spi.ManagedConnection</parameter>
+          <parameter>jakarta.resource.spi.ManagedConnection</parameter>
           <parameter>int</parameter>
         </parameters>
       </method>
@@ -958,11 +958,11 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>151</id>
       <description>Construct a ConnectionEvent object.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ConnectionEvent</class-interface>
       <method name="ConnectionEvent" return-type="ConnectionEvent">
         <parameters>
-          <parameter>javax.resource.spi.ManagedConnection</parameter>
+          <parameter>jakarta.resource.spi.ManagedConnection</parameter>
           <parameter>int</parameter>
           <parameter>java.lang.Exception</parameter>
         </parameters>
@@ -971,20 +971,20 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>162</id>
       <description>Generic exception</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ConnectionManager</class-interface>
       <method name="allocateConnection" return-type="java.lang.Object">
         <parameters>
-          <parameter>javax.resource.spi.ManagedConnectionFactory</parameter>
-          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+          <parameter>jakarta.resource.spi.ManagedConnectionFactory</parameter>
+          <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>163</id>
       <description>Checks whether this instance is equal to another. Since connectionRequestInfo is defined specific to a resource adapter, the resource adapter is required to implement this method. The conditions for equality are specific to the resource adapter.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ConnectionRequestInfo</class-interface>
       <method name="equals" return-type="boolean">
         <parameters>
@@ -995,180 +995,180 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>164</id>
       <description>Returns the hashCode of the ConnectionRequestInfo.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ConnectionRequestInfo</class-interface>
       <method name="hashCode" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>169</id>
       <description>Specifies the file name for large GIF or JPEG icon images that are used to represent the resource adapter in a GUI tool. Each smallIcon must be associated with a largeIcon element and the application server must use the ordinal value in their respective arrays to find the related pairs of icons.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>Connector</class-interface>
       <method name="largeIcon" return-type="java.lang.String[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>175</id>
       <description>Specifies the file name for small GIF or JPEG icon images that are used to represent the resource adapter in a GUI tool. Each smallIcon must be associated with a largeIcon element and the application server must use the ordinal value in their respective arrays to find the related pairs of icons.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>Connector</class-interface>
       <method name="smallIcon" return-type="java.lang.String[]" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>203</id>
       <description>Begin a local transaction</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="begin" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>204</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="begin" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>205</id>
       <description>Commit a local transaction</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="commit" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>206</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="commit" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>207</id>
       <description>Rollback a local transaction</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="rollback" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>208</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>LocalTransaction</class-interface>
       <method name="rollback" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>214</id>
       <description>Adds a connection event listener to the ManagedConnection instance. The registered ConnectionEventListener instances are notified of connection close and error events, also of local transaction related events on the Managed Connection.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="addConnectionEventListener" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.ConnectionEventListener</parameter>
+          <parameter>jakarta.resource.spi.ConnectionEventListener</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>216</id>
       <description>Failed to associate the connection handle with this ManagedConnection instance</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="associateConnection" return-type="void">
         <parameters>
           <parameter>java.lang.Object</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>218</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="cleanup" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>220</id>
       <description>generic exception if operation failed</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="destroy" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>221</id>
       <description>Creates a new connection handle for the underlying physical connection represented by the ManagedConnection instance. This connection handle is used by the application code to refer to the underlying physical connection. This connection handle is associated with its ManagedConnection instance in a resource adapter implementation specific way. The ManagedConnection uses the Subject and additional ConnectionRequest Info (which is specific to resource adapter and opaque to application server) to set the state of the physical connection.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="getConnection" return-type="java.lang.Object">
         <parameters>
           <parameter>javax.security.auth.Subject</parameter>
-          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+          <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>222</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="getConnection" return-type="java.lang.Object">
         <parameters>
           <parameter>javax.security.auth.Subject</parameter>
-          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+          <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>224</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
-      <method name="getLocalTransaction" return-type="javax.resource.spi.LocalTransaction">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getLocalTransaction" return-type="jakarta.resource.spi.LocalTransaction">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>226</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="getLogWriter" return-type="java.io.PrintWriter">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>228</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
-      <method name="getMetaData" return-type="javax.resource.spi.ManagedConnectionMetaData">
-        <throw>javax.resource.ResourceException</throw>
+      <method name="getMetaData" return-type="jakarta.resource.spi.ManagedConnectionMetaData">
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>231</id>
       <description>Removes an already registered connection event listener from the ManagedConnection instance.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="removeConnectionEventListener" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.ConnectionEventListener</parameter>
+          <parameter>jakarta.resource.spi.ConnectionEventListener</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>232</id>
       <description>Sets the log writer for this ManagedConnection instance. The log writer is a character output stream to which all logging and tracing messages for this ManagedConnection instance will be printed. Application Server manages the association of output stream with the ManagedConnection instance based on the connection pooling requirements. When a ManagedConnection object is initially created, the default log writer associated with this instance is obtained from the ManagedConnectionFactory. An application server can set a log writer specific to this ManagedConnection to log/trace this instance using setLogWriter method.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="setLogWriter" return-type="void">
         <parameters>
@@ -1179,47 +1179,47 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>233</id>
       <description>generic exception if operation fails</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnection</class-interface>
       <method name="setLogWriter" return-type="void">
         <parameters>
           <parameter>java.io.PrintWriter</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>235</id>
       <description>Generic exception</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="createConnectionFactory" return-type="java.lang.Object">
         <parameters>
-          <parameter>javax.resource.spi.ConnectionManager</parameter>
+          <parameter>jakarta.resource.spi.ConnectionManager</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>236</id>
       <description>Creates a Connection Factory instance. The Connection Factory instance gets initialized with a default ConnectionManager provided by the resource adapter.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="createConnectionFactory" return-type="java.lang.Object" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>237</id>
       <description>Generic exception</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="createConnectionFactory" return-type="java.lang.Object">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>240</id>
       <description>Check if this ManagedConnectionFactory is equal to another ManagedConnectionFactory.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="equals" return-type="boolean">
         <parameters>
@@ -1230,44 +1230,44 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>241</id>
       <description>Get the log writer for this ManagedConnectionFactory instance. The log writer is a character output stream to which all logging and tracing messages for this ManagedConnectionFactory instance will be printed ApplicationServer manages the association of output stream with the ManagedConnectionFactory. When a ManagedConnectionFactory object is created the log writer is initially null, in other words, logging is disabled.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="getLogWriter" return-type="java.io.PrintWriter" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>242</id>
       <description>generic exception</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="getLogWriter" return-type="java.io.PrintWriter">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>243</id>
       <description>Returns the hash code for the ManagedConnectionFactory</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="hashCode" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>245</id>
       <description>generic exception</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
-      <method name="matchManagedConnections" return-type="javax.resource.spi.ManagedConnection">
+      <method name="matchManagedConnections" return-type="jakarta.resource.spi.ManagedConnection">
         <parameters>
           <parameter>java.util.Set</parameter>
           <parameter>javax.security.auth.Subject</parameter>
-          <parameter>javax.resource.spi.ConnectionRequestInfo</parameter>
+          <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>246</id>
       <description>Set the log writer for this ManagedConnectionFactory instance. The log writer is a character output stream to which all logging and tracing messages for this ManagedConnectionfactory instance will be printed. ApplicationServer manages the association of output stream with the ManagedConnectionFactory. When a ManagedConnectionFactory object is created the log writer is initially null, in other words, logging is disabled. Once a log writer is associated with a ManagedConnectionFactory, logging and tracing for ManagedConnectionFactory instance is enabled. The ManagedConnection instances created by ManagedConnectionFactory "inherits" the log writer, which can be overridden by ApplicationServer using ManagedConnection.setLogWriter to set ManagedConnection specific logging and tracing.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="setLogWriter" return-type="void">
         <parameters>
@@ -1278,116 +1278,116 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>247</id>
       <description>generic exception</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionFactory</class-interface>
       <method name="setLogWriter" return-type="void">
         <parameters>
           <parameter>java.io.PrintWriter</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>249</id>
       <description />
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionMetaData</class-interface>
       <method name="getEISProductName" return-type="java.lang.String">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>251</id>
       <description />
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionMetaData</class-interface>
       <method name="getEISProductVersion" return-type="java.lang.String">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>253</id>
       <description />
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionMetaData</class-interface>
       <method name="getMaxConnections" return-type="int">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>255</id>
       <description />
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ManagedConnectionMetaData</class-interface>
       <method name="getUserName" return-type="java.lang.String">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>260</id>
       <description>generic exception if operation fails due to an error condition.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ResourceAdapter</class-interface>
       <method name="getXAResources" return-type="javax.transaction.xa.XAResource[]">
         <parameters>
-          <parameter>javax.resource.spi.ActivationSpec[]</parameter>
+          <parameter>jakarta.resource.spi.ActivationSpec[]</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>261</id>
       <description>This is called when a resource adapter instance is bootstrapped. This may be during resource adapter deployment or application server startup. This is a startup notification from the application server, and this method is called by an application server thread. The application server thread executes in an unspecified context. During this method call a ResourceAdapter JavaBean is responsible for initializing the resource adapter instance. Any exception thrown during this method call causes the application server to abort the bootstrap procedure for this specific resource adapter instance.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ResourceAdapter</class-interface>
       <method name="start" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.BootstrapContext</parameter>
+          <parameter>jakarta.resource.spi.BootstrapContext</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>262</id>
       <description>indicates bootstrap failure. The resource adapter instance is unusable and must be discarded.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ResourceAdapter</class-interface>
       <method name="start" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.BootstrapContext</parameter>
+          <parameter>jakarta.resource.spi.BootstrapContext</parameter>
         </parameters>
-        <throw>javax.resource.spi.ResourceAdapterInternalException</throw>
+        <throw>jakarta.resource.spi.ResourceAdapterInternalException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>263</id>
       <description>This is called when a resource adapter instance is undeployed or during application server shutdown. This is a shutdown notification from the application server, and this method is called by an application server thread. The application server thread executes in an unspecified context. During this method call, a ResourceAdapter JavaBean is responsible for performing an orderly shutdown of the resource adapter instance. Any exception thrown by this method call does not alter the processing of the application server shutdown or resource adapter undeployment that caused this method call. The application server may log the exception information for error reporting purposes.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ResourceAdapter</class-interface>
       <method name="stop" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>266</id>
       <description>generic exception.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ResourceAdapterAssociation</class-interface>
       <method name="setResourceAdapter" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.ResourceAdapter</parameter>
+          <parameter>jakarta.resource.spi.ResourceAdapter</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>294</id>
       <description>Get the level of transaction support, supported by the ManagedConnectionFactory. A resource adapter must always return a level of transaction support whose ordinal value in TransactionSupportLevel enum is equal to or lesser than the resource adapter's transaction support classification.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>TransactionSupport</class-interface>
-      <method name="getTransactionSupport" return-type="javax.resource.spi.TransactionSupport.TransactionSupport.TransactionSupportLevel" />
+      <method name="getTransactionSupport" return-type="jakarta.resource.spi.TransactionSupport.TransactionSupport.TransactionSupportLevel" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>302</id>
       <description>This method returns a set of invalid ManagedConnection objects chosen from a specified set of ManagedConnection objects.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ValidatingManagedConnectionFactory</class-interface>
       <method name="getInvalidConnections" return-type="java.util.Set">
         <parameters>
@@ -1398,19 +1398,19 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>303</id>
       <description>generic exception.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>ValidatingManagedConnectionFactory</class-interface>
       <method name="getInvalidConnections" return-type="java.util.Set">
         <parameters>
           <parameter>java.util.Set</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>305</id>
       <description>An error has occurred. Possible XAExceptions are XA_HEURHAZ, XA_HEURCOM, XA_HEURRB, XA_HEURMIX, XAER_RMERR, XAER_RMFAIL, XAER_NOTA, XAER_INVAL, or XAER_PROTO. If the resource manager did not commit the transaction and the parameter onePhase is set to true, the resource manager may throw one of the XA_RB* exceptions. Upon return, the resource manager has rolled back the branch's work and has released all held resources.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>XATerminator</class-interface>
       <method name="commit" return-type="void">
         <parameters>
@@ -1423,7 +1423,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>307</id>
       <description>An error has occurred. Possible exception values are XAER_RMERR, XAER_RMFAIL, XAER_NOTA, XAER_INVAL, or XAER_PROTO.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>XATerminator</class-interface>
       <method name="forget" return-type="void">
         <parameters>
@@ -1435,7 +1435,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>308</id>
       <description>Ask the resource manager to prepare for a transaction commit of the transaction specified in xid.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>XATerminator</class-interface>
       <method name="prepare" return-type="int">
         <parameters>
@@ -1446,7 +1446,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>309</id>
       <description>An error has occurred. Possible exception values are: XA_RB*, XAER_RMERR, XAER_RMFAIL, XAER_NOTA, XAER_INVAL, or XAER_PROTO.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>XATerminator</class-interface>
       <method name="prepare" return-type="int">
         <parameters>
@@ -1458,7 +1458,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>310</id>
       <description>Obtains a list of prepared transaction branches from a resource manager. The transaction manager calls this method during recovery to obtain the list of transaction branches that are currently in prepared or heuristically completed states.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>XATerminator</class-interface>
       <method name="recover" return-type="javax.transaction.xa.Xid[]">
         <parameters>
@@ -1469,7 +1469,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>311</id>
       <description>An error has occurred. Possible values are XAER_RMERR, XAER_RMFAIL, XAER_INVAL, and XAER_PROTO.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>XATerminator</class-interface>
       <method name="recover" return-type="javax.transaction.xa.Xid[]">
         <parameters>
@@ -1481,7 +1481,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>313</id>
       <description>An error has occurred. Possible XAExceptions are XA_HEURHAZ, XA_HEURCOM, XA_HEURRB, XA_HEURMIX, XAER_RMERR, XAER_RMFAIL, XAER_NOTA, XAER_INVAL, or XAER_PROTO. If the transaction branch is already marked rollback-only the resource manager may throw one of the XA_RB* exceptions. Upon return, the resource manager has rolled back the branch's work and has released all held resources.</description>
-      <package>javax.resource.spi</package>
+      <package>jakarta.resource.spi</package>
       <class-interface>XATerminator</class-interface>
       <method name="rollback" return-type="void">
         <parameters>
@@ -1493,16 +1493,16 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>315</id>
       <description>generic exception.</description>
-      <package>javax.resource.spi.endpoint</package>
+      <package>jakarta.resource.spi.endpoint</package>
       <class-interface>MessageEndpoint</class-interface>
       <method name="afterDelivery" return-type="void">
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>317</id>
       <description>indicates that the specified method does not exist on the target endpoint.</description>
-      <package>javax.resource.spi.endpoint</package>
+      <package>jakarta.resource.spi.endpoint</package>
       <class-interface>MessageEndpoint</class-interface>
       <method name="beforeDelivery" return-type="void">
         <parameters>
@@ -1514,40 +1514,40 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>318</id>
       <description>generic exception.</description>
-      <package>javax.resource.spi.endpoint</package>
+      <package>jakarta.resource.spi.endpoint</package>
       <class-interface>MessageEndpoint</class-interface>
       <method name="beforeDelivery" return-type="void">
         <parameters>
           <parameter>java.lang.reflect.Method</parameter>
         </parameters>
-        <throw>javax.resource.ResourceException</throw>
+        <throw>jakarta.resource.ResourceException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>319</id>
       <description>This method may be called by the resource adapter to indicate that it no longer needs a proxy endpoint instance. This hint may be used by the application server for endpoint pooling decisions.</description>
-      <package>javax.resource.spi.endpoint</package>
+      <package>jakarta.resource.spi.endpoint</package>
       <class-interface>MessageEndpoint</class-interface>
       <method name="release" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>321</id>
       <description>indicates a transient failure in creating a message endpoint. Subsequent attempts to create a message endpoint might succeed.</description>
-      <package>javax.resource.spi.endpoint</package>
+      <package>jakarta.resource.spi.endpoint</package>
       <class-interface>MessageEndpointFactory</class-interface>
-      <method name="createEndpoint" return-type="javax.resource.spi.endpoint.MessageEndpoint">
+      <method name="createEndpoint" return-type="jakarta.resource.spi.endpoint.MessageEndpoint">
         <parameters>
           <parameter>javax.transaction.xa.XAResource</parameter>
         </parameters>
-        <throw>javax.resource.spi.UnavailableException</throw>
+        <throw>jakarta.resource.spi.UnavailableException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>322</id>
       <description>This is used to create a message endpoint. The message endpoint is expected to implement the correct message listener type.</description>
-      <package>javax.resource.spi.endpoint</package>
+      <package>jakarta.resource.spi.endpoint</package>
       <class-interface>MessageEndpointFactory</class-interface>
-      <method name="createEndpoint" return-type="javax.resource.spi.endpoint.MessageEndpoint">
+      <method name="createEndpoint" return-type="jakarta.resource.spi.endpoint.MessageEndpoint">
         <parameters>
           <parameter>javax.transaction.xa.XAResource</parameter>
           <parameter>long</parameter>
@@ -1557,20 +1557,20 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>323</id>
       <description>indicates a transient failure in creating a message endpoint. Subsequent attempts to create a message endpoint might succeed.</description>
-      <package>javax.resource.spi.endpoint</package>
+      <package>jakarta.resource.spi.endpoint</package>
       <class-interface>MessageEndpointFactory</class-interface>
-      <method name="createEndpoint" return-type="javax.resource.spi.endpoint.MessageEndpoint">
+      <method name="createEndpoint" return-type="jakarta.resource.spi.endpoint.MessageEndpoint">
         <parameters>
           <parameter>javax.transaction.xa.XAResource</parameter>
           <parameter>long</parameter>
         </parameters>
-        <throw>javax.resource.spi.UnavailableException</throw>
+        <throw>jakarta.resource.spi.UnavailableException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>325</id>
       <description>indicates that the specified method does not exist on the target endpoint.</description>
-      <package>javax.resource.spi.endpoint</package>
+      <package>jakarta.resource.spi.endpoint</package>
       <class-interface>MessageEndpointFactory</class-interface>
       <method name="isDeliveryTransacted" return-type="boolean">
         <parameters>
@@ -1582,7 +1582,7 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>332</id>
       <description>Compares this PasswordCredential with the specified object for equality. The two PasswordCredential instances are the same if they are equal in username and password.</description>
-      <package>javax.resource.spi.security</package>
+      <package>jakarta.resource.spi.security</package>
       <class-interface>PasswordCredential</class-interface>
       <method name="equals" return-type="boolean">
         <parameters>
@@ -1593,118 +1593,118 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>343</id>
       <description>thrown to indicate an illegal timeout value.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>ExecutionContext</class-interface>
       <method name="setTransactionTimeout" return-type="void">
         <parameters>
           <parameter>long</parameter>
         </parameters>
-        <throw>javax.resource.NotSupportedException</throw>
+        <throw>jakarta.resource.NotSupportedException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>357</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>SecurityContext</class-interface>
       <method name="getDescription" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>358</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>SecurityContext</class-interface>
       <method name="getName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>359</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>SecurityContext</class-interface>
       <method name="SecurityContext" return-type="SecurityContext" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>361</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>TransactionContext</class-interface>
       <method name="getDescription" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>362</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>TransactionContext</class-interface>
       <method name="getName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>364</id>
       <description>The WorkManager might call this method to hint the active Work instance to complete execution as soon as possible. This would be called on a separate thread other than the one currently executing the Work instance.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>Work</class-interface>
       <method name="release" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>366</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkAdapter</class-interface>
       <method name="WorkAdapter" return-type="WorkAdapter" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>368</id>
       <description>Invoked when a Work instance has been rejected.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkAdapter</class-interface>
       <method name="workRejected" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.work.WorkEvent</parameter>
+          <parameter>jakarta.resource.spi.work.WorkEvent</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>369</id>
       <description>Invoked when a Work instance has started execution. This only means that a thread has been allocated.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkAdapter</class-interface>
       <method name="workStarted" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.work.WorkEvent</parameter>
+          <parameter>jakarta.resource.spi.work.WorkEvent</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>375</id>
       <description>Get the brief description of the role played by the WorkContext and any other related debugging information. This could be used by the WorkManager and the resource adapter for debugging purposes.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkContext</class-interface>
       <method name="getDescription" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>376</id>
       <description>Get the associated name of the WorkContext. This could be used by the WorkManager and the resource adapter for debugging purposes.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkContext</class-interface>
       <method name="getName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>377</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkContextErrorCodes</class-interface>
       <method name="WorkContextErrorCodes" return-type="WorkContextErrorCodes" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>378</id>
       <description>Invoked when the WorkContext instance was successfully set as the execution context for the Work instance.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkContextLifecycleListener</class-interface>
       <method name="contextSetupComplete" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>379</id>
       <description>Invoked when the WorkContext instance was set as the execution context for the Work instance it was associated with.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkContextLifecycleListener</class-interface>
       <method name="contextSetupFailed" return-type="void">
         <parameters>
@@ -1715,63 +1715,63 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>380</id>
       <description>Gets an list of WorkContexts that needs to be used by the WorkManager to set up the execution context while executing a Work instance.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkContextProvider</class-interface>
       <method name="getWorkContexts" return-type="java.util.List" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>381</id>
       <description>Return the WorkException. The actual WorkException subtype returned depends on the type of the event.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkEvent</class-interface>
-      <method name="getException" return-type="javax.resource.spi.work.WorkException" />
+      <method name="getException" return-type="jakarta.resource.spi.work.WorkException" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>382</id>
       <description>Return the start interval duration.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkEvent</class-interface>
       <method name="getStartDuration" return-type="long" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>383</id>
       <description>Return the type of this event.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkEvent</class-interface>
       <method name="getType" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>384</id>
       <description>Return the Work instance which is the cause of the event.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkEvent</class-interface>
-      <method name="getWork" return-type="javax.resource.spi.work.Work" />
+      <method name="getWork" return-type="jakarta.resource.spi.work.Work" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>385</id>
       <description>Constructor.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkEvent</class-interface>
       <method name="WorkEvent" return-type="WorkEvent">
         <parameters>
           <parameter>java.lang.Object</parameter>
           <parameter>int</parameter>
-          <parameter>javax.resource.spi.work.Work</parameter>
-          <parameter>javax.resource.spi.work.WorkException</parameter>
+          <parameter>jakarta.resource.spi.work.Work</parameter>
+          <parameter>jakarta.resource.spi.work.WorkException</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>386</id>
       <description>Constructor.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkEvent</class-interface>
       <method name="WorkEvent" return-type="WorkEvent">
         <parameters>
           <parameter>java.lang.Object</parameter>
           <parameter>int</parameter>
-          <parameter>javax.resource.spi.work.Work</parameter>
-          <parameter>javax.resource.spi.work.WorkException</parameter>
+          <parameter>jakarta.resource.spi.work.Work</parameter>
+          <parameter>jakarta.resource.spi.work.WorkException</parameter>
           <parameter>long</parameter>
         </parameters>
       </method>
@@ -1779,61 +1779,61 @@
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>393</id>
       <description>Invoked when a Work instance has completed execution.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkListener</class-interface>
       <method name="workCompleted" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.work.WorkEvent</parameter>
+          <parameter>jakarta.resource.spi.work.WorkEvent</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>394</id>
       <description>Invoked when a Work instance has been rejected.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkListener</class-interface>
       <method name="workRejected" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.work.WorkEvent</parameter>
+          <parameter>jakarta.resource.spi.work.WorkEvent</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>395</id>
       <description>Invoked when a Work instance has started execution. This only means that a thread has been allocated.</description>
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkListener</class-interface>
       <method name="workStarted" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.work.WorkEvent</parameter>
+          <parameter>jakarta.resource.spi.work.WorkEvent</parameter>
         </parameters>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>401</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkManager</class-interface>
       <method name="scheduleWork" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.work.Work</parameter>
+          <parameter>jakarta.resource.spi.work.Work</parameter>
         </parameters>
-        <throw>javax.resource.spi.work.WorkException</throw>
+        <throw>jakarta.resource.spi.work.WorkException</throw>
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>403</id>
       <description />
-      <package>javax.resource.spi.work</package>
+      <package>jakarta.resource.spi.work</package>
       <class-interface>WorkManager</class-interface>
       <method name="scheduleWork" return-type="void">
         <parameters>
-          <parameter>javax.resource.spi.work.Work</parameter>
+          <parameter>jakarta.resource.spi.work.Work</parameter>
           <parameter>long</parameter>
-          <parameter>javax.resource.spi.work.ExecutionContext</parameter>
-          <parameter>javax.resource.spi.work.WorkListener</parameter>
+          <parameter>jakarta.resource.spi.work.ExecutionContext</parameter>
+          <parameter>jakarta.resource.spi.work.WorkListener</parameter>
         </parameters>
-        <throw>javax.resource.spi.work.WorkException</throw>
+        <throw>jakarta.resource.spi.work.WorkException</throw>
       </method>
     </assertion>
   </assertions>

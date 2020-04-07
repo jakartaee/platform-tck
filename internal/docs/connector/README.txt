@@ -17,25 +17,25 @@ A.  this generates a little less of an API assertion doc as it does not
  > ./assert-gen.sh  "JSR-322"   "JSR-322" "J2EE Connector Architeture Spec"  "1.6" \
         /export/home/files2/src/glassfish/connector-api/src/java \
         /export/home/files2/projects/svn-spider/trunk/internal/docs/connector/javadoc_asserts \
-        javax.resource \
-        javax.resource.cci \
-        javax.resource.spi \
-        javax.resource.spi.endpoint \
-        javax.resource.spi.security \
-        javax.resource.spi.work
+        jakarta.resource \
+        jakarta.resource.cci \
+        jakarta.resource.spi \
+        jakarta.resource.spi.endpoint \
+        jakarta.resource.spi.security \
+        jakarta.resource.spi.work
 
 B.  this generates a fairly significant amount of extra API Assertions
  > cd $TS_TOOLS_HOME/tools/scripts
  > ./assert-gen-inherited-ctor-and-comment-exception.sh Connector "Connector 1.6" \
 	"J2EE Connector Architeture Spec" "1.6" \
-	/files2/projects/gfv4.0/appserver/connectors/javax.resource/src/main/java \
+	/files2/projects/gfv4.0/appserver/connectors/jakarta.resource/src/main/java \
 	/Users/phendley/eclipse/workspace/spider-trunk/internal/docs/connector/javadoc_asserts \
-	javax.resource \
-	javax.resource.cci \
-	javax.resource.spi \
-	javax.resource.spi.endpoint \
-	javax.resource.spi.security \
-	javax.resource.spi.work
+	jakarta.resource \
+	jakarta.resource.cci \
+	jakarta.resource.spi \
+	jakarta.resource.spi.endpoint \
+	jakarta.resource.spi.security \
+	jakarta.resource.spi.work
 
 hints:
   1.  do top level bringover of svn-tools directory!!!  (this always catches me)

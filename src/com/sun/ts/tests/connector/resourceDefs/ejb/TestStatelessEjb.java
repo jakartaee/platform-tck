@@ -23,14 +23,14 @@ import jakarta.ejb.Stateless;
 import java.security.AccessController;
 import java.security.AccessControlException;
 
-import javax.resource.ConnectionFactoryDefinitions;
-import javax.resource.ConnectionFactoryDefinition;
-import javax.resource.spi.TransactionSupport.TransactionSupportLevel;
-import javax.resource.spi.TransactionSupport;
-import javax.resource.ConnectionFactoryDefinition;
-import javax.resource.ConnectionFactoryDefinitions;
-import javax.resource.cci.Connection;
-import javax.resource.cci.ConnectionFactory;
+import jakarta.resource.ConnectionFactoryDefinitions;
+import jakarta.resource.ConnectionFactoryDefinition;
+import jakarta.resource.spi.TransactionSupport.TransactionSupportLevel;
+import jakarta.resource.spi.TransactionSupport;
+import jakarta.resource.ConnectionFactoryDefinition;
+import jakarta.resource.ConnectionFactoryDefinitions;
+import jakarta.resource.cci.Connection;
+import jakarta.resource.cci.ConnectionFactory;
 
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
