@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.resource.spi.work.WorkEvent;
-import javax.resource.spi.work.WorkListener;
+import jakarta.resource.spi.work.WorkEvent;
+import jakarta.resource.spi.work.WorkListener;
 import com.sun.ts.tests.common.connector.util.*;
 
 public class WorkListenerImpl implements WorkListener {

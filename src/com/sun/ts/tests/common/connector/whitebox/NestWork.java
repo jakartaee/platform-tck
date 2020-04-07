@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,9 +22,9 @@ package com.sun.ts.tests.common.connector.whitebox;
 
 import java.util.List;
 import java.util.ArrayList;
-import javax.resource.spi.work.Work;
-import javax.resource.spi.work.WorkContextProvider;
-import javax.resource.spi.work.WorkContext;
+import jakarta.resource.spi.work.Work;
+import jakarta.resource.spi.work.WorkContextProvider;
+import jakarta.resource.spi.work.WorkContext;
 import com.sun.ts.tests.common.connector.util.*;
 
 /*

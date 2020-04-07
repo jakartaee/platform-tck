@@ -136,7 +136,7 @@ javax.mail=1.5_se8
 
 # Connector 1.7 
 # (This is JSR-322)
-javax.resource=1.7_se8
+jakarta.resource=1.7_se8
 
 # JAX-RPC 1.1 
 javax.xml.rpc=1.1_se8

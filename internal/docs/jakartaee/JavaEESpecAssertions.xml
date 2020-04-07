@@ -4698,10 +4698,10 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                     - javax.mail.MailSessionDefinitions
                     - javax.persistence.PersistenceUnit
                     - javax.persistence.PersistenceUnits
-                    - javax.resource.AdministeredObjectDefinition
-                    - javax.resource.AdministeredObjectDefinitions
-                    - javax.resource.ConnectionFactoryDefinition
-                    - javax.resource.ConnectionFactoryDefinitions
+                    - jakarta.resource.AdministeredObjectDefinition
+                    - jakarta.resource.AdministeredObjectDefinitions
+                    - jakarta.resource.ConnectionFactoryDefinition
+                    - jakarta.resource.ConnectionFactoryDefinitions
                     - All annotations in the following packages:
                        (a) javax.jws
                        (b) javax.jws.soap
