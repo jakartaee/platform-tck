@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,13 +50,13 @@
 <TABLE width="900" border="1" frame="box" cellpadding="1" summary="Javadoc Assertions">
 <TH bgcolor="#BFBFBF"><FONT size="1PT">ID</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Return</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Method/Field</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Description</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Required</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Deprecated</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Testable</FONT></TH>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:17"></a><font size="1PT">Connector:JAVADOC:17</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.close<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:17"></a><font size="1PT">Connector:JAVADOC:17</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.close<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Initiates close of the connection handle at the application level. A client should not use a closed connection to interact with an EIS.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:18"></a><font size="1PT">Connector:JAVADOC:18</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.close<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:18"></a><font size="1PT">Connector:JAVADOC:18</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.close<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Exception thrown if close on a connection handle fails. Any invalid connection close invocation--example, calling close on a connection handle that is already closed--should also throw this exception.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -64,13 +64,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:19"></a><font size="1PT">Connector:JAVADOC:19</font></TD><TD align="center" valign="center"><font size="1PT">Interaction</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.createInteraction<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:19"></a><font size="1PT">Connector:JAVADOC:19</font></TD><TD align="center" valign="center"><font size="1PT">Interaction</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.createInteraction<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Creates an Interaction associated with this Connection. An Interaction enables an application to execute EIS functions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:20"></a><font size="1PT">Connector:JAVADOC:20</font></TD><TD align="center" valign="center"><font size="1PT">Interaction</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.createInteraction<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:20"></a><font size="1PT">Connector:JAVADOC:20</font></TD><TD align="center" valign="center"><font size="1PT">Interaction</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.createInteraction<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to create an Interaction</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -78,13 +78,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:21"></a><font size="1PT">Connector:JAVADOC:21</font></TD><TD align="center" valign="center"><font size="1PT">LocalTransaction</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.getLocalTransaction<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:21"></a><font size="1PT">Connector:JAVADOC:21</font></TD><TD align="center" valign="center"><font size="1PT">LocalTransaction</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.getLocalTransaction<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns an LocalTransaction instance that enables a component to demarcate resource manager local transactions on the Connection. If a resource adapter does not allow a component to demarcate local transactions on an Connection using LocalTransaction interface, then the method getLocalTransaction should throw a NotSupportedException.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:22"></a><font size="1PT">Connector:JAVADOC:22</font></TD><TD align="center" valign="center"><font size="1PT">LocalTransaction</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.getLocalTransaction<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:22"></a><font size="1PT">Connector:JAVADOC:22</font></TD><TD align="center" valign="center"><font size="1PT">LocalTransaction</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.getLocalTransaction<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to return a LocalTransaction instance because of a resource adapter error</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -92,7 +92,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:24"></a><font size="1PT">Connector:JAVADOC:24</font></TD><TD align="center" valign="center"><font size="1PT">ConnectionMetaData</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.getMetaData<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:24"></a><font size="1PT">Connector:JAVADOC:24</font></TD><TD align="center" valign="center"><font size="1PT">ConnectionMetaData</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.getMetaData<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to get information about the connected EIS instance. Error can be resource adapter-internal, EIS-specific or communication related.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -100,13 +100,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:25"></a><font size="1PT">Connector:JAVADOC:25</font></TD><TD align="center" valign="center"><font size="1PT">ResultSetInfo</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.getResultSetInfo<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:25"></a><font size="1PT">Connector:JAVADOC:25</font></TD><TD align="center" valign="center"><font size="1PT">ResultSetInfo</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.getResultSetInfo<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets the information on the ResultSet functionality supported by a connected EIS instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:26"></a><font size="1PT">Connector:JAVADOC:26</font></TD><TD align="center" valign="center"><font size="1PT">ResultSetInfo</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Connection.getResultSetInfo<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:26"></a><font size="1PT">Connector:JAVADOC:26</font></TD><TD align="center" valign="center"><font size="1PT">ResultSetInfo</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Connection.getResultSetInfo<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to get ResultSet related information</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -114,7 +114,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:28"></a><font size="1PT">Connector:JAVADOC:28</font></TD><TD align="center" valign="center"><font size="1PT">Connection</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionFactory.getConnection<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:28"></a><font size="1PT">Connector:JAVADOC:28</font></TD><TD align="center" valign="center"><font size="1PT">Connection</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionFactory.getConnection<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to get a connection to the EIS instance. Examples of error cases are: Invalid configuration of ManagedConnectionFactory-- example: invalid server name Application server-internal error--example: connection pool related error Communication error EIS-specific error--example: EIS not active Resource adapter-internal error Security related error; example: invalid user Failure to allocate system resources</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -122,17 +122,17 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:29"></a><font size="1PT">Connector:JAVADOC:29</font></TD><TD align="center" valign="center"><font size="1PT">Connection</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionFactory.getConnection<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:29"></a><font size="1PT">Connector:JAVADOC:29</font></TD><TD align="center" valign="center"><font size="1PT">Connection</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionFactory.getConnection<br>
 
 	(
 		ConnectionSpec
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Gets a connection to an EIS instance. A component should use the getConnection variant with javax.resource.cci.ConnectionSpec parameter, if it needs to pass any resource adapter specific security information and connection parameters. In the component- managed sign-on case, an application component passes security information (example: username, password) through the ConnectionSpec instance. It is important to note that the properties passed through the getConnection method should be client-specific (example: username, password, language) and not related to the configuration of a target EIS instance (example: port number, server name). The ManagedConnectionFactory instance is configured with complete set of properties required for the creation of a connection to an EIS instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Gets a connection to an EIS instance. A component should use the getConnection variant with jakarta.resource.cci.ConnectionSpec parameter, if it needs to pass any resource adapter specific security information and connection parameters. In the component- managed sign-on case, an application component passes security information (example: username, password) through the ConnectionSpec instance. It is important to note that the properties passed through the getConnection method should be client-specific (example: username, password, language) and not related to the configuration of a target EIS instance (example: port number, server name). The ManagedConnectionFactory instance is configured with complete set of properties required for the creation of a connection to an EIS instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:30"></a><font size="1PT">Connector:JAVADOC:30</font></TD><TD align="center" valign="center"><font size="1PT">Connection</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionFactory.getConnection<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:30"></a><font size="1PT">Connector:JAVADOC:30</font></TD><TD align="center" valign="center"><font size="1PT">Connection</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionFactory.getConnection<br>
 
 	(
 		ConnectionSpec
@@ -144,13 +144,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:31"></a><font size="1PT">Connector:JAVADOC:31</font></TD><TD align="center" valign="center"><font size="1PT">ResourceAdapterMetaData</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionFactory.getMetaData<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:31"></a><font size="1PT">Connector:JAVADOC:31</font></TD><TD align="center" valign="center"><font size="1PT">ResourceAdapterMetaData</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionFactory.getMetaData<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets metadata for the Resource Adapter. Note that the metadata information is about the ResourceAdapter and not the EIS instance. An invocation of this method does not require that an active connection to an EIS instance should have been established.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:32"></a><font size="1PT">Connector:JAVADOC:32</font></TD><TD align="center" valign="center"><font size="1PT">ResourceAdapterMetaData</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionFactory.getMetaData<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:32"></a><font size="1PT">Connector:JAVADOC:32</font></TD><TD align="center" valign="center"><font size="1PT">ResourceAdapterMetaData</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionFactory.getMetaData<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to get metadata information about the resource adapter</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -158,13 +158,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:33"></a><font size="1PT">Connector:JAVADOC:33</font></TD><TD align="center" valign="center"><font size="1PT">RecordFactory</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionFactory.getRecordFactory<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:33"></a><font size="1PT">Connector:JAVADOC:33</font></TD><TD align="center" valign="center"><font size="1PT">RecordFactory</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionFactory.getRecordFactory<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets a RecordFactory instance. The RecordFactory is used for the creation of generic Record instances.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:34"></a><font size="1PT">Connector:JAVADOC:34</font></TD><TD align="center" valign="center"><font size="1PT">RecordFactory</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionFactory.getRecordFactory<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:34"></a><font size="1PT">Connector:JAVADOC:34</font></TD><TD align="center" valign="center"><font size="1PT">RecordFactory</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionFactory.getRecordFactory<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to create a RecordFactory</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -172,13 +172,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:35"></a><font size="1PT">Connector:JAVADOC:35</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionMetaData.getEISProductName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:35"></a><font size="1PT">Connector:JAVADOC:35</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionMetaData.getEISProductName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns product name of the underlying EIS instance connected through the Connection that produced this metadata.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:36"></a><font size="1PT">Connector:JAVADOC:36</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionMetaData.getEISProductName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:36"></a><font size="1PT">Connector:JAVADOC:36</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionMetaData.getEISProductName<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to get the information for the EIS instance</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -186,13 +186,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:37"></a><font size="1PT">Connector:JAVADOC:37</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionMetaData.getEISProductVersion<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:37"></a><font size="1PT">Connector:JAVADOC:37</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionMetaData.getEISProductVersion<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns product version of the underlying EIS instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:38"></a><font size="1PT">Connector:JAVADOC:38</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionMetaData.getEISProductVersion<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:38"></a><font size="1PT">Connector:JAVADOC:38</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionMetaData.getEISProductVersion<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to get the information for the EIS instance</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -200,13 +200,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:39"></a><font size="1PT">Connector:JAVADOC:39</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionMetaData.getUserName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:39"></a><font size="1PT">Connector:JAVADOC:39</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionMetaData.getUserName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns the user name for an active connection as known to the underlying EIS instance. The name corresponds the resource principal under whose security context a connection to the EIS instance has been established.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:40"></a><font size="1PT">Connector:JAVADOC:40</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ConnectionMetaData.getUserName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:40"></a><font size="1PT">Connector:JAVADOC:40</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ConnectionMetaData.getUserName<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to get the information for the EIS instance</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -214,13 +214,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:41"></a><font size="1PT">Connector:JAVADOC:41</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.clearWarnings<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:41"></a><font size="1PT">Connector:JAVADOC:41</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.clearWarnings<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Clears all the warning reported by this Interaction instance. After a call to this method, the method getWarnings will return null until a new warning is reported for this Interaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:42"></a><font size="1PT">Connector:JAVADOC:42</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.clearWarnings<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:42"></a><font size="1PT">Connector:JAVADOC:42</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.clearWarnings<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to clear ResourceWarnings associated with Interaction</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -228,13 +228,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:43"></a><font size="1PT">Connector:JAVADOC:43</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.close<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:43"></a><font size="1PT">Connector:JAVADOC:43</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.close<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Closes the current Interaction and release all the resources held for this instance by the resource adapter. The close of an Interaction instance does not close the associated Connection instance. It is recommended that Interaction instances be closed explicitly to free any held resources.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:44"></a><font size="1PT">Connector:JAVADOC:44</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.close<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:44"></a><font size="1PT">Connector:JAVADOC:44</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.close<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to close the Interaction instance. Invoking close on an already closed Interaction should also throw this exception.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -242,7 +242,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:45"></a><font size="1PT">Connector:JAVADOC:45</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.execute<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:45"></a><font size="1PT">Connector:JAVADOC:45</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.execute<br>
 
 	(
 		InteractionSpec
@@ -254,7 +254,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:46"></a><font size="1PT">Connector:JAVADOC:46</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.execute<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:46"></a><font size="1PT">Connector:JAVADOC:46</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.execute<br>
 
 	(
 		InteractionSpec
@@ -268,7 +268,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:47"></a><font size="1PT">Connector:JAVADOC:47</font></TD><TD align="center" valign="center"><font size="1PT">Record</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.execute<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:47"></a><font size="1PT">Connector:JAVADOC:47</font></TD><TD align="center" valign="center"><font size="1PT">Record</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.execute<br>
 
 	(
 		InteractionSpec
@@ -279,7 +279,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:48"></a><font size="1PT">Connector:JAVADOC:48</font></TD><TD align="center" valign="center"><font size="1PT">Record</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.execute<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:48"></a><font size="1PT">Connector:JAVADOC:48</font></TD><TD align="center" valign="center"><font size="1PT">Record</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.execute<br>
 
 	(
 		InteractionSpec
@@ -292,19 +292,19 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:49"></a><font size="1PT">Connector:JAVADOC:49</font></TD><TD align="center" valign="center"><font size="1PT">Connection</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.getConnection<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:49"></a><font size="1PT">Connector:JAVADOC:49</font></TD><TD align="center" valign="center"><font size="1PT">Connection</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.getConnection<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets the Connection associated with the Interaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:50"></a><font size="1PT">Connector:JAVADOC:50</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.getWarnings<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:50"></a><font size="1PT">Connector:JAVADOC:50</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.getWarnings<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets the first ResourceWarning from the chain of warnings associated with this Interaction instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:51"></a><font size="1PT">Connector:JAVADOC:51</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Interaction.getWarnings<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:51"></a><font size="1PT">Connector:JAVADOC:51</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Interaction.getWarnings<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to get ResourceWarnings associated with Interaction</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -312,13 +312,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:52"></a><font size="1PT">Connector:JAVADOC:52</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.LocalTransaction.begin<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:52"></a><font size="1PT">Connector:JAVADOC:52</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.LocalTransaction.begin<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Begins a local transaction on an EIS instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:53"></a><font size="1PT">Connector:JAVADOC:53</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.LocalTransaction.begin<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:53"></a><font size="1PT">Connector:JAVADOC:53</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.LocalTransaction.begin<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to begin a local transaction. Examples of error cases are: Resource adapter internal or EIS-specific error Connection is already participating in a local or JTA transaction</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -326,13 +326,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:54"></a><font size="1PT">Connector:JAVADOC:54</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.LocalTransaction.commit<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:54"></a><font size="1PT">Connector:JAVADOC:54</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.LocalTransaction.commit<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Commits the current local transaction and release all locks held by the underlying EIS instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:55"></a><font size="1PT">Connector:JAVADOC:55</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.LocalTransaction.commit<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:55"></a><font size="1PT">Connector:JAVADOC:55</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.LocalTransaction.commit<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to commit a local transaction. Examples of error cases are: Resource adapter internal or EIS-specific error Violation of integrity constraints, deadlock detection, communication failure during transaction completion, or any retry requirement Connection is participating in an active JTA transaction Invalid transaction context; commit operation invoked without an active transaction context</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -340,13 +340,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:56"></a><font size="1PT">Connector:JAVADOC:56</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.LocalTransaction.rollback<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:56"></a><font size="1PT">Connector:JAVADOC:56</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.LocalTransaction.rollback<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Rollbacks the current resource manager local transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:57"></a><font size="1PT">Connector:JAVADOC:57</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.LocalTransaction.rollback<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:57"></a><font size="1PT">Connector:JAVADOC:57</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.LocalTransaction.rollback<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Failed to rollback a local transaction. Examples of error cases are: Resource adapter internal or EIS-specific error Connection is participating in an active JTA transaction Invalid transaction context; rollback operation invoked without an active transaction context</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -354,7 +354,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:59"></a><font size="1PT">Connector:JAVADOC:59</font></TD><TD align="center" valign="center"><font size="1PT">Record</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.MessageListener.onMessage<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:59"></a><font size="1PT">Connector:JAVADOC:59</font></TD><TD align="center" valign="center"><font size="1PT">Record</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.MessageListener.onMessage<br>
 
 	(
 		Record
@@ -366,13 +366,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:60"></a><font size="1PT">Connector:JAVADOC:60</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Record.clone<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:60"></a><font size="1PT">Connector:JAVADOC:60</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Record.clone<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Creates and returns a copy of this object. The precise meaning of "copy" may depend on the class of the object.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:61"></a><font size="1PT">Connector:JAVADOC:61</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Record.clone<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:61"></a><font size="1PT">Connector:JAVADOC:61</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Record.clone<br>
 <br>throws
 											CloneNotSupportedException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">If the object's class does not support the Cloneable interface Subclasses that override the clone method can also throw this exception to indicate that an instance cannot be cloned.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -380,7 +380,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:62"></a><font size="1PT">Connector:JAVADOC:62</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Record.equals<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:62"></a><font size="1PT">Connector:JAVADOC:62</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Record.equals<br>
 
 	(
 		Object
@@ -390,25 +390,25 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:63"></a><font size="1PT">Connector:JAVADOC:63</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Record.getRecordName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:63"></a><font size="1PT">Connector:JAVADOC:63</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Record.getRecordName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets the name of the Record.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:64"></a><font size="1PT">Connector:JAVADOC:64</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Record.getRecordShortDescription<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:64"></a><font size="1PT">Connector:JAVADOC:64</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Record.getRecordShortDescription<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets a short description string for the Record. This property is used primarily by application development tools.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:65"></a><font size="1PT">Connector:JAVADOC:65</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Record.hashCode<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:65"></a><font size="1PT">Connector:JAVADOC:65</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Record.hashCode<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns the hash code for the Record instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:66"></a><font size="1PT">Connector:JAVADOC:66</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Record.setRecordName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:66"></a><font size="1PT">Connector:JAVADOC:66</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Record.setRecordName<br>
 
 	(
 		String
@@ -418,7 +418,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:67"></a><font size="1PT">Connector:JAVADOC:67</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Record.setRecordShortDescription<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:67"></a><font size="1PT">Connector:JAVADOC:67</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Record.setRecordShortDescription<br>
 
 	(
 		String
@@ -428,7 +428,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:68"></a><font size="1PT">Connector:JAVADOC:68</font></TD><TD align="center" valign="center"><font size="1PT">IndexedRecord</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.RecordFactory.createIndexedRecord<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:68"></a><font size="1PT">Connector:JAVADOC:68</font></TD><TD align="center" valign="center"><font size="1PT">IndexedRecord</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.RecordFactory.createIndexedRecord<br>
 
 	(
 		String
@@ -438,7 +438,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:69"></a><font size="1PT">Connector:JAVADOC:69</font></TD><TD align="center" valign="center"><font size="1PT">IndexedRecord</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.RecordFactory.createIndexedRecord<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:69"></a><font size="1PT">Connector:JAVADOC:69</font></TD><TD align="center" valign="center"><font size="1PT">IndexedRecord</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.RecordFactory.createIndexedRecord<br>
 
 	(
 		String
@@ -450,7 +450,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:70"></a><font size="1PT">Connector:JAVADOC:70</font></TD><TD align="center" valign="center"><font size="1PT">MappedRecord</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.RecordFactory.createMappedRecord<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:70"></a><font size="1PT">Connector:JAVADOC:70</font></TD><TD align="center" valign="center"><font size="1PT">MappedRecord</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.RecordFactory.createMappedRecord<br>
 
 	(
 		String
@@ -460,7 +460,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:71"></a><font size="1PT">Connector:JAVADOC:71</font></TD><TD align="center" valign="center"><font size="1PT">MappedRecord</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.RecordFactory.createMappedRecord<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:71"></a><font size="1PT">Connector:JAVADOC:71</font></TD><TD align="center" valign="center"><font size="1PT">MappedRecord</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.RecordFactory.createMappedRecord<br>
 
 	(
 		String
@@ -472,67 +472,67 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:72"></a><font size="1PT">Connector:JAVADOC:72</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.getAdapterName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:72"></a><font size="1PT">Connector:JAVADOC:72</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.getAdapterName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets a tool displayable name of the resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:73"></a><font size="1PT">Connector:JAVADOC:73</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.getAdapterShortDescription<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:73"></a><font size="1PT">Connector:JAVADOC:73</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.getAdapterShortDescription<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets a tool displayable short desription of the resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:74"></a><font size="1PT">Connector:JAVADOC:74</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.getAdapterVendorName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:74"></a><font size="1PT">Connector:JAVADOC:74</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.getAdapterVendorName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets the name of the vendor that has provided the resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:75"></a><font size="1PT">Connector:JAVADOC:75</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.getAdapterVersion<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:75"></a><font size="1PT">Connector:JAVADOC:75</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.getAdapterVersion<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets the version of the resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:76"></a><font size="1PT">Connector:JAVADOC:76</font></TD><TD align="center" valign="center"><font size="1PT">String[]</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.getInteractionSpecsSupported<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:76"></a><font size="1PT">Connector:JAVADOC:76</font></TD><TD align="center" valign="center"><font size="1PT">String[]</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.getInteractionSpecsSupported<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns an array of fully-qualified names of InteractionSpec types supported by the CCI implementation for this resource adapter. Note that the fully-qualified class name is for the implementation class of an InteractionSpec. This method may be used by tools vendor to find information on the supported InteractionSpec types. The method should return an array of length 0 if the CCI implementation does not define specific InteractionSpec types.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:77"></a><font size="1PT">Connector:JAVADOC:77</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.getSpecVersion<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:77"></a><font size="1PT">Connector:JAVADOC:77</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.getSpecVersion<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns a string representation of the version of the connector architecture specification that is supported by the resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:78"></a><font size="1PT">Connector:JAVADOC:78</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.supportsExecuteWithInputAndOutputRecord<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:78"></a><font size="1PT">Connector:JAVADOC:78</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.supportsExecuteWithInputAndOutputRecord<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns true if the implementation class for the Interaction interface implements public boolean execute(InteractionSpec ispec, Record input, Record output) method; otherwise the method returns false.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:79"></a><font size="1PT">Connector:JAVADOC:79</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.supportsExecuteWithInputRecordOnly<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:79"></a><font size="1PT">Connector:JAVADOC:79</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.supportsExecuteWithInputRecordOnly<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns true if the implementation class for the Interaction interface implements public Record execute(InteractionSpec ispec, Record input) method; otherwise the method returns false.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:80"></a><font size="1PT">Connector:JAVADOC:80</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceAdapterMetaData.supportsLocalTransactionDemarcation<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:80"></a><font size="1PT">Connector:JAVADOC:80</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceAdapterMetaData.supportsLocalTransactionDemarcation<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns true if the resource adapter implements the LocalTransaction interface and supports local transaction demarcation on the underlying EIS instance through the LocalTransaction interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:82"></a><font size="1PT">Connector:JAVADOC:82</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceWarning.ResourceWarning<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:82"></a><font size="1PT">Connector:JAVADOC:82</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceWarning.ResourceWarning<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Constructs a new instance with null as its detail message.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:83"></a><font size="1PT">Connector:JAVADOC:83</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceWarning.ResourceWarning<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:83"></a><font size="1PT">Connector:JAVADOC:83</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceWarning.ResourceWarning<br>
 
 	(
 		String
@@ -542,7 +542,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:84"></a><font size="1PT">Connector:JAVADOC:84</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceWarning.ResourceWarning<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:84"></a><font size="1PT">Connector:JAVADOC:84</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceWarning.ResourceWarning<br>
 
 	(
 		Throwable
@@ -552,7 +552,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:85"></a><font size="1PT">Connector:JAVADOC:85</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceWarning.ResourceWarning<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:85"></a><font size="1PT">Connector:JAVADOC:85</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceWarning.ResourceWarning<br>
 
 	(
 		String
@@ -563,7 +563,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:86"></a><font size="1PT">Connector:JAVADOC:86</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResourceWarning.ResourceWarning<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:86"></a><font size="1PT">Connector:JAVADOC:86</font></TD><TD align="center" valign="center"><font size="1PT">ResourceWarning</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResourceWarning.ResourceWarning<br>
 
 	(
 		String
@@ -574,7 +574,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:88"></a><font size="1PT">Connector:JAVADOC:88</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.deletesAreDetected<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:88"></a><font size="1PT">Connector:JAVADOC:88</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.deletesAreDetected<br>
 
 	(
 		int
@@ -584,7 +584,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:89"></a><font size="1PT">Connector:JAVADOC:89</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.deletesAreDetected<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:89"></a><font size="1PT">Connector:JAVADOC:89</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.deletesAreDetected<br>
 
 	(
 		int
@@ -596,7 +596,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:90"></a><font size="1PT">Connector:JAVADOC:90</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.insertsAreDetected<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:90"></a><font size="1PT">Connector:JAVADOC:90</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.insertsAreDetected<br>
 
 	(
 		int
@@ -606,7 +606,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:91"></a><font size="1PT">Connector:JAVADOC:91</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.insertsAreDetected<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:91"></a><font size="1PT">Connector:JAVADOC:91</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.insertsAreDetected<br>
 
 	(
 		int
@@ -618,7 +618,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:92"></a><font size="1PT">Connector:JAVADOC:92</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.othersDeletesAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:92"></a><font size="1PT">Connector:JAVADOC:92</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.othersDeletesAreVisible<br>
 
 	(
 		int
@@ -628,7 +628,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:93"></a><font size="1PT">Connector:JAVADOC:93</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.othersDeletesAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:93"></a><font size="1PT">Connector:JAVADOC:93</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.othersDeletesAreVisible<br>
 
 	(
 		int
@@ -640,7 +640,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:94"></a><font size="1PT">Connector:JAVADOC:94</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.othersInsertsAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:94"></a><font size="1PT">Connector:JAVADOC:94</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.othersInsertsAreVisible<br>
 
 	(
 		int
@@ -650,7 +650,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:95"></a><font size="1PT">Connector:JAVADOC:95</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.othersInsertsAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:95"></a><font size="1PT">Connector:JAVADOC:95</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.othersInsertsAreVisible<br>
 
 	(
 		int
@@ -662,7 +662,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:96"></a><font size="1PT">Connector:JAVADOC:96</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.othersUpdatesAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:96"></a><font size="1PT">Connector:JAVADOC:96</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.othersUpdatesAreVisible<br>
 
 	(
 		int
@@ -672,7 +672,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:97"></a><font size="1PT">Connector:JAVADOC:97</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.othersUpdatesAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:97"></a><font size="1PT">Connector:JAVADOC:97</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.othersUpdatesAreVisible<br>
 
 	(
 		int
@@ -684,7 +684,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:98"></a><font size="1PT">Connector:JAVADOC:98</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.ownDeletesAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:98"></a><font size="1PT">Connector:JAVADOC:98</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.ownDeletesAreVisible<br>
 
 	(
 		int
@@ -694,7 +694,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:99"></a><font size="1PT">Connector:JAVADOC:99</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.ownDeletesAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:99"></a><font size="1PT">Connector:JAVADOC:99</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.ownDeletesAreVisible<br>
 
 	(
 		int
@@ -706,7 +706,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:100"></a><font size="1PT">Connector:JAVADOC:100</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.ownInsertsAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:100"></a><font size="1PT">Connector:JAVADOC:100</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.ownInsertsAreVisible<br>
 
 	(
 		int
@@ -716,7 +716,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:101"></a><font size="1PT">Connector:JAVADOC:101</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.ownInsertsAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:101"></a><font size="1PT">Connector:JAVADOC:101</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.ownInsertsAreVisible<br>
 
 	(
 		int
@@ -728,7 +728,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:102"></a><font size="1PT">Connector:JAVADOC:102</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.ownUpdatesAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:102"></a><font size="1PT">Connector:JAVADOC:102</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.ownUpdatesAreVisible<br>
 
 	(
 		int
@@ -738,7 +738,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:103"></a><font size="1PT">Connector:JAVADOC:103</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.ownUpdatesAreVisible<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:103"></a><font size="1PT">Connector:JAVADOC:103</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.ownUpdatesAreVisible<br>
 
 	(
 		int
@@ -750,7 +750,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:104"></a><font size="1PT">Connector:JAVADOC:104</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.supportsResultSetType<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:104"></a><font size="1PT">Connector:JAVADOC:104</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.supportsResultSetType<br>
 
 	(
 		int
@@ -760,7 +760,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:105"></a><font size="1PT">Connector:JAVADOC:105</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.supportsResultSetType<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:105"></a><font size="1PT">Connector:JAVADOC:105</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.supportsResultSetType<br>
 
 	(
 		int
@@ -772,7 +772,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:106"></a><font size="1PT">Connector:JAVADOC:106</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.supportsResultTypeConcurrency<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:106"></a><font size="1PT">Connector:JAVADOC:106</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.supportsResultTypeConcurrency<br>
 
 	(
 		int
@@ -783,7 +783,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:107"></a><font size="1PT">Connector:JAVADOC:107</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.supportsResultTypeConcurrency<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:107"></a><font size="1PT">Connector:JAVADOC:107</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.supportsResultTypeConcurrency<br>
 
 	(
 		int
@@ -796,7 +796,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:108"></a><font size="1PT">Connector:JAVADOC:108</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.updatesAreDetected<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:108"></a><font size="1PT">Connector:JAVADOC:108</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.updatesAreDetected<br>
 
 	(
 		int
@@ -806,7 +806,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:109"></a><font size="1PT">Connector:JAVADOC:109</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.ResultSetInfo.updatesAreDetected<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:109"></a><font size="1PT">Connector:JAVADOC:109</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.ResultSetInfo.updatesAreDetected<br>
 
 	(
 		int
@@ -818,7 +818,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:110"></a><font size="1PT">Connector:JAVADOC:110</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Streamable.read<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:110"></a><font size="1PT">Connector:JAVADOC:110</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Streamable.read<br>
 
 	(
 		InputStream
@@ -828,7 +828,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:111"></a><font size="1PT">Connector:JAVADOC:111</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Streamable.read<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:111"></a><font size="1PT">Connector:JAVADOC:111</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Streamable.read<br>
 
 	(
 		InputStream
@@ -842,7 +842,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:112"></a><font size="1PT">Connector:JAVADOC:112</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Streamable.write<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:112"></a><font size="1PT">Connector:JAVADOC:112</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Streamable.write<br>
 
 	(
 		OutputStream
@@ -852,7 +852,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:113"></a><font size="1PT">Connector:JAVADOC:113</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.cci.Streamable.write<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:113"></a><font size="1PT">Connector:JAVADOC:113</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.cci.Streamable.write<br>
 
 	(
 		OutputStream
@@ -866,7 +866,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:116"></a><font size="1PT">Connector:JAVADOC:116</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ActivationSpec.validate<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:116"></a><font size="1PT">Connector:JAVADOC:116</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ActivationSpec.validate<br>
 <br>throws
 											InvalidPropertyException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
@@ -876,13 +876,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:117"></a><font size="1PT">Connector:JAVADOC:117</font></TD><TD align="center" valign="center"><font size="1PT">Class[]</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.AdministeredObject.adminObjectInterfaces<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:117"></a><font size="1PT">Connector:JAVADOC:117</font></TD><TD align="center" valign="center"><font size="1PT">Class[]</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.AdministeredObject.adminObjectInterfaces<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Specifies the Java type of the interface implemented by the administered object.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:127"></a><font size="1PT">Connector:JAVADOC:127</font></TD><TD align="center" valign="center"><font size="1PT">CredentialInterface[]</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.AuthenticationMechanism.CredentialInterface.values<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:127"></a><font size="1PT">Connector:JAVADOC:127</font></TD><TD align="center" valign="center"><font size="1PT">CredentialInterface[]</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.AuthenticationMechanism.CredentialInterface.values<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -890,7 +890,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:129"></a><font size="1PT">Connector:JAVADOC:129</font></TD><TD align="center" valign="center"><font size="1PT">Timer</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.BootstrapContext.createTimer<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:129"></a><font size="1PT">Connector:JAVADOC:129</font></TD><TD align="center" valign="center"><font size="1PT">Timer</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.BootstrapContext.createTimer<br>
 <br>throws
 											UnavailableException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">indicates that a Timer instance is not available. The request may be retried later.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -898,7 +898,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:150"></a><font size="1PT">Connector:JAVADOC:150</font></TD><TD align="center" valign="center"><font size="1PT">ConnectionEvent</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ConnectionEvent.ConnectionEvent<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:150"></a><font size="1PT">Connector:JAVADOC:150</font></TD><TD align="center" valign="center"><font size="1PT">ConnectionEvent</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ConnectionEvent.ConnectionEvent<br>
 
 	(
 		ManagedConnection
@@ -909,7 +909,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:151"></a><font size="1PT">Connector:JAVADOC:151</font></TD><TD align="center" valign="center"><font size="1PT">ConnectionEvent</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ConnectionEvent.ConnectionEvent<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:151"></a><font size="1PT">Connector:JAVADOC:151</font></TD><TD align="center" valign="center"><font size="1PT">ConnectionEvent</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ConnectionEvent.ConnectionEvent<br>
 
 	(
 		ManagedConnection
@@ -921,7 +921,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:162"></a><font size="1PT">Connector:JAVADOC:162</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ConnectionManager.allocateConnection<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:162"></a><font size="1PT">Connector:JAVADOC:162</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ConnectionManager.allocateConnection<br>
 
 	(
 		ManagedConnectionFactory
@@ -934,7 +934,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:163"></a><font size="1PT">Connector:JAVADOC:163</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ConnectionRequestInfo.equals<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:163"></a><font size="1PT">Connector:JAVADOC:163</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ConnectionRequestInfo.equals<br>
 
 	(
 		Object
@@ -944,31 +944,31 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:164"></a><font size="1PT">Connector:JAVADOC:164</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ConnectionRequestInfo.hashCode<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:164"></a><font size="1PT">Connector:JAVADOC:164</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ConnectionRequestInfo.hashCode<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns the hashCode of the ConnectionRequestInfo.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:169"></a><font size="1PT">Connector:JAVADOC:169</font></TD><TD align="center" valign="center"><font size="1PT">String[]</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.Connector.largeIcon<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:169"></a><font size="1PT">Connector:JAVADOC:169</font></TD><TD align="center" valign="center"><font size="1PT">String[]</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.Connector.largeIcon<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Specifies the file name for large GIF or JPEG icon images that are used to represent the resource adapter in a GUI tool. Each smallIcon must be associated with a largeIcon element and the application server must use the ordinal value in their respective arrays to find the related pairs of icons.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:175"></a><font size="1PT">Connector:JAVADOC:175</font></TD><TD align="center" valign="center"><font size="1PT">String[]</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.Connector.smallIcon<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:175"></a><font size="1PT">Connector:JAVADOC:175</font></TD><TD align="center" valign="center"><font size="1PT">String[]</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.Connector.smallIcon<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Specifies the file name for small GIF or JPEG icon images that are used to represent the resource adapter in a GUI tool. Each smallIcon must be associated with a largeIcon element and the application server must use the ordinal value in their respective arrays to find the related pairs of icons.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:203"></a><font size="1PT">Connector:JAVADOC:203</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.LocalTransaction.begin<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:203"></a><font size="1PT">Connector:JAVADOC:203</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.LocalTransaction.begin<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Begin a local transaction</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:204"></a><font size="1PT">Connector:JAVADOC:204</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.LocalTransaction.begin<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:204"></a><font size="1PT">Connector:JAVADOC:204</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.LocalTransaction.begin<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception if operation fails</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -976,13 +976,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:205"></a><font size="1PT">Connector:JAVADOC:205</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.LocalTransaction.commit<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:205"></a><font size="1PT">Connector:JAVADOC:205</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.LocalTransaction.commit<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Commit a local transaction</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:206"></a><font size="1PT">Connector:JAVADOC:206</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.LocalTransaction.commit<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:206"></a><font size="1PT">Connector:JAVADOC:206</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.LocalTransaction.commit<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception if operation fails</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -990,13 +990,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:207"></a><font size="1PT">Connector:JAVADOC:207</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.LocalTransaction.rollback<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:207"></a><font size="1PT">Connector:JAVADOC:207</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.LocalTransaction.rollback<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Rollback a local transaction</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:208"></a><font size="1PT">Connector:JAVADOC:208</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.LocalTransaction.rollback<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:208"></a><font size="1PT">Connector:JAVADOC:208</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.LocalTransaction.rollback<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception if operation fails</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1004,7 +1004,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:214"></a><font size="1PT">Connector:JAVADOC:214</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.addConnectionEventListener<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:214"></a><font size="1PT">Connector:JAVADOC:214</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.addConnectionEventListener<br>
 
 	(
 		ConnectionEventListener
@@ -1014,7 +1014,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:216"></a><font size="1PT">Connector:JAVADOC:216</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.associateConnection<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:216"></a><font size="1PT">Connector:JAVADOC:216</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.associateConnection<br>
 
 	(
 		Object
@@ -1026,7 +1026,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:218"></a><font size="1PT">Connector:JAVADOC:218</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.cleanup<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:218"></a><font size="1PT">Connector:JAVADOC:218</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.cleanup<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception if operation fails</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1034,7 +1034,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:220"></a><font size="1PT">Connector:JAVADOC:220</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.destroy<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:220"></a><font size="1PT">Connector:JAVADOC:220</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.destroy<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception if operation failed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1042,7 +1042,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:221"></a><font size="1PT">Connector:JAVADOC:221</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.getConnection<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:221"></a><font size="1PT">Connector:JAVADOC:221</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.getConnection<br>
 
 	(
 		Subject
@@ -1053,7 +1053,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:222"></a><font size="1PT">Connector:JAVADOC:222</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.getConnection<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:222"></a><font size="1PT">Connector:JAVADOC:222</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.getConnection<br>
 
 	(
 		Subject
@@ -1066,7 +1066,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:224"></a><font size="1PT">Connector:JAVADOC:224</font></TD><TD align="center" valign="center"><font size="1PT">LocalTransaction</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.getLocalTransaction<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:224"></a><font size="1PT">Connector:JAVADOC:224</font></TD><TD align="center" valign="center"><font size="1PT">LocalTransaction</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.getLocalTransaction<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception if operation fails</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1074,7 +1074,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:226"></a><font size="1PT">Connector:JAVADOC:226</font></TD><TD align="center" valign="center"><font size="1PT">PrintWriter</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.getLogWriter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:226"></a><font size="1PT">Connector:JAVADOC:226</font></TD><TD align="center" valign="center"><font size="1PT">PrintWriter</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.getLogWriter<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception if operation fails</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1082,7 +1082,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:228"></a><font size="1PT">Connector:JAVADOC:228</font></TD><TD align="center" valign="center"><font size="1PT">ManagedConnectionMetaData</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.getMetaData<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:228"></a><font size="1PT">Connector:JAVADOC:228</font></TD><TD align="center" valign="center"><font size="1PT">ManagedConnectionMetaData</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.getMetaData<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception if operation fails</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1090,7 +1090,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:231"></a><font size="1PT">Connector:JAVADOC:231</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.removeConnectionEventListener<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:231"></a><font size="1PT">Connector:JAVADOC:231</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.removeConnectionEventListener<br>
 
 	(
 		ConnectionEventListener
@@ -1100,7 +1100,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:232"></a><font size="1PT">Connector:JAVADOC:232</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.setLogWriter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:232"></a><font size="1PT">Connector:JAVADOC:232</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.setLogWriter<br>
 
 	(
 		PrintWriter
@@ -1110,7 +1110,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:233"></a><font size="1PT">Connector:JAVADOC:233</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnection.setLogWriter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:233"></a><font size="1PT">Connector:JAVADOC:233</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnection.setLogWriter<br>
 
 	(
 		PrintWriter
@@ -1122,7 +1122,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:235"></a><font size="1PT">Connector:JAVADOC:235</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.createConnectionFactory<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:235"></a><font size="1PT">Connector:JAVADOC:235</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.createConnectionFactory<br>
 
 	(
 		ConnectionManager
@@ -1134,13 +1134,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:236"></a><font size="1PT">Connector:JAVADOC:236</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.createConnectionFactory<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:236"></a><font size="1PT">Connector:JAVADOC:236</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.createConnectionFactory<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Creates a Connection Factory instance. The Connection Factory instance gets initialized with a default ConnectionManager provided by the resource adapter.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:237"></a><font size="1PT">Connector:JAVADOC:237</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.createConnectionFactory<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:237"></a><font size="1PT">Connector:JAVADOC:237</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.createConnectionFactory<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Generic exception</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1148,7 +1148,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:240"></a><font size="1PT">Connector:JAVADOC:240</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.equals<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:240"></a><font size="1PT">Connector:JAVADOC:240</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.equals<br>
 
 	(
 		Object
@@ -1158,13 +1158,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:241"></a><font size="1PT">Connector:JAVADOC:241</font></TD><TD align="center" valign="center"><font size="1PT">PrintWriter</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.getLogWriter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:241"></a><font size="1PT">Connector:JAVADOC:241</font></TD><TD align="center" valign="center"><font size="1PT">PrintWriter</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.getLogWriter<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Get the log writer for this ManagedConnectionFactory instance. The log writer is a character output stream to which all logging and tracing messages for this ManagedConnectionFactory instance will be printed ApplicationServer manages the association of output stream with the ManagedConnectionFactory. When a ManagedConnectionFactory object is created the log writer is initially null, in other words, logging is disabled.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:242"></a><font size="1PT">Connector:JAVADOC:242</font></TD><TD align="center" valign="center"><font size="1PT">PrintWriter</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.getLogWriter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:242"></a><font size="1PT">Connector:JAVADOC:242</font></TD><TD align="center" valign="center"><font size="1PT">PrintWriter</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.getLogWriter<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1172,13 +1172,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:243"></a><font size="1PT">Connector:JAVADOC:243</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.hashCode<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:243"></a><font size="1PT">Connector:JAVADOC:243</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.hashCode<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns the hash code for the ManagedConnectionFactory</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:245"></a><font size="1PT">Connector:JAVADOC:245</font></TD><TD align="center" valign="center"><font size="1PT">ManagedConnection</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.matchManagedConnections<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:245"></a><font size="1PT">Connector:JAVADOC:245</font></TD><TD align="center" valign="center"><font size="1PT">ManagedConnection</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.matchManagedConnections<br>
 
 	(
 		Set
@@ -1192,7 +1192,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:246"></a><font size="1PT">Connector:JAVADOC:246</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.setLogWriter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:246"></a><font size="1PT">Connector:JAVADOC:246</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.setLogWriter<br>
 
 	(
 		PrintWriter
@@ -1202,7 +1202,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:247"></a><font size="1PT">Connector:JAVADOC:247</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionFactory.setLogWriter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:247"></a><font size="1PT">Connector:JAVADOC:247</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionFactory.setLogWriter<br>
 
 	(
 		PrintWriter
@@ -1214,7 +1214,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:249"></a><font size="1PT">Connector:JAVADOC:249</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionMetaData.getEISProductName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:249"></a><font size="1PT">Connector:JAVADOC:249</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionMetaData.getEISProductName<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
@@ -1224,7 +1224,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:251"></a><font size="1PT">Connector:JAVADOC:251</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionMetaData.getEISProductVersion<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:251"></a><font size="1PT">Connector:JAVADOC:251</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionMetaData.getEISProductVersion<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
@@ -1234,7 +1234,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:253"></a><font size="1PT">Connector:JAVADOC:253</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionMetaData.getMaxConnections<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:253"></a><font size="1PT">Connector:JAVADOC:253</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionMetaData.getMaxConnections<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
@@ -1244,7 +1244,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:255"></a><font size="1PT">Connector:JAVADOC:255</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ManagedConnectionMetaData.getUserName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:255"></a><font size="1PT">Connector:JAVADOC:255</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ManagedConnectionMetaData.getUserName<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
@@ -1254,7 +1254,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:260"></a><font size="1PT">Connector:JAVADOC:260</font></TD><TD align="center" valign="center"><font size="1PT">XAResource[]</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ResourceAdapter.getXAResources<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:260"></a><font size="1PT">Connector:JAVADOC:260</font></TD><TD align="center" valign="center"><font size="1PT">XAResource[]</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ResourceAdapter.getXAResources<br>
 
 	(
 		ActivationSpec[]
@@ -1266,7 +1266,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:261"></a><font size="1PT">Connector:JAVADOC:261</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ResourceAdapter.start<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:261"></a><font size="1PT">Connector:JAVADOC:261</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ResourceAdapter.start<br>
 
 	(
 		BootstrapContext
@@ -1276,7 +1276,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:262"></a><font size="1PT">Connector:JAVADOC:262</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ResourceAdapter.start<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:262"></a><font size="1PT">Connector:JAVADOC:262</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ResourceAdapter.start<br>
 
 	(
 		BootstrapContext
@@ -1288,13 +1288,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:263"></a><font size="1PT">Connector:JAVADOC:263</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ResourceAdapter.stop<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:263"></a><font size="1PT">Connector:JAVADOC:263</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ResourceAdapter.stop<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">This is called when a resource adapter instance is undeployed or during application server shutdown. This is a shutdown notification from the application server, and this method is called by an application server thread. The application server thread executes in an unspecified context. During this method call, a ResourceAdapter JavaBean is responsible for performing an orderly shutdown of the resource adapter instance. Any exception thrown by this method call does not alter the processing of the application server shutdown or resource adapter undeployment that caused this method call. The application server may log the exception information for error reporting purposes.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:266"></a><font size="1PT">Connector:JAVADOC:266</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ResourceAdapterAssociation.setResourceAdapter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:266"></a><font size="1PT">Connector:JAVADOC:266</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ResourceAdapterAssociation.setResourceAdapter<br>
 
 	(
 		ResourceAdapter
@@ -1306,13 +1306,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:294"></a><font size="1PT">Connector:JAVADOC:294</font></TD><TD align="center" valign="center"><font size="1PT">TransactionSupportLevel</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.TransactionSupport.getTransactionSupport<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:294"></a><font size="1PT">Connector:JAVADOC:294</font></TD><TD align="center" valign="center"><font size="1PT">TransactionSupportLevel</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.TransactionSupport.getTransactionSupport<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Get the level of transaction support, supported by the ManagedConnectionFactory. A resource adapter must always return a level of transaction support whose ordinal value in TransactionSupportLevel enum is equal to or lesser than the resource adapter's transaction support classification.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:302"></a><font size="1PT">Connector:JAVADOC:302</font></TD><TD align="center" valign="center"><font size="1PT">Set</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ValidatingManagedConnectionFactory.getInvalidConnections<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:302"></a><font size="1PT">Connector:JAVADOC:302</font></TD><TD align="center" valign="center"><font size="1PT">Set</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ValidatingManagedConnectionFactory.getInvalidConnections<br>
 
 	(
 		Set
@@ -1322,7 +1322,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:303"></a><font size="1PT">Connector:JAVADOC:303</font></TD><TD align="center" valign="center"><font size="1PT">Set</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.ValidatingManagedConnectionFactory.getInvalidConnections<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:303"></a><font size="1PT">Connector:JAVADOC:303</font></TD><TD align="center" valign="center"><font size="1PT">Set</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.ValidatingManagedConnectionFactory.getInvalidConnections<br>
 
 	(
 		Set
@@ -1334,7 +1334,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:305"></a><font size="1PT">Connector:JAVADOC:305</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.XATerminator.commit<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:305"></a><font size="1PT">Connector:JAVADOC:305</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.XATerminator.commit<br>
 
 	(
 		Xid
@@ -1347,7 +1347,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:307"></a><font size="1PT">Connector:JAVADOC:307</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.XATerminator.forget<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:307"></a><font size="1PT">Connector:JAVADOC:307</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.XATerminator.forget<br>
 
 	(
 		Xid
@@ -1359,7 +1359,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:308"></a><font size="1PT">Connector:JAVADOC:308</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.XATerminator.prepare<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:308"></a><font size="1PT">Connector:JAVADOC:308</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.XATerminator.prepare<br>
 
 	(
 		Xid
@@ -1369,7 +1369,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:309"></a><font size="1PT">Connector:JAVADOC:309</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.XATerminator.prepare<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:309"></a><font size="1PT">Connector:JAVADOC:309</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.XATerminator.prepare<br>
 
 	(
 		Xid
@@ -1381,7 +1381,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:310"></a><font size="1PT">Connector:JAVADOC:310</font></TD><TD align="center" valign="center"><font size="1PT">Xid[]</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.XATerminator.recover<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:310"></a><font size="1PT">Connector:JAVADOC:310</font></TD><TD align="center" valign="center"><font size="1PT">Xid[]</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.XATerminator.recover<br>
 
 	(
 		int
@@ -1391,7 +1391,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:311"></a><font size="1PT">Connector:JAVADOC:311</font></TD><TD align="center" valign="center"><font size="1PT">Xid[]</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.XATerminator.recover<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:311"></a><font size="1PT">Connector:JAVADOC:311</font></TD><TD align="center" valign="center"><font size="1PT">Xid[]</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.XATerminator.recover<br>
 
 	(
 		int
@@ -1403,7 +1403,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:313"></a><font size="1PT">Connector:JAVADOC:313</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.XATerminator.rollback<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:313"></a><font size="1PT">Connector:JAVADOC:313</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.XATerminator.rollback<br>
 
 	(
 		Xid
@@ -1415,7 +1415,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:315"></a><font size="1PT">Connector:JAVADOC:315</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.endpoint.MessageEndpoint.afterDelivery<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:315"></a><font size="1PT">Connector:JAVADOC:315</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.endpoint.MessageEndpoint.afterDelivery<br>
 <br>throws
 											ResourceException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">generic exception.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1423,7 +1423,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:317"></a><font size="1PT">Connector:JAVADOC:317</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.endpoint.MessageEndpoint.beforeDelivery<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:317"></a><font size="1PT">Connector:JAVADOC:317</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.endpoint.MessageEndpoint.beforeDelivery<br>
 
 	(
 		Method
@@ -1435,7 +1435,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:318"></a><font size="1PT">Connector:JAVADOC:318</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.endpoint.MessageEndpoint.beforeDelivery<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:318"></a><font size="1PT">Connector:JAVADOC:318</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.endpoint.MessageEndpoint.beforeDelivery<br>
 
 	(
 		Method
@@ -1447,13 +1447,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:319"></a><font size="1PT">Connector:JAVADOC:319</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.endpoint.MessageEndpoint.release<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:319"></a><font size="1PT">Connector:JAVADOC:319</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.endpoint.MessageEndpoint.release<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">This method may be called by the resource adapter to indicate that it no longer needs a proxy endpoint instance. This hint may be used by the application server for endpoint pooling decisions.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:321"></a><font size="1PT">Connector:JAVADOC:321</font></TD><TD align="center" valign="center"><font size="1PT">MessageEndpoint</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.endpoint.MessageEndpointFactory.createEndpoint<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:321"></a><font size="1PT">Connector:JAVADOC:321</font></TD><TD align="center" valign="center"><font size="1PT">MessageEndpoint</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.endpoint.MessageEndpointFactory.createEndpoint<br>
 
 	(
 		XAResource
@@ -1465,7 +1465,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:322"></a><font size="1PT">Connector:JAVADOC:322</font></TD><TD align="center" valign="center"><font size="1PT">MessageEndpoint</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.endpoint.MessageEndpointFactory.createEndpoint<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:322"></a><font size="1PT">Connector:JAVADOC:322</font></TD><TD align="center" valign="center"><font size="1PT">MessageEndpoint</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.endpoint.MessageEndpointFactory.createEndpoint<br>
 
 	(
 		XAResource
@@ -1476,7 +1476,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:323"></a><font size="1PT">Connector:JAVADOC:323</font></TD><TD align="center" valign="center"><font size="1PT">MessageEndpoint</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.endpoint.MessageEndpointFactory.createEndpoint<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:323"></a><font size="1PT">Connector:JAVADOC:323</font></TD><TD align="center" valign="center"><font size="1PT">MessageEndpoint</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.endpoint.MessageEndpointFactory.createEndpoint<br>
 
 	(
 		XAResource
@@ -1489,7 +1489,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:325"></a><font size="1PT">Connector:JAVADOC:325</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.endpoint.MessageEndpointFactory.isDeliveryTransacted<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:325"></a><font size="1PT">Connector:JAVADOC:325</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.endpoint.MessageEndpointFactory.isDeliveryTransacted<br>
 
 	(
 		Method
@@ -1501,7 +1501,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:332"></a><font size="1PT">Connector:JAVADOC:332</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.security.PasswordCredential.equals<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:332"></a><font size="1PT">Connector:JAVADOC:332</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.security.PasswordCredential.equals<br>
 
 	(
 		Object
@@ -1511,7 +1511,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:343"></a><font size="1PT">Connector:JAVADOC:343</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.ExecutionContext.setTransactionTimeout<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:343"></a><font size="1PT">Connector:JAVADOC:343</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.ExecutionContext.setTransactionTimeout<br>
 
 	(
 		long
@@ -1523,7 +1523,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:357"></a><font size="1PT">Connector:JAVADOC:357</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.SecurityContext.getDescription<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:357"></a><font size="1PT">Connector:JAVADOC:357</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.SecurityContext.getDescription<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1531,7 +1531,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:358"></a><font size="1PT">Connector:JAVADOC:358</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.SecurityContext.getName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:358"></a><font size="1PT">Connector:JAVADOC:358</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.SecurityContext.getName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1539,7 +1539,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:359"></a><font size="1PT">Connector:JAVADOC:359</font></TD><TD align="center" valign="center"><font size="1PT">SecurityContext</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.SecurityContext.SecurityContext<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:359"></a><font size="1PT">Connector:JAVADOC:359</font></TD><TD align="center" valign="center"><font size="1PT">SecurityContext</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.SecurityContext.SecurityContext<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1547,7 +1547,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:361"></a><font size="1PT">Connector:JAVADOC:361</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.TransactionContext.getDescription<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:361"></a><font size="1PT">Connector:JAVADOC:361</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.TransactionContext.getDescription<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1555,7 +1555,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:362"></a><font size="1PT">Connector:JAVADOC:362</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.TransactionContext.getName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:362"></a><font size="1PT">Connector:JAVADOC:362</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.TransactionContext.getName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1563,13 +1563,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:364"></a><font size="1PT">Connector:JAVADOC:364</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.Work.release<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:364"></a><font size="1PT">Connector:JAVADOC:364</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.Work.release<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">The WorkManager might call this method to hint the active Work instance to complete execution as soon as possible. This would be called on a separate thread other than the one currently executing the Work instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:366"></a><font size="1PT">Connector:JAVADOC:366</font></TD><TD align="center" valign="center"><font size="1PT">WorkAdapter</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkAdapter.WorkAdapter<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:366"></a><font size="1PT">Connector:JAVADOC:366</font></TD><TD align="center" valign="center"><font size="1PT">WorkAdapter</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkAdapter.WorkAdapter<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1577,7 +1577,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:368"></a><font size="1PT">Connector:JAVADOC:368</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkAdapter.workRejected<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:368"></a><font size="1PT">Connector:JAVADOC:368</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkAdapter.workRejected<br>
 
 	(
 		WorkEvent
@@ -1587,7 +1587,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:369"></a><font size="1PT">Connector:JAVADOC:369</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkAdapter.workStarted<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:369"></a><font size="1PT">Connector:JAVADOC:369</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkAdapter.workStarted<br>
 
 	(
 		WorkEvent
@@ -1597,19 +1597,19 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:375"></a><font size="1PT">Connector:JAVADOC:375</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkContext.getDescription<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:375"></a><font size="1PT">Connector:JAVADOC:375</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkContext.getDescription<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Get the brief description of the role played by the WorkContext and any other related debugging information. This could be used by the WorkManager and the resource adapter for debugging purposes.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:376"></a><font size="1PT">Connector:JAVADOC:376</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkContext.getName<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:376"></a><font size="1PT">Connector:JAVADOC:376</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkContext.getName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Get the associated name of the WorkContext. This could be used by the WorkManager and the resource adapter for debugging purposes.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:377"></a><font size="1PT">Connector:JAVADOC:377</font></TD><TD align="center" valign="center"><font size="1PT">WorkContextErrorCodes</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkContextErrorCodes.WorkContextErrorCodes<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:377"></a><font size="1PT">Connector:JAVADOC:377</font></TD><TD align="center" valign="center"><font size="1PT">WorkContextErrorCodes</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkContextErrorCodes.WorkContextErrorCodes<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1617,13 +1617,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:378"></a><font size="1PT">Connector:JAVADOC:378</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkContextLifecycleListener.contextSetupComplete<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:378"></a><font size="1PT">Connector:JAVADOC:378</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkContextLifecycleListener.contextSetupComplete<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Invoked when the WorkContext instance was successfully set as the execution context for the Work instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:379"></a><font size="1PT">Connector:JAVADOC:379</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkContextLifecycleListener.contextSetupFailed<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:379"></a><font size="1PT">Connector:JAVADOC:379</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkContextLifecycleListener.contextSetupFailed<br>
 
 	(
 		String
@@ -1633,37 +1633,37 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:380"></a><font size="1PT">Connector:JAVADOC:380</font></TD><TD align="center" valign="center"><font size="1PT">List</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkContextProvider.getWorkContexts<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:380"></a><font size="1PT">Connector:JAVADOC:380</font></TD><TD align="center" valign="center"><font size="1PT">List</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkContextProvider.getWorkContexts<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Gets an list of WorkContexts that needs to be used by the WorkManager to set up the execution context while executing a Work instance.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:381"></a><font size="1PT">Connector:JAVADOC:381</font></TD><TD align="center" valign="center"><font size="1PT">WorkException</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkEvent.getException<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:381"></a><font size="1PT">Connector:JAVADOC:381</font></TD><TD align="center" valign="center"><font size="1PT">WorkException</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkEvent.getException<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Return the WorkException. The actual WorkException subtype returned depends on the type of the event.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:382"></a><font size="1PT">Connector:JAVADOC:382</font></TD><TD align="center" valign="center"><font size="1PT">long</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkEvent.getStartDuration<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:382"></a><font size="1PT">Connector:JAVADOC:382</font></TD><TD align="center" valign="center"><font size="1PT">long</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkEvent.getStartDuration<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Return the start interval duration.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:383"></a><font size="1PT">Connector:JAVADOC:383</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkEvent.getType<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:383"></a><font size="1PT">Connector:JAVADOC:383</font></TD><TD align="center" valign="center"><font size="1PT">int</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkEvent.getType<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Return the type of this event.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:384"></a><font size="1PT">Connector:JAVADOC:384</font></TD><TD align="center" valign="center"><font size="1PT">Work</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkEvent.getWork<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:384"></a><font size="1PT">Connector:JAVADOC:384</font></TD><TD align="center" valign="center"><font size="1PT">Work</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkEvent.getWork<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Return the Work instance which is the cause of the event.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:385"></a><font size="1PT">Connector:JAVADOC:385</font></TD><TD align="center" valign="center"><font size="1PT">WorkEvent</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkEvent.WorkEvent<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:385"></a><font size="1PT">Connector:JAVADOC:385</font></TD><TD align="center" valign="center"><font size="1PT">WorkEvent</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkEvent.WorkEvent<br>
 
 	(
 		Object
@@ -1676,7 +1676,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:386"></a><font size="1PT">Connector:JAVADOC:386</font></TD><TD align="center" valign="center"><font size="1PT">WorkEvent</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkEvent.WorkEvent<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:386"></a><font size="1PT">Connector:JAVADOC:386</font></TD><TD align="center" valign="center"><font size="1PT">WorkEvent</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkEvent.WorkEvent<br>
 
 	(
 		Object
@@ -1690,7 +1690,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:393"></a><font size="1PT">Connector:JAVADOC:393</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkListener.workCompleted<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:393"></a><font size="1PT">Connector:JAVADOC:393</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkListener.workCompleted<br>
 
 	(
 		WorkEvent
@@ -1700,7 +1700,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:394"></a><font size="1PT">Connector:JAVADOC:394</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkListener.workRejected<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:394"></a><font size="1PT">Connector:JAVADOC:394</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkListener.workRejected<br>
 
 	(
 		WorkEvent
@@ -1710,7 +1710,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:395"></a><font size="1PT">Connector:JAVADOC:395</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkListener.workStarted<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:395"></a><font size="1PT">Connector:JAVADOC:395</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkListener.workStarted<br>
 
 	(
 		WorkEvent
@@ -1720,7 +1720,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:401"></a><font size="1PT">Connector:JAVADOC:401</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkManager.scheduleWork<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:401"></a><font size="1PT">Connector:JAVADOC:401</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkManager.scheduleWork<br>
 
 	(
 		Work
@@ -1734,7 +1734,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="Connector:JAVADOC:403"></a><font size="1PT">Connector:JAVADOC:403</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.resource.spi.work.WorkManager.scheduleWork<br>
+<TD align="center" valign="center"><a name="Connector:JAVADOC:403"></a><font size="1PT">Connector:JAVADOC:403</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.resource.spi.work.WorkManager.scheduleWork<br>
 
 	(
 		Work

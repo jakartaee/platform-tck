@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.resource.*;
-import javax.resource.spi.*;
-import javax.resource.spi.security.PasswordCredential;
-import javax.resource.spi.IllegalStateException;
-import javax.resource.spi.SecurityException;
-import javax.resource.NotSupportedException;
+import jakarta.resource.*;
+import jakarta.resource.spi.*;
+import jakarta.resource.spi.security.PasswordCredential;
+import jakarta.resource.spi.IllegalStateException;
+import jakarta.resource.spi.SecurityException;
+import jakarta.resource.NotSupportedException;
 import javax.transaction.xa.XAResource;
 import java.io.*;
 import java.util.*;
@@ -251,7 +251,7 @@ public class TSManagedConnection implements ManagedConnection {
   /*
    * @name getLocalTransaction
    * 
-   * @desc Returns an javax.resource.spi.LocalTransaction instance.
+   * @desc Returns an jakarta.resource.spi.LocalTransaction instance.
    * 
    * @return LocalTransaction
    * 

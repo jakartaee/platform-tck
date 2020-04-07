@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,6 +14,7 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
 
+
 ##
 # This file contains a list of all the packages
 # contained in the signature files for this
@@ -22,9 +23,9 @@
 # parent package's signature is checked.
 ##
 
-javax.resource
-javax.resource.cci
-javax.resource.spi
-javax.resource.spi.work
-javax.resource.spi.endpoint
-javax.resource.spi.security
+jakarta.resource
+jakarta.resource.cci
+jakarta.resource.spi
+jakarta.resource.spi.work
+jakarta.resource.spi.endpoint
+jakarta.resource.spi.security

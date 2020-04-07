@@ -18,8 +18,8 @@ package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
-import javax.resource.ConnectionFactoryDefinition;
-import javax.resource.AdministeredObjectDefinition;
+import jakarta.resource.ConnectionFactoryDefinition;
+import jakarta.resource.AdministeredObjectDefinition;
 
 @Stateless
 @LocalBean

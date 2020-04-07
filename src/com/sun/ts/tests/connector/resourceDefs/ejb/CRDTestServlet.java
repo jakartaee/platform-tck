@@ -30,8 +30,8 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 
-import javax.resource.cci.Connection;
-import javax.resource.spi.TransactionSupport;
+import jakarta.resource.cci.Connection;
+import jakarta.resource.spi.TransactionSupport;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;

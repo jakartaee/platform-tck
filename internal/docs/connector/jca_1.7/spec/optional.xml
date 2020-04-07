@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -311,7 +311,7 @@ resource managers, by using the isSameRM method on the XAResource object.</descr
     </assertion>
     <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
       <id>Connector:SPEC:130</id>
-      <description>A ConnectionFactory implementation class is also required to implement javax.resource.Referenceable.</description>
+      <description>A ConnectionFactory implementation class is also required to implement jakarta.resource.Referenceable.</description>
       <location chapter="17" section="5.1" />
     </assertion>
     <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -358,7 +358,7 @@ resource managers, by using the isSameRM method on the XAResource object.</descr
     </assertion>
     <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:138</id>
-      <description>If an Interaction implementation does not support a variant of execute method, the method is required to throw a 						javax.resource.NotSupportedException.</description>
+      <description>If an Interaction implementation does not support a variant of execute method, the method is required to throw a 						jakarta.resource.NotSupportedException.</description>
       <location chapter="17" section="6.1" />
     </assertion>
     <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -398,7 +398,7 @@ resource managers, by using the isSameRM method on the XAResource object.</descr
     </assertion>
     <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:146</id>
-      <description>A CCI implementation is not required to support javax.resource.cci.ResultSetInfo in-terface.</description>
+      <description>A CCI implementation is not required to support jakarta.resource.cci.ResultSetInfo in-terface.</description>
       <location chapter="17" section="10.3" />
     </assertion>
     <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
