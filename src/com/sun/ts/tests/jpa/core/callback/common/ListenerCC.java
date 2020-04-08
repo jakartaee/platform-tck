@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.callback.common;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 public class ListenerCC extends ListenerBase {
 

@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.override.entitylistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @EntityListeners(com.sun.ts.tests.jpa.core.override.entitylistener.ListenerA.class)

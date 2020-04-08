@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.override.embeddable;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Transient;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Transient;
 import java.io.Serializable;
 
 @Embeddable

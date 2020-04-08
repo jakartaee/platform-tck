@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.type;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "B_EMBEDDABLE")

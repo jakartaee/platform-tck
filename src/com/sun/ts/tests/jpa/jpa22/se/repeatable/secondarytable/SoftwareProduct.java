@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jpa.jpa22.se.repeatable.secondarytable;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import jakarta.persistence.Cacheable;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
 /*
  * SoftwareProduct

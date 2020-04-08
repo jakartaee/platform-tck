@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.access.mappedsc;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 

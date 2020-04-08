@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.common.vehicle.ejb3share;
 
-import javax.persistence.EntityTransaction;
+import jakarta.persistence.EntityTransaction;
 
 final public class NoopTransactionWrapper implements EntityTransaction {
 

@@ -25,7 +25,7 @@ import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 import com.sun.ts.tests.jpa.core.callback.common.ListenerB;
 import com.sun.ts.tests.jpa.core.callback.common.ListenerC;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PRODUCT_TABLE")

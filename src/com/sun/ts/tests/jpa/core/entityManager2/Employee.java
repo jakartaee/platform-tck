@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.entityManager2;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 /*

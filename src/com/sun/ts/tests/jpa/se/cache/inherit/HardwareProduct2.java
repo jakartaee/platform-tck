@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jpa.se.cache.inherit;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
 /*
  * HardwareProduct

@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.override.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 
 @NamedQuery(name = "findAll", query = "SELECT m FROM NAMEONLYINXML m")
 @Entity

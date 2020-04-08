@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.metamodelapi.embeddabletype;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "COLTAB")

@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeyjoincolumn;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Semester implements java.io.Serializable {

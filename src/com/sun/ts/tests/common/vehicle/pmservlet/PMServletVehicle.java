@@ -31,7 +31,7 @@ import com.sun.ts.tests.common.vehicle.servlet.ServletVehicle;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import jakarta.transaction.UserTransaction;
 
 @PersistenceContexts({

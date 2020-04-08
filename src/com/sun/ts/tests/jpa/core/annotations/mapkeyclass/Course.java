@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeyclass;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Course implements java.io.Serializable {

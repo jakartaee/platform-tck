@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.types.auto;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "DATATYPES")

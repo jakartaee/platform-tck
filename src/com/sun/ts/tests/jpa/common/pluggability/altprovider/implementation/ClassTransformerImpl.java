@@ -19,7 +19,7 @@ package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
-import javax.persistence.spi.ClassTransformer;
+import jakarta.persistence.spi.ClassTransformer;
 
 public class ClassTransformerImpl implements ClassTransformer {
 

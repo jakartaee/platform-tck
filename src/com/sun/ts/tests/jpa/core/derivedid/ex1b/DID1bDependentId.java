@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex1b;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 /**
  *

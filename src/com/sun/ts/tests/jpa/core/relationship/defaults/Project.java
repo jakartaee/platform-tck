@@ -22,7 +22,7 @@ package com.sun.ts.tests.jpa.core.relationship.defaults;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
 

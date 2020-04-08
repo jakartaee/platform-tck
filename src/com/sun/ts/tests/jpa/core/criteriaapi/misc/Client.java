@@ -21,12 +21,12 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.*;
 import com.sun.ts.tests.jpa.common.schema30.Order;
 
-import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import javax.persistence.criteria.Expression;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.*;
+import jakarta.persistence.criteria.Expression;
 
-import javax.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.EntityType;
 import java.util.*;
 
 public class Client extends Util {
@@ -2101,7 +2101,7 @@ public class Client extends Util {
       }
 
       TestUtil.logMsg("Testing Tuple return type");
-      expected = "javax.persistence.Tuple";
+      expected = "jakarta.persistence.Tuple";
 
       cquery = qbuilder.createQuery(Tuple.class);
       if (cquery != null) {

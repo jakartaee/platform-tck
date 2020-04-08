@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.entitytest.biginteger;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;

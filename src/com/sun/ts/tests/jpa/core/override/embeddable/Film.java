@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.override.embeddable;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable

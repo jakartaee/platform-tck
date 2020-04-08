@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.namednativequery;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @NamedNativeQuery(name = "findAllSQLCoffees2", query = "select * from COFFEE", resultClass = Coffee.class)
 @NamedNativeQuery(name = "findAllSQLCoffees", query = "select * from COFFEE", resultSetMapping = "CoffeeResult")

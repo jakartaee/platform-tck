@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.relationship.annotations;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /*
  * Team

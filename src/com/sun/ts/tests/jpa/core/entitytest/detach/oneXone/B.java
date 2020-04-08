@@ -22,7 +22,7 @@ package com.sun.ts.tests.jpa.core.entitytest.detach.oneXone;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "BEJB_1X1_BI_BTOB")

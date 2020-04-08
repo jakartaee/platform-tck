@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.override.nocallbacklistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "NOENTITYLISTENER_TABLE")

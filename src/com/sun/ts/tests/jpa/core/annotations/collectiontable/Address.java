@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.collectiontable;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Address implements java.io.Serializable {

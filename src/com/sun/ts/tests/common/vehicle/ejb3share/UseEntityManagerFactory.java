@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.common.vehicle.ejb3share;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 
 public interface UseEntityManagerFactory {
   public void setEntityManagerFactory(EntityManagerFactory emf);

@@ -19,10 +19,10 @@ package com.sun.ts.tests.jpa.core.metamodelapi.entitytype;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.metamodelapi.identifiabletype.Address;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MappedSuperclass;
 import java.util.*;
 
 @MappedSuperclass()

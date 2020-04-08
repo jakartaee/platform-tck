@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.nativequery;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /*
  * Item

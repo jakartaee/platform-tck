@@ -20,7 +20,7 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Date;
 
 import java.util.*;

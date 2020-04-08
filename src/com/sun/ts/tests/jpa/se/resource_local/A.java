@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.se.resource_local;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "AEJB_1X1_BI_BTOB")

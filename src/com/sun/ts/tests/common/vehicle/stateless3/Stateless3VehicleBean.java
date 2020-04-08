@@ -25,7 +25,7 @@ import com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import jakarta.ejb.*;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Stateless(name = "Stateless3VehicleBean")
 @PersistenceContext(name = "STATELESS3EM", unitName = "CTS-EM")

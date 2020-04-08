@@ -19,10 +19,10 @@ package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaDelete;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.*;
 
-import javax.persistence.Query;
-import javax.persistence.criteria.*;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.Metamodel;
+import jakarta.persistence.Query;
+import jakarta.persistence.criteria.*;
+import jakarta.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.Metamodel;
 import java.util.*;
 
 public class Client extends Util {
