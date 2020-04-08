@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.onexmanyuni;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

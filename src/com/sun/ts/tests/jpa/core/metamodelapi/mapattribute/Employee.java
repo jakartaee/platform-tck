@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.mapattribute;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Date;
 
 /*

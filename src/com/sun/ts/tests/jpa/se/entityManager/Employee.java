@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.entityManager;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @NamedStoredProcedureQueries({

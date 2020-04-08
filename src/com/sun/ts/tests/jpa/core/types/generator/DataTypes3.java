@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.types.generator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @SequenceGenerator(name = "SEQGENERATOR", allocationSize = 1, initialValue = 10)

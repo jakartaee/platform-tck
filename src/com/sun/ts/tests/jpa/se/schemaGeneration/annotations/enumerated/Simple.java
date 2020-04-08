@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.enumerated;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "SCHEMAGENSIMPLE")

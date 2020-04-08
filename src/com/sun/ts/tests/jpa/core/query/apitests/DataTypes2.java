@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.query.apitests;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "DATATYPES2")

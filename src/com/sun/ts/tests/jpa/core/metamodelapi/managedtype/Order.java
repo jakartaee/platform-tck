@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.managedtype;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.Collection;
 import java.util.Vector;
 

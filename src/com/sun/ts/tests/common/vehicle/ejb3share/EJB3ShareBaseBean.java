@@ -22,9 +22,9 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.harness.RemoteStatus;
 import java.util.Properties;
 import jakarta.ejb.SessionContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 
 abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
   public static final String FINDER_TEST_NAME_KEY = "testName";

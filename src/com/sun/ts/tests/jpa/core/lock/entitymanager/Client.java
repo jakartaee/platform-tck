@@ -20,7 +20,7 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.LockModeType;
+import jakarta.persistence.LockModeType;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;

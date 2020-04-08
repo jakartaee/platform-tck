@@ -21,11 +21,11 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.*;
 import com.sun.ts.tests.jpa.common.schema30.Order;
 
-import javax.persistence.metamodel.Attribute;
-import javax.persistence.NoResultException;
-import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
+import jakarta.persistence.metamodel.Attribute;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.*;
 
 import java.sql.Date;
 import java.util.*;

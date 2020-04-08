@@ -34,7 +34,7 @@
         <jar destfile="${dist.dir}/${pkg.dir}/jpa_alternate_provider.jar">
             <fileset dir="${class.dir}" includes="${pkg.dir}/implementation/*.class"/>
             <fileset dir="${src.dir}" includes="${pkg.dir}/implementation/*.java"/>
-            <zipfileset dir="${src.dir}/${pkg.dir}/METAINF" includes="services/javax.persistence.spi.PersistenceProvider" prefix="META-INF"/>
+            <zipfileset dir="${src.dir}/${pkg.dir}/METAINF" includes="services/jakarta.persistence.spi.PersistenceProvider" prefix="META-INF"/>
         </jar>
     </target>
 </project>

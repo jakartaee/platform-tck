@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.jpa22.se.repeatable.secondarytable;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /*
  * 

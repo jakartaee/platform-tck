@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidirmanyxone;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 /**

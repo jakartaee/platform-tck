@@ -22,9 +22,9 @@ package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import java.math.BigDecimal;
 
 /*

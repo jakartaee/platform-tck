@@ -25,10 +25,10 @@ import com.sun.ts.tests.jpa.ee.common.Account;
 import com.sun.ts.tests.jpa.ee.util.HttpTCKServlet;
 import com.sun.ts.tests.jpa.ee.util.Data;
 
-import javax.persistence.EntityManager;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.persistence.EntityManager;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.UserTransaction;
 import java.io.IOException;
 import java.io.PrintWriter;

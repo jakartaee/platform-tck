@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.convert;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter
 public class NumberToStateConverter

@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.relationship.defaults;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Collection;
 
 /*

@@ -24,7 +24,7 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -394,7 +394,7 @@ public class Client extends PMClientBase {
    * @assertion_ids: PERSISTENCE:JAVADOC:1511; PERSISTENCE:SPEC:1556;
    * PERSISTENCE:SPEC:1954;
    * 
-   * @test_Strategy: Using the javax.persistence.ColumnResult.type attribute,
+   * @test_Strategy: Using the jakarta.persistence.ColumnResult.type attribute,
    * return the totalprice as a String
    *
    */
@@ -505,7 +505,7 @@ public class Client extends PMClientBase {
    * PERSISTENCE:SPEC:1951; PERSISTENCE:SPEC:1952; PERSISTENCE:SPEC:1953;
    * PERSISTENCE:SPEC:1955;
    * 
-   * @test_Strategy: Verify javax.persistence.ConstructorResult can call a class
+   * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class
    * constructor passing in arg data and return the class.
    */
   public void nativeQueryTestConstructorResult() throws Fault {
@@ -579,7 +579,7 @@ public class Client extends PMClientBase {
    * 
    * @assertion_ids: PERSISTENCE:SPEC:1557;
    * 
-   * @test_Strategy: Verify javax.persistence.ConstructorResult can call a class
+   * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class
    * constructor passing in arg data and return the class.
    *
    */
@@ -649,7 +649,7 @@ public class Client extends PMClientBase {
    * 
    * @assertion_ids: PERSISTENCE:SPEC:1557;
    * 
-   * @test_Strategy: Verify javax.persistence.ConstructorResult can call a class
+   * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class
    * constructor passing in arg data except the id and return the class.
    *
    */

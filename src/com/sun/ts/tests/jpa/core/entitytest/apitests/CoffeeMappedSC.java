@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.apitests;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @NamedNativeQueries({
     @NamedNativeQuery(name = "findDecafSQLCoffees", query = "Select c.\"ID\", c.\"BRANDNAME\", c.\"PRICE\" from \"COFFEE\" c where c.\"BRANDNAME\" like '%decaf%' ", resultClass = com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee.class) })

@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.types.property;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "DATATYPES2")

@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @MappedSuperclass()
 public abstract class Employee3 {

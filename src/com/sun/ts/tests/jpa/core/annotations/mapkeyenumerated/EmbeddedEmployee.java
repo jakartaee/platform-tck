@@ -19,7 +19,7 @@ package com.sun.ts.tests.jpa.core.annotations.mapkeyenumerated;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class EmbeddedEmployee implements Serializable {

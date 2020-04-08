@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.orderColumn;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "SCHEMAGENEMP")

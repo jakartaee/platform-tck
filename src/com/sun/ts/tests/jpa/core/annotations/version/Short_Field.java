@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.version;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "A_BASIC")

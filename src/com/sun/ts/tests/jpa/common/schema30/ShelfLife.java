@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.common.schema30;
 
-import javax.persistence.Basic;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Embeddable;
 import java.sql.Date;
 
 /*

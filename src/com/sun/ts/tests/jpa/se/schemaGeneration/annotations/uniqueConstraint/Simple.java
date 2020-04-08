@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.uniqueConstraint;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "SCHEMAGENSIMPLE", uniqueConstraints = @UniqueConstraint(name = "MYUNIQUECONSTRAINT", columnNames = {

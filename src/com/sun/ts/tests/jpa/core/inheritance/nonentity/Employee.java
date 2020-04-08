@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /*
  * Employee

@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.jpa22.generators.tablegenerators;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "DATATYPES")

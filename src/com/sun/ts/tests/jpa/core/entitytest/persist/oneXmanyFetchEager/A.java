@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.entitytest.persist.oneXmanyFetchEager;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Iterator;
 import java.util.List;
 

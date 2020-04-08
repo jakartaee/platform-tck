@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.am;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigInteger;
 
 /*

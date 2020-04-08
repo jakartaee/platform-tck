@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.override.entitylistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
 
-import javax.persistence.PreRemove;
+import jakarta.persistence.PreRemove;
 
 public class ListenerA {
 

@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.annotations.embeddable;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 
 @Embeddable
 @Access(AccessType.PROPERTY)

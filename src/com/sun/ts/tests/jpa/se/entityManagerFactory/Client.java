@@ -22,7 +22,7 @@ import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.*;
 
 public class Client extends PMClientBase {
@@ -128,7 +128,7 @@ public class Client extends PMClientBase {
   @CleanupMethod(name = "cleanupNoSuper")
   public void createEntityManagerFactoryNoBeanValidatorTest() throws Fault {
     boolean pass = false;
-    myProps.put("javax.persistence.validation.mode", "callback");
+    myProps.put("jakarta.persistence.validation.mode", "callback");
     displayMap(myProps);
     try {
       EntityManagerFactory emf = Persistence

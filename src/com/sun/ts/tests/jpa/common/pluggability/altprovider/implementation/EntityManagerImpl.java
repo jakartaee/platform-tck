@@ -19,14 +19,14 @@ package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.metamodel.Metamodel;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaDelete;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.CriteriaUpdate;
+import jakarta.persistence.metamodel.Metamodel;
 
-public class EntityManagerImpl implements javax.persistence.EntityManager {
+public class EntityManagerImpl implements jakarta.persistence.EntityManager {
   /**
    * Store if this entity manager has been closed for test
    * closeAfterCloseCausesISException

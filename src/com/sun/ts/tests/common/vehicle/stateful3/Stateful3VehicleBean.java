@@ -29,7 +29,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3VehicleBean")

@@ -25,7 +25,7 @@ import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
 import com.sun.ts.tests.jpa.core.callback.common.GenerictListenerImpl;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * This class defines some entity callback methods for an entity class. This

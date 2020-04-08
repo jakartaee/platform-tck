@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.mappedsc.annotation;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 

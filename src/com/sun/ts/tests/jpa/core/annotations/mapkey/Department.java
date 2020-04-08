@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Map;
 
 /*

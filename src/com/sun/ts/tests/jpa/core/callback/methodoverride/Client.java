@@ -25,7 +25,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
 import com.sun.ts.tests.jpa.core.callback.common.EntityCallbackClientBase;
 
-import javax.persistence.Query;
+import jakarta.persistence.Query;
 import java.util.*;
 
 public class Client extends EntityCallbackClientBase {

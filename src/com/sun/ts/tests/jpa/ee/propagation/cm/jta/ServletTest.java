@@ -29,14 +29,14 @@ import com.sun.ts.tests.jpa.ee.util.Data;
 import java.io.StringWriter;
 import java.io.PrintWriter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import jakarta.ejb.EJB;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Status;
 import jakarta.transaction.UserTransaction;
 import java.io.IOException;

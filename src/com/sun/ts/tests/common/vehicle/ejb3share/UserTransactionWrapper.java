@@ -22,8 +22,8 @@ package com.sun.ts.tests.common.vehicle.ejb3share;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceException;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceException;
 import jakarta.transaction.NotSupportedException;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
@@ -86,7 +86,7 @@ final public class UserTransactionWrapper implements EntityTransaction {
     try {
       delegate.commit();
     } catch (Exception e) {
-      throw new javax.persistence.RollbackException(e);
+      throw new jakarta.persistence.RollbackException(e);
     }
   }
 

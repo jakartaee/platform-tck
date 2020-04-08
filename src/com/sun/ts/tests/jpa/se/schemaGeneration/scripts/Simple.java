@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.schemaGeneration.scripts;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity

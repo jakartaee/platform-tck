@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeytemporal;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "EMP_MAPKEYCOL2")

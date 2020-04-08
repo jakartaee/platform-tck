@@ -22,11 +22,11 @@ import com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.Entit
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.EntityManager;
-import javax.persistence.SharedCacheMode;
-import javax.persistence.ValidationMode;
-import javax.persistence.spi.PersistenceUnitInfo;
-import javax.persistence.spi.PersistenceUnitTransactionType;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.SharedCacheMode;
+import jakarta.persistence.ValidationMode;
+import jakarta.persistence.spi.PersistenceUnitInfo;
+import jakarta.persistence.spi.PersistenceUnitTransactionType;
 
 import com.sun.ts.tests.jpa.common.pluggability.util.LogFileProcessor;
 
@@ -582,7 +582,7 @@ public class Client extends PMClientBase {
 
     String expected[] = { LOGMESSAGE_PREFIX + "Called getProviderUtil()" };
 
-    javax.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
+    jakarta.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
     getLogProcessor();
 
     logProcessor.fetchLog();
@@ -603,7 +603,7 @@ public class Client extends PMClientBase {
 
     String expected[] = { LOGMESSAGE_PREFIX + "Called isLoaded()" };
 
-    javax.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
+    jakarta.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
     getLogProcessor();
 
     logProcessor.fetchLog();

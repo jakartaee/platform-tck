@@ -102,7 +102,7 @@ public class Client extends PMClientBase {
           + " the transaction is marked for rollback");
       if (!pass) {
         if (e instanceof jakarta.transaction.TransactionRolledbackException
-            || e instanceof javax.persistence.PersistenceException) {
+            || e instanceof jakarta.persistence.PersistenceException) {
           pass = true;
         } else {
           TestUtil.logErr(
