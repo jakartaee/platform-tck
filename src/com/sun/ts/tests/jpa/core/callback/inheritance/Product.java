@@ -23,7 +23,7 @@ package com.sun.ts.tests.jpa.core.callback.inheritance;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PRODUCT_TABLE")

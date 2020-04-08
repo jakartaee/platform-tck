@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.nestedembedding;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class ZipCode implements java.io.Serializable {

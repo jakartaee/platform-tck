@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 public class CacheImpl implements Cache {
 

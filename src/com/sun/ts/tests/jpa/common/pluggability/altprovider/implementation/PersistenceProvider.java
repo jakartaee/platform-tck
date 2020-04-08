@@ -16,14 +16,14 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.spi.*;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.spi.*;
 import java.net.URL;
 import java.util.*;
 
 public class PersistenceProvider
-    implements javax.persistence.spi.PersistenceProvider,
-    javax.persistence.spi.ProviderUtil {
+    implements jakarta.persistence.spi.PersistenceProvider,
+    jakarta.persistence.spi.ProviderUtil {
 
   // Used to store static PersistenceUnitInfo where this is the provider
   static Map<String, PersistenceUnitInfoImpl> puInfoMap;
@@ -54,7 +54,7 @@ public class PersistenceProvider
     //
     // Since this provider is packaged in the EAR and we are not overriding
     // the provider (specified in the persistence.xml file) via
-    // javax.persistence.provider, therefore when this
+    // jakarta.persistence.provider, therefore when this
     // method is called it is ok to return an instance of EMF. The only
     // case we won't is if the unitName passed in doesn't contain "CTS".
     //
@@ -110,7 +110,7 @@ public class PersistenceProvider
     }
     if (properties != null) {
       if (properties.size() > 0) {
-        String pp = (String) properties.get("javax.persistence.provider");
+        String pp = (String) properties.get("jakarta.persistence.provider");
         if (pp == null) {
           System.out.println(
               "returning null from ALTERNATE_PROVIDER: PersistenceProvider.createEntityManagerFactory(String, Map) no provider specified");
@@ -219,7 +219,7 @@ public class PersistenceProvider
 
       // properties:
       Properties properties = new Properties();
-      properties.setProperty("javax.persistence.provider", "foobar");
+      properties.setProperty("jakarta.persistence.provider", "foobar");
 
       puinfo.properties = properties;
       m.put(puinfo.puName, puinfo);

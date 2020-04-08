@@ -22,7 +22,7 @@ package com.sun.ts.tests.jpa.core.callback.xml;
 
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 public class LineItem extends LineItemSuper
     implements java.io.Serializable, CallbackStatusIF {

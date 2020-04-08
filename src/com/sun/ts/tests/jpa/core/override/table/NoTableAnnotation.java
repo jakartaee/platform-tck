@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.override.table;
 
-import javax.persistence.Id;
+import jakarta.persistence.Id;
 
 public class NoTableAnnotation implements java.io.Serializable {
 

@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Embeddable
 @Access(AccessType.PROPERTY)

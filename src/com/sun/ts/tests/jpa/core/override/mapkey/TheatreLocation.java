@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

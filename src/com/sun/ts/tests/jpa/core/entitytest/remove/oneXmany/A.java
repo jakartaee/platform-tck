@@ -22,7 +22,7 @@ package com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Collection;
 
 @Entity

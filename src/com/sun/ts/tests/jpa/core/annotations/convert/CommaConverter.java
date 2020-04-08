@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter(autoApply = false)
 public class CommaConverter implements AttributeConverter<String, String> {

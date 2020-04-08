@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.lock.entitymanager;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @NamedNativeQueries({
     @NamedNativeQuery(name = "findAllSQLCoffees2", query = "select * from COFFEE", resultClass = com.sun.ts.tests.jpa.core.lock.entitymanager.Coffee.class),

@@ -22,10 +22,10 @@ package com.sun.ts.tests.jpa.core.callback.inheritance;
 
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 
 @Entity
 @DiscriminatorValue("PartProduct")

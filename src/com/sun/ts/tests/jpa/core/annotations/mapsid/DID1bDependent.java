@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapsid;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import java.io.Serializable;
 
 /**

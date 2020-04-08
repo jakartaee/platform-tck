@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.entityManagerFactory;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /*
  * Member

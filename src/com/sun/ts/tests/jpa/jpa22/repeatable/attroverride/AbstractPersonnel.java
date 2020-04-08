@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.attroverride;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
 
 /*
  * AbstractPersonnel

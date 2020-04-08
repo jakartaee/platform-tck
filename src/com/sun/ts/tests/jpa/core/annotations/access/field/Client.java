@@ -22,7 +22,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
-import javax.persistence.Query;
+import jakarta.persistence.Query;
 import java.util.Arrays;
 import java.util.Properties;
 

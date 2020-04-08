@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapsid;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 /**
  *

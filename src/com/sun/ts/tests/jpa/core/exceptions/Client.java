@@ -20,7 +20,7 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Properties;
 
 public class Client extends PMClientBase {
@@ -69,7 +69,7 @@ public class Client extends PMClientBase {
       TestUtil.logTrace("Invoked persist without an active transaction");
       getEntityManager().persist(newCoffee);
 
-    } catch (javax.persistence.TransactionRequiredException tre) {
+    } catch (jakarta.persistence.TransactionRequiredException tre) {
       pass = true;
       TestUtil.logTrace("In JavaEE, Exception Caught as Expected: " + tre);
     } catch (Exception e) {
@@ -148,7 +148,7 @@ public class Client extends PMClientBase {
    * PERSISTENCE:SPEC:740; JavaEE:SPEC:10006
    * 
    * @test_Strategy: flush() throws a
-   * javax.persistence.TransactionRequiredException if there is no transaction
+   * jakarta.persistence.TransactionRequiredException if there is no transaction
    */
 
   public void exceptionTest2() throws Fault {
@@ -165,7 +165,7 @@ public class Client extends PMClientBase {
       TestUtil.logTrace("try flush");
       getEntityManager().flush();
 
-    } catch (javax.persistence.TransactionRequiredException tre) {
+    } catch (jakarta.persistence.TransactionRequiredException tre) {
       pass = true;
       TestUtil.logTrace("Exception Caught as Expected: " + tre);
     } catch (Exception e) {
@@ -270,7 +270,7 @@ public class Client extends PMClientBase {
       TestUtil.logTrace("Call remove without an active transaction");
       getEntityManager().remove(newCoffee);
 
-    } catch (javax.persistence.TransactionRequiredException tre) {
+    } catch (jakarta.persistence.TransactionRequiredException tre) {
       pass = true;
       TestUtil.logTrace("Exception Caught as Expected: " + tre);
     } catch (Exception e) {

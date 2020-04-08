@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.identifiabletype;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Version;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 
 /**

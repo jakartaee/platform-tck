@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.types.property;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import com.sun.ts.tests.jpa.core.types.common.Grade;

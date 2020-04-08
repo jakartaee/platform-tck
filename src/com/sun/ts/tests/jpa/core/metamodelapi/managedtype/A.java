@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.metamodelapi.managedtype;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 

@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.relationship.defaults;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 /*
  * AnnualReview

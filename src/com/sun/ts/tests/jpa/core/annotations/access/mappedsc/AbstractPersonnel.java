@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.access.mappedsc;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
 
 /*
  * AbstractPersonnel

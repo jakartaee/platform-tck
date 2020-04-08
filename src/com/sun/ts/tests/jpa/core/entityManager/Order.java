@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.entityManager;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PURCHASE_ORDER")

@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.embeddable;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "B_EMBEDDABLE")

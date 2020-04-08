@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import javax.persistence.EntityGraph;
+import jakarta.persistence.EntityGraph;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;

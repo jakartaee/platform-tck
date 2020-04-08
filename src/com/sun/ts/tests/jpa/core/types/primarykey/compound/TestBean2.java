@@ -22,7 +22,7 @@ package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @IdClass(com.sun.ts.tests.jpa.core.types.primarykey.compound.CompoundPK2.class)

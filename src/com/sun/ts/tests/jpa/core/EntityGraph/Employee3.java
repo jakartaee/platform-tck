@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.EntityGraph;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @NamedEntityGraphs({

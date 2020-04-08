@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 /*
  * Class used to define a compound primary key for Entity beans.

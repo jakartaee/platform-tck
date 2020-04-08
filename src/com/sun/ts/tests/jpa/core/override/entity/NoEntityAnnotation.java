@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.override.entity;
 
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 
 @NamedQuery(name = "findAllNoEntityAnnotation", query = "SELECT m FROM NOENTITYANNOTATION m")
 public class NoEntityAnnotation implements java.io.Serializable {

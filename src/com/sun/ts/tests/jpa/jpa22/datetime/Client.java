@@ -26,9 +26,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Properties;
 
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
@@ -56,9 +56,9 @@ public class Client extends PMClientBase {
       super.setup(args, p);
 
       Properties props = getPersistenceUnitProperties();
-      props.put("javax.persistence.schema-generation.database.action",
+      props.put("jakarta.persistence.schema-generation.database.action",
           "drop-and-create");
-      props.put("javax.persistence.schema-generation.create-database-schemas",
+      props.put("jakarta.persistence.schema-generation.create-database-schemas",
           "true");
       displayProperties(props);
       TestUtil.logMsg(" - executing persistence schema generation");
@@ -76,7 +76,7 @@ public class Client extends PMClientBase {
   public void cleanup() throws Fault {
     TestUtil.logMsg("Cleanup: JPA 2.2 Java 8 date and time types test");
     Properties props = getPersistenceUnitProperties();
-    props.put("javax.persistence.schema-generation.database.action", "drop");
+    props.put("jakarta.persistence.schema-generation.database.action", "drop");
     displayProperties(props);
     TestUtil.logMsg(" - executing persistence schema cleanup");
     Persistence.generateSchema(getPersistenceUnitName(), props);

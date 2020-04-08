@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.lock.query;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Date;
 
 /*
