@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.temporal;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.convert;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "B_EMBEDDABLE")

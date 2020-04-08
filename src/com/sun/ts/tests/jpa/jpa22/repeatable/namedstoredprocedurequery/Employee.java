@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.namedstoredprocedurequery;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 /*

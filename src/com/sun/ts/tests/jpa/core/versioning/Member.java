@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.versioning;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigInteger;
 
 /*

@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.common.vehicle.ejb3share;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
 public interface UseEntityManager {
   public void setEntityManager(EntityManager em);

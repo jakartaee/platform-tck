@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.apitests;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @NamedNativeQueries({
     @NamedNativeQuery(name = "findAllSQLCoffees2", query = "select \"ID\", \"BRANDNAME\", \"PRICE\" from \"COFFEE\"", resultClass = com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee.class),

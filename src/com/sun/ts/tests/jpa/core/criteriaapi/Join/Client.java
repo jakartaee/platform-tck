@@ -21,10 +21,10 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.*;
 import com.sun.ts.tests.jpa.common.schema30.Order;
 
-import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import javax.persistence.metamodel.PluralAttribute;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.*;
+import jakarta.persistence.metamodel.PluralAttribute;
 import java.util.*;
 
 public class Client extends Util {

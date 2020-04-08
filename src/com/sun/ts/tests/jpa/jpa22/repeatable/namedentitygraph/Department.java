@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.namedentitygraph;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Map;
 
 /*

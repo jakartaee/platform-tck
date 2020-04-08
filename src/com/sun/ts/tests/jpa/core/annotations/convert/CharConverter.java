@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import javax.persistence.Converter;
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
 
 @Converter(autoApply = true)
 public class CharConverter implements AttributeConverter<char[], String> {

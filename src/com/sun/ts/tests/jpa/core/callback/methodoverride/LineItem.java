@@ -24,7 +24,7 @@ import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 import com.sun.ts.tests.jpa.core.callback.common.GenerictListenerImpl;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "LINEITEM_TABLE")

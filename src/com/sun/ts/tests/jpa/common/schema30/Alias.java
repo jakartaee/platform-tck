@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.common.schema30;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Collection;
 
 /*

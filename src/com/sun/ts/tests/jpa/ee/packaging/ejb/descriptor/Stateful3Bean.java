@@ -23,10 +23,10 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.*;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;

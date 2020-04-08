@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidirmanyxmany;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.Collection;
 

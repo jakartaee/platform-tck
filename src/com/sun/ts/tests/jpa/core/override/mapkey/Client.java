@@ -20,7 +20,7 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.Query;
+import jakarta.persistence.Query;
 import java.util.*;
 
 public class Client extends PMClientBase {

@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.annotations.assocoverride;
 
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MappedSuperclass;
 import java.sql.Date;
 
 /*

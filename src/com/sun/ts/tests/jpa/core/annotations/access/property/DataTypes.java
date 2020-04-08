@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.annotations.access.property;
 
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "DATATYPES")

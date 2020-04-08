@@ -20,8 +20,8 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.*;
 import com.sun.ts.lib.harness.SetupMethod;
 
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 import java.sql.Date;
 import java.util.*;
 

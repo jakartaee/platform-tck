@@ -24,7 +24,7 @@ import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
 import com.sun.ts.tests.jpa.core.callback.common.GenerictListenerImpl;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * All callback methods except PrePersist in this class throw RuntimeException,

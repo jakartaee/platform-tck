@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.orderby;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 
 @Embeddable
 public class Address2 implements java.io.Serializable {

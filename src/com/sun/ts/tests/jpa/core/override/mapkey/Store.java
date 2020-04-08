@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;

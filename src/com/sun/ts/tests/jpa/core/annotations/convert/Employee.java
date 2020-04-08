@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import javax.persistence.*;
-import javax.persistence.Convert;
+import jakarta.persistence.*;
+import jakarta.persistence.Convert;
 
 @Entity
 @Table(name = "EMPLOYEE")

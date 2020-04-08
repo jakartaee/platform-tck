@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.listattribute;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 /**

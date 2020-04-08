@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex1a;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 
 /**

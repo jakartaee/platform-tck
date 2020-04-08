@@ -18,8 +18,8 @@ package com.sun.ts.tests.jpa.core.override.entitylistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
 
-import javax.persistence.PostPersist;
-import javax.persistence.PrePersist;
+import jakarta.persistence.PostPersist;
+import jakarta.persistence.PrePersist;
 
 public class ListenerD {
 

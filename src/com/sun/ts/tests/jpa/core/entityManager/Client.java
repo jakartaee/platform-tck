@@ -22,9 +22,9 @@ import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.*;
-import javax.persistence.criteria.*;
-import javax.persistence.metamodel.Metamodel;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.*;
+import jakarta.persistence.metamodel.Metamodel;
 import java.util.*;
 
 public class Client extends PMClientBase {
@@ -1261,7 +1261,7 @@ public class Client extends PMClientBase {
 
     try {
       EntityManager em = getEntityManager();
-      String expectedKey = "javax.persistence.cache.retrieveMode";
+      String expectedKey = "jakarta.persistence.cache.retrieveMode";
       CacheRetrieveMode expectedValue = CacheRetrieveMode.USE;
       TestUtil.logTrace(
           "Setting property:" + expectedKey + "," + expectedValue.toString());

@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.relationship.annotations;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
 

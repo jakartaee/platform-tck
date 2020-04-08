@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Course implements java.io.Serializable {

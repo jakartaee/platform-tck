@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.cache.inherit;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /*
  * 

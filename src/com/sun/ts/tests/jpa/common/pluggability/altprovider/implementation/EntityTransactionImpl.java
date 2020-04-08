@@ -17,7 +17,7 @@
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
 public class EntityTransactionImpl
-    implements javax.persistence.EntityTransaction {
+    implements jakarta.persistence.EntityTransaction {
   protected boolean isActive;
 
   protected TSLogger logger;
