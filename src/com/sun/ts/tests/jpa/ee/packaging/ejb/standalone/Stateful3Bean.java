@@ -24,13 +24,13 @@ import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.ee.common.B;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")

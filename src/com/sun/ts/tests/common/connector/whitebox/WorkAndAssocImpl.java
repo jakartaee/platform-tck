@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2010, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,11 +18,11 @@ package com.sun.ts.tests.common.connector.whitebox;
 
 import com.sun.ts.tests.common.connector.util.*;
 
-import javax.resource.ResourceException;
-import javax.resource.spi.work.WorkException;
-import javax.resource.spi.ResourceAdapterAssociation;
-import javax.resource.spi.ResourceAdapter;
-import javax.resource.spi.work.WorkManager;
+import jakarta.resource.ResourceException;
+import jakarta.resource.spi.work.WorkException;
+import jakarta.resource.spi.ResourceAdapterAssociation;
+import jakarta.resource.spi.ResourceAdapter;
+import jakarta.resource.spi.work.WorkManager;
 
 import java.util.Vector;
 

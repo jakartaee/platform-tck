@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.DriverManagerConnection;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -129,7 +129,7 @@ public class Client extends PMClientBase {
       try {
         TestUtil.logTrace("Persist an order");
         getEntityTransaction().begin();
-        getEntityManager().setProperty("javax.persistence.cache.storeMode",
+        getEntityManager().setProperty("jakarta.persistence.cache.storeMode",
             CacheStoreMode.BYPASS);
         Order order = new Order(1, 101);
         getEntityManager().persist(order);
@@ -214,7 +214,7 @@ public class Client extends PMClientBase {
 
         TestUtil.logTrace("Persist an order");
         getEntityTransaction().begin();
-        getEntityManager().setProperty("javax.persistence.cache.storeMode",
+        getEntityManager().setProperty("jakarta.persistence.cache.storeMode",
             CacheStoreMode.USE);
         Order order = new Order(1, 101);
         getEntityManager().persist(order);
@@ -299,7 +299,7 @@ public class Client extends PMClientBase {
 
         TestUtil.logTrace("Persist an order");
         getEntityTransaction().begin();
-        getEntityManager().setProperty("javax.persistence.cache.storeMode",
+        getEntityManager().setProperty("jakarta.persistence.cache.storeMode",
             CacheStoreMode.REFRESH);
         Order order = new Order(1, 101);
         getEntityManager().persist(order);
@@ -403,9 +403,9 @@ public class Client extends PMClientBase {
 
         TestUtil.logTrace(
             "Find the order and verify it is not loaded into the cache");
-        getEntityManager().setProperty("javax.persistence.cache.retrieveMode",
+        getEntityManager().setProperty("jakarta.persistence.cache.retrieveMode",
             CacheRetrieveMode.BYPASS);
-        getEntityManager().setProperty("javax.persistence.cache.storeMode",
+        getEntityManager().setProperty("jakarta.persistence.cache.storeMode",
             CacheStoreMode.BYPASS);
 
         Order order = getEntityManager().find(Order.class, 1);
@@ -474,9 +474,9 @@ public class Client extends PMClientBase {
 
         TestUtil.logTrace(
             "Find the order and verify it is not loaded into the cache");
-        getEntityManager().setProperty("javax.persistence.cache.retrieveMode",
+        getEntityManager().setProperty("jakarta.persistence.cache.retrieveMode",
             CacheRetrieveMode.USE);
-        getEntityManager().setProperty("javax.persistence.cache.storeMode",
+        getEntityManager().setProperty("jakarta.persistence.cache.storeMode",
             CacheStoreMode.BYPASS);
         Order order = getEntityManager().find(Order.class, 1);
 
@@ -526,11 +526,11 @@ public class Client extends PMClientBase {
    * TestUtil.logErr("Cache returned: " + b +
    * ", therefore cache does contain order "); } } else {
    * TestUtil.logErr("Cache returned was null"); }
-   * getEntityManager().setProperty("javax.persistence.cache.retrieveMode",
+   * getEntityManager().setProperty("jakarta.persistence.cache.retrieveMode",
    * CacheRetrieveMode.USE);
-   * getEntityManager().setProperty("javax.persistence.cache.storeMode",
+   * getEntityManager().setProperty("jakarta.persistence.cache.storeMode",
    * CacheStoreMode.BYPASS); Map map = new Properties();
-   * map.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+   * map.put("jakarta.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
    * Order order = getEntityManager().find(Order.class, 1, map); cache =
    * getEntityManagerFactory().getCache();
    * 

@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.resource.spi.BootstrapContext;
-import javax.resource.spi.work.WorkManager;
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.work.WorkManager;
 import com.sun.ts.tests.common.connector.util.*;
 import java.util.Timer;
-import javax.resource.spi.XATerminator;
+import jakarta.resource.spi.XATerminator;
 import javax.transaction.xa.Xid;
-import javax.resource.spi.UnavailableException;
+import jakarta.resource.spi.UnavailableException;
 import jakarta.transaction.TransactionSynchronizationRegistry;
 import com.sun.ts.lib.util.TSNamingContext;
 
@@ -169,7 +169,7 @@ public class TestBootstrapContext {
   private void testIsContextSupported() {
     try {
       // verify server supports TransactionContext
-      Class tic = javax.resource.spi.work.TransactionContext.class;
+      Class tic = jakarta.resource.spi.work.TransactionContext.class;
       boolean b1 = bsc.isContextSupported(tic);
       if (b1) {
         Debug.trace("TransactionContext supported by Server.");
@@ -177,7 +177,7 @@ public class TestBootstrapContext {
             .logState("TransactionContext supported by Server.");
       }
 
-      Class sic = javax.resource.spi.work.SecurityContext.class;
+      Class sic = jakarta.resource.spi.work.SecurityContext.class;
       boolean b2 = bsc.isContextSupported(sic);
       if (b2) {
         Debug.trace("SecurityContext supported by Server.");
@@ -185,7 +185,7 @@ public class TestBootstrapContext {
             .logState("SecurityContext supported by Server.");
       }
 
-      Class hic = javax.resource.spi.work.HintsContext.class;
+      Class hic = jakarta.resource.spi.work.HintsContext.class;
       boolean b3 = bsc.isContextSupported(hic);
       if (b3) {
         ConnectorStatus.getConnectorStatus()

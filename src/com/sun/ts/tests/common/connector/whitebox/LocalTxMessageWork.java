@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,16 +28,16 @@ import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.util.AppException;
 
-import javax.resource.ResourceException;
-import javax.resource.spi.endpoint.MessageEndpoint;
-import javax.resource.spi.endpoint.MessageEndpointFactory;
-import javax.resource.spi.UnavailableException;
-import javax.resource.spi.work.Work;
-import javax.resource.spi.work.WorkContext;
-import javax.resource.spi.work.WorkManager;
-import javax.resource.spi.BootstrapContext;
-import javax.resource.spi.XATerminator;
-import javax.resource.spi.work.WorkContextProvider;
+import jakarta.resource.ResourceException;
+import jakarta.resource.spi.endpoint.MessageEndpoint;
+import jakarta.resource.spi.endpoint.MessageEndpointFactory;
+import jakarta.resource.spi.UnavailableException;
+import jakarta.resource.spi.work.Work;
+import jakarta.resource.spi.work.WorkContext;
+import jakarta.resource.spi.work.WorkManager;
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.XATerminator;
+import jakarta.resource.spi.work.WorkContextProvider;
 
 public class LocalTxMessageWork implements Work, WorkContextProvider {
 

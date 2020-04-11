@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,9 @@ import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import com.sun.ts.tests.common.connector.util.*;
-import javax.resource.*;
-import javax.resource.spi.*;
-import javax.resource.spi.work.*;
+import jakarta.resource.*;
+import jakarta.resource.spi.*;
+import jakarta.resource.spi.work.*;
 import java.beans.PropertyDescriptor;
 import java.io.PrintWriter;
 
@@ -308,29 +308,29 @@ public class APIAssertionTest {
   private void checkIllegalStateException() {
 
     try {
-      javax.resource.spi.IllegalStateException ne = new javax.resource.spi.IllegalStateException();
+      jakarta.resource.spi.IllegalStateException ne = new jakarta.resource.spi.IllegalStateException();
       throw ne;
-    } catch (javax.resource.spi.IllegalStateException ex) {
+    } catch (jakarta.resource.spi.IllegalStateException ex) {
       logAPIPass("IllegalStateException(null) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying IllegalStateException(null)");
     }
 
     try {
-      javax.resource.spi.IllegalStateException ne = new javax.resource.spi.IllegalStateException(
+      jakarta.resource.spi.IllegalStateException ne = new jakarta.resource.spi.IllegalStateException(
           "message1");
       throw ne;
-    } catch (javax.resource.spi.IllegalStateException ex) {
+    } catch (jakarta.resource.spi.IllegalStateException ex) {
       logAPIPass("IllegalStateException(str) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying IllegalStateException(str)");
     }
 
     try {
-      javax.resource.spi.IllegalStateException ne = new javax.resource.spi.IllegalStateException(
+      jakarta.resource.spi.IllegalStateException ne = new jakarta.resource.spi.IllegalStateException(
           "message1", "ERRCODE1");
       throw ne;
-    } catch (javax.resource.spi.IllegalStateException ex) {
+    } catch (jakarta.resource.spi.IllegalStateException ex) {
       logAPIPass("IllegalStateException(str, str) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying IllegalStateException(str, str)");
@@ -338,10 +338,10 @@ public class APIAssertionTest {
 
     try {
       Exception someThrowable = new Exception("test");
-      javax.resource.spi.IllegalStateException ne = new javax.resource.spi.IllegalStateException(
+      jakarta.resource.spi.IllegalStateException ne = new jakarta.resource.spi.IllegalStateException(
           someThrowable);
       throw ne;
-    } catch (javax.resource.spi.IllegalStateException ex) {
+    } catch (jakarta.resource.spi.IllegalStateException ex) {
       logAPIPass("IllegalStateException(throwable) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying IllegalStateException(throwable)");
@@ -349,10 +349,10 @@ public class APIAssertionTest {
 
     try {
       Exception someThrowable = new Exception("test");
-      javax.resource.spi.IllegalStateException ne = new javax.resource.spi.IllegalStateException(
+      jakarta.resource.spi.IllegalStateException ne = new jakarta.resource.spi.IllegalStateException(
           "someString", someThrowable);
       throw ne;
-    } catch (javax.resource.spi.IllegalStateException ex) {
+    } catch (jakarta.resource.spi.IllegalStateException ex) {
       logAPIPass("IllegalStateException(str, throwable) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying IllegalStateException(str, throwable)");
@@ -888,29 +888,29 @@ public class APIAssertionTest {
   private void checkSecurityException() {
 
     try {
-      javax.resource.spi.SecurityException ne = new javax.resource.spi.SecurityException();
+      jakarta.resource.spi.SecurityException ne = new jakarta.resource.spi.SecurityException();
       throw ne;
-    } catch (javax.resource.spi.SecurityException ex) {
+    } catch (jakarta.resource.spi.SecurityException ex) {
       logAPIPass("SecurityException(null) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying SecurityException(null)");
     }
 
     try {
-      javax.resource.spi.SecurityException ne = new javax.resource.spi.SecurityException(
+      jakarta.resource.spi.SecurityException ne = new jakarta.resource.spi.SecurityException(
           "message1");
       throw ne;
-    } catch (javax.resource.spi.SecurityException ex) {
+    } catch (jakarta.resource.spi.SecurityException ex) {
       logAPIPass("SecurityException(str) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying SecurityException(str)");
     }
 
     try {
-      javax.resource.spi.SecurityException ne = new javax.resource.spi.SecurityException(
+      jakarta.resource.spi.SecurityException ne = new jakarta.resource.spi.SecurityException(
           "message1", "ERRCODE1");
       throw ne;
-    } catch (javax.resource.spi.SecurityException ex) {
+    } catch (jakarta.resource.spi.SecurityException ex) {
       logAPIPass("SecurityException(str, str) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying SecurityException(str, str)");
@@ -918,10 +918,10 @@ public class APIAssertionTest {
 
     try {
       Exception someThrowable = new Exception("test");
-      javax.resource.spi.SecurityException ne = new javax.resource.spi.SecurityException(
+      jakarta.resource.spi.SecurityException ne = new jakarta.resource.spi.SecurityException(
           someThrowable);
       throw ne;
-    } catch (javax.resource.spi.SecurityException ex) {
+    } catch (jakarta.resource.spi.SecurityException ex) {
       logAPIPass("SecurityException(throwable) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying SecurityException(throwable)");
@@ -929,10 +929,10 @@ public class APIAssertionTest {
 
     try {
       Exception someThrowable = new Exception("test");
-      javax.resource.spi.SecurityException ne = new javax.resource.spi.SecurityException(
+      jakarta.resource.spi.SecurityException ne = new jakarta.resource.spi.SecurityException(
           "someString", someThrowable);
       throw ne;
-    } catch (javax.resource.spi.SecurityException ex) {
+    } catch (jakarta.resource.spi.SecurityException ex) {
       logAPIPass("SecurityException(str, throwable) passed");
     } catch (Exception ex) {
       Debug.trace("Error verifying SecurityException(str, throwable)");

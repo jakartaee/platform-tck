@@ -88,7 +88,7 @@ Used in: messagelistener
 <!--
 The element activationspec-class specifies the fully qualified Java class
 name of the activation specification class. This class must implement the
-javax.resource.spi.ActivationSpec interface. The implementation
+jakarta.resource.spi.ActivationSpec interface. The implementation
 of this class is required to be a JavaBean.
 
 Used in: activationspec
@@ -139,10 +139,10 @@ optional description specifies any resource adapter specific requirement
 for the support of security contract and authentication mechanism.
 
 Note that BasicPassword mechanism type should support the
-javax.resource.spi.security.PasswordCredential interface.
+jakarta.resource.spi.security.PasswordCredential interface.
 The Kerbv5 mechanism type should support the
 org.ietf.jgss.GSSCredential interface or the deprecated
-javax.resource.spi.security.GenericCredential interface.
+jakarta.resource.spi.security.GenericCredential interface.
 
 Used in: outbound-resourceadapter
 -->
@@ -263,7 +263,7 @@ adapter.
 
 Used in: connection-definition
 
-Example: <connection-interface>javax.resource.cci.Connection
+Example: <connection-interface>jakarta.resource.cci.Connection
          </connection-interface>
 -->
 <!ELEMENT connection-interface (#PCDATA)>
@@ -290,7 +290,7 @@ Used in: connection-definition
 Example: <connectionfactory-interface>com.wombat.ConnectionFactory
          </connectionfactory-interface>
 OR
-<connectionfactory-interface>javax.resource.cci.ConnectionFactory
+<connectionfactory-interface>jakarta.resource.cci.ConnectionFactory
          </connectionfactory-interface>
 -->
 <!ELEMENT connectionfactory-interface (#PCDATA)>
@@ -303,11 +303,11 @@ to find out the Credential interface it should use as part of the
 security contract.
 
 The possible values are:
-   <credential-interface>javax.resource.spi.security.PasswordCredential
+   <credential-interface>jakarta.resource.spi.security.PasswordCredential
         </credential-interface>
    <credential-interface>org.ietf.jgss.GSSCredential
         </credential-interface>
-   <credential-interface>javax.resource.spi.security.GenericCredential
+   <credential-interface>jakarta.resource.spi.security.GenericCredential
         </credential-interface>
 
 Used in: authentication-mechanism
@@ -412,7 +412,7 @@ Used in: license
 
 <!--
 The element managedconnectionfactory-class specifies the fully qualified
-name of the Java class that implements the javax.resource.spi.Managed-
+name of the Java class that implements the jakarta.resource.spi.Managed-
 ConnectionFactory interface. This Java class is provided as part of
 resource adapter's implementation of connector architecture specified
 contracts. The implementation of this class is required to be a JavaBean.
@@ -517,7 +517,7 @@ outbound-resourceadapter?, inbound-resourceadapter?, adminobject*)>
 
 <!--
 The element resourceadapter-class specifies the fully qualified
-name of a Java class that implements the javax.resource.spi.ResourceAdapter
+name of a Java class that implements the jakarta.resource.spi.ResourceAdapter
 interface. This Java class is provided as part of
 resource adapter's implementation of connector architecture specified
 contracts. The implementation of this class is required to be a JavaBean.

@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex3b;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 /**

@@ -20,11 +20,11 @@ import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 
 import jakarta.ejb.Stateless;
 
-import javax.resource.AdministeredObjectDefinition;
-import javax.resource.AdministeredObjectDefinitions;
+import jakarta.resource.AdministeredObjectDefinition;
+import jakarta.resource.AdministeredObjectDefinitions;
 
-import javax.resource.spi.TransactionSupport.TransactionSupportLevel;
-import javax.resource.spi.TransactionSupport;
+import jakarta.resource.spi.TransactionSupport.TransactionSupportLevel;
+import jakarta.resource.spi.TransactionSupport;
 
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;

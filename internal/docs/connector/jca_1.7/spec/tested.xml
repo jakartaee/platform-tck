@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -228,7 +228,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:18</id>
-      <description>A connection implementation class implements its methods in a resource adapter implementation specific way. It must use 				javax.resource.spi.ManagedConnection instance as its underlying physical connection.</description>
+      <description>A connection implementation class implements its methods in a resource adapter implementation specific way. It must use 				jakarta.resource.spi.ManagedConnection instance as its underlying physical connection.</description>
       <location chapter="6" section="5.1" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -239,31 +239,31 @@
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:28</id>
       <description>The ManagedConnection implementation provided by a resource adapter must use the following interface and classes to provide 							support to an application server for connection management (and transaction management, as explained later): 
-						 javax.resource.spi.ConnectionEvent 
-						 javax.resource.spi.ConnectionEventListener</description>
+						 jakarta.resource.spi.ConnectionEvent 
+						 jakarta.resource.spi.ConnectionEventListener</description>
       <location chapter="6" section="10.1" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:30</id>
       <description>An application server must use the interfaces defined in the connection management contract to use services provided by a resource 			adapter. These interfaces are as follows:
-			javax.resource.spi.ManagedConnectionFactory 
-			javax.resource.spi.ManagedConnection 
-			javax.resource.spi.ManagedConnectionMetaData</description>
+			jakarta.resource.spi.ManagedConnectionFactory 
+			jakarta.resource.spi.ManagedConnection 
+			jakarta.resource.spi.ManagedConnectionMetaData</description>
       <location chapter="6" section="10.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:31</id>
-      <description>An application server is required to provide an implementation of the javax.resource.spi.ConnectionManager interface.</description>
+      <description>An application server is required to provide an implementation of the jakarta.resource.spi.ConnectionManager interface.</description>
       <location chapter="6" section="10.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:32</id>
-      <description>An application server is required to implement the javax.resource.spi.-ConnectionEventListener interface and to register 					ConnectionEventListener with resource adapter to get connection-related event notifications. An application server uses these event notifications to 			do its pool management, transaction management, and connection cleanup.</description>
+      <description>An application server is required to implement the jakarta.resource.spi.-ConnectionEventListener interface and to register 					ConnectionEventListener with resource adapter to get connection-related event notifications. An application server uses these event notifications to 			do its pool management, transaction management, and connection cleanup.</description>
       <location chapter="6" section="10.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>Connector:SPEC:34</id>
-      <description>An application server is required to use the javax.resource.spi.ConnectionManager hook-in mechanism to provide its specific quality 				 of services.</description>
+      <description>An application server is required to use the jakarta.resource.spi.ConnectionManager hook-in mechanism to provide its specific quality 				 of services.</description>
       <location chapter="6" section="10.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

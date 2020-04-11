@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,10 +28,10 @@ public class DriverManagerConnection {
     String dbUrl, dbUser, dbPassword, dbDriver;
     dbUrl = dbUser = dbPassword = dbDriver = null;
 
-    dbUrl = p.getProperty("javax.persistence.jdbc.url", "");
-    dbUser = p.getProperty("javax.persistence.jdbc.user", "");
-    dbPassword = p.getProperty("javax.persistence.jdbc.password", "");
-    dbDriver = p.getProperty("javax.persistence.jdbc.driver", "");
+    dbUrl = p.getProperty("jakarta.persistence.jdbc.url", "");
+    dbUser = p.getProperty("jakarta.persistence.jdbc.user", "");
+    dbPassword = p.getProperty("jakarta.persistence.jdbc.password", "");
+    dbDriver = p.getProperty("jakarta.persistence.jdbc.driver", "");
 
     TestUtil.logTrace("Url : " + dbUrl);
     TestUtil.logTrace("Username  : " + dbUser);

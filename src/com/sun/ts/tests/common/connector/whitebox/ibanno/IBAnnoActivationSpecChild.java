@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,13 +17,13 @@
 package com.sun.ts.tests.common.connector.whitebox.ibanno;
 
 import java.util.*;
-import javax.resource.spi.*;
-import javax.resource.spi.ResourceAdapter;
+import jakarta.resource.spi.*;
+import jakarta.resource.spi.ResourceAdapter;
 import com.sun.ts.tests.common.connector.util.*;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import javax.validation.constraints.*;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
-import javax.resource.spi.ResourceAdapterAssociation;
+import jakarta.resource.spi.ResourceAdapterAssociation;
 
 /*
  * This extends the parent class and MUST have a different listener than the parent.

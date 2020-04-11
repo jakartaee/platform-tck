@@ -154,7 +154,7 @@
 	      The element activationspec-class specifies the fully
 	      qualified Java class name of the activation
 	      specification class. This class must implement the
-	      javax.resource.spi.ActivationSpec interface. The
+	      jakarta.resource.spi.ActivationSpec interface. The
 	      implementation of this class is required to be a
 	      JavaBean.
 
@@ -250,10 +250,10 @@
 	security contract and authentication mechanism.
 
 	Note that BasicPassword mechanism type should support the
-	javax.resource.spi.security.PasswordCredential interface.
+	jakarta.resource.spi.security.PasswordCredential interface.
 	The Kerbv5 mechanism type should support the
 	org.ietf.jgss.GSSCredential interface or the deprecated
-	javax.resource.spi.security.GenericCredential interface.
+	jakarta.resource.spi.security.GenericCredential interface.
 
       </xsd:documentation>
     </xsd:annotation>
@@ -451,7 +451,7 @@
 	      The element managedconnectionfactory-class specifies
 	      the fully qualified name of the Java class that
 	      implements the
-	      javax.resource.spi.ManagedConnectionFactory interface.
+	      jakarta.resource.spi.ManagedConnectionFactory interface.
 	      This Java class is provided as part of resource
 	      adapter's implementation of connector architecture
 	      specified contracts. The implementation of this
@@ -486,7 +486,7 @@
 
 	      OR
 
-	      <connectionfactory-interface>javax.resource.cci.ConnectionFactory
+	      <connectionfactory-interface>jakarta.resource.cci.ConnectionFactory
 	      </connectionfactory-interface>
 
 	      ]]>
@@ -526,7 +526,7 @@
 
 	      Example:
 
-		  <connection-interface>javax.resource.cci.Connection
+		  <connection-interface>jakarta.resource.cci.Connection
 		  </connection-interface>
 
 	      ]]>
@@ -655,20 +655,20 @@
 
 	The possible values are:
 
-	javax.resource.spi.security.PasswordCredential
+	jakarta.resource.spi.security.PasswordCredential
 	org.ietf.jgss.GSSCredential
-	javax.resource.spi.security.GenericCredential
+	jakarta.resource.spi.security.GenericCredential
 
       </xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="j2ee:fully-qualified-classType">
 	<xsd:enumeration
-	     value="javax.resource.spi.security.PasswordCredential"/>
+	     value="jakarta.resource.spi.security.PasswordCredential"/>
 	<xsd:enumeration
 	     value="org.ietf.jgss.GSSCredential"/>
 	<xsd:enumeration
-	     value="javax.resource.spi.security.GenericCredential"/>
+	     value="jakarta.resource.spi.security.GenericCredential"/>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -923,7 +923,7 @@
 
 	    The element resourceadapter-class specifies the
 	    fully qualified name of a Java class that implements
-	    the javax.resource.spi.ResourceAdapter
+	    the jakarta.resource.spi.ResourceAdapter
 	    interface. This Java class is provided as part of
 	    resource adapter's implementation of connector
 	    architecture specified contracts. The implementation

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.*;
 
-import javax.resource.AdministeredObjectDefinition;
-import javax.resource.AdministeredObjectDefinitions;
+import jakarta.resource.AdministeredObjectDefinition;
+import jakarta.resource.AdministeredObjectDefinitions;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.ServletSecurity;
@@ -31,8 +31,8 @@ import javax.annotation.security.DeclareRoles;
 
 import com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory;
 import com.sun.ts.lib.util.*;
-import javax.resource.cci.Connection;
-import javax.resource.cci.ConnectionFactory;
+import jakarta.resource.cci.Connection;
+import jakarta.resource.cci.ConnectionFactory;
 import javax.naming.InitialContext;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.common.connector.whitebox.mdcomplete;
 
-import javax.resource.spi.work.WorkContext;
-import javax.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.WorkContext;
+import jakarta.resource.spi.work.ExecutionContext;
 
 /**
  * This class is to be used to test assertion Connector:SPEC:214. The server

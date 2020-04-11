@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,10 +24,10 @@ import java.util.*;
 import javax.security.auth.Subject;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import javax.resource.spi.security.PasswordCredential;
-import javax.resource.ResourceException;
-import javax.resource.spi.SecurityException;
-import javax.resource.spi.*;
+import jakarta.resource.spi.security.PasswordCredential;
+import jakarta.resource.ResourceException;
+import jakarta.resource.spi.SecurityException;
+import jakarta.resource.spi.*;
 
 public class Util {
   static public PasswordCredential getPasswordCredential(
