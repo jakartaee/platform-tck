@@ -22,8 +22,8 @@ package com.sun.ts.tests.jsonb.api.annotation;
 
 import java.util.Properties;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
