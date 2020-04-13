@@ -28,7 +28,7 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
 import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 @Singleton
 @Interceptors({ Interceptor5.class, Interceptor4.class, Interceptor8.class })

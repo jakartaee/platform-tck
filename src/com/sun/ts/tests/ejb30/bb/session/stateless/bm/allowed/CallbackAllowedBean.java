@@ -28,7 +28,7 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.Properties;
 import javax.annotation.Resource;
 import javax.annotation.PostConstruct;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.Timeout;

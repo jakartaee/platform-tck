@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.common.interceptor;
 
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.InvocationContext;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 

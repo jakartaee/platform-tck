@@ -24,7 +24,7 @@ import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextBase;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 @Stateless
 @Remote(InvocationContextIF.class)

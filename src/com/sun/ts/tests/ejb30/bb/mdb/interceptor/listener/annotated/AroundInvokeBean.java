@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.bb.mdb.interceptor.listener.annotated;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import javax.annotation.Resource;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestMDBImpl;
 import jakarta.ejb.MessageDrivenContext;

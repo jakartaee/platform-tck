@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.misc.nomethodbean;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Stateless()
 @ExcludeDefaultInterceptors

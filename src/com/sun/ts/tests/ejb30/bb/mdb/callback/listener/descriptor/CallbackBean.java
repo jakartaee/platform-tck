@@ -31,7 +31,7 @@ import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
 import javax.jms.MessageListener;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import javax.jms.Queue;
 import javax.jms.QueueConnectionFactory;
 

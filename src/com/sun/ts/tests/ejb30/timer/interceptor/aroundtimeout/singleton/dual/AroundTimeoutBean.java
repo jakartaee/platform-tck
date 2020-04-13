@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.dual;
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Timer;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;

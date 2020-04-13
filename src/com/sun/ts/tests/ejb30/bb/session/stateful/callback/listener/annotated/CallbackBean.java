@@ -25,7 +25,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import javax.annotation.Resource;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import jakarta.ejb.Remove;
 //@todo
 //import jakarta.ejb.Init;

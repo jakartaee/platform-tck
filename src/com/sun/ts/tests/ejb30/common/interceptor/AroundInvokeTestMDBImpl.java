@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 import jakarta.ejb.EJBContext;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.InvocationContext;
 import javax.jms.Message;
 import javax.jms.Queue;
 import javax.jms.QueueConnectionFactory;

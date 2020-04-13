@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.assembly.common;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 @Stateless
 @Interceptors({ AssemblyInterceptor.class })

@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.timer.interceptor.business.common;
 
 import javax.annotation.Resource;
 import jakarta.ejb.TimerService;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 

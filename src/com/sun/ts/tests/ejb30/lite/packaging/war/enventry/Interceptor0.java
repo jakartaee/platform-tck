@@ -25,7 +25,7 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import jakarta.ejb.EJBContext;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.InvocationContext;
 
 public class Interceptor0 extends InterceptorBase {
 

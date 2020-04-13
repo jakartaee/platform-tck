@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 /**
  * The purpose of this class is to verify various TimeUnit can be processed as

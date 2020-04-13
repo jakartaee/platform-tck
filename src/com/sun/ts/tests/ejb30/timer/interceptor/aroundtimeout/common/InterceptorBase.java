@@ -25,8 +25,8 @@ import java.util.logging.Level;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Timer;
-import javax.interceptor.AroundTimeout;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundTimeout;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;

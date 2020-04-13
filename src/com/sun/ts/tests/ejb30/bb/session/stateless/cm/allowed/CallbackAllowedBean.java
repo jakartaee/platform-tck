@@ -27,7 +27,7 @@ import com.sun.ts.tests.ejb30.common.allowed.Operations;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.Properties;
 import javax.annotation.Resource;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import jakarta.ejb.Local;
 import javax.annotation.PostConstruct;
 import jakarta.ejb.Remote;

@@ -23,7 +23,7 @@ import java.util.logging.Level;
 
 import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor1;

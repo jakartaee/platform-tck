@@ -25,7 +25,7 @@ import java.util.LinkedList;
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.Singleton;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 /**
  * This class is similar to ../container/SingletonBean except that this one uses

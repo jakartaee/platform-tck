@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import jakarta.ejb.EJB;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 public class InterceptorBeanBase implements InterceptorIF {
   private static final String simpleName = "InterceptorBeanBase";
