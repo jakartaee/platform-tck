@@ -28,7 +28,7 @@ import javax.annotation.Resource;
 import javax.annotation.sql.DataSourceDefinition;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import javax.sql.DataSource;
 
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;

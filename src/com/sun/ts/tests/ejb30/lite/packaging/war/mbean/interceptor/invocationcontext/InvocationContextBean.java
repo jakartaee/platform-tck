@@ -20,8 +20,8 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.invocationcontext;
 
 import jakarta.annotation.ManagedBean;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextBase;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;

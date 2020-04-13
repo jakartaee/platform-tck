@@ -27,7 +27,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import jakarta.ejb.EJBContext;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 

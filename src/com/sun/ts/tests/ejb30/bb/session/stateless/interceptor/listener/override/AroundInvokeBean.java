@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.override;
 
-import javax.interceptor.AroundInvoke;
+import jakarta.interceptor.AroundInvoke;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import javax.annotation.Resource;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.SessionContext;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

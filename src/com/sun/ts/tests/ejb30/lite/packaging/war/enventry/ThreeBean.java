@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import jakarta.ejb.Stateful;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 
 @Stateful

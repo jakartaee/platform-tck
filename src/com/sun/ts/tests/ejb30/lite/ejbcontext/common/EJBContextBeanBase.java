@@ -31,8 +31,8 @@ import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 import javax.naming.Context;
 
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;

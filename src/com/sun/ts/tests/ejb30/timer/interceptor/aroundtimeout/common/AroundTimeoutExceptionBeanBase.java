@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
-import javax.interceptor.AroundTimeout;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundTimeout;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 

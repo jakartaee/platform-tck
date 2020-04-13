@@ -25,7 +25,7 @@ import java.util.LinkedList;
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 /**
  * This class is similar to ../bm/SingletonBean. But the latter uses java

@@ -20,9 +20,9 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 
 import jakarta.annotation.ManagedBean;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;

@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 /**
  * A no-interface singleton. BeanBase implements CommonSingletonIF, but it must

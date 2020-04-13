@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenContext;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitor;
 import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.NoUseListener;

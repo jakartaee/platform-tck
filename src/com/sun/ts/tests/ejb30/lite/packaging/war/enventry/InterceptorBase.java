@@ -23,8 +23,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import jakarta.ejb.EJBContext;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.*;
 
 abstract public class InterceptorBase extends ComponentBase {

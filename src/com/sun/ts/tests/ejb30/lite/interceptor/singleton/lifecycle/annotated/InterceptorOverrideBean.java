@@ -23,7 +23,7 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanB
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
 import javax.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Singleton
 @ExcludeDefaultInterceptors

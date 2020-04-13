@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 import java.util.List;
 
 import jakarta.annotation.ManagedBean;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.ExcludeClassInterceptors;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.ExcludeClassInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor1;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;

@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.misc.nomethodbean;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Stateful()
 @ExcludeDefaultInterceptors

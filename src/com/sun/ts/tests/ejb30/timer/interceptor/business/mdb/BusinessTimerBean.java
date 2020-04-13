@@ -24,9 +24,9 @@ import javax.annotation.PreDestroy;
 import jakarta.ejb.EJB;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.Timer;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 

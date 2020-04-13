@@ -18,8 +18,8 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.annotated;
 
 import javax.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor9;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorA;

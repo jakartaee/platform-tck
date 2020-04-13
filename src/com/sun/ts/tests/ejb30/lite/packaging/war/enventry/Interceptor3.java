@@ -26,8 +26,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import jakarta.ejb.EJBContext;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 /**
  * A method-level interceptor

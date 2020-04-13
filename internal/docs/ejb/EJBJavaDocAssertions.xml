@@ -2663,7 +2663,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>254</id>
 <description/>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>Interceptors</class-interface>
 <method name="value" return-type="java.lang.Class[]"/>
 </assertion>
@@ -2673,7 +2673,7 @@
                             Returns the context data associated with this invocation or  lifecycle callback.
                               If there is no context data, an  empty Map object will be returned.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="getContextData" return-type="java.util.Map"/>
 </assertion>
@@ -2683,7 +2683,7 @@
                             Returns the method of the bean class for which the interceptor  was invoked.
                               For AroundInvoke methods, this is the business  method on the bean class. For lifecycle callback methods,   returns null.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="getMethod" return-type="java.lang.reflect.Method"/>
 </assertion>
@@ -2693,7 +2693,7 @@
                             Returns the parameters that will be used to invoke  the business method.
                               If setParameters has been called,   getParameters() returns the values to which the parameters   have been set.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="getParameters" return-type="java.lang.Object[]"/>
 </assertion>
@@ -2702,7 +2702,7 @@
 <description>
                             Returns the target instance.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="getTarget" return-type="java.lang.Object"/>
 </assertion>
@@ -2712,14 +2712,14 @@
                             Proceed to the next entry in the interceptor chain.
                               The proceed method returns the result of the next  method invoked.  If the method returns void, proceed  returns null.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="proceed" return-type="java.lang.Object"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>260</id>
 <description/>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="proceed" return-type="java.lang.Object">
 <throw>java.lang.Exception</throw>
@@ -2730,7 +2730,7 @@
 <description>
                             Sets the parameters that will be used to invoke the   business method.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="setParameters" return-type="void">
 <parameters>

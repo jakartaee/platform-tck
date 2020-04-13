@@ -21,7 +21,7 @@ import java.lang.annotation.Annotation;
 import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.ws.rs.GET;
