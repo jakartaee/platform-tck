@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.timer.interceptor.lifecycle.singleton;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 

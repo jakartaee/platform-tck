@@ -28,7 +28,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 import javax.annotation.Resource;
 import jakarta.ejb.Remove;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.SessionContext;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestImpl;
 import com.sun.ts.tests.ejb30.common.interceptor.Constants;

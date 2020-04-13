@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 
 @Stateless

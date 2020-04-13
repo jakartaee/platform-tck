@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb30.common.allowed;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.SessionContext;
 
 public abstract class AllowedBeanBase implements AllowedIF, AllowedLocalIF {

@@ -23,7 +23,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
-import javax.interceptor.Interceptor;
+import jakarta.interceptor.Interceptor;
 
 import com.sun.ts.lib.harness.ServiceEETest;
 

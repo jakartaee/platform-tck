@@ -23,9 +23,9 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBa
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
 import jakarta.ejb.Singleton;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.InvocationContext;
 
 @Singleton
 @ExcludeDefaultInterceptors

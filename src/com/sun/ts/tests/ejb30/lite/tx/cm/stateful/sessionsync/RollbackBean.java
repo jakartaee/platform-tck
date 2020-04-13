@@ -29,7 +29,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
 

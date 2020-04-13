@@ -22,7 +22,7 @@ import jakarta.ejb.Stateless;
 import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.WebServiceException;
 import javax.xml.ws.handler.MessageContext;

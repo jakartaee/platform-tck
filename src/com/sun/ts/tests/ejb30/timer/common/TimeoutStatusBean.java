@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import jakarta.ejb.Singleton;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Singleton
 @ExcludeDefaultInterceptors

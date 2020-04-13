@@ -92,7 +92,7 @@ javax.faces.view
 javax.faces.view.facelets
 javax.faces.webapp
 javax.inject
-javax.interceptor
+jakarta.interceptor
 javax.jms
 javax.json
 javax.json.bind

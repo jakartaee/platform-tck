@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.annotated;
 
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;

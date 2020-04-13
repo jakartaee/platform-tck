@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 abstract public class SessionSyncBeanBase implements SessionSyncIF {
 

@@ -21,9 +21,9 @@ package com.sun.ts.tests.ejb32.lite.timer.interceptor.business.singleton;
 
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Timer;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.BusinessTimerBeanBase;

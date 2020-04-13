@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.threelevels.descrip
 
 import javax.annotation.PostConstruct;
 import jakarta.ejb.EJBContext;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;

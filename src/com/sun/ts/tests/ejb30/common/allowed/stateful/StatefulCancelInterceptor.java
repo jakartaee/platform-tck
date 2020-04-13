@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.allowed.stateful;
 import com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import jakarta.ejb.SessionContext;
-import javax.interceptor.AroundInvoke;
+import jakarta.interceptor.AroundInvoke;
 
 public class StatefulCancelInterceptor extends CancelInterceptor {
   private static StatefulCancelInterceptor instance = new StatefulCancelInterceptor();
@@ -46,7 +46,7 @@ public class StatefulCancelInterceptor extends CancelInterceptor {
   // in superclass. Make sure this is what we want.
   @Override
   @AroundInvoke
-  public Object intercept(javax.interceptor.InvocationContext inv)
+  public Object intercept(jakarta.interceptor.InvocationContext inv)
       throws Exception {
 
     Object retValue;

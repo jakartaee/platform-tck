@@ -23,7 +23,7 @@ import java.lang.reflect.Type;
 
 import jakarta.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;

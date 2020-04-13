@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.Singleton;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 import javax.jms.Queue;
 import javax.jms.QueueConnectionFactory;
 

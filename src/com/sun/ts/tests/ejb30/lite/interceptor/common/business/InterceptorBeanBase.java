@@ -24,11 +24,11 @@ import java.util.Map;
 import java.util.logging.Level;
 
 import jakarta.ejb.EJBContext;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.ExcludeClassInterceptors;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.ExcludeClassInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
