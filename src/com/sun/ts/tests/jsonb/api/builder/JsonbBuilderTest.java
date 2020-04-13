@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,11 +22,11 @@ package com.sun.ts.tests.jsonb.api.builder;
 
 import java.util.Properties;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.json.bind.JsonbConfig;
-import javax.json.bind.spi.JsonbProvider;
-import javax.json.spi.JsonProvider;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.JsonbConfig;
+import jakarta.json.bind.spi.JsonbProvider;
+import jakarta.json.spi.JsonProvider;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
@@ -61,7 +61,7 @@ public class JsonbBuilderTest extends ServiceEETest {
    * @assertion_ids: JSONB:JAVADOC:25
    *
    * @test_Strategy: Assert that JsonbBuilder.build returns a new instance of
-   * javax.json.bind.Jsonb
+   * jakarta.json.bind.Jsonb
    */
   public Status testBuild() throws Fault {
     Jsonb jsonb = JsonbBuilder.newBuilder().build();
@@ -79,7 +79,7 @@ public class JsonbBuilderTest extends ServiceEETest {
    * @assertion_ids: JSONB:JAVADOC:26
    *
    * @test_Strategy: Assert that JsonbBuilder.create returns a new instance of
-   * javax.json.bind.Jsonb
+   * jakarta.json.bind.Jsonb
    */
   public void testCreate() throws Fault {
     Jsonb jsonb = JsonbBuilder.create();
@@ -95,7 +95,7 @@ public class JsonbBuilderTest extends ServiceEETest {
    * @assertion_ids: JSONB:JAVADOC:27
    *
    * @test_Strategy: Assert that JsonbBuilder.create method with Config argument
-   * returns a new instance of javax.json.bind.Jsonb configured with provided
+   * returns a new instance of jakarta.json.bind.Jsonb configured with provided
    * configuration
    */
   public void testCreateConfig() throws Fault {
@@ -120,14 +120,14 @@ public class JsonbBuilderTest extends ServiceEETest {
    *
    * @test_Strategy: Assert that JsonbBuilder.newBuilder returns a new
    * JsonbBuilder instance as returned by
-   * javax.json.bind.spi.JsonbProvider#provider method
+   * jakarta.json.bind.spi.JsonbProvider#provider method
    */
   public void testNewBuilder() throws Fault {
     JsonbBuilder jsonbBuilder = JsonbBuilder.newBuilder();
     if (jsonbBuilder == null || !jsonbBuilder.getClass()
         .equals(JsonbProvider.provider().create().getClass())) {
       throw new Fault(
-          "Failed to create a new Jsonb instance as returned by javax.json.bind.spi.JsonbProvider#provider method using JsonBuilder.newBuilder method.");
+          "Failed to create a new Jsonb instance as returned by jakarta.json.bind.spi.JsonbProvider#provider method using JsonBuilder.newBuilder method.");
     }
   }
 
@@ -138,7 +138,7 @@ public class JsonbBuilderTest extends ServiceEETest {
    *
    * @test_Strategy: Assert that JsonbBuilder.newBuilder method with String
    * argument returns a new JsonbBuilder instance as returned by
-   * javax.json.bind.spi.JsonbProvider#provider(String) method
+   * jakarta.json.bind.spi.JsonbProvider#provider(String) method
    */
   public void testNewBuilderString() throws Fault {
     JsonbBuilder jsonbBuilder = JsonbBuilder
@@ -148,7 +148,7 @@ public class JsonbBuilderTest extends ServiceEETest {
             .provider(JsonbProvider.provider().getClass().getName()).create()
             .getClass())) {
       throw new Fault(
-          "Failed to create a new Jsonb instance as returned by javax.json.bind.spi.JsonbProvider#provider(String) method using JsonBuilder.newBuilder method with String argument.");
+          "Failed to create a new Jsonb instance as returned by jakarta.json.bind.spi.JsonbProvider#provider(String) method using JsonBuilder.newBuilder method with String argument.");
     }
   }
 
