@@ -25,8 +25,8 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResLocalIF;
