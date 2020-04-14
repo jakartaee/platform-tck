@@ -25,8 +25,8 @@ import com.sun.ts.lib.porting.*;
 
 import com.sun.ts.tests.saaj.common.*;
 
-import javax.servlet.http.*;
-import javax.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.*;
 import jakarta.xml.soap.*;
 import jakarta.activation.*;
 import java.net.*;

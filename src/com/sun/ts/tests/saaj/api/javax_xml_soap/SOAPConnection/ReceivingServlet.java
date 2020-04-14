@@ -26,8 +26,8 @@ import com.sun.ts.tests.saaj.common.*;
 
 import jakarta.xml.soap.*;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.io.InputStream;
