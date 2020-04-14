@@ -26,8 +26,8 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 import jakarta.ejb.EJB;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
