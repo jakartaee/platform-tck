@@ -32,7 +32,7 @@ import javax.sql.DataSource;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.InventoryRecord;
 
-@javax.inject.Named("inventoryInitWriter")
+@jakarta.inject.Named("inventoryInitWriter")
 public class InventoryInitWriter extends AbstractItemWriter {
 	
 	

@@ -1888,7 +1888,7 @@ A JMSContext object which has been created by calling the ConnectionFactory meth
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:279"></a><font size="1PT">JMS:SPEC:279</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Injection syntax.
-Applications may declare a field of type javax.jms.JMSContext and annotate it with the javax.inject.Inject annotation:
+Applications may declare a field of type javax.jms.JMSContext and annotate it with the jakarta.inject.Inject annotation:
 @Inject private JMSContext context; The container will inject a JMSContext. This object will have a scope as defined by section 12.4.3 "Scope of injected JMSContext objects". The annotation javax.jms.JMSConnectionFactory may be used to specify the JNDI lookup name of the ConnectionFactory used to create the JMSContext. For example:
 @Inject @JMSConnectionFactory("jms/connectionFactory") private JMSContext context;
 If no lookup name is specified or the JMSConnectionFactory annotation is omitted then the platform default JMS connection factory will be used.

@@ -26,8 +26,8 @@ import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.listener.StepListener;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 public class ArtifactInstanceTestStepListener implements StepListener {

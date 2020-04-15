@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import jakarta.transaction.*;
 import javax.naming.*;
 import javax.jms.*;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.annotation.Resource;
 import javax.enterprise.inject.*;
 

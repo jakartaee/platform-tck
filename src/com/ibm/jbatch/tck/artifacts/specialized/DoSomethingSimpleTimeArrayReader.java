@@ -25,13 +25,13 @@ import java.util.logging.Logger;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.AbstractItemReader;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ArrayIndexCheckpointData;
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 import com.ibm.jbatch.tck.artifacts.reusable.MyPersistentRestartUserData;
 
-@javax.inject.Named("doSomethingSimpleTimeArrayReader")
+@jakarta.inject.Named("doSomethingSimpleTimeArrayReader")
 public class DoSomethingSimpleTimeArrayReader extends AbstractItemReader {
 		
 	private final static Logger logger = Logger.getLogger(DoSomethingSimpleTimeArrayReader.class.getName());

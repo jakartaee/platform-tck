@@ -32,7 +32,7 @@ import javax.sql.DataSource;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.NumbersRecord;
 
-@javax.inject.Named("retryInitWriter")
+@jakarta.inject.Named("retryInitWriter")
 public class RetryInitWriter extends AbstractItemWriter {
 	
 	

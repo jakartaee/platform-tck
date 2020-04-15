@@ -27,14 +27,14 @@ import java.util.List;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.AbstractItemWriter;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.InventoryRecord;
 
-@javax.inject.Named("inventoryWriter")
+@jakarta.inject.Named("inventoryWriter")
 public class InventoryWriter extends AbstractItemWriter {
 
     protected DataSource dataSource = null;

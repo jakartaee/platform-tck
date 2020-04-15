@@ -29,7 +29,7 @@ import java.util.Properties;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.AbstractItemWriter;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -40,7 +40,7 @@ import com.ibm.jbatch.tck.artifacts.chunktypes.NumbersRecord;
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
 
-@javax.inject.Named("retryWriter")
+@jakarta.inject.Named("retryWriter")
 public class RetryWriter extends AbstractItemWriter {
 	
 

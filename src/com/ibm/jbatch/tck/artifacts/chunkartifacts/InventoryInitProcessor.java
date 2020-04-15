@@ -21,12 +21,12 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.ItemProcessor;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.InventoryRecord;
 
 
-@javax.inject.Named("inventoryInitProcessor")
+@jakarta.inject.Named("inventoryInitProcessor")
 public class InventoryInitProcessor implements ItemProcessor {
 
 	

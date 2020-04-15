@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.listener.AbstractStepListener;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 public class CountInvocationsStepListener extends AbstractStepListener {

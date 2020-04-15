@@ -44,7 +44,7 @@ TCK Instructions to get, configure and run JAXRS 2.0 TCK Test Suite
     Example settings
     
     web.home=/files/glassfish4/glassfish
-    jaxrs_impl.classes=jaxrs_impl.classes=${web.home}/modules/jersey-client.jar:${web.home}/modules/jersey-common.jar:${web.home}/modules/jersey-server.jar:${web.home}/modules/jersey-container-servlet.jar:${web.home}/modules/jersey-container-servlet-core.jar:${web.home}/modules/osgi-resource-locator.jar:${web.home}/modules/javax.inject.jar:${web.home}/modules/guava.jar:${web.home}/modules/hk2-api.jar:${web.home}/modules/hk2-locator.jar:${web.home}/modules/hk2-utils.jar:${web.home}/modules/cglib.jar:${web.home}/modules/asm-all-repackaged.jar:${web.home}/modules/bean-validator.jar:${web.home}/modules/endorsed/javax.annotation-api.jar:${web.home}/modules/javax.json.jar:${web.home}/modules/javax.servlet-api.jar
+    jaxrs_impl.classes=jaxrs_impl.classes=${web.home}/modules/jersey-client.jar:${web.home}/modules/jersey-common.jar:${web.home}/modules/jersey-server.jar:${web.home}/modules/jersey-container-servlet.jar:${web.home}/modules/jersey-container-servlet-core.jar:${web.home}/modules/osgi-resource-locator.jar:${web.home}/modules/jakarta.inject.jar:${web.home}/modules/guava.jar:${web.home}/modules/hk2-api.jar:${web.home}/modules/hk2-locator.jar:${web.home}/modules/hk2-utils.jar:${web.home}/modules/cglib.jar:${web.home}/modules/asm-all-repackaged.jar:${web.home}/modules/bean-validator.jar:${web.home}/modules/endorsed/javax.annotation-api.jar:${web.home}/modules/javax.json.jar:${web.home}/modules/javax.servlet-api.jar
     jaxrs.classes=${web.home}/modules/javax.ws.rs-api.jar
     jaxrs_impl_lib=${web.home}/modules/jersey-container-servlet-core.jar
     servlet_adaptor=org/glassfish/jersey/servlet/ServletContainer.class

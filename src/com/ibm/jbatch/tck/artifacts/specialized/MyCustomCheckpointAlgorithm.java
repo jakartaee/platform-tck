@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.AbstractCheckpointAlgorithm;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyPersistentRestartUserData;
 
@@ -49,7 +49,7 @@ import com.ibm.jbatch.tck.artifacts.reusable.MyPersistentRestartUserData;
 
 
 
-@javax.inject.Named("myCustomCheckpointAlgorithm")
+@jakarta.inject.Named("myCustomCheckpointAlgorithm")
 public class MyCustomCheckpointAlgorithm extends AbstractCheckpointAlgorithm {
 
 	private static final String className = MyCustomCheckpointAlgorithm.class.getName();

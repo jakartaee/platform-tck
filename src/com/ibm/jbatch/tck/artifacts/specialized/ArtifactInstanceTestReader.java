@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 import jakarta.batch.api.chunk.ItemReader;
 
-@javax.inject.Named("artifactInstanceTestReader")
+@jakarta.inject.Named("artifactInstanceTestReader")
 public class ArtifactInstanceTestReader implements ItemReader {
     
 	@Override

@@ -26,9 +26,9 @@ import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("startLimitStateMachineVariation1Batchlet")
+@jakarta.inject.Named("startLimitStateMachineVariation1Batchlet")
 public class StartLimitStateMachineVariation1Batchlet extends AbstractBatchlet {
 
 	private final static String sourceClass = StartLimitStateMachineVariation1Batchlet.class.getName();

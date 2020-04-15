@@ -21,9 +21,9 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.Batchlet;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("failRestartBatchlet")
+@jakarta.inject.Named("failRestartBatchlet")
 public class FailRestartBatchlet implements Batchlet {
 
     @Inject    

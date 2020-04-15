@@ -24,9 +24,9 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.api.BatchProperty;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("myBatchletWithPropertiesImpl")
+@jakarta.inject.Named("myBatchletWithPropertiesImpl")
 public class MyBatchletWithPropertiesImpl extends AbstractBatchlet {
 
 	private final static Logger logger = Logger.getLogger(MyBatchletWithPropertiesImpl.class.getName());

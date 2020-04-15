@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.AbstractItemReader;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -42,7 +42,7 @@ import com.ibm.jbatch.tck.artifacts.chunktypes.NumbersRecord;
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
 
-@javax.inject.Named("retryReader")
+@jakarta.inject.Named("retryReader")
 public class RetryReader extends AbstractItemReader {
 
 	private static final String CLASSNAME = NumbersReader.class.getName();

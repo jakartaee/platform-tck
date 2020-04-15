@@ -24,13 +24,13 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.listener.RetryProcessListener;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
-@javax.inject.Named("numbersRetryProcessListener")
+@jakarta.inject.Named("numbersRetryProcessListener")
 public class NumbersRetryProcessListener implements RetryProcessListener {
 	 private final static String sourceClass = NumbersRetryProcessListener.class.getName();
 	    private final static Logger logger = Logger.getLogger(sourceClass);

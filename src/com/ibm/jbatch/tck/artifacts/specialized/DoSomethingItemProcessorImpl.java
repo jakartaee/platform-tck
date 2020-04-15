@@ -25,7 +25,7 @@ import jakarta.batch.api.chunk.ItemProcessor;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 
-@javax.inject.Named("doSomethingItemProcessorImpl")
+@jakarta.inject.Named("doSomethingItemProcessorImpl")
 public class DoSomethingItemProcessorImpl implements ItemProcessor {
 	private int update = 10;
 	

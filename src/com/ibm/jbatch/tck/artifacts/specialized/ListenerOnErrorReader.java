@@ -23,8 +23,8 @@ import java.io.Serializable;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.ItemReader;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 

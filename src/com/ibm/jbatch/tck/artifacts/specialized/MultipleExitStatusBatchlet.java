@@ -22,9 +22,9 @@ import com.sun.ts.lib.util.TestUtil;
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("multipleExitStatusBatchlet")
+@jakarta.inject.Named("multipleExitStatusBatchlet")
 public class MultipleExitStatusBatchlet extends AbstractBatchlet {
 
     @Inject

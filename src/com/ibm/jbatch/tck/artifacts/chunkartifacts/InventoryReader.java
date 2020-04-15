@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 import jakarta.batch.api.chunk.AbstractItemReader;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -37,7 +37,7 @@ import javax.sql.DataSource;
 import com.ibm.jbatch.tck.artifacts.chunktypes.InventoryCheckpointData;
 import com.ibm.jbatch.tck.artifacts.chunktypes.InventoryRecord;
 
-@javax.inject.Named("inventoryReader")
+@jakarta.inject.Named("inventoryReader")
 public class InventoryReader extends AbstractItemReader {
 
 	private static final String CLASSNAME = InventoryReader.class.getName();

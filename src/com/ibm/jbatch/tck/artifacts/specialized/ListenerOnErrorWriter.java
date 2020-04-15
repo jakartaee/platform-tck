@@ -24,8 +24,8 @@ import java.util.List;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.ItemWriter;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 public class ListenerOnErrorWriter implements ItemWriter {
