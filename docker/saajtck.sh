@@ -45,6 +45,9 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
+#temp fix to use latest RC jar for soap api
+wget --progress=bar:force --no-cache https://repo1.maven.org/maven2/jakarta/xml/soap/jakarta.xml.soap-api/2.0.0-RC3/jakarta.xml.soap-api-2.0.0-RC3.jar -O ${TCK_HOME}/glassfish5/glassfish/modules/jakarta.xml.soap-api.jar
+
 TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 

@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
     
-    <property name="deliverable.version"           value="1.4"/>
-    <property name="deliverable.tck.version"           value="1.4.0"/>
+    <property name="deliverable.version"           value="2.0"/>
+    <property name="deliverable.tck.version"           value="2.0.0"/>
 
 	<target name="init">
 		<mkdir dir="${deliverable.bundle.dir}/bin"/>
