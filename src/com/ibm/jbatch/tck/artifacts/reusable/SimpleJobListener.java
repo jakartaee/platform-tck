@@ -24,8 +24,8 @@ import java.util.logging.Logger;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.listener.AbstractJobListener;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 public class SimpleJobListener extends AbstractJobListener {

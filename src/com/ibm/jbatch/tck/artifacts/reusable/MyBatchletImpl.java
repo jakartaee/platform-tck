@@ -23,10 +23,10 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
-@javax.inject.Named("myBatchletImpl")
+@jakarta.inject.Named("myBatchletImpl")
 public class MyBatchletImpl extends AbstractBatchlet {
 	private final static Logger logger = Logger.getLogger(MyBatchletImpl.class.getName());
 	

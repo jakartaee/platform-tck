@@ -24,13 +24,13 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.listener.RetryReadListener;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
-@javax.inject.Named("numbersRetryReadListener")
+@jakarta.inject.Named("numbersRetryReadListener")
 public class NumbersRetryReadListener implements RetryReadListener {
 	 private final static String sourceClass = NumbersRetryReadListener.class.getName();
 	    private final static Logger logger = Logger.getLogger(sourceClass);

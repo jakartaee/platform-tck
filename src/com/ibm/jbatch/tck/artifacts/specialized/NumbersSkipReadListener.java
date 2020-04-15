@@ -24,13 +24,13 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.listener.SkipReadListener;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
-@javax.inject.Named("numbersSkipReadListener")
+@jakarta.inject.Named("numbersSkipReadListener")
 public class NumbersSkipReadListener implements SkipReadListener {
 
 	@Inject

@@ -33,7 +33,7 @@ import javax.sql.DataSource;
 import com.ibm.jbatch.tck.artifacts.chunktypes.NumbersCheckpointData;
 import com.ibm.jbatch.tck.artifacts.chunktypes.NumbersRecord;
 
-@javax.inject.Named("retryInitReader")
+@jakarta.inject.Named("retryInitReader")
 public class RetryInitReader extends AbstractItemReader {
 
 	protected DataSource dataSource = null;

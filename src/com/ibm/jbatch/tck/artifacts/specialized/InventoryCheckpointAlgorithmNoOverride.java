@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.AbstractCheckpointAlgorithm;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 /*
 * Copyright 2012, 2020 International Business Machines Corp.
@@ -45,7 +45,7 @@ import javax.inject.Inject;
 
 
 
-@javax.inject.Named("inventoryCheckpointAlgorithmNoOverride")
+@jakarta.inject.Named("inventoryCheckpointAlgorithmNoOverride")
 public class InventoryCheckpointAlgorithmNoOverride extends AbstractCheckpointAlgorithm {
 
 	private static final String className = InventoryCheckpointAlgorithmNoOverride.class.getName();

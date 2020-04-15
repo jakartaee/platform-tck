@@ -24,9 +24,9 @@ import java.util.Properties;
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("stepLevelPropertiesShouldNotBeAvailableThroughJobContextBatchlet")
+@jakarta.inject.Named("stepLevelPropertiesShouldNotBeAvailableThroughJobContextBatchlet")
 public class StepLevelPropertiesShouldNotBeAvailableThroughJobContextBatchlet  extends AbstractBatchlet{
     @Inject
 	JobContext JobCtx;

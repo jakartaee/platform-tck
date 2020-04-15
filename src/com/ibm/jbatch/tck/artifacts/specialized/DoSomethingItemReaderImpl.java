@@ -24,14 +24,14 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.AbstractItemReader;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.CheckpointData;
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
 
-@javax.inject.Named("doSomethingItemReaderImpl")
+@jakarta.inject.Named("doSomethingItemReaderImpl")
 public class DoSomethingItemReaderImpl extends AbstractItemReader {
 
 	private final static Logger logger = Logger.getLogger(DoSomethingItemReaderImpl.class.getName());

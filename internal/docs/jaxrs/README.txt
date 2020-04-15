@@ -55,7 +55,7 @@ Setup and Configuration of the JAX-RS TCK
                       /ri/javax.ws.rs-ri-2.1/jersey-media-sse.jar:
                       /ri/javax.ws.rs-ri-2.1/jersey-hk2.jar:
                       /ri/javax.ws.rs-ri-2.1/osgi-resource-locator.jar:
-                      /ri/javax.ws.rs-ri-2.1/javax.inject.jar:
+                      /ri/javax.ws.rs-ri-2.1/jakarta.inject.jar:
                       /ri/javax.ws.rs-ri-2.1/guava.jar:
                       /ri/javax.ws.rs-ri-2.1/hk2-api.jar:
                       /ri/javax.ws.rs-ri-2.1/hk2-locator.jar:

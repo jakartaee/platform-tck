@@ -23,7 +23,7 @@ import java.util.List;
 
 import jakarta.batch.api.chunk.ItemWriter;
 
-@javax.inject.Named("artifactInstanceTestWriter")
+@jakarta.inject.Named("artifactInstanceTestWriter")
 public class ArtifactInstanceTestWriter implements ItemWriter {
 	
 	@Override
