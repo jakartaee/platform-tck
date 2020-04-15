@@ -25,11 +25,11 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.ItemProcessor;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 
-@javax.inject.Named("doSomethingArrayItemProcessorImpl")
+@jakarta.inject.Named("doSomethingArrayItemProcessorImpl")
 public class DoSomethingArrayItemProcessorImpl implements ItemProcessor {
 	
 	private final static Logger logger = Logger.getLogger(DoSomethingArrayItemProcessorImpl.class.getName());

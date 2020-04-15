@@ -25,14 +25,14 @@ import java.util.logging.Logger;
 import jakarta.batch.api.chunk.listener.SkipWriteListener;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
-@javax.inject.Named("mySkipWriteListener")
+@jakarta.inject.Named("mySkipWriteListener")
 public class MySkipWriteListener implements SkipWriteListener {
 
     @Inject

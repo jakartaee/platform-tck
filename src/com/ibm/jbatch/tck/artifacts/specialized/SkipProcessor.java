@@ -23,13 +23,13 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.ItemProcessor;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
 
-@javax.inject.Named("skipProcessor")
+@jakarta.inject.Named("skipProcessor")
 public class SkipProcessor implements ItemProcessor {
 	
 	private final static Logger logger = Logger.getLogger(SkipProcessor.class.getName());

@@ -21,7 +21,7 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.batch.api.AbstractBatchlet;
 
-@javax.inject.Named("flowTransitionToDecisionTestBatchlet")
+@jakarta.inject.Named("flowTransitionToDecisionTestBatchlet")
 public class FlowTransitionToDecisionTestBatchlet extends AbstractBatchlet {
 
 	public static String GOOD_EXIT_STATUS = "VERY GOOD INVOCATION"; 

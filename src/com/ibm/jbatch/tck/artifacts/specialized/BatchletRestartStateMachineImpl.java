@@ -25,9 +25,9 @@ import java.util.logging.Logger;
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("batchletRestartStateMachineImpl")
+@jakarta.inject.Named("batchletRestartStateMachineImpl")
 public class BatchletRestartStateMachineImpl extends AbstractBatchlet {
 
     private final static String sourceClass = BatchletRestartStateMachineImpl.class.getName();

@@ -21,7 +21,7 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.batch.api.partition.PartitionPlanImpl;
 
-@javax.inject.Named("myPartitionPlan")
+@jakarta.inject.Named("myPartitionPlan")
 public class MyPartitionPlan extends PartitionPlanImpl {
     
 

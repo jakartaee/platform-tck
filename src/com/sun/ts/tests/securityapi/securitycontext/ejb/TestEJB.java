@@ -24,7 +24,7 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Stateless;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.security.enterprise.AuthenticationStatus;
 import javax.security.enterprise.SecurityContext;
 import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;

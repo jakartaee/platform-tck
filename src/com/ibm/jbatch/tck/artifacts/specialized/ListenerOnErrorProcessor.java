@@ -20,8 +20,8 @@ import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.ItemProcessor;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 

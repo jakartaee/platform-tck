@@ -40,7 +40,7 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.AbstractCheckpointAlgorithm;
 
-@javax.inject.Named("mySimpleCustomCheckpointAlgorithm")
+@jakarta.inject.Named("mySimpleCustomCheckpointAlgorithm")
 public class MySimpleCustomCheckpointAlgorithm extends AbstractCheckpointAlgorithm {
 
 	private static final String className = MyCustomCheckpointAlgorithm.class.getName();

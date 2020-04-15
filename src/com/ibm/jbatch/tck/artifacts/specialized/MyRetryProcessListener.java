@@ -23,12 +23,12 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.listener.RetryProcessListener;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
 
-@javax.inject.Named("myRetryProcessListener")
+@jakarta.inject.Named("myRetryProcessListener")
 public class MyRetryProcessListener implements RetryProcessListener {
 	 private final static String sourceClass = MyRetryProcessListener.class.getName();
 	    private final static Logger logger = Logger.getLogger(sourceClass);

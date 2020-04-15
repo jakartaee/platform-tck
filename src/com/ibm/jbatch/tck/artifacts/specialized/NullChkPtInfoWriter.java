@@ -25,9 +25,9 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.ItemWriter;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("nullChkPtInfoWriter")
+@jakarta.inject.Named("nullChkPtInfoWriter")
 public class NullChkPtInfoWriter implements ItemWriter {
 
 	private final static Logger logger = Logger.getLogger(DoSomethingSimpleArrayWriter.class.getName());

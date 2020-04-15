@@ -25,9 +25,9 @@ import java.util.logging.Logger;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.listener.AbstractItemWriteListener;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("myItemWriteListenerImpl")
+@jakarta.inject.Named("myItemWriteListenerImpl")
 public class MyItemWriteListenerImpl extends AbstractItemWriteListener {
 	private final static String sourceClass = MyItemWriteListenerImpl.class.getName();
 	private final static Logger logger = Logger.getLogger(sourceClass);

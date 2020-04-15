@@ -33,7 +33,7 @@ import jakarta.transaction.Status;
 import jakarta.transaction.TransactionalException;
 import jakarta.transaction.TransactionRequiredException;
 import jakarta.transaction.InvalidTransactionException;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.enterprise.context.ContextNotActiveException;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;

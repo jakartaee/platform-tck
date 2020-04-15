@@ -28,9 +28,9 @@ import java.util.ArrayList;
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("flowTransitionWithinFlowTestBatchlet")
+@jakarta.inject.Named("flowTransitionWithinFlowTestBatchlet")
 public class FlowTransitionWithinFlowTestBatchlet extends AbstractBatchlet {
 
 	public static String GOOD_EXIT_STATUS = "VERY GOOD INVOCATION"; 

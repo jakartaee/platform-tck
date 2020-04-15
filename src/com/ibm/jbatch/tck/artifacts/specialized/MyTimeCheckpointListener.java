@@ -42,11 +42,11 @@ import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.listener.AbstractChunkListener;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
-@javax.inject.Named("myTimeCheckpointListener")
+@jakarta.inject.Named("myTimeCheckpointListener")
 public class MyTimeCheckpointListener extends AbstractChunkListener {
     
     private final static String sourceClass = MyCustomCheckpointListener.class.getName();

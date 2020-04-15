@@ -646,7 +646,7 @@ required for Jakarta EE 8:
 * javax.faces.view
 * javax.faces.view.facelets
 * javax.faces.webapp
-* javax.inject
+* jakarta.inject
 * jakarta.interceptor
 * javax.jms
 * javax.json

@@ -26,13 +26,13 @@ import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.reusable.StopOnBulletinBoardTestData;
 
 // NOTE:  We do NOT use the default @Named value in this special case, like we usually do.
 // Be careful generating the batch.xml !!  
-@javax.inject.Named("myLongRunningBatchlet")
+@jakarta.inject.Named("myLongRunningBatchlet")
 public class MyLongRunningBatchletImpl extends AbstractBatchlet {
 
 	@Inject

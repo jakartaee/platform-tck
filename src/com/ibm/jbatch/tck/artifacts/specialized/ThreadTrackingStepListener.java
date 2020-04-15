@@ -21,8 +21,8 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.batch.api.listener.AbstractStepListener;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 public class ThreadTrackingStepListener extends AbstractStepListener {

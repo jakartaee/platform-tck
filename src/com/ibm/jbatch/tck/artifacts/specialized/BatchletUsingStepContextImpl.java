@@ -26,11 +26,11 @@ import jakarta.batch.api.BatchProperty;
 import jakarta.batch.runtime.BatchStatus;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyPersistentUserData;
 
-@javax.inject.Named("batchletUsingStepContextImpl")
+@jakarta.inject.Named("batchletUsingStepContextImpl")
 public class BatchletUsingStepContextImpl extends AbstractBatchlet{
 
 	private final static Logger logger = Logger.getLogger(BatchletUsingStepContextImpl.class.getName());

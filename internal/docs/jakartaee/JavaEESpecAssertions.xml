@@ -5222,7 +5222,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                    status = "active" testable = "true">
             <id>JavaEE:SPEC:319</id>
             <description>
-                Containers must support injection points annotated with the javax.inject.Inject annotation only to the extent dictated by CDI.
+                Containers must support injection points annotated with the jakarta.inject.Inject annotation only to the extent dictated by CDI.
 				Per the CDI specification, dependency injection is supported on managed beans. There are currently three ways for a class to
 				become a managed bean:
 				1.Being an EJB session bean component.

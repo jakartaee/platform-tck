@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -186,7 +186,7 @@ javax.validation=1.1_se8
 
 # Dependency Injection for Java 1.0
 # (This is JSR-330)
-javax.inject=1.0_se8
+jakarta.inject=1.0_se8
 
 
 # Contexts and Dependency Injection (CDI == JSR 299)  for Java EE 1.1

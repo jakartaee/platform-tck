@@ -23,11 +23,11 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.listener.RetryReadListener;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
-@javax.inject.Named("myRetryReadListener")
+@jakarta.inject.Named("myRetryReadListener")
 public class MyRetryReadListener implements RetryReadListener {
 	 private final static String sourceClass = MyRetryReadListener.class.getName();
 	    private final static Logger logger = Logger.getLogger(sourceClass);

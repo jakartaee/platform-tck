@@ -23,9 +23,9 @@ import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.Decider;
 import jakarta.batch.runtime.StepExecution;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("transitionDecider")
+@jakarta.inject.Named("transitionDecider")
 public class TransitionDecider implements Decider {
 
     @Inject
