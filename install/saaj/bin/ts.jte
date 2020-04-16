@@ -48,7 +48,7 @@ webServerPort=8080
 ###########################################################################
 # local.classes should contain any RI specific jars/classes
 ###########################################################################
-local.classes=${ts.home}/glassfish5/glassfish/modules/jakarta.servlet-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakartaee-api.jar
+local.classes=${ts.home}/glassfish5/glassfish/modules/jakarta.servlet-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakartaee-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakarta.xml.soap-api.jar
 
 ####################################################################
 # @endorsed.dirs  If using JavaSE 8, verify that the property 

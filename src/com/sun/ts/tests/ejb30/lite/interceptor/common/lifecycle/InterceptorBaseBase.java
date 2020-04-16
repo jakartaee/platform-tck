@@ -26,8 +26,8 @@ import javax.annotation.PreDestroy;
 import jakarta.ejb.EJB;
 import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 

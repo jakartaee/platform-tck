@@ -23,8 +23,8 @@ import jakarta.batch.api.partition.AbstractPartitionAnalyzer;
 import jakarta.batch.runtime.BatchStatus;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyParallelSubJobsExitStatusBatchlet;
 

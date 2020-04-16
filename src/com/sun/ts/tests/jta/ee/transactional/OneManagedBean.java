@@ -31,7 +31,7 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InterceptionType;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.enterprise.inject.Any;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @OneManagedQualifier
 public class OneManagedBean {

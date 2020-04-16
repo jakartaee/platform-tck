@@ -23,9 +23,9 @@ import java.util.logging.Logger;
 
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.api.BatchProperty;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("jobAttributesTestBatchlet")
+@jakarta.inject.Named("jobAttributesTestBatchlet")
 public class JobAttributesTestBatchlet extends AbstractBatchlet {
 
     private final static String sourceClass = JobAttributesTestBatchlet.class.getName();

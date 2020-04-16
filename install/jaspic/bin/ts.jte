@@ -290,7 +290,8 @@ jaspic.classes=${jaspic.home}/modules/war-util.jar:\
                ${jaspic.home}/modules/javax.jms-api.jar:\
                ${jaspic.home}/modules/endorsed/jakarta.annotation-api.jar:\
                ${jaspic.home}/modules/endorsed/webservices-api-osgi.jar:\
-               ${jaspic.home}/modules/deployment-client.jar
+               ${jaspic.home}/modules/deployment-client.jar:\
+	       ${jaspic.home}/modules/jakartaee-api.jar
 
 ts.run.classpath=${jaspic.classes}:${ts.home}/lib/tsharness.jar:${ts.home}/lib/jaspic.jar:${ts.home}/lib/tssv.jar
 

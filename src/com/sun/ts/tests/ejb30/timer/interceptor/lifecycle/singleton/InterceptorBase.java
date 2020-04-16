@@ -23,7 +23,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import jakarta.ejb.TimerService;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 

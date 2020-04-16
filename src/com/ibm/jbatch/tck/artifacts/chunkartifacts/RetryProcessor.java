@@ -24,7 +24,7 @@ import java.util.Properties;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.ItemProcessor;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
@@ -32,7 +32,7 @@ import com.ibm.jbatch.tck.artifacts.chunktypes.NumbersRecord;
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
 
-@javax.inject.Named("retryProcessor")
+@jakarta.inject.Named("retryProcessor")
 public class RetryProcessor implements ItemProcessor {
 	
 	

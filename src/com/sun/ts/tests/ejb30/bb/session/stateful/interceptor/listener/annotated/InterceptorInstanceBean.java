@@ -23,9 +23,9 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.interceptor.listener.annotate
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
-import javax.interceptor.ExcludeClassInterceptors;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.ExcludeClassInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
 
 @Stateful
 @Interceptors(InterceptorInstanceInterceptor.class)

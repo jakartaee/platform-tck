@@ -23,9 +23,9 @@ import java.util.Properties;
 
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("jobLevelPropertiesPropertyValueBatchlet")
+@jakarta.inject.Named("jobLevelPropertiesPropertyValueBatchlet")
 public class JobLevelPropertiesPropertyValueBatchlet extends AbstractBatchlet {
 	
     @Inject

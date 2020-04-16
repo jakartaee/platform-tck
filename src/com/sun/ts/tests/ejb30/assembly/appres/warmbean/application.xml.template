@@ -65,12 +65,12 @@
   
   <resource-env-ref>
     <resource-env-ref-name>java:app/env/validator</resource-env-ref-name>
-    <resource-env-ref-type>javax.validation.Validator</resource-env-ref-type>
+    <resource-env-ref-type>jakarta.validation.Validator</resource-env-ref-type>
   </resource-env-ref>
   
   <resource-env-ref>
     <resource-env-ref-name>java:app/env/validatorFactory</resource-env-ref-name>
-    <resource-env-ref-type>javax.validation.ValidatorFactory</resource-env-ref-type>
+    <resource-env-ref-type>jakarta.validation.ValidatorFactory</resource-env-ref-type>
   </resource-env-ref>
   
   <resource-env-ref>

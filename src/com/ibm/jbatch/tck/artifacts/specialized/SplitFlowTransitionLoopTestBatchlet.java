@@ -25,9 +25,9 @@ import java.util.List;
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("splitFlowTransitionLoopTestBatchlet")
+@jakarta.inject.Named("splitFlowTransitionLoopTestBatchlet")
 public class SplitFlowTransitionLoopTestBatchlet extends AbstractBatchlet {
 
 	public static String GOOD_EXIT_STATUS = "VERY GOOD INVOCATION"; 

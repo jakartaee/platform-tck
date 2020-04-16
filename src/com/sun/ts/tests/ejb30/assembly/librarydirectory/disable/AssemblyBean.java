@@ -26,7 +26,7 @@ import com.sun.ts.tests.ejb30.assembly.common.AssemblyLocalIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 /**
  * This bean is packaged into lib/shared.jar, but this library-directory is

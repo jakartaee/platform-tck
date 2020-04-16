@@ -31,7 +31,7 @@ import jakarta.annotation.ManagedBean;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;
-import javax.inject.*;
+import jakarta.inject.*;
 import javax.enterprise.inject.*;
 import javax.enterprise.context.*;
 

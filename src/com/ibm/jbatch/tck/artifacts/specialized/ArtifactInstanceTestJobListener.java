@@ -25,8 +25,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.listener.JobListener;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 public class ArtifactInstanceTestJobListener implements JobListener {

@@ -23,8 +23,8 @@ import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextBase;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextTestImpl;
 import jakarta.ejb.Singleton;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 @Singleton
 public class InvocationContextBean extends InvocationContextBase

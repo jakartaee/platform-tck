@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -25,7 +25,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.logging.Logger;
 
-@javax.inject.Named("arrayIndexCheckpointData")
+@jakarta.inject.Named("arrayIndexCheckpointData")
 public class ArrayIndexCheckpointData implements Externalizable {
 
 	private final static Logger logger = Logger.getLogger(ArrayIndexCheckpointData.class.getName());

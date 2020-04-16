@@ -28,14 +28,14 @@ import java.util.logging.Logger;
 import jakarta.batch.api.listener.AbstractStepListener;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.ibm.jbatch.tck.artifacts.common.StatusConstants;
 
-@javax.inject.Named("inventoryStepListener")
+@jakarta.inject.Named("inventoryStepListener")
 public class InventoryStepListener extends AbstractStepListener implements StatusConstants {
 
     private final static String sourceClass = InventoryStepListener.class.getName();

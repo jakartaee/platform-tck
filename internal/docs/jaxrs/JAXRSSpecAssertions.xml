@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1234,22 +1234,22 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JAXRS:SPEC:102</id>
-            <description>JAX-RS implementations MUST provide a default exception mapper (see Section 4.4) for javax.validation.ValidationException according to the following rules</description>
+            <description>JAX-RS implementations MUST provide a default exception mapper (see Section 4.4) for jakarta.validation.ValidationException according to the following rules</description>
             <location chapter="7" section="6"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>JAXRS:SPEC:102.1</id>
-                    <description>If the exception is of type javax.validation.ValidationException or any of its subclasses excluding javax.validation.ConstraintViolationException, then it is mapped to a response with status code 500 (Internal Server Error).</description>
+                    <description>If the exception is of type jakarta.validation.ValidationException or any of its subclasses excluding jakarta.validation.ConstraintViolationException, then it is mapped to a response with status code 500 (Internal Server Error).</description>
                     <location chapter="7" section="6"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>JAXRS:SPEC:102.2</id>
-                    <description>If the exception is an instance of javax.validation.ConstraintViolationException, then: (a) If the exception was thrown while validating a method return type, then it is mapped to a response with status code 500 (Internal Server Error) 1</description>
+                    <description>If the exception is an instance of jakarta.validation.ConstraintViolationException, then: (a) If the exception was thrown while validating a method return type, then it is mapped to a response with status code 500 (Internal Server Error) 1</description>
                     <location chapter="7" section="6"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>JAXRS:SPEC:102.3</id>
-                    <description>If the exception is an instance of javax.validation.ConstraintViolationException, then: (b) Otherwise, it is mapped to a response with status code 400 (Bad Request).</description>
+                    <description>If the exception is an instance of jakarta.validation.ConstraintViolationException, then: (b) Otherwise, it is mapped to a response with status code 400 (Bad Request).</description>
                     <location chapter="7" section="6"/>
                 </assertion>
             </sub-assertions>

@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb30.assembly.appres.common;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import jakarta.ejb.EJB;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 

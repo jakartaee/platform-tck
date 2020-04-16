@@ -215,6 +215,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "saaj" == "$tck" ]
   then
+    wget --progress=bar:force --no-cache https://repo1.maven.org/maven2/jakarta/xml/soap/jakarta.xml.soap-api/2.0.0-RC3/jakarta.xml.soap-api-2.0.0-RC3.jar -O ${GF_HOME}/glassfish5/glassfish/modules/jakarta.xml.soap-api.jar
     TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$GF_HOME/glassfish5/glassfish -Dendorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""

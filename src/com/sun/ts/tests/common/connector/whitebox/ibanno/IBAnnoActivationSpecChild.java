@@ -21,7 +21,7 @@ import jakarta.resource.spi.*;
 import jakarta.resource.spi.ResourceAdapter;
 import com.sun.ts.tests.common.connector.util.*;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import jakarta.resource.spi.ResourceAdapterAssociation;
 

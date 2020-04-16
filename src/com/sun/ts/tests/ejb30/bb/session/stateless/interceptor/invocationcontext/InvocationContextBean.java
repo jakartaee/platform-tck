@@ -25,8 +25,8 @@ import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextTestImpl;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 @Stateless
 @Remote(InvocationContextIF.class)

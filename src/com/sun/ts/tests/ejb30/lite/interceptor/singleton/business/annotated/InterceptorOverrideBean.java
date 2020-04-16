@@ -25,11 +25,11 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBa
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
 import java.util.List;
 import jakarta.ejb.Singleton;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.ExcludeClassInterceptors;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.ExcludeClassInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 @Singleton
 @ExcludeDefaultInterceptors

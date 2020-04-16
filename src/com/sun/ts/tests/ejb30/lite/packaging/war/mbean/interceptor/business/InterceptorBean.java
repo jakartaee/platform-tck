@@ -22,9 +22,9 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 import java.util.logging.Level;
 
 import jakarta.annotation.ManagedBean;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor1;

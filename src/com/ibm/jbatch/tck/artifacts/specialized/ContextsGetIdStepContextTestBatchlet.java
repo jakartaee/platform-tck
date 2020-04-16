@@ -22,9 +22,9 @@ import com.sun.ts.lib.util.TestUtil;
 import jakarta.batch.api.AbstractBatchlet;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("contextsGetIdStepContextTestBatchlet")
+@jakarta.inject.Named("contextsGetIdStepContextTestBatchlet")
 public class ContextsGetIdStepContextTestBatchlet extends AbstractBatchlet {
 
 	public static String GOOD_EXIT_STATUS = "VERY GOOD INVOCATION"; 

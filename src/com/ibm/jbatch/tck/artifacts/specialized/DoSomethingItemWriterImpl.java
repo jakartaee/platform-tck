@@ -29,7 +29,7 @@ import com.ibm.jbatch.tck.artifacts.chunktypes.CheckpointData;
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 
 
-@javax.inject.Named("doSomethingItemWriterImpl")
+@jakarta.inject.Named("doSomethingItemWriterImpl")
 public class DoSomethingItemWriterImpl extends AbstractItemWriter {
 
 	private final static Logger logger = Logger.getLogger(DoSomethingItemWriterImpl.class.getName());

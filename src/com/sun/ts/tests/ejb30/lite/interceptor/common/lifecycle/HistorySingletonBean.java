@@ -27,7 +27,7 @@ import java.util.Map;
 
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 /**
  * A no-interface singleton for storing the order in which lifcecycle

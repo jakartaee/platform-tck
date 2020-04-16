@@ -24,13 +24,13 @@ import java.util.logging.Logger;
 import jakarta.batch.api.chunk.listener.RetryReadListener;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
-@javax.inject.Named("myMultipleExceptionsRetryReadListener")
+@jakarta.inject.Named("myMultipleExceptionsRetryReadListener")
 public class MyMultipleExceptionsRetryReadListener implements RetryReadListener {
 
     @Inject

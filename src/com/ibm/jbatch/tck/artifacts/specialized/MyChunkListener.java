@@ -24,7 +24,7 @@ import jakarta.batch.api.chunk.listener.AbstractChunkListener;
 import jakarta.batch.api.listener.StepListener;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
@@ -40,7 +40,7 @@ import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
  * StepListener.  
  *
  */
-@javax.inject.Named("myChunkListener")
+@jakarta.inject.Named("myChunkListener")
 public class MyChunkListener extends AbstractChunkListener implements StepListener {
 	
 	@Inject 

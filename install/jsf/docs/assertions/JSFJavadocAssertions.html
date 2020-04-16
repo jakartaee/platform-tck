@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018-2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -35254,7 +35254,7 @@ JavaDoc Assertion Detail</h2>
 		constraints. If the validationGroupsArray attribute is omitted or
 		empty, the validation groups will be inherited from the branch
 		defaults, or if there are no branch defaults, the
-		javax.validation.groups.Default group will be used. </font></TD>
+		jakarta.validation.groups.Default group will be used. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -35362,7 +35362,7 @@ JavaDoc Assertion Detail</h2>
 		which validations get checked by this validator. If the
 		validationGroupsArray attribute is omitted or is empty, the validation
 		groups will be inherited from the branch defaults or, if there are no
-		branch defaults, the javax.validation.groups.Default group will be
+		branch defaults, the jakarta.validation.groups.Default group will be
 		used. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -35397,12 +35397,12 @@ JavaDoc Assertion Detail</h2>
 
 
 		Obtain a ValidatorFactory instance by calling
-		javax.validation.Validation#buildDefaultValidatorFactory. Let
+		jakarta.validation.Validation#buildDefaultValidatorFactory. Let
 		validationGroupsArray be a Class [] representing validator groups set
 		on the component by the tag handler for this validator. The first
 		search component terminates the search for the validation groups
 		value. If no such value is found use the class name of
-		javax.validation.groups.Default as the value of the validation groups.
+		jakarta.validation.groups.Default as the value of the validation groups.
 		Let valueExpression be the return from calling
 		UIComponent#getValueExpression on the argument component, passing the
 		literal string &ldquo;value&rdquo; (without the quotes) as an
@@ -35421,11 +35421,11 @@ JavaDoc Assertion Detail</h2>
 		Locale returned from javax.faces.component.UIViewRoot#getLocale, and
 		store it in the ValidatorContext using
 		ValidatorContext#messageInterpolator. Obtain the
-		javax.validation.Validator instance from the validatorContext. Obtain
-		a javax.validation.BeanDescriptor from the javax.validation.Validator.
+		jakarta.validation.Validator instance from the validatorContext. Obtain
+		a jakarta.validation.BeanDescriptor from the jakarta.validation.Validator.
 		If hasConstraints() on the BeanDescriptor returns false, take no
 		action and return. Otherwise proceed. Call
-		javax.validation.Validator#validateValue, passing valueBaseClass,
+		jakarta.validation.Validator#validateValue, passing valueBaseClass,
 		valueProperty, the value argument, and validatorGroupsArray as
 		arguments. If the returned Set&lt;ConstraintViolation&gt; is
 		non-empty, for each element in the Set, create a FacesMessage where

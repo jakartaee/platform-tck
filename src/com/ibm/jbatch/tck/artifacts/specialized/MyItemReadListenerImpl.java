@@ -24,11 +24,11 @@ import java.util.logging.Logger;
 import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.listener.AbstractItemReadListener;
 import jakarta.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 
-@javax.inject.Named("myItemReadListenerImpl")
+@jakarta.inject.Named("myItemReadListenerImpl")
 public class MyItemReadListenerImpl extends AbstractItemReadListener {
 
 	private final static String sourceClass = MyItemReadListenerImpl.class.getName();

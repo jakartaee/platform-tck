@@ -25,7 +25,7 @@ import javax.jms.*;
 import jakarta.ejb.*;
 import jakarta.transaction.*;
 import javax.naming.*;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import javax.annotation.Resource;
 import javax.annotation.PostConstruct;
 

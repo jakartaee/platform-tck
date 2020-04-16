@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.method.descripto
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import javax.annotation.Resource;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;

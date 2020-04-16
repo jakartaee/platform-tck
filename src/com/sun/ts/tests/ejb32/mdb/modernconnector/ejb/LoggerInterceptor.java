@@ -17,8 +17,8 @@
 package com.sun.ts.tests.ejb32.mdb.modernconnector.ejb;
 
 import jakarta.ejb.EJB;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 public class LoggerInterceptor {
   @EJB

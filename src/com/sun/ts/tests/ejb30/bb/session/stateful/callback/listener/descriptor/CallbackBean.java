@@ -31,7 +31,7 @@ import jakarta.ejb.Remove;
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 @Stateful(name = "CallbackBean")
 @Remote({ CallbackIF.class })

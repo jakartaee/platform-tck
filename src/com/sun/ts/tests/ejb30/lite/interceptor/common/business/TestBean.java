@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.transaction.Status;
 import jakarta.transaction.UserTransaction;
 

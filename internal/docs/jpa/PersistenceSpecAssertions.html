@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -5562,7 +5562,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1297"></a><font size="1PT">PERSISTENCE:SPEC:1297</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.2</font></TD><TD align="left" valign="center"><font size="1PT">If the set of ConstraintViolation objects returned by
                 the validate method is not
                 empty, the persistence provider must throw the
-                javax.validation.ConstraintViolation-
+                jakarta.validation.ConstraintViolation-
                 Exception containing a reference to the returned set of
                 ConstraintViolation objects, and
                 must mark the transaction for rollback if the persistence
@@ -5605,7 +5605,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1300"></a><font size="1PT">PERSISTENCE:SPEC:1300</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.2</font></TD><TD align="left" valign="center"><font size="1PT">It is the responsibility of the persistence provider to
                 pass an instance implementing the
-                javax.validation. TraversableResolver interface to the Bean
+                jakarta.validation. TraversableResolver interface to the Bean
                 Validation provider by calling
                 ValidatorFactory.
                 usingContext().traversableResolver(tr).getValidator(), where
@@ -15996,7 +15996,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.20"></a><font size="1PT">PERSISTENCE:SPEC:1919.20</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
                         javax.persistence.validation.factory &mdash; value is instance
                         of
-                        javax.validation.ValidatorFactory
+                        jakarta.validation.ValidatorFactory
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>

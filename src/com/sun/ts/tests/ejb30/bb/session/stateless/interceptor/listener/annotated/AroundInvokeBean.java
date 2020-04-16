@@ -23,10 +23,10 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.annotat
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import javax.annotation.Resource;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.SessionContext;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

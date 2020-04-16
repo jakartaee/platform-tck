@@ -20,9 +20,9 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotated;
 
 import jakarta.ejb.Singleton;
-import javax.interceptor.AroundTimeout;
-import javax.interceptor.Interceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.interceptor.AroundTimeout;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutBeanBase;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;

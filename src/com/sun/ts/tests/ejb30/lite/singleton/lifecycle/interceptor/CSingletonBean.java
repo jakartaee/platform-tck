@@ -24,7 +24,7 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)

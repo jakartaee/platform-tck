@@ -45,6 +45,10 @@ fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
+#temp fix to use latest RC jar for soap api
+wget --progress=bar:force --no-cache https://repo1.maven.org/maven2/jakarta/xml/soap/jakarta.xml.soap-api/2.0.0-RC3/jakarta.xml.soap-api-2.0.0-RC3.jar -O ${TCK_HOME}/glassfish5/glassfish/modules/jakarta.xml.soap-api.jar
+wget --progress=bar:force --no-cache https://repo1.maven.org/maven2/jakarta/activation/jakarta.activation-api/2.0.0-RC3/jakarta.activation-api-2.0.0-RC3.jar -O ${TCK_HOME}/glassfish5/glassfish/modules/jakarta.activation-api.jar
+
 TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
@@ -56,7 +60,7 @@ sed -i "s#webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/glassfish5/gla
 sed -i 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
 sed -i 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
 sed -i "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
-sed -i "s#local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/webservices-api-osgi.jar#g" ts.jte
+sed -i "s#local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/webservices-api-osgi.jar:$TCK_HOME/glassfish5/glassfish/modules/jakarta.xml.soap-api.jar:$TCK_HOME/glassfish5/glassfish/modules/jakarta.activation-api.jar#g" ts.jte
 sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed#g" ts.jte
 
 #if [ "web" == "$PROFILE" ]; then

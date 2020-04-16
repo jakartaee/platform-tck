@@ -27,9 +27,9 @@ import jakarta.batch.api.listener.AbstractStepListener;
 import jakarta.batch.runtime.Metric;
 import jakarta.batch.runtime.context.JobContext;
 import jakarta.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("metricsStepListener")
+@jakarta.inject.Named("metricsStepListener")
 public class MetricsStepListener extends AbstractStepListener {
 
     @Inject

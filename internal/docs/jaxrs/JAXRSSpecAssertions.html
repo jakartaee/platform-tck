@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1055,22 +1055,22 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAX-RS:SPEC:102"></a><font size="1PT">JAX-RS:SPEC:102</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">JAX-RS implementations MUST provide a default exception mapper (see Section 4.4) for javax.validation.ValidationException according to the following rules</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAX-RS:SPEC:102"></a><font size="1PT">JAX-RS:SPEC:102</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">JAX-RS implementations MUST provide a default exception mapper (see Section 4.4) for jakarta.validation.ValidationException according to the following rules</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAX-RS:SPEC:102.1"></a><font size="1PT">JAX-RS:SPEC:102.1</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">If the exception is of type javax.validation.ValidationException or any of its subclasses excluding javax.validation.ConstraintViolationException, then it is mapped to a response with status code 500 (Internal Server Error).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAX-RS:SPEC:102.1"></a><font size="1PT">JAX-RS:SPEC:102.1</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">If the exception is of type jakarta.validation.ValidationException or any of its subclasses excluding jakarta.validation.ConstraintViolationException, then it is mapped to a response with status code 500 (Internal Server Error).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAX-RS:SPEC:102.2"></a><font size="1PT">JAX-RS:SPEC:102.2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">If the exception is an instance of javax.validation.ConstraintViolationException, then: (a) If the exception was thrown while validating a method return type, then it is mapped to a response with status code 500 (Internal Server Error) 1</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAX-RS:SPEC:102.2"></a><font size="1PT">JAX-RS:SPEC:102.2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">If the exception is an instance of jakarta.validation.ConstraintViolationException, then: (a) If the exception was thrown while validating a method return type, then it is mapped to a response with status code 500 (Internal Server Error) 1</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAX-RS:SPEC:102.3"></a><font size="1PT">JAX-RS:SPEC:102.3</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">If the exception is an instance of javax.validation.ConstraintViolationException, then: (b) Otherwise, it is mapped to a response with status code 400 (Bad Request).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAX-RS:SPEC:102.3"></a><font size="1PT">JAX-RS:SPEC:102.3</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">If the exception is an instance of jakarta.validation.ConstraintViolationException, then: (b) Otherwise, it is mapped to a response with status code 400 (Bad Request).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>

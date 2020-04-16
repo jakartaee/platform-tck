@@ -21,7 +21,7 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.batch.api.AbstractBatchlet;
 
-@javax.inject.Named("splitTransitionToDecisionTestBatchlet")
+@jakarta.inject.Named("splitTransitionToDecisionTestBatchlet")
 public class SplitTransitionToDecisionTestBatchlet extends AbstractBatchlet {
 
 	public static String GOOD_EXIT_STATUS = "VERY GOOD INVOCATION"; 
