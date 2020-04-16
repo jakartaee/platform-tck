@@ -19,7 +19,7 @@ package com.sun.ts.tests.websocket.platform.cdi;
 
 import java.io.IOException;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
