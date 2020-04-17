@@ -20,7 +20,7 @@ import static javax.security.enterprise.identitystore.CredentialValidationResult
 
 import java.io.IOException;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import javax.security.enterprise.AuthenticationException;
 import javax.security.enterprise.AuthenticationStatus;

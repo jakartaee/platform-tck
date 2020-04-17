@@ -17,7 +17,7 @@
 package com.sun.ts.tests.jaxrs.platform.managedbean299;
 
 import jakarta.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Provider;
 import jakarta.ws.rs.GET;

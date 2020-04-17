@@ -27,10 +27,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InterceptionType;
-import javax.enterprise.util.AnnotationLiteral;
-import javax.enterprise.inject.Any;
+import jakarta.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.inject.spi.InterceptionType;
+import jakarta.enterprise.util.AnnotationLiteral;
+import jakarta.enterprise.inject.Any;
 import jakarta.inject.Inject;
 
 @OneManagedQualifier
@@ -144,10 +144,10 @@ public class OneManagedBean {
       Method m = bClass.getMethod(methodName);
       Annotation[] annotationArray = m.getAnnotations();
 
-      java.util.List<javax.enterprise.inject.spi.Interceptor<?>> interceptorList = beanManager
+      java.util.List<jakarta.enterprise.inject.spi.Interceptor<?>> interceptorList = beanManager
           .resolveInterceptors(InterceptionType.AROUND_INVOKE, annotationArray);
 
-      for (javax.enterprise.inject.spi.Interceptor<?> interceptor : interceptorList) {
+      for (jakarta.enterprise.inject.spi.Interceptor<?> interceptor : interceptorList) {
         System.out.println("Interceptor Name = " + interceptor.getName());
         System.out.println("Interceptor toString = " + interceptor.toString());
         System.out.println(

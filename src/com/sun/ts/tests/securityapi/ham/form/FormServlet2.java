@@ -22,13 +22,13 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.Default;
-import javax.enterprise.inject.Instance;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.CDI;
-import javax.enterprise.util.AnnotationLiteral;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Any;
+import jakarta.enterprise.inject.Default;
+import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.inject.spi.CDI;
+import jakarta.enterprise.util.AnnotationLiteral;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -41,7 +41,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import jakarta.inject.Inject;
-import javax.enterprise.inject.spi.Bean;
+import jakarta.enterprise.inject.spi.Bean;
 
 @WebServlet("/servlet2")
 @ServletSecurity(@HttpConstraint(rolesAllowed = "Administrator"))

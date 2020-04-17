@@ -17,7 +17,7 @@
 package com.sun.ts.tests.securityapi.idstore.common;
 
 import jakarta.inject.Inject;
-import javax.enterprise.inject.spi.CDI;
+import jakarta.enterprise.inject.spi.CDI;
 import javax.security.enterprise.identitystore.IdentityStore.ValidationType;
 import javax.security.enterprise.identitystore.CredentialValidationResult.Status;
 

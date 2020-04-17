@@ -2365,7 +2365,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:318"></a><font size="1PT">JavaEE:SPEC:318</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">23</font></TD><TD align="left" valign="center"><font size="1PT">
                 The application should either look up a BeanManager instance in JNDI under the name java:comp/BeanManager
-                , or request the injection of an object of type javax.enterprise.inject.spi.BeanManager via the Resource annotation.
+                , or request the injection of an object of type jakarta.enterprise.inject.spi.BeanManager via the Resource annotation.
                 If the latter, the authenticationType and shareable elements of the Resource annotation must not be specified.
 				@Resource BeanManager manager;
 				Per the CDI specification, a bean can also request the injection of a BeanManager using the Inject annotation.
