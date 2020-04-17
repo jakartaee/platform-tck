@@ -39,8 +39,8 @@ import javax.security.enterprise.CallerPrincipal;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Priority;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Alternative;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Alternative;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -53,9 +53,9 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.CDI;
+import jakarta.enterprise.inject.spi.Bean;
+import jakarta.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.inject.spi.CDI;
 import java.lang.annotation.Annotation;
 import javax.naming.InitialContext;
 import javax.naming.NameNotFoundException;

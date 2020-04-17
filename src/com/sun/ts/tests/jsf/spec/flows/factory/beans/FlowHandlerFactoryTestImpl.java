@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsf.spec.flows.factory.beans;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.flow.FlowHandler;
 import javax.faces.flow.FlowHandlerFactory;

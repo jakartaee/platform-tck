@@ -17,7 +17,7 @@
 package com.sun.ts.tests.servlet.ee.platform.cdi.listener;
 
 import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
-import javax.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;

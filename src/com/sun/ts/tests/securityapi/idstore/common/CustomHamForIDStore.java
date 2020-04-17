@@ -17,7 +17,7 @@
 package com.sun.ts.tests.securityapi.idstore.common;
 
 import jakarta.inject.Inject;
-import javax.enterprise.inject.spi.CDI;
+import jakarta.enterprise.inject.spi.CDI;
 import javax.security.enterprise.AuthenticationStatus;
 import javax.security.enterprise.AuthenticationException;
 import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -52,13 +52,13 @@
 					<section id="2" name="Tool Provider Classes"/>
 					<section id="3" name="Tool Provider Interfaces Diagrams"/>
 					<section id="4" name="J2EE Product Provider Interfaces"/>
-					<section id="4.1" name="javax.enterprise.deploy.spi.factories package"/>
-					<section id="4.2" name="javax.enterprise.deploy.spi.status package"/>
-					<section id="4.3" name="javax.enterprise.deploy.shared.factories package"/>
+					<section id="4.1" name="jakarta.enterprise.deploy.spi.factories package"/>
+					<section id="4.2" name="jakarta.enterprise.deploy.spi.status package"/>
+					<section id="4.3" name="jakarta.enterprise.deploy.shared.factories package"/>
 					<section id="5" name="J2EE Product Provider Interfaces Diagram"/>
 					<section id="6" name="Shared Classes"/>
-					<section id="6.1" name="javax.enterprise.deploy.shared package"/>
-					<section id="6.2" name="javax.enterprise.deploy.shared.factories package"/>
+					<section id="6.1" name="jakarta.enterprise.deploy.shared package"/>
+					<section id="6.2" name="jakarta.enterprise.deploy.shared.factories package"/>
 					<section id="7" name="Environment Requirements"/>
 					<section id="7.1" name="Tool's Security Permission Set"/>
 				</sections>
@@ -139,7 +139,7 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>J2EEDeploy:SPEC:2</id>
-			<description>The Tool Provider is responsible for providing an implementation of the interfaces defined in the javax.enterprise.deploy.model package.  In addition, the tool must provide a means to discover and interact with a designated J2EE product's deployment manager and to display the configuration beans provided by it.</description>
+			<description>The Tool Provider is responsible for providing an implementation of the interfaces defined in the jakarta.enterprise.deploy.model package.  In addition, the tool must provide a means to discover and interact with a designated J2EE product's deployment manager and to display the configuration beans provided by it.</description>
 			<location chapter="2" section="2"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">

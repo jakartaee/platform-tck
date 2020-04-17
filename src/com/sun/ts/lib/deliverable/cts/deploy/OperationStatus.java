@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,9 @@
 
 package com.sun.ts.lib.deliverable.cts.deploy;
 
-import javax.enterprise.deploy.spi.Target;
-import javax.enterprise.deploy.spi.status.ProgressObject;
-import javax.enterprise.deploy.spi.TargetModuleID;
+import jakarta.enterprise.deploy.spi.Target;
+import jakarta.enterprise.deploy.spi.status.ProgressObject;
+import jakarta.enterprise.deploy.spi.TargetModuleID;
 import java.util.List;
 import java.util.ArrayList;
 import com.sun.ts.lib.util.TestUtil;

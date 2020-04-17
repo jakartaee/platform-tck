@@ -20,7 +20,7 @@ import java.lang.annotation.Annotation;
 
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.interceptor.Interceptors;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

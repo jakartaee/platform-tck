@@ -34,7 +34,7 @@ import jakarta.transaction.TransactionalException;
 import jakarta.transaction.TransactionRequiredException;
 import jakarta.transaction.InvalidTransactionException;
 import jakarta.inject.Inject;
-import javax.enterprise.context.ContextNotActiveException;
+import jakarta.enterprise.context.ContextNotActiveException;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
@@ -803,7 +803,7 @@ public class Client extends EJBLiteClientBase {
    * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING
    * Status.STATUS_COMMITTING Status.STATUS_ROLLING_BACK
    *
-   * A javax.enterprise.context.ContextNotActiveException must be thrown if a
+   * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
    * bean with this annotation is used when the transaction context is not
    * active.
    * 
@@ -847,7 +847,7 @@ public class Client extends EJBLiteClientBase {
    * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING
    * Status.STATUS_COMMITTING Status.STATUS_ROLLING_BACK
    * 
-   * A javax.enterprise.context.ContextNotActiveException must be thrown if a
+   * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
    * bean with this annotation is used when the transaction context is not
    * active.
    */

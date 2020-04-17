@@ -194,27 +194,27 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.1</id>
-                    <description>javax.enterprise.concurrent.ManagedTaskListener - taskAborted()</description>
+                    <description>jakarta.enterprise.concurrent.ManagedTaskListener - taskAborted()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.2</id>
-                    <description>javax.enterprise.concurrent.ManagedTaskListener - taskSubmitted()</description>
+                    <description>jakarta.enterprise.concurrent.ManagedTaskListener - taskSubmitted()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.3</id>
-                    <description>javax.enterprise.concurrent.ManagedTaskListener - taskStarting()</description>
+                    <description>jakarta.enterprise.concurrent.ManagedTaskListener - taskStarting()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.4</id>
-                    <description>javax.enterprise.concurrent.Trigger - getNextRunTime()</description>
+                    <description>jakarta.enterprise.concurrent.Trigger - getNextRunTime()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.5</id>
-                    <description>javax.enterprise.concurrent.Trigger - skipRun()</description>
+                    <description>jakarta.enterprise.concurrent.Trigger - skipRun()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
             </sub-assertions>
@@ -226,12 +226,12 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:8.1</id>
-                    <description>a javax.enterprise.concurrent.ManagedExecutorService</description>
+                    <description>a jakarta.enterprise.concurrent.ManagedExecutorService</description>
                     <location chapter="2" section="4"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:8.2</id>
-                    <description>or java.util.concurrent.ExecutorService with a javax.enterprise.concurrent.ManagedThreadFactory.</description>
+                    <description>or java.util.concurrent.ExecutorService with a jakarta.enterprise.concurrent.ManagedThreadFactory.</description>
                     <location chapter="2" section="4"/>
                 </assertion>
             </sub-assertions>
@@ -255,7 +255,7 @@
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:10.1</id>
                     <description>Assign an entry in the application component’s environment to the reference using the reference type of:
-                        javax.enterprise.concurrent.ManagedExecutorService.
+                        jakarta.enterprise.concurrent.ManagedExecutorService.
                     </description>
                     <location chapter="3" section="1.1"/>
                 </assertion>
@@ -284,7 +284,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:13</id>
-            <description>Task classes can optionally implement the javax.enterprise.concurrent.ManagedTask interface</description>
+            <description>Task classes can optionally implement the jakarta.enterprise.concurrent.ManagedTask interface</description>
             <location chapter="3" section="1.1"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -343,7 +343,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:16</id>
-            <description>Java EE Product Providers may include other contexts (e.g. Locale) that may be propagated to a task or a thread that invokes the callback methods in the javax.enterprise.concurrent.ManagedTaskListener interface.</description>
+            <description>Java EE Product Providers may include other contexts (e.g. Locale) that may be propagated to a task or a thread that invokes the callback methods in the jakarta.enterprise.concurrent.ManagedTaskListener interface.</description>
             <location chapter="3" section="1.4"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -590,7 +590,7 @@
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:42.1</id>
                     <description>Assign an entry in the application component’s environment to the reference using the reference type of:
-                        javax.enterprise.concurrent.ManagedScheduledExecutorService.
+                        jakarta.enterprise.concurrent.ManagedScheduledExecutorService.
                     </description>
                     <location chapter="3" section="2.1"/>
                 </assertion>
@@ -667,7 +667,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:45</id>
-            <description>Task classes can optionally implement the javax.enterprise.concurrent.ManagedTask interface to provide</description>
+            <description>Task classes can optionally implement the jakarta.enterprise.concurrent.ManagedTask interface to provide</description>
             <location chapter="3" section="2.1"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -699,7 +699,7 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:46.2</id>
-                    <description>javax.enterprise.concurrent.ManagedTaskListener thread</description>
+                    <description>jakarta.enterprise.concurrent.ManagedTaskListener thread</description>
                     <location chapter="3" section="2.4"/>
                 </assertion>
             </sub-assertions>
@@ -959,7 +959,7 @@
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:76.1</id>
                     <description>Assign an entry in the application component’s environment to the reference using the reference type of:
-                        javax.enterprise.concurrent.ContextService.
+                        jakarta.enterprise.concurrent.ContextService.
                     </description>
                     <location chapter="3" section="3.1"/>
                 </assertion>
@@ -1153,7 +1153,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:93</id>
-            <description>The javax.enterprise.concurrent.ManagedThreadFactory allows applications to create thread instances from a
+            <description>The jakarta.enterprise.concurrent.ManagedThreadFactory allows applications to create thread instances from a
                 Java EE Product Provider without creating new java.lang.Thread instances directly.
             </description>
             <location chapter="3" section="4"/>
@@ -1180,7 +1180,7 @@
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:96.1</id>
                     <description>Assign an entry in the application component’s environment to the reference using the reference type of:
-                        javax.enterprise.concurrent.ManagedThreadFactory.
+                        jakarta.enterprise.concurrent.ManagedThreadFactory.
                     </description>
                     <location chapter="3" section="4.1"/>
                 </assertion>
