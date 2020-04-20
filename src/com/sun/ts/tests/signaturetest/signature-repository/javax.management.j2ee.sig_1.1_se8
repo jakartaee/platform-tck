@@ -23,20 +23,20 @@ CLSS public abstract interface java.io.Serializable
 
 CLSS public abstract interface java.rmi.Remote
 
-CLSS public abstract interface javax.ejb.EJBHome
+CLSS public abstract interface jakarta.ejb.EJBHome
 intf java.rmi.Remote
-meth public abstract javax.ejb.EJBMetaData getEJBMetaData() throws java.rmi.RemoteException
-meth public abstract javax.ejb.HomeHandle getHomeHandle() throws java.rmi.RemoteException
-meth public abstract void remove(java.lang.Object) throws java.rmi.RemoteException,javax.ejb.RemoveException
-meth public abstract void remove(javax.ejb.Handle) throws java.rmi.RemoteException,javax.ejb.RemoveException
+meth public abstract jakarta.ejb.EJBMetaData getEJBMetaData() throws java.rmi.RemoteException
+meth public abstract jakarta.ejb.HomeHandle getHomeHandle() throws java.rmi.RemoteException
+meth public abstract void remove(java.lang.Object) throws java.rmi.RemoteException,jakarta.ejb.RemoveException
+meth public abstract void remove(jakarta.ejb.Handle) throws java.rmi.RemoteException,jakarta.ejb.RemoveException
 
-CLSS public abstract interface javax.ejb.EJBObject
+CLSS public abstract interface jakarta.ejb.EJBObject
 intf java.rmi.Remote
-meth public abstract boolean isIdentical(javax.ejb.EJBObject) throws java.rmi.RemoteException
+meth public abstract boolean isIdentical(jakarta.ejb.EJBObject) throws java.rmi.RemoteException
 meth public abstract java.lang.Object getPrimaryKey() throws java.rmi.RemoteException
-meth public abstract javax.ejb.EJBHome getEJBHome() throws java.rmi.RemoteException
-meth public abstract javax.ejb.Handle getHandle() throws java.rmi.RemoteException
-meth public abstract void remove() throws java.rmi.RemoteException,javax.ejb.RemoveException
+meth public abstract jakarta.ejb.EJBHome getEJBHome() throws java.rmi.RemoteException
+meth public abstract jakarta.ejb.Handle getHandle() throws java.rmi.RemoteException
+meth public abstract void remove() throws java.rmi.RemoteException,jakarta.ejb.RemoveException
 
 CLSS public abstract interface javax.management.j2ee.ListenerRegistration
 intf java.io.Serializable
@@ -44,7 +44,7 @@ meth public abstract void addNotificationListener(javax.management.ObjectName,ja
 meth public abstract void removeNotificationListener(javax.management.ObjectName,javax.management.NotificationListener) throws java.rmi.RemoteException,javax.management.InstanceNotFoundException,javax.management.ListenerNotFoundException
 
 CLSS public abstract interface javax.management.j2ee.Management
-intf javax.ejb.EJBObject
+intf jakarta.ejb.EJBObject
 meth public abstract boolean isRegistered(javax.management.ObjectName) throws java.rmi.RemoteException
 meth public abstract java.lang.Integer getMBeanCount() throws java.rmi.RemoteException
 meth public abstract java.lang.Object getAttribute(javax.management.ObjectName,java.lang.String) throws java.rmi.RemoteException,javax.management.AttributeNotFoundException,javax.management.InstanceNotFoundException,javax.management.MBeanException,javax.management.ReflectionException
@@ -58,8 +58,8 @@ meth public abstract javax.management.j2ee.ListenerRegistration getListenerRegis
 meth public abstract void setAttribute(javax.management.ObjectName,javax.management.Attribute) throws java.rmi.RemoteException,javax.management.AttributeNotFoundException,javax.management.InstanceNotFoundException,javax.management.InvalidAttributeValueException,javax.management.MBeanException,javax.management.ReflectionException
 
 CLSS public abstract interface javax.management.j2ee.ManagementHome
-intf javax.ejb.EJBHome
-meth public abstract javax.management.j2ee.Management create() throws java.rmi.RemoteException,javax.ejb.CreateException
+intf jakarta.ejb.EJBHome
+meth public abstract javax.management.j2ee.Management create() throws java.rmi.RemoteException,jakarta.ejb.CreateException
 
 CLSS public abstract interface javax.management.j2ee.statistics.BoundaryStatistic
 intf javax.management.j2ee.statistics.Statistic
