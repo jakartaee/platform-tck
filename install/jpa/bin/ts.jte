@@ -70,11 +70,11 @@ jdbc.db=
 ## initdb.xml file uses them to create the jpa-provider.properties file.
 ##
 ###############################################################
-javax.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
-javax.persistence.jdbc.driver=
-javax.persistence.jdbc.url=
-javax.persistence.jdbc.user=
-javax.persistence.jdbc.password=
+jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
+jakarta.persistence.jdbc.driver=
+jakarta.persistence.jdbc.url=
+jakarta.persistence.jdbc.user=
+jakarta.persistence.jdbc.password=
 
 ###############################################################
 # @jpa.provider.implementation.specific.properties

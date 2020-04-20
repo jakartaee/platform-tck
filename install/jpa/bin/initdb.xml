@@ -55,10 +55,10 @@
         <if>
             <istrue value="${cmpNeeded}"/>
         <then>
-            <sql driver="${javax.persistence.jdbc.driver}"
-                 url="${javax.persistence.jdbc.url}"
-                 userid="${javax.persistence.jdbc.user}"
-                 password="${javax.persistence.jdbc.password}"
+            <sql driver="${jakarta.persistence.jdbc.driver}"
+                 url="${jakarta.persistence.jdbc.url}"
+                 userid="${jakarta.persistence.jdbc.user}"
+                 password="${jakarta.persistence.jdbc.password}"
                  classpath="${jdbc.driver.classes}"
                  delimiter="${db.delimiter}"
                  autocommit="true"
@@ -127,10 +127,10 @@
         <if>
             <equals arg1="${jdbc.db}" arg2="derby"/>
         <then>
-            <sql driver="${javax.persistence.jdbc.driver}"
-                 url="${javax.persistence.jdbc.url}"
-                 userid="${javax.persistence.jdbc.user}"
-                 password="${javax.persistence.jdbc.password}"
+            <sql driver="${jakarta.persistence.jdbc.driver}"
+                 url="${jakarta.persistence.jdbc.url}"
+                 userid="${jakarta.persistence.jdbc.user}"
+                 password="${jakarta.persistence.jdbc.password}"
                  classpath="${jdbc.driver.classes}"
                  autocommit="true"
                  onerror="continue" >
