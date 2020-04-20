@@ -55,9 +55,9 @@ signature tests.  All signatures files live in the following directory:
 $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/
 Users should see if their signatures already exist in this directory.
 Note, every property in the sig-test.map file maps to a signature
-    file.  For example the property "javax.ejb=3.2_se11" maps to the signature
+file.  For example the property "javax.ejb=3.2_se11" maps to the signature
 file:
-     $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/jakarta.ejb.sig_3.2_se11
+ $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/javax.ejb.sig_3.2_se11
 
 If the signature file already exist, the user should checkout the signature
 file (using sccs edit) then record the new signatures and do an "sccs diff"
@@ -70,7 +70,7 @@ the appropriate API and leave the original signature file unaltered.  The
 new signature file must be placed under source control (using sccs create).
 
 As part of the recording process a "sig-test-pkg-list.txt" file will be generated
-in the $TS_HOME/bin directory.  This file should be copied to
+in the $TS_HOME/bin directory.  This file should be copied to 
 $TS_HOME/install/<deliverable>/bin and source controlled in that directory.  The
 sig-test-pkg-list.txt file should be copied to $TS_HOME/bin during the install
 process for a deliverable.
@@ -100,7 +100,7 @@ Recording API Signatures
                              This should also include ALL reference classes (eg rt.jar)
       <map.file.path>        The name and path to the map file
                              that specifies which packages to record
-      <recorder.type>        This should be sigtest EXCEPT for JBI which still uses
+      <recorder.type>        This should be sigtest EXCEPT for JBI which still uses 
                              apicheck as of cts 5.0
 
 
@@ -162,10 +162,10 @@ located in $TS_HOME/src/com/sun/ts/tests/signaturetest.  Users running their
 tests in Java EE containers must extend SigTestEE and users not running their
 tests in Java EE containers must extend SigTest.  Both the SigTestEE and SigTest
 class contain a single abstract method called getPackages.  Users must
-implement this method.  The method should return a string array containing
-names of the packages that the signature test should verify.
+implement this method.  The method should return a string array containing 
+names of the packages that the signature test should verify.  
 
-There is also an abstract method called getClasses that must be implemented.
+There is also an abstract method called getClasses that must be implemented. 
 The getClasses method can be used inplace of the getPackages method if there
 is a need to specifically list out every class instead of listing packages.
 While both of these need to be implemented with at least a stub, it should
@@ -176,7 +176,7 @@ test.  The rest of the signature tests use the getPackages() method to identify
 what to test - the getPackages() appears to be the more common method to use.
 
 Examples of test classes and a build file are provided in the
-$TS_HOME/src/com/sun/ts/tests/signaturetest directory.  The
+$TS_HOME/src/com/sun/ts/tests/signaturetest directory.  The 
 $TS_HOME/src/com/sun/ts/tests/signaturetest/javaee directory can also be used
 as an example (it contains the Java EE TCK signature tests).  The files:
   $TS_HOME/src/com/sun/ts/tests/signaturetest/build.xml.txt
@@ -192,11 +192,11 @@ and the package list file (the file named "sig-test-pkg-list.txt").
 User must also include the test framework classes located in the
 $TS_HOME/src/com/sun/ts/tests/signaturetest directory.
 
-In provious versions, it was necessary to include the apiCheck.jar file but
+In provious versions, it was necessary to include the apiCheck.jar file but 
 now we should only need to include the sigtest.jar file.  The apiCheck tool
 is an older tool used for (pre 5.0) and is not needed EXCEPT for the case of JBI
-which still appears to use apiCheck since they are still requiring j2se 1.4
-and not 5.0.  For all other technology areas, include sigtest.jar and not
+which still appears to use apiCheck since they are still requiring j2se 1.4 
+and not 5.0.  For all other technology areas, include sigtest.jar and not 
 apicheck.jar.
 
 
@@ -206,7 +206,7 @@ User must not package the $TS_HOME/lib/recordApiCheck.jar nor the
 $TS_HOME/src/com/sun/ts/tests/signaturetest/record-build.xml files.
 Also, do not include sigtestdev.jar.  (sigtestdev.jar includes the
 same files as sigtest.jar as well as additional classes used for
-recording sigs.  As a general rule, we don't want folks to be able
+recording sigs.  As a general rule, we don't want folks to be able 
 to re-record sigs.
 
 
@@ -246,7 +246,7 @@ cd <your_deliverable>
 cp ../build.xml.txt ./build.xml
 "cp ../SampleSigTest.java.txt ./<your_deliverable>SigTest.java" for stand alone sig tests
 OR
-"cp ../SampleSigTestEE.java.txt ./<your_deliverable>SigTest.java"  for container run sig tests
+"cp ../SampleSigTestEE.java.txt ./<your_deliverable>SigTest.java"  for container run sig tests 
 Edit <your_deliverable>SigTest.java.java
  - go to the bottom of the file and choose the appropriate test comment, you have
      a choice of two, see the comments in the file to help you decide which
@@ -298,7 +298,7 @@ cd <your_deliverable>
 cp ../build.xml.txt ./build.xml
 "cp ../SampleSigTest.java.txt ./<your_deliverable>SigTest.java" for stand alone sig tests
 OR
-"cp ../SampleSigTestEE.java.txt ./<your_deliverable>SigTest.java"  for container run sig tests
+"cp ../SampleSigTestEE.java.txt ./<your_deliverable>SigTest.java"  for container run sig tests 
 Edit <your_deliverable>SigTest.java.java
  - go to the bottom of the file and choose the appropriate test comment, you have
      a choice of two, see the comments in the file to help you decide which
@@ -353,7 +353,7 @@ NOTE:  If for some reason the API under test is not part of the test environment
        Again - it's worth noting that setting this sigTestClasspath variable allows
        the sigtool to detect if extra classes have been added to the API under test.
        Without setting this variable, we will not be able to detect if the API under
-       test has extra classes in it.  This is because the current sigtool uses
+       test has extra classes in it.  This is because the current sigtool uses 
        Reflection to detect if each entry in our sigfiles is loaded.  But there is no
        way to use Reflection to detect if some new class is loaded thus we use this
        property to specify a jar file to be parsed and searched for new classes that
@@ -373,9 +373,9 @@ A.  Using apicheck:
  wishes to use ApiCheck, the following steps must be taken:
 
  1.  In the TCK specific signature test client, the getSigTestDriver()
-     method *must* be overridden to return the SignatureTestDriver
+     method *must* be overridden to return the SignatureTestDriver 
      implementation for ApiCheck:
-
+      
           /**
            * <p>Override default implemenation to use ApiCheck vs SigTest.</p>
            */
@@ -390,7 +390,7 @@ A.  Using apicheck:
 
  2.  When invoking the 'record.sig.batch' target to record the API signatures,
      an additional property *must* be passed:  -Drecorder.type=apicheck
-
+      
      tsant -find record-build.xml \
            -Dsig.source=/sun/appserver9/lib/javaee.jar:${JAVA_HOME}/jre/lib/rt.jar  \
            -Dmap.file=$TS_HOME/bin/sig-test.map  \
@@ -401,7 +401,7 @@ A.  Using apicheck:
 B. Using SigTest:
 -----------------
 When running sigtests, make sure you have properly set the ts.jte files
-sigTestClasspath variable.  If your particular TCK does not have this
+sigTestClasspath variable.  If your particular TCK does not have this 
 variable in the ts.jte file, add it.  This should contain the jar files
 for the classes you are testing AND any classes that will be referenced.
 Example/
@@ -411,9 +411,9 @@ Example/
 
 C.  Differences between SigTest and APICheck:
 ---------------------------------------------
-SigTest and ApiCheck are both tools used for verifying class API's but
+SigTest and ApiCheck are both tools used for verifying class API's but 
 they are different.  ApiCheck is being phased out as of cts 5.0 and sigtest
-is the tool of choice.  (As of cts 5.0, apicheck is still used for JBI so
+is the tool of choice.  (As of cts 5.0, apicheck is still used for JBI so 
 we still need to make sure it exists but that should be the only one still
 using it.)
 
@@ -425,7 +425,7 @@ sigtest jar file(s):
 
 apicheck file(s):
  apicheck.jar  :  used for running/verifying sigtests AND recording sigtests
-                  this does NOT have any 5.0 support for annotations etc so
-                  is only valid for pre 5.0 java versions.
+                  this does NOT have any 5.0 support for annotations etc so 
+                  is only valid for pre 5.0 java versions. 
 
 
