@@ -167,3 +167,16 @@ touch ${WORKSPACE}/jakartaeetck.version
 echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/jakartaeetck.version
 echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/jakartaeetck.version
 echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/jakartaeetck.version
+
+OLD_CWD=$(pwd)
+cd /tmp
+rm -rf jakartaee-prototype
+git clone https://github.com/tbitonti/jakartaee-prototype
+cd jakartaee-prototype
+./gradlew assembleDist
+
+cd /tmp
+unzip jakartaee-prototype/transformer/build/distributions/transformer-0.1.0-SNAPSHOT.zip
+for f in ${WORKSPACE}/jakartaeetck-bundles/*.zip; do transformer-0.1.0-SNAPSHOT/bin/transformer $f `echo $f | sed 's/\.zip/-tranformed.zip/'`; done
+cd $OLD_CWD
+rm -rf /tmp/jakartaee-prototype
