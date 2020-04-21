@@ -410,7 +410,7 @@ public class Client extends ClientBase {
     @SuppressWarnings("unused")
     // Timer timer = scheduleBean.createSecondLaterTimer(getTestName());
     Timer timer = scheduleBean.createSecondLaterTimer(
-        new TimerConfig(new TimerInfo(getTestName()), false));
+        new TimerConfig(new TimerInfo(getTestName()), false), 2);
     // ScheduleBean's superclass' timeout method may add a positive timeout
     // record. But ScheduleBean's timeout method does additional verification,
     // which may turn out to be negative.
