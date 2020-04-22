@@ -32,7 +32,7 @@ import javax.jms.TopicConnectionFactory;
 import javax.jms.ConnectionFactory;
 import javax.jms.Queue;
 import javax.jms.Topic;
-import javax.mail.Session;
+import jakarta.mail.Session;
 import java.net.URL;
 
 public final class SessionListener implements HttpSessionListener {
@@ -58,7 +58,7 @@ public final class SessionListener implements HttpSessionListener {
   private Topic myTopic;
 
   @Resource(name = "mailSession")
-  private javax.mail.Session mailSession;
+  private jakarta.mail.Session mailSession;
 
   @Resource(name = "myUrl")
   private java.net.URL myUrl;
@@ -142,7 +142,7 @@ public final class SessionListener implements HttpSessionListener {
     }
 
     if (mailSession != null) {
-      if (!(mailSession instanceof javax.mail.Session)) {
+      if (!(mailSession instanceof jakarta.mail.Session)) {
         passed = false;
         pw.append("wrong type .Session");
       } else

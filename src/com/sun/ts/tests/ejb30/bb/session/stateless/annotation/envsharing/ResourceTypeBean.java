@@ -29,7 +29,7 @@ import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.mail.Session;
+import jakarta.mail.Session;
 import com.sun.ts.tests.ejb30.common.annotation.resource.EnvSharingBeanBase;
 
 @Stateless(name = "ResourceTypeBean")
@@ -55,7 +55,7 @@ public class ResourceTypeBean extends EnvSharingBeanBase implements ResourceIF {
     return sessionContext;
   }
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return (Session) getEJBContext().lookup(getMailSessionName());
   }
 

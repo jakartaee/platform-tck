@@ -63,7 +63,7 @@ public class URLClient extends AbstractUrlClient {
    * declaring several resource references in the deployment descriptor -
    * javax.sql.DataSource - javax.jms.QueueConnectionFactory -
    * javax.jms.TopicConnectionFactory - javax.jms.ConnectionFactory -
-   * javax.jms.Queue - javax.jms.Topic - javax.mail.Session - java.net.URL
+   * javax.jms.Queue - javax.jms.Topic - jakarta.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resources using annotations in a tag handler.
@@ -86,7 +86,7 @@ public class URLClient extends AbstractUrlClient {
    * without declaring several resource references in the deployment descriptor
    * - javax.sql.DataSource - javax.jms.QueueConnectionFactory -
    * javax.jms.TopicConnectionFactory - javax.jms.ConnectionFactory -
-   * javax.jms.Queue - javax.jms.Topic - javax.mail.Session - java.net.URL
+   * javax.jms.Queue - javax.jms.Topic - jakarta.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resources using annotations in a tag handler.

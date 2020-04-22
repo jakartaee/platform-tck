@@ -39,7 +39,7 @@ import javax.jms.QueueConnectionFactory;
 import javax.jms.Topic;
 import javax.jms.TopicConnection;
 import javax.jms.TopicConnectionFactory;
-import javax.mail.Session;
+import jakarta.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import jakarta.transaction.TransactionSynchronizationRegistry;
@@ -67,7 +67,7 @@ abstract public class ResourceBeanBase implements ResourceIF {
 
   abstract protected String getDataSource2Name();
 
-  abstract protected javax.mail.Session getMailSession();
+  abstract protected jakarta.mail.Session getMailSession();
 
   abstract protected String getMailSessionName();
 

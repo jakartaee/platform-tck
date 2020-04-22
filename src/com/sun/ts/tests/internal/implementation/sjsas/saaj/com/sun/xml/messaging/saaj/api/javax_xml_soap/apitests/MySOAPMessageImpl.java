@@ -21,7 +21,7 @@
 package com.sun.xml.messaging.saaj.soap;
 
 import jakarta.xml.soap.*;
-import javax.mail.internet.*;
+import jakarta.mail.internet.*;
 import jakarta.activation.DataHandler;
 import jakarta.activation.DataSource;
 import javax.xml.transform.*;

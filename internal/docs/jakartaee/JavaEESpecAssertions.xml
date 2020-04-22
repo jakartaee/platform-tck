@@ -1996,7 +1996,7 @@ independent of authentication.
                    status = "active" testable = "true">
             <id>JavaEE:SPEC:10030</id>
             <description>    
-                The Application Component Provider must use the javax.mail.Session 
+                The Application Component Provider must use the jakarta.mail.Session 
                 resource manager connection factory type for obtaining 
                 JavaMail API connections.
             </description>    
@@ -3592,7 +3592,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                 A JavaMail API Session object should be considered a resource factory, as 
                 described in section EE.5.6, "Resource Manager Connection Factory 
                 References." This Specification requires that Java EE platform support 
-                javax.mail.Session objects as resource factories, as described in that section.
+                jakarta.mail.Session objects as resource factories, as described in that section.
             </description>
             <location chapter = "6" section = "8"/>
         </assertion>
@@ -3601,10 +3601,10 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
             <id>JavaEE:SPEC:235</id>
             <description>
                 The Java EE platform requires that a message transport be provided that 
-                is capable of handling addresses of type javax.mail.internet.InternetAddress 
-                and messages of type javax.mail.internet.MimeMessage. The default message 
+                is capable of handling addresses of type jakarta.mail.internet.InternetAddress 
+                and messages of type jakarta.mail.internet.MimeMessage. The default message 
                 transport must be properly configured to send such messages using the send 
-                method of javax.mail.Transport class.
+                method of jakarta.mail.Transport class.
             </description>
             <location chapter = "6" section = "8"/>
         </assertion>
@@ -3613,7 +3613,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
             <id>JavaEE:SPEC:236</id>
             <description>
                 Any authentication needed by the default transport must be handled 
-                without need for the application to provide a javax.mail.Authenticator 
+                without need for the application to provide a jakarta.mail.Authenticator 
                 or to explicitly connect to the transport and supply authentication 
                 information.
             </description>
@@ -4694,8 +4694,8 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                     - javax.jms.JMSConnectionFactoryDefinitions
                     - javax.jms.JMSDestinationDefinition
                     - javax.jms.JMSDestinationDefinitions
-                    - javax.mail.MailSessionDefinition
-                    - javax.mail.MailSessionDefinitions
+                    - jakarta.mail.MailSessionDefinition
+                    - jakarta.mail.MailSessionDefinitions
                     - javax.persistence.PersistenceUnit
                     - javax.persistence.PersistenceUnits
                     - jakarta.resource.AdministeredObjectDefinition

@@ -587,7 +587,7 @@
                                 fail-all-connections               %boolean;  "false">
                                   
 
-<!-- The mail-resource element describes a javax.mail.Session resource -->
+<!-- The mail-resource element describes a jakarta.mail.Session resource -->
 <!ELEMENT mail-resource (description?, property*)> 
 <!ATTLIST mail-resource jndi-name                CDATA        #REQUIRED 
                         store-protocol           CDATA        "imap" 

@@ -67,7 +67,7 @@ public class URLClient extends AbstractUrlClient {
    * references in the deployment descriptor - javax.sql.DataSource -
    * javax.jms.QueueConnectionFactory - javax.jms.TopicConnectionFactory -
    * javax.jms.ConnectionFactory - javax.jms.Queue - javax.jms.Topic -
-   * javax.mail.Session - java.net.URL
+   * jakarta.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resource using annotations inside the ServletContextListener
@@ -89,7 +89,7 @@ public class URLClient extends AbstractUrlClient {
    * declaring several resource reference in the deployment descriptor -
    * javax.sql.DataSource - javax.jms.QueueConnectionFactory -
    * javax.jms.TopicConnectionFactory - javax.jms.ConnectionFactory -
-   * javax.jms.Queue - javax.jms.Topic - javax.mail.Session - java.net.URL
+   * javax.jms.Queue - javax.jms.Topic - jakarta.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resource using annotations inside the ServletContextAttributeListener
@@ -111,7 +111,7 @@ public class URLClient extends AbstractUrlClient {
    * reference in the deployment descriptor - javax.sql.DataSource -
    * javax.jms.QueueConnectionFactory - javax.jms.TopicConnectionFactory -
    * javax.jms.ConnectionFactory - javax.jms.Queue - javax.jms.Topic -
-   * javax.mail.Session - java.net.URL
+   * jakarta.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resource using annotations inside the ServletRequestListener
@@ -133,7 +133,7 @@ public class URLClient extends AbstractUrlClient {
    * declaring several resource reference in the deployment descriptor -
    * javax.sql.DataSource - javax.jms.QueueConnectionFactory -
    * javax.jms.TopicConnectionFactory - javax.jms.ConnectionFactory -
-   * javax.jms.Queue - javax.jms.Topic - javax.mail.Session - java.net.URL
+   * javax.jms.Queue - javax.jms.Topic - jakarta.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resource using annotations inside the ServletRequestAttributeListener

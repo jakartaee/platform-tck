@@ -95,7 +95,7 @@ public class Client extends EETest {
    *
    *
    * @test_Strategy: Create a CMP 1.1 Entity bean declaring a resource reference
-   *                 for a javax.mail.Session.
+   *                 for a jakarta.mail.Session.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the mail session. - We can use this factory to send

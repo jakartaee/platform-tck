@@ -18,8 +18,8 @@ package com.sun.ts.tests.javaee.resource.servlet;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.mail.Session;
-import javax.mail.MailSessionDefinition;
+import jakarta.mail.Session;
+import jakarta.mail.MailSessionDefinition;
 import javax.enterprise.context.ApplicationScoped;
 
 @MailSessionDefinition(name = "java:app/env/Bean_MailSession", properties = {
