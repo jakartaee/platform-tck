@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,8 +19,8 @@ package com.sun.ts.tests.jaxrs.api.client.clientrequestcontext;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.ClientRequestContext;
+import jakarta.ws.rs.core.Response;
 
 import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
