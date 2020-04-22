@@ -20,10 +20,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
+import jakarta.annotation.PostConstruct;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.UriInfo;
 
 import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
 

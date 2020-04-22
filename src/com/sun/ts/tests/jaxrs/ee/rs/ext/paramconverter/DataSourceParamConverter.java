@@ -17,8 +17,8 @@
 package com.sun.ts.tests.jaxrs.ee.rs.ext.paramconverter;
 
 import jakarta.activation.DataSource;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.ext.ParamConverter;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.ext.ParamConverter;
 
 import com.sun.ts.tests.jaxrs.common.impl.StringDataSource;
 

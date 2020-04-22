@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jaxrs.spec.provider.jaxbcontext;
 
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MediaType;
 
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
@@ -60,7 +60,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @assertion_ids: JAXRS:SPEC:34
    * 
    * @test_Strategy: The implementation-supplied entity provider(s) for
-   * javax.xml.bind.JAXBElement and application supplied JAXB classes MUST use
+   * jakarta.xml.bind.JAXBElement and application supplied JAXB classes MUST use
    * JAXBContext instances provided by application-supplied context resolvers,
    * see Section 4.3.
    */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,12 +22,12 @@ import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import javax.ws.rs.core.Link;
-import javax.ws.rs.core.Link.Builder;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.UriBuilderException;
-import javax.ws.rs.ext.RuntimeDelegate;
+import jakarta.ws.rs.core.Link;
+import jakarta.ws.rs.core.Link.Builder;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.UriBuilder;
+import jakarta.ws.rs.core.UriBuilderException;
+import jakarta.ws.rs.ext.RuntimeDelegate;
 
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
@@ -163,7 +163,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * 
    * @test_Strategy: Set an arbitrary parameter on this link.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void paramTest() throws Fault {
     String[] params = { "param1", "param2" };
@@ -185,7 +185,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: throws IlleagalArgumentException - if either the name or
    * value are null
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void paramThrowsExceptionWhenNullNameTest() throws Fault {
     Link.Builder builder = RuntimeDelegate.getInstance().createLinkBuilder()
@@ -206,7 +206,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: throws IlleagalArgumentException - if either the name or
    * value are null
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder *
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder *
    */
   public void paramThrowsExceptionWhenNullValueTest() throws Fault {
     Link.Builder builder = RuntimeDelegate.getInstance().createLinkBuilder()
@@ -227,7 +227,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: Convenience method to set a link relation. More than one
    * rel value can be specified using this method.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void relTest() throws Fault {
     String[] names = { "name1", "name2" };
@@ -251,7 +251,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * of calling this method is cumulative; relations are appended using a single
    * space character as separator.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void relMoreNamesTest() throws Fault {
     String[] names = { "name1", "name2" };
@@ -274,7 +274,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: Convenience method to set a title on this link. If called
    * more than once, the previous value of title is overwritten.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void titleTest() throws Fault {
     String[] titles = { "tiTle1", "titlE2", "titLe3" };
@@ -297,7 +297,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: Convenience method to set a type on this link. If called
    * more than once, the previous value of title is overwritten.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void typeTest() throws Fault {
     String[] types = { "type1", "type2", "type3" };
@@ -318,7 +318,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * 
    * @test_Strategy: Set underlying URI template for the link being constructed.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void uriUriTest() throws Fault {
     URI uri = uri("get");
@@ -338,7 +338,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: Set underlying string representing URI template for the
    * link being constructed.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void uriStringTest() throws Fault {
     Link.Builder builder = RuntimeDelegate.getInstance().createLinkBuilder()
@@ -357,7 +357,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: throws IllegalArgumentException - if string representation
    * of URI is invalid
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void uriStringThrowsIAETest() throws Fault {
     try {
@@ -377,7 +377,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: Set underlying URI builder representing the URI template
    * for the link being constructed.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void uriBuilderTest() throws Fault {
     String segment = "goto/label/ten/";
@@ -400,7 +400,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * 
    * @test_Strategy: Set the base URI for resolution of relative URIs.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void baseUriURITest() throws Fault {
     URI uri = null;
@@ -424,7 +424,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: Set the base URI for resolution of relative URIs. Provide a
    * URI that is not just base, i.e. schema and authority, but also a path
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void baseUriIsNotJustBaseURITest() throws Fault {
     URI uri = uri("something");
@@ -446,7 +446,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: If the underlying URI is already absolute, the base URI is
    * ignored.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void baseUriIsIgnoredURITest() throws Fault {
     String ignored = "http://ignored.com";
@@ -476,7 +476,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: Set the base URI as a string for resolution of relative
    * URIs.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void baseUriStringTest() throws Fault {
     URI uri = null;
@@ -500,7 +500,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @test_Strategy: throws java.lang.IllegalArgumentException - if string
    * representation of URI is invalid.
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void baseUriStringThrowsIAETest() throws Fault {
     Builder linkBuilder = RuntimeDelegate.getInstance().createLinkBuilder();
@@ -521,7 +521,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * URIs. Provide a URI that is not just base, i.e. schema and authority, but
    * also a path
    * 
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void baseUriIsNotJustBaseStringTest() throws Fault {
     URI uri = uri("something");
@@ -541,7 +541,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * @assertion_ids: JAXRS:JAVADOC:1126; JAXRS:JAVADOC:1053;
    * 
    * @test_Strategy: If the underlying URI is already absolute, the base URI is
-   * ignored. javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * ignored. jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void baseUriIsIgnoredStringTest() throws Fault {
     String ignored = "http://ignored.com";
@@ -564,7 +564,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * 
    * @test_Strategy: Finish building this link using the supplied values as URI
    * parameters and relativize the result with respect to the supplied URI.
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void buildRelativizedTest() throws Fault {
     String relative = "a/b/c";
@@ -701,7 +701,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * 
    * @test_Strategy: Throws: UriBuilderException - if a URI cannot be
    * constructed based on the current state of the underlying URI builder.
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void buildRelativizedThrowsUriBuilderExceptionTest() throws Fault {
     Builder linkBuilder = RuntimeDelegate.getInstance().createLinkBuilder();
@@ -726,7 +726,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * 
    * @test_Strategy: Initialize builder using another link. Sets underlying URI
    * and copies all parameters.
-   * javax.ws.rs.ext.RuntimeDelegate.createLinkBuilder
+   * jakarta.ws.rs.ext.RuntimeDelegate.createLinkBuilder
    */
   public void linkLinkTest() throws Fault {
     String title = "Ttttlll";

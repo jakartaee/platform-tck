@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.MultivaluedMap;
 
 import org.apache.commons.httpclient.Header;
 
@@ -28,20 +28,20 @@ import com.sun.ts.tests.common.webclient.http.HttpResponse;
 
 public class ApacheResponseAdapter extends HttpResponse {
 
-  public ApacheResponseAdapter(javax.ws.rs.core.Response response, String host,
+  public ApacheResponseAdapter(jakarta.ws.rs.core.Response response, String host,
       int port) {
     super(host, port, port == 443, null, null);
     this.response = response;
     this.caser = TextCaser.NONE;
   }
 
-  public ApacheResponseAdapter(javax.ws.rs.core.Response response, String host,
+  public ApacheResponseAdapter(jakarta.ws.rs.core.Response response, String host,
       int port, TextCaser caser) {
     this(response, host, port);
     this.caser = caser;
   }
 
-  private javax.ws.rs.core.Response response;
+  private jakarta.ws.rs.core.Response response;
 
   private String entity = null;
 
