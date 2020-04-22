@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -70,11 +70,11 @@ jdbc.db=
 ## initdb.xml file uses them to create the jpa-provider.properties file.
 ##
 ###############################################################
-javax.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
-javax.persistence.jdbc.driver=
-javax.persistence.jdbc.url=
-javax.persistence.jdbc.user=
-javax.persistence.jdbc.password=
+jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
+jakarta.persistence.jdbc.driver=
+jakarta.persistence.jdbc.url=
+jakarta.persistence.jdbc.user=
+jakarta.persistence.jdbc.password=
 
 ###############################################################
 # @jpa.provider.implementation.specific.properties
