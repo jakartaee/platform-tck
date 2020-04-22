@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -55,10 +55,10 @@
         <if>
             <istrue value="${cmpNeeded}"/>
         <then>
-            <sql driver="${javax.persistence.jdbc.driver}"
-                 url="${javax.persistence.jdbc.url}"
-                 userid="${javax.persistence.jdbc.user}"
-                 password="${javax.persistence.jdbc.password}"
+            <sql driver="${jakarta.persistence.jdbc.driver}"
+                 url="${jakarta.persistence.jdbc.url}"
+                 userid="${jakarta.persistence.jdbc.user}"
+                 password="${jakarta.persistence.jdbc.password}"
                  classpath="${jdbc.driver.classes}"
                  delimiter="${db.delimiter}"
                  autocommit="true"
@@ -127,10 +127,10 @@
         <if>
             <equals arg1="${jdbc.db}" arg2="derby"/>
         <then>
-            <sql driver="${javax.persistence.jdbc.driver}"
-                 url="${javax.persistence.jdbc.url}"
-                 userid="${javax.persistence.jdbc.user}"
-                 password="${javax.persistence.jdbc.password}"
+            <sql driver="${jakarta.persistence.jdbc.driver}"
+                 url="${jakarta.persistence.jdbc.url}"
+                 userid="${jakarta.persistence.jdbc.user}"
+                 password="${jakarta.persistence.jdbc.password}"
                  classpath="${jdbc.driver.classes}"
                  autocommit="true"
                  onerror="continue" >
