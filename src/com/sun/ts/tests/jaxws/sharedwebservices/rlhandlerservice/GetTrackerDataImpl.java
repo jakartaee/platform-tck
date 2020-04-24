@@ -32,7 +32,7 @@ import jakarta.xml.ws.handler.soap.*;
 
 import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "GetTrackerDataPort", targetNamespace = "http://rlhandlerservice.org/wsdl", serviceName = "RLHandlerService", wsdlLocation = "WEB-INF/wsdl/RLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.GetTrackerData")
 

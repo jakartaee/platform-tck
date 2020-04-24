@@ -33,7 +33,7 @@ import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import jakarta.xml.XMLConstants;
+import javax.xml.XMLConstants;
 import javax.xml.namespace.NamespaceContext;
 import java.io.IOException;
 import java.io.InputStream;

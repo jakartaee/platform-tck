@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 
 import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "W2JDLR1141TestService", targetNamespace = "http://w2jdlr1141testservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JDLR1141TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R1141.Hello")
 

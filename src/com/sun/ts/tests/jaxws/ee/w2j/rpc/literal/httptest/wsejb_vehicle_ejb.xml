@@ -29,7 +29,7 @@
       <transaction-type>Container</transaction-type>
       <service-ref>
         <service-ref-name>service/wsw2jrlhttptest</service-ref-name>
-        <service-interface>javax.xml.ws.Service</service-interface>
+        <service-interface>jakarta.xml.ws.Service</service-interface>
         <wsdl-file>META-INF/wsdl/WSW2JRLHttpTestService.wsdl</wsdl-file>
         <port-component-ref>
           <service-endpoint-interface>com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest.Hello</service-endpoint-interface>

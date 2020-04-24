@@ -41,7 +41,7 @@ import jakarta.xml.ws.Holder;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "ParameterModeTestPort", serviceName = "ParameterModeTestService", targetNamespace = "http://ParameterModeTest.org/", wsdlLocation = "WEB-INF/wsdl/WSW2JRLParameterModeTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.parametermodetest.ParameterModeTest")
 public class ParameterModeTestImpl implements ParameterModeTest {

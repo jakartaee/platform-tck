@@ -32,7 +32,7 @@
   </session-config>
   <service-ref>
     <service-ref-name>service/wsw2jhellosecureservice</service-ref-name>
-    <service-interface>javax.xml.ws.Service</service-interface>
+    <service-interface>jakarta.xml.ws.Service</service-interface>
     <wsdl-file>WEB-INF/wsdl/WSHelloSecureService.wsdl</wsdl-file>
     <port-component-ref>
       <service-endpoint-interface>com.sun.ts.tests.jaxws.sharedclients.hellosecureclient.Hello</service-endpoint-interface>

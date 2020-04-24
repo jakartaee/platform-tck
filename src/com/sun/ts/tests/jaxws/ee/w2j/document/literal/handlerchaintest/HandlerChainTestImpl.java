@@ -29,7 +29,7 @@ import javax.xml.transform.dom.DOMSource;
 
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
-import javax.jws.HandlerChain;
+import jakarta.jws.HandlerChain;
 
 @HandlerChain(name = "", file = "server-handler.xml")
 @WebServiceProvider(serviceName = "HandlerChainTestService", portName = "HandlerChainTestPort", targetNamespace = "http://handlerchaintestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JHandlerChainTestService.wsdl")

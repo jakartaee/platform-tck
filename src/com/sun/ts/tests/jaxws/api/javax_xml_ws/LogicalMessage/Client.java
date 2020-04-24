@@ -38,7 +38,7 @@ import jakarta.xml.ws.*;
 import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.soap.*;
 
-import javax.jws.HandlerChain;
+import jakarta.jws.HandlerChain;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

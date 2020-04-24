@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2747;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "W2JDLR2747TestTwoPort", serviceName = "W2JDLR2747TestService", targetNamespace = "http://w2jdlr2747testservice.org/W2JDLR2747TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JDLR2747TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2747.W2JDLR2747TestTwo")
 public class W2JDLR2747TestTwoImpl implements W2JDLR2747TestTwo {

@@ -22,7 +22,7 @@ package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
 import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello")
 

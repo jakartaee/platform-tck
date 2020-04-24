@@ -28,7 +28,7 @@ import javax.xml.transform.*;
 import java.net.*;
 import java.awt.*;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "SwaRefTestPort", serviceName = "WSIDLSwaRefTestService", targetNamespace = "http://SwaRefTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaRefTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTest")
 

@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 
 import java.util.ArrayList;

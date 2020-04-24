@@ -22,7 +22,7 @@ package com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external;
 
 import com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external.custom.pkg.CustomizationExternalTestException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "myService", targetNamespace = "http://customizationexternaltest.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLCustomizationExternalTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external.Hello")
 

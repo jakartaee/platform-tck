@@ -25,8 +25,8 @@ import com.sun.ts.lib.util.*;
 import java.lang.annotation.Annotation;
 import jakarta.xml.ws.WebFault;
 import jakarta.xml.ws.*;
-import javax.jws.*;
-import javax.jws.soap.*;
+import jakarta.jws.*;
+import jakarta.jws.soap.*;
 import java.lang.reflect.Field;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
@@ -175,9 +175,9 @@ public class AnnotationUtils {
 
   public static String getWsdlLocation(Class c) {
     String wsdlLocation = null;
-    if (c.isAnnotationPresent(javax.jws.WebService.class)) {
-      WebService ws = (javax.jws.WebService) c
-          .getAnnotation(javax.jws.WebService.class);
+    if (c.isAnnotationPresent(jakarta.jws.WebService.class)) {
+      WebService ws = (jakarta.jws.WebService) c
+          .getAnnotation(jakarta.jws.WebService.class);
       wsdlLocation = ws.wsdlLocation();
     }
     return wsdlLocation;
@@ -187,9 +187,9 @@ public class AnnotationUtils {
       String targetNamespace, String serviceName, String wsdlLocation,
       String endpointInterface) {
     boolean result = true;
-    if (c.isAnnotationPresent(javax.jws.WebService.class)) {
-      WebService ws = (javax.jws.WebService) c
-          .getAnnotation(javax.jws.WebService.class);
+    if (c.isAnnotationPresent(jakarta.jws.WebService.class)) {
+      WebService ws = (jakarta.jws.WebService) c
+          .getAnnotation(jakarta.jws.WebService.class);
       if (ws != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(ws.toString());
@@ -273,9 +273,9 @@ public class AnnotationUtils {
       return false;
     } else
       TestUtil.logMsg("Method name found for -> " + methodName);
-    if (method.isAnnotationPresent(javax.jws.soap.SOAPBinding.class)) {
-      SOAPBinding sb = (javax.jws.soap.SOAPBinding) method
-          .getAnnotation(javax.jws.soap.SOAPBinding.class);
+    if (method.isAnnotationPresent(jakarta.jws.soap.SOAPBinding.class)) {
+      SOAPBinding sb = (jakarta.jws.soap.SOAPBinding) method
+          .getAnnotation(jakarta.jws.soap.SOAPBinding.class);
       if (sb != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(sb.toString());
@@ -329,9 +329,9 @@ public class AnnotationUtils {
   public static boolean verifySOAPBindingAnnotation(Class c, String style,
       String use, String parameterStyle) {
     boolean result = true;
-    if (c.isAnnotationPresent(javax.jws.soap.SOAPBinding.class)) {
-      SOAPBinding sb = (javax.jws.soap.SOAPBinding) c
-          .getAnnotation(javax.jws.soap.SOAPBinding.class);
+    if (c.isAnnotationPresent(jakarta.jws.soap.SOAPBinding.class)) {
+      SOAPBinding sb = (jakarta.jws.soap.SOAPBinding) c
+          .getAnnotation(jakarta.jws.soap.SOAPBinding.class);
       if (sb != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(sb.toString());
@@ -379,8 +379,8 @@ public class AnnotationUtils {
       return false;
     }
 
-    if (method.isAnnotationPresent(javax.jws.soap.SOAPBinding.class)) {
-      SOAPBinding sb = method.getAnnotation(javax.jws.soap.SOAPBinding.class);
+    if (method.isAnnotationPresent(jakarta.jws.soap.SOAPBinding.class)) {
+      SOAPBinding sb = method.getAnnotation(jakarta.jws.soap.SOAPBinding.class);
       if (sb != null) {
         TestUtil.logMsg("Annotation:");
         TestUtil.logMsg(sb.toString());
@@ -430,7 +430,7 @@ public class AnnotationUtils {
       return false;
     }
     if (methodName.equals(method.getName())) {
-      if (!method.isAnnotationPresent(javax.jws.Oneway.class)) {
+      if (!method.isAnnotationPresent(jakarta.jws.Oneway.class)) {
         result = false;
         TestUtil.logErr("The Oneway annotation was not present");
       }
@@ -447,8 +447,8 @@ public class AnnotationUtils {
       return false;
     }
     if (methodName.equals(method.getName())) {
-      if (method.isAnnotationPresent(javax.jws.WebResult.class)) {
-        WebResult wr = method.getAnnotation(javax.jws.WebResult.class);
+      if (method.isAnnotationPresent(jakarta.jws.WebResult.class)) {
+        WebResult wr = method.getAnnotation(jakarta.jws.WebResult.class);
         if (wr != null) {
           TestUtil.logTrace("Annotation:");
           TestUtil.logTrace(wr.toString());
@@ -497,7 +497,7 @@ public class AnnotationUtils {
       Annotation[][] aArray = method.getParameterAnnotations();
       for (int j = 0; j < aArray[paramIndex].length; j++) {
         Annotation annotation = aArray[paramIndex][j];
-        if (annotation instanceof javax.jws.WebParam) {
+        if (annotation instanceof jakarta.jws.WebParam) {
           WebParam wp = (WebParam) annotation;
           TestUtil.logTrace("Annotation:");
           TestUtil.logTrace(wp.toString());
@@ -557,8 +557,8 @@ public class AnnotationUtils {
       return false;
     }
     if (methodName.equals(method.getName())) {
-      if (method.isAnnotationPresent(javax.jws.WebMethod.class)) {
-        WebMethod wm = method.getAnnotation(javax.jws.WebMethod.class);
+      if (method.isAnnotationPresent(jakarta.jws.WebMethod.class)) {
+        WebMethod wm = method.getAnnotation(jakarta.jws.WebMethod.class);
         if (wm != null) {
           TestUtil.logTrace("Annotation:");
           TestUtil.logTrace(wm.toString());
@@ -664,7 +664,7 @@ public class AnnotationUtils {
       return false;
     }
     if (method.isAnnotationPresent(jakarta.xml.ws.RequestWrapper.class)) {
-      jakarta.xml.ws.RequestWrapper rw = (javax.xml.ws.RequestWrapper) method
+      jakarta.xml.ws.RequestWrapper rw = (jakarta.xml.ws.RequestWrapper) method
           .getAnnotation(jakarta.xml.ws.RequestWrapper.class);
       if (rw != null) {
         TestUtil.logTrace("Annotation:");
@@ -726,7 +726,7 @@ public class AnnotationUtils {
       return false;
     }
     if (method.isAnnotationPresent(jakarta.xml.ws.ResponseWrapper.class)) {
-      jakarta.xml.ws.ResponseWrapper rw = (javax.xml.ws.ResponseWrapper) method
+      jakarta.xml.ws.ResponseWrapper rw = (jakarta.xml.ws.ResponseWrapper) method
           .getAnnotation(jakarta.xml.ws.ResponseWrapper.class);
       if (rw != null) {
         TestUtil.logTrace("Annotation:");
@@ -870,9 +870,9 @@ public class AnnotationUtils {
 
   public static boolean verifyHandlerChainAnnotation(Class c, String file) {
     boolean result = true;
-    if (c.isAnnotationPresent(javax.jws.HandlerChain.class)) {
-      HandlerChain hc = (javax.jws.HandlerChain) c
-          .getAnnotation(javax.jws.HandlerChain.class);
+    if (c.isAnnotationPresent(jakarta.jws.HandlerChain.class)) {
+      HandlerChain hc = (jakarta.jws.HandlerChain) c
+          .getAnnotation(jakarta.jws.HandlerChain.class);
       if (hc != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(hc.toString());

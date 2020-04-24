@@ -1,4 +1,4 @@
-WSRAnn=@javax.xml.ws.WebServiceRef(name="service/wsdlhandlerservice")
+WSRAnn=@jakarta.xml.ws.WebServiceRef(name="service/wsdlhandlerservice")
 SERVICE=com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService
 URLALIAS=/jaxws/Hello
 URLALIAS3=/jaxws/Hello3

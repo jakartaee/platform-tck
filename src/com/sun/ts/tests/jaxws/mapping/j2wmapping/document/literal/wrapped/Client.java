@@ -542,7 +542,7 @@ public class Client extends ServiceEETest
    * JAXWS:SPEC:3034; JAXWS:SPEC:3035;
    *
    * @test_Strategy: Verify that the targetNamespace in the generated WSDL
-   * matches the targetNamespace as specified in the javax.jws.WebService
+   * matches the targetNamespace as specified in the jakarta.jws.WebService
    * annotation. (Java to WSDL 1.1 Mapping). Conformance requirement done: -
    * Package name mapping
    *
@@ -1191,7 +1191,7 @@ public class Client extends ServiceEETest
    * wrapper must be named as "parameters" for output messages in the generated
    * WSDL, otherwise it would be named as "result". - (Customizing Wrapper
    * wsdl:part names): Non-default partName values of the
-   * jakarta.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations,
+   * jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations,
    * if specified on SEI method, MUST be used as wsdl:part name for input and
    * output messages respectively in the generated WSDL. - (wsdl:message naming
    * using WebFault): If an exception has @WebFault, then messageName MUST be

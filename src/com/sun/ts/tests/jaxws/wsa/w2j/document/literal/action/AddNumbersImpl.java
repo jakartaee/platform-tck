@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.soap.Addressing;
 
 @WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com/", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLActionTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.action.AddNumbersPortType")

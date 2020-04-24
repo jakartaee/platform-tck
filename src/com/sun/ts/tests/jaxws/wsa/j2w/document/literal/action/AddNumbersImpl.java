@@ -21,9 +21,9 @@
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.action;
 
 import javax.annotation.Resource;
-import javax.jws.HandlerChain;
-import javax.jws.WebService;
-import javax.jws.WebMethod;
+import jakarta.jws.HandlerChain;
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
 import jakarta.xml.ws.WebServiceContext;
 import jakarta.xml.ws.Action;
 import jakarta.xml.ws.FaultAction;

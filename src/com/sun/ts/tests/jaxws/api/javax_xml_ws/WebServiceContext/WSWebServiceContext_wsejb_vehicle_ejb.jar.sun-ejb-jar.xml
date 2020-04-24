@@ -33,11 +33,11 @@
             <localpart>HelloPort</localpart>
           </wsdl-port>
           <stub-property>
-            <name>javax.xml.ws.security.auth.password</name>
+            <name>jakarta.xml.ws.security.auth.password</name>
             <value>j2ee</value>
           </stub-property>
           <stub-property>
-            <name>javax.xml.ws.security.auth.username</name>
+            <name>jakarta.xml.ws.security.auth.username</name>
             <value>j2ee</value>
           </stub-property>
         </port-info>

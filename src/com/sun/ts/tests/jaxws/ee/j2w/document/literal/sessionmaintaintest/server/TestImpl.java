@@ -24,8 +24,8 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
 import jakarta.xml.ws.handler.MessageContext;
 
