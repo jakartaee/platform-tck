@@ -41,7 +41,7 @@ import com.sun.ts.tests.jaxws.common.*;
 
 import javax.naming.InitialContext;
 import jakarta.xml.ws.WebServiceRef;
-import javax.jws.HandlerChain;
+import jakarta.jws.HandlerChain;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

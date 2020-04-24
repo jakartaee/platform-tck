@@ -32,7 +32,7 @@ import jakarta.xml.soap.SOAPFault;
 import jakarta.xml.soap.SOAPFactory;
 import jakarta.xml.soap.Name;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 import com.sun.ts.tests.jaxws.common.*;
 import java.util.Properties;

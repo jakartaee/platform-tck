@@ -22,7 +22,7 @@ package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.headertest;
 
 import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "HeaderTestPort", serviceName = "HeaderTestService", targetNamespace = "http://headertestservice.org/HeaderTestService.wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLHeaderTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.headertest.HeaderTest")
 public class HeaderTestImpl implements HeaderTest {

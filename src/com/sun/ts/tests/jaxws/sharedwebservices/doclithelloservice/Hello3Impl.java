@@ -29,7 +29,7 @@ import jakarta.xml.ws.*;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "Hello3Port", targetNamespace = "http://helloservice.org/wsdl", serviceName = "HelloService", wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello3")
 

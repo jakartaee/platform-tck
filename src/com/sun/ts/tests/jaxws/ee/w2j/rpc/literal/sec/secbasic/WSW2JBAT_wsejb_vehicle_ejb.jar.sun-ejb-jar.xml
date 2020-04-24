@@ -55,11 +55,11 @@
             <localpart>HelloProtectedPort1</localpart>
           </wsdl-port>
           <stub-property>
-            <name>javax.xml.ws.security.auth.password</name>
+            <name>jakarta.xml.ws.security.auth.password</name>
             <value>j2ee</value>
           </stub-property>
           <stub-property>
-            <name>javax.xml.ws.security.auth.username</name>
+            <name>jakarta.xml.ws.security.auth.username</name>
             <value>j2ee</value>
           </stub-property>
         </port-info>
@@ -74,11 +74,11 @@
             <localpart>HelloProtectedPort2</localpart>
           </wsdl-port>
           <stub-property>
-            <name>javax.xml.ws.security.auth.username</name>
+            <name>jakarta.xml.ws.security.auth.username</name>
             <value>invalid</value>
           </stub-property>
           <stub-property>
-            <name>javax.xml.ws.security.auth.password</name>
+            <name>jakarta.xml.ws.security.auth.password</name>
             <value>invalid</value>
           </stub-property>
         </port-info>
@@ -93,11 +93,11 @@
             <localpart>HelloProtectedPort3</localpart>
           </wsdl-port>
           <stub-property>
-            <name>javax.xml.ws.security.auth.password</name>
+            <name>jakarta.xml.ws.security.auth.password</name>
             <value>javajoe</value>
           </stub-property>
           <stub-property>
-            <name>javax.xml.ws.security.auth.username</name>
+            <name>jakarta.xml.ws.security.auth.username</name>
             <value>javajoe</value>
           </stub-property>
         </port-info>
@@ -112,11 +112,11 @@
             <localpart>HelloGuestPort</localpart>
           </wsdl-port>
           <stub-property>
-            <name>javax.xml.ws.security.auth.username</name>
+            <name>jakarta.xml.ws.security.auth.username</name>
             <value>javajoe</value>
           </stub-property>
           <stub-property>
-            <name>javax.xml.ws.security.auth.password</name>
+            <name>jakarta.xml.ws.security.auth.password</name>
             <value>javajoe</value>
           </stub-property>
         </port-info>

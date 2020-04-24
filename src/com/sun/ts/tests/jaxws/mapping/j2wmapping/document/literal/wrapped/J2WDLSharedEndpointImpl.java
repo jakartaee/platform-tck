@@ -22,7 +22,7 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
 import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "J2WDLSharedEndpointPort", serviceName = "J2WDLSharedService", targetNamespace = "http://doclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.J2WDLSharedEndpoint")
 public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {

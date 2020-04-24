@@ -19,7 +19,7 @@
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest;
 
 import jakarta.xml.ws.WebServiceException;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "SwaTestTwoPort", serviceName = "WSIRLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest2")
 public class SwaTestImpl2 implements SwaTest2 {

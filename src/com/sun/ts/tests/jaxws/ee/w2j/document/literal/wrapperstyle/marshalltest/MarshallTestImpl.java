@@ -37,7 +37,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import java.util.*;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "MarshallTestPort", serviceName = "MarshallTestService", targetNamespace = "http://MarshallTest.org/", wsdlLocation = "WEB-INF/wsdl/WSW2JDLWMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.wrapperstyle.marshalltest.MarshallTest")
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -122,7 +122,7 @@ public class Client extends ServiceEETest
    *
    * @test_Strategy: Verify that the targetNamespace in the generated WSDL is
    * derived from the package name when no targetNamespace is specified in the
-   * javax.jws.WebService annotation. This is the default value case. (Java to
+   * jakarta.jws.WebService annotation. This is the default value case. (Java to
    * WSDL 1.1 Mapping). Conformance requirement done: - Package name mapping
    *
    */
@@ -161,7 +161,7 @@ public class Client extends ServiceEETest
    *
    * @test_Strategy: Verify that the operation oneWayOperation in the generated
    * WSDL is either mapped one way or two way when it is not specified as Oneway
-   * by using the javax.jws.Oneway annotation. The spec is vague in this regard
+   * by using the jakarta.jws.Oneway annotation. The spec is vague in this regard
    * so you must assume that the mapping could be one way or two way. (Java to
    * WSDL 1.1 Mapping). Conformance requirement done: - One-way mapping or
    * Two-way mapping

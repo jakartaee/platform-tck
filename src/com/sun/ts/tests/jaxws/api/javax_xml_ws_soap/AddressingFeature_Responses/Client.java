@@ -107,7 +107,7 @@ public class Client extends ServiceEETest {
     try {
       TestUtil.logMsg(
           "Call jakarta.xml.ws.soap.AddressingFeature.Responses.values() ...");
-      jakarta.xml.ws.soap.AddressingFeature.Responses[] responses = javax.xml.ws.soap.AddressingFeature.Responses
+      jakarta.xml.ws.soap.AddressingFeature.Responses[] responses = jakarta.xml.ws.soap.AddressingFeature.Responses
           .values();
       printEnums(responses);
       pass = findEnums(responses);
@@ -136,7 +136,7 @@ public class Client extends ServiceEETest {
     try {
       TestUtil.logMsg(
           "Call jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) ...");
-      jakarta.xml.ws.soap.AddressingFeature.Responses responses = javax.xml.ws.soap.AddressingFeature.Responses
+      jakarta.xml.ws.soap.AddressingFeature.Responses responses = jakarta.xml.ws.soap.AddressingFeature.Responses
           .valueOf("ALL");
       if (responses != jakarta.xml.ws.soap.AddressingFeature.Responses.ALL) {
         TestUtil.logErr(

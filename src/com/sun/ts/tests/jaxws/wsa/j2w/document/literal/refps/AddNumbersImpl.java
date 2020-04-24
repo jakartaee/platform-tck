@@ -23,13 +23,13 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.Action;
-import javax.jws.WebParam;
+import jakarta.jws.WebParam;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
-import javax.jws.HandlerChain;
+import jakarta.jws.HandlerChain;
 
 @WebService(name = "AddNumbersPortType", portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com")
 @HandlerChain(name = "", file = "server-handler.xml")

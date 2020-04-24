@@ -21,7 +21,7 @@
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
 import jakarta.xml.ws.WebServiceException;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.soap.Addressing;

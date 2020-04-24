@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
-import javax.jws.WebService;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.soap.Addressing;
@@ -34,7 +34,7 @@ import jakarta.activation.DataHandler;
 import java.util.List;
 
 @WebService(name = "JAXBAnnotationsEndpoint", serviceName = "JAXBAnnotationsService", targetNamespace = "http://doclitservice.org/wsdl")
-@javax.jws.soap.SOAPBinding(style = javax.jws.soap.SOAPBinding.Style.DOCUMENT, use = javax.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = javax.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.DOCUMENT, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing
 @MTOM
