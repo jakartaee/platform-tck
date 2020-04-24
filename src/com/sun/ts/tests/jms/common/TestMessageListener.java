@@ -26,12 +26,12 @@ import java.io.*;
 import java.rmi.RemoteException;
 import java.util.*;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 
 /**
  * Message Listener implementation for JMS testing
  */
-public class TestMessageListener implements javax.jms.MessageListener {
+public class TestMessageListener implements jakarta.jms.MessageListener {
   public MessageConsumer mConsumer;
 
   public DoneLatch monitor;

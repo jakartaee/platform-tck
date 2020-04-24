@@ -21,10 +21,10 @@
 package com.sun.ts.tests.assembly.util.shared.resref.scope;
 
 import java.util.Properties;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.TopicConnection;
-import javax.jms.TopicConnection;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.TopicConnection;
+import jakarta.jms.TopicConnection;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
 

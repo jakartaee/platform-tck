@@ -27,7 +27,7 @@ import java.util.*;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EJBHome;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.security.*;
 import java.sql.*;
 import javax.sql.*;

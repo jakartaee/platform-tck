@@ -20,7 +20,7 @@
 package com.sun.ts.tests.jms.core20.appclient.listenerexceptiontests;
 
 import com.sun.ts.lib.util.TestUtil;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.util.ArrayList;
 
 public class MyMessageListener implements MessageListener {
@@ -163,7 +163,7 @@ public class MyMessageListener implements MessageListener {
           if (msgconsumer != null)
             msgconsumer.close();
         }
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
         TestUtil.logMsg("onMessage(): Caught expected IllegalStateException");
         gotCorrectException = true;
         gotException = true;
@@ -179,7 +179,7 @@ public class MyMessageListener implements MessageListener {
           if (jmsconsumer != null)
             jmsconsumer.close();
         }
-      } catch (javax.jms.IllegalStateRuntimeException e) {
+      } catch (jakarta.jms.IllegalStateRuntimeException e) {
         TestUtil.logMsg(
             "onMessage(): Caught expected IllegalStateRuntimeException");
         gotCorrectException = true;

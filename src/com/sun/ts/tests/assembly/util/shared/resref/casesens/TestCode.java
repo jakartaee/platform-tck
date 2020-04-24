@@ -21,10 +21,10 @@
 package com.sun.ts.tests.assembly.util.shared.resref.casesens;
 
 import java.util.Properties;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.QueueConnection;
-import javax.jms.TopicConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.TopicConnection;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
 

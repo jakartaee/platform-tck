@@ -30,7 +30,7 @@
   
   <message-destination-ref>
     <message-destination-ref-name>sendQueue</message-destination-ref-name>
-    <message-destination-type>javax.jms.Queue</message-destination-type>
+    <message-destination-type>jakarta.jms.Queue</message-destination-type>
     <message-destination-usage>Produces</message-destination-usage>
     <message-destination-link>MsgBeanInQueue</message-destination-link>
   </message-destination-ref>

@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -214,7 +214,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
         String foo = tool.getDefaultQueueReceiver().getMessageSelector();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -249,7 +249,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
         Message foo = tool.getDefaultQueueReceiver().receive();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -284,7 +284,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
         Message foo = tool.getDefaultQueueReceiver().receive(timeout);
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -319,7 +319,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
         Message foo = tool.getDefaultQueueReceiver().receiveNoWait();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -354,7 +354,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
         Queue foo = tool.getDefaultQueueReceiver().getQueue();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {

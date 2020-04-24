@@ -23,10 +23,10 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.method.ejbcreate;
 import com.sun.ts.tests.ejb30.bb.mdb.callback.method.ejbcreate.CallbackBean0;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
-import javax.jms.MessageListener;
+import jakarta.jms.MessageListener;
 
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 public class CallbackBean extends CallbackBean0 implements MessageListener {
 
 }

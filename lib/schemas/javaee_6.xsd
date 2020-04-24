@@ -1626,7 +1626,7 @@
         <resource-env-ref>
         <resource-env-ref-name>jms/StockQueue
         </resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue
+        <resource-env-ref-type>jakarta.jms.Queue
         </resource-env-ref-type>
         </resource-env-ref>
         
@@ -2286,7 +2286,7 @@
         <message-destination-ref>
         <message-destination-ref-name>jms/StockQueue
         </message-destination-ref-name>
-        <message-destination-type>javax.jms.Queue
+        <message-destination-type>jakarta.jms.Queue
         </message-destination-type>
         <message-destination-usage>Consumes
         </message-destination-usage>
@@ -2374,7 +2374,7 @@
         
         Example: 
         
-        <message-destination-type>javax.jms.Queue
+        <message-destination-type>jakarta.jms.Queue
         </message-destination-type>
         
         ]]>

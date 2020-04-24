@@ -32,7 +32,7 @@
 # with the following format:
 # <package>.sig_<technology_version><JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    javax.jms.sig_2.0_se8:
+#    jakarta.jms.sig_2.0_se8:
 #      <package> = javax.jms
 #      <technology_version> = 2.0  (for JMS) 
 #      <JavaSE_version_these_work_with> = JDK 8 and above

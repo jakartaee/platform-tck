@@ -21,7 +21,7 @@
 package com.sun.ts.tests.jms.common;
 
 import java.util.*;
-import javax.jms.*;
+import jakarta.jms.*;
 
 /**
  * Class Declaration.
@@ -72,8 +72,8 @@ public class MessageTestImpl implements Message {
    */
   public MessageTestImpl() {
     properties = new Hashtable();
-    this.JMSPriority = javax.jms.Message.DEFAULT_PRIORITY;
-    this.JMSDeliveryMode = javax.jms.Message.DEFAULT_DELIVERY_MODE;
+    this.JMSPriority = jakarta.jms.Message.DEFAULT_PRIORITY;
+    this.JMSDeliveryMode = jakarta.jms.Message.DEFAULT_DELIVERY_MODE;
     this.JMSDeliveryDelay = 0L;
   }
 

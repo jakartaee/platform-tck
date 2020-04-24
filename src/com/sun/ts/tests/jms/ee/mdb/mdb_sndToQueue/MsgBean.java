@@ -23,7 +23,7 @@ package com.sun.ts.tests.jms.ee.mdb.mdb_sndToQueue;
 import java.io.Serializable;
 import jakarta.ejb.*;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;

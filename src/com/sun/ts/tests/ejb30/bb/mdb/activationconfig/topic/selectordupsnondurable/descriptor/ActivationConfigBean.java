@@ -26,15 +26,15 @@ import jakarta.ejb.MessageDrivenContext;
 import javax.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.MessageListener;
+import jakarta.jms.MessageListener;
 
-//This MDB implements javax.jms.MessageListener interface, so no need to
+//This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type
 //@MessageDriven(name="ActivationConfigBean",
 //    activationConfig = {
 //    @ActivationConfigProperty(propertyName="destinationType", 
-//                              propertyValue="javax.jms.Topic"),
+//                              propertyValue="jakarta.jms.Topic"),
 //    @ActivationConfigProperty(propertyName="acknowledgeMode", 
 //                              propertyValue="Dups-ok-acknowledge"),
 //    @ActivationConfigProperty(propertyName="subscriptionDurability", 

@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
@@ -248,7 +248,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logMsg("Fail: MessageFormatException was not thrown");
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -271,7 +271,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -293,7 +293,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -315,7 +315,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -337,7 +337,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -359,7 +359,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -381,7 +381,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -404,7 +404,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -485,7 +485,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -530,7 +530,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -594,7 +594,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         pass = false;
         logMsg("Fail: MessageFormatException was not thrown");
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -657,7 +657,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -678,7 +678,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -759,7 +759,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -804,7 +804,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -826,7 +826,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -868,7 +868,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -931,7 +931,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -952,7 +952,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1032,7 +1032,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1077,7 +1077,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1099,7 +1099,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1122,7 +1122,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1143,7 +1143,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1206,7 +1206,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1227,7 +1227,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1307,7 +1307,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
 
         logMsg("Fail: MessageFormatException was not thrown");
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1352,7 +1352,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1374,7 +1374,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1397,7 +1397,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1418,7 +1418,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1441,7 +1441,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1483,7 +1483,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1504,7 +1504,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1585,7 +1585,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1630,7 +1630,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1652,7 +1652,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1675,7 +1675,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1696,7 +1696,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1719,7 +1719,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1742,7 +1742,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1860,7 +1860,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1905,7 +1905,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1927,7 +1927,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1950,7 +1950,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1971,7 +1971,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -1994,7 +1994,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2017,7 +2017,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2038,7 +2038,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2163,7 +2163,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2227,7 +2227,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2430,7 +2430,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2478,7 +2478,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2500,7 +2500,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2521,7 +2521,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2560,7 +2560,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
 
         logMsg("Fail: MessageFormatException was not thrown");
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2583,7 +2583,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2604,7 +2604,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2625,7 +2625,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2732,7 +2732,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             "Fail: byte[] to boolean conversion should have thrown MessageFormatException");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2756,7 +2756,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             "Fail: byte[] to boolean conversion should have thrown MessageFormatException");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2779,7 +2779,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2802,7 +2802,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2825,7 +2825,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2848,7 +2848,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2871,7 +2871,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2894,7 +2894,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(
@@ -2917,7 +2917,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
       } catch (Exception e) {
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           logErr(

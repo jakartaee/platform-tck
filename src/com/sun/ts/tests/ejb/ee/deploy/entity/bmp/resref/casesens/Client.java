@@ -74,8 +74,8 @@ public class Client extends EETest {
    * @test_Strategy: Deploy a BMP Entity bean (TestBean) with two resource
    *                 references whose name differ only by case and are assigned
    *                 to two distinct factory types: a
-   *                 javax.jms.QueueConnectionFactory and a
-   *                 javax.jms.TopicConnectionFactory.
+   *                 jakarta.jms.QueueConnectionFactory and a
+   *                 jakarta.jms.TopicConnectionFactory.
    *
    *                 Check that TestBean can lookup the two factories, cast them
    *                 to their respective java types, and create a connection

@@ -19,16 +19,16 @@
  */
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
-import javax.jms.Queue;
-import javax.jms.QueueBrowser;
-import javax.jms.QueueSession;
-import javax.jms.QueueSender;
-import javax.jms.QueueReceiver;
-import javax.jms.QueueConnection;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
-import javax.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueBrowser;
+import jakarta.jms.QueueSession;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.JMSException;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Message;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.CreateException;

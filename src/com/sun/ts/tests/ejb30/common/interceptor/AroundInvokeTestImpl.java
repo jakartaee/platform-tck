@@ -81,14 +81,14 @@ public class AroundInvokeTestImpl implements
     String methName = meth.getName();
     if (onMessage.equals(methName)) {
       Object[] params = ctx.getParameters();
-      if (params.length == 1 && params[0] instanceof javax.jms.Message) {
+      if (params.length == 1 && params[0] instanceof jakarta.jms.Message) {
         // otherwise, this is not a MessageListener.onMessage method. It
         // may just other methods unrelated to mdb.
-        javax.jms.Message msg = (javax.jms.Message) params[0];
+        jakarta.jms.Message msg = (jakarta.jms.Message) params[0];
         try {
           methName = msg.getStringProperty(
               com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY);
-        } catch (javax.jms.JMSException e) {
+        } catch (jakarta.jms.JMSException e) {
           throw new IllegalStateException(
               "Failed to get test name from message: " + msg);
         }

@@ -157,7 +157,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a Stateless Session Bean declaring a resource
-   *                 reference for a javax.jms.QueueConnectionFactory.
+   *                 reference for a jakarta.jms.QueueConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Queue Connection Factory.
@@ -186,7 +186,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a Stateless Session Bean declaring a resource
-   *                 reference for a javax.jms.TopicConnectionFactory.
+   *                 reference for a jakarta.jms.TopicConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Topic Connection Factory.

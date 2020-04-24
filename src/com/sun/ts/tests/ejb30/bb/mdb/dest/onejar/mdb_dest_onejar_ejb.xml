@@ -23,11 +23,11 @@
     <message-driven>
       <ejb-name>DestBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBean</ejb-class>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <message-destination-link>MsgBeanInQueue</message-destination-link>
       <message-destination-ref>
         <message-destination-ref-name>replyQueue</message-destination-ref-name>
-        <message-destination-type>javax.jms.Queue</message-destination-type>
+        <message-destination-type>jakarta.jms.Queue</message-destination-type>
         <message-destination-usage>Produces</message-destination-usage>
         <message-destination-link>MsgBeanOutQueue</message-destination-link>
       </message-destination-ref>

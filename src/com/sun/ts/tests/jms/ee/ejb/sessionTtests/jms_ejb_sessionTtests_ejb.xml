@@ -29,13 +29,13 @@
     <resource-ref>      
 <description>description</description>
       <res-ref-name>jms/DURABLE_SUB_CONNECTION_FACTORY</res-ref-name>
-      <res-type>javax.jms.TopicConnectionFactory</res-type>
+      <res-type>jakarta.jms.TopicConnectionFactory</res-type>
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
     <message-destination-ref>
 	<message-destination-ref-name>jms/MY_TOPIC</message-destination-ref-name>
-	<message-destination-type>javax.jms.Topic</message-destination-type>
+	<message-destination-type>jakarta.jms.Topic</message-destination-type>
     </message-destination-ref>
     <security-identity>
 <description/>      <use-caller-identity/>

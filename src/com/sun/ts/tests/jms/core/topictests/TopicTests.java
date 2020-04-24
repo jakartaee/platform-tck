@@ -26,7 +26,7 @@ import com.sun.ts.lib.harness.*;
 import java.util.*;
 import java.io.*;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 
 public class TopicTests extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core.topictests.TopicTests";

@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.bb.mdb.dest.jarwar;
 
 import com.sun.javatest.Status;
 import javax.annotation.Resource;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import java.net.URL;
 
 public class Client

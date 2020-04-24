@@ -23,7 +23,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
@@ -89,12 +89,12 @@ public class Client extends ServiceEETest {
 
       TestUtil
           .logMsg("Test TransactionRolledBackRuntimeException(String, String)");
-      javax.jms.TransactionRolledBackRuntimeException exceptionToTest = new javax.jms.TransactionRolledBackRuntimeException(
+      jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest = new jakarta.jms.TransactionRolledBackRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.TransactionRolledBackRuntimeException e) {
+      } catch (jakarta.jms.TransactionRolledBackRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -126,11 +126,11 @@ public class Client extends ServiceEETest {
       String reason = "Rollback operation not allowed.";
 
       TestUtil.logMsg("Test TransactionRolledBackRuntimeException(String)");
-      javax.jms.TransactionRolledBackRuntimeException exceptionToTest = new javax.jms.TransactionRolledBackRuntimeException(
+      jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest = new jakarta.jms.TransactionRolledBackRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.TransactionRolledBackRuntimeException e) {
+      } catch (jakarta.jms.TransactionRolledBackRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -158,17 +158,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Serious";
       String reason = "Rollback operation not allowed.";
-      javax.jms.TransactionRolledBackException exception = new javax.jms.TransactionRolledBackException(
+      jakarta.jms.TransactionRolledBackException exception = new jakarta.jms.TransactionRolledBackException(
           reason);
 
       TestUtil.logMsg(
           "Test TransactionRolledBackRuntimeException(String, String, Throwable)");
-      javax.jms.TransactionRolledBackRuntimeException exceptionToTest = new javax.jms.TransactionRolledBackRuntimeException(
+      jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest = new jakarta.jms.TransactionRolledBackRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.TransactionRolledBackRuntimeException e) {
+      } catch (jakarta.jms.TransactionRolledBackRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -208,12 +208,12 @@ public class Client extends ServiceEETest {
 
       TestUtil
           .logMsg("Test TransactionInProgressRuntimeException(String, String)");
-      javax.jms.TransactionInProgressRuntimeException exceptionToTest = new javax.jms.TransactionInProgressRuntimeException(
+      jakarta.jms.TransactionInProgressRuntimeException exceptionToTest = new jakarta.jms.TransactionInProgressRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.TransactionInProgressRuntimeException e) {
+      } catch (jakarta.jms.TransactionInProgressRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -245,11 +245,11 @@ public class Client extends ServiceEETest {
       String reason = "Transaction already in progress.";
 
       TestUtil.logMsg("Test TransactionInProgressRuntimeException(String)");
-      javax.jms.TransactionInProgressRuntimeException exceptionToTest = new javax.jms.TransactionInProgressRuntimeException(
+      jakarta.jms.TransactionInProgressRuntimeException exceptionToTest = new jakarta.jms.TransactionInProgressRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.TransactionInProgressRuntimeException e) {
+      } catch (jakarta.jms.TransactionInProgressRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -277,17 +277,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Serious";
       String reason = "Transaction already in progress.";
-      javax.jms.TransactionInProgressRuntimeException exception = new javax.jms.TransactionInProgressRuntimeException(
+      jakarta.jms.TransactionInProgressRuntimeException exception = new jakarta.jms.TransactionInProgressRuntimeException(
           reason);
 
       TestUtil.logMsg(
           "Test TransactionInProgressRuntimeException(String, String, Throwable)");
-      javax.jms.TransactionInProgressRuntimeException exceptionToTest = new javax.jms.TransactionInProgressRuntimeException(
+      jakarta.jms.TransactionInProgressRuntimeException exceptionToTest = new jakarta.jms.TransactionInProgressRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.TransactionInProgressRuntimeException e) {
+      } catch (jakarta.jms.TransactionInProgressRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -327,12 +327,12 @@ public class Client extends ServiceEETest {
 
       TestUtil
           .logMsg("Test ResourceAllocationRuntimeException(String, String)");
-      javax.jms.ResourceAllocationRuntimeException exceptionToTest = new javax.jms.ResourceAllocationRuntimeException(
+      jakarta.jms.ResourceAllocationRuntimeException exceptionToTest = new jakarta.jms.ResourceAllocationRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.ResourceAllocationRuntimeException e) {
+      } catch (jakarta.jms.ResourceAllocationRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -364,11 +364,11 @@ public class Client extends ServiceEETest {
       String reason = "Resource allocation failure due to no more resources available.";
 
       TestUtil.logMsg("Test ResourceAllocationRuntimeException(String)");
-      javax.jms.ResourceAllocationRuntimeException exceptionToTest = new javax.jms.ResourceAllocationRuntimeException(
+      jakarta.jms.ResourceAllocationRuntimeException exceptionToTest = new jakarta.jms.ResourceAllocationRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.ResourceAllocationRuntimeException e) {
+      } catch (jakarta.jms.ResourceAllocationRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -396,17 +396,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Serious";
       String reason = "Resource allocation failure due to no more resources available.";
-      javax.jms.TransactionRolledBackException exception = new javax.jms.TransactionRolledBackException(
+      jakarta.jms.TransactionRolledBackException exception = new jakarta.jms.TransactionRolledBackException(
           reason);
 
       TestUtil.logMsg(
           "Test ResourceAllocationRuntimeException(String, String, Throwable)");
-      javax.jms.ResourceAllocationRuntimeException exceptionToTest = new javax.jms.ResourceAllocationRuntimeException(
+      jakarta.jms.ResourceAllocationRuntimeException exceptionToTest = new jakarta.jms.ResourceAllocationRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.ResourceAllocationRuntimeException e) {
+      } catch (jakarta.jms.ResourceAllocationRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -446,12 +446,12 @@ public class Client extends ServiceEETest {
 
       TestUtil
           .logMsg("Test MessageNotWriteableRuntimeException(String, String)");
-      javax.jms.MessageNotWriteableRuntimeException exceptionToTest = new javax.jms.MessageNotWriteableRuntimeException(
+      jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest = new jakarta.jms.MessageNotWriteableRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.MessageNotWriteableRuntimeException e) {
+      } catch (jakarta.jms.MessageNotWriteableRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -483,11 +483,11 @@ public class Client extends ServiceEETest {
       String reason = "Writing operation not allowed.";
 
       TestUtil.logMsg("Test MessageNotWriteableRuntimeException(String)");
-      javax.jms.MessageNotWriteableRuntimeException exceptionToTest = new javax.jms.MessageNotWriteableRuntimeException(
+      jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest = new jakarta.jms.MessageNotWriteableRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.MessageNotWriteableRuntimeException e) {
+      } catch (jakarta.jms.MessageNotWriteableRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -515,17 +515,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Serious";
       String reason = "Writing operation not allowed.";
-      javax.jms.MessageNotWriteableException exception = new javax.jms.MessageNotWriteableException(
+      jakarta.jms.MessageNotWriteableException exception = new jakarta.jms.MessageNotWriteableException(
           reason);
 
       TestUtil.logMsg(
           "Test MessageNotWriteableRuntimeException(String, String, Throwable)");
-      javax.jms.MessageNotWriteableRuntimeException exceptionToTest = new javax.jms.MessageNotWriteableRuntimeException(
+      jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest = new jakarta.jms.MessageNotWriteableRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.MessageNotWriteableRuntimeException e) {
+      } catch (jakarta.jms.MessageNotWriteableRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -563,12 +563,12 @@ public class Client extends ServiceEETest {
       String reason = "Cannot convert from int to char";
 
       TestUtil.logMsg("Test MessageFormatRuntimeException(String, String)");
-      javax.jms.MessageFormatRuntimeException exceptionToTest = new javax.jms.MessageFormatRuntimeException(
+      jakarta.jms.MessageFormatRuntimeException exceptionToTest = new jakarta.jms.MessageFormatRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.MessageFormatRuntimeException e) {
+      } catch (jakarta.jms.MessageFormatRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -601,11 +601,11 @@ public class Client extends ServiceEETest {
       String reason = "Cannot convert from int to char";
 
       TestUtil.logMsg("Test MessageFormatRuntimeException(String)");
-      javax.jms.MessageFormatRuntimeException exceptionToTest = new javax.jms.MessageFormatRuntimeException(
+      jakarta.jms.MessageFormatRuntimeException exceptionToTest = new jakarta.jms.MessageFormatRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.MessageFormatRuntimeException e) {
+      } catch (jakarta.jms.MessageFormatRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -632,17 +632,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Urgent";
       String reason = "Cannot convert from int to char";
-      javax.jms.MessageFormatException exception = new javax.jms.MessageFormatException(
+      jakarta.jms.MessageFormatException exception = new jakarta.jms.MessageFormatException(
           reason);
 
       TestUtil.logMsg(
           "Test MessageFormatRuntimeException(String, String, Throwable)");
-      javax.jms.MessageFormatRuntimeException exceptionToTest = new javax.jms.MessageFormatRuntimeException(
+      jakarta.jms.MessageFormatRuntimeException exceptionToTest = new jakarta.jms.MessageFormatRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.MessageFormatRuntimeException e) {
+      } catch (jakarta.jms.MessageFormatRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -680,12 +680,12 @@ public class Client extends ServiceEETest {
       String reason = "Cannot find the user.";
 
       TestUtil.logMsg("Test JMSSecurityRuntimeException(String, String)");
-      javax.jms.JMSSecurityRuntimeException exceptionToTest = new javax.jms.JMSSecurityRuntimeException(
+      jakarta.jms.JMSSecurityRuntimeException exceptionToTest = new jakarta.jms.JMSSecurityRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.JMSSecurityRuntimeException e) {
+      } catch (jakarta.jms.JMSSecurityRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -717,11 +717,11 @@ public class Client extends ServiceEETest {
     try {
       String reason = "Cannot find the user.";
       TestUtil.logMsg("Test JMSSecurityRuntimeException(String)");
-      javax.jms.JMSSecurityRuntimeException exceptionToTest = new javax.jms.JMSSecurityRuntimeException(
+      jakarta.jms.JMSSecurityRuntimeException exceptionToTest = new jakarta.jms.JMSSecurityRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.JMSSecurityRuntimeException e) {
+      } catch (jakarta.jms.JMSSecurityRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -749,17 +749,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Urgent";
       String reason = "Cannot find the user.";
-      javax.jms.JMSSecurityException exception = new javax.jms.JMSSecurityException(
+      jakarta.jms.JMSSecurityException exception = new jakarta.jms.JMSSecurityException(
           reason);
 
       TestUtil.logMsg(
           "Test JMSSecurityRuntimeException(String, String, Throwable)");
-      javax.jms.JMSSecurityRuntimeException exceptionToTest = new javax.jms.JMSSecurityRuntimeException(
+      jakarta.jms.JMSSecurityRuntimeException exceptionToTest = new jakarta.jms.JMSSecurityRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.JMSSecurityRuntimeException e) {
+      } catch (jakarta.jms.JMSSecurityRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -797,12 +797,12 @@ public class Client extends ServiceEETest {
       String reason = "Not a JMS operation";
 
       TestUtil.logMsg("Test JMSRuntimeException(String, String)");
-      javax.jms.JMSRuntimeException exceptionToTest = new javax.jms.JMSRuntimeException(
+      jakarta.jms.JMSRuntimeException exceptionToTest = new jakarta.jms.JMSRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.JMSRuntimeException e) {
+      } catch (jakarta.jms.JMSRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -836,12 +836,12 @@ public class Client extends ServiceEETest {
       String reason = "Not a JMS operation";
 
       TestUtil.logMsg("Test JMSRuntimeException(String)");
-      javax.jms.JMSRuntimeException exceptionToTest = new javax.jms.JMSRuntimeException(
+      jakarta.jms.JMSRuntimeException exceptionToTest = new jakarta.jms.JMSRuntimeException(
           reason);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.JMSRuntimeException e) {
+      } catch (jakarta.jms.JMSRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -869,15 +869,15 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Warning";
       String reason = "Not a JMS operation";
-      javax.jms.JMSException exception = new javax.jms.JMSException(reason);
+      jakarta.jms.JMSException exception = new jakarta.jms.JMSException(reason);
 
       TestUtil.logMsg("Test JMSRuntimeException(String, String, Throwable)");
-      javax.jms.JMSRuntimeException exceptionToTest = new javax.jms.JMSRuntimeException(
+      jakarta.jms.JMSRuntimeException exceptionToTest = new jakarta.jms.JMSRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.JMSRuntimeException e) {
+      } catch (jakarta.jms.JMSRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -915,12 +915,12 @@ public class Client extends ServiceEETest {
       String reason = "unknown variable";
 
       TestUtil.logMsg("Test InvalidSelectorRuntimeException(String, String)");
-      javax.jms.InvalidSelectorRuntimeException exceptionToTest = new javax.jms.InvalidSelectorRuntimeException(
+      jakarta.jms.InvalidSelectorRuntimeException exceptionToTest = new jakarta.jms.InvalidSelectorRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidSelectorRuntimeException e) {
+      } catch (jakarta.jms.InvalidSelectorRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -953,11 +953,11 @@ public class Client extends ServiceEETest {
       String reason = "unknown variable";
 
       TestUtil.logMsg("Test InvalidSelectorRuntimeException(String)");
-      javax.jms.InvalidSelectorRuntimeException exceptionToTest = new javax.jms.InvalidSelectorRuntimeException(
+      jakarta.jms.InvalidSelectorRuntimeException exceptionToTest = new jakarta.jms.InvalidSelectorRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidSelectorRuntimeException e) {
+      } catch (jakarta.jms.InvalidSelectorRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -985,17 +985,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Urgent";
       String reason = "unknown variable";
-      javax.jms.InvalidSelectorException exception = new javax.jms.InvalidSelectorException(
+      jakarta.jms.InvalidSelectorException exception = new jakarta.jms.InvalidSelectorException(
           reason);
 
       TestUtil.logMsg(
           "Test InvalidSelectorRuntimeException(String, String, Throwable)");
-      javax.jms.InvalidSelectorRuntimeException exceptionToTest = new javax.jms.InvalidSelectorRuntimeException(
+      jakarta.jms.InvalidSelectorRuntimeException exceptionToTest = new jakarta.jms.InvalidSelectorRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidSelectorRuntimeException e) {
+      } catch (jakarta.jms.InvalidSelectorRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -1035,12 +1035,12 @@ public class Client extends ServiceEETest {
 
       TestUtil
           .logMsg("Test InvalidDestinationRuntimeException(String, String)");
-      javax.jms.InvalidDestinationRuntimeException exceptionToTest = new javax.jms.InvalidDestinationRuntimeException(
+      jakarta.jms.InvalidDestinationRuntimeException exceptionToTest = new jakarta.jms.InvalidDestinationRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidDestinationRuntimeException e) {
+      } catch (jakarta.jms.InvalidDestinationRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -1073,11 +1073,11 @@ public class Client extends ServiceEETest {
       String reason = "Destination is Null";
 
       TestUtil.logMsg("Test InvalidDestinationRuntimeException(String)");
-      javax.jms.InvalidDestinationRuntimeException exceptionToTest = new javax.jms.InvalidDestinationRuntimeException(
+      jakarta.jms.InvalidDestinationRuntimeException exceptionToTest = new jakarta.jms.InvalidDestinationRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidDestinationRuntimeException e) {
+      } catch (jakarta.jms.InvalidDestinationRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -1104,17 +1104,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Urgent";
       String reason = "Destination is Null";
-      javax.jms.InvalidDestinationException exception = new javax.jms.InvalidDestinationException(
+      jakarta.jms.InvalidDestinationException exception = new jakarta.jms.InvalidDestinationException(
           reason);
 
       TestUtil.logMsg(
           "Test InvalidDestinationRuntimeException(String, String, Throwable)");
-      javax.jms.InvalidDestinationRuntimeException exceptionToTest = new javax.jms.InvalidDestinationRuntimeException(
+      jakarta.jms.InvalidDestinationRuntimeException exceptionToTest = new jakarta.jms.InvalidDestinationRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidDestinationRuntimeException e) {
+      } catch (jakarta.jms.InvalidDestinationRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -1152,12 +1152,12 @@ public class Client extends ServiceEETest {
       String reason = "Duplicate Client ID";
 
       TestUtil.logMsg("Test InvalidClientIDRuntimeException(String, String)");
-      javax.jms.InvalidClientIDRuntimeException exceptionToTest = new javax.jms.InvalidClientIDRuntimeException(
+      jakarta.jms.InvalidClientIDRuntimeException exceptionToTest = new jakarta.jms.InvalidClientIDRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidClientIDRuntimeException e) {
+      } catch (jakarta.jms.InvalidClientIDRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -1190,11 +1190,11 @@ public class Client extends ServiceEETest {
       String reason = "Duplicate Client ID";
 
       TestUtil.logMsg("Test InvalidClientIDRuntimeException(String)");
-      javax.jms.InvalidClientIDRuntimeException exceptionToTest = new javax.jms.InvalidClientIDRuntimeException(
+      jakarta.jms.InvalidClientIDRuntimeException exceptionToTest = new jakarta.jms.InvalidClientIDRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidClientIDRuntimeException e) {
+      } catch (jakarta.jms.InvalidClientIDRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -1221,17 +1221,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Urgent";
       String reason = "Duplicate Client ID";
-      javax.jms.InvalidClientIDException exception = new javax.jms.InvalidClientIDException(
+      jakarta.jms.InvalidClientIDException exception = new jakarta.jms.InvalidClientIDException(
           reason);
 
       TestUtil.logMsg(
           "Test InvalidClientIDRuntimeException(String, String, Throwable)");
-      javax.jms.InvalidClientIDRuntimeException exceptionToTest = new javax.jms.InvalidClientIDRuntimeException(
+      jakarta.jms.InvalidClientIDRuntimeException exceptionToTest = new jakarta.jms.InvalidClientIDRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.InvalidClientIDRuntimeException e) {
+      } catch (jakarta.jms.InvalidClientIDRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -1269,12 +1269,12 @@ public class Client extends ServiceEETest {
       String reason = "The operation is illegal.";
 
       TestUtil.logMsg("Test IllegalStateRuntimeException(String, String)");
-      javax.jms.IllegalStateRuntimeException exceptionToTest = new javax.jms.IllegalStateRuntimeException(
+      jakarta.jms.IllegalStateRuntimeException exceptionToTest = new jakarta.jms.IllegalStateRuntimeException(
           reason, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.IllegalStateRuntimeException e) {
+      } catch (jakarta.jms.IllegalStateRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());
@@ -1308,11 +1308,11 @@ public class Client extends ServiceEETest {
       String reason = "The operation is illegal.";
 
       TestUtil.logMsg("Test IllegalStateRuntimeException(String)");
-      javax.jms.IllegalStateRuntimeException exceptionToTest = new javax.jms.IllegalStateRuntimeException(
+      jakarta.jms.IllegalStateRuntimeException exceptionToTest = new jakarta.jms.IllegalStateRuntimeException(
           reason);
       try {
         throw exceptionToTest;
-      } catch (javax.jms.IllegalStateRuntimeException e) {
+      } catch (jakarta.jms.IllegalStateRuntimeException e) {
         if (!exceptionToTest.getMessage().equals(reason)) {
           TestUtil.logErr("Incorrect reason " + exceptionToTest.getMessage());
           pass = false;
@@ -1341,17 +1341,17 @@ public class Client extends ServiceEETest {
     try {
       String errorCode = "Urgent";
       String reason = "The operation is illegal.";
-      javax.jms.IllegalStateException exception = new javax.jms.IllegalStateException(
+      jakarta.jms.IllegalStateException exception = new jakarta.jms.IllegalStateException(
           reason);
 
       TestUtil.logMsg(
           "Test IllegalStateRuntimeException(String, String, Throwable)");
-      javax.jms.IllegalStateRuntimeException exceptionToTest = new javax.jms.IllegalStateRuntimeException(
+      jakarta.jms.IllegalStateRuntimeException exceptionToTest = new jakarta.jms.IllegalStateRuntimeException(
           reason, errorCode, exception);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.IllegalStateRuntimeException e) {
+      } catch (jakarta.jms.IllegalStateRuntimeException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode)) {
           TestUtil
               .logErr("Incorrect ErrorCode " + exceptionToTest.getErrorCode());

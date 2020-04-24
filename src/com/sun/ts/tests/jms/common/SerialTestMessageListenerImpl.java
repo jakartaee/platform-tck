@@ -26,11 +26,11 @@ import java.io.*;
 import java.rmi.RemoteException;
 import java.util.*;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 import javax.naming.*;
 
 public class SerialTestMessageListenerImpl
-    implements javax.jms.MessageListener {
+    implements jakarta.jms.MessageListener {
   public boolean inUse = false;
 
   public boolean testFailed = false;

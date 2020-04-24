@@ -45,16 +45,16 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.ejb.TransactionRolledbackLocalException;
 import jakarta.ejb.EJBTransactionRolledbackException;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import jakarta.transaction.UserTransaction;
 import static jakarta.transaction.Status.STATUS_MARKED_ROLLBACK;
 import static jakarta.transaction.Status.STATUS_UNKNOWN;
 import static jakarta.transaction.Status.STATUS_ACTIVE;
 
 @MessageDriven(name = "MdbTestBean", messageListenerInterface = MessageListener.class, activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 
 @EJBs({
     @EJB(name = "ejb/localStatelessRefName", beanName = "StatelessLocalBean", beanInterface = LocalIF.class),
@@ -141,14 +141,14 @@ public class MdbTestBean extends TestBeanBase implements MessageListener,
   }
 
   // ================== business methods ====================================
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     boolean status = false;
     String reason = null;
     String testname = null;
     try {
       testname = msg.getStringProperty(
           com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY);
-    } catch (javax.jms.JMSException e) {
+    } catch (jakarta.jms.JMSException e) {
       status = false;
       reason = "Failed to get test name from message: " + msg;
       TLogger.log(reason);

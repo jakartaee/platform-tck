@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.casesensT;
 
 import java.util.Properties;
-import javax.jms.Topic;
+import jakarta.jms.Topic;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.javatest.Status;
 

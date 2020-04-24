@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.timer.common;
 
 import javax.annotation.Resource;
 import jakarta.ejb.TimerService;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
 import jakarta.ejb.EJBContext;
@@ -52,7 +52,7 @@ abstract public class TimerMessageBeanBase {
 
   private TimerInfo timerInfo = new TimerInfo();
 
-  protected void initTimerInfo(javax.jms.Message msg) {
+  protected void initTimerInfo(jakarta.jms.Message msg) {
     boolean status = false;
     String reason = null;
     String testname = null;
@@ -60,7 +60,7 @@ abstract public class TimerMessageBeanBase {
     try {
       testname = msg.getStringProperty(TEST_NAME_KEY);
       testNumber = msg.getIntProperty(TEST_NUMBER_KEY);
-    } catch (javax.jms.JMSException e) {
+    } catch (jakarta.jms.JMSException e) {
       status = false;
       reason = this.getClass().getName()
           + "Failed to get test name/number from message: " + msg;

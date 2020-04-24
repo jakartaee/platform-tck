@@ -27,11 +27,11 @@ import javax.servlet.ServletRequestAttributeListener;
 import javax.annotation.Resource;
 
 import javax.sql.DataSource;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 
 public final class RequestAttributeListener
     implements ServletRequestAttributeListener {
@@ -95,7 +95,7 @@ public final class RequestAttributeListener
     }
 
     if (qcFactory != null) {
-      if (!(qcFactory instanceof javax.jms.QueueConnectionFactory)) {
+      if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
         passed = false;
         pw.append("wrong type QueueConnectionFactory");
       } else
@@ -106,7 +106,7 @@ public final class RequestAttributeListener
     }
 
     if (tcFactory != null) {
-      if (!(tcFactory instanceof javax.jms.TopicConnectionFactory)) {
+      if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
         passed = false;
         pw.append("wrong type TopicConnectionFactory");
       } else
@@ -117,7 +117,7 @@ public final class RequestAttributeListener
     }
 
     if (cFactory != null) {
-      if (!(cFactory instanceof javax.jms.ConnectionFactory)) {
+      if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
         pw.append("wrong type ConnectionFactory");
         passed = false;
       } else
@@ -128,7 +128,7 @@ public final class RequestAttributeListener
     }
 
     if (myQueue != null) {
-      if (!(myQueue instanceof javax.jms.Queue)) {
+      if (!(myQueue instanceof jakarta.jms.Queue)) {
         pw.append("wrong type Queue");
         passed = false;
       } else
@@ -139,7 +139,7 @@ public final class RequestAttributeListener
     }
 
     if (myTopic != null) {
-      if (!(myTopic instanceof javax.jms.Topic)) {
+      if (!(myTopic instanceof jakarta.jms.Topic)) {
         pw.append("wrong type Topic");
         passed = false;
       } else

@@ -23,7 +23,7 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.jms.*;
 
 import jakarta.ejb.EJB;
-import javax.jms.*;
+import jakarta.jms.*;
 import javax.naming.InitialContext;
 import java.net.*;
 import java.util.Properties;

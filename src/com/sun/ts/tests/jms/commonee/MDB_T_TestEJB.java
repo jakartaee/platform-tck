@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jms.commonee;
 
-import javax.jms.*;
+import jakarta.jms.*;
 import jakarta.ejb.*;
 import javax.annotation.Resource;
 import java.util.Enumeration;

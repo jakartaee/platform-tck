@@ -20,7 +20,7 @@
 
 package com.sun.ts.lib.porting;
 
-import javax.jms.*;
+import jakarta.jms.*;
 
 /**
  * This is the TSJMSObjectsInterface. An implementation of this interface must

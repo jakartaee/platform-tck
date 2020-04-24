@@ -27,7 +27,7 @@ import com.sun.ts.tests.jms.commonee.*;
 import java.util.*;
 import jakarta.ejb.*;
 import java.rmi.*;
-import javax.jms.*;
+import jakarta.jms.*;
 
 public class TestBeanMDB extends ParentMsgBean {
 

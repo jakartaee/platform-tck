@@ -33,21 +33,21 @@ import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.ConnectionFactory;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.ConnectionFactory;
 import javax.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import jakarta.transaction.UserTransaction;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import org.omg.CORBA.ORB;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TIMER_SERVICE_JNDI_NAME;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME;
 import jakarta.ejb.TimerService;
-import javax.jms.Destination;
+import jakarta.jms.Destination;
 import jakarta.transaction.TransactionSynchronizationRegistry;
 
 @Stateless(name = "ResourceTypeBean")

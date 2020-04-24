@@ -24,7 +24,7 @@
   <enterprise-beans>
     <message-driven>
       <ejb-name>CallbackBean</ejb-name>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
     </message-driven>
   </enterprise-beans>
 

@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
@@ -288,7 +288,7 @@ public class MessageTopicTest extends ServiceEETest {
 
           logErr("Fail: MessageNotReadableException not thrown as expected");
           pass = false;
-        } catch (javax.jms.MessageNotReadableException e) {
+        } catch (jakarta.jms.MessageNotReadableException e) {
           logTrace("Pass: MessageNotReadableException thrown as expected");
         } catch (Exception ee) {
           logErr("Error: Unexpected exception: ", ee);
@@ -343,7 +343,7 @@ public class MessageTopicTest extends ServiceEETest {
 
           logErr("Fail: MessageNotReadableException should have been thrown");
           pass = false;
-        } catch (javax.jms.MessageNotReadableException e) {
+        } catch (jakarta.jms.MessageNotReadableException e) {
           logTrace("Pass: MessageNotReadableException thrown as expected");
         } catch (Exception ee) {
           logErr("Error: Unexpected exception: ", ee);

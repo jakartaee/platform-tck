@@ -146,23 +146,23 @@
 	</if>
 	<antcall target="create-connector-connection-pool">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="connDefinition" value="javax.jms.QueueConnectionFactory"/>
+	  <param name="connDefinition" value="jakarta.jms.QueueConnectionFactory"/>
 	  <param name="poolName" value="qcfpool"/>
 	</antcall>
 	<antcall target="create-connector-connection-pool">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="connDefinition" value="javax.jms.TopicConnectionFactory"/>
+	  <param name="connDefinition" value="jakarta.jms.TopicConnectionFactory"/>
 	  <param name="poolName" value="tcfpool"/>
 	</antcall>
 	<antcall target="create-connector-connection-pool-with-property">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="connDefinition" value="javax.jms.TopicConnectionFactory"/>
+	  <param name="connDefinition" value="jakarta.jms.TopicConnectionFactory"/>
 	  <param name="propName" value="ClientId=cts"/>
 	  <param name="poolName" value="tcfpool2"/>
 	</antcall>
 	<antcall target="create-connector-connection-pool">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="connDefinition" value="javax.jms.ConnectionFactory"/>
+	  <param name="connDefinition" value="jakarta.jms.ConnectionFactory"/>
 	  <param name="poolName" value="cfpool"/>
 	</antcall>
 	<antcall target="create-connector-resource">
@@ -183,73 +183,73 @@
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Queue"/>
+	  <param name="resType" value="jakarta.jms.Queue"/>
 	  <param name="propName" value="Name=MY_QUEUE"/>
 	  <param name="jndiName" value="MY_QUEUE"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Queue"/>
+	  <param name="resType" value="jakarta.jms.Queue"/>
 	  <param name="propName" value="Name=MY_QUEUE2"/>
 	  <param name="jndiName" value="MY_QUEUE2"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Queue"/>
+	  <param name="resType" value="jakarta.jms.Queue"/>
 	  <param name="propName" value="Name=testQ0"/>
 	  <param name="jndiName" value="testQ0"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Queue"/>
+	  <param name="resType" value="jakarta.jms.Queue"/>
 	  <param name="propName" value="Name=testQ1"/>
 	  <param name="jndiName" value="testQ1"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Queue"/>
+	  <param name="resType" value="jakarta.jms.Queue"/>
 	  <param name="propName" value="Name=testQ2"/>
 	  <param name="jndiName" value="testQ2"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Queue"/>
+	  <param name="resType" value="jakarta.jms.Queue"/>
 	  <param name="propName" value="Name=testQueue2"/>
 	  <param name="jndiName" value="testQueue2"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Queue"/>
+	  <param name="resType" value="jakarta.jms.Queue"/>
 	  <param name="propName" value="Name=Q2"/>
 	  <param name="jndiName" value="Q2"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Topic"/>
+	  <param name="resType" value="jakarta.jms.Topic"/>
 	  <param name="propName" value="Name=MY_TOPIC"/>
 	  <param name="jndiName" value="MY_TOPIC"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Topic"/>
+	  <param name="resType" value="jakarta.jms.Topic"/>
 	  <param name="propName" value="Name=MY_TOPIC2"/>
 	  <param name="jndiName" value="MY_TOPIC2"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Topic"/>
+	  <param name="resType" value="jakarta.jms.Topic"/>
 	  <param name="propName" value="Name=testT0"/>
 	  <param name="jndiName" value="testT0"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Topic"/>
+	  <param name="resType" value="jakarta.jms.Topic"/>
 	  <param name="propName" value="Name=testT1"/>
 	  <param name="jndiName" value="testT1"/>
 	</antcall>
 	<antcall target="create-admin-object">
 	  <param name="raName" value="${jmsra.name}"/>
-	  <param name="resType" value="javax.jms.Topic"/>
+	  <param name="resType" value="jakarta.jms.Topic"/>
 	  <param name="propName" value="Name=testT2"/>
 	  <param name="jndiName" value="testT2"/>
 	</antcall>

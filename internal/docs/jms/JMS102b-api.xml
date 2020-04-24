@@ -372,8 +372,8 @@
 <class-interface>QueueRequestor</class-interface>
 <method name="QueueRequestor" return-type="QueueRequestor">
 <parameters>
-<parameter>javax.jms.QueueSession</parameter>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.QueueSession</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 </parameters>
 </method>
 </assertion>
@@ -385,9 +385,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueRequestor</class-interface>
-<method name="request" return-type="javax.jms.Message">
+<method name="request" return-type="jakarta.jms.Message">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
 </method>
 </assertion>
@@ -396,11 +396,11 @@
 <description>if the JMS provider fails to complete the                          request due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueRequestor</class-interface>
-<method name="request" return-type="javax.jms.Message">
+<method name="request" return-type="jakarta.jms.Message">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -419,7 +419,7 @@
 <package>javax.jms</package>
 <class-interface>QueueRequestor</class-interface>
 <method name="close" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -432,8 +432,8 @@
 <class-interface>TopicRequestor</class-interface>
 <method name="TopicRequestor" return-type="TopicRequestor">
 <parameters>
-<parameter>javax.jms.TopicSession</parameter>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.TopicSession</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 </parameters>
 </method>
 </assertion>
@@ -445,9 +445,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicRequestor</class-interface>
-<method name="request" return-type="javax.jms.Message">
+<method name="request" return-type="jakarta.jms.Message">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
 </method>
 </assertion>
@@ -456,11 +456,11 @@
 <description>if the JMS provider fails to complete the                          request due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicRequestor</class-interface>
-<method name="request" return-type="javax.jms.Message">
+<method name="request" return-type="jakarta.jms.Message">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -479,7 +479,7 @@
 <package>javax.jms</package>
 <class-interface>TopicRequestor</class-interface>
 <method name="close" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -549,7 +549,7 @@
 <class-interface>ExceptionListener</class-interface>
 <method name="onException" return-type="void">
 <parameters>
-<parameter>javax.jms.JMSException</parameter>
+<parameter>jakarta.jms.JMSException</parameter>
 </parameters>
 </method>
 </assertion>
@@ -561,15 +561,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>ServerSession</class-interface>
-<method name="getSession" return-type="javax.jms.Session"/>
+<method name="getSession" return-type="jakarta.jms.Session"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:42</id>
 <description>if the JMS provider fails to get the associated                          session for this &lt;CODE&gt;ServerSession&lt;/CODE&gt; due                          to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>ServerSession</class-interface>
-<method name="getSession" return-type="javax.jms.Session">
-<throw>javax.jms.JMSException</throw>
+<method name="getSession" return-type="jakarta.jms.Session">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -587,7 +587,7 @@
 <package>javax.jms</package>
 <class-interface>ServerSession</class-interface>
 <method name="start" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -598,15 +598,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XATopicConnectionFactory</class-interface>
-<method name="createXATopicConnection" return-type="javax.jms.XATopicConnection"/>
+<method name="createXATopicConnection" return-type="jakarta.jms.XATopicConnection"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:46</id>
 <description>if the JMS provider fails to create an XA topic                           connection due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>XATopicConnectionFactory</class-interface>
-<method name="createXATopicConnection" return-type="javax.jms.XATopicConnection">
-<throw>javax.jms.JMSException</throw>
+<method name="createXATopicConnection" return-type="jakarta.jms.XATopicConnection">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -617,7 +617,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XATopicConnectionFactory</class-interface>
-<method name="createXATopicConnection" return-type="javax.jms.XATopicConnection">
+<method name="createXATopicConnection" return-type="jakarta.jms.XATopicConnection">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
@@ -629,12 +629,12 @@
 <description>if the JMS provider fails to create an XA topic                           connection due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>XATopicConnectionFactory</class-interface>
-<method name="createXATopicConnection" return-type="javax.jms.XATopicConnection">
+<method name="createXATopicConnection" return-type="jakarta.jms.XATopicConnection">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -645,15 +645,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XAQueueConnectionFactory</class-interface>
-<method name="createXAQueueConnection" return-type="javax.jms.XAQueueConnection"/>
+<method name="createXAQueueConnection" return-type="jakarta.jms.XAQueueConnection"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:50</id>
 <description>if the JMS provider fails to create an XA queue                           connection due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>XAQueueConnectionFactory</class-interface>
-<method name="createXAQueueConnection" return-type="javax.jms.XAQueueConnection">
-<throw>javax.jms.JMSException</throw>
+<method name="createXAQueueConnection" return-type="jakarta.jms.XAQueueConnection">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -664,7 +664,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XAQueueConnectionFactory</class-interface>
-<method name="createXAQueueConnection" return-type="javax.jms.XAQueueConnection">
+<method name="createXAQueueConnection" return-type="jakarta.jms.XAQueueConnection">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
@@ -676,12 +676,12 @@
 <description>if the JMS provider fails to create an XA queue                           connection due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>XAQueueConnectionFactory</class-interface>
-<method name="createXAQueueConnection" return-type="javax.jms.XAQueueConnection">
+<method name="createXAQueueConnection" return-type="jakarta.jms.XAQueueConnection">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -692,15 +692,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicConnectionFactory</class-interface>
-<method name="createTopicConnection" return-type="javax.jms.TopicConnection"/>
+<method name="createTopicConnection" return-type="jakarta.jms.TopicConnection"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:54</id>
 <description>if the JMS provider fails to create a topic                           connection due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicConnectionFactory</class-interface>
-<method name="createTopicConnection" return-type="javax.jms.TopicConnection">
-<throw>javax.jms.JMSException</throw>
+<method name="createTopicConnection" return-type="jakarta.jms.TopicConnection">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -711,7 +711,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicConnectionFactory</class-interface>
-<method name="createTopicConnection" return-type="javax.jms.TopicConnection">
+<method name="createTopicConnection" return-type="jakarta.jms.TopicConnection">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
@@ -723,12 +723,12 @@
 <description>if the JMS provider fails to create a topic                           connection due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicConnectionFactory</class-interface>
-<method name="createTopicConnection" return-type="javax.jms.TopicConnection">
+<method name="createTopicConnection" return-type="jakarta.jms.TopicConnection">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -739,15 +739,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueConnectionFactory</class-interface>
-<method name="createQueueConnection" return-type="javax.jms.QueueConnection"/>
+<method name="createQueueConnection" return-type="jakarta.jms.QueueConnection"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:58</id>
 <description>if the JMS provider fails to create the queue                           connection due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueConnectionFactory</class-interface>
-<method name="createQueueConnection" return-type="javax.jms.QueueConnection">
-<throw>javax.jms.JMSException</throw>
+<method name="createQueueConnection" return-type="jakarta.jms.QueueConnection">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -758,7 +758,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueConnectionFactory</class-interface>
-<method name="createQueueConnection" return-type="javax.jms.QueueConnection">
+<method name="createQueueConnection" return-type="jakarta.jms.QueueConnection">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
@@ -770,12 +770,12 @@
 <description>if the JMS provider fails to create the queue                           connection due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueConnectionFactory</class-interface>
-<method name="createQueueConnection" return-type="javax.jms.QueueConnection">
+<method name="createQueueConnection" return-type="jakarta.jms.QueueConnection">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -793,7 +793,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionMetaData</class-interface>
 <method name="getJMSVersion" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -811,7 +811,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionMetaData</class-interface>
 <method name="getJMSMajorVersion" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -829,7 +829,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionMetaData</class-interface>
 <method name="getJMSMinorVersion" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -847,7 +847,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionMetaData</class-interface>
 <method name="getJMSProviderName" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -865,7 +865,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionMetaData</class-interface>
 <method name="getProviderVersion" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -883,7 +883,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionMetaData</class-interface>
 <method name="getProviderMajorVersion" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -901,7 +901,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionMetaData</class-interface>
 <method name="getProviderMinorVersion" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -919,7 +919,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionMetaData</class-interface>
 <method name="getJMSXPropertyNames" return-type="java.util.Enumeration">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -945,7 +945,7 @@
 <parameters>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -963,7 +963,7 @@
 <package>javax.jms</package>
 <class-interface>MessageProducer</class-interface>
 <method name="getDisableMessageID" return-type="boolean">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -989,7 +989,7 @@
 <parameters>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1007,7 +1007,7 @@
 <package>javax.jms</package>
 <class-interface>MessageProducer</class-interface>
 <method name="getDisableMessageTimestamp" return-type="boolean">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1037,7 +1037,7 @@
 <parameters>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1056,7 +1056,7 @@
 <package>javax.jms</package>
 <class-interface>MessageProducer</class-interface>
 <method name="getDeliveryMode" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1084,7 +1084,7 @@
 <parameters>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1103,7 +1103,7 @@
 <package>javax.jms</package>
 <class-interface>MessageProducer</class-interface>
 <method name="getPriority" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1131,7 +1131,7 @@
 <parameters>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1150,7 +1150,7 @@
 <package>javax.jms</package>
 <class-interface>MessageProducer</class-interface>
 <method name="getTimeToLive" return-type="long">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1169,7 +1169,7 @@
 <package>javax.jms</package>
 <class-interface>MessageProducer</class-interface>
 <method name="close" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1196,7 +1196,7 @@
 <package>javax.jms</package>
 <class-interface>XASession</class-interface>
 <method name="getTransacted" return-type="boolean">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1214,7 +1214,7 @@
 <package>javax.jms</package>
 <class-interface>XASession</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1232,7 +1232,7 @@
 <package>javax.jms</package>
 <class-interface>XASession</class-interface>
 <method name="rollback" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1251,7 +1251,7 @@
 <package>javax.jms</package>
 <class-interface>Connection</class-interface>
 <method name="getClientID" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1277,7 +1277,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1288,15 +1288,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Connection</class-interface>
-<method name="getMetaData" return-type="javax.jms.ConnectionMetaData"/>
+<method name="getMetaData" return-type="jakarta.jms.ConnectionMetaData"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:111</id>
 <description>if the JMS provider fails to                          get the connection metadata for this connection.</description>
 <package>javax.jms</package>
 <class-interface>Connection</class-interface>
-<method name="getMetaData" return-type="javax.jms.ConnectionMetaData">
-<throw>javax.jms.JMSException</throw>
+<method name="getMetaData" return-type="jakarta.jms.ConnectionMetaData">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1306,15 +1306,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Connection</class-interface>
-<method name="getExceptionListener" return-type="javax.jms.ExceptionListener"/>
+<method name="getExceptionListener" return-type="jakarta.jms.ExceptionListener"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:113</id>
 <description>if the JMS provider fails to                          get the &lt;CODE&gt;ExceptionListener&lt;/CODE&gt; for this                           connection.</description>
 <package>javax.jms</package>
 <class-interface>Connection</class-interface>
-<method name="getExceptionListener" return-type="javax.jms.ExceptionListener">
-<throw>javax.jms.JMSException</throw>
+<method name="getExceptionListener" return-type="jakarta.jms.ExceptionListener">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1327,7 +1327,7 @@
 <class-interface>Connection</class-interface>
 <method name="setExceptionListener" return-type="void">
 <parameters>
-<parameter>javax.jms.ExceptionListener</parameter>
+<parameter>jakarta.jms.ExceptionListener</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1338,9 +1338,9 @@
 <class-interface>Connection</class-interface>
 <method name="setExceptionListener" return-type="void">
 <parameters>
-<parameter>javax.jms.ExceptionListener</parameter>
+<parameter>jakarta.jms.ExceptionListener</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1360,7 +1360,7 @@
 <package>javax.jms</package>
 <class-interface>Connection</class-interface>
 <method name="start" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1380,7 +1380,7 @@
 <package>javax.jms</package>
 <class-interface>Connection</class-interface>
 <method name="stop" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1399,7 +1399,7 @@
 <package>javax.jms</package>
 <class-interface>Connection</class-interface>
 <method name="close" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1417,7 +1417,7 @@
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
 <method name="getMessageSelector" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1428,15 +1428,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
-<method name="getMessageListener" return-type="javax.jms.MessageListener"/>
+<method name="getMessageListener" return-type="jakarta.jms.MessageListener"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:125</id>
 <description>if the JMS provider fails to get the message                          listener due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
-<method name="getMessageListener" return-type="javax.jms.MessageListener">
-<throw>javax.jms.JMSException</throw>
+<method name="getMessageListener" return-type="jakarta.jms.MessageListener">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1450,7 +1450,7 @@
 <class-interface>MessageConsumer</class-interface>
 <method name="setMessageListener" return-type="void">
 <parameters>
-<parameter>javax.jms.MessageListener</parameter>
+<parameter>jakarta.jms.MessageListener</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1461,9 +1461,9 @@
 <class-interface>MessageConsumer</class-interface>
 <method name="setMessageListener" return-type="void">
 <parameters>
-<parameter>javax.jms.MessageListener</parameter>
+<parameter>jakarta.jms.MessageListener</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1474,15 +1474,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
-<method name="receive" return-type="javax.jms.Message"/>
+<method name="receive" return-type="jakarta.jms.Message"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:129</id>
 <description>if the JMS provider fails to receive the next                          message due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
-<method name="receive" return-type="javax.jms.Message">
-<throw>javax.jms.JMSException</throw>
+<method name="receive" return-type="jakarta.jms.Message">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1493,7 +1493,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
-<method name="receive" return-type="javax.jms.Message">
+<method name="receive" return-type="jakarta.jms.Message">
 <parameters>
 <parameter>long</parameter>
 </parameters>
@@ -1504,11 +1504,11 @@
 <description>if the JMS provider fails to receive the next                          message due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
-<method name="receive" return-type="javax.jms.Message">
+<method name="receive" return-type="jakarta.jms.Message">
 <parameters>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1518,15 +1518,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
-<method name="receiveNoWait" return-type="javax.jms.Message"/>
+<method name="receiveNoWait" return-type="jakarta.jms.Message"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:133</id>
 <description>if the JMS provider fails to receive the next                          message due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
-<method name="receiveNoWait" return-type="javax.jms.Message">
-<throw>javax.jms.JMSException</throw>
+<method name="receiveNoWait" return-type="jakarta.jms.Message">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1545,7 +1545,7 @@
 <package>javax.jms</package>
 <class-interface>MessageConsumer</class-interface>
 <method name="close" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1564,7 +1564,7 @@
 <package>javax.jms</package>
 <class-interface>TemporaryQueue</class-interface>
 <method name="delete" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1574,15 +1574,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XAQueueSession</class-interface>
-<method name="getQueueSession" return-type="javax.jms.QueueSession"/>
+<method name="getQueueSession" return-type="jakarta.jms.QueueSession"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:139</id>
 <description>if an internal error occurs.</description>
 <package>javax.jms</package>
 <class-interface>XAQueueSession</class-interface>
-<method name="getQueueSession" return-type="javax.jms.QueueSession">
-<throw>javax.jms.JMSException</throw>
+<method name="getQueueSession" return-type="jakarta.jms.QueueSession">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1595,7 +1595,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueConnection</class-interface>
-<method name="createQueueSession" return-type="javax.jms.QueueSession">
+<method name="createQueueSession" return-type="jakarta.jms.QueueSession">
 <parameters>
 <parameter>boolean</parameter>
 <parameter>int</parameter>
@@ -1607,12 +1607,12 @@
 <description>if the &lt;CODE&gt;QueueConnection&lt;/CODE&gt; object fails                          to create a session due to some internal error or                          lack of support for the specific transaction                          and acknowledgement mode.</description>
 <package>javax.jms</package>
 <class-interface>QueueConnection</class-interface>
-<method name="createQueueSession" return-type="javax.jms.QueueSession">
+<method name="createQueueSession" return-type="jakarta.jms.QueueSession">
 <parameters>
 <parameter>boolean</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1624,11 +1624,11 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueConnection</class-interface>
-<method name="createConnectionConsumer" return-type="javax.jms.ConnectionConsumer">
+<method name="createConnectionConsumer" return-type="jakarta.jms.ConnectionConsumer">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>javax.jms.ServerSessionPool</parameter>
+<parameter>jakarta.jms.ServerSessionPool</parameter>
 <parameter>int</parameter>
 </parameters>
 </method>
@@ -1638,14 +1638,14 @@
 <description>if the &lt;CODE&gt;QueueConnection&lt;/CODE&gt; object fails                          to create a connection consumer due to some                          internal error or invalid arguments for                           &lt;CODE&gt;sessionPool&lt;/CODE&gt; and                           &lt;CODE&gt;messageSelector&lt;/CODE&gt;.</description>
 <package>javax.jms</package>
 <class-interface>QueueConnection</class-interface>
-<method name="createConnectionConsumer" return-type="javax.jms.ConnectionConsumer">
+<method name="createConnectionConsumer" return-type="jakarta.jms.ConnectionConsumer">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>javax.jms.ServerSessionPool</parameter>
+<parameter>jakarta.jms.ServerSessionPool</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1658,7 +1658,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicConnection</class-interface>
-<method name="createTopicSession" return-type="javax.jms.TopicSession">
+<method name="createTopicSession" return-type="jakarta.jms.TopicSession">
 <parameters>
 <parameter>boolean</parameter>
 <parameter>int</parameter>
@@ -1670,12 +1670,12 @@
 <description>if the &lt;CODE&gt;TopicConnection&lt;/CODE&gt; object fails                          to create a session due to some internal error or                          lack of support for the specific transaction                          and acknowledgement mode.</description>
 <package>javax.jms</package>
 <class-interface>TopicConnection</class-interface>
-<method name="createTopicSession" return-type="javax.jms.TopicSession">
+<method name="createTopicSession" return-type="jakarta.jms.TopicSession">
 <parameters>
 <parameter>boolean</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1687,11 +1687,11 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicConnection</class-interface>
-<method name="createConnectionConsumer" return-type="javax.jms.ConnectionConsumer">
+<method name="createConnectionConsumer" return-type="jakarta.jms.ConnectionConsumer">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>javax.jms.ServerSessionPool</parameter>
+<parameter>jakarta.jms.ServerSessionPool</parameter>
 <parameter>int</parameter>
 </parameters>
 </method>
@@ -1701,14 +1701,14 @@
 <description>if the &lt;CODE&gt;TopicConnection&lt;/CODE&gt; object fails                          to create a connection consumer due to some                          internal error or invalid arguments for                           &lt;CODE&gt;sessionPool&lt;/CODE&gt; and                           &lt;CODE&gt;messageSelector&lt;/CODE&gt;.</description>
 <package>javax.jms</package>
 <class-interface>TopicConnection</class-interface>
-<method name="createConnectionConsumer" return-type="javax.jms.ConnectionConsumer">
+<method name="createConnectionConsumer" return-type="jakarta.jms.ConnectionConsumer">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>javax.jms.ServerSessionPool</parameter>
+<parameter>jakarta.jms.ServerSessionPool</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1720,12 +1720,12 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicConnection</class-interface>
-<method name="createDurableConnectionConsumer" return-type="javax.jms.ConnectionConsumer">
+<method name="createDurableConnectionConsumer" return-type="jakarta.jms.ConnectionConsumer">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>javax.jms.ServerSessionPool</parameter>
+<parameter>jakarta.jms.ServerSessionPool</parameter>
 <parameter>int</parameter>
 </parameters>
 </method>
@@ -1735,15 +1735,15 @@
 <description>if the &lt;CODE&gt;TopicConnection&lt;/CODE&gt; object fails                          to create a connection consumer due to some                          internal error or invalid arguments for                           &lt;CODE&gt;sessionPool&lt;/CODE&gt; and                           &lt;CODE&gt;messageSelector&lt;/CODE&gt;.</description>
 <package>javax.jms</package>
 <class-interface>TopicConnection</class-interface>
-<method name="createDurableConnectionConsumer" return-type="javax.jms.ConnectionConsumer">
+<method name="createDurableConnectionConsumer" return-type="jakarta.jms.ConnectionConsumer">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>javax.jms.ServerSessionPool</parameter>
+<parameter>jakarta.jms.ServerSessionPool</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1753,15 +1753,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>ConnectionConsumer</class-interface>
-<method name="getServerSessionPool" return-type="javax.jms.ServerSessionPool"/>
+<method name="getServerSessionPool" return-type="jakarta.jms.ServerSessionPool"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:151</id>
 <description>if the JMS provider fails to get the server                           session pool associated with this consumer due                          to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>ConnectionConsumer</class-interface>
-<method name="getServerSessionPool" return-type="javax.jms.ServerSessionPool">
-<throw>javax.jms.JMSException</throw>
+<method name="getServerSessionPool" return-type="jakarta.jms.ServerSessionPool">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1780,7 +1780,7 @@
 <package>javax.jms</package>
 <class-interface>ConnectionConsumer</class-interface>
 <method name="close" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1790,15 +1790,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XATopicSession</class-interface>
-<method name="getTopicSession" return-type="javax.jms.TopicSession"/>
+<method name="getTopicSession" return-type="jakarta.jms.TopicSession"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:155</id>
 <description>if an internal error occurs.</description>
 <package>javax.jms</package>
 <class-interface>XATopicSession</class-interface>
-<method name="getTopicSession" return-type="javax.jms.TopicSession">
-<throw>javax.jms.JMSException</throw>
+<method name="getTopicSession" return-type="jakarta.jms.TopicSession">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1829,7 +1829,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createQueue" return-type="javax.jms.Queue">
+<method name="createQueue" return-type="jakarta.jms.Queue">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -1840,11 +1840,11 @@
 <description>if the session fails to create a queue                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createQueue" return-type="javax.jms.Queue">
+<method name="createQueue" return-type="jakarta.jms.Queue">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1854,9 +1854,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createReceiver" return-type="javax.jms.QueueReceiver">
+<method name="createReceiver" return-type="jakarta.jms.QueueReceiver">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1865,11 +1865,11 @@
 <description>if the session fails to create a receiver                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createReceiver" return-type="javax.jms.QueueReceiver">
+<method name="createReceiver" return-type="jakarta.jms.QueueReceiver">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1879,9 +1879,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createReceiver" return-type="javax.jms.QueueReceiver">
+<method name="createReceiver" return-type="jakarta.jms.QueueReceiver">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
 </method>
@@ -1891,12 +1891,12 @@
 <description>if the session fails to create a receiver                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createReceiver" return-type="javax.jms.QueueReceiver">
+<method name="createReceiver" return-type="jakarta.jms.QueueReceiver">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1906,9 +1906,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createSender" return-type="javax.jms.QueueSender">
+<method name="createSender" return-type="jakarta.jms.QueueSender">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1917,11 +1917,11 @@
 <description>if the session fails to create a sender                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createSender" return-type="javax.jms.QueueSender">
+<method name="createSender" return-type="jakarta.jms.QueueSender">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1931,9 +1931,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createBrowser" return-type="javax.jms.QueueBrowser">
+<method name="createBrowser" return-type="jakarta.jms.QueueBrowser">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1942,11 +1942,11 @@
 <description>if the session fails to create a browser                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createBrowser" return-type="javax.jms.QueueBrowser">
+<method name="createBrowser" return-type="jakarta.jms.QueueBrowser">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1956,9 +1956,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createBrowser" return-type="javax.jms.QueueBrowser">
+<method name="createBrowser" return-type="jakarta.jms.QueueBrowser">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
 </method>
@@ -1968,12 +1968,12 @@
 <description>if the session fails to create a browser                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createBrowser" return-type="javax.jms.QueueBrowser">
+<method name="createBrowser" return-type="jakarta.jms.QueueBrowser">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
+<parameter>jakarta.jms.Queue</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1984,15 +1984,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createTemporaryQueue" return-type="javax.jms.TemporaryQueue"/>
+<method name="createTemporaryQueue" return-type="jakarta.jms.TemporaryQueue"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:171</id>
 <description>if the session fails to create a temporary queue                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueSession</class-interface>
-<method name="createTemporaryQueue" return-type="javax.jms.TemporaryQueue">
-<throw>javax.jms.JMSException</throw>
+<method name="createTemporaryQueue" return-type="jakarta.jms.TemporaryQueue">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2003,7 +2003,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createTopic" return-type="javax.jms.Topic">
+<method name="createTopic" return-type="jakarta.jms.Topic">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -2014,11 +2014,11 @@
 <description>if the session fails to create a topic                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createTopic" return-type="javax.jms.Topic">
+<method name="createTopic" return-type="jakarta.jms.Topic">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2029,9 +2029,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createSubscriber" return-type="javax.jms.TopicSubscriber">
+<method name="createSubscriber" return-type="jakarta.jms.TopicSubscriber">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 </parameters>
 </method>
 </assertion>
@@ -2040,11 +2040,11 @@
 <description>if the session fails to create a subscriber                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createSubscriber" return-type="javax.jms.TopicSubscriber">
+<method name="createSubscriber" return-type="jakarta.jms.TopicSubscriber">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2055,9 +2055,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createSubscriber" return-type="javax.jms.TopicSubscriber">
+<method name="createSubscriber" return-type="jakarta.jms.TopicSubscriber">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>boolean</parameter>
 </parameters>
@@ -2068,13 +2068,13 @@
 <description>if the session fails to create a subscriber                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createSubscriber" return-type="javax.jms.TopicSubscriber">
+<method name="createSubscriber" return-type="jakarta.jms.TopicSubscriber">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2085,9 +2085,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createDurableSubscriber" return-type="javax.jms.TopicSubscriber">
+<method name="createDurableSubscriber" return-type="jakarta.jms.TopicSubscriber">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
 </method>
@@ -2097,12 +2097,12 @@
 <description>if the session fails to create a subscriber                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createDurableSubscriber" return-type="javax.jms.TopicSubscriber">
+<method name="createDurableSubscriber" return-type="jakarta.jms.TopicSubscriber">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2113,9 +2113,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createDurableSubscriber" return-type="javax.jms.TopicSubscriber">
+<method name="createDurableSubscriber" return-type="jakarta.jms.TopicSubscriber">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>boolean</parameter>
@@ -2127,14 +2127,14 @@
 <description>if the session fails to create a subscriber                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createDurableSubscriber" return-type="javax.jms.TopicSubscriber">
+<method name="createDurableSubscriber" return-type="jakarta.jms.TopicSubscriber">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2145,9 +2145,9 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createPublisher" return-type="javax.jms.TopicPublisher">
+<method name="createPublisher" return-type="jakarta.jms.TopicPublisher">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 </parameters>
 </method>
 </assertion>
@@ -2156,11 +2156,11 @@
 <description>if the session fails to create a publisher                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createPublisher" return-type="javax.jms.TopicPublisher">
+<method name="createPublisher" return-type="jakarta.jms.TopicPublisher">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
+<parameter>jakarta.jms.Topic</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2171,15 +2171,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createTemporaryTopic" return-type="javax.jms.TemporaryTopic"/>
+<method name="createTemporaryTopic" return-type="jakarta.jms.TemporaryTopic"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:185</id>
 <description>if the session fails to create a temporary                          topic due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicSession</class-interface>
-<method name="createTemporaryTopic" return-type="javax.jms.TemporaryTopic">
-<throw>javax.jms.JMSException</throw>
+<method name="createTemporaryTopic" return-type="jakarta.jms.TemporaryTopic">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2205,7 +2205,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2224,7 +2224,7 @@
 <package>javax.jms</package>
 <class-interface>Topic</class-interface>
 <method name="getTopicName" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2243,15 +2243,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicSubscriber</class-interface>
-<method name="getTopic" return-type="javax.jms.Topic"/>
+<method name="getTopic" return-type="jakarta.jms.Topic"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:192</id>
 <description>if the JMS provider fails to get the topic for                          this topic subscriber                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicSubscriber</class-interface>
-<method name="getTopic" return-type="javax.jms.Topic">
-<throw>javax.jms.JMSException</throw>
+<method name="getTopic" return-type="jakarta.jms.Topic">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2270,7 +2270,7 @@
 <package>javax.jms</package>
 <class-interface>TopicSubscriber</class-interface>
 <method name="getNoLocal" return-type="boolean">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2280,15 +2280,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>TopicPublisher</class-interface>
-<method name="getTopic" return-type="javax.jms.Topic"/>
+<method name="getTopic" return-type="jakarta.jms.Topic"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:196</id>
 <description>if the JMS provider fails to get the topic for                          this &lt;CODE&gt;TopicPublisher&lt;/CODE&gt;                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>TopicPublisher</class-interface>
-<method name="getTopic" return-type="javax.jms.Topic">
-<throw>javax.jms.JMSException</throw>
+<method name="getTopic" return-type="jakarta.jms.Topic">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2304,7 +2304,7 @@
 <class-interface>TopicPublisher</class-interface>
 <method name="publish" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
 </method>
 </assertion>
@@ -2315,9 +2315,9 @@
 <class-interface>TopicPublisher</class-interface>
 <method name="publish" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2329,7 +2329,7 @@
 <class-interface>TopicPublisher</class-interface>
 <method name="publish" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 <parameter>int</parameter>
 <parameter>int</parameter>
 <parameter>long</parameter>
@@ -2343,12 +2343,12 @@
 <class-interface>TopicPublisher</class-interface>
 <method name="publish" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 <parameter>int</parameter>
 <parameter>int</parameter>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2364,8 +2364,8 @@
 <class-interface>TopicPublisher</class-interface>
 <method name="publish" return-type="void">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Topic</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
 </method>
 </assertion>
@@ -2376,10 +2376,10 @@
 <class-interface>TopicPublisher</class-interface>
 <method name="publish" return-type="void">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Topic</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2392,8 +2392,8 @@
 <class-interface>TopicPublisher</class-interface>
 <method name="publish" return-type="void">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Topic</parameter>
+<parameter>jakarta.jms.Message</parameter>
 <parameter>int</parameter>
 <parameter>int</parameter>
 <parameter>long</parameter>
@@ -2407,13 +2407,13 @@
 <class-interface>TopicPublisher</class-interface>
 <method name="publish" return-type="void">
 <parameters>
-<parameter>javax.jms.Topic</parameter>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Topic</parameter>
+<parameter>jakarta.jms.Message</parameter>
 <parameter>int</parameter>
 <parameter>int</parameter>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2454,15 +2454,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createBytesMessage" return-type="javax.jms.BytesMessage"/>
+<method name="createBytesMessage" return-type="jakarta.jms.BytesMessage"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:209</id>
 <description>if the JMS provider fails to create this message                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createBytesMessage" return-type="javax.jms.BytesMessage">
-<throw>javax.jms.JMSException</throw>
+<method name="createBytesMessage" return-type="jakarta.jms.BytesMessage">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2473,15 +2473,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createMapMessage" return-type="javax.jms.MapMessage"/>
+<method name="createMapMessage" return-type="jakarta.jms.MapMessage"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:211</id>
 <description>if the JMS provider fails to create this message                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createMapMessage" return-type="javax.jms.MapMessage">
-<throw>javax.jms.JMSException</throw>
+<method name="createMapMessage" return-type="jakarta.jms.MapMessage">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2492,15 +2492,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createMessage" return-type="javax.jms.Message"/>
+<method name="createMessage" return-type="jakarta.jms.Message"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:213</id>
 <description>if the JMS provider fails to create this message                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createMessage" return-type="javax.jms.Message">
-<throw>javax.jms.JMSException</throw>
+<method name="createMessage" return-type="jakarta.jms.Message">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2511,15 +2511,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createObjectMessage" return-type="javax.jms.ObjectMessage"/>
+<method name="createObjectMessage" return-type="jakarta.jms.ObjectMessage"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:215</id>
 <description>if the JMS provider fails to create this message                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createObjectMessage" return-type="javax.jms.ObjectMessage">
-<throw>javax.jms.JMSException</throw>
+<method name="createObjectMessage" return-type="jakarta.jms.ObjectMessage">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2530,7 +2530,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createObjectMessage" return-type="javax.jms.ObjectMessage">
+<method name="createObjectMessage" return-type="jakarta.jms.ObjectMessage">
 <parameters>
 <parameter>java.io.Serializable</parameter>
 </parameters>
@@ -2541,11 +2541,11 @@
 <description>if the JMS provider fails to create this message                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createObjectMessage" return-type="javax.jms.ObjectMessage">
+<method name="createObjectMessage" return-type="jakarta.jms.ObjectMessage">
 <parameters>
 <parameter>java.io.Serializable</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2556,15 +2556,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createStreamMessage" return-type="javax.jms.StreamMessage"/>
+<method name="createStreamMessage" return-type="jakarta.jms.StreamMessage"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:219</id>
 <description>if the JMS provider fails to create this message                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createStreamMessage" return-type="javax.jms.StreamMessage">
-<throw>javax.jms.JMSException</throw>
+<method name="createStreamMessage" return-type="jakarta.jms.StreamMessage">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2575,15 +2575,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createTextMessage" return-type="javax.jms.TextMessage"/>
+<method name="createTextMessage" return-type="jakarta.jms.TextMessage"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:221</id>
 <description>if the JMS provider fails to create this message                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createTextMessage" return-type="javax.jms.TextMessage">
-<throw>javax.jms.JMSException</throw>
+<method name="createTextMessage" return-type="jakarta.jms.TextMessage">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2594,7 +2594,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createTextMessage" return-type="javax.jms.TextMessage">
+<method name="createTextMessage" return-type="jakarta.jms.TextMessage">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -2605,11 +2605,11 @@
 <description>if the JMS provider fails to create this message                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="createTextMessage" return-type="javax.jms.TextMessage">
+<method name="createTextMessage" return-type="jakarta.jms.TextMessage">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2627,7 +2627,7 @@
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
 <method name="getTransacted" return-type="boolean">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2645,7 +2645,7 @@
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
 <method name="commit" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2663,7 +2663,7 @@
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
 <method name="rollback" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2682,7 +2682,7 @@
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
 <method name="close" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2701,7 +2701,7 @@
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
 <method name="recover" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2714,15 +2714,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="getMessageListener" return-type="javax.jms.MessageListener"/>
+<method name="getMessageListener" return-type="jakarta.jms.MessageListener"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:235</id>
 <description>if the JMS provider fails to get the message                           listener due to an internal error.</description>
 <package>javax.jms</package>
 <class-interface>Session</class-interface>
-<method name="getMessageListener" return-type="javax.jms.MessageListener">
-<throw>javax.jms.JMSException</throw>
+<method name="getMessageListener" return-type="jakarta.jms.MessageListener">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2738,7 +2738,7 @@
 <class-interface>Session</class-interface>
 <method name="setMessageListener" return-type="void">
 <parameters>
-<parameter>javax.jms.MessageListener</parameter>
+<parameter>jakarta.jms.MessageListener</parameter>
 </parameters>
 </method>
 </assertion>
@@ -2749,9 +2749,9 @@
 <class-interface>Session</class-interface>
 <method name="setMessageListener" return-type="void">
 <parameters>
-<parameter>javax.jms.MessageListener</parameter>
+<parameter>jakarta.jms.MessageListener</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2771,15 +2771,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>ServerSessionPool</class-interface>
-<method name="getServerSession" return-type="javax.jms.ServerSession"/>
+<method name="getServerSession" return-type="jakarta.jms.ServerSession"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:240</id>
 <description>if an application server fails to                          return a &lt;CODE&gt;ServerSession&lt;/CODE&gt; out of its                          server session pool.</description>
 <package>javax.jms</package>
 <class-interface>ServerSessionPool</class-interface>
-<method name="getServerSession" return-type="javax.jms.ServerSession">
-<throw>javax.jms.JMSException</throw>
+<method name="getServerSession" return-type="jakarta.jms.ServerSession">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2798,7 +2798,7 @@
 <package>javax.jms</package>
 <class-interface>TemporaryTopic</class-interface>
 <method name="delete" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2808,15 +2808,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XATopicConnection</class-interface>
-<method name="createXATopicSession" return-type="javax.jms.XATopicSession"/>
+<method name="createXATopicSession" return-type="jakarta.jms.XATopicSession"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:244</id>
 <description>if the &lt;CODE&gt;XATopicConnection&lt;/CODE&gt; object                          fails to create an XA topic session due to some                           internal error.</description>
 <package>javax.jms</package>
 <class-interface>XATopicConnection</class-interface>
-<method name="createXATopicSession" return-type="javax.jms.XATopicSession">
-<throw>javax.jms.JMSException</throw>
+<method name="createXATopicSession" return-type="jakarta.jms.XATopicSession">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2826,7 +2826,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XATopicConnection</class-interface>
-<method name="createTopicSession" return-type="javax.jms.TopicSession">
+<method name="createTopicSession" return-type="jakarta.jms.TopicSession">
 <parameters>
 <parameter>boolean</parameter>
 <parameter>int</parameter>
@@ -2838,12 +2838,12 @@
 <description>if the &lt;CODE&gt;XATopicConnection&lt;/CODE&gt; object                          fails to create an XA topic session due to some                           internal error.</description>
 <package>javax.jms</package>
 <class-interface>XATopicConnection</class-interface>
-<method name="createTopicSession" return-type="javax.jms.TopicSession">
+<method name="createTopicSession" return-type="jakarta.jms.TopicSession">
 <parameters>
 <parameter>boolean</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2853,15 +2853,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueReceiver</class-interface>
-<method name="getQueue" return-type="javax.jms.Queue"/>
+<method name="getQueue" return-type="jakarta.jms.Queue"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:248</id>
 <description>if the JMS provider fails to get the queue for                          this queue receiver                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueReceiver</class-interface>
-<method name="getQueue" return-type="javax.jms.Queue">
-<throw>javax.jms.JMSException</throw>
+<method name="getQueue" return-type="jakarta.jms.Queue">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2871,15 +2871,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XAQueueConnection</class-interface>
-<method name="createXAQueueSession" return-type="javax.jms.XAQueueSession"/>
+<method name="createXAQueueSession" return-type="jakarta.jms.XAQueueSession"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:250</id>
 <description>if the &lt;CODE&gt;XAQueueConnection&lt;/CODE&gt; object                           fails to create an XA queue session due to some                          internal error.</description>
 <package>javax.jms</package>
 <class-interface>XAQueueConnection</class-interface>
-<method name="createXAQueueSession" return-type="javax.jms.XAQueueSession">
-<throw>javax.jms.JMSException</throw>
+<method name="createXAQueueSession" return-type="jakarta.jms.XAQueueSession">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2889,7 +2889,7 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>XAQueueConnection</class-interface>
-<method name="createQueueSession" return-type="javax.jms.QueueSession">
+<method name="createQueueSession" return-type="jakarta.jms.QueueSession">
 <parameters>
 <parameter>boolean</parameter>
 <parameter>int</parameter>
@@ -2901,12 +2901,12 @@
 <description>if the &lt;CODE&gt;XAQueueConnection&lt;/CODE&gt; object                           fails to create an XA queue session due to some                          internal error.</description>
 <package>javax.jms</package>
 <class-interface>XAQueueConnection</class-interface>
-<method name="createQueueSession" return-type="javax.jms.QueueSession">
+<method name="createQueueSession" return-type="jakarta.jms.QueueSession">
 <parameters>
 <parameter>boolean</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2916,15 +2916,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueSender</class-interface>
-<method name="getQueue" return-type="javax.jms.Queue"/>
+<method name="getQueue" return-type="jakarta.jms.Queue"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:254</id>
 <description>if the JMS provider fails to get the queue for                          this &lt;CODE&gt;QueueSender&lt;/CODE&gt;                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueSender</class-interface>
-<method name="getQueue" return-type="javax.jms.Queue">
-<throw>javax.jms.JMSException</throw>
+<method name="getQueue" return-type="jakarta.jms.Queue">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2940,7 +2940,7 @@
 <class-interface>QueueSender</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
 </method>
 </assertion>
@@ -2951,9 +2951,9 @@
 <class-interface>QueueSender</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2965,7 +2965,7 @@
 <class-interface>QueueSender</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 <parameter>int</parameter>
 <parameter>int</parameter>
 <parameter>long</parameter>
@@ -2979,12 +2979,12 @@
 <class-interface>QueueSender</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 <parameter>int</parameter>
 <parameter>int</parameter>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3000,8 +3000,8 @@
 <class-interface>QueueSender</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Queue</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
 </method>
 </assertion>
@@ -3012,10 +3012,10 @@
 <class-interface>QueueSender</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Queue</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3028,8 +3028,8 @@
 <class-interface>QueueSender</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Queue</parameter>
+<parameter>jakarta.jms.Message</parameter>
 <parameter>int</parameter>
 <parameter>int</parameter>
 <parameter>long</parameter>
@@ -3043,13 +3043,13 @@
 <class-interface>QueueSender</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.jms.Queue</parameter>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Queue</parameter>
+<parameter>jakarta.jms.Message</parameter>
 <parameter>int</parameter>
 <parameter>int</parameter>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3059,15 +3059,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>QueueBrowser</class-interface>
-<method name="getQueue" return-type="javax.jms.Queue"/>
+<method name="getQueue" return-type="jakarta.jms.Queue"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:264</id>
 <description>if the JMS provider fails to get the                          queue associated with this browser                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>QueueBrowser</class-interface>
-<method name="getQueue" return-type="javax.jms.Queue">
-<throw>javax.jms.JMSException</throw>
+<method name="getQueue" return-type="jakarta.jms.Queue">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3085,7 +3085,7 @@
 <package>javax.jms</package>
 <class-interface>QueueBrowser</class-interface>
 <method name="getMessageSelector" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3103,7 +3103,7 @@
 <package>javax.jms</package>
 <class-interface>QueueBrowser</class-interface>
 <method name="getEnumeration" return-type="java.util.Enumeration">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3122,7 +3122,7 @@
 <package>javax.jms</package>
 <class-interface>QueueBrowser</class-interface>
 <method name="close" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3148,7 +3148,7 @@
 <parameters>
 <parameter>java.io.Serializable</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3167,7 +3167,7 @@
 <package>javax.jms</package>
 <class-interface>ObjectMessage</class-interface>
 <method name="getObject" return-type="java.io.Serializable">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3179,7 +3179,7 @@
 <class-interface>MessageListener</class-interface>
 <method name="onMessage" return-type="void">
 <parameters>
-<parameter>javax.jms.Message</parameter>
+<parameter>jakarta.jms.Message</parameter>
 </parameters>
 </method>
 </assertion>
@@ -3198,7 +3198,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readBoolean" return-type="boolean">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3216,7 +3216,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readByte" return-type="byte">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3234,7 +3234,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readUnsignedByte" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3252,7 +3252,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readShort" return-type="short">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3270,7 +3270,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readUnsignedShort" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3288,7 +3288,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readChar" return-type="char">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3306,7 +3306,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readInt" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3324,7 +3324,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readLong" return-type="long">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3342,7 +3342,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readFloat" return-type="float">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3360,7 +3360,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readDouble" return-type="double">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3379,7 +3379,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="readUTF" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3405,7 +3405,7 @@
 <parameters>
 <parameter>byte[]</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3433,7 +3433,7 @@
 <parameter>byte[]</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3459,7 +3459,7 @@
 <parameters>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3484,7 +3484,7 @@
 <parameters>
 <parameter>byte</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3509,7 +3509,7 @@
 <parameters>
 <parameter>short</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3534,7 +3534,7 @@
 <parameters>
 <parameter>char</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3559,7 +3559,7 @@
 <parameters>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3584,7 +3584,7 @@
 <parameters>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3609,7 +3609,7 @@
 <parameters>
 <parameter>float</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3634,7 +3634,7 @@
 <parameters>
 <parameter>double</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3660,7 +3660,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3685,7 +3685,7 @@
 <parameters>
 <parameter>byte[]</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3714,7 +3714,7 @@
 <parameter>int</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3740,7 +3740,7 @@
 <parameters>
 <parameter>java.lang.Object</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3758,7 +3758,7 @@
 <package>javax.jms</package>
 <class-interface>BytesMessage</class-interface>
 <method name="reset" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3776,7 +3776,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readBoolean" return-type="boolean">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3794,7 +3794,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readByte" return-type="byte">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3812,7 +3812,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readShort" return-type="short">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3830,7 +3830,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readChar" return-type="char">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3848,7 +3848,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readInt" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3866,7 +3866,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readLong" return-type="long">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3884,7 +3884,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readFloat" return-type="float">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3902,7 +3902,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readDouble" return-type="double">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3920,7 +3920,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readString" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3947,7 +3947,7 @@
 <parameters>
 <parameter>byte[]</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3967,7 +3967,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="readObject" return-type="java.lang.Object">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -3993,7 +3993,7 @@
 <parameters>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4018,7 +4018,7 @@
 <parameters>
 <parameter>byte</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4043,7 +4043,7 @@
 <parameters>
 <parameter>short</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4068,7 +4068,7 @@
 <parameters>
 <parameter>char</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4093,7 +4093,7 @@
 <parameters>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4118,7 +4118,7 @@
 <parameters>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4143,7 +4143,7 @@
 <parameters>
 <parameter>float</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4168,7 +4168,7 @@
 <parameters>
 <parameter>double</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4193,7 +4193,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4219,7 +4219,7 @@
 <parameters>
 <parameter>byte[]</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4249,7 +4249,7 @@
 <parameter>int</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4275,7 +4275,7 @@
 <parameters>
 <parameter>java.lang.Object</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4293,7 +4293,7 @@
 <package>javax.jms</package>
 <class-interface>StreamMessage</class-interface>
 <method name="reset" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4318,7 +4318,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4337,7 +4337,7 @@
 <package>javax.jms</package>
 <class-interface>TextMessage</class-interface>
 <method name="getText" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4386,7 +4386,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSMessageID" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4413,7 +4413,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4434,7 +4434,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSTimestamp" return-type="long">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4461,7 +4461,7 @@
 <parameters>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4483,7 +4483,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSCorrelationIDAsBytes" return-type="byte[]">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4512,7 +4512,7 @@
 <parameters>
 <parameter>byte[]</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4541,7 +4541,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4563,7 +4563,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSCorrelationID" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4574,15 +4574,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
-<method name="getJMSReplyTo" return-type="javax.jms.Destination"/>
+<method name="getJMSReplyTo" return-type="jakarta.jms.Destination"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:400</id>
 <description>if the JMS provider fails to get the                            &lt;CODE&gt;JMSReplyTo&lt;/CODE&gt; destination due to some                           internal error.</description>
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
-<method name="getJMSReplyTo" return-type="javax.jms.Destination">
-<throw>javax.jms.JMSException</throw>
+<method name="getJMSReplyTo" return-type="jakarta.jms.Destination">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4596,7 +4596,7 @@
 <class-interface>Message</class-interface>
 <method name="setJMSReplyTo" return-type="void">
 <parameters>
-<parameter>javax.jms.Destination</parameter>
+<parameter>jakarta.jms.Destination</parameter>
 </parameters>
 </method>
 </assertion>
@@ -4607,9 +4607,9 @@
 <class-interface>Message</class-interface>
 <method name="setJMSReplyTo" return-type="void">
 <parameters>
-<parameter>javax.jms.Destination</parameter>
+<parameter>jakarta.jms.Destination</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4621,15 +4621,15 @@
                         </description>
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
-<method name="getJMSDestination" return-type="javax.jms.Destination"/>
+<method name="getJMSDestination" return-type="jakarta.jms.Destination"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JMS:JAVADOC:404</id>
 <description>if the JMS provider fails to get the destination                          due to some internal error.</description>
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
-<method name="getJMSDestination" return-type="javax.jms.Destination">
-<throw>javax.jms.JMSException</throw>
+<method name="getJMSDestination" return-type="jakarta.jms.Destination">
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4643,7 +4643,7 @@
 <class-interface>Message</class-interface>
 <method name="setJMSDestination" return-type="void">
 <parameters>
-<parameter>javax.jms.Destination</parameter>
+<parameter>jakarta.jms.Destination</parameter>
 </parameters>
 </method>
 </assertion>
@@ -4654,9 +4654,9 @@
 <class-interface>Message</class-interface>
 <method name="setJMSDestination" return-type="void">
 <parameters>
-<parameter>javax.jms.Destination</parameter>
+<parameter>jakarta.jms.Destination</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4676,7 +4676,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSDeliveryMode" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4704,7 +4704,7 @@
 <parameters>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4724,7 +4724,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSRedelivered" return-type="boolean">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4751,7 +4751,7 @@
 <parameters>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4770,7 +4770,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSType" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4797,7 +4797,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4817,7 +4817,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSExpiration" return-type="long">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4844,7 +4844,7 @@
 <parameters>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4864,7 +4864,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getJMSPriority" return-type="int">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4891,7 +4891,7 @@
 <parameters>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4910,7 +4910,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="clearProperties" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4935,7 +4935,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4960,7 +4960,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -4985,7 +4985,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5010,7 +5010,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5035,7 +5035,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5060,7 +5060,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5085,7 +5085,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5110,7 +5110,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5135,7 +5135,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5161,7 +5161,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5180,7 +5180,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="getPropertyNames" return-type="java.util.Enumeration">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5207,7 +5207,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5234,7 +5234,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>byte</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5261,7 +5261,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>short</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5288,7 +5288,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5315,7 +5315,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5342,7 +5342,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>float</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5369,7 +5369,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>double</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5396,7 +5396,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5424,7 +5424,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.Object</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5444,7 +5444,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="acknowledge" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5463,7 +5463,7 @@
 <package>javax.jms</package>
 <class-interface>Message</class-interface>
 <method name="clearBody" return-type="void">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5482,7 +5482,7 @@
 <package>javax.jms</package>
 <class-interface>Queue</class-interface>
 <method name="getQueueName" return-type="java.lang.String">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5516,7 +5516,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5541,7 +5541,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5566,7 +5566,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5591,7 +5591,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5616,7 +5616,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5641,7 +5641,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5666,7 +5666,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5691,7 +5691,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5716,7 +5716,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5741,7 +5741,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5767,7 +5767,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5785,7 +5785,7 @@
 <package>javax.jms</package>
 <class-interface>MapMessage</class-interface>
 <method name="getMapNames" return-type="java.util.Enumeration">
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5812,7 +5812,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5839,7 +5839,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>byte</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5866,7 +5866,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>short</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5893,7 +5893,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>char</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5920,7 +5920,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5947,7 +5947,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>long</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -5974,7 +5974,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>float</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -6001,7 +6001,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>double</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -6028,7 +6028,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -6055,7 +6055,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>byte[]</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -6086,7 +6086,7 @@
 <parameter>int</parameter>
 <parameter>int</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -6114,7 +6114,7 @@
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.Object</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -6139,7 +6139,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
-<throw>javax.jms.JMSException</throw>
+<throw>jakarta.jms.JMSException</throw>
 </method>
 </assertion>
 </assertions>

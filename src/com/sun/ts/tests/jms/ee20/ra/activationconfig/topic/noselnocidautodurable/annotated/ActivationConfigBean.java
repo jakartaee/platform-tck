@@ -28,15 +28,15 @@ import javax.annotation.Resource;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.MessageListener;
+import jakarta.jms.MessageListener;
 
-//This MDB implements javax.jms.MessageListener interface, so no need to
+//This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type
 @MessageDriven(name = "ActivationConfigBean", activationConfig = {
     @ActivationConfigProperty(propertyName = "connectionFactoryLookup", propertyValue = "jms/QueueConnectionFactory"),
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "MY_TOPIC"),
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
     @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
     @ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "Durable"),
     @ActivationConfigProperty(propertyName = "subscriptionName", propertyValue = "MySubscriptionName3ForRATests") })

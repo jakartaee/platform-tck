@@ -28,13 +28,13 @@ import javax.annotation.Resource;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.MessageListener;
+import jakarta.jms.MessageListener;
 
 //metadata are defined either here or in ejb-jar.xml
 //this bean doesn't implement MessageListener, and ejb-jar.xml specifies
 //messaging-type.  @MessageDriven(messageListenerInterface) is not specified
 @MessageDriven(name = "ActivationConfigBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue"),
     @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")
     // @ActivationConfigProperty(propertyName="messageSelector",
     // propertyValue="COM_SUN_JMS_TESTNAME<>'test1' OR TestCaseNum >= 1")

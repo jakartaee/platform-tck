@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import java.util.*;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 
 public class TopicConnectionTests extends ServiceEETest {

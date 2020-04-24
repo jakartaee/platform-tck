@@ -24,8 +24,8 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
 import jakarta.ejb.SessionContext;
-import javax.jms.JMSException;
-import javax.jms.Queue;
+import jakarta.jms.JMSException;
+import jakarta.jms.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;

@@ -23,7 +23,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
@@ -90,7 +90,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Serious";
       String cause = "Rollback operation not allowed.";
 
-      javax.jms.TransactionRolledBackException exceptionToTest = new TransactionRolledBackException(
+      jakarta.jms.TransactionRolledBackException exceptionToTest = new TransactionRolledBackException(
           cause, errorCode);
 
       try {
@@ -116,7 +116,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void transactionRolledBackExceptionTest2() throws Fault {
     try {
-      javax.jms.TransactionRolledBackException exceptionToTest = new TransactionRolledBackException(
+      jakarta.jms.TransactionRolledBackException exceptionToTest = new TransactionRolledBackException(
           "Rollback operation not allowed.");
       try {
         throw exceptionToTest;
@@ -141,7 +141,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Warning";
       String cause = "Transaction is still in progress.";
 
-      javax.jms.TransactionInProgressException exceptionToTest = new TransactionInProgressException(
+      jakarta.jms.TransactionInProgressException exceptionToTest = new TransactionInProgressException(
           cause, errorCode);
       try {
         throw exceptionToTest;
@@ -167,7 +167,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void testTransactionInProgressException2() throws Fault {
     try {
-      javax.jms.TransactionInProgressException exceptionToTest = new TransactionInProgressException(
+      jakarta.jms.TransactionInProgressException exceptionToTest = new TransactionInProgressException(
           "Transaction is still in progress.");
       try {
         throw exceptionToTest;
@@ -193,7 +193,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "Cannot get the resource, not enough heap space.";
 
-      javax.jms.ResourceAllocationException exceptionToTest = new ResourceAllocationException(
+      jakarta.jms.ResourceAllocationException exceptionToTest = new ResourceAllocationException(
           cause, errorCode);
 
       try {
@@ -220,7 +220,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void resourceAllocationExceptionTest2() throws Fault {
     try {
-      javax.jms.ResourceAllocationException exceptionToTest = new ResourceAllocationException(
+      jakarta.jms.ResourceAllocationException exceptionToTest = new ResourceAllocationException(
           "Cannot get the resource, " + "not enough heap space.");
       try {
         throw exceptionToTest;
@@ -246,7 +246,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "Message just received";
 
-      javax.jms.MessageNotWriteableException exceptionToTest = new MessageNotWriteableException(
+      jakarta.jms.MessageNotWriteableException exceptionToTest = new MessageNotWriteableException(
           cause, errorCode);
 
       try {
@@ -273,7 +273,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void testMessageNotWriteableException2() throws Fault {
     try {
-      javax.jms.MessageNotWriteableException exceptionToTest = new MessageNotWriteableException(
+      jakarta.jms.MessageNotWriteableException exceptionToTest = new MessageNotWriteableException(
           "Message just received");
       try {
         throw exceptionToTest;
@@ -299,7 +299,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "Message is empty";
 
-      javax.jms.MessageNotReadableException exceptionToTest = new MessageNotReadableException(
+      jakarta.jms.MessageNotReadableException exceptionToTest = new MessageNotReadableException(
           cause, errorCode);
 
       try {
@@ -326,7 +326,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void testMessageNotReadableException2() throws Fault {
     try {
-      javax.jms.MessageNotReadableException exceptionToTest = new MessageNotReadableException(
+      jakarta.jms.MessageNotReadableException exceptionToTest = new MessageNotReadableException(
           "Message is empty");
       try {
         throw exceptionToTest;
@@ -352,7 +352,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "Cannot convert from int to char";
 
-      javax.jms.MessageFormatException exceptionToTest = new MessageFormatException(
+      jakarta.jms.MessageFormatException exceptionToTest = new MessageFormatException(
           cause, errorCode);
 
       try {
@@ -379,7 +379,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void testMessageFormatException2() throws Fault {
     try {
-      javax.jms.MessageFormatException exceptionToTest = new MessageFormatException(
+      jakarta.jms.MessageFormatException exceptionToTest = new MessageFormatException(
           "Cannot convert from int to char");
       try {
         throw exceptionToTest;
@@ -405,7 +405,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "It is a byte, not an int.";
 
-      javax.jms.MessageEOFException exceptionToTest = new MessageEOFException(
+      jakarta.jms.MessageEOFException exceptionToTest = new MessageEOFException(
           cause, errorCode);
 
       try {
@@ -432,7 +432,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void testMessageEOFException2() throws Fault {
     try {
-      javax.jms.MessageEOFException exceptionToTest = new MessageEOFException(
+      jakarta.jms.MessageEOFException exceptionToTest = new MessageEOFException(
           "It is a byte, not an int.");
       try {
         throw exceptionToTest;
@@ -458,7 +458,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "Cannot find the user.";
 
-      javax.jms.JMSSecurityException exceptionToTest = new JMSSecurityException(
+      jakarta.jms.JMSSecurityException exceptionToTest = new JMSSecurityException(
           cause, errorCode);
 
       try {
@@ -485,7 +485,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void testJMSSecurityException2() throws Fault {
     try {
-      javax.jms.JMSSecurityException exceptionToTest = new JMSSecurityException(
+      jakarta.jms.JMSSecurityException exceptionToTest = new JMSSecurityException(
           "Cannot find the user.");
       try {
         throw exceptionToTest;
@@ -511,7 +511,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Warning";
       String cause = "Not a JMS operation";
 
-      javax.jms.JMSException exceptionToTest = new JMSException(cause,
+      jakarta.jms.JMSException exceptionToTest = new JMSException(cause,
           errorCode);
 
       try {
@@ -542,8 +542,8 @@ public class ExceptionTest extends ServiceEETest {
       String cause = "Not a JMS operation";
       String cause1 = "Deprecated since v1.1";
 
-      javax.jms.JMSException exceptionToTest = new JMSException(cause);
-      javax.jms.JMSException exceptionToTest1 = new JMSException(cause1);
+      jakarta.jms.JMSException exceptionToTest = new JMSException(cause);
+      jakarta.jms.JMSException exceptionToTest1 = new JMSException(cause1);
 
       exceptionToTest.setLinkedException(exceptionToTest1);
 
@@ -571,7 +571,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "unknown variable";
 
-      javax.jms.InvalidSelectorException exceptionToTest = new InvalidSelectorException(
+      jakarta.jms.InvalidSelectorException exceptionToTest = new InvalidSelectorException(
           cause, errorCode);
 
       try {
@@ -598,7 +598,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void invalidSelectorExceptionTest2() throws Fault {
     try {
-      javax.jms.InvalidSelectorException exceptionToTest = new InvalidSelectorException(
+      jakarta.jms.InvalidSelectorException exceptionToTest = new InvalidSelectorException(
           "unknown variable");
       try {
         throw exceptionToTest;
@@ -624,7 +624,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "Destination is Null";
 
-      javax.jms.InvalidDestinationException exceptionToTest = new InvalidDestinationException(
+      jakarta.jms.InvalidDestinationException exceptionToTest = new InvalidDestinationException(
           cause, errorCode);
 
       try {
@@ -651,7 +651,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void invalidDestinationExceptionTest2() throws Fault {
     try {
-      javax.jms.InvalidDestinationException exceptionToTest = new InvalidDestinationException(
+      jakarta.jms.InvalidDestinationException exceptionToTest = new InvalidDestinationException(
           "Destination is Null");
       try {
         throw exceptionToTest;
@@ -677,7 +677,7 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "Duplicate Client ID";
 
-      javax.jms.InvalidClientIDException exceptionToTest = new InvalidClientIDException(
+      jakarta.jms.InvalidClientIDException exceptionToTest = new InvalidClientIDException(
           cause, errorCode);
 
       try {
@@ -704,7 +704,7 @@ public class ExceptionTest extends ServiceEETest {
 
   public void invalidClientIDExceptionTest2() throws Fault {
     try {
-      javax.jms.InvalidClientIDException exceptionToTest = new InvalidClientIDException(
+      jakarta.jms.InvalidClientIDException exceptionToTest = new InvalidClientIDException(
           "Duplicate Client ID");
       try {
         throw exceptionToTest;
@@ -730,12 +730,12 @@ public class ExceptionTest extends ServiceEETest {
       String errorCode = "Urgent";
       String cause = "The operation is intended for Queue Configuration only.";
 
-      javax.jms.IllegalStateException exceptionToTest = new javax.jms.IllegalStateException(
+      jakarta.jms.IllegalStateException exceptionToTest = new jakarta.jms.IllegalStateException(
           cause, errorCode);
 
       try {
         throw exceptionToTest;
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
         if (!exceptionToTest.getErrorCode().equals(errorCode))
           throw new Fault(
               "Incorrect ErrorCode " + exceptionToTest.getErrorCode(), e);
@@ -758,11 +758,11 @@ public class ExceptionTest extends ServiceEETest {
   public void illegalStateExceptionTest2() throws Fault {
 
     try {
-      javax.jms.IllegalStateException exceptionToTest = new javax.jms.IllegalStateException(
+      jakarta.jms.IllegalStateException exceptionToTest = new jakarta.jms.IllegalStateException(
           "The operation is intended for Queue Configuration only.");
       try {
         throw exceptionToTest;
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
       }
 
     } catch (Exception e) {

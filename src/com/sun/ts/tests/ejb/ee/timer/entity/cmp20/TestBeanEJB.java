@@ -33,8 +33,8 @@ import com.sun.ts.lib.util.*;
 import jakarta.ejb.*;
 import java.util.Properties;
 import java.io.Serializable;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
 
 public abstract class TestBeanEJB extends CMP20Wrapper implements TimedObject {
 

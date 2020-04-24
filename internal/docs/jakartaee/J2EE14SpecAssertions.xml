@@ -1247,7 +1247,7 @@ ejb-link element
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
 			<id>J2EE:SPEC:126</id>
-			<description>The Application Component Provider must use the javax.jms.QueueConnectionFactory or the javax.jms.TopicConnectionFactory for obtaining JMS connections.</description>
+			<description>The Application Component Provider must use the jakarta.jms.QueueConnectionFactory or the jakarta.jms.TopicConnectionFactory for obtaining JMS connections.</description>
 			<location chapter = "5" section = "4.1.3"/>
 			<comment>Diane</comment>
 		</assertion>
@@ -1764,7 +1764,7 @@ le using the ConnectionFactory and Destination APIs.
 			<id>J2EE:SPEC:215</id>            
 			<description>The JMS specification defines several interfaces intended for integration with an application se
 rver. A J2EE product need not provide objects that implement these interfaces, and portable J2EE applications must not us
-e the following interfaces: javax.jms.ServerSession; javax.jms.ServerSessionPool; javax.jms.ConnectionConsumer; all javax
+e the following interfaces: jakarta.jms.ServerSession; jakarta.jms.ServerSessionPool; jakarta.jms.ConnectionConsumer; all javax
 .jms.XA interfaces
 			</description>            
 			<location chapter = "6" section = "6"/>        
@@ -1779,57 +1779,57 @@ these restrictions.
 			<sub-assertions>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.1</id>                
-					<description>javax.jms.Session method setMessageListener; </description>                
+					<description>jakarta.jms.Session method setMessageListener; </description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.2</id>                
-					<description>javax.jms.Session method getMessageListener; </description>                
+					<description>jakarta.jms.Session method getMessageListener; </description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.3</id>                
-					<description>javax.jms.Session method run; </description>                
+					<description>jakarta.jms.Session method run; </description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.4</id>                
-					<description>javax.jms.QueueConnection method createConnectionConsumer; </description>                
+					<description>jakarta.jms.QueueConnection method createConnectionConsumer; </description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.5</id>                
-					<description>javax.jms.TopicConnection method createConnectionConsumer;</description>                
+					<description>jakarta.jms.TopicConnection method createConnectionConsumer;</description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.6</id>                
-					<description>javax.jms.TopicConnection method createDurableConnectionConsumer; </description>                
+					<description>jakarta.jms.TopicConnection method createDurableConnectionConsumer; </description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.7</id>                
-					<description>javax.jms.MessageConsumer method getMessageListener;</description>                
+					<description>jakarta.jms.MessageConsumer method getMessageListener;</description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.8</id>                
-					<description>javax.jms.MessageConsumer method setMessageListener;</description>                
+					<description>jakarta.jms.MessageConsumer method setMessageListener;</description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.9</id>                
-					<description>javax.jms.Connection method setExceptionListener;</description>                
+					<description>jakarta.jms.Connection method setExceptionListener;</description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.10</id>                
-					<description>javax.jms.Connection method stop;</description>                
+					<description>jakarta.jms.Connection method stop;</description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 				<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "false">                
 					<id>J2EE:SPEC:216.11</id>                
-					<description>javax.jms.Connection method setClientID.</description>                
+					<description>jakarta.jms.Connection method setClientID.</description>                
 					<location chapter = "6" section = "6"/>            
 				</assertion>            
 			</sub-assertions>        

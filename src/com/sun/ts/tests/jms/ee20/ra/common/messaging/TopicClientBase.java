@@ -23,13 +23,13 @@ package com.sun.ts.tests.jms.ee20.ra.common.messaging;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.commonee.Client;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Session;
-import javax.jms.Topic;
-import javax.jms.TopicConnectionFactory;
+import jakarta.jms.JMSException;
+import jakarta.jms.MessageProducer;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Session;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
 
 abstract public class TopicClientBase extends QueueClientBase
     implements Constants {

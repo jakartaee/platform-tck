@@ -21,12 +21,12 @@
   <enterprise-beans>
     <message-driven>
       <ejb-name>TopicDestBean</ejb-name>
-      <message-destination-type>javax.jms.Topic</message-destination-type>
+      <message-destination-type>jakarta.jms.Topic</message-destination-type>
       <message-destination-link>MsgBeanInTopic</message-destination-link>
       <message-destination-ref>
         <description>test destination</description>
         <message-destination-ref-name>replyQueue</message-destination-ref-name>
-        <message-destination-type>javax.jms.Queue</message-destination-type>
+        <message-destination-type>jakarta.jms.Queue</message-destination-type>
         <message-destination-usage>Produces</message-destination-usage>
         <message-destination-link>MsgBeanOutQueue</message-destination-link>
       </message-destination-ref>

@@ -29,11 +29,11 @@ import java.io.IOException;
 import javax.annotation.Resource;
 
 import javax.sql.DataSource;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import javax.mail.Session;
 import java.net.URL;
 
@@ -82,7 +82,7 @@ public class ResourceSimpleTag extends SimpleTagSupport {
       }
 
       if (qcFactory != null) {
-        if (!(qcFactory instanceof javax.jms.QueueConnectionFactory)) {
+        if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
           passed = false;
           out.println("wrong type QueueConnectionFactory");
         } else
@@ -93,7 +93,7 @@ public class ResourceSimpleTag extends SimpleTagSupport {
       }
 
       if (tcFactory != null) {
-        if (!(tcFactory instanceof javax.jms.TopicConnectionFactory)) {
+        if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
           passed = false;
           out.println("wrong type TopicConnectionFactory");
         } else
@@ -104,7 +104,7 @@ public class ResourceSimpleTag extends SimpleTagSupport {
       }
 
       if (cFactory != null) {
-        if (!(cFactory instanceof javax.jms.ConnectionFactory)) {
+        if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
           out.println("wrong type ConnectionFactory");
           passed = false;
         } else
@@ -115,7 +115,7 @@ public class ResourceSimpleTag extends SimpleTagSupport {
       }
 
       if (myQueue != null) {
-        if (!(myQueue instanceof javax.jms.Queue)) {
+        if (!(myQueue instanceof jakarta.jms.Queue)) {
           out.println("wrong type Queue");
           passed = false;
         } else
@@ -126,7 +126,7 @@ public class ResourceSimpleTag extends SimpleTagSupport {
       }
 
       if (myTopic != null) {
-        if (!(myTopic instanceof javax.jms.Topic)) {
+        if (!(myTopic instanceof jakarta.jms.Topic)) {
           out.println("wrong type Topic");
           passed = false;
         } else

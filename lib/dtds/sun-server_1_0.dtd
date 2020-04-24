@@ -625,10 +625,10 @@
     jndi-name           JNDI name.
 
     res-type            JMS resource type. This can be one of:
-                            javax.jms.Topic
-                            javax.jms.Queue
-                            javax.jms.TopicConnectionFactory
-                            javax.jms.QueueConnectionFactory
+                            jakarta.jms.Topic
+                            jakarta.jms.Queue
+                            jakarta.jms.TopicConnectionFactory
+                            jakarta.jms.QueueConnectionFactory
 
     enabled             Determines whether the resource is enabled (can be used)
                         at runtime or not. This attribute is not used currently.

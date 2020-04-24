@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.ee20.cditests.ejbweb;
 import java.io.Serializable;
 import java.util.Properties;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.util.Enumeration;
 import java.util.Properties;
 import javax.annotation.PostConstruct;

@@ -32,10 +32,10 @@ import javax.mail.MailSessionDefinition;
 import jakarta.ejb.EJB;
 import javax.xml.ws.WebServiceRef;
 import javax.annotation.sql.DataSourceDefinition;
-import javax.jms.JMSConnectionFactoryDefinition;
-import javax.jms.JMSDestinationDefinition;
-import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
+import jakarta.jms.JMSConnectionFactoryDefinition;
+import jakarta.jms.JMSDestinationDefinition;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.EntityManagerFactory;
 
@@ -54,14 +54,14 @@ import javax.persistence.EntityManagerFactory;
  )
 @JMSConnectionFactoryDefinition(
 	description="Define ConnectionFactory JSPMyTestConnectionFactory",
-	interfaceName="javax.jms.ConnectionFactory",
+	interfaceName="jakarta.jms.ConnectionFactory",
     name="java:global/JSPMyTestConnectionFactory",
 	user = "@user@",
 	password = "@password@"
    )
 @JMSDestinationDefinition(
     name = "java:app/jms/myappTopic",
-    interfaceName = "javax.jms.Topic",
+    interfaceName = "jakarta.jms.Topic",
     destinationName = "MyPhysicalAppTopic"
 )
 

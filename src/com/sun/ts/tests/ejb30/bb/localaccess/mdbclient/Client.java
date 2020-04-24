@@ -24,8 +24,8 @@ import java.util.Properties;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest.Fault;
 import javax.annotation.Resource;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 public class Client extends com.sun.ts.tests.ejb30.common.messaging.ClientBase {
   @Resource(name = "sendQueue")

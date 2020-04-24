@@ -160,7 +160,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a BMP Entity Bean declaring a resource reference for
-   *                 a javax.jms.QueueConnectionFactory.
+   *                 a jakarta.jms.QueueConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Queue Connection Factory.
@@ -188,7 +188,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a BMP Entity Bean declaring a resource reference for
-   *                 a javax.jms.TopicConnectionFactory.
+   *                 a jakarta.jms.TopicConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Topic Connection Factory.

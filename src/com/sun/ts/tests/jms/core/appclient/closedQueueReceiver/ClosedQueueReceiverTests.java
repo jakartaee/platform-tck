@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
@@ -189,7 +189,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
             .getMessageListener();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -230,7 +230,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
 
         tool.getDefaultQueueReceiver().setMessageListener(foo);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {

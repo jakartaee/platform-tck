@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import java.util.Properties;
 import java.io.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import com.sun.javatest.Status;
 
 public class MessageProducerTests extends ServiceEETest {
