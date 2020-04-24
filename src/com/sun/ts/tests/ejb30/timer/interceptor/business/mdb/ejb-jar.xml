@@ -22,7 +22,7 @@
   <enterprise-beans>
     <message-driven>
       <ejb-name>BusinessTimerBean</ejb-name>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <message-destination-link>MsgBeanInQueue</message-destination-link>
     </message-driven>
   </enterprise-beans>

@@ -21,7 +21,7 @@ import com.sun.ts.lib.porting.*;
 
 import java.util.Properties;
 import java.util.ArrayList;
-import javax.jms.*;
+import jakarta.jms.*;
 import jakarta.ejb.*;
 import jakarta.transaction.*;
 import javax.naming.*;

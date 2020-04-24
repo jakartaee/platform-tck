@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.PASSED;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.FAILED;
-import javax.jms.Topic;
+import jakarta.jms.Topic;
 
 public class TestServlet extends GenericServlet {
 

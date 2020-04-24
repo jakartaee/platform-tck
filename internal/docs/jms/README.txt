@@ -88,22 +88,22 @@ Setup and Configuration of the JMS RI
    -----------				----
    Object Name 				Type
    -----------				----
-   MY_QUEUE 				javax.jms.Queue
-   MY_QUEUE2 				javax.jms.Queue
-   testQ0 				javax.jms.Queue
-   testQ1 				javax.jms.Queue
-   testQ2 				javax.jms.Queue
-   testQueue2 				javax.jms.Queue
-   Q2 					javax.jms.Queue
-   MY_TOPIC 				javax.jms.Topic
-   MY_TOPIC2 				javax.jms.Topic
-   testT0 				javax.jms.Topic
-   testT1 				javax.jms.Topic
-   testT2 				javax.jms.Topic
-   MyConnectionFactory 			javax.jms.ConnectionFactory
-   MyQueueConnectionFactory 		javax.jms.QueueConnectionFactory
-   MyTopicConnectionFactory 		javax.jms.TopicConnectionFactory
-   DURABLE_SUB_CONNECTION_FACTORY	javax.jms.TopicConnectionFactory
+   MY_QUEUE 				jakarta.jms.Queue
+   MY_QUEUE2 				jakarta.jms.Queue
+   testQ0 				jakarta.jms.Queue
+   testQ1 				jakarta.jms.Queue
+   testQ2 				jakarta.jms.Queue
+   testQueue2 				jakarta.jms.Queue
+   Q2 					jakarta.jms.Queue
+   MY_TOPIC 				jakarta.jms.Topic
+   MY_TOPIC2 				jakarta.jms.Topic
+   testT0 				jakarta.jms.Topic
+   testT1 				jakarta.jms.Topic
+   testT2 				jakarta.jms.Topic
+   MyConnectionFactory 			jakarta.jms.ConnectionFactory
+   MyQueueConnectionFactory 		jakarta.jms.QueueConnectionFactory
+   MyTopicConnectionFactory 		jakarta.jms.TopicConnectionFactory
+   DURABLE_SUB_CONNECTION_FACTORY	jakarta.jms.TopicConnectionFactory
 
 ---------------------------
 Executing the JMS TCK Tests

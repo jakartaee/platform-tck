@@ -1383,10 +1383,10 @@
           <xsd:documentation>
 
             Fully-qualified name of the JMS connection factory
-            interface.  Permitted values are javax.jms.ConnectionFactory,
-            javax.jms.QueueConnectionFactory, or 
-            javax.jms.TopicConnectionFactory.  If not specified,
-            javax.jms.ConnectionFactory will be used.
+            interface.  Permitted values are jakarta.jms.ConnectionFactory,
+            jakarta.jms.QueueConnectionFactory, or 
+            jakarta.jms.TopicConnectionFactory.  If not specified,
+            jakarta.jms.ConnectionFactory will be used.
             
           </xsd:documentation>
         </xsd:annotation>
@@ -1544,7 +1544,7 @@
           <xsd:documentation>
 
             Fully-qualified name of the JMS destination interface.
-            Permitted values are javax.jms.Queue and javax.jms.Topic
+            Permitted values are jakarta.jms.Queue and jakarta.jms.Topic
             
           </xsd:documentation>
         </xsd:annotation>
@@ -2274,7 +2274,7 @@
         <resource-env-ref>
         <resource-env-ref-name>jms/StockQueue
         </resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue
+        <resource-env-ref-type>jakarta.jms.Queue
         </resource-env-ref-type>
         </resource-env-ref>
         
@@ -2934,7 +2934,7 @@
         <message-destination-ref>
         <message-destination-ref-name>jms/StockQueue
         </message-destination-ref-name>
-        <message-destination-type>javax.jms.Queue
+        <message-destination-type>jakarta.jms.Queue
         </message-destination-type>
         <message-destination-usage>Consumes
         </message-destination-usage>
@@ -3022,7 +3022,7 @@
         
         Example: 
         
-        <message-destination-type>javax.jms.Queue
+        <message-destination-type>jakarta.jms.Queue
         </message-destination-type>
         
         ]]>

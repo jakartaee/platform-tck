@@ -23,16 +23,16 @@ package com.sun.ts.tests.jms.ee20.ra.activationconfig.common;
 import com.sun.ts.tests.jms.ee20.ra.common.messaging.TLogger;
 import com.sun.ts.tests.jms.ee20.ra.common.messaging.StatusReporter;
 import javax.annotation.Resource;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.jms.ee20.ra.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.jms.ee20.ra.common.messaging.Constants.TEST_NUMBER_KEY;
 
 /**
- * This class must not implement javax.jms.MessageListener interface. A subclass
+ * This class must not implement jakarta.jms.MessageListener interface. A subclass
  * may choose one of the following to specify messaging type: implements
- * javax.jms.MessageListener; uses
+ * jakarta.jms.MessageListener; uses
  * annotation @MessageDriven(messageListenerInterface=MessageListener.class);
  * uses descriptor element messaging-type
  */
@@ -48,7 +48,7 @@ abstract public class ActivationConfigBeanBase {
   private Queue replyQueue;
 
   // ================== business methods ====================================
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     TLogger.log("Entering onMessage method of: " + this.getClass().getName());
     boolean status = false;
     String reason = null;
@@ -57,7 +57,7 @@ abstract public class ActivationConfigBeanBase {
     try {
       testname = msg.getStringProperty(TEST_NAME_KEY);
       testNumber = msg.getIntProperty(TEST_NUMBER_KEY);
-    } catch (javax.jms.JMSException e) {
+    } catch (jakarta.jms.JMSException e) {
       status = false;
       reason = "Failed to get test name/number from message: " + msg;
       TLogger.log(reason);

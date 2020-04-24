@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -585,7 +585,7 @@ public class SessionTests extends ServiceEETest {
         pass = false;
         logErr(
             "Error: QueueSession.rollback() didn't throw expected IllegalStateException");
-      } catch (javax.jms.IllegalStateException en) {
+      } catch (jakarta.jms.IllegalStateException en) {
         logMsg(
             "Got expected IllegalStateException from QueueSession.rollback()");
       }

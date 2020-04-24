@@ -25,9 +25,9 @@ import jakarta.ejb.MessageDrivenContext;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.callback.MDBCallbackBeanBase;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 public class CallbackBean0 extends MDBCallbackBeanBase
     implements MessageListener {

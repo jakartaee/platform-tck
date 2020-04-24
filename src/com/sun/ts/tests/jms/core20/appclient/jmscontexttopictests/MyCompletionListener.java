@@ -20,8 +20,8 @@
 package com.sun.ts.tests.jms.core20.appclient.jmscontexttopictests;
 
 import com.sun.ts.lib.util.TestUtil;
-import javax.jms.Message;
-import javax.jms.CompletionListener;
+import jakarta.jms.Message;
+import jakarta.jms.CompletionListener;
 import java.util.ArrayList;
 
 public class MyCompletionListener implements CompletionListener {

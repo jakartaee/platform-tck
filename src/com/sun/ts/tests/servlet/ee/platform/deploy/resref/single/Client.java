@@ -140,7 +140,7 @@ public class Client extends EETest {
    * @assertion_ids: JavaEE:platform:10125
    *
    * @test_Strategy: Package a Servlet in a WAR file declaring a resource
-   *                 reference for a javax.javax.jms.QueueConnectionFactory
+   *                 reference for a javax.jakarta.jms.QueueConnectionFactory
    *
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Queue Connection Factory.
@@ -165,7 +165,7 @@ public class Client extends EETest {
    * @assertion_ids: JavaEE:platform:10125
    *
    * @test_Strategy: Package a Servlet in a WAR file declaring a resource
-   *                 reference for a javax.javax.jms.TopicConnectionFactory
+   *                 reference for a javax.jakarta.jms.TopicConnectionFactory
    *
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Topic Connection Factory.

@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.bb.mdb.interceptor.method.annotated;
 
 import com.sun.javatest.Status;
 import javax.annotation.Resource;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 public class Client
     extends com.sun.ts.tests.ejb30.common.interceptor.MDBClientBase {

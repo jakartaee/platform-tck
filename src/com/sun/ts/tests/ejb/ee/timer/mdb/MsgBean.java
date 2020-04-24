@@ -27,7 +27,7 @@ import java.util.Enumeration;
 import java.util.ArrayList;
 import java.io.Serializable;
 import jakarta.ejb.*;
-import javax.jms.*;
+import jakarta.jms.*;
 
 public class MsgBean
     implements MessageDrivenBean, MessageListener, TimedObject {

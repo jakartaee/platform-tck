@@ -27,7 +27,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
-import javax.jms.Queue;
+import jakarta.jms.Queue;
 import java.io.PrintWriter;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.PASSED;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.FAILED;

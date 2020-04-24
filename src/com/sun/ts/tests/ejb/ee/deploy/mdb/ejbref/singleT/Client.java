@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.singleT;
 
 import java.util.Properties;
-import javax.jms.Topic;
+import jakarta.jms.Topic;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.DAOFactory;
 import com.sun.javatest.Status;

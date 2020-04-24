@@ -28,8 +28,8 @@ import java.io.IOException;
 
 import javax.annotation.Resource;
 
-import javax.jms.Queue;
-import javax.jms.JMSException;
+import jakarta.jms.Queue;
+import jakarta.jms.JMSException;
 
 public class ResourceTimingSimpleTag extends SimpleTagSupport {
 

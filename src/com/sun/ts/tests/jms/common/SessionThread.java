@@ -25,7 +25,7 @@ import com.sun.ts.lib.harness.*;
 import java.io.*;
 import java.rmi.RemoteException;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 
 /**
  * Class Declaration.

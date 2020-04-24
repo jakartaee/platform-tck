@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single;
 
 import java.util.Properties;
-import javax.jms.Queue;
+import jakarta.jms.Queue;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.javatest.Status;
 

@@ -29,7 +29,7 @@ import java.util.Properties;
 import java.util.ArrayList;
 import jakarta.transaction.*;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import jakarta.inject.Inject;
 import javax.annotation.Resource;
 import jakarta.enterprise.inject.*;

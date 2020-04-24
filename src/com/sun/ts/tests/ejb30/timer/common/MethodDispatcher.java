@@ -25,9 +25,9 @@ import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import jakarta.ejb.Timer;
-import javax.jms.Message;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
  * A class that reflectively dispatches to the method corresponding to the test

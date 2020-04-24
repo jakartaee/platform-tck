@@ -27,7 +27,7 @@ import com.sun.ts.tests.jms.common.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 
 public class MsgSelectorQueueTests extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.ee.selectorQueue.MsgSelectorQueueTests";

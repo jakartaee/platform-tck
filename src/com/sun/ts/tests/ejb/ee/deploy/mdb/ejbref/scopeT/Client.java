@@ -21,8 +21,8 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.scopeT;
 
 import java.util.Properties;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.javatest.Status;
 

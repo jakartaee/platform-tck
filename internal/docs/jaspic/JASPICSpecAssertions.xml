@@ -2431,7 +2431,7 @@ requestPolicy.
 		</assertion>
  		<assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JASPIC:SPEC:192</id>
-			<description>  The getSupportedMessageTypes method of all authentication modules integrated for use with this profile, must include javax.jms.Message in its return value.
+			<description>  The getSupportedMessageTypes method of all authentication modules integrated for use with this profile, must include jakarta.jms.Message in its return value.
                               
                         </description>      
 			<keywords>

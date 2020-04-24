@@ -128,7 +128,7 @@ Java type of the interface implemented by an administered object.
 
 Used in: adminobject
 
-Example: <adminobject-interface>javax.jms.Destination
+Example: <adminobject-interface>jakarta.jms.Destination
          </adminobject-interface>
 -->
 <!ELEMENT adminobject-interface (#PCDATA)>
@@ -498,7 +498,7 @@ name of the Java type of a message listener interface.
 Used in: messagelistener
 
 Example:
-  <messagelistener-type>javax.jms.MessageListener
+  <messagelistener-type>jakarta.jms.MessageListener
   </messagelistener-type>
 -->
 <!ELEMENT messagelistener-type (#PCDATA)>

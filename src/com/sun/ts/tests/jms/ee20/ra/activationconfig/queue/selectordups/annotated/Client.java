@@ -53,7 +53,7 @@ public class Client extends
     TestUtil.logMsg("Testing the following activationConfig properties");
     TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
     TestUtil.logMsg("  destinationLookup=MDB_QUEUE");
-    TestUtil.logMsg("  destinationType=javax.jms.Queue");
+    TestUtil.logMsg("  destinationType=jakarta.jms.Queue");
     TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
     TestUtil.logMsg(
         "  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum < 1)\"");
@@ -81,7 +81,7 @@ public class Client extends
     TestUtil.logMsg("Testing the following activationConfig properties");
     TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
     TestUtil.logMsg("  destinationLookup=MDB_QUEUE");
-    TestUtil.logMsg("  destinationType=javax.jms.Queue");
+    TestUtil.logMsg("  destinationType=jakarta.jms.Queue");
     TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
     TestUtil.logMsg(
         "  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum < 1)\"");
@@ -109,7 +109,7 @@ public class Client extends
     TestUtil.logMsg("Testing the following activationConfig properties");
     TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
     TestUtil.logMsg("  destinationLookup=MDB_QUEUE");
-    TestUtil.logMsg("  destinationType=javax.jms.Queue");
+    TestUtil.logMsg("  destinationType=jakarta.jms.Queue");
     TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
     TestUtil.logMsg(
         "  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum < 1)\"");

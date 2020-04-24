@@ -28,12 +28,12 @@ import com.sun.ts.tests.ejb30.common.messaging.Constants;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
- * This bean must not implement javax.jms.MessageListener, since it has been
+ * This bean must not implement jakarta.jms.MessageListener, since it has been
  * annotated with messageListenerInterface, which is what we are testing here.
  */
 @MessageDriven(name = "TopicDestBean", messageListenerInterface = MessageListener.class)

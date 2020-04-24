@@ -21,7 +21,7 @@
     <enterprise-beans>
         <message-driven>
             <ejb-name>ActivationConfigBean</ejb-name>
-            <messaging-type>javax.jms.MessageListener</messaging-type>
+            <messaging-type>jakarta.jms.MessageListener</messaging-type>
             <activation-config>
                 <activation-config-property>
                     <activation-config-property-name>messageSelector</activation-config-property-name>

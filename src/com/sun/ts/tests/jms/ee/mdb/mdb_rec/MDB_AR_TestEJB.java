@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jms.ee.mdb.mdb_rec;
 
-import javax.jms.*;
+import jakarta.jms.*;
 import jakarta.ejb.*;
 import javax.annotation.Resource;
 import java.util.Enumeration;

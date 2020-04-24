@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import java.util.Properties;
 import java.util.ArrayList;
 import jakarta.ejb.Remote;
-import javax.jms.Queue;
+import jakarta.jms.Queue;
 
 @Remote
 public interface Tests {

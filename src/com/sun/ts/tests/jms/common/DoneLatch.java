@@ -26,7 +26,7 @@ import java.io.*;
 import java.rmi.RemoteException;
 import java.util.*;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 
 /**
  * Monitor class for asynchronous examples. Producer signals end of message

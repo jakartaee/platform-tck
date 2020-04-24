@@ -25,7 +25,7 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;
@@ -116,7 +116,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyQueueTextTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyQueueTextTest - read and verify the message");
-        msgClearBodyQueueTextTest((javax.jms.TextMessage) msg);
+        msgClearBodyQueueTextTest((jakarta.jms.TextMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("msgClearBodyQueueObjectTestCreate")) {
         TestUtil.logTrace(
@@ -126,7 +126,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyQueueObjectTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyQueueObjectTest - read and verify the message");
-        msgClearBodyQueueObjectTest((javax.jms.ObjectMessage) msg);
+        msgClearBodyQueueObjectTest((jakarta.jms.ObjectMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("msgClearBodyQueueMapTestCreate")) {
         TestUtil.logTrace(
@@ -136,7 +136,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyQueueMapTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyQueueMapTest - read and verify the message");
-        msgClearBodyQueueMapTest((javax.jms.MapMessage) msg);
+        msgClearBodyQueueMapTest((jakarta.jms.MapMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -148,7 +148,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyQueueBytesTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyQueueBytesTest - read and verify the message");
-        msgClearBodyQueueBytesTest((javax.jms.BytesMessage) msg);
+        msgClearBodyQueueBytesTest((jakarta.jms.BytesMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -160,7 +160,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyQueueStreamTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyQueueStreamTest - read and verify the message");
-        msgClearBodyQueueStreamTest((javax.jms.StreamMessage) msg);
+        msgClearBodyQueueStreamTest((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase").equals("msgResetQueueTest")) {
@@ -178,7 +178,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
           .equals("readNullCharNotValidQueueStreamTest")) {
         TestUtil.logTrace(
             "@onMessage - running readNullCharNotValidQueueStreamTest - read and verify the message");
-        readNullCharNotValidQueueStreamTest((javax.jms.StreamMessage) msg);
+        readNullCharNotValidQueueStreamTest((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("readNullCharNotValidQueueMapTestCreate")) {
         TestUtil.logTrace(
@@ -190,7 +190,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
           .equals("readNullCharNotValidQueueMapTest")) {
         TestUtil.logTrace(
             "@onMessage - running readNullCharNotValidQueueMapTest - read and verify the message");
-        readNullCharNotValidQueueMapTest((javax.jms.MapMessage) msg);
+        readNullCharNotValidQueueMapTest((jakarta.jms.MapMessage) msg);
       } else {
         TestUtil.logTrace(
             "@onMessage - invalid message type found in StringProperty");
@@ -317,7 +317,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
    * empty after clearBody. verify properties are not effected by clearBody.
    * Write to the message again 3.11
    */
-  public void msgClearBodyQueueTextTest(javax.jms.TextMessage messageReceived) {
+  public void msgClearBodyQueueTextTest(jakarta.jms.TextMessage messageReceived) {
     String testCase = "msgClearBodyQueueTextTest";
     boolean pass = true;
     // Text Message
@@ -367,7 +367,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
    * Write to the message again 3.11
    */
   public void msgClearBodyQueueObjectTest(
-      javax.jms.ObjectMessage messageReceivedObjectMsg) {
+      jakarta.jms.ObjectMessage messageReceivedObjectMsg) {
     String testCase = "msgClearBodyQueueObjectTest";
     boolean pass = true;
     try {
@@ -417,7 +417,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
    * Write to the message again 3.11
    */
   private void msgClearBodyQueueMapTest(
-      javax.jms.MapMessage messageReceivedMapMessage) {
+      jakarta.jms.MapMessage messageReceivedMapMessage) {
     String testCase = "msgClearBodyQueueMapTest";
     boolean pass = true;
     try {
@@ -472,7 +472,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
    * Write to the message again 3.11
    */
   public void msgClearBodyQueueBytesTest(
-      javax.jms.BytesMessage messageReceivedBytesMessage) {
+      jakarta.jms.BytesMessage messageReceivedBytesMessage) {
     String testCase = "msgClearBodyQueueBytesTest";
     boolean pass = true;
     byte bValue2 = 22;
@@ -489,7 +489,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace(
             "Fail: MessageNotReadableException not thrown as expected");
         pass = false;
-      } catch (javax.jms.MessageNotReadableException e) {
+      } catch (jakarta.jms.MessageNotReadableException e) {
         TestUtil
             .logTrace("Pass: MessageNotReadableException thrown as expected");
       } catch (Exception e) {
@@ -534,7 +534,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
    * Write to the message again 3.11
    */
   public void msgClearBodyQueueStreamTest(
-      javax.jms.StreamMessage messageReceivedStreamMessage) {
+      jakarta.jms.StreamMessage messageReceivedStreamMessage) {
     String testCase = "msgClearBodyQueueStreamTest";
     boolean pass = true;
     try {
@@ -710,7 +710,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
    */
 
   public void readNullCharNotValidQueueMapTest(
-      javax.jms.MapMessage mapReceived) {
+      jakarta.jms.MapMessage mapReceived) {
     String testCase = "readNullCharNotValidQueueMapTest";
     boolean pass = true;
     try {
@@ -741,7 +741,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
    */
 
   public void readNullCharNotValidQueueStreamTest(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "readNullCharNotValidQueueStreamTest";
     boolean pass = true;
     try {

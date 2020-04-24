@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -180,7 +180,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         TestUtil.logTrace("FAIL: expected InvalidDestinationException!");
         pass = false;
       } catch (Exception ee) {
-        if (ee instanceof javax.jms.InvalidDestinationException) {
+        if (ee instanceof jakarta.jms.InvalidDestinationException) {
           logTrace("Pass: InvalidDestinationException thrown as expected");
         } else {
           TestUtil.logMsg("Error: unexpected error " + ee.getClass().getName()
@@ -196,7 +196,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         TestUtil.logTrace("FAIL: expected InvalidDestinationException!");
         pass = false;
       } catch (Exception ee) {
-        if (ee instanceof javax.jms.InvalidDestinationException) {
+        if (ee instanceof jakarta.jms.InvalidDestinationException) {
           logTrace("Pass: InvalidDestinationException thrown as expected");
         } else {
           TestUtil.logMsg("Error: unexpected error " + ee.getClass().getName()
@@ -212,7 +212,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         TestUtil.logTrace("FAIL: expected InvalidDestinationException!");
         pass = false;
       } catch (Exception ee) {
-        if (ee instanceof javax.jms.InvalidDestinationException) {
+        if (ee instanceof jakarta.jms.InvalidDestinationException) {
           logTrace("Pass: InvalidDestinationException thrown as expected");
         } else {
           TestUtil.logMsg("Error: unexpected error " + ee.getClass().getName()
@@ -228,7 +228,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         TestUtil.logTrace("FAIL: expected InvalidDestinationException!");
         pass = false;
       } catch (Exception ee) {
-        if (ee instanceof javax.jms.InvalidDestinationException) {
+        if (ee instanceof jakarta.jms.InvalidDestinationException) {
           logTrace("Pass: InvalidDestinationException thrown as expected");
         } else {
           TestUtil.logMsg("Error: unexpected error " + ee.getClass().getName()
@@ -850,9 +850,9 @@ public class ExceptionQueueTests extends ServiceEETest {
       TestUtil.logMsg("Calling session.commit(), an illegal operation.");
       try {
         tool.getDefaultQueueSession().commit();
-      } catch (javax.jms.IllegalStateException iStateE) {
+      } catch (jakarta.jms.IllegalStateException iStateE) {
         passed = true;
-        TestUtil.logMsg("Received javax.jms.IllegalStateException -- GOOD");
+        TestUtil.logMsg("Received jakarta.jms.IllegalStateException -- GOOD");
         TestUtil.logTrace("Exception message: " + iStateE.getMessage());
       }
       if (passed == false) { // need case for no exception being thrown
@@ -1227,7 +1227,7 @@ public class ExceptionQueueTests extends ServiceEETest {
    * JMS:JAVADOC:699; JMS:JAVADOC:700;
    *
    * @test_Strategy: Create a BytesMessage, call various read methods on it
-   * before sending. Verify that javax.jms.MessageNotReadableException is
+   * before sending. Verify that jakarta.jms.MessageNotReadableException is
    * thrown.
    */
 
@@ -1482,7 +1482,7 @@ public class ExceptionQueueTests extends ServiceEETest {
    *
    * @test_Strategy: Create a StreamMessage, send and receive via a Topic; Call
    * clearBoldy right after receiving the message; Call various read methods on
-   * received message; Verify javax.jms.MessageNotReadableException is thrown.
+   * received message; Verify jakarta.jms.MessageNotReadableException is thrown.
    */
 
   public void xMessageNotReadableExceptionQStreamMsgTest() throws Fault {
@@ -1706,7 +1706,7 @@ public class ExceptionQueueTests extends ServiceEETest {
    * JMS:SPEC:185.5; JMS:SPEC:185;
    *
    * @test_Strategy: Create a QueueSession and call Topic specific methods
-   * inherited from Session, and verify that javax.jms.IllegalStateException is
+   * inherited from Session, and verify that jakarta.jms.IllegalStateException is
    * thrown.
    */
 
@@ -1726,7 +1726,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         TestUtil.logErr(
             "Error: QueueSession.createDurableSubscriber(Topic, String) "
                 + "didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg(
             "Got expected IllegalStateException from QueueSession.createDurableSubscriber(Topic, String)");
       } catch (Exception e) {
@@ -1743,7 +1743,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         TestUtil.logErr(
             "Error: QueueSession.createDurableSubscriber(Topic, String, String, boolean) "
                 + "didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "QueueSession.createDurableSubscriber(Topic, String, String, boolean)");
       } catch (Exception e) {
@@ -1759,7 +1759,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         pass = false;
         TestUtil.logErr(
             "Error: QueueSession.createTemporayTopic() didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg(
             "Got expected IllegalStateException from QueueSession.createTemporayTopic()");
       } catch (Exception e) {
@@ -1774,7 +1774,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         pass = false;
         TestUtil.logErr(
             "Error: QueueSession.createTopic(String) didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg(
             "Got expected IllegalStateException from QueueSession.createTopic(String)");
       } catch (Exception e) {
@@ -1789,7 +1789,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         pass = false;
         TestUtil.logErr(
             "Error: QueueSession.unsubscribe(String) didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg(
             "Got expected IllegalStateException from QueueSession.unsubscribe(String)");
       } catch (Exception e) {
@@ -1851,7 +1851,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         pass = false;
         TestUtil.logErr(
             "Error: QueueSession.rollback() didn't throw expected IllegalStateException");
-      } catch (javax.jms.IllegalStateException en) {
+      } catch (jakarta.jms.IllegalStateException en) {
         TestUtil.logMsg(
             "Got expected IllegalStateException from QueueSession.rollback()");
       }

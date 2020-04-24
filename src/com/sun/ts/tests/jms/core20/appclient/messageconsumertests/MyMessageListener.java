@@ -20,8 +20,8 @@
 package com.sun.ts.tests.jms.core20.appclient.messageconsumertests;
 
 import com.sun.ts.lib.util.TestUtil;
-import javax.jms.Message;
-import javax.jms.MessageListener;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 
 public class MyMessageListener implements MessageListener {
 

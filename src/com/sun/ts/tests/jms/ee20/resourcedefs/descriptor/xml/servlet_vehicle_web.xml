@@ -33,28 +33,28 @@
   <jms-connection-factory>
       <description>Define ConnectionFactory ServletMyTestConnectionFactory</description>
       <name>java:global/ServletMyTestConnectionFactory</name>
-      <interface-name>javax.jms.ConnectionFactory</interface-name>
+      <interface-name>jakarta.jms.ConnectionFactory</interface-name>
       <user>@user@</user>
       <password>@password@</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define QueueConnectionFactory ServletMyTestQueueConnectionFactory</description>
       <name>java:app/ServletMyTestQueueConnectionFactory</name>
-      <interface-name>javax.jms.QueueConnectionFactory</interface-name>
+      <interface-name>jakarta.jms.QueueConnectionFactory</interface-name>
       <user>@user@</user>
       <password>@password@</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define TopicConnectionFactory ServletMyTestTopicConnectionFactory</description>
       <name>java:module/ServletMyTestTopicConnectionFactory</name>
-      <interface-name>javax.jms.TopicConnectionFactory</interface-name>
+      <interface-name>jakarta.jms.TopicConnectionFactory</interface-name>
       <user>@user@</user>
       <password>@password@</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define Durbale TopicConnectionFactory ServletMyTestDurableTopicConnectionFactory</description>
       <name>java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory</name>
-      <interface-name>javax.jms.TopicConnectionFactory</interface-name>
+      <interface-name>jakarta.jms.TopicConnectionFactory</interface-name>
       <user>@user@</user>
       <password>@password@</password>
       <client-id>MyClientID</client-id>
@@ -73,13 +73,13 @@
   <jms-destination>
       <description>Define Queue ServletMyTestQueue</description>
       <name>java:global/env/ServletMyTestQueue</name>
-      <interface-name>javax.jms.Queue</interface-name>
+      <interface-name>jakarta.jms.Queue</interface-name>
       <destination-name>ServletMyTestQueue</destination-name>
   </jms-destination>
   <jms-destination>
       <description>Define Topic ServletMyTestTopic</description>
       <name>java:app/env/ServletMyTestTopic</name>
-      <interface-name>javax.jms.Topic</interface-name>
+      <interface-name>jakarta.jms.Topic</interface-name>
       <destination-name>ServletMyTestTopic</destination-name>
   </jms-destination>
 </web-app>

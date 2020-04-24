@@ -24,15 +24,15 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
-import javax.jms.MessageListener;
+import jakarta.jms.MessageListener;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 
-//This MDB implements javax.jms.MessageListener interface, so no need to
+//This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 public class TimerBasicBean extends TimerBasicBeanBase
     implements MessageListener {
   public TimerBasicBean() {

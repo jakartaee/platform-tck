@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -285,7 +285,7 @@ public class Client extends ServiceEETest {
         context.setClientID("setClientIDLateTest");
         pass = false;
         TestUtil.logErr("IllegalStateRuntimeException was not thrown");
-      } catch (javax.jms.IllegalStateRuntimeException is) {
+      } catch (jakarta.jms.IllegalStateRuntimeException is) {
         TestUtil.logMsg("IllegalStateRuntimeException thrown as expected");
       } catch (Exception e) {
         TestUtil.logErr("Incorrect exception received: " + e);
@@ -332,7 +332,7 @@ public class Client extends ServiceEETest {
       } else {
         TestUtil.logMsg("getClientID returned cts (Correct)");
       }
-    } catch (javax.jms.IllegalStateRuntimeException is) {
+    } catch (jakarta.jms.IllegalStateRuntimeException is) {
       TestUtil.logMsg("IllegalStateRuntimeException thrown as expected");
     } catch (Exception e) {
       TestUtil.logErr("Incorrect exception received: " + e);
@@ -387,7 +387,7 @@ public class Client extends ServiceEETest {
       context.setClientID("changeIt");
       TestUtil.logErr("No exception was thrown on ClientID reset");
       pass = false;
-    } catch (javax.jms.IllegalStateRuntimeException e) {
+    } catch (jakarta.jms.IllegalStateRuntimeException e) {
       TestUtil.logMsg("IllegalStateRuntimeException thrown as expected");
     } catch (Exception e) {
       TestUtil.logErr("Incorrect exception received: " + e);

@@ -33,8 +33,8 @@ import java.io.*;
 import java.util.Properties;
 import jakarta.ejb.*;
 import javax.rmi.*;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
 
 import com.sun.javatest.Status;
 

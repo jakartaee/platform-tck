@@ -24,19 +24,19 @@
     <message-driven>
       <ejb-name>EJB_SEC_MDB_QUEUE_CMT</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.sec.mdb.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/MDB_QUEUE_REPLY</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
       <security-role-ref>
         <role-name>Administrator</role-name>
@@ -49,9 +49,9 @@
     <message-driven>
       <ejb-name>EJB_SEC_MDB_QUEUE_BMT</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.sec.mdb.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Bean</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
     <activation-config>
     <activation-config-property>
       <activation-config-property-name>acknowledgeMode</activation-config-property-name>
@@ -61,13 +61,13 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/MDB_QUEUE_REPLY</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
       <security-role-ref>
         <role-name>Administrator</role-name>
@@ -87,7 +87,7 @@
         <ejb-name>EJB_SEC_MDB_QUEUE_CMT</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>

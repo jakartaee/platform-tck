@@ -31,18 +31,18 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
 
-//This MDB implements javax.jms.MessageListener interface, so no need to
+//This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type
 @MessageDriven(name = "MessageBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class MessageBean implements MessageListener {
   @Resource(name = "mdc")
@@ -56,14 +56,14 @@ public class MessageBean implements MessageListener {
     return this.mdc;
   }
 
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     String info = null;
     try {
       String testname = msg.getStringProperty(TEST_NAME_KEY);
       int testNumber = msg.getIntProperty(TEST_NUMBER_KEY);
       info = TEST_NAME_KEY + "=" + testname + ", " + TEST_NUMBER_KEY + "="
           + testNumber;
-    } catch (javax.jms.JMSException e) {
+    } catch (jakarta.jms.JMSException e) {
       info = msg.toString();
     }
     TLogger.log(this + " consumed message " + info);

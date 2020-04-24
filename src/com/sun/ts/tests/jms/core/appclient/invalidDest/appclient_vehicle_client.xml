@@ -23,12 +23,12 @@
     <resource-ref>
       <description>description</description>
       <res-ref-name>jms/DURABLE_SUB_CONNECTION_FACTORY</res-ref-name>
-      <res-type>javax.jms.TopicConnectionFactory</res-type>
+      <res-type>jakarta.jms.TopicConnectionFactory</res-type>
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
   <resource-env-ref>
     <resource-env-ref-name>jms/MY_TOPIC</resource-env-ref-name>
-    <resource-env-ref-type>javax.jms.Topic</resource-env-ref-type>
+    <resource-env-ref-type>jakarta.jms.Topic</resource-env-ref-type>
   </resource-env-ref>
 </application-client>

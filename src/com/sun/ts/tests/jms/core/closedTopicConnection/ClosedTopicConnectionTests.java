@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
@@ -193,7 +193,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
       try {
         tool.getDefaultTopicSession().commit();
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -230,7 +230,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
       try {
         tool.getDefaultTopicSession().rollback();
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -265,7 +265,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
       try {
         tool.getDefaultTopicSession().recover();
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -319,7 +319,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         String foo = tool.getDefaultTopicConnection().getClientID();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -355,7 +355,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         ConnectionMetaData foo = tool.getDefaultTopicConnection().getMetaData();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -390,7 +390,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
       try {
         tool.getDefaultTopicConnection().start();
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -428,7 +428,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             .createTopicSession(true, Session.AUTO_ACKNOWLEDGE);
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -484,7 +484,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             .createTopic("closedTopicConnectionCreateTopicTest");
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -521,7 +521,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             .createSubscriber(tool.getDefaultTopic());
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -559,7 +559,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             .createSubscriber(tool.getDefaultTopic(), "TEST = 'test'", false);
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -597,7 +597,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             .createPublisher(tool.getDefaultTopic());
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -634,7 +634,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             .createTemporaryTopic();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -670,7 +670,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         Message m = tool.getDefaultTopicSession().createMessage();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -706,7 +706,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         BytesMessage m = tool.getDefaultTopicSession().createBytesMessage();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -742,7 +742,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         MapMessage m = tool.getDefaultTopicSession().createMapMessage();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -779,7 +779,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         if (m != null)
           TestUtil.logTrace("m=" + m);
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -818,7 +818,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         if (m != null)
           TestUtil.logTrace("m=" + m);
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -854,7 +854,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         StreamMessage m = tool.getDefaultTopicSession().createStreamMessage();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -890,7 +890,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         TextMessage m = tool.getDefaultTopicSession().createTextMessage();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -927,7 +927,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             .createTextMessage("test message");
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -963,7 +963,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         boolean b = tool.getDefaultTopicSession().getTransacted();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Caught expected exception");
         passed = true;
       } catch (Exception e) {
@@ -1018,7 +1018,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         String foo = tool.getDefaultTopicSubscriber().getMessageSelector();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1054,7 +1054,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         Message foo = tool.getDefaultTopicSubscriber().receive();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1090,7 +1090,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         Message foo = tool.getDefaultTopicSubscriber().receive(timeout);
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1126,7 +1126,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         Message foo = tool.getDefaultTopicSubscriber().receiveNoWait();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1162,7 +1162,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         boolean foo = tool.getDefaultTopicSubscriber().getNoLocal();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1198,7 +1198,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         Topic foo = tool.getDefaultTopicSubscriber().getTopic();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1253,7 +1253,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         int foo = tool.getDefaultTopicPublisher().getDeliveryMode();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1289,7 +1289,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         boolean foo = tool.getDefaultTopicPublisher().getDisableMessageID();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1327,7 +1327,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             .getDisableMessageTimestamp();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1363,7 +1363,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         int foo = tool.getDefaultTopicPublisher().getPriority();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1407,7 +1407,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         long foo = tool.getDefaultTopicPublisher().getTimeToLive();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1442,7 +1442,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         tool.getDefaultTopicPublisher()
             .setDeliveryMode(Message.DEFAULT_DELIVERY_MODE);
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1485,7 +1485,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
       try {
         tool.getDefaultTopicPublisher().setDisableMessageID(true);
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1521,7 +1521,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
       try {
         tool.getDefaultTopicPublisher().setDisableMessageTimestamp(true);
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1556,7 +1556,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
       try {
         tool.getDefaultTopicPublisher().setPriority(Message.DEFAULT_PRIORITY);
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1592,7 +1592,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         tool.getDefaultTopicPublisher()
             .setTimeToLive(Message.DEFAULT_TIME_TO_LIVE);
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1628,7 +1628,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
         Topic foo = tool.getDefaultTopicPublisher().getTopic();
 
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1663,7 +1663,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
       try {
         tool.getDefaultTopicPublisher().publish(new MessageTestImpl());
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -1700,7 +1700,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             Message.DEFAULT_DELIVERY_MODE, Message.DEFAULT_PRIORITY,
             Message.DEFAULT_TIME_TO_LIVE);
         TestUtil.logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         TestUtil.logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {

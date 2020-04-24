@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.timer.basic.mdb;
 
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
-import javax.jms.Message;
-import javax.jms.MessageListener;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceTest;

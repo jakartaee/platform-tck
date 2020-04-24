@@ -25,7 +25,7 @@ import com.sun.ts.lib.harness.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import javax.jms.*;
+import jakarta.jms.*;
 
 public final class Cleanup {
   private String user = null;
@@ -151,8 +151,8 @@ public final class Cleanup {
       msg.setStringProperty("COM_SUN_JMS_TESTNAME", "flushDestination");
       TestUtil.logTrace(
           "Send low priority message to Destination to signal the last message");
-      producer.send(msg, javax.jms.Message.DEFAULT_DELIVERY_MODE, priority,
-          javax.jms.Message.DEFAULT_TIME_TO_LIVE);
+      producer.send(msg, jakarta.jms.Message.DEFAULT_DELIVERY_MODE, priority,
+          jakarta.jms.Message.DEFAULT_TIME_TO_LIVE);
 
       // flush the Destination
       TestUtil.logTrace("Now flush the Destination");

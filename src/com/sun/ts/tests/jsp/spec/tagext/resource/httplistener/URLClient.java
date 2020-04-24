@@ -67,8 +67,8 @@ public class URLClient extends AbstractUrlClient {
    * [EventListenerResourceInjectionTiming] Create a SessionListener, Package
    * the servlet in a WAR file without declaring serveral resources references
    * in deployment descriptor - javax.sql.DataSource -
-   * javax.jms.QueueConnectionFactory - javax.jms.TopicConnectionFactory -
-   * javax.jms.ConnectionFactory - javax.jms.Queue - javax.jms.Topic -
+   * jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
+   * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
    * javax.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
@@ -91,9 +91,9 @@ public class URLClient extends AbstractUrlClient {
    * [EventListenerResourceInjectionTiming] Create a
    * HttpSessionAttributeListener, Package all above in a WAR file without
    * declaring serveral resources references in deployment descriptor -
-   * javax.sql.DataSource - javax.jms.QueueConnectionFactory -
-   * javax.jms.TopicConnectionFactory - javax.jms.ConnectionFactory -
-   * javax.jms.Queue - javax.jms.Topic - javax.mail.Session - java.net.URL
+   * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+   * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
+   * jakarta.jms.Queue - jakarta.jms.Topic - javax.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resource using annotation inside the HttpSessionAttributeListener

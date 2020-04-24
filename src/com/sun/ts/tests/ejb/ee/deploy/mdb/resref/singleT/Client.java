@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.resref.singleT;
 
 import java.util.Properties;
-import javax.jms.Topic;
+import jakarta.jms.Topic;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.javatest.Status;
 
@@ -126,7 +126,7 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a Message-driven Bean declaring a resource reference
-   *                 for a javax.jms.QueueConnectionFactory.
+   *                 for a jakarta.jms.QueueConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Queue Connection Factory.
@@ -157,7 +157,7 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a Message-driven Bean declaring a resource reference
-   *                 for a javax.jms.TopicConnectionFactory.
+   *                 for a jakarta.jms.TopicConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Topic Connection Factory.

@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.method.annotated;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.callback.MDBClientBase;
 import javax.annotation.Resource;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
  * A test client for callback methods. Note that since callback methods cannot

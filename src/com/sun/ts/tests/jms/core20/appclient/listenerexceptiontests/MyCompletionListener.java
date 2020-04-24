@@ -20,7 +20,7 @@
 package com.sun.ts.tests.jms.core20.appclient.listenerexceptiontests;
 
 import com.sun.ts.lib.util.TestUtil;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.util.ArrayList;
 
 public class MyCompletionListener implements CompletionListener {
@@ -144,7 +144,7 @@ public class MyCompletionListener implements CompletionListener {
           if (session != null)
             session.close();
         }
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
         TestUtil
             .logMsg("onCompletion(): Caught expected IllegalStateException");
         gotCorrectException = true;

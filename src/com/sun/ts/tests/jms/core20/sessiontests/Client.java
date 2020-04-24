@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -2279,7 +2279,7 @@ public class Client extends ServiceEETest {
    * JMS:JAVADOC:1349; JMS:JAVADOC:1350; JMS:JAVADOC:1390; JMS:JAVADOC:1391;
    *
    * @test_Strategy: Create a QueueSession and call Topic specific methods
-   * inherited from Session, and verify that javax.jms.IllegalStateException is
+   * inherited from Session, and verify that jakarta.jms.IllegalStateException is
    * thrown.
    * 
    * Call the following topic methods on a QueueSession:
@@ -2291,7 +2291,7 @@ public class Client extends ServiceEETest {
    * QueueSession.createSharedDurableConsumer(Topic, String)
    * QueueSession.createSharedDurableConsumer(Topic, String, String)
    *
-   * Test javax.jms.IllegalStateException from the following API's. Also test
+   * Test jakarta.jms.IllegalStateException from the following API's. Also test
    * when nolocal=true and client id is not set.
    *
    * Session.createDurableSubscriber(Topic, String)
@@ -2318,7 +2318,7 @@ public class Client extends ServiceEETest {
         pass = false;
         TestUtil.logErr("QueueSession.createDurableConsumer(Topic, String) "
             + "didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "QueueSession.createDurableConsumer(Topic, String)");
       } catch (Exception e) {
@@ -2335,7 +2335,7 @@ public class Client extends ServiceEETest {
         TestUtil.logErr(
             "QueueSession.createDurableConsumer(Topic, String, String, boolean) "
                 + "didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "QueueSession.createDurableConsumer(Topic, String, String, boolean)");
       } catch (Exception e) {
@@ -2350,7 +2350,7 @@ public class Client extends ServiceEETest {
         pass = false;
         TestUtil.logErr("QueueSession.createSharedConsumer(Topic, String) "
             + "didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "QueueSession.createSharedConsumer(Topic, String)");
       } catch (Exception e) {
@@ -2367,7 +2367,7 @@ public class Client extends ServiceEETest {
         TestUtil
             .logErr("QueueSession.createSharedConsumer(Topic, String, String) "
                 + "didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "QueueSession.createSharedConsumer(Topic, String, String)");
       } catch (Exception e) {
@@ -2384,7 +2384,7 @@ public class Client extends ServiceEETest {
         TestUtil
             .logErr("QueueSession.createSharedDurableConsumer(Topic, String) "
                 + "didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "QueueSession.createSharedDurableConsumer(Topic, String)");
       } catch (Exception e) {
@@ -2401,7 +2401,7 @@ public class Client extends ServiceEETest {
         TestUtil.logErr(
             "QueueSession.createSharedDurableConsumer(Topic, String, String) "
                 + "didn't throw expected IllegalStateException.");
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "QueueSession.createSharedDurableConsumer(Topic, String, String)");
       } catch (Exception e) {
@@ -2424,7 +2424,7 @@ public class Client extends ServiceEETest {
           toolT.getDefaultSession().unsubscribe("mySub1");
         } catch (Exception e) {
         }
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "Session.createDurableSubscriber(Topic, String)");
       } catch (Exception e) {
@@ -2448,7 +2448,7 @@ public class Client extends ServiceEETest {
           toolT.getDefaultSession().unsubscribe("mySub1");
         } catch (Exception e) {
         }
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "Session.createDurableSubscriber(Topic, String, String, boolean)");
       } catch (Exception e) {
@@ -2470,7 +2470,7 @@ public class Client extends ServiceEETest {
           toolT.getDefaultSession().unsubscribe("mySub1");
         } catch (Exception e) {
         }
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "Session.createDurableConsumer(Topic, String)");
       } catch (Exception e) {
@@ -2494,7 +2494,7 @@ public class Client extends ServiceEETest {
           toolT.getDefaultSession().unsubscribe("mySub1");
         } catch (Exception e) {
         }
-      } catch (javax.jms.IllegalStateException ex) {
+      } catch (jakarta.jms.IllegalStateException ex) {
         TestUtil.logMsg("Got expected IllegalStateException from "
             + "Session.createDurableConsumer(Topic, String, String, boolean)");
       } catch (Exception e) {
@@ -2563,7 +2563,7 @@ public class Client extends ServiceEETest {
         TestUtil.logErr(
             "TopicSession.createDurableSubscriber(Topic, String, String, boolean) "
                 + "didn't throw expected JMSException.");
-      } catch (javax.jms.JMSException ex) {
+      } catch (jakarta.jms.JMSException ex) {
         TestUtil.logMsg("Got expected JMSException from "
             + "TopicSession.createDurableSubscriber(Topic, String, String, boolean)");
       } catch (Exception e) {
@@ -2592,7 +2592,7 @@ public class Client extends ServiceEETest {
         TestUtil.logErr(
             "Session.createDurableConsumer(Topic, String, String, boolean) "
                 + "didn't throw expected JMSException.");
-      } catch (javax.jms.JMSException ex) {
+      } catch (jakarta.jms.JMSException ex) {
         TestUtil.logMsg("Got expected JMSException from "
             + "Session.createDurableConsumer(Topic, String, String, boolean)");
       } catch (Exception e) {
@@ -2620,7 +2620,7 @@ public class Client extends ServiceEETest {
         TestUtil.logErr(
             "Session.createDurableSubscriber(Topic, String, String, boolean) "
                 + "didn't throw expected JMSException.");
-      } catch (javax.jms.JMSException ex) {
+      } catch (jakarta.jms.JMSException ex) {
         TestUtil.logMsg("Got expected JMSException from "
             + "Session.createDurableSubscriber(Topic, String, String, boolean)");
       } catch (Exception e) {

@@ -31,13 +31,13 @@ import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.ConnectionFactory;
-import javax.jms.TopicConnectionFactory;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
 import javax.sql.DataSource;
 import jakarta.transaction.UserTransaction;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import org.omg.CORBA.ORB;
 
 @Stateless(name = "ResourceSetterBean")

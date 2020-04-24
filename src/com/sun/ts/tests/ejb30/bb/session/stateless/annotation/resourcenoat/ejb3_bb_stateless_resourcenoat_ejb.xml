@@ -107,7 +107,7 @@
             
             <message-destination-ref>
                 <message-destination-ref-name>queue</message-destination-ref-name>
-                <!-- <message-destination-type>javax.jms.Queue</message-destination-type> -->
+                <!-- <message-destination-type>jakarta.jms.Queue</message-destination-type> -->
                 <message-destination-usage>Consumes</message-destination-usage>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
@@ -117,7 +117,7 @@
 
             <message-destination-ref>
                 <message-destination-ref-name>topic</message-destination-ref-name>
-                <!-- <message-destination-type>javax.jms.Topic</message-destination-type> -->
+                <!-- <message-destination-type>jakarta.jms.Topic</message-destination-type> -->
                 <message-destination-usage>Consumes</message-destination-usage>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceFieldBean</injection-target-class>
@@ -216,7 +216,7 @@
            
             <message-destination-ref>
                 <message-destination-ref-name>queue</message-destination-ref-name>
-                <!-- <message-destination-type>javax.jms.Queue</message-destination-type> -->
+                <!-- <message-destination-type>jakarta.jms.Queue</message-destination-type> -->
                 <message-destination-usage>Consumes</message-destination-usage>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>
@@ -226,7 +226,7 @@
 
             <message-destination-ref>
                 <message-destination-ref-name>topic</message-destination-ref-name>
-                <!-- <message-destination-type>javax.jms.Topic</message-destination-type> -->
+                <!-- <message-destination-type>jakarta.jms.Topic</message-destination-type> -->
                 <message-destination-usage>Consumes</message-destination-usage>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat.ResourceSetterBean</injection-target-class>

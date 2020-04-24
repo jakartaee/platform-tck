@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -272,7 +272,7 @@ public class TopicTests extends ServiceEETest {
         tConn.setClientID("setClientIDLateTopicTest");
         pass = false;
         logMsg("Error: Illegal state exception was not thrown");
-      } catch (javax.jms.IllegalStateException is) {
+      } catch (jakarta.jms.IllegalStateException is) {
         logTrace("Pass: IllegalStateException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -474,7 +474,7 @@ public class TopicTests extends ServiceEETest {
     } catch (InvalidClientIDException e) {
       TestUtil.logErr("Incorrect exception received: " + e.getMessage());
       pass = false;
-    } catch (javax.jms.IllegalStateException ee) {
+    } catch (jakarta.jms.IllegalStateException ee) {
       TestUtil.logMsg("Expected Exception received: " + ee.getMessage());
     } catch (Exception eee) {
       TestUtil.logErr("Incorrect exception received: " + eee.getMessage());

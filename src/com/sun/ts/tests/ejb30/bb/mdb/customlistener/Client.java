@@ -19,8 +19,8 @@ package com.sun.ts.tests.ejb30.bb.mdb.customlistener;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.callback.MDBClientBase;
 import javax.annotation.Resource;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
  * If a Message Listener Interface(MLI) is bundled into a standalone .rar file,

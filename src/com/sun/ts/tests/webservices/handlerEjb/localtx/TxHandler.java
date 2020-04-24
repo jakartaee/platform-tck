@@ -21,7 +21,7 @@ import javax.xml.rpc.handler.MessageContext;
 import com.sun.ts.tests.jaxrpc.common.HandlerBase;
 
 import javax.naming.InitialContext;
-import javax.jms.*;
+import jakarta.jms.*;
 
 public class TxHandler extends HandlerBase {
   public boolean handleRequest(MessageContext context) {
