@@ -17,10 +17,12 @@
 
 echo '*** Temporary build fix'
 
+if [ -z "${METRO_BUNDLE_URL}" ]; then
+  METRO_BUNDLE_URL='https://ci.eclipse.org/metro/job/wsit-master-build/lastSuccessfulBuild/artifact/wsit/bundles/metro-standalone/target/metro.zip'
+fi
+
 if [ ! -d metro ]; then
-  wget --progress=bar:force --no-cache \
-      https://ci.eclipse.org/metro/job/wsit-master-build/lastSuccessfulBuild/artifact/wsit/bundles/metro-standalone/target/metro.zip \
-      -O ${WORKSPACE}/metro.zip \
+  wget --progress=bar:force --no-cache "${METRO_BUNDLE_URL}" -O ${WORKSPACE}/metro.zip \
   && unzip ${WORKSPACE}/metro.zip
   rm -v ${WORKSPACE}/metro.zip
 fi
