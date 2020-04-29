@@ -32,7 +32,7 @@ import com.sun.ts.lib.deliverable.DeliverableFactory;
 import com.sun.ts.lib.deliverable.PropertyManagerInterface;
 
 // J2EE Deployment API's
-import jakarta.enterprise.deploy.spi.*;
+import javax.enterprise.deploy.spi.*;
 
 public class NegdepUtil {
 

@@ -211,14 +211,14 @@ public class JavaEESigTest extends SigTestEE {
     JSP_MAP = SERVLET_MAP;
 
     STANDALONE_MAP.put("javaeedeploy",
-        new String[] { "jakarta.enterprise.deploy.model",
-            "jakarta.enterprise.deploy.model.exceptions",
-            "jakarta.enterprise.deploy.shared",
-            "jakarta.enterprise.deploy.shared.factories",
-            "jakarta.enterprise.deploy.spi",
-            "jakarta.enterprise.deploy.spi.exceptions",
-            "jakarta.enterprise.deploy.spi.factories",
-            "jakarta.enterprise.deploy.spi.status" });
+        new String[] { "javax.enterprise.deploy.model",
+            "javax.enterprise.deploy.model.exceptions",
+            "javax.enterprise.deploy.shared",
+            "javax.enterprise.deploy.shared.factories",
+            "javax.enterprise.deploy.spi",
+            "javax.enterprise.deploy.spi.exceptions",
+            "javax.enterprise.deploy.spi.factories",
+            "javax.enterprise.deploy.spi.status" });
 
     tempMap.put(Containers.ejb, Collections.unmodifiableMap(EJB_MAP));
     tempMap.put(Containers.servlet, Collections.unmodifiableMap(SERVLET_MAP));
