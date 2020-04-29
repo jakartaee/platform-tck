@@ -16,9 +16,9 @@
 
 package com.sun.ts.lib.deliverable.cts.deploy;
 
-import jakarta.enterprise.deploy.spi.Target;
-import jakarta.enterprise.deploy.spi.status.ProgressObject;
-import jakarta.enterprise.deploy.spi.TargetModuleID;
+import javax.enterprise.deploy.spi.Target;
+import javax.enterprise.deploy.spi.status.ProgressObject;
+import javax.enterprise.deploy.spi.TargetModuleID;
 import java.util.List;
 import java.util.ArrayList;
 import com.sun.ts.lib.util.TestUtil;

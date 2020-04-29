@@ -22,10 +22,10 @@ package com.sun.ts.lib.porting;
 
 import java.util.*;
 import java.io.*;
-import jakarta.enterprise.deploy.spi.Target;
-import jakarta.enterprise.deploy.spi.TargetModuleID;
-import jakarta.enterprise.deploy.spi.DeploymentManager;
-import jakarta.enterprise.deploy.spi.status.ProgressObject;
+import javax.enterprise.deploy.spi.Target;
+import javax.enterprise.deploy.spi.TargetModuleID;
+import javax.enterprise.deploy.spi.DeploymentManager;
+import javax.enterprise.deploy.spi.status.ProgressObject;
 
 /**
  * This is the TSDeploymentInterface2. The TSDeploymentInterface2 interface

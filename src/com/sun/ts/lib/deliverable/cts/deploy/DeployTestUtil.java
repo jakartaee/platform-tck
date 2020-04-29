@@ -32,20 +32,20 @@ import java.net.URLClassLoader;
 import com.sun.ts.lib.util.TestUtil;
 
 // J2EE Deployment imports
-import jakarta.enterprise.deploy.spi.*;
-import jakarta.enterprise.deploy.spi.status.*;
-import jakarta.enterprise.deploy.spi.exceptions.*;
-import jakarta.enterprise.deploy.model.*;
-import jakarta.enterprise.deploy.shared.*;
-import jakarta.enterprise.deploy.model.*;
+import javax.enterprise.deploy.spi.*;
+import javax.enterprise.deploy.spi.status.*;
+import javax.enterprise.deploy.spi.exceptions.*;
+import javax.enterprise.deploy.model.*;
+import javax.enterprise.deploy.shared.*;
+import javax.enterprise.deploy.model.*;
 
 import java.io.*;
 import java.util.*;
 
-import jakarta.enterprise.deploy.shared.factories.*;
-import jakarta.enterprise.deploy.spi.*;
-import jakarta.enterprise.deploy.spi.exceptions.*;
-import jakarta.enterprise.deploy.spi.factories.*;
+import javax.enterprise.deploy.shared.factories.*;
+import javax.enterprise.deploy.spi.*;
+import javax.enterprise.deploy.spi.exceptions.*;
+import javax.enterprise.deploy.spi.factories.*;
 
 public class DeployTestUtil {
 

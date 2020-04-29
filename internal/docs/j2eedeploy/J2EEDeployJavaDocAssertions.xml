@@ -32,18 +32,18 @@
 			<description>                            Retrieve the Singleton factory manager
                         
 			</description>
-			<package>jakarta.enterprise.deploy.shared.factories</package>
+			<package>javax.enterprise.deploy.shared.factories</package>
 			<class-interface>DeploymentFactoryManager</class-interface>
-			<method name = "getInstance" return-type = "jakarta.enterprise.deploy.shared.factories.DeploymentFactoryManager"/>
+			<method name = "getInstance" return-type = "javax.enterprise.deploy.shared.factories.DeploymentFactoryManager"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>2</id>
 			<description>                            Retrieve the lists of currently registered DeploymentFactories.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.shared.factories</package>
+			<package>javax.enterprise.deploy.shared.factories</package>
 			<class-interface>DeploymentFactoryManager</class-interface>
-			<method name = "getDeploymentFactories" return-type = "jakarta.enterprise.deploy.spi.factories.DeploymentFactory[]"/>
+			<method name = "getDeploymentFactories" return-type = "javax.enterprise.deploy.spi.factories.DeploymentFactory[]"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>3</id>
@@ -51,9 +51,9 @@
                               The caller provides a URI and optional username and password,  and all registered DeploymentFactories will be checked.  The  first one to understand the URI provided will attempt to  initiate a server connection and return a ready DeploymentManager  instance.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.shared.factories</package>
+			<package>javax.enterprise.deploy.shared.factories</package>
 			<class-interface>DeploymentFactoryManager</class-interface>
-			<method name = "getDeploymentManager" return-type = "jakarta.enterprise.deploy.spi.DeploymentManager">
+			<method name = "getDeploymentManager" return-type = "javax.enterprise.deploy.spi.DeploymentManager">
 				<parameters>
 					<parameter>java.lang.String</parameter>
 					<parameter>java.lang.String</parameter>
@@ -64,15 +64,15 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>4</id>
 			<description>Occurs when the factory appropriate to the specified URI          was unable to initialize a DeploymentManager instance          (server down, unable to authenticate, etc.).</description>
-			<package>jakarta.enterprise.deploy.shared.factories</package>
+			<package>javax.enterprise.deploy.shared.factories</package>
 			<class-interface>DeploymentFactoryManager</class-interface>
-			<method name = "getDeploymentManager" return-type = "jakarta.enterprise.deploy.spi.DeploymentManager">
+			<method name = "getDeploymentManager" return-type = "javax.enterprise.deploy.spi.DeploymentManager">
 				<parameters>
 					<parameter>java.lang.String</parameter>
 					<parameter>java.lang.String</parameter>
 					<parameter>java.lang.String</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
@@ -80,11 +80,11 @@
 			<description>                            Registers a DeploymentFactory so it will be able to handle  requests.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.shared.factories</package>
+			<package>javax.enterprise.deploy.shared.factories</package>
 			<class-interface>DeploymentFactoryManager</class-interface>
 			<method name = "registerDeploymentFactory" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.factories.DeploymentFactory</parameter>
+					<parameter>javax.enterprise.deploy.spi.factories.DeploymentFactory</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -93,9 +93,9 @@
 			<description>                            Return a &lt;tt>disconnected&lt;/tt> DeploymentManager instance.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.shared.factories</package>
+			<package>javax.enterprise.deploy.shared.factories</package>
 			<class-interface>DeploymentFactoryManager</class-interface>
-			<method name = "getDisconnectedDeploymentManager" return-type = "jakarta.enterprise.deploy.spi.DeploymentManager">
+			<method name = "getDisconnectedDeploymentManager" return-type = "javax.enterprise.deploy.spi.DeploymentManager">
 				<parameters>
 					<parameter>java.lang.String</parameter>
 				</parameters>
@@ -104,13 +104,13 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>7</id>
 			<description/>
-			<package>jakarta.enterprise.deploy.shared.factories</package>
+			<package>javax.enterprise.deploy.shared.factories</package>
 			<class-interface>DeploymentFactoryManager</class-interface>
-			<method name = "getDisconnectedDeploymentManager" return-type = "jakarta.enterprise.deploy.spi.DeploymentManager">
+			<method name = "getDisconnectedDeploymentManager" return-type = "javax.enterprise.deploy.spi.DeploymentManager">
 				<parameters>
 					<parameter>java.lang.String</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -119,16 +119,16 @@
                               this module was deployed to.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>TargetModuleID</class-interface>
-			<method name = "getTarget" return-type = "jakarta.enterprise.deploy.spi.Target"/>
+			<method name = "getTarget" return-type = "javax.enterprise.deploy.spi.Target"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>9</id>
 			<description>                            Retrieve the id assigned to represent  the deployed module.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>TargetModuleID</class-interface>
 			<method name = "getModuleID" return-type = "java.lang.String"/>
 		</assertion>
@@ -137,7 +137,7 @@
 			<description>                            Retrieve the identifier representing  the deployed module.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>TargetModuleID</class-interface>
 			<method name = "toString" return-type = "java.lang.String"/>
 		</assertion>
@@ -147,23 +147,23 @@
                              If there  is no parent then this is the root object  deployed.  The root could represent an EAR   file or it could be a stand alone module   that was deployed.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>TargetModuleID</class-interface>
-			<method name = "getParentTargetModuleID" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID"/>
+			<method name = "getParentTargetModuleID" return-type = "javax.enterprise.deploy.spi.TargetModuleID"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>12</id>
 			<description>                            Retrieve a list of identifiers of the children  of this deployed module.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>TargetModuleID</class-interface>
-			<method name = "getChildTargetModuleID" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]"/>
+			<method name = "getChildTargetModuleID" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>13</id>
 			<description/>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>TargetModuleID</class-interface>
 			<method name = "getWebURL" return-type = "java.lang.String"/>
 		</assertion>
@@ -172,7 +172,7 @@
 			<description>                            Retrieve the name of the target server.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>Target</class-interface>
 			<method name = "getName" return-type = "java.lang.String"/>
 		</assertion>
@@ -181,7 +181,7 @@
 			<description>                            Retrieve other descriptive information  about the target.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>Target</class-interface>
 			<method name = "getDescription" return-type = "java.lang.String"/>
 		</assertion>
@@ -190,16 +190,16 @@
 			<description>                            Retrieve the list of deployment targets supported by   this DeploymentManager.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getTargets" return-type = "jakarta.enterprise.deploy.spi.Target[]"/>
+			<method name = "getTargets" return-type = "javax.enterprise.deploy.spi.Target[]"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>17</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getTargets" return-type = "jakarta.enterprise.deploy.spi.Target[]">
+			<method name = "getTargets" return-type = "javax.enterprise.deploy.spi.Target[]">
 				<throw>java.lang.IllegalStateException</throw>
 			</method>
 		</assertion>
@@ -208,37 +208,37 @@
 			<description>                            Retrieve the list of J2EE application modules distributed   to the identified targets and that are currently running   on the associated server or servers.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getRunningModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getRunningModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>19</id>
 			<description>An invalid Target designator                    encountered.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getRunningModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getRunningModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.TargetException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.TargetException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>20</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getRunningModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getRunningModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
 				<throw>java.lang.IllegalStateException</throw>
 			</method>
@@ -248,37 +248,37 @@
 			<description>                            Retrieve the list of J2EE application modules distributed   to the identified targets and that are currently not  running on the associated server or servers.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getNonRunningModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getNonRunningModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>22</id>
 			<description>An invalid Target designator                    encountered.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getNonRunningModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getNonRunningModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.TargetException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.TargetException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>23</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getNonRunningModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getNonRunningModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
 				<throw>java.lang.IllegalStateException</throw>
 			</method>
@@ -288,37 +288,37 @@
 			<description>                            Retrieve the list of all J2EE application modules running   or not running on the identified targets.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getAvailableModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getAvailableModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>25</id>
 			<description>An invalid Target designator                    encountered.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getAvailableModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getAvailableModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.TargetException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.TargetException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>26</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "getAvailableModules" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]">
+			<method name = "getAvailableModules" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]">
 				<parameters>
 					<parameter>ModuleType</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 				</parameters>
 				<throw>java.lang.IllegalStateException</throw>
 			</method>
@@ -328,24 +328,24 @@
 			<description>                            Retrieve the object that provides server-specific deployment  configuration information for the J2EE deployable component.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "createConfiguration" return-type = "jakarta.enterprise.deploy.spi.DeploymentConfiguration">
+			<method name = "createConfiguration" return-type = "javax.enterprise.deploy.spi.DeploymentConfiguration">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.model.DeployableObject</parameter>
+					<parameter>javax.enterprise.deploy.model.DeployableObject</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>28</id>
 			<description>The DeployableObject is an                       unknown or unsupport component for this                       configuration tool.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "createConfiguration" return-type = "jakarta.enterprise.deploy.spi.DeploymentConfiguration">
+			<method name = "createConfiguration" return-type = "javax.enterprise.deploy.spi.DeploymentConfiguration">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.model.DeployableObject</parameter>
+					<parameter>javax.enterprise.deploy.model.DeployableObject</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.InvalidModuleException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.InvalidModuleException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -353,11 +353,11 @@
 			<description>                            The distribute method performs three tasks; it validates the  deployment configuration data, generates all container specific   classes and interfaces, and moves the fully baked archive to   the designated deployment targets.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "distribute" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "distribute" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 					<parameter>java.io.File</parameter>
 					<parameter>java.io.File</parameter>
 				</parameters>
@@ -366,11 +366,11 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>30</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "distribute" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "distribute" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 					<parameter>java.io.File</parameter>
 					<parameter>java.io.File</parameter>
 				</parameters>
@@ -382,11 +382,11 @@
 			<description>                            The distribute method performs three tasks; it validates the  deployment configuration data, generates all container specific   classes and interfaces, and moves the fully baked archive to   the designated deployment targets.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "distribute" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "distribute" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 					<parameter>java.io.InputStream</parameter>
 					<parameter>java.io.InputStream</parameter>
 				</parameters>
@@ -395,11 +395,11 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>32</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "distribute" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "distribute" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.Target[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.Target[]</parameter>
 					<parameter>java.io.InputStream</parameter>
 					<parameter>java.io.InputStream</parameter>
 				</parameters>
@@ -412,22 +412,22 @@
                                  &lt;p> Only the TargetModuleIDs which represent a root module  are valid for being started. A root TargetModuleID has no parent.  A TargetModuleID with a parent can not be individually started.   A root TargetModuleID module and all its child modules will be   started.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "start" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "start" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>34</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "start" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "start" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 				</parameters>
 				<throw>java.lang.IllegalStateException</throw>
 			</method>
@@ -438,22 +438,22 @@
                                  &lt;p> Only the TargetModuleIDs which represent a root module  are valid for being stopped. A root TargetModuleID has no parent.  A TargetModuleID with a parent can not be individually stopped.   A root TargetModuleID module and all its child modules will be   stopped.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "stop" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "stop" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>36</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "stop" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "stop" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 				</parameters>
 				<throw>java.lang.IllegalStateException</throw>
 			</method>
@@ -464,22 +464,22 @@
                                  &lt;p> Only the TargetModuleIDs which represent a root module  are valid for undeployment. A root TargetModuleID has no parent.  A TargetModuleID with a parent can not be undeployed. A root  TargetModuleID module and all its child modules will be undeployed.  The root TargetModuleID module and all its child modules must  stopped before they can be undeployed.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "undeploy" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "undeploy" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>38</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "undeploy" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "undeploy" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 				</parameters>
 				<throw>java.lang.IllegalStateException</throw>
 			</method>
@@ -490,7 +490,7 @@
                              A value of true means  it is supported.  False means it is not.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "isRedeploySupported" return-type = "boolean"/>
 		</assertion>
@@ -500,11 +500,11 @@
                               This is an optional method for  vendor implementation.   Redeploy replaces a currently deployed application with an  updated version.  The runtime configuration information for   the updated application must remain identical to the application   it is updating.     When an application update is redeployed, all existing client  connections to the original running application must not be disrupted;   new clients will connect to the application update.   This operation is valid for TargetModuleIDs that represent a  root module. A root TargetModuleID has no parent. A root  TargetModuleID module and all its child modules will be redeployed.  A child TargetModuleID module cannot be individually redeployed.  The redeploy operation is complete only when this action for   all the modules has completed.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "redeploy" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "redeploy" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 					<parameter>java.io.File</parameter>
 					<parameter>java.io.File</parameter>
 				</parameters>
@@ -513,11 +513,11 @@
 		<assertion required = "false" impl-spec = "false" status = "active" testable = "false">
 			<id>41</id>
 			<description>this optional command          is not supported by this implementation.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "redeploy" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "redeploy" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 					<parameter>java.io.File</parameter>
 					<parameter>java.io.File</parameter>
 				</parameters>
@@ -527,11 +527,11 @@
 		<assertion required = "false" impl-spec = "false" status = "active" testable = "false">
 			<id>42</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "redeploy" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "redeploy" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 					<parameter>java.io.File</parameter>
 					<parameter>java.io.File</parameter>
 				</parameters>
@@ -544,11 +544,11 @@
                               This is an optional method for  vendor implementation.   Redeploy replaces a currently deployed application with an  updated version.  The runtime configuration information for   the updated application must remain identical to the application   it is updating.   When an application update is redeployed, all existing client  connections to the original running application must not be disrupted;   new clients will connect to the application update.   This operation is valid for TargetModuleIDs that represent a  root module. A root TargetModuleID has no parent. A root  TargetModuleID module and all its child modules will be redeployed.  A child TargetModuleID module cannot be individually redeployed.  The redeploy operation is complete only when this action for   all the modules has completed.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "redeploy" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "redeploy" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 					<parameter>java.io.InputStream</parameter>
 					<parameter>java.io.InputStream</parameter>
 				</parameters>
@@ -557,11 +557,11 @@
 		<assertion required = "false" impl-spec = "false" status = "active" testable = "false">
 			<id>44</id>
 			<description>this optional command          is not supported by this implementation.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "redeploy" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "redeploy" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 					<parameter>java.io.InputStream</parameter>
 					<parameter>java.io.InputStream</parameter>
 				</parameters>
@@ -571,11 +571,11 @@
 		<assertion required = "false" impl-spec = "false" status = "active" testable = "false">
 			<id>45</id>
 			<description>is thrown when the method is                     called when running in disconnected mode.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
-			<method name = "redeploy" return-type = "jakarta.enterprise.deploy.spi.status.ProgressObject">
+			<method name = "redeploy" return-type = "javax.enterprise.deploy.spi.status.ProgressObject">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID[]</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID[]</parameter>
 					<parameter>java.io.InputStream</parameter>
 					<parameter>java.io.InputStream</parameter>
 				</parameters>
@@ -588,34 +588,34 @@
                                 The tool may be signaling it wants to run in a disconnected   mode or it is planning to shutdown.    When release is called the DeploymentManager may close any  J2EE resource connections it had for deployment configuration  and perform other related resource cleanup.  It should not  accept any new operation requests (i.e., distribute, start  stop, undeploy, redeploy.  It should finish any operations   that are currently in process.  Each ProgressObject associated  with a running operation should be marked as released (see  the ProgressObject).
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "release" return-type = "void"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>47</id>
-			<description>                            Returns the default locale supported by this implementation of  jakarta.enterprise.deploy.spi subpackages.
+			<description>                            Returns the default locale supported by this implementation of  javax.enterprise.deploy.spi subpackages.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "getDefaultLocale" return-type = "java.util.Locale"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>48</id>
-			<description>                            Returns the active locale this implementation of  jakarta.enterprise.deploy.spi subpackages is running.
+			<description>                            Returns the active locale this implementation of  javax.enterprise.deploy.spi subpackages is running.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "getCurrentLocale" return-type = "java.util.Locale"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>49</id>
-			<description>                            Set the active locale for this implementation of  jakarta.enterprise.deploy.spi subpackages to run.
+			<description>                            Set the active locale for this implementation of  javax.enterprise.deploy.spi subpackages to run.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "setLocale" return-type = "void">
 				<parameters>
@@ -626,7 +626,7 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>50</id>
 			<description>the provide locale is       not supported.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "setLocale" return-type = "void">
 				<parameters>
@@ -640,7 +640,7 @@
 			<description>                            Returns an array of supported locales for this implementation.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "getSupportedLocales" return-type = "java.util.Locale[]"/>
 		</assertion>
@@ -649,7 +649,7 @@
 			<description>                            Reports if this implementation supports the designated locale.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "isLocaleSupported" return-type = "boolean">
 				<parameters>
@@ -663,7 +663,7 @@
                               The beans must have   been compiled with the J2SE version required by the J2EE   platform.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "getDConfigBeanVersion" return-type = "DConfigBeanVersionType"/>
 		</assertion>
@@ -673,7 +673,7 @@
                               It returns 'false' if the version is  not supported.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "isDConfigBeanVersionSupported" return-type = "boolean">
 				<parameters>
@@ -686,7 +686,7 @@
 			<description>                            Set the configuration beans to be used to the J2EE platform   version specificed.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "setDConfigBeanVersion" return-type = "void">
 				<parameters>
@@ -697,13 +697,13 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>56</id>
 			<description>when the         requested bean version is not supported.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentManager</class-interface>
 			<method name = "setDConfigBeanVersion" return-type = "void">
 				<parameters>
 					<parameter>DConfigBeanVersionType</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.DConfigBeanVersionUnsupportedException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.DConfigBeanVersionUnsupportedException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -711,33 +711,33 @@
 			<description>                            Returns an object that provides access to  the deployment descriptor data and classes  of a J2EE module.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
-			<method name = "getDeployableObject" return-type = "jakarta.enterprise.deploy.model.DeployableObject"/>
+			<method name = "getDeployableObject" return-type = "javax.enterprise.deploy.model.DeployableObject"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>58</id>
 			<description>                            Returns the top level configuration bean, DConfigBeanRoot,  associated with the deployment descriptor represented by  the designated DDBeanRoot bean.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
-			<method name = "getDConfigBeanRoot" return-type = "jakarta.enterprise.deploy.spi.DConfigBeanRoot">
+			<method name = "getDConfigBeanRoot" return-type = "javax.enterprise.deploy.spi.DConfigBeanRoot">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.model.DDBeanRoot</parameter>
+					<parameter>javax.enterprise.deploy.model.DDBeanRoot</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>59</id>
 			<description>reports errors in generating             a configuration bean</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
-			<method name = "getDConfigBeanRoot" return-type = "jakarta.enterprise.deploy.spi.DConfigBeanRoot">
+			<method name = "getDConfigBeanRoot" return-type = "javax.enterprise.deploy.spi.DConfigBeanRoot">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.model.DDBeanRoot</parameter>
+					<parameter>javax.enterprise.deploy.model.DDBeanRoot</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -745,24 +745,24 @@
 			<description>                            Remove the root DConfigBean and all its children.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
 			<method name = "removeDConfigBean" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.DConfigBeanRoot</parameter>
+					<parameter>javax.enterprise.deploy.spi.DConfigBeanRoot</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>61</id>
 			<description>the bean provides is       not in this beans child list.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
 			<method name = "removeDConfigBean" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.DConfigBeanRoot</parameter>
+					<parameter>javax.enterprise.deploy.spi.DConfigBeanRoot</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.BeanNotFoundException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.BeanNotFoundException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
@@ -771,26 +771,26 @@
                              The beans  may be fully or partially configured.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
-			<method name = "restoreDConfigBean" return-type = "jakarta.enterprise.deploy.spi.DConfigBeanRoot">
+			<method name = "restoreDConfigBean" return-type = "javax.enterprise.deploy.spi.DConfigBeanRoot">
 				<parameters>
 					<parameter>java.io.InputStream</parameter>
-					<parameter>jakarta.enterprise.deploy.model.DDBeanRoot</parameter>
+					<parameter>javax.enterprise.deploy.model.DDBeanRoot</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>63</id>
 			<description>reports errors in generating             a configuration bean</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
-			<method name = "restoreDConfigBean" return-type = "jakarta.enterprise.deploy.spi.DConfigBeanRoot">
+			<method name = "restoreDConfigBean" return-type = "javax.enterprise.deploy.spi.DConfigBeanRoot">
 				<parameters>
 					<parameter>java.io.InputStream</parameter>
-					<parameter>jakarta.enterprise.deploy.model.DDBeanRoot</parameter>
+					<parameter>javax.enterprise.deploy.model.DDBeanRoot</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
@@ -799,26 +799,26 @@
                               The saved data    may be fully or partially configured DConfigBeans. The   output file format is recommended to be XML.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
 			<method name = "saveDConfigBean" return-type = "void">
 				<parameters>
 					<parameter>java.io.OutputStream</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.DConfigBeanRoot</parameter>
+					<parameter>javax.enterprise.deploy.spi.DConfigBeanRoot</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>65</id>
 			<description>reports errors in generating             a configuration bean</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
 			<method name = "saveDConfigBean" return-type = "void">
 				<parameters>
 					<parameter>java.io.OutputStream</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.DConfigBeanRoot</parameter>
+					<parameter>javax.enterprise.deploy.spi.DConfigBeanRoot</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
@@ -826,7 +826,7 @@
 			<description>                            Restore from disk to a full set of configuration beans previously  stored.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
 			<method name = "restore" return-type = "void">
 				<parameters>
@@ -837,13 +837,13 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>67</id>
 			<description>reports errors in generating             a configuration bean</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
 			<method name = "restore" return-type = "void">
 				<parameters>
 					<parameter>java.io.InputStream</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -852,7 +852,7 @@
                                It is recommended the file format be XML.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
 			<method name = "save" return-type = "void">
 				<parameters>
@@ -863,13 +863,13 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>69</id>
 			<description/>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DeploymentConfiguration</class-interface>
 			<method name = "save" return-type = "void">
 				<parameters>
 					<parameter>java.io.OutputStream</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -877,9 +877,9 @@
 			<description>                            Return the JavaBean containing the deployment  descriptor XML text associated with this DConfigBean.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
-			<method name = "getDDBean" return-type = "jakarta.enterprise.deploy.model.DDBean"/>
+			<method name = "getDDBean" return-type = "javax.enterprise.deploy.model.DDBean"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>71</id>
@@ -887,7 +887,7 @@
                                A given server vendor will need to specify some server-specific  information.  Each String returned by this method is an XPath  describing a certain portion of the standard deployment descriptor  for which there is corresponding server-specific configuration.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
 			<method name = "getXpaths" return-type = "java.lang.String[]"/>
 		</assertion>
@@ -896,24 +896,24 @@
 			<description>                            Return the JavaBean containing the server-specific deployment   configuration information based upon the XML data provided   by the DDBean.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
-			<method name = "getDConfigBean" return-type = "jakarta.enterprise.deploy.spi.DConfigBean">
+			<method name = "getDConfigBean" return-type = "javax.enterprise.deploy.spi.DConfigBean">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.model.DDBean</parameter>
+					<parameter>javax.enterprise.deploy.model.DDBean</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>73</id>
 			<description>reports errors in generating            a configuration bean. This DDBean is considered            undeployable to this server until this exception            is resolved.              A suitably descriptive message is required so the user             can diagnose the error.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
-			<method name = "getDConfigBean" return-type = "jakarta.enterprise.deploy.spi.DConfigBean">
+			<method name = "getDConfigBean" return-type = "javax.enterprise.deploy.spi.DConfigBean">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.model.DDBean</parameter>
+					<parameter>javax.enterprise.deploy.model.DDBean</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.ConfigurationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
@@ -921,24 +921,24 @@
 			<description>                            Remove a child DConfigBean from this bean.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
 			<method name = "removeDConfigBean" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.DConfigBean</parameter>
+					<parameter>javax.enterprise.deploy.spi.DConfigBean</parameter>
 				</parameters>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>75</id>
 			<description>the bean provided           is not in the child list of this bean.</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
 			<method name = "removeDConfigBean" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.DConfigBean</parameter>
+					<parameter>javax.enterprise.deploy.spi.DConfigBean</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.BeanNotFoundException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.BeanNotFoundException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
@@ -946,11 +946,11 @@
 			<description>                            A notification that the DDBean provided in the  event has changed and this bean or its child beans need   to reevaluate themselves.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
 			<method name = "notifyDDChange" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.model.XpathEvent</parameter>
+					<parameter>javax.enterprise.deploy.model.XpathEvent</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -959,7 +959,7 @@
 			<description>                            Register a property listener for this bean.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
 			<method name = "addPropertyChangeListener" return-type = "void">
 				<parameters>
@@ -972,7 +972,7 @@
 			<description>                            Unregister a property listener for this bean.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi</package>
+			<package>javax.enterprise.deploy.spi</package>
 			<class-interface>DConfigBean</class-interface>
 			<method name = "removePropertyChangeListener" return-type = "void">
 				<parameters>
@@ -985,7 +985,7 @@
 			<description>                            Creates an new TargetException object.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>TargetException</class-interface>
 			<method name = "TargetException" return-type = "TargetException">
 				<parameters>
@@ -998,7 +998,7 @@
 			<description>                            Creates an new OperationUnsupportedException object.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>OperationUnsupportedException</class-interface>
 			<method name = "OperationUnsupportedException" return-type = "OperationUnsupportedException">
 				<parameters>
@@ -1011,7 +1011,7 @@
 			<description>                            Creates an new InvalidModuleException object.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>InvalidModuleException</class-interface>
 			<method name = "InvalidModuleException" return-type = "InvalidModuleException">
 				<parameters>
@@ -1024,7 +1024,7 @@
 			<description>                            Creates an new DeploymentManagerCreationException object.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>DeploymentManagerCreationException</class-interface>
 			<method name = "DeploymentManagerCreationException" return-type = "DeploymentManagerCreationException">
 				<parameters>
@@ -1037,7 +1037,7 @@
 			<description>                            Creates an new DConfigBeanVersionUnsupportedException object.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>DConfigBeanVersionUnsupportedException</class-interface>
 			<method name = "DConfigBeanVersionUnsupportedException" return-type = "DConfigBeanVersionUnsupportedException">
 				<parameters>
@@ -1050,7 +1050,7 @@
 			<description>                            Creates new &lt;code>ConfigurationException&lt;/code> without detail message.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>ConfigurationException</class-interface>
 			<method name = "ConfigurationException" return-type = "ConfigurationException"/>
 		</assertion>
@@ -1059,7 +1059,7 @@
 			<description>                            Constructs an &lt;code>ConfigurationException&lt;/code> with the specified detail message.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>ConfigurationException</class-interface>
 			<method name = "ConfigurationException" return-type = "ConfigurationException">
 				<parameters>
@@ -1072,7 +1072,7 @@
 			<description>                            Creates new &lt;code>ClientExecuteException&lt;/code> without detail message.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>ClientExecuteException</class-interface>
 			<method name = "ClientExecuteException" return-type = "ClientExecuteException"/>
 		</assertion>
@@ -1081,7 +1081,7 @@
 			<description>                            Constructs an &lt;code>ClientExecuteException&lt;/code> with the  specified detail message.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>ClientExecuteException</class-interface>
 			<method name = "ClientExecuteException" return-type = "ClientExecuteException">
 				<parameters>
@@ -1094,7 +1094,7 @@
 			<description>                            Creates an new BeanNotFoundException object.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.exceptions</package>
+			<package>javax.enterprise.deploy.spi.exceptions</package>
 			<class-interface>BeanNotFoundException</class-interface>
 			<method name = "BeanNotFoundException" return-type = "BeanNotFoundException">
 				<parameters>
@@ -1108,7 +1108,7 @@
                               This does not indicate  whether such an attempt will be successful, only whether the  factory can handle the uri.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.factories</package>
+			<package>javax.enterprise.deploy.spi.factories</package>
 			<class-interface>DeploymentFactory</class-interface>
 			<method name = "handlesURI" return-type = "boolean">
 				<parameters>
@@ -1121,9 +1121,9 @@
 			<description>                            Return a &lt;tt>connected&lt;/tt> DeploymentManager instance.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.factories</package>
+			<package>javax.enterprise.deploy.spi.factories</package>
 			<class-interface>DeploymentFactory</class-interface>
-			<method name = "getDeploymentManager" return-type = "jakarta.enterprise.deploy.spi.DeploymentManager">
+			<method name = "getDeploymentManager" return-type = "javax.enterprise.deploy.spi.DeploymentManager">
 				<parameters>
 					<parameter>java.lang.String</parameter>
 					<parameter>java.lang.String</parameter>
@@ -1134,15 +1134,15 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>91</id>
 			<description>occurs when a          DeploymentManager could not be returned (server down,          unable to authenticate, etc).</description>
-			<package>jakarta.enterprise.deploy.spi.factories</package>
+			<package>javax.enterprise.deploy.spi.factories</package>
 			<class-interface>DeploymentFactory</class-interface>
-			<method name = "getDeploymentManager" return-type = "jakarta.enterprise.deploy.spi.DeploymentManager">
+			<method name = "getDeploymentManager" return-type = "javax.enterprise.deploy.spi.DeploymentManager">
 				<parameters>
 					<parameter>java.lang.String</parameter>
 					<parameter>java.lang.String</parameter>
 					<parameter>java.lang.String</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -1150,9 +1150,9 @@
 			<description>                            Return a &lt;tt>disconnected&lt;/tt> DeploymentManager instance.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.factories</package>
+			<package>javax.enterprise.deploy.spi.factories</package>
 			<class-interface>DeploymentFactory</class-interface>
-			<method name = "getDisconnectedDeploymentManager" return-type = "jakarta.enterprise.deploy.spi.DeploymentManager">
+			<method name = "getDisconnectedDeploymentManager" return-type = "javax.enterprise.deploy.spi.DeploymentManager">
 				<parameters>
 					<parameter>java.lang.String</parameter>
 				</parameters>
@@ -1161,13 +1161,13 @@
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>93</id>
 			<description>occurs if the           DeploymentManager could not be created.</description>
-			<package>jakarta.enterprise.deploy.spi.factories</package>
+			<package>javax.enterprise.deploy.spi.factories</package>
 			<class-interface>DeploymentFactory</class-interface>
-			<method name = "getDisconnectedDeploymentManager" return-type = "jakarta.enterprise.deploy.spi.DeploymentManager">
+			<method name = "getDisconnectedDeploymentManager" return-type = "javax.enterprise.deploy.spi.DeploymentManager">
 				<parameters>
 					<parameter>java.lang.String</parameter>
 				</parameters>
-				<throw>jakarta.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -1175,7 +1175,7 @@
 			<description>                            Provide a string with the name of this vendor's DeploymentManager.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.factories</package>
+			<package>javax.enterprise.deploy.spi.factories</package>
 			<class-interface>DeploymentFactory</class-interface>
 			<method name = "getDisplayName" return-type = "java.lang.String"/>
 		</assertion>
@@ -1184,7 +1184,7 @@
 			<description>                            Provide a string identifying version of this vendor's   DeploymentManager.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.factories</package>
+			<package>javax.enterprise.deploy.spi.factories</package>
 			<class-interface>DeploymentFactory</class-interface>
 			<method name = "getProductVersion" return-type = "java.lang.String"/>
 		</assertion>
@@ -1193,13 +1193,13 @@
 			<description>                            Creates a new object representing a deployment  progress event.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressEvent</class-interface>
 			<method name = "ProgressEvent" return-type = "ProgressEvent">
 				<parameters>
 					<parameter>java.lang.Object</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID</parameter>
-					<parameter>jakarta.enterprise.deploy.spi.status.DeploymentStatus</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID</parameter>
+					<parameter>javax.enterprise.deploy.spi.status.DeploymentStatus</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -1208,47 +1208,47 @@
 			<description>                            Retrieve the TargetModuleID for this event
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressEvent</class-interface>
-			<method name = "getTargetModuleID" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID"/>
+			<method name = "getTargetModuleID" return-type = "javax.enterprise.deploy.spi.TargetModuleID"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>98</id>
 			<description>                            Retrieve the status information.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressEvent</class-interface>
-			<method name = "getDeploymentStatus" return-type = "jakarta.enterprise.deploy.spi.status.DeploymentStatus"/>
+			<method name = "getDeploymentStatus" return-type = "javax.enterprise.deploy.spi.status.DeploymentStatus"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>99</id>
 			<description>                            Retrieve the status of this activity.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
-			<method name = "getDeploymentStatus" return-type = "jakarta.enterprise.deploy.spi.status.DeploymentStatus"/>
+			<method name = "getDeploymentStatus" return-type = "javax.enterprise.deploy.spi.status.DeploymentStatus"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>100</id>
 			<description>                            Retrieve the list of TargetModuleIDs successfully  processed or created by the associated DeploymentManager  operation.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
-			<method name = "getResultTargetModuleIDs" return-type = "jakarta.enterprise.deploy.spi.TargetModuleID[]"/>
+			<method name = "getResultTargetModuleIDs" return-type = "javax.enterprise.deploy.spi.TargetModuleID[]"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
 			<id>101</id>
 			<description>                            Return the ClientConfiguration object associated with the  TargetModuleID.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
-			<method name = "getClientConfiguration" return-type = "jakarta.enterprise.deploy.spi.status.ClientConfiguration">
+			<method name = "getClientConfiguration" return-type = "javax.enterprise.deploy.spi.status.ClientConfiguration">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.TargetModuleID</parameter>
+					<parameter>javax.enterprise.deploy.spi.TargetModuleID</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -1257,7 +1257,7 @@
 			<description>                            Tests whether the vendor supports a cancel   opertation for deployment activities.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
 			<method name = "isCancelSupported" return-type = "boolean"/>
 		</assertion>
@@ -1267,17 +1267,17 @@
                               An operation that has run to completion   cannot be cancelled.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
 			<method name = "cancel" return-type = "void"/>
 		</assertion>
 		<assertion required = "false" impl-spec = "false" status = "active" testable = "true">
 			<id>104</id>
 			<description>this optional command          is not supported by this implementation.</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
 			<method name = "cancel" return-type = "void">
-				<throw>jakarta.enterprise.deploy.spi.exceptions.OperationUnsupportedException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.OperationUnsupportedException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -1285,7 +1285,7 @@
 			<description>                            Tests whether the vendor supports a stop  opertation for deployment activities.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
 			<method name = "isStopSupported" return-type = "boolean"/>
 		</assertion>
@@ -1295,17 +1295,17 @@
                               The processed TargetModuleIDs must be returned by the   method getResultTargetModuleIDs.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
 			<method name = "stop" return-type = "void"/>
 		</assertion>
 		<assertion required = "false" impl-spec = "false" status = "active" testable = "true">
 			<id>107</id>
 			<description>this optional command          is not supported by this implementation.</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
 			<method name = "stop" return-type = "void">
-				<throw>jakarta.enterprise.deploy.spi.exceptions.OperationUnsupportedException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.OperationUnsupportedException</throw>
 			</method>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "true">
@@ -1314,11 +1314,11 @@
                             
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
 			<method name = "addProgressListener" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.status.ProgressListener</parameter>
+					<parameter>javax.enterprise.deploy.spi.status.ProgressListener</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -1328,11 +1328,11 @@
                             
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressObject</class-interface>
 			<method name = "removeProgressListener" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.status.ProgressListener</parameter>
+					<parameter>javax.enterprise.deploy.spi.status.ProgressListener</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -1341,11 +1341,11 @@
 			<description>                            Invoked when a deployment progress event occurs.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ProgressListener</class-interface>
 			<method name = "handleProgressEvent" return-type = "void">
 				<parameters>
-					<parameter>jakarta.enterprise.deploy.spi.status.ProgressEvent</parameter>
+					<parameter>javax.enterprise.deploy.spi.status.ProgressEvent</parameter>
 				</parameters>
 			</method>
 		</assertion>
@@ -1354,7 +1354,7 @@
 			<description>                            Retrieve the StateType value.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>DeploymentStatus</class-interface>
 			<method name = "getState" return-type = "StateType"/>
 		</assertion>
@@ -1363,7 +1363,7 @@
 			<description>                            Retrieve the deployment CommandType of this event.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>DeploymentStatus</class-interface>
 			<method name = "getCommand" return-type = "CommandType"/>
 		</assertion>
@@ -1372,7 +1372,7 @@
 			<description>                            Retrieve the deployment ActionType for this event.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>DeploymentStatus</class-interface>
 			<method name = "getAction" return-type = "ActionType"/>
 		</assertion>
@@ -1381,7 +1381,7 @@
 			<description>                            Retrieve any additional information about the  status of this event.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>DeploymentStatus</class-interface>
 			<method name = "getMessage" return-type = "java.lang.String"/>
 		</assertion>
@@ -1390,7 +1390,7 @@
 			<description>                            A convience method to report if the operation is  in the completed state.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>DeploymentStatus</class-interface>
 			<method name = "isCompleted" return-type = "boolean"/>
 		</assertion>
@@ -1399,7 +1399,7 @@
 			<description>                            A convience method to report if the operation is  in the failed state.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>DeploymentStatus</class-interface>
 			<method name = "isFailed" return-type = "boolean"/>
 		</assertion>
@@ -1408,7 +1408,7 @@
 			<description>                            A convience method to report if the operation is  in the running state.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>DeploymentStatus</class-interface>
 			<method name = "isRunning" return-type = "boolean"/>
 		</assertion>
@@ -1417,17 +1417,17 @@
 			<description>                            This method performs an exec and starts the   application client running in another process.
                         
 			</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ClientConfiguration</class-interface>
 			<method name = "execute" return-type = "void"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" status = "active" testable = "false">
 			<id>119</id>
 			<description>when the configuration          is incomplete.</description>
-			<package>jakarta.enterprise.deploy.spi.status</package>
+			<package>javax.enterprise.deploy.spi.status</package>
 			<class-interface>ClientConfiguration</class-interface>
 			<method name = "execute" return-type = "void">
-				<throw>jakarta.enterprise.deploy.spi.exceptions.ClientExecuteException</throw>
+				<throw>javax.enterprise.deploy.spi.exceptions.ClientExecuteException</throw>
 			</method>
 		</assertion>
 	</assertions>

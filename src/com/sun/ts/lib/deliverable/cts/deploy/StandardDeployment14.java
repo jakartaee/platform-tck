@@ -16,8 +16,8 @@
 
 package com.sun.ts.lib.deliverable.cts.deploy;
 
-import jakarta.enterprise.deploy.spi.*;
-import jakarta.enterprise.deploy.shared.*;
+import javax.enterprise.deploy.spi.*;
+import javax.enterprise.deploy.shared.*;
 
 import java.io.*;
 import java.util.*;

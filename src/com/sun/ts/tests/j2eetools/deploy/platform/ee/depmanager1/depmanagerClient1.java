@@ -39,11 +39,11 @@ import java.rmi.RemoteException;
 import jakarta.ejb.*;
 
 // J2EE Deployment API's
-import jakarta.enterprise.deploy.spi.DeploymentManager;
-import jakarta.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException;
-import jakarta.enterprise.deploy.shared.factories.DeploymentFactoryManager;
-import jakarta.enterprise.deploy.spi.factories.DeploymentFactory;
-import jakarta.enterprise.deploy.shared.ModuleType;
+import javax.enterprise.deploy.spi.DeploymentManager;
+import javax.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException;
+import javax.enterprise.deploy.shared.factories.DeploymentFactoryManager;
+import javax.enterprise.deploy.spi.factories.DeploymentFactory;
+import javax.enterprise.deploy.shared.ModuleType;
 
 // common test imports
 import com.sun.ts.lib.deliverable.cts.deploy.*;
