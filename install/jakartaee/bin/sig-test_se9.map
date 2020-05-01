@@ -117,7 +117,7 @@ javax.el=3.0_se8
 
 # JSF 2.3 (Faces) 
 # (This is JSR-344)
-javax.faces=2.3_se8
+jakarta.faces=2.3_se8
 
 # JSTL 1.2 
 javax.servlet.jsp.jstl=1.2_se8

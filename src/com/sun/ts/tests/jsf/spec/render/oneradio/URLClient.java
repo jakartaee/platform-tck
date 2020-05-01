@@ -56,7 +56,7 @@ public class URLClient extends BaseHtmlUnitClient {
   /**
    * @testName: oneradioRenderEncodeTest
    * @assertion_ids: PENDING
-   * @test_Strategy: Validate the rendering of javax.faces.SelectOne.Radio case
+   * @test_Strategy: Validate the rendering of jakarta.faces.SelectOne.Radio case
    *                 1: - Only the id attribute is defined and two radio
    *                 buttons. Verify that - the correct number of radio's are
    *                 rendered - none of the radio's are checked - the value

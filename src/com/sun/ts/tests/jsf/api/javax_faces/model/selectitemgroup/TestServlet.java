@@ -24,8 +24,8 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.faces.model.SelectItemGroup;
-import javax.faces.model.SelectItem;
+import jakarta.faces.model.SelectItemGroup;
+import jakarta.faces.model.SelectItem;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 

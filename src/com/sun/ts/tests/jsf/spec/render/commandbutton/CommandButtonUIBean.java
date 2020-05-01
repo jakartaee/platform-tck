@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsf.spec.render.commandbutton;
 
-import javax.faces.component.html.HtmlCommandButton;
+import jakarta.faces.component.html.HtmlCommandButton;
 
 public class CommandButtonUIBean {
 

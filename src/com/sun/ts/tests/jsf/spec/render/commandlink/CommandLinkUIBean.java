@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsf.spec.render.commandlink;
 
-import javax.faces.component.html.HtmlCommandLink;
+import jakarta.faces.component.html.HtmlCommandLink;
 
 public class CommandLinkUIBean {
 

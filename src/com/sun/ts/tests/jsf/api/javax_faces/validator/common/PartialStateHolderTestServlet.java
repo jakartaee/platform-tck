@@ -22,8 +22,8 @@ package com.sun.ts.tests.jsf.api.javax_faces.validator.common;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.component.PartialStateHolder;
-import javax.faces.component.StateHolder;
+import jakarta.faces.component.PartialStateHolder;
+import jakarta.faces.component.StateHolder;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

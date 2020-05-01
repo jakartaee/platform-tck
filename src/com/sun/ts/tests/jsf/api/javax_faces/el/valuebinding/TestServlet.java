@@ -24,8 +24,8 @@ import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 import com.sun.ts.tests.jsf.api.javax_faces.el.common.TestBean;
 
-import javax.faces.el.PropertyNotFoundException;
-import javax.faces.el.ValueBinding;
+import jakarta.faces.el.PropertyNotFoundException;
+import jakarta.faces.el.ValueBinding;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

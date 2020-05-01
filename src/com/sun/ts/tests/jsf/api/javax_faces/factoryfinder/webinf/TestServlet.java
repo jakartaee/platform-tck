@@ -20,14 +20,14 @@
 package com.sun.ts.tests.jsf.api.javax_faces.factoryfinder.webinf;
 
 import com.sun.ts.tests.jsf.common.servlets.FactoryTCKServlet;
-import javax.faces.FactoryFinder;
+import jakarta.faces.FactoryFinder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.faces.context.FacesContextFactory;
+import jakarta.faces.context.FacesContextFactory;
 
 public class TestServlet extends FactoryTCKServlet {
 

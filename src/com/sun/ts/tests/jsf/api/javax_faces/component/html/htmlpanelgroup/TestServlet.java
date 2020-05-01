@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.component.html.htmlpanelgroup;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.html.HtmlPanelGroup;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.html.HtmlPanelGroup;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
@@ -43,7 +43,7 @@ public final class TestServlet
    */
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Group");
+    setRendererType("jakarta.faces.Group");
     setRendersChildren(Boolean.TRUE);
     setAttributeNames(attrNames);
   }

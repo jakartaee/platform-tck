@@ -33,9 +33,9 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import jakarta.el.ExpressionFactory;
-import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
-import javax.faces.event.PhaseId;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.event.PhaseId;
 import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspFactory;
 

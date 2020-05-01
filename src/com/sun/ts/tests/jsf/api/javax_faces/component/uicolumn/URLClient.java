@@ -21,9 +21,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.uicolumn;
 
 import java.io.PrintWriter;
 
-import javax.faces.component.NamingContainer;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
@@ -74,7 +74,7 @@ public class URLClient extends BaseUIComponentClient {
    * @assertion_ids: JSF:JAVADOC:488; JSF:JAVADOC:584; JSF:JAVADOC:455
    * @test_Strategy: Verify that when encodeBegin() is called that a call is
    *                 made to
-   *                 pushComponentToEL(javax.faces.context.FacesContext).
+   *                 pushComponentToEL(jakarta.faces.context.FacesContext).
    */
   public void uiComponentEncodeBeginELTest() throws EETest.Fault {
     super.uiComponentEncodeBeginELTest();
@@ -139,7 +139,7 @@ public class URLClient extends BaseUIComponentClient {
    * @assertion_ids: JSF:JAVADOC:494; JSF:JAVADOC:590; JSF:JAVADOC:455
    * @test_Strategy: Verify that when encodeEnd() is called on the component
    *                 under test, it calls
-   *                 popComponentFromEL(javax.faces.context.FacesContext).
+   *                 popComponentFromEL(jakarta.faces.context.FacesContext).
    */
   public void uiComponentEncodeEndELTest() throws EETest.Fault {
     super.uiComponentEncodeEndELTest();

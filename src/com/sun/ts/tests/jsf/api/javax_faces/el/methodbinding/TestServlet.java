@@ -28,10 +28,10 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.faces.application.Application;
-import javax.faces.el.MethodBinding;
-import javax.faces.el.EvaluationException;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.Application;
+import jakarta.faces.el.MethodBinding;
+import jakarta.faces.el.EvaluationException;
+import jakarta.faces.context.FacesContext;
 
 import java.io.IOException;
 import java.io.PrintWriter;

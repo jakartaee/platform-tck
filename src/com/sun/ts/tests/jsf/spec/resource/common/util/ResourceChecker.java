@@ -20,10 +20,10 @@
 package com.sun.ts.tests.jsf.spec.resource.common.util;
 
 import java.io.PrintWriter;
-import javax.faces.application.Resource;
+import jakarta.faces.application.Resource;
 import java.io.InputStream;
 import java.io.StringWriter;
-import javax.faces.application.ResourceHandler;
+import jakarta.faces.application.ResourceHandler;
 
 public class ResourceChecker {
   private static final String NL = System.getProperty("line.separator", "\n");

@@ -29,10 +29,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspFactory;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-import javax.faces.application.Application;
-import javax.faces.el.ValueBinding;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ExternalContext;
+import jakarta.faces.application.Application;
+import jakarta.faces.el.ValueBinding;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ExternalContext;
 
 import java.io.IOException;
 import java.io.PrintWriter;

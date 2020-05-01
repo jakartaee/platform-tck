@@ -21,11 +21,11 @@
 package com.sun.ts.tests.jsf.api.javax_faces.event.prerenderviewevent;
 
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseComponentSystemEventTestServlet;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.event.ComponentSystemEvent;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.event.ComponentSystemEvent;
 
-import javax.faces.event.PreRenderViewEvent;
+import jakarta.faces.event.PreRenderViewEvent;
 
 public class TestServlet extends BaseComponentSystemEventTestServlet {
 

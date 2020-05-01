@@ -22,8 +22,8 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.uiselectitems;
 import com.sun.ts.tests.jsf.api.javax_faces.component.common.BaseComponentTestServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UISelectItems;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UISelectItems;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

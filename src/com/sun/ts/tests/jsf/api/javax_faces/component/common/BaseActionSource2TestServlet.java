@@ -24,7 +24,7 @@ import java.io.PrintWriter;
 
 import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
-import javax.faces.component.ActionSource2;
+import jakarta.faces.component.ActionSource2;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

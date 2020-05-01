@@ -19,8 +19,8 @@ package com.sun.ts.tests.securityapi.ham.customform.base;
 import static javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters.withParams;
 
 import jakarta.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import javax.security.enterprise.AuthenticationStatus;

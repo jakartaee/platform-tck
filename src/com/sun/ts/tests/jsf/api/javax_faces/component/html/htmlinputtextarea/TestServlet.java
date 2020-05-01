@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.component.html.htmlinputtextarea;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.html.HtmlInputTextarea;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.html.HtmlInputTextarea;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
@@ -47,7 +47,7 @@ public final class TestServlet
    */
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Textarea");
+    setRendererType("jakarta.faces.Textarea");
     setAttributeNames(attrNames);
   }
 

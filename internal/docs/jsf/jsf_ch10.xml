@@ -133,8 +133,8 @@
     <id>__NUMBER__</id>
     <description>
          After causing the top level component to be instantiated, the runtime
-         must create a UIComponent with component- family of javax.faces.Panel
-         and renderer-type javax.faces.Group to be installed as a facet of the
+         must create a UIComponent with component- family of jakarta.faces.Panel
+         and renderer-type jakarta.faces.Group to be installed as a facet of the
          top level component under the facet name
          UIComponent.COMPOSITE_FACET_NAME.
     </description>
@@ -335,7 +335,7 @@
     <id>__NUMBER__</id>
     <description>
         The "Description" tag handler must create an instance of
-        javax.faces.component.behavior.AjaxBehavior instance using the tag
+        jakarta.faces.component.behavior.AjaxBehavior instance using the tag
         attribute values.
     </description>
     <location chapter="10" section="4.1.1"/>

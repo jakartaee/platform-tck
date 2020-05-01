@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.view.Location;
+import jakarta.faces.view.Location;
 
 public class TestServlet extends HttpTCKServlet {
 

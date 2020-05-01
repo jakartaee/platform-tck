@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.jsf.api.javax_faces.component.uiviewroot;
 
-import javax.faces.component.UIOutput;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
+import jakarta.faces.component.UIOutput;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
 
 public class CustomOutput extends UIOutput {
 

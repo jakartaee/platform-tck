@@ -22,7 +22,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.el.methodnotfoundexception;
 
 import com.sun.ts.tests.jsf.api.javax_faces.el.common.BaseELExceptionTestServlet;
 
-import javax.faces.el.MethodNotFoundException;
+import jakarta.faces.el.MethodNotFoundException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 

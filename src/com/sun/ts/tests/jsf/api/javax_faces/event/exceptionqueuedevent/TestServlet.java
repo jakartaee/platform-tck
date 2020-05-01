@@ -21,9 +21,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.event.exceptionqueuedevent;
 
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseExceptionQueuedEventTestServlet;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.ExceptionQueuedEvent;
-import javax.faces.event.ExceptionQueuedEventContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.ExceptionQueuedEvent;
+import jakarta.faces.event.ExceptionQueuedEventContext;
 
 public class TestServlet extends BaseExceptionQueuedEventTestServlet {
 

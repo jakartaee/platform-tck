@@ -33,7 +33,7 @@
                         includes="${tests.pkg.dir}/jsf/common/factories/*TCKContextFactory.class"/>
             <zipfileset dir="."
                         includes="TCKContextFactory"
-                        fullpath="META-INF/services/javax.faces.context.FacesContextFactory"/>
+                        fullpath="META-INF/services/jakarta.faces.context.FacesContextFactory"/>
         </jar>
         <ts.war archivename="${app.name}"
                 descriptor="${app.name}_web.xml">

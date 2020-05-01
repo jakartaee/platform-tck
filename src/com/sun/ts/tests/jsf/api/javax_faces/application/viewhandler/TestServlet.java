@@ -29,15 +29,15 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.faces.FactoryFinder;
-import javax.faces.application.Application;
-import javax.faces.application.ViewHandler;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.context.FacesContextFactory;
-import javax.faces.lifecycle.Lifecycle;
-import javax.faces.lifecycle.LifecycleFactory;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.ViewHandler;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.lifecycle.Lifecycle;
+import jakarta.faces.lifecycle.LifecycleFactory;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -395,7 +395,7 @@ public final class TestServlet extends HttpTCKServlet {
     ExternalContext ec = (ExternalContext) context.getExternalContext();
 
     String golden = "Thomas";
-    ec.getSessionMap().put("javax.faces.request.charset", golden);
+    ec.getSessionMap().put("jakarta.faces.request.charset", golden);
 
     String result = handler.calculateCharacterEncoding(context);
 

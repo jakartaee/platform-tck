@@ -23,7 +23,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.application.viewexpiredex;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.application.ViewExpiredException;
+import jakarta.faces.application.ViewExpiredException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

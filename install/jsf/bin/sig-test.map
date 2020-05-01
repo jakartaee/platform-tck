@@ -21,4 +21,4 @@
 # package that should be tested by the signature tests.
 ###############################################################
 
-javax.faces=2.3_se8
+jakarta.faces=2.3_se8

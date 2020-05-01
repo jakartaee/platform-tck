@@ -1,35 +1,35 @@
-** `javax.faces`
+** `jakarta.faces`
 
-** `javax.faces.application`
+** `jakarta.faces.application`
 
-** `javax.faces.bean`
+** `jakarta.faces.bean`
 
-** `javax.faces.component`
+** `jakarta.faces.component`
 
-** `javax.faces.component.behavior`
+** `jakarta.faces.component.behavior`
 
-** `javax.faces.component.html`
+** `jakarta.faces.component.html`
 
-** `javax.faces.component.visit`
+** `jakarta.faces.component.visit`
 
-** `javax.faces.context`
+** `jakarta.faces.context`
 
-** `javax.faces.convert`
+** `jakarta.faces.convert`
 
-** `javax.faces.el`
+** `jakarta.faces.el`
 
-** `javax.faces.event`
+** `jakarta.faces.event`
 
-** `javax.faces.lifecycle`
+** `jakarta.faces.lifecycle`
 
-** `javax.faces.model`
+** `jakarta.faces.model`
 
-** `javax.faces.render`
+** `jakarta.faces.render`
 
-** `javax.faces.validator`
+** `jakarta.faces.validator`
 
-** `javax.faces.view`
+** `jakarta.faces.view`
 
-** `javax.faces.view.facelets`
+** `jakarta.faces.view.facelets`
 
-** `javax.faces.webapp`
+** `jakarta.faces.webapp`

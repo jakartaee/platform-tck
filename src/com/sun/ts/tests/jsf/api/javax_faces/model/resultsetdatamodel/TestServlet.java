@@ -25,8 +25,8 @@ import com.sun.ts.tests.jsf.api.javax_faces.model.common.TCKResultSet;
 import com.sun.ts.tests.jsf.api.javax_faces.model.common.TestBean;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.model.DataModel;
-import javax.faces.model.ResultSetDataModel;
+import jakarta.faces.model.DataModel;
+import jakarta.faces.model.ResultSetDataModel;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

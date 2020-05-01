@@ -77,7 +77,7 @@ public class URLClient extends BaseUIComponentClient {
    * @assertion_ids: JSF:JAVADOC:488; JSF:JAVADOC:584
    * @test_Strategy: Verify that when encodeBegin() is called that a call is
    *                 made to
-   *                 pushComponentToEL(javax.faces.context.FacesContext).
+   *                 pushComponentToEL(jakarta.faces.context.FacesContext).
    * 
    * @since 2.0
    */
@@ -156,7 +156,7 @@ public class URLClient extends BaseUIComponentClient {
    * @assertion_ids: JSF:JAVADOC:494; JSF:JAVADOC:590
    * @test_Strategy: Verify that when encodeEnd() is called on the component
    *                 under test, it calls
-   *                 popComponentFromEL(javax.faces.context.FacesContext).
+   *                 popComponentFromEL(jakarta.faces.context.FacesContext).
    */
   public void uiComponentEncodeEndELTest() throws EETest.Fault {
     super.uiComponentEncodeEndELTest();

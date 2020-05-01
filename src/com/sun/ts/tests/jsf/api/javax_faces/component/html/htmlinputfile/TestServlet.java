@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.component.html.htmlinputfile;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.html.HtmlInputFile;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.html.HtmlInputFile;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -43,7 +43,7 @@ public final class TestServlet
    */
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.File");
+    setRendererType("jakarta.faces.File");
   }
 
   /**

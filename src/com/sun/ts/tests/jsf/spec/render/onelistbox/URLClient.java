@@ -54,7 +54,7 @@ public class URLClient extends BaseHtmlUnitClient {
   /**
    * @testName: oneListboxRenderEncodeTest
    * @assertion_ids: PENDING
-   * @test_Strategy: Validate the rendering of javax.faces.SelectOne.Listbox
+   * @test_Strategy: Validate the rendering of jakarta.faces.SelectOne.Listbox
    *                 case 1: - Only the id attribute is defined and two options.
    *                 Verify that - the correct number of options are rendered -
    *                 none of the options is selected - the value attributes for

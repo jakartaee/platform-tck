@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsf.spec.render.graphic;
 
-import javax.faces.component.html.HtmlGraphicImage;
+import jakarta.faces.component.html.HtmlGraphicImage;
 
 public class GraphicUIBean {
 

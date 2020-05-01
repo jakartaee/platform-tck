@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.model.common;
 
-import javax.faces.component.UIInput;
-import javax.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UIComponent;
 
 import java.util.Collection;
 import java.util.ArrayList;

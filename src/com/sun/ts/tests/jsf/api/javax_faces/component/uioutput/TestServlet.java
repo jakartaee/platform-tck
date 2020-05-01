@@ -21,16 +21,16 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.uioutput;
 
 import com.sun.ts.tests.jsf.api.javax_faces.component.common.BaseComponentTestServlet;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIOutput;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.PostAddToViewEvent;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ComponentSystemEventListener;
-import javax.faces.event.ListenerFor;
+import jakarta.faces.application.ResourceDependencies;
+import jakarta.faces.application.ResourceDependency;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIOutput;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.PostAddToViewEvent;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ComponentSystemEventListener;
+import jakarta.faces.event.ListenerFor;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
@@ -49,7 +49,7 @@ public class TestServlet extends BaseComponentTestServlet {
   @Override
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Text");
+    setRendererType("jakarta.faces.Text");
   }
 
   /**

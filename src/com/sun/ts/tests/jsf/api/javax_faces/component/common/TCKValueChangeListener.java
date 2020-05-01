@@ -22,9 +22,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.common;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.event.PhaseId;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.event.ValueChangeListener;
+import jakarta.faces.event.PhaseId;
+import jakarta.faces.event.ValueChangeEvent;
+import jakarta.faces.event.ValueChangeListener;
 
 public class TCKValueChangeListener implements ValueChangeListener {
 

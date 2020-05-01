@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jsf.spec.render.common;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 
 public class MessageBean {
   private static String INFO_SUMMARY = "INFO: Summary Message";

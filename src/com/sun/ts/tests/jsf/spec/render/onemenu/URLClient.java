@@ -55,7 +55,7 @@ public class URLClient extends BaseHtmlUnitClient {
   /**
    * @testName: oneMenuRenderEncodeTest
    * @assertion_ids: PENDING
-   * @test_Strategy: Validate the rendering of javax.faces.SelectOne.Menu case
+   * @test_Strategy: Validate the rendering of jakarta.faces.SelectOne.Menu case
    *                 1: - Only the id attribute is defined and two options.
    *                 Verify that - the correct number of options are rendered -
    *                 one option is selected.(default) - the value attributes for

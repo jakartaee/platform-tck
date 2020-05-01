@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jsf.spec.render.inputtext;
 
-import javax.faces.component.html.HtmlInputText;
+import jakarta.faces.component.html.HtmlInputText;
 
 public class InputTextUIBean {
 

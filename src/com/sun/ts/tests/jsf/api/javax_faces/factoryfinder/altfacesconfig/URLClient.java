@@ -53,7 +53,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSF:JAVADOC:6; JSF:JAVADOC:7; JSF:JAVADOC:14
    * 
    * @test_Strategy: Validate that If the JavaServer Faces configuration files
-   * named by the javax.faces.CONFIG_FILES ServletContext init parameter contain
+   * named by the jakarta.faces.CONFIG_FILES ServletContext init parameter contain
    * any factory entries of the given factory class name.
    * 
    */

@@ -60,7 +60,7 @@ public class URLClient extends BaseHtmlUnitClient {
    * 
    * @assertion_ids: PENDING
    * 
-   * @test_Strategy: Validate the rendering of javax.faces.SelectMany.Checkbox
+   * @test_Strategy: Validate the rendering of jakarta.faces.SelectMany.Checkbox
    *                 case 1: - Only the id attribute is defined and two
    *                 checkboxes. Verify that - the correct number of checkboxes
    *                 are rendered - none of the checkboxes are checked - the

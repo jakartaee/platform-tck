@@ -16,9 +16,9 @@
 
 --%>
 
-<%@ page import="javax.faces.application.ViewHandler" %>
-<%@ page import="javax.faces.context.ExternalContext" %>
-<%@ page import="javax.faces.context.FacesContext" %>
+<%@ page import="jakarta.faces.application.ViewHandler" %>
+<%@ page import="jakarta.faces.context.ExternalContext" %>
+<%@ page import="jakarta.faces.context.FacesContext" %>
 
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>

@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jsf.common.navigation;
 
-import javax.faces.application.NavigationHandler;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.NavigationHandler;
+import jakarta.faces.context.FacesContext;
 
 public class TCKNavigationHandler extends NavigationHandler {
 

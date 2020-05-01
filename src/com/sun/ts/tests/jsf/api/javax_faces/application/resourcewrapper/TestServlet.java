@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 
-import javax.faces.application.Resource;
+import jakarta.faces.application.Resource;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +34,8 @@ import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 import java.util.Map;
-import javax.faces.application.ResourceHandler;
-import javax.faces.application.ResourceWrapper;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.application.ResourceWrapper;
 
 public class TestServlet extends HttpTCKServlet {
 
@@ -46,7 +46,7 @@ public class TestServlet extends HttpTCKServlet {
 
   private static final String LIBRARY_NAME = "images";
 
-  private static final String RESOURCE_PATH = "/jsf_appl_resourcewrapper_web/TestServlet/javax.faces.resource/"
+  private static final String RESOURCE_PATH = "/jsf_appl_resourcewrapper_web/TestServlet/jakarta.faces.resource/"
       + RESOURCE_NAME;
 
   public void init(ServletConfig config) throws ServletException {

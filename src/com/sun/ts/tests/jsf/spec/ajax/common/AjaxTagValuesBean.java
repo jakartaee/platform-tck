@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jsf.spec.ajax.common;
 
-import javax.faces.event.ActionEvent;
+import jakarta.faces.event.ActionEvent;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Arrays;

@@ -24,10 +24,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
-import javax.faces.application.Application;
-import javax.faces.event.PostConstructCustomScopeEvent;
-import javax.faces.event.ScopeContext;
-import javax.faces.event.SystemEvent;
+import jakarta.faces.application.Application;
+import jakarta.faces.event.PostConstructCustomScopeEvent;
+import jakarta.faces.event.ScopeContext;
+import jakarta.faces.event.SystemEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jsf.common.statemanager;
 
-import javax.faces.application.StateManager;
-import javax.faces.application.StateManagerWrapper;
+import jakarta.faces.application.StateManager;
+import jakarta.faces.application.StateManagerWrapper;
 
 public class TCKStateManager extends StateManagerWrapper {
 

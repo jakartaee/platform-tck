@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.jsf.spec.render.common;
 
-import javax.faces.component.html.HtmlOutputLabel;
-import javax.faces.component.html.HtmlOutputLink;
-import javax.faces.component.html.HtmlOutputText;
+import jakarta.faces.component.html.HtmlOutputLabel;
+import jakarta.faces.component.html.HtmlOutputLink;
+import jakarta.faces.component.html.HtmlOutputText;
 
 public class OutputUIComponentBean {
 

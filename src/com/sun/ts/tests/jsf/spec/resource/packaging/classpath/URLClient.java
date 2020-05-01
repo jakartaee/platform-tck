@@ -179,7 +179,7 @@ public final class URLClient extends AbstractUrlClient {
    * @testName: jsfJsDoesExistTest
    * @assertion_ids: JSF:SPEC:225; JSF:SPEC:226
    * @test_Strategy: Validate that we are able to get the Resource jsf.js from
-   *                 the libarary javax.faces.
+   *                 the libarary jakarta.faces.
    * 
    * @since 2.2
    */

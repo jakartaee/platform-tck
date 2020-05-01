@@ -28,11 +28,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.faces.lifecycle.Lifecycle;
-import javax.faces.lifecycle.LifecycleFactory;
-import javax.faces.FactoryFinder;
-import javax.faces.context.FacesContextFactory;
-import javax.faces.context.FacesContext;
+import jakarta.faces.lifecycle.Lifecycle;
+import jakarta.faces.lifecycle.LifecycleFactory;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.context.FacesContext;
 
 import java.io.IOException;
 import java.io.PrintWriter;

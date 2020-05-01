@@ -25,15 +25,15 @@ import java.io.PrintWriter;
 
 import jakarta.el.ExpressionFactory;
 import jakarta.el.ValueExpression;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIInput;
-import javax.faces.component.UISelectBoolean;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.el.MethodBinding;
-import javax.faces.event.PhaseId;
-import javax.faces.event.ValueChangeEvent;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UISelectBoolean;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.el.MethodBinding;
+import jakarta.faces.event.PhaseId;
+import jakarta.faces.event.ValueChangeEvent;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -60,7 +60,7 @@ public class TestServlet
   @Override
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Checkbox");
+    setRendererType("jakarta.faces.Checkbox");
   }
 
   /**

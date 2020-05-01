@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.component.common;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.Validator;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.Validator;
 
 public class TCKValidator implements Validator {
 

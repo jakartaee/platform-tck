@@ -65,7 +65,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.Column”.
+                “jakarta.faces.Column”.
             </description>
             <location chapter="4" section="1.1.2"/>
         </assertion>
@@ -95,7 +95,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.Command”.
+                “jakarta.faces.Command”.
             </description>
             <location chapter="4" section="1.2.2"/>
         </assertion>
@@ -104,7 +104,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Button”.
+                set to “jakarta.faces.Button”.
             </description>
             <location chapter="4" section="1.2.2"/>
         </assertion>
@@ -124,7 +124,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.Data”.
+                “jakarta.faces.Data”.
             </description>
             <location chapter="4" section="1.3.2"/>
         </assertion>
@@ -133,7 +133,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Table”.
+                set to “jakarta.faces.Table”.
             </description>
             <location chapter="4" section="1.3.2"/>
         </assertion>
@@ -252,7 +252,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.Form”.
+                “jakarta.faces.Form”.
             </description>
             <location chapter="4" section="1.4.2"/>
         </assertion>
@@ -261,7 +261,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Form”.
+                set to “jakarta.faces.Form”.
             </description>
             <location chapter="4" section="1.4.2"/>
         </assertion>
@@ -324,7 +324,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.Graphic”.
+                “jakarta.faces.Graphic”.
             </description>
             <location chapter="4" section="1.5.2"/>
         </assertion>
@@ -333,7 +333,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Image”.
+                set to “jakarta.faces.Image”.
             </description>
             <location chapter="4" section="1.5.2"/>
         </assertion>
@@ -353,7 +353,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.Input”.
+                “jakarta.faces.Input”.
             </description>
             <location chapter="4" section="1.6.2"/>
         </assertion>
@@ -362,7 +362,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Text”.
+                set to “jakarta.faces.Text”.
             </description>
             <location chapter="4" section="1.6.2"/>
         </assertion>
@@ -405,7 +405,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.Message”.
+                “jakarta.faces.Message”.
             </description>
             <location chapter="4" section="1.7.2"/>
         </assertion>
@@ -414,7 +414,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Message”.
+                set to “jakarta.faces.Message”.
             </description>
             <location chapter="4" section="1.7.2"/>
         </assertion>
@@ -434,7 +434,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.Output”.
+                “jakarta.faces.Output”.
             </description>
             <location chapter="4" section="1.9.2"/>
         </assertion>
@@ -443,7 +443,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Text”.
+                set to “jakarta.faces.Text”.
             </description>
             <location chapter="4" section="1.9.2"/>
         </assertion>
@@ -463,7 +463,7 @@
             <id>__NUMBER__.1</id>
             <description >
                 The default value of the family property must be set to 
-                “javax.faces.Panel”.
+                “jakarta.faces.Panel”.
             </description>
             <location chapter="4" section="1.10.2"/>
         </assertion>
@@ -492,7 +492,7 @@
             <id>__NUMBER__.1</id>
             <description >
                 The default value of the family property must be set to 
-                “javax.faces.Parameter”.
+                “jakarta.faces.Parameter”.
             </description>
             <location chapter="4" section="1.11.2"/>
         </assertion>
@@ -521,7 +521,7 @@
             <id>__NUMBER__.1</id>
             <description >
                 The default value of the family property must be set to
-                “javax.faces.SelectBoolean”.
+                “jakarta.faces.SelectBoolean”.
             </description>
             <location chapter="4" section="1.12.2"/>
         </assertion>
@@ -530,7 +530,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Checkbox”.
+                set to “jakarta.faces.Checkbox”.
             </description>
             <location chapter="4" section="1.12.2"/>
         </assertion>
@@ -550,7 +550,7 @@
             <id>__NUMBER__.1</id>
             <description >
                 The default value of the family property must be set to 
-                “javax.faces.SelectItem”.
+                “jakarta.faces.SelectItem”.
             </description>
             <location chapter="4" section="1.13.2"/>
         </assertion>
@@ -611,7 +611,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to
-                “javax.faces.SelectItems”.
+                “jakarta.faces.SelectItems”.
             </description>
             <location chapter="4" section="1.14.2"/>
         </assertion>
@@ -666,7 +666,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to
-                “javax.faces.SelectOne”.
+                “jakarta.faces.SelectOne”.
             </description>
             <location chapter="4" section="1.16.2"/>
         </assertion>
@@ -675,7 +675,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to “javax.faces.Menu”.
+                set to “jakarta.faces.Menu”.
             </description>
             <location chapter="4" section="1.16.2"/>
         </assertion>
@@ -705,7 +705,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 The default value of the family property must be set to 
-                “javax.faces.ViewRoot”.
+                “jakarta.faces.ViewRoot”.
             </description>
             <location chapter="4" section="1.17.3"/>
         </assertion>
@@ -725,7 +725,7 @@
     <id>__NUMBER__</id>
     <description>
         The JSF implementation must provide concrete implementations of
-        DataModel (in the javax.faces.model package) for the following 
+        DataModel (in the jakarta.faces.model package) for the following 
         data wrapping scenarios:
     </description>
     <location chapter="4" section="2.1.4"/>

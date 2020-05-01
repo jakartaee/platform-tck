@@ -23,17 +23,17 @@ package com.sun.ts.tests.jsf.api.javax_faces.event.postrestorestateevent;
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseComponentSystemEventTestServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.event.PostRestoreStateEvent;
-import javax.faces.event.ComponentSystemEvent;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.event.PostRestoreStateEvent;
+import jakarta.faces.event.ComponentSystemEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.faces.component.UIInput;
+import jakarta.faces.component.UIInput;
 
 public class TestServlet extends BaseComponentSystemEventTestServlet {
 

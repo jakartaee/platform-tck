@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jsf.common.listener;
 
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ActionListener;
-import javax.faces.event.PhaseId;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.event.ActionListener;
+import jakarta.faces.event.PhaseId;
 
 public class TCKActionListener implements ActionListener {
 

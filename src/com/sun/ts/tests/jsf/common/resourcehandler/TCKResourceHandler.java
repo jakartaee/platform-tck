@@ -18,9 +18,9 @@ package com.sun.ts.tests.jsf.common.resourcehandler;
 
 import java.io.IOException;
 
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceHandler;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.context.FacesContext;
 
 public class TCKResourceHandler extends ResourceHandler {
 

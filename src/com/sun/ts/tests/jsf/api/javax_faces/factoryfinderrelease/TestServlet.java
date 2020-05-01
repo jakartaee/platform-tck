@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.FactoryFinder;
+import jakarta.faces.FactoryFinder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

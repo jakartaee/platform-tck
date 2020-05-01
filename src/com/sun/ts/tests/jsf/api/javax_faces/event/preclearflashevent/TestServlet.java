@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsf.api.javax_faces.event.preclearflashevent;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.event.PreClearFlashEvent;
-import javax.faces.event.SystemEvent;
+import jakarta.faces.event.PreClearFlashEvent;
+import jakarta.faces.event.SystemEvent;
 
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseSystemEventTestServlet;
 

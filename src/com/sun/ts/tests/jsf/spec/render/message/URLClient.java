@@ -57,7 +57,7 @@ public class URLClient extends BaseHtmlUnitClient {
   /**
    * @testName: messageRenderEncodeTest
    * @assertion_ids: PENDING
-   * @test_Strategy: Validate the rendering of javax.faces.Message
+   * @test_Strategy: Validate the rendering of jakarta.faces.Message
    * 
    *                 case 1: - The id, showSummary, showDetail, and title
    *                 attributes are defined. Verifiy that we - render the

@@ -23,7 +23,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.application.protectedviewex;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.application.ProtectedViewException;
+import jakarta.faces.application.ProtectedViewException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

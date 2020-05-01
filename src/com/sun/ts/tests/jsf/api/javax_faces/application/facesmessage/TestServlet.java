@@ -22,7 +22,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.application.facesmessage;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.application.FacesMessage;
+import jakarta.faces.application.FacesMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

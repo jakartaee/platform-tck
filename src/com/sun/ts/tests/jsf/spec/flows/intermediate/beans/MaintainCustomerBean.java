@@ -21,8 +21,8 @@ package com.sun.ts.tests.jsf.spec.flows.intermediate.beans;
 
 import java.io.Serializable;
 import java.util.Map;
-import javax.faces.context.FacesContext;
-import javax.faces.flow.FlowHandler;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.flow.FlowHandler;
 
 public class MaintainCustomerBean implements Serializable {
   public MaintainCustomerBean() {

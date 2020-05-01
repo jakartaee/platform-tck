@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.spec.resource.common.util.ResourceChecker;
-import javax.faces.application.ResourceHandler;
+import jakarta.faces.application.ResourceHandler;
 
 public class TestServlet extends HttpTCKServlet {
 

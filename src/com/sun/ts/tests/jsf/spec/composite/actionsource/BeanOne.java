@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.jsf.spec.composite.actionsource;
 
-import javax.faces.event.ActionListener;
-import javax.faces.event.ActionEvent;
-import javax.faces.context.FacesContext;
+import jakarta.faces.event.ActionListener;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.context.FacesContext;
 
 public class BeanOne implements ActionListener {
 

@@ -23,9 +23,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.uigraphic;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIGraphic;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIGraphic;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +52,7 @@ public class TestServlet extends BaseComponentTestServlet {
   @Override
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Image");
+    setRendererType("jakarta.faces.Image");
   }
 
   /**

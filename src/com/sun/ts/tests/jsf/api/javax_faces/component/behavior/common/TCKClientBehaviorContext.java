@@ -18,9 +18,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.behavior.common;
 
 import java.util.Collection;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.behavior.ClientBehaviorContext;
-import javax.faces.context.FacesContext;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.behavior.ClientBehaviorContext;
+import jakarta.faces.context.FacesContext;
 
 public class TCKClientBehaviorContext extends ClientBehaviorContext {
 

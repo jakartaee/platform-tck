@@ -25,8 +25,8 @@ import com.sun.ts.tests.jsf.api.javax_faces.el.common.BaseELExceptionTestServlet
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.faces.el.EvaluationException;
-import javax.faces.el.PropertyNotFoundException;
+import jakarta.faces.el.EvaluationException;
+import jakarta.faces.el.PropertyNotFoundException;
 
 public final class TestServlet extends BaseELExceptionTestServlet {
 
