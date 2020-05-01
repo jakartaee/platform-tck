@@ -39,26 +39,26 @@ import java.util.Set;
 
 import jakarta.el.ExpressionFactory;
 import jakarta.el.ValueExpression;
-import javax.faces.FactoryFinder;
-import javax.faces.FacesException;
-import javax.faces.component.ContextCallback;
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIInput;
-import javax.faces.component.UINamingContainer;
-import javax.faces.component.UIOutput;
-import javax.faces.component.UIPanel;
-import javax.faces.component.UIViewRoot;
-import javax.faces.component.visit.VisitCallback;
-import javax.faces.component.visit.VisitHint;
-import javax.faces.component.visit.VisitResult;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.render.RenderKit;
-import javax.faces.render.RenderKitFactory;
-import javax.faces.render.Renderer;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.ContextCallback;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIForm;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UINamingContainer;
+import jakarta.faces.component.UIOutput;
+import jakarta.faces.component.UIPanel;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.component.visit.VisitCallback;
+import jakarta.faces.component.visit.VisitHint;
+import jakarta.faces.component.visit.VisitResult;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.render.RenderKit;
+import jakarta.faces.render.RenderKitFactory;
+import jakarta.faces.render.Renderer;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -66,20 +66,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 import java.util.HashSet;
-import javax.faces.application.Application;
-import javax.faces.component.NamingContainer;
-import javax.faces.component.visit.VisitContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEventListener;
-import javax.faces.event.FacesEvent;
-import javax.faces.event.FacesListener;
-import javax.faces.event.SystemEvent;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.visit.VisitContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEventListener;
+import jakarta.faces.event.FacesEvent;
+import jakarta.faces.event.FacesListener;
+import jakarta.faces.event.SystemEvent;
 
 /**
  * <p>
  * This is the base test Servlet for classes that implement
- * {@link javax.faces.component.UIComponent}. Any test that will be performing
+ * {@link jakarta.faces.component.UIComponent}. Any test that will be performing
  * inheritance testing on a component that implements UIComponent, will need to
  * extend this servlet.
  * </p>
@@ -2263,10 +2263,10 @@ public abstract class BaseUIComponentTestServlet
 
     UIComponent comp = createComponent();
 
-    if (!comp.getFamily().contains("javax.faces.")) {
+    if (!comp.getFamily().contains("jakarta.faces.")) {
       out.println(JSFTestUtil.FAIL
           + " Incorrect value returned from UIComponent.getFamily()"
-          + JSFTestUtil.NL + "Expected FamilyName to have: javax.faces."
+          + JSFTestUtil.NL + "Expected FamilyName to have: jakarta.faces."
           + JSFTestUtil.NL + "Received: " + comp.getFamily());
 
     } else {

@@ -324,7 +324,7 @@
                 If the session is non-null, look in the Map returned by the 
                 getSessionMap() method of the ExternalContext for a value under 
                 the key given by the value of the symbolic constant
-                javax.faces.application.ViewHandler.CHARACTER_ENCODING_KEY. If a
+                jakarta.faces.application.ViewHandler.CHARACTER_ENCODING_KEY. If a
                 value is found, convert it to a String and return it.
             </description>
             <location chapter="7" section="5.2"/>

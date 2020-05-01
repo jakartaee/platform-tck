@@ -151,7 +151,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id/>
-            <description>Custom actions that correspond to JSF UIComponent instances must subclass either javax.faces.webapp.UIComponentTag (see Section 10.2.6.3  UIComponentTag ) or javax.faces.webapp.UIComponentBodyTag (see Section 10.2.6.4  UIComponentBodyTag ), depending on whether the custom action needs to support javax.servlet.jsp.tagext.BodyTag functionality or not.</description>
+            <description>Custom actions that correspond to JSF UIComponent instances must subclass either jakarta.faces.webapp.UIComponentTag (see Section 10.2.6.3  UIComponentTag ) or jakarta.faces.webapp.UIComponentBodyTag (see Section 10.2.6.4  UIComponentBodyTag ), depending on whether the custom action needs to support javax.servlet.jsp.tagext.BodyTag functionality or not.</description>
             <keywords>
                 <keyword>application-role</keyword>
             </keywords>
@@ -199,7 +199,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id/>
-            <description>The specified listener class must implement javax.faces.event.ActionListener.</description>
+            <description>The specified listener class must implement jakarta.faces.event.ActionListener.</description>
             <keywords>
                 <keyword>application-role</keyword>
             </keywords>

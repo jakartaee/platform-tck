@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.component.html.htmlinputsecret;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.html.HtmlInputSecret;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.html.HtmlInputSecret;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
@@ -48,7 +48,7 @@ public final class TestServlet
    */
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Secret");
+    setRendererType("jakarta.faces.Secret");
     setAttributeNames(attrNames);
   }
 

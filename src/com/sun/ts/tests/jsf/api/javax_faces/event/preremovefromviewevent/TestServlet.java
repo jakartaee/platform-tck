@@ -26,14 +26,14 @@ import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseComponentSystemEven
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.TestSystemEventListener;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.PostRestoreStateEvent;
-import javax.faces.event.SystemEventListener;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.PostRestoreStateEvent;
+import jakarta.faces.event.SystemEventListener;
 
-import javax.faces.event.PreRemoveFromViewEvent;
+import jakarta.faces.event.PreRemoveFromViewEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

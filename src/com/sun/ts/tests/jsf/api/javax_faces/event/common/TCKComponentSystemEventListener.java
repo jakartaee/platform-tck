@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.event.common;
 
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ComponentSystemEventListener;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ComponentSystemEventListener;
 
 public class TCKComponentSystemEventListener
     implements ComponentSystemEventListener {

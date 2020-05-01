@@ -23,15 +23,15 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.html.htmlselectmanycheckb
 import com.sun.ts.tests.jsf.api.javax_faces.component.common.TCKValueChangeListener;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIInput;
-import javax.faces.component.UIViewRoot;
-import javax.faces.component.html.HtmlSelectManyCheckbox;
-import javax.faces.context.FacesContext;
-import javax.faces.el.MethodBinding;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.event.PhaseId;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.component.html.HtmlSelectManyCheckbox;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.el.MethodBinding;
+import jakarta.faces.event.ValueChangeEvent;
+import jakarta.faces.event.PhaseId;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +62,7 @@ public final class TestServlet extends
    */
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Checkbox");
+    setRendererType("jakarta.faces.Checkbox");
     setAttributeNames(attrNames);
   }
 

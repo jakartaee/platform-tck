@@ -22,9 +22,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.application.navigationhandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.application.Application;
-import javax.faces.application.NavigationHandler;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.NavigationHandler;
+import jakarta.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

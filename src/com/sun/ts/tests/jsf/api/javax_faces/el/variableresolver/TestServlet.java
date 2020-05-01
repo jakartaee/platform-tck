@@ -23,7 +23,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.el.variableresolver;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.el.VariableResolver;
+import jakarta.faces.el.VariableResolver;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

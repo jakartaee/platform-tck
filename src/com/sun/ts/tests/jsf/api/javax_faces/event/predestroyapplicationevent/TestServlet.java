@@ -26,10 +26,10 @@ import java.io.PrintWriter;
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseSystemEventTestServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.application.Application;
-import javax.faces.context.FacesContext;
-import javax.faces.event.PreDestroyApplicationEvent;
-import javax.faces.event.SystemEvent;
+import jakarta.faces.application.Application;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.PreDestroyApplicationEvent;
+import jakarta.faces.event.SystemEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

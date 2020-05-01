@@ -23,9 +23,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.model.common;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.model.DataModel;
-import javax.faces.model.DataModelEvent;
-import javax.faces.model.DataModelListener;
+import jakarta.faces.model.DataModel;
+import jakarta.faces.model.DataModelEvent;
+import jakarta.faces.model.DataModelListener;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -462,7 +462,7 @@ public abstract class BaseModelTestServlet extends HttpTCKServlet {
      * </p>
      * 
      * @param event
-     *          The {@link javax.faces.model.DataModelEvent} we are processing
+     *          The {@link jakarta.faces.model.DataModelEvent} we are processing
      */
     public void rowSelected(DataModelEvent event) {
       System.out.println("ROW SELECTED");

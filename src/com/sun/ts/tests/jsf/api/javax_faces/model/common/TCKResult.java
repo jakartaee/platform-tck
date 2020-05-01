@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.model.common;
 
-import javax.faces.FacesException;
+import jakarta.faces.FacesException;
 import javax.servlet.jsp.jstl.sql.Result;
 
 import java.beans.BeanInfo;

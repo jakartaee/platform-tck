@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 
-import javax.faces.application.ApplicationFactory;
-import javax.faces.context.FacesContextFactory;
-import javax.faces.context.FacesContext;
-import javax.faces.lifecycle.Lifecycle;
-import javax.faces.FacesException;
+import jakarta.faces.application.ApplicationFactory;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.lifecycle.Lifecycle;
+import jakarta.faces.FacesException;
 
 public class TCKFacesContextFactory extends FacesContextFactory {
 
@@ -61,21 +61,21 @@ public class TCKFacesContextFactory extends FacesContextFactory {
 
   } // END TCKFacesContextFactory
 
-  // -------------------- Methods from javax.faces.context.FacesContextFactory
+  // -------------------- Methods from jakarta.faces.context.FacesContextFactory
 
   /**
    * <p>
-   * Create (if needed) and return a {@link javax.faces.context.FacesContext}
+   * Create (if needed) and return a {@link jakarta.faces.context.FacesContext}
    * instance that is initialized for the processing of the specified request
    * and response objects, utilizing the specified
-   * {@link javax.faces.lifecycle.Lifecycle} instance, for this web application.
+   * {@link jakarta.faces.lifecycle.Lifecycle} instance, for this web application.
    * </p>
    * <p/>
    * <p>
    * The implementation of this method must ensure that calls to the
    * <code>getCurrentInstance()</code> method of
-   * {@link javax.faces.context.FacesContext}, from the same thread that called
-   * this method, will return the same {@link javax.faces.context.FacesContext}
+   * {@link jakarta.faces.context.FacesContext}, from the same thread that called
+   * this method, will return the same {@link jakarta.faces.context.FacesContext}
    * instance until the <code>release()</code> method is called on that
    * instance.
    * </p>
@@ -90,11 +90,11 @@ public class TCKFacesContextFactory extends FacesContextFactory {
    *          In servlet environments, the <code>ServletResponse</code> that is
    *          to be processed
    * @param lifecycle
-   *          The {@link javax.faces.lifecycle.Lifecycle} instance being used to
+   *          The {@link jakarta.faces.lifecycle.Lifecycle} instance being used to
    *          process this request
    *
-   * @throws javax.faces.FacesException
-   *           if a {@link javax.faces.context.FacesContext} cannot be
+   * @throws jakarta.faces.FacesException
+   *           if a {@link jakarta.faces.context.FacesContext} cannot be
    *           constructed for the specified parameters
    * @throws NullPointerException
    *           if any of the parameters are <code>null</code>

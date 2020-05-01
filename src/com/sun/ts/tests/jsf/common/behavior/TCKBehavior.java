@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jsf.common.behavior;
 
-import javax.faces.component.behavior.Behavior;
-import javax.faces.event.BehaviorEvent;
+import jakarta.faces.component.behavior.Behavior;
+import jakarta.faces.event.BehaviorEvent;
 
 public class TCKBehavior implements Behavior {
 

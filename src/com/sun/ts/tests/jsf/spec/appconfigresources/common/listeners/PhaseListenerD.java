@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.listeners;
 
-import javax.faces.event.PhaseListener;
-import javax.faces.event.PhaseEvent;
-import javax.faces.event.PhaseId;
+import jakarta.faces.event.PhaseListener;
+import jakarta.faces.event.PhaseEvent;
+import jakarta.faces.event.PhaseId;
 
 public class PhaseListenerD implements PhaseListener {
 

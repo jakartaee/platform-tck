@@ -35,9 +35,9 @@ import java.util.ResourceBundle;
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
 import jakarta.el.PropertyNotWritableException;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -241,7 +241,7 @@ public final class TestServlet extends HttpTCKServlet {
           control.setExpert(false);
           control.setHidden(false);
           control.setPreferred(true);
-          control.setValue("type", javax.faces.component.UIViewRoot.class);
+          control.setValue("type", jakarta.faces.component.UIViewRoot.class);
           control.setValue("resolvable", Boolean.TRUE);
 
           String result = validateFeatureDescriptor(control, descriptor);
@@ -264,7 +264,7 @@ public final class TestServlet extends HttpTCKServlet {
           control.setExpert(false);
           control.setHidden(false);
           control.setPreferred(true);
-          control.setValue("type", javax.faces.context.FacesContext.class);
+          control.setValue("type", jakarta.faces.context.FacesContext.class);
           control.setValue("resolvable", Boolean.TRUE);
 
           String result = validateFeatureDescriptor(control, descriptor);

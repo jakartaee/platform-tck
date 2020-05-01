@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jsf.common.factories;
 
-import javax.faces.context.FacesContextFactory;
+import jakarta.faces.context.FacesContextFactory;
 
 public abstract class TCKDecoratedContextFactory extends FacesContextFactory {
 

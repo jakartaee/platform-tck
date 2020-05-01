@@ -27,9 +27,9 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.faces.model.DataModel;
-import javax.faces.model.ArrayDataModel;
-import javax.faces.model.DataModelEvent;
+import jakarta.faces.model.DataModel;
+import jakarta.faces.model.ArrayDataModel;
+import jakarta.faces.model.DataModelEvent;
 
 import java.io.IOException;
 import java.io.PrintWriter;

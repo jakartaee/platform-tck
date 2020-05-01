@@ -922,7 +922,7 @@ public abstract class BaseUIComponentClient extends AbstractUrlClient {
    * @assertion_ids: JSF:JAVADOC:488
    * @test_Strategy: Verify that when encodeBegin() is called that a call is
    *                 made to
-   *                 pushComponentToEL(javax.faces.context.FacesContext).
+   *                 pushComponentToEL(jakarta.faces.context.FacesContext).
    */
 
   public void uiComponentEncodeBeginELTest() throws Fault {
@@ -962,7 +962,7 @@ public abstract class BaseUIComponentClient extends AbstractUrlClient {
    * @assertion_ids: JSF:JAVADOC:494
    * @test_Strategy: Verify that when encodeEnd() is called on the component
    *                 under test, it calls
-   *                 popComponentFromEL(javax.faces.context.FacesContext).
+   *                 popComponentFromEL(jakarta.faces.context.FacesContext).
    */
   public void uiComponentEncodeEndELTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "uiComponentEncodeEndELTest");

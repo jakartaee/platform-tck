@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.faces.model.CollectionDataModel;
-import javax.faces.model.DataModel;
+import jakarta.faces.model.CollectionDataModel;
+import jakarta.faces.model.DataModel;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

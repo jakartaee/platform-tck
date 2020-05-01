@@ -24,10 +24,10 @@ import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.faces.component.UIComponent;
-import javax.faces.component.behavior.Behavior;
-import javax.faces.event.BehaviorEvent;
-import javax.faces.event.FacesListener;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.behavior.Behavior;
+import jakarta.faces.event.BehaviorEvent;
+import jakarta.faces.event.FacesListener;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -284,8 +284,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                javax.faces.BigDecimal -- An instance of
-                javax.faces.convert.BigDecimalConverter (or a subclass 
+                jakarta.faces.BigDecimal -- An instance of
+                jakarta.faces.convert.BigDecimalConverter (or a subclass 
                 of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -294,8 +294,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.2</id>
             <description>
-                javax.faces.BigInteger -- An instance of
-                javax.faces.convert.BigIntegerConverter (or a subclass 
+                jakarta.faces.BigInteger -- An instance of
+                jakarta.faces.convert.BigIntegerConverter (or a subclass 
                 of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -304,8 +304,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.3</id>
             <description>
-                javax.faces.Boolean -- An instance of
-                javax.faces.convert.BooleanConverter (or a subclass 
+                jakarta.faces.Boolean -- An instance of
+                jakarta.faces.convert.BooleanConverter (or a subclass 
                 of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -314,8 +314,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.4</id>
             <description>
-                javax.faces.Byte -- An instance of 
-                javax.faces.convert.ByteConverter (or a subclass of 
+                jakarta.faces.Byte -- An instance of 
+                jakarta.faces.convert.ByteConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -324,8 +324,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.5</id>
             <description>
-                javax.faces.Character -- An instance of
-                javax.faces.convert.CharacterConverter (or a subclass of
+                jakarta.faces.Character -- An instance of
+                jakarta.faces.convert.CharacterConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -334,8 +334,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.6</id>
             <description>
-                javax.faces.DateTime -- An instance of
-                javax.faces.convert.DateTimeConverter (or a subclass of 
+                jakarta.faces.DateTime -- An instance of
+                jakarta.faces.convert.DateTimeConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -344,8 +344,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.7</id>
             <description>
-                javax.faces.Double -- An instance of
-                javax.faces.convert.DoubleConverter (or a subclass of
+                jakarta.faces.Double -- An instance of
+                jakarta.faces.convert.DoubleConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -354,8 +354,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.8</id>
             <description>
-                javax.faces.Float -- An instance of
-                javax.faces.convert.FloatConverter (or a subclass of 
+                jakarta.faces.Float -- An instance of
+                jakarta.faces.convert.FloatConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -364,8 +364,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.9</id>
             <description>
-                javax.faces.Integer -- An instance of
-                javax.faces.convert.IntegerConverter (or a subclass of 
+                jakarta.faces.Integer -- An instance of
+                jakarta.faces.convert.IntegerConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -374,8 +374,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.10</id>
             <description>
-                javax.faces.Long -- An instance of 
-                javax.faces.convert.LongConverter (or a subclass of this
+                jakarta.faces.Long -- An instance of 
+                jakarta.faces.convert.LongConverter (or a subclass of this
                 class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -384,8 +384,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.11</id>
             <description>
-                javax.faces.Number -- An instance of
-                javax.faces.convert.NumberConverter (or a subclass of 
+                jakarta.faces.Number -- An instance of
+                jakarta.faces.convert.NumberConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -394,8 +394,8 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.12</id>
             <description>
-                javax.faces.Short -- An instance of
-                javax.faces.convert.ShortConverter (or a subclass of 
+                jakarta.faces.Short -- An instance of
+                jakarta.faces.convert.ShortConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -416,7 +416,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 java.math.BigDecimal, and java.math.BigDecimal.TYPE --
-                An instance of javax.faces.convert.BigDecimalConverter 
+                An instance of jakarta.faces.convert.BigDecimalConverter 
                 (or a subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -426,7 +426,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 java.math.BigInteger, and java.math.BigInteger.TYPE -- 
-                An instance of javax.faces.convert.BigIntegerConverter 
+                An instance of jakarta.faces.convert.BigIntegerConverter 
                 (or a subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -436,7 +436,7 @@
             <id>__NUMBER__.3</id>
             <description>
                 java.lang.Boolean, and java.lang.Boolean.TYPE -- An 
-                instance of javax.faces.convert.BooleanConverter 
+                instance of jakarta.faces.convert.BooleanConverter 
                 (or a subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -446,7 +446,7 @@
             <id>__NUMBER__.4</id>
             <description>
                 java.lang.Byte, and java.lang.Byte.TYPE -- An instance 
-                of javax.faces.convert.ByteConverter (or a subclass of
+                of jakarta.faces.convert.ByteConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -456,7 +456,7 @@
             <id>__NUMBER__.5</id>
             <description>
                 java.lang.Character, and java.lang.Character.TYPE -- An 
-                instance of javax.faces.convert.CharacterConverter 
+                instance of jakarta.faces.convert.CharacterConverter 
                 (or a subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -466,7 +466,7 @@
             <id>__NUMBER__.6</id>
             <description>
                 java.lang.Double, and java.lang.Double.TYPE -- An 
-                instance of javax.faces.convert.DoubleConverter (or a 
+                instance of jakarta.faces.convert.DoubleConverter (or a 
                 subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -476,7 +476,7 @@
             <id>__NUMBER__.7</id>
             <description>
                 java.lang.Float, and java.lang.Float.TYPE -- An instance
-                of javax.faces.convert.FloatConverter (or a subclass of 
+                of jakarta.faces.convert.FloatConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -486,7 +486,7 @@
             <id>__NUMBER__.8</id>
             <description>
                 java.lang.Integer, and java.lang.Integer.TYPE -- An 
-                instance of javax.faces.convert.IntegerConverter (or a 
+                instance of jakarta.faces.convert.IntegerConverter (or a 
                 subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -496,7 +496,7 @@
             <id>__NUMBER__.9</id>
             <description>
                 java.lang.Long, and java.lang.Long.TYPE -- An instance 
-                of javax.faces.convert.LongConverter (or a subclass of 
+                of jakarta.faces.convert.LongConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -506,7 +506,7 @@
             <id>__NUMBER__.10</id>
             <description>
                 java.lang.Short, and java.lang.Short.TYPE -- An instance
-                of javax.faces.convert.ShortConverter (or a subclass of
+                of jakarta.faces.convert.ShortConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -516,7 +516,7 @@
             <id>__NUMBER__.11</id>
             <description>
                 java.lang.Enum, and java.lang.Enum.TYPE -- An instance 
-                of javax.faces.convert.EnumConverter (or a subclass of
+                of jakarta.faces.convert.EnumConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -548,7 +548,7 @@
     <id>__NUMBER__</id>
     <description>
         The following standard Validator implementations (in the
-        javax.faces.validator package) are provided:
+        jakarta.faces.validator package) are provided:
     </description>
     <location chapter="3" section="5.5"/>
     <sub-assertions>
@@ -559,7 +559,7 @@
                 DoubleRangeValidator—Checks the local value of a 
                 component, which must be of any numeric type, against 
                 specified maximum and/or minimum values. Standard
-                identifier is “javax.faces.DoubleRange”.
+                identifier is “jakarta.faces.DoubleRange”.
             </description>
             <location chapter="3" section="4.5"/>
         </assertion>
@@ -570,7 +570,7 @@
                 LengthValidator—Checks the length (i.e. number of 
                 characters) of the local value of a component, which 
                 must be of type String, against maximum and/or minimum 
-                values. Standard identifier is “javax.faces.Length”.
+                values. Standard identifier is “jakarta.faces.Length”.
             </description>
             <location chapter="3" section="4.5"/>
         </assertion>
@@ -581,7 +581,7 @@
                 LongRangeValidator—Checks the local value of a 
                 component, which must be of any numeric type convertible
                 to long, against maximum and/or minimum values. Standard
-                identifier is “javax.faces.LongRange”.
+                identifier is “jakarta.faces.LongRange”.
             </description>
             <location chapter="3" section="4.5"/>
         </assertion>

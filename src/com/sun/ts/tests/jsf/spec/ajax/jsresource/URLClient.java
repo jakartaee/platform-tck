@@ -33,7 +33,7 @@ public class URLClient extends BaseHtmlUnitClient {
 
   private static final String RES_NAME = "jsf.js";
 
-  private static final String LIB_NAME = "javax.faces";
+  private static final String LIB_NAME = "jakarta.faces";
 
   public static void main(String[] args) {
     URLClient theTests = new URLClient();

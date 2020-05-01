@@ -32,7 +32,7 @@
            status="active" testable="true">
     <id>__NUMBER__</id>
     <description>
-       The jsf.js must exist under the resource library javax.faces, following
+       The jsf.js must exist under the resource library jakarta.faces, following
        the conventions in Section 2.6 “Resource Handling”.
     </description>
     <location chapter="13" section="1"/>

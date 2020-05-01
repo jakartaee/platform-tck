@@ -36,27 +36,27 @@ import jakarta.el.ELContextListener;
 import jakarta.el.ELResolver;
 import jakarta.el.ExpressionFactory;
 import jakarta.el.ValueExpression;
-import javax.faces.application.Application;
-import javax.faces.application.NavigationHandler;
-import javax.faces.application.ProjectStage;
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceHandler;
-import javax.faces.application.StateManager;
-import javax.faces.application.ViewHandler;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.component.UIOutput;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.BooleanConverter;
-import javax.faces.el.MethodBinding;
-import javax.faces.el.ReferenceSyntaxException;
-import javax.faces.el.ValueBinding;
-import javax.faces.event.ActionListener;
-import javax.faces.event.SystemEvent;
-import javax.faces.event.SystemEventListener;
-import javax.faces.validator.BeanValidator;
-import javax.faces.validator.LengthValidator;
-import javax.faces.validator.Validator;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.NavigationHandler;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.application.StateManager;
+import jakarta.faces.application.ViewHandler;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UIOutput;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.BooleanConverter;
+import jakarta.faces.el.MethodBinding;
+import jakarta.faces.el.ReferenceSyntaxException;
+import jakarta.faces.el.ValueBinding;
+import jakarta.faces.event.ActionListener;
+import jakarta.faces.event.SystemEvent;
+import jakarta.faces.event.SystemEventListener;
+import jakarta.faces.validator.BeanValidator;
+import jakarta.faces.validator.LengthValidator;
+import jakarta.faces.validator.Validator;
 import javax.servlet.GenericServlet;
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -81,15 +81,15 @@ import com.sun.ts.tests.jsf.common.statemanager.TCKStateManager;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 import com.sun.ts.tests.jsf.common.viewhandler.TCKViewHandler;
 import java.util.Set;
-import javax.faces.FactoryFinder;
-import javax.faces.component.ContextCallback;
-import javax.faces.component.search.SearchExpressionContext;
-import javax.faces.component.search.SearchExpressionContextFactory;
-import javax.faces.component.search.SearchExpressionHandler;
-import javax.faces.component.search.SearchExpressionHint;
-import javax.faces.component.search.SearchKeywordContext;
-import javax.faces.component.search.SearchKeywordResolver;
-import javax.faces.component.visit.VisitHint;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.component.ContextCallback;
+import jakarta.faces.component.search.SearchExpressionContext;
+import jakarta.faces.component.search.SearchExpressionContextFactory;
+import jakarta.faces.component.search.SearchExpressionHandler;
+import jakarta.faces.component.search.SearchExpressionHint;
+import jakarta.faces.component.search.SearchKeywordContext;
+import jakarta.faces.component.search.SearchKeywordResolver;
+import jakarta.faces.component.visit.VisitHint;
 
 public class TestServlet extends HttpTCKServlet {
 
@@ -119,7 +119,7 @@ public class TestServlet extends HttpTCKServlet {
       return;
     }
 
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
 
     // should now be able to create the TCKComponent component
     UIOutput output = (UIOutput) application.createComponent("TCKComponent");
@@ -148,7 +148,7 @@ public class TestServlet extends HttpTCKServlet {
 
     JSFTestUtil.checkForNPE(application, "addComponent",
         new Class<?>[] { String.class, String.class },
-        new Object[] { null, "javax.faces.component.UIOutput" }, out);
+        new Object[] { null, "jakarta.faces.component.UIOutput" }, out);
 
     JSFTestUtil.checkForNPE(application, "addComponent",
         new Class<?>[] { String.class, String.class },
@@ -167,7 +167,7 @@ public class TestServlet extends HttpTCKServlet {
       return;
     }
 
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     UIOutput output = (UIOutput) application.createComponent("TCKComponent");
 
     if (output == null) {
@@ -192,7 +192,7 @@ public class TestServlet extends HttpTCKServlet {
       return;
     }
 
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     try {
       application.createComponent(context, "TCKComponent", null);
       out.println(JSFTestUtil.PASS);
@@ -218,7 +218,7 @@ public class TestServlet extends HttpTCKServlet {
       return;
     }
 
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     try {
       application.createComponent(context, "TCKComponent", "TCKRenderer");
       out.println(JSFTestUtil.PASS);
@@ -271,7 +271,7 @@ public class TestServlet extends HttpTCKServlet {
       return;
     }
 
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
 
     // createComponent(FacesContext, null, String)
     JSFTestUtil.checkForNPE(application, "createComponent",
@@ -298,10 +298,10 @@ public class TestServlet extends HttpTCKServlet {
 
     ValueExpression expr = application.getExpressionFactory()
         .createValueExpression(elContext, "#{TestBean.component}",
-            javax.faces.component.UIComponent.class);
+            jakarta.faces.component.UIComponent.class);
 
     application.addComponent("TCKBadComponent",
-        "javax.faces.component.base.UIOutputBase");
+        "jakarta.faces.component.base.UIOutputBase");
 
     // createComponent(String)
     JSFTestUtil.checkForFE(application, "createComponent",
@@ -371,7 +371,7 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     request.setAttribute("TestBean", new TestBean());
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
 
     ExpressionFactory ef = application.getExpressionFactory();
     ValueExpression binding = ef.createValueExpression(elcontext,
@@ -440,9 +440,9 @@ public class TestServlet extends HttpTCKServlet {
       return;
     }
 
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     application.addComponent("TCKBadComponent",
-        "javax.faces.component.base.UIOutputBase");
+        "jakarta.faces.component.base.UIOutputBase");
 
     Iterator<String> i = application.getComponentTypes();
 
@@ -481,7 +481,7 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     application.addConverter("TCKConverter",
-        "javax.faces.convert.BooleanConverter");
+        "jakarta.faces.convert.BooleanConverter");
     BooleanConverter converter;
     try {
       converter = (BooleanConverter) application
@@ -521,7 +521,7 @@ public class TestServlet extends HttpTCKServlet {
     // Application.addConverter(null, String)
     JSFTestUtil.checkForNPE(application, "addConverter",
         new Class<?>[] { String.class, String.class },
-        new Object[] { null, "javax.faces.convert.BooleanConverter" }, pw);
+        new Object[] { null, "jakarta.faces.convert.BooleanConverter" }, pw);
 
     // Application.addConverter(String, null)
     JSFTestUtil.checkForNPE(application, "addConverter",
@@ -548,7 +548,7 @@ public class TestServlet extends HttpTCKServlet {
     // not if the value can be converted
 
     application.addConverter(Servlet.class,
-        "javax.faces.convert.BooleanConverter");
+        "jakarta.faces.convert.BooleanConverter");
 
     // first find see if the implementation reruns the BooleanConverter for
     // this class
@@ -564,7 +564,7 @@ public class TestServlet extends HttpTCKServlet {
       }
 
       application.addConverter(GenericServlet.class,
-          "javax.faces.convert.BooleanConverter");
+          "jakarta.faces.convert.BooleanConverter");
       converter = (BooleanConverter) application
           .createConverter(this.getClass());
       if (converter == null) {
@@ -575,7 +575,7 @@ public class TestServlet extends HttpTCKServlet {
       }
 
       application.addConverter(HttpServlet.class,
-          "javax.faces.convert.BooleanConverter");
+          "jakarta.faces.convert.BooleanConverter");
       converter = (BooleanConverter) application
           .createConverter(this.getClass());
       if (converter == null) {
@@ -586,7 +586,7 @@ public class TestServlet extends HttpTCKServlet {
       }
 
       application.addConverter(this.getClass(),
-          "javax.faces.convert.BooleanConverter");
+          "jakarta.faces.convert.BooleanConverter");
       converter = (BooleanConverter) application
           .createConverter(this.getClass());
 
@@ -619,7 +619,7 @@ public class TestServlet extends HttpTCKServlet {
     // Application.addConverter(null, String)
     JSFTestUtil.checkForNPE(application, "addConverter",
         new Class<?>[] { Class.class, String.class },
-        new Object[] { null, "javax.faces.convert.BooleanConverter" }, pw);
+        new Object[] { null, "jakarta.faces.convert.BooleanConverter" }, pw);
 
     // Application.addConverter(Class, null)
     JSFTestUtil.checkForNPE(application, "addConverter",
@@ -672,13 +672,13 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     application.addConverter(Boolean.class,
-        "javax.faces.convert.Converter.class");
+        "jakarta.faces.convert.Converter.class");
 
     // createConverter(Class)
     JSFTestUtil.checkForFE(application, "createConverter",
         new Class<?>[] { Class.class }, new Object[] { Boolean.class }, pw);
 
-    application.addConverter("boogus", "javax.faces.convert.Converter.class");
+    application.addConverter("boogus", "jakarta.faces.convert.Converter.class");
 
     // createConverter(String)
     JSFTestUtil.checkForFE(application, "createConverter",
@@ -698,7 +698,7 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     application.addConverter("TCKConverter",
-        "javax.faces.conver.BooleanConverter");
+        "jakarta.faces.conver.BooleanConverter");
 
     Iterator<String> i = application.getConverterIds();
     if (i == null) {
@@ -728,7 +728,7 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     application.addConverter(this.getClass(),
-        "javax.faces.convert.BooleanConverter");
+        "jakarta.faces.convert.BooleanConverter");
 
     Iterator<Class<?>> i = application.getConverterTypes();
     if (i == null) {
@@ -766,7 +766,7 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     application.addValidator("TCKValidator",
-        "javax.faces.validator.LengthValidator");
+        "jakarta.faces.validator.LengthValidator");
     try {
       Validator validator = application.createValidator("TCKValidator");
 
@@ -806,7 +806,7 @@ public class TestServlet extends HttpTCKServlet {
 
     JSFTestUtil.checkForNPE(application, "addValidator",
         new Class<?>[] { String.class, String.class },
-        new Object[] { null, "javax.faces.validator.LengthValidator" }, out);
+        new Object[] { null, "jakarta.faces.validator.LengthValidator" }, out);
 
     JSFTestUtil.checkForNPE(application, "addValidator",
         new Class<?>[] { String.class, String.class },
@@ -853,7 +853,7 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     application.addValidator("TCKValidator",
-        "javax.faces.validator.LengthValidator");
+        "jakarta.faces.validator.LengthValidator");
 
     Iterator<String> i = application.getValidatorIds();
     if (i == null) {
@@ -1665,11 +1665,11 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     request.setAttribute("TestBean", new TestBean());
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     ELContext elContext = getFacesContext().getELContext();
     ValueExpression expr = application.getExpressionFactory()
         .createValueExpression(elContext, "#{TestBean.component}",
-            javax.faces.component.UIComponent.class);
+            jakarta.faces.component.UIComponent.class);
 
     if (expr == null) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
@@ -1742,11 +1742,11 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     request.setAttribute("TestBean", new TestBean());
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     ELContext elContext = getFacesContext().getELContext();
     ValueExpression expr = application.getExpressionFactory()
         .createValueExpression(elContext, "#{TestBean.component}",
-            javax.faces.component.UIComponent.class);
+            jakarta.faces.component.UIComponent.class);
 
     if (expr == null) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
@@ -1819,11 +1819,11 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     request.setAttribute("TestBean", new TestBean());
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     ELContext elContext = getFacesContext().getELContext();
     ValueExpression expr = application.getExpressionFactory()
         .createValueExpression(elContext, "#{TestBean.component}",
-            javax.faces.component.UIComponent.class);
+            jakarta.faces.component.UIComponent.class);
 
     if (expr == null) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
@@ -1899,11 +1899,11 @@ public class TestServlet extends HttpTCKServlet {
     TestBean bean = new TestBean();
     bean.setComponent(null);
     request.setAttribute("TestBean", bean);
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     ELContext elContext = getFacesContext().getELContext();
     ValueExpression expr = application.getExpressionFactory()
         .createValueExpression(elContext, "#{TestBean.component}",
-            javax.faces.component.UIComponent.class);
+            jakarta.faces.component.UIComponent.class);
 
     // ValueBinding as null
     JSFTestUtil.checkForNPE(application, "createComponent",
@@ -1942,11 +1942,11 @@ public class TestServlet extends HttpTCKServlet {
     TestBean bean = new TestBean();
     bean.setComponent(null);
     request.setAttribute("TestBean", bean);
-    application.addComponent("TCKComponent", "javax.faces.component.UIOutput");
+    application.addComponent("TCKComponent", "jakarta.faces.component.UIOutput");
     ELContext elContext = context.getELContext();
     ValueExpression expr = application.getExpressionFactory()
         .createValueExpression(elContext, "#{TestBean.component}",
-            javax.faces.component.UIComponent.class);
+            jakarta.faces.component.UIComponent.class);
 
     // createComponent(null, FacesContext, String, String)
     JSFTestUtil.checkForNPE(application, "createComponent",

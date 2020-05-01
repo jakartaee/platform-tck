@@ -52,7 +52,7 @@ public class URLClient extends AbstractUrlClient {
    * @testName: phaseEventGetPhaseIdTest
    * @assertion_ids: JSF:JAVADOC:1845; JSF:JAVADOC:1844
    * @test_Strategy: Validate that we receive the correct value from
-   *                 javax.faces.event.PhaseEvent.getPhaseId().
+   *                 jakarta.faces.event.PhaseEvent.getPhaseId().
    */
   public void phaseEventGetPhaseIdTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "phaseEventGetPhaseIdTest");
@@ -63,7 +63,7 @@ public class URLClient extends AbstractUrlClient {
    * @testName: phaseEventGetFacesContextTest
    * @assertion_ids: JSF:JAVADOC:1845; JSF:JAVADOC:1843
    * @test_Strategy: Validate that we receive the correct value from
-   *                 javax.faces.event.PhaseEvent.getFacesContext().
+   *                 jakarta.faces.event.PhaseEvent.getFacesContext().
    */
   public void phaseEventGetFacesContextTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "phaseEventGetFacesContextTest");

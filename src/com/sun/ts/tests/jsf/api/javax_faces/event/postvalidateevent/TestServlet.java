@@ -20,10 +20,10 @@
 package com.sun.ts.tests.jsf.api.javax_faces.event.postvalidateevent;
 
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseComponentSystemEventTestServlet;
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.PostValidateEvent;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.PostValidateEvent;
 
 public class TestServlet extends BaseComponentSystemEventTestServlet {
 

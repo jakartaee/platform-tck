@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.jsf.spec.render.form;
 
-import javax.faces.application.Application;
-import javax.faces.component.html.HtmlForm;
-import javax.faces.component.html.HtmlInputText;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.html.HtmlForm;
+import jakarta.faces.component.html.HtmlInputText;
+import jakarta.faces.context.FacesContext;
 
 public class FormUIBean {
 

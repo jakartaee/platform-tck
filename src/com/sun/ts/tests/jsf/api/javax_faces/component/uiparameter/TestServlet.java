@@ -26,9 +26,9 @@ import java.io.PrintWriter;
 import com.sun.ts.tests.jsf.api.javax_faces.component.common.BaseComponentTestServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIParameter;
-import javax.faces.component.UISelectBoolean;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIParameter;
+import jakarta.faces.component.UISelectBoolean;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -44,10 +44,10 @@ public class TestServlet extends BaseComponentTestServlet {
 
   /**
    * <p>
-   * Creates a new {@link javax.faces.component.UIComponent} instance.
+   * Creates a new {@link jakarta.faces.component.UIComponent} instance.
    * </p>
    * 
-   * @return a new {@link javax.faces.component.UIComponent} instance.
+   * @return a new {@link jakarta.faces.component.UIComponent} instance.
    */
   @Override
   protected UIComponentBase createComponent() {

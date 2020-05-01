@@ -30,8 +30,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArraySet;
-import javax.faces.FacesException;
-import javax.faces.model.SelectItem;
+import jakarta.faces.FacesException;
+import jakarta.faces.model.SelectItem;
 
 /**
  * $Id:

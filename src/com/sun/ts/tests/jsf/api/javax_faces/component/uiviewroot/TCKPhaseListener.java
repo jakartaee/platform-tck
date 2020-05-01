@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.component.uiviewroot;
 
-import javax.faces.event.PhaseEvent;
-import javax.faces.event.PhaseId;
-import javax.faces.event.PhaseListener;
+import jakarta.faces.event.PhaseEvent;
+import jakarta.faces.event.PhaseId;
+import jakarta.faces.event.PhaseListener;
 
 public class TCKPhaseListener implements PhaseListener {
 

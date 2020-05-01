@@ -22,7 +22,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.application.resourcehandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +33,7 @@ import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
-import javax.faces.application.ResourceHandler;
+import jakarta.faces.application.ResourceHandler;
 
 public class TestServlet extends HttpTCKServlet {
 
@@ -265,8 +265,8 @@ public class TestServlet extends HttpTCKServlet {
 
     // Expected values in the form of: <Resource, RendererType>
     Hashtable<String, String> expectedValues = new Hashtable<String, String>();
-    expectedValues.put("background.css", "javax.faces.resource.Stylesheet");
-    expectedValues.put("hello.js", "javax.faces.resource.Script");
+    expectedValues.put("background.css", "jakarta.faces.resource.Stylesheet");
+    expectedValues.put("hello.js", "jakarta.faces.resource.Script");
 
     Enumeration<String> myKeys = expectedValues.keys();
     while (myKeys.hasMoreElements()) {

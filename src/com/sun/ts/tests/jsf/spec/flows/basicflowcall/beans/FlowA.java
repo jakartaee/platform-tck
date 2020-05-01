@@ -23,10 +23,10 @@ package com.sun.ts.tests.jsf.spec.flows.basicflowcall.beans;
 import java.io.Serializable;
 
 import jakarta.enterprise.inject.Produces;
-import javax.faces.flow.Flow;
-import javax.faces.flow.builder.FlowBuilder;
-import javax.faces.flow.builder.FlowBuilderParameter;
-import javax.faces.flow.builder.FlowDefinition;
+import jakarta.faces.flow.Flow;
+import jakarta.faces.flow.builder.FlowBuilder;
+import jakarta.faces.flow.builder.FlowBuilderParameter;
+import jakarta.faces.flow.builder.FlowDefinition;
 
 public class FlowA implements Serializable {
 

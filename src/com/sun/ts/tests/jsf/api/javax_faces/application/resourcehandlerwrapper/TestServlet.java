@@ -23,10 +23,10 @@ package com.sun.ts.tests.jsf.api.javax_faces.application.resourcehandlerwrapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceHandler;
-import javax.faces.application.ResourceHandlerWrapper;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.application.ResourceHandlerWrapper;
+import jakarta.faces.context.FacesContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -125,7 +125,7 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter out = response.getWriter();
 
     MyRHWrapper whandler = new MyRHWrapper();
-    String expected = "javax.faces.resource.Stylesheet";
+    String expected = "jakarta.faces.resource.Stylesheet";
 
     if (whandler != null) {
       whandler.createResource(RESOURCENAME);

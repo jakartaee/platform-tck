@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jsf.spec.render.hidden;
 
-import javax.faces.component.html.HtmlInputHidden;
+import jakarta.faces.component.html.HtmlInputHidden;
 
 public class HiddenUIBean {
 

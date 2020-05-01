@@ -20,8 +20,8 @@
  */
 package com.sun.ts.tests.jsf.api.javax_faces.event.common;
 
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.event.ValueChangeListener;
+import jakarta.faces.event.ValueChangeEvent;
+import jakarta.faces.event.ValueChangeListener;
 
 public class TestValueChangeListener implements ValueChangeListener {
 

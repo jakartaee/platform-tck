@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 
-import javax.faces.application.ApplicationFactory;
-import javax.faces.application.Application;
-import javax.faces.context.FacesContextFactory;
+import jakarta.faces.application.ApplicationFactory;
+import jakarta.faces.application.Application;
+import jakarta.faces.context.FacesContextFactory;
 
 /**
  * <p>
@@ -64,12 +64,12 @@ public class TCKApplicationFactory extends ApplicationFactory {
 
   } // END TCKApplicationFactory
 
-  // ----------------- Methods from javax.faces.application.ApplicationFactory
+  // ----------------- Methods from jakarta.faces.application.ApplicationFactory
 
   /**
    * <p>
    * Create (if needed) and return an
-   * {@link javax.faces.application.Application} instance for this web
+   * {@link jakarta.faces.application.Application} instance for this web
    * application.
    * </p>
    */
@@ -81,12 +81,12 @@ public class TCKApplicationFactory extends ApplicationFactory {
 
   /**
    * <p>
-   * Replace the {@link javax.faces.application.Application} instance that will
+   * Replace the {@link jakarta.faces.application.Application} instance that will
    * be returned for this web application.
    * </p>
    *
    * @param application
-   *          The replacement {@link javax.faces.application.Application}
+   *          The replacement {@link jakarta.faces.application.Application}
    *          instance
    *
    * @throws NullPointerException

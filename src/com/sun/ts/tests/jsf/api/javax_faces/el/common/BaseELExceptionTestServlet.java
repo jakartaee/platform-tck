@@ -23,7 +23,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.el.common;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.FacesException;
+import jakarta.faces.FacesException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

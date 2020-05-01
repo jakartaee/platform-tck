@@ -93,7 +93,7 @@ public class URLClient extends BaseHtmlUnitClient {
         .getHtmlElementsByTagName("link");
 
     String expected1 = "/jsf_render_outputstyle_web/faces/"
-        + "javax.faces.resource/night.css";
+        + "jakarta.faces.resource/night.css";
 
     this.testLink(linkTwo.get(0), expected1, formatter);
 
@@ -106,7 +106,7 @@ public class URLClient extends BaseHtmlUnitClient {
         .getHtmlElementsByTagName("link");
 
     String expected2 = "/jsf_render_outputstyle_web/faces/"
-        + "javax.faces.resource/morning.css";
+        + "jakarta.faces.resource/morning.css";
 
     String expectedLib = "ln=cssLibrary";
 

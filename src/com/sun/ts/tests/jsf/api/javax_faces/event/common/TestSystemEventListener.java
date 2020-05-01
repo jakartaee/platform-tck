@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.jsf.api.javax_faces.event.common;
 
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.SystemEvent;
-import javax.faces.event.SystemEventListener;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.SystemEvent;
+import jakarta.faces.event.SystemEventListener;
 
 public class TestSystemEventListener implements SystemEventListener {
 

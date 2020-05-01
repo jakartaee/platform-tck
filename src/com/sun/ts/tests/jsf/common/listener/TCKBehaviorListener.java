@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.common.listener;
 
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.AjaxBehaviorListener;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.AjaxBehaviorEvent;
+import jakarta.faces.event.AjaxBehaviorListener;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 

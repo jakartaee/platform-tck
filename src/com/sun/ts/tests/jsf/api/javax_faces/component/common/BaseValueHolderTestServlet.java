@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.component.common;
 
-import javax.faces.component.ValueHolder;
+import jakarta.faces.component.ValueHolder;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

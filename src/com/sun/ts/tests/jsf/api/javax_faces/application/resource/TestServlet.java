@@ -24,8 +24,8 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Map;
 
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceHandler;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceHandler;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -215,7 +215,7 @@ public class TestServlet extends HttpTCKServlet {
     Resource resource = handler.createResource(RESOURCE_NAME);
 
     String expected = "/jsf_appl_resource_web/TestServlet/"
-        + "javax.faces.resource/" + RESOURCE_NAME;
+        + "jakarta.faces.resource/" + RESOURCE_NAME;
 
     if (!expected.equals(resource.getRequestPath())) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL + "Expected: " + expected
@@ -243,7 +243,7 @@ public class TestServlet extends HttpTCKServlet {
     Resource resource = handler.createResource(RESOURCE_NAME, LIBRARY_NAME);
 
     String expected = "/jsf_appl_resource_web/TestServlet/"
-        + "javax.faces.resource/" + RESOURCE_NAME + "?ln=" + LIBRARY_NAME;
+        + "jakarta.faces.resource/" + RESOURCE_NAME + "?ln=" + LIBRARY_NAME;
 
     if (!expected.equals(resource.getRequestPath())) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL + "Expected: " + expected
@@ -302,7 +302,7 @@ public class TestServlet extends HttpTCKServlet {
     // create the resource & set expected test result.
     Resource resource = handler.createResource(RESOURCE_NAME);
     String expected = "/jsf_appl_resource_web/TestServlet/"
-        + "javax.faces.resource/" + RESOURCE_NAME;
+        + "jakarta.faces.resource/" + RESOURCE_NAME;
 
     if (!expected.equals(resource.toString())) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL

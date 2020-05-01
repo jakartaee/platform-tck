@@ -23,28 +23,28 @@ package com.sun.ts.tests.jsf.api.javax_faces.factoryfinder.factoryfinder;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.FactoryFinder;
-import javax.faces.application.ApplicationFactory;
-import javax.faces.context.FacesContextFactory;
-import javax.faces.lifecycle.LifecycleFactory;
-import javax.faces.render.RenderKitFactory;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.application.ApplicationFactory;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.lifecycle.LifecycleFactory;
+import jakarta.faces.render.RenderKitFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.faces.component.search.SearchExpressionContextFactory;
-import javax.faces.component.visit.VisitContextFactory;
-import javax.faces.context.ExceptionHandlerFactory;
-import javax.faces.context.ExternalContextFactory;
-import javax.faces.context.FlashFactory;
-import javax.faces.context.PartialViewContextFactory;
-import javax.faces.flow.FlowHandlerFactory;
-import javax.faces.lifecycle.ClientWindowFactory;
-import javax.faces.view.ViewDeclarationLanguageFactory;
-import javax.faces.view.facelets.FaceletCacheFactory;
-import javax.faces.view.facelets.TagHandlerDelegateFactory;
+import jakarta.faces.component.search.SearchExpressionContextFactory;
+import jakarta.faces.component.visit.VisitContextFactory;
+import jakarta.faces.context.ExceptionHandlerFactory;
+import jakarta.faces.context.ExternalContextFactory;
+import jakarta.faces.context.FlashFactory;
+import jakarta.faces.context.PartialViewContextFactory;
+import jakarta.faces.flow.FlowHandlerFactory;
+import jakarta.faces.lifecycle.ClientWindowFactory;
+import jakarta.faces.view.ViewDeclarationLanguageFactory;
+import jakarta.faces.view.facelets.FaceletCacheFactory;
+import jakarta.faces.view.facelets.TagHandlerDelegateFactory;
 
 public class TestServlet extends HttpTCKServlet {
 

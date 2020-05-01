@@ -602,7 +602,7 @@
     status="active" testable="true">
     <id>__NUMBER__</id>
     <description>
-        A JSF implementation must provide a javax.faces.Messages
+        A JSF implementation must provide a jakarta.faces.Messages
         ResourceBundle containing all of the necessary keys for the
         standard messages.
     </description>
@@ -612,7 +612,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                javax.faces.component.UIInput.CONVERSION -- 
+                jakarta.faces.component.UIInput.CONVERSION -- 
                 {0}: Conversion error occurred
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -621,7 +621,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.2</id>
             <description>
-                javax.faces.component.UIInput.REQUIRED -- 
+                jakarta.faces.component.UIInput.REQUIRED -- 
                 {0}: Validation Error: Value is required
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -630,7 +630,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.3</id>
             <description>
-                javax.faces.component.UIInput.UPDATE -- 
+                jakarta.faces.component.UIInput.UPDATE -- 
                 {0}: An error occurred when processing your submitted 
                 information
             </description>
@@ -640,7 +640,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.4</id>
             <description>
-                javax.faces.component.UISelectOne.INVALID -- 
+                jakarta.faces.component.UISelectOne.INVALID -- 
                 {0}: Validation Error: Value is not valid
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -649,7 +649,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.5</id>
             <description>
-                javax.faces.component.UISelectMany.INVALID -- 
+                jakarta.faces.component.UISelectMany.INVALID -- 
                 {0}: Validation Error: Value is not valid
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -658,7 +658,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.6</id>
             <description>
-                javax.faces.converter.BigDecimalConverter.DECIMAL={2}: 
+                jakarta.faces.converter.BigDecimalConverter.DECIMAL={2}: 
                 ''{0}'' must be a signed decimal number.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -667,7 +667,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.7</id>
             <description>
-                javax.faces.converter.BigDecimalConverter.DECIMAL_detail
+                jakarta.faces.converter.BigDecimalConverter.DECIMAL_detail
                 ={2}: ''{0}'' must be asigned decimal number consisting
                 of zero or more digits, that may be followed by a
                 decimal point and fraction. Example: {1}
@@ -678,7 +678,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.8</id>
             <description>
-                javax.faces.converter.BigIntegerConverter.BIGINTEGER
+                jakarta.faces.converter.BigIntegerConverter.BIGINTEGER
                 ={2}: ''{0}'' must be a number consisting of one or more
                 digits.
             </description>
@@ -688,7 +688,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.9</id>
             <description>
-                javax.faces.converter.BigIntegerConverter.BIGINTEGER_
+                jakarta.faces.converter.BigIntegerConverter.BIGINTEGER_
                 detail={2}: ''{0}'' must be a number consisting of one
                 or more digits. Example: {1}
             </description>
@@ -698,7 +698,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.10</id>
             <description>
-                javax.faces.converter.BooleanConverter.BOOLEAN={1}:
+                jakarta.faces.converter.BooleanConverter.BOOLEAN={1}:
                 ''{0}'' must be 'true' or 'false'.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -707,7 +707,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.11</id>
             <description>
-                javax.faces.converter.BooleanConverter.BOOLEAN_detail
+                jakarta.faces.converter.BooleanConverter.BOOLEAN_detail
                 ={1}: ''{0}'' must be 'true' or 'false'. Any value other
                 than 'true' will evaluate to 'false'. 
             </description>
@@ -717,7 +717,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.12</id>
             <description>
-                javax.faces.converter.ByteConverter.BYTE={2}: ''{0}''
+                jakarta.faces.converter.ByteConverter.BYTE={2}: ''{0}''
                 must be a number between 0 and 255.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -726,7 +726,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.13</id>
             <description>
-                javax.faces.converter.ByteConverter.BYTE_detail={2}:
+                jakarta.faces.converter.ByteConverter.BYTE_detail={2}:
                 ''{0}'' must be a number between 0 and 255. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -735,7 +735,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.14</id>
             <description>
-                javax.faces.converter.CharacterConverter.CHARACTER={1}:
+                jakarta.faces.converter.CharacterConverter.CHARACTER={1}:
                 ''{0}'' must be a valid character.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -744,7 +744,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.15</id>
             <description>
-                javax.faces.converter.CharacterConverter.CHARACTER_
+                jakarta.faces.converter.CharacterConverter.CHARACTER_
                 detail={1}: ''{0}'' must be a valid ASCII character.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -753,7 +753,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.16</id>
             <description>
-                javax.faces.converter.DateTimeConverter.DATE={2}: 
+                jakarta.faces.converter.DateTimeConverter.DATE={2}: 
                 ''{0}'' could not be understood as a date.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -762,7 +762,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.17</id>
             <description>
-                javax.faces.converter.DateTimeConverter.DATE_detail={2}:
+                jakarta.faces.converter.DateTimeConverter.DATE_detail={2}:
                 ''{0}'' could not be understood as a date. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -771,7 +771,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.18</id>
             <description>
-                javax.faces.converter.DateTimeConverter.TIME={2}: 
+                jakarta.faces.converter.DateTimeConverter.TIME={2}: 
                 ''{0}'' could not be understood as a time.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -780,7 +780,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.19</id>
             <description>
-                javax.faces.converter.DateTimeConverter.TIME_detail={2}: 
+                jakarta.faces.converter.DateTimeConverter.TIME_detail={2}: 
                 ''{0}'' could not be understood as a time. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -789,7 +789,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.20</id>
             <description>
-                javax.faces.converter.DateTimeConverter.DATETIME={2}: 
+                jakarta.faces.converter.DateTimeConverter.DATETIME={2}: 
                 ''{0}'' could not be understood as a date and time.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -798,7 +798,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.21</id>
             <description>
-                javax.faces.converter.DateTimeConverter.DATETIME_detail=
+                jakarta.faces.converter.DateTimeConverter.DATETIME_detail=
                 {2}: ''{0}'' could not be understood as a date and time. 
                 Example: {1}
             </description>
@@ -808,7 +808,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.22</id>
             <description>
-                javax.faces.converter.DateTimeConverter.PATTERN_TYPE=
+                jakarta.faces.converter.DateTimeConverter.PATTERN_TYPE=
                 {1}: A 'pattern' or 'type' attribute must be specified 
                 to convert the value ''{0}''.
             </description>
@@ -818,7 +818,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.23</id>
             <description>
-                javax.faces.converter.DoubleConverter.DOUBLE={2}: 
+                jakarta.faces.converter.DoubleConverter.DOUBLE={2}: 
                 ''{0}'' must be a number consisting of one or more
                 digits.
             </description>
@@ -828,7 +828,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.24</id>
             <description>
-                javax.faces.converter.DoubleConverter.DOUBLE_detail={2}:
+                jakarta.faces.converter.DoubleConverter.DOUBLE_detail={2}:
                 ''{0}'' must be a number between 4.9E-324 and
                 1.7976931348623157E308 Example: {1}
             </description>
@@ -838,7 +838,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.25</id>
             <description>
-                javax.faces.converter.EnumConverter.ENUM={2}: ''{0}'' 
+                jakarta.faces.converter.EnumConverter.ENUM={2}: ''{0}'' 
                 must be convertible to an enum.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -847,7 +847,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.26</id>
             <description>
-                javax.faces.converter.EnumConverter.ENUM_detail={2}: 
+                jakarta.faces.converter.EnumConverter.ENUM_detail={2}: 
                 ''{0}'' must be convertible to an enum from the enum 
                 that contains the constant ''{1}''.
             </description>
@@ -857,7 +857,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.27</id>
             <description>
-                javax.faces.converter.EnumConverter.ENUM_NO_CLASS={1}:
+                jakarta.faces.converter.EnumConverter.ENUM_NO_CLASS={1}:
                 ''{0}'' must be convertible to an enum from the enum, 
                 but no enum class provided.
             </description>
@@ -867,7 +867,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.28</id>
             <description>
-                javax.faces.converter.EnumConverter.ENUM_NO_CLASS_detail
+                jakarta.faces.converter.EnumConverter.ENUM_NO_CLASS_detail
                 ={1}: ''{0}'' must be convertible to an enum from the 
                 enum, but no enum class provided.
             </description>
@@ -877,7 +877,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.29</id>
             <description>
-                javax.faces.converter.FloatConverter.FLOAT={2}: ''{0}'' 
+                jakarta.faces.converter.FloatConverter.FLOAT={2}: ''{0}'' 
                 must be a number consisting of one or more digits.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -886,7 +886,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.30</id>
             <description>
-                javax.faces.converter.FloatConverter.FLOAT_detail={2}:
+                jakarta.faces.converter.FloatConverter.FLOAT_detail={2}:
                 ''{0}'' must be a number between 1.4E-45 and 
                 3.4028235E38 Example: {1}
             </description>
@@ -896,7 +896,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.31</id>
             <description>
-                javax.faces.converter.IntegerConverter.INTEGER={2}:
+                jakarta.faces.converter.IntegerConverter.INTEGER={2}:
                 ''{0}'' must be a number consisting of one or more
                 digits.
             </description>
@@ -906,7 +906,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.32</id>
             <description>
-                javax.faces.converter.IntegerConverter.INTEGER_detail=
+                jakarta.faces.converter.IntegerConverter.INTEGER_detail=
                 {2}: ''{0}'' must be a number between -2147483648
                 and 2147483647 Example: {1}
             </description>
@@ -916,7 +916,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.33</id>
             <description>
-                javax.faces.converter.LongConverter.LONG={2}: ''{0}'' 
+                jakarta.faces.converter.LongConverter.LONG={2}: ''{0}'' 
                 must be a number consisting of one or more digits.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -925,7 +925,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.34</id>
             <description>
-                javax.faces.converter.LongConverter.LONG_detail={2}: 
+                jakarta.faces.converter.LongConverter.LONG_detail={2}: 
                 ''{0}'' must be a number between -9223372036854775808 
                 to 9223372036854775807 Example: {1}
             </description>
@@ -935,7 +935,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.35</id>
             <description>
-                javax.faces.converter.NumberConverter.CURRENCY={2}: 
+                jakarta.faces.converter.NumberConverter.CURRENCY={2}: 
                 ''{0}'' could not be understood as a currency value.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -944,7 +944,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.36</id>
             <description>
-                javax.faces.converter.NumberConverter.CURRENCY_detail=
+                jakarta.faces.converter.NumberConverter.CURRENCY_detail=
                 {2}: ''{0}'' could not be understood as a currency value. 
                 Example: {1}
             </description>
@@ -954,7 +954,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.37</id>
             <description>
-                javax.faces.converter.NumberConverter.PERCENT={2}: 
+                jakarta.faces.converter.NumberConverter.PERCENT={2}: 
                 ''{0}'' could not be understood as a percentage.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -963,7 +963,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.38</id>
             <description>
-                javax.faces.converter.NumberConverter.PERCENT_detail=
+                jakarta.faces.converter.NumberConverter.PERCENT_detail=
                 {2}: ''{0}'' could not be understood as a percentage. 
                 Example: {1}
             </description>
@@ -973,7 +973,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.39</id>
             <description>
-                javax.faces.converter.NumberConverter.NUMBER={2}: 
+                jakarta.faces.converter.NumberConverter.NUMBER={2}: 
                 ''{0}'' is not a number.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -982,7 +982,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.40</id>
             <description>
-                javax.faces.converter.NumberConverter.NUMBER_detail={2}:
+                jakarta.faces.converter.NumberConverter.NUMBER_detail={2}:
                 ''{0}'' is not a number. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -991,7 +991,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.41</id>
             <description>
-                javax.faces.converter.NumberConverter.PATTERN={2}: 
+                jakarta.faces.converter.NumberConverter.PATTERN={2}: 
                 ''{0}'' is not a number pattern.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1000,7 +1000,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.42</id>
             <description>
-                javax.faces.converter.NumberConverter.PATTERN_detail=
+                jakarta.faces.converter.NumberConverter.PATTERN_detail=
                 {2}: ''{0}'' is not a number pattern. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1009,7 +1009,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.43</id>
             <description>
-                javax.faces.converter.ShortConverter.SHORT={2}: ''{0}'' 
+                jakarta.faces.converter.ShortConverter.SHORT={2}: ''{0}'' 
                 must be a number consisting of one or more digits.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1018,7 +1018,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.44</id>
             <description>
-                javax.faces.converter.ShortConverter.SHORT_detail={2}: 
+                jakarta.faces.converter.ShortConverter.SHORT_detail={2}: 
                 ''{0}'' must be a number between -32768 and 32767 
                 Example: {1}
             </description>
@@ -1028,7 +1028,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.45</id>
             <description>
-                javax.faces.converter.STRING={1}: Could not convert 
+                jakarta.faces.converter.STRING={1}: Could not convert 
                 ''{0}'' to a string.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1037,7 +1037,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.46</id>
             <description>
-                javax.faces.validator.DoubleRangeValidator.MAXIMUM -- 
+                jakarta.faces.validator.DoubleRangeValidator.MAXIMUM -- 
                 {1}: Validation Error: Value is greater than allowable 
                 maximum of ‘’{0}’’
             </description>
@@ -1047,7 +1047,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.47</id>
             <description>
-                javax.faces.validator.DoubleRangeValidator.MINIMUM -- 
+                jakarta.faces.validator.DoubleRangeValidator.MINIMUM -- 
                 {1}: Validation Error: Value is less than allowable 
                 minimum of ‘’{0}’’
             </description>
@@ -1057,7 +1057,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.48</id>
             <description>
-                javax.faces.validator.DoubleRangeValidator.NOT_IN_RANGE 
+                jakarta.faces.validator.DoubleRangeValidator.NOT_IN_RANGE 
                 -- {2}: Validation Error: Specified attribute is not 
                 between the expected values of {0} and {1}.
             </description>
@@ -1067,7 +1067,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.49</id>
             <description>
-                javax.faces.validator.DoubleRangeValidator.TYPE -- {0}: 
+                jakarta.faces.validator.DoubleRangeValidator.TYPE -- {0}: 
                 Validation Error: Value is not of the correct type
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1076,7 +1076,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.50</id>
             <description>
-                javax.faces.validator.LengthValidator.MAXIMUM -- {1}: 
+                jakarta.faces.validator.LengthValidator.MAXIMUM -- {1}: 
                 Validation Error: Value is greater than allowable 
                 maximum of ‘’{0}’’
             </description>
@@ -1086,7 +1086,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.51</id>
             <description>
-                javax.faces.validator.LengthValidator.MINIMUM -- {1}: 
+                jakarta.faces.validator.LengthValidator.MINIMUM -- {1}: 
                 Validation Error: Value is less than allowable minimum
                 of ‘’{0}’’
             </description>
@@ -1096,7 +1096,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.52</id>
             <description>
-                javax.faces.validator.LongRangeValidator.MAXIMUM -- 
+                jakarta.faces.validator.LongRangeValidator.MAXIMUM -- 
                 {1}: Validation Error: Value is greater than allowable
                 maximum of ‘’{0}’’
             </description>
@@ -1106,7 +1106,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.53</id>
             <description>
-                javax.faces.validator.LongRangeValidator.MINIMUM -- {1}:
+                jakarta.faces.validator.LongRangeValidator.MINIMUM -- {1}:
                 Validation Error Value is less than allowable minimum of
                 ‘’{0}’’
             </description>
@@ -1116,7 +1116,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.54</id>
             <description>
-                javax.faces.validator.LongRangeValidator.NOT_IN_RANGE=
+                jakarta.faces.validator.LongRangeValidator.NOT_IN_RANGE=
                 {2}: Validation Error: Specified attribute is not
                 between the expected values of {0} and {1}.
             </description>
@@ -1126,7 +1126,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.55</id>
             <description>
-                javax.faces.validator.LongRangeValidator.TYPE -- {0}:
+                jakarta.faces.validator.LongRangeValidator.TYPE -- {0}:
                 Validation Error: Value is not of the correct type
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1170,7 +1170,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.2</id>
             <description>
-                If not there, look in the javax.faces.Messages 
+                If not there, look in the jakarta.faces.Messages 
                 resource bundle.
             </description>
             <location chapter="2" section="5.2.4"/>

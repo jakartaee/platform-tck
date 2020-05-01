@@ -23,7 +23,7 @@ package com.sun.ts.tests.jsf.api.javax_faces.event.abortprocessingexception;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.event.AbortProcessingException;
+import jakarta.faces.event.AbortProcessingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

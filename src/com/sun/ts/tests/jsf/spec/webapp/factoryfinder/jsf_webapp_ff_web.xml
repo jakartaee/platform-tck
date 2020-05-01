@@ -25,7 +25,7 @@
 
     <!-- Specify an alternate configuration file -->
     <context-param>
-        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-name>jakarta.faces.CONFIG_FILES</param-name>
         <param-value>/WEB-INF/config/faces-config.xml</param-value>
     </context-param>
 
@@ -40,7 +40,7 @@
 	</servlet>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>

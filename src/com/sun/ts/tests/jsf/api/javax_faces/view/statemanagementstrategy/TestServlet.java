@@ -22,11 +22,11 @@ package com.sun.ts.tests.jsf.api.javax_faces.view.statemanagementstrategy;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.FactoryFinder;
-import javax.faces.application.Application;
-import javax.faces.context.FacesContext;
-import javax.faces.render.RenderKitFactory;
-import javax.faces.view.StateManagementStrategy;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.application.Application;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.render.RenderKitFactory;
+import jakarta.faces.view.StateManagementStrategy;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

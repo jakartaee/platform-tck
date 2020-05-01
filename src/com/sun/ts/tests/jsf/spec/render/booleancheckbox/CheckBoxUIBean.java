@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsf.spec.render.booleancheckbox;
 
-import javax.faces.component.html.HtmlSelectBooleanCheckbox;
+import jakarta.faces.component.html.HtmlSelectBooleanCheckbox;
 
 public class CheckBoxUIBean {
 

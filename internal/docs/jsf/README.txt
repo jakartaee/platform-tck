@@ -49,7 +49,7 @@ Setup and Configuration of the JSF TCK
 	impl.vi=glassfish
 	impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy
 	impl.deploy.timeout.multiplier=20
-	jsf.classes=${webServerHome}/modules/javax.faces.jar${pathsep} /
+	jsf.classes=${webServerHome}/modules/jakarta.faces.jar${pathsep} /
 	${webServerHome}/modules/weld-osgi-bundle.jar
 	jspservlet.classes=${webServerHome}/modules/javax.servlet.jsp.jar${pathsep} /
 	${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep} /

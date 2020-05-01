@@ -20,12 +20,12 @@
 package com.sun.ts.tests.jsf.api.javax_faces.event.ajaxbehaviorevent;
 
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseBehaviorEventTestServlet;
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.component.behavior.AjaxBehavior;
-import javax.faces.component.behavior.Behavior;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.BehaviorEvent;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.behavior.AjaxBehavior;
+import jakarta.faces.component.behavior.Behavior;
+import jakarta.faces.event.AjaxBehaviorEvent;
+import jakarta.faces.event.BehaviorEvent;
 
 public class TestServlet extends BaseBehaviorEventTestServlet {
 

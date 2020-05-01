@@ -23,9 +23,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.event.preremoveflashvalueevent;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.application.Application;
-import javax.faces.event.PreRemoveFlashValueEvent;
-import javax.faces.event.SystemEvent;
+import jakarta.faces.application.Application;
+import jakarta.faces.event.PreRemoveFlashValueEvent;
+import jakarta.faces.event.SystemEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

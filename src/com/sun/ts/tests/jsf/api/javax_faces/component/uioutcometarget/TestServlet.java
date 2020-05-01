@@ -24,9 +24,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIOutcomeTarget;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIOutcomeTarget;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,8 +53,8 @@ public class TestServlet extends BaseComponentTestServlet {
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
     rendererType = new ArrayList<String>();
-    rendererType.add("javax.faces.Link");
-    rendererType.add("javax.faces.Button");
+    rendererType.add("jakarta.faces.Link");
+    rendererType.add("jakarta.faces.Button");
 
   }
 

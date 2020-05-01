@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.api.javax_faces.view.common;
 
-import javax.faces.component.UIViewRoot;
-import javax.faces.component.visit.VisitCallback;
-import javax.faces.component.visit.VisitContext;
-import javax.faces.context.FacesContext;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.component.visit.VisitCallback;
+import jakarta.faces.component.visit.VisitContext;
+import jakarta.faces.context.FacesContext;
 
 public class TCKViewRoot extends UIViewRoot {
   private boolean vutreecalled = Boolean.FALSE;

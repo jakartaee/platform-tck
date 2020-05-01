@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import javax.faces.application.ResourceHandler;
+import jakarta.faces.application.ResourceHandler;
 
 public class TestServlet extends HttpTCKServlet {
 
@@ -127,7 +127,7 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    ResourceChecker.doesExists(this.getTCKHandler(), "jsf.js", "javax.faces",
+    ResourceChecker.doesExists(this.getTCKHandler(), "jsf.js", "jakarta.faces",
         out);
   }
 

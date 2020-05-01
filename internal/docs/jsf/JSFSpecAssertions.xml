@@ -593,7 +593,7 @@
                     <section id="2.2" name="Servlet and JSP API Classes (javax.servlet.*)"/>
                     <section id="2.3" name="JSP Standard Tag Library (JSTL) API Classes (javax.servlet.jsp.jstl.*)"/>
                     <section id="2.4" name="JSP Standard Tag Library (JSTL) Implementation Classes"/>
-                    <section id="2.5" name="JavaServer Faces API Classes (javax.faces.*)"/>
+                    <section id="2.5" name="JavaServer Faces API Classes (jakarta.faces.*)"/>
                     <section id="2.6" name="JavaServer Faces Implementation Classes"/>
                     <section id="2.6.1" name="FactoryFinder"/>
                     <section id="2.6.2" name="FacesServlet"/>

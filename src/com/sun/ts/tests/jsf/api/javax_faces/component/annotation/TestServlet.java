@@ -27,12 +27,12 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import javax.faces.application.Application;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIOutput;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIOutput;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +52,7 @@ public class TestServlet extends BaseComponentTestServlet {
    */
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Text");
+    setRendererType("jakarta.faces.Text");
   }
 
   /**
@@ -97,7 +97,7 @@ public class TestServlet extends BaseComponentTestServlet {
     Iterator childIterator = children.listIterator();
     while (childIterator.hasNext()) {
       String resClass = childIterator.next().getClass().getName();
-      String expClass = "javax.faces.component.UIOutput";
+      String expClass = "jakarta.faces.component.UIOutput";
       if (!(expClass.equals(resClass))) {
         out.println("Test FAILED Incorrect Class Instance for "
             + "Resource reference." + JSFTestUtil.NL + "Expected: " + expClass

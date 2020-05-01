@@ -22,8 +22,8 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.uipanel;
 
 import com.sun.ts.tests.jsf.api.javax_faces.component.common.BaseComponentTestServlet;
 
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIPanel;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIPanel;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
@@ -38,10 +38,10 @@ public class TestServlet extends BaseComponentTestServlet {
 
   /**
    * <p>
-   * Creates a new {@link javax.faces.component.UIComponent} instance.
+   * Creates a new {@link jakarta.faces.component.UIComponent} instance.
    * </p>
    * 
-   * @return a new {@link javax.faces.component.UIComponent} instance.
+   * @return a new {@link jakarta.faces.component.UIComponent} instance.
    */
   @Override
   protected UIComponentBase createComponent() {

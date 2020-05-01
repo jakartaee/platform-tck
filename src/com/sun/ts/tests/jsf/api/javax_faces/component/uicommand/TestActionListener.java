@@ -22,8 +22,8 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.uicommand;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ActionListener;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.event.ActionListener;
 
 public final class TestActionListener implements ActionListener {
   private String id = null;

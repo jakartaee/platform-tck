@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jsf.spec.render.outputformat;
 
-import javax.faces.component.html.HtmlOutputFormat;
+import jakarta.faces.component.html.HtmlOutputFormat;
 
 public class FormatterUIBean {
 

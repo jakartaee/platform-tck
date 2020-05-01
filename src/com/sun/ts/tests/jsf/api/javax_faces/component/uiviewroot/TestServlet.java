@@ -28,15 +28,15 @@ import java.util.Locale;
 
 import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIOutput;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.event.FacesEvent;
-import javax.faces.event.PhaseListener;
-import javax.faces.event.SystemEventListener;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIOutput;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.FacesEvent;
+import jakarta.faces.event.PhaseListener;
+import jakarta.faces.event.SystemEventListener;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -60,10 +60,10 @@ public final class TestServlet extends BaseComponentTestServlet {
 
   /**
    * <p>
-   * Creates a new {@link javax.faces.component.UIComponent} instance.
+   * Creates a new {@link jakarta.faces.component.UIComponent} instance.
    * </p>
    * 
-   * @return a new {@link javax.faces.component.UIComponent} instance.
+   * @return a new {@link jakarta.faces.component.UIComponent} instance.
    */
   @Override
   protected UIComponentBase createComponent() {
@@ -174,7 +174,7 @@ public final class TestServlet extends BaseComponentTestServlet {
     PrintWriter out = response.getWriter();
 
     // UIViewRoot.getComponentResources(FacesContext, null)
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "getComponentResources",
         new Class<?>[] { FacesContext.class, String.class },
         new Object[] { getFacesContext(), null }, out);
@@ -218,7 +218,7 @@ public final class TestServlet extends BaseComponentTestServlet {
     PrintWriter out = response.getWriter();
 
     // UIViewRoot.removeComponentResource(FacesContext, null)
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "removeComponentResource",
         new Class<?>[] { FacesContext.class, UIComponent.class },
         new Object[] { getFacesContext(), null }, out);
@@ -352,13 +352,13 @@ public final class TestServlet extends BaseComponentTestServlet {
     PrintWriter out = response.getWriter();
 
     // UIViewRoot.unsubscribeFromViewEvent(null, SystemEventListener)
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "unsubscribeFromViewEvent",
         new Class<?>[] { Class.class, SystemEventListener.class },
         new Object[] { null, new TCKSystemEventListener() }, out);
 
     // UIViewRoot.unsubscribeFromViewEvent(Class, null)
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "unsubscribeFromViewEvent",
         new Class<?>[] { Class.class, SystemEventListener.class },
         new Object[] { new TCKSystemEvent(new UICommand()).getClass(), null },
@@ -373,13 +373,13 @@ public final class TestServlet extends BaseComponentTestServlet {
     PrintWriter out = response.getWriter();
 
     // UIViewRoot.subscribeToViewEvent(null, SystemEventListener)
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "subscribeToViewEvent",
         new Class<?>[] { Class.class, SystemEventListener.class },
         new Object[] { null, new TCKSystemEventListener() }, out);
 
     // UIViewRoot.subscribeToViewEvent(Class, null)
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "subscribeToViewEvent",
         new Class<?>[] { Class.class, SystemEventListener.class },
         new Object[] { new TCKSystemEvent(new UICommand()).getClass(), null },
@@ -461,7 +461,7 @@ public final class TestServlet extends BaseComponentTestServlet {
       throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "getViewListenersForEventClass", new Class<?>[] { Class.class },
         new Object[] { null }, out);
 
@@ -472,7 +472,7 @@ public final class TestServlet extends BaseComponentTestServlet {
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "processApplication", new Class<?>[] { FacesContext.class },
         new Object[] { null }, out);
 
@@ -483,7 +483,7 @@ public final class TestServlet extends BaseComponentTestServlet {
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "processDecodes", new Class<?>[] { FacesContext.class },
         new Object[] { null }, out);
 
@@ -494,7 +494,7 @@ public final class TestServlet extends BaseComponentTestServlet {
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot",
         "processUpdates", new Class<?>[] { FacesContext.class },
         new Object[] { null }, out);
 
@@ -505,7 +505,7 @@ public final class TestServlet extends BaseComponentTestServlet {
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    JSFTestUtil.checkForNPE("javax.faces.component.UIViewRoot", "queueEvent",
+    JSFTestUtil.checkForNPE("jakarta.faces.component.UIViewRoot", "queueEvent",
         new Class<?>[] { FacesEvent.class }, new Object[] { null }, out);
 
   }// End uiViewRootQueueEventNPETest

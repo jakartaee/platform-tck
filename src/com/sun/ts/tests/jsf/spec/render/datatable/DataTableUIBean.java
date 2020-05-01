@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.jsf.spec.render.datatable;
 
-import javax.faces.application.Application;
-import javax.faces.component.html.HtmlDataTable;
-import javax.faces.component.html.HtmlColumn;
-import javax.faces.component.html.HtmlOutputText;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.html.HtmlDataTable;
+import jakarta.faces.component.html.HtmlColumn;
+import jakarta.faces.component.html.HtmlOutputText;
+import jakarta.faces.context.FacesContext;
 
 public class DataTableUIBean {
 

@@ -28,8 +28,8 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.faces.el.PropertyResolver;
-import javax.faces.el.PropertyNotFoundException;
+import jakarta.faces.el.PropertyResolver;
+import jakarta.faces.el.PropertyNotFoundException;
 
 import java.io.IOException;
 import java.io.PrintWriter;

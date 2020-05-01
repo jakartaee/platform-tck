@@ -22,12 +22,12 @@ package com.sun.ts.tests.jsf.spec.render.common;
 
 import java.util.Map;
 
-import javax.faces.event.ActionListener;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ExternalContext;
+import jakarta.faces.event.ActionListener;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ExternalContext;
 import javax.servlet.http.HttpServletResponse;
 
 public class SimpleActionListener implements ActionListener {
@@ -35,13 +35,13 @@ public class SimpleActionListener implements ActionListener {
   /**
    * <p>
    * Invoked when the action described by the specified
-   * {@link javax.faces.event.ActionEvent} occurs.
+   * {@link jakarta.faces.event.ActionEvent} occurs.
    * </p>
    *
    * @param event
-   *          The {@link javax.faces.event.ActionEvent} that has occurred
+   *          The {@link jakarta.faces.event.ActionEvent} that has occurred
    *
-   * @throws javax.faces.event.AbortProcessingException
+   * @throws jakarta.faces.event.AbortProcessingException
    *           Signal the JavaServer Faces implementation that no further
    *           processing on the current event should be performed
    */

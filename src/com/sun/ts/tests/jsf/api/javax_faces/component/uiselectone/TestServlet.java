@@ -23,17 +23,17 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.uiselectone;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.application.Application;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIInput;
-import javax.faces.component.UISelectItem;
-import javax.faces.component.UISelectOne;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.el.MethodBinding;
-import javax.faces.el.ValueBinding;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UISelectItem;
+import jakarta.faces.component.UISelectOne;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.el.MethodBinding;
+import jakarta.faces.el.ValueBinding;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -61,7 +61,7 @@ public class TestServlet
   @Override
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    setRendererType("javax.faces.Menu");
+    setRendererType("jakarta.faces.Menu");
   }
 
   /**

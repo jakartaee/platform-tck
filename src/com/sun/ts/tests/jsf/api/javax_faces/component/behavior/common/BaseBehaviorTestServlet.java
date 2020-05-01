@@ -24,10 +24,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
-import javax.faces.component.behavior.BehaviorBase;
-import javax.faces.event.BehaviorEvent;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIOutput;
+import jakarta.faces.component.behavior.BehaviorBase;
+import jakarta.faces.event.BehaviorEvent;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

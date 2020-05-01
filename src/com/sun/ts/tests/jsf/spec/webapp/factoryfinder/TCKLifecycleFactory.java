@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 
-import javax.faces.context.FacesContextFactory;
-import javax.faces.lifecycle.Lifecycle;
-import javax.faces.lifecycle.LifecycleFactory;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.lifecycle.Lifecycle;
+import jakarta.faces.lifecycle.LifecycleFactory;
 
 import java.util.Iterator;
 
@@ -61,25 +61,25 @@ public class TCKLifecycleFactory extends LifecycleFactory {
 
   } // END TCKLifecycleFactory
 
-  // --------------------- Methods from javax.faces.lifecycle.LifecycleFactory
+  // --------------------- Methods from jakarta.faces.lifecycle.LifecycleFactory
 
   /**
    * <p>
-   * Register a new {@link javax.faces.lifecycle.Lifecycle} instance, associated
+   * Register a new {@link jakarta.faces.lifecycle.Lifecycle} instance, associated
    * with the specified <code>lifecycleId</code>, to be supported by this
    * <code>LifecycleFactory</code>. This method may be called at any time, and
-   * makes the corresponding {@link javax.faces.lifecycle.Lifecycle} instance
+   * makes the corresponding {@link jakarta.faces.lifecycle.Lifecycle} instance
    * available throughout the remaining lifetime of this web application.
    * </p>
    *
    * @param lifecycleId
-   *          Identifier of the new {@link javax.faces.lifecycle.Lifecycle}
+   *          Identifier of the new {@link jakarta.faces.lifecycle.Lifecycle}
    * @param lifecycle
-   *          {@link javax.faces.lifecycle.Lifecycle} instance that we are
+   *          {@link jakarta.faces.lifecycle.Lifecycle} instance that we are
    *          registering
    *
    * @throws IllegalArgumentException
-   *           if a {@link javax.faces.lifecycle.Lifecycle} with the specified
+   *           if a {@link jakarta.faces.lifecycle.Lifecycle} with the specified
    *           <code>lifecycleId</code> has already been registered
    * @throws NullPointerException
    *           if <code>lifecycleId</code> or <code>lifecycle</code> is
@@ -93,7 +93,7 @@ public class TCKLifecycleFactory extends LifecycleFactory {
 
   /**
    * <p>
-   * Create (if needed) and return a {@link javax.faces.lifecycle.Lifecycle}
+   * Create (if needed) and return a {@link jakarta.faces.lifecycle.Lifecycle}
    * instance for the specified lifecycle identifier. The set of available
    * lifecycle identifiers is available via the <code>getLifecycleIds()</code>
    * method.
@@ -102,15 +102,15 @@ public class TCKLifecycleFactory extends LifecycleFactory {
    * <p>
    * Each call to <code>getLifecycle()</code> for the same
    * <code>lifecycleId</code>, from within the same web application, must return
-   * the same {@link javax.faces.lifecycle.Lifecycle} instance.
+   * the same {@link jakarta.faces.lifecycle.Lifecycle} instance.
    * </p>
    *
    * @param lifecycleId
    *          Lifecycle identifier of the requested
-   *          {@link javax.faces.lifecycle.Lifecycle} instance
+   *          {@link jakarta.faces.lifecycle.Lifecycle} instance
    *
    * @throws IllegalArgumentException
-   *           if no {@link javax.faces.lifecycle.Lifecycle} instance can be
+   *           if no {@link jakarta.faces.lifecycle.Lifecycle} instance can be
    *           returned for the specified identifier
    * @throws NullPointerException
    *           if <code>lifecycleId</code> is <code>null</code>

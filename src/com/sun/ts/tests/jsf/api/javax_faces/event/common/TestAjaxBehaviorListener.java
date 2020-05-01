@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.jsf.api.javax_faces.event.common;
 
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.AjaxBehaviorListener;
+import jakarta.faces.event.AjaxBehaviorEvent;
+import jakarta.faces.event.AjaxBehaviorListener;
 
 public class TestAjaxBehaviorListener implements AjaxBehaviorListener {
 

@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jsf.common.event;
 
-import javax.faces.component.UIComponent;
-import javax.faces.event.FacesListener;
-import javax.faces.event.SystemEvent;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.event.FacesListener;
+import jakarta.faces.event.SystemEvent;
 
 public class TCKSystemEvent extends SystemEvent {
 

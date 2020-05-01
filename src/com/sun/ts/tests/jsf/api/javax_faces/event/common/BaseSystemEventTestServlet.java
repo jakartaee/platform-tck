@@ -22,9 +22,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.event.common;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.application.Application;
-import javax.faces.event.FacesListener;
-import javax.faces.event.SystemEvent;
+import jakarta.faces.application.Application;
+import jakarta.faces.event.FacesListener;
+import jakarta.faces.event.SystemEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +33,7 @@ import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 /**
- * This class mirrors "javax.faces.event.SystemEvent"
+ * This class mirrors "jakarta.faces.event.SystemEvent"
  * 
  */
 public abstract class BaseSystemEventTestServlet extends HttpTCKServlet {

@@ -21,10 +21,10 @@
 package com.sun.ts.tests.jsf.api.javax_faces.event.prevalidateevent;
 
 import com.sun.ts.tests.jsf.api.javax_faces.event.common.BaseComponentSystemEventTestServlet;
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.PreValidateEvent;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.PreValidateEvent;
 
 public class TestServlet extends BaseComponentSystemEventTestServlet {
 

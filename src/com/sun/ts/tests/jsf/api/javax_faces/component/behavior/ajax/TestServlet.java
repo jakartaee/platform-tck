@@ -29,14 +29,14 @@ import java.util.List;
 
 import jakarta.el.ExpressionFactory;
 import jakarta.el.ValueExpression;
-import javax.faces.component.UICommand;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.component.behavior.AjaxBehavior;
-import javax.faces.component.behavior.ClientBehaviorBase;
-import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.AjaxBehaviorListener;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.component.behavior.AjaxBehavior;
+import jakarta.faces.component.behavior.ClientBehaviorBase;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AjaxBehaviorEvent;
+import jakarta.faces.event.AjaxBehaviorListener;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,10 +50,10 @@ public class TestServlet extends BaseBehaviorTestServlet {
 
   /**
    * <p>
-   * Creates a new {@link javax.faces.component.UIComponent} instance.
+   * Creates a new {@link jakarta.faces.component.UIComponent} instance.
    * </p>
    * 
-   * @return a new {@link javax.faces.component.UIComponent} instance.
+   * @return a new {@link jakarta.faces.component.UIComponent} instance.
    */
   @Override
   protected ClientBehaviorBase createBehavior() {

@@ -23,9 +23,9 @@ package com.sun.ts.tests.jsf.api.javax_faces.component.uiviewaction;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIViewAction;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIViewAction;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

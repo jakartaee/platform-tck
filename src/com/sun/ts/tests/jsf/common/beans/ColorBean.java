@@ -18,9 +18,9 @@ package com.sun.ts.tests.jsf.common.beans;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.event.ActionEvent;
+import jakarta.faces.bean.ApplicationScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.event.ActionEvent;
 
 @ManagedBean(name = "color")
 @ApplicationScoped

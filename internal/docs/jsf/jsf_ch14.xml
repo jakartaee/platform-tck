@@ -97,7 +97,7 @@
         This function must return the constant representing the current state of
         the running application in a typical product development lifecycle. The
         returned value must be the value returned from the server side method
-        javax.faces.application.Application.getProjectStage()
+        jakarta.faces.application.Application.getProjectStage()
     </description>
     <location chapter="14" section="5"/>
 </assertion>

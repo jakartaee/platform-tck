@@ -430,7 +430,7 @@
                     <section id="2.2" name="Servlet and JSP API Classes (javax.servlet.*)"/>
                     <section id="2.3" name="JSP Standard Tag Library (JSTL) API Classes (javax.servlet.jsp.jstl.*)"/>
                     <section id="2.4" name="JSP Standard Tag Library (JSTL) Implementation Classes"/>
-                    <section id="2.5" name="JavaServer Faces API Classes (javax.faces.*)"/>
+                    <section id="2.5" name="JavaServer Faces API Classes (jakarta.faces.*)"/>
                     <section id="2.6" name="JavaServer Faces Implementation Classes"/>
                     <section id="2.6.1" name="FactoryFinder"/>
                     <section id="2.6.2" name="FacesServlet"/>
@@ -1001,7 +1001,7 @@
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
     <id>JSF:SPEC:22</id>
     <description>
-        A JSF implementation must provide a javax.faces.Messages
+        A JSF implementation must provide a jakarta.faces.Messages
         ResourceBundle containing all of the necessary keys for the
         standard messages.
     </description>
@@ -1010,7 +1010,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.1</id>
             <description>
-                javax.faces.component.UIInput.CONVERSION -- 
+                jakarta.faces.component.UIInput.CONVERSION -- 
                 {0}: Conversion error occurred
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1018,7 +1018,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.2</id>
             <description>
-                javax.faces.component.UIInput.REQUIRED -- 
+                jakarta.faces.component.UIInput.REQUIRED -- 
                 {0}: Validation Error: Value is required
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1026,7 +1026,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.3</id>
             <description>
-                javax.faces.component.UIInput.UPDATE -- 
+                jakarta.faces.component.UIInput.UPDATE -- 
                 {0}: An error occurred when processing your submitted 
                 information
             </description>
@@ -1035,7 +1035,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.4</id>
             <description>
-                javax.faces.component.UISelectOne.INVALID -- 
+                jakarta.faces.component.UISelectOne.INVALID -- 
                 {0}: Validation Error: Value is not valid
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1043,7 +1043,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.5</id>
             <description>
-                javax.faces.component.UISelectMany.INVALID -- 
+                jakarta.faces.component.UISelectMany.INVALID -- 
                 {0}: Validation Error: Value is not valid
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1051,7 +1051,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.6</id>
             <description>
-                javax.faces.converter.BigDecimalConverter.DECIMAL={2}: 
+                jakarta.faces.converter.BigDecimalConverter.DECIMAL={2}: 
                 ''{0}'' must be a signed decimal number.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1059,7 +1059,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.7</id>
             <description>
-                javax.faces.converter.BigDecimalConverter.DECIMAL_detail
+                jakarta.faces.converter.BigDecimalConverter.DECIMAL_detail
                 ={2}: ''{0}'' must be asigned decimal number consisting
                 of zero or more digits, that may be followed by a
                 decimal point and fraction. Example: {1}
@@ -1069,7 +1069,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.8</id>
             <description>
-                javax.faces.converter.BigIntegerConverter.BIGINTEGER
+                jakarta.faces.converter.BigIntegerConverter.BIGINTEGER
                 ={2}: ''{0}'' must be a number consisting of one or more
                 digits.
             </description>
@@ -1078,7 +1078,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.9</id>
             <description>
-                javax.faces.converter.BigIntegerConverter.BIGINTEGER_
+                jakarta.faces.converter.BigIntegerConverter.BIGINTEGER_
                 detail={2}: ''{0}'' must be a number consisting of one
                 or more digits. Example: {1}
             </description>
@@ -1087,7 +1087,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.10</id>
             <description>
-                javax.faces.converter.BooleanConverter.BOOLEAN={1}:
+                jakarta.faces.converter.BooleanConverter.BOOLEAN={1}:
                 ''{0}'' must be 'true' or 'false'.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1095,7 +1095,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.11</id>
             <description>
-                javax.faces.converter.BooleanConverter.BOOLEAN_detail
+                jakarta.faces.converter.BooleanConverter.BOOLEAN_detail
                 ={1}: ''{0}'' must be 'true' or 'false'. Any value other
                 than 'true' will evaluate to 'false'. 
             </description>
@@ -1104,7 +1104,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.12</id>
             <description>
-                javax.faces.converter.ByteConverter.BYTE={2}: ''{0}''
+                jakarta.faces.converter.ByteConverter.BYTE={2}: ''{0}''
                 must be a number between 0 and 255.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1112,7 +1112,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.13</id>
             <description>
-                javax.faces.converter.ByteConverter.BYTE_detail={2}:
+                jakarta.faces.converter.ByteConverter.BYTE_detail={2}:
                 ''{0}'' must be a number between 0 and 255. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1120,7 +1120,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.14</id>
             <description>
-                javax.faces.converter.CharacterConverter.CHARACTER={1}:
+                jakarta.faces.converter.CharacterConverter.CHARACTER={1}:
                 ''{0}'' must be a valid character.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1128,7 +1128,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.15</id>
             <description>
-                javax.faces.converter.CharacterConverter.CHARACTER_
+                jakarta.faces.converter.CharacterConverter.CHARACTER_
                 detail={1}: ''{0}'' must be a valid ASCII character.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1136,7 +1136,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.16</id>
             <description>
-                javax.faces.converter.DateTimeConverter.DATE={2}: 
+                jakarta.faces.converter.DateTimeConverter.DATE={2}: 
                 ''{0}'' could not be understood as a date.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1144,7 +1144,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.17</id>
             <description>
-                javax.faces.converter.DateTimeConverter.DATE_detail={2}:
+                jakarta.faces.converter.DateTimeConverter.DATE_detail={2}:
                 ''{0}'' could not be understood as a date. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1152,7 +1152,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.18</id>
             <description>
-                javax.faces.converter.DateTimeConverter.TIME={2}: 
+                jakarta.faces.converter.DateTimeConverter.TIME={2}: 
                 ''{0}'' could not be understood as a time.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1160,7 +1160,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.19</id>
             <description>
-                javax.faces.converter.DateTimeConverter.TIME_detail={2}: 
+                jakarta.faces.converter.DateTimeConverter.TIME_detail={2}: 
                 ''{0}'' could not be understood as a time. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1168,7 +1168,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.20</id>
             <description>
-                javax.faces.converter.DateTimeConverter.DATETIME={2}: 
+                jakarta.faces.converter.DateTimeConverter.DATETIME={2}: 
                 ''{0}'' could not be understood as a date and time.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1176,7 +1176,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.21</id>
             <description>
-                javax.faces.converter.DateTimeConverter.DATETIME_detail=
+                jakarta.faces.converter.DateTimeConverter.DATETIME_detail=
                 {2}: ''{0}'' could not be understood as a date and time. 
                 Example: {1}
             </description>
@@ -1185,7 +1185,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.22</id>
             <description>
-                javax.faces.converter.DateTimeConverter.PATTERN_TYPE=
+                jakarta.faces.converter.DateTimeConverter.PATTERN_TYPE=
                 {1}: A 'pattern' or 'type' attribute must be specified 
                 to convert the value ''{0}''.
             </description>
@@ -1194,7 +1194,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.23</id>
             <description>
-                javax.faces.converter.DoubleConverter.DOUBLE={2}: 
+                jakarta.faces.converter.DoubleConverter.DOUBLE={2}: 
                 ''{0}'' must be a number consisting of one or more
                 digits.
             </description>
@@ -1203,7 +1203,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.24</id>
             <description>
-                javax.faces.converter.DoubleConverter.DOUBLE_detail={2}:
+                jakarta.faces.converter.DoubleConverter.DOUBLE_detail={2}:
                 ''{0}'' must be a number between 4.9E-324 and
                 1.7976931348623157E308 Example: {1}
             </description>
@@ -1212,7 +1212,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.25</id>
             <description>
-                javax.faces.converter.EnumConverter.ENUM={2}: ''{0}'' 
+                jakarta.faces.converter.EnumConverter.ENUM={2}: ''{0}'' 
                 must be convertible to an enum.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1220,7 +1220,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.26</id>
             <description>
-                javax.faces.converter.EnumConverter.ENUM_detail={2}: 
+                jakarta.faces.converter.EnumConverter.ENUM_detail={2}: 
                 ''{0}'' must be convertible to an enum from the enum 
                 that contains the constant ''{1}''.
             </description>
@@ -1229,7 +1229,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.27</id>
             <description>
-                javax.faces.converter.EnumConverter.ENUM_NO_CLASS={1}:
+                jakarta.faces.converter.EnumConverter.ENUM_NO_CLASS={1}:
                 ''{0}'' must be convertible to an enum from the enum, 
                 but no enum class provided.
             </description>
@@ -1238,7 +1238,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.28</id>
             <description>
-                javax.faces.converter.EnumConverter.ENUM_NO_CLASS_detail
+                jakarta.faces.converter.EnumConverter.ENUM_NO_CLASS_detail
                 ={1}: ''{0}'' must be convertible to an enum from the 
                 enum, but no enum class provided.
             </description>
@@ -1247,7 +1247,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.29</id>
             <description>
-                javax.faces.converter.FloatConverter.FLOAT={2}: ''{0}'' 
+                jakarta.faces.converter.FloatConverter.FLOAT={2}: ''{0}'' 
                 must be a number consisting of one or more digits.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1255,7 +1255,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.30</id>
             <description>
-                javax.faces.converter.FloatConverter.FLOAT_detail={2}:
+                jakarta.faces.converter.FloatConverter.FLOAT_detail={2}:
                 ''{0}'' must be a number between 1.4E-45 and 
                 3.4028235E38 Example: {1}
             </description>
@@ -1264,7 +1264,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.31</id>
             <description>
-                javax.faces.converter.IntegerConverter.INTEGER={2}:
+                jakarta.faces.converter.IntegerConverter.INTEGER={2}:
                 ''{0}'' must be a number consisting of one or more
                 digits.
             </description>
@@ -1273,7 +1273,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.32</id>
             <description>
-                javax.faces.converter.IntegerConverter.INTEGER_detail=
+                jakarta.faces.converter.IntegerConverter.INTEGER_detail=
                 {2}: ''{0}'' must be a number between -2147483648
                 and 2147483647 Example: {1}
             </description>
@@ -1282,7 +1282,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.33</id>
             <description>
-                javax.faces.converter.LongConverter.LONG={2}: ''{0}'' 
+                jakarta.faces.converter.LongConverter.LONG={2}: ''{0}'' 
                 must be a number consisting of one or more digits.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1290,7 +1290,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.34</id>
             <description>
-                javax.faces.converter.LongConverter.LONG_detail={2}: 
+                jakarta.faces.converter.LongConverter.LONG_detail={2}: 
                 ''{0}'' must be a number between -9223372036854775808 
                 to 9223372036854775807 Example: {1}
             </description>
@@ -1299,7 +1299,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.35</id>
             <description>
-                javax.faces.converter.NumberConverter.CURRENCY={2}: 
+                jakarta.faces.converter.NumberConverter.CURRENCY={2}: 
                 ''{0}'' could not be understood as a currency value.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1307,7 +1307,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.36</id>
             <description>
-                javax.faces.converter.NumberConverter.CURRENCY_detail=
+                jakarta.faces.converter.NumberConverter.CURRENCY_detail=
                 {2}: ''{0}'' could not be understood as a currency value. 
                 Example: {1}
             </description>
@@ -1316,7 +1316,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.37</id>
             <description>
-                javax.faces.converter.NumberConverter.PERCENT={2}: 
+                jakarta.faces.converter.NumberConverter.PERCENT={2}: 
                 ''{0}'' could not be understood as a percentage.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1324,7 +1324,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.38</id>
             <description>
-                javax.faces.converter.NumberConverter.PERCENT_detail=
+                jakarta.faces.converter.NumberConverter.PERCENT_detail=
                 {2}: ''{0}'' could not be understood as a percentage. 
                 Example: {1}
             </description>
@@ -1333,7 +1333,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.39</id>
             <description>
-                javax.faces.converter.NumberConverter.NUMBER={2}: 
+                jakarta.faces.converter.NumberConverter.NUMBER={2}: 
                 ''{0}'' is not a number.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1341,7 +1341,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.40</id>
             <description>
-                javax.faces.converter.NumberConverter.NUMBER_detail={2}:
+                jakarta.faces.converter.NumberConverter.NUMBER_detail={2}:
                 ''{0}'' is not a number. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1349,7 +1349,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.41</id>
             <description>
-                javax.faces.converter.NumberConverter.PATTERN={2}: 
+                jakarta.faces.converter.NumberConverter.PATTERN={2}: 
                 ''{0}'' is not a number pattern.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1357,7 +1357,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.42</id>
             <description>
-                javax.faces.converter.NumberConverter.PATTERN_detail=
+                jakarta.faces.converter.NumberConverter.PATTERN_detail=
                 {2}: ''{0}'' is not a number pattern. Example: {1}
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1365,7 +1365,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.43</id>
             <description>
-                javax.faces.converter.ShortConverter.SHORT={2}: ''{0}'' 
+                jakarta.faces.converter.ShortConverter.SHORT={2}: ''{0}'' 
                 must be a number consisting of one or more digits.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1373,7 +1373,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.44</id>
             <description>
-                javax.faces.converter.ShortConverter.SHORT_detail={2}: 
+                jakarta.faces.converter.ShortConverter.SHORT_detail={2}: 
                 ''{0}'' must be a number between -32768 and 32767 
                 Example: {1}
             </description>
@@ -1382,7 +1382,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.45</id>
             <description>
-                javax.faces.converter.STRING={1}: Could not convert 
+                jakarta.faces.converter.STRING={1}: Could not convert 
                 ''{0}'' to a string.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1390,7 +1390,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.46</id>
             <description>
-                javax.faces.validator.DoubleRangeValidator.MAXIMUM -- 
+                jakarta.faces.validator.DoubleRangeValidator.MAXIMUM -- 
                 {1}: Validation Error: Value is greater than allowable 
                 maximum of &#8216;&#8217;{0}&#8217;&#8217;
             </description>
@@ -1399,7 +1399,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.47</id>
             <description>
-                javax.faces.validator.DoubleRangeValidator.MINIMUM -- 
+                jakarta.faces.validator.DoubleRangeValidator.MINIMUM -- 
                 {1}: Validation Error: Value is less than allowable 
                 minimum of &#8216;&#8217;{0}&#8217;&#8217;
             </description>
@@ -1408,7 +1408,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.48</id>
             <description>
-                javax.faces.validator.DoubleRangeValidator.NOT_IN_RANGE 
+                jakarta.faces.validator.DoubleRangeValidator.NOT_IN_RANGE 
                 -- {2}: Validation Error: Specified attribute is not 
                 between the expected values of {0} and {1}.
             </description>
@@ -1417,7 +1417,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.49</id>
             <description>
-                javax.faces.validator.DoubleRangeValidator.TYPE -- {0}: 
+                jakarta.faces.validator.DoubleRangeValidator.TYPE -- {0}: 
                 Validation Error: Value is not of the correct type
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1425,7 +1425,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.50</id>
             <description>
-                javax.faces.validator.LengthValidator.MAXIMUM -- {1}: 
+                jakarta.faces.validator.LengthValidator.MAXIMUM -- {1}: 
                 Validation Error: Value is greater than allowable 
                 maximum of &#8216;&#8217;{0}&#8217;&#8217;
             </description>
@@ -1434,7 +1434,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.51</id>
             <description>
-                javax.faces.validator.LengthValidator.MINIMUM -- {1}: 
+                jakarta.faces.validator.LengthValidator.MINIMUM -- {1}: 
                 Validation Error: Value is less than allowable minimum
                 of &#8216;&#8217;{0}&#8217;&#8217;
             </description>
@@ -1443,7 +1443,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.52</id>
             <description>
-                javax.faces.validator.LongRangeValidator.MAXIMUM -- 
+                jakarta.faces.validator.LongRangeValidator.MAXIMUM -- 
                 {1}: Validation Error: Value is greater than allowable
                 maximum of &#8216;&#8217;{0}&#8217;&#8217;
             </description>
@@ -1452,7 +1452,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.53</id>
             <description>
-                javax.faces.validator.LongRangeValidator.MINIMUM -- {1}:
+                jakarta.faces.validator.LongRangeValidator.MINIMUM -- {1}:
                 Validation Error Value is less than allowable minimum of
                 &#8216;&#8217;{0}&#8217;&#8217;
             </description>
@@ -1461,7 +1461,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.54</id>
             <description>
-                javax.faces.validator.LongRangeValidator.NOT_IN_RANGE=
+                jakarta.faces.validator.LongRangeValidator.NOT_IN_RANGE=
                 {2}: Validation Error: Specified attribute is not
                 between the expected values of {0} and {1}.
             </description>
@@ -1470,7 +1470,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:22.55</id>
             <description>
-                javax.faces.validator.LongRangeValidator.TYPE -- {0}:
+                jakarta.faces.validator.LongRangeValidator.TYPE -- {0}:
                 Validation Error: Value is not of the correct type
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1510,7 +1510,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:24.2</id>
             <description>
-                If not there, look in the javax.faces.Messages 
+                If not there, look in the jakarta.faces.Messages 
                 resource bundle.
             </description>
             <location chapter="2" section="5.2.4"/>
@@ -1781,8 +1781,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.1</id>
             <description>
-                javax.faces.BigDecimal -- An instance of
-                javax.faces.convert.BigDecimalConverter (or a subclass 
+                jakarta.faces.BigDecimal -- An instance of
+                jakarta.faces.convert.BigDecimalConverter (or a subclass 
                 of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1790,8 +1790,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.2</id>
             <description>
-                javax.faces.BigInteger -- An instance of
-                javax.faces.convert.BigIntegerConverter (or a subclass 
+                jakarta.faces.BigInteger -- An instance of
+                jakarta.faces.convert.BigIntegerConverter (or a subclass 
                 of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1799,8 +1799,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.3</id>
             <description>
-                javax.faces.Boolean -- An instance of
-                javax.faces.convert.BooleanConverter (or a subclass 
+                jakarta.faces.Boolean -- An instance of
+                jakarta.faces.convert.BooleanConverter (or a subclass 
                 of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1808,8 +1808,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.4</id>
             <description>
-                javax.faces.Byte -- An instance of 
-                javax.faces.convert.ByteConverter (or a subclass of 
+                jakarta.faces.Byte -- An instance of 
+                jakarta.faces.convert.ByteConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1817,8 +1817,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.5</id>
             <description>
-                javax.faces.Character -- An instance of
-                javax.faces.convert.CharacterConverter (or a subclass of
+                jakarta.faces.Character -- An instance of
+                jakarta.faces.convert.CharacterConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1826,8 +1826,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.6</id>
             <description>
-                javax.faces.DateTime -- An instance of
-                javax.faces.convert.DateTimeConverter (or a subclass of 
+                jakarta.faces.DateTime -- An instance of
+                jakarta.faces.convert.DateTimeConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1835,8 +1835,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.7</id>
             <description>
-                javax.faces.Double -- An instance of
-                javax.faces.convert.DoubleConverter (or a subclass of
+                jakarta.faces.Double -- An instance of
+                jakarta.faces.convert.DoubleConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1844,8 +1844,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.8</id>
             <description>
-                javax.faces.Float -- An instance of
-                javax.faces.convert.FloatConverter (or a subclass of 
+                jakarta.faces.Float -- An instance of
+                jakarta.faces.convert.FloatConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1853,8 +1853,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.9</id>
             <description>
-                javax.faces.Integer -- An instance of
-                javax.faces.convert.IntegerConverter (or a subclass of 
+                jakarta.faces.Integer -- An instance of
+                jakarta.faces.convert.IntegerConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1862,8 +1862,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.10</id>
             <description>
-                javax.faces.Long -- An instance of 
-                javax.faces.convert.LongConverter (or a subclass of this
+                jakarta.faces.Long -- An instance of 
+                jakarta.faces.convert.LongConverter (or a subclass of this
                 class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1871,8 +1871,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.11</id>
             <description>
-                javax.faces.Number -- An instance of
-                javax.faces.convert.NumberConverter (or a subclass of 
+                jakarta.faces.Number -- An instance of
+                jakarta.faces.convert.NumberConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1880,8 +1880,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:36.12</id>
             <description>
-                javax.faces.Short -- An instance of
-                javax.faces.convert.ShortConverter (or a subclass of 
+                jakarta.faces.Short -- An instance of
+                jakarta.faces.convert.ShortConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1900,7 +1900,7 @@
             <id>JSF:SPEC:37.1</id>
             <description>
                 java.math.BigDecimal, and java.math.BigDecimal.TYPE --
-                An instance of javax.faces.convert.BigDecimalConverter 
+                An instance of jakarta.faces.convert.BigDecimalConverter 
                 (or a subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1909,7 +1909,7 @@
             <id>JSF:SPEC:37.2</id>
             <description>
                 java.math.BigInteger, and java.math.BigInteger.TYPE -- 
-                An instance of javax.faces.convert.BigIntegerConverter 
+                An instance of jakarta.faces.convert.BigIntegerConverter 
                 (or a subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1918,7 +1918,7 @@
             <id>JSF:SPEC:37.3</id>
             <description>
                 java.lang.Boolean, and java.lang.Boolean.TYPE -- An 
-                instance of javax.faces.convert.BooleanConverter 
+                instance of jakarta.faces.convert.BooleanConverter 
                 (or a subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1927,7 +1927,7 @@
             <id>JSF:SPEC:37.4</id>
             <description>
                 java.lang.Byte, and java.lang.Byte.TYPE -- An instance 
-                of javax.faces.convert.ByteConverter (or a subclass of
+                of jakarta.faces.convert.ByteConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1936,7 +1936,7 @@
             <id>JSF:SPEC:37.5</id>
             <description>
                 java.lang.Character, and java.lang.Character.TYPE -- An 
-                instance of javax.faces.convert.CharacterConverter 
+                instance of jakarta.faces.convert.CharacterConverter 
                 (or a subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1945,7 +1945,7 @@
             <id>JSF:SPEC:37.6</id>
             <description>
                 java.lang.Double, and java.lang.Double.TYPE -- An 
-                instance of javax.faces.convert.DoubleConverter (or a 
+                instance of jakarta.faces.convert.DoubleConverter (or a 
                 subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1954,7 +1954,7 @@
             <id>JSF:SPEC:37.7</id>
             <description>
                 java.lang.Float, and java.lang.Float.TYPE -- An instance
-                of javax.faces.convert.FloatConverter (or a subclass of 
+                of jakarta.faces.convert.FloatConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1963,7 +1963,7 @@
             <id>JSF:SPEC:37.8</id>
             <description>
                 java.lang.Integer, and java.lang.Integer.TYPE -- An 
-                instance of javax.faces.convert.IntegerConverter (or a 
+                instance of jakarta.faces.convert.IntegerConverter (or a 
                 subclass of this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1972,7 +1972,7 @@
             <id>JSF:SPEC:37.9</id>
             <description>
                 java.lang.Long, and java.lang.Long.TYPE -- An instance 
-                of javax.faces.convert.LongConverter (or a subclass of 
+                of jakarta.faces.convert.LongConverter (or a subclass of 
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1981,7 +1981,7 @@
             <id>JSF:SPEC:37.10</id>
             <description>
                 java.lang.Short, and java.lang.Short.TYPE -- An instance
-                of javax.faces.convert.ShortConverter (or a subclass of
+                of jakarta.faces.convert.ShortConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -1990,7 +1990,7 @@
             <id>JSF:SPEC:37.11</id>
             <description>
                 java.lang.Enum, and java.lang.Enum.TYPE -- An instance 
-                of javax.faces.convert.EnumConverter (or a subclass of
+                of jakarta.faces.convert.EnumConverter (or a subclass of
                 this class).
             </description>
             <location chapter="3" section="3.3"/>
@@ -2019,7 +2019,7 @@
     <id>JSF:SPEC:40</id>
     <description>
         The following standard Validator implementations (in the
-        javax.faces.validator package) are provided:
+        jakarta.faces.validator package) are provided:
     </description>
     <location chapter="3" section="5.5"/>
     <sub-assertions>
@@ -2029,7 +2029,7 @@
                 DoubleRangeValidator&#8212;Checks the local value of a 
                 component, which must be of any numeric type, against 
                 specified maximum and/or minimum values. Standard
-                identifier is &#8220;javax.faces.DoubleRange&#8221;.
+                identifier is &#8220;jakarta.faces.DoubleRange&#8221;.
             </description>
             <location chapter="3" section="4.5"/>
         </assertion>
@@ -2039,7 +2039,7 @@
                 LengthValidator&#8212;Checks the length (i.e. number of 
                 characters) of the local value of a component, which 
                 must be of type String, against maximum and/or minimum 
-                values. Standard identifier is &#8220;javax.faces.Length&#8221;.
+                values. Standard identifier is &#8220;jakarta.faces.Length&#8221;.
             </description>
             <location chapter="3" section="4.5"/>
         </assertion>
@@ -2049,7 +2049,7 @@
                 LongRangeValidator&#8212;Checks the local value of a 
                 component, which must be of any numeric type convertible
                 to long, against maximum and/or minimum values. Standard
-                identifier is &#8220;javax.faces.LongRange&#8221;.
+                identifier is &#8220;jakarta.faces.LongRange&#8221;.
             </description>
             <location chapter="3" section="4.5"/>
         </assertion>
@@ -2111,7 +2111,7 @@
             <id>JSF:SPEC:42.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Column&#8221;.
+                &#8220;jakarta.faces.Column&#8221;.
             </description>
             <location chapter="4" section="1.1.2"/>
         </assertion>
@@ -2138,7 +2138,7 @@
             <id>JSF:SPEC:43.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Command&#8221;.
+                &#8220;jakarta.faces.Command&#8221;.
             </description>
             <location chapter="4" section="1.2.2"/>
         </assertion>
@@ -2146,7 +2146,7 @@
             <id>JSF:SPEC:43.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Button&#8221;.
+                set to &#8220;jakarta.faces.Button&#8221;.
             </description>
             <location chapter="4" section="1.2.2"/>
         </assertion>
@@ -2164,7 +2164,7 @@
             <id>JSF:SPEC:44.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Data&#8221;.
+                &#8220;jakarta.faces.Data&#8221;.
             </description>
             <location chapter="4" section="1.3.2"/>
         </assertion>
@@ -2172,7 +2172,7 @@
             <id>JSF:SPEC:44.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Table&#8221;.
+                set to &#8220;jakarta.faces.Table&#8221;.
             </description>
             <location chapter="4" section="1.3.2"/>
         </assertion>
@@ -2279,7 +2279,7 @@
             <id>JSF:SPEC:48.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Form&#8221;.
+                &#8220;jakarta.faces.Form&#8221;.
             </description>
             <location chapter="4" section="1.4.2"/>
         </assertion>
@@ -2287,7 +2287,7 @@
             <id>JSF:SPEC:48.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Form&#8221;.
+                set to &#8220;jakarta.faces.Form&#8221;.
             </description>
             <location chapter="4" section="1.4.2"/>
         </assertion>
@@ -2344,7 +2344,7 @@
             <id>JSF:SPEC:53.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Graphic&#8221;.
+                &#8220;jakarta.faces.Graphic&#8221;.
             </description>
             <location chapter="4" section="1.5.2"/>
         </assertion>
@@ -2352,7 +2352,7 @@
             <id>JSF:SPEC:53.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Image&#8221;.
+                set to &#8220;jakarta.faces.Image&#8221;.
             </description>
             <location chapter="4" section="1.5.2"/>
         </assertion>
@@ -2370,7 +2370,7 @@
             <id>JSF:SPEC:54.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Input&#8221;.
+                &#8220;jakarta.faces.Input&#8221;.
             </description>
             <location chapter="4" section="1.6.2"/>
         </assertion>
@@ -2378,7 +2378,7 @@
             <id>JSF:SPEC:54.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Text&#8221;.
+                set to &#8220;jakarta.faces.Text&#8221;.
             </description>
             <location chapter="4" section="1.6.2"/>
         </assertion>
@@ -2417,7 +2417,7 @@
             <id>JSF:SPEC:55.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Message&#8221;.
+                &#8220;jakarta.faces.Message&#8221;.
             </description>
             <location chapter="4" section="1.7.2"/>
         </assertion>
@@ -2425,7 +2425,7 @@
             <id>JSF:SPEC:55.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Message&#8221;.
+                set to &#8220;jakarta.faces.Message&#8221;.
             </description>
             <location chapter="4" section="1.7.2"/>
         </assertion>
@@ -2443,7 +2443,7 @@
             <id>JSF:SPEC:56.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Output&#8221;.
+                &#8220;jakarta.faces.Output&#8221;.
             </description>
             <location chapter="4" section="1.9.2"/>
         </assertion>
@@ -2451,7 +2451,7 @@
             <id>JSF:SPEC:56.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Text&#8221;.
+                set to &#8220;jakarta.faces.Text&#8221;.
             </description>
             <location chapter="4" section="1.9.2"/>
         </assertion>
@@ -2469,7 +2469,7 @@
             <id>JSF:SPEC:57.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Panel&#8221;.
+                &#8220;jakarta.faces.Panel&#8221;.
             </description>
             <location chapter="4" section="1.10.2"/>
         </assertion>
@@ -2495,7 +2495,7 @@
             <id>JSF:SPEC:58.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.Parameter&#8221;.
+                &#8220;jakarta.faces.Parameter&#8221;.
             </description>
             <location chapter="4" section="1.11.2"/>
         </assertion>
@@ -2521,7 +2521,7 @@
             <id>JSF:SPEC:59.1</id>
             <description>
                 The default value of the family property must be set to
-                &#8220;javax.faces.SelectBoolean&#8221;.
+                &#8220;jakarta.faces.SelectBoolean&#8221;.
             </description>
             <location chapter="4" section="1.12.2"/>
         </assertion>
@@ -2529,7 +2529,7 @@
             <id>JSF:SPEC:59.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Checkbox&#8221;.
+                set to &#8220;jakarta.faces.Checkbox&#8221;.
             </description>
             <location chapter="4" section="1.12.2"/>
         </assertion>
@@ -2547,7 +2547,7 @@
             <id>JSF:SPEC:60.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.SelectItem&#8221;.
+                &#8220;jakarta.faces.SelectItem&#8221;.
             </description>
             <location chapter="4" section="1.13.2"/>
         </assertion>
@@ -2602,7 +2602,7 @@
             <id>JSF:SPEC:61.1</id>
             <description>
                 The default value of the family property must be set to
-                &#8220;javax.faces.SelectItems&#8221;.
+                &#8220;jakarta.faces.SelectItems&#8221;.
             </description>
             <location chapter="4" section="1.14.2"/>
         </assertion>
@@ -2652,7 +2652,7 @@
             <id>JSF:SPEC:63.1</id>
             <description>
                 The default value of the family property must be set to
-                &#8220;javax.faces.SelectOne&#8221;.
+                &#8220;jakarta.faces.SelectOne&#8221;.
             </description>
             <location chapter="4" section="1.16.2"/>
         </assertion>
@@ -2660,7 +2660,7 @@
             <id>JSF:SPEC:63.2</id>
             <description>
                 The default value of the rendererType property must be 
-                set to &#8220;javax.faces.Menu&#8221;.
+                set to &#8220;jakarta.faces.Menu&#8221;.
             </description>
             <location chapter="4" section="1.16.2"/>
         </assertion>
@@ -2687,7 +2687,7 @@
             <id>JSF:SPEC:65.1</id>
             <description>
                 The default value of the family property must be set to 
-                &#8220;javax.faces.ViewRoot&#8221;.
+                &#8220;jakarta.faces.ViewRoot&#8221;.
             </description>
             <location chapter="4" section="1.17.3"/>
         </assertion>
@@ -2705,7 +2705,7 @@
     <id>JSF:SPEC:66</id>
     <description>
         The JSF implementation must provide concrete implementations of
-        DataModel (in the javax.faces.model package) for the following 
+        DataModel (in the jakarta.faces.model package) for the following 
         data wrapping scenarios:
     </description>
     <location chapter="4" section="2.1.4"/>
@@ -3166,7 +3166,7 @@
             <id>JSF:SPEC:84.2</id>
             <description>
                 If the Collection returned by 
-                javax.faces.Application.getELContextListeners() is 
+                jakarta.faces.Application.getELContextListeners() is 
                 non-empty, create an instance of ELContextEvent and pass 
                 it to each ELContextListener instance in the Collection 
                 by calling the ELContextListener.contextCreated
@@ -3231,7 +3231,7 @@
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
     <id>JSF:SPEC:90</id>
     <description>
-        A single instance of javax.faces.context.FacesContextFactory 
+        A single instance of jakarta.faces.context.FacesContextFactory 
         must be made available to each JSF-based web application 
         running in a servlet or portlet container.
     </description>
@@ -3517,7 +3517,7 @@
                 If the session is non-null, look in the Map returned by the 
                 getSessionMap() method of the ExternalContext for a value under 
                 the key given by the value of the symbolic constant
-                javax.faces.application.ViewHandler.CHARACTER_ENCODING_KEY. If a
+                jakarta.faces.application.ViewHandler.CHARACTER_ENCODING_KEY. If a
                 value is found, convert it to a String and return it.
             </description>
             <location chapter="7" section="5.2"/>
@@ -3999,7 +3999,7 @@
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
     <id>JSF:SPEC:112</id>
     <description>
-        A single instance of javax.faces.render.RenderKitFactory must be made 
+        A single instance of jakarta.faces.render.RenderKitFactory must be made 
         available to each JSFbased web application running in a servlet or 
         portlet container.
     </description>
@@ -4025,9 +4025,9 @@
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
     <id>JSF:SPEC:115</id>
     <description>
-        As with the standard components in the javax.faces.component package, 
+        As with the standard components in the jakarta.faces.component package, 
         each HTML component implementation class must define a static public 
-        final String constant named COMPONENT_TYPE, whose value is &#8220;javax.faces.&#8221; 
+        final String constant named COMPONENT_TYPE, whose value is &#8220;jakarta.faces.&#8221; 
         concatenated with the class name.
     </description>
     <location chapter="8" section="5.0"/>
@@ -4088,7 +4088,7 @@
         If the f:actionListener tag is not nested inside a UIComponent custom 
         action, or the UIComponent implementation class does not correctly 
         implement ActionSource, or the specified listener class does not 
-        implement javax.faces.event.ActionListener, throw a JspException.
+        implement jakarta.faces.event.ActionListener, throw a JspException.
     </description>
     <location chapter="9" section="4.1"/>
 </assertion>
@@ -4112,7 +4112,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:120.1</id>
             <description>
-                Must extend javax.faces.webapp.ConverterTag.
+                Must extend jakarta.faces.webapp.ConverterTag.
             </description>
             <location chapter="9" section="4.3"/>
         </assertion>
@@ -4123,8 +4123,8 @@
                 call getValue() on it to obtain a reference to the
                 Converter instance. If there is no exception thrown, and 
                 binding.getValue() returned a non-null object that implements 
-                javax.faces.convert.Converter, it must then cast the returned 
-                instance to javax.faces.convert.DateTimeConverter and configure 
+                jakarta.faces.convert.Converter, it must then cast the returned 
+                instance to jakarta.faces.convert.DateTimeConverter and configure 
                 its properties based on the specified attributes for this custom 
                 action, and return the configured instance. 
             </description>
@@ -4183,7 +4183,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:122.1</id>
             <description>
-                Must extend javax.faces.webapp.ConverterTag.
+                Must extend jakarta.faces.webapp.ConverterTag.
             </description>
             <location chapter="9" section="4.4"/>
         </assertion>
@@ -4194,8 +4194,8 @@
                 binding.getValue() to obtain a reference to the Converter 
                 instance. If there is no exception thrown, and 
                 binding.getValue() returned a non-null object that implements 
-                javax.faces.convert.Converter, it must then cast the returned 
-                instance to javax.faces.convert.NumberConverter and configure 
+                jakarta.faces.convert.Converter, it must then cast the returned 
+                instance to jakarta.faces.convert.NumberConverter and configure 
                 its properties based on the specified attributes for this custom 
                 action, and return the configured instance. 
             </description>
@@ -4214,10 +4214,10 @@
             <description>
                 Call the createConverter() method of the Application 
                 instance for this application, passing converter id 
-                &#8220;javax.faces.Number&#8221;. If the binding attribute was also set, 
+                &#8220;jakarta.faces.Number&#8221;. If the binding attribute was also set, 
                 store the converter instance by calling binding.setValue(). It 
                 must then cast the returned instance to 
-                javax.faces.convert.NumberConverter and configure its properties
+                jakarta.faces.convert.NumberConverter and configure its properties
                 based on the specified attributes for this custom action, and 
                 return the configured instance.
             </description>
@@ -4245,7 +4245,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:124.1</id>
             <description>
-                Must extend javax.faces.webapp.ConverterJspTag.
+                Must extend jakarta.faces.webapp.ConverterJspTag.
             </description>
             <location chapter="9" section="4.5"/>
         </assertion>
@@ -4256,7 +4256,7 @@
                 binding.getValue() to obtain a reference to the Converter 
                 instance. If there is no exception thrown, and 
                 binding.getValue() returned a non-null object that implements 
-                javax.faces.convert.Converter, register it by calling 
+                jakarta.faces.convert.Converter, register it by calling 
                 setConverter(). If there was an exception thrown, rethrow 
                 the exception as a JspException.
             </description>
@@ -4301,7 +4301,7 @@
     <id>JSF:SPEC:127</id>
     <description>
         The implementation class of the f:facet tag must be, or extend, 
-        javax.faces.webapp.FacetTag.
+        jakarta.faces.webapp.FacetTag.
     </description>
     <location chapter="9" section="4.6"/>
 </assertion>
@@ -4330,7 +4330,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:130.1</id>
             <description>
-                Must extend javax.faces.UIComponentELTag.
+                Must extend jakarta.faces.UIComponentELTag.
             </description>
             <location chapter="9" section="4.8"/>
         </assertion>  
@@ -4361,7 +4361,7 @@
     <id>JSF:SPEC:132</id>
     <description>
         The specified listener class for f:phaseListener must implement 
-        javax.faces.event.PhaseListener.
+        jakarta.faces.event.PhaseListener.
     </description>
     <location chapter="9" section="4.9"/>
 </assertion>
@@ -4391,7 +4391,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:135.1</id>
             <description>
-                Must extend javax.faces.UIComponentELTag.
+                Must extend jakarta.faces.UIComponentELTag.
             </description>
             <location chapter="9" section="4.10"/>
         </assertion>
@@ -4430,7 +4430,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:137.1</id>
             <description>
-                Must extend javax.faces.UIComponentELTag.
+                Must extend jakarta.faces.UIComponentELTag.
             </description>
             <location chapter="9" section="4.11"/>
         </assertion>
@@ -4438,7 +4438,7 @@
             <id>JSF:SPEC:137.2</id>
             <description>
                 The getComponentType() method must return 
-                &#8220;javax.faces.SelectItems&#8221;.
+                &#8220;jakarta.faces.SelectItems&#8221;.
             </description>
             <location chapter="9" section="4.11"/>
         </assertion>
@@ -4500,7 +4500,7 @@
         If this tag is not nested inside a UIComponent custom action, or the 
         UIComponent implementation class does not correctly implement 
         ActionSource, or the specified listener class does not implement
-        javax.faces.event.ActionListener, throw a JspException.
+        jakarta.faces.event.ActionListener, throw a JspException.
     </description>
     <location chapter="9" section="4.12"/>
 </assertion>
@@ -4532,7 +4532,7 @@
     <id>JSF:SPEC:147</id>
     <description>
         The implementation class for f:subview must extend 
-        javax.faces.UIComponentELTag.
+        jakarta.faces.UIComponentELTag.
     </description>
     <location chapter="9" section="4.13"/>
 </assertion>
@@ -4571,7 +4571,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:151.1</id>
             <description>
-                Must extend javax.faces.webapp.ValidatorTag.
+                Must extend jakarta.faces.webapp.ValidatorTag.
             </description>
             <location chapter="9" section="4.14"/>
         </assertion>
@@ -4624,7 +4624,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:153.1</id>
             <description>
-                Must extend javax.faces.webapp.ValidatorTag.
+                Must extend jakarta.faces.webapp.ValidatorTag.
             </description>
             <location chapter="9" section="4.15"/>
         </assertion>
@@ -4700,7 +4700,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:158.1</id>
             <description>
-                Must extend javax.faces.webapp.ValidatorTag.
+                Must extend jakarta.faces.webapp.ValidatorTag.
             </description>
             <location chapter="9" section="4.16"/>
         </assertion>
@@ -4768,7 +4768,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:162.1</id>
             <description>
-                Must extend javax.faces.webapp.ValidatorJspTag.
+                Must extend jakarta.faces.webapp.ValidatorJspTag.
             </description>
             <location chapter="9" section="4.17"/>
         </assertion>
@@ -4821,7 +4821,7 @@
     <id>JSF:SPEC:165</id>
     <description>
         The specified listener class for f:valueChangeListener must implement 
-        javax.faces.event.ValueChangeListener.
+        jakarta.faces.event.ValueChangeListener.
     </description>
     <location chapter="9" section="4.18"/>
 </assertion>
@@ -4838,7 +4838,7 @@
         If this tag is not nested inside a UIComponent custom action, or the
         UIComponent implementation class does not correctly implement
         EditableValueHolder, or the specified listener class does not implement
-        javax.faces.event.ValueChangeListener, throw a JspException.
+        jakarta.faces.event.ValueChangeListener, throw a JspException.
     </description>
     <location chapter="9" section="4.18"/>
 </assertion>
@@ -4853,7 +4853,7 @@
     <id>JSF:SPEC:169</id>
     <description>
         The rendererType property for the f:verbatim tag's UIOutput component
-        must be set to &#8220;javax.faces.Text&#8221;
+        must be set to &#8220;jakarta.faces.Text&#8221;
     </description>
     <location chapter="9" section="4.19"/>
 </assertion>
@@ -4877,7 +4877,7 @@
     <id>JSF:SPEC:172</id>
     <description>
         Any JSP-created response using actions from the JSF Core Tag Library, 
-        as well as actions extending javax.faces.webapp.UIComponentELTag from 
+        as well as actions extending jakarta.faces.webapp.UIComponentELTag from 
         other tag libraries, must be nested inside an occurrence of the 
         f:view action.
     </description>
@@ -4894,7 +4894,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:173.1</id>
             <description>
-                Must extend javax.faces.UIComponentBodyTag.
+                Must extend jakarta.faces.UIComponentBodyTag.
             </description>
             <location chapter="9" section="4.20"/>
         </assertion>
@@ -4965,7 +4965,7 @@
             <id>JSF:SPEC:175.1</id>
             <description>
                 Action column: 
-                getComponentType()- returns javax.faces.Column
+                getComponentType()- returns jakarta.faces.Column
                 getRendererType()- returns (null)*
             </description>
             <location chapter="9" section="5.0"/>
@@ -4974,8 +4974,8 @@
             <id>JSF:SPEC:175.2</id>
             <description>
                 Action commandButton:
-                getComponentType()- returns javax.faces.HtmlCommandButton
-                getRendererType()- returns javax.faces.Button
+                getComponentType()- returns jakarta.faces.HtmlCommandButton
+                getRendererType()- returns jakarta.faces.Button
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -4983,8 +4983,8 @@
             <id>JSF:SPEC:175.3</id>
             <description>
                 Action commandLink:
-                getComponentType()- returns javax.faces.HtmlCommandLink
-                getRendererType()- returns javax.faces.Link
+                getComponentType()- returns jakarta.faces.HtmlCommandLink
+                getRendererType()- returns jakarta.faces.Link
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -4992,8 +4992,8 @@
             <id>JSF:SPEC:175.4</id>
             <description>
                 Action dataTable:
-                getComponentType()- returns javax.faces.HtmlDataTable
-                getRendererType()- returns javax.faces.Table
+                getComponentType()- returns jakarta.faces.HtmlDataTable
+                getRendererType()- returns jakarta.faces.Table
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5001,8 +5001,8 @@
             <id>JSF:SPEC:175.5</id>
             <description>
                 Action form:
-                getComponentType()- returns javax.faces.HtmlForm
-                getRendererType()- returns javax.faces.Form
+                getComponentType()- returns jakarta.faces.HtmlForm
+                getRendererType()- returns jakarta.faces.Form
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5010,8 +5010,8 @@
             <id>JSF:SPEC:175.6</id>
             <description>
                 Action graphicImage:
-                getComponentType()- returns javax.faces.HtmlGraphicImage
-                getRendererType()- returns javax.faces.Image
+                getComponentType()- returns jakarta.faces.HtmlGraphicImage
+                getRendererType()- returns jakarta.faces.Image
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5019,8 +5019,8 @@
             <id>JSF:SPEC:175.7</id>
             <description>
                 Action inputHidden:
-                getComponentType()- returns javax.faces.HtmlInputHidden
-                getRendererType()- returns javax.faces.Hidden
+                getComponentType()- returns jakarta.faces.HtmlInputHidden
+                getRendererType()- returns jakarta.faces.Hidden
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5028,8 +5028,8 @@
             <id>JSF:SPEC:175.8</id>
             <description>
                 Action inputSecret:
-                getComponentType()- returns javax.faces.HtmlInputSecret
-                getRendererType()- returns javax.faces.Secret
+                getComponentType()- returns jakarta.faces.HtmlInputSecret
+                getRendererType()- returns jakarta.faces.Secret
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5037,8 +5037,8 @@
             <id>JSF:SPEC:175.9</id>
             <description>
                 Action inputSecret:
-                getComponentType()- returns javax.faces.HtmlInputSecret
-                getRendererType()- returns javax.faces.Secret
+                getComponentType()- returns jakarta.faces.HtmlInputSecret
+                getRendererType()- returns jakarta.faces.Secret
             </description>
             <location chapter="" section=""/>
         </assertion>
@@ -5046,8 +5046,8 @@
             <id>JSF:SPEC:175.10</id>
             <description>
                 Action inputText:
-                getComponentType()- returns javax.faces.HtmlInputText
-                getRendererType()- returns javax.faces.Text
+                getComponentType()- returns jakarta.faces.HtmlInputText
+                getRendererType()- returns jakarta.faces.Text
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5055,8 +5055,8 @@
             <id>JSF:SPEC:175.11</id>
             <description>
                 Action inputTextarea:
-                getComponentType()- returns javax.faces.HtmlInputTextarea
-                getRendererType()- returns javax.faces.Textarea
+                getComponentType()- returns jakarta.faces.HtmlInputTextarea
+                getRendererType()- returns jakarta.faces.Textarea
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5064,8 +5064,8 @@
             <id>JSF:SPEC:175.12</id>
             <description>
                 Action message:
-                getComponentType()- returns javax.faces.HtmlMessage
-                getRendererType()- returns javax.faces.Message
+                getComponentType()- returns jakarta.faces.HtmlMessage
+                getRendererType()- returns jakarta.faces.Message
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5073,8 +5073,8 @@
             <id>JSF:SPEC:175.13</id>
             <description>
                 Action messages:
-                getComponentType()- returns javax.faces.HtmlMessages
-                getRendererType()- returns javax.faces.Messages
+                getComponentType()- returns jakarta.faces.HtmlMessages
+                getRendererType()- returns jakarta.faces.Messages
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5082,8 +5082,8 @@
             <id>JSF:SPEC:175.14</id>
             <description>
                 Action outputFormat:
-                getComponentType()- returns javax.faces.HtmlOutputFormat
-                getRendererType()- returns javax.faces.Format
+                getComponentType()- returns jakarta.faces.HtmlOutputFormat
+                getRendererType()- returns jakarta.faces.Format
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5091,8 +5091,8 @@
             <id>JSF:SPEC:175.15</id>
             <description>
                 Action outputLabel:
-                getComponentType()- returns javax.faces.HtmlOutputLabel
-                getRendererType()- returns javax.faces.Label
+                getComponentType()- returns jakarta.faces.HtmlOutputLabel
+                getRendererType()- returns jakarta.faces.Label
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5100,8 +5100,8 @@
             <id>JSF:SPEC:175.16</id>
             <description>
                 Action outputLink:
-                getComponentType()- returns javax.faces.HtmlOutputLink
-                getRendererType()- returns javax.faces.Link
+                getComponentType()- returns jakarta.faces.HtmlOutputLink
+                getRendererType()- returns jakarta.faces.Link
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5109,8 +5109,8 @@
             <id>JSF:SPEC:175.17</id>
             <description>
                 Action outputText:
-                getComponentType()- returns javax.faces.HtmlOutputText
-                getRendererType()- returns javax.faces.Text
+                getComponentType()- returns jakarta.faces.HtmlOutputText
+                getRendererType()- returns jakarta.faces.Text
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5118,8 +5118,8 @@
             <id>JSF:SPEC:175.18</id>
             <description>
                 Action panelGrid:
-                getComponentType()- returns javax.faces.HtmlPanelGrid
-                getRendererType()- returns javax.faces.Grid
+                getComponentType()- returns jakarta.faces.HtmlPanelGrid
+                getRendererType()- returns jakarta.faces.Grid
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5127,8 +5127,8 @@
             <id>JSF:SPEC:175.19</id>
             <description>
                 Action panelGroup:
-                getComponentType()- returns javax.faces.HtmlPanelGroup
-                getRendererType()- returns javax.faces.Group
+                getComponentType()- returns jakarta.faces.HtmlPanelGroup
+                getRendererType()- returns jakarta.faces.Group
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5137,8 +5137,8 @@
             <description>
                 Action selectBooleanCheckbox:
                 getComponentType()- 
-                returns javax.faces.HtmlSelectBooleanCheckbox
-                getRendererType()- returns javax.faces.Checkbox
+                returns jakarta.faces.HtmlSelectBooleanCheckbox
+                getRendererType()- returns jakarta.faces.Checkbox
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5146,8 +5146,8 @@
             <id>JSF:SPEC:175.21</id>
             <description>
                 Action selectManyListbox:
-                getComponentType()- returns javax.faces.HtmlSelectManyListbox
-                getRendererType()- returns javax.faces.Listbox
+                getComponentType()- returns jakarta.faces.HtmlSelectManyListbox
+                getRendererType()- returns jakarta.faces.Listbox
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5155,8 +5155,8 @@
             <id>JSF:SPEC:175.22</id>
             <description>
                 Action selectManyMenu:
-                getComponentType()- returns javax.faces.HtmlSelectManyMenu
-                getRendererType()- returns javax.faces.Menu
+                getComponentType()- returns jakarta.faces.HtmlSelectManyMenu
+                getRendererType()- returns jakarta.faces.Menu
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5164,8 +5164,8 @@
             <id>JSF:SPEC:175.23</id>
             <description>
                 Action selectOneListbox:
-                getComponentType()- returns javax.faces.HtmlSelectOneListbox
-                getRendererType()- returns javax.faces.Listbox
+                getComponentType()- returns jakarta.faces.HtmlSelectOneListbox
+                getRendererType()- returns jakarta.faces.Listbox
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5173,8 +5173,8 @@
             <id>JSF:SPEC:175.24</id>
             <description>
                 Action selectOneMenu:
-                getComponentType()- returns javax.faces.HtmlSelectOneMenu
-                getRendererType()- returns javax.faces.Menu
+                getComponentType()- returns jakarta.faces.HtmlSelectOneMenu
+                getRendererType()- returns jakarta.faces.Menu
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -5182,8 +5182,8 @@
             <id>JSF:SPEC:175.25</id>
             <description>
                 Action selectOneRadio:
-                getComponentType()- returns javax.faces.HtmlSelectOneRadio
-                getRendererType()- returns javax.faces.Radio
+                getComponentType()- returns jakarta.faces.HtmlSelectOneRadio
+                getRendererType()- returns jakarta.faces.Radio
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>        
@@ -5400,8 +5400,8 @@
     <id>JSF:SPEC:183</id>
     <description>
          After causing the top level component to be instantiated, the runtime
-         must create a UIComponent with component- family of javax.faces.Panel
-         and renderer-type javax.faces.Group to be installed as a facet of the
+         must create a UIComponent with component- family of jakarta.faces.Panel
+         and renderer-type jakarta.faces.Group to be installed as a facet of the
          top level component under the facet name
          UIComponent.COMPOSITE_FACET_NAME.
     </description>
@@ -5582,7 +5582,7 @@
     <id>JSF:SPEC:193</id>
     <description>
         The "Description" tag handler must create an instance of
-        javax.faces.component.behavior.AjaxBehavior instance using the tag
+        jakarta.faces.component.behavior.AjaxBehavior instance using the tag
         attribute values.
     </description>
     <location chapter="10" section="4.1.1"/>
@@ -5708,7 +5708,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.1</id>
             <description>
-                javax.faces.CONFIG_FILES -- Comma-delimited list of 
+                jakarta.faces.CONFIG_FILES -- Comma-delimited list of 
                 context-relative resource paths under which the JSF 
                 implementation will look for application configuration
                 resources  before loading a configuration resource named 
@@ -5719,7 +5719,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.2</id>
             <description>
-                javax.faces.DEFAULT_SUFFIX -- The default suffix for 
+                jakarta.faces.DEFAULT_SUFFIX -- The default suffix for 
                 extension-mapped resources that contain JSF components. If not 
                 specified, the default value &#8220;.jsp&#8221; must be used.
             </description>
@@ -5728,7 +5728,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.3</id>
             <description>
-                javax.faces.FACELETS_SUFFIX -- Allow the web application to
+                jakarta.faces.FACELETS_SUFFIX -- Allow the web application to
                 define an alternate suffix for Facelet based XHTML pages
                 containing JSF content. See the javadocs for the symbolic
                 constant ViewHandler.FACELETS_SUFFIX_PARAM_NAME for the
@@ -5739,7 +5739,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.4</id>
             <description>
-                javax.faces.LIFECYCLE_ID -- Lifecycle identifier of the 
+                jakarta.faces.LIFECYCLE_ID -- Lifecycle identifier of the 
                 Lifecycle instance to be used when processing JSF requests for 
                 this web application. If not specified, the JSF default 
                 instance, identified by LifecycleFactory.DEFAULT_LIFECYCLE, must 
@@ -5750,7 +5750,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.5</id>
             <description>
-                javax.faces.STATE_SAVING_METHOD -- The location where state 
+                jakarta.faces.STATE_SAVING_METHOD -- The location where state 
                 information is saved. Valid values are &#8220;server&#8221; (typically saved 
                 in HttpSession) and &#8220;client (typically saved as a hidden field 
                 in the subsequent form submit). If not specified, the default 
@@ -5761,7 +5761,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.6</id>
             <description>
-                javax.faces.PARTIAL_STATE_SAVING --The ServletContext init
+                jakarta.faces.PARTIAL_STATE_SAVING --The ServletContext init
                 parameter consulted by the runtime to determine if the partial
                 state saving mechanism should be used. If undefined, the runtime
                 must determine the version level of the application.
@@ -5789,7 +5789,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.7</id>
             <description>
-                javax.faces.FULL_STATE_SAVING_VIEW_IDS -- The runtime must
+                jakarta.faces.FULL_STATE_SAVING_VIEW_IDS -- The runtime must
                 interpret the value of this parameter as a comma separated list
                 of view IDs, each of which must have their state saved using the
                 state saving mechanism specified in JSF 1.2.
@@ -5799,7 +5799,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.8</id>
             <description>
-                javax.faces.PROJECT_STAGE -- A human readable string describing
+                jakarta.faces.PROJECT_STAGE -- A human readable string describing
                 where this particular JSF application is in the software
                 development lifecycle.
             </description>
@@ -5808,7 +5808,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.9</id>
             <description>
-                javax.faces.DISABLE_FACELET_JSF_VIEWHANDLER -- If this param is
+                jakarta.faces.DISABLE_FACELET_JSF_VIEWHANDLER -- If this param is
                 set, and calling toLowerCase().equals("true") on a String
                 representation of its value returns true, the default
                 ViewHandler must behave as specified in the latest 1.2 version
@@ -5819,7 +5819,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.10</id>
             <description>
-                javax.faces.FACELETS_LIBRARIES -- If this param is set, the
+                jakarta.faces.FACELETS_LIBRARIES -- If this param is set, the
                 runtime must interpret it as a semicolon (;) separated list of
                 paths, starting with &#8220;/&#8221; (without the quotes).
             </description>
@@ -5828,7 +5828,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.11</id>
             <description>
-                javax.faces.FACELETS_VIEW_MAPPINGS -- If this param is set, the
+                jakarta.faces.FACELETS_VIEW_MAPPINGS -- If this param is set, the
                 runtime must interpret it as a semicolon (;) separated list of
                 strings that is used to forcibly declare that certain pages in
                 the application must be interpreted as using Facelets,
@@ -5839,7 +5839,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.12</id>
             <description>
-                javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL --
+                jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL --
                 If this param is set, and calling toLowerCase().equals("true")
                 on a String representation of its value returns true, any
                 implementation of UIInput.validate() must take the following
@@ -5853,11 +5853,11 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.13</id>
             <description>
-                javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZO
+                jakarta.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZO
                 NE -- If this param is set, and calling toLowerCase().equals(
                 "true") on a String representation of its value returns true,
                 Application.createConverter() must guarantee that the default
-                for the timezone of all javax.faces.convert.DateTimeConverter
+                for the timezone of all jakarta.faces.convert.DateTimeConverter
                 instances must be equal to TimeZone.getDefault() instead of
                 &#8220;GMT&#8221;.
             </description>
@@ -5866,7 +5866,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.14</id>
             <description>
-                javax.faces.VALIDATE_EMPTY_FIELDS -- If this param is set, and
+                jakarta.faces.VALIDATE_EMPTY_FIELDS -- If this param is set, and
                 calling toLowerCase().equals("true") on a String representation
                 of its value returns true, all submitted fields will be
                 validated
@@ -5876,12 +5876,12 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JSF:SPEC:198.15</id>
             <description>
-                javax.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR -- If this
+                jakarta.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR -- If this
                 param is set, and calling toLowerCase().equals("true") on a
                 String representation of its value returns true, the runtime
                 must not automatically add the validator with validator-id equal
                 to the value of the symbolic constant
-                javax.faces.validator.VALIDATOR_ID to the list of default
+                jakarta.faces.validator.VALIDATOR_ID to the list of default
                 validators.
             </description>
             <location chapter="11" section="1.3"/>
@@ -5901,7 +5901,7 @@
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
     <id>JSF:SPEC:200</id>
     <description>
-        javax.faces.FactoryFinder implements the standard discovery algorithm
+        jakarta.faces.FactoryFinder implements the standard discovery algorithm
         for all factory objects specified in the JavaServer Faces APIs.
         For a given factory class name, a corresponding implementation class is
         searched for based on the following algorithm. Items are listed in order
@@ -5923,7 +5923,7 @@
             <id>JSF:SPEC:200.2</id>
             <description>
                 If the JavaServer Faces configuration resource(s) named by the
-                javax.faces.CONFIG_FILES ServletContext init parameter (if any)
+                jakarta.faces.CONFIG_FILES ServletContext init parameter (if any)
                 contain any factory entries of the given factory class name,
                 those factories are used, with the last one taking precedence.
             </description>
@@ -5987,7 +5987,7 @@
                 may optionally contain a comma-delimited list of context 
                 relative resources (in addition to /WEB-INF/facesconfig. xml 
                 which is always processed if it is present) to be processed. 
-                The value of this constant must be &#8220;javax.faces.CONFIG_FILES&#8221;.
+                The value of this constant must be &#8220;jakarta.faces.CONFIG_FILES&#8221;.
             </description>
             <location chapter="11" section="2.6.2"/>
         </assertion>
@@ -5997,7 +5997,7 @@
                 LIFECYCLE_ID_ATTR -- the lifecycle identifier of the Lifecycle 
                 instance to be used for processing requests to this application,
                 if an instance other than the default is required. The value of 
-                this constant must be &#8220;javax.faces.LIFECYCLE_ID&#8221;.
+                this constant must be &#8220;jakarta.faces.LIFECYCLE_ID&#8221;.
             </description>
             <location chapter="11" section="2.6.2"/>
         </assertion>
@@ -6042,7 +6042,7 @@
             <id>JSF:SPEC:205.2</id>
             <description>
                 Check for the existence of a context initialization parameter 
-                named javax.faces.CONFIG_FILES. If it exists, treat it as a 
+                named jakarta.faces.CONFIG_FILES. If it exists, treat it as a 
                 comma-delimited list of context relative resource paths 
                 (starting with a &#8220;/&#8221;), and load each of the specfied resources.
             </description>
@@ -6063,7 +6063,7 @@
     <id>JSF:SPEC:206</id>
     <description>
         The runtime must publish the
-        javax.faces.event.PostConstructApplicationEvent immediately after all
+        jakarta.faces.event.PostConstructApplicationEvent immediately after all
         application configuration resources have been processed.
     </description>
     <location chapter="11" section="4.2"/>
@@ -6354,7 +6354,7 @@
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
     <id>JSF:SPEC:226</id>
     <description>
-       The jsf.js must exist under the resource library javax.faces, following
+       The jsf.js must exist under the resource library jakarta.faces, following
        the conventions in Section 2.6 &#8220;Resource Handling&#8221;.
     </description>
     <location chapter="13" section="1"/>
@@ -6715,7 +6715,7 @@
         This function must return the constant representing the current state of
         the running application in a typical product development lifecycle. The
         returned value must be the value returned from the server side method
-        javax.faces.application.Application.getProjectStage()
+        jakarta.faces.application.Application.getProjectStage()
     </description>
     <location chapter="14" section="5"/>
 </assertion>

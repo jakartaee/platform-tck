@@ -23,10 +23,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.faces.lifecycle.Lifecycle;
-import javax.faces.lifecycle.LifecycleFactory;
-import javax.faces.FactoryFinder;
-import javax.faces.event.PhaseListener;
+import jakarta.faces.lifecycle.Lifecycle;
+import jakarta.faces.lifecycle.LifecycleFactory;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.event.PhaseListener;
 
 public class OrderingBean {
 
