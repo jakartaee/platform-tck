@@ -18,7 +18,7 @@ package com.sun.ts.tests.javaee.resource.servlet;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.mail.Session;
+import jakarta.mail.Session;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;

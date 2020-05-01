@@ -658,11 +658,11 @@ required for Jakarta EE 8:
 * javax.json.bind.spi
 * javax.json.spi
 * javax.json.stream
-* javax.mail
-* javax.mail.event
-* javax.mail.internet
-* javax.mail.search
-* javax.mail.util
+* jakarta.mail
+* jakarta.mail.event
+* jakarta.mail.internet
+* jakarta.mail.search
+* jakarta.mail.util
 * javax.management.j2ee
 * javax.management.j2ee.statistics
 * javax.persistence

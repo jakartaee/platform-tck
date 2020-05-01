@@ -88,7 +88,7 @@ public class Client extends EETest {
    * @assertion_ids: JavaEE:platform:10125
    *
    * @test_Strategy: Package a Servlet in a WAR file declaring a resource
-   *                 reference for a javax.mail.Session.
+   *                 reference for a jakarta.mail.Session.
    *
    *                 Check that: - We can deploy the application. - The Servlet
    *                 can lookup the mail session. - We can use this factory to

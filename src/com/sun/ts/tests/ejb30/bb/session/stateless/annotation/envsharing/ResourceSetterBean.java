@@ -38,7 +38,7 @@ public class ResourceSetterBean extends EnvSharingBeanBase
 
   private SessionContext sessionContext;
 
-  private javax.mail.Session mailSession;
+  private jakarta.mail.Session mailSession;
 
   private URL url;
 
@@ -51,12 +51,12 @@ public class ResourceSetterBean extends EnvSharingBeanBase
     this.sessionContext = sessionContext;
   }
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return mailSession;
   }
 
   @Resource(name = "mailSession", shareable = false)
-  private void setMailSession(javax.mail.Session mailSession) {
+  private void setMailSession(jakarta.mail.Session mailSession) {
     this.mailSession = mailSession;
   }
 

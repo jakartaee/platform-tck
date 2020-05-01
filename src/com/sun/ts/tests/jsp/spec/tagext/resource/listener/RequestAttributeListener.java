@@ -61,7 +61,7 @@ public final class RequestAttributeListener
   private Topic myTopic;
 
   @Resource(name = "mailSession")
-  private javax.mail.Session mailSession;
+  private jakarta.mail.Session mailSession;
 
   @Resource(name = "myUrl")
   private java.net.URL myUrl;
@@ -150,7 +150,7 @@ public final class RequestAttributeListener
     }
 
     if (mailSession != null) {
-      if (!(mailSession instanceof javax.mail.Session)) {
+      if (!(mailSession instanceof jakarta.mail.Session)) {
         passed = false;
         pw.append("wrong type .Session");
       } else

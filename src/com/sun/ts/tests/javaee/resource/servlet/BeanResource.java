@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
-import javax.mail.Session;
+import jakarta.mail.Session;
 import jakarta.enterprise.context.ApplicationScoped;
 import javax.annotation.Resource;
 
