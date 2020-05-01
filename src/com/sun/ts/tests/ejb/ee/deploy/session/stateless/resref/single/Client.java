@@ -97,7 +97,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a Stateless Session Bean declaring a resource
-   *                 reference for a javax.mail.Session.
+   *                 reference for a jakarta.mail.Session.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the mail session. - We can use this factory to send

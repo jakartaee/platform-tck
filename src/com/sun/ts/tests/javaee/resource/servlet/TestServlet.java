@@ -22,7 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.mail.Session;
+import jakarta.mail.Session;
 import javax.annotation.Resource;
 import jakarta.inject.Inject;
 

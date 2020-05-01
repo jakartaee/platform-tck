@@ -36,7 +36,7 @@ import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.TopicConnectionFactory;
 import jakarta.jms.ConnectionFactory;
-import javax.mail.Session;
+import jakarta.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import jakarta.transaction.UserTransaction;
@@ -163,7 +163,7 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
     return (DataSource) getEJBContext().lookup(getDataSource2Name());
   }
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return (Session) getEJBContext().lookup(getMailSessionName());
   }
 

@@ -73,7 +73,7 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
   }
 
   // @Resource
-  private javax.mail.Session mailSession;
+  private jakarta.mail.Session mailSession;
 
   protected String getMailSessionName() {
     return "mailSession";
@@ -162,7 +162,7 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
     return dataSource2;
   }
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return mailSession;
   }
 

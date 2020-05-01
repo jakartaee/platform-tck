@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
-import javax.mail.MailSessionDefinition;
+import jakarta.mail.MailSessionDefinition;
 
 @MailSessionDefinition(name = "java:app/Pojo_MailSession", properties = {
     "test=Pojo_MailSession" })

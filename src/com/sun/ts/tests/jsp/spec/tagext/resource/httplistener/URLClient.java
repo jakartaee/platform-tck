@@ -69,7 +69,7 @@ public class URLClient extends AbstractUrlClient {
    * in deployment descriptor - javax.sql.DataSource -
    * jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
    * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
-   * javax.mail.Session - java.net.URL
+   * jakarta.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resource using annotation @Resource in the SessionListener
@@ -93,7 +93,7 @@ public class URLClient extends AbstractUrlClient {
    * declaring serveral resources references in deployment descriptor -
    * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
    * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-   * jakarta.jms.Queue - jakarta.jms.Topic - javax.mail.Session - java.net.URL
+   * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
    *
    * Check that: - We can deploy the application. - We can lookup the all the
    * above resource using annotation inside the HttpSessionAttributeListener

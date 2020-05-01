@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.mail.Session;
-import javax.mail.MailSessionDefinition;
+import jakarta.mail.Session;
+import jakarta.mail.MailSessionDefinition;
 import javax.annotation.Resource;
 import java.io.IOException;
 

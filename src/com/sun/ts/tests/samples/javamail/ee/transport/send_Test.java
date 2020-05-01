@@ -26,8 +26,8 @@ import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
 import com.sun.javatest.Status;
 
 import java.io.Serializable;
-import javax.mail.*;
-import javax.mail.internet.*;
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
 
 public class send_Test extends ServiceEETest implements Serializable {
 
