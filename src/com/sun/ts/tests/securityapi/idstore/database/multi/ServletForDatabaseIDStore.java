@@ -21,8 +21,8 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 import com.sun.ts.tests.securityapi.idstore.common.PlaintextPasswordHash;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;

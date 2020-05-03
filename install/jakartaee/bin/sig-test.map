@@ -152,7 +152,7 @@ javax.management.j2ee=1.1_se6
 javax.enterprise.deploy=1.2_se6
 
 # JACC 1.2 
-javax.security.jacc=1.2_se6
+jakarta.security.jacc=1.2_se6
 
 # JAXB 
 javax.xml.bind=2.1_se6
@@ -179,7 +179,7 @@ javax.annotation=1.2_se6
 javax.jws=2.0_se6
 
 # JASPIC (Java Authentication SPI for Containters - JSR-196)
-javax.security.auth.message=1.0_se6
+jakarta.security.auth.message=1.0_se6
 
 # JAX-RS 
 # (This is JSR-311)

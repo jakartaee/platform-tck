@@ -16,15 +16,15 @@
 
 package com.sun.ts.tests.securityapi.idstore.ldap.useforvalidation;
 
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType;
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;

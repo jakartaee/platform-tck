@@ -2733,10 +2733,10 @@ these new variables to invoke the real provider.
 The property names `A`, `B`, `C`, and `D` are used for convenience here.
 The real property names are as follows:
 
-* `A=javax.security.jacc.PolicyConfigurationFactory.provider`
-* `B=javax.security.jacc.policy.provider`
-* `C=vendor.javax.security.jacc.PolicyConfigurationFactory.provider`
-* `D=vendor.javax.security.jacc.policy.provider`
+* `A=jakarta.security.jacc.PolicyConfigurationFactory.provider`
+* `B=jakarta.security.jacc.policy.provider`
+* `C=vendor.jakarta.security.jacc.PolicyConfigurationFactory.provider`
+* `D=vendor.jakarta.security.jacc.policy.provider`
 
 To configure the Jakarta Authorization provider for the Jakarta Platform, Enterprise Edition
 CI, execute the Jakarta Authorization Ant target from:

@@ -21,8 +21,8 @@ import java.util.List;
 
 import javax.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
-import javax.security.enterprise.CallerPrincipal;
-import javax.security.enterprise.SecurityContext;
+import jakarta.security.enterprise.CallerPrincipal;
+import jakarta.security.enterprise.SecurityContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;

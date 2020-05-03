@@ -7943,7 +7943,7 @@
 <class-interface>ManagedConnection</class-interface>
 <method name="getConnection" return-type="java.lang.Object">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 </method>
@@ -7955,7 +7955,7 @@
 <class-interface>ManagedConnection</class-interface>
 <method name="getConnection" return-type="java.lang.Object">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.ResourceException</throw>
@@ -7968,7 +7968,7 @@
 <class-interface>ManagedConnection</class-interface>
 <method name="getConnection" return-type="java.lang.Object">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.ResourceAdapterInternalException</throw>
@@ -7981,7 +7981,7 @@
 <class-interface>ManagedConnection</class-interface>
 <method name="getConnection" return-type="java.lang.Object">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.SecurityException</throw>
@@ -7994,7 +7994,7 @@
 <class-interface>ManagedConnection</class-interface>
 <method name="getConnection" return-type="java.lang.Object">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.CommException</throw>
@@ -8007,7 +8007,7 @@
 <class-interface>ManagedConnection</class-interface>
 <method name="getConnection" return-type="java.lang.Object">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.EISSystemException</throw>
@@ -8261,7 +8261,7 @@
 <class-interface>ManagedConnectionFactory</class-interface>
 <method name="createManagedConnection" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 </method>
@@ -8273,7 +8273,7 @@
 <class-interface>ManagedConnectionFactory</class-interface>
 <method name="createManagedConnection" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.ResourceException</throw>
@@ -8286,7 +8286,7 @@
 <class-interface>ManagedConnectionFactory</class-interface>
 <method name="createManagedConnection" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.SecurityException</throw>
@@ -8299,7 +8299,7 @@
 <class-interface>ManagedConnectionFactory</class-interface>
 <method name="createManagedConnection" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.ResourceAllocationException</throw>
@@ -8312,7 +8312,7 @@
 <class-interface>ManagedConnectionFactory</class-interface>
 <method name="createManagedConnection" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.ResourceAdapterInternalException</throw>
@@ -8325,7 +8325,7 @@
 <class-interface>ManagedConnectionFactory</class-interface>
 <method name="createManagedConnection" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.EISSystemException</throw>
@@ -8383,7 +8383,7 @@
 <method name="matchManagedConnections" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
 <parameter>java.util.Set</parameter>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 </method>
@@ -8396,7 +8396,7 @@
 <method name="matchManagedConnections" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
 <parameter>java.util.Set</parameter>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.ResourceException</throw>
@@ -8410,7 +8410,7 @@
 <method name="matchManagedConnections" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
 <parameter>java.util.Set</parameter>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.SecurityException</throw>
@@ -8424,7 +8424,7 @@
 <method name="matchManagedConnections" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
 <parameter>java.util.Set</parameter>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.spi.ResourceAdapterInternalException</throw>
@@ -8438,7 +8438,7 @@
 <method name="matchManagedConnections" return-type="jakarta.resource.spi.ManagedConnection">
 <parameters>
 <parameter>java.util.Set</parameter>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
 </parameters>
 <throw>jakarta.resource.NotSupportedException</throw>
@@ -10562,9 +10562,9 @@
 <class-interface>SecurityContext</class-interface>
 <method name="setupSecurityContext" return-type="void">
 <parameters>
-<parameter>javax.security.auth.callback.CallbackHandler</parameter>
-<parameter>javax.security.auth.Subject</parameter>
-<parameter>javax.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>jakarta.security.auth.Subject</parameter>
 </parameters>
 </method>
 </assertion>

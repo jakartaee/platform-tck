@@ -22,10 +22,10 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import javax.security.enterprise.CallerPrincipal;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import javax.security.enterprise.identitystore.RememberMeIdentityStore;
-import javax.security.enterprise.credential.RememberMeCredential;
+import jakarta.security.enterprise.CallerPrincipal;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.RememberMeIdentityStore;
+import jakarta.security.enterprise.credential.RememberMeCredential;
 
 @ApplicationScoped
 public class TestRemembermeIdentityStore implements RememberMeIdentityStore {

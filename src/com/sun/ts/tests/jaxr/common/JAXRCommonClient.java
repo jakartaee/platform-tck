@@ -39,7 +39,7 @@ import javax.xml.registry.*;
 import javax.xml.registry.infomodel.*;
 import java.security.cert.*;
 import java.security.PrivateKey;
-import javax.security.auth.*;
+import jakarta.security.auth.*;
 import java.security.KeyStore;
 
 public class JAXRCommonClient extends ServiceEETest implements Serializable
@@ -338,9 +338,9 @@ public class JAXRCommonClient extends ServiceEETest implements Serializable
       // ok now I need an X500PrivateCredential
       X509Certificate cert = (X509Certificate) certificate;
 
-      javax.security.auth.x500.X500PrivateCredential privateCredential = null;
+      jakarta.security.auth.x500.X500PrivateCredential privateCredential = null;
 
-      privateCredential = new javax.security.auth.x500.X500PrivateCredential(
+      privateCredential = new jakarta.security.auth.x500.X500PrivateCredential(
           cert, key, useralias);
       credentials.add(privateCredential);
     } catch (Exception e) {

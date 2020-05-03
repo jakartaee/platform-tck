@@ -1,7 +1,7 @@
-** `javax.security.auth.message`
+** `jakarta.security.auth.message`
 
-** `javax.security.auth.message.callback`
+** `jakarta.security.auth.message.callback`
 
-** `javax.security.auth.message.config`
+** `jakarta.security.auth.message.config`
 
-** `javax.security.auth.message.module`
+** `jakarta.security.auth.message.module`

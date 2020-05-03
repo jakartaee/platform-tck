@@ -23,13 +23,13 @@ import java.security.PrivateKey;
 import java.security.cert.CertStore;
 import java.util.logging.Level;
 import javax.crypto.SecretKey;
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.UnsupportedCallbackException;
-import javax.security.auth.message.callback.CertStoreCallback;
-import javax.security.auth.message.callback.PrivateKeyCallback;
-import javax.security.auth.message.callback.SecretKeyCallback;
-import javax.security.auth.message.callback.TrustStoreCallback;
+import jakarta.security.auth.callback.Callback;
+import jakarta.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.callback.UnsupportedCallbackException;
+import jakarta.security.auth.message.callback.CertStoreCallback;
+import jakarta.security.auth.message.callback.PrivateKeyCallback;
+import jakarta.security.auth.message.callback.SecretKeyCallback;
+import jakarta.security.auth.message.callback.TrustStoreCallback;
 
 /**
  *

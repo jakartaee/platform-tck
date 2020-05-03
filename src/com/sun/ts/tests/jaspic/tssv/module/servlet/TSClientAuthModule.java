@@ -17,12 +17,12 @@
 package com.sun.ts.tests.jaspic.tssv.module.servlet;
 
 import java.util.Map;
-import javax.security.auth.Subject;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.message.MessagePolicy;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.MessageInfo;
+import jakarta.security.auth.Subject;
+import jakarta.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.MessageInfo;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +40,7 @@ import java.util.logging.Level;
  * @author Sun Microsystems
  */
 public class TSClientAuthModule
-    implements javax.security.auth.message.module.ClientAuthModule {
+    implements jakarta.security.auth.message.module.ClientAuthModule {
   private TSLogger logger = null;
 
   /**

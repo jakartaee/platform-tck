@@ -46,4 +46,4 @@
 ###############################################################
 
 # Java EE Security API 1.0 Specification (JSR-375)
-javax.security.enterprise=1.0_se8
+jakarta.security.enterprise=1.0_se8

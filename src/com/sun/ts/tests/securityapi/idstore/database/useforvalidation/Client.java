@@ -25,7 +25,7 @@ import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import java.io.PrintWriter;
 import java.util.Properties;
 
-import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 
 public class Client extends BaseIDStoreClient {
 

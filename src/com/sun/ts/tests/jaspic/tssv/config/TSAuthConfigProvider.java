@@ -17,11 +17,11 @@
 package com.sun.ts.tests.jaspic.tssv.config;
 
 import java.util.logging.Level;
-import javax.security.auth.message.config.ServerAuthConfig;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.message.config.ClientAuthConfig;
-import javax.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.ServerAuthConfig;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.message.config.ClientAuthConfig;
+import jakarta.security.auth.message.config.AuthConfigFactory;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -37,7 +37,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSFileHandler;
  * @author Raja Perumal
  */
 public class TSAuthConfigProvider
-    implements javax.security.auth.message.config.AuthConfigProvider {
+    implements jakarta.security.auth.message.config.AuthConfigProvider {
   private static TSLogger logger = null;
 
   private static Map properties = null;

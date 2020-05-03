@@ -24,7 +24,7 @@ mkdir ${OUTPUT_DIR}/temp
 # Generate JACC Javadoc assertions
 #
 cd ${TOOLS_DIR}/tools/scripts/
-./assert-gen3.sh JACC "JACC 1.0" "Java Authorization Contract for Containers" "1.0" ${SRC_DIR} ${OUTPUT_DIR}/temp javax.security.jacc 
+./assert-gen3.sh JACC "JACC 1.0" "Java Authorization Contract for Containers" "1.0" ${SRC_DIR} ${OUTPUT_DIR}/temp jakarta.security.jacc 
 # Copy generated Javadoc assertions from temp directory to ${OUTPUT_DIR} 
 #
 cp ${OUTPUT_DIR}/temp/assertions.html ${OUTPUT_DIR}/JACCJavadocAssertions.html

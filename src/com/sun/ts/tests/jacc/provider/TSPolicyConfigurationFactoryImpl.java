@@ -23,7 +23,7 @@
 
 package com.sun.ts.tests.jacc.provider;
 
-import javax.security.jacc.*;
+import jakarta.security.jacc.*;
 import java.util.logging.*;
 import java.util.*;
 //import com.sun.ts.lib.porting.TSPolicyConfiguration;
@@ -38,7 +38,7 @@ public class TSPolicyConfigurationFactoryImpl
     extends PolicyConfigurationFactory {
   private static TSLogger lgr = null;
 
-  private static String FACTORY_NAME = "vendor.javax.security.jacc.PolicyConfigurationFactory.provider";
+  private static String FACTORY_NAME = "vendor.jakarta.security.jacc.PolicyConfigurationFactory.provider";
 
   private static PolicyConfigurationFactory pcFactory;
 
@@ -104,7 +104,7 @@ public class TSPolicyConfigurationFactoryImpl
    *           when called by an AccessControlContext that has not been granted
    *           the "setPolicy" SecurityPermission.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the getPolicyConfiguration method
    *           signature. The exception thrown by the implementation class will
@@ -136,7 +136,7 @@ public class TSPolicyConfigurationFactoryImpl
    * the value of the system property,
    * <P>
    * <code><Pre>
-   *     vendor.javax.security.jacc.PolicyConfigurationFactory.provider
+   *     vendor.jakarta.security.jacc.PolicyConfigurationFactory.provider
    * </Pre></code>
    * <P>
    * 
@@ -196,7 +196,7 @@ public class TSPolicyConfigurationFactoryImpl
    *           when called by an AccessControlContext that has not been granted
    *           the "setPolicy" SecurityPermission.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the inService method signature. The
    *           exception thrown by the implementation class will be encapsulated

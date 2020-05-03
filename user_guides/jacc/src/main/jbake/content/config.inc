@@ -125,13 +125,13 @@ The `config.vi` Ant task performs several actions, including:
 * Sets the following JACC JVM options: +
 [source,oac_no_warn]
 ----
--Djavax.security.jacc.policy.provider=
+-Djakarta.security.jacc.policy.provider=
         com.sun.ts.tests.jacc.provider.TSPolicy
--Dvendor.javax.security.jacc.policy.provider=
+-Dvendor.jakarta.security.jacc.policy.provider=
         com.sun.enterprise.security.provider.PolicyWrapper
--Djavax.security.jacc.PolicyConfigurationFactory.provider=
+-Djakarta.security.jacc.PolicyConfigurationFactory.provider=
         com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl
--Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider=
+-Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=
         com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl
 -Dlog.file.location=${log.file.location}
 ----

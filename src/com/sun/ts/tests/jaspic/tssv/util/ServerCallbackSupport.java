@@ -22,18 +22,18 @@ import java.util.logging.Level;
 import java.util.Iterator;
 import java.util.Set;
 import java.security.Principal;
-import javax.security.auth.Subject;
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.UnsupportedCallbackException;
-import javax.security.auth.message.MessageInfo;
+import jakarta.security.auth.Subject;
+import jakarta.security.auth.callback.Callback;
+import jakarta.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.callback.UnsupportedCallbackException;
+import jakarta.security.auth.message.MessageInfo;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sun.ts.lib.util.BASE64Decoder;
 
-import javax.security.auth.message.callback.CallerPrincipalCallback;
-import javax.security.auth.message.callback.GroupPrincipalCallback;
-import javax.security.auth.message.callback.PasswordValidationCallback;
+import jakarta.security.auth.message.callback.CallerPrincipalCallback;
+import jakarta.security.auth.message.callback.GroupPrincipalCallback;
+import jakarta.security.auth.message.callback.PasswordValidationCallback;
 
 /**
  *
@@ -337,7 +337,7 @@ public class ServerCallbackSupport {
 
     // see assertion JASPI:SPEC:306 for details on this
     // jsr-196 states the following key must exist for servlet profile
-    String strKey = "javax.security.auth.message.MessagePolicy.isMandatory";
+    String strKey = "jakarta.security.auth.message.MessagePolicy.isMandatory";
     String msg;
     if (map != null) {
       String keyVal = (String) map.get(strKey);

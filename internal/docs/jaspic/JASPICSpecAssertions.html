@@ -637,14 +637,14 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JASPIC:SPEC:300"></a><font size="1PT">JASPIC:SPEC:300</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.2</font></TD><TD align="left" valign="center"><font size="1PT">  If the runtime is a JSR 115 compatible Servlet container, the properties argument passed in all calls to getAuthContext must contain the following key-value pair:
-(key) javax.security.jacc.PolicyContext
+(key) jakarta.security.jacc.PolicyContext
 (value) The PolicyContext identifier value that the container must set.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:83"></a><font size="1PT">JASPIC:SPEC:83</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.3</font></TD><TD align="left" valign="center"><font size="1PT">  When the runtime is not a JSR 115 compatible Servlet container, the properties argument used in all calls to getAuthContext must not include a javax.security.jacc.PolicyContext key-value pair, and a null value may be passed for the properties argument.
+<TD align="center" valign="center"><a name="JASPIC:SPEC:83"></a><font size="1PT">JASPIC:SPEC:83</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.3</font></TD><TD align="left" valign="center"><font size="1PT">  When the runtime is not a JSR 115 compatible Servlet container, the properties argument used in all calls to getAuthContext must not include a jakarta.security.jacc.PolicyContext key-value pair, and a null value may be passed for the properties argument.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -767,7 +767,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JASPIC:SPEC:306"></a><font size="1PT">JASPIC:SPEC:306</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">8.1.1</font></TD><TD align="left" valign="center"><font size="1PT">  This profile requires that the message processing runtime conditionally establish the following key-value pair within the Map of the MessageInfo object passed in the calls to getAuthContextID, validateRequest, and secureResponse.
-(key)  javax.security.auth.message.MessagePolicy.isMandatory
+(key)  jakarta.security.auth.message.MessagePolicy.isMandatory
 (val)  Any non-null String value, s, for which
          Boolean.valueOf(s).booleanValue() == true.
 
@@ -1449,7 +1449,7 @@ requestPolicy.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:176"></a><font size="1PT">JASPIC:SPEC:176</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT">  The ServerAuthModule must create an instance of a javax.security.auth.login.LoginContext. If the ServerAuthModule passes a custom javax.security.auth.login.Configuration object to the constructor, then it also passes a custom value as the name input. 
+<TD align="center" valign="center"><a name="JASPIC:SPEC:176"></a><font size="1PT">JASPIC:SPEC:176</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT">  The ServerAuthModule must create an instance of a jakarta.security.auth.login.LoginContext. If the ServerAuthModule passes a custom jakarta.security.auth.login.Configuration object to the constructor, then it also passes a custom value as the name input. 
 
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1505,7 +1505,7 @@ requestPolicy.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:184"></a><font size="1PT">JASPIC:SPEC:184</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT"> This profile requires that the CallbackHandler provided by the ServerAuthModule to the LoginContext constructor support the javax.security.auth.callback.NameCallback and the javax.security.auth.callback.PasswordCallback.
+<TD align="center" valign="center"><a name="JASPIC:SPEC:184"></a><font size="1PT">JASPIC:SPEC:184</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT"> This profile requires that the CallbackHandler provided by the ServerAuthModule to the LoginContext constructor support the jakarta.security.auth.callback.NameCallback and the jakarta.security.auth.callback.PasswordCallback.
 
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1722,7 +1722,7 @@ ability to determine the hostname for which they wish to perform the registratio
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:328"></a><font size="1PT">JASPIC:SPEC:328</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:328"></a><font size="1PT">JASPIC:SPEC:328</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 getConfigProvider():  
                 All factories shall employ the following precedence rules to select the registered AuthConfigProvider that matches the layer and appContext arguments:
                 1.  The provider that is specifically registered for both the corresponding message layer and appContext shall be selected.
@@ -1737,7 +1737,7 @@ ability to determine the hostname for which they wish to perform the registratio
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:329"></a><font size="1PT">JASPIC:SPEC:329</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:329"></a><font size="1PT">JASPIC:SPEC:329</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 getFactory():  
                 If a non-null system-wide factory instance is defined at the time of the call, for example, with
 setFactory, it will be returned.
@@ -1746,7 +1746,7 @@ setFactory, it will be returned.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:330"></a><font size="1PT">JASPIC:SPEC:330</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:330"></a><font size="1PT">JASPIC:SPEC:330</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 getFactory():  
                 The fully qualified class name of the default factory implementation class is obtained from the value of the authconfigprovider.factory security property.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1754,7 +1754,7 @@ setFactory, it will be returned.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:331"></a><font size="1PT">JASPIC:SPEC:331</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:331"></a><font size="1PT">JASPIC:SPEC:331</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 registerConfigProvider(className, properties, layer, appContext, description):  
                 At most one registration may exist within the factory for a given combination of message layer and appContext. Any pre-existing registration with identical values for layer and appContext is replaced by a subsequent registration.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1762,7 +1762,7 @@ setFactory, it will be returned.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:332"></a><font size="1PT">JASPIC:SPEC:332</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:332"></a><font size="1PT">JASPIC:SPEC:332</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 registerConfigProvider(className, properties, layer, appContext, description):  
                 [At most one registration may exist within the factory for a given combination of message layer and appContext. Any pre-existing registration with identical values for layer and appContext is replaced by a subsequent registration.]
                  When replacement occurs, the registration identifier, layer, and appContext identifier remain unchanged, and the AuthConfigProvider (with initialization properties) and description are replaced.   
@@ -1771,7 +1771,7 @@ setFactory, it will be returned.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:333"></a><font size="1PT">JASPIC:SPEC:333</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:333"></a><font size="1PT">JASPIC:SPEC:333</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 registerConfigProvider(className, properties, layer, appContext, description):  
                 Within the lifetime of its Java process, a factory must assign unique registration identifiers to registrations, and must never assign a previously used registration identifier to a registration whose message layer and or appContext identifier differ from the previous use.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1779,7 +1779,7 @@ setFactory, it will be returned.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:334"></a><font size="1PT">JASPIC:SPEC:334</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:334"></a><font size="1PT">JASPIC:SPEC:334</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 registerConfigProvider(provider, layer, appContext, description):
                 Registers within the (in-memory) factory, a provider of ServerAuthConfig and/or ClientAuthConfig objects for a message layer and application context identifier.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1787,7 +1787,7 @@ setFactory, it will be returned.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:335"></a><font size="1PT">JASPIC:SPEC:335</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:335"></a><font size="1PT">JASPIC:SPEC:335</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 setFactory()
                 Set the system-wide AuthConfigFactory implementation.
                 If an implementation was set previously, it will be replaced.
@@ -1797,7 +1797,7 @@ setFactory, it will be returned.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:336"></a><font size="1PT">JASPIC:SPEC:336</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory.RegistrationContext</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:336"></a><font size="1PT">JASPIC:SPEC:336</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory.RegistrationContext</font></TD><TD align="left" valign="center"><font size="1PT">  
                 isPersistent()
                 Returns: A boolean indicating whether the registration is the result of a className based registration, or an instance-based (for example, self-) registration. Only registrations performed using the five argument registerConfigProvider method are persistent.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1812,7 +1812,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:338"></a><font size="1PT">JASPIC:SPEC:338</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">RegistrationListener</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:338"></a><font size="1PT">JASPIC:SPEC:338</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">RegistrationListener</font></TD><TD align="left" valign="center"><font size="1PT">  
                 notify()
                 The AuthConfigFactory will invoke the notify method of the RegistrationListener if the corresponding provider registration is unregistered or replaced at the factory.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1820,7 +1820,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:339"></a><font size="1PT">JASPIC:SPEC:339</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:339"></a><font size="1PT">JASPIC:SPEC:339</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 detachListener()
                 The AuthConfigFactory will invoke the notify method of the RegistrationListener if the corresponding provider registration is unregistered or replaced at the factory.
                 
@@ -1830,7 +1830,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:340"></a><font size="1PT">JASPIC:SPEC:340</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:340"></a><font size="1PT">JASPIC:SPEC:340</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 registerConfigProvider(className, properties, layer, appContext, description)
                 When replacement occurs, the registration identifier, layer, and appContext identifier remain unchanged, and the AuthConfigProvider (with initialization properties) and description are replaced.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1838,7 +1838,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:341"></a><font size="1PT">JASPIC:SPEC:341</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:341"></a><font size="1PT">JASPIC:SPEC:341</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 registerConfigProvider(className, properties, layer, appContext, description)
                 Programmatic registrations performed by using this method must update (according to the replacement rules described above) the persistent declarative representation of provider registrations employed by the factory constructor. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1846,7 +1846,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:342"></a><font size="1PT">JASPIC:SPEC:342</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:342"></a><font size="1PT">JASPIC:SPEC:342</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 registerConfigProvider(acp, layer, appContext, description)
                 At most one registration may exist within the factory for a given combination of message layer and appContext. Any pre-existing registration with identical values for layer and appContext is replaced by a subsequent registration. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1854,7 +1854,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:343"></a><font size="1PT">JASPIC:SPEC:343</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:343"></a><font size="1PT">JASPIC:SPEC:343</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 registerConfigProvider(acp, layer, appContext, description)
                 When replacement occurs, the registration identifier, layer, and appContext identifier remain unchanged, and the AuthConfigProvider (with initialization properties) and description are replaced.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1862,7 +1862,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:344"></a><font size="1PT">JASPIC:SPEC:344</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:344"></a><font size="1PT">JASPIC:SPEC:344</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 removeRegistration()
                 Remove the identified provider registration from the factory (and from the persistent declarative representation of provider registrations, if appropriate) and invoke any listeners associated with the removed registration.
                 Verify this returns True when there is a registration with the specified identifier and it was removed. 
@@ -1871,7 +1871,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JASPIC:SPEC:345"></a><font size="1PT">JASPIC:SPEC:345</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - javax.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
+<TD align="center" valign="center"><a name="JASPIC:SPEC:345"></a><font size="1PT">JASPIC:SPEC:345</font></TD><TD align="center" valign="center"><font size="1PT">PackageHead - jakarta.security.auth.message.config</font></TD><TD align="center" valign="center"><font size="1PT">AuthConfigFactory</font></TD><TD align="left" valign="center"><font size="1PT">  
                 removeRegistration()
                 Remove the identified provider registration from the factory (and from the persistent declarative representation of provider registrations, if appropriate) and invoke any listeners associated with the removed registration.
                 Verify this returns false when the registrationID is invalid. 

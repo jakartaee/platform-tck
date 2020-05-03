@@ -36,7 +36,7 @@ import javax.xml.registry.infomodel.*;
 
 import java.security.cert.*;
 import java.security.PrivateKey;
-import javax.security.auth.*;
+import jakarta.security.auth.*;
 import java.security.KeyStore;
 
 public final class JAXR_Util {
@@ -670,9 +670,9 @@ public final class JAXR_Util {
       // ok now I need an X500PrivateCredential
       X509Certificate cert = (X509Certificate) certificate;
 
-      javax.security.auth.x500.X500PrivateCredential privateCredential = null;
+      jakarta.security.auth.x500.X500PrivateCredential privateCredential = null;
 
-      privateCredential = new javax.security.auth.x500.X500PrivateCredential(
+      privateCredential = new jakarta.security.auth.x500.X500PrivateCredential(
           cert, key, useralias);
       credentials.add(privateCredential);
     } catch (Exception e) {

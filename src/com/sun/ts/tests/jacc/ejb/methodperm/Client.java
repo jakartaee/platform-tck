@@ -17,8 +17,8 @@
 package com.sun.ts.tests.jacc.ejb.methodperm;
 
 import java.security.Permissions;
-import javax.security.jacc.EJBMethodPermission;
-import javax.security.jacc.EJBRoleRefPermission;
+import jakarta.security.jacc.EJBMethodPermission;
+import jakarta.security.jacc.EJBRoleRefPermission;
 
 import java.util.Properties;
 import java.util.Iterator;

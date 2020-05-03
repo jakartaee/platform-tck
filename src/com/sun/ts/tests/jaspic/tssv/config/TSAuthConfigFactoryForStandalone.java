@@ -26,8 +26,8 @@ import java.util.Set;
 import java.util.Vector;
 import java.util.Enumeration;
 
-import javax.security.auth.message.config.RegistrationListener;
-import javax.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.config.AuthConfigProvider;
 
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
@@ -53,7 +53,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSFileHandler;
  *
  */
 public class TSAuthConfigFactoryForStandalone
-    extends javax.security.auth.message.config.AuthConfigFactory {
+    extends jakarta.security.auth.message.config.AuthConfigFactory {
 
   private static TSLogger logger = null;
 

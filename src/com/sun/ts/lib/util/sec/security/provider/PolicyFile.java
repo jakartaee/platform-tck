@@ -38,9 +38,9 @@ import com.sun.ts.lib.util.sec.security.auth.PrincipalComparator;
 import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
-import javax.security.auth.PrivateCredentialPermission;
-import javax.security.auth.Subject;
-import javax.security.auth.x500.X500Principal;
+import jakarta.security.auth.PrivateCredentialPermission;
+import jakarta.security.auth.Subject;
+import jakarta.security.auth.x500.X500Principal;
 import java.io.FilePermission;
 import java.net.SocketPermission;
 import java.net.NetPermission;
@@ -48,9 +48,9 @@ import java.util.PropertyPermission;
 import java.util.concurrent.atomic.AtomicReference;
 import java.awt.AWTPermission;
 /*
-import javax.security.auth.AuthPermission;
-import javax.security.auth.kerberos.ServicePermission;
-import javax.security.auth.kerberos.DelegationPermission;
+import jakarta.security.auth.AuthPermission;
+import jakarta.security.auth.kerberos.ServicePermission;
+import jakarta.security.auth.kerberos.DelegationPermission;
 import java.io.SerializablePermission;
 import java.util.logging.LoggingPermission;
 import java.sql.SQLPermission;
@@ -240,11 +240,11 @@ import com.sun.ts.lib.util.sec.net.www.ParseUtil;
  * If the grant clause contains principal information, <b>${{self}}</b> will be
  * replaced with that same principal information. For example, <b>${{self}}</b>
  * in BarPermission will be replaced by
- * <b>javax.security.auth.x500.X500Principal "cn=Duke"</b> in the following
+ * <b>jakarta.security.auth.x500.X500Principal "cn=Duke"</b> in the following
  * grant clause:
  *
  * <pre>
- *    grant principal javax.security.auth.x500.X500Principal "cn=Duke" {
+ *    grant principal jakarta.security.auth.x500.X500Principal "cn=Duke" {
  *      permission BarPermission "... ${{self}} ...";
  *    };
  * </pre>
@@ -276,7 +276,7 @@ public class PolicyFile extends java.security.Policy {
 
   private static final String SELF = "${{self}}";
 
-  private static final String X500PRINCIPAL = "javax.security.auth.x500.X500Principal";
+  private static final String X500PRINCIPAL = "jakarta.security.auth.x500.X500Principal";
 
   private static final String POLICY = "java.security.policy";
 
@@ -829,7 +829,7 @@ public class PolicyFile extends java.security.Policy {
           // XXX special case PrivateCredentialPermission-SELF
           Permission perm;
           if (pe.permission
-              .equals("javax.security.auth.PrivateCredentialPermission")
+              .equals("jakarta.security.auth.PrivateCredentialPermission")
               && pe.name.endsWith(" self")) {
             pe.name = pe.name.substring(0, pe.name.indexOf("self")) + SELF;
           }

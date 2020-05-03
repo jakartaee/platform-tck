@@ -1434,19 +1434,19 @@
     -->
     <target name="create.jacc.vm.options" depends="configPlatform">
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Djavax.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
+          <param name="jvm.options" value=" -Djakarta.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
          </antcall>
 
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.javax.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
          </antcall>
 
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Djavax.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
+          <param name="jvm.options" value=" -Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
          </antcall>
 
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
          </antcall>
 
          <antcall target="create-one-jvm-option" >
@@ -1471,19 +1471,19 @@
     -->
     <target name="delete.jacc.vm.options" depends="configPlatform">
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Djavax.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
+          <param name="jvm.options" value=" -Djakarta.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
          </antcall>
         
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.javax.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
          </antcall>
 
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Djavax.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
+          <param name="jvm.options" value=" -Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
          </antcall>
 
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
          </antcall>
 
          <antcall target="delete-one-jvm-option" >

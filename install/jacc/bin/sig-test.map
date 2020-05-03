@@ -46,6 +46,6 @@
 ###############################################################
 
 # JACC 1.5 
-javax.security.jacc=1.5_se7
+jakarta.security.jacc=1.5_se7
 
 
