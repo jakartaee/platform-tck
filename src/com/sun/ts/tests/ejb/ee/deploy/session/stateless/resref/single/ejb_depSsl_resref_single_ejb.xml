@@ -37,7 +37,7 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>mail/MailSession</res-ref-name>
-        <res-type>javax.mail.Session</res-type>
+        <res-type>jakarta.mail.Session</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>

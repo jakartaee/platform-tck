@@ -29,7 +29,7 @@ import jakarta.ejb.EJBContext;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.TopicConnectionFactory;
-import javax.mail.Session;
+import jakarta.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.PREFIX;

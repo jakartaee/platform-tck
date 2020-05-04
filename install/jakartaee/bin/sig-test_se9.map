@@ -132,7 +132,7 @@ javax.transaction=1.2_se8
 
 # JavaMail 1.5 
 # (This is JSR-919)
-javax.mail=1.5_se8
+jakarta.mail=1.5_se8
 
 # Connector 1.7 
 # (This is JSR-322)

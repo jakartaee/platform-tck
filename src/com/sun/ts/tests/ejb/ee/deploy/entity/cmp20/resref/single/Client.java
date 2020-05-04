@@ -94,7 +94,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a CMP 2.0 Entity bean declaring a resource reference
-   *                 for a javax.mail.Session.
+   *                 for a jakarta.mail.Session.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the mail entity. - We can use this factory to send a

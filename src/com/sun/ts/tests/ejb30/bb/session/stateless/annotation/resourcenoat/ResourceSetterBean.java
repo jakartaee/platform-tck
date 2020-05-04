@@ -51,7 +51,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   private DataSource dataSource2;
 
-  private javax.mail.Session mailSession;
+  private jakarta.mail.Session mailSession;
 
   private URL url;
 
@@ -119,12 +119,12 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   //////////////////////////////////////////////////////////////////////
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return mailSession;
   }
 
   // @Resource
-  private void setMailSession(javax.mail.Session mailSession) {
+  private void setMailSession(jakarta.mail.Session mailSession) {
     this.mailSession = mailSession;
   }
 
