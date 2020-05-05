@@ -34,8 +34,8 @@ import jakarta.xml.ws.WebServiceContext;
 
 import jakarta.activation.DataHandler;
 
-import javax.annotation.PreDestroy;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
 
 import com.sun.ts.tests.jaxws.common.Handler_Util;
 

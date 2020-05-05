@@ -23,7 +23,7 @@ package com.sun.ts.tests.jaxws.ee.j2w.document.literal.restful.server;
 import java.io.ByteArrayInputStream;
 import java.util.StringTokenizer;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import jakarta.xml.ws.Provider;

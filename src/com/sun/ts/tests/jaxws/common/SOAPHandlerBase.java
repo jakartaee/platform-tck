@@ -32,8 +32,8 @@ import javax.xml.transform.Source;
 import jakarta.xml.bind.JAXBContext;
 import javax.xml.namespace.QName;
 
-import javax.annotation.PreDestroy;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
 
 import java.util.HashSet;
 import java.util.Set;
