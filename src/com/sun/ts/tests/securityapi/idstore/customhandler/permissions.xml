@@ -35,7 +35,7 @@
            <actions>accept,resolve</actions>
         </permission>
         <permission>
-           <class-name>javax.security.enterprise.identitystore.IdentityStorePermission</class-name>   
+           <class-name>jakarta.security.enterprise.identitystore.IdentityStorePermission</class-name>   
            <name>getGroups</name>
         </permission>
 </permissions>

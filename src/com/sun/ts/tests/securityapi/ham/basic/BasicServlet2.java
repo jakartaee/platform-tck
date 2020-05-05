@@ -32,7 +32,7 @@ import jakarta.enterprise.util.AnnotationLiteral;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;

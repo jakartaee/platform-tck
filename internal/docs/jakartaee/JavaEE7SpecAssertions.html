@@ -218,7 +218,7 @@ bean containers and web containers.
 The container will provide an appropriate user interface for interactions with
 the user to gather authentication data. In addition, an application client may
 provide a class that implements the
-javax.security.auth.callback.CallbackHandler interface and specify the class
+jakarta.security.auth.callback.CallbackHandler interface and specify the class
 name in its deployment descriptor
 
 The Deployer may override the callback
@@ -227,7 +227,7 @@ authentication user interface instead.
 If use of a callback handler has been configured by the Deployer, the
 application client container must instantiate an object of this class and use it for all
 authentication interactions with the user. The application's callback handler must
-support all the Callback objects specified in the javax.security.auth.callback
+support all the Callback objects specified in the jakarta.security.auth.callback
 package.
 Application clients execute in an environment controlled by a J2SE security
 manager and are subject to the security permissions defined in EE.6.2, "Java 2
@@ -2920,7 +2920,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                 If the container interacts with the user to gather authentication data, the
                 container must provide an appropriate user interface. In addition, an application
                 client may provide a class that implements the
-                javax.security.auth.callback.CallbackHandler interface and specify the class
+                jakarta.security.auth.callback.CallbackHandler interface and specify the class
                 name in its deployment descriptor (see Section EE .9.7, Java EE  Application
                 Client XML Schemas for details). The Deployer may override the callback
                 handler specified by the application and use of the container's default
@@ -2928,7 +2928,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                 If a callback handler is configured by the Deployer, the application client
                 container must instantiate an object of this class and use it for all authentication
                 interactions with the user. The application's callback handler must fully support
-                Callback objects specified in the javax.security.auth.callback package.
+                Callback objects specified in the jakarta.security.auth.callback package.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>

@@ -17,16 +17,16 @@
 package com.sun.ts.tests.jaspic.tssv.util;
 
 import java.security.Principal;
-import javax.security.auth.Subject;
-import javax.security.auth.message.config.AuthConfigFactory;
-import javax.security.auth.message.config.AuthConfigProvider;
-import javax.security.auth.message.config.RegistrationListener;
-import javax.security.auth.message.config.ServerAuthConfig;
-import javax.security.auth.message.config.ServerAuthContext;
-import javax.security.auth.message.config.ClientAuthConfig;
-import javax.security.auth.message.config.ClientAuthContext;
-import javax.security.auth.message.MessageInfo;
-import javax.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.Subject;
+import jakarta.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.config.ServerAuthConfig;
+import jakarta.security.auth.message.config.ServerAuthContext;
+import jakarta.security.auth.message.config.ClientAuthConfig;
+import jakarta.security.auth.message.config.ClientAuthContext;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.security.auth.callback.CallbackHandler;
 
 import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory;
 import com.sun.ts.tests.jaspic.tssv.config.TSRegistrationListener;

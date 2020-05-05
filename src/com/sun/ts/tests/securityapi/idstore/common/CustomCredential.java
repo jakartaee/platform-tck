@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.securityapi.idstore.common;
 
-import javax.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.credential.Credential;
 
 public class CustomCredential implements Credential {
   private final String caller;

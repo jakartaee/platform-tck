@@ -40,7 +40,7 @@ import javax.xml.registry.infomodel.*;
 
 import java.security.cert.*;
 import java.security.PrivateKey;
-import javax.security.auth.*;
+import jakarta.security.auth.*;
 import java.security.KeyStore;
 
 public class JAXRClient extends JAXRCommonClient // ServiceEETest

@@ -19,13 +19,13 @@ package com.sun.ts.tests.jaspic.tssv.config;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Hashtable;
-import javax.security.auth.message.MessageInfo;
-import javax.security.auth.message.config.ServerAuthContext;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.config.ServerAuthContext;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.callback.CallbackHandler;
 import javax.servlet.http.HttpServletRequest;
 
-import javax.security.auth.Subject;
+import jakarta.security.auth.Subject;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -51,7 +51,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
  *
  */
 public class TSServerAuthConfig
-    implements javax.security.auth.message.config.ServerAuthConfig {
+    implements jakarta.security.auth.message.config.ServerAuthConfig {
   private static String messageLayer = null;
 
   private static String appContext = null;
@@ -179,7 +179,7 @@ public class TSServerAuthConfig
 
     // see assertion JASPI:SPEC:306 (section 3.8.1.1) for details on this
     // jsr-196 states the following key must exist for servlet profile
-    String strKey = "javax.security.auth.message.MessagePolicy.isMandatory";
+    String strKey = "jakarta.security.auth.message.MessagePolicy.isMandatory";
     if (map != null) {
       String keyVal = (String) map.get(strKey);
       String msg = "dumpServletProfileKeys() called with attrs: ";
@@ -473,7 +473,7 @@ public class TSServerAuthConfig
 
     // jsr-196 states the following key must exist if JSR-115 is supported
     // but it must NOT exist if 115 is NOT supported.
-    String strKey = "javax.security.jacc.PolicyContext";
+    String strKey = "jakarta.security.jacc.PolicyContext";
     msg += " Key=" + strKey;
     if (properties != null) {
       String keyVal = (String) properties.get(strKey);

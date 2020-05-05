@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.securityapi.idstore.database.priorityuseforexprbean;
 
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType;
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
 
 import com.sun.ts.tests.securityapi.idstore.common.ConfigBean;
 
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 import com.sun.ts.tests.securityapi.idstore.common.PlaintextPasswordHash;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;

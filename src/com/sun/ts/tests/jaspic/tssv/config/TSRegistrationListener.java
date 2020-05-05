@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jaspic.tssv.config;
 
-import javax.security.auth.message.config.RegistrationListener;
-import javax.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.config.AuthConfigFactory;
 
 public class TSRegistrationListener implements RegistrationListener {
 

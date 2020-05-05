@@ -18,11 +18,11 @@ package com.sun.ts.tests.jaspic.tssv.config;
 
 import com.sun.ts.tests.jaspic.tssv.util.TSFileHandler;
 import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
-import javax.security.auth.message.config.AuthConfigFactory;
-import javax.security.auth.message.config.ServerAuthConfig;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.message.config.ClientAuthConfig;
+import jakarta.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.ServerAuthConfig;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.message.config.ClientAuthConfig;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -45,7 +45,7 @@ import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
  *
  */
 public class TSAuthConfigProviderStandalone
-    implements javax.security.auth.message.config.AuthConfigProvider {
+    implements jakarta.security.auth.message.config.AuthConfigProvider {
 
   // this is a default string used for Persistent Registration description
   public static String DESC_KEY = "description_key";

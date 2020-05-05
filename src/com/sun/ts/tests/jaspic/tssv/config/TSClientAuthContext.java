@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.jaspic.tssv.config;
 
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.MessageInfo;
-import javax.security.auth.message.module.ClientAuthModule;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.module.ClientAuthModule;
 
-import javax.security.auth.Subject;
-import javax.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.Subject;
+import jakarta.security.auth.callback.CallbackHandler;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -34,7 +34,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
  * @author Raja Perumal
  */
 public class TSClientAuthContext
-    implements javax.security.auth.message.config.ClientAuthContext {
+    implements jakarta.security.auth.message.config.ClientAuthContext {
 
   private static ClientAuthModule clientAuthModule = null;
 

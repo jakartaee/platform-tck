@@ -19,7 +19,7 @@ package com.sun.ts.tests.securityapi.idstore.common;
 import java.util.Map;
 
 import jakarta.enterprise.context.Dependent;
-import javax.security.enterprise.identitystore.PasswordHash;
+import jakarta.security.enterprise.identitystore.PasswordHash;
 
 @Dependent
 public class PlaintextPasswordHash implements PasswordHash {

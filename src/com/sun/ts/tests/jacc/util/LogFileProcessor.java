@@ -39,11 +39,11 @@ import java.util.Vector;
 import java.security.Permission;
 import java.security.Permissions;
 import java.security.PermissionCollection;
-import javax.security.jacc.WebResourcePermission;
-import javax.security.jacc.WebRoleRefPermission;
-import javax.security.jacc.WebUserDataPermission;
-import javax.security.jacc.EJBMethodPermission;
-import javax.security.jacc.EJBRoleRefPermission;
+import jakarta.security.jacc.WebResourcePermission;
+import jakarta.security.jacc.WebRoleRefPermission;
+import jakarta.security.jacc.WebUserDataPermission;
+import jakarta.security.jacc.EJBMethodPermission;
+import jakarta.security.jacc.EJBRoleRefPermission;
 
 /**
  *

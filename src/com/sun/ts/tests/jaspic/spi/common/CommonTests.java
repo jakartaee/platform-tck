@@ -20,9 +20,9 @@ import java.util.*;
 import java.io.PrintWriter;
 import java.io.Serializable;
 
-import javax.security.auth.message.config.AuthConfigFactory;
-import javax.security.auth.message.config.AuthConfigProvider;
-import javax.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.RegistrationListener;
 
 import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactoryForStandalone;
 import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigProviderStandalone;

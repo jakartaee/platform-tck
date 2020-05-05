@@ -16,14 +16,14 @@
 
 package com.sun.ts.tests.securityapi.idstore.ldap.searchscopecallersubtreegrouponelevel;
 
-import static javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.SUBTREE;
-import static javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
-import static javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
+import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.SUBTREE;
+import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
+import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
 
 import java.io.IOException;
 
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

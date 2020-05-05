@@ -27,7 +27,7 @@ import java.util.ListIterator;
 import java.util.Vector;
 import java.util.StringTokenizer;
 import java.text.MessageFormat;
-import javax.security.auth.x500.X500Principal;
+import jakarta.security.auth.x500.X500Principal;
 
 import java.security.GeneralSecurityException;
 import com.sun.ts.lib.util.sec.security.util.Debug;
@@ -472,7 +472,7 @@ public class PolicyParser {
         try {
           principalName = expand(principalName);
 
-          if (principalClass.equals("javax.security.auth.x500.X500Principal")
+          if (principalClass.equals("jakarta.security.auth.x500.X500Principal")
               && !principalName.equals(PrincipalEntry.WILDCARD_NAME)) {
 
             // 4702543: X500 names with an EmailAddress

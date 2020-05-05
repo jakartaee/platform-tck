@@ -1,7 +1,7 @@
-** `javax.security.enterprise`
+** `jakarta.security.enterprise`
 
-** `javax.security.enterprise.authenticaiton.mechanism.http`
+** `jakarta.security.enterprise.authenticaiton.mechanism.http`
 
-** `javax.security.enterprise.credential`
+** `jakarta.security.enterprise.credential`
 
-** `javax.security.enterprise.identitystore`
+** `jakarta.security.enterprise.identitystore`

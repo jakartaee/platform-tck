@@ -17,14 +17,14 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import jakarta.resource.spi.work.SecurityContext;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.UnsupportedCallbackException;
-import javax.security.auth.Subject;
+import jakarta.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.callback.Callback;
+import jakarta.security.auth.callback.UnsupportedCallbackException;
+import jakarta.security.auth.Subject;
 import java.security.Principal;
-import javax.security.auth.message.callback.CallerPrincipalCallback;
-import javax.security.auth.message.callback.PasswordValidationCallback;
-import javax.security.auth.message.callback.GroupPrincipalCallback;
+import jakarta.security.auth.message.callback.CallerPrincipalCallback;
+import jakarta.security.auth.message.callback.PasswordValidationCallback;
+import jakarta.security.auth.message.callback.GroupPrincipalCallback;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;

@@ -23,8 +23,8 @@ import java.io.*;
 import com.sun.ts.tests.jaspic.tssv.util.*;
 import com.sun.ts.tests.jaspic.spi.common.*;
 
-import javax.security.auth.message.config.AuthConfigFactory;
-import javax.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.AuthConfigProvider;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.ServletSecurity;

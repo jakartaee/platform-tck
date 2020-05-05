@@ -21,11 +21,11 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition;
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
-import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
-import javax.security.enterprise.credential.Credential;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
+import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
+import jakarta.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;

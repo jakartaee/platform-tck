@@ -44,19 +44,19 @@ server :
 
 ** `-Dlog.file.location` (this comes from the +{jteFileName}+ property)
 
-** `-Djavax.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy`
+** `-Djakarta.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy`
 
-** `-Djavax.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl`
+** `-Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl`
 
-** `-Dvendor.javax.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper`
+** `-Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper`
 
-** `-Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl` +
+** `-Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl` +
 
 [NOTE]
 =======================================================================
 
-The values for the `-Dvendor.javax.security.jacc.policy.provider` and
-`-Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider` JVM
+The values for the `-Dvendor.jakarta.security.jacc.policy.provider` and
+`-Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider` JVM
 variables will need to be set specific to the application server in use.
 
 =======================================================================

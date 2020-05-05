@@ -1,1 +1,1 @@
-** `javax.security.jacc`
+** `jakarta.security.jacc`

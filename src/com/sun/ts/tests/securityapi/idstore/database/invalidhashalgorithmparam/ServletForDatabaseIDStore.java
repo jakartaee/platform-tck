@@ -21,8 +21,8 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;

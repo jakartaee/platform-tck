@@ -21,12 +21,12 @@ import java.util.Set;
 import java.util.Iterator;
 import java.security.Principal;
 
-import javax.security.auth.Subject;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.message.MessagePolicy;
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.MessageInfo;
+import jakarta.security.auth.Subject;
+import jakarta.security.auth.callback.CallbackHandler;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,7 +41,7 @@ import java.util.logging.Level;
 import javax.servlet.http.HttpServletResponseWrapper;
 
 public class TSServletWrapperSAM
-    implements javax.security.auth.message.module.ServerAuthModule {
+    implements jakarta.security.auth.message.module.ServerAuthModule {
   private TSLogger logger = null;
 
   private static MessagePolicy requestPolicy = null;

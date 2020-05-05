@@ -35,7 +35,7 @@ import java.net.*;
 import javax.naming.*;
 import javax.rmi.*;
 import javax.net.ssl.*;
-import javax.security.auth.x500.X500Principal;
+import jakarta.security.auth.x500.X500Principal;
 
 import java.security.cert.*;
 
