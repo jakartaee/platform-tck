@@ -33,7 +33,7 @@ import java.security.Principal;
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSHelloSecureService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.Hello")
 

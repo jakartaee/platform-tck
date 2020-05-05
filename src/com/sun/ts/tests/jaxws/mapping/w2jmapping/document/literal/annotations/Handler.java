@@ -25,8 +25,8 @@ import jakarta.xml.ws.soap.*;
 import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.LogicalMessage;
 
-import javax.annotation.PreDestroy;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
 
 public class Handler
     implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
