@@ -23,11 +23,11 @@ echo "ANT_OPTS in jmstck.sh $ANT_OPTS"
 cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jmstck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for jmstck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*jmstck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*jmstck*.zip -d ${TCK_HOME}
   TCK_NAME=jmstck
 elif ls ${WORKSPACE}/standalone-bundles/*messaging-tck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for messaging-tck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*messaging-tck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*messaging-tck*.zip -d ${TCK_HOME}
   TCK_NAME=messaging-tck
 else
   echo "[ERROR] TCK bundle not found"
@@ -41,7 +41,7 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
+unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
 TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"

@@ -24,11 +24,11 @@ echo "ANT_OPTS in jaxrstck.sh $ANT_OPTS"
 cd $TCK_HOME
 if ls ${WORKSPACE}/standalone-bundles/*jaxrstck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for jaxrstck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*jaxrstck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*jaxrstck*.zip -d ${TCK_HOME}
   TCK_NAME=jaxrstck
 elif ls ${WORKSPACE}/standalone-bundles/*restful-ws-tck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for restful-ws-tck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*restful-ws-tck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*restful-ws-tck*.zip -d ${TCK_HOME}
   TCK_NAME=restful-ws-tck
 else
   echo "[ERROR] TCK bundle not found"
@@ -43,7 +43,7 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
+unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
 TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"

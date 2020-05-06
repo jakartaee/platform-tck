@@ -140,9 +140,9 @@ fi
 rm -Rf ${CTS_HOME}/ri
 mkdir -p ${CTS_HOME}/ri
 if [[ "interop" == ${test_suite} ]]; then
-  unzip ${CTS_HOME}/glassfish-5.0.zip -d ${CTS_HOME}/ri
+  unzip -q ${CTS_HOME}/glassfish-5.0.zip -d ${CTS_HOME}/ri
 else
-  unzip ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
+  unzip -q ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
 fi
 chmod -R 777 ${CTS_HOME}/ri
 
@@ -240,7 +240,7 @@ wget --progress=bar:force --no-cache $GF_VI_BUNDLE_URL -O ${CTS_HOME}/latest-gla
 
 rm -Rf ${CTS_HOME}/vi
 mkdir -p ${CTS_HOME}/vi
-unzip ${CTS_HOME}/latest-glassfish-vi.zip -d ${CTS_HOME}/vi
+unzip -q ${CTS_HOME}/latest-glassfish-vi.zip -d ${CTS_HOME}/vi
 chmod -R 777 ${CTS_HOME}/vi
 
 if [ ! -d "${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR" ]; then
