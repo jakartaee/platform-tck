@@ -42,7 +42,7 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    else
      #renaming folder javaeetck to jakartaeetck in the Oracle Bundle
      cd ${WORKSPACE}/jakartaeetck-bundles
-     unzip -o jakartaeetck.zip
+     unzip -q -o jakartaeetck.zip
      mv javaeetck jakartaeetck
      rm -rf jakartaeetck.zip
      zip -r jakartaeetck.zip jakartaeetck
@@ -91,7 +91,7 @@ if [ -z "$GF_BUNDLE_URL" ]; then
   export GF_BUNDLE_URL=$DEFAULT_GF_BUNDLE_URL
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip -o latest-glassfish.zip
+unzip -q -o latest-glassfish.zip
 ls -l $GF_HOME/glassfish5/glassfish/
 
 # temporary fix to get build passing until we have glassfish with new api jars

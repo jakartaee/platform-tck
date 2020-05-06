@@ -25,11 +25,11 @@ cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*saajtck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for saajtck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*saajtck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*saajtck*.zip -d ${TCK_HOME}
   TCK_NAME=saajtck
 elif ls ${WORKSPACE}/standalone-bundles/*soap-tck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for soap-tck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*soap-tck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*soap-tck*.zip -d ${TCK_HOME}
   TCK_NAME=soap-tck
 else
   echo "[ERROR] TCK bundle not found"
@@ -43,7 +43,7 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
+unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
 #temp fix to use latest RC jar for soap api
 wget --progress=bar:force --no-cache https://repo1.maven.org/maven2/jakarta/xml/soap/jakarta.xml.soap-api/2.0.0-RC3/jakarta.xml.soap-api-2.0.0-RC3.jar -O ${TCK_HOME}/glassfish5/glassfish/modules/jakarta.xml.soap-api.jar

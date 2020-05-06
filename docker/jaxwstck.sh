@@ -26,11 +26,11 @@ cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jaxwstck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for jaxwstck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*jaxwstck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*jaxwstck*.zip -d ${TCK_HOME}
   TCK_NAME=jaxwstck
 elif ls ${WORKSPACE}/standalone-bundles/*xml-ws-tck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for xml-ws-tck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*xml-ws-tck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*xml-ws-tck*.zip -d ${TCK_HOME}
   TCK_NAME=xml-ws-tck
 else
   echo "[ERROR] TCK bundle not found"
@@ -44,7 +44,7 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
+unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
 TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
@@ -80,7 +80,7 @@ rm -rf $TCK_HOME/ri/*
 # cp $TCK_HOME/latest-glassfish-$PROFILE.zip $BASEDIR/ri/latest-glassfish.zip
 cp $TCK_HOME/latest-glassfish.zip $TCK_HOME/ri/latest-glassfish.zip
 cd $TCK_HOME/ri
-unzip latest-glassfish.zip
+unzip -q latest-glassfish.zip
 
 sed -i 's/4848/5858/g' $RI_DOMAIN_CONFIG_FILE
 sed -i 's/8080/9080/g' $RI_DOMAIN_CONFIG_FILE
