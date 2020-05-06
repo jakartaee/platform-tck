@@ -24,11 +24,11 @@ cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jaxrpctck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for jaxrpctck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*jaxrpctck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*jaxrpctck*.zip -d ${TCK_HOME}
   TCK_NAME=jaxrpctck
 elif ls ${WORKSPACE}/standalone-bundles/*xml-rpc-tck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for xml-rpc-tck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*xml-rpc-tck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*xml-rpc-tck*.zip -d ${TCK_HOME}
   TCK_NAME=xml-rpc-tck
 else
   echo "[ERROR] TCK bundle not found"
@@ -42,7 +42,7 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
+unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
 JAVA_OPTIONS="-Djavax.net.ssl.keyStore=$TCK_HOME/glassfish5/glassfish/domains/domain1/config/keystore.jks \
 -Djavax.net.ssl.keyStorePassword=changeit \

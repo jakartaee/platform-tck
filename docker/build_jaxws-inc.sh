@@ -23,7 +23,7 @@ fi
 
 if [ ! -d metro ]; then
   wget --progress=bar:force --no-cache "${METRO_BUNDLE_URL}" -O ${WORKSPACE}/metro.zip \
-  && unzip ${WORKSPACE}/metro.zip
+  && unzip -q ${WORKSPACE}/metro.zip
   rm -v ${WORKSPACE}/metro.zip
 fi
 

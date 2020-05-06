@@ -33,7 +33,7 @@ fi
 if [ ! -d "$GF_HOME/glassfish5" ]; then
   echo "########## Trunk.Install.V5 Config ##########"
   wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-  unzip -o latest-glassfish.zip
+  unzip -q -o latest-glassfish.zip
 fi
 
 if [ ! -z "$GF_VERSION_URL" ]; then

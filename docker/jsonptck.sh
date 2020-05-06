@@ -10,11 +10,11 @@ cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*jsonptck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for jsonptck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*jsonptck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*jsonptck*.zip -d ${TCK_HOME}
   TCK_NAME=jsonptck
 elif ls ${WORKSPACE}/standalone-bundles/*jsonp-tck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for jsonp-tck created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*jsonp-tck*.zip -d ${TCK_HOME}
+  unzip -q ${WORKSPACE}/standalone-bundles/*jsonp-tck*.zip -d ${TCK_HOME}
   TCK_NAME=jsonp-tck
 else
   echo "[ERROR] TCK bundle not found"
@@ -28,7 +28,7 @@ if [ -z "${GF_BUNDLE_URL}" ]; then
   exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
+unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
 TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
