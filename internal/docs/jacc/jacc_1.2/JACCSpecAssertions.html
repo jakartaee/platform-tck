@@ -104,7 +104,7 @@ applications or instances of an application).
 <TD align="center" valign="center"><a name="JACC:SPEC:14"></a><font size="1PT">JACC:SPEC:14</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">The security property  policy.provider may be used to replace the default
 java.security.Policy implementation class. Similarly, the security
 property  auth.policy.provider  may be used to replace the default
-javax.security.auth.Policy implementation class.
+jakarta.security.auth.Policy implementation class.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -120,25 +120,25 @@ installed for use by the JRE.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:21"></a><font size="1PT">JACC:SPEC:21</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">An application server or container must bundle or install the
-javax.security.jacc standard extension. This package must include the
-abstract javax.security.jacc.PolicyConfigurationFactory class,
-the javax.security.jacc.PolicyConfiguration and
-javax.security.jacc.PolicyContextHandler interfaces, and
+jakarta.security.jacc standard extension. This package must include the
+abstract jakarta.security.jacc.PolicyConfigurationFactory class,
+the jakarta.security.jacc.PolicyConfiguration and
+jakarta.security.jacc.PolicyContextHandler interfaces, and
 implementations of the
-javax.security.jacc.PolicyContextException exception, the
-javax.security.jacc Permission classes, and the
-javax.security.jacc.PolicyContext utility class.
+jakarta.security.jacc.PolicyContextException exception, the
+jakarta.security.jacc Permission classes, and the
+jakarta.security.jacc.PolicyContext utility class.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JACC:SPEC:22"></a><font size="1PT">JACC:SPEC:22</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">To enable delegation of non-javax.security.jacc policy decisions to
+<TD align="center" valign="center"><a name="JACC:SPEC:22"></a><font size="1PT">JACC:SPEC:22</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">To enable delegation of non-jakarta.security.jacc policy decisions to
 default system Policy providers, all application servers must implement the
 following Policy replacement algorithm.
 
 For each JRE of a J2EE 1.4 application server, if the system property
-javax.security.jacc.policy.provider is defined, the application server must
+jakarta.security.jacc.policy.provider is defined, the application server must
 construct an instance of the class identified by the system property,
 confirm that the resulting object is an instance of java.security.Policy,
 and set, by calling the java.security.Policy.setPolicy, the resulting
@@ -149,7 +149,7 @@ object as the corresponding Policy object used by the JRE.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:23"></a><font size="1PT">JACC:SPEC:23</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">For each JRE of a J2EE 1.4 application server, if the system property
-javax.security.jacc.policy.provider is defined, the application
+jakarta.security.jacc.policy.provider is defined, the application
 server must construct an instance of the class identified by the system property,
 confirm that the resulting object is an instance of java.security.Policy,
 and set, by calling the java.security.Policy.setPolicy method, the
@@ -158,11 +158,11 @@ resulting object as the corresponding Policy object used by the JRE.
 An application server that chooses to support this contract in a J2SE 1.3
 environment must perform the policy replacement algorithm described above
 when the system property
-javax.security.jacc.auth.policy.provider  is defined. That is,
+jakarta.security.jacc.auth.policy.provider  is defined. That is,
 for each JRE of the application server, the server must construct an instance of the
 class identified by the system property, confirm that the resulting object is an
-instance of javax.security.auth.Policy, and set, by calling
-javax.security.auth.Policy.setPolicy method, the resulting object
+instance of jakarta.security.auth.Policy, and set, by calling
+jakarta.security.auth.Policy.setPolicy method, the resulting object
 as the corresponding Policy object used by the JRE.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -171,11 +171,11 @@ as the corresponding Policy object used by the JRE.
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:24"></a><font size="1PT">JACC:SPEC:24</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7.1</font></TD><TD align="left" valign="center"><font size="1PT">A J2EE 1.3 application
 server must install or bundle, such that it is used by every JRE of the application
-server, a javax.security.auth.SubjectDomainCombiner whose
+server, a jakarta.security.auth.SubjectDomainCombiner whose
 combine method returns protection domains constructed using the permission
-collections returned by javax.security.auth.Policy.getPermisions.
+collections returned by jakarta.security.auth.Policy.getPermisions.
 It is recommended that this requirement also be satisfied by J2EE 1.4 application
-servers in the case where javax.security.auth.Policy is being used (in
+servers in the case where jakarta.security.auth.Policy is being used (in
 backward compatibility mode) by the SubjectDomainCombiner.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -412,8 +412,8 @@ container to fail in its processing of the associated request..
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:97"></a><font size="1PT">JACC:SPEC:97</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1.1</font></TD><TD align="left" valign="center"><font size="1PT">All EJB and Servlet containers must register a PolicyContextHandler whose
-getContext method returns a javax.security.auth.Subject object when invoked with
-the key javax.security.auth.Subject.container. When this handler is activated
+getContext method returns a jakarta.security.auth.Subject object when invoked with
+the key jakarta.security.auth.Subject.container. When this handler is activated
 as the result of a policy decision performed by a container before dispatch
 into a component, this handler must return a Subject containing the principals
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -500,7 +500,7 @@ PermissionCollection implies it. Otherwise, the permission is not granted. This
 technique is supported but not recommended.
 
 -  The J2EE 1.3 container calls
-javax.security.auth.Policy.getPermissions to determine the
+jakarta.security.auth.Policy.getPermissions to determine the
 collection of permissions granted independent of AccessControlContext. The
 Subject in the call to getPermissions may be null. The container must call
 the implies method on the returned PermissionCollection using the
@@ -557,7 +557,7 @@ been granted to the caller. Otherwise it has not. This technique is supported bu
 not recommended.
 
 The J2EE 1.3 container calls
-javax.security.auth.Policy.getPermissions with an argument
+jakarta.security.auth.Policy.getPermissions with an argument
 Subject containing the principals of the caller.The container must call the
 implies method on the returned PermissionCollection using the permission
 being checked as argument. If the PermissionCollection implies the permission
@@ -582,8 +582,8 @@ via the java.security.Policy.getPolicy method.
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:107"></a><font size="1PT">JACC:SPEC:107</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.11</font></TD><TD align="left" valign="center"><font size="1PT">All of the JRE of a
 J2EE 1.3 application server must perform all of the policy decisions defined by
-this contract by interacting with the javax.security.auth.Policy instance
-available in the JRE via the javax.security.auth.getPolicy method.
+this contract by interacting with the jakarta.security.auth.Policy instance
+available in the JRE via the jakarta.security.auth.getPolicy method.
 			</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -762,7 +762,7 @@ JRE, then the JRE must be provided with an environment specific Policy
 implementation class. If the JRE is running a J2SE 1.4 security environment, then
 it must be provided with an implementation of the java.security.Policy
 class. If the JRE is running a J2SE 1.3 security environment, it must be provided
-with an implementation of the javax.security.auth.Policy class (that is,
+with an implementation of the jakarta.security.auth.Policy class (that is,
 a JAAS Policy object).
 			</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -772,7 +772,7 @@ a JAAS Policy object).
 <TD align="center" valign="center"><a name="JACC:SPEC:17"></a><font size="1PT">JACC:SPEC:17</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.5</font></TD><TD align="left" valign="center"><font size="1PT">A replacement Policy object must assume responsibility for performing all
 policy decisions within the JRE in which it is installed that are requested by way
 of the Policy interface that it implements. A replacement Policy object may
-accomplish this by delegating non-javax.security.jacc policy decisions to
+accomplish this by delegating non-jakarta.security.jacc policy decisions to
 the corresponding default system Policy implementation class.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -798,7 +798,7 @@ provider.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:20"></a><font size="1PT">JACC:SPEC:20</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.6</font></TD><TD align="left" valign="center"><font size="1PT">A J2SE 1.4 provider may support replacement of
-the JAAS Policy object if and only if all javax.security.jacc policy decisions
+the JAAS Policy object if and only if all jakarta.security.jacc policy decisions
 performed by the replacement JAAS Policy object return the same result as when
 the java.security.Policy interface is used. To satisfy this requirement, the
 replacement JAAS Policy object must be compatible with the implementations of
@@ -810,9 +810,9 @@ provided for use with the java.security.Policy implementation class.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:63"></a><font size="1PT">JACC:SPEC:63</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">the provider must include an implementation of the
-javax.security.jacc.PolicyConfigurationFactory class along
+jakarta.security.jacc.PolicyConfigurationFactory class along
 with a matched implementation of a class that implements the
-javax.security.jacc.PolicyConfiguration interface.
+jakarta.security.jacc.PolicyConfiguration interface.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -849,7 +849,7 @@ statements.
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:67"></a><font size="1PT">JACC:SPEC:67</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">The getPolicyConfigurationFactory, and inService methods of the
 abstract factory class,
-javax.security.jacc.PolicyConfigurationFactory, must throw a
+jakarta.security.jacc.PolicyConfigurationFactory, must throw a
 SecurityException when called by an AccessControlContext that has not been
 granted the setPolicy SecurityPermission.
 The getPolicyConfiguration method of all implementations of the
@@ -1232,7 +1232,7 @@ application or modules being deployed.
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:27"></a><font size="1PT">JACC:SPEC:27</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">The declarative authorization policy statements derived from application or
 module deployment descriptor(s) must be translated to create instances of the
-corresponding javax.security.jacc Permission classes.
+corresponding jakarta.security.jacc Permission classes.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>

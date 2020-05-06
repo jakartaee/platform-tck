@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import java.net.SocketPermission;
 import java.net.NetPermission;
 import java.security.SecurityPermission;
 import java.security.AllPermission;
-import javax.security.auth.AuthPermission;
+import jakarta.security.auth.AuthPermission;
 
 /**
  * Permission constants and string constants used to create permissions used
@@ -186,11 +186,11 @@ public final class SecurityConstants {
   public static final SocketPermission LOCAL_LISTEN_PERMISSION = new SocketPermission(
       "localhost:1024-", SOCKET_LISTEN_ACTION);
 
-  // javax.security.auth.Subject
+  // jakarta.security.auth.Subject
   public static final AuthPermission DO_AS_PERMISSION = new AuthPermission(
       "doAs");
 
-  // javax.security.auth.Subject
+  // jakarta.security.auth.Subject
   public static final AuthPermission DO_AS_PRIVILEGED_PERMISSION = new AuthPermission(
       "doAsPrivileged");
 }

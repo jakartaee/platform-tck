@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -2507,7 +2507,7 @@
       <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
          <id>285</id>
 
-         <description>When a JAXR client specifies a digital certificate as a credential, it must do so using an instance of the javax.security.auth.x500. X500PrivateCredential class as defined by the JAAS API.</description>
+         <description>When a JAXR client specifies a digital certificate as a credential, it must do so using an instance of the jakarta.security.auth.x500. X500PrivateCredential class as defined by the JAAS API.</description>
 
          <location chapter="10" section="5.2" />
       </assertion>

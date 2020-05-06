@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -39,7 +39,7 @@ package com.sun.ts.lib.util.sec.security.auth;
  * itself, or both at the same time.
  *
  * @see java.security.Principal
- * @see javax.security.auth.Subject
+ * @see jakarta.security.auth.Subject
  */
 public interface PrincipalComparator {
   /**
@@ -50,5 +50,5 @@ public interface PrincipalComparator {
    * @return true if the specified <code>Subject</code> is implied by this
    *         object, or false otherwise.
    */
-  boolean implies(javax.security.auth.Subject subject);
+  boolean implies(jakarta.security.auth.Subject subject);
 }

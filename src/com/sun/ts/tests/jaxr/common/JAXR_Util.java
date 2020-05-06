@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,7 +36,7 @@ import javax.xml.registry.infomodel.*;
 
 import java.security.cert.*;
 import java.security.PrivateKey;
-import javax.security.auth.*;
+import jakarta.security.auth.*;
 import java.security.KeyStore;
 
 public final class JAXR_Util {
@@ -670,9 +670,9 @@ public final class JAXR_Util {
       // ok now I need an X500PrivateCredential
       X509Certificate cert = (X509Certificate) certificate;
 
-      javax.security.auth.x500.X500PrivateCredential privateCredential = null;
+      jakarta.security.auth.x500.X500PrivateCredential privateCredential = null;
 
-      privateCredential = new javax.security.auth.x500.X500PrivateCredential(
+      privateCredential = new jakarta.security.auth.x500.X500PrivateCredential(
           cert, key, useralias);
       credentials.add(privateCredential);
     } catch (Exception e) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,14 +22,14 @@
 
 package com.sun.ts.tests.jacc.provider;
 
-import javax.security.jacc.*;
+import jakarta.security.jacc.*;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Collection;
 import java.util.Date;
 import java.security.*;
-import javax.security.auth.Subject;
+import jakarta.security.auth.Subject;
 import java.io.*;
 import java.lang.StringBuffer;
 import java.util.logging.*;
@@ -95,7 +95,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           if called by an AccessControlContext that has not been granted
    *           the "setPolicy" SecurityPermission.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the getContextID method signature. The
    *           exception thrown by the implementation class will be encapsulated
@@ -148,7 +148,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the addToRole method signature. The
    *           exception thrown by the implementation class will be encapsulated
@@ -237,7 +237,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the addToRole method signature. The
    *           exception thrown by the implementation class will be encapsulated
@@ -308,7 +308,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the addToUncheckedPolicy method signature.
    *           The exception thrown by the implementation class will be
@@ -378,7 +378,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the addToUncheckedPolicy method signature.
    *           The exception thrown by the implementation class will be
@@ -435,7 +435,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the addToExcludedPolicy method signature.
    *           The exception thrown by the implementation class will be
@@ -502,7 +502,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the addToExcludedPolicy method signature.
    *           The exception thrown by the implementation class will be
@@ -558,7 +558,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the removeRole method signature. The
    *           exception thrown by the implementation class will be encapsulated
@@ -596,7 +596,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the removeUncheckedPolicy method signature.
    *           The exception thrown by the implementation class will be
@@ -633,7 +633,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" or "inService" when this
    *           method is called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the removeExcludedPolicy method signature.
    *           The exception thrown by the implementation class will be
@@ -679,7 +679,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           PolicyConfiguration Object is "deleted" when this method is
    *           called.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the commit method signature. The exception
    *           thrown by the implementation class will be encapsulated (during
@@ -739,7 +739,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           if called with an argument PolicyConfiguration whose Policy
    *           context is equivalent to that of this PolicyConfiguration.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the linkConfiguration method signature. The
    *           exception thrown by the implementation class will be encapsulated
@@ -828,7 +828,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           if called by an AccessControlContext that has not been granted
    *           the "setPolicy" SecurityPermission.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the delete method signature. The exception
    *           thrown by the implementation class will be encapsulated (during
@@ -861,7 +861,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
    *           if called by an AccessControlContext that has not been granted
    *           the "setPolicy" SecurityPermission.
    *
-   * @throws javax.security.jacc.PolicyContextException
+   * @throws jakarta.security.jacc.PolicyContextException
    *           if the implementation throws a checked exception that has not
    *           been accounted for by the inService method signature. The
    *           exception thrown by the implementation class will be encapsulated

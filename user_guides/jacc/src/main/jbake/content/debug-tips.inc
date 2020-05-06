@@ -1,3 +1,21 @@
+<!--
+
+    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
@@ -43,19 +61,19 @@ server :
 
 ** `-Dlog.file.location` (this comes from the +{jteFileName}+ property)
 
-** `-Djavax.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy`
+** `-Djakarta.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy`
 
-** `-Djavax.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl`
+** `-Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl`
 
-** `-Dvendor.javax.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper`
+** `-Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper`
 
-** `-Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl` +
+** `-Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl` +
 
 [NOTE]
 =======================================================================
 
-The values for the `-Dvendor.javax.security.jacc.policy.provider` and
-`-Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider` JVM
+The values for the `-Dvendor.jakarta.security.jacc.policy.provider` and
+`-Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider` JVM
 variables will need to be set specific to the application server in use.
 
 =======================================================================
