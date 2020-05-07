@@ -843,7 +843,7 @@
             servlet/api/javax_servlet/servletcontext,
             servlet/api/javax_servlet/servletresponse,
             servlet/api/common,
-            jsp/api/javax_el/elresolver,
+            jsp/api/jakarta_el/elresolver,
             jsp/spec/el/language,
             jsp/spec/tagext/resource/taghandler,
             jms/common,

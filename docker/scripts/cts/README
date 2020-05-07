@@ -56,7 +56,7 @@ multiple test suites. For example,
 docker run --env http_proxy=http://<host>:<port> 
   --env  https_proxy=https://<host>:<port> 
   --env IP_MAILSERVER=172.17.0.2 
-  --env test_suite="samples el/api/javax_el/arrayelresolver" javaeects
+  --env test_suite="samples el/api/jakarta_el/arrayelresolver" javaeects
 
 As specified in the docker command line options for run command, you can 
 include all the --env arguments as property-value in a .properties file 

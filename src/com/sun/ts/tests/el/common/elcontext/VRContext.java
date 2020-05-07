@@ -22,7 +22,7 @@ package com.sun.ts.tests.el.common.elcontext;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import com.sun.ts.tests.el.api.javax_el.valueexpression.Worker;
+import com.sun.ts.tests.el.api.jakarta_el.valueexpression.Worker;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
 

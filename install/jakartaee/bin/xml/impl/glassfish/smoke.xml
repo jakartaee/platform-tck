@@ -66,7 +66,7 @@
     com/sun/ts/tests/webservices12/servlet/WSMTOMSBAnnotationsTest,
     com/sun/ts/tests/webservices12/servlet/HandlerTest,
     com/sun/ts/tests/webservices12/servlet/WebServiceRefsTest,
-    com/sun/ts/tests/jsp/api/javax_el/elresolver,
+    com/sun/ts/tests/jsp/api/jakarta_el/elresolver,
     com/sun/ts/tests/jsp/spec/el/language,
     com/sun/ts/tests/jsp/spec/tagext/resource/taghandler,
     com/sun/ts/tests/jstl/spec/sql/query,
