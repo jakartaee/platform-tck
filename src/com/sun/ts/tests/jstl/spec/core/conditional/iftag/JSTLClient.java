@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -124,7 +124,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:14.1.3
    * 
    * @testStrategy: Validate that an instance of
-   * javax.servlet.jsp.JspTagException is thrown if the resulting expression
+   * jakarta.servlet.jsp.JspTagException is thrown if the resulting expression
    * passed ot the 'test' attribute is not of the expected type (boolean/Boolean
    * for EL, and boolean for RT).
    */

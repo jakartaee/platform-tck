@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -253,7 +253,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that the action can properly format a date based on
    * the default I18N localization context configuration variable
-   * javax.servlet.jsp.jstl.fmt.localizationContext. Pass the parsed value to
+   * jakarta.servlet.jsp.jstl.fmt.localizationContext. Pass the parsed value to
    * formatDate to display (due to possible timezone difference).
    */
   public void positivePDLocalizationContextTest() throws Fault {
@@ -337,7 +337,7 @@ public class JSTLClient extends AbstractUrlClient {
    * present, use the value of the timeZone attribute. - If wrapped in a
    * <fmt:setTimeZone> action, use the timeZone of that action. - If no timeZone
    * attribute present, and not wrapped by the fmt:setTimeZone action, use the
-   * value of the scoped attribute javax.servlet.jsp.jstl.fmt.timeZone Pass the
+   * value of the scoped attribute jakarta.servlet.jsp.jstl.fmt.timeZone Pass the
    * parsed value to formatDate to display (due to possible timezone
    * difference).
    */

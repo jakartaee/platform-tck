@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,9 +25,9 @@
 <tck:test testName="positiveQueryVarAttributeTest">
 
    <!-- Validate the exported var attribute is of type
-             javax.servlet.jsp.jstl.sql.Result -->
+             jakarta.servlet.jsp.jstl.sql.Result -->
 
-   <h1>Validating sql:query action var attribute is of type javax.servlet.jsp.jstl.sql.Result </h1>
+   <h1>Validating sql:query action var attribute is of type jakarta.servlet.jsp.jstl.sql.Result </h1>
    <p>
 
    <sql:query var="resultSet2"
@@ -35,6 +35,6 @@
        <c:out value="${sqlProps.Simple_Select_Query}" />
    </sql:query>
 
-   <tck:isInstance varName='resultSet2' type='javax.servlet.jsp.jstl.sql.Result' />
+   <tck:isInstance varName='resultSet2' type='jakarta.servlet.jsp.jstl.sql.Result' />
 
 </tck:test>

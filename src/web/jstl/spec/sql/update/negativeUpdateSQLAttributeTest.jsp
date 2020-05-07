@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,7 +35,7 @@
   <h1>Validate that a sql:update action which  passes an invalid Datatype to the
    sql attribute throws JspException </h1>
   <p>
-  <tck:catch var="e" exception= "javax.servlet.jsp.JspException"  >
+  <tck:catch var="e" exception= "jakarta.servlet.jsp.JspException"  >
       <sql:update var="resultSet"
                   dataSource="${applicationScope.jstlDS}"
                   sql="${invalidSql}" />

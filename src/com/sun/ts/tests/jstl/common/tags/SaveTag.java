@@ -17,9 +17,9 @@
 package com.sun.ts.tests.jstl.common.tags;
 
 import jakarta.el.ValueExpression;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.util.ArrayList;
 
 public class SaveTag extends SimpleTagSupport {

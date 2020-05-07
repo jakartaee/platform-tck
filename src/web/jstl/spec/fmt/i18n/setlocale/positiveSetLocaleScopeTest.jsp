@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,22 +24,22 @@
 
     <!-- validation of scopes -->
     <fmt:setLocale value="en"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.locale" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.locale.page"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.locale" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.locale.page"/>
 
     <fmt:setLocale value="en" scope="page"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.locale" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.locale.page"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.locale" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.locale.page"/>
 
     <fmt:setLocale value="en" scope="request"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.locale" inScope="request" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.locale.request"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.locale" inScope="request" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.locale.request"/>
 
     <fmt:setLocale value="en" scope="session"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.locale" inScope="session" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.locale.session"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.locale" inScope="session" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.locale.session"/>
 
     <fmt:setLocale value="en" scope="application"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.locale" inScope="application" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.locale.application"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.locale" inScope="application" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.locale.application"/>
 </tck:test>

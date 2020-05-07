@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,21 +23,21 @@
 <tck:test testName="positiveTimezoneAttrScopeTest">
 
     <!-- If scope is specified and var is not, the
-             javax.servlet.jsp.jstl.fmt.timeZone attribute will
+             jakarta.servlet.jsp.jstl.fmt.timeZone attribute will
              be set to the scope specified (implicit or explicit). -->
     <fmt:setTimeZone value="PST"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.timeZone" useConfig="true"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" useConfig="true"/>
     <c:remove var="javax.serlvet.jsp.jstl.fmt.timeZone.page"/>
     <fmt:setTimeZone value="PST" scope="page"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.timeZone" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.timeZone.page"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.page"/>
     <fmt:setTimeZone value="PST" scope="request"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.timeZone" inScope="request" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.timeZone.request"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" inScope="request" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.request"/>
     <fmt:setTimeZone value="PST" scope="session"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.timeZone" inScope="session" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.timeZone.session"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" inScope="session" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.session"/>
     <fmt:setTimeZone value="PST" scope="application"/>
-    <tck:checkScope varName="javax.servlet.jsp.jstl.fmt.timeZone" inScope="application" useConfig="true"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.timeZone.applciation"/>
+    <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" inScope="application" useConfig="true"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.applciation"/>
 </tck:test>

@@ -9,7 +9,7 @@
 <body>
 
     <!-- timezone action with no var will set the
-             javax.servlet.jsp.jstl.fmt.timeZone scoped
+             jakarta.servlet.jsp.jstl.fmt.timeZone scoped
              attribute -->
     
     

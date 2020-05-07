@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -130,7 +130,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:93.4
    * 
    * @testStrategy: Validate that if var is not set, the scoped variable
-   * javax.servlet.jsp.jstl.fmt.timeZone is properly set.
+   * jakarta.servlet.jsp.jstl.fmt.timeZone is properly set.
    */
   public void positiveSetTimezoneSetAttrTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneSetAttrTest");
@@ -144,7 +144,7 @@ public class JSTLClient extends AbstractUrlClient {
    * JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4; JSTL:SPEC:93.3.5; JSTL:SPEC:93.4
    * 
    * @testStrategy: Validate that if var is not specified, but scope is, that
-   * the scoped variable, javax.servlet.jsp.jstl.fmt.timeZone is exported to the
+   * the scoped variable, jakarta.servlet.jsp.jstl.fmt.timeZone is exported to the
    * appropriate scope.
    */
   public void positiveSetTimezoneAttrScopeTest() throws Fault {

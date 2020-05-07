@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,8 +24,8 @@
 
     <!-- If the XPath expression provided to the select attribute
              of the when action fails to evaluate, an instance of
-             javax.servlet.jsp.JspException must be thrown. -->
-    <tck:catch var="rex" exception="javax.servlet.jsp.JspException">
+             jakarta.servlet.jsp.JspException must be thrown. -->
+    <tck:catch var="rex" exception="jakarta.servlet.jsp.JspException">
         <x:choose>
             <x:when select="$doc//a">
                 Body content improperly processed.<br>

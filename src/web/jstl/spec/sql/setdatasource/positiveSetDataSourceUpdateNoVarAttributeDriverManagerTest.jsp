@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,11 +28,11 @@
           value="${header['jstl.db.url']},${header['jstl.db.driver']},${header['jstl.db.user']},${header['jstl.db.password']}" />
 
     <!-- Validate sql:update and sql:setDataSource actions by specifying a String
-       with DriverManager parameters as the javax.servlet.jsp.jstl.sql.dataSource
+       with DriverManager parameters as the jakarta.servlet.jsp.jstl.sql.dataSource
        configuration Parameter-->
 
    <h1>Validate sql:update and sql:setDataSource actions by specifying a String with
-       DriverManager parameters as the javax.servlet.jsp.jstl.sql.dataSource
+       DriverManager parameters as the jakarta.servlet.jsp.jstl.sql.dataSource
        configuration Parameter </h1>
    <p>
  <c:catch var="ex3"  >
@@ -45,7 +45,7 @@
       <c:when test="${!empty ex3}">
          <H2>ERROR:</H2>
          Could not create a dataSource using <strong><c:out value='${driverInfo}'/>
-         </strong> for javax.servlet.jsp.jstl.sql.dataSource! The Exception that was raised
+         </strong> for jakarta.servlet.jsp.jstl.sql.dataSource! The Exception that was raised
          is: <strong><c:out value='${ex3}'  escapeXml='false' /></strong>.
          <p>
       </c:when>
@@ -68,12 +68,12 @@
          <H2>ERROR:</H2>
          Could not execute the query <strong><c:out value="${sqlProps.Delete_NoRows_Query}" />
          </strong> when using <strong><c:out value='${driverInfo}'/></strong> for
-         javax.servlet.jsp.jstl.sql.dataSource! The Exception that was raised is:
+         jakarta.servlet.jsp.jstl.sql.dataSource! The Exception that was raised is:
          <strong><c:out value='${ex2}' escapeXml='false' /></strong>.
          <p>
       </c:when>
       <c:otherwise>
-         Successfully executed the query when javax.servlet.jsp.jstl.sql.dataSource was
+         Successfully executed the query when jakarta.servlet.jsp.jstl.sql.dataSource was
          provided DriverManager parameters.
          <p>
       </c:otherwise>

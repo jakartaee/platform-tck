@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,15 +27,15 @@
              root cause as the JspException root cause.  If no root
              cause is present, the exception text will be included in the
              message and the original exception as the root cause. -->
-    <tck:catch var="riae" exception="javax.servlet.jsp.JspException"
+    <tck:catch var="riae" exception="jakarta.servlet.jsp.JspException"
                checkRootCause="true" rootException="java.lang.IllegalStateException"
                exceptionText="root message">
         <c:import url="ServletExceptionRootCause.jsp"/>
     </tck:catch>
     <c:out value="${riae}" default="Test FAILED" escapeXml="false"/><br>
     <br>
-    <tck:catch var="rse" exception="javax.servlet.jsp.JspException"
-               checkRootCause="true" rootException="javax.servlet.ServletException"
+    <tck:catch var="rse" exception="jakarta.servlet.jsp.JspException"
+               checkRootCause="true" rootException="jakarta.servlet.ServletException"
                exceptionText="thrown from included resource">
         <c:import url="ServletException.jsp"/>
     </tck:catch>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.jstl.common.tags;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.jsp.JspException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.jsp.JspException;
 import java.net.URL;
 import java.net.MalformedURLException;
 
-public class GetLocalUrlTag extends javax.servlet.jsp.tagext.TagSupport {
+public class GetLocalUrlTag extends jakarta.servlet.jsp.tagext.TagSupport {
 
   /**
    * Variable name for the result of the action.
@@ -73,7 +73,7 @@ public class GetLocalUrlTag extends javax.servlet.jsp.tagext.TagSupport {
    *
    * @return EVAL_PAGE
    */
-  public int doEndTag() throws javax.servlet.jsp.JspException {
+  public int doEndTag() throws jakarta.servlet.jsp.JspException {
     ServletRequest req = pageContext.getRequest();
     if (req != null) {
       StringBuffer sb = new StringBuffer(50);

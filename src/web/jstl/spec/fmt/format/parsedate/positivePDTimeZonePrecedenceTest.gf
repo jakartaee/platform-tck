@@ -15,7 +15,7 @@
               - If wrapped by a timeZone action, use that 
                 value.
               - Use the value of the scoped attribute
-                javax.servlet.jsp.jstl.fmt.timeZone. -->
+                jakarta.servlet.jsp.jstl.fmt.timeZone. -->
     <br>TimeZone attribute specified with a value of PST:<br>
       Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be offset by 3 hours:<br>
       

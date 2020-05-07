@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -180,7 +180,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that if the XPath expression provided to select of
    * the when action fails to evaluated an instance of
-   * javax.servlet.jsp.JspException is thrown.
+   * jakarta.servlet.jsp.JspException is thrown.
    */
   public void negativeCWOWhenSelectFailureTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenSelectFailureTest");

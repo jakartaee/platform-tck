@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -286,7 +286,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:23.15
    * 
    * @testStrategy: Validate that if the value of url is null, a
-   * javax.servlet.jsp.JspException is thrown.
+   * jakarta.servlet.jsp.JspException is thrown.
    */
   public void negativeImportUrlNullTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "negativeImportUrlNullTest");
@@ -299,7 +299,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:23.15
    * 
    * @testStrategy: Validate that if the value of url is empty ("") a
-   * javax.servlet.jsp.JspException is thrown.
+   * jakarta.servlet.jsp.JspException is thrown.
    */
   public void negativeImportUrlEmptyTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "negativeImportUrlEmptyTest");
@@ -312,7 +312,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:23.15
    * 
    * @testStrategy: Validate that if url is provided an invalid URL an instance
-   * of javax.servlet.jsp.JspException is thrown.
+   * of jakarta.servlet.jsp.JspException is thrown.
    */
   public void negativeImportUrlInvalidTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "negativeImportUrlInvalidTest");

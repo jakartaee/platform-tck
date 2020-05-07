@@ -14,11 +14,11 @@
 
 
     <!-- Validate sql:update and sql:setDataSource actions by specifying a String
-       with DriverManager parameters as the javax.servlet.jsp.jstl.sql.dataSource
+       with DriverManager parameters as the jakarta.servlet.jsp.jstl.sql.dataSource
        configuration Parameter-->
 
    <h1>Validate sql:update and sql:setDataSource actions by specifying a String with
-       DriverManager parameters as the javax.servlet.jsp.jstl.sql.dataSource
+       DriverManager parameters as the jakarta.servlet.jsp.jstl.sql.dataSource
        configuration Parameter </h1>
    <p>
 
@@ -42,7 +42,7 @@
 
 
 
-         Successfully executed the query when javax.servlet.jsp.jstl.sql.dataSource was
+         Successfully executed the query when jakarta.servlet.jsp.jstl.sql.dataSource was
          provided DriverManager parameters.
          <p>
 

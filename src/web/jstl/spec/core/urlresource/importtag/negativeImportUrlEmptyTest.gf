@@ -10,7 +10,7 @@
     <!-- If the url attribute is empty, a JspException is thrown -->
     
         
-    The expected Exception <strong>javax.servlet.jsp.JspException</strong> was thrown!
+    The expected Exception <strong>jakarta.servlet.jsp.JspException</strong> was thrown!
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,14 +24,14 @@
 
 <tck:test testName="positiveTxDataSourceConfigDataSourceTest">
 
-   <!-- Validate sql:transaction, sql:query actions and javax.servlet.jsp.jstl.sql.dataSource
+   <!-- Validate sql:transaction, sql:query actions and jakarta.servlet.jsp.jstl.sql.dataSource
             configuration parameter  specifying a DataSource Object -->
 
-   <h1>Validating sql:transaction, sql:query actions, the javax.servlet.jsp.jstl.sql.dataSource
+   <h1>Validating sql:transaction, sql:query actions, the jakarta.servlet.jsp.jstl.sql.dataSource
    configuration parameter  specifying a DataSource Object </h1>
    <p>
 
- <%-- Configure javax.servlet.jsp.jstl.sql.dataSource --%>
+ <%-- Configure jakarta.servlet.jsp.jstl.sql.dataSource --%>
    <tck:config configVar="datasource" op="set"
                value='<%= (DataSource) pageContext.getAttribute("jstlDS", PageContext.APPLICATION_SCOPE) %>'/>
 
@@ -45,7 +45,7 @@
       <c:when test="${resultSet2.rowCount != JSTL_TAB1_ROWS}">
          <H2>ERROR:</H2>
          While using the configuration parameter <strong>
-         javax.servlet.jsp.jstl.sql.dataSource</strong>, specifying a DataSource
+         jakarta.servlet.jsp.jstl.sql.dataSource</strong>, specifying a DataSource
          Object,  the query: <strong>
          "<c:out value="${sqlProps.Simple_Select_Query}" />" , the expected
          number of rows <strong>"<c:out value="${JSTL_TAB1_ROWS}" />"</strong>
@@ -55,7 +55,7 @@
       </c:when>
       <c:otherwise>
          While using the configuration parameter <strong>
-         javax.servlet.jsp.jstl.sql.dataSource</strong>, specifying a DataSource
+         jakarta.servlet.jsp.jstl.sql.dataSource</strong>, specifying a DataSource
          Object, the query succeeded.
          <p>
       </c:otherwise>

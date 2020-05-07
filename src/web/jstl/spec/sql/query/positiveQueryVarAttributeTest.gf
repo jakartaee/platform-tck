@@ -13,14 +13,14 @@
 
 
    <!-- Validate the exported var attribute is of type
-             javax.servlet.jsp.jstl.sql.Result -->
+             jakarta.servlet.jsp.jstl.sql.Result -->
 
-   <h1>Validating sql:query action var attribute is of type javax.servlet.jsp.jstl.sql.Result </h1>
+   <h1>Validating sql:query action var attribute is of type jakarta.servlet.jsp.jstl.sql.Result </h1>
    <p>
 
 
 
-   resultSet2 is of type javax.servlet.jsp.jstl.sql.Result<br>
+   resultSet2 is of type jakarta.servlet.jsp.jstl.sql.Result<br>
 
 
 </body>

@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@
 <tck:test testName="positiveVarStatusTest">
     <!-- validate RT tag support of varStatus -->
     <c:forTokens items="a*b" delims="*" varStatus="rStatus">
-        <tck:isInstance varName="rStatus" type="javax.servlet.jsp.jstl.core.LoopTagStatus"/>
+        <tck:isInstance varName="rStatus" type="jakarta.servlet.jsp.jstl.core.LoopTagStatus"/>
     </c:forTokens>
     
 </tck:test>

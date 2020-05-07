@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -148,7 +148,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:59.5;JSTL:SPEC:59.5.1
    * 
    * @testStrategy: Validate that the var attribute within a <sql:query> action
-   * is of type javax.servlet.jsp.jstl.sql.Result.
+   * is of type jakarta.servlet.jsp.jstl.sql.Result.
    */
   public void positiveQueryVarAttributeTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "positiveQueryVarAttributeTest");
@@ -207,7 +207,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:59
    * 
    * @testStrategy: Validate the sql:query use of the configuration parameter
-   * javax.servlet.jsp.sql.maxRows passed as a String - That the number of rows
+   * jakarta.servlet.jsp.sql.maxRows passed as a String - That the number of rows
    * returned matches the value specified by the config param. - That all rows
    * are returned if the config param is '-1'. - That maxRows attribute takes
    * precedence over the config param.
@@ -223,7 +223,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:59
    * 
    * @testStrategy: Validate the sql:query use of the configuration parameter
-   * javax.servlet.jsp.sql.maxRows passed an Integer object - That the number of
+   * jakarta.servlet.jsp.sql.maxRows passed an Integer object - That the number of
    * rows returned matches the value specified by the config param. - That all
    * rows are returned if the config param is '-1'. - That maxRows attribute
    * takes precedence over the config param.
@@ -240,7 +240,7 @@ public class JSTLClient extends SqlUrlClient {
    * 
    * @testStrategy: Validate sql:query action dataSource attribute takes
    * precedence over the configuration parameter
-   * javax.servlet.jsp.jstl.sql.dataSource.
+   * jakarta.servlet.jsp.jstl.sql.dataSource.
    */
   public void positiveQueryDataSourceConfigPrecedenceTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD,
@@ -254,7 +254,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:59
    * 
    * @testStrategy: Validate sql:query action utilizing the configuration
-   * parameter javax.servlet.jsp.jstl.sql.dataSource and setting it to a
+   * parameter jakarta.servlet.jsp.jstl.sql.dataSource and setting it to a
    * DataSource Object. The query is passed as body content.
    */
   public void positiveQueryDataSourceConfigDataSourceTest() throws Fault {
@@ -269,7 +269,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:59
    * 
    * @testStrategy: Validate sql:query action utilizing the configuration
-   * parameter javax.servlet.jsp.jstl.sql.dataSource and setting it to a String
+   * parameter jakarta.servlet.jsp.jstl.sql.dataSource and setting it to a String
    * representing JDBC DriverManager parameters. The query is passed as body
    * content
    */
@@ -311,7 +311,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:59
    * 
    * @testStrategy: Validate the sql:query use of
-   * javax.servlet.jsp.sql.jstl.maxRows config parameter - That a JspException
+   * jakarta.servlet.jsp.sql.jstl.maxRows config parameter - That a JspException
    * is thrown when an invalid value is specified.
    */
   public void negativeQueryMaxRowsConfigTest() throws Fault {
@@ -325,7 +325,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:59
    * 
    * @testStrategy: Validate the sql:query use of
-   * javax.servlet.jsp.sql.jstl.maxRows config parameter - That a JspException
+   * jakarta.servlet.jsp.sql.jstl.maxRows config parameter - That a JspException
    * is thrown when an value < -1 is specified.
    */
   public void negativeQueryMaxRowsConfigTest2() throws Fault {
@@ -440,9 +440,9 @@ public class JSTLClient extends SqlUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:59
    * 
-   * @test_Strategy: validates javax.servlet.jsp.jstl.sql.ResultSupport by using
+   * @test_Strategy: validates jakarta.servlet.jsp.jstl.sql.ResultSupport by using
    * cusotm tag resultSetQuery, which invokes ResultSupport.toResult() to
-   * convert a java.sql.ResultSet to javax.servlet.jsp.jstl.sql.Result.
+   * convert a java.sql.ResultSet to jakarta.servlet.jsp.jstl.sql.Result.
    */
 
   public void positiveResultSupportTest() throws Fault {

@@ -14,7 +14,7 @@
              exception as the root cause. -->
     
         
-    The expected Exception <strong>javax.servlet.jsp.JspException</strong> was thrown!<br>
+    The expected Exception <strong>jakarta.servlet.jsp.JspException</strong> was thrown!<br>
 The root cause Exception <strong>java.lang.IllegalArgumentException</strong> was of the expected type.<br>
 The expected Exception text was found in the Exception message!
 

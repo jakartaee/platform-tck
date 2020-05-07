@@ -13,12 +13,12 @@
     Check the message:<br>
     
        
-    The expected Exception <strong>javax.servlet.jsp.JspException</strong> was thrown!<br>
+    The expected Exception <strong>jakarta.servlet.jsp.JspException</strong> was thrown!<br>
 The expected Exception text was found in the Exception message!<br>
     Check the status code:<br>
     
         
-    The expected Exception <strong>javax.servlet.jsp.JspException</strong> was thrown!<br>
+    The expected Exception <strong>jakarta.servlet.jsp.JspException</strong> was thrown!<br>
 The expected Exception text was found in the Exception message!<br>
 
 </body>

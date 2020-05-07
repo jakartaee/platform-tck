@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
-<%@ page import="javax.servlet.jsp.jstl.fmt.LocalizationContext" %>
+<%@ page import="jakarta.servlet.jsp.jstl.fmt.LocalizationContext" %>
 <%!
     private void checkEncoding(PageContext context, HttpServletResponse response) {
-        String charset = (String) context.getAttribute("javax.servlet.jsp.jstl.fmt.request.charset",
+        String charset = (String) context.getAttribute("jakarta.servlet.jsp.jstl.fmt.request.charset",
                                                        PageContext.SESSION_SCOPE);
         if (charset != null && charset.equals(response.getCharacterEncoding())) {
             response.addHeader("charset", "attribute set");
@@ -57,7 +57,7 @@
         <fmt:message key="mkey"
                         bundle='<%= (LocalizationContext) pageContext.getAttribute("tBundle", PageContext.APPLICATION_SCOPE) %>'/>
         <% checkEncoding(pageContext, response); %>
-        <c:remove var="javax.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
+        <c:remove var="jakarta.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
         <c:remove var="tBundle" scope="application"/>
     </c:if>
 

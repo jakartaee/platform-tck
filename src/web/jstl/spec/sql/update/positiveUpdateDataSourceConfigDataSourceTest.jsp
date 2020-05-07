@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,15 +24,15 @@
 
 <tck:test testName="positiveUpdateDataSourceConfigDataSourceTest">
 
-   <%-- Configure javax.servlet.jsp.jstl.sql.dataSource --%>
+   <%-- Configure jakarta.servlet.jsp.jstl.sql.dataSource --%>
    <tck:config configVar="datasource" op="set"
                value='<%= (DataSource) pageContext.getAttribute("jstlDS", PageContext.APPLICATION_SCOPE) %>'/>
 
 
- <!-- Validate sql:update action and javax.servlet.jsp.jstl.sql.dataSource
+ <!-- Validate sql:update action and jakarta.servlet.jsp.jstl.sql.dataSource
             configuration parameter  specifying a DataSource Object -->
 
-   <h1>Validating sql:update action and the javax.servlet.jsp.jstl.sql.dataSource
+   <h1>Validating sql:update action and the jakarta.servlet.jsp.jstl.sql.dataSource
    configuration parameter  specifying a DataSource Object </h1>
    <p>
 
@@ -47,12 +47,12 @@
          <H2>ERROR:</H2>
          Could not execute the query <strong><c:out value="${sqlProps.Delete_NoRows_Query}" />
          </strong> when using <strong><c:out value='${driverInfo}'/></strong> for
-          javax.servlet.jsp.jstl.sql.dataSource! The Exception that was raised is:
+          jakarta.servlet.jsp.jstl.sql.dataSource! The Exception that was raised is:
          <strong><c:out value='${ex2}' escapeXml='false' /></strong>.
          <p>
       </c:when>
       <c:otherwise>
-         Successfully executed the query when javax.servlet.jsp.jstl.sql.dataSource
+         Successfully executed the query when jakarta.servlet.jsp.jstl.sql.dataSource
           was provided a DataSource Object.
          <p>
       </c:otherwise>

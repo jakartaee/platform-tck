@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -104,7 +104,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that if no Content-Type header is sent by the
    * client, that the value of the scoped variable,
-   * javax.servlet.jsp.jstl.fmt.request.charset, is used to set the character
+   * jakarta.servlet.jsp.jstl.fmt.request.charset, is used to set the character
    * encoding of the request. Validation will be by calling
    * getCharacterEncoding() against the request object after the action has been
    * called.
@@ -121,7 +121,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that if no Content-Type header is sent by the
    * client, and the scoped variable,
-   * javax.servlet.jsp.jstl.fmt.request.charset, is not present, the default
+   * jakarta.servlet.jsp.jstl.fmt.request.charset, is not present, the default
    * encoding of ISO-8859-1 is used. Validation will be by calling
    * getCharacterEncoding() against the request object after the action has been
    * called.

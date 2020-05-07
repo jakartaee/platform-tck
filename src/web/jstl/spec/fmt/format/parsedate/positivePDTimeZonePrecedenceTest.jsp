@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,7 +32,7 @@
               - If wrapped by a timeZone action, use that 
                 value.
               - Use the value of the scoped attribute
-                javax.servlet.jsp.jstl.fmt.timeZone. -->
+                jakarta.servlet.jsp.jstl.fmt.timeZone. -->
     <br>TimeZone attribute specified with a value of PST:<br>
       Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be offset by 3 hours:<br>
       <fmt:timeZone value="MST">

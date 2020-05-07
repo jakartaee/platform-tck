@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,7 +35,7 @@
              action.  The Locale of the selected resource bundle
              will be used as the locale for the formatting action.
              Additionally, if the action is wrapped by the bundle action
-             the javax.servlet.jsp.jstl.fmt.localizationContext config variable
+             the jakarta.servlet.jsp.jstl.fmt.localizationContext config variable
              will not be considered. -->
     <fmt:bundle basename="com.sun.ts.tests.jstl.common.resources.Resources1">
         <fmt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>' type="both" var="p2"/>

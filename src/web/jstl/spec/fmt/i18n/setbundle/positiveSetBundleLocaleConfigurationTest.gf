@@ -9,7 +9,7 @@
 <body>
 
     <!-- The setBundle action will use the locale as specified
-             by the javax.servlet.jsp.jstl.fmt.locale configuration
+             by the jakarta.servlet.jsp.jstl.fmt.locale configuration
              variable if present.  This will override any browser based
              locales provided. -->
     

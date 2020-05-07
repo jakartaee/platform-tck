@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,17 +24,17 @@
 
 <tck:test testName="negativeQueryMaxRowsConfigTest">
 
-     <%-- configure javax.servlet.jsp.jstl.sql.maxRows --%>
+     <%-- configure jakarta.servlet.jsp.jstl.sql.maxRows --%>
      <tck:config configVar="maxrows" op="set" value="invalid" />
 
    <!-- Validate sql:query action that specifies invalid String value for
-        javax.servlet.jsp.jstl.sql.maxRows throws JspException -->
+        jakarta.servlet.jsp.jstl.sql.maxRows throws JspException -->
 
     <h1>Validate sql:query action that specifies invalid String value for
-        javax.servlet.jsp.jstl.sql.maxRows throws JspException </h1>
+        jakarta.servlet.jsp.jstl.sql.maxRows throws JspException </h1>
     <p>
 
-  <tck:catch var="e2" exception= "javax.servlet.jsp.JspException" >
+  <tck:catch var="e2" exception= "jakarta.servlet.jsp.JspException" >
      <sql:query var="resultSet2"
                     dataSource='<%=(DataSource) pageContext.getAttribute("jstlDS", PageContext.APPLICATION_SCOPE) %>'  >
           <%=((Properties)pageContext.getAttribute("sqlProps",PageContext.APPLICATION_SCOPE)).getProperty("Simple_Select_Query") %>
