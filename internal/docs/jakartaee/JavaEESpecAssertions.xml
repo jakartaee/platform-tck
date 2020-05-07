@@ -4703,8 +4703,8 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                     - jakarta.resource.ConnectionFactoryDefinition
                     - jakarta.resource.ConnectionFactoryDefinitions
                     - All annotations in the following packages:
-                       (a) javax.jws
-                       (b) javax.jws.soap
+                       (a) jakarta.jws
+                       (b) jakarta.jws.soap
                        (c) javax.xml.ws
                        (d) javax.xml.ws.soap
                        (e) javax.xml.ws.spi

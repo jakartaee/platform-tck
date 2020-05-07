@@ -27,8 +27,8 @@ import javax.annotation.security.PermitAll;
 import javax.annotation.security.DenyAll;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
-import javax.jws.WebMethod;
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
 import javax.xml.ws.WebServiceContext;
 import javax.annotation.Resource;
 

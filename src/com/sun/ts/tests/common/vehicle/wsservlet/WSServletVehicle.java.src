@@ -35,7 +35,7 @@ import com.sun.javatest.Status;
 
 import javax.xml.ws.WebServiceRef;
 import javax.xml.ws.WebServiceRefs;
-import javax.jws.HandlerChain;
+import jakarta.jws.HandlerChain;
 
 @WSREFSWEBCLIENT@
 

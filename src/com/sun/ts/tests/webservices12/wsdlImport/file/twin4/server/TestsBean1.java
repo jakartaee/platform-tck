@@ -18,7 +18,7 @@ package com.sun.ts.tests.webservices12.wsdlImport.file.twin4.server;
 
 import jakarta.ejb.Stateless;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "Tests1Port", serviceName = "Twin4FileSvc1", targetNamespace = "http://Twin4FileSvc1.org/wsdl", wsdlLocation = "META-INF/wsdl/svc1/Twin4FileSvc1.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.twin4.server.Tests1")
 

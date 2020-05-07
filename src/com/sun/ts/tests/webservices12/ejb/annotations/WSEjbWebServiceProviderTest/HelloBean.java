@@ -17,7 +17,7 @@
 package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceProviderTest;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import javax.xml.ws.Provider;
 import javax.xml.ws.WebServiceProvider;
 import javax.xml.transform.Source;

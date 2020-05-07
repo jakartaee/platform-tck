@@ -18,7 +18,7 @@ package com.sun.ts.tests.webservices12.wsdlImport.http.shared4.server;
 
 import jakarta.ejb.Stateless;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "Tests2Port", serviceName = "Shared4HttpSvc2", targetNamespace = "http://Shared4HttpSvc2.org/wsdl", wsdlLocation = "META-INF/wsdl/std/svc2/Shared4HttpSvc2.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.shared4.server.Tests2")
 @Stateless(name = "StatelessTestBean2")

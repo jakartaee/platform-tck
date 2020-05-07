@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.ejb30.webservice.clientview;
 
-import javax.jws.WebService;
-import javax.jws.WebMethod;
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
 import jakarta.ejb.Stateless;
 
 @WebService(name = "Hello", serviceName = "HelloService")

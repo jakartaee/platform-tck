@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,12 +35,12 @@
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>3004</id>
-			<description>The implementation bean MUST include a @WebService class-level annotation, indicating that it implements a Web Service.  More information on the @WebService annotation may be found in 4.1Annotation: javax.jws.WebService.</description>
+			<description>The implementation bean MUST include a @WebService class-level annotation, indicating that it implements a Web Service.  More information on the @WebService annotation may be found in 4.1Annotation: jakarta.jws.WebService.</description>
 			<location chapter = "3" section = "1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>3005</id>
-			<description>The implementation bean MAY reference a service endpoint interface by using the @WebService.endpointInterface annotation.  If the implementation bean references a service endpoint interface, it MUST implement all the methods on the service endpoint interface.  If the implementation bean references a service endpoint interface, that service endpoint interface is used to determine the abstract WSDL contract (portType and bindings).  In this case, the service implementation bean MUST NOT include any JSR-181 annotations other than @WebService(endpointInterface and serviceName atrtributes only) and @HandlerChain..  More information on the @WebService.endpointInterface attribute may be found in 4.1 Annotation: javax.jws.WebService.</description>
+			<description>The implementation bean MAY reference a service endpoint interface by using the @WebService.endpointInterface annotation.  If the implementation bean references a service endpoint interface, it MUST implement all the methods on the service endpoint interface.  If the implementation bean references a service endpoint interface, that service endpoint interface is used to determine the abstract WSDL contract (portType and bindings).  In this case, the service implementation bean MUST NOT include any JSR-181 annotations other than @WebService(endpointInterface and serviceName atrtributes only) and @HandlerChain..  More information on the @WebService.endpointInterface attribute may be found in 4.1 Annotation: jakarta.jws.WebService.</description>
 			<location chapter = "3" section = "1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">

@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.webservices12.sec.descriptors.ejb.basicSSL;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import jakarta.ejb.Stateless;
 
 @WebService(portName = "HelloBasicPort", serviceName = "HelloBasicService", targetNamespace = "http://HelloBasic.org", wsdlLocation = "META-INF/wsdl/HelloBasic.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.sec.descriptors.ejb.basicSSL.HelloBasic")

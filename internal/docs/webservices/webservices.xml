@@ -516,7 +516,7 @@ descriptor (not required with JAX-WS when annotations are used) in a Java EE mod
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 <id>WS4EE:SPEC:85</id>
 <description> A JAX-WS Web Services for JavaEE provider is required to provide an
-			implementation of HandlerResolver that returns the HandlerClain with Handlers specified in the deployment descriptor or the javax.jws.HandlerChain annotation</description>
+			implementation of HandlerResolver that returns the HandlerClain with Handlers specified in the deployment descriptor or the jakarta.jws.HandlerChain annotation</description>
 <location chapter="6" section="2.2" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

@@ -17,7 +17,7 @@
 package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefRespBindAndAddressingCombinedTest;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import javax.xml.ws.soap.Addressing;
 import javax.xml.ws.Holder;
 import javax.xml.ws.RespectBinding;

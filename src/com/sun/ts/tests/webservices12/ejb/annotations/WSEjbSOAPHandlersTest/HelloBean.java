@@ -18,7 +18,7 @@ package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbSOAPHandlersTest;
 
 import com.sun.ts.tests.jaxws.common.HandlerTracker;
 import jakarta.ejb.Stateless;
-import javax.jws.*;
+import jakarta.jws.*;
 
 @WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbSOAPHandlersTest.Hello")
 @Stateless(name = "WSEjbSOAPHandlersTest")

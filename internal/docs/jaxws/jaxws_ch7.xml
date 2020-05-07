@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -140,7 +140,7 @@ The WebServiceRef annotation is used to declare a reference to a Web service. It
 			<id>JAXWS:SPEC:7011</id>
 			<description>
 Conformance (JSR-181 conformance): A JAX-WS 2.0 implementation MUSTbe conformant to the JAX-WS profile of JSR-181 1.1. As a convenience to the reader, the following sections reproduce the definition of the JSR-181 annotations 8
-applicable to JAX-WS.  7.10.1 javax.jws.WebService, 7.10.2 javax.jws.WebMethod, 7.10.3 javax.jws.OneWay, 7.10.4 javax.jws.WebParam, 7.10.5 javax.jws.WebResult, 7.10.6 javax.jws.SOAPBinding, 7.10.7 javax.jws.HandlerChain
+applicable to JAX-WS.  7.10.1 jakarta.jws.WebService, 7.10.2 jakarta.jws.WebMethod, 7.10.3 jakarta.jws.OneWay, 7.10.4 jakarta.jws.WebParam, 7.10.5 jakarta.jws.WebResult, 7.10.6 jakarta.jws.SOAPBinding, 7.10.7 jakarta.jws.HandlerChain
 			</description>
 			<location chapter = "7" section = "10"/>
 		</assertion>

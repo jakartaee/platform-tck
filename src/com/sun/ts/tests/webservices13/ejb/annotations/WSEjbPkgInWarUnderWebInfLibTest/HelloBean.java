@@ -19,7 +19,7 @@ package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbPkgInWarUnderWebInfL
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import javax.annotation.Resource;
 
 @WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "WEB-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbPkgInWarUnderWebInfLibTest.Hello")

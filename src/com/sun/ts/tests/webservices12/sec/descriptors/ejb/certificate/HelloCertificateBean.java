@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.webservices12.sec.descriptors.ejb.certificate;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import jakarta.ejb.Stateless;
 
 @WebService(portName = "HelloCertificatePort", serviceName = "HelloCertificateService", targetNamespace = "http://HelloCertificate.org", wsdlLocation = "META-INF/wsdl/HelloCertificate.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.sec.descriptors.ejb.certificate.HelloCertificate")

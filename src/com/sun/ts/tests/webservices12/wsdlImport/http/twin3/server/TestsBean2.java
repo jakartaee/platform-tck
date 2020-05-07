@@ -18,7 +18,7 @@ package com.sun.ts.tests.webservices12.wsdlImport.http.twin3.server;
 
 import jakarta.ejb.Stateless;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "Tests2Port", serviceName = "Twin3HttpSvc2", targetNamespace = "http://Twin3HttpSvc2.org/wsdl", wsdlLocation = "META-INF/wsdl/svc2/Twin3HttpSvc2.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.twin3.server.Tests2")
 

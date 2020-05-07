@@ -103,8 +103,8 @@ javax.json.bind.serializer
 javax.json.bind.spi
 javax.json.spi
 javax.json.stream
-javax.jws
-javax.jws.soap
+jakarta.jws
+jakarta.jws.soap
 jakarta.mail
 jakarta.mail.event
 jakarta.mail.internet

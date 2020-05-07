@@ -17,7 +17,7 @@
 package com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.intra;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "IntraModuleSeiPort", serviceName = "IntraModuleService", targetNamespace = "http://IntraModuleService.org/wsdl", wsdlLocation = "META-INF/wsdl/IntraModuleService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.intra.IntraModuleSei")
 

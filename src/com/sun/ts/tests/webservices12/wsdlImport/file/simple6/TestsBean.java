@@ -17,7 +17,7 @@
 package com.sun.ts.tests.webservices12.wsdlImport.file.simple6;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "TestsPort", serviceName = "Simple6FileSvc", targetNamespace = "http://Simple6FileSvc.org/wsdl", wsdlLocation = "META-INF/wsdl/std/svc/Simple6FileSvc.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.simple6.Tests")
 @Stateless(name = "WSSimple6File")

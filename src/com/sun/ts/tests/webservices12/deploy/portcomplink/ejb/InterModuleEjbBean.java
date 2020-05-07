@@ -17,7 +17,7 @@
 package com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.inter;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import javax.xml.ws.WebServiceException;
 import javax.naming.InitialContext;
 

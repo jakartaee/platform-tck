@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd"[
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -182,13 +182,13 @@
 					<section id = "9" name = "javax.xml.ws.WebServiceRef"/>
 					<section id = "10" name = "javax.xml.ws.WebServiceRefs"/>
 					<section id = "11" name = "Annotations Defined by JSR-181"/>
-					<section id = "11.1" name = "javax.jws.WebService"/>
-					<section id = "11.2" name = "javax.jws.WebMethod"/>
-					<section id = "11.3" name = "javax.jws.OneWay"/>
-					<section id = "11.4" name = "javax.jws.WebParam"/>
-					<section id = "11.5" name = "javax.jws.WebResult"/>
-					<section id = "11.6" name = "javax.jws.SOAPBinding"/>
-					<section id = "11.7" name = "javax.jws.HandlerChain"/>
+					<section id = "11.1" name = "jakarta.jws.WebService"/>
+					<section id = "11.2" name = "jakarta.jws.WebMethod"/>
+					<section id = "11.3" name = "jakarta.jws.OneWay"/>
+					<section id = "11.4" name = "jakarta.jws.WebParam"/>
+					<section id = "11.5" name = "jakarta.jws.WebResult"/>
+					<section id = "11.6" name = "jakarta.jws.SOAPBinding"/>
+					<section id = "11.7" name = "jakarta.jws.HandlerChain"/>
 				</sections>
 			</chapter>
 			<chapter id = "8" name = "Customizations">

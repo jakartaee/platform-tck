@@ -19,7 +19,7 @@ package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbPkgInWarUnderWebInfT
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import javax.xml.ws.WebServiceContext;
 import javax.annotation.Resource;
 
