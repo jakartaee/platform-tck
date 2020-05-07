@@ -64,7 +64,7 @@ public class Client extends ClientBase {
   public void programmatic() {
     for (TimeoutParamIF b : beans) {
       String timerName = b.getBeanName() + PROGRAMMATIC_TIMER_SUFFIX;
-      Timer t = b.createSecondLaterTimer(timerName);
+      Timer t = b.createSecondLaterTimer(timerName, 2);
       appendReason("Created a timer with name " + timerName + "; " + t);
       passIfTimeout(timerName);
       removeStatusAndRecords(timerName);
