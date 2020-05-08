@@ -24,7 +24,7 @@ import java.net.SocketPermission;
 import java.net.NetPermission;
 import java.security.SecurityPermission;
 import java.security.AllPermission;
-import jakarta.security.auth.AuthPermission;
+import javax.security.auth.AuthPermission;
 
 /**
  * Permission constants and string constants used to create permissions used
