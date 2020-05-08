@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -78,7 +78,7 @@
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2011</id>
-			<description>Conformance (Using the javax.jws.WebService annotation): A mapped SEI MUST be annotated with a javax.jws.WebService annotation.</description>
+			<description>Conformance (Using the jakarta.jws.WebService annotation): A mapped SEI MUST be annotated with a jakarta.jws.WebService annotation.</description>
 			<location chapter = "2" section = "2"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "removed" testable = "true">
@@ -106,7 +106,7 @@
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2015</id>
-			<description>Conformance (javax.jws.WebMethod required): A mapped Java method MUST be annotated with a javax.jws.WebMethod annotation. The annotation MAY be omitted if all its properties would have default values.</description>
+			<description>Conformance (jakarta.jws.WebMethod required): A mapped Java method MUST be annotated with a jakarta.jws.WebMethod annotation. The annotation MAY be omitted if all its properties would have default values.</description>
 			<location chapter = "2" section = "3"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "removed" testable = "true">
@@ -121,7 +121,7 @@
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2018</id>
-			<description>Conformance (using javax.jws.OneWay): A Java method mapped from a one-way operation MUST be annotated with a javax.jws.OneWay annotation.</description>
+			<description>Conformance (using jakarta.jws.OneWay): A Java method mapped from a one-way operation MUST be annotated with a jakarta.jws.OneWay annotation.</description>
 			<location chapter = "2" section = "3"/>
 		</assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology"
@@ -182,20 +182,20 @@
                 </assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2019</id>
-			<description>Conformance (Using javax.jws.SOAPBinding): An SEI mapped from a port type that is bound using the WSDL SOAP binding MUST be annotated with a javax.jws.SOAPBinding annotation describing the choice of style, encoding and parameter style. The annotation MAY be omitted if all its properties would have the default values (i.e. document/literal/wrapped).</description>
+			<description>Conformance (Using jakarta.jws.SOAPBinding): An SEI mapped from a port type that is bound using the WSDL SOAP binding MUST be annotated with a jakarta.jws.SOAPBinding annotation describing the choice of style, encoding and parameter style. The annotation MAY be omitted if all its properties would have the default values (i.e. document/literal/wrapped).</description>
 			<location chapter = "2" section = "3.1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2020</id>
 			<description>
-Conformance (Usingjavax.jws.WebParam ): Generated Java method parameters MUST be annotated with a javax.jws.WebParam annotation. If the style is rpc or if the style is Document and the parameter style is BARE then the partName element of javax.jws.WebParam MUST refer to the wsdl:part name of the parameter.
+Conformance (Usingjakarta.jws.WebParam ): Generated Java method parameters MUST be annotated with a jakarta.jws.WebParam annotation. If the style is rpc or if the style is Document and the parameter style is BARE then the partName element of jakarta.jws.WebParam MUST refer to the wsdl:part name of the parameter.
 			</description>
 			<location chapter = "2" section = "3.1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2021</id>
 			<description>
-Conformance (Usingjavax.jws.WebResult ): Generated Java methods MUST be annotated with a javax.jws.WebResult annotation. If the style is rpc or if the style is Document and the parameter style is BARE then the partName element of javax.jws.WebResult MUST refer to the wsdl:part name of the parameter. The annotation MAY be omitted if all its properties would have the default values.
+Conformance (Usingjakarta.jws.WebResult ): Generated Java methods MUST be annotated with a jakarta.jws.WebResult annotation. If the style is rpc or if the style is Document and the parameter style is BARE then the partName element of jakarta.jws.WebResult MUST refer to the wsdl:part name of the parameter. The annotation MAY be omitted if all its properties would have the default values.
 			</description>
 			<location chapter = "2" section = "3.1"/>
 		</assertion>

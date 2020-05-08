@@ -22,10 +22,10 @@ package com.sun.ts.tests.jaxws.ee.j2w.document.literal.sessionmaintaintest.serve
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
 import jakarta.xml.ws.handler.MessageContext;
 

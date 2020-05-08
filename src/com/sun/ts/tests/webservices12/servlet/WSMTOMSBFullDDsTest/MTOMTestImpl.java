@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 import javax.xml.ws.WebServiceException;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 import javax.xml.ws.Holder;
 import java.awt.Image;

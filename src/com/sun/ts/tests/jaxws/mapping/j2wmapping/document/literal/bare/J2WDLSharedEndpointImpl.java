@@ -22,10 +22,10 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.bare;
 
 import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(name = "J2WDLSharedEndpoint", serviceName = "J2WDLSharedService", targetNamespace = "http://doclitservice.org/wsdl")
-@javax.jws.soap.SOAPBinding(style = javax.jws.soap.SOAPBinding.Style.DOCUMENT, use = javax.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = javax.jws.soap.SOAPBinding.ParameterStyle.BARE)
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.DOCUMENT, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.BARE)
 public class J2WDLSharedEndpointImpl {
 
   public void foo(jakarta.xml.ws.Holder<String> fooString) {

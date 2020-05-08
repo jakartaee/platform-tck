@@ -29,10 +29,10 @@ import java.util.Properties;
 import java.util.ArrayList;
 import jakarta.transaction.*;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import jakarta.inject.Inject;
 import javax.annotation.Resource;
-import javax.enterprise.inject.*;
+import jakarta.enterprise.inject.*;
 
 public class ServletClient extends HttpServlet {
   private static final long serialVersionUID = 1L;

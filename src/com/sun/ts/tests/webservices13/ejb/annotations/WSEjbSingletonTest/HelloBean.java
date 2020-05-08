@@ -18,7 +18,7 @@ package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbSingletonTest;
 
 import jakarta.ejb.Stateless;
 import jakarta.ejb.Singleton;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "WSEjbSingletonTestHelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbSingletonTest.Hello")
 @Singleton(name = "WSEjbSingletonTest")

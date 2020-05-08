@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.Queue;
+import jakarta.jms.Destination;
+import jakarta.jms.JMSException;
+import jakarta.jms.Queue;
 import jakarta.resource.spi.AdministeredObject;
 import jakarta.resource.spi.ConfigProperty;
 

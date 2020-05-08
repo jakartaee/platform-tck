@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
-@javax.jws.WebService(name = "MYJ2WRLSharedEndpoint", targetNamespace = "http://rpclitservice.org/wsdl")
-@javax.jws.soap.SOAPBinding(style = javax.jws.soap.SOAPBinding.Style.RPC, use = javax.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = javax.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.WebService(name = "MYJ2WRLSharedEndpoint", targetNamespace = "http://rpclitservice.org/wsdl")
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface J2WRLSharedEndpoint extends InheritedInterface {
 
   public java.lang.String arrayOperationFromClient(java.lang.String[] arg0);
@@ -30,20 +30,20 @@ public interface J2WRLSharedEndpoint extends InheritedInterface {
 
   public java.lang.String[] arrayOperation();
 
-  @javax.jws.WebMethod(operationName = "stringOperation")
-  @javax.jws.WebResult(name = "rvalue", targetNamespace = "http://rpclitservice.org/wsdl")
+  @jakarta.jws.WebMethod(operationName = "stringOperation")
+  @jakarta.jws.WebResult(name = "rvalue", targetNamespace = "http://rpclitservice.org/wsdl")
   public java.lang.String stringOperation(
-      @javax.jws.WebParam(name = "ivalue0") java.lang.String ivalue0);
+      @jakarta.jws.WebParam(name = "ivalue0") java.lang.String ivalue0);
 
   // Holder method with annotations for parameters
   public String holderMethodDefault(
       jakarta.xml.ws.Holder<java.lang.String> varStringDefault);
 
   public String holderMethodInOut(
-      @javax.jws.WebParam(name = "varStringInOut", mode = javax.jws.WebParam.Mode.INOUT) jakarta.xml.ws.Holder<java.lang.String> varStringInOut);
+      @jakarta.jws.WebParam(name = "varStringInOut", mode = jakarta.jws.WebParam.Mode.INOUT) jakarta.xml.ws.Holder<java.lang.String> varStringInOut);
 
   public String holderMethodOut(
-      @javax.jws.WebParam(name = "varStringOut", mode = javax.jws.WebParam.Mode.OUT) jakarta.xml.ws.Holder<java.lang.String> varStringOut);
+      @jakarta.jws.WebParam(name = "varStringOut", mode = jakarta.jws.WebParam.Mode.OUT) jakarta.xml.ws.Holder<java.lang.String> varStringOut);
 
   // A method with more than 1 input parts
   public java.lang.String oneTwoThree(int one, long two, double three);
@@ -52,19 +52,19 @@ public interface J2WRLSharedEndpoint extends InheritedInterface {
   public java.lang.String helloWorld();
 
   // Annotation to disambiguate name of overloaded method helloWorld
-  @javax.jws.WebMethod(operationName = "helloWorld2")
+  @jakarta.jws.WebMethod(operationName = "helloWorld2")
   public java.lang.String helloWorld(String hello);
 
-  @javax.jws.WebMethod
-  @javax.jws.Oneway
+  @jakarta.jws.WebMethod
+  @jakarta.jws.Oneway
   public void oneWayOperation();
 
-  @javax.jws.WebMethod
-  @javax.jws.Oneway
+  @jakarta.jws.WebMethod
+  @jakarta.jws.Oneway
   public void oneWayOperationWithParams(Integer i, Long l, Double d);
 
-  @javax.jws.WebMethod
+  @jakarta.jws.WebMethod
   public void operationWithHeaderAndHeaderFaultAndFault(
-      @javax.jws.WebParam(name = "ConfigHeader", header = true, mode = javax.jws.WebParam.Mode.IN) ConfigHeader configheader)
+      @jakarta.jws.WebParam(name = "ConfigHeader", header = true, mode = jakarta.jws.WebParam.Mode.IN) ConfigHeader configheader)
       throws ConfigHeaderFault, MyFault, MyOtherFault;
 }

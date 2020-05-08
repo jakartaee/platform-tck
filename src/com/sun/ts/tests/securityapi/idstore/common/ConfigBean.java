@@ -16,15 +16,15 @@
 
 package com.sun.ts.tests.securityapi.idstore.common;
 
-import javax.security.enterprise.identitystore.IdentityStore.ValidationType;
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType.PROVIDE_GROUPS;
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
+import jakarta.security.enterprise.identitystore.IdentityStore.ValidationType;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.PROVIDE_GROUPS;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
 
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
-import static javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
-import static javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.SUBTREE;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
+import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
+import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.SUBTREE;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
 @RequestScoped

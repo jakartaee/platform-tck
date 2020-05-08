@@ -23,7 +23,7 @@
  */
 package com.sun.ts.tests.xa.ee.xresXcomp2;
 
-//import javax.jms.*;
+//import jakarta.jms.*;
 //import java.rmi.*; 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.harness.*;

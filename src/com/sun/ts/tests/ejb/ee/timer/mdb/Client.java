@@ -30,7 +30,7 @@ import java.util.Properties;
 import java.util.Enumeration;
 import jakarta.ejb.*;
 import javax.rmi.*;
-import javax.jms.*;
+import jakarta.jms.*;
 
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jms.common.JmsUtil;

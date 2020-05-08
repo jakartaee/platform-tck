@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -13,12 +13,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
+
 package com.sun.ts.lib.implementation.sun.jms;
 
 import java.util.*;
 import java.io.*;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
@@ -39,9 +40,9 @@ public class SunRIJMSObjects implements TSJMSObjectsInterface {
 
   private static ConnectionFactory cf = null;
 
-  private javax.jms.Topic testTopic = null;
+  private jakarta.jms.Topic testTopic = null;
 
-  private javax.jms.Queue testQueue = null;
+  private jakarta.jms.Queue testQueue = null;
 
   private void getJNDIContext() throws Exception {
 
@@ -61,11 +62,11 @@ public class SunRIJMSObjects implements TSJMSObjectsInterface {
    * This method allows individual implementation to get the Queue
    */
 
-  public javax.jms.Queue getQueue(String name) throws Exception {
+  public jakarta.jms.Queue getQueue(String name) throws Exception {
     getJNDIContext();
 
     try {
-      testQueue = (javax.jms.Queue) jndiContext.lookup(name);
+      testQueue = (jakarta.jms.Queue) jndiContext.lookup(name);
     } catch (Exception e) {
       TestUtil.logErr("Failed to lookup Queue");
       TestUtil.printStackTrace(e);

@@ -25,7 +25,7 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;
@@ -116,7 +116,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("bytesMessageQTestsFullMsg")) {
         TestUtil.logTrace(
             "@onMessage - running bytesMessageQTestsFullMsg - read and verify the message");
-        bytesMessageQTestsFullMsg((javax.jms.BytesMessage) msg);
+        bytesMessageQTestsFullMsg((jakarta.jms.BytesMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageFullMsgQTestCreate")) {
         TestUtil.logTrace(
@@ -126,7 +126,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageFullMsgQTest")) {
         TestUtil.logTrace(
             "@onMessage - running mapMessageFullMsgQTest - read and verify the message");
-        mapMessageFullMsgQTest((javax.jms.MapMessage) msg);
+        mapMessageFullMsgQTest((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsBooleanCreate")) {
         TestUtil.logTrace(
@@ -136,7 +136,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsBoolean")) {
         TestUtil.logTrace(
             "@onMessage - running MapMessageConversionQTestsBoolean - read and verify the message");
-        mapMessageConversionQTestsBoolean((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsBoolean((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsByteCreate")) {
         TestUtil.logTrace(
@@ -146,7 +146,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsByte")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsByte - read and verify the message");
-        mapMessageConversionQTestsByte((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsByte((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsShortCreate")) {
         TestUtil.logTrace(
@@ -156,7 +156,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsShort")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsShort - read and verify the message");
-        mapMessageConversionQTestsShort((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsShort((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsCharCreate")) {
         TestUtil.logTrace(
@@ -166,7 +166,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsChar")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsChar - read and verify the message");
-        mapMessageConversionQTestsChar((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsChar((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsIntCreate")) {
         TestUtil.logTrace(
@@ -176,7 +176,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsInt")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsInt - read and verify the message");
-        mapMessageConversionQTestsInt((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsInt((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsLongCreate")) {
         TestUtil.logTrace(
@@ -186,7 +186,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsLong")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsLong - read and verify the message");
-        mapMessageConversionQTestsLong((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsLong((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsFloatCreate")) {
         TestUtil.logTrace(
@@ -196,7 +196,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsFloat")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsFloat - read and verify the message");
-        mapMessageConversionQTestsFloat((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsFloat((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsDoubleCreate")) {
         TestUtil.logTrace(
@@ -206,7 +206,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsDouble")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsDouble - read and verify the message");
-        mapMessageConversionQTestsDouble((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsDouble((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsStringCreate")) {
         TestUtil.logTrace(
@@ -216,7 +216,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsString")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsString - read and verify the message");
-        mapMessageConversionQTestsString((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsString((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsBytesCreate")) {
         TestUtil.logTrace(
@@ -226,7 +226,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsBytes")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsBytes - read and verify the message");
-        mapMessageConversionQTestsBytes((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsBytes((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionQTestsInvFormatStringCreate")) {
         TestUtil.logTrace(
@@ -236,7 +236,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionQTestsInvFormatString")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionQTestsInvFormatString - read and verify the message");
-        mapMessageConversionQTestsInvFormatString((javax.jms.MapMessage) msg);
+        mapMessageConversionQTestsInvFormatString((jakarta.jms.MapMessage) msg);
       }
 
       else {
@@ -391,7 +391,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * Description: reads and verifies BytesMessage created by
    * bytesMessageQTestsFullMsgCreate
    */
-  private void bytesMessageQTestsFullMsg(javax.jms.BytesMessage msg) {
+  private void bytesMessageQTestsFullMsg(jakarta.jms.BytesMessage msg) {
     TestUtil.logTrace("MsgBean - @bytesMessageQTestsFullMsg");
     String testCase = "bytesMessageQTestsFullMsg";
     try {
@@ -652,7 +652,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    *                 
    */
   private void mapMessageFullMsgQTest(
-      javax.jms.MapMessage messageReceivedMapMessage) {
+      jakarta.jms.MapMessage messageReceivedMapMessage) {
     String testCase = "mapMessageFullMsgQTest";
     boolean pass = true;
     boolean booleanValue = false;
@@ -907,7 +907,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * boolean as in 3.11.3
    */
   private void mapMessageConversionQTestsBoolean(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsBoolean";
     try {
       boolean booleanValue = true;
@@ -1146,7 +1146,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
   /*
   */
   private void mapMessageConversionQTestsByte(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsByte";
     MapMessage messageSent = null;
     byte byteValue = 127;
@@ -1383,7 +1383,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * 3.11.3
    */
   private void mapMessageConversionQTestsShort(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsShort";
     try {
       short shortValue = 1;
@@ -1856,7 +1856,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * proper conversion support as in 3.11.3
    */
   private void mapMessageConversionQTestsChar(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsChar";
     try {
       char charValue = 'a';
@@ -2050,7 +2050,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionQTestsInt(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsInt";
     try {
 
@@ -2254,7 +2254,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionQTestsLong(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsLong";
     try {
 
@@ -2455,7 +2455,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionQTestsFloat(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsFloat";
     try {
       float floatValue = 5;
@@ -2653,7 +2653,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionQTestsDouble(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsDouble";
 
     try {
@@ -2849,7 +2849,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionQTestsString(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsString";
 
     try {
@@ -3075,7 +3075,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * message. Verify the proper conversion support as in 3.11.3
    */
   private void mapMessageConversionQTestsBytes(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsBytes";
 
     try {
@@ -3283,7 +3283,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionQTestsInvFormatString(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionQTestsInvFormatString";
 
     try {

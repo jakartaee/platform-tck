@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.rmi.RemoteException;
-import javax.jms.*;
+import jakarta.jms.*;
 
 public class JmsTool {
 
@@ -1217,8 +1217,8 @@ public class JmsTool {
       msg.setStringProperty("COM_SUN_JMS_TESTNAME", "flushDestination");
       TestUtil.logTrace(
           "Send low priority message to Destination to signal the last message");
-      sender.send(msg, javax.jms.Message.DEFAULT_DELIVERY_MODE, priority,
-          javax.jms.Message.DEFAULT_TIME_TO_LIVE);
+      sender.send(msg, jakarta.jms.Message.DEFAULT_DELIVERY_MODE, priority,
+          jakarta.jms.Message.DEFAULT_TIME_TO_LIVE);
 
       // flush the Destination
       TestUtil.logTrace("Now flush the Destination");

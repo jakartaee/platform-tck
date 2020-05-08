@@ -17,11 +17,11 @@
 package com.sun.ts.tests.jaspic.tssv.config;
 
 import java.util.Iterator;
-import javax.security.auth.message.MessageInfo;
-import javax.security.auth.message.config.ClientAuthContext;
-import javax.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.config.ClientAuthContext;
+import jakarta.security.auth.message.AuthException;
 
-import javax.security.auth.Subject;
+import jakarta.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import java.util.Map;
 import java.util.logging.Level;
@@ -43,7 +43,7 @@ import jakarta.xml.soap.SOAPPart;
  * @author Raja Perumal
  */
 public class TSClientAuthConfig
-    implements javax.security.auth.message.config.ClientAuthConfig {
+    implements jakarta.security.auth.message.config.ClientAuthConfig {
 
   private static String messageLayer = null;
 

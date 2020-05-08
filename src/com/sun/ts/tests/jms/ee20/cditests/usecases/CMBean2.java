@@ -22,7 +22,7 @@ import com.sun.ts.lib.porting.*;
 import java.util.Properties;
 import java.util.ArrayList;
 import jakarta.ejb.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import jakarta.transaction.*;
 import javax.naming.*;
 import jakarta.inject.Inject;

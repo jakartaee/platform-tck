@@ -22,7 +22,7 @@ package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
 import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.MTOM;
 

@@ -29,7 +29,7 @@ import jakarta.ejb.EJBHome;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.security.*;
 import java.sql.*;
 import javax.sql.*;

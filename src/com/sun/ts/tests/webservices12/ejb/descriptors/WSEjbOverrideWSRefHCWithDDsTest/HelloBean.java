@@ -18,7 +18,7 @@ package com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefHCWithD
 
 import com.sun.ts.tests.jaxws.common.HandlerTracker;
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "JunkJunkJunkPortName", serviceName = "JunkJunkJunkServiceName", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefHCWithDDsTest.Hello")
 @Stateless(name = "WSEjbOverrideWSRefHCWithDDsTest")

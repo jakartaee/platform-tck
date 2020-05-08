@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.resref.single;
 
 import java.util.Properties;
-import javax.jms.Queue;
+import jakarta.jms.Queue;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.javatest.Status;
 
@@ -61,7 +61,7 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a message-driven Bean declaring a resource reference
-   *                 for a javax.mail.Session.
+   *                 for a jakarta.mail.Session.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the mail session. - We can use this factory to send
@@ -126,7 +126,7 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a message-driven Bean declaring a resource reference
-   *                 for a javax.jms.QueueConnectionFactory.
+   *                 for a jakarta.jms.QueueConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Queue Connection Factory.
@@ -158,7 +158,7 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a message-driven Bean declaring a resource reference
-   *                 for a javax.jms.TopicConnectionFactory.
+   *                 for a jakarta.jms.TopicConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Topic Connection Factory.

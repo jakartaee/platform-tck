@@ -19,7 +19,7 @@ package com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDs
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "JunkJunkJunkPortName", serviceName = "JunkJunkJunkServiceName", targetNamespace = "http://Tx.org", wsdlLocation = "META-INF/wsdl/TxService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest.Tx")
 @Stateless(name = "WsFrontEjb")

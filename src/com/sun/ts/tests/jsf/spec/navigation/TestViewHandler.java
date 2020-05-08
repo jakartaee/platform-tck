@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.spec.navigation;
 
-import javax.faces.application.ViewHandler;
-import javax.faces.context.FacesContext;
-import javax.faces.component.UIViewRoot;
-import javax.faces.FacesException;
+import jakarta.faces.application.ViewHandler;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.FacesException;
 
 import java.util.Locale;
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class TestViewHandler extends ViewHandler {
    * </p>
    *
    * @param context
-   *          {@link javax.faces.context.FacesContext} for the current request
+   *          {@link jakarta.faces.context.FacesContext} for the current request
    *
    * @throws NullPointerException
    *           if <code>context</code> is <code>null</code>
@@ -64,11 +64,11 @@ public class TestViewHandler extends ViewHandler {
    * <p/>
    * <p>
    * The default return value is
-   * {@link javax.faces.render.RenderKitFactory#HTML_BASIC_RENDER_KIT}.
+   * {@link jakarta.faces.render.RenderKitFactory#HTML_BASIC_RENDER_KIT}.
    * </p>
    *
    * @param context
-   *          {@link javax.faces.context.FacesContext} for the current request
+   *          {@link jakarta.faces.context.FacesContext} for the current request
    *
    * @throws NullPointerException
    *           if <code>context</code> is <code>null</code>
@@ -81,14 +81,14 @@ public class TestViewHandler extends ViewHandler {
 
   /**
    * <p>
-   * Create and return a new {@link javax.faces.component.UIViewRoot} instance
+   * Create and return a new {@link jakarta.faces.component.UIViewRoot} instance
    * initialized with information from the argument <code>FacesContext</code>
    * and <code>viewId</code>.
    * </p>
    * <p/>
    * <p>
    * If there is an existing <code>ViewRoot</code> available on the
-   * {@link javax.faces.context.FacesContext}, this method must copy its
+   * {@link jakarta.faces.context.FacesContext}, this method must copy its
    * <code>locale</code> and <code>renderKitId</code> to this new view root. If
    * not, this method must call {@link #calculateLocale} and
    * {@link #calculateRenderKitId}, and store the results as the values of the
@@ -109,12 +109,12 @@ public class TestViewHandler extends ViewHandler {
    * <p>
    * Return a URL suitable for rendering (after optional encoding performed by
    * the <code>encodeActionURL()</code> method of
-   * {@link javax.faces.context.ExternalContext}) that selects the specified
+   * {@link jakarta.faces.context.ExternalContext}) that selects the specified
    * view identifier.
    * </p>
    *
    * @param context
-   *          {@link javax.faces.context.FacesContext} for this request
+   *          {@link jakarta.faces.context.FacesContext} for this request
    * @param viewId
    *          View identifier of the desired view
    *
@@ -135,14 +135,14 @@ public class TestViewHandler extends ViewHandler {
    * <p>
    * Return a URL suitable for rendering (after optional encoding perfomed by
    * the <code>encodeResourceURL()</code> method of
-   * {@link javax.faces.context.ExternalContext}) that selects the specifed web
+   * {@link jakarta.faces.context.ExternalContext}) that selects the specifed web
    * application resource. If the specified path starts with a slash, it must be
    * treated as context relative; otherwise, it must be treated as relative to
    * the action URL of the current view.
    * </p>
    *
    * @param context
-   *          {@link javax.faces.context.FacesContext} for the current request
+   *          {@link jakarta.faces.context.FacesContext} for the current request
    * @param path
    *          Resource path to convert to a URL
    *
@@ -163,11 +163,11 @@ public class TestViewHandler extends ViewHandler {
    * <p>
    * Perform whatever actions are required to render the response view to the
    * response object associated with the current
-   * {@link javax.faces.context.FacesContext}.
+   * {@link jakarta.faces.context.FacesContext}.
    * </p>
    *
    * @param context
-   *          {@link javax.faces.context.FacesContext} for the current request
+   *          {@link jakarta.faces.context.FacesContext} for the current request
    * @param viewToRender
    *          the view to render
    *
@@ -176,7 +176,7 @@ public class TestViewHandler extends ViewHandler {
    * @throws NullPointerException
    *           if <code>context</code> or <code>viewToRender</code> is
    *           <code>null</code>
-   * @throws javax.faces.FacesException
+   * @throws jakarta.faces.FacesException
    *           if a servlet error occurs
    */
   public void renderView(FacesContext context, UIViewRoot viewToRender)
@@ -189,21 +189,21 @@ public class TestViewHandler extends ViewHandler {
   /**
    * <p>
    * Perform whatever actions are required to restore the view associated with
-   * the specified {@link javax.faces.context.FacesContext} and
+   * the specified {@link jakarta.faces.context.FacesContext} and
    * <code>viewId</code>. It may delegate to the <code>restoreView</code> of the
-   * associated {@link javax.faces.application.StateManager} to do the actual
+   * associated {@link jakarta.faces.application.StateManager} to do the actual
    * work of restoring the view. If there is no available state for the
    * specified <code>viewId</code>, return <code>null</code>.
    * </p>
    *
    * @param context
-   *          {@link javax.faces.context.FacesContext} for the current request
+   *          {@link jakarta.faces.context.FacesContext} for the current request
    * @param viewId
    *          the view identifier for the current request
    *
    * @throws NullPointerException
    *           if <code>context</code> is <code>null</code>
-   * @throws javax.faces.FacesException
+   * @throws jakarta.faces.FacesException
    *           if a servlet error occurs
    */
   public UIViewRoot restoreView(FacesContext context, String viewId) {
@@ -216,12 +216,12 @@ public class TestViewHandler extends ViewHandler {
    * <p>
    * Take any appropriate action to either immediately write out the current
    * state information (by calling
-   * {@link javax.faces.application.StateManager#writeState}, or noting where
+   * {@link jakarta.faces.application.StateManager#writeState}, or noting where
    * state information should later be written.
    * </p>
    *
    * @param context
-   *          {@link javax.faces.context.FacesContext} for the current request
+   *          {@link jakarta.faces.context.FacesContext} for the current request
    *
    * @throws java.io.IOException
    *           if an input/output error occurs

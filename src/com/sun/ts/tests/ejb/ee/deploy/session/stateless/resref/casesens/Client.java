@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -68,8 +68,8 @@ public class Client extends EETest {
    * @test_Strategy: Deploy a Stateless Session bean (TestBean) with two
    *                 resource references whose name differ only by case and are
    *                 assigned to two distinct factory types: a
-   *                 javax.jms.QueueConnectionFactory and a
-   *                 javax.jms.TopicConnectionFactory.
+   *                 jakarta.jms.QueueConnectionFactory and a
+   *                 jakarta.jms.TopicConnectionFactory.
    *
    *                 Check that TestBean can lookup the two factories, cast them
    *                 to their respective Java types, and create a connection

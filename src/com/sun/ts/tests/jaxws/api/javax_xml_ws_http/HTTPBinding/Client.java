@@ -109,14 +109,14 @@ public class Client extends ServiceEETest {
   }
 
   private Dispatch<Object> createDispatchJAXB() throws Exception {
-    jakarta.xml.ws.Service service = javax.xml.ws.Service.create(SERVICE_QNAME);
+    jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
     service.addPort(PORT_QNAME, bindingID, url);
     return service.createDispatch(PORT_QNAME, createJAXBContext(),
         jakarta.xml.ws.Service.Mode.PAYLOAD);
   }
 
   private Dispatch<Source> createDispatchSource() throws Exception {
-    jakarta.xml.ws.Service service = javax.xml.ws.Service.create(SERVICE_QNAME);
+    jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
     service.addPort(PORT_QNAME, bindingID, url);
     return service.createDispatch(PORT_QNAME, Source.class,
         jakarta.xml.ws.Service.Mode.PAYLOAD);

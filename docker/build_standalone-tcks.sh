@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,7 +33,7 @@ fi
 if [ ! -d "$GF_HOME/glassfish5" ]; then
   echo "########## Trunk.Install.V5 Config ##########"
   wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-  unzip -o latest-glassfish.zip
+  unzip -q -o latest-glassfish.zip
 fi
 
 if [ ! -z "$GF_VERSION_URL" ]; then
@@ -197,13 +197,8 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaxws" == "$tck" ]
   then
-    #temporary fix to get build passing until we have glassfish with new api jars
-    wget --progress=bar:force --no-cache \
-         https://repo1.maven.org/maven2/jakarta/xml/ws/jakarta.xml.ws-api/3.0.0-RC1/jakarta.xml.ws-api-3.0.0-RC1.jar \
-         -O $GF_HOME/glassfish5/glassfish/modules/jakarta.xml.ws-api.jar
-    wget --progress=bar:force --no-cache \
-         https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/3.0.0-RC2/jakarta.xml.bind-api-3.0.0-RC2.jar \
-         -O $GF_HOME/glassfish5/glassfish/modules/jakarta.xml.bind-api.jar
+    # temporary fix to get jaxws build passing until we have glassfish with new api jars
+    . ${WORKSPACE}/docker/build_jaxws-inc.sh
 
     TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/glassfish5/glassfish -Dwebcontainer.home.ri=$BASEDIR/glassfish5/glassfish -Ddeliverable.version=2.3"
     JAXWS_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/glassfish5/glassfish -Dwebcontainer.home.ri=$BASEDIR/glassfish5/glassfish -Ddeliverable.version=2.3"

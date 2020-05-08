@@ -23,9 +23,9 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.jws.WebService;
-import javax.jws.WebParam;
-import javax.jws.HandlerChain;
+import jakarta.jws.WebService;
+import jakarta.jws.WebParam;
+import jakarta.jws.HandlerChain;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.Holder;

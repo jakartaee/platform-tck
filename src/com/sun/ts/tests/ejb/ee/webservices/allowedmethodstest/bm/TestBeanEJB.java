@@ -364,22 +364,6 @@ public class TestBeanEJB implements SessionBean, TimedObject {
               + e);
     }
 
-    // getMessageContext test
-// TODO: Verify
-// jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore    try {
-//      sctx.getMessageContext();
-//      TestUtil.logMsg("Operations test: getMessageContext() - allowed");
-//    } catch (IllegalStateException e) {
-//      methodList[i].setProperty("getMessageContext", "false");
-//      TestUtil.logMsg("Operations test: getMessageContext() - not allowed");
-//    } catch (Exception e) {
-//      TestUtil.printStackTrace(e);
-//      methodList[i].setProperty("getMessageContext", "unexpected");
-//      TestUtil.logMsg(
-//          "Operations test: getMessageContext() - not allowed (Unexpected Exception) - "
-//              + e);
-//    }
-
     // getRollbackOnly test
     try {
       sctx.getRollbackOnly();

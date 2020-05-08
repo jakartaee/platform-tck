@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.securityapi.idstore.ldap.priorityuseforexpr;
 
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType;
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
-import static javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
+import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
 
 import com.sun.ts.tests.securityapi.idstore.common.ConfigBean;
 
@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;

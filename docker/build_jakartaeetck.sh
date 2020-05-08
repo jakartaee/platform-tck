@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -42,7 +42,7 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    else
      #renaming folder javaeetck to jakartaeetck in the Oracle Bundle
      cd ${WORKSPACE}/jakartaeetck-bundles
-     unzip -o jakartaeetck.zip
+     unzip -q -o jakartaeetck.zip
      mv javaeetck jakartaeetck
      rm -rf jakartaeetck.zip
      zip -r jakartaeetck.zip jakartaeetck
@@ -91,10 +91,10 @@ if [ -z "$GF_BUNDLE_URL" ]; then
   export GF_BUNDLE_URL=$DEFAULT_GF_BUNDLE_URL
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip -o latest-glassfish.zip
+unzip -q -o latest-glassfish.zip
 ls -l $GF_HOME/glassfish5/glassfish/
 
-#temporary fix to get build passing until we have glassfish with new api jars
+# temporary fix to get build passing until we have glassfish with new api jars
 wget --progress=bar:force --no-cache \
      https://repo1.maven.org/maven2/jakarta/platform/jakarta.jakartaee-api/9.0.0-RC1/jakarta.jakartaee-api-9.0.0-RC1.jar \
      -O $GF_HOME/glassfish5/glassfish/modules/jakartaee-api.jar
@@ -104,6 +104,8 @@ wget --progress=bar:force --no-cache \
 wget --progress=bar:force --no-cache \
      https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/3.0.0-RC2/jakarta.xml.bind-api-3.0.0-RC2.jar \
       -O $GF_HOME/glassfish5/glassfish/modules/jakarta.xml.bind-api.jar
+# temporary fix to get jaxws build passing until we have glassfish with new api jars
+. ${WORKSPACE}/docker/build_jaxws-inc.sh
 
 if [ ! -z "$GF_VERSION_URL" ]; then
   wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version

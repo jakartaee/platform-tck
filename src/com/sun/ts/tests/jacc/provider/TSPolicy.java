@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@
 package com.sun.ts.tests.jacc.provider;
 
 import java.security.*;
-import javax.security.jacc.*;
+import jakarta.security.jacc.*;
 import java.net.URL;
 import java.net.URI;
 import java.util.logging.*;
@@ -35,19 +35,19 @@ import com.sun.ts.lib.util.sec.security.provider.PolicyFile;
 /**
  * This is a delegating Policy Implementation class which delegates the
  * permission evaluation to vendor's policy implentation defined by
- * "vendor.javax.security.jacc.policy.provider"
+ * "vendor.jakarta.security.jacc.policy.provider"
  *
  * In case the vendor doesn't provide Policy implementation default jdk policy
  * will be used.
  *
  * Note: Since J2EE 1.3 appservers are not required to support JSR115, the 1.3
- * policy implementation defined by "javax.security.auth.policy.provider" will
+ * policy implementation defined by "jakarta.security.auth.policy.provider" will
  * not used for testing in this TCK
  */
 public final class TSPolicy extends java.security.Policy {
   private java.security.Policy policy = null;
 
-  public static final String VENDOR_POLICY_PROVIDER = "vendor.javax.security.jacc.policy.provider";
+  public static final String VENDOR_POLICY_PROVIDER = "vendor.jakarta.security.jacc.policy.provider";
 
   private static ClassLoader classLoader = null;
 
@@ -325,24 +325,24 @@ public final class TSPolicy extends java.security.Policy {
    * @assertion_ids: JACC:SPEC:97; JACC:JAVADOC:30
    *
    * @test_Strategy: 1) call
-   *                 PolicyContext.getContext("javax.security.auth.Subject.container)
+   *                 PolicyContext.getContext("jakarta.security.auth.Subject.container)
    *                 2) verify the return value is an instance of
-   *                 javax.security.auth.Subject
+   *                 jakarta.security.auth.Subject
    *
    */
   private void policyContextKey3() {
     try {
       // Get Subject
       Object o = PolicyContext
-          .getContext("javax.security.auth.Subject.container");
-      if (o instanceof javax.security.auth.Subject) {
+          .getContext("jakarta.security.auth.Subject.container");
+      if (o instanceof jakarta.security.auth.Subject) {
         logger.log(Level.INFO, "PolicyContext.getContext() " + "test passed for"
-            + "javax.security.auth.Subject.container");
+            + "jakarta.security.auth.Subject.container");
         logger.log(Level.INFO, "PolicyContextKey3: PASSED");
       } else {
         logger.log(Level.INFO,
             "PolicyContext.getContext()" + "returned incorrect value for key "
-                + "javax.security.auth.Subject.container");
+                + "jakarta.security.auth.Subject.container");
         logger.log(Level.INFO, "PolicyContextKey3: FAILED");
       }
     } catch (Exception e) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -93,7 +93,7 @@ public class URLClient extends BaseHtmlUnitClient {
         .getHtmlElementsByTagName("link");
 
     String expected1 = "/jsf_render_outputstyle_web/faces/"
-        + "javax.faces.resource/night.css";
+        + "jakarta.faces.resource/night.css";
 
     this.testLink(linkTwo.get(0), expected1, formatter);
 
@@ -106,7 +106,7 @@ public class URLClient extends BaseHtmlUnitClient {
         .getHtmlElementsByTagName("link");
 
     String expected2 = "/jsf_render_outputstyle_web/faces/"
-        + "javax.faces.resource/morning.css";
+        + "jakarta.faces.resource/morning.css";
 
     String expectedLib = "ln=cssLibrary";
 

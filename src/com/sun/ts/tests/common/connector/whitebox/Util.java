@@ -21,7 +21,7 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import java.util.*;
-import javax.security.auth.Subject;
+import jakarta.security.auth.Subject;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import jakarta.resource.spi.security.PasswordCredential;

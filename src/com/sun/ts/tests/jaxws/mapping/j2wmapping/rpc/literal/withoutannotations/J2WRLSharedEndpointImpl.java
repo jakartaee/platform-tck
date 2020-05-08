@@ -22,7 +22,7 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations
 
 import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations.J2WRLSharedEndpoint")
 public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {

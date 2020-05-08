@@ -34,7 +34,7 @@ import java.util.*;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort4", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JRLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.OneWayTest")
 public class OneWayTestImpl implements OneWayTest {

@@ -117,7 +117,7 @@ javax.el=3.0_se8
 
 # JSF 2.3 (Faces) 
 # (This is JSR-344)
-javax.faces=2.3_se8
+jakarta.faces=2.3_se8
 
 # JSTL 1.2 
 javax.servlet.jsp.jstl=1.2_se8
@@ -132,7 +132,7 @@ javax.transaction=1.2_se8
 
 # JavaMail 1.5 
 # (This is JSR-919)
-javax.mail=1.5_se8
+jakarta.mail=1.5_se8
 
 # Connector 1.7 
 # (This is JSR-322)
@@ -151,7 +151,7 @@ javax.management.j2ee=1.1_se8
 javax.enterprise.deploy=1.2_se8
 
 # JACC 1.5 
-javax.security.jacc=1.5_se8
+jakarta.security.jacc=1.5_se8
 
 # Web Services 1.4 packages (JSR-109)
 # These packages use the javax.xml.ws packages and will be covered
@@ -166,7 +166,7 @@ javax.persistence=2.1_se8
 javax.annotation=1.3_se8
 
 # JASPIC (Java Authentication SPI for Containters - JSR-196)
-javax.security.auth.message=1.1_se8
+jakarta.security.auth.message=1.1_se8
 
 # JAX-RS 2.0
 # (This is JSR-339)

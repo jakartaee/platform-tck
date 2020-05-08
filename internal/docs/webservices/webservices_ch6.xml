@@ -93,7 +93,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6009</id>
 			<description>
-                   A JAX-WS Web Services for Java EE provider is required to provide an implementation of HandlerResolver that returns the Handler Chain with Handlers specified in the deployment descriptor or the javax.jws.HandlerChain annotation.
+                   A JAX-WS Web Services for Java EE provider is required to provide an implementation of HandlerResolver that returns the Handler Chain with Handlers specified in the deployment descriptor or the jakarta.jws.HandlerChain annotation.
 			</description>
 			<location chapter = "6" section = "2.2"/>
 		</assertion>
@@ -232,7 +232,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6021</id>
 			<description>
-                   The javax.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on Web Service endpoints (those declared with the javax.jws.WebService or javax.xml.ws.WebServiceProvider annotation)
+                   The jakarta.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on Web Service endpoints (those declared with the jakarta.jws.WebService or javax.xml.ws.WebServiceProvider annotation)
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -240,7 +240,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6022</id>
 			<description>
-                   The javax.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on on Web Service references (those declared with the javax.xml.ws.WebServiceRef annotation).
+                   The jakarta.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on on Web Service references (those declared with the javax.xml.ws.WebServiceRef annotation).
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -248,7 +248,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6023</id>
 			<description>
-                   The deployment descriptors on port component or Service reference override the javax.jws.HandlerChain annotation specified in the implementation.
+                   The deployment descriptors on port component or Service reference override the jakarta.jws.HandlerChain annotation specified in the implementation.
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -272,7 +272,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6026</id>
 			<description>
-                   JAX-WS based container provider is required to support this (javax.jws.HandlerChain) annotation.
+                   JAX-WS based container provider is required to support this (jakarta.jws.HandlerChain) annotation.
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -288,7 +288,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6028</id>
 			<description>
-                  They are also required to provide an implementation of HandlerResolver that returns a handler chain with handlers specified in the javax.jws.HandlerChain annotation.   
+                  They are also required to provide an implementation of HandlerResolver that returns a handler chain with handlers specified in the jakarta.jws.HandlerChain annotation.   
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -461,7 +461,7 @@ to the message is made.
 		         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			         <id>WS4EE:SPEC:6049.1</id>
 			         <description>
-                            The handler chain file in the javax.jws.HandlerChain annotation is required to be packaged in the module. It must follow the requirements for location as specified in section 4.6.1 of JSR-181 specification (Web Services Metadata for the Java Platform).
+                            The handler chain file in the jakarta.jws.HandlerChain annotation is required to be packaged in the module. It must follow the requirements for location as specified in section 4.6.1 of JSR-181 specification (Web Services Metadata for the Java Platform).
 			         </description>
 			         <location chapter = "6" section = "3"/>
 		         </assertion>
@@ -504,7 +504,7 @@ to the message is made.
 			<description>
                    In a JAX-WS based container, a Handler chain is processed according to the JAX-WS specification section
                    9.2.1.2. In addition to this, the ordering of any given type of Handler (logical or protocol) in the 
-                   handler configuration file specified in the javax.jws.HandlerChain annotation, must be maintained.
+                   handler configuration file specified in the jakarta.jws.HandlerChain annotation, must be maintained.
 			</description>
 			<location chapter = "6" section = "2.4"/>
 		</assertion>

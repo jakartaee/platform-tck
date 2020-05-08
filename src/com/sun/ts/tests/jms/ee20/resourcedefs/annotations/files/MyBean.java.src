@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -13,10 +13,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
- 
+
 package com.sun.ts.tests.jms.ee20.resourcedefs.annotations;
 
-import javax.jms.*;
+import jakarta.jms.*;
 
 //-------------------------------------
 // JMS Destination Resource Definitions
@@ -24,14 +24,14 @@ import javax.jms.*;
 @JMSDestinationDefinitions(value = {
   @JMSDestinationDefinition(
 	description="Define Queue JSPMyTestQueue",
-	interfaceName="javax.jms.Queue",
+	interfaceName="jakarta.jms.Queue",
 	name="java:global/env/JSPMyTestQueue",
     	destinationName="JSPMyTestQueue"
    ),
 
   @JMSDestinationDefinition(
 	description="Define Topic JSPMyTestTopic",
-	interfaceName="javax.jms.Topic",
+	interfaceName="jakarta.jms.Topic",
 	name="java:app/env/JSPMyTestTopic",
 	destinationName="JSPMyTestTopic"
    )
@@ -44,7 +44,7 @@ import javax.jms.*;
 @JMSConnectionFactoryDefinitions(value = {
   @JMSConnectionFactoryDefinition(
 	description="Define ConnectionFactory JSPMyTestConnectionFactory",
-	interfaceName="javax.jms.ConnectionFactory",
+	interfaceName="jakarta.jms.ConnectionFactory",
     	name="java:global/JSPMyTestConnectionFactory",
 	user = "@user@",
 	password = "@password@"
@@ -52,7 +52,7 @@ import javax.jms.*;
 
   @JMSConnectionFactoryDefinition(
 	description="Define QueueConnectionFactory JSPMyTestQueueConnectionFactory",
-	interfaceName="javax.jms.QueueConnectionFactory",
+	interfaceName="jakarta.jms.QueueConnectionFactory",
     	name="java:app/JSPMyTestQueueConnectionFactory",
 	user = "@user@",
 	password = "@password@"
@@ -60,7 +60,7 @@ import javax.jms.*;
 
   @JMSConnectionFactoryDefinition(
 	description="Define TopicConnectionFactory JSPMyTestTopicConnectionFactory",
-	interfaceName="javax.jms.TopicConnectionFactory",
+	interfaceName="jakarta.jms.TopicConnectionFactory",
     	name="java:module/JSPMyTestTopicConnectionFactory",
 	user = "@user@",
 	password = "@password@"
@@ -68,7 +68,7 @@ import javax.jms.*;
 
   @JMSConnectionFactoryDefinition(
 	description="Define Durable TopicConnectionFactory JSPMyTestDurableTopicConnectionFactory",
-	interfaceName="javax.jms.TopicConnectionFactory",
+	interfaceName="jakarta.jms.TopicConnectionFactory",
     	name="java:comp/env/jms/JSPMyTestDurableTopicConnectionFactory",
 	user = "@user@",
 	password = "@password@",

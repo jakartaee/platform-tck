@@ -25,9 +25,9 @@ import java.util.Map;
 
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.InvocationContext;
-import javax.jms.Message;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
@@ -208,7 +208,7 @@ public class AroundInvokeTestMDBImpl extends AroundInvokeTestImpl
     } else if (params.length != 1) {
       status = false;
       errorMsg = ", actual " + java.util.Arrays.asList(params).toString();
-    } else if (!(params[0] instanceof javax.jms.Message)) {
+    } else if (!(params[0] instanceof jakarta.jms.Message)) {
       status = false;
       errorMsg = ", actual " + params[0];
     }
@@ -229,7 +229,7 @@ public class AroundInvokeTestMDBImpl extends AroundInvokeTestImpl
     try {
       testname = msg.getStringProperty(
           com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY);
-    } catch (javax.jms.JMSException e) {
+    } catch (jakarta.jms.JMSException e) {
       status = false;
       reason = "Failed to get test name from message: " + msg;
       TLogger.log(reason);
@@ -291,7 +291,7 @@ public class AroundInvokeTestMDBImpl extends AroundInvokeTestImpl
       Class<?>[] paramTypes = meth.getParameterTypes();
       if (methName.equals(onMessage)) {
         if (paramTypes != null && paramTypes.length == 1
-            && paramTypes[0].equals(javax.jms.Message.class)) {
+            && paramTypes[0].equals(jakarta.jms.Message.class)) {
           status = true;
           reason = "The method returned from getMethod is correct:" + onMessage;
         } else {
@@ -309,9 +309,9 @@ public class AroundInvokeTestMDBImpl extends AroundInvokeTestImpl
           getQueueConnectionFactory(ctx), getQueue(ctx));
     } else {
       try {
-        // Object[] params = new Object[]{javax.jms.Message.class};
+        // Object[] params = new Object[]{jakarta.jms.Message.class};
         expectedMeth = this.bean.getClass().getMethod(onMessage,
-            javax.jms.Message.class);
+            jakarta.jms.Message.class);
       } catch (NoSuchMethodException e) {
         status = false;
         reason = "Failed to get method " + onMessage + " from bean "

@@ -25,7 +25,7 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;
@@ -117,7 +117,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("messageObjectCopyQTest")) {
         TestUtil.logTrace(
             "@onMessage - running messageObjectCopyQTest - read and verify the message");
-        messageObjectCopyQTest((javax.jms.ObjectMessage) msg);
+        messageObjectCopyQTest((jakarta.jms.ObjectMessage) msg);
       }
       if (msg.getStringProperty("TestCase")
           .equals("streamMessageConversionQTestsBooleanCreate")) {
@@ -128,7 +128,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsBoolean")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsBoolean - read and verify the message");
-        streamMessageConversionQTestsBoolean((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsBoolean((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -140,7 +140,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsByte")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsByte - read and verify the message");
-        streamMessageConversionQTestsByte((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsByte((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("streamMessageConversionQTestsShortCreate")) {
         TestUtil.logTrace(
@@ -150,7 +150,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsShort")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsShort - read and verify the message");
-        streamMessageConversionQTestsShort((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsShort((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("streamMessageConversionQTestsIntCreate")) {
         TestUtil.logTrace(
@@ -160,7 +160,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsInt")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsInt - read and verify the message");
-        streamMessageConversionQTestsInt((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsInt((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("streamMessageConversionQTestsLongCreate")) {
         TestUtil.logTrace(
@@ -170,7 +170,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsLong")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsLong - read and verify the message");
-        streamMessageConversionQTestsLong((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsLong((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -182,7 +182,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsFloat")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsFloat - read and verify the message");
-        streamMessageConversionQTestsFloat((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsFloat((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -194,7 +194,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsDouble")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsDouble - read and verify the message");
-        streamMessageConversionQTestsDouble((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsDouble((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -206,7 +206,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsString")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsString - read and verify the message");
-        streamMessageConversionQTestsString((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsString((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -218,7 +218,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsChar")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsChar - read and verify the message");
-        streamMessageConversionQTestsChar((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsChar((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -230,7 +230,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionQTestsBytes")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsBytes - read and verify the message");
-        streamMessageConversionQTestsBytes((javax.jms.StreamMessage) msg);
+        streamMessageConversionQTestsBytes((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -243,7 +243,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionQTestsInvFormatString - read and verify the message");
         streamMessageConversionQTestsInvFormatString(
-            (javax.jms.StreamMessage) msg);
+            (jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -255,7 +255,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageQTestsFullMsg")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageQTestsFullMsg - read and verify the message");
-        streamMessageQTestsFullMsg((javax.jms.StreamMessage) msg);
+        streamMessageQTestsFullMsg((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -267,7 +267,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageQTestNull")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageQTestNull - read and verify the message");
-        streamMessageQTestNull((javax.jms.StreamMessage) msg);
+        streamMessageQTestNull((jakarta.jms.StreamMessage) msg);
       }
 
       else {
@@ -746,7 +746,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * msg
    */
   public void messageObjectCopyQTest(
-      javax.jms.ObjectMessage messageReceivedObjectMsg) {
+      jakarta.jms.ObjectMessage messageReceivedObjectMsg) {
     boolean pass = true;
     String testCase = "messageObjectCopyQTest";
     String initial = "This is";
@@ -772,7 +772,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionQTestsBoolean(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsBoolean";
     try {
 
@@ -835,7 +835,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         messageReceived.reset();
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -857,7 +857,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         bValue = messageReceived.readByte();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -878,7 +878,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
 
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -898,7 +898,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         messageReceived.readChar();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -919,7 +919,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         messageReceived.readInt();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -939,7 +939,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         messageReceived.readLong();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -961,7 +961,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
 
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -982,7 +982,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
 
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1003,7 +1003,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionQTestsByte(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsByte";
     try {
       byte bValue = 127;
@@ -1027,7 +1027,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         boolean b = messageReceived.readBoolean();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1068,7 +1068,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1129,7 +1129,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         char c = messageReceived.readChar();
         pass = false;
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1190,7 +1190,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         float f = messageReceived.readFloat();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1210,7 +1210,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         double d = messageReceived.readDouble();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1232,7 +1232,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionQTestsShort(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsShort";
     try {
 
@@ -1258,7 +1258,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         boolean b = messageReceived.readBoolean();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1299,7 +1299,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1319,7 +1319,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         byte b = messageReceived.readByte();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1358,7 +1358,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         char c = messageReceived.readChar();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1419,7 +1419,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         float f = messageReceived.readFloat();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1439,7 +1439,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         double d = messageReceived.readDouble();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1460,7 +1460,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionQTestsInt(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsInt";
 
     try {
@@ -1487,7 +1487,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         boolean b = messageReceived.readBoolean();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1528,7 +1528,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1548,7 +1548,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         byte b = messageReceived.readByte();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1567,7 +1567,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         short s = messageReceived.readShort();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1586,7 +1586,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         char c = messageReceived.readChar();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1647,7 +1647,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         float f = messageReceived.readFloat();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1667,7 +1667,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         double d = messageReceived.readDouble();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1687,7 +1687,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionQTestsLong(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsLong";
 
     try {
@@ -1713,7 +1713,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         messageReceived.reset();
         boolean b = messageReceived.readBoolean();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1754,7 +1754,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1774,7 +1774,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         byte b = messageReceived.readByte();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1793,7 +1793,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         short s = messageReceived.readShort();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1812,7 +1812,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         char c = messageReceived.readChar();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1832,7 +1832,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         int i = messageReceived.readInt();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1871,7 +1871,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         float f = messageReceived.readFloat();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1891,7 +1891,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         double d = messageReceived.readDouble();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1911,7 +1911,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionQTestsFloat(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsFloat";
 
     try {
@@ -1938,7 +1938,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         boolean b = messageReceived.readBoolean();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1978,7 +1978,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -1998,7 +1998,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         byte b = messageReceived.readByte();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2017,7 +2017,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         short s = messageReceived.readShort();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2036,7 +2036,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         char c = messageReceived.readChar();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2056,7 +2056,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         int i = messageReceived.readInt();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2075,7 +2075,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         long l = messageReceived.readLong();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2135,7 +2135,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionQTestsDouble(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsDouble";
 
     try {
@@ -2162,7 +2162,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         boolean b = messageReceived.readBoolean();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2202,7 +2202,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2222,7 +2222,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         byte b = messageReceived.readByte();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2241,7 +2241,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         short s = messageReceived.readShort();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2260,7 +2260,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         char c = messageReceived.readChar();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2280,7 +2280,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         int i = messageReceived.readInt();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2299,7 +2299,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         long l = messageReceived.readLong();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2318,7 +2318,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         float f = messageReceived.readFloat();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2357,7 +2357,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionQTestsString(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsString";
 
     try {
@@ -2407,7 +2407,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2468,7 +2468,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         char c = messageReceived.readChar();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2612,7 +2612,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionQTestsChar(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsChar";
 
     try {
@@ -2639,7 +2639,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         boolean b = messageReceived.readBoolean();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2682,7 +2682,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         nCount = messageReceived.readBytes(bValues);
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2702,7 +2702,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         byte b = messageReceived.readByte();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2720,7 +2720,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         short s = messageReceived.readShort();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2758,7 +2758,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         messageReceived.reset();
         int i = messageReceived.readInt();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2778,7 +2778,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         long l = messageReceived.readLong();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2797,7 +2797,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         float f = messageReceived.readFloat();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2815,7 +2815,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         double d = messageReceived.readDouble();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2834,7 +2834,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionQTestsBytes(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsBytes";
 
     try {
@@ -2884,7 +2884,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace(
             "Fail: byte[] to boolean conversion should have thrown MessageFormatException");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2904,7 +2904,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace(
             "Fail: byte[] to boolean conversion should have thrown MessageFormatException");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2924,7 +2924,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         byte b = messageReceived.readByte();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2944,7 +2944,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         short s = messageReceived.readShort();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2964,7 +2964,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         char c = messageReceived.readChar();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -2985,7 +2985,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         int i = messageReceived.readInt();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -3005,7 +3005,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         long l = messageReceived.readLong();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -3026,7 +3026,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         float f = messageReceived.readFloat();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -3046,7 +3046,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         double d = messageReceived.readDouble();
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
@@ -3068,7 +3068,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionQTestsInvFormatString(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionQTestsInvFormatString";
 
     try {
@@ -3226,7 +3226,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageQTestsFullMsg(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageQTestsFullMsg";
 
     try {
@@ -3450,7 +3450,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
   /*
    * Description: Read a StreamMessage Use readString to read back a null
    */
-  private void streamMessageQTestNull(javax.jms.StreamMessage messageReceived) {
+  private void streamMessageQTestNull(jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageQTestNull";
     try {
       boolean pass = true;

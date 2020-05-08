@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.listener.annotated;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.callback.MDBClientBase;
 import javax.annotation.Resource;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
  * A test client for callback methods. Note that since callback methods cannot

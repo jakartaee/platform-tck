@@ -30,16 +30,16 @@ import java.net.URL;
 
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.TimerService;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.Queue;
-import javax.jms.QueueConnection;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Topic;
-import javax.jms.TopicConnection;
-import javax.jms.TopicConnectionFactory;
-import javax.mail.Session;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Destination;
+import jakarta.jms.JMSException;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnection;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import jakarta.transaction.TransactionSynchronizationRegistry;
@@ -67,7 +67,7 @@ abstract public class ResourceBeanBase implements ResourceIF {
 
   abstract protected String getDataSource2Name();
 
-  abstract protected javax.mail.Session getMailSession();
+  abstract protected jakarta.mail.Session getMailSession();
 
   abstract protected String getMailSessionName();
 

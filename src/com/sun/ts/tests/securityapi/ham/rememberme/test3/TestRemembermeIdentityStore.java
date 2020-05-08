@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,11 +21,11 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.security.enterprise.CallerPrincipal;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import javax.security.enterprise.identitystore.RememberMeIdentityStore;
-import javax.security.enterprise.credential.RememberMeCredential;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.security.enterprise.CallerPrincipal;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.RememberMeIdentityStore;
+import jakarta.security.enterprise.credential.RememberMeCredential;
 
 @ApplicationScoped
 public class TestRemembermeIdentityStore implements RememberMeIdentityStore {

@@ -55,9 +55,9 @@ signature tests.  All signatures files live in the following directory:
 $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/
 Users should see if their signatures already exist in this directory.
 Note, every property in the sig-test.map file maps to a signature
-file.  For example the property "javax.ejb=2.1" maps to the signature
+file.  For example the property "javax.ejb=3.2_se11" maps to the signature
 file:
- $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/javax.ejb.sig_2.1
+ $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/javax.ejb.sig_3.2_se11
 
 If the signature file already exist, the user should checkout the signature
 file (using sccs edit) then record the new signatures and do an "sccs diff"
@@ -128,12 +128,12 @@ The output of the above ant command is a set of files containing the
 signatures of the specified packages in the sig-test.map file.  The
 contents of the $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/
 directory is the following after the ant command is run (assuming it was empty):
-	javax.jms.sig_1.0
+	jakarta.jms.sig_1.0
 	javax.mail.sig_2.0
 	javax.servlet.sig_3.0
 	javax.ejb.sig_4.0
 
-The javax.jms.sig_1.0 file contains the signatures for the javax.jms package
+The jakarta.jms.sig_1.0 file contains the signatures for the javax.jms package
 including all sub-packages.  The javax.mail.sig_2.0 file contains all the
 signatures for the javax.mail package including all sub-packages so forth
 and so on.

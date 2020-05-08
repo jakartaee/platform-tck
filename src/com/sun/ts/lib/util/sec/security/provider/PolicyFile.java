@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -38,8 +38,8 @@ import com.sun.ts.lib.util.sec.security.auth.PrincipalComparator;
 import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
-import javax.security.auth.PrivateCredentialPermission;
-import javax.security.auth.Subject;
+import jakarta.security.auth.PrivateCredentialPermission;
+import jakarta.security.auth.Subject;
 import javax.security.auth.x500.X500Principal;
 import java.io.FilePermission;
 import java.net.SocketPermission;
@@ -48,7 +48,7 @@ import java.util.PropertyPermission;
 import java.util.concurrent.atomic.AtomicReference;
 import java.awt.AWTPermission;
 /*
-import javax.security.auth.AuthPermission;
+import jakarta.security.auth.AuthPermission;
 import javax.security.auth.kerberos.ServicePermission;
 import javax.security.auth.kerberos.DelegationPermission;
 import java.io.SerializablePermission;
@@ -829,7 +829,7 @@ public class PolicyFile extends java.security.Policy {
           // XXX special case PrivateCredentialPermission-SELF
           Permission perm;
           if (pe.permission
-              .equals("javax.security.auth.PrivateCredentialPermission")
+              .equals("jakarta.security.auth.PrivateCredentialPermission")
               && pe.name.endsWith(" self")) {
             pe.name = pe.name.substring(0, pe.name.indexOf("self")) + SELF;
           }

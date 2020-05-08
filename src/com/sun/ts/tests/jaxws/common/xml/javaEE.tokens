@@ -1,2 +1,2 @@
-WSRImport=import javax.jws.WebServiceRef;
+WSRImport=import jakarta.jws.WebServiceRef;
 WSRAnn=    @WebServiceRef

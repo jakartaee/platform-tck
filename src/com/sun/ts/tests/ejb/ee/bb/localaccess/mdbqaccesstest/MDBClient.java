@@ -29,10 +29,10 @@ import com.sun.ts.tests.jms.commonee.*;
 import java.util.*;
 import jakarta.ejb.*;
 import java.rmi.*;
-import javax.jms.Queue;
-import javax.jms.QueueSender;
-import javax.jms.QueueReceiver;
-import javax.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.Message;
 import com.sun.javatest.Status;
 
 public class MDBClient extends Client {

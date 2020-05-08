@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4003;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "W2JRLR4003TestPort", serviceName = "W2JRLR4003TestService", targetNamespace = "http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR4003TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4003.W2JRLR4003Test")
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -67,7 +67,7 @@ public final class URLClient extends AbstractUrlClient {
    * @testName: factoryFinderConfig2Test
    * @assertion_ids: PENDING: add assertion ID(s)
    * @test_Strategy: Ensure an FacesConfigFactory can be specified via a
-   *                 faces-config identified by the javax.faces.CONFIG_FILES
+   *                 faces-config identified by the jakarta.faces.CONFIG_FILES
    *                 context initialization parameter in the web.xml. The test
    *                 will make sure the expected FacesContextFactory instance is
    *                 returned *and* that the JSF implementation property called

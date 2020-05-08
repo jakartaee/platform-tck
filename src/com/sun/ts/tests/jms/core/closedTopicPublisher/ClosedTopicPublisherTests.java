@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import java.util.*;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 
 public class ClosedTopicPublisherTests extends ServiceEETest {
@@ -185,7 +185,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
         int foo = tool.getDefaultTopicPublisher().getDeliveryMode();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -220,7 +220,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
         boolean foo = tool.getDefaultTopicPublisher().getDisableMessageID();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -257,7 +257,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
             .getDisableMessageTimestamp();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -292,7 +292,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
         int foo = tool.getDefaultTopicPublisher().getPriority();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -327,7 +327,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
         long foo = tool.getDefaultTopicPublisher().getTimeToLive();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -362,7 +362,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
         tool.getDefaultTopicPublisher()
             .setDeliveryMode(Message.DEFAULT_DELIVERY_MODE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -396,7 +396,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
       try {
         tool.getDefaultTopicPublisher().setDisableMessageID(true);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -431,7 +431,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
       try {
         tool.getDefaultTopicPublisher().setDisableMessageTimestamp(true);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -465,7 +465,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
       try {
         tool.getDefaultTopicPublisher().setPriority(Message.DEFAULT_PRIORITY);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -500,7 +500,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
         tool.getDefaultTopicPublisher()
             .setTimeToLive(Message.DEFAULT_TIME_TO_LIVE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -535,7 +535,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
         Topic foo = tool.getDefaultTopicPublisher().getTopic();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -569,7 +569,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
       try {
         tool.getDefaultTopicPublisher().publish(new MessageTestImpl());
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -605,7 +605,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
             Message.DEFAULT_DELIVERY_MODE, Message.DEFAULT_PRIORITY,
             Message.DEFAULT_TIME_TO_LIVE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {

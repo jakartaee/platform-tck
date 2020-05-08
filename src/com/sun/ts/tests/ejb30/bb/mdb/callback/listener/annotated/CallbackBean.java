@@ -30,13 +30,13 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
-import javax.jms.MessageListener;
+import jakarta.jms.MessageListener;
 import jakarta.interceptor.Interceptors;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 @Interceptors({ MDBCallbackListener.class })
 public class CallbackBean extends MDBCallbackBeanBase
     implements MessageListener {

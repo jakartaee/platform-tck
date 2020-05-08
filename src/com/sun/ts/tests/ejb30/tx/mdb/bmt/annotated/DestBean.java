@@ -27,16 +27,16 @@ import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.MessageListener;
+import jakarta.jms.MessageListener;
 import jakarta.transaction.NotSupportedException;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
 
-//This MDB implements javax.jms.MessageListener interface, so no need to
+//This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type
 @MessageDriven(name = "DestBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class DestBean
     extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase
@@ -55,7 +55,7 @@ public class DestBean
     return this.mdc;
   }
 
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     try {
       ut.begin();
       super.onMessage(msg);

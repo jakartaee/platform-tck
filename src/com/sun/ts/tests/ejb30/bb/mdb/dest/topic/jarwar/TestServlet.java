@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.PASSED;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.FAILED;
-import javax.jms.Topic;
+import jakarta.jms.Topic;
 
 public class TestServlet extends GenericServlet {
 

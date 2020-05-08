@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -81,8 +81,8 @@ public final class URLClient extends AbstractUrlClient {
    *                 to the following requirements. - ELResolver.TYPE -> matches
    *                 the types defined in table 5-9 of the JSF Spec (in the
    *                 non-jsp case). - ELResolver.TYPE -> view ->
-   *                 javax.faces.component.UIViewRoot facesContext ->
-   *                 javax.faces.component.FacesContext (in the JSP case) -
+   *                 jakarta.faces.component.UIViewRoot facesContext ->
+   *                 jakarta.faces.component.FacesContext (in the JSP case) -
    *                 ELResolver.RESOLVABLE_AT_DESIGN_TIME -> Boolean.TRUE - Name
    *                 and displayName properties are the name of the implicit
    *                 object - Hidden and Expert properties are false - Preferred

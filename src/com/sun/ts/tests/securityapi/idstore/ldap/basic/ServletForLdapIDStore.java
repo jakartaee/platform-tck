@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.securityapi.idstore.ldap.basic;
 
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
-import static javax.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
+import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
 
 import java.io.IOException;
 
 import javax.annotation.security.DeclareRoles;
-import javax.security.enterprise.identitystore.LdapIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

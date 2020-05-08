@@ -27,7 +27,7 @@ import com.sun.ts.tests.jms.commonee.*;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.Queue;
+import jakarta.jms.Queue;
 import com.sun.javatest.Status;
 
 public class MDBClient extends Client {

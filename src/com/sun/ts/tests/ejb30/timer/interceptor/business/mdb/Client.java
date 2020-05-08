@@ -23,8 +23,8 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 import jakarta.ejb.EJB;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 import com.sun.ts.tests.ejb30.timer.common.MessageSenderBean;
 

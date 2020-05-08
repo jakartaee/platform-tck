@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,12 +21,12 @@ import java.util.Set;
 import java.util.Iterator;
 import java.security.Principal;
 
-import javax.security.auth.Subject;
+import jakarta.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.message.MessagePolicy;
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
@@ -45,7 +45,7 @@ import javax.servlet.http.HttpServletResponseWrapper;
  * @author Sun Microsystems
  */
 public class TSServerAuthModule
-    implements javax.security.auth.message.module.ServerAuthModule {
+    implements jakarta.security.auth.message.module.ServerAuthModule {
   private TSLogger logger = null;
 
   private static MessagePolicy requestPolicy = null;
@@ -508,7 +508,7 @@ public class TSServerAuthModule
     /*
      * // see assertion JASPI:SPEC:306 for details on this // jsr-196 states the
      * following key must exist for servlet profile String strKey =
-     * "javax.security.auth.message.MessagePolicy.isMandatory"; if (map != null)
+     * "jakarta.security.auth.message.MessagePolicy.isMandatory"; if (map != null)
      * { String keyVal = (String)map.get(strKey); String msg =
      * "dumpServletProfileKeys() called with attrs: "; msg += " layer=" +
      * JASPICData.LAYER_SERVLET; msg += " servletName=" + servletName; msg +=
@@ -571,7 +571,7 @@ public class TSServerAuthModule
 
     // see assertion JASPI:SPEC:306 for details on this
     // jsr-196 states the following key must exist for servlet profile
-    String strKey = "javax.security.auth.message.MessagePolicy.isMandatory";
+    String strKey = "jakarta.security.auth.message.MessagePolicy.isMandatory";
     String msg;
     if (map != null) {
       String keyVal = (String) map.get(strKey);

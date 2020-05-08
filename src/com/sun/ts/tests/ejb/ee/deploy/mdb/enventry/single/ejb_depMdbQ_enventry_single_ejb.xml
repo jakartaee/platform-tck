@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,9 +23,9 @@
     <message-driven>
       <ejb-name>LongBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myLong</env-entry-name>
         <env-entry-type>java.lang.Long</env-entry-type>
@@ -34,21 +34,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>BooleanBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myBoolean</env-entry-name>
         <env-entry-type>java.lang.Boolean</env-entry-type>
@@ -57,21 +57,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>AllBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myString</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
@@ -115,21 +115,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>ShortBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myShort</env-entry-name>
         <env-entry-type>java.lang.Short</env-entry-type>
@@ -138,21 +138,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>IntegerBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myInteger</env-entry-name>
         <env-entry-type>java.lang.Integer</env-entry-type>
@@ -161,21 +161,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>FloatBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myFloat</env-entry-name>
         <env-entry-type>java.lang.Float</env-entry-type>
@@ -184,21 +184,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>StringBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myString</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
@@ -207,21 +207,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>ByteBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myByte</env-entry-name>
         <env-entry-type>java.lang.Byte</env-entry-type>
@@ -230,21 +230,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>DoubleBean</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.single.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Queue</message-destination-type>
+      <message-destination-type>jakarta.jms.Queue</message-destination-type>
       <env-entry>
         <env-entry-name>myDouble</env-entry-name>
         <env-entry-type>java.lang.Double</env-entry-type>
@@ -253,13 +253,13 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
   </enterprise-beans>
@@ -269,7 +269,7 @@
         <ejb-name>LongBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -279,7 +279,7 @@
         <ejb-name>BooleanBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -289,7 +289,7 @@
         <ejb-name>AllBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -299,7 +299,7 @@
         <ejb-name>ShortBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -309,7 +309,7 @@
         <ejb-name>IntegerBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -319,7 +319,7 @@
         <ejb-name>FloatBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -329,7 +329,7 @@
         <ejb-name>StringBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -339,7 +339,7 @@
         <ejb-name>ByteBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -349,7 +349,7 @@
         <ejb-name>DoubleBean</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>

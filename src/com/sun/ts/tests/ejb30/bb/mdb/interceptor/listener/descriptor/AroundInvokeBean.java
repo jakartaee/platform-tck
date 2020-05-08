@@ -33,18 +33,18 @@ import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.Message;
-import javax.jms.MessageListener;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 import com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB1;
 import com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB2;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 @MessageDriven(name = "AroundInvokeBean", description = "A Simple MDB AroundInvokeBean", messageListenerInterface = MessageListener.class)
 
 // activationConfig ={
 // @ActivationConfigProperty(propertyName="destinationType",
-// propertyValue="javax.jms.Queue")
+// propertyValue="jakarta.jms.Queue")
 
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)

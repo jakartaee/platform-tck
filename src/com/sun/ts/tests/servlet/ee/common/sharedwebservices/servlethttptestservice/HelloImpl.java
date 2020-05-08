@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "ServletHttpTestService", targetNamespace = "http://servlethttptestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/ServletHttpTestService.wsdl", endpointInterface = "com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice.Hello")
 public class HelloImpl implements Hello {

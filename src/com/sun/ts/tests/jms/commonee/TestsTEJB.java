@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import jakarta.ejb.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import javax.annotation.*;

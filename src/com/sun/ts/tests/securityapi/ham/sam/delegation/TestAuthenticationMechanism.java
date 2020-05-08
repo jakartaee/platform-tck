@@ -16,21 +16,21 @@
 
 package com.sun.ts.tests.securityapi.ham.sam.delegation;
 
-import static javax.security.enterprise.identitystore.CredentialValidationResult.Status.VALID;
+import static jakarta.security.enterprise.identitystore.CredentialValidationResult.Status.VALID;
 
 import java.io.IOException;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import javax.security.enterprise.AuthenticationException;
-import javax.security.enterprise.AuthenticationStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
-import javax.security.enterprise.authentication.mechanism.http.HttpMessageContext;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import javax.security.enterprise.identitystore.IdentityStoreHandler;
-import javax.security.enterprise.credential.Password;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.AuthenticationException;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.IdentityStoreHandler;
+import jakarta.security.enterprise.credential.Password;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -90,7 +90,7 @@ public class TestAuthenticationMechanism
           Class[] interfaces = callerClass.getInterfaces();
           for (Class inter : interfaces) {
             if (inter.getName().equalsIgnoreCase(
-                "javax.security.auth.message.module.ServerAuthModule")) {
+                "jakarta.security.auth.message.module.ServerAuthModule")) {
               return true;
             }
           }

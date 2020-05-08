@@ -27,7 +27,7 @@ import jakarta.ejb.*;
 import java.util.*;
 import javax.xml.ws.WebServiceRef;
 import javax.xml.ws.WebServiceRefs;
-import javax.jws.HandlerChain;
+import jakarta.jws.HandlerChain;
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.*;
 import com.sun.javatest.Status;

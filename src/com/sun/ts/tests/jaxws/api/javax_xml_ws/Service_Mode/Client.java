@@ -37,7 +37,7 @@ public class Client extends ServiceEETest {
 
   // Expected Enum Constant Summary
   private final static jakarta.xml.ws.Service.Mode expectedEnums[] = {
-      jakarta.xml.ws.Service.Mode.MESSAGE, javax.xml.ws.Service.Mode.PAYLOAD, };
+      jakarta.xml.ws.Service.Mode.MESSAGE, jakarta.xml.ws.Service.Mode.PAYLOAD, };
 
   private boolean findEnums(jakarta.xml.ws.Service.Mode[] args) {
     boolean pass = true;
@@ -101,7 +101,7 @@ public class Client extends ServiceEETest {
     boolean pass = true;
     try {
       TestUtil.logMsg("Call jakarta.xml.ws.Service.Mode.values() ...");
-      jakarta.xml.ws.Service.Mode[] methods = javax.xml.ws.Service.Mode.values();
+      jakarta.xml.ws.Service.Mode[] methods = jakarta.xml.ws.Service.Mode.values();
       printEnums(methods);
       pass = findEnums(methods);
     } catch (Exception e) {
@@ -127,7 +127,7 @@ public class Client extends ServiceEETest {
     boolean pass = true;
     try {
       TestUtil.logMsg("Call jakarta.xml.ws.Service.Mode.valueOf(MESSAGE) ...");
-      jakarta.xml.ws.Service.Mode method = javax.xml.ws.Service.Mode
+      jakarta.xml.ws.Service.Mode method = jakarta.xml.ws.Service.Mode
           .valueOf("MESSAGE");
       if (method != jakarta.xml.ws.Service.Mode.MESSAGE) {
         TestUtil.logErr(

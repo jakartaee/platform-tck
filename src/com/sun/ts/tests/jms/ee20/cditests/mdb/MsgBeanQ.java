@@ -26,7 +26,7 @@ import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -84,7 +84,7 @@ public class MsgBeanQ implements MessageDrivenBean, MessageListener {
   }
 
   // ================== business methods ====================================
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     System.out.println("MsgBeanQ.onMessage(): entering MDB");
     System.out.println("MsgBeanQ.onMessage(): JMSContext context1=" + context1);
     System.out.println("MsgBeanQ.onMessage(): JMSContext context2=" + context2);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -1218,7 +1218,7 @@ public class Client extends ServiceEETest {
         pass = false;
         TestUtil.logErr(
             "Error: JMSContext.commit() didn't throw expected IllegalStateRuntimeException");
-      } catch (javax.jms.IllegalStateRuntimeException e) {
+      } catch (jakarta.jms.IllegalStateRuntimeException e) {
         logMsg(
             "Got expected IllegalStateRuntimeException from JMSContext.commit()");
       } catch (Exception e) {
@@ -1245,7 +1245,7 @@ public class Client extends ServiceEETest {
         pass = false;
         TestUtil.logErr(
             "Error: JMSContext.rollback() didn't throw expected IllegalStateRuntimeException");
-      } catch (javax.jms.IllegalStateRuntimeException e) {
+      } catch (jakarta.jms.IllegalStateRuntimeException e) {
         logMsg(
             "Got expected IllegalStateRuntimeException from JMSContext.rollback()");
       } catch (Exception e) {
@@ -1278,7 +1278,7 @@ public class Client extends ServiceEETest {
           pass = false;
           TestUtil.logErr(
               "Error: JMSContext.recover() didn't throw expected IllegalStateRuntimeException");
-        } catch (javax.jms.IllegalStateRuntimeException e) {
+        } catch (jakarta.jms.IllegalStateRuntimeException e) {
           logMsg(
               "Got expected IllegalStateRuntimeException from JMSContext.recover()");
         } catch (Exception e) {
@@ -1298,7 +1298,7 @@ public class Client extends ServiceEETest {
           msgcontext.acknowledge();
           TestUtil.logErr("Didn't throw IllegalStateRuntimeException");
           pass = false;
-        } catch (javax.jms.IllegalStateRuntimeException e) {
+        } catch (jakarta.jms.IllegalStateRuntimeException e) {
           logMsg(
               "Got expected IllegalStateRuntimeException from JMSContext.acknowledge()");
         } catch (Exception e) {

@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndQ;
 
-import javax.jms.*;
+import jakarta.jms.*;
 import jakarta.ejb.*;
 import javax.annotation.Resource;
 import java.util.Properties;
@@ -194,7 +194,7 @@ public class MDB_SNDQ_TestEJB {
       Conn.start();
 
       Session session = Conn.createSession(true, 0);
-      qBrowser = session.createBrowser((javax.jms.Queue) receiveDest);
+      qBrowser = session.createBrowser((jakarta.jms.Queue) receiveDest);
       msgs = qBrowser.getEnumeration();
       if (msgs.hasMoreElements()) {
         ret = true;

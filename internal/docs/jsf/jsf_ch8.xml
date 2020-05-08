@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -84,7 +84,7 @@
            status="active" testable="true">
     <id>__NUMBER__</id>
     <description>
-        A single instance of javax.faces.render.RenderKitFactory must be made 
+        A single instance of jakarta.faces.render.RenderKitFactory must be made 
         available to each JSFbased web application running in a servlet or 
         portlet container.
     </description>
@@ -113,9 +113,9 @@
            status="active" testable="true">
     <id>__NUMBER__</id>
     <description>
-        As with the standard components in the javax.faces.component package, 
+        As with the standard components in the jakarta.faces.component package, 
         each HTML component implementation class must define a static public 
-        final String constant named COMPONENT_TYPE, whose value is “javax.faces.” 
+        final String constant named COMPONENT_TYPE, whose value is “jakarta.faces.” 
         concatenated with the class name.
     </description>
     <location chapter="8" section="5.0"/>

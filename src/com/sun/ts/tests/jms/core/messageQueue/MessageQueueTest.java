@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
@@ -299,7 +299,7 @@ public class MessageQueueTest extends ServiceEETest {
           logTrace("Fail: MessageNotReadableException not thrown as expected");
           pass = false;
         } catch (Exception e) {
-          if (e instanceof javax.jms.MessageNotReadableException) {
+          if (e instanceof jakarta.jms.MessageNotReadableException) {
             logTrace("Pass: MessageEOFException thrown as expected");
           } else {
             logMsg("Error: Unexpected exception " + e.getClass().getName()
@@ -358,7 +358,7 @@ public class MessageQueueTest extends ServiceEETest {
           logMsg("Fail: MessageNotReadableException should have been thrown");
           pass = false;
         } catch (Exception e) {
-          if (e instanceof javax.jms.MessageNotReadableException) {
+          if (e instanceof jakarta.jms.MessageNotReadableException) {
             logTrace("Pass: MessageNotReadableException thrown as expected");
           } else {
             logMsg("Error: Unexpected exception " + e.getClass().getName()

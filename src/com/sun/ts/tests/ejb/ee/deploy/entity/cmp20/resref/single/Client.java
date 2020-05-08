@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -94,7 +94,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a CMP 2.0 Entity bean declaring a resource reference
-   *                 for a javax.mail.Session.
+   *                 for a jakarta.mail.Session.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the mail entity. - We can use this factory to send a
@@ -152,7 +152,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a CMP 2.0 Entity bean declaring a resource reference
-   *                 for a javax.jms.QueueConnectionFactory.
+   *                 for a jakarta.jms.QueueConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Queue Connection Factory.
@@ -180,7 +180,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a CMP 2.0 Entity bean declaring a resource reference
-   *                 for a javax.jms.TopicConnectionFactory.
+   *                 for a jakarta.jms.TopicConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Topic Connection Factory.

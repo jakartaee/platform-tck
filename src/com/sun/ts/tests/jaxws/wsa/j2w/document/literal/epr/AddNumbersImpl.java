@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr;
 
-import javax.annotation.Resource;
-import javax.jws.HandlerChain;
-import javax.jws.WebService;
+import jakarta.annotation.Resource;
+import jakarta.jws.HandlerChain;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceContext;
 import jakarta.xml.ws.Action;
 import jakarta.xml.ws.FaultAction;

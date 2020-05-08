@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
 import com.sun.javatest.Status;
@@ -240,7 +240,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         messageReceived.reset();
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -260,7 +260,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         messageReceived.readByte();
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -279,7 +279,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         messageReceived.readShort();
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -298,7 +298,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         messageReceived.readChar();
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -317,7 +317,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         messageReceived.readInt();
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -336,7 +336,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         messageReceived.readLong();
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -355,7 +355,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         messageReceived.readFloat();
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -375,7 +375,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         messageReceived.readDouble();
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -452,7 +452,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -493,7 +493,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -552,7 +552,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         pass = false;
         logMsg("Fail: MessageFormatException was not thrown");
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -610,7 +610,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -628,7 +628,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -705,7 +705,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -746,7 +746,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -765,7 +765,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -803,7 +803,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -861,7 +861,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -879,7 +879,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logMsg("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -955,7 +955,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -996,7 +996,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1015,7 +1015,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1035,7 +1035,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1053,7 +1053,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1111,7 +1111,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1129,7 +1129,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1205,7 +1205,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         boolean b = messageReceived.readBoolean();
 
         logErr("Fail: MessageFormatException was not thrown");
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1246,7 +1246,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1265,7 +1265,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1285,7 +1285,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1303,7 +1303,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1323,7 +1323,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1361,7 +1361,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1379,7 +1379,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1456,7 +1456,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1497,7 +1497,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1516,7 +1516,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1536,7 +1536,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1554,7 +1554,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1574,7 +1574,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1594,7 +1594,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1707,7 +1707,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1748,7 +1748,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1767,7 +1767,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1787,7 +1787,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1805,7 +1805,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1825,7 +1825,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1845,7 +1845,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1863,7 +1863,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -1982,7 +1982,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2041,7 +2041,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2233,7 +2233,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2277,7 +2277,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         nCount = messageReceived.readBytes(bValues);
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2296,7 +2296,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2314,7 +2314,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2349,7 +2349,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         int i = messageReceived.readInt();
 
         logErr("Fail: MessageFormatException was not thrown");
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2369,7 +2369,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2387,7 +2387,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2405,7 +2405,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2506,7 +2506,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         logErr(
             "Fail: byte[] to boolean conversion should have thrown MessageFormatException");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2527,7 +2527,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
         logErr(
             "Fail: byte[] to boolean conversion should have thrown MessageFormatException");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2547,7 +2547,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2567,7 +2567,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2587,7 +2587,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2607,7 +2607,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2627,7 +2627,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2647,7 +2647,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);
@@ -2667,7 +2667,7 @@ public class StreamMsgTopicTests extends ServiceEETest {
 
         logErr("Fail: MessageFormatException was not thrown");
         pass = false;
-      } catch (javax.jms.MessageFormatException e) {
+      } catch (jakarta.jms.MessageFormatException e) {
         logTrace("Pass: MessageFormatException thrown as expected");
       } catch (Exception ee) {
         TestUtil.logErr("Error: Unexpected exception: ", ee);

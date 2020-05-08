@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -843,7 +843,7 @@
             servlet/api/javax_servlet/servletcontext,
             servlet/api/javax_servlet/servletresponse,
             servlet/api/common,
-            jsp/api/javax_el/elresolver,
+            jsp/api/jakarta_el/elresolver,
             jsp/spec/el/language,
             jsp/spec/tagext/resource/taghandler,
             jms/common,
@@ -873,7 +873,7 @@
             jaxws/wsa/common,
             jaxws/wsi/constants,
             jsf/common,
-            jsf/api/javax_faces/application/application,
+            jsf/api/jakarta_faces/application/application,
             jsf/spec/el/managedbean,
             jstl/common,
             jstl/spec/core/iteration/foreach,

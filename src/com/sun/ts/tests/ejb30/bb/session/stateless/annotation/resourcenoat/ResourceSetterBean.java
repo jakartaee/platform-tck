@@ -29,13 +29,13 @@ import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.ConnectionFactory;
-import javax.jms.TopicConnectionFactory;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
 import javax.sql.DataSource;
 import jakarta.transaction.UserTransaction;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import org.omg.CORBA.ORB;
 
 @Stateless(name = "ResourceSetterBean")
@@ -51,7 +51,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   private DataSource dataSource2;
 
-  private javax.mail.Session mailSession;
+  private jakarta.mail.Session mailSession;
 
   private URL url;
 
@@ -119,12 +119,12 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   //////////////////////////////////////////////////////////////////////
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return mailSession;
   }
 
   // @Resource
-  private void setMailSession(javax.mail.Session mailSession) {
+  private void setMailSession(jakarta.mail.Session mailSession) {
     this.mailSession = mailSession;
   }
 

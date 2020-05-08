@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.jaspic.tssv.config;
 
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.MessageInfo;
-import javax.security.auth.message.module.ServerAuthModule;
-import javax.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.module.ServerAuthModule;
+import jakarta.security.auth.message.MessagePolicy;
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.Subject;
+import jakarta.security.auth.Subject;
 
 import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpServletResponse;
@@ -44,7 +44,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
  *
  */
 public class TSServerAuthContext
-    implements javax.security.auth.message.config.ServerAuthContext {
+    implements jakarta.security.auth.message.config.ServerAuthContext {
 
   private static ServerAuthModule serverAuthModule = null;
 

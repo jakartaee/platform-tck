@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.jsf.spec.composite.actionsource;
 
-import javax.faces.event.ActionListener;
-import javax.faces.event.ActionEvent;
-import javax.faces.context.FacesContext;
+import jakarta.faces.event.ActionListener;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.context.FacesContext;
 
 public class BeanOne implements ActionListener {
 

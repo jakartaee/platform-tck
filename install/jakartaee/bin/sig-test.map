@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -13,6 +13,7 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
+
 
 ###############################################################
 #
@@ -118,7 +119,7 @@ javax.servlet.jsp=2.3_se6
 javax.el=2.2_se6
 
 # JSF (Faces) 
-javax.faces=2.0_se6
+jakarta.faces=2.0_se6
 
 # JSTL 1.2 
 javax.servlet.jsp.jstl=1.2_se6
@@ -130,7 +131,7 @@ javax.jms=2.0_se6
 javax.transaction=1.1_se6
 
 # JavaMail 1.4 
-javax.mail=1.4_se6
+jakarta.mail=1.4_se6
 
 # Connector 1.6 
 jakarta.resource=1.6_se6
@@ -151,7 +152,7 @@ javax.management.j2ee=1.1_se6
 javax.enterprise.deploy=1.2_se6
 
 # JACC 1.2 
-javax.security.jacc=1.2_se6
+jakarta.security.jacc=1.2_se6
 
 # JAXB 
 javax.xml.bind=2.1_se6
@@ -178,7 +179,7 @@ javax.annotation=1.2_se6
 javax.jws=2.0_se6
 
 # JASPIC (Java Authentication SPI for Containters - JSR-196)
-javax.security.auth.message=1.0_se6
+jakarta.security.auth.message=1.0_se6
 
 # JAX-RS 
 # (This is JSR-311)

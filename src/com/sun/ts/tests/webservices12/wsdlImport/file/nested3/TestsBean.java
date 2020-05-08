@@ -17,7 +17,7 @@
 package com.sun.ts.tests.webservices12.wsdlImport.file.nested3;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "TestsPort", serviceName = "Nested3FileSvc", targetNamespace = "http://Nested3FileSvc.org/wsdl", wsdlLocation = "META-INF/wsdl/nestedimportwsdl.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.nested3.Tests")
 

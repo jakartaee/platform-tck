@@ -54,7 +54,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 If the Collection returned by 
-                javax.faces.Application.getELContextListeners() is 
+                jakarta.faces.Application.getELContextListeners() is 
                 non-empty, create an instance of ELContextEvent and pass 
                 it to each ELContextListener instance in the Collection 
                 by calling the ELContextListener.contextCreated
@@ -125,7 +125,7 @@
     status="active" testable="true">
     <id>__NUMBER__</id>
     <description>
-        A single instance of javax.faces.context.FacesContextFactory 
+        A single instance of jakarta.faces.context.FacesContextFactory 
         must be made available to each JSF-based web application 
         running in a servlet or portlet container.
     </description>

@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 import jakarta.xml.ws.WebServiceException;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
 
 import jakarta.xml.ws.Holder;

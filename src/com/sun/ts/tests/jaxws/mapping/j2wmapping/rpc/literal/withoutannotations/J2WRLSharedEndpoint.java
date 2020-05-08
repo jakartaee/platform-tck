@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations;
 
-@javax.jws.WebService
-@javax.jws.soap.SOAPBinding(style = javax.jws.soap.SOAPBinding.Style.RPC)
+@jakarta.jws.WebService
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC)
 public interface J2WRLSharedEndpoint {
 
   public java.lang.String arrayOperationFromClient(java.lang.String[] arg0);

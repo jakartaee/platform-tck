@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -71,9 +71,9 @@
     <message-driven>
       <ejb-name>Romeo</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.scopeT.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Topic</message-destination-type>
+      <message-destination-type>jakarta.jms.Topic</message-destination-type>
       <ejb-ref>
         <ejb-ref-name>ejb/Partner</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
@@ -84,21 +84,21 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
     <message-driven>
       <ejb-name>Tristan</ejb-name>
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.scopeT.MsgBean</ejb-class>
-      <messaging-type>javax.jms.MessageListener</messaging-type>
+      <messaging-type>jakarta.jms.MessageListener</messaging-type>
       <transaction-type>Container</transaction-type>
-      <message-destination-type>javax.jms.Topic</message-destination-type>
+      <message-destination-type>jakarta.jms.Topic</message-destination-type>
       <ejb-ref>
         <ejb-ref-name>ejb/Partner</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
@@ -109,13 +109,13 @@
       <resource-ref>
         <description>description</description>
         <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
-        <res-type>javax.jms.QueueConnectionFactory</res-type>
+        <res-type>jakarta.jms.QueueConnectionFactory</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
       </resource-ref>
       <resource-env-ref>
         <resource-env-ref-name>jms/replyQueue</resource-env-ref-name>
-        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+        <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
       </resource-env-ref>
     </message-driven>
   </enterprise-beans>
@@ -125,7 +125,7 @@
         <ejb-name>Romeo</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
@@ -135,7 +135,7 @@
         <ejb-name>Tristan</ejb-name>
         <method-name>onMessage</method-name>
         <method-params>
-          <method-param>javax.jms.Message</method-param>
+          <method-param>jakarta.jms.Message</method-param>
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>

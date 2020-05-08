@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,17 +19,17 @@ package com.sun.ts.tests.jaxrs.jaxrs21.ee.client.rxinvoker;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.CompletionStageRxInvoker;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.CompletionStageRxInvoker;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
@@ -1861,7 +1861,7 @@ public class JAXRSClient extends JAXRSCommonClient {
       assertProcessingExceptionIsCauseAndLog(ExecutionException e)
           throws Fault {
     logMsg("ExecutionException has been thrown as expected", e);
-    assertCause(e, javax.ws.rs.ProcessingException.class,
+    assertCause(e, jakarta.ws.rs.ProcessingException.class,
         "ExecutionException wrapped", e.getCause(),
         "rather then ProcessingException");
     logMsg("ExecutionException.getCause is ProcessingException as expected");

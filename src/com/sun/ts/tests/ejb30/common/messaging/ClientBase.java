@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,17 +32,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
 import java.util.Stack;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import javax.jms.QueueBrowser;
+import jakarta.jms.JMSException;
+import jakarta.jms.MessageProducer;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
+import jakarta.jms.QueueBrowser;
 import java.util.Enumeration;
-import javax.jms.Message;
-import javax.jms.QueueReceiver;
-import javax.jms.QueueSession;
+import jakarta.jms.Message;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueSession;
 
 abstract public class ClientBase extends Client implements Constants {
   private String currentTestName;

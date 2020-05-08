@@ -284,7 +284,7 @@ public class Client extends ServiceEETest {
     HelloResponse helloRes = null;
     try {
       // Using generic Service object
-      jakarta.xml.ws.Service service = javax.xml.ws.Service.create(SERVICE_QNAME);
+      jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
       service.addPort(PORT_QNAME, bindingID, url);
       dispatchJaxb = service.createDispatch(PORT_QNAME, createJAXBContext(),
           jakarta.xml.ws.Service.Mode.PAYLOAD);
@@ -327,7 +327,7 @@ public class Client extends ServiceEETest {
     HelloResponse helloRes = null;
     try {
       // Using generic Service object
-      jakarta.xml.ws.Service service = javax.xml.ws.Service.create(SERVICE_QNAME);
+      jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
       service.addPort(PORT_QNAME2, bindingID, url2);
       dispatchJaxb = service.createDispatch(PORT_QNAME2, createJAXBContext(),
           jakarta.xml.ws.Service.Mode.PAYLOAD);
@@ -364,7 +364,7 @@ public class Client extends ServiceEETest {
     HelloResponse helloRes = null;
     try {
       // Using generic Service object
-      jakarta.xml.ws.Service service = javax.xml.ws.Service.create(SERVICE_QNAME);
+      jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
       service.addPort(PORT_QNAME2, bindingID, url2);
       dispatchSM = service.createDispatch(PORT_QNAME2, SOAPMessage.class,
           jakarta.xml.ws.Service.Mode.MESSAGE);
@@ -410,7 +410,7 @@ public class Client extends ServiceEETest {
     HelloResponse helloRes = null;
     try {
       // Using generic Service object
-      jakarta.xml.ws.Service service = javax.xml.ws.Service.create(SERVICE_QNAME);
+      jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
       service.addPort(PORT_QNAME3, bindingID, url3);
       dispatchSrc = service.createDispatch(PORT_QNAME3, Source.class,
           jakarta.xml.ws.Service.Mode.PAYLOAD);
@@ -491,7 +491,7 @@ public class Client extends ServiceEETest {
     String[] streamAs = { "StreamSource", "DOMSource", "SAXSource" };
     try {
       // Using generic Service object
-      jakarta.xml.ws.Service service = javax.xml.ws.Service.create(SERVICE_QNAME);
+      jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
       service.addPort(PORT_QNAME3, bindingID, url3);
       dispatchSrc = service.createDispatch(PORT_QNAME3, Source.class,
           jakarta.xml.ws.Service.Mode.PAYLOAD);

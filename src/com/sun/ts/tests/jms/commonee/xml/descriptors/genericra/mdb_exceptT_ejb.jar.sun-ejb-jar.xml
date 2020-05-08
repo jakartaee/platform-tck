@@ -2,7 +2,7 @@
 <!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD GlassFish Application Server 3.0 EJB 3.1//EN" "http://www.sun.com/software/appserver/dtds/sun-ejb-jar_3_1-0.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -42,7 +42,7 @@
         <activation-config>
          <activation-config-property>
            <activation-config-property-name>DestinationType</activation-config-property-name>
-           <activation-config-property-value>javax.jms.Topic</activation-config-property-value>
+           <activation-config-property-value>jakarta.jms.Topic</activation-config-property-value>
          </activation-config-property>
          <activation-config-property>
            <activation-config-property-name>DestinationProperties</activation-config-property-name>
@@ -108,7 +108,7 @@
         <activation-config>
          <activation-config-property>
            <activation-config-property-name>DestinationType</activation-config-property-name>
-           <activation-config-property-value>javax.jms.Topic</activation-config-property-value>
+           <activation-config-property-value>jakarta.jms.Topic</activation-config-property-value>
          </activation-config-property>
          <activation-config-property>
            <activation-config-property-name>DestinationProperties</activation-config-property-name>
@@ -174,7 +174,7 @@
         <activation-config>
          <activation-config-property>
            <activation-config-property-name>DestinationType</activation-config-property-name>
-           <activation-config-property-value>javax.jms.Topic</activation-config-property-value>
+           <activation-config-property-value>jakarta.jms.Topic</activation-config-property-value>
          </activation-config-property>
          <activation-config-property>
            <activation-config-property-name>DestinationProperties</activation-config-property-name>

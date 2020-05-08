@@ -18,7 +18,7 @@ package com.sun.ts.tests.servlet.ee.platform.cdi.filter;
 
 import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
 import java.io.IOException;
-import javax.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

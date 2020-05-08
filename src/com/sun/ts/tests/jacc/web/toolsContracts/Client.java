@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,9 +17,9 @@
 package com.sun.ts.tests.jacc.web.toolsContracts;
 
 import java.security.Permissions;
-import javax.security.jacc.WebResourcePermission;
-import javax.security.jacc.WebRoleRefPermission;
-import javax.security.jacc.WebUserDataPermission;
+import jakarta.security.jacc.WebResourcePermission;
+import jakarta.security.jacc.WebRoleRefPermission;
+import jakarta.security.jacc.WebUserDataPermission;
 
 import java.util.Properties;
 
@@ -942,7 +942,7 @@ public class Client extends ServiceEETest {
    *
    *                 3. The occurance of the above string indicates the server
    *                 used the system property
-   *                 javax.security.jacc.policy.provider to instantiate and
+   *                 jakarta.security.jacc.policy.provider to instantiate and
    *                 replace the policy object used by the JRE
    */
   public void Policy() throws Fault {

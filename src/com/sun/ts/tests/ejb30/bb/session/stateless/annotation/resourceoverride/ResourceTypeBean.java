@@ -32,15 +32,15 @@ import jakarta.ejb.SessionContext;
 import javax.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.ConnectionFactory;
-import javax.mail.Session;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.ConnectionFactory;
+import jakarta.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import jakarta.transaction.UserTransaction;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import org.omg.CORBA.ORB;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
 
@@ -132,7 +132,7 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
     return (DataSource) getEJBContext().lookup(getDataSource2Name());
   }
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return (Session) getEJBContext().lookup(getMailSessionName());
   }
 

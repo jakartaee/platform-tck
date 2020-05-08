@@ -28,19 +28,19 @@ import com.sun.ts.tests.ejb30.common.messaging.Constants;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
-//This MDB does not implement javax.jms.MessageListener interface, doesn't
+//This MDB does not implement jakarta.jms.MessageListener interface, doesn't
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type.
-//the default is javax.jms.MessageListener
+//the default is jakarta.jms.MessageListener
 //destinationType is also annotated here, though it should also be optional.
 //optional destinationType is tested in mdb/dest/optional and mdb/dest/optional2.
 //
 @MessageDriven(name = "NonListenerDestBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 public class NonListenerDestBean
     extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase {
   // implements MessageListener {

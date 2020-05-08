@@ -83,7 +83,7 @@
   <message-destination-ref>
      <description>test destination</description>
      <message-destination-ref-name>java:app/env/receiveQueue</message-destination-ref-name>
-     <message-destination-type>javax.jms.Queue</message-destination-type>
+     <message-destination-type>jakarta.jms.Queue</message-destination-type>
      <message-destination-usage>Consumes</message-destination-usage>
      <message-destination-link>MsgBeanOutQueue</message-destination-link>
   </message-destination-ref>

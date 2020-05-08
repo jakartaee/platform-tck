@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1559,7 +1559,7 @@ The instances of the mapped JavaBeans class must be capable of marshaling to and
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXRPC:SPEC:310</id>
-			<description>A JAX-RPC implementation must provide support for the following MIME types and mapping as follows: (image/gif, java.awt.Image), (image/jpeg, java.awt.Image), (text/plain, java.lang.String), (mutipart/*, javax.mail.internet.MimeMultiPart), (text/xml or application/xml, javax.xml.transform.Source). A XML to Java mapping tools is required to provide an option to map the above set of MIME types to the javax.activation.DataHandler class.</description>
+			<description>A JAX-RPC implementation must provide support for the following MIME types and mapping as follows: (image/gif, java.awt.Image), (image/jpeg, java.awt.Image), (text/plain, java.lang.String), (mutipart/*, jakarta.mail.internet.MimeMultiPart), (text/xml or application/xml, javax.xml.transform.Source). A XML to Java mapping tools is required to provide an option to map the above set of MIME types to the javax.activation.DataHandler class.</description>
 			<location chapter = "7" section = "5"/>
 			<sub-assertions>
 				<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -1579,7 +1579,7 @@ The instances of the mapped JavaBeans class must be capable of marshaling to and
 				</assertion>
 				<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 					<id>JAXRPC:SPEC:310.4</id>
-					<description>Mapping of MIME type multipart/* to Java Type javax.mail.internet.MimeMultipart.</description>
+					<description>Mapping of MIME type multipart/* to Java Type jakarta.mail.internet.MimeMultipart.</description>
 					<location chapter = "7" section = "5"/>
 				</assertion>
 				<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">

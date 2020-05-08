@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,9 @@
 
 --%>
 
-<%@ page import="javax.faces.context.FacesContext"%>
-<%@ page import="javax.faces.context.ExternalContext"%>
-<%@ page import="javax.faces.application.ViewHandler"%>
+<%@ page import="jakarta.faces.context.FacesContext"%>
+<%@ page import="jakarta.faces.context.ExternalContext"%>
+<%@ page import="jakarta.faces.application.ViewHandler"%>
 
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>

@@ -18,13 +18,13 @@ package com.sun.ts.tests.jaspic.tssv.module.soap;
 
 import java.util.Map;
 import java.util.logging.Level;
-import javax.security.auth.Subject;
+import jakarta.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 
-import javax.security.auth.message.MessagePolicy;
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
 
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 
@@ -33,7 +33,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
  * @author Raja Perumal
  */
 public class TSFailureServerAuthModule
-    implements javax.security.auth.message.module.ServerAuthModule {
+    implements jakarta.security.auth.message.module.ServerAuthModule {
   private static TSLogger logger = null;
 
   private static Map options = null;

@@ -25,7 +25,7 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;
@@ -77,7 +77,7 @@ public class MsgBeanForQueue implements MessageDrivenBean, MessageListener {
       connection.start();
 
       QueueSession session = connection.createQueueSession(true, 0);
-      javax.jms.TextMessage reply = session.createTextMessage();
+      jakarta.jms.TextMessage reply = session.createTextMessage();
       QueueSender replier = session.createSender(replyQueue);
       reply.setText("MDB Responding to message receipt");
       reply.setStringProperty("Verify", msg.getStringProperty("Verify"));

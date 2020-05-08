@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -212,7 +212,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         QueueBrowser qB = tool.getDefaultQueueSession()
             .createBrowser(tool.getDefaultQueue());
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -241,7 +241,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         QueueBrowser qB = tool.getDefaultQueueSession()
             .createBrowser(tool.getDefaultQueue(), "TEST = 'test'");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -270,7 +270,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to create queue with closed session.");
       try {
         Queue q = tool.getDefaultQueueSession().createQueue(testName);
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -300,7 +300,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         QueueReceiver qR = tool.getDefaultQueueSession()
             .createReceiver(tool.getDefaultQueue());
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -330,7 +330,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         QueueReceiver qR = tool.getDefaultQueueSession()
             .createReceiver(tool.getDefaultQueue(), "TEST = 'test'");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -360,7 +360,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         QueueSender qS = tool.getDefaultQueueSession()
             .createSender(tool.getDefaultQueue());
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -390,7 +390,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         TemporaryQueue tQ = tool.getDefaultQueueSession()
             .createTemporaryQueue();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -419,7 +419,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to create message with closed session.");
       try {
         Message m = tool.getDefaultQueueSession().createMessage();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -448,7 +448,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to create BytesMessage with closed session.");
       try {
         BytesMessage m = tool.getDefaultQueueSession().createBytesMessage();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -477,7 +477,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to create MapMessage with closed session.");
       try {
         MapMessage m = tool.getDefaultQueueSession().createMapMessage();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -509,7 +509,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         if (m != null)
           TestUtil.logTrace("m=" + m);
         TestUtil.logTrace("FAIL: expected IllegalStateException");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -542,7 +542,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         if (m != null)
           TestUtil.logTrace("m=" + m);
         TestUtil.logTrace("FAIL: expected IllegalStateException");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -571,7 +571,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to create StreamMessage with closed session.");
       try {
         StreamMessage m = tool.getDefaultQueueSession().createStreamMessage();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -601,7 +601,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to create TextMessage with closed session.");
       try {
         TextMessage m = tool.getDefaultQueueSession().createTextMessage();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -631,7 +631,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         TextMessage m = tool.getDefaultQueueSession()
             .createTextMessage("test message");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -679,7 +679,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         String foo = tool.getDefaultQueueReceiver().getMessageSelector();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -713,7 +713,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         Message foo = tool.getDefaultQueueReceiver().receive();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -747,7 +747,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         Message foo = tool.getDefaultQueueReceiver().receive(timeout);
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -781,7 +781,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         Message foo = tool.getDefaultQueueReceiver().receiveNoWait();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -815,7 +815,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         Queue foo = tool.getDefaultQueueReceiver().getQueue();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -868,7 +868,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         int foo = tool.getDefaultQueueSender().getDeliveryMode();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -902,7 +902,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         boolean foo = tool.getDefaultQueueSender().getDisableMessageID();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -936,7 +936,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         boolean foo = tool.getDefaultQueueSender().getDisableMessageTimestamp();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -970,7 +970,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         int foo = tool.getDefaultQueueSender().getPriority();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1004,7 +1004,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         long foo = tool.getDefaultQueueSender().getTimeToLive();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1038,7 +1038,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         tool.getDefaultQueueSender()
             .setDeliveryMode(Message.DEFAULT_DELIVERY_MODE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1071,7 +1071,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().setDisableMessageID(true);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1104,7 +1104,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().setDisableMessageTimestamp(true);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1137,7 +1137,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().setPriority(Message.DEFAULT_PRIORITY);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1169,7 +1169,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender()
             .setTimeToLive(Message.DEFAULT_TIME_TO_LIVE);
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1203,7 +1203,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
         Queue foo = tool.getDefaultQueueSender().getQueue();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1237,7 +1237,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().send(new MessageTestImpl());
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1273,7 +1273,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
             Message.DEFAULT_DELIVERY_MODE, Message.DEFAULT_PRIORITY,
             Message.DEFAULT_TIME_TO_LIVE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1306,7 +1306,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().send(new MessageTestImpl());
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1341,7 +1341,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
             Message.DEFAULT_DELIVERY_MODE, Message.DEFAULT_PRIORITY,
             Message.DEFAULT_TIME_TO_LIVE);
         logErr("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         return;
       } catch (Exception e) {
@@ -1371,7 +1371,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to call recover() with closed session.");
       try {
         tool.getDefaultQueueSession().recover();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -1399,7 +1399,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to call recover() with closed session.");
       try {
         tool.getDefaultSession().recover();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -1427,7 +1427,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to call commit with closed session.");
       try {
         tool.getDefaultQueueSession().commit();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -1455,7 +1455,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to call getTransacted() with closed session.");
       try {
         boolean b = tool.getDefaultQueueSession().getTransacted();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }
@@ -1484,7 +1484,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
       logMsg("Try to call rollback() with closed session.");
       try {
         tool.getDefaultQueueSession().rollback();
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logMsg("Caught expected exception");
         return;
       }

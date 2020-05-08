@@ -29,13 +29,13 @@ import jakarta.ejb.MessageDriven;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
-//This MDB does not implement javax.jms.MessageListener interface.  It's 
+//This MDB does not implement jakarta.jms.MessageListener interface.  It's 
 //specified in ejb-jar.xml
 //
 //some of the annotated data are overridden by ejb-jar.xml
 //
 @MessageDriven(name = "ActivationConfigBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue"),
     @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge"),
     @ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "Durable"),
     @ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "COM_SUN_JMS_TESTNAME='test1' OR TestCaseNum NOT BETWEEN 1 AND 9999") })

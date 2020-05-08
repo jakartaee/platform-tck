@@ -17,7 +17,7 @@
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.constraintviolationexceptionmapper;
 
 import jakarta.validation.ConstraintViolationException;
-import javax.ws.rs.core.Response.Status;
+import jakarta.ws.rs.core.Response.Status;
 
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 

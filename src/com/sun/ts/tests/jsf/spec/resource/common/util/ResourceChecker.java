@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@
 package com.sun.ts.tests.jsf.spec.resource.common.util;
 
 import java.io.PrintWriter;
-import javax.faces.application.Resource;
+import jakarta.faces.application.Resource;
 import java.io.InputStream;
 import java.io.StringWriter;
-import javax.faces.application.ResourceHandler;
+import jakarta.faces.application.ResourceHandler;
 
 public class ResourceChecker {
   private static final String NL = System.getProperty("line.separator", "\n");

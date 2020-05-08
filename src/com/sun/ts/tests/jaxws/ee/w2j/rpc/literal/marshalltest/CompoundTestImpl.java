@@ -29,7 +29,7 @@ import jakarta.xml.soap.SOAPElement;
 import jakarta.xml.soap.SOAPFactory;
 import jakarta.xml.soap.SOAPException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort3", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JRLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.CompoundTest")
 public class CompoundTestImpl implements CompoundTest {

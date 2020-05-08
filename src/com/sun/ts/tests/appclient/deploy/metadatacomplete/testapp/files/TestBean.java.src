@@ -25,13 +25,13 @@ import jakarta.resource.AdministeredObjectDefinition;
 @ConnectionFactoryDefinition(
 	name = "java:app/jms/TestConnectionFactory",
 	description = "application scoped jms connector resource definition",
-	interfaceName = "javax.jms.ConnectionFactory",
+	interfaceName = "jakarta.jms.ConnectionFactory",
 	resourceAdapter="@raname@"
 )
 @AdministeredObjectDefinition(
                 name = "java:app/jms/TestQ",
                 description = "application scoped AdminObjectDefinition",
-                interfaceName = "javax.jms.Queue",
+                interfaceName = "jakarta.jms.Queue",
                 className = "com.sun.messaging.Queue",
                 resourceAdapter="@raname@")
 @ManagedBean("mybean")

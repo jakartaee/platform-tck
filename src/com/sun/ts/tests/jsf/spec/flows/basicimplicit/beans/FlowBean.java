@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jsf.spec.flows.basicimplicit.beans;
 
-import javax.faces.flow.FlowScoped;
+import jakarta.faces.flow.FlowScoped;
 import java.io.Serializable;
 
 import jakarta.inject.Named;

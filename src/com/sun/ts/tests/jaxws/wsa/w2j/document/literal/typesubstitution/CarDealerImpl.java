@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution;
 import java.util.ArrayList;
 import java.util.List;
 
-@javax.jws.WebService(portName = "CarDealerPort", serviceName = "CarDealerService", targetNamespace = "http://typesubstitution/wsdl", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLTypeSubstitutionTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution.CarDealer")
+@jakarta.jws.WebService(portName = "CarDealerPort", serviceName = "CarDealerService", targetNamespace = "http://typesubstitution/wsdl", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLTypeSubstitutionTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution.CarDealer")
 public class CarDealerImpl {
   public List<Car> getSedans() {
     List<Car> cars = new ArrayList<Car>();

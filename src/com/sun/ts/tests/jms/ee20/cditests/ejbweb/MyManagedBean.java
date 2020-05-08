@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.ee20.cditests.ejbweb;
 import java.io.Serializable;
 import java.util.Properties;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.util.Enumeration;
 import java.util.Properties;
 import javax.annotation.PostConstruct;
@@ -32,8 +32,8 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;
 import jakarta.inject.*;
-import javax.enterprise.inject.*;
-import javax.enterprise.context.*;
+import jakarta.enterprise.inject.*;
+import jakarta.enterprise.context.*;
 
 @ManagedBean(value = "mybean")
 public class MyManagedBean implements Serializable {

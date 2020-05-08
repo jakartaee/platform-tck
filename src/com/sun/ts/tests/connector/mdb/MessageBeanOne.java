@@ -70,7 +70,7 @@ public class MessageBeanOne
 
   /**
    * onMessage method, declared as public (but not final or static), with a
-   * return type of void, and with one argument of type javax.jms.Message.
+   * return type of void, and with one argument of type jakarta.jms.Message.
    *
    * Casts the incoming Message to a TextMessage and displays the text.
    *

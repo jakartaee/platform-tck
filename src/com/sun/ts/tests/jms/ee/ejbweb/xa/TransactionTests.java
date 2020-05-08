@@ -27,7 +27,7 @@ import java.rmi.RemoteException;
 import java.io.*;
 import java.util.Properties;
 import com.sun.javatest.Status;
-import javax.jms.*;
+import jakarta.jms.*;
 import jakarta.transaction.*;
 import java.util.ArrayList;
 import java.util.Enumeration;

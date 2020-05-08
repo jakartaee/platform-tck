@@ -17,8 +17,8 @@
 package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPortMethodInjectionTest;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
-import javax.jws.WebMethod;
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
 
 @WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPortMethodInjectionTest.Hello")
 @Stateless(name = "WSEjbPortMethodInjectionTest")

@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jsf.spec.flows.factory.beans;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.flow.FlowHandler;
-import javax.faces.flow.FlowHandlerFactory;
-import javax.faces.flow.FlowHandlerFactoryWrapper;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.flow.FlowHandler;
+import jakarta.faces.flow.FlowHandlerFactory;
+import jakarta.faces.flow.FlowHandlerFactoryWrapper;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 

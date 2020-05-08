@@ -24,12 +24,12 @@ import java.util.Properties;
 import javax.annotation.Resource;
 import javax.annotation.sql.DataSourceDefinition;
 import jakarta.ejb.EJB;
-import javax.jms.JMSConnectionFactoryDefinition;
-import javax.jms.JMSDestinationDefinition;
-import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
-import javax.mail.Session;
-import javax.mail.MailSessionDefinition;
+import jakarta.jms.JMSConnectionFactoryDefinition;
+import jakarta.jms.JMSDestinationDefinition;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.mail.Session;
+import jakarta.mail.MailSessionDefinition;
 import javax.naming.InitialContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.EntityManagerFactory;
@@ -42,8 +42,8 @@ import com.sun.javatest.Status;
 @MailSessionDefinition(name = "java:comp/myMailSession", host = "smtp.gmail.com", transportProtocol = "smtps", properties = {
     "mail.debug=true" })
 @DataSourceDefinition(name = "java:global/MyApp/MyDataSource", className = "oracle.jdbc.pool.OracleDataSource", url = "jdbc:oracle:thin:@localhost:1521:orcl", user = "TESTU", password = "TESTU")
-@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory JSPMyTestConnectionFactory", interfaceName = "javax.jms.ConnectionFactory", name = "java:global/JSPMyTestConnectionFactory", user = "j2ee", password = "j2ee")
-@JMSDestinationDefinition(name = "java:app/jms/myappTopic", interfaceName = "javax.jms.Topic", destinationName = "MyPhysicalAppTopic")
+@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory JSPMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/JSPMyTestConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSDestinationDefinition(name = "java:app/jms/myappTopic", interfaceName = "jakarta.jms.Topic", destinationName = "MyPhysicalAppTopic")
 
 public class TestAppClient extends EETest {
 

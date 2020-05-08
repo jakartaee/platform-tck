@@ -17,7 +17,7 @@
 package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbAsyncTest.server;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbAsyncTest.server.Hello")
 @Stateless(name = "WSEjbAsyncTest")

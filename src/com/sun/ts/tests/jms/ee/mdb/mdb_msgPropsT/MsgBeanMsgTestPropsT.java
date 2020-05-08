@@ -27,7 +27,7 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import javax.sql.*;
 import com.sun.ts.lib.util.*;
@@ -287,7 +287,7 @@ public class MsgBeanMsgTestPropsT
     }
   }
 
-  private void msgPropertiesTTest(javax.jms.Message msg) {
+  private void msgPropertiesTTest(jakarta.jms.Message msg) {
 
     boolean pass = true;
     boolean bool = true;
@@ -800,7 +800,7 @@ public class MsgBeanMsgTestPropsT
     }
   }
 
-  private void msgPropertiesConversionTTest(javax.jms.Message messageReceived) {
+  private void msgPropertiesConversionTTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     boolean bool = true;
     byte bValue = 127;

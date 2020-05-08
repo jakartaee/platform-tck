@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -43,23 +43,23 @@
     </chapter>
     <chapter id="4" name="Web Services Metadata">
       <sections>
-        <section id="3" name="Annotation: javax.jws.Oneway" />
+        <section id="3" name="Annotation: jakarta.jws.Oneway" />
         <section id="4.3" name="Example" />
         <section id="6.2" name="Annotation Type Definition" />
         <section id="1.3" name="Example" />
         <section id="3.2" name="Annotation Type Definition" />
         <section id="5.1" name="Description" />
         <section id="2.1" name="Description" />
-        <section id="1" name="Annotation: javax.jws.WebService" />
-        <section id="6" name="Annotation: javax.jws.HandlerChain" />
+        <section id="1" name="Annotation: jakarta.jws.WebService" />
+        <section id="6" name="Annotation: jakarta.jws.HandlerChain" />
         <section id="1.1" name="Description" />
-        <section id="5" name="Annotation: javax.jws.WebResult" />
+        <section id="5" name="Annotation: jakarta.jws.WebResult" />
         <section id="2.3" name="Example" />
-        <section id="4" name="Annotation: javax.jws.WebParam" />
+        <section id="4" name="Annotation: jakarta.jws.WebParam" />
         <section id="1.2" name="Annotation Type Definition" />
         <section id="2.2" name="Annotation Type Definition" />
-        <section id="7" name="Annotation: javax.jws.SOAPBinding" />
-        <section id="2" name="Annotation: javax.jws.WebMethod" />
+        <section id="7" name="Annotation: jakarta.jws.SOAPBinding" />
+        <section id="2" name="Annotation: jakarta.jws.WebMethod" />
         <section id="7.1" name="Description" />
         <section id="6.1" name="Description" />
         <section id="3.3" name="Example" />
@@ -95,12 +95,12 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>3004</id>
-      <description>The implementation bean MUST include a @WebService class-level annotation, indicating that it implements a Web Service.  More information on the @WebService annotation may be found in 4.1Annotation: javax.jws.WebService.</description>
+      <description>The implementation bean MUST include a @WebService class-level annotation, indicating that it implements a Web Service.  More information on the @WebService annotation may be found in 4.1Annotation: jakarta.jws.WebService.</description>
       <location chapter="3" section="1" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>3005</id>
-      <description>The implementation bean MAY reference a service endpoint interface by using the @WebService.endpointInterface annotation.  If the implementation bean references a service endpoint interface, it MUST implement all the methods on the service endpoint interface.  If the implementation bean references a service endpoint interface, that service endpoint interface is used to determine the abstract WSDL contract (portType and bindings).  In this case, the service implementation bean MUST NOT include any JSR-181 annotations other than @WebService(endpointInterface and serviceName atrtributes only) and @HandlerChain..  More information on the @WebService.endpointInterface attribute may be found in 4.1 Annotation: javax.jws.WebService.</description>
+      <description>The implementation bean MAY reference a service endpoint interface by using the @WebService.endpointInterface annotation.  If the implementation bean references a service endpoint interface, it MUST implement all the methods on the service endpoint interface.  If the implementation bean references a service endpoint interface, that service endpoint interface is used to determine the abstract WSDL contract (portType and bindings).  In this case, the service implementation bean MUST NOT include any JSR-181 annotations other than @WebService(endpointInterface and serviceName atrtributes only) and @HandlerChain..  More information on the @WebService.endpointInterface attribute may be found in 4.1 Annotation: jakarta.jws.WebService.</description>
       <location chapter="3" section="1" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

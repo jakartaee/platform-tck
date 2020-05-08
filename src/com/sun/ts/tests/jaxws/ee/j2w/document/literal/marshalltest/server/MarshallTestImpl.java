@@ -35,7 +35,7 @@ import java.math.BigDecimal;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "MarshallTestPort", serviceName = "MarshallTestService", targetNamespace = "http://marshalltestservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTest")
 public class MarshallTestImpl implements MarshallTest {

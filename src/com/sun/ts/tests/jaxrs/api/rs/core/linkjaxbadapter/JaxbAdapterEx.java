@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2014, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.api.rs.core.linkjaxbadapter;
 
-import javax.ws.rs.core.Link;
-import javax.ws.rs.core.Link.JaxbAdapter;
-import javax.ws.rs.core.Link.JaxbLink;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.ws.rs.core.Link;
+import jakarta.ws.rs.core.Link.JaxbAdapter;
+import jakarta.ws.rs.core.Link.JaxbLink;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 public class JaxbAdapterEx extends XmlAdapter<JaxbLinkEx, Link> {
 

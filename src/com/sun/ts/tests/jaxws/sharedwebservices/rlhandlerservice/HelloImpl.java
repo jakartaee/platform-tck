@@ -42,8 +42,8 @@ import java.util.Properties;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
-import javax.annotation.Resource;
+import jakarta.jws.WebService;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "HelloPort", targetNamespace = "http://rlhandlerservice.org/wsdl", serviceName = "RLHandlerService", wsdlLocation = "WEB-INF/wsdl/RLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.Hello")
 

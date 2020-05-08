@@ -163,7 +163,7 @@
 
 
 <!-- mail-resource
-    The mail-resource element describes a javax.mail.Session resource 
+    The mail-resource element describes a jakarta.mail.Session resource 
 
   attributes
     host                                                                       

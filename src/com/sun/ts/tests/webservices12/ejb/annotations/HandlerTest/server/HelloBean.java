@@ -19,7 +19,7 @@ package com.sun.ts.tests.webservices12.ejb.annotations.HandlerTest.server;
 import javax.xml.ws.Holder;
 
 import jakarta.ejb.Stateless;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "HandlerTestService", targetNamespace = "http://handlertestservice.org/wsdl", wsdlLocation = "META-INF/wsdl/HandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.HandlerTest.server.Hello")
 

@@ -25,7 +25,7 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;
@@ -141,7 +141,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("bytesMessageTopicTestsFullMsg")) {
         TestUtil.logTrace(
             "@onMessage - running bytesMessageTopicTestsFullMsg - read and verify the message");
-        bytesMessageTopicTestsFullMsg((javax.jms.BytesMessage) msg);
+        bytesMessageTopicTestsFullMsg((jakarta.jms.BytesMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageFullMsgTopicTestCreate")) {
         TestUtil.logTrace(
@@ -151,7 +151,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageFullMsgTopicTest")) {
         TestUtil.logTrace(
             "@onMessage - running mapMessageFullMsgTopicTest - read and verify the message");
-        mapMessageFullMsgTopicTest((javax.jms.MapMessage) msg);
+        mapMessageFullMsgTopicTest((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsBooleanCreate")) {
         TestUtil.logTrace(
@@ -161,7 +161,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsBoolean")) {
         TestUtil.logTrace(
             "@onMessage - running MapMessageConversionTopicTestsBoolean - read and verify the message");
-        mapMessageConversionTopicTestsBoolean((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsBoolean((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsByteCreate")) {
         TestUtil.logTrace(
@@ -171,7 +171,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsByte")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsByte - read and verify the message");
-        mapMessageConversionTopicTestsByte((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsByte((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsShortCreate")) {
         TestUtil.logTrace(
@@ -181,7 +181,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsShort")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsShort - read and verify the message");
-        mapMessageConversionTopicTestsShort((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsShort((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsCharCreate")) {
         TestUtil.logTrace(
@@ -191,7 +191,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsChar")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsChar - read and verify the message");
-        mapMessageConversionTopicTestsChar((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsChar((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsIntCreate")) {
         TestUtil.logTrace(
@@ -201,7 +201,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsInt")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsInt - read and verify the message");
-        mapMessageConversionTopicTestsInt((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsInt((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsLongCreate")) {
         TestUtil.logTrace(
@@ -211,7 +211,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsLong")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsLong - read and verify the message");
-        mapMessageConversionTopicTestsLong((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsLong((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsFloatCreate")) {
         TestUtil.logTrace(
@@ -221,7 +221,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsFloat")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsFloat - read and verify the message");
-        mapMessageConversionTopicTestsFloat((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsFloat((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsDoubleCreate")) {
         TestUtil.logTrace(
@@ -231,7 +231,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsDouble")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsDouble - read and verify the message");
-        mapMessageConversionTopicTestsDouble((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsDouble((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsStringCreate")) {
         TestUtil.logTrace(
@@ -241,7 +241,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsString")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsString - read and verify the message");
-        mapMessageConversionTopicTestsString((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsString((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsBytesCreate")) {
         TestUtil.logTrace(
@@ -251,7 +251,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
           .equals("mapMessageConversionTopicTestsBytes")) {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsBytes - read and verify the message");
-        mapMessageConversionTopicTestsBytes((javax.jms.MapMessage) msg);
+        mapMessageConversionTopicTestsBytes((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("mapMessageConversionTopicTestsInvFormatStringCreate")) {
         TestUtil.logTrace(
@@ -262,7 +262,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace(
             "@onMessage - running  mapMessageConversionTopicTestsInvFormatString - read and verify the message");
         mapMessageConversionTopicTestsInvFormatString(
-            (javax.jms.MapMessage) msg);
+            (jakarta.jms.MapMessage) msg);
       }
 
       else {
@@ -424,7 +424,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * Description: reads and verifies BytesMessage created by
    * bytesMessageTopicTestsFullMsgCreate
    */
-  private void bytesMessageTopicTestsFullMsg(javax.jms.BytesMessage msg) {
+  private void bytesMessageTopicTestsFullMsg(jakarta.jms.BytesMessage msg) {
     TestUtil.logTrace("MsgBeanMsgTestT1 - @bytesMessageTopicTestsFullMsg");
     String testCase = "bytesMessageTopicTestsFullMsg";
     try {
@@ -685,7 +685,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    *                 
    */
   private void mapMessageFullMsgTopicTest(
-      javax.jms.MapMessage messageReceivedMapMessage) {
+      jakarta.jms.MapMessage messageReceivedMapMessage) {
     String testCase = "mapMessageFullMsgTopicTest";
     boolean pass = true;
     boolean booleanValue = false;
@@ -940,7 +940,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * boolean as in 3.11.3
    */
   private void mapMessageConversionTopicTestsBoolean(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsBoolean";
     try {
       boolean booleanValue = true;
@@ -1179,7 +1179,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
   /*
   */
   private void mapMessageConversionTopicTestsByte(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsByte";
     MapMessage messageSent = null;
     byte byteValue = 127;
@@ -1416,7 +1416,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * 3.11.3
    */
   private void mapMessageConversionTopicTestsShort(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsShort";
     try {
       short shortValue = 1;
@@ -1889,7 +1889,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * proper conversion support as in 3.11.3
    */
   private void mapMessageConversionTopicTestsChar(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsChar";
     try {
       char charValue = 'a';
@@ -2083,7 +2083,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionTopicTestsInt(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsInt";
     try {
 
@@ -2287,7 +2287,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionTopicTestsLong(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsLong";
     try {
 
@@ -2488,7 +2488,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionTopicTestsFloat(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsFloat";
     try {
       float floatValue = 5;
@@ -2686,7 +2686,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionTopicTestsDouble(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsDouble";
 
     try {
@@ -2882,7 +2882,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionTopicTestsString(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsString";
 
     try {
@@ -3108,7 +3108,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * message. Verify the proper conversion support as in 3.11.3
    */
   private void mapMessageConversionTopicTestsBytes(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsBytes";
 
     try {
@@ -3316,7 +3316,7 @@ public class MsgBeanMsgTestT1 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void mapMessageConversionTopicTestsInvFormatString(
-      javax.jms.MapMessage messageReceived) {
+      jakarta.jms.MapMessage messageReceived) {
     String testCase = "mapMessageConversionTopicTestsInvFormatString";
 
     try {
