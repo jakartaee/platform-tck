@@ -49,7 +49,7 @@ grant {
      permission javax.security.auth.AuthPermission "modifyPublicCredentials";
      permission javax.security.auth.AuthPermission "modifyPrivateCredentials";
      permission javax.security.auth.AuthPermission  "createLoginContext.fileRealm";
-     permission jakarta.security.auth.PrivateCredentialPermission 
+     permission javax.security.auth.PrivateCredentialPermission 
                 "com.sun.enterprise.security.auth.login.common.PasswordCredential * \"*\"", "read";
      permission org.osgi.framework.AdminPermission "*", "*";
      permission javax.xml.ws.WebServicePermission  "publishEndpoint";
