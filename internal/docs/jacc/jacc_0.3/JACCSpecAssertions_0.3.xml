@@ -219,7 +219,7 @@
 			<description>If the container is running a Java 1.3 security environment, then it
    must be provided with the implementation of a class the extends the
    abstract class
-   jakarta.security.auth.Policy. If the container is running a Java 1.4
+   javax.security.auth.Policy. If the container is running a Java 1.4
    security environment, then it must also be provided with the
    implementation of a class that extends the abstract class,
    java.security.Policy.</description>
@@ -251,8 +251,8 @@
   jacc.auth.policy.provider  is defined, the application server must
    construct an instance of the class identified by the system 
    property, confirm that the resulting object is an instance of
-   jakarta.security.auth.Policy, and set, using 
-   jakarta.security.auth.Policy.setPolicy(), the resulting
+   javax.security.auth.Policy, and set, using 
+   javax.security.auth.Policy.setPolicy(), the resulting
    object as the corresponding Policy object used by the VM.
 
    If the system property jacc.policy.provider  is defined, an
@@ -730,7 +730,7 @@
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>50</id>
 			<description>A container must rely on the java.security.Policy and or
-   jakarta.security.auth.Policy objects of the VM (available via
+   javax.security.auth.Policy objects of the VM (available via
    java.security.Policy.getPolicy(), and
    jakarta.security.auth.getPolicy() respectively) for all of the policy
    decisions defined by this contract.</description>
@@ -1004,12 +1004,12 @@ patterns.</description>
    access exception, the WebUserDataPermission is excluded. Otherwise
    the permission is not excluded.
      
-   A container that relies on a jakarta.security.auth.Policy provider may
+   A container that relies on a javax.security.auth.Policy provider may
    also use the following technique to determine if 
    WebUserDataPermission is excluded.
 
    a)The container shall call 
-   jakarta.security.auth.Policy.getPermissions() to determine
+   javax.security.auth.Policy.getPermissions() to determine
    the collection of permissions granted independent of Subject.
    To do this, the Subject in the call to getPermissions may be null.
    If getPermission returns an empty PermissionCollection, or if the
@@ -1037,7 +1037,7 @@ patterns.</description>
    correponding to the caller.
 
    Independent of whether a container employs a
-   jakarta.security.auth.Policy or a J2SE 1.4 java.security.Policy
+   javax.security.auth.Policy or a J2SE 1.4 java.security.Policy
    provider for its authorization decisions it may use one of the
    following techniques to determine if a permission has been granted
    to the caller.
@@ -1056,12 +1056,12 @@ patterns.</description>
    access exception, the permission is not granted to the caller.
    Otherwise the permission is granted.
 
-   A container that relies on a jakarta.security.auth.Policy provider may
+   A container that relies on a javax.security.auth.Policy provider may
    also use the following technique to determine if a permission has
    been granted to the caller.
 
    a)The container shall call
-   jakarta.security.auth.Policy.getPermissions() with the
+   javax.security.auth.Policy.getPermissions() with the
    Subject corresponding to the caller. The returned
    PermissionCollection will contain the collection of permissions
    granted to the caller. The container shall call the implies method
@@ -1097,12 +1097,12 @@ patterns.</description>
 			<description>To be compatible with this contract, a J2EE 1.3 container must
    perform all of its policy decisions as defined by this contract by
    interacting with a concrete implementation of the 
-   jakarta.security.auth.Policy abstract class.
+   javax.security.auth.Policy abstract class.
 
    A J2EE 1.4 container must perform all of its policy decisions as
    defined by this contract by interacting with concrete
    implementations of either or both of the java.security.Policy and
-   jakarta.security.auth.Policy abstract classes.</description>
+   javax.security.auth.Policy abstract classes.</description>
 			<location chapter = "4" section = "4.7"/>
 			<comment>container</comment>
 		</assertion>
