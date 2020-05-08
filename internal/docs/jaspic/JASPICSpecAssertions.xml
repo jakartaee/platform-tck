@@ -2246,7 +2246,7 @@ requestPolicy.
 		</assertion>
   		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>JASPIC:SPEC:176</id>
-			<description>  The ServerAuthModule must create an instance of a jakarta.security.auth.login.LoginContext. If the ServerAuthModule passes a custom jakarta.security.auth.login.Configuration object to the constructor, then it also passes a custom value as the name input. 
+			<description>  The ServerAuthModule must create an instance of a javax.security.auth.login.LoginContext. If the ServerAuthModule passes a custom javax.security.auth.login.Configuration object to the constructor, then it also passes a custom value as the name input. 
 
                         </description>      
 			<keywords>
