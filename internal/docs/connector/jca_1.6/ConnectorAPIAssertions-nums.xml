@@ -4120,7 +4120,7 @@
 <class-interface>SecurityContext</class-interface>
 <method name="setupSecurityContext" return-type="void">
 <parameters>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>jakarta.security.auth.Subject</parameter>
 <parameter>jakarta.security.auth.Subject</parameter>
 </parameters>

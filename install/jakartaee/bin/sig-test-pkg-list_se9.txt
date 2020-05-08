@@ -123,7 +123,7 @@ jakarta.resource.spi
 jakarta.resource.spi.endpoint
 jakarta.resource.spi.security
 jakarta.resource.spi.work
-jakarta.security.auth.callback
+javax.security.auth.callback
 jakarta.security.auth.login
 jakarta.security.auth.message
 jakarta.security.auth.message.callback

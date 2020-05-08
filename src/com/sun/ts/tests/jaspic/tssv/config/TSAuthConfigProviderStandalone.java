@@ -21,7 +21,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.config.ServerAuthConfig;
 import jakarta.security.auth.message.AuthException;
-import jakarta.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.CallbackHandler;
 import jakarta.security.auth.message.config.ClientAuthConfig;
 
 import java.util.Map;

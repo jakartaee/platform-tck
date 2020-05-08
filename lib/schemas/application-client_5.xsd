@@ -248,7 +248,7 @@
 	    The callback-handler element names a class provided by
 	    the application.  The class must have a no args
 	    constructor and must implement the
-	    jakarta.security.auth.callback.CallbackHandler
+	    javax.security.auth.callback.CallbackHandler
 	    interface.  The class will be instantiated by the
 	    application client container and used by the container
 	    to collect authentication information from the user.

@@ -19,7 +19,7 @@ package com.sun.ts.tests.jaspic.tssv.config;
 import java.util.logging.Level;
 import jakarta.security.auth.message.config.ServerAuthConfig;
 import jakarta.security.auth.message.AuthException;
-import jakarta.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.CallbackHandler;
 import jakarta.security.auth.message.config.ClientAuthConfig;
 import jakarta.security.auth.message.config.AuthConfigFactory;
 

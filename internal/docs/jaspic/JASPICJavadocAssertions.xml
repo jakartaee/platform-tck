@@ -1092,7 +1092,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1105,7 +1105,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
 </method>
@@ -1122,7 +1122,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1135,7 +1135,7 @@
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
 </method>
@@ -1245,7 +1245,7 @@
 <parameters>
 <parameter>jakarta.security.auth.message.MessagePolicy</parameter>
 <parameter>jakarta.security.auth.message.MessagePolicy</parameter>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
 </method>
@@ -1259,7 +1259,7 @@
 <parameters>
 <parameter>jakarta.security.auth.message.MessagePolicy</parameter>
 <parameter>jakarta.security.auth.message.MessagePolicy</parameter>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
@@ -1286,7 +1286,7 @@
 <parameters>
 <parameter>jakarta.security.auth.message.MessagePolicy</parameter>
 <parameter>jakarta.security.auth.message.MessagePolicy</parameter>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
 </method>
@@ -1300,7 +1300,7 @@
 <parameters>
 <parameter>jakarta.security.auth.message.MessagePolicy</parameter>
 <parameter>jakarta.security.auth.message.MessagePolicy</parameter>
-<parameter>jakarta.security.auth.callback.CallbackHandler</parameter>
+<parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>

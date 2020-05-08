@@ -511,7 +511,7 @@
                         </description>
 <package>jakarta.security.enterprise.authentication.mechanism.http</package>
 <class-interface>HttpMessageContext</class-interface>
-<method name="getHandler" return-type="jakarta.security.auth.callback.CallbackHandler"/>
+<method name="getHandler" return-type="javax.security.auth.callback.CallbackHandler"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>34</id>
@@ -806,7 +806,7 @@
                         </description>
 <package>jakarta.security.enterprise.authentication.mechanism.http</package>
 <class-interface>HttpMessageContextWrapper</class-interface>
-<method name="getHandler" return-type="jakarta.security.auth.callback.CallbackHandler"/>
+<method name="getHandler" return-type="javax.security.auth.callback.CallbackHandler"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>59</id>

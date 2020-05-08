@@ -26,7 +26,7 @@ import jakarta.security.auth.message.config.ServerAuthContext;
 import jakarta.security.auth.message.config.ClientAuthConfig;
 import jakarta.security.auth.message.config.ClientAuthContext;
 import jakarta.security.auth.message.MessageInfo;
-import jakarta.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.CallbackHandler;
 
 import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory;
 import com.sun.ts.tests.jaspic.tssv.config.TSRegistrationListener;
