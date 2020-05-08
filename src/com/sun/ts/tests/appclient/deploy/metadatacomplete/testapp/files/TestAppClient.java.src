@@ -36,8 +36,8 @@ import jakarta.jms.JMSConnectionFactoryDefinition;
 import jakarta.jms.JMSDestinationDefinition;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Queue;
-import javax.persistence.PersistenceUnit;
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceUnit;
+import jakarta.persistence.EntityManagerFactory;
 
 
 @MailSessionDefinition(name = "java:comp/myMailSession",

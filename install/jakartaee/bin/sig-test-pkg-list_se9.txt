@@ -113,10 +113,10 @@ jakarta.mail.util
 javax.management.j2ee
 javax.management.j2ee.statistics
 javax.naming
-javax.persistence
-javax.persistence.criteria
-javax.persistence.metamodel
-javax.persistence.spi
+jakarta.persistence
+jakarta.persistence.criteria
+jakarta.persistence.metamodel
+jakarta.persistence.spi
 jakarta.resource
 jakarta.resource.cci
 jakarta.resource.spi

@@ -31,8 +31,8 @@ import jakarta.jms.Queue;
 import jakarta.mail.Session;
 import jakarta.mail.MailSessionDefinition;
 import javax.naming.InitialContext;
-import javax.persistence.PersistenceUnit;
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceUnit;
+import jakarta.persistence.EntityManagerFactory;
 import javax.xml.ws.WebServiceRef;
 
 import com.sun.ts.lib.harness.EETest;

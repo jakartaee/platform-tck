@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -274,7 +274,7 @@ alt.schema.dir=${lib.dir}/schemas
 ri.lib=${jacc.home}/modules
 lib.dir=${ts.home}/lib
 
-jacc.classes=${ri.lib}/jakarta.security.jacc-api.jar:${ri.lib}/jakarta.security.auth.message-api.jar:${ri.lib}/common-util.jar:${ri.lib}/container-common.jar:${ri.lib}/endorsed/jakarta.annotation-api.jar:${ri.lib}/jakarta.resource-api.jar:${ri.lib}/jmxremote_optional-repackaged.jar:${ri.lib}/ldapbp-repackaged.jar:${ri.lib}/security.jar:${ri.lib}/web-core.jar:${ri.lib}/web-glue.jar:${ri.lib}/websecurity.jar:${ri.lib}/jakarta.servlet-api.jar:${ri.lib}/jakarta.ejb-api.jar:${ri.lib}/javax.persistence.jar:${ri.lib}/jakarta.transaction-api.jar:${ri.lib}/javax.jms-api.jar:${ri.lib}/jakarta.servlet.jsp-api.jar
+jacc.classes=${ri.lib}/jakarta.security.jacc-api.jar:${ri.lib}/jakarta.security.auth.message-api.jar:${ri.lib}/common-util.jar:${ri.lib}/container-common.jar:${ri.lib}/endorsed/jakarta.annotation-api.jar:${ri.lib}/jakarta.resource-api.jar:${ri.lib}/jmxremote_optional-repackaged.jar:${ri.lib}/ldapbp-repackaged.jar:${ri.lib}/security.jar:${ri.lib}/web-core.jar:${ri.lib}/web-glue.jar:${ri.lib}/websecurity.jar:${ri.lib}/jakarta.servlet-api.jar:${ri.lib}/jakarta.ejb-api.jar:${ri.lib}/jakarta.persistence.jar:${ri.lib}/jakarta.transaction-api.jar:${ri.lib}/javax.jms-api.jar:${ri.lib}/jakarta.servlet.jsp-api.jar
 
 ts.run.classpath=${ts.home}/classes:${database.classes}:${jacc.classes}
 

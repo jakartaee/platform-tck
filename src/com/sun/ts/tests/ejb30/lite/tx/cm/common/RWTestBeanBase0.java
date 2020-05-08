@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;

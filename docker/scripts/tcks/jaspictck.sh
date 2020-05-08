@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,11 +45,11 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaspictckwork#g" ts.jte
 
 echo "persistence.unit.name.2=JPATCK2" >> ts.jte
 echo "persistence.unit.name=CTS-EM" >> ts.jte
-echo "javax.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider" >> ts.jte
-echo "javax.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver" >> ts.jte
-echo "javax.persistence.jdbc.url=jdbc:derby://localhost:1527/derbyDB;create=true" >> ts.jte
-echo "javax.persistence.jdbc.user=cts1" >> ts.jte
-echo "javax.persistence.jdbc.password=cts1" >> ts.jte
+echo "jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider" >> ts.jte
+echo "jakarta.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver" >> ts.jte
+echo "jakarta.persistence.jdbc.url=jdbc:derby://localhost:1527/derbyDB;create=true" >> ts.jte
+echo "jakarta.persistence.jdbc.user=cts1" >> ts.jte
+echo "jakarta.persistence.jdbc.password=cts1" >> ts.jte
 echo "jpa.provider.implementation.specific.properties=eclipselink.logging.level\=OFF" >> ts.jte
 echo "persistence.second.level.caching.supported=true" >> ts.jte
 

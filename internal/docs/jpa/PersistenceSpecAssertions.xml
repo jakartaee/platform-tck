@@ -355,7 +355,7 @@
                     <section id="5.15"
                              name="Bulk Update and Delete Operations"/>
                     <section id="6"
-                             name="Constructing Strongly-typed Queries using the javax.persistence.metamodel Interfaces"/>
+                             name="Constructing Strongly-typed Queries using the jakarta.persistence.metamodel Interfaces"/>
                     <section id="7"
                              name="Use of the Criteria API with Strings to Reference Attributes"/>
                     <section id="8" name="Query Modification"/>
@@ -468,15 +468,15 @@
                     <section id="5"
                              name="Responsibilities of the Persistence Provider"/>
                     <section id="5.1"
-                             name="javax.persistence.spi.PersistenceProvider"/>
+                             name="jakarta.persistence.spi.PersistenceProvider"/>
                     <section id="5.2"
-                             name="javax.persistence.spi.ProviderUtil"/>
+                             name="jakarta.persistence.spi.ProviderUtil"/>
                     <section id="5.3" name="Persistence Unit Properties"/>
                     <section id="6"
-                             name="javax.persistence.spi.PersistenceUnitInfo Interface"/>
+                             name="jakarta.persistence.spi.PersistenceUnitInfo Interface"/>
                     <section id="6.1"
-                             name="javax.persistence.spi.ClassTransformer Interface"/>
-                    <section id="7" name="javax.persistence.Persistence Class"/>
+                             name="jakarta.persistence.spi.ClassTransformer Interface"/>
+                    <section id="7" name="jakarta.persistence.Persistence Class"/>
                     <section id="8" name="PersistenceUtil Interface"/>
                     <section id="8.1"
                              name="Contracts for Determining the Load State of an Entity or Entity Attribute"/>
@@ -3543,7 +3543,7 @@
                 context when an entity manager with a transaction-scoped
                 persistence context is used. If there is no
                 transaction context, the
-                javax.persistence.TransactionRequiredException is thrown.
+                jakarta.persistence.TransactionRequiredException is thrown.
             </description>
             <location chapter="3" section="1.1"/>
         </assertion>
@@ -3554,7 +3554,7 @@
                 LockModeType.NONE must be invoked within a
                 transaction. If there is no transaction or if the entity manager
                 has not been joined to the transaction,
-                the javax.persistence.TransactionRequiredException is thrown.
+                the jakarta.persistence.TransactionRequiredException is thrown.
             </description>
             <location chapter="3" section="1.1"/>
         </assertion>
@@ -5249,7 +5249,7 @@
             <description>
                 Element collections and relationships owned by the entity that
                 are contained in join tables will be
-                locked if the javax.persistence.lock.scope property is specified
+                locked if the jakarta.persistence.lock.scope property is specified
                 with a value of
                 PessimisticLockScope.EXTENDED.
             </description>
@@ -5812,7 +5812,7 @@
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:1446</id>
             <description>
-                javax.persistence.lock.scope
+                jakarta.persistence.lock.scope
             </description>
             <location chapter="3" section="4.4.3"/>
             <sub-assertions>
@@ -5846,7 +5846,7 @@
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:1447</id>
             <description>
-                javax.persistence.lock.timeout
+                jakarta.persistence.lock.timeout
             </description>
             <location chapter="3" section="4.4.3"/>
             <sub-assertions>
@@ -5915,7 +5915,7 @@
                         Vendors are permitted to support the use of additional,
                         vendor-specific locking hints.
                         Vendor-specific
-                        hints must not use the javax.persistence namespace.
+                        hints must not use the jakarta.persistence namespace.
                         Vendor-specific hints must be ignored if
                         they are not understood.
                     </description>
@@ -6952,7 +6952,7 @@
                 using the
                 Persistence.createEntityManagerFactory
                 method, the validation mode can be specified using the
-                javax.persistence.
+                jakarta.persistence.
                 validation.mode map key, which will override the value specified
                 (or defaulted) in the
                 persistence.xml file.
@@ -6972,10 +6972,10 @@
             <id>PERSISTENCE:SPEC:1288</id>
             <description>If the auto validation mode is specified by the
                 validation-mode element or the
-                javax.persistence.
+                jakarta.persistence.
                 validation.mode property, or if neither the validation-mode
                 element nor the
-                javax.persistence.validation.mode property is specified, and a
+                jakarta.persistence.validation.mode property is specified, and a
                 Bean Validation provider
                 is present in the environment, the persistence provider must
                 perform the automatic validation of
@@ -6998,7 +6998,7 @@
             <id>PERSISTENCE:SPEC:1290</id>
             <description>If the callback validation mode is specified by the
                 validation-mode element or the
-                javax.persistence.
+                jakarta.persistence.
                 validation.mode property, the persistence provider must perform
                 the lifecycle event
                 validation as described in section 3.6.1.2.
@@ -7011,7 +7011,7 @@
             <description>It is an error if there is no Bean Validation provider
                 present in
                 the environment, and the provider must throw the
-                PersistenceException if the javax.persistence.
+                PersistenceException if the jakarta.persistence.
                 validation.mode property value "callback" has been passed to the
                 Persistence.
                 createEntityManagerFactory method.
@@ -7023,7 +7023,7 @@
             <id>PERSISTENCE:SPEC:1292</id>
             <description>If the none validation mode is specified by the
                 validation-mode element or the
-                javax.persistence.
+                jakarta.persistence.
                 validation.mode property, the persistence provider must not
                 perform lifecycle event
                 validation.
@@ -7083,7 +7083,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1294.1</id>
                     <description>
-                        javax.persistence.validation.group.pre-persist
+                        jakarta.persistence.validation.group.pre-persist
                     </description>
                     <location chapter="3" section="6.1.2"/>
                 </assertion>
@@ -7091,7 +7091,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1294.2</id>
-                    <description>javax.persistence.validation.group.pre-update
+                    <description>jakarta.persistence.validation.group.pre-update
                     </description>
                     <location chapter="3" section="6.1.2"/>
                 </assertion>
@@ -7099,7 +7099,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1294.3</id>
-                    <description>javax.persistence.validation.group.pre-remove
+                    <description>jakarta.persistence.validation.group.pre-remove
                     </description>
                     <location chapter="3" section="6.1.2"/>
                 </assertion>
@@ -7232,7 +7232,7 @@
             <id>PERSISTENCE:SPEC:1478</id>
             <description>The map key used by the container must be the standard
                 property name
-                javax.persistence.validation.
+                jakarta.persistence.validation.
                 factory.
             </description>
             <location chapter="3" section="6.2"/>
@@ -7252,7 +7252,7 @@
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:1479</id>
             <description>The map key used must be the standard property name
-                javax.persistence.validation.factory
+                jakarta.persistence.validation.factory
             </description>
             <location chapter="3" section="6.2"/>
         </assertion>
@@ -7323,8 +7323,8 @@
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:2432</id>
-            <description>The standard properties javax.persistence.fetchgraph
-                and javax.persistence.
+            <description>The standard properties jakarta.persistence.fetchgraph
+                and jakarta.persistence.
                 loadgraph are used to specify such graphs to queries and find
                 operations.
             </description>
@@ -7363,7 +7363,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:2436</id>
-            <description>When the javax.persistence.fetchgraph property is used
+            <description>When the jakarta.persistence.fetchgraph property is used
                 to specify an entity graph,
                 attributes that are specified by attribute nodes of the entity
                 graph are treated as FetchType.EAGER
@@ -7520,7 +7520,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:2441</id>
-            <description>When the javax.persistence.loadgraph property is used
+            <description>When the jakarta.persistence.loadgraph property is used
                 to specify an entity graph, attributes
                 that are specified by attribute nodes of the entity graph are
                 treated as FetchType.EAGER and
@@ -7945,7 +7945,7 @@
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:1482</id>
             <description>An attribute converter must implement the
-                javax.persistence.AttributeConverter interface.
+                jakarta.persistence.AttributeConverter interface.
             </description>
             <location chapter="3" section="8"/>
         </assertion>
@@ -8271,7 +8271,7 @@
             <description>If either the shared-cache-mode element is not
                 specified in the persistence.xml file or the
                 value of the shared-cache-mode element is UNSPECIFIED, and the
-                javax.persistence.sharedCache.mode
+                jakarta.persistence.sharedCache.mode
                 property is not specified, the behavior is not defined, and
                 provider-specific defaults may apply.
             </description>
@@ -8281,7 +8281,7 @@
                    status="active" testable="false">
             <id>PERSISTENCE:SPEC:1500</id>
             <description>If the shared-cache-mode element and the
-                javax.persistence.sharedCache.mode property are not
+                jakarta.persistence.sharedCache.mode property are not
                 specified, the semantics of the Cacheable annotation (and XML
                 equivalent) are undefined.
             </description>
@@ -13505,7 +13505,7 @@
             <id>PERSISTENCE:SPEC:1688</id>
             <description>
                 The metamodel class X_ must be annotated with the
-                javax.persistence.StaticMetamodel annotation.
+                jakarta.persistence.StaticMetamodel annotation.
             </description>
             <location chapter="6" section="2.1.1"/>
         </assertion>
@@ -13603,7 +13603,7 @@
             <id>PERSISTENCE:SPEC:1693</id>
             <description>
                 Import statements must be included for the needed
-                javax.persistence.metamodel types as
+                jakarta.persistence.metamodel types as
                 appropriate
             </description>
             <location chapter="6" section="2.1.1"/>
@@ -13613,7 +13613,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1693.1</id>
                     <description>
-                        javax.persistence.metamodel.SingularAttribute
+                        jakarta.persistence.metamodel.SingularAttribute
                     </description>
                     <location chapter="6" section="2.1.1"/>
                 </assertion>
@@ -13622,7 +13622,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1693.2</id>
                     <description>
-                        javax.persistence.metamodel.CollectionAttribute
+                        jakarta.persistence.metamodel.CollectionAttribute
                     </description>
                     <location chapter="6" section="2.1.1"/>
                 </assertion>
@@ -13631,7 +13631,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1693.3</id>
                     <description>
-                        javax.persistence.metamodel.SetAttribute
+                        jakarta.persistence.metamodel.SetAttribute
                     </description>
                     <location chapter="6" section="2.1.1"/>
                 </assertion>
@@ -13640,7 +13640,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1693.4</id>
                     <description>
-                        javax.persistence.metamodel.ListAttribute
+                        jakarta.persistence.metamodel.ListAttribute
                     </description>
                     <location chapter="6" section="2.1.1"/>
                 </assertion>
@@ -13649,7 +13649,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1693.5</id>
                     <description>
-                        javax.persistence.metamodel.MapAttribute
+                        jakarta.persistence.metamodel.MapAttribute
                     </description>
                     <location chapter="6" section="2.1.1"/>
                 </assertion>
@@ -13718,7 +13718,7 @@
             <id>PERSISTENCE:SPEC:1700</id>
             <description>
                 A criteria query is constructed through the creation and
-                modification of a javax.persistence.
+                modification of a jakarta.persistence.
                 criteria.CriteriaQuery object.
             </description>
             <location chapter="6" section="5"/>
@@ -14775,7 +14775,7 @@
             <description>
                 A bulk update query is constructed through the creation and
                 modification of a
-                javax.persistence.criteria.CriteriaUpdate object.
+                jakarta.persistence.criteria.CriteriaUpdate object.
             </description>
             <location chapter="6" section="5.15"/>
         </assertion>
@@ -14803,7 +14803,7 @@
             <description>
                 A bulk delete query is constructed through the creation and
                 modification of a
-                javax.persistence.criteria.CriteriaDelete object.
+                jakarta.persistence.criteria.CriteriaDelete object.
             </description>
             <location chapter="6" section="5.15"/>
         </assertion>
@@ -15164,11 +15164,11 @@
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:851</id>
             <description>Outside the JavaEE container environment, the
-                javax.persistence.Persistence class is the
+                jakarta.persistence.Persistence class is the
                 bootstrap class that provides access to an entity manager
                 factory. The application creates an entity
                 manager factory by called the createEntityManagerFactory method
-                of the javax.persistence.Persistence
+                of the jakarta.persistence.Persistence
                 class.
             </description>
             <location chapter="7" section="3.2"/>
@@ -15225,8 +15225,8 @@
             <id>PERSISTENCE:SPEC:2503</id>
             <description>
                 Vendors should use vendor namespaces for properties (e.g., com.acme.persistence.logging).
-                Entries that make use of the namespace javax.persistence and its subnamespaces must not be
-                used for vendor-specific information. The namespace javax.persistence is reserved for use by this specification.
+                Entries that make use of the namespace jakarta.persistence and its subnamespaces must not be
+                used for vendor-specific information. The namespace jakarta.persistence is reserved for use by this specification.
             </description>
             <location chapter="7" section="4"/>
         </assertion>
@@ -15253,7 +15253,7 @@
                    status="active" testable="false">
             <id>PERSISTENCE:SPEC:1806</id>
             <description>Entries that make use of the namespace
-                javax.persistence and its subnamespaces must not be
+                jakarta.persistence and its subnamespaces must not be
                 used for vendor-specific information.
             </description>
             <location chapter="7" section="4"/>
@@ -16945,7 +16945,7 @@
             <id>PERSISTENCE:SPEC:933</id>
             <description>The provider element specifies the name of the
                 persistence provider's
-                javax.persistence.spi.PersistenceProvider class.
+                jakarta.persistence.spi.PersistenceProvider class.
             </description>
             <location chapter="8" section="2.1.4"/>
         </assertion>
@@ -17317,7 +17317,7 @@
                            defined-by="technology" status="active"
                            testable="false">
                     <id>PERSISTENCE:SPEC:1868.1</id>
-                    <description>javax.persistence.lock.timeout — value in
+                    <description>jakarta.persistence.lock.timeout — value in
                         milliseconds for pessimistic lock
                         timeout.
                     </description>
@@ -17327,7 +17327,7 @@
                            defined-by="technology" status="active"
                            testable="false">
                     <id>PERSISTENCE:SPEC:1868.2</id>
-                    <description>javax.persistence.query.timeout — value in
+                    <description>jakarta.persistence.query.timeout — value in
                         milliseconds for query timeout.
                     </description>
                     <location chapter="8" section="2.1.9"/>
@@ -17336,7 +17336,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1868.3</id>
-                    <description>javax.persistence.validation.group.pre-persist—
+                    <description>jakarta.persistence.validation.group.pre-persist—
                         groups that are targeted
                         for validation upon the pre-persist event (overrides the
                         default behavior).
@@ -17347,7 +17347,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1868.4</id>
-                    <description>javax.persistence.validation.group.pre-update—
+                    <description>jakarta.persistence.validation.group.pre-update—
                         groups that are targeted
                         for validation upon the pre-update event (overrides the
                         default behavior).
@@ -17358,7 +17358,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1868.5</id>
-                    <description>javax.persistence.validation.group.pre-remove—
+                    <description>jakarta.persistence.validation.group.pre-remove—
                         groups that are targeted
                         for validation upon the pre-remove event (overrides the
                         default behavior).
@@ -17380,7 +17380,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1869.1</id>
-                    <description>javax.persistence.jdbc.driver — fully qualified
+                    <description>jakarta.persistence.jdbc.driver — fully qualified
                         name of the driver class
                     </description>
                     <location chapter="8" section="2.1.9"/>
@@ -17389,7 +17389,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1869.2</id>
-                    <description>javax.persistence.jdbc.url — driver-specific
+                    <description>jakarta.persistence.jdbc.url — driver-specific
                         URL
                     </description>
                     <location chapter="8" section="2.1.9"/>
@@ -17398,7 +17398,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1869.3</id>
-                    <description>javax.persistence.jdbc.user — username used by
+                    <description>jakarta.persistence.jdbc.user — username used by
                         database connection
                     </description>
                     <location chapter="8" section="2.1.9"/>
@@ -17407,7 +17407,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1869.4</id>
-                    <description>javax.persistence.jdbc.password — password for
+                    <description>jakarta.persistence.jdbc.password — password for
                         database connection validation
                     </description>
                     <location chapter="8" section="2.1.9"/>
@@ -17420,8 +17420,8 @@
             <id>PERSISTENCE:SPEC:2452</id>
             <description>Scripts for use in schema generation may be specified
                 using the
-                javax.persistence.schema-generation.create-script-source and
-                javax.persistence.schema-generation.drop-script-source
+                jakarta.persistence.schema-generation.create-script-source and
+                jakarta.persistence.schema-generation.drop-script-source
                 properties.
             </description>
             <location chapter="8" section="2.1.9"/>
@@ -17431,7 +17431,7 @@
                    testable="true">
             <id>PERSISTENCE:SPEC:2453</id>
             <description>A script to specify SQL for the bulk loading of data
-                may be specified by the javax.persistence.sql-load-script-source
+                may be specified by the jakarta.persistence.sql-load-script-source
                 property.
             </description>
             <location chapter="8" section="2.1.9"/>
@@ -17449,7 +17449,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1870.1</id>
                     <description>
-                        javax.persistence.schema-generation.create-script-source
+                        jakarta.persistence.schema-generation.create-script-source
                         — name of a script packaged as part of the persistence
                         application or a string corresponding to a file URL
                         string that designates a script.
@@ -17461,7 +17461,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1870.2</id>
                     <description>
-                        javax.persistence.schema-generation.drop-script-source —
+                        jakarta.persistence.schema-generation.drop-script-source —
                         name of a script packaged as part of the persistence
                         application or a string corresponding to a file URL
                         string that designates a script.
@@ -17472,7 +17472,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1870.3</id>
-                    <description>javax.persistence.sql-load-script-source —name
+                    <description>jakarta.persistence.sql-load-script-source —name
                         of a script packaged as part of the persistence unit or
                         a string corresponding to a file URL string that
                         designates a script.
@@ -17533,7 +17533,7 @@
                            status="active" testable="true">
                     <id>PERSISTENCE:SPEC:2485.1</id>
                     <description>The
-                        javax.persistence.schema-generation.database.action
+                        jakarta.persistence.schema-generation.database.action
                         property
                         specifies the action to be taken by the persistence
                         provider with regard to the database artifacts.
@@ -17551,7 +17551,7 @@
                            status="active" testable="true">
                     <id>PERSISTENCE:SPEC:2485.2</id>
                     <description>The
-                        javax.persistence.schema-generation.scripts.action
+                        jakarta.persistence.schema-generation.scripts.action
                         property specifies
                         which scripts are to be generated by the persistence
                         provider. The values for this property
@@ -17569,7 +17569,7 @@
                            status="active" testable="true">
                     <id>PERSISTENCE:SPEC:2485.3</id>
                     <description>The
-                        javax.persistence.schema-generation.create-source
+                        jakarta.persistence.schema-generation.create-source
                         property specifies
                         whether the creation of database artifacts is to occur
                         on the basis of the object/relational
@@ -17578,7 +17578,7 @@
                         metadata, script, metadata-then-script,
                         script-then-metadata. If this
                         property is not specified, and a script is specified by
-                        the javax.persistence.
+                        the jakarta.persistence.
                         schema-generation.create-script-source property, the
                         script (only)
                         will be used for schema generation; otherwise if this
@@ -17600,7 +17600,7 @@
                            status="active" testable="true">
                     <id>PERSISTENCE:SPEC:2485.4</id>
                     <description>The
-                        javax.persistence.schema-generation.drop-source property
+                        jakarta.persistence.schema-generation.drop-source property
                         specifies
                         whether the dropping of database artifacts is to occur
                         on the basis of the object/relational mapping
@@ -17608,7 +17608,7 @@
                         values for this property are metadata, script,
                         metadata-then-script, script-then-metadata. If this
                         property is not specified, and a script is specified by
-                        the javax.persistence.
+                        the jakarta.persistence.
                         schema-generation.drop-script-source property, the
                         script (only) will
                         be used for the dropping of database artifacts;
@@ -17631,7 +17631,7 @@
                            status="active" testable="true">
                     <id>PERSISTENCE:SPEC:2485.5</id>
                     <description>
-                        javax.persistence.schema-generation.scripts.drop-target
+                        jakarta.persistence.schema-generation.scripts.drop-target
                         If scripts are to be generated, the target locations for
                         the writing of these scripts must be specified.
                         These targets are specified as strings corresponding to
@@ -17785,7 +17785,7 @@
                    status="active" testable="false">
             <id>PERSISTENCE:SPEC:1871</id>
             <description>Once the container has read the persistence metadata,
-                it determines the javax.persistence.
+                it determines the jakarta.persistence.
                 spi.PersistenceProvider implementation class for each deployed
                 named persistence
                 unit. The container then creates an instance of the
@@ -17826,7 +17826,7 @@
                 instance via the map that is passed as an
                 argument to the createContainerEntityManagerFactory call. The
                 map key used must be the standard property
-                name javax.persistence.validation.factory.
+                name jakarta.persistence.validation.factory.
             </description>
             <location chapter="9" section="1"/>
         </assertion>
@@ -17839,7 +17839,7 @@
                 passing this BeanManager instance via the
                 map that is passed as an argument to the
                 createContainerEntityManagerFactory call. The map key used must
-                be the standard property name javax.persistence.bean.manager.
+                be the standard property name jakarta.persistence.bean.manager.
             </description>
             <location chapter="9" section="1"/>
         </assertion>
@@ -17931,7 +17931,7 @@
             <description>
                 The provider supplies the provider configuration file by
                 creating a text file named
-                javax.persistence.spi.PersistenceProvider and placing it in the
+                jakarta.persistence.spi.PersistenceProvider and placing it in the
                 META-INF/services directory of one of
                 its JAR files.
             </description>
@@ -17943,7 +17943,7 @@
             <description>
                 The contents of the file should be the name of the provider
                 implementation class of the
-                javax.persistence.spi.PersistenceProvider interface
+                jakarta.persistence.spi.PersistenceProvider interface
             </description>
             <location chapter="9" section="2"/>
         </assertion>
@@ -17979,7 +17979,7 @@
                         unit in
                         the persistence.xml file and has not been overridden by
                         a different
-                        javax.persistence.provider
+                        jakarta.persistence.provider
                         property value included in the Map passed to the
                         createEntity ManagerFactory method.
                     </description>
@@ -17990,7 +17990,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1883.2</id>
                     <description>
-                        The javax.persistence.provider property was included in
+                        The jakarta.persistence.provider property was included in
                         the Map passed to
                         createEntityManagerFactory and the value of the property
                         is the provider’s implementation
@@ -18058,7 +18058,7 @@
                     <description>Its implementation class has been specified in
                         the provider element for that persistence unit in the
                         persistence.xml file and has not been overridden by a
-                        different javax.persistence.
+                        different jakarta.persistence.
                         provider property value included in the Map passed to
                         the generateSchema method.
                     </description>
@@ -18068,7 +18068,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:2478</id>
-                    <description>The javax.persistence.provider property was
+                    <description>The jakarta.persistence.provider property was
                         included in the Map passed to generateSchema and the
                         value of the property is the provider's implementation
                         class.
@@ -18352,12 +18352,12 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.3</id>
                     <description>The
-                        javax.persistence.schema-generation.database.action
+                        jakarta.persistence.schema-generation.database.action
                         property specifies the action to be taken by the
                         persistence provider with regard to the database
                         artifacts. The
                         values for this property are "none", "create",
-                        "drop-and-create", "drop". If the javax.persistence.
+                        "drop-and-create", "drop". If the jakarta.persistence.
                         schema-generation.database.action property is not
                         specified, no schema generation actions must be taken on
                         the database.
@@ -18369,7 +18369,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.4</id>
                     <description>The
-                        javax.persistence.schema-generation.scripts.action
+                        jakarta.persistence.schema-generation.scripts.action
                         property specifies which scripts are to be generated by
                         the persistence provider. The values for this property
                         are "none", "create", "drop-and-create", "drop". Scripts
@@ -18385,7 +18385,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.5</id>
                     <description>The
-                        javax.persistence.schema-generation.create-source
+                        jakarta.persistence.schema-generation.create-source
                         property specifies whether the creation of database
                         artifacts is to occur on the basis of the
                         object/relational mapping metadata, DDL script, or a
@@ -18393,7 +18393,7 @@
                         "metadata", "script", "metadata-then-script",
                         "script-then-metadata". If this property is not
                         specified, and a script is specified by the
-                        javax.persistence.
+                        jakarta.persistence.
                         schema-generation.create-script-source property, the
                         script (only) will be used for schema generation;
                         otherwise if this property is not specified, schema
@@ -18414,14 +18414,14 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.6</id>
                     <description>The
-                        javax.persistence.schema-generation.drop-source property
+                        jakarta.persistence.schema-generation.drop-source property
                         specifies whether the dropping of database artifacts is
                         to occur on the basis of the object/relational mapping
                         metadata, DDL script, or a combination of the two. The
                         values for this property are "metadata", "script",
                         "metadata-then-script", "script-then-metadata". If this
                         property is not specified, and a script is specified by
-                        the javax.persistence.
+                        the jakarta.persistence.
                         schema-generation.drop-script-source property, the
                         script (only) will be used for the dropping of database
                         artifacts; otherwise if this property is not specified,
@@ -18443,12 +18443,12 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.7</id>
                     <description>
-                        javax.persistence.schema-generation.create-database-schemas
+                        jakarta.persistence.schema-generation.create-database-schemas
                         In Java EE environments, it is anticipated that the Java
                         EE platform provider may wish to control the creation of
                         database schemas rather than delegate this task to the
                         persistence provider. The
-                        javax.persistence.schema-generation.create-database-schemas
+                        jakarta.persistence.schema-generation.create-database-schemas
                         property specifies whether the persistence provider is
                         to create the database schema(s) in addition to creating
                         database objects such as tables, sequences, constraints,
@@ -18467,7 +18467,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.8</id>
                     <description>The
-                        javax.persistence.schema-generation.scripts.create-target
+                        jakarta.persistence.schema-generation.scripts.create-target
                         property specifies a java.IO.Writer
                         configured for use by the persistence provider for
                         output of the DDL script or a string specifying
@@ -18485,7 +18485,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.9</id>
                     <description>The
-                        javax.persistence.schema-generation.drop-target
+                        jakarta.persistence.schema-generation.drop-target
                         property specifies a java.IO.Writer
                         configured for use by the persistence provider for
                         output of the DDL script or a string specifying
@@ -18502,14 +18502,14 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.10</id>
-                    <description>javax.persistence.database-product-name,
-                        javax.persistence.database-major-version,
-                        javax.persistence.database-minor-version
+                    <description>jakarta.persistence.database-product-name,
+                        jakarta.persistence.database-major-version,
+                        jakarta.persistence.database-minor-version
                         - If scripts are to be generated by the
                         persistence provider and a connection to the
                         target database
                         is not supplied, the
-                        javax.persistence.database-product-name property must
+                        jakarta.persistence.database-product-name property must
                         be specified. The value of this property should be the
                         value returned for the target
                         database by
@@ -18521,13 +18521,13 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.11</id>
-                    <description>javax.persistence.database-product-name,
-                        javax.persistence.database-major-version,
-                        javax.persistence.database-minor-version - If sufficient
+                    <description>jakarta.persistence.database-product-name,
+                        jakarta.persistence.database-major-version,
+                        jakarta.persistence.database-minor-version - If sufficient
                         database version information is not included in the
                         result of this method, the
-                        javax.persistence.
-                        database-major-version and javax.persistence.database-
+                        jakarta.persistence.
+                        database-major-version and jakarta.persistence.database-
                         minor-version properties should be specified as needed.
                         These should contain the
                         values returned by the JDBC getDatabaseMajorVersion and
@@ -18541,8 +18541,8 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.12</id>
                     <description>The
-                        javax.persistence.schema-generation.create-script-source
-                        and javax.persistence.schema-generation.drop-script-source properties are used
+                        jakarta.persistence.schema-generation.create-script-source
+                        and jakarta.persistence.schema-generation.drop-script-source properties are used
                         for script
                         execution. In Java EE
                         container environments, it is generally expected that
@@ -18559,8 +18559,8 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.13</id>
                     <description>
-                        javax.persistence.schema-generation.create-script-source,
-                        javax.persistence.schema-generation.drop-script-source
+                        jakarta.persistence.schema-generation.create-script-source,
+                        jakarta.persistence.schema-generation.drop-script-source
                         If DDL scripts are to be used in Java SE
                         environments
                         or if the Java EE container
@@ -18575,7 +18575,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.14</id>
                     <description>The
-                        javax.persistence.schema-generation.create-script-source
+                        jakarta.persistence.schema-generation.create-script-source
                         property specifies a
                         java.IO.Reader configured for reading of the DDL script
                         or a
@@ -18589,7 +18589,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.15</id>
                     <description>The
-                        javax.persistence.schema-generation.drop-script-source
+                        jakarta.persistence.schema-generation.drop-script-source
                         property specifies a java.IO.Reader
                         configured for reading of the DDL script or a string
                         designating a file URL for the DDL script.
@@ -18600,8 +18600,8 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1898.16</id>
-                    <description>javax.persistence.schema-generation.connection
-                        The javax.persistence.schema-generation.connection
+                    <description>jakarta.persistence.schema-generation.connection
+                        The jakarta.persistence.schema-generation.connection
                         property specifies
                         the JDBC connection to be used for schema generation.
                         This is intended for use in Java EE
@@ -18627,7 +18627,7 @@
                    defined-by="technology" status="active"
                    testable="true">
             <id>PERSISTENCE:SPEC:1899</id>
-            <description>javax.persistence.sql-load-script-source
+            <description>jakarta.persistence.sql-load-script-source
             </description>
             <location chapter="9" section="4.1"/>
             <sub-assertions>
@@ -18648,7 +18648,7 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1899.2</id>
-                    <description>The javax.persistence.sql-load-script-source
+                    <description>The jakarta.persistence.sql-load-script-source
                         property specifies a java.IO.Reader
                         configured for reading of the SQL load script for
                         database initialization or a string
@@ -18742,7 +18742,7 @@
                 is passed as an argument to the
                 Persistence.createEntityManagerFactory call. The map
                 key used must be the standard property name
-                javax.persistence.validation.factory.
+                jakarta.persistence.validation.factory.
             </description>
             <location chapter="9" section="5"/>
         </assertion>
@@ -18765,7 +18765,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:981</id>
-            <description>The interface javax.persistence.spi.PersistenceProvider
+            <description>The interface jakarta.persistence.spi.PersistenceProvider
                 is implemented by the persistence
                 provider.
             </description>
@@ -18784,7 +18784,7 @@
                            defined-by="technology" status="active"
                            testable="false">
                     <id>PERSISTENCE:SPEC:983</id>
-                    <description>and by the javax.persistence.Persistence class
+                    <description>and by the jakarta.persistence.Persistence class
                         in Java SE environments.
                     </description>
                     <location chapter="9" section="5.1"/>
@@ -18793,7 +18793,7 @@
                            defined-by="technology" status="active"
                            testable="false">
                     <id>PERSISTENCE:SPEC:984</id>
-                    <description>The javax.persistence.spi.PersistenceProvider
+                    <description>The jakarta.persistence.spi.PersistenceProvider
                         implementation is not intended to be
                         used
                         by the application.
@@ -18850,7 +18850,7 @@
                            defined-by="technology" status="removed"
                            testable="false">
                     <id>PERSISTENCE:SPEC:987.1</id>
-                    <description>javax.persistence.lock.timeout — integer value
+                    <description>jakarta.persistence.lock.timeout — integer value
                         in milliseconds for pessimistic
                         lock timeout or string corresponding to integer value.
                         This is a hint only.
@@ -18861,7 +18861,7 @@
                            defined-by="technology" status="removed"
                            testable="false">
                     <id>PERSISTENCE:SPEC:987.2</id>
-                    <description>javax.persistence.query.timeout — integer value
+                    <description>jakarta.persistence.query.timeout — integer value
                         in milliseconds for query timeout
                         or string corresponding to integer value. This is a hint
                         only.
@@ -18872,7 +18872,7 @@
                            defined-by="technology" status="removed"
                            testable="false">
                     <id>PERSISTENCE:SPEC:988</id>
-                    <description>javax.persistence.provider — string
+                    <description>jakarta.persistence.provider — string
                         corresponding to the provider element in
                         the persistence.xml.
                     </description>
@@ -18882,7 +18882,7 @@
                            defined-by="technology" status="removed"
                            testable="false">
                     <id>PERSISTENCE:SPEC:989</id>
-                    <description>javax.persistence.transactionType — string
+                    <description>jakarta.persistence.transactionType — string
                         corresponding to the transaction-type
                         attribute in the persistence.xml.
                     </description>
@@ -18892,7 +18892,7 @@
                            defined-by="technology" status="removed"
                            testable="false">
                     <id>PERSISTENCE:SPEC:990</id>
-                    <description>javax.persistence.jtaDataSource — string
+                    <description>jakarta.persistence.jtaDataSource — string
                         corresponding to the jta-data-source
                         element
                         in the persistence.xml.
@@ -18903,7 +18903,7 @@
                            defined-by="technology" status="removed"
                            testable="true">
                     <id>PERSISTENCE:SPEC:987.3</id>
-                    <description>javax.persistence.sharedCache.mode — string
+                    <description>jakarta.persistence.sharedCache.mode — string
                         corresponding to the
                         shared-cache-mode element in the persistence.xml.
                     </description>
@@ -18913,7 +18913,7 @@
                            defined-by="technology" status="removed"
                            testable="true">
                     <id>PERSISTENCE:SPEC:987.4</id>
-                    <description>javax.persistence.validation.mode — string
+                    <description>jakarta.persistence.validation.mode — string
                         corresponding to the validation-mode
                         element
                         in the persistence.xml.
@@ -18924,9 +18924,9 @@
                            defined-by="technology" status="removed"
                            testable="true">
                     <id>PERSISTENCE:SPEC:987.5</id>
-                    <description>javax.persistence.validation.group.pre-persist
+                    <description>jakarta.persistence.validation.group.pre-persist
                         — string corresponding to the
-                        javax.persistence.validation.group.pre-persist property
+                        jakarta.persistence.validation.group.pre-persist property
                         in the persistence.xml.
                     </description>
                     <location chapter="9" section="5.3"/>
@@ -18935,9 +18935,9 @@
                            defined-by="technology" status="removed"
                            testable="true">
                     <id>PERSISTENCE:SPEC:987.6</id>
-                    <description>javax.persistence.validation.group.pre-update —
+                    <description>jakarta.persistence.validation.group.pre-update —
                         string corresponding to the
-                        javax.persistence.validation.group.pre-update property
+                        jakarta.persistence.validation.group.pre-update property
                         in the persistence.xml.
                     </description>
                     <location chapter="9" section="5.3"/>
@@ -18946,9 +18946,9 @@
                            defined-by="technology" status="removed"
                            testable="true">
                     <id>PERSISTENCE:SPEC:987.7</id>
-                    <description>javax.persistence.validation.group.pre-remove —
+                    <description>jakarta.persistence.validation.group.pre-remove —
                         string corresponding to the
-                        javax.persistence.validation.group.pre-remove property
+                        jakarta.persistence.validation.group.pre-remove property
                         in the persistence.xml.
                     </description>
                     <location chapter="9" section="5.3"/>
@@ -18968,8 +18968,8 @@
                    status="removed" testable="false">
             <id>PERSISTENCE:SPEC:1908</id>
             <description>Entries that make use of the namespace
-                javax.persistence and its subnamespaces must not be used
-                for vendor-specific information. The namespace javax.persistence
+                jakarta.persistence and its subnamespaces must not be used
+                for vendor-specific information. The namespace jakarta.persistence
                 is reserved for use by this
                 specification.
             </description>
@@ -18979,7 +18979,7 @@
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:1909</id>
             <description>
-                The enum javax.persistence.spi.PersistenceUnitTransactionType
+                The enum jakarta.persistence.spi.PersistenceUnitTransactionType
                 defines whether the entity managers
                 created by the factory will be JTA or resource-local entity
                 managers.
@@ -18990,7 +18990,7 @@
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:1910</id>
             <description>
-                The enum javax.persistence.SharedCacheMode defines the use of
+                The enum jakarta.persistence.SharedCacheMode defines the use of
                 caching. The persistence. xml
                 shared-cache-mode element has no default value.
             </description>
@@ -19009,7 +19009,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:1912</id>
-            <description>The enum javax.persistence.ValidationMode defines the
+            <description>The enum jakarta.persistence.ValidationMode defines the
                 validation mode.
             </description>
             <location chapter="9" section="6"/>
@@ -19017,7 +19017,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="false">
             <id>PERSISTENCE:SPEC:1913</id>
-            <description>The javax.persistence.spi.ClassTransformer interface is
+            <description>The jakarta.persistence.spi.ClassTransformer interface is
                 implemented by a persistence provider
                 that wants to transform entities and managed classes at class
                 load time or at class redefinition time.
@@ -19097,7 +19097,7 @@
                            testable="false">
                     <id>PERSISTENCE:SPEC:1919.1</id>
                     <description>
-                        javax.persistence.lock.timeout — integer value in
+                        jakarta.persistence.lock.timeout — integer value in
                         milliseconds for pessimistic lock timeout
                         or
                         string corresponding to integer value. This corresponds
@@ -19111,7 +19111,7 @@
                            testable="false">
                     <id>PERSISTENCE:SPEC:1919.2</id>
                     <description>
-                        javax.persistence.query.timeout — integer value in
+                        jakarta.persistence.query.timeout — integer value in
                         milliseconds for query timeout or string
                         corresponding to integer value. This corresponds to the
                         property of the same name in the persistence.xml, and is
@@ -19124,7 +19124,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.3</id>
                     <description>
-                        javax.persistence.provider — string corresponding to the
+                        jakarta.persistence.provider — string corresponding to the
                         provider element in the
                         persistence.xml
                     </description>
@@ -19135,7 +19135,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.4</id>
                     <description>
-                        javax.persistence.transactionType — string corresponding
+                        jakarta.persistence.transactionType — string corresponding
                         to the transaction type attribute
                         in
                         the persistence.xml.
@@ -19147,7 +19147,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.5</id>
                     <description>
-                        javax.persistence.jtaDataSource — string corresponding
+                        jakarta.persistence.jtaDataSource — string corresponding
                         to the jta-data-source element in the
                         persistence.xml.
                     </description>
@@ -19158,7 +19158,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.6</id>
                     <description>
-                        javax.persistence.nonJtaDataSource — string
+                        jakarta.persistence.nonJtaDataSource — string
                         corresponding to the non-jta-data-source element
                         in
                         the persistence.xml.
@@ -19170,7 +19170,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.7</id>
                     <description>
-                        javax.persistence.sharedCache.mode — string
+                        jakarta.persistence.sharedCache.mode — string
                         corresponding to the shared-cache-mode element
                         in
                         the persistence.xml.
@@ -19182,7 +19182,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.8</id>
                     <description>
-                        javax.persistence.validation.mode — string corresponding
+                        jakarta.persistence.validation.mode — string corresponding
                         to the validation mode element in
                         the
                         persistence.xml. The value is "auto", "callback", or
@@ -19195,9 +19195,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.9</id>
                     <description>
-                        javax.persistence.validation.group.pre-persist — string
+                        jakarta.persistence.validation.group.pre-persist — string
                         corresponding to the
-                        javax.persistence.validation.group.pre-persist property
+                        jakarta.persistence.validation.group.pre-persist property
                         in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19207,9 +19207,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.10</id>
                     <description>
-                        javax.persistence.validation.group.pre-update — string
+                        jakarta.persistence.validation.group.pre-update — string
                         corresponding to the
-                        javax.persistence.validation.group.pre-update property
+                        jakarta.persistence.validation.group.pre-update property
                         in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19219,9 +19219,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.11</id>
                     <description>
-                        javax.persistence.validation.group.pre-remove — string
+                        jakarta.persistence.validation.group.pre-remove — string
                         corresponding to the
-                        javax.persistence.validation.group.pre-remove property
+                        jakarta.persistence.validation.group.pre-remove property
                         in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19231,10 +19231,10 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.12</id>
                     <description>
-                        javax.persistence.schema-generation.create-script-source
+                        jakarta.persistence.schema-generation.create-script-source
                         - string
                         corresponding to the
-                        javax.persistence.ddl-create-script-source property in
+                        jakarta.persistence.ddl-create-script-source property in
                         the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19244,9 +19244,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.13</id>
                     <description>
-                        javax.persistence.schema-generation.drop-script-source
+                        jakarta.persistence.schema-generation.drop-script-source
                         —string corresponding to the
-                        javax.persistence.ddl-drop-script-source property in the
+                        jakarta.persistence.ddl-drop-script-source property in the
                         persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19255,9 +19255,9 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.14</id>
-                    <description>javax.persistence.sql-load-script-source
+                    <description>jakarta.persistence.sql-load-script-source
                         —string corresponding to the
-                        javax.persistence.sql-load-script-source property in the
+                        jakarta.persistence.sql-load-script-source property in the
                         persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19267,9 +19267,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.21</id>
                     <description>
-                        javax.persistence.schema-generation.database.action —
+                        jakarta.persistence.schema-generation.database.action —
                         string corresponding to the
-                        javax.persistence.schema-generation.database.action
+                        jakarta.persistence.schema-generation.database.action
                         property in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19279,9 +19279,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.22</id>
                     <description>
-                        javax.persistence.schema-generation.scripts.action —
+                        jakarta.persistence.schema-generation.scripts.action —
                         string corresponding to the
-                        javax.persistence.schema-generation.scripts.action
+                        jakarta.persistence.schema-generation.scripts.action
                         property in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19291,9 +19291,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.23</id>
                     <description>
-                        javax.persistence.schema-generation.create-source —
+                        jakarta.persistence.schema-generation.create-source —
                         string corresponding to the
-                        javax.persistence.schema-generation.create-source
+                        jakarta.persistence.schema-generation.create-source
                         property in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19302,9 +19302,9 @@
                            defined-by="technology" status="active"
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.24</id>
-                    <description>javax.persistence.schema-generation.drop-source
+                    <description>jakarta.persistence.schema-generation.drop-source
                         — string corresponding to the
-                        javax.persistence.schema-generation.drop-source property
+                        jakarta.persistence.schema-generation.drop-source property
                         in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19314,9 +19314,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.25</id>
                     <description>
-                        javax.persistence.schema-generation.scripts.create-target
+                        jakarta.persistence.schema-generation.scripts.create-target
                         —string corresponding to the
-                        javax.persistence.schema-generation.scripts.create-target
+                        jakarta.persistence.schema-generation.scripts.create-target
                         property in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19326,9 +19326,9 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.21</id>
                     <description>
-                        javax.persistence.schema-generation.scripts.drop-target
+                        jakarta.persistence.schema-generation.scripts.drop-target
                         — string corresponding to the
-                        javax.persistence.schema-generation.scripts.drop-target
+                        jakarta.persistence.schema-generation.scripts.drop-target
                         property in the persistence.xml.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19339,7 +19339,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.15</id>
                     <description>
-                        javax.persistence.jdbc.driver — value is the fully
+                        jakarta.persistence.jdbc.driver — value is the fully
                         qualified name of the driver class.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19349,7 +19349,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.16</id>
                     <description>
-                        javax.persistence.jdbc.url — string corresponding to the
+                        jakarta.persistence.jdbc.url — string corresponding to the
                         driver-specific URL.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19359,7 +19359,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.17</id>
                     <description>
-                        javax.persistence.jdbc.user — value is the username used
+                        jakarta.persistence.jdbc.user — value is the username used
                         by database connection.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19369,7 +19369,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.18</id>
                     <description>
-                        javax.persistence.jdbc.password — value is the password
+                        jakarta.persistence.jdbc.password — value is the password
                         for database connection validation.
                     </description>
                     <location chapter="9" section="7"/>
@@ -19379,7 +19379,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.19</id>
                     <description>
-                        javax.persistence.dataSource — value is instance of
+                        jakarta.persistence.dataSource — value is instance of
                         javax.sql.DataSource to be used for the
                         specified persistence unit.
                     </description>
@@ -19390,7 +19390,7 @@
                            testable="true">
                     <id>PERSISTENCE:SPEC:1919.20</id>
                     <description>
-                        javax.persistence.validation.factory — value is instance
+                        jakarta.persistence.validation.factory — value is instance
                         of
                         jakarta.validation.ValidatorFactory
                     </description>
@@ -19423,10 +19423,10 @@
             <description>
                 Vendors should use vendor namespaces for properties (e.g.,
                 com.acme.persistence.logging).
-                Entries that make use of the namespace javax.persistence and its
+                Entries that make use of the namespace jakarta.persistence and its
                 subnamespaces must not be
                 used for vendor-specific information. The namespace
-                javax.persistence is reserved for use by
+                jakarta.persistence is reserved for use by
                 this specification.
             </description>
             <location chapter="9" section="7"/>
@@ -21089,7 +21089,7 @@
             <id>PERSISTENCE:SPEC:1981</id>
             <description>If the shared-cache-mode element is not specified in
                 the persistence.xml file and the
-                javax.persistence.sharedCache.mode property is not specified
+                jakarta.persistence.sharedCache.mode property is not specified
                 when the entity manager
                 factory for the persistence unit is created, the semantics of
                 the Cacheable annotation are undefined.

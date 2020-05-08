@@ -35,7 +35,7 @@ as follows:
 cp jaxws-api.jar jaxb-api.jar ${tomcat.home}/common/endorsed
 
 cp commonj.sdo.jar eclipselink.jar FastInfoset.jar gmbal-api-only.jar \
-    ha-api.jar javax.annotation-api.jar javax.persistence.jar \
+    ha-api.jar javax.annotation-api.jar jakarta.persistence.jar \
     javax.xml.soap-api.jar jaxb-core.jar jaxb-impl.jar jaxb-jxc.jar \
     jaxb-xjc.jar jaxws-eclipselink-plugin.jar jaxws-rt.jar jaxwstck.jar \
     jaxws-tools.jar jsr181-api.jar mail.jar management-api.jar mimepull.jar \

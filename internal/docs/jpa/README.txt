@@ -45,15 +45,15 @@ Setup and Configuration of the JPA TCK
    example assumes the use of Derby as the Database. The values will have to
    be those that are pertinent to your environment and configuration.
 
-    jpa.classes=/ri/jlib/jpa/javax.persistence_2.2.0.v201706121819.jar:/ri/jlib/eclipselink.jar
+    jpa.classes=/ri/jlib/jpa/jakarta.persistence_2.2.0.v201706121819.jar:/ri/jlib/eclipselink.jar
 
     jdbc.driver.classes=/derby/lib/derbyclient.jar
     jdbc.db=derby
-    javax.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
-    javax.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver
-    javax.persistence.jdbc.url=jdbc:derby://localhost:1527/thedb;create=true
-    javax.persistence.jdbc.user=usr1
-    javax.persistence.jdbc.password=pass1
+    jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
+    jakarta.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver
+    jakarta.persistence.jdbc.url=jdbc:derby://localhost:1527/thedb;create=true
+    jakarta.persistence.jdbc.user=usr1
+    jakarta.persistence.jdbc.password=pass1
     db.supports.sequence=true
     persistence.second.level.caching.supported=true
 

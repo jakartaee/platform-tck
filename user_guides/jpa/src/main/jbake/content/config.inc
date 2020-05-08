@@ -66,9 +66,9 @@ postgresql
 ----
 --
 +
-  d.  Set `javax.persistence.provider`, `javax.persistence.jdbc.driver`,
-  `javax.persistence.jdbc.url`, `javax.persistence.jdbc.user`, and
-  `javax.persistence.jdbc.password` to the appropriate values for the
+  d.  Set `jakarta.persistence.provider`, `jakarta.persistence.jdbc.driver`,
+  `jakarta.persistence.jdbc.url`, `jakarta.persistence.jdbc.user`, and
+  `jakarta.persistence.jdbc.password` to the appropriate values for the
   database and persistence provider under test. +
   These properties are passed to the Persistence provider during the
   creation of the `EntityManagerFactory`. Any additional values, for

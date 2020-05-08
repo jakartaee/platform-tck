@@ -10,7 +10,7 @@
 
       DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
       
-      Copyright (c) 2009-2013 Oracle and/or its affiliates. All rights reserved.
+      Copyright (c) 2009-2020 Oracle and/or its affiliates. All rights reserved.
       
       The contents of this file are subject to the terms of either the GNU
       General Public License Version 2 only ("GPL") or the Common Development
@@ -2053,9 +2053,9 @@
             provider.  Vendor-specific properties may be included in
             the set of properties.  Properties that are not recognized
             by a vendor must be ignored.  Entries that make use of the 
-            namespace javax.persistence and its subnamespaces must not
+            namespace jakarta.persistence and its subnamespaces must not
             be used for vendor-specific properties.  The namespace
-            javax.persistence is reserved for use by the specification.
+            jakarta.persistence is reserved for use by the specification.
             
           </xsd:documentation>
         </xsd:annotation>

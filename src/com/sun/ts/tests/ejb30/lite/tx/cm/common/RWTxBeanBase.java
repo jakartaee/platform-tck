@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
 
 public class RWTxBeanBase {
