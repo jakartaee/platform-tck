@@ -38,7 +38,7 @@ import com.sun.ts.lib.util.sec.security.auth.PrincipalComparator;
 import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
-import jakarta.security.auth.PrivateCredentialPermission;
+import javax.security.auth.PrivateCredentialPermission;
 import javax.security.auth.Subject;
 import javax.security.auth.x500.X500Principal;
 import java.io.FilePermission;
@@ -829,7 +829,7 @@ public class PolicyFile extends java.security.Policy {
           // XXX special case PrivateCredentialPermission-SELF
           Permission perm;
           if (pe.permission
-              .equals("jakarta.security.auth.PrivateCredentialPermission")
+              .equals("javax.security.auth.PrivateCredentialPermission")
               && pe.name.endsWith(" self")) {
             pe.name = pe.name.substring(0, pe.name.indexOf("self")) + SELF;
           }
