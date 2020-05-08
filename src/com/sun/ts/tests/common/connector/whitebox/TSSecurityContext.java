@@ -20,7 +20,7 @@ import jakarta.resource.spi.work.SecurityContext;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.UnsupportedCallbackException;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import java.security.Principal;
 import jakarta.security.auth.message.callback.CallerPrincipalCallback;
 import jakarta.security.auth.message.callback.PasswordValidationCallback;

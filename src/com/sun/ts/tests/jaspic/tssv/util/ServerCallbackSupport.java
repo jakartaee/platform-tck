@@ -22,7 +22,7 @@ import java.util.logging.Level;
 import java.util.Iterator;
 import java.util.Set;
 import java.security.Principal;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.UnsupportedCallbackException;

@@ -18,7 +18,7 @@ package com.sun.ts.tests.securityapi.ham.sam.obtainbean;
 
 import java.util.Collections;
 
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.AuthStatus;

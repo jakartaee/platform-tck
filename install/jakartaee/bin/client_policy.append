@@ -34,7 +34,7 @@ grant {
     permission javax.management.MBeanPermission "*", "*";
     permission java.lang.RuntimePermission "getProtectionDomain";
     permission java.lang.RuntimePermission "getClassLoader";
-    permission jakarta.security.auth.AuthPermission "getSubject";
+    permission javax.security.auth.AuthPermission "getSubject";
     permission java.security.SecurityPermission   "getPolicy";
     permission java.security.SecurityPermission   "getProperty.authconfigprovider.factory";
     permission java.security.SecurityPermission   "setProperty.authconfigprovider.factory";

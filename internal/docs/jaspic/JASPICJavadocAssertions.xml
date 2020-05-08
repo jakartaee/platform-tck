@@ -60,7 +60,7 @@
 <method name="cleanSubject" return-type="void">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
 </assertion>
@@ -72,7 +72,7 @@
 <method name="cleanSubject" return-type="void">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
 </method>
@@ -88,7 +88,7 @@
 <method name="secureRequest" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
 </assertion>
@@ -100,7 +100,7 @@
 <method name="secureRequest" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
 </method>
@@ -116,8 +116,8 @@
 <method name="validateResponse" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
 </assertion>
@@ -129,8 +129,8 @@
 <method name="validateResponse" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
 </method>
@@ -314,7 +314,7 @@
 <method name="cleanSubject" return-type="void">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
 </assertion>
@@ -326,7 +326,7 @@
 <method name="cleanSubject" return-type="void">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
 </method>
@@ -342,7 +342,7 @@
 <method name="secureResponse" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
 </assertion>
@@ -354,7 +354,7 @@
 <method name="secureResponse" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
 </method>
@@ -370,8 +370,8 @@
 <method name="validateRequest" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
 </assertion>
@@ -383,8 +383,8 @@
 <method name="validateRequest" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
 <parameter>jakarta.security.auth.message.MessageInfo</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
 </method>
@@ -398,7 +398,7 @@
 <class-interface>CallerPrincipalCallback</class-interface>
 <method name="CallerPrincipalCallback" return-type="CallerPrincipalCallback">
 <parameters>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 <parameter>java.security.Principal</parameter>
 </parameters>
 </method>
@@ -412,7 +412,7 @@
 <class-interface>CallerPrincipalCallback</class-interface>
 <method name="CallerPrincipalCallback" return-type="CallerPrincipalCallback">
 <parameters>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
 </method>
@@ -442,7 +442,7 @@
                         </description>
 <package>jakarta.security.auth.message.callback</package>
 <class-interface>CallerPrincipalCallback</class-interface>
-<method name="getSubject" return-type="jakarta.security.auth.Subject"/>
+<method name="getSubject" return-type="javax.security.auth.Subject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>35</id>
@@ -491,7 +491,7 @@
                         </description>
 <package>jakarta.security.auth.message.callback</package>
 <class-interface>GroupPrincipalCallback</class-interface>
-<method name="getSubject" return-type="jakarta.security.auth.Subject"/>
+<method name="getSubject" return-type="javax.security.auth.Subject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>40</id>
@@ -502,7 +502,7 @@
 <class-interface>GroupPrincipalCallback</class-interface>
 <method name="GroupPrincipalCallback" return-type="GroupPrincipalCallback">
 <parameters>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 <parameter>java.lang.String[]</parameter>
 </parameters>
 </method>
@@ -542,7 +542,7 @@
                         </description>
 <package>jakarta.security.auth.message.callback</package>
 <class-interface>PasswordValidationCallback</class-interface>
-<method name="getSubject" return-type="jakarta.security.auth.Subject"/>
+<method name="getSubject" return-type="javax.security.auth.Subject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>45</id>
@@ -562,7 +562,7 @@
 <class-interface>PasswordValidationCallback</class-interface>
 <method name="PasswordValidationCallback" return-type="PasswordValidationCallback">
 <parameters>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>char[]</parameter>
 </parameters>
@@ -1160,7 +1160,7 @@
 <method name="getAuthContext" return-type="jakarta.security.auth.message.config.ClientAuthContext">
 <parameters>
 <parameter>java.lang.String</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
 </method>
@@ -1173,7 +1173,7 @@
 <method name="getAuthContext" return-type="jakarta.security.auth.message.config.ClientAuthContext">
 <parameters>
 <parameter>java.lang.String</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>
@@ -1205,7 +1205,7 @@
 <method name="getAuthContext" return-type="jakarta.security.auth.message.config.ServerAuthContext">
 <parameters>
 <parameter>java.lang.String</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
 </method>
@@ -1218,7 +1218,7 @@
 <method name="getAuthContext" return-type="jakarta.security.auth.message.config.ServerAuthContext">
 <parameters>
 <parameter>java.lang.String</parameter>
-<parameter>jakarta.security.auth.Subject</parameter>
+<parameter>javax.security.auth.Subject</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
 <throw>jakarta.security.auth.message.AuthException</throw>

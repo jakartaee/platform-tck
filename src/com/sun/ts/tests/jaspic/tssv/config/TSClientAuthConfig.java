@@ -21,7 +21,7 @@ import jakarta.security.auth.message.MessageInfo;
 import jakarta.security.auth.message.config.ClientAuthContext;
 import jakarta.security.auth.message.AuthException;
 
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import java.util.Map;
 import java.util.logging.Level;

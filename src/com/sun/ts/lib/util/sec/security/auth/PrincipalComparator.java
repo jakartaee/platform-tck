@@ -39,7 +39,7 @@ package com.sun.ts.lib.util.sec.security.auth;
  * itself, or both at the same time.
  *
  * @see java.security.Principal
- * @see jakarta.security.auth.Subject
+ * @see javax.security.auth.Subject
  */
 public interface PrincipalComparator {
   /**
@@ -50,5 +50,5 @@ public interface PrincipalComparator {
    * @return true if the specified <code>Subject</code> is implied by this
    *         object, or false otherwise.
    */
-  boolean implies(jakarta.security.auth.Subject subject);
+  boolean implies(javax.security.auth.Subject subject);
 }

@@ -17,7 +17,7 @@
 package com.sun.ts.tests.jaspic.tssv.util;
 
 import java.security.Principal;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.config.AuthConfigProvider;
 import jakarta.security.auth.message.config.RegistrationListener;

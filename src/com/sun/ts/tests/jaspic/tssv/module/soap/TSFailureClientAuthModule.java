@@ -18,7 +18,7 @@ package com.sun.ts.tests.jaspic.tssv.module.soap;
 
 import java.util.Map;
 import java.util.logging.Level;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 
 import jakarta.security.auth.message.MessagePolicy;

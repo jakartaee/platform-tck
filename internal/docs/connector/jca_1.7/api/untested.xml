@@ -1109,7 +1109,7 @@
       <class-interface>ManagedConnection</class-interface>
       <method name="getConnection" return-type="java.lang.Object">
         <parameters>
-          <parameter>jakarta.security.auth.Subject</parameter>
+          <parameter>javax.security.auth.Subject</parameter>
           <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
         </parameters>
       </method>
@@ -1121,7 +1121,7 @@
       <class-interface>ManagedConnection</class-interface>
       <method name="getConnection" return-type="java.lang.Object">
         <parameters>
-          <parameter>jakarta.security.auth.Subject</parameter>
+          <parameter>javax.security.auth.Subject</parameter>
           <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
         </parameters>
         <throw>jakarta.resource.ResourceException</throw>
@@ -1258,7 +1258,7 @@
       <method name="matchManagedConnections" return-type="jakarta.resource.spi.ManagedConnection">
         <parameters>
           <parameter>java.util.Set</parameter>
-          <parameter>jakarta.security.auth.Subject</parameter>
+          <parameter>javax.security.auth.Subject</parameter>
           <parameter>jakarta.resource.spi.ConnectionRequestInfo</parameter>
         </parameters>
         <throw>jakarta.resource.ResourceException</throw>

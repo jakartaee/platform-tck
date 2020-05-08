@@ -325,24 +325,24 @@ public final class TSPolicy extends java.security.Policy {
    * @assertion_ids: JACC:SPEC:97; JACC:JAVADOC:30
    *
    * @test_Strategy: 1) call
-   *                 PolicyContext.getContext("jakarta.security.auth.Subject.container)
+   *                 PolicyContext.getContext("javax.security.auth.Subject.container)
    *                 2) verify the return value is an instance of
-   *                 jakarta.security.auth.Subject
+   *                 javax.security.auth.Subject
    *
    */
   private void policyContextKey3() {
     try {
       // Get Subject
       Object o = PolicyContext
-          .getContext("jakarta.security.auth.Subject.container");
-      if (o instanceof jakarta.security.auth.Subject) {
+          .getContext("javax.security.auth.Subject.container");
+      if (o instanceof javax.security.auth.Subject) {
         logger.log(Level.INFO, "PolicyContext.getContext() " + "test passed for"
-            + "jakarta.security.auth.Subject.container");
+            + "javax.security.auth.Subject.container");
         logger.log(Level.INFO, "PolicyContextKey3: PASSED");
       } else {
         logger.log(Level.INFO,
             "PolicyContext.getContext()" + "returned incorrect value for key "
-                + "jakarta.security.auth.Subject.container");
+                + "javax.security.auth.Subject.container");
         logger.log(Level.INFO, "PolicyContextKey3: FAILED");
       }
     } catch (Exception e) {
