@@ -23,9 +23,9 @@ import java.util.Iterator;
 import java.util.Set;
 import java.security.Principal;
 import jakarta.security.auth.Subject;
-import jakarta.security.auth.callback.Callback;
-import jakarta.security.auth.callback.CallbackHandler;
-import jakarta.security.auth.callback.UnsupportedCallbackException;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.UnsupportedCallbackException;
 import jakarta.security.auth.message.MessageInfo;
 import javax.servlet.http.HttpServletRequest;
 

@@ -21,7 +21,7 @@ import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.MessageInfo;
 import jakarta.security.auth.message.module.ServerAuthModule;
 import jakarta.security.auth.message.MessagePolicy;
-import jakarta.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.CallbackHandler;
 import jakarta.security.auth.Subject;
 
 import javax.servlet.http.HttpServletResponseWrapper;

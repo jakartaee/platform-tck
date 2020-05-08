@@ -2507,7 +2507,7 @@
       <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
          <id>285</id>
 
-         <description>When a JAXR client specifies a digital certificate as a credential, it must do so using an instance of the jakarta.security.auth.x500. X500PrivateCredential class as defined by the JAAS API.</description>
+         <description>When a JAXR client specifies a digital certificate as a credential, it must do so using an instance of the javax.security.auth.x500. X500PrivateCredential class as defined by the JAAS API.</description>
 
          <location chapter="10" section="5.2" />
       </assertion>

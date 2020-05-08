@@ -16,10 +16,10 @@
 
 package com.sun.ts.lib.implementation.sun.javaee;
 
-import jakarta.security.auth.callback.Callback;
-import jakarta.security.auth.callback.CallbackHandler;
-import jakarta.security.auth.callback.NameCallback;
-import jakarta.security.auth.callback.PasswordCallback;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.NameCallback;
+import javax.security.auth.callback.PasswordCallback;
 
 public class AuthDataCallbackHandler implements CallbackHandler {
   private String user;

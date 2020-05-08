@@ -22,7 +22,7 @@ import jakarta.security.auth.message.config.ClientAuthContext;
 import jakarta.security.auth.message.AuthException;
 
 import jakarta.security.auth.Subject;
-import jakarta.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.CallbackHandler;
 import java.util.Map;
 import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;

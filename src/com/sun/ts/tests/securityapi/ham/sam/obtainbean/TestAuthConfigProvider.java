@@ -18,7 +18,7 @@ package com.sun.ts.tests.securityapi.ham.sam.obtainbean;
 
 import java.util.Map;
 
-import jakarta.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.CallbackHandler;
 import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.config.AuthConfigProvider;

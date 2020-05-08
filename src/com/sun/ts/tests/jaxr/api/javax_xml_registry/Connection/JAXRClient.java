@@ -38,7 +38,7 @@ import com.sun.javatest.Status;
 import javax.xml.registry.*;
 import javax.xml.registry.infomodel.*;
 import java.net.PasswordAuthentication;
-import jakarta.security.auth.x500.X500PrivateCredential;
+import javax.security.auth.x500.X500PrivateCredential;
 
 public class JAXRClient extends JAXRCommonClient {
   public static void main(String[] args) {
@@ -260,18 +260,18 @@ public class JAXRClient extends JAXRCommonClient {
 
         for (Iterator i = credentials.iterator(); i.hasNext();) {
           Object credential = i.next();
-          if (credential instanceof jakarta.security.auth.x500.X500PrivateCredential) {
+          if (credential instanceof javax.security.auth.x500.X500PrivateCredential) {
             // good!
-            X500PrivateCredential cred = (jakarta.security.auth.x500.X500PrivateCredential) credential;
+            X500PrivateCredential cred = (javax.security.auth.x500.X500PrivateCredential) credential;
             debug.add("alias is: " + cred.getAlias());
           }
         }
         credentials = conn.getCredentials();
         for (Iterator i = credentials.iterator(); i.hasNext();) {
           Object credential = i.next();
-          if (credential instanceof jakarta.security.auth.x500.X500PrivateCredential) {
+          if (credential instanceof javax.security.auth.x500.X500PrivateCredential) {
             // good!
-            X500PrivateCredential cred = (jakarta.security.auth.x500.X500PrivateCredential) credential;
+            X500PrivateCredential cred = (javax.security.auth.x500.X500PrivateCredential) credential;
             debug.add("alias returned: " + cred.getAlias());
             if (cred.getAlias().equals(jaxrAlias)) {
               pass = true;

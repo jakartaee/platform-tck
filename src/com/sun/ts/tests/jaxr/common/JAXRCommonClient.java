@@ -338,9 +338,9 @@ public class JAXRCommonClient extends ServiceEETest implements Serializable
       // ok now I need an X500PrivateCredential
       X509Certificate cert = (X509Certificate) certificate;
 
-      jakarta.security.auth.x500.X500PrivateCredential privateCredential = null;
+      javax.security.auth.x500.X500PrivateCredential privateCredential = null;
 
-      privateCredential = new jakarta.security.auth.x500.X500PrivateCredential(
+      privateCredential = new javax.security.auth.x500.X500PrivateCredential(
           cert, key, useralias);
       credentials.add(privateCredential);
     } catch (Exception e) {

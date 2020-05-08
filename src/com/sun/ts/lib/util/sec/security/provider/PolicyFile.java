@@ -40,7 +40,7 @@ import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import jakarta.security.auth.PrivateCredentialPermission;
 import jakarta.security.auth.Subject;
-import jakarta.security.auth.x500.X500Principal;
+import javax.security.auth.x500.X500Principal;
 import java.io.FilePermission;
 import java.net.SocketPermission;
 import java.net.NetPermission;
@@ -49,8 +49,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.awt.AWTPermission;
 /*
 import jakarta.security.auth.AuthPermission;
-import jakarta.security.auth.kerberos.ServicePermission;
-import jakarta.security.auth.kerberos.DelegationPermission;
+import javax.security.auth.kerberos.ServicePermission;
+import javax.security.auth.kerberos.DelegationPermission;
 import java.io.SerializablePermission;
 import java.util.logging.LoggingPermission;
 import java.sql.SQLPermission;
@@ -240,11 +240,11 @@ import com.sun.ts.lib.util.sec.net.www.ParseUtil;
  * If the grant clause contains principal information, <b>${{self}}</b> will be
  * replaced with that same principal information. For example, <b>${{self}}</b>
  * in BarPermission will be replaced by
- * <b>jakarta.security.auth.x500.X500Principal "cn=Duke"</b> in the following
+ * <b>javax.security.auth.x500.X500Principal "cn=Duke"</b> in the following
  * grant clause:
  *
  * <pre>
- *    grant principal jakarta.security.auth.x500.X500Principal "cn=Duke" {
+ *    grant principal javax.security.auth.x500.X500Principal "cn=Duke" {
  *      permission BarPermission "... ${{self}} ...";
  *    };
  * </pre>
@@ -276,7 +276,7 @@ public class PolicyFile extends java.security.Policy {
 
   private static final String SELF = "${{self}}";
 
-  private static final String X500PRINCIPAL = "jakarta.security.auth.x500.X500Principal";
+  private static final String X500PRINCIPAL = "javax.security.auth.x500.X500Principal";
 
   private static final String POLICY = "java.security.policy";
 

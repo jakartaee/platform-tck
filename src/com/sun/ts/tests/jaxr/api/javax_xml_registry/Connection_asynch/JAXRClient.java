@@ -38,7 +38,7 @@ import com.sun.javatest.Status;
 import javax.xml.registry.*;
 import javax.xml.registry.infomodel.*;
 import java.net.PasswordAuthentication;
-import jakarta.security.auth.x500.X500PrivateCredential;
+import javax.security.auth.x500.X500PrivateCredential;
 
 public class JAXRClient extends JAXRCommonClient {
   public static void main(String[] args) {
