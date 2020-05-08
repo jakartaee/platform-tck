@@ -20,7 +20,7 @@ import jakarta.resource.*;
 import jakarta.resource.spi.*;
 import jakarta.resource.spi.security.PasswordCredential;
 import java.io.*;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import java.util.*;
 import com.sun.ts.tests.common.connector.util.*;
 

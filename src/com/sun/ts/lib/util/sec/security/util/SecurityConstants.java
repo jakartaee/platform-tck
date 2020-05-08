@@ -186,11 +186,11 @@ public final class SecurityConstants {
   public static final SocketPermission LOCAL_LISTEN_PERMISSION = new SocketPermission(
       "localhost:1024-", SOCKET_LISTEN_ACTION);
 
-  // jakarta.security.auth.Subject
+  // javax.security.auth.Subject
   public static final AuthPermission DO_AS_PERMISSION = new AuthPermission(
       "doAs");
 
-  // jakarta.security.auth.Subject
+  // javax.security.auth.Subject
   public static final AuthPermission DO_AS_PRIVILEGED_PERMISSION = new AuthPermission(
       "doAsPrivileged");
 }

@@ -347,7 +347,7 @@ as the corresponding Policy object used by the JRE.
 			<id>24</id>
 			<description>A J2EE 1.3 application
 server must install or bundle, such that it is used by every JRE of the application
-server, a jakarta.security.auth.SubjectDomainCombiner whose
+server, a javax.security.auth.SubjectDomainCombiner whose
 combine method returns protection domains constructed using the permission
 collections returned by jakarta.security.auth.Policy.getPermisions.
 It is recommended that this requirement also be satisfied by J2EE 1.4 application
@@ -1389,8 +1389,8 @@ container to fail in its processing of the associated request..
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>97</id>
 			<description>All EJB and Servlet containers must register a PolicyContextHandler whose
-getContext method returns a jakarta.security.auth.Subject object when invoked with
-the key jakarta.security.auth.Subject.container. When this handler is activated
+getContext method returns a javax.security.auth.Subject object when invoked with
+the key javax.security.auth.Subject.container. When this handler is activated
 as the result of a policy decision performed by a container before dispatch
 into a component, this handler must return a Subject containing the principals
 			</description>

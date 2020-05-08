@@ -21,7 +21,7 @@ import jakarta.resource.spi.*;
 import jakarta.resource.spi.security.PasswordCredential;
 import jakarta.resource.spi.SecurityException;
 import java.io.*;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import java.util.*;
 import com.sun.ts.tests.common.connector.util.*;
 import com.sun.ts.lib.util.*;

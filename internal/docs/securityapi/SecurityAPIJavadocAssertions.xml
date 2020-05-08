@@ -491,7 +491,7 @@
                         </description>
 <package>jakarta.security.enterprise.authentication.mechanism.http</package>
 <class-interface>HttpMessageContext</class-interface>
-<method name="getClientSubject" return-type="jakarta.security.auth.Subject"/>
+<method name="getClientSubject" return-type="javax.security.auth.Subject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>32</id>
@@ -786,7 +786,7 @@
                         </description>
 <package>jakarta.security.enterprise.authentication.mechanism.http</package>
 <class-interface>HttpMessageContextWrapper</class-interface>
-<method name="getClientSubject" return-type="jakarta.security.auth.Subject"/>
+<method name="getClientSubject" return-type="javax.security.auth.Subject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>57</id>

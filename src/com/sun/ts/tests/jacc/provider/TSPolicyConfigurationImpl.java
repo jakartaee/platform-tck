@@ -29,7 +29,7 @@ import java.util.Set;
 import java.util.Collection;
 import java.util.Date;
 import java.security.*;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import java.io.*;
 import java.lang.StringBuffer;
 import java.util.logging.*;

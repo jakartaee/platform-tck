@@ -29,7 +29,7 @@ import jakarta.resource.NotSupportedException;
 import javax.transaction.xa.XAResource;
 import java.io.*;
 import java.util.*;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import com.sun.ts.tests.common.connector.util.*;
 
 public class TSManagedConnection implements ManagedConnection {

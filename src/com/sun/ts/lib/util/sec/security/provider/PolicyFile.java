@@ -39,7 +39,7 @@ import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import jakarta.security.auth.PrivateCredentialPermission;
-import jakarta.security.auth.Subject;
+import javax.security.auth.Subject;
 import javax.security.auth.x500.X500Principal;
 import java.io.FilePermission;
 import java.net.SocketPermission;
