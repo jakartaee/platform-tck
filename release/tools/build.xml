@@ -873,7 +873,7 @@
             jaxws/wsa/common,
             jaxws/wsi/constants,
             jsf/common,
-            jsf/api/javax_faces/application/application,
+            jsf/api/jakarta_faces/application/application,
             jsf/spec/el/managedbean,
             jstl/common,
             jstl/spec/core/iteration/foreach,
