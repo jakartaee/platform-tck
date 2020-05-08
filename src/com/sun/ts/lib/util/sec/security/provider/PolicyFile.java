@@ -49,8 +49,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.awt.AWTPermission;
 /*
 import jakarta.security.auth.AuthPermission;
-import jakarta.security.auth.kerberos.ServicePermission;
-import jakarta.security.auth.kerberos.DelegationPermission;
+import javax.security.auth.kerberos.ServicePermission;
+import javax.security.auth.kerberos.DelegationPermission;
 import java.io.SerializablePermission;
 import java.util.logging.LoggingPermission;
 import java.sql.SQLPermission;
