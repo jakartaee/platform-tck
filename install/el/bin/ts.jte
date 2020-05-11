@@ -1,5 +1,6 @@
 #
-# Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+# All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -57,13 +58,15 @@ variable.mapper=com.sun.el.lang.VariableMapperImpl
 #                    jar files and/or directories which contain your 
 #                    Java EE and Java SE classes. 
 #
-#	Examples:
-# 		Solaris/Linux:
-#   	sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/rt.jar
+#   Examples:
+#       Solaris/Linux/Windows Java 8:
+#       sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/rt.jar
 # 
-#   Apples SE7:
-#  	sigTestClasspath=${el.classes}${pathsep}\
-#   /Library/Java/JavaVirtualMachines/jdk1.7.0_09.jdk/Contents/Home/jre/lib/rt.jar
+#       MacOS Java 8:
+#       sigTestClasspath=${el.classes}${pathsep}${java.home}/jre/lib/rt.jar
+# 
+#       Solaris/Linux/Windows/MacOs Java 9:
+#       sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/modules
 #
 ########################################################
 sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/rt.jar
