@@ -16,7 +16,7 @@ sed -i 's/javax.json.jar/jakarta.json.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.json-api.jar/jakarta.json.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.mail.jar/jakarta.mail.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.management.j2ee-api.jar/jakarta.management.j2ee-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
-sed -i 's/jakarta.persistence.jar/jakarta.persistence.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
+sed -i 's/javax.persistence.jar/jakarta.persistence.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.resource-api.jar/jakarta.resource-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.security.auth.message-api.jar/jakarta.security.auth.message-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.security.enterprise-api.jar/jakarta.security.enterprise-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
