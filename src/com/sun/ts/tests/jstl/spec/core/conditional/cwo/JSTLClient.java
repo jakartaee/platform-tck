@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -88,7 +88,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:15.1.1.2
    * 
    * @testStrategy: Validate that the tag throws an instance of
-   * javax.servlet.jsp.JspTagException if the expression evaluates to a type not
+   * jakarta.servlet.jsp.JspTagException if the expression evaluates to a type not
    * expected by the tag.
    */
   public void negativeCWOWhenTypeTest() throws Fault {

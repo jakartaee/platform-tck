@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -105,7 +105,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that the actions that initialize an I18N
    * localization context properly sets
-   * javax.servlet.jsp.jstl.fmt.request.charset session attribute. Actions that
+   * jakarta.servlet.jsp.jstl.fmt.request.charset session attribute. Actions that
    * do this are: <fmt:setLocale> <fmt:message> <fmt:bundle> <fmt:setBundle>
    */
   public void positiveResponseSetCharEncodingAttrTest() throws Fault {

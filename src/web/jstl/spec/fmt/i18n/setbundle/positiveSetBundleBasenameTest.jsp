@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@
     <!-- The basename attribute provides the base resource bundle
              to be used when providing localized messages.  In this case,
              since var is not specified, the configuration variable 
-             javax.servlet.jsp.jstl.fmt.localizationContext will be set
+             jakarta.servlet.jsp.jstl.fmt.localizationContext will be set
              with LocalizationContext that was initialized by the 
              ResourceBundle lookup algorithm. -->
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources"/>

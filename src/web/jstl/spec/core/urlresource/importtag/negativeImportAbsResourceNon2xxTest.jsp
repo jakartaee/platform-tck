@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,13 +26,13 @@
               response code is not 2xx, throw a JspException
               with the path and status code in the message -->
     Check the message:<br>
-    <tck:catch var="ex" exception="javax.servlet.jsp.JspException"
+    <tck:catch var="ex" exception="jakarta.servlet.jsp.JspException"
                exceptionText="/jstl_core_url_import_web">
        <c:import url='<%= (String) pageContext.getAttribute("aUrl") %>'/>
     </tck:catch>
     <c:out value="${ex}" default="Test FAILED" escapeXml="false"/><br>
     Check the status code:<br>
-    <tck:catch var="scode" exception="javax.servlet.jsp.JspException"
+    <tck:catch var="scode" exception="jakarta.servlet.jsp.JspException"
                exceptionText="500">
         <c:import url='<%= (String) pageContext.getAttribute("aUrl") %>'/>
     </tck:catch>

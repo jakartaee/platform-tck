@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
     version="2.0">
     
-  <description>A query tag using javax.servlet.jsp.jstl.sql.ResultSupport</description>
+  <description>A query tag using jakarta.servlet.jsp.jstl.sql.ResultSupport</description>
   <display-name>ResultSetQuery</display-name>
   <tlib-version>1.0</tlib-version>
   <short-name>resultSetQuery</short-name>
@@ -40,7 +40,7 @@
         <description>
 Name of the exported scoped variable for the
 query result. The type of the scoped variable is
-javax.servlet.jsp.jstl.sql.
+jakarta.servlet.jsp.jstl.sql.
 Result (see Chapter 16 "Java APIs").
         </description>
         <name>var</name>

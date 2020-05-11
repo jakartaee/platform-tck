@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  * Copyright 2001-2015 The Apache Software Foundation
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -25,19 +25,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.jstl.sql.Result;
-import javax.servlet.jsp.jstl.sql.ResultSupport;
-import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.TryCatchFinally;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.jstl.sql.Result;
+import jakarta.servlet.jsp.jstl.sql.ResultSupport;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import jakarta.servlet.jsp.tagext.TryCatchFinally;
 import javax.sql.DataSource;
 
 /**
  * <p>
  * Tag handler similar to &lt;Query&gt; in JSTL but uses
- * javax.servlet.jsp.jstl.sql.ResultSupport. To simplify testing, the scope of
+ * jakarta.servlet.jsp.jstl.sql.ResultSupport. To simplify testing, the scope of
  * the scoped variable is set to page scope. It does not accept sql:param as
  * sub-elements. It does not participate in a transaction. dataSource attribute
  * must be set explicitly. The presence of maxRows attribute determine which
@@ -158,7 +158,7 @@ public class ResultSetQueryTag extends BodyTagSupport
    * The connection used to execute the statement comes either from the
    * <code>DataSource</code> specified by the <code>dataSource</code> attribute,
    * provided by a parent action element, or is retrieved from a JSP scope
-   * attribute named <code>javax.servlet.jstl.sql.dataSource</code>.
+   * attribute named <code>jakarta.servlet.jstl.sql.dataSource</code>.
    */
   @Override
   public int doEndTag() throws JspException {

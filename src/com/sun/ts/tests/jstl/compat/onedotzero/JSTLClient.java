@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -138,7 +138,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * 
    * @testStrategy: Validate that if no Content-Type header is sent by the
    * client, and the scoped variable,
-   * javax.servlet.jsp.jstl.fmt.request.charset, is not present, the default
+   * jakarta.servlet.jsp.jstl.fmt.request.charset, is not present, the default
    * encoding of ISO-8859-1 is used. Validation will be by calling
    * getCharacterEncoding() against the request object after the action has been
    * called.
@@ -180,10 +180,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:46.3
    * 
-   * @testStrategy: If the javax.servlet.jsp.jstl.fmt.localizationContext
+   * @testStrategy: If the jakarta.servlet.jsp.jstl.fmt.localizationContext
    * attribute is present, and the formatting action is not nested in a
    * <fmt:bundle> action, the base name attribute will take precedence over the
-   * javax.servlet.jsp.jstl.fmt.locale scoped attribute. This will be verified
+   * jakarta.servlet.jsp.jstl.fmt.locale scoped attribute. This will be verified
    * by setting the localizationContext attribute so that it will resolve to an
    * en_US bundle, and the set the locale attribute to de_DE. If the formatting
    * action correctly uses the locale from the base name attribute, then no

@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,9 +23,9 @@
 <tck:test testName="negativeSelectFailureTest">
 
     <!-- If the XPath expression provided to the select attribute
-             fails to evaluation an instance of javax.servlet.jsp.JspException
+             fails to evaluation an instance of jakarta.servlet.jsp.JspException
              is thrown. -->
-    <tck:catch var="ex" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="ex" exception="jakarta.servlet.jsp.JspException">
         <x:if select="$doc//a" var="res"/>
     </tck:catch>
     <c:out value="${ex}" default="Test FAILED" escapeXml="false"/>

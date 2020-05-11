@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@
              when attempting to format it, an JspException is thrown, with
              unparsable value present in the exception text and the original
              exception as the root cause. -->
-    <tck:catch var="rex" exception="javax.servlet.jsp.JspException" exceptionText="abcd"
+    <tck:catch var="rex" exception="jakarta.servlet.jsp.JspException" exceptionText="abcd"
                checkRootCause="true">
         <fmt:parseNumber value="abcd"/>
     </tck:catch>

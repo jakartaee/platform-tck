@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,16 +24,16 @@
         pageContext.setAttribute("invalid", new Integer(1));
     %>
     <!-- If target is null or is not an instance of
-             java.util.Map or JavaBean, a javax.servlet.jsp.JspException
+             java.util.Map or JavaBean, a jakarta.servlet.jsp.JspException
              is thrown. -->
     Target is null:<br>
-    <tck:catch var="rex" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="rex" exception="jakarta.servlet.jsp.JspException">
         <c:set value="val1" property="somprop" target='<%= null %>'/>
     </tck:catch>
     <c:out value="${rex}" default="Test FAILED" escapeXml="false"/>
 
     Target is not a Map or Bean:<br>
-    <tck:catch var="rex1" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="rex1" exception="jakarta.servlet.jsp.JspException">
         <c:set value="val1" property="someprop"
                   target='<%= (Integer) pageContext.getAttribute("invalid") %>'/>
     </tck:catch>

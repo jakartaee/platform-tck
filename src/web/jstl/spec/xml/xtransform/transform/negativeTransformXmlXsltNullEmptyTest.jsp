@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,22 +24,22 @@
 
     <!-- If xml or xslt is null or emtpy, a JspException is thrown. -->
     Xml attribute is null:<br>
-    <tck:catch var="ex" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="ex" exception="jakarta.servlet.jsp.JspException">
         <x:transform doc='<%= null %>' xslt="non" var="trans"/>
     </tck:catch>
     <c:out value="${ex}" default="Test FAILED" escapeXml="false"/><br>
     Xml attribute is Empty:<br>
-    <tck:catch var="ex" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="ex" exception="jakarta.servlet.jsp.JspException">
         <x:transform doc="" xslt="non" var="trans"/>
     </tck:catch>
     <c:out value="${ex}" default="Test FAILED" escapeXml="false"/><br>
     Xslt attribute is null:<br>
-    <tck:catch var="ex" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="ex" exception="jakarta.servlet.jsp.JspException">
         <x:transform doc="non" xslt='<%= null %>' var="trans"/>
     </tck:catch>
     <c:out value="${ex}" default="Test FAILED" escapeXml="false"/><br>
     Xstl attribute is Empty:<br>
-    <tck:catch var="ex" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="ex" exception="jakarta.servlet.jsp.JspException">
         <x:transform doc="non" xslt="" var="trans"/>
     </tck:catch>
     <c:out value="${ex}" default="Test FAILED" escapeXml="false"/><br>

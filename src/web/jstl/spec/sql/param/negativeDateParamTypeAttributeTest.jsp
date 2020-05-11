@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,7 +36,7 @@
     value for the type attribute throws a JspException</h1>
    <p>
 
-   <tck:catch var="e" exception= "javax.servlet.jsp.JspException" >
+   <tck:catch var="e" exception= "jakarta.servlet.jsp.JspException" >
       <sql:query var="resultSet2"
                     dataSource='<%=(DataSource) pageContext.getAttribute("jstlDS", PageContext.APPLICATION_SCOPE) %>'
                     sql='<%=((Properties)pageContext.getAttribute("sqlProps",PageContext.APPLICATION_SCOPE)).getProperty("Select_Jstl_Tab3_Date_Query") %>' >

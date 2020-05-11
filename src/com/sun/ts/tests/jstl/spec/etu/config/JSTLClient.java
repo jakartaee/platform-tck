@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -71,7 +71,7 @@ public class JSTLClient extends AbstractUrlClient {
    * JSTL:SPEC:99.4; JSTL:SPEC:99.5; JSTL:SPEC:99.6
    * 
    * @testStrategy: Validate that the public static member values of the
-   * javax.servlet.jsp.jstl.core.Config class agree with the javadoc.
+   * jakarta.servlet.jsp.jstl.core.Config class agree with the javadoc.
    */
   public void positiveConfigStaticMembersTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "positiveConfigStaticMemebersTest");

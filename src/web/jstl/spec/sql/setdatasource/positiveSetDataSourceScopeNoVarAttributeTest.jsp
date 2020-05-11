@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,12 +21,12 @@
 
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <%@ page import="javax.sql.*, java.util.*,
-                 javax.servlet.jsp.jstl.core.Config" %>
+                 jakarta.servlet.jsp.jstl.core.Config" %>
 
 <tck:test testName="positiveSetDataSourceScopeNoVarAttributeTest">
 
    <!-- Validate when scope is specified and var is not the 
-        javax.servlet.jsp.jstl.sql.dataSource attribute is set -->
+        jakarta.servlet.jsp.jstl.sql.dataSource attribute is set -->
 
    <h1>Validating sql:setDataSource action scope attributes </h1>
    <p>
@@ -48,7 +48,7 @@
        scope='application'   />
 
    <%
-        final String DS_VARNAME = "javax.servlet.jsp.jstl.sql.dataSource";
+        final String DS_VARNAME = "jakarta.servlet.jsp.jstl.sql.dataSource";
         Object pageScope = Config.get(pageContext, DS_VARNAME, PageContext.PAGE_SCOPE);
         Object requestScope = Config.get(pageContext, DS_VARNAME, PageContext.REQUEST_SCOPE);
         Object sessionScope = Config.get(pageContext, DS_VARNAME, PageContext.SESSION_SCOPE);
@@ -64,46 +64,46 @@
                                    if (applicationScope instanceof javax.sql.DataSource) {
                                        out.println("Test PASSED");
                                    } else {
-                                       out.println("Test FAILED.  The javax.servlet.jsp.jstl.sql.dataSource attribute " +
+                                       out.println("Test FAILED.  The jakarta.servlet.jsp.jstl.sql.dataSource attribute " +
                                                    "was set in the application scope, but was not an instance of javax.sql.DataSource.");
                                        out.println("Actual type: " + applicationScope.getClass().getName());
                                    }
                                } else {
-                                   out.println("Test FAILED.  The javax.servlet.jsp.jstl.sql.dataSource attribute was not " +
+                                   out.println("Test FAILED.  The jakarta.servlet.jsp.jstl.sql.dataSource attribute was not " +
                                                "set when sql:setDataSource was called when application scope was specified and var was not.");
                                }
                            } else {
-                               out.println("Test FAILED.  The javax.servlet.jsp.jstl.sql.dataSource attribute " +
+                               out.println("Test FAILED.  The jakarta.servlet.jsp.jstl.sql.dataSource attribute " +
                                            "was set in the session scope, but was not an instance of javax.sql.DataSource.");
                                out.println("Actual type: " + sessionScope.getClass().getName());
                            }
                        } else {
-                           out.println("Test FAILED.  The javax.servlet.jsp.jstl.sql.dataSource attribute was not " +
+                           out.println("Test FAILED.  The jakarta.servlet.jsp.jstl.sql.dataSource attribute was not " +
                                        "set when sql:setDataSource was called when session scope was specified and var was not.");
                        }
                    } else {
-                       out.println("Test FAILED.  The javax.servlet.jsp.jstl.sql.dataSource attribute " +
+                       out.println("Test FAILED.  The jakarta.servlet.jsp.jstl.sql.dataSource attribute " +
                                    "was set in the request scope, but was not an instance of javax.sql.DataSource.");
                        out.println("Actual type: " + requestScope.getClass().getName());
                    }
                } else {
-                   out.println("Test FAILED.  The javax.servlet.jsp.jstl.sql.dataSource attribute was not " +
+                   out.println("Test FAILED.  The jakarta.servlet.jsp.jstl.sql.dataSource attribute was not " +
                                "set when sql:setDataSource was called when request scope was specified and var was not.");
                }
            } else {
-               out.println("Test FAILED.  The javax.servlet.jsp.jstl.sql.dataSource attribute " +
+               out.println("Test FAILED.  The jakarta.servlet.jsp.jstl.sql.dataSource attribute " +
                            "was set in the page scope, but was not an instance of javax.sql.DataSource.");
                out.println("Actual type: " + requestScope.getClass().getName());
            }
        } else {
-           out.println("Test FAILED.  The javax.servlet.jsp.jstl.sql.dataSource attribute was not " +
+           out.println("Test FAILED.  The jakarta.servlet.jsp.jstl.sql.dataSource attribute was not " +
                        "set when sql:setDataSource was called when page scope was specified and var was not.");
        } 
    %>
 
    <%-- clean up --%>
-   <c:remove var="javax.servlet.jsp.jstl.sql.dataSource" scope="request"/>
-   <c:remove var="javax.servlet.jsp.jstl.sql.dataSource" scope="session"/>
-   <c:remove var="javax.servlet.jsp.jstl.sql.dataSource" scope="application"/>
+   <c:remove var="jakarta.servlet.jsp.jstl.sql.dataSource" scope="request"/>
+   <c:remove var="jakarta.servlet.jsp.jstl.sql.dataSource" scope="session"/>
+   <c:remove var="jakarta.servlet.jsp.jstl.sql.dataSource" scope="application"/>
 
 </tck:test>

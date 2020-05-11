@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@
     <c:set var="invalidUrl" value="htp:/index.html"/>
 
     <!-- If the URL provided to the url attribute is invalid,
-             an instance of javax.servlet.jsp.JspException is thrown. -->
-    <tck:catch var="ex" exception="javax.servlet.jsp.JspException">
+             an instance of jakarta.servlet.jsp.JspException is thrown. -->
+    <tck:catch var="ex" exception="jakarta.servlet.jsp.JspException">
         <c:import url='<%= (String) pageContext.getAttribute("invalidUrl") %>'/>
     </tck:catch>
     <c:out value="${ex}" default="Test FAILED" escapeXml="false"/>

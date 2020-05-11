@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@
 <tck:test testName="negativeImportUrlEmptyTest">
 
     <!-- If the url attribute is empty, a JspException is thrown -->
-    <tck:catch var="rex" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="rex" exception="jakarta.servlet.jsp.JspException">
         <c:import url=""/>
     </tck:catch>
     <c:out value="${rex}" default="Test FAILED" escapeXml="false"/>

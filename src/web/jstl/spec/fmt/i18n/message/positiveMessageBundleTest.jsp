@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,7 +19,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
-<%@ page import="javax.servlet.jsp.jstl.fmt.LocalizationContext" %>
+<%@ page import="jakarta.servlet.jsp.jstl.fmt.LocalizationContext" %>
 <tck:test testName="positiveBundleMessageTest">
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources"
                 var="tBundle"/>

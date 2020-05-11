@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -137,7 +137,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:29; JSTL:SPEC:29.7
    * 
-   * @testStrategy: Validate that if the javax.servlet.jsp.jstl.fmt.locale
+   * @testStrategy: Validate that if the jakarta.servlet.jsp.jstl.fmt.locale
    * configuration variable is available, that the bundle action, given a
    * basename, can properly load a resource bundle and that any nested message
    * actions can properly localize a message based on the parent bundle action.

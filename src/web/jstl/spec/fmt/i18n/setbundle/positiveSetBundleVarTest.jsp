@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,13 +19,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
-<%@ page import="javax.servlet.jsp.jstl.fmt.LocalizationContext" %>
+<%@ page import="jakarta.servlet.jsp.jstl.fmt.LocalizationContext" %>
 <tck:test testName="positiveFormatBundleVarTest">
 
     <!-- If var is specified, the LocalizationContext is exported
-             to the pageContext and is of type javax.servlet.jsp.jstl.fmt.LocalizationContext. -->
+             to the pageContext and is of type jakarta.servlet.jsp.jstl.fmt.LocalizationContext. -->
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources"
                    var="rbundle"/>
-    <tck:isInstance varName="rbundle" type="javax.servlet.jsp.jstl.fmt.LocalizationContext"/>
+    <tck:isInstance varName="rbundle" type="jakarta.servlet.jsp.jstl.fmt.LocalizationContext"/>
     <fmt:message key="mkey" bundle="${rbundle}"/>
 </tck:test>

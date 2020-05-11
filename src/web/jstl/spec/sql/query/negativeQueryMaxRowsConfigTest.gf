@@ -15,16 +15,16 @@
 
 
    <!-- Validate sql:query action that specifies invalid String value for
-        javax.servlet.jsp.jstl.sql.maxRows throws JspException -->
+        jakarta.servlet.jsp.jstl.sql.maxRows throws JspException -->
 
     <h1>Validate sql:query action that specifies invalid String value for
-        javax.servlet.jsp.jstl.sql.maxRows throws JspException </h1>
+        jakarta.servlet.jsp.jstl.sql.maxRows throws JspException </h1>
     <p>
 
 
 
 
-   The expected Exception <strong>javax.servlet.jsp.JspException</strong> was thrown!
+   The expected Exception <strong>jakarta.servlet.jsp.JspException</strong> was thrown!
 
 
 </body>

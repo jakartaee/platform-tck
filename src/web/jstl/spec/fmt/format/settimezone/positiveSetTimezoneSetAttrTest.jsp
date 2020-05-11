@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,11 +23,11 @@
 <tck:test testName="positiveTimezoneSetAttrTest">
 
     <!-- timezone action with no var will set the
-             javax.servlet.jsp.jstl.fmt.timeZone scoped
+             jakarta.servlet.jsp.jstl.fmt.timeZone scoped
              attribute -->
     <fmt:setTimeZone value="PST"/>
     <tck:config op="get" configVar="timezone" var="rtz"/>
     <tck:isInstance varName="rtz" type="java.util.TimeZone"/>
-    <c:remove var="javax.servlet.jsp.jstl.fmt.timeZone.page"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.page"/>
 </tck:test>
 

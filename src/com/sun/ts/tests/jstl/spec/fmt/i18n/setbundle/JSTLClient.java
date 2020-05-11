@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -72,7 +72,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate the behavior of the setBundle action when basename
    * is present and var is not. The configuration variable
-   * javax.servlet.jsp.jstl.fmt.localizationContext will be set with the
+   * jakarta.servlet.jsp.jstl.fmt.localizationContext will be set with the
    * LocalizationContext returned from the lookup algorithm.
    */
   public void positiveSetBundleBasenameTest() throws Fault {
@@ -90,7 +90,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that if var is specified, the result of the
    * resource lookup is stored in the PageContext accessible by referencing var
-   * and is of type javax.servlet.jsp.jstl.fmt.LocalizationContext.
+   * and is of type jakarta.servlet.jsp.jstl.fmt.LocalizationContext.
    */
   public void positiveSetBundleVarTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleVarTest");
@@ -127,7 +127,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate the behavior of the action when scope is specified
    * and var is not. The action should properly export the configuration
-   * variable javax.servlet.jsp.jstl.fmt.localizationContext to the scope
+   * variable jakarta.servlet.jsp.jstl.fmt.localizationContext to the scope
    * specified. If scope is not specified, then the configuration variable will
    * be exported to the page scope by default.
    */
@@ -163,9 +163,9 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:92.2
    * 
-   * @testStrategy: Validate that if the javax.servlet.jsp.jstl.fmt.locale
+   * @testStrategy: Validate that if the jakarta.servlet.jsp.jstl.fmt.locale
    * configuration variable is present, that setBundle, both when it sets the
-   * javax.servlet.jsp.jstl.fmt.localizationContext configuration variable and
+   * jakarta.servlet.jsp.jstl.fmt.localizationContext configuration variable and
    * when it exports a LocalizationContext, is able to lookup the proper
    * ResourceBundle. To try to throw a wrench in things, the client will send a
    * preferred locale across the wire that, if used, will not resolve to any

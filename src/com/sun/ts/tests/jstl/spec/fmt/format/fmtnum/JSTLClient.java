@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -285,7 +285,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that the action can properly format a date based on
    * the default I18N localization context configuration variable
-   * javax.servlet.jsp.jstl.fmt.localizationContext.
+   * jakarta.servlet.jsp.jstl.fmt.localizationContext.
    */
   public void positiveFNLocalizationContextTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positiveFNLocalizationContextTest");

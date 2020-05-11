@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,16 +30,16 @@
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources1"/>
     <fmt:setLocale value="de_DE"/>
     <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
-    <!-- EL: If the javax.servlet.jstl.fmt.localizationContext scoped attribute is available,
-             this will be used in preference to the javax.servlet.jstl.fmt.locale
+    <!-- EL: If the jakarta.servlet.jstl.fmt.localizationContext scoped attribute is available,
+             this will be used in preference to the jakarta.servlet.jstl.fmt.locale
              attribute. -->
     <fmt:parseDate value="${dt}" type="both" var="p1"/>
     <fmt:formatDate value="${p1}" type="both"/>
     <fmt:parseNumber value="1,234"/>
     <fmt:formatNumber value="1234"/>
 
-    <!-- EL: If the javax.servlet.jstl.fmt.localizationContext scoped attribute is available,
-             this will be used in preference to the javax.servlet.jstl.fmt.locale
+    <!-- EL: If the jakarta.servlet.jstl.fmt.localizationContext scoped attribute is available,
+             this will be used in preference to the jakarta.servlet.jstl.fmt.locale
              attribute. -->
     <fmt_rt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>' type="both" var="p2"/>
     <fmt_rt:formatDate value='<%= (Date) pageContext.getAttribute("p2") %>' type="both"/>

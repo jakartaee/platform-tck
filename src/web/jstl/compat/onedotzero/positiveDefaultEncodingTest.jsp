@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="positiveDefaultEncodingTest">
-    <c:remove var="javax.servlet.jsp.jstl.fmt.request.charset"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.request.charset"/>
     <!-- EL: No content-type and no scoped variable, so the default
              of iso-8859-1 will be used -->
     <fmt:requestEncoding/>

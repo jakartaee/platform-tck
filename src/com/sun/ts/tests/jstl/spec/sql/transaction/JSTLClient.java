@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -72,10 +72,10 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:61; JSTL:SPEC:61.7; JSTL:SPEC:61.7.2
    * 
    * @testStrategy: Validate sql:transaction, sql:query actions utilizing the
-   * configuration parameter javax.servlet.jsp.jstl.sql.dataSource. The query is
+   * configuration parameter jakarta.servlet.jsp.jstl.sql.dataSource. The query is
    * passed as body content. - that sql:transaction action uses the
    * configuration parameter - The datasource attribute takes precedence over
-   * javax.servlet.jsp.jstl.sql.dataSource
+   * jakarta.servlet.jsp.jstl.sql.dataSource
    */
   public void positiveTxDataSourceConfigDataSourceTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD,
@@ -89,7 +89,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:61
    * 
    * @testStrategy: Validate sql:transaction action utilizing the configuration
-   * parameter javax.servlet.jsp.jstl.sql.dataSource and setting it to a String
+   * parameter jakarta.servlet.jsp.jstl.sql.dataSource and setting it to a String
    * representing JDBC DriverManager parameters. The query is passed as body
    * content
    */
@@ -106,7 +106,7 @@ public class JSTLClient extends SqlUrlClient {
    * 
    * @testStrategy: Validate sql:transaction action dataSource attribute takes
    * precedence over the configuration parameter
-   * javax.servlet.jsp.jstl.sql.dataSource.
+   * jakarta.servlet.jsp.jstl.sql.dataSource.
    */
   public void positiveTxDataSourceConfigPrecedenceTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD,
