@@ -23,6 +23,7 @@
  */
 package com.sun.ts.tests.servlet.api.javax_servlet_http.httpservletresponse;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,17 +37,17 @@ import java.io.PrintWriter;
 
 public class ServletErrorPage extends HttpServlet {
 
-  private static final String STATUS_CODE = "javax.servlet.error.status_code";
+  private static final String STATUS_CODE = RequestDispatcher.ERROR_STATUS_CODE; // "javax.servlet.error.status_code";
 
-  private static final String EXCEPTION_TYPE = "javax.serlvet.error.exception_type";
+  private static final String EXCEPTION_TYPE = RequestDispatcher.ERROR_EXCEPTION_TYPE; //"javax.servlet.error.exception_type";
 
-  private static final String MESSAGE = "javax.servlet.error.message";
+  private static final String MESSAGE = RequestDispatcher.ERROR_MESSAGE; //"javax.servlet.error.message";
 
-  private static final String EXCEPTION = "javax.servlet.error.exception";
+  private static final String EXCEPTION = RequestDispatcher.ERROR_EXCEPTION;  //"javax.servlet.error.exception";
 
-  private static final String REQUEST_URI = "javax.servlet.error.request_uri";
+  private static final String REQUEST_URI = RequestDispatcher.ERROR_REQUEST_URI; //"javax.servlet.error.request_uri";
 
-  private static final String SERVLET_NAME = "javax.servlet.error.servlet_name";
+  private static final String SERVLET_NAME = RequestDispatcher.ERROR_SERVLET_NAME; //"javax.servlet.error.servlet_name";
 
   private static final String EXP_MESSAGE = "error page invoked";
 
