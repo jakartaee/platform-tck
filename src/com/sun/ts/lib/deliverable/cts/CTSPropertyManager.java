@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -422,16 +422,16 @@ public class CTSPropertyManager extends AbstractPropertyManager {
         getProperty("persistence.unit.name"));
     pTestProps.put("persistence.unit.name.2",
         getProperty("persistence.unit.name.2"));
-    pTestProps.put("javax.persistence.provider",
-        getProperty("javax.persistence.provider"));
-    pTestProps.put("javax.persistence.jdbc.driver",
-        getProperty("javax.persistence.jdbc.driver"));
-    pTestProps.put("javax.persistence.jdbc.url",
-        getProperty("javax.persistence.jdbc.url"));
-    pTestProps.put("javax.persistence.jdbc.user",
-        getProperty("javax.persistence.jdbc.user"));
-    pTestProps.put("javax.persistence.jdbc.password",
-        getProperty("javax.persistence.jdbc.password"));
+    pTestProps.put("jakarta.persistence.provider",
+        getProperty("jakarta.persistence.provider"));
+    pTestProps.put("jakarta.persistence.jdbc.driver",
+        getProperty("jakarta.persistence.jdbc.driver"));
+    pTestProps.put("jakarta.persistence.jdbc.url",
+        getProperty("jakarta.persistence.jdbc.url"));
+    pTestProps.put("jakarta.persistence.jdbc.user",
+        getProperty("jakarta.persistence.jdbc.user"));
+    pTestProps.put("jakarta.persistence.jdbc.password",
+        getProperty("jakarta.persistence.jdbc.password"));
     pTestProps.put("jpa.provider.implementation.specific.properties",
         getProperty("jpa.provider.implementation.specific.properties"));
     pTestProps.put("persistence.second.level.caching.supported",

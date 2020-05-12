@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -2653,8 +2653,8 @@ persistencs.properties.file=${bin.dir}/jpa-provider.properties
 persistence.unit.name.2=JPATCK2
 
 jpa.provider.implementation.specific.properties=eclipselink.logging.level\=OFF
-javax.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
-javax.persistence.jdbc.driver=${derby.driver}
-javax.persistence.jdbc.url=${derby.url}
-javax.persistence.jdbc.user=${derby.user}
-javax.persistence.jdbc.password=${derby.passwd}
+jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
+jakarta.persistence.jdbc.driver=${derby.driver}
+jakarta.persistence.jdbc.url=${derby.url}
+jakarta.persistence.jdbc.user=${derby.user}
+jakarta.persistence.jdbc.password=${derby.passwd}

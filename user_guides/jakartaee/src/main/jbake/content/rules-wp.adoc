@@ -615,10 +615,10 @@ required for the Jakarta EE 8 Web Profile:
 * javax.json
 * javax.json.spi
 * javax.json.stream
-* javax.persistence
-* javax.persistence.criteria
-* javax.persistence.metamodel
-* javax.persistence.spi
+* jakarta.persistence
+* jakarta.persistence.criteria
+* jakarta.persistence.metamodel
+* jakarta.persistence.spi
 * javax.servlet
 * javax.servlet.annotation
 * javax.servlet.descriptor

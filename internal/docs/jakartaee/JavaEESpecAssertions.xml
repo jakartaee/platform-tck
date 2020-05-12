@@ -4696,8 +4696,8 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                     - jakarta.jms.JMSDestinationDefinitions
                     - jakarta.mail.MailSessionDefinition
                     - jakarta.mail.MailSessionDefinitions
-                    - javax.persistence.PersistenceUnit
-                    - javax.persistence.PersistenceUnits
+                    - jakarta.persistence.PersistenceUnit
+                    - jakarta.persistence.PersistenceUnits
                     - jakarta.resource.AdministeredObjectDefinition
                     - jakarta.resource.AdministeredObjectDefinitions
                     - jakarta.resource.ConnectionFactoryDefinition

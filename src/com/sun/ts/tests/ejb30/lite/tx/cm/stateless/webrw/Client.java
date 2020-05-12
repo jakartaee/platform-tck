@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.webrw;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import jakarta.ejb.EJB;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;

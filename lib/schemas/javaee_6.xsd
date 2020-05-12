@@ -1431,9 +1431,9 @@
             provider.  Vendor-specific properties may be included in
             the set of properties.  Properties that are not recognized
             by a vendor must be ignored.  Entries that make use of the 
-            namespace javax.persistence and its subnamespaces must not
+            namespace jakarta.persistence and its subnamespaces must not
             be used for vendor-specific properties.  The namespace
-            javax.persistence is reserved for use by the specification.
+            jakarta.persistence is reserved for use by the specification.
             
           </xsd:documentation>
         </xsd:annotation>

@@ -1,6 +1,6 @@
 #!/bin/sh +x
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,7 +31,7 @@ PREVIOUS_JPAVERSION=2.1
 TMPPREVIOUS_JPAVERSION=${PREVIOUS_JPAVERSION}
 CURRENT_JPAVERSION=2.1
 TMPCURRENT_JPAVERSION=${CURRENT_JPAVERSION}
-#SRCDIR=/work/jpa/eclipselink-2.0.0_JPA-2.0.0_RI/javax.persistence.source_2.0.0.v200911271158
+#SRCDIR=/work/jpa/eclipselink-2.0.0_JPA-2.0.0_RI/jakarta.persistence.source_2.0.0.v200911271158
 #SRCDIR=/work/jpa/apis/2.1
 #SRCDIR=/work/jpa/api_sources/2.1/JPAAPIS12192012PD
 SRCDIR=/work/jpa/api_sources/2.1
@@ -119,7 +119,7 @@ do
             assert-gen-inherited-ctor-and-comment-exception.sh JPA "JPA ${CURRENT_JPAVERSION}" "Java API for JPA" "${CURRENT_JPAVERSION}" \
               ${SRCDIR} \
               ${WORKDIR} \
-              javax.persistence javax.persistence.criteria javax.persistence.metamodel javax.persistence.spi
+              jakarta.persistence jakarta.persistence.criteria jakarta.persistence.metamodel jakarta.persistence.spi
 
             cd $STARTING_PWD
           ;;

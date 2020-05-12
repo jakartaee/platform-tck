@@ -1,7 +1,7 @@
-** `javax.persistence`
+** `jakarta.persistence`
 
-** `javax.persistence.criteria`
+** `jakarta.persistence.criteria`
 
-** `javax.persistence.metamodel`
+** `jakarta.persistence.metamodel`
 
-** `javax.persistence.spi`
+** `jakarta.persistence.spi`

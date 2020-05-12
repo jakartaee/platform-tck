@@ -2442,7 +2442,7 @@
                 context when an entity manager with a transaction-scoped
                 persistence context is used. If there is no
                 transaction context, the
-                javax.persistence.TransactionRequiredException is thrown.
+                jakarta.persistence.TransactionRequiredException is thrown.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2452,7 +2452,7 @@
                 LockModeType.NONE must be invoked within a
                 transaction. If there is no transaction or if the entity manager
                 has not been joined to the transaction,
-                the javax.persistence.TransactionRequiredException is thrown.
+                the jakarta.persistence.TransactionRequiredException is thrown.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3907,7 +3907,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1410"></a><font size="1PT">PERSISTENCE:SPEC:1410</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.3</font></TD><TD align="left" valign="center"><font size="1PT">
                 Element collections and relationships owned by the entity that
                 are contained in join tables will be
-                locked if the javax.persistence.lock.scope property is specified
+                locked if the jakarta.persistence.lock.scope property is specified
                 with a value of
                 PessimisticLockScope.EXTENDED.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -4410,7 +4410,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1446"></a><font size="1PT">PERSISTENCE:SPEC:1446</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.4.3</font></TD><TD align="left" valign="center"><font size="1PT">
-                javax.persistence.lock.scope
+                jakarta.persistence.lock.scope
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -4437,7 +4437,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1447"></a><font size="1PT">PERSISTENCE:SPEC:1447</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.4.3</font></TD><TD align="left" valign="center"><font size="1PT">
-                javax.persistence.lock.timeout
+                jakarta.persistence.lock.timeout
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -4496,7 +4496,7 @@
                         Vendors are permitted to support the use of additional,
                         vendor-specific locking hints.
                         Vendor-specific
-                        hints must not use the javax.persistence namespace.
+                        hints must not use the jakarta.persistence namespace.
                         Vendor-specific hints must be ignored if
                         they are not understood.
                     </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -5390,7 +5390,7 @@
                 using the
                 Persistence.createEntityManagerFactory
                 method, the validation mode can be specified using the
-                javax.persistence.
+                jakarta.persistence.
                 validation.mode map key, which will override the value specified
                 (or defaulted) in the
                 persistence.xml file.
@@ -5408,10 +5408,10 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1288"></a><font size="1PT">PERSISTENCE:SPEC:1288</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If the auto validation mode is specified by the
                 validation-mode element or the
-                javax.persistence.
+                jakarta.persistence.
                 validation.mode property, or if neither the validation-mode
                 element nor the
-                javax.persistence.validation.mode property is specified, and a
+                jakarta.persistence.validation.mode property is specified, and a
                 Bean Validation provider
                 is present in the environment, the persistence provider must
                 perform the automatic validation of
@@ -5432,7 +5432,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1290"></a><font size="1PT">PERSISTENCE:SPEC:1290</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If the callback validation mode is specified by the
                 validation-mode element or the
-                javax.persistence.
+                jakarta.persistence.
                 validation.mode property, the persistence provider must perform
                 the lifecycle event
                 validation as described in section 3.6.1.2.
@@ -5444,7 +5444,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1291"></a><font size="1PT">PERSISTENCE:SPEC:1291</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.1</font></TD><TD align="left" valign="center"><font size="1PT">It is an error if there is no Bean Validation provider
                 present in
                 the environment, and the provider must throw the
-                PersistenceException if the javax.persistence.
+                PersistenceException if the jakarta.persistence.
                 validation.mode property value "callback" has been passed to the
                 Persistence.
                 createEntityManagerFactory method.
@@ -5455,7 +5455,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1292"></a><font size="1PT">PERSISTENCE:SPEC:1292</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If the none validation mode is specified by the
                 validation-mode element or the
-                javax.persistence.
+                jakarta.persistence.
                 validation.mode property, the persistence provider must not
                 perform lifecycle event
                 validation.
@@ -5503,19 +5503,19 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1294.1"></a><font size="1PT">PERSISTENCE:SPEC:1294.1</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.validation.group.pre-persist
+                        jakarta.persistence.validation.group.pre-persist
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1294.2"></a><font size="1PT">PERSISTENCE:SPEC:1294.2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.2</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.group.pre-update
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1294.2"></a><font size="1PT">PERSISTENCE:SPEC:1294.2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.2</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.group.pre-update
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1294.3"></a><font size="1PT">PERSISTENCE:SPEC:1294.3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.2</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.group.pre-remove
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1294.3"></a><font size="1PT">PERSISTENCE:SPEC:1294.3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1.2</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.group.pre-remove
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -5629,7 +5629,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1478"></a><font size="1PT">PERSISTENCE:SPEC:1478</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2</font></TD><TD align="left" valign="center"><font size="1PT">The map key used by the container must be the standard
                 property name
-                javax.persistence.validation.
+                jakarta.persistence.validation.
                 factory.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -5647,7 +5647,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1479"></a><font size="1PT">PERSISTENCE:SPEC:1479</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2</font></TD><TD align="left" valign="center"><font size="1PT">The map key used must be the standard property name
-                javax.persistence.validation.factory
+                jakarta.persistence.validation.factory
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -5710,8 +5710,8 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2432"></a><font size="1PT">PERSISTENCE:SPEC:2432</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.4</font></TD><TD align="left" valign="center"><font size="1PT">The standard properties javax.persistence.fetchgraph
-                and javax.persistence.
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2432"></a><font size="1PT">PERSISTENCE:SPEC:2432</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.4</font></TD><TD align="left" valign="center"><font size="1PT">The standard properties jakarta.persistence.fetchgraph
+                and jakarta.persistence.
                 loadgraph are used to specify such graphs to queries and find
                 operations.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -5746,7 +5746,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2436"></a><font size="1PT">PERSISTENCE:SPEC:2436</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.4.1</font></TD><TD align="left" valign="center"><font size="1PT">When the javax.persistence.fetchgraph property is used
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2436"></a><font size="1PT">PERSISTENCE:SPEC:2436</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.4.1</font></TD><TD align="left" valign="center"><font size="1PT">When the jakarta.persistence.fetchgraph property is used
                 to specify an entity graph,
                 attributes that are specified by attribute nodes of the entity
                 graph are treated as FetchType.EAGER
@@ -5884,7 +5884,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2441"></a><font size="1PT">PERSISTENCE:SPEC:2441</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.4.2</font></TD><TD align="left" valign="center"><font size="1PT">When the javax.persistence.loadgraph property is used
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2441"></a><font size="1PT">PERSISTENCE:SPEC:2441</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7.4.2</font></TD><TD align="left" valign="center"><font size="1PT">When the jakarta.persistence.loadgraph property is used
                 to specify an entity graph, attributes
                 that are specified by attribute nodes of the entity graph are
                 treated as FetchType.EAGER and
@@ -6250,7 +6250,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1482"></a><font size="1PT">PERSISTENCE:SPEC:1482</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="left" valign="center"><font size="1PT">An attribute converter must implement the
-                javax.persistence.AttributeConverter interface.
+                jakarta.persistence.AttributeConverter interface.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -6520,7 +6520,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1499"></a><font size="1PT">PERSISTENCE:SPEC:1499</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">9.1</font></TD><TD align="left" valign="center"><font size="1PT">If either the shared-cache-mode element is not
                 specified in the persistence.xml file or the
                 value of the shared-cache-mode element is UNSPECIFIED, and the
-                javax.persistence.sharedCache.mode
+                jakarta.persistence.sharedCache.mode
                 property is not specified, the behavior is not defined, and
                 provider-specific defaults may apply.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -6529,7 +6529,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1500"></a><font size="1PT">PERSISTENCE:SPEC:1500</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">9.1</font></TD><TD align="left" valign="center"><font size="1PT">If the shared-cache-mode element and the
-                javax.persistence.sharedCache.mode property are not
+                jakarta.persistence.sharedCache.mode property are not
                 specified, the semantics of the Cacheable annotation (and XML
                 equivalent) are undefined.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -11000,7 +11000,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1688"></a><font size="1PT">PERSISTENCE:SPEC:1688</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">
                 The metamodel class X_ must be annotated with the
-                javax.persistence.StaticMetamodel annotation.
+                jakarta.persistence.StaticMetamodel annotation.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -11083,7 +11083,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1693"></a><font size="1PT">PERSISTENCE:SPEC:1693</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">
                 Import statements must be included for the needed
-                javax.persistence.metamodel types as
+                jakarta.persistence.metamodel types as
                 appropriate
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -11091,35 +11091,35 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1693.1"></a><font size="1PT">PERSISTENCE:SPEC:1693.1</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.metamodel.SingularAttribute
+                        jakarta.persistence.metamodel.SingularAttribute
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1693.2"></a><font size="1PT">PERSISTENCE:SPEC:1693.2</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.metamodel.CollectionAttribute
+                        jakarta.persistence.metamodel.CollectionAttribute
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1693.3"></a><font size="1PT">PERSISTENCE:SPEC:1693.3</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.metamodel.SetAttribute
+                        jakarta.persistence.metamodel.SetAttribute
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1693.4"></a><font size="1PT">PERSISTENCE:SPEC:1693.4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.metamodel.ListAttribute
+                        jakarta.persistence.metamodel.ListAttribute
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1693.5"></a><font size="1PT">PERSISTENCE:SPEC:1693.5</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.metamodel.MapAttribute
+                        jakarta.persistence.metamodel.MapAttribute
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -11178,7 +11178,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1700"></a><font size="1PT">PERSISTENCE:SPEC:1700</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
                 A criteria query is constructed through the creation and
-                modification of a javax.persistence.
+                modification of a jakarta.persistence.
                 criteria.CriteriaQuery object.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -12071,7 +12071,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1777"></a><font size="1PT">PERSISTENCE:SPEC:1777</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.15</font></TD><TD align="left" valign="center"><font size="1PT">
                 A bulk update query is constructed through the creation and
                 modification of a
-                javax.persistence.criteria.CriteriaUpdate object.
+                jakarta.persistence.criteria.CriteriaUpdate object.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -12096,7 +12096,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1780"></a><font size="1PT">PERSISTENCE:SPEC:1780</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.15</font></TD><TD align="left" valign="center"><font size="1PT">
                 A bulk delete query is constructed through the creation and
                 modification of a
-                javax.persistence.criteria.CriteriaDelete object.
+                jakarta.persistence.criteria.CriteriaDelete object.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -12417,11 +12417,11 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:851"></a><font size="1PT">PERSISTENCE:SPEC:851</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">Outside the JavaEE container environment, the
-                javax.persistence.Persistence class is the
+                jakarta.persistence.Persistence class is the
                 bootstrap class that provides access to an entity manager
                 factory. The application creates an entity
                 manager factory by called the createEntityManagerFactory method
-                of the javax.persistence.Persistence
+                of the jakarta.persistence.Persistence
                 class.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -12470,8 +12470,8 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2503"></a><font size="1PT">PERSISTENCE:SPEC:2503</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
                 Vendors should use vendor namespaces for properties (e.g., com.acme.persistence.logging).
-                Entries that make use of the namespace javax.persistence and its subnamespaces must not be
-                used for vendor-specific information. The namespace javax.persistence is reserved for use by this specification.
+                Entries that make use of the namespace jakarta.persistence and its subnamespaces must not be
+                used for vendor-specific information. The namespace jakarta.persistence is reserved for use by this specification.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -12494,7 +12494,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1806"></a><font size="1PT">PERSISTENCE:SPEC:1806</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">Entries that make use of the namespace
-                javax.persistence and its subnamespaces must not be
+                jakarta.persistence and its subnamespaces must not be
                 used for vendor-specific information.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -13908,7 +13908,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:933"></a><font size="1PT">PERSISTENCE:SPEC:933</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.4</font></TD><TD align="left" valign="center"><font size="1PT">The provider element specifies the name of the
                 persistence provider's
-                javax.persistence.spi.PersistenceProvider class.
+                jakarta.persistence.spi.PersistenceProvider class.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -14229,7 +14229,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.1"></a><font size="1PT">PERSISTENCE:SPEC:1868.1</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.lock.timeout &mdash; value in
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.1"></a><font size="1PT">PERSISTENCE:SPEC:1868.1</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.lock.timeout &mdash; value in
                         milliseconds for pessimistic lock
                         timeout.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -14237,14 +14237,14 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.2"></a><font size="1PT">PERSISTENCE:SPEC:1868.2</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.query.timeout &mdash; value in
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.2"></a><font size="1PT">PERSISTENCE:SPEC:1868.2</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.query.timeout &mdash; value in
                         milliseconds for query timeout.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.3"></a><font size="1PT">PERSISTENCE:SPEC:1868.3</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.group.pre-persist&mdash;
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.3"></a><font size="1PT">PERSISTENCE:SPEC:1868.3</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.group.pre-persist&mdash;
                         groups that are targeted
                         for validation upon the pre-persist event (overrides the
                         default behavior).
@@ -14253,7 +14253,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.4"></a><font size="1PT">PERSISTENCE:SPEC:1868.4</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.group.pre-update&mdash;
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.4"></a><font size="1PT">PERSISTENCE:SPEC:1868.4</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.group.pre-update&mdash;
                         groups that are targeted
                         for validation upon the pre-update event (overrides the
                         default behavior).
@@ -14262,7 +14262,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.5"></a><font size="1PT">PERSISTENCE:SPEC:1868.5</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.group.pre-remove&mdash;
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1868.5"></a><font size="1PT">PERSISTENCE:SPEC:1868.5</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.group.pre-remove&mdash;
                         groups that are targeted
                         for validation upon the pre-remove event (overrides the
                         default behavior).
@@ -14279,28 +14279,28 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1869.1"></a><font size="1PT">PERSISTENCE:SPEC:1869.1</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.jdbc.driver &mdash; fully qualified
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1869.1"></a><font size="1PT">PERSISTENCE:SPEC:1869.1</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.jdbc.driver &mdash; fully qualified
                         name of the driver class
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1869.2"></a><font size="1PT">PERSISTENCE:SPEC:1869.2</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.jdbc.url &mdash; driver-specific
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1869.2"></a><font size="1PT">PERSISTENCE:SPEC:1869.2</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.jdbc.url &mdash; driver-specific
                         URL
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1869.3"></a><font size="1PT">PERSISTENCE:SPEC:1869.3</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.jdbc.user &mdash; username used by
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1869.3"></a><font size="1PT">PERSISTENCE:SPEC:1869.3</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.jdbc.user &mdash; username used by
                         database connection
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1869.4"></a><font size="1PT">PERSISTENCE:SPEC:1869.4</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.jdbc.password &mdash; password for
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1869.4"></a><font size="1PT">PERSISTENCE:SPEC:1869.4</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.jdbc.password &mdash; password for
                         database connection validation
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -14309,8 +14309,8 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2452"></a><font size="1PT">PERSISTENCE:SPEC:2452</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">Scripts for use in schema generation may be specified
                 using the
-                javax.persistence.schema-generation.create-script-source and
-                javax.persistence.schema-generation.drop-script-source
+                jakarta.persistence.schema-generation.create-script-source and
+                jakarta.persistence.schema-generation.drop-script-source
                 properties.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -14318,7 +14318,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2453"></a><font size="1PT">PERSISTENCE:SPEC:2453</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">A script to specify SQL for the bulk loading of data
-                may be specified by the javax.persistence.sql-load-script-source
+                may be specified by the jakarta.persistence.sql-load-script-source
                 property.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -14333,7 +14333,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1870.1"></a><font size="1PT">PERSISTENCE:SPEC:1870.1</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.create-script-source
+                        jakarta.persistence.schema-generation.create-script-source
                         &mdash; name of a script packaged as part of the persistence
                         application or a string corresponding to a file URL
                         string that designates a script.
@@ -14343,7 +14343,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1870.2"></a><font size="1PT">PERSISTENCE:SPEC:1870.2</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.drop-script-source &mdash;
+                        jakarta.persistence.schema-generation.drop-script-source &mdash;
                         name of a script packaged as part of the persistence
                         application or a string corresponding to a file URL
                         string that designates a script.
@@ -14352,7 +14352,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1870.3"></a><font size="1PT">PERSISTENCE:SPEC:1870.3</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.sql-load-script-source &mdash;name
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1870.3"></a><font size="1PT">PERSISTENCE:SPEC:1870.3</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.sql-load-script-source &mdash;name
                         of a script packaged as part of the persistence unit or
                         a string corresponding to a file URL string that
                         designates a script.
@@ -14403,7 +14403,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2485.1"></a><font size="1PT">PERSISTENCE:SPEC:2485.1</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.database.action
+                        jakarta.persistence.schema-generation.database.action
                         property
                         specifies the action to be taken by the persistence
                         provider with regard to the database artifacts.
@@ -14419,7 +14419,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2485.2"></a><font size="1PT">PERSISTENCE:SPEC:2485.2</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.scripts.action
+                        jakarta.persistence.schema-generation.scripts.action
                         property specifies
                         which scripts are to be generated by the persistence
                         provider. The values for this property
@@ -14435,7 +14435,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2485.3"></a><font size="1PT">PERSISTENCE:SPEC:2485.3</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.create-source
+                        jakarta.persistence.schema-generation.create-source
                         property specifies
                         whether the creation of database artifacts is to occur
                         on the basis of the object/relational
@@ -14444,7 +14444,7 @@
                         metadata, script, metadata-then-script,
                         script-then-metadata. If this
                         property is not specified, and a script is specified by
-                        the javax.persistence.
+                        the jakarta.persistence.
                         schema-generation.create-script-source property, the
                         script (only)
                         will be used for schema generation; otherwise if this
@@ -14464,7 +14464,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2485.4"></a><font size="1PT">PERSISTENCE:SPEC:2485.4</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.drop-source property
+                        jakarta.persistence.schema-generation.drop-source property
                         specifies
                         whether the dropping of database artifacts is to occur
                         on the basis of the object/relational mapping
@@ -14472,7 +14472,7 @@
                         values for this property are metadata, script,
                         metadata-then-script, script-then-metadata. If this
                         property is not specified, and a script is specified by
-                        the javax.persistence.
+                        the jakarta.persistence.
                         schema-generation.drop-script-source property, the
                         script (only) will
                         be used for the dropping of database artifacts;
@@ -14493,7 +14493,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2485.5"></a><font size="1PT">PERSISTENCE:SPEC:2485.5</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1.9</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.scripts.drop-target
+                        jakarta.persistence.schema-generation.scripts.drop-target
                         If scripts are to be generated, the target locations for
                         the writing of these scripts must be specified.
                         These targets are specified as strings corresponding to
@@ -14625,7 +14625,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1871"></a><font size="1PT">PERSISTENCE:SPEC:1871</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT">Once the container has read the persistence metadata,
-                it determines the javax.persistence.
+                it determines the jakarta.persistence.
                 spi.PersistenceProvider implementation class for each deployed
                 named persistence
                 unit. The container then creates an instance of the
@@ -14663,7 +14663,7 @@
                 instance via the map that is passed as an
                 argument to the createContainerEntityManagerFactory call. The
                 map key used must be the standard property
-                name javax.persistence.validation.factory.
+                name jakarta.persistence.validation.factory.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -14675,7 +14675,7 @@
                 passing this BeanManager instance via the
                 map that is passed as an argument to the
                 createContainerEntityManagerFactory call. The map key used must
-                be the standard property name javax.persistence.bean.manager.
+                be the standard property name jakarta.persistence.bean.manager.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -14755,7 +14755,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1880"></a><font size="1PT">PERSISTENCE:SPEC:1880</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
                 The provider supplies the provider configuration file by
                 creating a text file named
-                javax.persistence.spi.PersistenceProvider and placing it in the
+                jakarta.persistence.spi.PersistenceProvider and placing it in the
                 META-INF/services directory of one of
                 its JAR files.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -14766,7 +14766,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1881"></a><font size="1PT">PERSISTENCE:SPEC:1881</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
                 The contents of the file should be the name of the provider
                 implementation class of the
-                javax.persistence.spi.PersistenceProvider interface
+                jakarta.persistence.spi.PersistenceProvider interface
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -14798,7 +14798,7 @@
                         unit in
                         the persistence.xml file and has not been overridden by
                         a different
-                        javax.persistence.provider
+                        jakarta.persistence.provider
                         property value included in the Map passed to the
                         createEntity ManagerFactory method.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -14807,7 +14807,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1883.2"></a><font size="1PT">PERSISTENCE:SPEC:1883.2</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
-                        The javax.persistence.provider property was included in
+                        The jakarta.persistence.provider property was included in
                         the Map passed to
                         createEntityManagerFactory and the value of the property
                         is the provider&rsquo;s implementation
@@ -14865,7 +14865,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2477"></a><font size="1PT">PERSISTENCE:SPEC:2477</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">Its implementation class has been specified in
                         the provider element for that persistence unit in the
                         persistence.xml file and has not been overridden by a
-                        different javax.persistence.
+                        different jakarta.persistence.
                         provider property value included in the Map passed to
                         the generateSchema method.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -14873,7 +14873,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2478"></a><font size="1PT">PERSISTENCE:SPEC:2478</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">The javax.persistence.provider property was
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:2478"></a><font size="1PT">PERSISTENCE:SPEC:2478</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">The jakarta.persistence.provider property was
                         included in the Map passed to generateSchema and the
                         value of the property is the provider's implementation
                         class.
@@ -15109,12 +15109,12 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.3"></a><font size="1PT">PERSISTENCE:SPEC:1898.3</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.database.action
+                        jakarta.persistence.schema-generation.database.action
                         property specifies the action to be taken by the
                         persistence provider with regard to the database
                         artifacts. The
                         values for this property are "none", "create",
-                        "drop-and-create", "drop". If the javax.persistence.
+                        "drop-and-create", "drop". If the jakarta.persistence.
                         schema-generation.database.action property is not
                         specified, no schema generation actions must be taken on
                         the database.
@@ -15124,7 +15124,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.4"></a><font size="1PT">PERSISTENCE:SPEC:1898.4</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.scripts.action
+                        jakarta.persistence.schema-generation.scripts.action
                         property specifies which scripts are to be generated by
                         the persistence provider. The values for this property
                         are "none", "create", "drop-and-create", "drop". Scripts
@@ -15137,7 +15137,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.5"></a><font size="1PT">PERSISTENCE:SPEC:1898.5</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.create-source
+                        jakarta.persistence.schema-generation.create-source
                         property specifies whether the creation of database
                         artifacts is to occur on the basis of the
                         object/relational mapping metadata, DDL script, or a
@@ -15145,7 +15145,7 @@
                         "metadata", "script", "metadata-then-script",
                         "script-then-metadata". If this property is not
                         specified, and a script is specified by the
-                        javax.persistence.
+                        jakarta.persistence.
                         schema-generation.create-script-source property, the
                         script (only) will be used for schema generation;
                         otherwise if this property is not specified, schema
@@ -15163,14 +15163,14 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.6"></a><font size="1PT">PERSISTENCE:SPEC:1898.6</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.drop-source property
+                        jakarta.persistence.schema-generation.drop-source property
                         specifies whether the dropping of database artifacts is
                         to occur on the basis of the object/relational mapping
                         metadata, DDL script, or a combination of the two. The
                         values for this property are "metadata", "script",
                         "metadata-then-script", "script-then-metadata". If this
                         property is not specified, and a script is specified by
-                        the javax.persistence.
+                        the jakarta.persistence.
                         schema-generation.drop-script-source property, the
                         script (only) will be used for the dropping of database
                         artifacts; otherwise if this property is not specified,
@@ -15189,12 +15189,12 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.7"></a><font size="1PT">PERSISTENCE:SPEC:1898.7</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.create-database-schemas
+                        jakarta.persistence.schema-generation.create-database-schemas
                         In Java EE environments, it is anticipated that the Java
                         EE platform provider may wish to control the creation of
                         database schemas rather than delegate this task to the
                         persistence provider. The
-                        javax.persistence.schema-generation.create-database-schemas
+                        jakarta.persistence.schema-generation.create-database-schemas
                         property specifies whether the persistence provider is
                         to create the database schema(s) in addition to creating
                         database objects such as tables, sequences, constraints,
@@ -15211,7 +15211,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.8"></a><font size="1PT">PERSISTENCE:SPEC:1898.8</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.scripts.create-target
+                        jakarta.persistence.schema-generation.scripts.create-target
                         property specifies a java.IO.Writer
                         configured for use by the persistence provider for
                         output of the DDL script or a string specifying
@@ -15227,7 +15227,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.9"></a><font size="1PT">PERSISTENCE:SPEC:1898.9</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.drop-target
+                        jakarta.persistence.schema-generation.drop-target
                         property specifies a java.IO.Writer
                         configured for use by the persistence provider for
                         output of the DDL script or a string specifying
@@ -15242,14 +15242,14 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.10"></a><font size="1PT">PERSISTENCE:SPEC:1898.10</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.database-product-name,
-                        javax.persistence.database-major-version,
-                        javax.persistence.database-minor-version
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.10"></a><font size="1PT">PERSISTENCE:SPEC:1898.10</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.database-product-name,
+                        jakarta.persistence.database-major-version,
+                        jakarta.persistence.database-minor-version
                         - If scripts are to be generated by the
                         persistence provider and a connection to the
                         target database
                         is not supplied, the
-                        javax.persistence.database-product-name property must
+                        jakarta.persistence.database-product-name property must
                         be specified. The value of this property should be the
                         value returned for the target
                         database by
@@ -15259,13 +15259,13 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.11"></a><font size="1PT">PERSISTENCE:SPEC:1898.11</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.database-product-name,
-                        javax.persistence.database-major-version,
-                        javax.persistence.database-minor-version - If sufficient
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.11"></a><font size="1PT">PERSISTENCE:SPEC:1898.11</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.database-product-name,
+                        jakarta.persistence.database-major-version,
+                        jakarta.persistence.database-minor-version - If sufficient
                         database version information is not included in the
                         result of this method, the
-                        javax.persistence.
-                        database-major-version and javax.persistence.database-
+                        jakarta.persistence.
+                        database-major-version and jakarta.persistence.database-
                         minor-version properties should be specified as needed.
                         These should contain the
                         values returned by the JDBC getDatabaseMajorVersion and
@@ -15277,8 +15277,8 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.12"></a><font size="1PT">PERSISTENCE:SPEC:1898.12</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.create-script-source
-                        and javax.persistence.schema-generation.drop-script-source properties are used
+                        jakarta.persistence.schema-generation.create-script-source
+                        and jakarta.persistence.schema-generation.drop-script-source properties are used
                         for script
                         execution. In Java EE
                         container environments, it is generally expected that
@@ -15293,8 +15293,8 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.13"></a><font size="1PT">PERSISTENCE:SPEC:1898.13</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.create-script-source,
-                        javax.persistence.schema-generation.drop-script-source
+                        jakarta.persistence.schema-generation.create-script-source,
+                        jakarta.persistence.schema-generation.drop-script-source
                         If DDL scripts are to be used in Java SE
                         environments
                         or if the Java EE container
@@ -15307,7 +15307,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.14"></a><font size="1PT">PERSISTENCE:SPEC:1898.14</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.create-script-source
+                        jakarta.persistence.schema-generation.create-script-source
                         property specifies a
                         java.IO.Reader configured for reading of the DDL script
                         or a
@@ -15319,7 +15319,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.15"></a><font size="1PT">PERSISTENCE:SPEC:1898.15</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The
-                        javax.persistence.schema-generation.drop-script-source
+                        jakarta.persistence.schema-generation.drop-script-source
                         property specifies a java.IO.Reader
                         configured for reading of the DDL script or a string
                         designating a file URL for the DDL script.
@@ -15328,8 +15328,8 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.16"></a><font size="1PT">PERSISTENCE:SPEC:1898.16</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.schema-generation.connection
-                        The javax.persistence.schema-generation.connection
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1898.16"></a><font size="1PT">PERSISTENCE:SPEC:1898.16</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.schema-generation.connection
+                        The jakarta.persistence.schema-generation.connection
                         property specifies
                         the JDBC connection to be used for schema generation.
                         This is intended for use in Java EE
@@ -15350,7 +15350,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1899"></a><font size="1PT">PERSISTENCE:SPEC:1899</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.sql-load-script-source
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1899"></a><font size="1PT">PERSISTENCE:SPEC:1899</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.sql-load-script-source
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -15367,7 +15367,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1899.2"></a><font size="1PT">PERSISTENCE:SPEC:1899.2</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The javax.persistence.sql-load-script-source
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1899.2"></a><font size="1PT">PERSISTENCE:SPEC:1899.2</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">The jakarta.persistence.sql-load-script-source
                         property specifies a java.IO.Reader
                         configured for reading of the SQL load script for
                         database initialization or a string
@@ -15451,7 +15451,7 @@
                 is passed as an argument to the
                 Persistence.createEntityManagerFactory call. The map
                 key used must be the standard property name
-                javax.persistence.validation.factory.
+                jakarta.persistence.validation.factory.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -15470,7 +15470,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:981"></a><font size="1PT">PERSISTENCE:SPEC:981</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">The interface javax.persistence.spi.PersistenceProvider
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:981"></a><font size="1PT">PERSISTENCE:SPEC:981</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">The interface jakarta.persistence.spi.PersistenceProvider
                 is implemented by the persistence
                 provider.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15485,14 +15485,14 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:983"></a><font size="1PT">PERSISTENCE:SPEC:983</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">and by the javax.persistence.Persistence class
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:983"></a><font size="1PT">PERSISTENCE:SPEC:983</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">and by the jakarta.persistence.Persistence class
                         in Java SE environments.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:984"></a><font size="1PT">PERSISTENCE:SPEC:984</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">The javax.persistence.spi.PersistenceProvider
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:984"></a><font size="1PT">PERSISTENCE:SPEC:984</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">The jakarta.persistence.spi.PersistenceProvider
                         implementation is not intended to be
                         used
                         by the application.
@@ -15541,7 +15541,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.1"></a><font size="1PT">PERSISTENCE:SPEC:987.1</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.lock.timeout &mdash; integer value
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.1"></a><font size="1PT">PERSISTENCE:SPEC:987.1</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.lock.timeout &mdash; integer value
                         in milliseconds for pessimistic
                         lock timeout or string corresponding to integer value.
                         This is a hint only.
@@ -15550,7 +15550,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.2"></a><font size="1PT">PERSISTENCE:SPEC:987.2</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.query.timeout &mdash; integer value
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.2"></a><font size="1PT">PERSISTENCE:SPEC:987.2</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.query.timeout &mdash; integer value
                         in milliseconds for query timeout
                         or string corresponding to integer value. This is a hint
                         only.
@@ -15559,7 +15559,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:988"></a><font size="1PT">PERSISTENCE:SPEC:988</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.provider &mdash; string
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:988"></a><font size="1PT">PERSISTENCE:SPEC:988</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.provider &mdash; string
                         corresponding to the provider element in
                         the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15567,7 +15567,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:989"></a><font size="1PT">PERSISTENCE:SPEC:989</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.transactionType &mdash; string
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:989"></a><font size="1PT">PERSISTENCE:SPEC:989</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.transactionType &mdash; string
                         corresponding to the transaction-type
                         attribute in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15575,7 +15575,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:990"></a><font size="1PT">PERSISTENCE:SPEC:990</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.jtaDataSource &mdash; string
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:990"></a><font size="1PT">PERSISTENCE:SPEC:990</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.jtaDataSource &mdash; string
                         corresponding to the jta-data-source
                         element
                         in the persistence.xml.
@@ -15584,7 +15584,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.3"></a><font size="1PT">PERSISTENCE:SPEC:987.3</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.sharedCache.mode &mdash; string
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.3"></a><font size="1PT">PERSISTENCE:SPEC:987.3</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.sharedCache.mode &mdash; string
                         corresponding to the
                         shared-cache-mode element in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15592,7 +15592,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.4"></a><font size="1PT">PERSISTENCE:SPEC:987.4</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.mode &mdash; string
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.4"></a><font size="1PT">PERSISTENCE:SPEC:987.4</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.mode &mdash; string
                         corresponding to the validation-mode
                         element
                         in the persistence.xml.
@@ -15601,27 +15601,27 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.5"></a><font size="1PT">PERSISTENCE:SPEC:987.5</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.group.pre-persist
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.5"></a><font size="1PT">PERSISTENCE:SPEC:987.5</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.group.pre-persist
                         &mdash; string corresponding to the
-                        javax.persistence.validation.group.pre-persist property
+                        jakarta.persistence.validation.group.pre-persist property
                         in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.6"></a><font size="1PT">PERSISTENCE:SPEC:987.6</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.group.pre-update &mdash;
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.6"></a><font size="1PT">PERSISTENCE:SPEC:987.6</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.group.pre-update &mdash;
                         string corresponding to the
-                        javax.persistence.validation.group.pre-update property
+                        jakarta.persistence.validation.group.pre-update property
                         in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.7"></a><font size="1PT">PERSISTENCE:SPEC:987.7</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.validation.group.pre-remove &mdash;
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:987.7"></a><font size="1PT">PERSISTENCE:SPEC:987.7</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.validation.group.pre-remove &mdash;
                         string corresponding to the
-                        javax.persistence.validation.group.pre-remove property
+                        jakarta.persistence.validation.group.pre-remove property
                         in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15637,8 +15637,8 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1908"></a><font size="1PT">PERSISTENCE:SPEC:1908</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">Entries that make use of the namespace
-                javax.persistence and its subnamespaces must not be used
-                for vendor-specific information. The namespace javax.persistence
+                jakarta.persistence and its subnamespaces must not be used
+                for vendor-specific information. The namespace jakarta.persistence
                 is reserved for use by this
                 specification.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15647,7 +15647,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1909"></a><font size="1PT">PERSISTENCE:SPEC:1909</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
-                The enum javax.persistence.spi.PersistenceUnitTransactionType
+                The enum jakarta.persistence.spi.PersistenceUnitTransactionType
                 defines whether the entity managers
                 created by the factory will be JTA or resource-local entity
                 managers.
@@ -15657,7 +15657,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1910"></a><font size="1PT">PERSISTENCE:SPEC:1910</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
-                The enum javax.persistence.SharedCacheMode defines the use of
+                The enum jakarta.persistence.SharedCacheMode defines the use of
                 caching. The persistence. xml
                 shared-cache-mode element has no default value.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15674,14 +15674,14 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1912"></a><font size="1PT">PERSISTENCE:SPEC:1912</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">The enum javax.persistence.ValidationMode defines the
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1912"></a><font size="1PT">PERSISTENCE:SPEC:1912</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">The enum jakarta.persistence.ValidationMode defines the
                 validation mode.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1913"></a><font size="1PT">PERSISTENCE:SPEC:1913</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">6.1</font></TD><TD align="left" valign="center"><font size="1PT">The javax.persistence.spi.ClassTransformer interface is
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1913"></a><font size="1PT">PERSISTENCE:SPEC:1913</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">6.1</font></TD><TD align="left" valign="center"><font size="1PT">The jakarta.persistence.spi.ClassTransformer interface is
                 implemented by a persistence provider
                 that wants to transform entities and managed classes at class
                 load time or at class redefinition time.
@@ -15752,7 +15752,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.1"></a><font size="1PT">PERSISTENCE:SPEC:1919.1</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.lock.timeout &mdash; integer value in
+                        jakarta.persistence.lock.timeout &mdash; integer value in
                         milliseconds for pessimistic lock timeout
                         or
                         string corresponding to integer value. This corresponds
@@ -15764,7 +15764,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.2"></a><font size="1PT">PERSISTENCE:SPEC:1919.2</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.query.timeout &mdash; integer value in
+                        jakarta.persistence.query.timeout &mdash; integer value in
                         milliseconds for query timeout or string
                         corresponding to integer value. This corresponds to the
                         property of the same name in the persistence.xml, and is
@@ -15775,7 +15775,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.3"></a><font size="1PT">PERSISTENCE:SPEC:1919.3</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.provider &mdash; string corresponding to the
+                        jakarta.persistence.provider &mdash; string corresponding to the
                         provider element in the
                         persistence.xml
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15784,7 +15784,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.4"></a><font size="1PT">PERSISTENCE:SPEC:1919.4</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.transactionType &mdash; string corresponding
+                        jakarta.persistence.transactionType &mdash; string corresponding
                         to the transaction type attribute
                         in
                         the persistence.xml.
@@ -15794,7 +15794,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.5"></a><font size="1PT">PERSISTENCE:SPEC:1919.5</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.jtaDataSource &mdash; string corresponding
+                        jakarta.persistence.jtaDataSource &mdash; string corresponding
                         to the jta-data-source element in the
                         persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15803,7 +15803,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.6"></a><font size="1PT">PERSISTENCE:SPEC:1919.6</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.nonJtaDataSource &mdash; string
+                        jakarta.persistence.nonJtaDataSource &mdash; string
                         corresponding to the non-jta-data-source element
                         in
                         the persistence.xml.
@@ -15813,7 +15813,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.7"></a><font size="1PT">PERSISTENCE:SPEC:1919.7</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.sharedCache.mode &mdash; string
+                        jakarta.persistence.sharedCache.mode &mdash; string
                         corresponding to the shared-cache-mode element
                         in
                         the persistence.xml.
@@ -15823,7 +15823,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.8"></a><font size="1PT">PERSISTENCE:SPEC:1919.8</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.validation.mode &mdash; string corresponding
+                        jakarta.persistence.validation.mode &mdash; string corresponding
                         to the validation mode element in
                         the
                         persistence.xml. The value is "auto", "callback", or
@@ -15834,9 +15834,9 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.9"></a><font size="1PT">PERSISTENCE:SPEC:1919.9</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.validation.group.pre-persist &mdash; string
+                        jakarta.persistence.validation.group.pre-persist &mdash; string
                         corresponding to the
-                        javax.persistence.validation.group.pre-persist property
+                        jakarta.persistence.validation.group.pre-persist property
                         in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15844,9 +15844,9 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.10"></a><font size="1PT">PERSISTENCE:SPEC:1919.10</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.validation.group.pre-update &mdash; string
+                        jakarta.persistence.validation.group.pre-update &mdash; string
                         corresponding to the
-                        javax.persistence.validation.group.pre-update property
+                        jakarta.persistence.validation.group.pre-update property
                         in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15854,9 +15854,9 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.11"></a><font size="1PT">PERSISTENCE:SPEC:1919.11</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.validation.group.pre-remove &mdash; string
+                        jakarta.persistence.validation.group.pre-remove &mdash; string
                         corresponding to the
-                        javax.persistence.validation.group.pre-remove property
+                        jakarta.persistence.validation.group.pre-remove property
                         in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15864,10 +15864,10 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.12"></a><font size="1PT">PERSISTENCE:SPEC:1919.12</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.create-script-source
+                        jakarta.persistence.schema-generation.create-script-source
                         - string
                         corresponding to the
-                        javax.persistence.ddl-create-script-source property in
+                        jakarta.persistence.ddl-create-script-source property in
                         the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15875,18 +15875,18 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.13"></a><font size="1PT">PERSISTENCE:SPEC:1919.13</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.drop-script-source
+                        jakarta.persistence.schema-generation.drop-script-source
                         &mdash;string corresponding to the
-                        javax.persistence.ddl-drop-script-source property in the
+                        jakarta.persistence.ddl-drop-script-source property in the
                         persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.14"></a><font size="1PT">PERSISTENCE:SPEC:1919.14</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.sql-load-script-source
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.14"></a><font size="1PT">PERSISTENCE:SPEC:1919.14</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.sql-load-script-source
                         &mdash;string corresponding to the
-                        javax.persistence.sql-load-script-source property in the
+                        jakarta.persistence.sql-load-script-source property in the
                         persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15894,9 +15894,9 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.21"></a><font size="1PT">PERSISTENCE:SPEC:1919.21</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.database.action &mdash;
+                        jakarta.persistence.schema-generation.database.action &mdash;
                         string corresponding to the
-                        javax.persistence.schema-generation.database.action
+                        jakarta.persistence.schema-generation.database.action
                         property in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15904,9 +15904,9 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.22"></a><font size="1PT">PERSISTENCE:SPEC:1919.22</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.scripts.action &mdash;
+                        jakarta.persistence.schema-generation.scripts.action &mdash;
                         string corresponding to the
-                        javax.persistence.schema-generation.scripts.action
+                        jakarta.persistence.schema-generation.scripts.action
                         property in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15914,18 +15914,18 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.23"></a><font size="1PT">PERSISTENCE:SPEC:1919.23</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.create-source &mdash;
+                        jakarta.persistence.schema-generation.create-source &mdash;
                         string corresponding to the
-                        javax.persistence.schema-generation.create-source
+                        jakarta.persistence.schema-generation.create-source
                         property in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.24"></a><font size="1PT">PERSISTENCE:SPEC:1919.24</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.schema-generation.drop-source
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.24"></a><font size="1PT">PERSISTENCE:SPEC:1919.24</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.schema-generation.drop-source
                         &mdash; string corresponding to the
-                        javax.persistence.schema-generation.drop-source property
+                        jakarta.persistence.schema-generation.drop-source property
                         in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15933,9 +15933,9 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.25"></a><font size="1PT">PERSISTENCE:SPEC:1919.25</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.scripts.create-target
+                        jakarta.persistence.schema-generation.scripts.create-target
                         &mdash;string corresponding to the
-                        javax.persistence.schema-generation.scripts.create-target
+                        jakarta.persistence.schema-generation.scripts.create-target
                         property in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15943,9 +15943,9 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.21"></a><font size="1PT">PERSISTENCE:SPEC:1919.21</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.schema-generation.scripts.drop-target
+                        jakarta.persistence.schema-generation.scripts.drop-target
                         &mdash; string corresponding to the
-                        javax.persistence.schema-generation.scripts.drop-target
+                        jakarta.persistence.schema-generation.scripts.drop-target
                         property in the persistence.xml.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15953,7 +15953,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.15"></a><font size="1PT">PERSISTENCE:SPEC:1919.15</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.jdbc.driver &mdash; value is the fully
+                        jakarta.persistence.jdbc.driver &mdash; value is the fully
                         qualified name of the driver class.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15961,7 +15961,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.16"></a><font size="1PT">PERSISTENCE:SPEC:1919.16</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.jdbc.url &mdash; string corresponding to the
+                        jakarta.persistence.jdbc.url &mdash; string corresponding to the
                         driver-specific URL.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15969,7 +15969,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.17"></a><font size="1PT">PERSISTENCE:SPEC:1919.17</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.jdbc.user &mdash; value is the username used
+                        jakarta.persistence.jdbc.user &mdash; value is the username used
                         by database connection.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15977,7 +15977,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.18"></a><font size="1PT">PERSISTENCE:SPEC:1919.18</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.jdbc.password &mdash; value is the password
+                        jakarta.persistence.jdbc.password &mdash; value is the password
                         for database connection validation.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -15985,7 +15985,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.19"></a><font size="1PT">PERSISTENCE:SPEC:1919.19</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.dataSource &mdash; value is instance of
+                        jakarta.persistence.dataSource &mdash; value is instance of
                         javax.sql.DataSource to be used for the
                         specified persistence unit.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -15994,7 +15994,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1919.20"></a><font size="1PT">PERSISTENCE:SPEC:1919.20</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.persistence.validation.factory &mdash; value is instance
+                        jakarta.persistence.validation.factory &mdash; value is instance
                         of
                         jakarta.validation.ValidatorFactory
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -16022,10 +16022,10 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1922"></a><font size="1PT">PERSISTENCE:SPEC:1922</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
                 Vendors should use vendor namespaces for properties (e.g.,
                 com.acme.persistence.logging).
-                Entries that make use of the namespace javax.persistence and its
+                Entries that make use of the namespace jakarta.persistence and its
                 subnamespaces must not be
                 used for vendor-specific information. The namespace
-                javax.persistence is reserved for use by
+                jakarta.persistence is reserved for use by
                 this specification.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -17445,7 +17445,7 @@
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1981"></a><font size="1PT">PERSISTENCE:SPEC:1981</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">1.7</font></TD><TD align="left" valign="center"><font size="1PT">If the shared-cache-mode element is not specified in
                 the persistence.xml file and the
-                javax.persistence.sharedCache.mode property is not specified
+                jakarta.persistence.sharedCache.mode property is not specified
                 when the entity manager
                 factory for the persistence unit is created, the semantics of
                 the Cacheable annotation are undefined.
