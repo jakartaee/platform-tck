@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.common.generics;
 
-import javax.annotation.security.RolesAllowed;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.Stateless;
 
 @Stateless

@@ -30,7 +30,7 @@ import java.io.*;
 import jakarta.ejb.EJB;
 import java.util.*;
 import com.sun.javatest.Status;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 public class Client extends EETest {
 

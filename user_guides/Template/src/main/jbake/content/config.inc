@@ -104,7 +104,7 @@ ${web.home}/modules/hk2-utils.jar:
 ${web.home}/modules/cglib.jar:
 ${web.home}/modules/asm-all-repackaged.jar:
 ${web.home}/modules/bean-validator.jar:
-${web.home}/modules/endorsed/javax.annotation-api.jar
+${web.home}/modules/endorsed/jakarta.annotation-api.jar
 ----
 +
   f.  Set the `servlet_adaptor` property to point to the Servlet adaptor
@@ -281,7 +281,7 @@ ${web.home}/modules/hk2-utils.jar:
 ${web.home}/modules/cglib.jar:
 ${web.home}/modules/asm-all-repackaged.jar:
 ${web.home}/modules/bean-validator.jar:
-${web.home}/modules/endorsed/javax.annotation-api.jar
+${web.home}/modules/endorsed/jakarta.annotation-api.jar
 ----
 +
   f.  Set the `servlet_adaptor` property to point to the Servlet adaptor

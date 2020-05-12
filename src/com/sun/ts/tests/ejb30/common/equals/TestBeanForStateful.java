@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.common.equals;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;

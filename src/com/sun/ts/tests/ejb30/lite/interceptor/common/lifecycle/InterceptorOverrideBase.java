@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorOverrideBase extends InterceptorBaseBase {

@@ -588,9 +588,9 @@ the Eclipse Foundation, Jakarta EE Specifications web site at `http://jakarta.ee
 The following list constitutes the complete list of packages that are
 required for Jakarta EE 8:
 
-* javax.annotation
-* javax.annotation.security
-* javax.annotation.sql
+* jakarta.annotation
+* jakarta.annotation.security
+* jakarta.annotation.sql
 * javax.batch.api
 * javax.batch.api.chunk
 * javax.batch.api.chunk.listener

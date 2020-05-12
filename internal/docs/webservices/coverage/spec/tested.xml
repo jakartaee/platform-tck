@@ -852,7 +852,7 @@
 			Service Implementation Bean instance that it is about to be removed
 			from Method Ready state by calling container/bean specific life cycle
 			methods on the instance. For the web container, with JAX-RPC runtime, the destroy method is
-			called. For the web container with JAX-WS runtime, the method annotated with javax.annotation.PreDestroy is called. For the EJB container, the method annotated with javax.annotation.PreDestroy is called.</description>
+			called. For the web container with JAX-WS runtime, the method annotated with jakarta.annotation.PreDestroy is called. For the EJB container, the method annotated with jakarta.annotation.PreDestroy is called.</description>
       <location chapter="5" section="3.3" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1567,7 +1567,7 @@ to the message is made.</description>
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:6015</id>
-      <description>javax.annotation.PostConstruct annotation</description>
+      <description>jakarta.annotation.PostConstruct annotation</description>
       <location chapter="6" section="2.2.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1577,7 +1577,7 @@ to the message is made.</description>
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:6015.2</id>
-      <description>After all the injections have been carried out, the container must invoke the method carrying a javax.annotation.PostConstruct annotation.</description>
+      <description>After all the injections have been carried out, the container must invoke the method carrying a jakarta.annotation.PostConstruct annotation.</description>
       <location chapter="6" section="2.2.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

@@ -37,7 +37,7 @@ import jakarta.ejb.Init;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 //@Stateful(name="RemoveBean")
 //@Remote({RemoveIF.class, Remove2IF.class})

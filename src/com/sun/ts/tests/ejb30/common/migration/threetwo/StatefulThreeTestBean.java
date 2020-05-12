@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.common.migration.threetwo;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;

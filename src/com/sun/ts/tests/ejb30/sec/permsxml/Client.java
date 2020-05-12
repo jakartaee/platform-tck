@@ -22,7 +22,7 @@ import com.sun.ts.lib.porting.TSLoginContext;
 import java.util.Properties;
 import jakarta.ejb.EJB;
 import com.sun.javatest.Status;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import java.security.AccessController;
 import java.security.PrivilegedExceptionAction;

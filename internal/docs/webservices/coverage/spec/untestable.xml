@@ -251,7 +251,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
       <id>WS4EE:SPEC:48</id>
-      <description>Service implementation EJB Currently, it may use javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</description>
+      <description>Service implementation EJB Currently, it may use jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</description>
       <location chapter="5" section="3.2.3" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
@@ -508,12 +508,12 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
       <id>WS4EE:SPEC:6016</id>
-      <description>javax.annotation.PreDestory annotation</description>
+      <description>jakarta.annotation.PreDestory annotation</description>
       <location chapter="6" section="2.2.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
       <id>WS4EE:SPEC:6016.1</id>
-      <description>The container must call the lifecycle method annotated with javax.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set.</description>
+      <description>The container must call the lifecycle method annotated with jakarta.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set.</description>
       <location chapter="6" section="2.2.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">

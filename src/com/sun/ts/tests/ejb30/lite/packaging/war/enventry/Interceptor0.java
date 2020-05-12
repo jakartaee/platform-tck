@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.InvocationContext;
 

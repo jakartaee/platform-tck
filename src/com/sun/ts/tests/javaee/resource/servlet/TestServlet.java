@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import jakarta.mail.Session;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.inject.Inject;
 
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;

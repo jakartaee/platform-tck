@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.interceptor.listener.annotated;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.InvocationContext;
 import jakarta.interceptor.AroundInvoke;
 

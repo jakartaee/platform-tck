@@ -24,8 +24,8 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.Interceptors;
 

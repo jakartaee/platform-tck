@@ -277,7 +277,7 @@ A Service Implementation Bean of Singleton EJB can have a shared state. The sing
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="WS4EE:SPEC:48"></a><font size="1PT">WS4EE:SPEC:48</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2.3</font></TD><TD align="left" valign="center"><font size="1PT"> Service implementation EJB Currently, it may use javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="WS4EE:SPEC:48"></a><font size="1PT">WS4EE:SPEC:48</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2.3</font></TD><TD align="left" valign="center"><font size="1PT"> Service implementation EJB Currently, it may use jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -1063,7 +1063,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 			cycle methods on the Service Implementation Bean that are specific to
 			the container. For the web container, with JAX-RPC runtime, it calls the init method on the
 			instance if the Service Implementation Bean class implements the
-			ServiceLifecycle. For web containers with JAX-WS runtime, it calls the method annotated with javax.annotation.PostConstruct annotation. For the EJB container, it calls the setSessionContext and ejbCreate methodsmethod annotated with javax.annotation.PostConstruct annotation . The javax.annotation.PostConstruct callback occurs after any dependency injection has been performed by the container and before the first business method invocation on the bean.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+			ServiceLifecycle. For web containers with JAX-WS runtime, it calls the method annotated with jakarta.annotation.PostConstruct annotation. For the EJB container, it calls the setSessionContext and ejbCreate methodsmethod annotated with jakarta.annotation.PostConstruct annotation . The jakarta.annotation.PostConstruct callback occurs after any dependency injection has been performed by the container and before the first business method invocation on the bean.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1072,7 +1072,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 			Service Implementation Bean instance that it is about to be removed
 			from Method Ready state by calling container/bean specific life cycle
 			methods on the instance. For the web container, with JAX-RPC runtime, the destroy method is
-			called. For the web container with JAX-WS runtime, the method annotated with javax.annotation.PreDestroy is called. For the EJB container, the method annotated with javax.annotation.PreDestroy is called.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+			called. For the web container with JAX-WS runtime, the method annotated with jakarta.annotation.PreDestroy is called. For the EJB container, the method annotated with jakarta.annotation.PreDestroy is called.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -2132,7 +2132,7 @@ Web container programming model for JAX-WS JAX-WS Service Endpoint that run with
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="WS4EE:SPEC:5003"></a><font size="1PT">WS4EE:SPEC:5003</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2.4.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-The optional @PostConstruct or @PreDestroy annotations A Service Implementation Bean may use javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation on methods for lifecycle event callbacks. The methods annotated with javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation allow the web container to notify a Service Implementation Bean instance of impending changes in its state. The bean may use the notification to prepare its internal state for the transition. If the bean implements methods that are annotated with javax.annotation.PostConstruct or javax.annotation.PreDestroy annotations then the container is required to call them in the manner described below. The container must call the method annotated with javax.annotation.PostConstruct before it can start dispatching requests to the methods exposed as Web Service operations of the bean. The bean may use the container notification to ready its internal state for receiving requests. The container must notify the bean of its intent to remove the bean instance from the container s working set by calling the method annotated with javax.annotation.PreDestroy annotation. A container may not call this method while a request is being processed by the bean instance. The container may not dispatch additional requests to the methods exposed as Web Service operations of the bean after this method is called.
+The optional @PostConstruct or @PreDestroy annotations A Service Implementation Bean may use jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation on methods for lifecycle event callbacks. The methods annotated with jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation allow the web container to notify a Service Implementation Bean instance of impending changes in its state. The bean may use the notification to prepare its internal state for the transition. If the bean implements methods that are annotated with jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotations then the container is required to call them in the manner described below. The container must call the method annotated with jakarta.annotation.PostConstruct before it can start dispatching requests to the methods exposed as Web Service operations of the bean. The bean may use the container notification to ready its internal state for receiving requests. The container must notify the bean of its intent to remove the bean instance from the container s working set by calling the method annotated with jakarta.annotation.PreDestroy annotation. A container may not call this method while a request is being processed by the bean instance. The container may not dispatch additional requests to the methods exposed as Web Service operations of the bean after this method is called.
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2350,7 +2350,7 @@ to the message is made.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="WS4EE:SPEC:6015"></a><font size="1PT">WS4EE:SPEC:6015</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">javax.annotation.PostConstruct annotation</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="WS4EE:SPEC:6015"></a><font size="1PT">WS4EE:SPEC:6015</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.annotation.PostConstruct annotation</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -2363,7 +2363,7 @@ to the message is made.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="WS4EE:SPEC:6015.2"></a><font size="1PT">WS4EE:SPEC:6015.2</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                            After all the injections have been carried out, the container must invoke the method carrying a javax.annotation.PostConstruct annotation. 
+                            After all the injections have been carried out, the container must invoke the method carrying a jakarta.annotation.PostConstruct annotation. 
 			         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2376,13 +2376,13 @@ to the message is made.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="WS4EE:SPEC:6016"></a><font size="1PT">WS4EE:SPEC:6016</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">javax.annotation.PreDestory annotation</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="WS4EE:SPEC:6016"></a><font size="1PT">WS4EE:SPEC:6016</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.annotation.PreDestory annotation</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="WS4EE:SPEC:6016.1"></a><font size="1PT">WS4EE:SPEC:6016.1</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                            The container must call the lifecycle method annotated with javax.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set. 
+                            The container must call the lifecycle method annotated with jakarta.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set. 
 			         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -2571,7 +2571,7 @@ to the message is made.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="WS4EE:SPEC:6041"></a><font size="1PT">WS4EE:SPEC:6041</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.3</font></TD><TD align="left" valign="center"><font size="1PT">
-                   Access to the java:comp/env contexts must be supported from the method annotated with javax.annotation.PostConstruct.
+                   Access to the java:comp/env contexts must be supported from the method annotated with jakarta.annotation.PostConstruct.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2585,7 +2585,7 @@ to the message is made.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="WS4EE:SPEC:6043"></a><font size="1PT">WS4EE:SPEC:6043</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.3</font></TD><TD align="left" valign="center"><font size="1PT">
-                  Access may not be supported within the method annotated with javax.annotation.PreDestroy annotation. 
+                  Access may not be supported within the method annotated with jakarta.annotation.PreDestroy annotation. 
 			</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2606,7 +2606,7 @@ to the message is made.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="WS4EE:SPEC:6046"></a><font size="1PT">WS4EE:SPEC:6046</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT">
-                   A JAX-WS based container must call the lifecycle method annotated with javax.annotation.PostConstruct within the context of a Port component s environment. The container must ensure the Port component s env-entrys are setup for this lifecycle method to access.
+                   A JAX-WS based container must call the lifecycle method annotated with jakarta.annotation.PostConstruct within the context of a Port component s environment. The container must ensure the Port component s env-entrys are setup for this lifecycle method to access.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>

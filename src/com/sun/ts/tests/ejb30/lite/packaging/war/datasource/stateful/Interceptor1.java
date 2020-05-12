@@ -23,9 +23,9 @@ import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSo
 
 import java.sql.Connection;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 import javax.sql.DataSource;

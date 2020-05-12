@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.timer.basic.xa;
 import java.util.Date;
 import java.util.logging.Level;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;

@@ -29,7 +29,7 @@ import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import javax.annotation.*;
+import jakarta.annotation.*;
 
 @Stateful
 @Remote(Tests.class)

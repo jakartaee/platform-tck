@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.localaccess.common;
 
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Remove;
 

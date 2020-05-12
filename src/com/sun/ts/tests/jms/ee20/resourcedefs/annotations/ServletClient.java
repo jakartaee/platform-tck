@@ -31,7 +31,7 @@ import jakarta.transaction.*;
 import javax.naming.*;
 import jakarta.jms.*;
 import jakarta.inject.Inject;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 //-------------------------------------
 // JMS Destination Resource Definitions

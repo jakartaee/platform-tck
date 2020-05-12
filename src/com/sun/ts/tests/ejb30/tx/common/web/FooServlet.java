@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.tx.common.web;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import javax.servlet.http.*;
 import javax.servlet.*;
 import jakarta.transaction.UserTransaction;

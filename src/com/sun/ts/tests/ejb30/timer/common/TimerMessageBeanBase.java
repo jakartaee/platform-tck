@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.timer.common;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.TimerService;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;

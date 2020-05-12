@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
 import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;

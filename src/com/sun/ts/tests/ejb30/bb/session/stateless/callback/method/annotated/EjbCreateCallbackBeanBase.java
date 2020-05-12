@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.annotated;
 
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;

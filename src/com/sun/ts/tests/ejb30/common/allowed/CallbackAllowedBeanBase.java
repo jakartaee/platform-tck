@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.Properties;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Timeout;
 import jakarta.ejb.TransactionAttribute;

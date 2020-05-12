@@ -24,7 +24,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionAttributeListener;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import javax.sql.DataSource;
 import jakarta.jms.QueueConnectionFactory;

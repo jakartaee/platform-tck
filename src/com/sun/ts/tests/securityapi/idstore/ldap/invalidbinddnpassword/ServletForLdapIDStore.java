@@ -18,7 +18,7 @@ package com.sun.ts.tests.securityapi.idstore.ldap.invalidbinddnpassword;
 
 import java.io.IOException;
 
-import javax.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycleejb
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;

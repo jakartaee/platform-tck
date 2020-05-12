@@ -24,8 +24,8 @@ import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean.AFTER_BEGIN_C
 import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean.BEFORE_COMPLETION;
 import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean.BEFORE_COMPLETION_COFFEE_ID;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;

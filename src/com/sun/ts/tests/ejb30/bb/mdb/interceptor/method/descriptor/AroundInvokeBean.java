@@ -21,9 +21,9 @@
 package com.sun.ts.tests.ejb30.bb.mdb.interceptor.method.descriptor;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;

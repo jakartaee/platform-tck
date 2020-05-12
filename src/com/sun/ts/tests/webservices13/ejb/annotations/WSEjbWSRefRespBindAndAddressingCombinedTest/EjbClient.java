@@ -26,8 +26,8 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.annotation.PostConstruct;
 
 import com.sun.ts.tests.jaxws.common.*;
 import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;

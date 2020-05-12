@@ -24,7 +24,7 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_BEAN;
 import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_CLIENT;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionContext;
 import org.omg.CORBA.ORB;

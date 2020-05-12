@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;

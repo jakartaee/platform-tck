@@ -31,8 +31,8 @@ import jakarta.jms.*;
 import jakarta.transaction.*;
 import javax.naming.*;
 import jakarta.inject.Inject;
-import javax.annotation.Resource;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.annotation.PostConstruct;
 
 import com.sun.ts.tests.jms.common.*;
 

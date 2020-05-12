@@ -24,7 +24,7 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;

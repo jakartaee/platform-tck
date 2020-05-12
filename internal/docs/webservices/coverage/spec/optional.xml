@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -213,7 +213,7 @@
     </assertion>
     <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:6043</id>
-      <description>Access may not be supported within the method annotated with javax.annotation.PreDestroy annotation.</description>
+      <description>Access may not be supported within the method annotated with jakarta.annotation.PreDestroy annotation.</description>
       <location chapter="6" section="2.3" />
     </assertion>
     <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">

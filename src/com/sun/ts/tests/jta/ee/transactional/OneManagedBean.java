@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jta.ee.transactional;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.UserTransaction;
 import jakarta.transaction.Transactional.TxType;
-import javax.annotation.Priority;
+import jakarta.annotation.Priority;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;

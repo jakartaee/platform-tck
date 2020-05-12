@@ -34,7 +34,7 @@ import java.rmi.RemoteException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJB;
 

@@ -28,7 +28,7 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
 import jakarta.interceptor.AroundInvoke;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.Local;

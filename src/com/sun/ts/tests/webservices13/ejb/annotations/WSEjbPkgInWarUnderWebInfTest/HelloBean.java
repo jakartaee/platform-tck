@@ -21,7 +21,7 @@ import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
 import jakarta.jws.WebService;
 import javax.xml.ws.WebServiceContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "WEB-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbPkgInWarUnderWebInfTest.Hello")
 @Stateless(name = "WSEjbPkgInWarUnderWebInfTest")

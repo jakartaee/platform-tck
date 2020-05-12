@@ -25,7 +25,7 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

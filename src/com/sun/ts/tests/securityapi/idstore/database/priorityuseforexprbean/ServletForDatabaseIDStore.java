@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 import com.sun.ts.tests.securityapi.idstore.common.PlaintextPasswordHash;
 import javax.servlet.ServletException;
@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinition;
 
 /**
  * The datasource defined in *_web.xml

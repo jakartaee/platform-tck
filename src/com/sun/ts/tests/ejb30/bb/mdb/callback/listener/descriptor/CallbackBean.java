@@ -22,9 +22,9 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.listener.descriptor;
 
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.callback.MDBCallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;

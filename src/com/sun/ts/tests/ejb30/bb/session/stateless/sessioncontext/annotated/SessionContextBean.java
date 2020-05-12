@@ -25,7 +25,7 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.LocalHome;
 import jakarta.ejb.RemoteHome;
 import com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF;

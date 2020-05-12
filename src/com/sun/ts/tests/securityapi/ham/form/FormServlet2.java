@@ -20,8 +20,8 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.Set;
 
-import javax.annotation.Resource;
-import javax.annotation.security.DeclareRoles;
+import jakarta.annotation.Resource;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Any;
 import jakarta.enterprise.inject.Default;

@@ -26,7 +26,7 @@ import jakarta.ejb.Remove;
 import jakarta.ejb.SessionSynchronization;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Stateful(name = "SessionSynchronizationLocalBean")
 public class SessionSynchronizationLocalBean extends BusinessLocal1Base

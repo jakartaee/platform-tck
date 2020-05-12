@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.dest.common;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;

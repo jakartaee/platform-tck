@@ -18,7 +18,7 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.tx;
 
 import java.util.logging.Level;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;

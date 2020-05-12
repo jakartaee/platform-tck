@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.mdb.dest.common;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;

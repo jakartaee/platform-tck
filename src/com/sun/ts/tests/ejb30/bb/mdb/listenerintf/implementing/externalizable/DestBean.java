@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.bb.mdb.listenerintf.implementing.externalizable;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.Constants;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;

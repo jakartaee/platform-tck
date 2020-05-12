@@ -21,7 +21,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.io.Serializable;
 import jakarta.interceptor.Interceptor;
 

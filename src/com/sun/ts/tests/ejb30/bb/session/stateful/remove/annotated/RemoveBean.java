@@ -31,14 +31,14 @@ import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
 import jakarta.ejb.CreateException;
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalHome;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Remote;
 import jakarta.ejb.RemoteHome;
 import jakarta.ejb.Init;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Stateful(name = "RemoveBean")
 @Remote({ RemoveIF.class, Remove2IF.class })

@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.dest.jarwar;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

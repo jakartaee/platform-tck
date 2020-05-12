@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.misc.datasource.twojars;
 
 import java.sql.Connection;
 
-import javax.annotation.sql.DataSourceDefinition;
-import javax.annotation.sql.DataSourceDefinitions;
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinitions;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Singleton;
 

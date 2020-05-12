@@ -23,7 +23,7 @@ package com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.selectorautociddurab
 import com.sun.ts.tests.jms.ee20.ra.activationconfig.common.ActivationConfigBeanBase;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.MessageListener;

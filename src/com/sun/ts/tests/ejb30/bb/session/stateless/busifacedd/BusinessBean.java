@@ -29,7 +29,7 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 //@Stateless(name="BusinessBean")
 //@Remote({BusinessIF1.class, BusinessIF2.class})

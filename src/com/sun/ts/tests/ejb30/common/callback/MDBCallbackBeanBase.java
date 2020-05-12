@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.common.callback;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;

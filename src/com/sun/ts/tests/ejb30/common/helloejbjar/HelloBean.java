@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.common.helloejbjar;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TimerService;
 

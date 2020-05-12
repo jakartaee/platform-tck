@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.misc.moduleName.appclientejb;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFail;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 

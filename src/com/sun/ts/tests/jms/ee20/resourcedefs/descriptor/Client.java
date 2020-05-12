@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import jakarta.jms.*;
 import javax.naming.*;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.jms.JMSDestinationDefinition;
 import jakarta.jms.JMSDestinationDefinitions;
 import jakarta.jms.JMSConnectionFactoryDefinition;

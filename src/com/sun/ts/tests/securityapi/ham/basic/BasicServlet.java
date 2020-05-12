@@ -18,7 +18,7 @@ package com.sun.ts.tests.securityapi.ham.basic;
 
 import java.io.IOException;
 
-import javax.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;

@@ -20,7 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.packaging.embed.classloader.annotated;
 
 import jakarta.ejb.Singleton;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.sql.Connection;
 

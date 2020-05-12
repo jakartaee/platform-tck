@@ -24,7 +24,7 @@ import com.sun.ts.tests.ejb30.common.annotation.resource.ClientBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.deliverable.cts.resource.Dog;

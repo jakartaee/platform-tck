@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.lite.view.equals;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.SessionContext;

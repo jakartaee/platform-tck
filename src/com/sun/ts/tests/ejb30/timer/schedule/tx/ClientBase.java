@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.timer.schedule.tx;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
 import jakarta.transaction.UserTransaction;

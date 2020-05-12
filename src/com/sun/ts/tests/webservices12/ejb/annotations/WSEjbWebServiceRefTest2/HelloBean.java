@@ -20,7 +20,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
 import jakarta.jws.WebService;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceRefTest2.Hello")
 @Stateless(name = "WSEjbWebServiceRefTest2")

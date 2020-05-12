@@ -30,7 +30,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 //@Stateful(name="BusinessBean")
 //@Remote({BusinessIF1.class, BusinessIF2.class})

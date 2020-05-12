@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.lite.basic.common;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;

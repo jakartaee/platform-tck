@@ -23,7 +23,7 @@ import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.javatest.Status;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 
 import com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome;

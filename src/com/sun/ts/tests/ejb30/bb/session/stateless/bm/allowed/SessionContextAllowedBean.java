@@ -26,7 +26,7 @@ import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedBeanBase;
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.Properties;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.interceptor.Interceptors;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;

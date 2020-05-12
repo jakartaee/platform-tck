@@ -30,7 +30,7 @@ import jakarta.ejb.EJBs;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.Remove;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
 import jakarta.ejb.SessionContext;

@@ -26,7 +26,7 @@ import java.io.Serializable;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.Remove;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;

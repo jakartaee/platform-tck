@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.interceptor.listener.descriptor;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.Interceptors;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;

@@ -26,7 +26,7 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Init;
 

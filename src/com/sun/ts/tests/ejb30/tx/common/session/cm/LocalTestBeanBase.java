@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
 import java.util.logging.Level;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.EJBException;

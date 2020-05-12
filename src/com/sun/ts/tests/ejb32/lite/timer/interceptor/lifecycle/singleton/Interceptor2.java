@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;

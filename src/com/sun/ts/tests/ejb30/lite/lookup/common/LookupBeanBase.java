@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.lite.lookup.common;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.SessionContext;
 

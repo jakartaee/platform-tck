@@ -20,8 +20,8 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
 
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;

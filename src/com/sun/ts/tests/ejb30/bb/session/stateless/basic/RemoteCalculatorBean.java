@@ -22,13 +22,13 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.basic;
 
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Stateless(name = "RemoteCalculatorBean", description = "a simple stateless session bean")
 @Remote({ RemoteCalculator.class })

@@ -19,9 +19,9 @@ package com.sun.ts.tests.securityapi.securitycontext.ejb;
 import java.security.Principal;
 import java.util.Set;
 
-import javax.annotation.Resource;
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.PermitAll;
+import jakarta.annotation.Resource;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.PermitAll;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;

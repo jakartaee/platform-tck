@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.common.appexception;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.transaction.UserTransaction;
 import static jakarta.transaction.Status.STATUS_ACTIVE;

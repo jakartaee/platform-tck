@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb30.misc.datasource.twojars;
 import java.sql.Connection;
 import java.util.Properties;
 
-import javax.annotation.sql.DataSourceDefinition;
-import javax.annotation.sql.DataSourceDefinitions;
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinitions;
 import jakarta.ejb.EJB;
 
 import com.sun.javatest.Status;

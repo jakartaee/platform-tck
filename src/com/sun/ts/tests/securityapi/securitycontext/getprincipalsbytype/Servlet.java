@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.AuthenticationStatus;
 import jakarta.security.enterprise.SecurityContext;

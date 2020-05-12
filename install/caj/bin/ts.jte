@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -228,44 +228,44 @@ command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
 ## For those annotations that are not supported, the value
 ## should be set to false.
 ###############################################################
-#javax.annotation.Generated
+#jakarta.annotation.Generated
 ca.sig.generated=true
 
-#javax.annotation.ManagedBean
+#jakarta.annotation.ManagedBean
 ca.sig.managedbean=true
 
-#javax.annotation.PostConstruct
+#jakarta.annotation.PostConstruct
 ca.sig.postconstruct=true
 
-#javax.annotation.PreDestroy
+#jakarta.annotation.PreDestroy
 ca.sig.predestroy=true
 
-#javax.annotation.Priority
+#jakarta.annotation.Priority
 ca.sig.priority=true
 
-#javax.annotation.Resource
+#jakarta.annotation.Resource
 ca.sig.resource=true
 
-#javax.annotation.Resources
+#jakarta.annotation.Resources
 ca.sig.resources=true
 
-#javax.annotation.security.DeclareRoles
+#jakarta.annotation.security.DeclareRoles
 ca.sig.securitydeclareroles=true
 
-#javax.annotation.security.DenyAll
+#jakarta.annotation.security.DenyAll
 ca.sig.securitydenyall=true
 
-#javax.annotation.security.PermitAll
+#jakarta.annotation.security.PermitAll
 ca.sig.securitypermitall=true
 
-#javax.annotation.security.RolesAllowed
+#jakarta.annotation.security.RolesAllowed
 ca.sig.securityrolesallowed=true
 
-#javax.annotation.security.RunAs
+#jakarta.annotation.security.RunAs
 ca.sig.securityrunas=true
 
-#javax.annotation.sql.DataSourceDefinition
+#jakarta.annotation.sql.DataSourceDefinition
 ca.sig.sqldatasourcedefinition=true
 
-#javax.annotation.sql.DataSourceDefinitions
+#jakarta.annotation.sql.DataSourceDefinitions
 ca.sig.sqldatasourcedefinitions=true

@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -3587,7 +3587,7 @@
 	(
 		ClientRequestContext
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Filter method called before a request has been dispatched to a client transport layer. Filters in the filter chain are ordered according to their javax.annotation.Priority class-level annotation value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Filter method called before a request has been dispatched to a client transport layer. Filters in the filter chain are ordered according to their jakarta.annotation.Priority class-level annotation value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -3770,7 +3770,7 @@
 		ClientRequestContext
 				,<br>ClientResponseContext
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Filter method called after a response has been provided for a request (either by a ClientRequestFilter request filter or when the HTTP invocation returns. Filters in the filter chain are ordered according to their javax.annotation.Priority class-level annotation value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Filter method called after a response has been provided for a request (either by a ClientRequestFilter request filter or when the HTTP invocation returns. Filters in the filter chain are ordered according to their jakarta.annotation.Priority class-level annotation value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -4694,7 +4694,7 @@
 	(
 		ContainerRequestContext
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Filter method called before a request has been dispatched to a resource. Filters in the filter chain are ordered according to their javax.annotation.Priority class-level annotation value. If a request filter produces a response by calling ContainerRequestContext#abortWith method, the execution of the (either pre-match or post-match) request filter chain is stopped and the response is passed to the corresponding response filter chain (either pre-match or post-match). For example, a pre-match caching filter may produce a response in this way, which would effectively skip any post-match request filters as well as post-match response filters. Note however that a responses produced in this manner would still be processed by the pre-match response filter chain.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Filter method called before a request has been dispatched to a resource. Filters in the filter chain are ordered according to their jakarta.annotation.Priority class-level annotation value. If a request filter produces a response by calling ContainerRequestContext#abortWith method, the execution of the (either pre-match or post-match) request filter chain is stopped and the response is passed to the corresponding response filter chain (either pre-match or post-match). For example, a pre-match caching filter may produce a response in this way, which would effectively skip any post-match request filters as well as post-match response filters. Note however that a responses produced in this manner would still be processed by the pre-match response filter chain.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -4919,7 +4919,7 @@
 		ContainerRequestContext
 				,<br>ContainerResponseContext
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Filter method called after a response has been provided for a request (either by a ContainerRequestFilter request filter or by a matched resource method. Filters in the filter chain are ordered according to their javax.annotation.Priority class-level annotation value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Filter method called after a response has been provided for a request (either by a ContainerRequestFilter request filter or by a matched resource method. Filters in the filter chain are ordered according to their jakarta.annotation.Priority class-level annotation value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -5215,7 +5215,7 @@
 		Class
 				,<br>int
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Register a class of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides the same functionality as #register(Class) except that any priority specified on the registered JAX-RS component class via javax.annotation.Priority annotation is overridden with the supplied priority value. Note that in case the priority is not applicable to a particular provider contract implemented by the class of the registered component, the supplied priority value will be ignored for that contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Register a class of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides the same functionality as #register(Class) except that any priority specified on the registered JAX-RS component class via jakarta.annotation.Priority annotation is overridden with the supplied priority value. Note that in case the priority is not applicable to a particular provider contract implemented by the class of the registered component, the supplied priority value will be ignored for that contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -5247,7 +5247,7 @@
 		Object
 				,<br>int
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Register an instance of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides the same functionality as #register(Object) except that any priority specified on the registered JAX-RS component class via javax.annotation.Priority annotation is overridden with the supplied priority value. Note that in case the priority is not applicable to a particular provider contract implemented by the class of the registered component, the supplied priority value will be ignored for that contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Register an instance of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides the same functionality as #register(Object) except that any priority specified on the registered JAX-RS component class via jakarta.annotation.Priority annotation is overridden with the supplied priority value. Note that in case the priority is not applicable to a particular provider contract implemented by the class of the registered component, the supplied priority value will be ignored for that contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -6824,7 +6824,7 @@
 		Class
 				,<br>Map
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Register a class of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides same functionality as #register(Class, Class[]) except that any priority specified on the registered JAX-RS component class via javax.annotation.Priority annotation is overridden for each extension provider contract type separately with an integer priority value specified as a value in the supplied map of [contract type, priority] pairs. Note that in case a priority is not applicable to a provider contract registered for the JAX-RS component, the supplied priority value is ignored for such contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Register a class of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides same functionality as #register(Class, Class[]) except that any priority specified on the registered JAX-RS component class via jakarta.annotation.Priority annotation is overridden for each extension provider contract type separately with an integer priority value specified as a value in the supplied map of [contract type, priority] pairs. Note that in case a priority is not applicable to a provider contract registered for the JAX-RS component, the supplied priority value is ignored for such contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -6835,7 +6835,7 @@
 		Object
 				,<br>Map
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Register an instance of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides same functionality as #register(Object, Class[]) except that any priority specified on the registered JAX-RS component class via javax.annotation.Priority annotation is overridden for each extension provider contract type separately with an integer priority value specified as a value in the supplied map of [contract type, priority] pairs. Note that in case a priority is not applicable to a provider contract registered for the JAX-RS component, the supplied priority value is ignored for such contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Register an instance of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides same functionality as #register(Object, Class[]) except that any priority specified on the registered JAX-RS component class via jakarta.annotation.Priority annotation is overridden for each extension provider contract type separately with an integer priority value specified as a value in the supplied map of [contract type, priority] pairs. Note that in case a priority is not applicable to a provider contract registered for the JAX-RS component, the supplied priority value is ignored for such contract.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>

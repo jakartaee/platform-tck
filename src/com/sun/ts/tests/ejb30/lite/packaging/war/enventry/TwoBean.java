@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.Interceptors;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;

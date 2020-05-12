@@ -27,7 +27,7 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Init;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 //@Stateful(name="RemoveNotRetainBean")
 //@Remote({RemoveNotRetainIF.class})

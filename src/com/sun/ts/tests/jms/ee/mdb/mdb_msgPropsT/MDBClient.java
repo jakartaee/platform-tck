@@ -21,7 +21,7 @@ package com.sun.ts.tests.jms.ee.mdb.mdb_msgPropsT;
 
 import java.io.*;
 import java.util.*;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 
 import com.sun.ts.lib.util.*;

@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.common.generics;
 
 import java.util.Date;
 
-import javax.annotation.security.RolesAllowed;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;

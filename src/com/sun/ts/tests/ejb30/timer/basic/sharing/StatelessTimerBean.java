@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.timer.basic.sharing;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.util.logging.Level;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TimedObject;

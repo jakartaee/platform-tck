@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.callback;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJBContext;
 
 abstract public class SharedCallbackBeanBase {
