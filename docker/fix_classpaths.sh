@@ -1,7 +1,7 @@
 #!/bin/bash -x
-sed -i 's/jakarta.annotation.jar/jakarta.annotation-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
+sed -i 's/javax.annotation.jar/jakarta.annotation-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/jaxb-api.jar/jakarta.xml.bind-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
-sed -i 's/jakarta.annotation-api.jar/jakarta.annotation-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
+sed -i 's/javax.annotation-api.jar/jakarta.annotation-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.ejb-api.jar/jakarta.ejb-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.el.jar/jakarta.el.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.enterprise.concurrent-api.jar/jakarta.enterprise.concurrent-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
